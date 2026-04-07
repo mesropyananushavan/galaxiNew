@@ -61,14 +61,15 @@ A minimal admin shell is available as the first post-foundation vertical slice:
 - `App\Http\Controllers\Admin\DashboardController`
 - shared admin layout and partials in `resources/views/admin`
 - placeholder dashboard page at `/admin`
+- first real admin module slice: users list at `/admin/users`
 - minimal session-based auth entry at `/login`
 - admin route protection via `auth` + `can:access-admin`
 
 ### Current access behavior
 
-- guests hitting `/admin` are redirected to `/login`
+- guests hitting `/admin` or `/admin/users` are redirected to `/login`
 - authenticated non-admin users receive `403 Forbidden`
-- only users with `users.is_admin = true` can access `/admin`
+- only users with `users.is_admin = true` can access admin routes
 - `access-admin` is a minimal gate backed by `App\\Models\\User::isAdmin()`
 
 ### Admin baseline
@@ -78,7 +79,6 @@ This project intentionally uses a small admin-access baseline instead of a full 
 - `users.is_admin` boolean flag with default `false`
 - `UserFactory::admin()` state for tests / seeds
 - default seeded admin account: `admin@example.com`
-- default seeded admin password: `password`
 
 This is the current stepping stone before any richer RBAC work.
 

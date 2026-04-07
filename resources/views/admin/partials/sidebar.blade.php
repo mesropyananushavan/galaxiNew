@@ -9,5 +9,11 @@
         >
             Dashboard
         </a>
+        <a
+            href="{{ route('admin.users.index') }}"
+            class="{{ request()->routeIs('admin.users.*') ? 'is-active' : '' }}"
+        >
+            Users
+        </a>
     </nav>
 </aside>

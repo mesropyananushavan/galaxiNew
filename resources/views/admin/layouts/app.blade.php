@@ -159,6 +159,59 @@
             color: var(--text-muted);
         }
 
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 640px;
+        }
+
+        .admin-table th,
+        .admin-table td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            vertical-align: middle;
+        }
+
+        .admin-table th {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .admin-table tbody tr:hover {
+            background: #fafcff;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #ecfdf3;
+            color: var(--success);
+        }
+
+        .badge-muted {
+            background: #eef2f7;
+            color: var(--text-muted);
+        }
+
+        .empty-state {
+            padding: 18px;
+            border: 1px dashed var(--border);
+            border-radius: 14px;
+            background: #fafcff;
+            color: var(--text-muted);
+        }
+
         @media (max-width: 960px) {
             .admin-shell {
                 grid-template-columns: 1fr;
