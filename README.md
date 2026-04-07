@@ -78,6 +78,7 @@ This project intentionally uses a small admin-access baseline instead of a full 
 - `users.is_admin` boolean flag with default `false`
 - `UserFactory::admin()` state for tests / seeds
 - default seeded admin account: `admin@example.com`
+- default seeded admin password: `password`
 
 This is the current stepping stone before any richer RBAC work.
 
