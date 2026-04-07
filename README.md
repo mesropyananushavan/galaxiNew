@@ -67,10 +67,19 @@ A minimal admin shell is available as the first post-foundation vertical slice:
 ### Current access behavior
 
 - guests hitting `/admin` are redirected to `/login`
-- authenticated users can access `/admin`
-- `access-admin` is currently an explicit stub gate that returns `true` for any authenticated user
+- authenticated non-admin users receive `403 Forbidden`
+- only users with `users.is_admin = true` can access `/admin`
+- `access-admin` is a minimal gate backed by `App\\Models\\User::isAdmin()`
 
-This is an intentional baseline step, not a full roles / permissions system yet.
+### Admin baseline
+
+This project intentionally uses a small admin-access baseline instead of a full roles / permissions system:
+
+- `users.is_admin` boolean flag with default `false`
+- `UserFactory::admin()` state for tests / seeds
+- default seeded admin account: `admin@example.com`
+
+This is the current stepping stone before any richer RBAC work.
 
 ## License
 

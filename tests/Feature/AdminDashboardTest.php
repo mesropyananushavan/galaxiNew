@@ -27,9 +27,18 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Minimal session-based sign in');
     }
 
-    public function test_authenticated_user_can_access_admin_dashboard(): void
+    public function test_non_admin_user_cannot_access_admin_dashboard(): void
     {
         $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response->assertForbidden();
+    }
+
+    public function test_admin_user_can_access_admin_dashboard(): void
+    {
+        $user = User::factory()->admin()->create();
 
         $response = $this->actingAs($user)->get('/admin');
 
