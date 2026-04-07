@@ -53,6 +53,25 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+## Admin baseline
+
+A minimal admin shell is available as the first post-foundation vertical slice:
+
+- route group in `routes/admin.php`
+- `App\Http\Controllers\Admin\DashboardController`
+- shared admin layout and partials in `resources/views/admin`
+- placeholder dashboard page at `/admin`
+- minimal session-based auth entry at `/login`
+- admin route protection via `auth` + `can:access-admin`
+
+### Current access behavior
+
+- guests hitting `/admin` are redirected to `/login`
+- authenticated users can access `/admin`
+- `access-admin` is currently an explicit stub gate that returns `true` for any authenticated user
+
+This is an intentional baseline step, not a full roles / permissions system yet.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
