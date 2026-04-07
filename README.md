@@ -61,8 +61,16 @@ A minimal admin shell is available as the first post-foundation vertical slice:
 - `App\Http\Controllers\Admin\DashboardController`
 - shared admin layout and partials in `resources/views/admin`
 - placeholder dashboard page at `/admin`
+- minimal session-based auth entry at `/login`
+- admin route protection via `auth` + `can:access-admin`
 
-This intentionally does not include auth or business modules yet.
+### Current access behavior
+
+- guests hitting `/admin` are redirected to `/login`
+- authenticated users can access `/admin`
+- `access-admin` is currently an explicit stub gate that returns `true` for any authenticated user
+
+This is an intentional baseline step, not a full roles / permissions system yet.
 
 ## License
 
