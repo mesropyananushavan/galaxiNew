@@ -53,6 +53,17 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
+## Admin baseline
+
+A minimal admin shell is available as the first post-foundation vertical slice:
+
+- route group in `routes/admin.php`
+- `App\Http\Controllers\Admin\DashboardController`
+- shared admin layout and partials in `resources/views/admin`
+- placeholder dashboard page at `/admin`
+
+This intentionally does not include auth or business modules yet.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
