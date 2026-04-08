@@ -48,7 +48,9 @@ class AdminUsersIndexTest extends TestCase
             ->assertSee('Regular Member')
             ->assertSee('member@example.com')
             ->assertSee('Yes')
-            ->assertSee('No');
+            ->assertSee('No')
+            ->assertSee('/admin/users/'.$admin->id, false)
+            ->assertSee('/admin/users/'.$member->id, false);
     }
 
     public function test_admin_users_index_shows_empty_state_when_no_users_exist(): void
