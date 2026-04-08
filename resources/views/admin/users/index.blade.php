@@ -33,8 +33,12 @@
                     <tbody>
                         @foreach ($users as $user)
                             <tr>
-                                <td>{{ $user->name }}</td>
-                                <td>{{ $user->email }}</td>
+                                <td>
+                                    <a href="{{ route('admin.users.show', $user) }}" style="color: var(--accent); font-weight: 600;">
+                                        {{ $user->name ?: '—' }}
+                                    </a>
+                                </td>
+                                <td>{{ $user->email ?: '—' }}</td>
                                 <td>
                                     <span class="badge {{ $user->is_admin ? 'badge-success' : 'badge-muted' }}">
                                         {{ $user->is_admin ? 'Yes' : 'No' }}

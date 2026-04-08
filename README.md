@@ -62,17 +62,18 @@ A minimal admin shell is available as the first post-foundation vertical slice:
 - shared admin layout and partials in `resources/views/admin`
 - placeholder dashboard page at `/admin`
 - first real admin module slice: users list at `/admin/users`
+- user detail baseline at `/admin/users/{user}`
 - minimal session-based auth entry at `/login`
 - admin route protection via `auth` + `can:access-admin`
 
 ### Current access behavior
 
-- guests hitting `/admin` or `/admin/users` are redirected to `/login`
+- guests hitting `/admin`, `/admin/users`, or `/admin/users/{user}` are redirected to `/login`
 - authenticated non-admin users receive `403 Forbidden`
 - only users with `users.is_admin = true` can access admin routes
 - `access-admin` is a minimal gate backed by `App\\Models\\User::isAdmin()`
 
-### Admin baseline
+### Current authorization baseline
 
 This project intentionally uses a small admin-access baseline instead of a full roles / permissions system:
 
