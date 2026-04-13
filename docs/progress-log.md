@@ -22,3 +22,6 @@
 - Consolidate a single migration blueprint.
 - Turn the blueprint into a phase-based execution plan.
 - Start with foundation + first parity-critical module.
+
+### Process rule added
+- Small commits and pushes should indicate the responsible role in the commit message prefix, so project progress stays readable in Git history.

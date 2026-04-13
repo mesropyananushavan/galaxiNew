@@ -19,3 +19,13 @@ Model domain entities and business flows before rebuilding screens. UI should fo
 
 ### D-006: Git transparency
 Persist structured process artifacts in Git: migration plan, progress log, decisions, and focused analysis summaries when needed.
+
+### D-007: Agent-attributed commits
+Small commits should make authorship/intention obvious. Commit messages should include the responsible role in a compact prefix when work is driven by a specific agent perspective, for example:
+- `[main] ...`
+- `[pm] ...`
+- `[architect] ...`
+- `[backend] ...`
+- `[frontend] ...`
+
+If work is synthesized across multiple roles, use `[main]` and describe the synthesis in the progress log.
