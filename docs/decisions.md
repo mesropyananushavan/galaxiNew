@@ -29,3 +29,10 @@ Small commits should make authorship/intention obvious. Commit messages should i
 - `[frontend] ...`
 
 If work is synthesized across multiple roles, use `[main]` and describe the synthesis in the progress log.
+
+### D-008: 15-minute visible activity rule
+Work should leave a visible trace in Git at least every 15 minutes while active work is underway. This can be either:
+- a small commit and push, or
+- a compact progress update committed to the repo when code changes are not ready yet.
+
+This rule applies to coordinated multi-agent work as well. The goal is to make active progress visible without waiting for large batches.

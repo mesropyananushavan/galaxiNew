@@ -25,3 +25,4 @@
 
 ### Process rule added
 - Small commits and pushes should indicate the responsible role in the commit message prefix, so project progress stays readable in Git history.
+- Active work should leave a visible Git trace at least every 15 minutes, even if that trace is a small progress checkpoint rather than a feature-complete code change.
