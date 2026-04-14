@@ -460,6 +460,29 @@ class AdminDashboardTest extends TestCase
         );
     }
 
+    public function test_resource_page_shell_can_reorder_operational_workflow_blocks(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-resource-page-defaults.resourceBlocks', [
+            ['key' => 'openIssues', 'partial' => 'admin.partials.resource-open-issues', 'prop' => 'openIssues'],
+            ['key' => 'shiftHandoff', 'partial' => 'admin.partials.resource-shift-handoff', 'prop' => 'shiftHandoff'],
+            ['key' => 'escalationGuide', 'partial' => 'admin.partials.resource-escalation-guide', 'prop' => 'escalationGuide'],
+            ['key' => 'operatorChecklist', 'partial' => 'admin.partials.resource-operator-checklist', 'prop' => 'operatorChecklist'],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+        $content = $response->getContent();
+
+        $this->assertTrue(
+            strpos($content, 'Open issues to carry')
+                < strpos($content, 'Shift handoff notes')
+                && strpos($content, 'Shift handoff notes') < strpos($content, 'Escalation guide')
+                && strpos($content, 'Escalation guide') < strpos($content, 'Operator checklist'),
+            'Expected operational workflow blocks to stay reorderable through config-driven composition.'
+        );
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

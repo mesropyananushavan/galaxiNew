@@ -500,3 +500,10 @@
 
 ### Next step after operational open issues checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit open issues, shift handoff, escalation, operator checklist, legacy mapping, activity, readiness, dependency, handoff, and migration guidance.
+
+### Operational workflow block ordering checkpoint
+- Added feature coverage proving the newer operational workflow stack, open issues, shift handoff, escalation guide, and operator checklist, still reorders safely through config-driven page composition.
+- This protects the denser Galaxy shell from turning into a hard-coded Blade sequence as more operational workflow cues are added.
+
+### Next step after operational workflow block ordering checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density while preserving config-driven composition for the growing workflow stack.
