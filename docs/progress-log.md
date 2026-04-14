@@ -133,3 +133,11 @@
 
 ### Next step after admin page definitions checkpoint
 - Introduce richer CRUD-oriented layout details for one catalog section, or split page-definition concerns further if counts/actions need their own structures.
+
+### Card types management preview checkpoint
+- Upgraded `card-types` from a plain placeholder into a richer management preview with an operational table plus a CRUD-like form/action block.
+- Added a reusable form-preview partial so future editable catalog/admin sections can use the same pattern.
+- Extended feature coverage for the first richer catalog screen.
+
+### Next step after card types management preview checkpoint
+- Apply the same richer management pattern to gifts or roles/permissions, or begin mapping these preview controls to real Laravel forms once PHP execution is available.

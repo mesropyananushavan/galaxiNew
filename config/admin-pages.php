@@ -64,8 +64,27 @@ return [
     'card-types' => [
         'pageTitle' => 'Card Types',
         'eyebrow' => 'Catalog / Card Types',
-        'summary' => 'Placeholder index for Galaxy card tiers, points rules, and activation settings.',
-        'nextStep' => 'Add card type CRUD and business rule editing.',
+        'summary' => 'Baseline management screen for Galaxy card tiers, points rules, and activation settings.',
+        'nextStep' => 'Replace sample controls with real CRUD handlers and validation.',
+        'table' => [
+            'columns' => ['Type', 'Slug', 'Points rate', 'Activation', 'Status'],
+            'rows' => [
+                ['Gold', 'gold', '1.50x', 'Auto after issue', 'active'],
+                ['Silver', 'silver', '1.00x', 'Manual', 'active'],
+                ['Partner', 'partner', '1.20x', 'Manager approval', 'draft'],
+            ],
+            'filters' => ['Status', 'Activation mode', 'Points rate'],
+        ],
+        'form' => [
+            'title' => 'Create or edit card type',
+            'fields' => [
+                ['label' => 'Type name', 'value' => 'Gold'],
+                ['label' => 'Slug', 'value' => 'gold'],
+                ['label' => 'Points rate', 'value' => '1.50'],
+                ['label' => 'Activation mode', 'value' => 'Auto after issue'],
+            ],
+            'actions' => ['Save draft', 'Publish type'],
+        ],
     ],
     'services-rules' => [
         'pageTitle' => 'Services & Rules',

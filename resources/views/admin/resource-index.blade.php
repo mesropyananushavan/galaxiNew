@@ -28,6 +28,10 @@
         @include('admin.partials.operational-index-table', ['table' => $table])
     @endif
 
+    @if (! empty($form))
+        @include('admin.partials.resource-form-preview', ['form' => $form])
+    @endif
+
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Why this page exists now</h3>
         <ul class="list">

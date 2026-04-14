@@ -171,4 +171,19 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Points range')
             ->assertSee('Premium dessert set');
     }
+
+    public function test_authenticated_user_can_access_card_types_management_preview(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/card-types');
+
+        $response
+            ->assertOk()
+            ->assertSee('Card Types placeholder')
+            ->assertSee('Create or edit card type')
+            ->assertSee('Publish type')
+            ->assertSee('Auto after issue')
+            ->assertSee('1.50x');
+    }
 }
