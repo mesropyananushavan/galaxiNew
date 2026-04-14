@@ -7,20 +7,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['name', 'code', 'is_active'])]
-class Shop extends Model
+#[Fillable(['name', 'slug', 'points_rate', 'is_active'])]
+class CardType extends Model
 {
     use HasFactory;
-
-    public function users(): HasMany
-    {
-        return $this->hasMany(User::class);
-    }
-
-    public function cardHolders(): HasMany
-    {
-        return $this->hasMany(CardHolder::class);
-    }
 
     public function cards(): HasMany
     {

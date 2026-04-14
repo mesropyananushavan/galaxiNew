@@ -5,21 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['name', 'code', 'is_active'])]
-class Shop extends Model
+#[Fillable(['shop_id', 'full_name', 'phone', 'email', 'is_active'])]
+class CardHolder extends Model
 {
     use HasFactory;
 
-    public function users(): HasMany
+    public function shop(): BelongsTo
     {
-        return $this->hasMany(User::class);
-    }
-
-    public function cardHolders(): HasMany
-    {
-        return $this->hasMany(CardHolder::class);
+        return $this->belongsTo(Shop::class);
     }
 
     public function cards(): HasMany

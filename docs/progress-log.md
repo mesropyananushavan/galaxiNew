@@ -52,3 +52,12 @@
 
 ### Next step after checkpoint
 - Add `CardHolder`, `CardType`, and `Card` skeletons with migrations so the initial Phase 1 entity set exists end-to-end.
+
+### Card domain checkpoint
+- Added `CardHolder`, `CardType`, and `Card` model skeletons, completing the initial Phase 1 entity set listed in the plan.
+- Added baseline tables for `card_holders`, `card_types`, and `cards`, including shop scoping, type linkage, holder linkage, status, and activation timestamp.
+- Extended `Shop` with card-related relationships so the domain now has a clear center for shop-scoped operational data.
+- `galaxiNew` now has a real Galaxy-shaped access + card foundation instead of only Laravel starter entities.
+
+### Next step after card checkpoint
+- Connect the admin shell to these entities with placeholder index routes/controllers for Shops, Cardholders, Cards, and Card Types.
