@@ -66,6 +66,10 @@ return [
         'eyebrow' => 'Catalog / Card Types',
         'summary' => 'Baseline management screen for Galaxy card tiers, points rules, and activation settings.',
         'nextStep' => 'Replace sample controls with real CRUD handlers and validation.',
+        'actions' => [
+            ['label' => 'New type', 'tone' => 'primary'],
+            ['label' => 'Import rules', 'tone' => 'secondary'],
+        ],
         'table' => [
             'columns' => ['Type', 'Slug', 'Points rate', 'Activation', 'Status'],
             'rows' => [
@@ -109,6 +113,10 @@ return [
         'eyebrow' => 'Catalog / Gifts',
         'summary' => 'Baseline management screen for gift catalog, redemption settings, and stock-aware reward management.',
         'nextStep' => 'Replace sample controls with real gift CRUD, stock tracking, and redemption flows.',
+        'actions' => [
+            ['label' => 'New gift', 'tone' => 'primary'],
+            ['label' => 'Stock audit', 'tone' => 'secondary'],
+        ],
         'table' => [
             'columns' => ['Gift', 'Points cost', 'Shop scope', 'Stock', 'Status'],
             'rows' => [
@@ -137,6 +145,10 @@ return [
         'eyebrow' => 'Administration / Roles & Permissions',
         'summary' => 'Baseline management screen for admin roles, permission bundles, and future shop-scoped access rules.',
         'nextStep' => 'Replace sample controls with real role assignment, permission matrix, and shop-aware policy flows.',
+        'actions' => [
+            ['label' => 'New role', 'tone' => 'primary'],
+            ['label' => 'Review matrix', 'tone' => 'secondary'],
+        ],
         'table' => [
             'columns' => ['Role', 'Scope', 'Key permissions', 'Users', 'Status'],
             'rows' => [

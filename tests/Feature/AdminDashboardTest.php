@@ -81,6 +81,8 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
+            ->assertSee('New role')
+            ->assertSee('Review matrix')
             ->assertSee('Shop Manager')
             ->assertSee('Scoped to assigned shop');
     }
@@ -196,6 +198,8 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit gift')
             ->assertSee('Publish gift')
+            ->assertSee('New gift')
+            ->assertSee('Stock audit')
             ->assertSee('Unlimited')
             ->assertSee('Coffee voucher');
     }
@@ -211,6 +215,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card Types placeholder')
             ->assertSee('Create or edit card type')
             ->assertSee('Publish type')
+            ->assertSee('New type')
+            ->assertSee('Import rules')
             ->assertSee('Auto after issue')
             ->assertSee('1.50x');
     }

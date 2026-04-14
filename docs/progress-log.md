@@ -164,3 +164,11 @@
 
 ### Next step after management actions metadata checkpoint
 - Reuse the new action metadata pattern for non-form page actions, or convert one management preview into a real Laravel request flow when PHP execution becomes available.
+
+### Page-level management actions checkpoint
+- Extended the reusable action metadata pattern to page-level resource actions for `card-types`, `gifts`, and `roles-permissions`.
+- Resource pages can now expose consistent top-level actions in the same format as form actions, moving the admin shell closer to real workflows.
+- Extended feature assertions so these action labels are covered on the richer management previews.
+
+### Next step after page-level management actions checkpoint
+- Add reusable metadata for section-specific empty states or action groups, or connect one of the management previews to a first real Laravel form/request path when PHP execution becomes available.

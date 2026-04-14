@@ -8,6 +8,12 @@
             {{ $summary }}
         </p>
 
+        @if (! empty($actions))
+            <div style="margin-top: 18px;">
+                @include('admin.partials.resource-actions', ['actions' => $actions])
+            </div>
+        @endif
+
         <div class="placeholder-grid">
             <article class="metric">
                 <p class="metric-label">Section key</p>
