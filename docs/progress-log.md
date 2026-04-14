@@ -523,3 +523,11 @@
 
 ### Next step after dedicated operational context config checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell so context and workflow stacks stay easy to evolve independently.
+
+### Dedicated operational closing config checkpoint
+- Extracted the closing stack, readiness checklist, dependency status, and implementation handoff, into `config/admin-operational-closing-blocks.php`.
+- Updated the main resource block config so operational pages now compose separate context, workflow, and closing stacks.
+- Added feature coverage proving the dedicated closing stack also stays composable inside resource page defaults.
+
+### Next step after dedicated operational closing config checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell so its context, workflow, and closing stacks remain easy to evolve independently.
