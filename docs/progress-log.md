@@ -412,3 +412,11 @@
 
 ### Next step after operational page actions checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with safe config-driven actions and cues.
+
+### Operational summary metrics checkpoint
+- Added summary metrics to the preview-only operational sections for shops, cardholders, cards, checks/points, and reports.
+- This makes the Galaxy admin shell denser and more back-office-like while still staying within safe config-driven Phase 1 preview work.
+- Extended feature assertions so these operational metrics remain visible as the shell continues to evolve.
+
+### Next step after operational summary metrics checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with safe config-driven metrics, actions, and migration cues.

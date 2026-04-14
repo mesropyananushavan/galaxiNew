@@ -10,6 +10,11 @@ return [
             ['label' => 'New shop', 'tone' => 'primary'],
             ['label' => 'Review branch scope', 'tone' => 'secondary'],
         ],
+        'metrics' => [
+            ['label' => 'Active shops', 'value' => '2'],
+            ['label' => 'Paused shops', 'value' => '1'],
+            ['label' => 'Assigned managers', 'value' => '2'],
+        ],
         'table' => [
             'columns' => ['Shop', 'Code', 'Manager', 'Cardholders', 'Cards', 'Status'],
             'rows' => [
@@ -53,6 +58,11 @@ return [
         'actions' => [
             ['label' => 'New cardholder', 'tone' => 'primary'],
             ['label' => 'Review recent activity', 'tone' => 'secondary'],
+        ],
+        'metrics' => [
+            ['label' => 'Active holders', 'value' => '2'],
+            ['label' => 'Inactive holders', 'value' => '1'],
+            ['label' => 'Linked cards', 'value' => '3'],
         ],
         'table' => [
             'columns' => ['Name', 'Phone', 'Shop', 'Cards', 'Status', 'Last activity'],
@@ -98,6 +108,11 @@ return [
             ['label' => 'Issue card', 'tone' => 'primary'],
             ['label' => 'Review blocked cards', 'tone' => 'secondary'],
         ],
+        'metrics' => [
+            ['label' => 'Active cards', 'value' => '1'],
+            ['label' => 'Draft cards', 'value' => '1'],
+            ['label' => 'Blocked cards', 'value' => '1'],
+        ],
         'table' => [
             'columns' => ['Number', 'Holder', 'Type', 'Shop', 'Status', 'Activated'],
             'rows' => [
@@ -141,6 +156,11 @@ return [
         'actions' => [
             ['label' => 'Find receipt', 'tone' => 'primary'],
             ['label' => 'Review accrual gaps', 'tone' => 'secondary'],
+        ],
+        'metrics' => [
+            ['label' => 'Receipts listed', 'value' => '3'],
+            ['label' => 'Positive accruals', 'value' => '2'],
+            ['label' => 'Zero accruals', 'value' => '1'],
         ],
         'table' => [
             'columns' => ['Receipt', 'Card', 'Shop', 'Amount', 'Points', 'Created'],
@@ -557,6 +577,11 @@ return [
         'actions' => [
             ['label' => 'Open report catalog', 'tone' => 'primary'],
             ['label' => 'Review export presets', 'tone' => 'secondary'],
+        ],
+        'metrics' => [
+            ['label' => 'Planned reports', 'value' => '3'],
+            ['label' => 'Export formats', 'value' => '3'],
+            ['label' => 'Preset periods', 'value' => '3'],
         ],
         'table' => [
             'columns' => ['Report', 'Scope', 'Default period', 'Format', 'Status'],
