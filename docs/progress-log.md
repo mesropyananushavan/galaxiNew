@@ -308,3 +308,11 @@
 
 ### Next step after operational migration blockers checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or replace one operational preview with a first real read path once PHP is available.
+
+### Shared metadata list partial checkpoint
+- Added a reusable key-value list partial for metadata-heavy admin cards.
+- Switched several existing parity and status blocks to the shared renderer, reducing duplicate Blade markup while keeping the current Galaxy shell behavior unchanged.
+- This makes the config-driven admin shell safer to extend as more operational and management metadata blocks are added.
+
+### Next step after shared metadata list partial checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue consolidating repeated admin-shell patterns where it reduces maintenance risk.
