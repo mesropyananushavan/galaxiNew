@@ -43,3 +43,12 @@
 
 ### Next step
 - Add the first domain model and migration skeletons for shops, roles/permissions, and card entities behind this new admin structure.
+
+### Foundation entities checkpoint
+- Added initial `Shop`, `Role`, and `Permission` model skeletons as the first Galaxy-specific domain layer beyond the Laravel starter defaults.
+- Added a foundation migration for `shops`, `roles`, `permissions`, and the baseline many-to-many links needed for admin access control.
+- Extended `User` with `shop()` and `roles()` relations plus nullable `shop_id`, so Phase 1 now has a concrete shop-scoped access direction in code.
+- This establishes the access/domain backbone that later cardholder, card, and card type entities can plug into.
+
+### Next step after checkpoint
+- Add `CardHolder`, `CardType`, and `Card` skeletons with migrations so the initial Phase 1 entity set exists end-to-end.
