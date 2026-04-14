@@ -10,16 +10,15 @@ class ResourceIndexController extends Controller
     public function __invoke(string $resource): View
     {
         $pages = config('admin-pages');
-        $resourceBlocks = config('admin-resource-blocks', []);
-        $pageRationale = config('admin-page-rationale', []);
+        $defaults = config('admin-resource-page-defaults', []);
 
         abort_unless(is_array($pages) && array_key_exists($resource, $pages), 404);
 
         return view('admin.resource-index', $pages[$resource] + [
             'resourceKey' => $resource,
-            'resourceBlocks' => is_array($resourceBlocks) ? $resourceBlocks : [],
-            'phase' => 1,
-            'pageRationale' => is_array($pageRationale) ? $pageRationale : [],
+            'resourceBlocks' => is_array($defaults['resourceBlocks'] ?? null) ? $defaults['resourceBlocks'] : [],
+            'phase' => $defaults['phase'] ?? 1,
+            'pageRationale' => is_array($defaults['pageRationale'] ?? null) ? $defaults['pageRationale'] : [],
         ]);
     }
 }

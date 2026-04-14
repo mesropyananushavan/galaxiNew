@@ -372,3 +372,11 @@
 
 ### Next step after config-driven page rationale checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue shifting shared shell copy and structure into config where that lowers maintenance risk.
+
+### Resource page defaults config checkpoint
+- Added `config/admin-resource-page-defaults.php` to hold the shared Phase 1 resource-page shell defaults.
+- `ResourceIndexController` now pulls phase, resource block order, and page rationale from one config source instead of assembling them separately.
+- The visible Galaxy admin shell stays unchanged while the page render pipeline becomes simpler and more explicitly config-driven.
+
+### Next step after resource page defaults config checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue collapsing shared shell defaults into config where that lowers maintenance risk.
