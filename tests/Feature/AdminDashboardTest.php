@@ -100,4 +100,19 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Has cards')
             ->assertSee('Central Shop');
     }
+
+    public function test_authenticated_user_can_access_shops_operational_index_shape(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shops placeholder')
+            ->assertSee('Operational index shape')
+            ->assertSee('Central Shop')
+            ->assertSee('Volume tier')
+            ->assertSee('Airport Kiosk');
+    }
 }

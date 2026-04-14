@@ -13,8 +13,17 @@ class ResourceIndexController extends Controller
             'shops' => [
                 'pageTitle' => 'Shops',
                 'eyebrow' => 'Administration / Shops',
-                'summary' => 'Placeholder index for shop scope boundaries, activation state, and future access rules.',
-                'nextStep' => 'Add shop CRUD and scoped filters.',
+                'summary' => 'Baseline operational index for shop scope boundaries, activation state, and future access rules.',
+                'nextStep' => 'Replace sample rows with real shop records, manager info, and scoped access actions.',
+                'table' => [
+                    'columns' => ['Shop', 'Code', 'Manager', 'Cardholders', 'Cards', 'Status'],
+                    'rows' => [
+                        ['Central Shop', 'central', 'Nare Gevorgyan', '248', '912', 'active'],
+                        ['North Shop', 'north', 'Arman Stepanyan', '121', '403', 'active'],
+                        ['Airport Kiosk', 'airport', 'Unassigned', '37', '84', 'paused'],
+                    ],
+                    'filters' => ['Status', 'Manager assigned', 'Volume tier'],
+                ],
             ],
             'cardholders' => [
                 'pageTitle' => 'Cardholders',

@@ -94,3 +94,11 @@
 
 ### Next step after cardholders index checkpoint
 - Apply the same treatment to shops, or introduce checks/points and reports placeholders so the remaining key Galaxy sections are no longer generic.
+
+### Shops index shape checkpoint
+- Upgraded the `shops` admin section into a third table-shaped operational index with sample shop metrics and filters.
+- This gives the main Phase 1 foundation entities, shops, cardholders, and cards, a shared dense admin-screen structure.
+- Added feature-test expectations for the shops index shape too.
+
+### Next step after shops index checkpoint
+- Add structural placeholders for checks/points and reports, or start introducing reusable table/view components to reduce duplication across these operational screens.
