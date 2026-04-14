@@ -380,3 +380,11 @@
 
 ### Next step after resource page defaults config checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue collapsing shared shell defaults into config where that lowers maintenance risk.
+
+### Shared resource shell test coverage checkpoint
+- Added feature coverage for the shared resource page shell, including the extracted header metrics and page rationale block.
+- This protects the recent config/controller/partial refactors from accidentally dropping visible Galaxy shell cues on resource pages.
+- The Phase 1 admin shell remains preview-driven, but its shared scaffolding is now better guarded by tests.
+
+### Next step after shared resource shell test coverage checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue adding targeted coverage around shared shell building blocks as they stabilize.
