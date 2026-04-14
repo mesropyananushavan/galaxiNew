@@ -57,4 +57,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('cardholders')
             ->assertSee('Phase');
     }
+
+    public function test_authenticated_user_can_access_roles_permissions_placeholder_page(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions');
+
+        $response
+            ->assertOk()
+            ->assertSee('Roles &amp; Permissions placeholder')
+            ->assertSee('roles-permissions')
+            ->assertSee('shop-scoped access rules');
+    }
 }

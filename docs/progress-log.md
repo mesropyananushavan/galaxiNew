@@ -70,3 +70,11 @@
 
 ### Next step after admin pages checkpoint
 - Add placeholder index pages for roles/permissions and then start replacing placeholder metrics with real counts once PHP-backed execution is available.
+
+### Access pages checkpoint
+- Added a real placeholder route/page for `roles-permissions`, so the access-control area is now connected to the admin shell like the other Phase 1 entities.
+- Wired the navigation item to a stable route name and extended feature coverage to include the new access page.
+- This makes the Phase 1 admin map more complete around the authorization baseline already added in models and migrations.
+
+### Next step after access pages checkpoint
+- Add first structural placeholders for checks/points or reports, or start turning one entity placeholder into a table-shaped index once PHP execution is available.

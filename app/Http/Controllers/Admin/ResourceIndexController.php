@@ -34,6 +34,12 @@ class ResourceIndexController extends Controller
                 'summary' => 'Placeholder index for Galaxy card tiers, points rules, and activation settings.',
                 'nextStep' => 'Add card type CRUD and business rule editing.',
             ],
+            'roles-permissions' => [
+                'pageTitle' => 'Roles & Permissions',
+                'eyebrow' => 'Administration / Roles & Permissions',
+                'summary' => 'Placeholder index for admin roles, permission bundles, and future shop-scoped access rules.',
+                'nextStep' => 'Add role matrix, permission assignment, and shop-aware policy controls.',
+            ],
         ];
 
         abort_unless(array_key_exists($resource, $pages), 404);

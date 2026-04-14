@@ -53,6 +53,7 @@ return [
             ],
             [
                 'label' => 'Roles & Permissions',
+                'route' => 'admin.roles-permissions.index',
                 'description' => 'Admin roles, permissions, and access baseline.',
             ],
             [
