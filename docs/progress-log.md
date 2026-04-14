@@ -388,3 +388,11 @@
 
 ### Next step after shared resource shell test coverage checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue adding targeted coverage around shared shell building blocks as they stabilize.
+
+### Config-driven shell defaults coverage checkpoint
+- Added feature coverage proving the shared resource page shell really reads phase and rationale defaults from config.
+- This protects the recent `admin-resource-page-defaults` extraction from silently regressing back into controller-only behavior.
+- The admin shell is still preview-driven, but its config-first render contract is now guarded more explicitly.
+
+### Next step after config-driven shell defaults coverage checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue adding focused coverage around the config-driven shell contract as it stabilizes.

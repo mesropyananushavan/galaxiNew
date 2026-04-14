@@ -4,6 +4,7 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Config;
 use Tests\TestCase;
 
 class AdminDashboardTest extends TestCase
@@ -270,6 +271,25 @@ class AdminDashboardTest extends TestCase
             ->assertSee('connect the admin navigation to real Galaxy sections instead of dead placeholders;')
             ->assertSee('reserve stable route names for future CRUD and reporting flows;')
             ->assertSee('make the Phase 1 shell visibly closer to the old operational product shape.');
+    }
+
+    public function test_resource_page_shell_uses_config_driven_defaults(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-resource-page-defaults.phase', 2);
+        Config::set('admin-resource-page-defaults.pageRationale', [
+            'config-driven shell defaults stay overrideable in tests and future rollout steps.',
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Phase')
+            ->assertSee('2')
+            ->assertSee('Why this page exists now')
+            ->assertSee('config-driven shell defaults stay overrideable in tests and future rollout steps.');
     }
 
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
