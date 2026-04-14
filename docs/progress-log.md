@@ -404,3 +404,11 @@
 
 ### Next step after config-driven block order coverage checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue adding focused coverage around config-driven shell composition where it reduces refactor risk.
+
+### Operational page actions checkpoint
+- Added page-level actions to the preview-only operational sections for shops, cardholders, cards, checks/points, and reports.
+- This makes the Phase 1 Galaxy shell feel closer to a real back-office workspace, not just static tables plus migration notes.
+- Extended feature assertions so the new operational actions stay visible while these sections remain config-backed.
+
+### Next step after operational page actions checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with safe config-driven actions and cues.

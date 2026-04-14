@@ -6,6 +6,10 @@ return [
         'eyebrow' => 'Administration / Shops',
         'summary' => 'Baseline operational index for shop scope boundaries, activation state, and future access rules.',
         'nextStep' => 'Replace sample rows with real shop records, manager info, and scoped access actions.',
+        'actions' => [
+            ['label' => 'New shop', 'tone' => 'primary'],
+            ['label' => 'Review branch scope', 'tone' => 'secondary'],
+        ],
         'table' => [
             'columns' => ['Shop', 'Code', 'Manager', 'Cardholders', 'Cards', 'Status'],
             'rows' => [
@@ -46,6 +50,10 @@ return [
         'eyebrow' => 'Operations / Cardholders',
         'summary' => 'Baseline operational index for workers, clients, holder history, and future lifecycle actions.',
         'nextStep' => 'Replace sample rows with real holder search, profile links, and status actions.',
+        'actions' => [
+            ['label' => 'New cardholder', 'tone' => 'primary'],
+            ['label' => 'Review recent activity', 'tone' => 'secondary'],
+        ],
         'table' => [
             'columns' => ['Name', 'Phone', 'Shop', 'Cards', 'Status', 'Last activity'],
             'rows' => [
@@ -86,6 +94,10 @@ return [
         'eyebrow' => 'Operations / Cards',
         'summary' => 'Baseline operational index for card inventory, assignments, statuses, and activation tracking.',
         'nextStep' => 'Replace sample rows with real query-backed inventory and status filters.',
+        'actions' => [
+            ['label' => 'Issue card', 'tone' => 'primary'],
+            ['label' => 'Review blocked cards', 'tone' => 'secondary'],
+        ],
         'table' => [
             'columns' => ['Number', 'Holder', 'Type', 'Shop', 'Status', 'Activated'],
             'rows' => [
@@ -126,6 +138,10 @@ return [
         'eyebrow' => 'Operations / Checks & Points',
         'summary' => 'Operational placeholder for purchases, accrual events, fiscal search, and point adjustments.',
         'nextStep' => 'Add fiscal lookup, accrual history, and shop/date filters.',
+        'actions' => [
+            ['label' => 'Find receipt', 'tone' => 'primary'],
+            ['label' => 'Review accrual gaps', 'tone' => 'secondary'],
+        ],
         'table' => [
             'columns' => ['Receipt', 'Card', 'Shop', 'Amount', 'Points', 'Created'],
             'rows' => [
@@ -538,6 +554,10 @@ return [
         'eyebrow' => 'Administration / Reports',
         'summary' => 'Operational placeholder for analytics, histories, and export-oriented admin reporting.',
         'nextStep' => 'Add report catalog, date-range presets, and export entry points.',
+        'actions' => [
+            ['label' => 'Open report catalog', 'tone' => 'primary'],
+            ['label' => 'Review export presets', 'tone' => 'secondary'],
+        ],
         'table' => [
             'columns' => ['Report', 'Scope', 'Default period', 'Format', 'Status'],
             'rows' => [
