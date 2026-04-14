@@ -126,6 +126,11 @@ return [
             'title' => 'Card type rules are still preview-only',
             'description' => 'This screen is shaping the final Galaxy management flow, but save and publish actions are not connected to Laravel handlers yet.',
         ],
+        'legacyMapping' => [
+            ['label' => 'Legacy source', 'value' => 'Old Galaxy card tier catalog'],
+            ['label' => 'Parity focus', 'value' => 'Tier names, accrual rules, activation behavior'],
+            ['label' => 'Migration note', 'value' => 'Rebuild existing tier logic before introducing new card segmentation'],
+        ],
     ],
     'services-rules' => [
         'pageTitle' => 'Services & Rules',
@@ -207,6 +212,11 @@ return [
             'title' => 'Gift redemption controls are still preview-only',
             'description' => 'This shell defines the target Galaxy workflow, but inventory and publishing actions are not wired to backend requests yet.',
         ],
+        'legacyMapping' => [
+            ['label' => 'Legacy source', 'value' => 'Old Galaxy gift and reward list'],
+            ['label' => 'Parity focus', 'value' => 'Reward names, point cost, stock-aware redemption'],
+            ['label' => 'Migration note', 'value' => 'Preserve the existing reward catalog shape before expanding campaign logic'],
+        ],
     ],
     'roles-permissions' => [
         'pageTitle' => 'Roles & Permissions',
@@ -272,6 +282,11 @@ return [
         'notice' => [
             'title' => 'Role publishing is still preview-only',
             'description' => 'The access matrix and role editor are visible now, but permission persistence and assignment flows still need Laravel-side implementation.',
+        ],
+        'legacyMapping' => [
+            ['label' => 'Legacy source', 'value' => 'Old Galaxy staff and access matrix'],
+            ['label' => 'Parity focus', 'value' => 'Shop-scoped roles, permission bundles, cashier/manager split'],
+            ['label' => 'Migration note', 'value' => 'Mirror legacy access boundaries first, then refine authorization internals'],
         ],
     ],
     'reports' => [

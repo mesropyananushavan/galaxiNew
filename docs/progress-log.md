@@ -220,3 +220,11 @@
 
 ### Next step after management section actions checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or reuse this richer metadata pattern on another admin section.
+
+### Legacy parity mapping checkpoint
+- Added a reusable legacy-mapping partial and wired parity metadata for `card-types`, `gifts`, and `roles-permissions`.
+- The richer management screens now show explicit links back to the old Galaxy source behaviors they are meant to preserve.
+- Extended feature assertions so these parity cues remain visible while the screens are still preview-oriented.
+
+### Next step after legacy parity mapping checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or reuse this parity-focused metadata pattern on another admin section.

@@ -95,6 +95,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Preview matrix impact')
             ->assertSee('old Galaxy staff model')
             ->assertSee('authorization matrix and assignment flow')
+            ->assertSee('Legacy parity mapping')
+            ->assertSee('Old Galaxy staff and access matrix')
+            ->assertSee('cashier/manager split')
             ->assertSee('Shop Manager')
             ->assertSee('Scoped to assigned shop');
     }
@@ -224,6 +227,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Preview stock impact')
             ->assertSee('old Galaxy gift list')
             ->assertSee('existing redemption process')
+            ->assertSee('Legacy parity mapping')
+            ->assertSee('Old Galaxy gift and reward list')
+            ->assertSee('stock-aware redemption')
             ->assertSee('Unlimited')
             ->assertSee('Coffee voucher');
     }
@@ -253,6 +259,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Preview accrual')
             ->assertSee('old Galaxy card catalog')
             ->assertSee('old operational rules')
+            ->assertSee('Legacy parity mapping')
+            ->assertSee('Old Galaxy card tier catalog')
+            ->assertSee('activation behavior')
             ->assertSee('Auto after issue')
             ->assertSee('1.50x');
     }
