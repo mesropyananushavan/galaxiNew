@@ -104,6 +104,14 @@ return [
                 'Note unresolved scope disputes before the next operator touches branch visibility.',
             ],
         ],
+        'openIssues' => [
+            'summary' => 'The old Galaxy branch screen usually kept a short list of unresolved branch items mentally attached to the shift.',
+            'items' => [
+                'Airport Kiosk remains paused pending recovery approval.',
+                'Any unassigned manager state should stay visible until ownership is confirmed.',
+                'Cross-shop visibility disagreements must remain open until scope is verified.',
+            ],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -206,6 +214,14 @@ return [
                 'Carry duplicate-profile investigations into the next shift until identity is confirmed.',
                 'Leave missing-card cases tagged with the last verified linkage state.',
                 'Note stale-activity complaints that still need data-source follow-up.',
+            ],
+        ],
+        'openIssues' => [
+            'summary' => 'Operators in the old holder lookup flow kept a compact set of unresolved people and linkage problems in view between shifts.',
+            'items' => [
+                'Potential duplicate-holder cases stay open until identity is confirmed.',
+                'Missing-card complaints remain open until linkage and inventory paths agree.',
+                'Stale activity timelines remain open until an event-source explanation exists.',
             ],
         ],
     ],
@@ -312,6 +328,14 @@ return [
                 'Leave holder-link mismatches documented before another operator issues stock changes.',
             ],
         ],
+        'openIssues' => [
+            'summary' => 'The old card inventory screen usually held a short queue of unresolved state problems that operators revisited across shifts.',
+            'items' => [
+                'Blocked-card disputes remain open until replacement approval is explicit.',
+                'Draft-stock shortages remain open until branch inventory review is complete.',
+                'Holder-link mismatches remain open until identity and stock views agree.',
+            ],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -414,6 +438,14 @@ return [
                 'Carry unresolved receipt-not-found cases with the last verified search inputs.',
                 'Note repeated zero-accrual complaints that already passed receipt validation.',
                 'Leave shop and timestamp mismatch context attached before any correction discussion continues.',
+            ],
+        ],
+        'openIssues' => [
+            'summary' => 'Checks and points work in the old Galaxy flow kept a visible backlog of unresolved receipt and accrual questions across shifts.',
+            'items' => [
+                'Receipt-not-found cases remain open until fiscal search inputs are exhausted.',
+                'Repeated zero-accrual complaints remain open until rule review or receipt evidence resolves them.',
+                'Shop and timestamp mismatches remain open until fiscal data is reconciled.',
             ],
         ],
     ],
@@ -890,6 +922,14 @@ return [
                 'Carry unmet preset requests into the next shift before inventing custom exports.',
                 'Note unresolved export-format disputes so the next operator does not repeat the same catalog path.',
                 'Flag repeated ad hoc asks that should become future report catalog entries.',
+            ],
+        ],
+        'openIssues' => [
+            'summary' => 'The legacy reporting catalog usually carried a short backlog of unresolved export needs that stayed visible between operators.',
+            'items' => [
+                'Missing preset coverage remains open until the reporting owner confirms a supported path.',
+                'Export-format disputes remain open until one format expectation is chosen.',
+                'Repeated ad hoc requests remain open as signals for future report catalog expansion.',
             ],
         ],
     ],

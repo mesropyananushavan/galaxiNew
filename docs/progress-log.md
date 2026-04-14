@@ -492,3 +492,11 @@
 
 ### Next step after operational shift handoff checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit shift handoff, escalation, operator checklist, legacy mapping, activity, readiness, dependency, handoff, and migration guidance.
+
+### Operational open issues checkpoint
+- Added a reusable open-issues block and populated it on the operational sections for shops, cardholders, cards, checks/points, and reports.
+- This pushes the Phase 1 Galaxy shell closer to the old daily console by making unresolved work visible between shifts, not just the current snapshot.
+- Extended feature assertions so these open-issue cues remain visible across the operational screens.
+
+### Next step after operational open issues checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit open issues, shift handoff, escalation, operator checklist, legacy mapping, activity, readiness, dependency, handoff, and migration guidance.
