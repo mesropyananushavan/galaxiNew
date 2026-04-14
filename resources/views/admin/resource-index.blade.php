@@ -38,6 +38,10 @@
         @include('admin.partials.operational-index-table', ['table' => $table])
     @endif
 
+    @if (! empty($operationalGlossary))
+        @include('admin.partials.resource-operational-glossary', ['operationalGlossary' => $operationalGlossary])
+    @endif
+
     @if (! empty($form))
         @include('admin.partials.resource-form-preview', ['form' => $form])
     @endif

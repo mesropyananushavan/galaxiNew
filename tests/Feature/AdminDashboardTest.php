@@ -126,6 +126,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Operational index shape')
             ->assertSee('GX-100001')
             ->assertSee('Central Shop')
+            ->assertSee('Operational glossary')
+            ->assertSee('Card type')
             ->assertSee('Activation period');
     }
 
@@ -141,6 +143,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Operational index shape')
             ->assertSee('Anna Petrova')
             ->assertSee('Has cards')
+            ->assertSee('Operational glossary')
+            ->assertSee('Last activity')
             ->assertSee('Central Shop');
     }
 
@@ -156,6 +160,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Operational index shape')
             ->assertSee('Central Shop')
             ->assertSee('Volume tier')
+            ->assertSee('Operational glossary')
+            ->assertSee('Manager assigned')
             ->assertSee('Airport Kiosk');
     }
 
@@ -170,6 +176,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Checks &amp; Points placeholder')
             ->assertSee('CHK-90421')
             ->assertSee('Fiscal receipt')
+            ->assertSee('Operational glossary')
+            ->assertSee('The loyalty delta applied after receipt validation')
             ->assertSee('GX-100001');
     }
 
@@ -184,6 +192,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reports placeholder')
             ->assertSee('Points accrual summary')
             ->assertSee('Report type')
+            ->assertSee('Operational glossary')
+            ->assertSee('Default period')
             ->assertSee('Gift redemption report');
     }
 

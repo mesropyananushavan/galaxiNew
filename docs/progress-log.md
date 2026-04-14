@@ -268,3 +268,11 @@
 
 ### Next step after management implementation handoff checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, using the handoff guidance as the first implementation slice.
+
+### Operational glossary checkpoint
+- Added a reusable operational-glossary partial and wired parity-focused vocabulary notes into `shops`, `cardholders`, `cards`, `checks-points`, and `reports`.
+- This extends the denser Galaxy-specific shell beyond management previews and gives operational index pages clearer legacy-oriented meaning.
+- Extended feature assertions so these glossary cues remain visible on the operational screens.
+
+### Next step after operational glossary checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or add more operational context blocks to the remaining non-form sections.

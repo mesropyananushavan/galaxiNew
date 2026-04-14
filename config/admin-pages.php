@@ -15,6 +15,10 @@ return [
             ],
             'filters' => ['Status', 'Manager assigned', 'Volume tier'],
         ],
+        'operationalGlossary' => [
+            ['term' => 'Shop scope', 'meaning' => 'The visibility boundary that later controls who can manage cards and reports per location.'],
+            ['term' => 'Manager assigned', 'meaning' => 'The legacy operator responsible for the branch in the old Galaxy workflow.'],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -29,6 +33,10 @@ return [
                 ['Arman Hakobyan', '+374 91 100003', 'North Shop', '0', 'inactive', '2026-03-30'],
             ],
             'filters' => ['Shop', 'Status', 'Has cards', 'Activity period'],
+        ],
+        'operationalGlossary' => [
+            ['term' => 'Cardholder', 'meaning' => 'The person record that ties workers or clients to one or more loyalty cards.'],
+            ['term' => 'Last activity', 'meaning' => 'The latest card or purchase interaction that should later come from real event history.'],
         ],
     ],
     'cards' => [
@@ -45,6 +53,10 @@ return [
             ],
             'filters' => ['Shop', 'Status', 'Card type', 'Activation period'],
         ],
+        'operationalGlossary' => [
+            ['term' => 'Card type', 'meaning' => 'The tier or segment definition that controls accrual and activation behavior.'],
+            ['term' => 'Activated', 'meaning' => 'The timestamp when a physical or virtual card became usable in the loyalty flow.'],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -59,6 +71,10 @@ return [
                 ['CHK-90388', 'GX-100002', 'North Shop', '7,300', '+73', '2026-04-13 10:11'],
             ],
             'filters' => ['Shop', 'Date range', 'Card number', 'Fiscal receipt'],
+        ],
+        'operationalGlossary' => [
+            ['term' => 'Fiscal receipt', 'meaning' => 'The legacy sale lookup key used to trace purchase and accrual events.'],
+            ['term' => 'Points', 'meaning' => 'The loyalty delta applied after receipt validation, including zero-accrual outcomes.'],
         ],
     ],
     'card-types' => [
@@ -446,6 +462,10 @@ return [
                 ['Gift redemption report', 'All shops', 'Month to date', 'CSV', 'planned'],
             ],
             'filters' => ['Shop scope', 'Period preset', 'Report type'],
+        ],
+        'operationalGlossary' => [
+            ['term' => 'Default period', 'meaning' => 'The initial reporting window that should match the old Galaxy operator defaults.'],
+            ['term' => 'Format', 'meaning' => 'The first delivery mode for exports or on-screen analytics views.'],
         ],
     ],
 ];
