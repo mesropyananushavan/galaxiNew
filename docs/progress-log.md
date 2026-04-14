@@ -356,3 +356,11 @@
 
 ### Next step after shared page rationale partial checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue extracting one-off shell fragments into shared building blocks where that lowers maintenance risk.
+
+### Shared page header partial checkpoint
+- Moved the main resource page header card into a reusable partial and passed its display data from `ResourceIndexController`.
+- `resource-index.blade.php` now acts more like a page composer that assembles shared shell blocks in order.
+- The visible Galaxy admin shell stays unchanged while the resource page structure becomes more uniform and easier to extend.
+
+### Next step after shared page header partial checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue extracting repeated shell fragments into shared building blocks where that lowers maintenance risk.

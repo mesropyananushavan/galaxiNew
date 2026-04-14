@@ -17,6 +17,7 @@ class ResourceIndexController extends Controller
         return view('admin.resource-index', $pages[$resource] + [
             'resourceKey' => $resource,
             'resourceBlocks' => is_array($resourceBlocks) ? $resourceBlocks : [],
+            'phase' => 1,
             'pageRationale' => [
                 'connect the admin navigation to real Galaxy sections instead of dead placeholders;',
                 'reserve stable route names for future CRUD and reporting flows;',
