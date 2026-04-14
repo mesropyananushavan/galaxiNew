@@ -62,6 +62,10 @@
         @include('admin.partials.resource-readiness-checklist', ['readinessChecklist' => $readinessChecklist])
     @endif
 
+    @if (! empty($dependencyStatus))
+        @include('admin.partials.resource-dependency-status', ['dependencyStatus' => $dependencyStatus])
+    @endif
+
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Why this page exists now</h3>
         <ul class="list">

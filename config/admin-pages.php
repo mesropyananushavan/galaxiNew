@@ -140,6 +140,11 @@ return [
             ['status' => 'ready', 'label' => 'Preview actions and grouped fields defined'],
             ['status' => 'pending', 'label' => 'Laravel save handler still unavailable without PHP runtime'],
         ],
+        'dependencyStatus' => [
+            ['label' => 'Domain model', 'value' => 'CardType model and migration skeleton exist'],
+            ['label' => 'Backend dependency', 'value' => 'Form request, controller action, and persistence wiring still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Legacy accrual rules need live verification before publish flow is enabled'],
+        ],
     ],
     'services-rules' => [
         'pageTitle' => 'Services & Rules',
@@ -219,6 +224,11 @@ return [
             ['status' => 'ready', 'label' => 'Legacy rule groups identified'],
             ['status' => 'ready', 'label' => 'Priority preview and parity metadata added'],
             ['status' => 'pending', 'label' => 'Rule persistence still blocked until Laravel handlers can run'],
+        ],
+        'dependencyStatus' => [
+            ['label' => 'Domain model', 'value' => 'Service/rule domain is still preview-config only'],
+            ['label' => 'Backend dependency', 'value' => 'Rule CRUD endpoints and validation are still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Legacy priority resolution needs verification before condition editing goes live'],
         ],
     ],
     'gifts' => [
@@ -300,6 +310,11 @@ return [
             ['status' => 'ready', 'label' => 'Stock and scope preview controls defined'],
             ['status' => 'pending', 'label' => 'Real redemption and stock sync need PHP-backed flows'],
         ],
+        'dependencyStatus' => [
+            ['label' => 'Domain model', 'value' => 'Gift domain is still represented through config-backed preview data'],
+            ['label' => 'Backend dependency', 'value' => 'CRUD handlers, stock updates, and redemption persistence are still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Warehouse and loyalty parity checks are needed before enabling publish flow'],
+        ],
     ],
     'roles-permissions' => [
         'pageTitle' => 'Roles & Permissions',
@@ -379,6 +394,11 @@ return [
             ['status' => 'ready', 'label' => 'Legacy role boundaries mapped'],
             ['status' => 'ready', 'label' => 'Permission bundle preview and parity notes added'],
             ['status' => 'pending', 'label' => 'Assignment and persistence flows still need PHP-backed authorization work'],
+        ],
+        'dependencyStatus' => [
+            ['label' => 'Domain model', 'value' => 'Role and Permission models plus migration skeletons exist'],
+            ['label' => 'Backend dependency', 'value' => 'Assignment UI, policy wiring, and persistence handlers are still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Shop-scoped access rules must be verified against legacy staff behavior before activation'],
         ],
     ],
     'reports' => [

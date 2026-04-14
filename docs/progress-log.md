@@ -252,3 +252,11 @@
 
 ### Next step after management readiness checklist checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or extend readiness metadata to more operational sections.
+
+### Management dependency status checkpoint
+- Added a reusable dependency-status partial and wired implementation dependency metadata into `card-types`, `services-rules`, `gifts`, and `roles-permissions`.
+- The richer management previews now show which domain foundations already exist and which backend or operational dependencies still block real Laravel flows.
+- Extended feature assertions so these dependency cues stay visible on the preview screens.
+
+### Next step after management dependency status checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or extend dependency/status metadata to other operational sections.
