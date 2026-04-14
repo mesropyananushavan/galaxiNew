@@ -42,6 +42,10 @@
         @include('admin.partials.resource-operational-glossary', ['operationalGlossary' => $operationalGlossary])
     @endif
 
+    @if (! empty($legacyParityNotes))
+        @include('admin.partials.resource-legacy-parity-notes', ['legacyParityNotes' => $legacyParityNotes])
+    @endif
+
     @if (! empty($form))
         @include('admin.partials.resource-form-preview', ['form' => $form])
     @endif

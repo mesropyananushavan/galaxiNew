@@ -19,6 +19,10 @@ return [
             ['term' => 'Shop scope', 'meaning' => 'The visibility boundary that later controls who can manage cards and reports per location.'],
             ['term' => 'Manager assigned', 'meaning' => 'The legacy operator responsible for the branch in the old Galaxy workflow.'],
         ],
+        'legacyParityNotes' => [
+            'Preserve branch-level visibility before introducing broader admin views.',
+            'Keep manager assignment semantics aligned with the old Galaxy branch ownership model.',
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -37,6 +41,10 @@ return [
         'operationalGlossary' => [
             ['term' => 'Cardholder', 'meaning' => 'The person record that ties workers or clients to one or more loyalty cards.'],
             ['term' => 'Last activity', 'meaning' => 'The latest card or purchase interaction that should later come from real event history.'],
+        ],
+        'legacyParityNotes' => [
+            'Keep worker and client lookup fast, with minimal page hopping.',
+            'Preserve the operational emphasis on recent activity and card linkage.',
         ],
     ],
     'cards' => [
@@ -57,6 +65,10 @@ return [
             ['term' => 'Card type', 'meaning' => 'The tier or segment definition that controls accrual and activation behavior.'],
             ['term' => 'Activated', 'meaning' => 'The timestamp when a physical or virtual card became usable in the loyalty flow.'],
         ],
+        'legacyParityNotes' => [
+            'Retain clear visibility for unassigned, active, and blocked card states.',
+            'Keep activation timing visible without opening a separate detail screen.',
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -75,6 +87,10 @@ return [
         'operationalGlossary' => [
             ['term' => 'Fiscal receipt', 'meaning' => 'The legacy sale lookup key used to trace purchase and accrual events.'],
             ['term' => 'Points', 'meaning' => 'The loyalty delta applied after receipt validation, including zero-accrual outcomes.'],
+        ],
+        'legacyParityNotes' => [
+            'Preserve receipt-first lookup as the main path for operational troubleshooting.',
+            'Keep zero-point and positive-point outcomes visible in the same transaction list.',
         ],
     ],
     'card-types' => [
@@ -466,6 +482,10 @@ return [
         'operationalGlossary' => [
             ['term' => 'Default period', 'meaning' => 'The initial reporting window that should match the old Galaxy operator defaults.'],
             ['term' => 'Format', 'meaning' => 'The first delivery mode for exports or on-screen analytics views.'],
+        ],
+        'legacyParityNotes' => [
+            'Start with operator-friendly default periods before adding advanced analytics filters.',
+            'Preserve export-first reporting habits from the old Galaxy back office.',
         ],
     ],
 ];

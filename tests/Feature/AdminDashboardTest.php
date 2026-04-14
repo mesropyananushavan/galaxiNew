@@ -127,6 +127,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('GX-100001')
             ->assertSee('Central Shop')
             ->assertSee('Operational glossary')
+            ->assertSee('Legacy parity notes')
+            ->assertSee('Retain clear visibility for unassigned, active, and blocked card states.')
             ->assertSee('Card type')
             ->assertSee('Activation period');
     }
@@ -144,6 +146,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Anna Petrova')
             ->assertSee('Has cards')
             ->assertSee('Operational glossary')
+            ->assertSee('Legacy parity notes')
+            ->assertSee('Preserve the operational emphasis on recent activity and card linkage.')
             ->assertSee('Last activity')
             ->assertSee('Central Shop');
     }
@@ -161,6 +165,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Central Shop')
             ->assertSee('Volume tier')
             ->assertSee('Operational glossary')
+            ->assertSee('Legacy parity notes')
+            ->assertSee('branch ownership model')
             ->assertSee('Manager assigned')
             ->assertSee('Airport Kiosk');
     }
@@ -177,6 +183,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('CHK-90421')
             ->assertSee('Fiscal receipt')
             ->assertSee('Operational glossary')
+            ->assertSee('Legacy parity notes')
+            ->assertSee('receipt-first lookup')
             ->assertSee('The loyalty delta applied after receipt validation')
             ->assertSee('GX-100001');
     }
@@ -193,6 +201,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Points accrual summary')
             ->assertSee('Report type')
             ->assertSee('Operational glossary')
+            ->assertSee('Legacy parity notes')
+            ->assertSee('export-first reporting habits')
             ->assertSee('Default period')
             ->assertSee('Gift redemption report');
     }

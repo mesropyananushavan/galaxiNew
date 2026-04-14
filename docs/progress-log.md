@@ -276,3 +276,11 @@
 
 ### Next step after operational glossary checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or add more operational context blocks to the remaining non-form sections.
+
+### Operational legacy parity notes checkpoint
+- Added a reusable legacy-parity-notes partial and wired old-Galaxy behavior reminders into `shops`, `cardholders`, `cards`, `checks-points`, and `reports`.
+- This makes the operational index screens clearer about which workflows and viewing habits should be preserved during migration.
+- Extended feature assertions so these parity notes remain visible on the operational screens.
+
+### Next step after operational legacy parity notes checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue enriching operational sections with parity-focused context.
