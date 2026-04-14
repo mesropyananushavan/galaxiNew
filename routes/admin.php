@@ -12,6 +12,8 @@ Route::prefix('admin')
         Route::get('/shops', ResourceIndexController::class)->defaults('resource', 'shops')->name('shops.index');
         Route::get('/cardholders', ResourceIndexController::class)->defaults('resource', 'cardholders')->name('cardholders.index');
         Route::get('/cards', ResourceIndexController::class)->defaults('resource', 'cards')->name('cards.index');
+        Route::get('/checks-points', ResourceIndexController::class)->defaults('resource', 'checks-points')->name('checks-points.index');
         Route::get('/card-types', ResourceIndexController::class)->defaults('resource', 'card-types')->name('card-types.index');
         Route::get('/roles-permissions', ResourceIndexController::class)->defaults('resource', 'roles-permissions')->name('roles-permissions.index');
+        Route::get('/reports', ResourceIndexController::class)->defaults('resource', 'reports')->name('reports.index');
     });

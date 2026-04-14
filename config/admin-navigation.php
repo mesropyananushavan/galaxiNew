@@ -21,6 +21,7 @@ return [
             ],
             [
                 'label' => 'Checks & Points',
+                'route' => 'admin.checks-points.index',
                 'description' => 'Purchases, accrual, and fiscal search.',
             ],
         ],
@@ -58,6 +59,7 @@ return [
             ],
             [
                 'label' => 'Reports',
+                'route' => 'admin.reports.index',
                 'description' => 'Operational analytics and histories.',
             ],
         ],

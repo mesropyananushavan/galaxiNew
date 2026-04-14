@@ -102,3 +102,11 @@
 
 ### Next step after shops index checkpoint
 - Add structural placeholders for checks/points and reports, or start introducing reusable table/view components to reduce duplication across these operational screens.
+
+### Operations and reports checkpoint
+- Added real routes and navigation targets for `checks-points` and `reports`, so two more high-value Galaxy sections are now live in the admin shell.
+- Shaped both sections as operational index pages with sample filters and rows, keeping the UI aligned with the denser Galaxy admin pattern.
+- Extended feature-test expectations for both new sections.
+
+### Next step after operations and reports checkpoint
+- Reduce duplication by extracting reusable operational index view data/components, or add the remaining catalog placeholders such as services/rules and gifts.

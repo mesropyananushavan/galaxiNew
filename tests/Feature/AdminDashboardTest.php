@@ -115,4 +115,32 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Volume tier')
             ->assertSee('Airport Kiosk');
     }
+
+    public function test_authenticated_user_can_access_checks_points_operational_index_shape(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points');
+
+        $response
+            ->assertOk()
+            ->assertSee('Checks &amp; Points placeholder')
+            ->assertSee('CHK-90421')
+            ->assertSee('Fiscal receipt')
+            ->assertSee('GX-100001');
+    }
+
+    public function test_authenticated_user_can_access_reports_operational_index_shape(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reports placeholder')
+            ->assertSee('Points accrual summary')
+            ->assertSee('Report type')
+            ->assertSee('Gift redemption report');
+    }
 }

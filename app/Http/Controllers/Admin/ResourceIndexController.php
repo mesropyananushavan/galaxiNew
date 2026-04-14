@@ -55,6 +55,21 @@ class ResourceIndexController extends Controller
                     'filters' => ['Shop', 'Status', 'Card type', 'Activation period'],
                 ],
             ],
+            'checks-points' => [
+                'pageTitle' => 'Checks & Points',
+                'eyebrow' => 'Operations / Checks & Points',
+                'summary' => 'Operational placeholder for purchases, accrual events, fiscal search, and point adjustments.',
+                'nextStep' => 'Add fiscal lookup, accrual history, and shop/date filters.',
+                'table' => [
+                    'columns' => ['Receipt', 'Card', 'Shop', 'Amount', 'Points', 'Created'],
+                    'rows' => [
+                        ['CHK-90421', 'GX-100001', 'Central Shop', '24,500', '+245', '2026-04-13 18:42'],
+                        ['CHK-90407', 'GX-100003', 'Central Shop', '11,000', '0', '2026-04-13 14:05'],
+                        ['CHK-90388', 'GX-100002', 'North Shop', '7,300', '+73', '2026-04-13 10:11'],
+                    ],
+                    'filters' => ['Shop', 'Date range', 'Card number', 'Fiscal receipt'],
+                ],
+            ],
             'card-types' => [
                 'pageTitle' => 'Card Types',
                 'eyebrow' => 'Catalog / Card Types',
@@ -66,6 +81,21 @@ class ResourceIndexController extends Controller
                 'eyebrow' => 'Administration / Roles & Permissions',
                 'summary' => 'Placeholder index for admin roles, permission bundles, and future shop-scoped access rules.',
                 'nextStep' => 'Add role matrix, permission assignment, and shop-aware policy controls.',
+            ],
+            'reports' => [
+                'pageTitle' => 'Reports',
+                'eyebrow' => 'Administration / Reports',
+                'summary' => 'Operational placeholder for analytics, histories, and export-oriented admin reporting.',
+                'nextStep' => 'Add report catalog, date-range presets, and export entry points.',
+                'table' => [
+                    'columns' => ['Report', 'Scope', 'Default period', 'Format', 'Status'],
+                    'rows' => [
+                        ['Points accrual summary', 'All shops', 'Last 30 days', 'XLSX', 'planned'],
+                        ['Card activity history', 'Per shop', 'Last 7 days', 'Table', 'planned'],
+                        ['Gift redemption report', 'All shops', 'Month to date', 'CSV', 'planned'],
+                    ],
+                    'filters' => ['Shop scope', 'Period preset', 'Report type'],
+                ],
             ],
         ];
 
