@@ -70,4 +70,19 @@ class AdminDashboardTest extends TestCase
             ->assertSee('roles-permissions')
             ->assertSee('shop-scoped access rules');
     }
+
+    public function test_authenticated_user_can_access_cards_operational_index_shape(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards');
+
+        $response
+            ->assertOk()
+            ->assertSee('Cards placeholder')
+            ->assertSee('Operational index shape')
+            ->assertSee('GX-100001')
+            ->assertSee('Central Shop')
+            ->assertSee('Activation period');
+    }
 }

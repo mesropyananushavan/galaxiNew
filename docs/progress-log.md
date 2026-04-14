@@ -78,3 +78,11 @@
 
 ### Next step after access pages checkpoint
 - Add first structural placeholders for checks/points or reports, or start turning one entity placeholder into a table-shaped index once PHP execution is available.
+
+### Cards index shape checkpoint
+- Upgraded the `cards` admin section from a plain placeholder into a table-shaped operational index with example filters and sample rows.
+- This is still static data, but it moves the UI closer to the dense Galaxy-style admin workflow instead of generic empty-state pages.
+- Added feature-test expectations for the cards index structure so this first table-shaped admin screen is covered.
+
+### Next step after cards index checkpoint
+- Apply the same denser operational structure to cardholders or shops, then replace sample rows with real query-backed data when PHP execution is available.

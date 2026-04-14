@@ -25,8 +25,17 @@ class ResourceIndexController extends Controller
             'cards' => [
                 'pageTitle' => 'Cards',
                 'eyebrow' => 'Operations / Cards',
-                'summary' => 'Placeholder index for card inventory, assignments, statuses, and activation tracking.',
-                'nextStep' => 'Add card list, filters, and activation workflow entry points.',
+                'summary' => 'Baseline operational index for card inventory, assignments, statuses, and activation tracking.',
+                'nextStep' => 'Replace sample rows with real query-backed inventory and status filters.',
+                'table' => [
+                    'columns' => ['Number', 'Holder', 'Type', 'Shop', 'Status', 'Activated'],
+                    'rows' => [
+                        ['GX-100001', 'Anna Petrova', 'Gold', 'Central Shop', 'active', '2026-04-10'],
+                        ['GX-100002', 'Unassigned', 'Silver', 'North Shop', 'draft', '—'],
+                        ['GX-100003', 'Mariam Sargsyan', 'Partner', 'Central Shop', 'blocked', '2026-03-28'],
+                    ],
+                    'filters' => ['Shop', 'Status', 'Card type', 'Activation period'],
+                ],
             ],
             'card-types' => [
                 'pageTitle' => 'Card Types',
