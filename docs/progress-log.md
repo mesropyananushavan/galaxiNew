@@ -332,3 +332,11 @@
 
 ### Next step after resource block include map checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep consolidating repeated admin-shell rendering patterns where that reduces maintenance risk.
+
+### Config-driven resource block order checkpoint
+- Moved the ordered resource block map out of `resource-index.blade.php` into `config/admin-resource-blocks.php`.
+- The admin shell is now more fully config-driven, so block ordering can evolve without editing the main Blade view.
+- This keeps the Phase 1 parity shell easier to maintain as more metadata cards are introduced.
+
+### Next step after config-driven resource block order checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue shifting repeated shell structure into config where that lowers maintenance risk.
