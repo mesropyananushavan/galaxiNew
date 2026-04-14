@@ -436,3 +436,11 @@
 
 ### Next step after operational readiness checklist checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit readiness and migration guidance.
+
+### Operational dependency status checkpoint
+- Added dependency-status blocks to the operational sections for shops, cardholders, cards, checks/points, and reports.
+- This makes the denser Galaxy shell clearer about which domain foundations already exist and which backend or operational dependencies still block the first real read/write slice.
+- Extended feature assertions so these dependency cues remain visible across the operational screens.
+
+### Next step after operational dependency status checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit readiness, dependency, and migration guidance.

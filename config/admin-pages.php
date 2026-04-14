@@ -58,6 +58,11 @@ return [
             ['status' => 'ready', 'label' => 'Operational parity cues for scope and manager ownership are visible'],
             ['status' => 'pending', 'label' => 'Real shop queries and branch mutations still need PHP-backed Laravel wiring'],
         ],
+        'dependencyStatus' => [
+            ['label' => 'Domain model', 'value' => 'Shop model and user-to-shop linkage baseline exist'],
+            ['label' => 'Backend dependency', 'value' => 'Query-backed shop index and branch actions are still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Legacy branch ownership and manager assignment rules still need live verification'],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -115,6 +120,11 @@ return [
             ['status' => 'ready', 'label' => 'Preview holder search surface and activity cues are defined'],
             ['status' => 'ready', 'label' => 'Operational parity notes for lookup speed and linkage are visible'],
             ['status' => 'pending', 'label' => 'Search, profile reads, and activity history still need PHP-backed Laravel wiring'],
+        ],
+        'dependencyStatus' => [
+            ['label' => 'Domain model', 'value' => 'CardHolder model and shop linkage baseline exist'],
+            ['label' => 'Backend dependency', 'value' => 'Searchable index, profile read path, and activity sourcing are still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Recent activity source and client-worker lookup parity still need validation'],
         ],
     ],
     'cards' => [
@@ -174,6 +184,11 @@ return [
             ['status' => 'ready', 'label' => 'Operational parity cues for blocked and draft cards are visible'],
             ['status' => 'pending', 'label' => 'Inventory queries and card lifecycle handlers still need PHP-backed Laravel wiring'],
         ],
+        'dependencyStatus' => [
+            ['label' => 'Domain model', 'value' => 'Card and CardType models plus migration skeletons exist'],
+            ['label' => 'Backend dependency', 'value' => 'Inventory reads, assignment flows, and status mutations are still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Legacy card-state semantics still need live verification before action wiring'],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -231,6 +246,11 @@ return [
             ['status' => 'ready', 'label' => 'Preview receipt lookup surface and accrual metrics are defined'],
             ['status' => 'ready', 'label' => 'Operational parity cues for receipt-first troubleshooting are visible'],
             ['status' => 'pending', 'label' => 'Transaction tables, receipt reads, and adjustment flows still need PHP-backed Laravel wiring'],
+        ],
+        'dependencyStatus' => [
+            ['label' => 'Domain model', 'value' => 'Transaction domain tables do not exist yet'],
+            ['label' => 'Backend dependency', 'value' => 'Receipt history queries and adjustment handlers are still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Accrual correction rules and fiscal parity still need legacy verification'],
         ],
     ],
     'card-types' => [
@@ -661,6 +681,11 @@ return [
             ['status' => 'ready', 'label' => 'Preview report catalog actions and preset metrics are defined'],
             ['status' => 'ready', 'label' => 'Operational parity cues for export-first reporting are visible'],
             ['status' => 'pending', 'label' => 'Real report sources, presets, and exports still need PHP-backed Laravel wiring'],
+        ],
+        'dependencyStatus' => [
+            ['label' => 'Domain model', 'value' => 'Report catalog is still config-backed with no reporting domain service yet'],
+            ['label' => 'Backend dependency', 'value' => 'Preset handling, query sources, and export pipeline are still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Legacy report presets and export expectations still need live verification'],
         ],
     ],
 ];
