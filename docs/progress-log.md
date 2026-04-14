@@ -507,3 +507,11 @@
 
 ### Next step after operational workflow block ordering checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density while preserving config-driven composition for the growing workflow stack.
+
+### Dedicated operational workflow config checkpoint
+- Extracted the operator checklist, escalation guide, shift handoff, and open issues blocks into a dedicated `config/admin-operational-workflow-blocks.php` stack.
+- Updated the main resource block config to compose that workflow stack instead of hard-coding the whole sequence inline.
+- Added feature coverage proving the dedicated workflow stack stays composable inside resource page defaults.
+
+### Next step after dedicated operational workflow config checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell so denser workflow cues remain easy to reorder and evolve.
