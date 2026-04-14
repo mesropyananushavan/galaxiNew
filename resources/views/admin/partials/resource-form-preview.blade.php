@@ -7,7 +7,11 @@
     <div style="display: grid; gap: 18px;">
         @foreach ($form['sections'] as $section)
             <div style="border: 1px solid var(--border); border-radius: 16px; padding: 18px;">
-                <h4 style="margin: 0 0 14px; font-size: 1rem;">{{ $section['title'] }}</h4>
+                <h4 style="margin: 0 0 10px; font-size: 1rem;">{{ $section['title'] }}</h4>
+
+                @if (! empty($section['help']))
+                    <p style="margin: 0 0 14px; color: var(--text-muted); line-height: 1.6;">{{ $section['help'] }}</p>
+                @endif
 
                 <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
                     @foreach ($section['fields'] as $field)

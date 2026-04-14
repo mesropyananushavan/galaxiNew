@@ -196,3 +196,11 @@
 
 ### Next step after management form sections checkpoint
 - Add reusable metadata for inline help or per-section action groups, or connect one management screen to a first real Laravel request flow when PHP execution becomes available.
+
+### Management form help-text checkpoint
+- Added per-section inline help metadata to the grouped form previews for `card-types`, `gifts`, and `roles-permissions`.
+- The shared form-preview partial now renders migration/parity guidance directly inside each management section.
+- Extended feature assertions so these help cues stay visible while the screens remain preview-oriented.
+
+### Next step after management form help-text checkpoint
+- Add reusable metadata for per-section action groups or convert one management preview into a first real Laravel request flow when PHP execution becomes available.

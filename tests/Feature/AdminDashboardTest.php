@@ -88,6 +88,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Role publishing is still preview-only')
             ->assertSee('Role identity')
             ->assertSee('Access policy')
+            ->assertSee('old Galaxy staff model')
+            ->assertSee('authorization matrix and assignment flow')
             ->assertSee('Shop Manager')
             ->assertSee('Scoped to assigned shop');
     }
@@ -210,6 +212,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gift redemption controls are still preview-only')
             ->assertSee('Catalog identity')
             ->assertSee('Availability')
+            ->assertSee('old Galaxy gift list')
+            ->assertSee('existing redemption process')
             ->assertSee('Unlimited')
             ->assertSee('Coffee voucher');
     }
@@ -232,6 +236,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card type rules are still preview-only')
             ->assertSee('Identity')
             ->assertSee('Accrual settings')
+            ->assertSee('old Galaxy card catalog')
+            ->assertSee('old operational rules')
             ->assertSee('Auto after issue')
             ->assertSee('1.50x');
     }

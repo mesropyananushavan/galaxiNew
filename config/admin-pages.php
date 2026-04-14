@@ -84,6 +84,7 @@ return [
             'sections' => [
                 [
                     'title' => 'Identity',
+                    'help' => 'Keep tier naming close to the old Galaxy card catalog so migration mapping stays straightforward.',
                     'fields' => [
                         ['label' => 'Type name', 'value' => 'Gold'],
                         ['label' => 'Slug', 'value' => 'gold'],
@@ -91,6 +92,7 @@ return [
                 ],
                 [
                     'title' => 'Accrual settings',
+                    'help' => 'These controls will later define how points and activation behavior are carried over from the old operational rules.',
                     'fields' => [
                         ['label' => 'Points rate', 'value' => '1.50'],
                         ['label' => 'Activation mode', 'value' => 'Auto after issue'],
@@ -152,6 +154,7 @@ return [
             'sections' => [
                 [
                     'title' => 'Catalog identity',
+                    'help' => 'Model the reward catalog first, then align names and point prices with the old Galaxy gift list.',
                     'fields' => [
                         ['label' => 'Gift name', 'value' => 'Coffee voucher'],
                         ['label' => 'Points cost', 'value' => '150'],
@@ -159,6 +162,7 @@ return [
                 ],
                 [
                     'title' => 'Availability',
+                    'help' => 'Shop scope and stock policy will become the main levers for parity with the existing redemption process.',
                     'fields' => [
                         ['label' => 'Shop scope', 'value' => 'All shops'],
                         ['label' => 'Stock policy', 'value' => 'Unlimited'],
@@ -205,6 +209,7 @@ return [
             'sections' => [
                 [
                     'title' => 'Role identity',
+                    'help' => 'Start with operational roles that mirror the old Galaxy staff model before introducing new access layers.',
                     'fields' => [
                         ['label' => 'Role name', 'value' => 'Shop Manager'],
                         ['label' => 'Scope', 'value' => 'Per shop'],
@@ -212,6 +217,7 @@ return [
                 ],
                 [
                     'title' => 'Access policy',
+                    'help' => 'Permission bundles and shop policy will eventually back the real authorization matrix and assignment flow.',
                     'fields' => [
                         ['label' => 'Permission bundle', 'value' => 'Cards, gifts, checks'],
                         ['label' => 'Shop policy', 'value' => 'Scoped to assigned shop'],
