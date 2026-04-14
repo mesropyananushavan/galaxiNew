@@ -42,6 +42,10 @@
         @include('admin.partials.resource-empty-state', ['emptyState' => $emptyState])
     @endif
 
+    @if (! empty($notice))
+        @include('admin.partials.resource-preview-notice', ['notice' => $notice])
+    @endif
+
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Why this page exists now</h3>
         <ul class="list">

@@ -180,3 +180,11 @@
 
 ### Next step after management empty states checkpoint
 - Add reusable metadata for grouped action sections or preview notices, or connect one management screen to a first real Laravel request flow when PHP execution becomes available.
+
+### Management preview notices checkpoint
+- Added a reusable preview-notice partial and wired notice metadata for `card-types`, `gifts`, and `roles-permissions`.
+- The richer management screens now communicate clearly which controls are structural previews versus real Laravel-backed workflows.
+- Extended feature assertions so these preview-state cues stay visible while Phase 1 remains backend-light.
+
+### Next step after management preview notices checkpoint
+- Add reusable metadata for split action groups or fieldset sections, or connect one management screen to a first real Laravel request flow when PHP execution becomes available.

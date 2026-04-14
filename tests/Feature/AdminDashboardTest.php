@@ -85,6 +85,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review matrix')
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Create first role')
+            ->assertSee('Role publishing is still preview-only')
             ->assertSee('Shop Manager')
             ->assertSee('Scoped to assigned shop');
     }
@@ -204,6 +205,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Stock audit')
             ->assertSee('No gift campaigns configured yet')
             ->assertSee('Create first gift')
+            ->assertSee('Gift redemption controls are still preview-only')
             ->assertSee('Unlimited')
             ->assertSee('Coffee voucher');
     }
@@ -223,6 +225,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Import rules')
             ->assertSee('No custom card types configured yet')
             ->assertSee('Create first type')
+            ->assertSee('Card type rules are still preview-only')
             ->assertSee('Auto after issue')
             ->assertSee('1.50x');
     }

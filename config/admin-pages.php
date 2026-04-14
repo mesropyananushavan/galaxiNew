@@ -99,6 +99,10 @@ return [
                 ['label' => 'Create first type', 'tone' => 'primary'],
             ],
         ],
+        'notice' => [
+            'title' => 'Card type rules are still preview-only',
+            'description' => 'This screen is shaping the final Galaxy management flow, but save and publish actions are not connected to Laravel handlers yet.',
+        ],
     ],
     'services-rules' => [
         'pageTitle' => 'Services & Rules',
@@ -153,6 +157,10 @@ return [
                 ['label' => 'Create first gift', 'tone' => 'primary'],
             ],
         ],
+        'notice' => [
+            'title' => 'Gift redemption controls are still preview-only',
+            'description' => 'This shell defines the target Galaxy workflow, but inventory and publishing actions are not wired to backend requests yet.',
+        ],
     ],
     'roles-permissions' => [
         'pageTitle' => 'Roles & Permissions',
@@ -191,6 +199,10 @@ return [
             'actions' => [
                 ['label' => 'Create first role', 'tone' => 'primary'],
             ],
+        ],
+        'notice' => [
+            'title' => 'Role publishing is still preview-only',
+            'description' => 'The access matrix and role editor are visible now, but permission persistence and assignment flows still need Laravel-side implementation.',
         ],
     ],
     'reports' => [
