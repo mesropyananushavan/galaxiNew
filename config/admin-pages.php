@@ -70,6 +70,11 @@ return [
             ['label' => 'New type', 'tone' => 'primary'],
             ['label' => 'Import rules', 'tone' => 'secondary'],
         ],
+        'metrics' => [
+            ['label' => 'Active tiers', 'value' => '2'],
+            ['label' => 'Draft tiers', 'value' => '1'],
+            ['label' => 'Imported rules', 'value' => '0'],
+        ],
         'table' => [
             'columns' => ['Type', 'Slug', 'Points rate', 'Activation', 'Status'],
             'rows' => [
@@ -140,6 +145,11 @@ return [
             ['label' => 'New gift', 'tone' => 'primary'],
             ['label' => 'Stock audit', 'tone' => 'secondary'],
         ],
+        'metrics' => [
+            ['label' => 'Active gifts', 'value' => '2'],
+            ['label' => 'Paused gifts', 'value' => '1'],
+            ['label' => 'Low stock items', 'value' => '1'],
+        ],
         'table' => [
             'columns' => ['Gift', 'Points cost', 'Shop scope', 'Stock', 'Status'],
             'rows' => [
@@ -194,6 +204,11 @@ return [
         'actions' => [
             ['label' => 'New role', 'tone' => 'primary'],
             ['label' => 'Review matrix', 'tone' => 'secondary'],
+        ],
+        'metrics' => [
+            ['label' => 'Active roles', 'value' => '2'],
+            ['label' => 'Draft roles', 'value' => '1'],
+            ['label' => 'Scoped shops', 'value' => '3'],
         ],
         'table' => [
             'columns' => ['Role', 'Scope', 'Key permissions', 'Users', 'Status'],

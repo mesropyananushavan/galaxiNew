@@ -30,6 +30,10 @@
         </div>
     </section>
 
+    @if (! empty($metrics))
+        @include('admin.partials.resource-summary-metrics', ['metrics' => $metrics])
+    @endif
+
     @if (! empty($table))
         @include('admin.partials.operational-index-table', ['table' => $table])
     @endif

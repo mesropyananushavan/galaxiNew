@@ -204,3 +204,11 @@
 
 ### Next step after management form help-text checkpoint
 - Add reusable metadata for per-section action groups or convert one management preview into a first real Laravel request flow when PHP execution becomes available.
+
+### Management summary metrics checkpoint
+- Added a reusable summary-metrics partial and wired management snapshot metadata for `card-types`, `gifts`, and `roles-permissions`.
+- The richer admin screens now expose dense operational summary cards, bringing the Phase 1 shell closer to the old Galaxy back-office feel.
+- Extended feature assertions so these snapshot metrics remain visible on the management previews.
+
+### Next step after management summary metrics checkpoint
+- Add reusable metadata for per-section action groups, or convert one management preview into a first real Laravel request flow when PHP execution becomes available.
