@@ -212,3 +212,11 @@
 
 ### Next step after management summary metrics checkpoint
 - Add reusable metadata for per-section action groups, or convert one management preview into a first real Laravel request flow when PHP execution becomes available.
+
+### Management section actions checkpoint
+- Added per-section action metadata to the grouped form previews for `card-types`, `gifts`, and `roles-permissions`.
+- Updated the shared form-preview partial so each fieldset can now expose its own local workflow controls.
+- Extended feature assertions so these section-level actions remain visible on the richer management screens.
+
+### Next step after management section actions checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or reuse this richer metadata pattern on another admin section.

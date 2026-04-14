@@ -7,7 +7,13 @@
     <div style="display: grid; gap: 18px;">
         @foreach ($form['sections'] as $section)
             <div style="border: 1px solid var(--border); border-radius: 16px; padding: 18px;">
-                <h4 style="margin: 0 0 10px; font-size: 1rem;">{{ $section['title'] }}</h4>
+                <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px;">
+                    <h4 style="margin: 0; font-size: 1rem;">{{ $section['title'] }}</h4>
+
+                    @if (! empty($section['actions']))
+                        @include('admin.partials.resource-actions', ['actions' => $section['actions']])
+                    @endif
+                </div>
 
                 @if (! empty($section['help']))
                     <p style="margin: 0 0 14px; color: var(--text-muted); line-height: 1.6;">{{ $section['help'] }}</p>

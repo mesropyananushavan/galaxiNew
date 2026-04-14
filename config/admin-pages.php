@@ -90,6 +90,9 @@ return [
                 [
                     'title' => 'Identity',
                     'help' => 'Keep tier naming close to the old Galaxy card catalog so migration mapping stays straightforward.',
+                    'actions' => [
+                        ['label' => 'Check duplicates', 'tone' => 'secondary'],
+                    ],
                     'fields' => [
                         ['label' => 'Type name', 'value' => 'Gold'],
                         ['label' => 'Slug', 'value' => 'gold'],
@@ -98,6 +101,9 @@ return [
                 [
                     'title' => 'Accrual settings',
                     'help' => 'These controls will later define how points and activation behavior are carried over from the old operational rules.',
+                    'actions' => [
+                        ['label' => 'Preview accrual', 'tone' => 'secondary'],
+                    ],
                     'fields' => [
                         ['label' => 'Points rate', 'value' => '1.50'],
                         ['label' => 'Activation mode', 'value' => 'Auto after issue'],
@@ -165,6 +171,9 @@ return [
                 [
                     'title' => 'Catalog identity',
                     'help' => 'Model the reward catalog first, then align names and point prices with the old Galaxy gift list.',
+                    'actions' => [
+                        ['label' => 'Compare legacy catalog', 'tone' => 'secondary'],
+                    ],
                     'fields' => [
                         ['label' => 'Gift name', 'value' => 'Coffee voucher'],
                         ['label' => 'Points cost', 'value' => '150'],
@@ -173,6 +182,9 @@ return [
                 [
                     'title' => 'Availability',
                     'help' => 'Shop scope and stock policy will become the main levers for parity with the existing redemption process.',
+                    'actions' => [
+                        ['label' => 'Preview stock impact', 'tone' => 'secondary'],
+                    ],
                     'fields' => [
                         ['label' => 'Shop scope', 'value' => 'All shops'],
                         ['label' => 'Stock policy', 'value' => 'Unlimited'],
@@ -225,6 +237,9 @@ return [
                 [
                     'title' => 'Role identity',
                     'help' => 'Start with operational roles that mirror the old Galaxy staff model before introducing new access layers.',
+                    'actions' => [
+                        ['label' => 'Compare staff roles', 'tone' => 'secondary'],
+                    ],
                     'fields' => [
                         ['label' => 'Role name', 'value' => 'Shop Manager'],
                         ['label' => 'Scope', 'value' => 'Per shop'],
@@ -233,6 +248,9 @@ return [
                 [
                     'title' => 'Access policy',
                     'help' => 'Permission bundles and shop policy will eventually back the real authorization matrix and assignment flow.',
+                    'actions' => [
+                        ['label' => 'Preview matrix impact', 'tone' => 'secondary'],
+                    ],
                     'fields' => [
                         ['label' => 'Permission bundle', 'value' => 'Cards, gifts, checks'],
                         ['label' => 'Shop policy', 'value' => 'Scoped to assigned shop'],
