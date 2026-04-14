@@ -444,3 +444,11 @@
 
 ### Next step after operational dependency status checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit readiness, dependency, and migration guidance.
+
+### Operational implementation handoff checkpoint
+- Added implementation-handoff blocks to the operational sections for shops, cardholders, cards, checks/points, and reports.
+- Each preview-only operational page now names the safest first Laravel read slice to build once PHP execution becomes available.
+- Extended feature assertions so these handoff cues remain visible across the operational screens.
+
+### Next step after operational implementation handoff checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit readiness, dependency, handoff, and migration guidance.

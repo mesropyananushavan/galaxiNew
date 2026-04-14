@@ -63,6 +63,14 @@ return [
             ['label' => 'Backend dependency', 'value' => 'Query-backed shop index and branch actions are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Legacy branch ownership and manager assignment rules still need live verification'],
         ],
+        'implementationHandoff' => [
+            'summary' => 'When PHP is available, start with a minimal read-only shop index before adding any branch mutation flows.',
+            'steps' => [
+                'Wire an Eloquent-backed shops index with manager and status columns.',
+                'Keep the first filter set to status and assigned manager only.',
+                'Delay create and edit actions until the read path is stable against live data.',
+            ],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -125,6 +133,14 @@ return [
             ['label' => 'Domain model', 'value' => 'CardHolder model and shop linkage baseline exist'],
             ['label' => 'Backend dependency', 'value' => 'Searchable index, profile read path, and activity sourcing are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Recent activity source and client-worker lookup parity still need validation'],
+        ],
+        'implementationHandoff' => [
+            'summary' => 'When PHP is available, start with a searchable cardholder index before attempting profile edits or lifecycle actions.',
+            'steps' => [
+                'Load cardholders with shop, status, and linked-card counts.',
+                'Add simple search by name or phone as the first interaction slice.',
+                'Defer detailed profile reads and activity history until the index path is stable.',
+            ],
         ],
     ],
     'cards' => [
@@ -189,6 +205,14 @@ return [
             ['label' => 'Backend dependency', 'value' => 'Inventory reads, assignment flows, and status mutations are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Legacy card-state semantics still need live verification before action wiring'],
         ],
+        'implementationHandoff' => [
+            'summary' => 'When PHP is available, start with a read-only inventory table before exposing issue, block, or assignment flows.',
+            'steps' => [
+                'Load cards with holder, type, status, and activation timestamp columns.',
+                'Add shop, status, and card-type filters before any mutations.',
+                'Delay issue and block actions until the read path is verified against live card states.',
+            ],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -251,6 +275,14 @@ return [
             ['label' => 'Domain model', 'value' => 'Transaction domain tables do not exist yet'],
             ['label' => 'Backend dependency', 'value' => 'Receipt history queries and adjustment handlers are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Accrual correction rules and fiscal parity still need legacy verification'],
+        ],
+        'implementationHandoff' => [
+            'summary' => 'When PHP is available, start with a read-only receipt history before attempting manual accrual adjustments.',
+            'steps' => [
+                'Introduce transaction tables or a read model for receipt and points history.',
+                'Add shop, date-range, and receipt lookup filters before any mutation paths.',
+                'Defer adjustment and correction actions until receipt parity is proven on live data.',
+            ],
         ],
     ],
     'card-types' => [
@@ -686,6 +718,14 @@ return [
             ['label' => 'Domain model', 'value' => 'Report catalog is still config-backed with no reporting domain service yet'],
             ['label' => 'Backend dependency', 'value' => 'Preset handling, query sources, and export pipeline are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Legacy report presets and export expectations still need live verification'],
+        ],
+        'implementationHandoff' => [
+            'summary' => 'When PHP is available, start with a simple report catalog and fixed presets before building exports or analytics pipelines.',
+            'steps' => [
+                'Move report definitions into a lightweight service or queryable catalog source.',
+                'Add preset period handling before custom ranges or heavy analytics.',
+                'Defer export generation until the basic catalog and preset flow is stable.',
+            ],
         ],
     ],
 ];
