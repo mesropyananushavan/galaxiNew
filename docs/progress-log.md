@@ -141,3 +141,11 @@
 
 ### Next step after card types management preview checkpoint
 - Apply the same richer management pattern to gifts or roles/permissions, or begin mapping these preview controls to real Laravel forms once PHP execution is available.
+
+### Gifts management preview checkpoint
+- Upgraded `gifts` from a table-only operational preview into a richer management screen with the reusable form/action block.
+- This confirms the new management-preview pattern works for more than one catalog section.
+- Extended feature coverage for the gifts management preview as well.
+
+### Next step after gifts management preview checkpoint
+- Apply the same pattern to roles/permissions or start converting one preview action into a real Laravel form flow when PHP execution is available.

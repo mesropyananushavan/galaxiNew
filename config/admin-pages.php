@@ -104,8 +104,8 @@ return [
     'gifts' => [
         'pageTitle' => 'Gifts',
         'eyebrow' => 'Catalog / Gifts',
-        'summary' => 'Operational placeholder for gift catalog, redemption settings, and stock-aware reward management.',
-        'nextStep' => 'Add gift CRUD, stock tracking, and redemption controls.',
+        'summary' => 'Baseline management screen for gift catalog, redemption settings, and stock-aware reward management.',
+        'nextStep' => 'Replace sample controls with real gift CRUD, stock tracking, and redemption flows.',
         'table' => [
             'columns' => ['Gift', 'Points cost', 'Shop scope', 'Stock', 'Status'],
             'rows' => [
@@ -114,6 +114,16 @@ return [
                 ['Premium dessert set', '450', 'Central Shop', '0', 'paused'],
             ],
             'filters' => ['Shop scope', 'Availability', 'Points range'],
+        ],
+        'form' => [
+            'title' => 'Create or edit gift',
+            'fields' => [
+                ['label' => 'Gift name', 'value' => 'Coffee voucher'],
+                ['label' => 'Points cost', 'value' => '150'],
+                ['label' => 'Shop scope', 'value' => 'All shops'],
+                ['label' => 'Stock policy', 'value' => 'Unlimited'],
+            ],
+            'actions' => ['Save draft', 'Publish gift'],
         ],
     ],
     'roles-permissions' => [

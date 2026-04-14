@@ -172,6 +172,20 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Premium dessert set');
     }
 
+    public function test_authenticated_user_can_access_gifts_management_preview(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts');
+
+        $response
+            ->assertOk()
+            ->assertSee('Create or edit gift')
+            ->assertSee('Publish gift')
+            ->assertSee('Unlimited')
+            ->assertSee('Coffee voucher');
+    }
+
     public function test_authenticated_user_can_access_card_types_management_preview(): void
     {
         $user = User::factory()->create();
