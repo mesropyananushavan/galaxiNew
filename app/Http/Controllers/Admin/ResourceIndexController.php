@@ -76,6 +76,36 @@ class ResourceIndexController extends Controller
                 'summary' => 'Placeholder index for Galaxy card tiers, points rules, and activation settings.',
                 'nextStep' => 'Add card type CRUD and business rule editing.',
             ],
+            'services-rules' => [
+                'pageTitle' => 'Services & Rules',
+                'eyebrow' => 'Catalog / Services & Rules',
+                'summary' => 'Operational placeholder for service groups, eligibility rules, and business conditions that affect loyalty flows.',
+                'nextStep' => 'Add service group CRUD, rule priority, and condition editing.',
+                'table' => [
+                    'columns' => ['Rule group', 'Scope', 'Condition', 'Effect', 'Priority', 'Status'],
+                    'rows' => [
+                        ['Birthday bonus', 'All shops', 'Holder birthday window', '+10% points', '10', 'active'],
+                        ['Partner card uplift', 'Central Shop', 'Card type = Partner', '+5% points', '20', 'active'],
+                        ['Night service block', 'North Shop', 'Service group = Bar', 'No accrual', '30', 'draft'],
+                    ],
+                    'filters' => ['Shop scope', 'Status', 'Rule type'],
+                ],
+            ],
+            'gifts' => [
+                'pageTitle' => 'Gifts',
+                'eyebrow' => 'Catalog / Gifts',
+                'summary' => 'Operational placeholder for gift catalog, redemption settings, and stock-aware reward management.',
+                'nextStep' => 'Add gift CRUD, stock tracking, and redemption controls.',
+                'table' => [
+                    'columns' => ['Gift', 'Points cost', 'Shop scope', 'Stock', 'Status'],
+                    'rows' => [
+                        ['Coffee voucher', '150', 'All shops', 'Unlimited', 'active'],
+                        ['Airport transfer', '900', 'Airport Kiosk', '12', 'active'],
+                        ['Premium dessert set', '450', 'Central Shop', '0', 'paused'],
+                    ],
+                    'filters' => ['Shop scope', 'Availability', 'Points range'],
+                ],
+            ],
             'roles-permissions' => [
                 'pageTitle' => 'Roles & Permissions',
                 'eyebrow' => 'Administration / Roles & Permissions',

@@ -143,4 +143,32 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Report type')
             ->assertSee('Gift redemption report');
     }
+
+    public function test_authenticated_user_can_access_services_rules_operational_index_shape(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules');
+
+        $response
+            ->assertOk()
+            ->assertSee('Services &amp; Rules placeholder')
+            ->assertSee('Birthday bonus')
+            ->assertSee('Rule type')
+            ->assertSee('Partner card uplift');
+    }
+
+    public function test_authenticated_user_can_access_gifts_operational_index_shape(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts');
+
+        $response
+            ->assertOk()
+            ->assertSee('Gifts placeholder')
+            ->assertSee('Coffee voucher')
+            ->assertSee('Points range')
+            ->assertSee('Premium dessert set');
+    }
 }

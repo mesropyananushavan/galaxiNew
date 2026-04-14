@@ -36,10 +36,12 @@ return [
             ],
             [
                 'label' => 'Services & Rules',
+                'route' => 'admin.services-rules.index',
                 'description' => 'Service groups, conditions, and business rules.',
             ],
             [
                 'label' => 'Gifts',
+                'route' => 'admin.gifts.index',
                 'description' => 'Gift catalog and redemption settings.',
             ],
         ],

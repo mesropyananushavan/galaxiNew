@@ -117,3 +117,11 @@
 
 ### Next step after operational table partial checkpoint
 - Add the remaining catalog sections, such as services/rules and gifts, or start introducing reusable page metadata structures for the resource controller.
+
+### Catalog sections checkpoint
+- Added live admin routes and navigation targets for `services-rules` and `gifts`, so the remaining high-value catalog sections are now represented in the Galaxy shell.
+- Shaped both sections as operational index pages with sample filters and rows, keeping Catalog consistent with Operations and Administration.
+- Extended feature-test expectations for both catalog sections.
+
+### Next step after catalog sections checkpoint
+- Refactor the resource page metadata out of the controller into config or dedicated page-definition structures, or start replacing one placeholder catalog section with richer CRUD-oriented layout details.
