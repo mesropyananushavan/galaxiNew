@@ -364,3 +364,11 @@
 
 ### Next step after shared page header partial checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue extracting repeated shell fragments into shared building blocks where that lowers maintenance risk.
+
+### Config-driven page rationale checkpoint
+- Moved the shared resource page rationale text out of `ResourceIndexController` into `config/admin-page-rationale.php`.
+- This keeps the controller thinner and makes another piece of the Phase 1 shell explicitly config-driven.
+- The visible Galaxy admin pages stay unchanged while the shell structure becomes easier to tune without touching controller code.
+
+### Next step after config-driven page rationale checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue shifting shared shell copy and structure into config where that lowers maintenance risk.

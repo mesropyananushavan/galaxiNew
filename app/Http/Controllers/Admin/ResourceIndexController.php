@@ -11,6 +11,7 @@ class ResourceIndexController extends Controller
     {
         $pages = config('admin-pages');
         $resourceBlocks = config('admin-resource-blocks', []);
+        $pageRationale = config('admin-page-rationale', []);
 
         abort_unless(is_array($pages) && array_key_exists($resource, $pages), 404);
 
@@ -18,11 +19,7 @@ class ResourceIndexController extends Controller
             'resourceKey' => $resource,
             'resourceBlocks' => is_array($resourceBlocks) ? $resourceBlocks : [],
             'phase' => 1,
-            'pageRationale' => [
-                'connect the admin navigation to real Galaxy sections instead of dead placeholders;',
-                'reserve stable route names for future CRUD and reporting flows;',
-                'make the Phase 1 shell visibly closer to the old operational product shape.',
-            ],
+            'pageRationale' => is_array($pageRationale) ? $pageRationale : [],
         ]);
     }
 }
