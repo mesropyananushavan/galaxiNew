@@ -92,6 +92,13 @@ return [
                 ['label' => 'Publish type', 'tone' => 'primary'],
             ],
         ],
+        'emptyState' => [
+            'title' => 'No custom card types configured yet',
+            'description' => 'Start by creating the first Galaxy-specific card tier, then import or rebuild rules from the old operational setup.',
+            'actions' => [
+                ['label' => 'Create first type', 'tone' => 'primary'],
+            ],
+        ],
     ],
     'services-rules' => [
         'pageTitle' => 'Services & Rules',
@@ -139,6 +146,13 @@ return [
                 ['label' => 'Publish gift', 'tone' => 'primary'],
             ],
         ],
+        'emptyState' => [
+            'title' => 'No gift campaigns configured yet',
+            'description' => 'Use the management flow to add the first redeemable reward, then align stock and shop scope with the old Galaxy catalog.',
+            'actions' => [
+                ['label' => 'Create first gift', 'tone' => 'primary'],
+            ],
+        ],
     ],
     'roles-permissions' => [
         'pageTitle' => 'Roles & Permissions',
@@ -169,6 +183,13 @@ return [
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
                 ['label' => 'Publish role', 'tone' => 'primary'],
+            ],
+        ],
+        'emptyState' => [
+            'title' => 'No shop-scoped roles configured yet',
+            'description' => 'Create the first operational role set so shop managers and cashiers can map cleanly to the old Galaxy access model.',
+            'actions' => [
+                ['label' => 'Create first role', 'tone' => 'primary'],
             ],
         ],
     ],

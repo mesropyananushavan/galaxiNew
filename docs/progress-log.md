@@ -172,3 +172,11 @@
 
 ### Next step after page-level management actions checkpoint
 - Add reusable metadata for section-specific empty states or action groups, or connect one of the management previews to a first real Laravel form/request path when PHP execution becomes available.
+
+### Management empty states checkpoint
+- Added a reusable management empty-state partial and wired section-specific empty-state metadata for `card-types`, `gifts`, and `roles-permissions`.
+- This gives the richer admin previews a clearer operational starting point and keeps the shell closer to realistic CRUD workflows even before backend handlers exist.
+- Extended feature assertions so the new empty-state guidance is covered on the management screens.
+
+### Next step after management empty states checkpoint
+- Add reusable metadata for grouped action sections or preview notices, or connect one management screen to a first real Laravel request flow when PHP execution becomes available.
