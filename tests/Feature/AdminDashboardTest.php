@@ -189,6 +189,32 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Partner card uplift');
     }
 
+    public function test_authenticated_user_can_access_services_rules_management_preview(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules');
+
+        $response
+            ->assertOk()
+            ->assertSee('Create or edit service rule')
+            ->assertSee('Publish rule')
+            ->assertSee('New rule')
+            ->assertSee('Review priorities')
+            ->assertSee('Management snapshot')
+            ->assertSee('Active rules')
+            ->assertSee('Shop scopes')
+            ->assertSee('No service rules configured yet')
+            ->assertSee('Create first rule')
+            ->assertSee('Rule editing is still preview-only')
+            ->assertSee('Rule identity')
+            ->assertSee('Effect and priority')
+            ->assertSee('Compare legacy rules')
+            ->assertSee('Preview priority')
+            ->assertSee('Old Galaxy services and business rules')
+            ->assertSee('loyalty effect logic');
+    }
+
     public function test_authenticated_user_can_access_gifts_operational_index_shape(): void
     {
         $user = User::factory()->create();

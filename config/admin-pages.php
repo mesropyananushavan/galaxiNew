@@ -135,8 +135,17 @@ return [
     'services-rules' => [
         'pageTitle' => 'Services & Rules',
         'eyebrow' => 'Catalog / Services & Rules',
-        'summary' => 'Operational placeholder for service groups, eligibility rules, and business conditions that affect loyalty flows.',
-        'nextStep' => 'Add service group CRUD, rule priority, and condition editing.',
+        'summary' => 'Baseline management screen for service groups, eligibility rules, and business conditions that drive loyalty behavior.',
+        'nextStep' => 'Replace sample controls with real rule CRUD, priority ordering, and condition editing.',
+        'actions' => [
+            ['label' => 'New rule', 'tone' => 'primary'],
+            ['label' => 'Review priorities', 'tone' => 'secondary'],
+        ],
+        'metrics' => [
+            ['label' => 'Active rules', 'value' => '2'],
+            ['label' => 'Draft rules', 'value' => '1'],
+            ['label' => 'Shop scopes', 'value' => '3'],
+        ],
         'table' => [
             'columns' => ['Rule group', 'Scope', 'Condition', 'Effect', 'Priority', 'Status'],
             'rows' => [
@@ -145,6 +154,53 @@ return [
                 ['Night service block', 'North Shop', 'Service group = Bar', 'No accrual', '30', 'draft'],
             ],
             'filters' => ['Shop scope', 'Status', 'Rule type'],
+        ],
+        'form' => [
+            'title' => 'Create or edit service rule',
+            'sections' => [
+                [
+                    'title' => 'Rule identity',
+                    'help' => 'Keep the rule group structure close to the old Galaxy service logic so parity remains traceable.',
+                    'actions' => [
+                        ['label' => 'Compare legacy rules', 'tone' => 'secondary'],
+                    ],
+                    'fields' => [
+                        ['label' => 'Rule group', 'value' => 'Birthday bonus'],
+                        ['label' => 'Scope', 'value' => 'All shops'],
+                    ],
+                ],
+                [
+                    'title' => 'Effect and priority',
+                    'help' => 'Priority and effect controls will later define how overlapping loyalty conditions are resolved.',
+                    'actions' => [
+                        ['label' => 'Preview priority', 'tone' => 'secondary'],
+                    ],
+                    'fields' => [
+                        ['label' => 'Effect', 'value' => '+10% points'],
+                        ['label' => 'Priority', 'value' => '10'],
+                    ],
+                ],
+            ],
+            'actions' => [
+                ['label' => 'Save draft', 'tone' => 'secondary'],
+                ['label' => 'Publish rule', 'tone' => 'primary'],
+            ],
+        ],
+        'emptyState' => [
+            'title' => 'No service rules configured yet',
+            'description' => 'Start by recreating the highest-impact legacy rule groups, then expand the rule catalog once parity is stable.',
+            'actions' => [
+                ['label' => 'Create first rule', 'tone' => 'primary'],
+            ],
+        ],
+        'notice' => [
+            'title' => 'Rule editing is still preview-only',
+            'description' => 'This screen outlines the target Galaxy rule workflow, but save and publish actions are not wired to Laravel handlers yet.',
+        ],
+        'legacyMapping' => [
+            ['label' => 'Legacy source', 'value' => 'Old Galaxy services and business rules'],
+            ['label' => 'Parity focus', 'value' => 'Rule grouping, priority order, loyalty effect logic'],
+            ['label' => 'Migration note', 'value' => 'Preserve current rule resolution behavior before extending condition syntax'],
         ],
     ],
     'gifts' => [

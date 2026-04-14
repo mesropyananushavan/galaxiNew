@@ -228,3 +228,11 @@
 
 ### Next step after legacy parity mapping checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or reuse this parity-focused metadata pattern on another admin section.
+
+### Services and rules management preview checkpoint
+- Upgraded `services-rules` from a table-only operational preview into a richer management screen with page actions, snapshot metrics, grouped form sections, empty state, preview notice, and legacy parity mapping.
+- This extends the richer Catalog management pattern beyond card types and gifts into the business-rules area.
+- Extended feature assertions so the new services/rules management preview is covered.
+
+### Next step after services and rules management preview checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or bring the same richer pattern to another admin-heavy section if that remains safer.
