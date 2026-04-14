@@ -96,6 +96,14 @@ return [
                 'Treat paused-branch recovery as an approval step, not a same-screen quick fix.',
             ],
         ],
+        'shiftHandoff' => [
+            'summary' => 'Shop oversight in the old Galaxy console depended on explicit handoff notes so the next operator could continue branch monitoring without rechecking everything.',
+            'items' => [
+                'Carry paused-branch context into the next shift until recovery is approved.',
+                'Flag any shop that still lacks a manager assignment at handoff time.',
+                'Note unresolved scope disputes before the next operator touches branch visibility.',
+            ],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -190,6 +198,14 @@ return [
                 'Escalate duplicate-profile suspicions before creating a replacement holder record.',
                 'Route missing-card disputes to card operations after confirming linkage state.',
                 'Treat stale activity history as a data-source problem before promising profile fixes.',
+            ],
+        ],
+        'shiftHandoff' => [
+            'summary' => 'Cardholder support in the legacy admin relied on clear handoff notes so unresolved identity and linkage issues did not restart from zero on the next shift.',
+            'items' => [
+                'Carry duplicate-profile investigations into the next shift until identity is confirmed.',
+                'Leave missing-card cases tagged with the last verified linkage state.',
+                'Note stale-activity complaints that still need data-source follow-up.',
             ],
         ],
     ],
@@ -288,6 +304,14 @@ return [
                 'Treat holder-link mismatches as identity issues before stock corrections.',
             ],
         ],
+        'shiftHandoff' => [
+            'summary' => 'Card inventory continuity in the old Galaxy workspace depended on precise handoff notes around blocked stock, draft stock, and unresolved holder linkage.',
+            'items' => [
+                'Carry blocked-card disputes into the next shift until replacement is approved.',
+                'Flag draft-stock shortages that still need branch review.',
+                'Leave holder-link mismatches documented before another operator issues stock changes.',
+            ],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -382,6 +406,14 @@ return [
                 'Escalate receipt-not-found cases before discussing manual point recovery.',
                 'Route repeated zero-accrual complaints to loyalty rule review after receipt validation.',
                 'Treat shop timestamp mismatches as fiscal-data issues before operator correction requests.',
+            ],
+        ],
+        'shiftHandoff' => [
+            'summary' => 'Receipt troubleshooting in the legacy console used handoff notes to preserve what had already been validated before the next operator picked up the case.',
+            'items' => [
+                'Carry unresolved receipt-not-found cases with the last verified search inputs.',
+                'Note repeated zero-accrual complaints that already passed receipt validation.',
+                'Leave shop and timestamp mismatch context attached before any correction discussion continues.',
             ],
         ],
     ],
@@ -850,6 +882,14 @@ return [
                 'Escalate missing preset coverage before promising custom analytics.',
                 'Route export-format disputes to reporting owners before adding new catalog entries.',
                 'Treat repeated ad hoc requests as a catalog-gap signal for later Phase work.',
+            ],
+        ],
+        'shiftHandoff' => [
+            'summary' => 'Reporting continuity in the old Galaxy admin depended on handoff notes that captured which export need was still open and which preset had already been tried.',
+            'items' => [
+                'Carry unmet preset requests into the next shift before inventing custom exports.',
+                'Note unresolved export-format disputes so the next operator does not repeat the same catalog path.',
+                'Flag repeated ad hoc asks that should become future report catalog entries.',
             ],
         ],
     ],
