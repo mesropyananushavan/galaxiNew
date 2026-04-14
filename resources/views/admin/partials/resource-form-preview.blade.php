@@ -1,11 +1,7 @@
 <section class="card">
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
         <h3 style="margin: 0; font-size: 1.1rem;">{{ $form['title'] }}</h3>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-            @foreach ($form['actions'] as $action)
-                <span class="eyebrow">{{ $action }}</span>
-            @endforeach
-        </div>
+        @include('admin.partials.resource-actions', ['actions' => $form['actions']])
     </div>
 
     <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">

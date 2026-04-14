@@ -83,7 +83,10 @@ return [
                 ['label' => 'Points rate', 'value' => '1.50'],
                 ['label' => 'Activation mode', 'value' => 'Auto after issue'],
             ],
-            'actions' => ['Save draft', 'Publish type'],
+            'actions' => [
+                ['label' => 'Save draft', 'tone' => 'secondary'],
+                ['label' => 'Publish type', 'tone' => 'primary'],
+            ],
         ],
     ],
     'services-rules' => [
@@ -123,7 +126,10 @@ return [
                 ['label' => 'Shop scope', 'value' => 'All shops'],
                 ['label' => 'Stock policy', 'value' => 'Unlimited'],
             ],
-            'actions' => ['Save draft', 'Publish gift'],
+            'actions' => [
+                ['label' => 'Save draft', 'tone' => 'secondary'],
+                ['label' => 'Publish gift', 'tone' => 'primary'],
+            ],
         ],
     ],
     'roles-permissions' => [
@@ -148,7 +154,10 @@ return [
                 ['label' => 'Permission bundle', 'value' => 'Cards, gifts, checks'],
                 ['label' => 'Shop policy', 'value' => 'Scoped to assigned shop'],
             ],
-            'actions' => ['Save draft', 'Publish role'],
+            'actions' => [
+                ['label' => 'Save draft', 'tone' => 'secondary'],
+                ['label' => 'Publish role', 'tone' => 'primary'],
+            ],
         ],
     ],
     'reports' => [

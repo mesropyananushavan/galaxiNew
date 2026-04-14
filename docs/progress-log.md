@@ -157,3 +157,10 @@
 
 ### Next step after roles and permissions management preview checkpoint
 - Start converting one preview action into a real Laravel form/request flow, or add reusable action metadata so management screens can render more consistent controls.
+
+### Management actions metadata checkpoint
+- Added a reusable partial for management action chips and switched form previews to action metadata objects instead of plain strings.
+- This makes management screens more consistent and gives a clearer path toward real primary/secondary action rendering later.
+
+### Next step after management actions metadata checkpoint
+- Reuse the new action metadata pattern for non-form page actions, or convert one management preview into a real Laravel request flow when PHP execution becomes available.
