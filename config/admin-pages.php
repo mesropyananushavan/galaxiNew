@@ -88,6 +88,14 @@ return [
                 'Escalate scope mismatches before changing branch visibility rules.',
             ],
         ],
+        'escalationGuide' => [
+            'summary' => 'Branch issues in the legacy admin usually moved through a short escalation path instead of ad hoc edits.',
+            'items' => [
+                'Route manager-assignment gaps to operations supervision first.',
+                'Escalate cross-shop visibility disputes before changing access scope.',
+                'Treat paused-branch recovery as an approval step, not a same-screen quick fix.',
+            ],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -174,6 +182,14 @@ return [
                 'Search inactive holders before creating duplicate profiles.',
                 'Check linked-card counts before escalating missing-card complaints.',
                 'Use recent activity as the first triage signal before opening full history.',
+            ],
+        ],
+        'escalationGuide' => [
+            'summary' => 'Holder issues in the old workflow followed a predictable escalation pattern depending on identity, card linkage, and recent activity.',
+            'items' => [
+                'Escalate duplicate-profile suspicions before creating a replacement holder record.',
+                'Route missing-card disputes to card operations after confirming linkage state.',
+                'Treat stale activity history as a data-source problem before promising profile fixes.',
             ],
         ],
     ],
@@ -264,6 +280,14 @@ return [
                 'Confirm holder linkage before treating a card as unassigned stock.',
             ],
         ],
+        'escalationGuide' => [
+            'summary' => 'Legacy card operations used a narrow escalation path so card-state problems were not mistaken for simple inventory actions.',
+            'items' => [
+                'Escalate blocked-card disputes before issuing a fresh card number.',
+                'Route draft-stock shortages to branch inventory review before manual overrides.',
+                'Treat holder-link mismatches as identity issues before stock corrections.',
+            ],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -350,6 +374,14 @@ return [
                 'Search by fiscal receipt before checking card history.',
                 'Inspect zero-accrual receipts before assuming a loyalty failure.',
                 'Confirm shop and timestamp context before discussing point corrections.',
+            ],
+        ],
+        'escalationGuide' => [
+            'summary' => 'Checks and points issues in the old system were escalated carefully because receipt and loyalty mistakes had different owners.',
+            'items' => [
+                'Escalate receipt-not-found cases before discussing manual point recovery.',
+                'Route repeated zero-accrual complaints to loyalty rule review after receipt validation.',
+                'Treat shop timestamp mismatches as fiscal-data issues before operator correction requests.',
             ],
         ],
     ],
@@ -810,6 +842,14 @@ return [
                 'Start with preset periods before opening custom date-range work.',
                 'Keep the highest-frequency export categories at the top of the catalog.',
                 'Validate export format expectations before adding heavier analytics views.',
+            ],
+        ],
+        'escalationGuide' => [
+            'summary' => 'Legacy reporting work escalated only when preset exports could not satisfy the operational request.',
+            'items' => [
+                'Escalate missing preset coverage before promising custom analytics.',
+                'Route export-format disputes to reporting owners before adding new catalog entries.',
+                'Treat repeated ad hoc requests as a catalog-gap signal for later Phase work.',
             ],
         ],
     ],

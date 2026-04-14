@@ -476,3 +476,11 @@
 
 ### Next step after operational operator checklist checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit operator checklist, legacy mapping, activity, readiness, dependency, handoff, and migration guidance.
+
+### Operational escalation guide checkpoint
+- Added a reusable escalation-guide block and populated it on the operational sections for shops, cardholders, cards, checks/points, and reports.
+- This makes the Phase 1 Galaxy shell closer to the old back-office by showing the next operational decision path after triage, not just the data snapshot.
+- Extended feature assertions so these escalation cues remain visible across the operational screens.
+
+### Next step after operational escalation guide checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit escalation, operator checklist, legacy mapping, activity, readiness, dependency, handoff, and migration guidance.
