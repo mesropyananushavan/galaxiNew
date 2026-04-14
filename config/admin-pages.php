@@ -81,11 +81,21 @@ return [
         ],
         'form' => [
             'title' => 'Create or edit card type',
-            'fields' => [
-                ['label' => 'Type name', 'value' => 'Gold'],
-                ['label' => 'Slug', 'value' => 'gold'],
-                ['label' => 'Points rate', 'value' => '1.50'],
-                ['label' => 'Activation mode', 'value' => 'Auto after issue'],
+            'sections' => [
+                [
+                    'title' => 'Identity',
+                    'fields' => [
+                        ['label' => 'Type name', 'value' => 'Gold'],
+                        ['label' => 'Slug', 'value' => 'gold'],
+                    ],
+                ],
+                [
+                    'title' => 'Accrual settings',
+                    'fields' => [
+                        ['label' => 'Points rate', 'value' => '1.50'],
+                        ['label' => 'Activation mode', 'value' => 'Auto after issue'],
+                    ],
+                ],
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
@@ -139,11 +149,21 @@ return [
         ],
         'form' => [
             'title' => 'Create or edit gift',
-            'fields' => [
-                ['label' => 'Gift name', 'value' => 'Coffee voucher'],
-                ['label' => 'Points cost', 'value' => '150'],
-                ['label' => 'Shop scope', 'value' => 'All shops'],
-                ['label' => 'Stock policy', 'value' => 'Unlimited'],
+            'sections' => [
+                [
+                    'title' => 'Catalog identity',
+                    'fields' => [
+                        ['label' => 'Gift name', 'value' => 'Coffee voucher'],
+                        ['label' => 'Points cost', 'value' => '150'],
+                    ],
+                ],
+                [
+                    'title' => 'Availability',
+                    'fields' => [
+                        ['label' => 'Shop scope', 'value' => 'All shops'],
+                        ['label' => 'Stock policy', 'value' => 'Unlimited'],
+                    ],
+                ],
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
@@ -182,11 +202,21 @@ return [
         ],
         'form' => [
             'title' => 'Create or edit role',
-            'fields' => [
-                ['label' => 'Role name', 'value' => 'Shop Manager'],
-                ['label' => 'Scope', 'value' => 'Per shop'],
-                ['label' => 'Permission bundle', 'value' => 'Cards, gifts, checks'],
-                ['label' => 'Shop policy', 'value' => 'Scoped to assigned shop'],
+            'sections' => [
+                [
+                    'title' => 'Role identity',
+                    'fields' => [
+                        ['label' => 'Role name', 'value' => 'Shop Manager'],
+                        ['label' => 'Scope', 'value' => 'Per shop'],
+                    ],
+                ],
+                [
+                    'title' => 'Access policy',
+                    'fields' => [
+                        ['label' => 'Permission bundle', 'value' => 'Cards, gifts, checks'],
+                        ['label' => 'Shop policy', 'value' => 'Scoped to assigned shop'],
+                    ],
+                ],
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],

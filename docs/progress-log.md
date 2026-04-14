@@ -188,3 +188,11 @@
 
 ### Next step after management preview notices checkpoint
 - Add reusable metadata for split action groups or fieldset sections, or connect one management screen to a first real Laravel request flow when PHP execution becomes available.
+
+### Management form sections checkpoint
+- Upgraded management form previews from flat field lists to grouped fieldset-style sections for `card-types`, `gifts`, and `roles-permissions`.
+- Updated the shared form-preview partial so richer admin screens now resemble real Galaxy back-office forms more closely.
+- Extended feature assertions to cover the new section labels on each management preview.
+
+### Next step after management form sections checkpoint
+- Add reusable metadata for inline help or per-section action groups, or connect one management screen to a first real Laravel request flow when PHP execution becomes available.
