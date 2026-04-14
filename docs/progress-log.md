@@ -110,3 +110,10 @@
 
 ### Next step after operations and reports checkpoint
 - Reduce duplication by extracting reusable operational index view data/components, or add the remaining catalog placeholders such as services/rules and gifts.
+
+### Operational table partial checkpoint
+- Extracted the repeated operational index table markup into a dedicated admin partial, so the denser Galaxy-style screens now share one reusable rendering block.
+- This keeps the current UI unchanged while making future Phase 1 section additions and refinements safer and faster.
+
+### Next step after operational table partial checkpoint
+- Add the remaining catalog sections, such as services/rules and gifts, or start introducing reusable page metadata structures for the resource controller.
