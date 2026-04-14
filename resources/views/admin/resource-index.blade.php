@@ -54,6 +54,10 @@
         @include('admin.partials.resource-legacy-mapping', ['legacyMapping' => $legacyMapping])
     @endif
 
+    @if (! empty($activityTimeline))
+        @include('admin.partials.resource-activity-timeline', ['activityTimeline' => $activityTimeline])
+    @endif
+
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Why this page exists now</h3>
         <ul class="list">

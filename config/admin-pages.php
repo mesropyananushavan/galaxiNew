@@ -131,6 +131,10 @@ return [
             ['label' => 'Parity focus', 'value' => 'Tier names, accrual rules, activation behavior'],
             ['label' => 'Migration note', 'value' => 'Rebuild existing tier logic before introducing new card segmentation'],
         ],
+        'activityTimeline' => [
+            ['title' => 'Gold tier rules reviewed', 'time' => 'Today, 09:15', 'description' => 'Operational team confirmed that auto-activation should stay aligned with the legacy Gold workflow.'],
+            ['title' => 'Partner tier held as draft', 'time' => 'Yesterday, 18:40', 'description' => 'Draft tier remains unpublished until parity checks for approval flow are complete.'],
+        ],
     ],
     'services-rules' => [
         'pageTitle' => 'Services & Rules',
@@ -201,6 +205,10 @@ return [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy services and business rules'],
             ['label' => 'Parity focus', 'value' => 'Rule grouping, priority order, loyalty effect logic'],
             ['label' => 'Migration note', 'value' => 'Preserve current rule resolution behavior before extending condition syntax'],
+        ],
+        'activityTimeline' => [
+            ['title' => 'Birthday bonus rule validated', 'time' => 'Today, 10:05', 'description' => 'Legacy rule scope was confirmed for all shops before rebuilding condition editing.'],
+            ['title' => 'Night service block left in draft', 'time' => 'Yesterday, 16:20', 'description' => 'Operational team wants parity checks around bar-service exclusions before publishing.'],
         ],
     ],
     'gifts' => [
@@ -273,6 +281,10 @@ return [
             ['label' => 'Parity focus', 'value' => 'Reward names, point cost, stock-aware redemption'],
             ['label' => 'Migration note', 'value' => 'Preserve the existing reward catalog shape before expanding campaign logic'],
         ],
+        'activityTimeline' => [
+            ['title' => 'Coffee voucher stock policy checked', 'time' => 'Today, 11:10', 'description' => 'Unlimited stock remains the baseline until real warehouse sync is wired in Laravel.'],
+            ['title' => 'Premium dessert set paused', 'time' => 'Yesterday, 15:45', 'description' => 'Reward stayed paused to mirror zero-stock behavior from the legacy catalog.'],
+        ],
     ],
     'roles-permissions' => [
         'pageTitle' => 'Roles & Permissions',
@@ -343,6 +355,10 @@ return [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy staff and access matrix'],
             ['label' => 'Parity focus', 'value' => 'Shop-scoped roles, permission bundles, cashier/manager split'],
             ['label' => 'Migration note', 'value' => 'Mirror legacy access boundaries first, then refine authorization internals'],
+        ],
+        'activityTimeline' => [
+            ['title' => 'Shop Manager bundle reviewed', 'time' => 'Today, 08:50', 'description' => 'Cards, gifts, and checks remained grouped to preserve the legacy manager workflow.'],
+            ['title' => 'Cashier draft held back', 'time' => 'Yesterday, 17:30', 'description' => 'Cashier permissions stay in draft until shop-scoped assignment rules are wired.'],
         ],
     ],
     'reports' => [

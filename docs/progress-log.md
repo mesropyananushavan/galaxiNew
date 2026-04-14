@@ -236,3 +236,11 @@
 
 ### Next step after services and rules management preview checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or bring the same richer pattern to another admin-heavy section if that remains safer.
+
+### Management activity timeline checkpoint
+- Added a reusable activity-timeline partial and wired recent operational history metadata into `card-types`, `services-rules`, `gifts`, and `roles-permissions`.
+- The richer management previews now expose audit-like context that better matches the old Galaxy back-office feel.
+- Extended feature assertions so these recent-activity cues remain visible on the preview screens.
+
+### Next step after management activity timeline checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or extend audit/history-oriented metadata to more operational sections.
