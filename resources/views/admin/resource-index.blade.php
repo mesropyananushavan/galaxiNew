@@ -36,12 +36,5 @@
         @endif
     @endforeach
 
-    <section class="card">
-        <h3 style="margin: 0; font-size: 1.1rem;">Why this page exists now</h3>
-        <ul class="list">
-            <li>connect the admin navigation to real Galaxy sections instead of dead placeholders;</li>
-            <li>reserve stable route names for future CRUD and reporting flows;</li>
-            <li>make the Phase 1 shell visibly closer to the old operational product shape.</li>
-        </ul>
-    </section>
+    @include('admin.partials.resource-page-rationale', ['items' => $pageRationale])
 @endsection

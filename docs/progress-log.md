@@ -348,3 +348,11 @@
 
 ### Next step after controller-driven resource block lookup checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue thinning view logic where that reduces maintenance risk.
+
+### Shared page rationale partial checkpoint
+- Moved the final "Why this page exists now" card into a reusable partial and passed its content from `ResourceIndexController`.
+- This keeps `resource-index.blade.php` focused on composing the shell from shared blocks instead of mixing in one-off inline sections.
+- The visible Galaxy admin shell remains unchanged while the page render structure becomes more uniform.
+
+### Next step after shared page rationale partial checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue extracting one-off shell fragments into shared building blocks where that lowers maintenance risk.
