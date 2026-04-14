@@ -36,6 +36,10 @@ return [
             ['label' => 'Target source', 'value' => 'Shop records and manager relations from Eloquent'],
             ['label' => 'Blocker', 'value' => 'PHP runtime is unavailable, so real query wiring cannot be validated yet'],
         ],
+        'operationalMigrationBlockers' => [
+            'PHP runtime is missing, so the first real shop query path cannot be executed locally.',
+            'Manager ownership rules still need parity verification against the old Galaxy branch model.',
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -71,6 +75,10 @@ return [
             ['label' => 'Current source', 'value' => 'Static preview rows from config/admin-pages.php'],
             ['label' => 'Target source', 'value' => 'CardHolder records with shop linkage and recent activity data'],
             ['label' => 'Blocker', 'value' => 'PHP runtime is unavailable, so real query wiring cannot be validated yet'],
+        ],
+        'operationalMigrationBlockers' => [
+            'PHP runtime is missing, so searchable cardholder queries cannot be exercised locally.',
+            'Recent activity still needs a stable event source before the preview can become a real index.',
         ],
     ],
     'cards' => [
@@ -108,6 +116,10 @@ return [
             ['label' => 'Target source', 'value' => 'Card records joined with holders, card types, and shops'],
             ['label' => 'Blocker', 'value' => 'PHP runtime is unavailable, so real query wiring cannot be validated yet'],
         ],
+        'operationalMigrationBlockers' => [
+            'PHP runtime is missing, so the first real inventory query cannot be executed locally.',
+            'Status semantics still need verification against legacy blocked and draft card behavior.',
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -143,6 +155,10 @@ return [
             ['label' => 'Current source', 'value' => 'Static preview rows from config/admin-pages.php'],
             ['label' => 'Target source', 'value' => 'Receipt and accrual event records from the future transaction domain'],
             ['label' => 'Blocker', 'value' => 'PHP runtime is unavailable, so real query wiring cannot be validated yet'],
+        ],
+        'operationalMigrationBlockers' => [
+            'PHP runtime is missing, so receipt-history queries and filters cannot be executed locally.',
+            'Transaction domain tables do not exist yet, so accrual parity remains structural only.',
         ],
     ],
     'card-types' => [
@@ -551,6 +567,10 @@ return [
             ['label' => 'Current source', 'value' => 'Static preview rows from config/admin-pages.php'],
             ['label' => 'Target source', 'value' => 'Report catalog definitions plus later query-backed metrics sources'],
             ['label' => 'Blocker', 'value' => 'PHP runtime is unavailable, so real query wiring cannot be validated yet'],
+        ],
+        'operationalMigrationBlockers' => [
+            'PHP runtime is missing, so preset handling and report catalog wiring cannot be validated locally.',
+            'Underlying analytics sources do not exist yet, so reports remain catalog-only previews.',
         ],
     ],
 ];

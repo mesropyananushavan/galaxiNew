@@ -300,3 +300,11 @@
 
 ### Next step after operational data source status checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or replace one operational preview with a first real read path once PHP is available.
+
+### Operational migration blockers checkpoint
+- Added a reusable operational-migration-blockers partial and wired explicit blocker notes into `shops`, `cardholders`, `cards`, `checks-points`, and `reports`.
+- The operational index screens now spell out the main technical or parity blockers that still prevent the first real read path from replacing preview data.
+- Extended feature assertions so these blocker cues remain visible on operational pages.
+
+### Next step after operational migration blockers checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or replace one operational preview with a first real read path once PHP is available.

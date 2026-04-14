@@ -54,6 +54,10 @@
         @include('admin.partials.resource-operational-data-status', ['operationalDataStatus' => $operationalDataStatus])
     @endif
 
+    @if (! empty($operationalMigrationBlockers))
+        @include('admin.partials.resource-operational-migration-blockers', ['operationalMigrationBlockers' => $operationalMigrationBlockers])
+    @endif
+
     @if (! empty($form))
         @include('admin.partials.resource-form-preview', ['form' => $form])
     @endif
