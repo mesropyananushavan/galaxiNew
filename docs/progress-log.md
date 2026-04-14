@@ -420,3 +420,11 @@
 
 ### Next step after operational summary metrics checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with safe config-driven metrics, actions, and migration cues.
+
+### Operational preview notices checkpoint
+- Added explicit preview notices to the operational sections for shops, cardholders, cards, checks/points, and reports.
+- This keeps the denser Galaxy shell honest about which actions and metrics are structural preview cues versus real Laravel-backed workflows.
+- Extended feature assertions so these preview-state warnings stay visible while the operational pages remain config-driven.
+
+### Next step after operational preview notices checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density while making preview-only state explicit.

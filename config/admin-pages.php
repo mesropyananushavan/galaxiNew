@@ -49,6 +49,10 @@ return [
             'PHP runtime is missing, so the first real shop query path cannot be executed locally.',
             'Manager ownership rules still need parity verification against the old Galaxy branch model.',
         ],
+        'notice' => [
+            'title' => 'Shop operations are still preview-only',
+            'description' => 'Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Laravel queries or handlers yet.',
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -97,6 +101,10 @@ return [
         'operationalMigrationBlockers' => [
             'PHP runtime is missing, so searchable cardholder queries cannot be exercised locally.',
             'Recent activity still needs a stable event source before the preview can become a real index.',
+        ],
+        'notice' => [
+            'title' => 'Cardholder operations are still preview-only',
+            'description' => 'Search actions, metrics, and lifecycle cues are shaping the target Galaxy flow, but they are not backed by Laravel reads or writes yet.',
         ],
     ],
     'cards' => [
@@ -147,6 +155,10 @@ return [
             'PHP runtime is missing, so the first real inventory query cannot be executed locally.',
             'Status semantics still need verification against legacy blocked and draft card behavior.',
         ],
+        'notice' => [
+            'title' => 'Card operations are still preview-only',
+            'description' => 'Inventory actions, status metrics, and filters are laid out for Galaxy parity, but they are not connected to Laravel handlers yet.',
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -195,6 +207,10 @@ return [
         'operationalMigrationBlockers' => [
             'PHP runtime is missing, so receipt-history queries and filters cannot be executed locally.',
             'Transaction domain tables do not exist yet, so accrual parity remains structural only.',
+        ],
+        'notice' => [
+            'title' => 'Checks and points operations are still preview-only',
+            'description' => 'Receipt lookup actions, accrual metrics, and troubleshooting cues are shaping the final Galaxy flow, but real Laravel transaction reads do not exist yet.',
         ],
     ],
     'card-types' => [
@@ -616,6 +632,10 @@ return [
         'operationalMigrationBlockers' => [
             'PHP runtime is missing, so preset handling and report catalog wiring cannot be validated locally.',
             'Underlying analytics sources do not exist yet, so reports remain catalog-only previews.',
+        ],
+        'notice' => [
+            'title' => 'Reporting operations are still preview-only',
+            'description' => 'Catalog actions, summary metrics, and export cues are outlining the Galaxy reporting workspace, but no Laravel reporting pipeline is wired yet.',
         ],
     ],
 ];
