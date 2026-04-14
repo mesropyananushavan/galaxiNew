@@ -260,3 +260,11 @@
 
 ### Next step after management dependency status checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or extend dependency/status metadata to other operational sections.
+
+### Management implementation handoff checkpoint
+- Added a reusable implementation-handoff partial and wired first-step Laravel wiring guidance into `card-types`, `services-rules`, `gifts`, and `roles-permissions`.
+- The richer management previews now explain the safest first backend slice for each section once PHP execution becomes available.
+- Extended feature assertions so these handoff cues stay visible on the preview screens.
+
+### Next step after management implementation handoff checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, using the handoff guidance as the first implementation slice.

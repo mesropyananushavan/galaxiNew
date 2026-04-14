@@ -145,6 +145,14 @@ return [
             ['label' => 'Backend dependency', 'value' => 'Form request, controller action, and persistence wiring still pending'],
             ['label' => 'Operational dependency', 'value' => 'Legacy accrual rules need live verification before publish flow is enabled'],
         ],
+        'implementationHandoff' => [
+            'summary' => 'When PHP becomes available, start by turning the card type preview into a real create/update path with the smallest possible write flow.',
+            'steps' => [
+                'Add a dedicated form request for card type validation.',
+                'Create store and update controller actions behind the existing route structure.',
+                'Persist a minimal name, slug, rate, and activation mode payload before expanding rule imports.',
+            ],
+        ],
     ],
     'services-rules' => [
         'pageTitle' => 'Services & Rules',
@@ -229,6 +237,14 @@ return [
             ['label' => 'Domain model', 'value' => 'Service/rule domain is still preview-config only'],
             ['label' => 'Backend dependency', 'value' => 'Rule CRUD endpoints and validation are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Legacy priority resolution needs verification before condition editing goes live'],
+        ],
+        'implementationHandoff' => [
+            'summary' => 'When backend work starts, introduce the smallest rule persistence path before attempting full condition-builder parity.',
+            'steps' => [
+                'Define a first Laravel model and migration for service rules.',
+                'Wire a simple store action for rule group, scope, effect, and priority.',
+                'Keep advanced condition syntax out of the first implementation slice.',
+            ],
         ],
     ],
     'gifts' => [
@@ -315,6 +331,14 @@ return [
             ['label' => 'Backend dependency', 'value' => 'CRUD handlers, stock updates, and redemption persistence are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Warehouse and loyalty parity checks are needed before enabling publish flow'],
         ],
+        'implementationHandoff' => [
+            'summary' => 'When PHP is available, begin with basic gift CRUD and defer stock synchronization until after the first write path works.',
+            'steps' => [
+                'Create a gift model and migration with name, cost, scope, and stock fields.',
+                'Wire a minimal create and edit form flow through Laravel validation.',
+                'Treat warehouse sync and redemption logs as a later follow-up slice.',
+            ],
+        ],
     ],
     'roles-permissions' => [
         'pageTitle' => 'Roles & Permissions',
@@ -399,6 +423,14 @@ return [
             ['label' => 'Domain model', 'value' => 'Role and Permission models plus migration skeletons exist'],
             ['label' => 'Backend dependency', 'value' => 'Assignment UI, policy wiring, and persistence handlers are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Shop-scoped access rules must be verified against legacy staff behavior before activation'],
+        ],
+        'implementationHandoff' => [
+            'summary' => 'Once PHP-backed flows are possible, start with a minimal role create/update path before exposing full assignment screens.',
+            'steps' => [
+                'Add a role form request for name, scope, and status validation.',
+                'Persist a minimal role record before tackling permission matrix editing.',
+                'Layer shop assignments and policy checks in after the first save flow is stable.',
+            ],
         ],
     ],
     'reports' => [

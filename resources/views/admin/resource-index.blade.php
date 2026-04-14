@@ -66,6 +66,10 @@
         @include('admin.partials.resource-dependency-status', ['dependencyStatus' => $dependencyStatus])
     @endif
 
+    @if (! empty($implementationHandoff))
+        @include('admin.partials.resource-implementation-handoff', ['implementationHandoff' => $implementationHandoff])
+    @endif
+
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Why this page exists now</h3>
         <ul class="list">
