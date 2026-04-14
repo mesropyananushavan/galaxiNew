@@ -125,3 +125,11 @@
 
 ### Next step after catalog sections checkpoint
 - Refactor the resource page metadata out of the controller into config or dedicated page-definition structures, or start replacing one placeholder catalog section with richer CRUD-oriented layout details.
+
+### Admin page definitions checkpoint
+- Moved the large resource page metadata map out of `ResourceIndexController` into `config/admin-pages.php`.
+- Slimmed the controller down to route-to-definition lookup, making Phase 1 admin sections easier to extend and less error-prone to edit.
+- This is a structural cleanup step that keeps behavior the same while improving maintainability.
+
+### Next step after admin page definitions checkpoint
+- Introduce richer CRUD-oriented layout details for one catalog section, or split page-definition concerns further if counts/actions need their own structures.
