@@ -149,3 +149,11 @@
 
 ### Next step after gifts management preview checkpoint
 - Apply the same pattern to roles/permissions or start converting one preview action into a real Laravel form flow when PHP execution is available.
+
+### Roles and permissions management preview checkpoint
+- Upgraded `roles-permissions` into a richer management preview with a role table and CRUD-like form/action block.
+- This extends the management-preview pattern beyond catalog pages into the access-control area.
+- Extended feature coverage for the roles/permissions management preview.
+
+### Next step after roles and permissions management preview checkpoint
+- Start converting one preview action into a real Laravel form/request flow, or add reusable action metadata so management screens can render more consistent controls.

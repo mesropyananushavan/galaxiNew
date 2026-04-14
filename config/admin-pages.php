@@ -129,8 +129,27 @@ return [
     'roles-permissions' => [
         'pageTitle' => 'Roles & Permissions',
         'eyebrow' => 'Administration / Roles & Permissions',
-        'summary' => 'Placeholder index for admin roles, permission bundles, and future shop-scoped access rules.',
-        'nextStep' => 'Add role matrix, permission assignment, and shop-aware policy controls.',
+        'summary' => 'Baseline management screen for admin roles, permission bundles, and future shop-scoped access rules.',
+        'nextStep' => 'Replace sample controls with real role assignment, permission matrix, and shop-aware policy flows.',
+        'table' => [
+            'columns' => ['Role', 'Scope', 'Key permissions', 'Users', 'Status'],
+            'rows' => [
+                ['Super Admin', 'All shops', 'Full access', '2', 'active'],
+                ['Shop Manager', 'Per shop', 'Cards, gifts, checks', '8', 'active'],
+                ['Cashier', 'Per shop', 'Checks, card lookup', '14', 'draft'],
+            ],
+            'filters' => ['Scope', 'Status', 'Permission set'],
+        ],
+        'form' => [
+            'title' => 'Create or edit role',
+            'fields' => [
+                ['label' => 'Role name', 'value' => 'Shop Manager'],
+                ['label' => 'Scope', 'value' => 'Per shop'],
+                ['label' => 'Permission bundle', 'value' => 'Cards, gifts, checks'],
+                ['label' => 'Shop policy', 'value' => 'Scoped to assigned shop'],
+            ],
+            'actions' => ['Save draft', 'Publish role'],
+        ],
     ],
     'reports' => [
         'pageTitle' => 'Reports',

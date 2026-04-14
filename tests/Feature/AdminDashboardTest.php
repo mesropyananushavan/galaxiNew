@@ -71,6 +71,20 @@ class AdminDashboardTest extends TestCase
             ->assertSee('shop-scoped access rules');
     }
 
+    public function test_authenticated_user_can_access_roles_permissions_management_preview(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions');
+
+        $response
+            ->assertOk()
+            ->assertSee('Create or edit role')
+            ->assertSee('Publish role')
+            ->assertSee('Shop Manager')
+            ->assertSee('Scoped to assigned shop');
+    }
+
     public function test_authenticated_user_can_access_cards_operational_index_shape(): void
     {
         $user = User::factory()->create();
