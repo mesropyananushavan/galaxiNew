@@ -3,10 +3,10 @@
 @section('content')
     <section class="card">
         <span class="eyebrow">Admin / Dashboard</span>
-        <h2 style="margin: 16px 0 12px; font-size: 1.75rem;">Placeholder dashboard shell</h2>
+        <h2 style="margin: 16px 0 12px; font-size: 1.75rem;">Phase 1 admin information architecture baseline</h2>
         <p style="margin: 0; color: var(--text-muted); max-width: 780px; line-height: 1.6;">
-            This page intentionally stays simple: it establishes the admin route namespace, controller,
-            shared layout, and reusable partials so the next vertical slices can plug into a stable shell.
+            The shell now reflects the Galaxy-specific admin map instead of a generic starter dashboard,
+            so the next vertical slices can attach to the sections we actually need to migrate.
         </p>
 
         <div class="placeholder-grid">
@@ -15,22 +15,25 @@
                 <p class="metric-value">/admin</p>
             </article>
             <article class="metric">
-                <p class="metric-label">View layer</p>
-                <p class="metric-value">Ready</p>
+                <p class="metric-label">Planned sections</p>
+                <p class="metric-value">{{ $plannedSectionCount }}</p>
             </article>
             <article class="metric">
                 <p class="metric-label">Next step</p>
-                <p class="metric-value">Widgets</p>
+                <p class="metric-value">Domain models</p>
             </article>
         </div>
     </section>
 
     <section class="card">
-        <h3 style="margin: 0; font-size: 1.1rem;">Suggested follow-up work</h3>
+        <h3 style="margin: 0; font-size: 1.1rem;">Mapped sections for migration</h3>
         <ul class="list">
-            <li>add admin auth/guard protection when access model is defined;</li>
-            <li>replace placeholder metrics with real counters/services;</li>
-            <li>extract styles/assets once the admin UI structure stabilizes.</li>
+            @foreach ($navigationGroups as $group)
+                <li>
+                    <strong>{{ $group['group'] }}:</strong>
+                    {{ collect($group['items'])->pluck('label')->join(', ') }}.
+                </li>
+            @endforeach
         </ul>
     </section>
 @endsection

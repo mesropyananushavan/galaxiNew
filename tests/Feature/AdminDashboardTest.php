@@ -36,7 +36,12 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Galaxi Admin')
-            ->assertSee('Placeholder dashboard shell')
-            ->assertSee('/admin');
+            ->assertSee('Phase 1 admin information architecture baseline')
+            ->assertSee('/admin')
+            ->assertSee('Operations')
+            ->assertSee('Cardholders')
+            ->assertSee('Roles &amp; Permissions')
+            ->assertSee('Planned sections')
+            ->assertSee('9');
     }
 }

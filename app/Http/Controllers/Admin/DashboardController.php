@@ -9,8 +9,12 @@ class DashboardController extends Controller
 {
     public function __invoke(): View
     {
+        $navigation = config('admin-navigation');
+
         return view('admin.dashboard', [
             'pageTitle' => 'Dashboard',
+            'navigationGroups' => $navigation,
+            'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),
         ]);
     }
 }

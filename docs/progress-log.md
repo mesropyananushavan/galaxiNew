@@ -27,7 +27,19 @@
 - Created a first consolidated migration blueprint.
 - Moved from analysis-only state into implementation planning state.
 - Next execution step is Phase 1 foundation skeleton for real Galaxy entities and admin structure.
+- Added explicit checkpoint practice so 15-minute activity is visible in Git even between larger technical chunks.
 
 ### Process rule added
 - Small commits and pushes should indicate the responsible role in the commit message prefix, so project progress stays readable in Git history.
 - Active work should leave a visible Git trace at least every 15 minutes, even if that trace is a small progress checkpoint rather than a feature-complete code change.
+
+## 2026-04-14
+
+### Phase 1 foundation progress
+- Replaced the single-link admin sidebar with a Galaxy-specific information architecture map grouped by Operations, Catalog, and Administration.
+- Moved the initial admin section map into `config/admin-navigation.php` so future routes and policies can attach to a stable target structure.
+- Updated the dashboard to present the Phase 1 IA baseline and expose the current planned section count in the UI.
+- Extended the feature test to verify the new admin shell content, so the Galaxy-specific foundation is covered by an automated check.
+
+### Next step
+- Add the first domain model and migration skeletons for shops, roles/permissions, and card entities behind this new admin structure.

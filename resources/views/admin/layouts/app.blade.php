@@ -53,12 +53,28 @@
             margin-bottom: 28px;
         }
 
+        .admin-nav-group + .admin-nav-group {
+            margin-top: 20px;
+        }
+
+        .admin-nav-group-label {
+            margin-bottom: 10px;
+            color: rgba(229, 236, 255, 0.55);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
         .admin-nav {
             display: grid;
             gap: 8px;
         }
 
-        .admin-nav a {
+        .admin-nav a,
+        .admin-nav-placeholder {
+            display: grid;
+            gap: 4px;
             padding: 10px 12px;
             border-radius: 10px;
             color: rgba(229, 236, 255, 0.88);
@@ -67,8 +83,16 @@
         }
 
         .admin-nav a:hover,
-        .admin-nav a.is-active {
+        .admin-nav a.is-active,
+        .admin-nav-placeholder {
             background: rgba(255, 255, 255, 0.08);
+        }
+
+        .admin-nav small,
+        .admin-nav-placeholder small {
+            color: rgba(229, 236, 255, 0.58);
+            font-size: 0.78rem;
+            line-height: 1.35;
         }
 
         .admin-content {
