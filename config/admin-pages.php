@@ -23,6 +23,14 @@ return [
             'Preserve branch-level visibility before introducing broader admin views.',
             'Keep manager assignment semantics aligned with the old Galaxy branch ownership model.',
         ],
+        'operationalNextSlice' => [
+            'summary' => 'When backend execution is available, start by replacing static shop rows with a minimal query-backed index.',
+            'steps' => [
+                'Load shops with manager and status columns from Eloquent.',
+                'Keep filters shallow at first, status and assigned manager only.',
+                'Add row actions only after the read path is stable.',
+            ],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -45,6 +53,14 @@ return [
         'legacyParityNotes' => [
             'Keep worker and client lookup fast, with minimal page hopping.',
             'Preserve the operational emphasis on recent activity and card linkage.',
+        ],
+        'operationalNextSlice' => [
+            'summary' => 'The first backend slice should be a searchable cardholder index before profile editing is introduced.',
+            'steps' => [
+                'Query cardholders with shop and status columns.',
+                'Add simple search by name or phone before advanced filters.',
+                'Defer detailed activity history until the index read path is real.',
+            ],
         ],
     ],
     'cards' => [
@@ -69,6 +85,14 @@ return [
             'Retain clear visibility for unassigned, active, and blocked card states.',
             'Keep activation timing visible without opening a separate detail screen.',
         ],
+        'operationalNextSlice' => [
+            'summary' => 'The first real cards slice should be a query-backed inventory table that mirrors the current preview layout.',
+            'steps' => [
+                'Load cards with holder, type, status, and activation timestamp fields.',
+                'Keep the first filter set to shop, status, and card type.',
+                'Delay mutation actions until the read path is verified against live data.',
+            ],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -91,6 +115,14 @@ return [
         'legacyParityNotes' => [
             'Preserve receipt-first lookup as the main path for operational troubleshooting.',
             'Keep zero-point and positive-point outcomes visible in the same transaction list.',
+        ],
+        'operationalNextSlice' => [
+            'summary' => 'The safest first backend step is a read-only receipt history with simple shop and date filters.',
+            'steps' => [
+                'Load transaction rows with receipt, card, amount, and points columns.',
+                'Add fiscal receipt lookup before any manual point adjustment actions.',
+                'Treat accrual correction workflows as a later slice after read parity is proven.',
+            ],
         ],
     ],
     'card-types' => [
@@ -486,6 +518,14 @@ return [
         'legacyParityNotes' => [
             'Start with operator-friendly default periods before adding advanced analytics filters.',
             'Preserve export-first reporting habits from the old Galaxy back office.',
+        ],
+        'operationalNextSlice' => [
+            'summary' => 'When reporting work begins, start with a simple catalog of report entry points and fixed presets.',
+            'steps' => [
+                'Render report definitions from config or a lightweight service first.',
+                'Add preset period handling before custom builders or exports.',
+                'Treat heavy analytics and generated files as later implementation slices.',
+            ],
         ],
     ],
 ];

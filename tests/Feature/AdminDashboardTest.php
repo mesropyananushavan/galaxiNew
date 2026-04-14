@@ -128,6 +128,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Central Shop')
             ->assertSee('Operational glossary')
             ->assertSee('Legacy parity notes')
+            ->assertSee('Operational next slice')
+            ->assertSee('query-backed inventory table')
             ->assertSee('Retain clear visibility for unassigned, active, and blocked card states.')
             ->assertSee('Card type')
             ->assertSee('Activation period');
@@ -147,6 +149,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Has cards')
             ->assertSee('Operational glossary')
             ->assertSee('Legacy parity notes')
+            ->assertSee('Operational next slice')
+            ->assertSee('searchable cardholder index')
             ->assertSee('Preserve the operational emphasis on recent activity and card linkage.')
             ->assertSee('Last activity')
             ->assertSee('Central Shop');
@@ -166,6 +170,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Volume tier')
             ->assertSee('Operational glossary')
             ->assertSee('Legacy parity notes')
+            ->assertSee('Operational next slice')
+            ->assertSee('minimal query-backed index')
             ->assertSee('branch ownership model')
             ->assertSee('Manager assigned')
             ->assertSee('Airport Kiosk');
@@ -184,6 +190,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Fiscal receipt')
             ->assertSee('Operational glossary')
             ->assertSee('Legacy parity notes')
+            ->assertSee('Operational next slice')
+            ->assertSee('read-only receipt history')
             ->assertSee('receipt-first lookup')
             ->assertSee('The loyalty delta applied after receipt validation')
             ->assertSee('GX-100001');
@@ -202,6 +210,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Report type')
             ->assertSee('Operational glossary')
             ->assertSee('Legacy parity notes')
+            ->assertSee('Operational next slice')
+            ->assertSee('simple catalog of report entry points')
             ->assertSee('export-first reporting habits')
             ->assertSee('Default period')
             ->assertSee('Gift redemption report');

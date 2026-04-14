@@ -46,6 +46,10 @@
         @include('admin.partials.resource-legacy-parity-notes', ['legacyParityNotes' => $legacyParityNotes])
     @endif
 
+    @if (! empty($operationalNextSlice))
+        @include('admin.partials.resource-operational-next-slice', ['operationalNextSlice' => $operationalNextSlice])
+    @endif
+
     @if (! empty($form))
         @include('admin.partials.resource-form-preview', ['form' => $form])
     @endif

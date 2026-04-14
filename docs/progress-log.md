@@ -284,3 +284,11 @@
 
 ### Next step after operational legacy parity notes checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue enriching operational sections with parity-focused context.
+
+### Operational next-slice checkpoint
+- Added a reusable operational-next-slice partial and wired first implementation-step guidance into `shops`, `cardholders`, `cards`, `checks-points`, and `reports`.
+- The non-form operational screens now show the safest first backend slice for moving from preview data to real Laravel-backed reads.
+- Extended feature assertions so these next-slice cues remain visible on operational pages.
+
+### Next step after operational next-slice checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or start replacing one operational index with a first real read path when PHP is available.
