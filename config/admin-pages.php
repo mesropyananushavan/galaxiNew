@@ -71,6 +71,10 @@ return [
                 'Delay create and edit actions until the read path is stable against live data.',
             ],
         ],
+        'activityTimeline' => [
+            ['title' => 'Central Shop scope reviewed', 'time' => 'Today, 17:40', 'description' => 'Branch ownership and manager visibility were checked against the old Galaxy operating model.'],
+            ['title' => 'Airport Kiosk kept paused', 'time' => 'Yesterday, 15:10', 'description' => 'The preview state preserves a paused branch case for parity before real status flows exist.'],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -141,6 +145,10 @@ return [
                 'Add simple search by name or phone as the first interaction slice.',
                 'Defer detailed profile reads and activity history until the index path is stable.',
             ],
+        ],
+        'activityTimeline' => [
+            ['title' => 'Anna Petrova activity pattern reviewed', 'time' => 'Today, 16:05', 'description' => 'The preview keeps recent activity visible to match the old operator lookup flow.'],
+            ['title' => 'North Shop inactive holder retained', 'time' => 'Yesterday, 13:25', 'description' => 'An inactive cardholder case stays visible for parity before real lifecycle filters are wired.'],
         ],
     ],
     'cards' => [
@@ -213,6 +221,10 @@ return [
                 'Delay issue and block actions until the read path is verified against live card states.',
             ],
         ],
+        'activityTimeline' => [
+            ['title' => 'Blocked card state kept visible', 'time' => 'Today, 18:20', 'description' => 'The blocked preview row remains in place to preserve old Galaxy card-state visibility.'],
+            ['title' => 'Draft card review deferred', 'time' => 'Yesterday, 12:10', 'description' => 'Draft issuance behavior stays preview-only until real inventory reads can be verified.'],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -283,6 +295,10 @@ return [
                 'Add shop, date-range, and receipt lookup filters before any mutation paths.',
                 'Defer adjustment and correction actions until receipt parity is proven on live data.',
             ],
+        ],
+        'activityTimeline' => [
+            ['title' => 'Receipt-first lookup preserved', 'time' => 'Today, 14:55', 'description' => 'The preview keeps fiscal receipt search central to match operational troubleshooting habits.'],
+            ['title' => 'Zero-accrual case retained', 'time' => 'Yesterday, 11:40', 'description' => 'A zero-points row remains visible so parity is not lost before transaction tables exist.'],
         ],
     ],
     'card-types' => [
@@ -726,6 +742,10 @@ return [
                 'Add preset period handling before custom ranges or heavy analytics.',
                 'Defer export generation until the basic catalog and preset flow is stable.',
             ],
+        ],
+        'activityTimeline' => [
+            ['title' => 'Points accrual summary kept first', 'time' => 'Today, 10:35', 'description' => 'The report ordering keeps the most common legacy export entry point at the top.'],
+            ['title' => 'Gift redemption report retained', 'time' => 'Yesterday, 09:50', 'description' => 'The preview catalog keeps a redemption-oriented export case visible for parity planning.'],
         ],
     ],
 ];

@@ -452,3 +452,11 @@
 
 ### Next step after operational implementation handoff checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit readiness, dependency, handoff, and migration guidance.
+
+### Operational activity timeline checkpoint
+- Added recent-activity timeline blocks to the operational sections for shops, cardholders, cards, checks/points, and reports.
+- This makes the Phase 1 Galaxy shell feel closer to a real back-office workspace with audit-like context instead of static tables alone.
+- Extended feature assertions so these activity cues remain visible across the operational screens.
+
+### Next step after operational activity timeline checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit activity, readiness, dependency, handoff, and migration guidance.
