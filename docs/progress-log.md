@@ -396,3 +396,11 @@
 
 ### Next step after config-driven shell defaults coverage checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue adding focused coverage around the config-driven shell contract as it stabilizes.
+
+### Config-driven block order coverage checkpoint
+- Added feature coverage proving the shared resource shell respects config-driven block ordering.
+- This protects the extracted resource block map from drifting into an implementation detail that no longer affects rendered page structure.
+- The Phase 1 admin shell remains preview-oriented, but its config-first composition contract is now better defended by tests.
+
+### Next step after config-driven block order coverage checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue adding focused coverage around config-driven shell composition where it reduces refactor risk.

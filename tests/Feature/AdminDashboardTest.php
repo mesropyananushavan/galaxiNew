@@ -292,6 +292,24 @@ class AdminDashboardTest extends TestCase
             ->assertSee('config-driven shell defaults stay overrideable in tests and future rollout steps.');
     }
 
+    public function test_resource_page_shell_uses_config_driven_block_order(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-resource-page-defaults.resourceBlocks', [
+            ['key' => 'legacyParityNotes', 'partial' => 'admin.partials.resource-legacy-parity-notes', 'prop' => 'legacyParityNotes'],
+            ['key' => 'operationalGlossary', 'partial' => 'admin.partials.resource-operational-glossary', 'prop' => 'operationalGlossary'],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+        $content = $response->getContent();
+
+        $this->assertTrue(
+            strpos($content, 'Legacy parity notes') < strpos($content, 'Operational glossary'),
+            'Expected config-driven resource block order to be reflected in rendered output.'
+        );
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
