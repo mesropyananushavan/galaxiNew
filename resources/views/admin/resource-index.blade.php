@@ -30,7 +30,7 @@
         </div>
     </section>
 
-    @foreach (config('admin-resource-blocks', []) as $block)
+    @foreach ($resourceBlocks as $block)
         @if (! empty(${$block['key']}))
             @include($block['partial'], [$block['prop'] => ${$block['key']}])
         @endif

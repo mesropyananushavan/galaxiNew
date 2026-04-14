@@ -340,3 +340,11 @@
 
 ### Next step after config-driven resource block order checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue shifting repeated shell structure into config where that lowers maintenance risk.
+
+### Controller-driven resource block lookup checkpoint
+- Moved the `admin-resource-blocks` lookup out of the Blade view and into `ResourceIndexController`.
+- This keeps the view thinner and aligns the block-order config with the existing thin-controller, config-driven resource-page approach.
+- The visible Galaxy shell stays unchanged while the render flow becomes easier to reason about.
+
+### Next step after controller-driven resource block lookup checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue thinning view logic where that reduces maintenance risk.
