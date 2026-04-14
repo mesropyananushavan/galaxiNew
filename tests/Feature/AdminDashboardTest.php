@@ -509,6 +509,31 @@ class AdminDashboardTest extends TestCase
         );
     }
 
+    public function test_resource_page_shell_can_use_dedicated_operational_context_stack_config(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-operational-context-blocks', [
+            ['key' => 'activityTimeline', 'partial' => 'admin.partials.resource-activity-timeline', 'prop' => 'activityTimeline'],
+            ['key' => 'legacyMapping', 'partial' => 'admin.partials.resource-legacy-mapping', 'prop' => 'legacyMapping'],
+        ]);
+        Config::set('admin-resource-page-defaults.resourceBlocks', array_merge([
+            ['key' => 'metrics', 'partial' => 'admin.partials.resource-summary-metrics', 'prop' => 'metrics'],
+        ], config('admin-operational-context-blocks'), [
+            ['key' => 'implementationHandoff', 'partial' => 'admin.partials.resource-implementation-handoff', 'prop' => 'implementationHandoff'],
+        ]));
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+        $content = $response->getContent();
+
+        $this->assertTrue(
+            strpos($content, 'Recent activity preview')
+                < strpos($content, 'Legacy parity mapping')
+                && strpos($content, 'Legacy parity mapping') < strpos($content, 'First Laravel wiring step'),
+            'Expected the dedicated operational context config stack to remain composable inside page defaults.'
+        );
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

@@ -515,3 +515,11 @@
 
 ### Next step after dedicated operational workflow config checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell so denser workflow cues remain easy to reorder and evolve.
+
+### Dedicated operational context config checkpoint
+- Extracted the operational context stack, glossary, parity notes, next slice, data status, migration blockers, legacy mapping, and activity timeline, into `config/admin-operational-context-blocks.php`.
+- Updated the main resource block config to compose this context stack separately from the workflow stack.
+- Added feature coverage proving the dedicated context stack stays composable inside resource page defaults.
+
+### Next step after dedicated operational context config checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell so context and workflow stacks stay easy to evolve independently.
