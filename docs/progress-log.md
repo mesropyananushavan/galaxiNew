@@ -244,3 +244,11 @@
 
 ### Next step after management activity timeline checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or extend audit/history-oriented metadata to more operational sections.
+
+### Management readiness checklist checkpoint
+- Added a reusable readiness-checklist partial and wired migration-readiness metadata into `card-types`, `services-rules`, `gifts`, and `roles-permissions`.
+- The richer management previews now show which parity and structural pieces are already in place and which backend steps remain blocked by the missing PHP runtime.
+- Extended feature assertions so this migration-readiness guidance remains visible on the preview screens.
+
+### Next step after management readiness checklist checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or extend readiness metadata to more operational sections.

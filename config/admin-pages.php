@@ -135,6 +135,11 @@ return [
             ['title' => 'Gold tier rules reviewed', 'time' => 'Today, 09:15', 'description' => 'Operational team confirmed that auto-activation should stay aligned with the legacy Gold workflow.'],
             ['title' => 'Partner tier held as draft', 'time' => 'Yesterday, 18:40', 'description' => 'Draft tier remains unpublished until parity checks for approval flow are complete.'],
         ],
+        'readinessChecklist' => [
+            ['status' => 'ready', 'label' => 'Legacy tier names mapped'],
+            ['status' => 'ready', 'label' => 'Preview actions and grouped fields defined'],
+            ['status' => 'pending', 'label' => 'Laravel save handler still unavailable without PHP runtime'],
+        ],
     ],
     'services-rules' => [
         'pageTitle' => 'Services & Rules',
@@ -209,6 +214,11 @@ return [
         'activityTimeline' => [
             ['title' => 'Birthday bonus rule validated', 'time' => 'Today, 10:05', 'description' => 'Legacy rule scope was confirmed for all shops before rebuilding condition editing.'],
             ['title' => 'Night service block left in draft', 'time' => 'Yesterday, 16:20', 'description' => 'Operational team wants parity checks around bar-service exclusions before publishing.'],
+        ],
+        'readinessChecklist' => [
+            ['status' => 'ready', 'label' => 'Legacy rule groups identified'],
+            ['status' => 'ready', 'label' => 'Priority preview and parity metadata added'],
+            ['status' => 'pending', 'label' => 'Rule persistence still blocked until Laravel handlers can run'],
         ],
     ],
     'gifts' => [
@@ -285,6 +295,11 @@ return [
             ['title' => 'Coffee voucher stock policy checked', 'time' => 'Today, 11:10', 'description' => 'Unlimited stock remains the baseline until real warehouse sync is wired in Laravel.'],
             ['title' => 'Premium dessert set paused', 'time' => 'Yesterday, 15:45', 'description' => 'Reward stayed paused to mirror zero-stock behavior from the legacy catalog.'],
         ],
+        'readinessChecklist' => [
+            ['status' => 'ready', 'label' => 'Legacy reward catalog mapped'],
+            ['status' => 'ready', 'label' => 'Stock and scope preview controls defined'],
+            ['status' => 'pending', 'label' => 'Real redemption and stock sync need PHP-backed flows'],
+        ],
     ],
     'roles-permissions' => [
         'pageTitle' => 'Roles & Permissions',
@@ -359,6 +374,11 @@ return [
         'activityTimeline' => [
             ['title' => 'Shop Manager bundle reviewed', 'time' => 'Today, 08:50', 'description' => 'Cards, gifts, and checks remained grouped to preserve the legacy manager workflow.'],
             ['title' => 'Cashier draft held back', 'time' => 'Yesterday, 17:30', 'description' => 'Cashier permissions stay in draft until shop-scoped assignment rules are wired.'],
+        ],
+        'readinessChecklist' => [
+            ['status' => 'ready', 'label' => 'Legacy role boundaries mapped'],
+            ['status' => 'ready', 'label' => 'Permission bundle preview and parity notes added'],
+            ['status' => 'pending', 'label' => 'Assignment and persistence flows still need PHP-backed authorization work'],
         ],
     ],
     'reports' => [
