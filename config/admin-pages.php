@@ -75,6 +75,11 @@ return [
             ['title' => 'Central Shop scope reviewed', 'time' => 'Today, 17:40', 'description' => 'Branch ownership and manager visibility were checked against the old Galaxy operating model.'],
             ['title' => 'Airport Kiosk kept paused', 'time' => 'Yesterday, 15:10', 'description' => 'The preview state preserves a paused branch case for parity before real status flows exist.'],
         ],
+        'legacyMapping' => [
+            ['label' => 'Legacy source', 'value' => 'Old Galaxy branch administration screen'],
+            ['label' => 'Parity focus', 'value' => 'Branch scope, manager assignment, active versus paused visibility'],
+            ['label' => 'Migration note', 'value' => 'Keep branch ownership semantics stable before introducing new multi-shop controls'],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -149,6 +154,11 @@ return [
         'activityTimeline' => [
             ['title' => 'Anna Petrova activity pattern reviewed', 'time' => 'Today, 16:05', 'description' => 'The preview keeps recent activity visible to match the old operator lookup flow.'],
             ['title' => 'North Shop inactive holder retained', 'time' => 'Yesterday, 13:25', 'description' => 'An inactive cardholder case stays visible for parity before real lifecycle filters are wired.'],
+        ],
+        'legacyMapping' => [
+            ['label' => 'Legacy source', 'value' => 'Old Galaxy holder and client lookup screen'],
+            ['label' => 'Parity focus', 'value' => 'Fast search, linked cards, recent activity visibility'],
+            ['label' => 'Migration note', 'value' => 'Preserve operator lookup speed before expanding profile detail flows'],
         ],
     ],
     'cards' => [
@@ -225,6 +235,11 @@ return [
             ['title' => 'Blocked card state kept visible', 'time' => 'Today, 18:20', 'description' => 'The blocked preview row remains in place to preserve old Galaxy card-state visibility.'],
             ['title' => 'Draft card review deferred', 'time' => 'Yesterday, 12:10', 'description' => 'Draft issuance behavior stays preview-only until real inventory reads can be verified.'],
         ],
+        'legacyMapping' => [
+            ['label' => 'Legacy source', 'value' => 'Old Galaxy card inventory screen'],
+            ['label' => 'Parity focus', 'value' => 'Card states, holder linkage, activation visibility'],
+            ['label' => 'Migration note', 'value' => 'Preserve blocked and draft semantics before exposing mutation actions'],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -299,6 +314,11 @@ return [
         'activityTimeline' => [
             ['title' => 'Receipt-first lookup preserved', 'time' => 'Today, 14:55', 'description' => 'The preview keeps fiscal receipt search central to match operational troubleshooting habits.'],
             ['title' => 'Zero-accrual case retained', 'time' => 'Yesterday, 11:40', 'description' => 'A zero-points row remains visible so parity is not lost before transaction tables exist.'],
+        ],
+        'legacyMapping' => [
+            ['label' => 'Legacy source', 'value' => 'Old Galaxy checks and points history screen'],
+            ['label' => 'Parity focus', 'value' => 'Receipt-first lookup, points delta visibility, troubleshooting flow'],
+            ['label' => 'Migration note', 'value' => 'Keep receipt tracing central before introducing correction actions'],
         ],
     ],
     'card-types' => [
@@ -746,6 +766,11 @@ return [
         'activityTimeline' => [
             ['title' => 'Points accrual summary kept first', 'time' => 'Today, 10:35', 'description' => 'The report ordering keeps the most common legacy export entry point at the top.'],
             ['title' => 'Gift redemption report retained', 'time' => 'Yesterday, 09:50', 'description' => 'The preview catalog keeps a redemption-oriented export case visible for parity planning.'],
+        ],
+        'legacyMapping' => [
+            ['label' => 'Legacy source', 'value' => 'Old Galaxy reporting catalog'],
+            ['label' => 'Parity focus', 'value' => 'Preset periods, export-first habits, report ordering'],
+            ['label' => 'Migration note', 'value' => 'Preserve common export entry points before adding heavier analytics'],
         ],
     ],
 ];

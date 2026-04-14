@@ -460,3 +460,11 @@
 
 ### Next step after operational activity timeline checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit activity, readiness, dependency, handoff, and migration guidance.
+
+### Operational legacy mapping checkpoint
+- Added legacy-mapping blocks to the operational sections for shops, cardholders, cards, checks/points, and reports.
+- This makes the Phase 1 Galaxy shell more explicit about which old back-office screens and behaviors each preview section is preserving.
+- Extended feature assertions so these legacy mapping cues remain visible across the operational screens.
+
+### Next step after operational legacy mapping checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit legacy mapping, activity, readiness, dependency, handoff, and migration guidance.
