@@ -428,3 +428,11 @@
 
 ### Next step after operational preview notices checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density while making preview-only state explicit.
+
+### Operational readiness checklist checkpoint
+- Added readiness checklists to the operational sections for shops, cardholders, cards, checks/points, and reports.
+- This makes the denser Phase 1 Galaxy shell clearer about what structural parity is already in place and what still blocks the first real backend slice.
+- Extended feature assertions so these readiness cues remain visible across the operational screens.
+
+### Next step after operational readiness checklist checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit readiness and migration guidance.

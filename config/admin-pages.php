@@ -53,6 +53,11 @@ return [
             'title' => 'Shop operations are still preview-only',
             'description' => 'Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Laravel queries or handlers yet.',
         ],
+        'readinessChecklist' => [
+            ['status' => 'ready', 'label' => 'Preview shop rows and branch actions defined'],
+            ['status' => 'ready', 'label' => 'Operational parity cues for scope and manager ownership are visible'],
+            ['status' => 'pending', 'label' => 'Real shop queries and branch mutations still need PHP-backed Laravel wiring'],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -105,6 +110,11 @@ return [
         'notice' => [
             'title' => 'Cardholder operations are still preview-only',
             'description' => 'Search actions, metrics, and lifecycle cues are shaping the target Galaxy flow, but they are not backed by Laravel reads or writes yet.',
+        ],
+        'readinessChecklist' => [
+            ['status' => 'ready', 'label' => 'Preview holder search surface and activity cues are defined'],
+            ['status' => 'ready', 'label' => 'Operational parity notes for lookup speed and linkage are visible'],
+            ['status' => 'pending', 'label' => 'Search, profile reads, and activity history still need PHP-backed Laravel wiring'],
         ],
     ],
     'cards' => [
@@ -159,6 +169,11 @@ return [
             'title' => 'Card operations are still preview-only',
             'description' => 'Inventory actions, status metrics, and filters are laid out for Galaxy parity, but they are not connected to Laravel handlers yet.',
         ],
+        'readinessChecklist' => [
+            ['status' => 'ready', 'label' => 'Preview inventory statuses and card-type filters are defined'],
+            ['status' => 'ready', 'label' => 'Operational parity cues for blocked and draft cards are visible'],
+            ['status' => 'pending', 'label' => 'Inventory queries and card lifecycle handlers still need PHP-backed Laravel wiring'],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -211,6 +226,11 @@ return [
         'notice' => [
             'title' => 'Checks and points operations are still preview-only',
             'description' => 'Receipt lookup actions, accrual metrics, and troubleshooting cues are shaping the final Galaxy flow, but real Laravel transaction reads do not exist yet.',
+        ],
+        'readinessChecklist' => [
+            ['status' => 'ready', 'label' => 'Preview receipt lookup surface and accrual metrics are defined'],
+            ['status' => 'ready', 'label' => 'Operational parity cues for receipt-first troubleshooting are visible'],
+            ['status' => 'pending', 'label' => 'Transaction tables, receipt reads, and adjustment flows still need PHP-backed Laravel wiring'],
         ],
     ],
     'card-types' => [
@@ -636,6 +656,11 @@ return [
         'notice' => [
             'title' => 'Reporting operations are still preview-only',
             'description' => 'Catalog actions, summary metrics, and export cues are outlining the Galaxy reporting workspace, but no Laravel reporting pipeline is wired yet.',
+        ],
+        'readinessChecklist' => [
+            ['status' => 'ready', 'label' => 'Preview report catalog actions and preset metrics are defined'],
+            ['status' => 'ready', 'label' => 'Operational parity cues for export-first reporting are visible'],
+            ['status' => 'pending', 'label' => 'Real report sources, presets, and exports still need PHP-backed Laravel wiring'],
         ],
     ],
 ];
