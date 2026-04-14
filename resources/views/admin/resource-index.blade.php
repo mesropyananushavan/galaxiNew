@@ -30,65 +30,31 @@
         </div>
     </section>
 
-    @if (! empty($metrics))
-        @include('admin.partials.resource-summary-metrics', ['metrics' => $metrics])
-    @endif
+    @php
+        $resourceBlocks = [
+            ['key' => 'metrics', 'partial' => 'admin.partials.resource-summary-metrics', 'prop' => 'metrics'],
+            ['key' => 'table', 'partial' => 'admin.partials.operational-index-table', 'prop' => 'table'],
+            ['key' => 'operationalGlossary', 'partial' => 'admin.partials.resource-operational-glossary', 'prop' => 'operationalGlossary'],
+            ['key' => 'legacyParityNotes', 'partial' => 'admin.partials.resource-legacy-parity-notes', 'prop' => 'legacyParityNotes'],
+            ['key' => 'operationalNextSlice', 'partial' => 'admin.partials.resource-operational-next-slice', 'prop' => 'operationalNextSlice'],
+            ['key' => 'operationalDataStatus', 'partial' => 'admin.partials.resource-operational-data-status', 'prop' => 'operationalDataStatus'],
+            ['key' => 'operationalMigrationBlockers', 'partial' => 'admin.partials.resource-operational-migration-blockers', 'prop' => 'operationalMigrationBlockers'],
+            ['key' => 'form', 'partial' => 'admin.partials.resource-form-preview', 'prop' => 'form'],
+            ['key' => 'emptyState', 'partial' => 'admin.partials.resource-empty-state', 'prop' => 'emptyState'],
+            ['key' => 'notice', 'partial' => 'admin.partials.resource-preview-notice', 'prop' => 'notice'],
+            ['key' => 'legacyMapping', 'partial' => 'admin.partials.resource-legacy-mapping', 'prop' => 'legacyMapping'],
+            ['key' => 'activityTimeline', 'partial' => 'admin.partials.resource-activity-timeline', 'prop' => 'activityTimeline'],
+            ['key' => 'readinessChecklist', 'partial' => 'admin.partials.resource-readiness-checklist', 'prop' => 'readinessChecklist'],
+            ['key' => 'dependencyStatus', 'partial' => 'admin.partials.resource-dependency-status', 'prop' => 'dependencyStatus'],
+            ['key' => 'implementationHandoff', 'partial' => 'admin.partials.resource-implementation-handoff', 'prop' => 'implementationHandoff'],
+        ];
+    @endphp
 
-    @if (! empty($table))
-        @include('admin.partials.operational-index-table', ['table' => $table])
-    @endif
-
-    @if (! empty($operationalGlossary))
-        @include('admin.partials.resource-operational-glossary', ['operationalGlossary' => $operationalGlossary])
-    @endif
-
-    @if (! empty($legacyParityNotes))
-        @include('admin.partials.resource-legacy-parity-notes', ['legacyParityNotes' => $legacyParityNotes])
-    @endif
-
-    @if (! empty($operationalNextSlice))
-        @include('admin.partials.resource-operational-next-slice', ['operationalNextSlice' => $operationalNextSlice])
-    @endif
-
-    @if (! empty($operationalDataStatus))
-        @include('admin.partials.resource-operational-data-status', ['operationalDataStatus' => $operationalDataStatus])
-    @endif
-
-    @if (! empty($operationalMigrationBlockers))
-        @include('admin.partials.resource-operational-migration-blockers', ['operationalMigrationBlockers' => $operationalMigrationBlockers])
-    @endif
-
-    @if (! empty($form))
-        @include('admin.partials.resource-form-preview', ['form' => $form])
-    @endif
-
-    @if (! empty($emptyState))
-        @include('admin.partials.resource-empty-state', ['emptyState' => $emptyState])
-    @endif
-
-    @if (! empty($notice))
-        @include('admin.partials.resource-preview-notice', ['notice' => $notice])
-    @endif
-
-    @if (! empty($legacyMapping))
-        @include('admin.partials.resource-legacy-mapping', ['legacyMapping' => $legacyMapping])
-    @endif
-
-    @if (! empty($activityTimeline))
-        @include('admin.partials.resource-activity-timeline', ['activityTimeline' => $activityTimeline])
-    @endif
-
-    @if (! empty($readinessChecklist))
-        @include('admin.partials.resource-readiness-checklist', ['readinessChecklist' => $readinessChecklist])
-    @endif
-
-    @if (! empty($dependencyStatus))
-        @include('admin.partials.resource-dependency-status', ['dependencyStatus' => $dependencyStatus])
-    @endif
-
-    @if (! empty($implementationHandoff))
-        @include('admin.partials.resource-implementation-handoff', ['implementationHandoff' => $implementationHandoff])
-    @endif
+    @foreach ($resourceBlocks as $block)
+        @if (! empty(${$block['key']}))
+            @include($block['partial'], [$block['prop'] => ${$block['key']}])
+        @endif
+    @endforeach
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Why this page exists now</h3>

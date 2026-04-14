@@ -324,3 +324,11 @@
 
 ### Next step after shared list card partials checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue consolidating repeated admin-shell patterns where it reduces maintenance risk.
+
+### Resource block include map checkpoint
+- Replaced the long chain of repeated include conditionals in `resource-index.blade.php` with a single ordered block map.
+- The visible Galaxy admin shell stays the same, but adding or reordering metadata blocks is now safer and less error-prone.
+- This keeps the config-driven admin shell maintainable as Phase 1 continues to accumulate parity and migration guidance cards.
+
+### Next step after resource block include map checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep consolidating repeated admin-shell rendering patterns where that reduces maintenance risk.
