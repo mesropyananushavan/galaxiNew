@@ -50,6 +50,10 @@
         @include('admin.partials.resource-operational-next-slice', ['operationalNextSlice' => $operationalNextSlice])
     @endif
 
+    @if (! empty($operationalDataStatus))
+        @include('admin.partials.resource-operational-data-status', ['operationalDataStatus' => $operationalDataStatus])
+    @endif
+
     @if (! empty($form))
         @include('admin.partials.resource-form-preview', ['form' => $form])
     @endif

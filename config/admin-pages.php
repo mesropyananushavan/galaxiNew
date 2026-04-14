@@ -31,6 +31,11 @@ return [
                 'Add row actions only after the read path is stable.',
             ],
         ],
+        'operationalDataStatus' => [
+            ['label' => 'Current source', 'value' => 'Static preview rows from config/admin-pages.php'],
+            ['label' => 'Target source', 'value' => 'Shop records and manager relations from Eloquent'],
+            ['label' => 'Blocker', 'value' => 'PHP runtime is unavailable, so real query wiring cannot be validated yet'],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -61,6 +66,11 @@ return [
                 'Add simple search by name or phone before advanced filters.',
                 'Defer detailed activity history until the index read path is real.',
             ],
+        ],
+        'operationalDataStatus' => [
+            ['label' => 'Current source', 'value' => 'Static preview rows from config/admin-pages.php'],
+            ['label' => 'Target source', 'value' => 'CardHolder records with shop linkage and recent activity data'],
+            ['label' => 'Blocker', 'value' => 'PHP runtime is unavailable, so real query wiring cannot be validated yet'],
         ],
     ],
     'cards' => [
@@ -93,6 +103,11 @@ return [
                 'Delay mutation actions until the read path is verified against live data.',
             ],
         ],
+        'operationalDataStatus' => [
+            ['label' => 'Current source', 'value' => 'Static preview rows from config/admin-pages.php'],
+            ['label' => 'Target source', 'value' => 'Card records joined with holders, card types, and shops'],
+            ['label' => 'Blocker', 'value' => 'PHP runtime is unavailable, so real query wiring cannot be validated yet'],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -123,6 +138,11 @@ return [
                 'Add fiscal receipt lookup before any manual point adjustment actions.',
                 'Treat accrual correction workflows as a later slice after read parity is proven.',
             ],
+        ],
+        'operationalDataStatus' => [
+            ['label' => 'Current source', 'value' => 'Static preview rows from config/admin-pages.php'],
+            ['label' => 'Target source', 'value' => 'Receipt and accrual event records from the future transaction domain'],
+            ['label' => 'Blocker', 'value' => 'PHP runtime is unavailable, so real query wiring cannot be validated yet'],
         ],
     ],
     'card-types' => [
@@ -526,6 +546,11 @@ return [
                 'Add preset period handling before custom builders or exports.',
                 'Treat heavy analytics and generated files as later implementation slices.',
             ],
+        ],
+        'operationalDataStatus' => [
+            ['label' => 'Current source', 'value' => 'Static preview rows from config/admin-pages.php'],
+            ['label' => 'Target source', 'value' => 'Report catalog definitions plus later query-backed metrics sources'],
+            ['label' => 'Blocker', 'value' => 'PHP runtime is unavailable, so real query wiring cannot be validated yet'],
         ],
     ],
 ];

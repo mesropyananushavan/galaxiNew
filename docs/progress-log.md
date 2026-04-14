@@ -292,3 +292,11 @@
 
 ### Next step after operational next-slice checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or start replacing one operational index with a first real read path when PHP is available.
+
+### Operational data source status checkpoint
+- Added a reusable operational-data-status partial and wired current-source vs target-source metadata into `shops`, `cardholders`, `cards`, `checks-points`, and `reports`.
+- The operational index screens now state explicitly that they are config-backed previews and identify the intended real Laravel read sources.
+- Extended feature assertions so these data-source cues remain visible on operational pages.
+
+### Next step after operational data source status checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or replace one operational preview with a first real read path once PHP is available.
