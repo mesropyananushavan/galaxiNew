@@ -19,8 +19,17 @@ class ResourceIndexController extends Controller
             'cardholders' => [
                 'pageTitle' => 'Cardholders',
                 'eyebrow' => 'Operations / Cardholders',
-                'summary' => 'Placeholder index for workers, clients, holder history, and future lifecycle actions.',
-                'nextStep' => 'Add searchable cardholder table and profile actions.',
+                'summary' => 'Baseline operational index for workers, clients, holder history, and future lifecycle actions.',
+                'nextStep' => 'Replace sample rows with real holder search, profile links, and status actions.',
+                'table' => [
+                    'columns' => ['Name', 'Phone', 'Shop', 'Cards', 'Status', 'Last activity'],
+                    'rows' => [
+                        ['Anna Petrova', '+374 91 100001', 'Central Shop', '2', 'active', '2026-04-13'],
+                        ['Mariam Sargsyan', '+374 91 100002', 'Central Shop', '1', 'active', '2026-04-12'],
+                        ['Arman Hakobyan', '+374 91 100003', 'North Shop', '0', 'inactive', '2026-03-30'],
+                    ],
+                    'filters' => ['Shop', 'Status', 'Has cards', 'Activity period'],
+                ],
             ],
             'cards' => [
                 'pageTitle' => 'Cards',

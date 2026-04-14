@@ -85,4 +85,19 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Central Shop')
             ->assertSee('Activation period');
     }
+
+    public function test_authenticated_user_can_access_cardholders_operational_index_shape(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders');
+
+        $response
+            ->assertOk()
+            ->assertSee('Cardholders placeholder')
+            ->assertSee('Operational index shape')
+            ->assertSee('Anna Petrova')
+            ->assertSee('Has cards')
+            ->assertSee('Central Shop');
+    }
 }

@@ -86,3 +86,11 @@
 
 ### Next step after cards index checkpoint
 - Apply the same denser operational structure to cardholders or shops, then replace sample rows with real query-backed data when PHP execution is available.
+
+### Cardholders index shape checkpoint
+- Upgraded the `cardholders` admin section into a second table-shaped operational index with sample filters and representative rows.
+- This makes the Operations area more internally consistent, with both cards and cardholders now following a denser admin-screen pattern.
+- Added feature-test expectations for the cardholders index structure as well.
+
+### Next step after cardholders index checkpoint
+- Apply the same treatment to shops, or introduce checks/points and reports placeholders so the remaining key Galaxy sections are no longer generic.
