@@ -44,4 +44,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Planned sections')
             ->assertSee('9');
     }
+
+    public function test_authenticated_user_can_access_cardholders_placeholder_page(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders');
+
+        $response
+            ->assertOk()
+            ->assertSee('Cardholders placeholder')
+            ->assertSee('cardholders')
+            ->assertSee('Phase');
+    }
 }

@@ -11,10 +11,12 @@ return [
             ],
             [
                 'label' => 'Cardholders',
+                'route' => 'admin.cardholders.index',
                 'description' => 'Workers, clients, and holder history.',
             ],
             [
                 'label' => 'Cards',
+                'route' => 'admin.cards.index',
                 'description' => 'Card inventory, status, and assignments.',
             ],
             [
@@ -28,6 +30,7 @@ return [
         'items' => [
             [
                 'label' => 'Card Types',
+                'route' => 'admin.card-types.index',
                 'description' => 'Card tiers, limits, and rules.',
             ],
             [
@@ -45,6 +48,7 @@ return [
         'items' => [
             [
                 'label' => 'Shops',
+                'route' => 'admin.shops.index',
                 'description' => 'Shop list and scope boundaries.',
             ],
             [

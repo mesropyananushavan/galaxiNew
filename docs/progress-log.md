@@ -61,3 +61,12 @@
 
 ### Next step after card checkpoint
 - Connect the admin shell to these entities with placeholder index routes/controllers for Shops, Cardholders, Cards, and Card Types.
+
+### Admin pages checkpoint
+- Added real admin routes for `shops`, `cardholders`, `cards`, and `card-types` so the Galaxy navigation now leads to concrete pages instead of inert placeholders.
+- Introduced a reusable `ResourceIndexController` plus a shared placeholder view for Phase 1 admin sections, keeping the implementation small but structurally real.
+- Wired the navigation config to these route names, so the sidebar now reflects active Galaxy sections with stable URLs.
+- Extended the feature test coverage to include a first placeholder section page.
+
+### Next step after admin pages checkpoint
+- Add placeholder index pages for roles/permissions and then start replacing placeholder metrics with real counts once PHP-backed execution is available.

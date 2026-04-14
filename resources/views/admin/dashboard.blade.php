@@ -20,7 +20,7 @@
             </article>
             <article class="metric">
                 <p class="metric-label">Next step</p>
-                <p class="metric-value">Domain models</p>
+                <p class="metric-value">Admin pages</p>
             </article>
         </div>
     </section>

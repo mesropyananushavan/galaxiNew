@@ -1,0 +1,35 @@
+@extends('admin.layouts.app')
+
+@section('content')
+    <section class="card">
+        <span class="eyebrow">{{ $eyebrow }}</span>
+        <h2 style="margin: 16px 0 12px; font-size: 1.75rem;">{{ $pageTitle }} placeholder</h2>
+        <p style="margin: 0; color: var(--text-muted); max-width: 780px; line-height: 1.6;">
+            {{ $summary }}
+        </p>
+
+        <div class="placeholder-grid">
+            <article class="metric">
+                <p class="metric-label">Section key</p>
+                <p class="metric-value" style="font-size: 1.2rem;">{{ $resourceKey }}</p>
+            </article>
+            <article class="metric">
+                <p class="metric-label">Phase</p>
+                <p class="metric-value">1</p>
+            </article>
+            <article class="metric">
+                <p class="metric-label">Next step</p>
+                <p class="metric-value" style="font-size: 1.05rem; line-height: 1.4;">{{ $nextStep }}</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Why this page exists now</h3>
+        <ul class="list">
+            <li>connect the admin navigation to real Galaxy sections instead of dead placeholders;</li>
+            <li>reserve stable route names for future CRUD and reporting flows;</li>
+            <li>make the Phase 1 shell visibly closer to the old operational product shape.</li>
+        </ul>
+    </section>
+@endsection
