@@ -80,6 +80,14 @@ return [
             ['label' => 'Parity focus', 'value' => 'Branch scope, manager assignment, active versus paused visibility'],
             ['label' => 'Migration note', 'value' => 'Keep branch ownership semantics stable before introducing new multi-shop controls'],
         ],
+        'operatorChecklist' => [
+            'summary' => 'Daily branch oversight in the old Galaxy workspace was built around quick visual checks before anyone opened a detail screen.',
+            'items' => [
+                'Review paused branches before shift handoff.',
+                'Confirm each active shop still has an assigned manager.',
+                'Escalate scope mismatches before changing branch visibility rules.',
+            ],
+        ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
@@ -159,6 +167,14 @@ return [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy holder and client lookup screen'],
             ['label' => 'Parity focus', 'value' => 'Fast search, linked cards, recent activity visibility'],
             ['label' => 'Migration note', 'value' => 'Preserve operator lookup speed before expanding profile detail flows'],
+        ],
+        'operatorChecklist' => [
+            'summary' => 'Legacy operators typically used the holder list as a fast intervention surface, not just a directory.',
+            'items' => [
+                'Search inactive holders before creating duplicate profiles.',
+                'Check linked-card counts before escalating missing-card complaints.',
+                'Use recent activity as the first triage signal before opening full history.',
+            ],
         ],
     ],
     'cards' => [
@@ -240,6 +256,14 @@ return [
             ['label' => 'Parity focus', 'value' => 'Card states, holder linkage, activation visibility'],
             ['label' => 'Migration note', 'value' => 'Preserve blocked and draft semantics before exposing mutation actions'],
         ],
+        'operatorChecklist' => [
+            'summary' => 'Card inventory work in the legacy system centered on status triage before any mutation workflow was attempted.',
+            'items' => [
+                'Review blocked cards before issuing new replacements.',
+                'Check draft inventory before escalating card shortages.',
+                'Confirm holder linkage before treating a card as unassigned stock.',
+            ],
+        ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
@@ -319,6 +343,14 @@ return [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy checks and points history screen'],
             ['label' => 'Parity focus', 'value' => 'Receipt-first lookup, points delta visibility, troubleshooting flow'],
             ['label' => 'Migration note', 'value' => 'Keep receipt tracing central before introducing correction actions'],
+        ],
+        'operatorChecklist' => [
+            'summary' => 'Legacy receipt troubleshooting depended on a short, repeatable triage pattern before any manual correction was considered.',
+            'items' => [
+                'Search by fiscal receipt before checking card history.',
+                'Inspect zero-accrual receipts before assuming a loyalty failure.',
+                'Confirm shop and timestamp context before discussing point corrections.',
+            ],
         ],
     ],
     'card-types' => [
@@ -771,6 +803,14 @@ return [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy reporting catalog'],
             ['label' => 'Parity focus', 'value' => 'Preset periods, export-first habits, report ordering'],
             ['label' => 'Migration note', 'value' => 'Preserve common export entry points before adding heavier analytics'],
+        ],
+        'operatorChecklist' => [
+            'summary' => 'Reporting in the old Galaxy admin was usually a quick export task driven by preset periods and familiar entry points.',
+            'items' => [
+                'Start with preset periods before opening custom date-range work.',
+                'Keep the highest-frequency export categories at the top of the catalog.',
+                'Validate export format expectations before adding heavier analytics views.',
+            ],
         ],
     ],
 ];

@@ -468,3 +468,11 @@
 
 ### Next step after operational legacy mapping checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit legacy mapping, activity, readiness, dependency, handoff, and migration guidance.
+
+### Operational operator checklist checkpoint
+- Added a reusable operator-checklist block and populated it on the operational sections for shops, cardholders, cards, checks/points, and reports.
+- This pushes the Phase 1 admin shell closer to the old Galaxy daily console by surfacing the short triage routines operators actually follow.
+- Extended feature assertions so these operator checklist cues remain visible across the operational screens.
+
+### Next step after operational operator checklist checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep increasing operational-shell density with explicit operator checklist, legacy mapping, activity, readiness, dependency, handoff, and migration guidance.
