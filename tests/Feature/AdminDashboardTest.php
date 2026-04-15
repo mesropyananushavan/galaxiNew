@@ -1063,6 +1063,33 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_operational_next_slice_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.operationalNextSlice', [
+            'summary' => 'When backend execution is available, start by replacing static shop rows with a minimal query-backed index.',
+            'steps' => [
+                'Load shops with manager and status columns from Eloquent.',
+                ['invalid-step'],
+                42,
+                'Add row actions only after the read path is stable.',
+            ],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Operational next slice')
+            ->assertSee('When backend execution is available, start by replacing static shop rows with a minimal query-backed index.')
+            ->assertSee('Load shops with manager and status columns from Eloquent.')
+            ->assertSee('Add row actions only after the read path is stable.')
+            ->assertDontSee('invalid-step')
+            ->assertDontSee('42')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

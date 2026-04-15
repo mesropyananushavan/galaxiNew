@@ -28,6 +28,7 @@ class ResourceIndexController extends Controller
             'dependencyStatus' => $this->keyValueItems($pages[$resource]['dependencyStatus'] ?? []),
             'legacyMapping' => $this->keyValueItems($pages[$resource]['legacyMapping'] ?? []),
             'implementationHandoff' => $this->summaryListBlock($pages[$resource]['implementationHandoff'] ?? [], 'steps'),
+            'operationalNextSlice' => $this->summaryListBlock($pages[$resource]['operationalNextSlice'] ?? [], 'steps'),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
