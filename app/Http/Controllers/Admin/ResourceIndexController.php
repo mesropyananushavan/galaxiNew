@@ -19,9 +19,23 @@ class ResourceIndexController extends Controller
 
         return view('admin.resource-index', $pages[$resource] + [
             'resourceKey' => $resource,
-            'resourceBlocks' => is_array($defaults['resourceBlocks'] ?? null) ? $defaults['resourceBlocks'] : [],
+            'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $defaults['phase'] ?? 1,
-            'pageRationale' => is_array($defaults['pageRationale'] ?? null) ? $defaults['pageRationale'] : [],
+            'pageRationale' => $this->pageRationale($defaults),
         ]);
+    }
+
+    private function resourceBlocks(array $defaults): array
+    {
+        return is_array($defaults['resourceBlocks'] ?? null)
+            ? $defaults['resourceBlocks']
+            : [];
+    }
+
+    private function pageRationale(array $defaults): array
+    {
+        return is_array($defaults['pageRationale'] ?? null)
+            ? $defaults['pageRationale']
+            : [];
     }
 }

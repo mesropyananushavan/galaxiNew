@@ -624,3 +624,10 @@
 
 ### Next step after admin shell doc navigation checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping architecture navigation clear across blueprint, plan, and shell docs.
+
+### Resource shell defaults normalization checkpoint
+- Extracted resource block and page rationale normalization into small private methods inside `App\Http\Controllers\Admin\ResourceIndexController`.
+- This keeps the controller thin while making the config-driven shell defaults path easier to read and maintain at the runtime entry point.
+
+### Next step after resource shell defaults normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping the runtime defaults path clear and easy to extend.
