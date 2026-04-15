@@ -732,6 +732,26 @@ class AdminDashboardTest extends TestCase
         );
     }
 
+    public function test_resource_page_defaults_helpers_fall_back_when_shell_defaults_are_not_arrays(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-resource-page-defaults', [
+            'phase' => 1,
+            'resourceBlocks' => 'invalid-block-list',
+            'pageRationale' => 'invalid-rationale',
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shop operations')
+            ->assertDontSee('Recent activity preview')
+            ->assertDontSee('Phase 1 keeps these Galaxy resource pages config-driven')
+            ->assertDontSee('Roll out shop status updates');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

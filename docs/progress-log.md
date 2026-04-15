@@ -631,3 +631,10 @@
 
 ### Next step after resource shell defaults normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping the runtime defaults path clear and easy to extend.
+
+### Resource shell defaults fallback coverage checkpoint
+- Added feature coverage proving `ResourceIndexController` safely falls back when `admin-resource-page-defaults.resourceBlocks` or `pageRationale` are not arrays.
+- This protects the extracted defaults helper path from malformed config values while keeping resource pages renderable.
+
+### Next step after resource shell defaults fallback coverage checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while protecting the runtime defaults path with small guardrail tests.
