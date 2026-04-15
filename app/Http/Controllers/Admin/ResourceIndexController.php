@@ -31,6 +31,7 @@ class ResourceIndexController extends Controller
             'operationalNextSlice' => $this->summaryListBlock($pages[$resource]['operationalNextSlice'] ?? [], 'steps'),
             'operatorChecklist' => $this->summaryListBlock($pages[$resource]['operatorChecklist'] ?? []),
             'escalationGuide' => $this->summaryListBlock($pages[$resource]['escalationGuide'] ?? []),
+            'shiftHandoff' => $this->summaryListBlock($pages[$resource]['shiftHandoff'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),

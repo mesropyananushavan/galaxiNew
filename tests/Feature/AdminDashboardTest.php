@@ -1144,6 +1144,33 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_shift_handoff_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.shiftHandoff', [
+            'summary' => 'Shop oversight in the old Galaxy console depended on explicit handoff notes so the next operator could continue branch monitoring without rechecking everything.',
+            'items' => [
+                'Carry paused-branch context into the next shift until recovery is approved.',
+                ['invalid-item'],
+                42,
+                'Flag any shop that still lacks a manager assignment at handoff time.',
+            ],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shift handoff notes')
+            ->assertSee('Shop oversight in the old Galaxy console depended on explicit handoff notes so the next operator could continue branch monitoring without rechecking everything.')
+            ->assertSee('Carry paused-branch context into the next shift until recovery is approved.')
+            ->assertSee('Flag any shop that still lacks a manager assignment at handoff time.')
+            ->assertDontSee('invalid-item')
+            ->assertDontSee('42')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
