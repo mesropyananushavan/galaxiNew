@@ -986,6 +986,31 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_dependency_status_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.dependencyStatus', [
+            ['label' => 'Domain model', 'value' => 'Shop model and user-to-shop linkage baseline exist'],
+            'invalid-dependency-entry',
+            ['label' => 'Backend dependency'],
+            ['label' => 'Operational dependency', 'value' => 42],
+            ['label' => 'Backend dependency', 'value' => 'Query-backed shop index and branch actions are still pending'],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Shop model and user-to-shop linkage baseline exist')
+            ->assertSee('Query-backed shop index and branch actions are still pending')
+            ->assertDontSee('invalid-dependency-entry')
+            ->assertDontSee('Operational dependency')
+            ->assertDontSee('42')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
