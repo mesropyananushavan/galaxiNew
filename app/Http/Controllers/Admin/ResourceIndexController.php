@@ -27,6 +27,7 @@ class ResourceIndexController extends Controller
             'activityTimeline' => $this->timelineItems($pages[$resource]['activityTimeline'] ?? []),
             'dependencyStatus' => $this->keyValueItems($pages[$resource]['dependencyStatus'] ?? []),
             'legacyMapping' => $this->keyValueItems($pages[$resource]['legacyMapping'] ?? []),
+            'implementationHandoff' => $this->summaryListBlock($pages[$resource]['implementationHandoff'] ?? [], 'steps'),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
@@ -138,6 +139,20 @@ class ResourceIndexController extends Controller
                 && is_string($item['label'] ?? null)
                 && is_string($item['value'] ?? null)
         ));
+    }
+
+    private function summaryListBlock(mixed $block, string $itemsKey = 'items'): array
+    {
+        if (! is_array($block)) {
+            return [];
+        }
+
+        return is_string($block['summary'] ?? null)
+            ? [
+                'summary' => $block['summary'],
+                $itemsKey => $this->stringList($block[$itemsKey] ?? []),
+            ]
+            : [];
     }
 
     private function resourceBlocks(array $defaults): array

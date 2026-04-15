@@ -1036,6 +1036,33 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_implementation_handoff_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.implementationHandoff', [
+            'summary' => 'When PHP is available, start with a minimal read-only shop index before adding any branch mutation flows.',
+            'steps' => [
+                'Wire an Eloquent-backed shops index with manager and status columns.',
+                ['invalid-step'],
+                42,
+                'Delay create and edit actions until the read path is stable against live data.',
+            ],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('First Laravel wiring step')
+            ->assertSee('When PHP is available, start with a minimal read-only shop index before adding any branch mutation flows.')
+            ->assertSee('Wire an Eloquent-backed shops index with manager and status columns.')
+            ->assertSee('Delay create and edit actions until the read path is stable against live data.')
+            ->assertDontSee('invalid-step')
+            ->assertDontSee('42')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
