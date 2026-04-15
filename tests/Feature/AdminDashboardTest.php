@@ -556,6 +556,31 @@ class AdminDashboardTest extends TestCase
         );
     }
 
+    public function test_resource_page_shell_can_use_dedicated_preview_shell_stack_config(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-preview-shell-blocks', [
+            ['key' => 'notice', 'partial' => 'admin.partials.resource-preview-notice', 'prop' => 'notice'],
+            ['key' => 'emptyState', 'partial' => 'admin.partials.resource-empty-state', 'prop' => 'emptyState'],
+        ]);
+        Config::set('admin-resource-page-defaults.resourceBlocks', array_merge([
+            ['key' => 'metrics', 'partial' => 'admin.partials.resource-summary-metrics', 'prop' => 'metrics'],
+        ], config('admin-preview-shell-blocks'), [
+            ['key' => 'implementationHandoff', 'partial' => 'admin.partials.resource-implementation-handoff', 'prop' => 'implementationHandoff'],
+        ]));
+
+        $response = $this->actingAs($user)->get('/admin/card-types');
+        $content = $response->getContent();
+
+        $this->assertTrue(
+            strpos($content, 'Card type rules are still preview-only')
+                < strpos($content, 'No custom card types configured yet')
+                && strpos($content, 'No custom card types configured yet') < strpos($content, 'First Laravel wiring step'),
+            'Expected the dedicated preview shell config stack to remain composable inside page defaults.'
+        );
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

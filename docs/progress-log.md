@@ -531,3 +531,11 @@
 
 ### Next step after dedicated operational closing config checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell so its context, workflow, and closing stacks remain easy to evolve independently.
+
+### Dedicated preview shell config checkpoint
+- Extracted the preview shell stack, form preview, empty state, and preview notice, into `config/admin-preview-shell-blocks.php`.
+- Updated the main resource block config so pages now compose separate context, preview, workflow, and closing stacks.
+- Added feature coverage proving the dedicated preview shell stack stays composable inside resource page defaults.
+
+### Next step after dedicated preview shell config checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell so its context, preview, workflow, and closing stacks remain easy to evolve independently.
