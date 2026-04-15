@@ -669,3 +669,11 @@
 
 ### Next step after page rationale entry normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the shared config-driven render path with small guardrails around the remaining defaults data.
+
+### Resource header action normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so top-level resource header actions now keep only entries with a string `label` and optional string `tone`.
+- Added feature coverage proving malformed action entries are ignored while valid Galaxy header actions still render on resource pages.
+- This keeps the shared Phase 1 page header safer against config drift without changing valid UI output.
+
+### Next step after resource header action normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening shared resource-page metadata paths with small guardrails that prevent accidental shell breakage.

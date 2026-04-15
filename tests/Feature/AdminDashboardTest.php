@@ -842,6 +842,28 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('42');
     }
 
+    public function test_resource_page_header_actions_ignore_malformed_action_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.actions', [
+            ['label' => 'New shop', 'tone' => 'primary'],
+            'invalid-action-entry',
+            ['tone' => 'secondary'],
+            ['label' => 'Review branch scope', 'tone' => ['invalid-tone']],
+            ['label' => 'Review branch scope', 'tone' => 'secondary'],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('New shop')
+            ->assertSee('Review branch scope')
+            ->assertDontSee('invalid-action-entry')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
