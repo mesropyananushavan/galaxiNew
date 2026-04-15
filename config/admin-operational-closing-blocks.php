@@ -1,5 +1,6 @@
 <?php
 
+// Closing blocks summarize readiness, dependencies, and the safest first Laravel wiring step.
 return [
     ['key' => 'readinessChecklist', 'partial' => 'admin.partials.resource-readiness-checklist', 'prop' => 'readinessChecklist'],
     ['key' => 'dependencyStatus', 'partial' => 'admin.partials.resource-dependency-status', 'prop' => 'dependencyStatus'],

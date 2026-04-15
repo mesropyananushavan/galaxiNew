@@ -1,5 +1,6 @@
 <?php
 
+// Workflow blocks capture the day-to-day operator flow around triage, escalation, and carry-over work.
 return [
     ['key' => 'operatorChecklist', 'partial' => 'admin.partials.resource-operator-checklist', 'prop' => 'operatorChecklist'],
     ['key' => 'escalationGuide', 'partial' => 'admin.partials.resource-escalation-guide', 'prop' => 'escalationGuide'],

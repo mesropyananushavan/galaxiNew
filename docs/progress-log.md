@@ -589,3 +589,10 @@
 
 ### Next step after layered defaults array bridge checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while preserving both layered composition and the real defaults-array bridge.
+
+### Layered stack inline description checkpoint
+- Added short inline descriptions to the base, context, preview, workflow, and closing stack config files.
+- This makes the five-layer shell split easier to understand directly from the config directory, without needing to infer each stack's purpose from block names alone.
+
+### Next step after layered stack inline description checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping each layer's purpose explicit in code, tests, and docs.

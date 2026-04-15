@@ -1,5 +1,6 @@
 <?php
 
+// Context blocks explain how each operational screen maps to legacy behavior and migration intent.
 return [
     ['key' => 'operationalGlossary', 'partial' => 'admin.partials.resource-operational-glossary', 'prop' => 'operationalGlossary'],
     ['key' => 'legacyParityNotes', 'partial' => 'admin.partials.resource-legacy-parity-notes', 'prop' => 'legacyParityNotes'],

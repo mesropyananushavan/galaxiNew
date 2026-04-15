@@ -1,5 +1,6 @@
 <?php
 
+// Preview shell blocks keep preview-only CRUD structure visible before real handlers exist.
 return [
     ['key' => 'form', 'partial' => 'admin.partials.resource-form-preview', 'prop' => 'form'],
     ['key' => 'emptyState', 'partial' => 'admin.partials.resource-empty-state', 'prop' => 'emptyState'],
