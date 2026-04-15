@@ -33,6 +33,7 @@ class ResourceIndexController extends Controller
             'escalationGuide' => $this->summaryListBlock($pages[$resource]['escalationGuide'] ?? []),
             'shiftHandoff' => $this->summaryListBlock($pages[$resource]['shiftHandoff'] ?? []),
             'openIssues' => $this->summaryListBlock($pages[$resource]['openIssues'] ?? []),
+            'emptyState' => $this->emptyState($pages[$resource]['emptyState'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
@@ -156,6 +157,21 @@ class ResourceIndexController extends Controller
             ? [
                 'summary' => $block['summary'],
                 $itemsKey => $this->stringList($block[$itemsKey] ?? []),
+            ]
+            : [];
+    }
+
+    private function emptyState(mixed $emptyState): array
+    {
+        if (! is_array($emptyState)) {
+            return [];
+        }
+
+        return is_string($emptyState['title'] ?? null) && is_string($emptyState['description'] ?? null)
+            ? [
+                'title' => $emptyState['title'],
+                'description' => $emptyState['description'],
+                'actions' => $this->actions($emptyState['actions'] ?? []),
             ]
             : [];
     }

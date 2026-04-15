@@ -781,3 +781,11 @@
 
 ### Next step after open issues normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or start collapsing the repeated normalization helpers into slightly higher-level shared structures if that stays low-risk.
+
+### Empty-state normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so `emptyState` now renders only with valid string `title` and `description` fields, and its action list is normalized through the shared action helper.
+- Added feature coverage proving malformed empty-state metadata is ignored instead of leaking invalid config into the shared management empty-state partial.
+- This keeps the Phase 1 Galaxy management previews safer against config drift without changing valid UI output.
+
+### Next step after empty-state normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep collapsing repeated metadata normalization paths into small shared helpers while the shell stays preview-driven.

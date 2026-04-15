@@ -1198,6 +1198,32 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_empty_state_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.roles-permissions.emptyState', [
+            'title' => 'No shop-scoped roles configured yet',
+            'description' => 'Seed the first role profile from the old Galaxy cashier and manager matrix before wiring persistence.',
+            'actions' => [
+                ['label' => 'Create first role', 'tone' => 'primary'],
+                ['tone' => 'secondary'],
+                'invalid-action-entry',
+                ['label' => 'Review matrix', 'tone' => ['invalid-tone']],
+            ],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions');
+
+        $response
+            ->assertOk()
+            ->assertSee('No shop-scoped roles configured yet')
+            ->assertSee('Seed the first role profile from the old Galaxy cashier and manager matrix before wiring persistence.')
+            ->assertSee('Create first role')
+            ->assertDontSee('invalid-action-entry')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
