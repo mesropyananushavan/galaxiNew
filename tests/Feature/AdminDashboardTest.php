@@ -1309,6 +1309,22 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Old Galaxy branch administration screen');
     }
 
+    public function test_preview_context_blocks_still_render_after_grouped_controller_lookup(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Preview notice')
+            ->assertSee('Migration readiness checklist')
+            ->assertSee('Recent activity preview')
+            ->assertSee('Shop operations are still preview-only')
+            ->assertSee('Preview shop rows and branch actions defined')
+            ->assertSee('Central Shop scope reviewed');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

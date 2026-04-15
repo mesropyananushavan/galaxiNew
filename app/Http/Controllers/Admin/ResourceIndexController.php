@@ -17,17 +17,15 @@ class ResourceIndexController extends Controller
 
         abort_unless(is_array($pages) && array_key_exists($resource, $pages), 404);
 
+        $previewContextBlocks = $this->previewContextBlocks($pages[$resource]);
         $summaryListBlocks = $this->summaryListBlocks($pages[$resource]);
         $keyValueBlocks = $this->keyValueBlocks($pages[$resource]);
 
-        return view('admin.resource-index', $pages[$resource] + $summaryListBlocks + $keyValueBlocks + [
+        return view('admin.resource-index', $pages[$resource] + $previewContextBlocks + $summaryListBlocks + $keyValueBlocks + [
             'resourceKey' => $resource,
             'actions' => $this->actions($pages[$resource]['actions'] ?? []),
             'metrics' => $this->metrics($pages[$resource]['metrics'] ?? []),
             'table' => $this->table($pages[$resource]['table'] ?? []),
-            'notice' => $this->notice($pages[$resource]['notice'] ?? []),
-            'readinessChecklist' => $this->labeledStatusItems($pages[$resource]['readinessChecklist'] ?? []),
-            'activityTimeline' => $this->timelineItems($pages[$resource]['activityTimeline'] ?? []),
             'emptyState' => $this->emptyState($pages[$resource]['emptyState'] ?? []),
             'form' => $this->form($pages[$resource]['form'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
@@ -141,6 +139,15 @@ class ResourceIndexController extends Controller
                 && is_string($item['label'] ?? null)
                 && is_string($item['value'] ?? null)
         ));
+    }
+
+    private function previewContextBlocks(array $page): array
+    {
+        return [
+            'notice' => $this->notice($page['notice'] ?? []),
+            'readinessChecklist' => $this->labeledStatusItems($page['readinessChecklist'] ?? []),
+            'activityTimeline' => $this->timelineItems($page['activityTimeline'] ?? []),
+        ];
     }
 
     private function summaryListBlocks(array $page): array
