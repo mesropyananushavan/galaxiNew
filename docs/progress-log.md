@@ -561,3 +561,10 @@
 
 ### Next step after layered defaults bridge checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while preserving both layered composition and the real default config bridge.
+
+### Admin shell layering note checkpoint
+- Added `docs/admin-shell-layering.md` to document the new five-layer resource page shell structure and the bridge role of `config/admin-resource-blocks.php`.
+- This makes the current Phase 1 config architecture easier to understand before any PHP-backed slice starts replacing preview-only blocks.
+
+### Next step after admin shell layering note checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping the layered architecture explicit and maintainable.
