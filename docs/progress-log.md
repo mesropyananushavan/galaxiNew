@@ -677,3 +677,11 @@
 
 ### Next step after resource header action normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening shared resource-page metadata paths with small guardrails that prevent accidental shell breakage.
+
+### Resource summary metric normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so page-level summary metrics now keep only entries with string `label` and string `value` fields.
+- Added feature coverage proving malformed metric entries are ignored while valid Galaxy snapshot metrics still render on resource pages.
+- This keeps the shared Phase 1 summary-metrics path safer against config drift without changing valid UI output.
+
+### Next step after resource summary metric normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening shared resource-page metadata paths with small guardrails around the remaining preview data contracts.

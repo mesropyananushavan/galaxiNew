@@ -864,6 +864,29 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_resource_summary_metrics_ignore_malformed_metric_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.metrics', [
+            ['label' => 'Active shops', 'value' => '2'],
+            'invalid-metric-entry',
+            ['label' => 'Paused shops'],
+            ['label' => 'Assigned managers', 'value' => 2],
+            ['label' => 'Paused shops', 'value' => '1'],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Active shops')
+            ->assertSee('Paused shops')
+            ->assertDontSee('invalid-metric-entry')
+            ->assertDontSee('Assigned managers')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

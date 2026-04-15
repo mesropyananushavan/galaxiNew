@@ -20,6 +20,7 @@ class ResourceIndexController extends Controller
         return view('admin.resource-index', $pages[$resource] + [
             'resourceKey' => $resource,
             'actions' => $this->actions($pages[$resource]['actions'] ?? []),
+            'metrics' => $this->metrics($pages[$resource]['metrics'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
@@ -42,6 +43,20 @@ class ResourceIndexController extends Controller
             fn (mixed $action): bool => is_array($action)
                 && is_string($action['label'] ?? null)
                 && (! array_key_exists('tone', $action) || is_string($action['tone']))
+        ));
+    }
+
+    private function metrics(mixed $metrics): array
+    {
+        if (! is_array($metrics)) {
+            return [];
+        }
+
+        return array_values(array_filter(
+            $metrics,
+            fn (mixed $metric): bool => is_array($metric)
+                && is_string($metric['label'] ?? null)
+                && is_string($metric['value'] ?? null)
         ));
     }
 
