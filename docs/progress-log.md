@@ -709,3 +709,11 @@
 
 ### Next step after readiness checklist normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the remaining shared preview metadata contracts that still trust raw config.
+
+### Activity timeline normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so activity timeline entries now render only when `title`, `time`, and `description` are valid strings.
+- Added feature coverage proving malformed timeline entries are ignored instead of leaking invalid config into the shared activity-timeline partial.
+- This keeps the Phase 1 Galaxy shell safer against config drift without changing valid UI output.
+
+### Next step after activity timeline normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the remaining shared preview metadata contracts that still trust raw config.

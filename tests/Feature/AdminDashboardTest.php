@@ -962,6 +962,30 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_activity_timeline_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.activityTimeline', [
+            ['title' => 'Central Shop scope reviewed', 'time' => 'Today, 17:40', 'description' => 'Branch ownership and manager visibility were checked against the old Galaxy operating model.'],
+            'invalid-timeline-entry',
+            ['title' => 'Airport Kiosk kept paused', 'time' => ['invalid-time'], 'description' => 'The preview state preserves a paused branch case for parity before real status flows exist.'],
+            ['title' => 'North Shop reopened', 'time' => 'Yesterday, 09:15'],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Recent activity preview')
+            ->assertSee('Central Shop scope reviewed')
+            ->assertSee('Today, 17:40')
+            ->assertDontSee('invalid-timeline-entry')
+            ->assertDontSee('Airport Kiosk kept paused')
+            ->assertDontSee('North Shop reopened')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
