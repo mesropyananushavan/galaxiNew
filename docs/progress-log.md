@@ -805,3 +805,11 @@
 
 ### Next step after grouped summary-list lookup checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep consolidating repeated metadata normalization paths where that lowers maintenance risk without changing the preview shell.
+
+### Grouped key-value lookup checkpoint
+- Consolidated the repeated key-value block lookups in `App\Http\Controllers\Admin\ResourceIndexController` into one grouped helper.
+- Added feature coverage proving the shared dependency and legacy mapping cards still render after the controller cleanup.
+- This is a small structural cleanup step that keeps the Phase 1 Galaxy shell behavior unchanged while making the render path easier to maintain.
+
+### Next step after grouped key-value lookup checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep consolidating repeated metadata normalization paths where that lowers maintenance risk without changing the preview shell.

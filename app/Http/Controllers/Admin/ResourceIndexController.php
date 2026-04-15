@@ -18,8 +18,9 @@ class ResourceIndexController extends Controller
         abort_unless(is_array($pages) && array_key_exists($resource, $pages), 404);
 
         $summaryListBlocks = $this->summaryListBlocks($pages[$resource]);
+        $keyValueBlocks = $this->keyValueBlocks($pages[$resource]);
 
-        return view('admin.resource-index', $pages[$resource] + $summaryListBlocks + [
+        return view('admin.resource-index', $pages[$resource] + $summaryListBlocks + $keyValueBlocks + [
             'resourceKey' => $resource,
             'actions' => $this->actions($pages[$resource]['actions'] ?? []),
             'metrics' => $this->metrics($pages[$resource]['metrics'] ?? []),
@@ -27,8 +28,6 @@ class ResourceIndexController extends Controller
             'notice' => $this->notice($pages[$resource]['notice'] ?? []),
             'readinessChecklist' => $this->labeledStatusItems($pages[$resource]['readinessChecklist'] ?? []),
             'activityTimeline' => $this->timelineItems($pages[$resource]['activityTimeline'] ?? []),
-            'dependencyStatus' => $this->keyValueItems($pages[$resource]['dependencyStatus'] ?? []),
-            'legacyMapping' => $this->keyValueItems($pages[$resource]['legacyMapping'] ?? []),
             'emptyState' => $this->emptyState($pages[$resource]['emptyState'] ?? []),
             'form' => $this->form($pages[$resource]['form'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
@@ -153,6 +152,14 @@ class ResourceIndexController extends Controller
             'escalationGuide' => $this->summaryListBlock($page['escalationGuide'] ?? []),
             'shiftHandoff' => $this->summaryListBlock($page['shiftHandoff'] ?? []),
             'openIssues' => $this->summaryListBlock($page['openIssues'] ?? []),
+        ];
+    }
+
+    private function keyValueBlocks(array $page): array
+    {
+        return [
+            'dependencyStatus' => $this->keyValueItems($page['dependencyStatus'] ?? []),
+            'legacyMapping' => $this->keyValueItems($page['legacyMapping'] ?? []),
         ];
     }
 

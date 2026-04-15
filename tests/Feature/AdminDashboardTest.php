@@ -1295,6 +1295,20 @@ class AdminDashboardTest extends TestCase
             ->assertSee('First Laravel wiring step');
     }
 
+    public function test_key_value_blocks_still_render_after_grouped_controller_lookup(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Legacy parity mapping')
+            ->assertSee('Shop model and user-to-shop linkage baseline exist')
+            ->assertSee('Old Galaxy branch administration screen');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
