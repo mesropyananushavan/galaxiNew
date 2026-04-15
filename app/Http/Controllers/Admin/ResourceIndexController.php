@@ -18,12 +18,9 @@ class ResourceIndexController extends Controller
         abort_unless(is_array($pages) && array_key_exists($resource, $pages), 404);
 
         $page = $pages[$resource];
-        $primaryPageBlocks = $this->primaryPageBlocks($page);
-        $previewContextBlocks = $this->previewContextBlocks($page);
-        $summaryListBlocks = $this->summaryListBlocks($page);
-        $keyValueBlocks = $this->keyValueBlocks($page);
+        $normalizedPage = $this->normalizedPage($page);
 
-        return view('admin.resource-index', $page + $primaryPageBlocks + $previewContextBlocks + $summaryListBlocks + $keyValueBlocks + [
+        return view('admin.resource-index', $page + $normalizedPage + [
             'resourceKey' => $resource,
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
@@ -136,6 +133,14 @@ class ResourceIndexController extends Controller
                 && is_string($item['label'] ?? null)
                 && is_string($item['value'] ?? null)
         ));
+    }
+
+    private function normalizedPage(array $page): array
+    {
+        return $this->primaryPageBlocks($page)
+            + $this->previewContextBlocks($page)
+            + $this->summaryListBlocks($page)
+            + $this->keyValueBlocks($page);
     }
 
     private function primaryPageBlocks(array $page): array

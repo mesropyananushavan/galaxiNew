@@ -1339,6 +1339,21 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create first role');
     }
 
+    public function test_normalized_page_assembly_still_renders_mixed_block_types(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Operational index shape')
+            ->assertSee('Preview notice')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Open issues to carry')
+            ->assertSee('First Laravel wiring step');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

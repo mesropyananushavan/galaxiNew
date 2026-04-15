@@ -829,3 +829,11 @@
 
 ### Next step after grouped primary-page lookup checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep consolidating repeated metadata normalization paths only where that clearly lowers maintenance risk without changing the preview shell.
+
+### Normalized page assembly checkpoint
+- Consolidated the grouped page metadata helpers in `App\Http\Controllers\Admin\ResourceIndexController` behind one `normalizedPage()` assembly step.
+- Added feature coverage proving mixed block types still render together after the controller cleanup.
+- This is a small structural cleanup step that keeps the Phase 1 Galaxy shell behavior unchanged while making the page assembly path easier to follow.
+
+### Next step after normalized page assembly checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further controller cleanup and only touch this path again when a new real backend slice needs it.
