@@ -685,3 +685,11 @@
 
 ### Next step after resource summary metric normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening shared resource-page metadata paths with small guardrails around the remaining preview data contracts.
+
+### Operational table normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so operational table metadata now normalizes string-only `filters`, string-only `columns`, and string-only cell rows before the shared table partial renders.
+- Added feature coverage proving malformed table entries are ignored while valid Galaxy preview rows and filters still render on resource pages.
+- This keeps the shared Phase 1 operational index path safer against config drift without changing valid UI output.
+
+### Next step after operational table normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening shared resource-page metadata paths around the remaining preview contracts that still trust raw config.

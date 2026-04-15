@@ -887,6 +887,38 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_operational_table_ignores_malformed_table_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.table', [
+            'columns' => ['Shop', ['invalid-column'], 'Status'],
+            'rows' => [
+                ['Central Shop', 'active'],
+                'invalid-row-entry',
+                ['North Shop', 12],
+                ['Airport Kiosk', 'paused'],
+            ],
+            'filters' => ['Status', ['invalid-filter'], 'Volume tier'],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shop')
+            ->assertSee('Status')
+            ->assertSee('Central Shop')
+            ->assertSee('Airport Kiosk')
+            ->assertSee('Volume tier')
+            ->assertDontSee('invalid-column')
+            ->assertDontSee('invalid-row-entry')
+            ->assertDontSee('North Shop')
+            ->assertDontSee('12')
+            ->assertDontSee('invalid-filter')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

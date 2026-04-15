@@ -21,6 +21,7 @@ class ResourceIndexController extends Controller
             'resourceKey' => $resource,
             'actions' => $this->actions($pages[$resource]['actions'] ?? []),
             'metrics' => $this->metrics($pages[$resource]['metrics'] ?? []),
+            'table' => $this->table($pages[$resource]['table'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
@@ -60,6 +61,23 @@ class ResourceIndexController extends Controller
         ));
     }
 
+    private function table(mixed $table): array
+    {
+        if (! is_array($table)) {
+            return [];
+        }
+
+        return [
+            'filters' => $this->stringList($table['filters'] ?? []),
+            'columns' => $this->stringList($table['columns'] ?? []),
+            'rows' => array_values(array_filter(
+                $table['rows'] ?? [],
+                fn (mixed $row): bool => is_array($row)
+                    && array_values(array_filter($row, fn (mixed $cell): bool => is_string($cell))) === array_values($row)
+            )),
+        ];
+    }
+
     private function resourceBlocks(array $defaults): array
     {
         if (! is_array($defaults['resourceBlocks'] ?? null)) {
@@ -72,6 +90,18 @@ class ResourceIndexController extends Controller
                 && is_string($block['key'] ?? null)
                 && is_string($block['partial'] ?? null)
                 && is_string($block['prop'] ?? null)
+        ));
+    }
+
+    private function stringList(mixed $items): array
+    {
+        if (! is_array($items)) {
+            return [];
+        }
+
+        return array_values(array_filter(
+            $items,
+            fn (mixed $item): bool => is_string($item)
         ));
     }
 
