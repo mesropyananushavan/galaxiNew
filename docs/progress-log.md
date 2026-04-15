@@ -725,3 +725,11 @@
 
 ### Next step after dependency status normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the remaining shared preview metadata contracts that still trust raw config.
+
+### Legacy mapping normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so legacy-mapping cards now render only entries with valid string `label` and `value` fields.
+- Added feature coverage proving malformed legacy mapping metadata is ignored instead of leaking invalid config into the shared key-value list path.
+- This keeps the Phase 1 Galaxy shell safer against config drift without changing valid UI output.
+
+### Next step after legacy mapping normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the remaining shared preview metadata contracts that still trust raw config.

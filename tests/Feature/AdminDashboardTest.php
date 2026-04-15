@@ -1011,6 +1011,31 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_legacy_mapping_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.legacyMapping', [
+            ['label' => 'Legacy source', 'value' => 'Old Galaxy branch administration screen'],
+            'invalid-legacy-entry',
+            ['label' => 'Parity focus'],
+            ['label' => 'Migration note', 'value' => 42],
+            ['label' => 'Parity focus', 'value' => 'Branch scope, manager assignment, active versus paused visibility'],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Legacy parity mapping')
+            ->assertSee('Old Galaxy branch administration screen')
+            ->assertSee('Branch scope, manager assignment, active versus paused visibility')
+            ->assertDontSee('invalid-legacy-entry')
+            ->assertDontSee('Migration note')
+            ->assertDontSee('42')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

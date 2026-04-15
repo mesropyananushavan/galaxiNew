@@ -26,6 +26,7 @@ class ResourceIndexController extends Controller
             'readinessChecklist' => $this->labeledStatusItems($pages[$resource]['readinessChecklist'] ?? []),
             'activityTimeline' => $this->timelineItems($pages[$resource]['activityTimeline'] ?? []),
             'dependencyStatus' => $this->keyValueItems($pages[$resource]['dependencyStatus'] ?? []),
+            'legacyMapping' => $this->keyValueItems($pages[$resource]['legacyMapping'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
