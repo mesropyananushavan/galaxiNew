@@ -33,6 +33,12 @@
 - preserve filters, date ranges, status toggles
 - preserve dashboard as operational console
 - keep workflows fast, avoid excessive page hopping
+- keep the Phase 1 admin shell layered and config-driven while preview screens stand in for unavailable PHP-backed flows
+
+## Admin shell implementation note
+- The current Phase 1 resource-page shell is intentionally split into base, context, preview, workflow, and closing layers.
+- See `docs/admin-shell-layering.md` for the current structure and the bridge role of `config/admin-resource-blocks.php`.
+- When real Laravel reads and writes arrive, replace preview-only slices without collapsing that layered shell back into one large inline block list.
 
 ## Phase 1
 ### Goal

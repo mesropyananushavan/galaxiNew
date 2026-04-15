@@ -603,3 +603,10 @@
 
 ### Next step after layered shell controller note checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping its layered composition explicit at the config, controller, test, and docs levels.
+
+### Blueprint layering note checkpoint
+- Updated `docs/blueprint.md` so the broader migration blueprint now explicitly calls out the layered, config-driven admin shell as part of the current Phase 1 parity posture.
+- This keeps the shell decomposition visible not just in Phase 1 notes, but in the project-wide migration guidance.
+
+### Next step after blueprint layering note checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping the layered architecture explicit in blueprint, plan, code, tests, and docs.
