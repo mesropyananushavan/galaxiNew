@@ -34,6 +34,7 @@ class ResourceIndexController extends Controller
             'shiftHandoff' => $this->summaryListBlock($pages[$resource]['shiftHandoff'] ?? []),
             'openIssues' => $this->summaryListBlock($pages[$resource]['openIssues'] ?? []),
             'emptyState' => $this->emptyState($pages[$resource]['emptyState'] ?? []),
+            'form' => $this->form($pages[$resource]['form'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
@@ -174,6 +175,35 @@ class ResourceIndexController extends Controller
                 'actions' => $this->actions($emptyState['actions'] ?? []),
             ]
             : [];
+    }
+
+    private function form(mixed $form): array
+    {
+        if (! is_array($form) || ! is_string($form['title'] ?? null)) {
+            return [];
+        }
+
+        return [
+            'title' => $form['title'],
+            'actions' => $this->actions($form['actions'] ?? []),
+            'sections' => array_values(array_filter(array_map(function (mixed $section): ?array {
+                if (! is_array($section) || ! is_string($section['title'] ?? null) || ! is_array($section['fields'] ?? null)) {
+                    return null;
+                }
+
+                return [
+                    'title' => $section['title'],
+                    'help' => is_string($section['help'] ?? null) ? $section['help'] : null,
+                    'actions' => $this->actions($section['actions'] ?? []),
+                    'fields' => array_values(array_filter(
+                        $section['fields'],
+                        fn (mixed $field): bool => is_array($field)
+                            && is_string($field['label'] ?? null)
+                            && is_string($field['value'] ?? null)
+                    )),
+                ];
+            }, $form['sections'] ?? []))),
+        ];
     }
 
     private function resourceBlocks(array $defaults): array

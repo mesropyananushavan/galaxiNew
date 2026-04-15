@@ -789,3 +789,11 @@
 
 ### Next step after empty-state normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep collapsing repeated metadata normalization paths into small shared helpers while the shell stays preview-driven.
+
+### Form preview normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so management-form previews now require a valid string `title`, normalize top-level and section-level actions, and keep only sections and fields with valid string metadata.
+- Added feature coverage proving malformed form actions, sections, and fields are ignored instead of leaking invalid config into the shared form-preview partial.
+- This keeps the Phase 1 Galaxy management previews safer against config drift without changing valid UI output.
+
+### Next step after form preview normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep collapsing repeated metadata normalization paths into a smaller set of higher-level helpers while the shell stays preview-driven.

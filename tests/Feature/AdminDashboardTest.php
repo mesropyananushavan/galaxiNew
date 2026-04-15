@@ -1224,6 +1224,61 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_form_preview_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.roles-permissions.form', [
+            'title' => 'Create or edit role',
+            'actions' => [
+                ['label' => 'Publish role', 'tone' => 'primary'],
+                ['tone' => 'secondary'],
+                'invalid-action-entry',
+            ],
+            'sections' => [
+                [
+                    'title' => 'Role identity',
+                    'help' => 'Keep legacy naming visible while the matrix is still preview-only.',
+                    'actions' => [
+                        ['label' => 'Compare staff roles', 'tone' => 'secondary'],
+                        ['label' => ['invalid-label']],
+                    ],
+                    'fields' => [
+                        ['label' => 'Role name', 'value' => 'Shop Manager'],
+                        ['label' => 'Scope'],
+                        'invalid-field-entry',
+                    ],
+                ],
+                [
+                    'title' => 'Access policy',
+                    'fields' => [
+                        ['label' => 'Visibility', 'value' => 'Scoped to assigned shop'],
+                    ],
+                ],
+                'invalid-section-entry',
+            ],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions');
+
+        $response
+            ->assertOk()
+            ->assertSee('Create or edit role')
+            ->assertSee('Publish role')
+            ->assertSee('Role identity')
+            ->assertSee('Keep legacy naming visible while the matrix is still preview-only.')
+            ->assertSee('Compare staff roles')
+            ->assertSee('Role name')
+            ->assertSee('Shop Manager')
+            ->assertSee('Access policy')
+            ->assertSee('Visibility')
+            ->assertSee('Scoped to assigned shop')
+            ->assertDontSee('invalid-action-entry')
+            ->assertDontSee('invalid-field-entry')
+            ->assertDontSee('invalid-section-entry')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
