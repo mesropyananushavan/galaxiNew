@@ -1117,6 +1117,33 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_escalation_guide_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.escalationGuide', [
+            'summary' => 'Branch issues in the legacy admin usually moved through a short escalation path instead of ad hoc edits.',
+            'items' => [
+                'Route manager-assignment gaps to operations supervision first.',
+                ['invalid-item'],
+                42,
+                'Treat paused-branch recovery as an approval step, not a same-screen quick fix.',
+            ],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Escalation guide')
+            ->assertSee('Branch issues in the legacy admin usually moved through a short escalation path instead of ad hoc edits.')
+            ->assertSee('Route manager-assignment gaps to operations supervision first.')
+            ->assertSee('Treat paused-branch recovery as an approval step, not a same-screen quick fix.')
+            ->assertDontSee('invalid-item')
+            ->assertDontSee('42')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

@@ -757,3 +757,11 @@
 
 ### Next step after operator checklist normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the remaining shared summary-list and preview metadata contracts that still trust raw config.
+
+### Escalation guide normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so `escalationGuide` now renders only with a valid string `summary`, and its `items` list keeps only valid strings.
+- Added feature coverage proving malformed escalation-guide entries are ignored instead of leaking invalid config into the shared summary-list path.
+- This keeps the Phase 1 Galaxy shell safer against config drift without changing valid UI output.
+
+### Next step after escalation guide normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the remaining shared summary-list and preview metadata contracts that still trust raw config.
