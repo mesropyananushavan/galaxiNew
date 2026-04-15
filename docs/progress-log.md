@@ -661,3 +661,11 @@
 
 ### Next step after resource block entry normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the shared config-driven render path with small guardrails that reduce accidental shell breakage.
+
+### Page rationale entry normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so `pageRationale` now keeps only string entries before the shared rationale partial renders.
+- Added feature coverage proving malformed rationale entries are ignored while valid rollout guidance still appears on resource pages.
+- This keeps the config-driven Phase 1 shell safer against accidental config drift without changing valid Galaxy UI output.
+
+### Next step after page rationale entry normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the shared config-driven render path with small guardrails around the remaining defaults data.

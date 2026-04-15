@@ -47,9 +47,14 @@ class ResourceIndexController extends Controller
 
     private function pageRationale(array $defaults): array
     {
-        return is_array($defaults['pageRationale'] ?? null)
-            ? $defaults['pageRationale']
-            : [];
+        if (! is_array($defaults['pageRationale'] ?? null)) {
+            return [];
+        }
+
+        return array_values(array_filter(
+            $defaults['pageRationale'],
+            fn (mixed $item): bool => is_string($item)
+        ));
     }
 
     private function phase(array $defaults): int

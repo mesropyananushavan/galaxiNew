@@ -816,6 +816,32 @@ class AdminDashboardTest extends TestCase
         );
     }
 
+    public function test_resource_page_defaults_helpers_ignore_malformed_page_rationale_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-resource-page-defaults', [
+            'phase' => 1,
+            'resourceBlocks' => [],
+            'pageRationale' => [
+                'Keep parity-first rollout visible to operators.',
+                ['invalid-rationale-entry'],
+                42,
+                'Leave real Laravel forms for the first safe backend slice.',
+            ],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Why this page exists now')
+            ->assertSee('Keep parity-first rollout visible to operators.')
+            ->assertSee('Leave real Laravel forms for the first safe backend slice.')
+            ->assertDontSee('invalid-rationale-entry')
+            ->assertDontSee('42');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
