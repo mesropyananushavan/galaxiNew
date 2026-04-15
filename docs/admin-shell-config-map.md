@@ -1,0 +1,36 @@
+# Admin Shell Config Map
+
+This note complements `docs/admin-shell-layering.md`.
+It explains which config file owns each part of the Phase 1 Galaxy admin shell.
+
+## Entry points
+- `config/admin-pages.php`
+  - page-specific content and sample metadata
+  - table rows, metrics, actions, notices, form previews, parity notes
+- `config/admin-navigation.php`
+  - sidebar information architecture
+- `config/admin-resource-page-defaults.php`
+  - shared defaults passed into resource pages
+- `config/admin-resource-blocks.php`
+  - bridge that composes the layered shell stacks into one render sequence
+
+## Layered shell stacks
+- `config/admin-base-shell-blocks.php`
+  - base operational snapshot blocks
+- `config/admin-operational-context-blocks.php`
+  - parity and migration context blocks
+- `config/admin-preview-shell-blocks.php`
+  - preview-state CRUD shell blocks
+- `config/admin-operational-workflow-blocks.php`
+  - operator workflow and carry-over blocks
+- `config/admin-operational-closing-blocks.php`
+  - readiness, dependency, and implementation handoff blocks
+
+## Supporting config
+- `config/admin-page-rationale.php`
+  - shared rationale shown at the bottom of resource pages
+
+## Rule of thumb
+- If the change is page-specific, prefer `config/admin-pages.php`.
+- If the change affects many resource pages in the same structural layer, prefer one of the layered stack config files.
+- If the change affects shell order across all resource pages, update `config/admin-resource-blocks.php`.

@@ -610,3 +610,10 @@
 
 ### Next step after blueprint layering note checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping the layered architecture explicit in blueprint, plan, code, tests, and docs.
+
+### Admin shell config map checkpoint
+- Added `docs/admin-shell-config-map.md` to explain which config files own page content, layered shell stacks, and the bridge/default entry points.
+- This makes the growing Phase 1 admin shell easier to navigate from the config directory without reverse-engineering responsibilities from filenames alone.
+
+### Next step after admin shell config map checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping file ownership and layered composition explicit.
