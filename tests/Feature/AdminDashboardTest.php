@@ -1365,6 +1365,21 @@ class AdminDashboardTest extends TestCase
         $response->assertNotFound();
     }
 
+    public function test_resource_page_still_renders_after_normalizer_is_extracted(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions');
+
+        $response
+            ->assertOk()
+            ->assertSee('Create or edit role')
+            ->assertSee('Publish role')
+            ->assertSee('No shop-scoped roles configured yet')
+            ->assertSee('Preview notice')
+            ->assertSee('Migration readiness checklist');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
