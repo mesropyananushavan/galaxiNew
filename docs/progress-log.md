@@ -653,3 +653,11 @@
 
 ### Next step after resource shell defaults root fallback checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell with small runtime guardrails around the shared render path.
+
+### Resource block entry normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so malformed `resourceBlocks` entries are ignored unless they contain string `key`, `partial`, and `prop` fields.
+- Added feature coverage proving valid resource blocks still render in order even when the shared block list contains broken entries.
+- This keeps the layered Phase 1 Galaxy shell safer against config drift without changing the visible UI for valid configs.
+
+### Next step after resource block entry normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the shared config-driven render path with small guardrails that reduce accidental shell breakage.

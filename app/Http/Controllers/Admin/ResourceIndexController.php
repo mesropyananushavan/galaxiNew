@@ -32,9 +32,17 @@ class ResourceIndexController extends Controller
 
     private function resourceBlocks(array $defaults): array
     {
-        return is_array($defaults['resourceBlocks'] ?? null)
-            ? $defaults['resourceBlocks']
-            : [];
+        if (! is_array($defaults['resourceBlocks'] ?? null)) {
+            return [];
+        }
+
+        return array_values(array_filter(
+            $defaults['resourceBlocks'],
+            fn (mixed $block): bool => is_array($block)
+                && is_string($block['key'] ?? null)
+                && is_string($block['partial'] ?? null)
+                && is_string($block['prop'] ?? null)
+        ));
     }
 
     private function pageRationale(array $defaults): array

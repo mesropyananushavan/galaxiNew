@@ -786,6 +786,36 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Phase invalid-phase');
     }
 
+    public function test_resource_page_defaults_helpers_ignore_malformed_block_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-resource-page-defaults', [
+            'phase' => 1,
+            'resourceBlocks' => [
+                ['key' => 'legacyParityNotes', 'partial' => 'admin.partials.resource-legacy-parity-notes', 'prop' => 'legacyParityNotes'],
+                'invalid-block-entry',
+                ['key' => 'previewNotice', 'partial' => 'admin.partials.resource-preview-notice'],
+                ['key' => 'operationalGlossary', 'partial' => 'admin.partials.resource-operational-glossary', 'prop' => 'operationalGlossary'],
+            ],
+            'pageRationale' => [],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+        $content = $response->getContent();
+
+        $response
+            ->assertOk()
+            ->assertSee('Legacy parity notes')
+            ->assertSee('Operational glossary')
+            ->assertDontSee('Preview-only');
+
+        $this->assertTrue(
+            strpos($content, 'Legacy parity notes') < strpos($content, 'Operational glossary'),
+            'Expected malformed resource block entries to be ignored while valid block order still renders.'
+        );
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
