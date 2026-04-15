@@ -20,7 +20,7 @@ class ResourceIndexController extends Controller
         return view('admin.resource-index', $pages[$resource] + [
             'resourceKey' => $resource,
             'resourceBlocks' => $this->resourceBlocks($defaults),
-            'phase' => $defaults['phase'] ?? 1,
+            'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
         ]);
     }
@@ -37,5 +37,12 @@ class ResourceIndexController extends Controller
         return is_array($defaults['pageRationale'] ?? null)
             ? $defaults['pageRationale']
             : [];
+    }
+
+    private function phase(array $defaults): int
+    {
+        return is_int($defaults['phase'] ?? null)
+            ? $defaults['phase']
+            : 1;
     }
 }

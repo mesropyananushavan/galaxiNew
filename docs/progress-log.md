@@ -638,3 +638,10 @@
 
 ### Next step after resource shell defaults fallback coverage checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while protecting the runtime defaults path with small guardrail tests.
+
+### Resource shell phase fallback checkpoint
+- Normalized `phase` inside `App\Http\Controllers\Admin\ResourceIndexController` through a small helper instead of trusting raw defaults.
+- Added feature coverage proving malformed phase values fall back to `Phase 1` rather than leaking invalid config into the page shell.
+
+### Next step after resource shell phase fallback checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while hardening the remaining runtime defaults path with small guardrails.

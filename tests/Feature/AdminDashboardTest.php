@@ -752,6 +752,24 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Roll out shop status updates');
     }
 
+    public function test_resource_page_defaults_helper_falls_back_to_phase_one_when_phase_is_not_an_int(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-resource-page-defaults', [
+            'phase' => 'invalid-phase',
+            'resourceBlocks' => [],
+            'pageRationale' => [],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Phase 1')
+            ->assertDontSee('Phase invalid-phase');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
