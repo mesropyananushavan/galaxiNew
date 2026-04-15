@@ -568,3 +568,10 @@
 
 ### Next step after admin shell layering note checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping the layered architecture explicit and maintainable.
+
+### Phase 1 layering plan checkpoint
+- Updated `docs/phase-1-plan.md` so the main Phase 1 plan now points at the layered admin shell structure instead of leaving that architecture implicit.
+- This keeps the current config-driven shell decomposition visible from the core planning doc, not only from the newer implementation note.
+
+### Next step after Phase 1 layering plan checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping the layered architecture explicit in both planning and implementation docs.
