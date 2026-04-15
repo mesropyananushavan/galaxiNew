@@ -861,3 +861,11 @@
 
 ### Next step after normalizer unit coverage checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further shell refactors and save the next code changes for a real backend slice.
+
+### Injected normalizer checkpoint
+- Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
+- This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
+- Added feature coverage proving a resource page still renders through the injected normalizer path.
+
+### Next step after injected normalizer checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further shell refactors and save the next code changes for a real backend slice.

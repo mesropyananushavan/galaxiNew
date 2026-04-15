@@ -1380,6 +1380,20 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Migration readiness checklist');
     }
 
+    public function test_resource_page_still_renders_with_injected_normalizer_dependency(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shops placeholder')
+            ->assertSee('Operational index shape')
+            ->assertSee('Preview notice')
+            ->assertSee('First Laravel wiring step');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

@@ -8,6 +8,11 @@ use Illuminate\Contracts\View\View;
 
 class ResourceIndexController extends Controller
 {
+    public function __construct(
+        private readonly AdminResourcePageNormalizer $normalizer,
+    ) {
+    }
+
     public function __invoke(string $resource): View
     {
         $pages = config('admin-pages');
@@ -19,7 +24,7 @@ class ResourceIndexController extends Controller
 
         abort_unless($page !== null, 404);
 
-        $normalizedPage = app(AdminResourcePageNormalizer::class)->normalize($page);
+        $normalizedPage = $this->normalizer->normalize($page);
 
         return view('admin.resource-index', $page + $normalizedPage + [
             'resourceKey' => $resource,
@@ -42,7 +47,6 @@ class ResourceIndexController extends Controller
 
         return $pages[$resource];
     }
-
 
     private function resourceBlocks(array $defaults): array
     {
