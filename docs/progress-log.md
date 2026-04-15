@@ -582,3 +582,10 @@
 
 ### Next step after layered shell inline config note checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping its layered composition explicit in code, tests, and docs.
+
+### Layered defaults array bridge checkpoint
+- Added feature coverage proving the full `admin-resource-page-defaults` array can still bridge all five layered shell stacks through `admin-resource-blocks`, not only the nested `resourceBlocks` override path.
+- This protects the real default config shape from drifting away from the layered shell contract.
+
+### Next step after layered defaults array bridge checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while preserving both layered composition and the real defaults-array bridge.
