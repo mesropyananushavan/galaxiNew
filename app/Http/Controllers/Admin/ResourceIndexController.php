@@ -32,6 +32,7 @@ class ResourceIndexController extends Controller
             'operatorChecklist' => $this->summaryListBlock($pages[$resource]['operatorChecklist'] ?? []),
             'escalationGuide' => $this->summaryListBlock($pages[$resource]['escalationGuide'] ?? []),
             'shiftHandoff' => $this->summaryListBlock($pages[$resource]['shiftHandoff'] ?? []),
+            'openIssues' => $this->summaryListBlock($pages[$resource]['openIssues'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),

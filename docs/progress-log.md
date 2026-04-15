@@ -773,3 +773,11 @@
 
 ### Next step after shift handoff normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the remaining shared summary-list and preview metadata contracts that still trust raw config.
+
+### Open issues normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so `openIssues` now renders only with a valid string `summary`, and its `items` list keeps only valid strings.
+- Added feature coverage proving malformed open-issues entries are ignored instead of leaking invalid config into the shared summary-list path.
+- This keeps the Phase 1 Galaxy shell safer against config drift without changing valid UI output.
+
+### Next step after open issues normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or start collapsing the repeated normalization helpers into slightly higher-level shared structures if that stays low-risk.

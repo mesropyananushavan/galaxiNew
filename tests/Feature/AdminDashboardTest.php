@@ -1171,6 +1171,33 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_open_issues_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.openIssues', [
+            'summary' => 'The old Galaxy branch screen usually kept a short list of unresolved branch items mentally attached to the shift.',
+            'items' => [
+                'Airport Kiosk remains paused pending recovery approval.',
+                ['invalid-item'],
+                42,
+                'Cross-shop visibility disagreements must remain open until scope is verified.',
+            ],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Open issues to carry')
+            ->assertSee('The old Galaxy branch screen usually kept a short list of unresolved branch items mentally attached to the shift.')
+            ->assertSee('Airport Kiosk remains paused pending recovery approval.')
+            ->assertSee('Cross-shop visibility disagreements must remain open until scope is verified.')
+            ->assertDontSee('invalid-item')
+            ->assertDontSee('42')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
