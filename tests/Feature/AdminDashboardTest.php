@@ -1354,6 +1354,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('First Laravel wiring step');
     }
 
+    public function test_resource_page_returns_not_found_when_page_definition_is_not_an_array(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops', 'invalid-page-definition');
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response->assertNotFound();
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

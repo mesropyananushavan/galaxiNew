@@ -837,3 +837,11 @@
 
 ### Next step after normalized page assembly checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further controller cleanup and only touch this path again when a new real backend slice needs it.
+
+### Resource page definition guard checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so malformed per-page entries inside `admin-pages` now fail closed with a 404 instead of reaching typed helper paths as invalid data.
+- Added feature coverage proving a broken resource definition is treated as not found instead of triggering a runtime type error.
+- This closes one more small runtime hole in the config-driven Phase 1 shell without changing valid Galaxy UI output.
+
+### Next step after resource page definition guard checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further shell cleanup and save the next controller edits for a real backend slice.
