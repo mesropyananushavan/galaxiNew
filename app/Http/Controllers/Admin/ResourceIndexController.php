@@ -17,7 +17,9 @@ class ResourceIndexController extends Controller
 
         abort_unless(is_array($pages) && array_key_exists($resource, $pages), 404);
 
-        return view('admin.resource-index', $pages[$resource] + [
+        $summaryListBlocks = $this->summaryListBlocks($pages[$resource]);
+
+        return view('admin.resource-index', $pages[$resource] + $summaryListBlocks + [
             'resourceKey' => $resource,
             'actions' => $this->actions($pages[$resource]['actions'] ?? []),
             'metrics' => $this->metrics($pages[$resource]['metrics'] ?? []),
@@ -27,12 +29,6 @@ class ResourceIndexController extends Controller
             'activityTimeline' => $this->timelineItems($pages[$resource]['activityTimeline'] ?? []),
             'dependencyStatus' => $this->keyValueItems($pages[$resource]['dependencyStatus'] ?? []),
             'legacyMapping' => $this->keyValueItems($pages[$resource]['legacyMapping'] ?? []),
-            'implementationHandoff' => $this->summaryListBlock($pages[$resource]['implementationHandoff'] ?? [], 'steps'),
-            'operationalNextSlice' => $this->summaryListBlock($pages[$resource]['operationalNextSlice'] ?? [], 'steps'),
-            'operatorChecklist' => $this->summaryListBlock($pages[$resource]['operatorChecklist'] ?? []),
-            'escalationGuide' => $this->summaryListBlock($pages[$resource]['escalationGuide'] ?? []),
-            'shiftHandoff' => $this->summaryListBlock($pages[$resource]['shiftHandoff'] ?? []),
-            'openIssues' => $this->summaryListBlock($pages[$resource]['openIssues'] ?? []),
             'emptyState' => $this->emptyState($pages[$resource]['emptyState'] ?? []),
             'form' => $this->form($pages[$resource]['form'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
@@ -146,6 +142,18 @@ class ResourceIndexController extends Controller
                 && is_string($item['label'] ?? null)
                 && is_string($item['value'] ?? null)
         ));
+    }
+
+    private function summaryListBlocks(array $page): array
+    {
+        return [
+            'implementationHandoff' => $this->summaryListBlock($page['implementationHandoff'] ?? [], 'steps'),
+            'operationalNextSlice' => $this->summaryListBlock($page['operationalNextSlice'] ?? [], 'steps'),
+            'operatorChecklist' => $this->summaryListBlock($page['operatorChecklist'] ?? []),
+            'escalationGuide' => $this->summaryListBlock($page['escalationGuide'] ?? []),
+            'shiftHandoff' => $this->summaryListBlock($page['shiftHandoff'] ?? []),
+            'openIssues' => $this->summaryListBlock($page['openIssues'] ?? []),
+        ];
     }
 
     private function summaryListBlock(mixed $block, string $itemsKey = 'items'): array

@@ -797,3 +797,11 @@
 
 ### Next step after form preview normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep collapsing repeated metadata normalization paths into a smaller set of higher-level helpers while the shell stays preview-driven.
+
+### Grouped summary-list lookup checkpoint
+- Consolidated the repeated summary-list block lookups in `App\Http\Controllers\Admin\ResourceIndexController` into one grouped helper.
+- Added feature coverage proving the shared operational and handoff summary cards still render after the controller cleanup.
+- This is a small structural cleanup step that keeps the Phase 1 Galaxy shell behavior unchanged while making the render path easier to maintain.
+
+### Next step after grouped summary-list lookup checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep consolidating repeated metadata normalization paths where that lowers maintenance risk without changing the preview shell.

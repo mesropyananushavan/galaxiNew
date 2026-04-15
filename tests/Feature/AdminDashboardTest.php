@@ -1279,6 +1279,22 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_summary_list_blocks_still_render_after_grouped_controller_lookup(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Operational next slice')
+            ->assertSee('Operator checklist')
+            ->assertSee('Escalation guide')
+            ->assertSee('Shift handoff notes')
+            ->assertSee('Open issues to carry')
+            ->assertSee('First Laravel wiring step');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
