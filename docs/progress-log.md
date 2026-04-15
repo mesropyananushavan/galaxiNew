@@ -554,3 +554,10 @@
 
 ### Next step after full layered shell composition checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while preserving end-to-end layered composition.
+
+### Layered defaults bridge checkpoint
+- Added feature coverage proving `admin-resource-page-defaults.resourceBlocks` can still consume the full five-layer shell through `admin-resource-blocks` as the bridge config.
+- This protects the newer layered shell from drifting into test-only manual composition that bypasses the real default config path.
+
+### Next step after layered defaults bridge checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while preserving both layered composition and the real default config bridge.
