@@ -547,3 +547,10 @@
 
 ### Next step after dedicated base shell config checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell so all five composition layers remain easy to evolve independently.
+
+### Full layered shell composition checkpoint
+- Added feature coverage proving the base, context, preview, workflow, and closing shell layers can be composed together in sequence on a resource page.
+- This protects the newer five-layer Galaxy shell from regressing into loosely-related partial tests only.
+
+### Next step after full layered shell composition checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while preserving end-to-end layered composition.

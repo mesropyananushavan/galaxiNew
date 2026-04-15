@@ -606,6 +606,46 @@ class AdminDashboardTest extends TestCase
         );
     }
 
+    public function test_resource_page_shell_can_compose_all_five_shell_layers_together(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-base-shell-blocks', [
+            ['key' => 'metrics', 'partial' => 'admin.partials.resource-summary-metrics', 'prop' => 'metrics'],
+        ]);
+        Config::set('admin-operational-context-blocks', [
+            ['key' => 'activityTimeline', 'partial' => 'admin.partials.resource-activity-timeline', 'prop' => 'activityTimeline'],
+        ]);
+        Config::set('admin-preview-shell-blocks', [
+            ['key' => 'notice', 'partial' => 'admin.partials.resource-preview-notice', 'prop' => 'notice'],
+        ]);
+        Config::set('admin-operational-workflow-blocks', [
+            ['key' => 'openIssues', 'partial' => 'admin.partials.resource-open-issues', 'prop' => 'openIssues'],
+        ]);
+        Config::set('admin-operational-closing-blocks', [
+            ['key' => 'implementationHandoff', 'partial' => 'admin.partials.resource-implementation-handoff', 'prop' => 'implementationHandoff'],
+        ]);
+        Config::set('admin-resource-page-defaults.resourceBlocks', array_merge(
+            config('admin-base-shell-blocks'),
+            config('admin-operational-context-blocks'),
+            config('admin-preview-shell-blocks'),
+            config('admin-operational-workflow-blocks'),
+            config('admin-operational-closing-blocks'),
+        ));
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+        $content = $response->getContent();
+
+        $this->assertTrue(
+            strpos($content, 'Active shops')
+                < strpos($content, 'Recent activity preview')
+                && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
+                && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
+                && strpos($content, 'Open issues to carry') < strpos($content, 'First Laravel wiring step'),
+            'Expected base, context, preview, workflow, and closing shell layers to compose in sequence.'
+        );
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
