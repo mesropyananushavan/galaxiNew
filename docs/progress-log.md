@@ -575,3 +575,10 @@
 
 ### Next step after Phase 1 layering plan checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping the layered architecture explicit in both planning and implementation docs.
+
+### Layered shell inline config note checkpoint
+- Added inline bridge/default notes in `config/admin-resource-blocks.php` and `config/admin-resource-page-defaults.php` so the layered shell architecture is discoverable directly from the config entry points.
+- This reduces the chance of future Phase 1 edits bypassing the layered composition model just because the author did not open the docs first.
+
+### Next step after layered shell inline config note checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping its layered composition explicit in code, tests, and docs.
