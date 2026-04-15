@@ -937,6 +937,31 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_readiness_checklist_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.readinessChecklist', [
+            ['status' => 'ready', 'label' => 'Preview shop rows and branch actions defined'],
+            'invalid-readiness-entry',
+            ['label' => 'Missing status'],
+            ['status' => 'pending', 'label' => 42],
+            ['status' => 'pending', 'label' => 'Real shop queries and branch mutations still need PHP-backed Laravel wiring'],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Migration readiness checklist')
+            ->assertSee('Preview shop rows and branch actions defined')
+            ->assertSee('Real shop queries and branch mutations still need PHP-backed Laravel wiring')
+            ->assertDontSee('invalid-readiness-entry')
+            ->assertDontSee('Missing status')
+            ->assertDontSee('42')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

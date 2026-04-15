@@ -23,6 +23,7 @@ class ResourceIndexController extends Controller
             'metrics' => $this->metrics($pages[$resource]['metrics'] ?? []),
             'table' => $this->table($pages[$resource]['table'] ?? []),
             'notice' => $this->notice($pages[$resource]['notice'] ?? []),
+            'readinessChecklist' => $this->labeledStatusItems($pages[$resource]['readinessChecklist'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
@@ -91,6 +92,20 @@ class ResourceIndexController extends Controller
                 'description' => $notice['description'],
             ]
             : [];
+    }
+
+    private function labeledStatusItems(mixed $items): array
+    {
+        if (! is_array($items)) {
+            return [];
+        }
+
+        return array_values(array_filter(
+            $items,
+            fn (mixed $item): bool => is_array($item)
+                && is_string($item['status'] ?? null)
+                && is_string($item['label'] ?? null)
+        ));
     }
 
     private function resourceBlocks(array $defaults): array

@@ -701,3 +701,11 @@
 
 ### Next step after preview notice normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the remaining shared preview metadata contracts that still trust raw config.
+
+### Readiness checklist normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so readiness checklist entries now render only when both `status` and `label` are valid strings.
+- Added feature coverage proving malformed readiness entries are ignored instead of leaking invalid config into the shared readiness-checklist partial.
+- This keeps the Phase 1 Galaxy shell safer against config drift without changing valid UI output.
+
+### Next step after readiness checklist normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the remaining shared preview metadata contracts that still trust raw config.
