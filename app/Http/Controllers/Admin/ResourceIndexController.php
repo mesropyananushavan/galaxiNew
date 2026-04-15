@@ -17,17 +17,14 @@ class ResourceIndexController extends Controller
 
         abort_unless(is_array($pages) && array_key_exists($resource, $pages), 404);
 
-        $previewContextBlocks = $this->previewContextBlocks($pages[$resource]);
-        $summaryListBlocks = $this->summaryListBlocks($pages[$resource]);
-        $keyValueBlocks = $this->keyValueBlocks($pages[$resource]);
+        $page = $pages[$resource];
+        $primaryPageBlocks = $this->primaryPageBlocks($page);
+        $previewContextBlocks = $this->previewContextBlocks($page);
+        $summaryListBlocks = $this->summaryListBlocks($page);
+        $keyValueBlocks = $this->keyValueBlocks($page);
 
-        return view('admin.resource-index', $pages[$resource] + $previewContextBlocks + $summaryListBlocks + $keyValueBlocks + [
+        return view('admin.resource-index', $page + $primaryPageBlocks + $previewContextBlocks + $summaryListBlocks + $keyValueBlocks + [
             'resourceKey' => $resource,
-            'actions' => $this->actions($pages[$resource]['actions'] ?? []),
-            'metrics' => $this->metrics($pages[$resource]['metrics'] ?? []),
-            'table' => $this->table($pages[$resource]['table'] ?? []),
-            'emptyState' => $this->emptyState($pages[$resource]['emptyState'] ?? []),
-            'form' => $this->form($pages[$resource]['form'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
@@ -139,6 +136,17 @@ class ResourceIndexController extends Controller
                 && is_string($item['label'] ?? null)
                 && is_string($item['value'] ?? null)
         ));
+    }
+
+    private function primaryPageBlocks(array $page): array
+    {
+        return [
+            'actions' => $this->actions($page['actions'] ?? []),
+            'metrics' => $this->metrics($page['metrics'] ?? []),
+            'table' => $this->table($page['table'] ?? []),
+            'emptyState' => $this->emptyState($page['emptyState'] ?? []),
+            'form' => $this->form($page['form'] ?? []),
+        ];
     }
 
     private function previewContextBlocks(array $page): array

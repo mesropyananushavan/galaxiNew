@@ -1325,6 +1325,20 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Central Shop scope reviewed');
     }
 
+    public function test_primary_page_blocks_still_render_after_grouped_controller_lookup(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions');
+
+        $response
+            ->assertOk()
+            ->assertSee('Create or edit role')
+            ->assertSee('Publish role')
+            ->assertSee('No shop-scoped roles configured yet')
+            ->assertSee('Create first role');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();
