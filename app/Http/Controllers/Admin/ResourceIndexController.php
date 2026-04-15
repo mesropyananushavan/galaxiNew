@@ -10,6 +10,9 @@ class ResourceIndexController extends Controller
     public function __invoke(string $resource): View
     {
         $pages = config('admin-pages');
+
+        // Shared shell defaults stay config-driven so the layered resource-page
+        // composition can evolve without growing controller conditionals.
         $defaults = config('admin-resource-page-defaults', []);
 
         abort_unless(is_array($pages) && array_key_exists($resource, $pages), 404);

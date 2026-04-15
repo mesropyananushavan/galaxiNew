@@ -596,3 +596,10 @@
 
 ### Next step after layered stack inline description checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping each layer's purpose explicit in code, tests, and docs.
+
+### Layered shell controller note checkpoint
+- Added an inline note in `App\Http\Controllers\Admin\ResourceIndexController` explaining why shell defaults stay config-driven instead of moving layered composition into controller conditionals.
+- This makes the config-first Phase 1 shell contract visible in the controller entry point that actually renders resource pages.
+
+### Next step after layered shell controller note checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping its layered composition explicit at the config, controller, test, and docs levels.
