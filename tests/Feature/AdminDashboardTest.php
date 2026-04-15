@@ -1090,6 +1090,33 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_operator_checklist_ignores_malformed_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.operatorChecklist', [
+            'summary' => 'Daily branch oversight in the old Galaxy workspace was built around quick visual checks before anyone opened a detail screen.',
+            'items' => [
+                'Review paused branches before shift handoff.',
+                ['invalid-item'],
+                42,
+                'Confirm each active shop still has an assigned manager.',
+            ],
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Operator checklist')
+            ->assertSee('Daily branch oversight in the old Galaxy workspace was built around quick visual checks before anyone opened a detail screen.')
+            ->assertSee('Review paused branches before shift handoff.')
+            ->assertSee('Confirm each active shop still has an assigned manager.')
+            ->assertDontSee('invalid-item')
+            ->assertDontSee('42')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

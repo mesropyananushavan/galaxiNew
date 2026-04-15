@@ -29,6 +29,7 @@ class ResourceIndexController extends Controller
             'legacyMapping' => $this->keyValueItems($pages[$resource]['legacyMapping'] ?? []),
             'implementationHandoff' => $this->summaryListBlock($pages[$resource]['implementationHandoff'] ?? [], 'steps'),
             'operationalNextSlice' => $this->summaryListBlock($pages[$resource]['operationalNextSlice'] ?? [], 'steps'),
+            'operatorChecklist' => $this->summaryListBlock($pages[$resource]['operatorChecklist'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
