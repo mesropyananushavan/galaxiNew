@@ -752,6 +752,22 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Roll out shop status updates');
     }
 
+    public function test_resource_page_defaults_root_falls_back_when_shell_defaults_config_is_not_an_array(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-resource-page-defaults', 'invalid-defaults-root');
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shop operations')
+            ->assertSee('Phase 1')
+            ->assertDontSee('Recent activity preview')
+            ->assertDontSee('Phase 1 keeps these Galaxy resource pages config-driven');
+    }
+
     public function test_resource_page_defaults_helper_falls_back_to_phase_one_when_phase_is_not_an_int(): void
     {
         $user = User::factory()->create();

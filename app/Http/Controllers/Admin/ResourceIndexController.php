@@ -13,7 +13,7 @@ class ResourceIndexController extends Controller
 
         // Shared shell defaults stay config-driven so the layered resource-page
         // composition can evolve without growing controller conditionals.
-        $defaults = config('admin-resource-page-defaults', []);
+        $defaults = $this->defaults(config('admin-resource-page-defaults', []));
 
         abort_unless(is_array($pages) && array_key_exists($resource, $pages), 404);
 
@@ -23,6 +23,11 @@ class ResourceIndexController extends Controller
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
         ]);
+    }
+
+    private function defaults(mixed $defaults): array
+    {
+        return is_array($defaults) ? $defaults : [];
     }
 
     private function resourceBlocks(array $defaults): array
