@@ -539,3 +539,11 @@
 
 ### Next step after dedicated preview shell config checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell so its context, preview, workflow, and closing stacks remain easy to evolve independently.
+
+### Dedicated base shell config checkpoint
+- Extracted the base shell stack, summary metrics and operational table, into `config/admin-base-shell-blocks.php`.
+- Updated the main resource block config so resource pages now compose separate base, context, preview, workflow, and closing stacks.
+- Added feature coverage proving the dedicated base shell stack stays composable inside resource page defaults.
+
+### Next step after dedicated base shell config checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell so all five composition layers remain easy to evolve independently.
