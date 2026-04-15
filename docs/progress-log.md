@@ -617,3 +617,10 @@
 
 ### Next step after admin shell config map checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping file ownership and layered composition explicit.
+
+### Admin shell doc navigation checkpoint
+- Added cross-links and quick-start guidance to `docs/admin-shell-layering.md` and `docs/admin-shell-config-map.md`.
+- This makes the newer shell docs easier to use as a navigation set instead of isolated notes.
+
+### Next step after admin shell doc navigation checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the config-driven Galaxy shell while keeping architecture navigation clear across blueprint, plan, and shell docs.

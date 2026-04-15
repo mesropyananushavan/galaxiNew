@@ -1,5 +1,10 @@
 # Admin Shell Layering
 
+Related docs:
+- `docs/phase-1-plan.md`
+- `docs/blueprint.md`
+- `docs/admin-shell-config-map.md`
+
 ## Why this exists
 Phase 1 keeps the Galaxy admin shell moving toward old back-office parity while PHP execution is unavailable.
 To avoid growing one long fragile block list, the resource page shell is now split into composable layers.
@@ -41,3 +46,8 @@ To avoid growing one long fragile block list, the resource page shell is now spl
 
 ## Expected next move
 When PHP becomes available, replace one preview/config-backed section with the first real Laravel read or form flow without undoing the layered shell structure.
+
+## Where to start when editing
+- Start with `docs/admin-shell-config-map.md` if you are not sure which config file owns the change.
+- Start with `config/admin-pages.php` for page-specific content edits.
+- Start with the layered stack configs for cross-page shell structure edits.

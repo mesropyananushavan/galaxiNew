@@ -1,5 +1,10 @@
 # Admin Shell Config Map
 
+Related docs:
+- `docs/admin-shell-layering.md`
+- `docs/phase-1-plan.md`
+- `docs/blueprint.md`
+
 This note complements `docs/admin-shell-layering.md`.
 It explains which config file owns each part of the Phase 1 Galaxy admin shell.
 
@@ -34,3 +39,9 @@ It explains which config file owns each part of the Phase 1 Galaxy admin shell.
 - If the change is page-specific, prefer `config/admin-pages.php`.
 - If the change affects many resource pages in the same structural layer, prefer one of the layered stack config files.
 - If the change affects shell order across all resource pages, update `config/admin-resource-blocks.php`.
+
+## Suggested reading order
+1. Read `docs/blueprint.md` for overall migration posture.
+2. Read `docs/phase-1-plan.md` for the current Phase 1 target.
+3. Read `docs/admin-shell-layering.md` for shell structure.
+4. Use this file to pick the exact config entry point to edit.
