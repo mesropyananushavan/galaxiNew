@@ -919,6 +919,24 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Array');
     }
 
+    public function test_preview_notice_ignores_malformed_notice_entries(): void
+    {
+        $user = User::factory()->create();
+
+        Config::set('admin-pages.shops.notice', [
+            'title' => ['invalid-title'],
+            'description' => 'Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Laravel queries or handlers yet.',
+        ]);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertDontSee('Preview notice')
+            ->assertDontSee('Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Laravel queries or handlers yet.')
+            ->assertDontSee('Array');
+    }
+
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
     {
         $user = User::factory()->create();

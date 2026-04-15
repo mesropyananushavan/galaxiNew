@@ -22,6 +22,7 @@ class ResourceIndexController extends Controller
             'actions' => $this->actions($pages[$resource]['actions'] ?? []),
             'metrics' => $this->metrics($pages[$resource]['metrics'] ?? []),
             'table' => $this->table($pages[$resource]['table'] ?? []),
+            'notice' => $this->notice($pages[$resource]['notice'] ?? []),
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),
             'pageRationale' => $this->pageRationale($defaults),
@@ -76,6 +77,20 @@ class ResourceIndexController extends Controller
                     && array_values(array_filter($row, fn (mixed $cell): bool => is_string($cell))) === array_values($row)
             )),
         ];
+    }
+
+    private function notice(mixed $notice): array
+    {
+        if (! is_array($notice)) {
+            return [];
+        }
+
+        return is_string($notice['title'] ?? null) && is_string($notice['description'] ?? null)
+            ? [
+                'title' => $notice['title'],
+                'description' => $notice['description'],
+            ]
+            : [];
     }
 
     private function resourceBlocks(array $defaults): array

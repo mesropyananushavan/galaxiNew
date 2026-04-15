@@ -693,3 +693,11 @@
 
 ### Next step after operational table normalization checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening shared resource-page metadata paths around the remaining preview contracts that still trust raw config.
+
+### Preview notice normalization checkpoint
+- Hardened `App\Http\Controllers\Admin\ResourceIndexController` so preview notices now render only when both `title` and `description` are valid strings.
+- Added feature coverage proving malformed notice metadata is ignored instead of leaking invalid config into the shared preview-notice partial.
+- This keeps the Phase 1 Galaxy shell safer against config drift without changing valid UI output.
+
+### Next step after preview notice normalization checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or keep tightening the remaining shared preview metadata contracts that still trust raw config.
