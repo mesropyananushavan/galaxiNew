@@ -1661,6 +1661,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('href="#live-form-name"', false)
+            ->assertSee('href="#live-form-points_rate"', false)
             ->assertSee('id="live-form-name-error"', false)
             ->assertSee('role="alert"', false)
             ->assertSee('aria-describedby="live-form-name-help live-form-name-error"', false)
