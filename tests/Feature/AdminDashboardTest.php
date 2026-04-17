@@ -1778,4 +1778,75 @@ class AdminDashboardTest extends TestCase
                 'is_active' => 'The status field must be Active or Draft.',
             ]);
     }
+
+    public function test_authenticated_user_can_update_card_type_from_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+            'name' => 'Galaxy Prime Plus',
+            'slug' => 'Galaxy Prime Plus',
+            'points_rate' => '2.25',
+            'is_active' => 'false',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHas('status', 'Card type "Galaxy Prime Plus" was updated.');
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'name' => 'Galaxy Prime Plus',
+            'slug' => 'galaxy-prime-plus',
+            'points_rate' => '2.25',
+            'is_active' => false,
+        ]);
+    }
+
+    public function test_card_type_update_allows_reusing_current_slug_but_rejects_other_existing_slug(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $otherCardType = CardType::create([
+            'name' => 'Galaxy Silver',
+            'slug' => 'galaxy-silver',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $okResponse = $this->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+            'name' => 'Galaxy Prime Updated',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.75',
+            'is_active' => '1',
+        ]);
+
+        $okResponse
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHas('status', 'Card type "Galaxy Prime Updated" was updated.');
+
+        $errorResponse = $this->from(route('admin.card-types.index'))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+            'name' => 'Galaxy Prime Updated Again',
+            'slug' => $otherCardType->slug,
+            'points_rate' => '1.90',
+            'is_active' => '1',
+        ]);
+
+        $errorResponse
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'This card type slug is already in use.',
+            ]);
+    }
 }

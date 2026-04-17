@@ -1134,6 +1134,14 @@
 ### Next step after card type live form cancel-action checkpoint
 - Add edit/update handling on top of the live `card-types` slice, using the now method-aware and cancel-aware live-form foundation when PHP execution is available.
 
+### Card type update route checkpoint
+- Added the first real PATCH update backend path for `card-types` with a dedicated `UpdateCardTypeRequest` and `CardTypeUpdateController`.
+- Reused the existing request normalization patterns for slug and status input while making slug uniqueness ignore the currently edited record.
+- Added feature coverage for successful update flow plus the key uniqueness edge case of keeping the current slug versus colliding with another card type.
+
+### Next step after card type update route checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
