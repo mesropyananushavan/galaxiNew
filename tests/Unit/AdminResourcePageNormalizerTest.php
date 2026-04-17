@@ -106,6 +106,7 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertSame('Create card type in Laravel', $normalized['liveForm']['title']);
         $this->assertSame('POST', $normalized['liveForm']['method']);
         $this->assertSame('/admin/card-types', $normalized['liveForm']['action']);
+        $this->assertNull($normalized['liveForm']['cancelAction']);
         $this->assertSame('Create card type', $normalized['liveForm']['submitLabel']);
         $this->assertCount(1, $normalized['liveForm']['fields']);
     }
@@ -169,6 +170,31 @@ class AdminResourcePageNormalizerTest extends TestCase
         ]);
 
         $this->assertSame('POST', $normalized['liveForm']['method']);
+    }
+
+    public function test_normalize_live_form_keeps_valid_cancel_action(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'liveForm' => [
+                'title' => 'Create card type in Laravel',
+                'action' => '/admin/card-types',
+                'submitLabel' => 'Create card type',
+                'cancelAction' => [
+                    'label' => 'Back to catalog',
+                    'href' => '/admin/card-types',
+                ],
+                'fields' => [
+                    ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold'],
+                ],
+            ],
+        ]);
+
+        $this->assertSame([
+            'label' => 'Back to catalog',
+            'href' => '/admin/card-types',
+        ], $normalized['liveForm']['cancelAction']);
     }
 
     public function test_normalize_live_form_keeps_valid_select_options_and_ignores_malformed_entries(): void

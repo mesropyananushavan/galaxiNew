@@ -1620,7 +1620,9 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('method="POST"', false)
-            ->assertSee('action="/admin/card-types"', false);
+            ->assertSee('action="/admin/card-types"', false)
+            ->assertSee('href="/admin/card-types"', false)
+            ->assertSee('Back to catalog');
     }
 
     public function test_card_types_page_resolves_live_form_action_route_parameters(): void
@@ -1636,6 +1638,12 @@ class AdminDashboardTest extends TestCase
             'cardType' => 'gold',
             'ignored' => ['bad'],
         ]);
+        Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.draft-preview');
+        Config::set('admin-pages.card-types.liveForm.cancelRouteParameters', [
+            'cardType' => 'silver',
+            'ignored' => ['bad'],
+        ]);
+        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Return to draft preview');
 
         $user = User::factory()->create();
 
@@ -1643,7 +1651,9 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('action="/admin/card-types/gold/draft-preview"', false);
+            ->assertSee('action="/admin/card-types/gold/draft-preview"', false)
+            ->assertSee('href="/admin/card-types/silver/draft-preview"', false)
+            ->assertSee('Return to draft preview');
     }
 
     public function test_card_types_page_renders_live_form_field_attributes(): void

@@ -112,8 +112,12 @@
             @endforeach
         </div>
 
-        <div>
+        <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
             <button type="submit" class="button button-primary">{{ $liveForm['submitLabel'] }}</button>
+
+            @if (! empty($liveForm['cancelAction']))
+                <a href="{{ $liveForm['cancelAction']['href'] }}" class="button button-secondary">{{ $liveForm['cancelAction']['label'] }}</a>
+            @endif
         </div>
     </form>
 </section>

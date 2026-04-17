@@ -232,6 +232,7 @@ class AdminResourcePageNormalizer
             'method' => $this->liveFormMethod($form['method'] ?? null),
             'action' => $form['action'],
             'submitLabel' => $form['submitLabel'],
+            'cancelAction' => $this->liveFormCancelAction($form['cancelAction'] ?? null),
             'fields' => array_values(array_filter(array_map(function (mixed $field): ?array {
                 if (! is_array($field)
                     || ! is_string($field['name'] ?? null)
@@ -268,6 +269,21 @@ class AdminResourcePageNormalizer
         return in_array($method, ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], true)
             ? $method
             : 'POST';
+    }
+
+    private function liveFormCancelAction(mixed $action): ?array
+    {
+        if (! is_array($action)
+            || ! is_string($action['label'] ?? null)
+            || ! is_string($action['href'] ?? null)
+        ) {
+            return null;
+        }
+
+        return [
+            'label' => $action['label'],
+            'href' => $action['href'],
+        ];
     }
 
     private function liveFormOptions(mixed $options): array

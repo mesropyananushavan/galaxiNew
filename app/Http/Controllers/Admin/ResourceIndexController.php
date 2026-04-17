@@ -47,12 +47,25 @@ class ResourceIndexController extends Controller
 
         $page = $pages[$resource];
 
-        if (is_array($page['liveForm'] ?? null) && is_string($page['liveForm']['actionRoute'] ?? null)) {
-            $page['liveForm']['action'] = route(
-                $page['liveForm']['actionRoute'],
-                $this->liveFormActionParameters($page['liveForm']['actionRouteParameters'] ?? []),
-                absolute: false,
-            );
+        if (is_array($page['liveForm'] ?? null)) {
+            if (is_string($page['liveForm']['actionRoute'] ?? null)) {
+                $page['liveForm']['action'] = route(
+                    $page['liveForm']['actionRoute'],
+                    $this->liveFormActionParameters($page['liveForm']['actionRouteParameters'] ?? []),
+                    absolute: false,
+                );
+            }
+
+            if (is_string($page['liveForm']['cancelRoute'] ?? null)) {
+                $page['liveForm']['cancelAction'] = [
+                    'label' => is_string($page['liveForm']['cancelLabel'] ?? null) ? $page['liveForm']['cancelLabel'] : 'Back',
+                    'href' => route(
+                        $page['liveForm']['cancelRoute'],
+                        $this->liveFormActionParameters($page['liveForm']['cancelRouteParameters'] ?? []),
+                        absolute: false,
+                    ),
+                ];
+            }
         }
 
         return $page;

@@ -1126,6 +1126,14 @@
 ### Next step after card type live form route-parameter checkpoint
 - Add edit/update handling on top of the live `card-types` slice, using the new route-parameter-aware live-form foundation when PHP execution is available.
 
+### Card type live form cancel-action checkpoint
+- Extended the shared live form layer so config can now provide an optional secondary cancel action instead of forcing every form to be submit-only.
+- Wired the current `card-types` create form to render a route-resolved `Back to catalog` action and added coverage for both direct cancel rendering and parameterized cancel routes.
+- This is a small but practical bridge toward edit/update flows, where operators usually need an explicit non-submit way back out.
+
+### Next step after card type live form cancel-action checkpoint
+- Add edit/update handling on top of the live `card-types` slice, using the now method-aware and cancel-aware live-form foundation when PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

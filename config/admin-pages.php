@@ -477,6 +477,8 @@ return [
             'description' => 'This is the first real write-oriented Phase 1 form path. Keep it minimal and parity-first while preview controls still cover the richer future workflow.',
             'method' => 'POST',
             'actionRoute' => 'admin.card-types.store',
+            'cancelRoute' => 'admin.card-types.index',
+            'cancelLabel' => 'Back to catalog',
             'submitLabel' => 'Create card type',
             'fields' => [
                 ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold', 'required' => true, 'autofocus' => true, 'placeholder' => 'Galaxy Prime', 'help' => 'Use the operator-facing tier name from the Galaxy catalog.', 'attributes' => ['autocomplete' => 'organization-title']],
