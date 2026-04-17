@@ -982,6 +982,14 @@
 ### Next step after card type model casting checkpoint
 - Keep building on the live `card-types` slice with update/edit handling, or repeat the same minimal live-write pattern for one more core Galaxy entity once PHP execution is available.
 
+### Card type request normalization checkpoint
+- Added request-level normalization for the live `card-types` create flow so free-form slug input is collapsed to a Laravel-safe slug before validation and boolean-like active flags are normalized before persistence.
+- Extended feature coverage to prove the create path now accepts a human-entered slug phrase plus `true`-style boolean input, while invalid payload handling still blocks bad writes.
+- This keeps the first real backend-backed Phase 1 flow friendlier to operators and reduces avoidable validation friction.
+
+### Next step after card type request normalization checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the same small live-write pattern for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

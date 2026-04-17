@@ -1604,8 +1604,31 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertRedirect(route('admin.card-types.index'))
-            ->assertSessionHasErrors(['name', 'slug', 'points_rate', 'is_active']);
+            ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
 
         $this->assertDatabaseCount('card_types', 0);
+    }
+
+    public function test_card_type_live_admin_form_normalizes_slug_and_boolean_input_before_store(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => 'Galaxy Prime Plus',
+            'slug' => 'Galaxy Prime Plus',
+            'points_rate' => '2.50',
+            'is_active' => 'true',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index'))
+            ->assertSessionHas('status', 'Card type "Galaxy Prime Plus" was created.');
+
+        $this->assertDatabaseHas('card_types', [
+            'name' => 'Galaxy Prime Plus',
+            'slug' => 'galaxy-prime-plus',
+            'points_rate' => '2.50',
+            'is_active' => true,
+        ]);
     }
 }
