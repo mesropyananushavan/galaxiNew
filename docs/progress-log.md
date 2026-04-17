@@ -1038,6 +1038,14 @@
 ### Next step after card type validation redirect anchor checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the same end-to-end live-write pattern for another core Galaxy entity once PHP execution is available.
 
+### Card type live form field-attribute checkpoint
+- Extended live-form normalization and rendering so config-driven field HTML attributes now pass through to the real Laravel-backed form.
+- Applied the first operator-facing attributes on `card-types`, including decimal-friendly `points_rate` input hints plus better autocomplete behavior for `name` and `slug`.
+- Added unit and feature coverage so this small ergonomics layer stays stable as more live Phase 1 forms appear.
+
+### Next step after card type live form field-attribute checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form field-attribute support for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

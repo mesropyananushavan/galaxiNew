@@ -109,6 +109,40 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertCount(1, $normalized['liveForm']['fields']);
     }
 
+    public function test_normalize_live_form_keeps_valid_html_attributes_and_ignores_malformed_entries(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'liveForm' => [
+                'title' => 'Create card type in Laravel',
+                'action' => '/admin/card-types',
+                'submitLabel' => 'Create card type',
+                'fields' => [
+                    [
+                        'name' => 'points_rate',
+                        'label' => 'Points rate',
+                        'type' => 'number',
+                        'value' => '1.50',
+                        'attributes' => [
+                            'step' => '0.01',
+                            'min' => '0',
+                            'inputmode' => 'decimal',
+                            'spellcheck' => false,
+                            0 => 'broken',
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertSame([
+            'step' => '0.01',
+            'min' => '0',
+            'inputmode' => 'decimal',
+        ], $normalized['liveForm']['fields'][0]['attributes']);
+    }
+
     public function test_normalize_live_form_keeps_valid_select_options_and_ignores_malformed_entries(): void
     {
         $normalizer = new AdminResourcePageNormalizer();

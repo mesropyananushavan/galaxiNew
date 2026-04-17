@@ -246,6 +246,7 @@ class AdminResourcePageNormalizer
                     'type' => $field['type'],
                     'value' => is_string($field['value'] ?? null) ? $field['value'] : '',
                     'options' => $this->liveFormOptions($field['options'] ?? []),
+                    'attributes' => $this->liveFormAttributes($field['attributes'] ?? []),
                 ];
             }, is_array($form['fields'] ?? null) ? $form['fields'] : []))),
         ];
@@ -270,6 +271,15 @@ class AdminResourcePageNormalizer
                 'value' => $option['value'],
             ];
         }, $options)));
+    }
+
+    private function liveFormAttributes(mixed $attributes): array
+    {
+        if (! is_array($attributes)) {
+            return [];
+        }
+
+        return array_filter($attributes, fn (mixed $value, mixed $key): bool => is_string($key) && is_string($value), ARRAY_FILTER_USE_BOTH);
     }
 
     private function formSections(mixed $sections): array

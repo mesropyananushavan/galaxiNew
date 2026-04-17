@@ -31,6 +31,9 @@
                     @elseif ($field['type'] === 'select')
                         <select
                             name="{{ $field['name'] }}"
+                            @foreach ($field['attributes'] as $attribute => $value)
+                                {{ $attribute }}="{{ $value }}"
+                            @endforeach
                             style="border: 1px solid {{ $errors->has($field['name']) ? 'rgba(239, 68, 68, 0.55)' : 'var(--border)' }}; border-radius: 12px; padding: 12px 14px; background: var(--surface-muted); color: var(--text-main);"
                         >
                             @foreach ($field['options'] as $option)
@@ -42,6 +45,9 @@
                             type="{{ $field['type'] }}"
                             name="{{ $field['name'] }}"
                             value="{{ old($field['name'], $field['value']) }}"
+                            @foreach ($field['attributes'] as $attribute => $value)
+                                {{ $attribute }}="{{ $value }}"
+                            @endforeach
                             style="border: 1px solid {{ $errors->has($field['name']) ? 'rgba(239, 68, 68, 0.55)' : 'var(--border)' }}; border-radius: 12px; padding: 12px 14px; background: var(--surface-muted); color: var(--text-main);"
                         >
                     @endif

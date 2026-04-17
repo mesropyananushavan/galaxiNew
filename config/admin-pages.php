@@ -478,9 +478,9 @@ return [
             'actionRoute' => 'admin.card-types.store',
             'submitLabel' => 'Create card type',
             'fields' => [
-                ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold'],
-                ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'gold'],
-                ['name' => 'points_rate', 'label' => 'Points rate', 'type' => 'number', 'value' => '1.50'],
+                ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold', 'attributes' => ['autocomplete' => 'organization-title']],
+                ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'gold', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
+                ['name' => 'points_rate', 'label' => 'Points rate', 'type' => 'number', 'value' => '1.50', 'attributes' => ['step' => '0.01', 'min' => '0', 'inputmode' => 'decimal']],
                 ['name' => 'is_active', 'label' => 'Status', 'type' => 'select', 'value' => '1', 'options' => [
                     ['label' => 'Active', 'value' => '1'],
                     ['label' => 'Draft', 'value' => '0'],
