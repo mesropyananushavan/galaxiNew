@@ -1590,4 +1590,22 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
         ]);
     }
+
+    public function test_card_type_live_admin_form_returns_validation_errors_for_invalid_payload(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => '',
+            'slug' => 'invalid slug',
+            'points_rate' => '-1',
+            'is_active' => 'not-a-boolean',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index'))
+            ->assertSessionHasErrors(['name', 'slug', 'points_rate', 'is_active']);
+
+        $this->assertDatabaseCount('card_types', 0);
+    }
 }

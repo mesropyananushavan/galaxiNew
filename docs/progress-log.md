@@ -966,6 +966,14 @@
 ### Next step after card type live create flow checkpoint
 - Once PHP execution is available, verify and refine the new card-type create flow end-to-end, then choose whether to add update handling or repeat the same minimal live-write pattern for one more core Galaxy entity.
 
+### Card type live validation feedback checkpoint
+- Added validation-error rendering to the live `card-types` form so the first backend-backed Phase 1 write path can fail visibly instead of only bouncing back on redirect.
+- Added feature coverage for invalid payload handling, proving the store route returns named validation errors and does not create a card type on bad input.
+- This is still a small slice, but it makes the first non-preview Laravel flow materially more usable and safer.
+
+### Next step after card type live validation feedback checkpoint
+- Once PHP execution is available, verify the new create flow manually in-browser, then either add edit/update handling for card types or apply the same minimal live-write pattern to another core Galaxy entity.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
