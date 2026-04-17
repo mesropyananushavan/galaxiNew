@@ -14,7 +14,7 @@ class CardTypeUpdateController extends Controller
         $cardType->update($request->validated());
 
         return redirect()
-            ->to(route('admin.card-types.index', absolute: false).'#live-form')
+            ->to(route('admin.card-types.index', absolute: false).'#backend-flow-status')
             ->with('status', sprintf('Card type "%s" was updated.', $cardType->name));
     }
 }

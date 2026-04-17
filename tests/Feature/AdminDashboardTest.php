@@ -1585,7 +1585,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime" was created.');
 
         $this->assertDatabaseHas('card_types', [
@@ -1742,7 +1742,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime Plus" was created.');
 
         $this->assertDatabaseHas('card_types', [
@@ -1797,7 +1797,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime Plus" was updated.');
 
         $this->assertDatabaseHas('card_types', [
@@ -1833,7 +1833,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $okResponse
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime Updated" was updated.');
 
         $errorResponse = $this->from(route('admin.card-types.index'))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
