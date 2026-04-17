@@ -8,8 +8,8 @@
     @endif
 
     @if ($errors->any())
-        <div style="margin: 0 0 16px; padding: 14px 16px; border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 14px; background: rgba(239, 68, 68, 0.08);">
-            <strong style="display: block; margin-bottom: 8px;">Live form validation</strong>
+        <div role="alert" aria-live="polite" aria-labelledby="live-form-validation-title" style="margin: 0 0 16px; padding: 14px 16px; border: 1px solid rgba(239, 68, 68, 0.35); border-radius: 14px; background: rgba(239, 68, 68, 0.08);">
+            <strong id="live-form-validation-title" style="display: block; margin-bottom: 8px;">Live form validation</strong>
             <ul style="margin: 0; padding-left: 18px; color: var(--text-muted); line-height: 1.6;">
                 @foreach ($errors->keys() as $fieldName)
                     @php
