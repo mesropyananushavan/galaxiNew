@@ -12,6 +12,7 @@ It explains which config file owns each part of the Phase 1 Galaxy admin shell.
 - `config/admin-pages.php`
   - page-specific content and sample metadata
   - table rows, metrics, actions, notices, form previews, parity notes
+  - workflow metadata such as operator checklists, escalation guides, shift handoff notes, and open issues
 - `config/admin-navigation.php`
   - sidebar information architecture
 - `config/admin-resource-page-defaults.php`
@@ -39,6 +40,16 @@ It explains which config file owns each part of the Phase 1 Galaxy admin shell.
 - If the change is page-specific, prefer `config/admin-pages.php`.
 - If the change affects many resource pages in the same structural layer, prefer one of the layered stack config files.
 - If the change affects shell order across all resource pages, update `config/admin-resource-blocks.php`.
+
+## Current high-depth workflow pages
+These pages now use the richer workflow layer to feel closer to the old Galaxy back office, even before real Laravel writes exist.
+
+- `card-types`
+- `services-rules`
+- `gifts`
+- `roles-permissions`
+
+If you are extending one of these screens, keep workflow metadata in `config/admin-pages.php` unless the change should affect every resource page.
 
 ## Suggested reading order
 1. Read `docs/blueprint.md` for overall migration posture.

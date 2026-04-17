@@ -28,4 +28,5 @@ Turn `galaxiNew` from generic Laravel starter into Galaxy-specific application f
 ## Current admin shell structure note
 - The Phase 1 admin shell is now intentionally layered so parity-first UI work can keep moving while PHP execution is unavailable.
 - The current resource-page composition is documented in `docs/admin-shell-layering.md` and split into base, context, preview, workflow, and closing stacks.
+- High-value Galaxy-specific management pages such as `card-types`, `services-rules`, `gifts`, and `roles-permissions` now use the richer workflow layer so the shell is visibly less starter-like before real Laravel writes exist.
 - That layering should stay config-driven even when the first real Laravel reads or form flows begin replacing preview-only blocks.

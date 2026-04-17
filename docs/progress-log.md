@@ -950,6 +950,14 @@
 ### Next step after card types workflow metadata checkpoint
 - Either apply the same workflow-depth treatment to one remaining high-value admin screen, or stop adding preview-only depth and save the next changes for the first real Laravel request flow when PHP execution becomes available.
 
+### Workflow depth docs checkpoint
+- Updated `docs/admin-shell-config-map.md` so workflow metadata ownership is explicit and the current high-depth Galaxy management pages are listed in one place.
+- Updated `docs/phase-1-plan.md` to reflect that `card-types`, `services-rules`, `gifts`, and `roles-permissions` now use the richer workflow shell layer.
+- This is a small documentation step, but it reduces drift risk before the first real Laravel write slice starts replacing preview-only behavior.
+
+### Next step after workflow depth docs checkpoint
+- Stop adding preview-only depth unless one more screen is clearly worth it, and bias the next code change toward the first real Laravel request flow as soon as PHP execution becomes available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
