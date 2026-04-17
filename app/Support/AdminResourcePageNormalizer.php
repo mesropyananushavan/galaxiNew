@@ -136,6 +136,7 @@ class AdminResourcePageNormalizer
             'table' => $this->table($page['table'] ?? []),
             'emptyState' => $this->emptyState($page['emptyState'] ?? []),
             'form' => $this->form($page['form'] ?? []),
+            'liveForm' => $this->liveForm($page['liveForm'] ?? []),
         ];
     }
 
@@ -212,6 +213,40 @@ class AdminResourcePageNormalizer
             'title' => $form['title'],
             'actions' => $this->actions($form['actions'] ?? []),
             'sections' => $this->formSections($form['sections'] ?? []),
+        ];
+    }
+
+    private function liveForm(mixed $form): array
+    {
+        if (! is_array($form)
+            || ! is_string($form['title'] ?? null)
+            || ! is_string($form['action'] ?? null)
+            || ! is_string($form['submitLabel'] ?? null)
+        ) {
+            return [];
+        }
+
+        return [
+            'title' => $form['title'],
+            'description' => is_string($form['description'] ?? null) ? $form['description'] : null,
+            'action' => $form['action'],
+            'submitLabel' => $form['submitLabel'],
+            'fields' => array_values(array_filter(array_map(function (mixed $field): ?array {
+                if (! is_array($field)
+                    || ! is_string($field['name'] ?? null)
+                    || ! is_string($field['label'] ?? null)
+                    || ! is_string($field['type'] ?? null)
+                ) {
+                    return null;
+                }
+
+                return [
+                    'name' => $field['name'],
+                    'label' => $field['label'],
+                    'type' => $field['type'],
+                    'value' => is_string($field['value'] ?? null) ? $field['value'] : '',
+                ];
+            }, is_array($form['fields'] ?? null) ? $form['fields'] : []))),
         ];
     }
 

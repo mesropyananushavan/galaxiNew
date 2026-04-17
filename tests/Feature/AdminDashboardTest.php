@@ -1522,6 +1522,8 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Card Types placeholder')
+            ->assertSee('Create card type in Laravel')
+            ->assertSee('Create card type')
             ->assertSee('Create or edit card type')
             ->assertSee('Publish type')
             ->assertSee('New type')
@@ -1531,7 +1533,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Imported rules')
             ->assertSee('No custom card types configured yet')
             ->assertSee('Create first type')
-            ->assertSee('Card type rules are still preview-only')
+            ->assertSee('Card type workflow is partially live')
             ->assertSee('Identity')
             ->assertSee('Accrual settings')
             ->assertSee('Check duplicates')
@@ -1542,6 +1544,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Recent activity preview')
             ->assertSee('Migration readiness checklist')
             ->assertSee('Implementation dependencies')
+            ->assertSee('Minimal Laravel create path is now wired for card types')
             ->assertSee('Operator checklist')
             ->assertSee('Review activation mode before publishing a new or changed tier.')
             ->assertSee('Escalation guide')
@@ -1554,14 +1557,37 @@ class AdminDashboardTest extends TestCase
             ->assertSee('When PHP becomes available, start by turning the card type preview into a real create/update path with the smallest possible write flow.')
             ->assertSee('Persist a minimal name, slug, rate, and activation mode payload before expanding rule imports.')
             ->assertSee('CardType model and migration skeleton exist')
-            ->assertSee('Form request, controller action, and persistence wiring still pending')
+            ->assertSee('Minimal create wiring now exists, but update flow, publish logic, and rule imports are still pending')
             ->assertSee('Legacy tier names mapped')
-            ->assertSee('Laravel save handler still unavailable without PHP runtime')
+            ->assertSee('Tier rule publishing and richer workflow handlers still need PHP-backed follow-through')
             ->assertSee('Gold tier rules reviewed')
             ->assertSee('Partner tier held as draft')
             ->assertSee('Old Galaxy card tier catalog')
             ->assertSee('activation behavior')
             ->assertSee('Auto after issue')
             ->assertSee('1.50x');
+    }
+
+    public function test_authenticated_user_can_store_card_type_from_live_admin_form(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.75',
+            'is_active' => '1',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index'))
+            ->assertSessionHas('status', 'Card type "Galaxy Prime" was created.');
+
+        $this->assertDatabaseHas('card_types', [
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.75',
+            'is_active' => true,
+        ]);
     }
 }

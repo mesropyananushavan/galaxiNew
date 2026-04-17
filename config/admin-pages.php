@@ -472,6 +472,18 @@ return [
             ],
             'filters' => ['Status', 'Activation mode', 'Points rate'],
         ],
+        'liveForm' => [
+            'title' => 'Create card type in Laravel',
+            'description' => 'This is the first real write-oriented Phase 1 form path. Keep it minimal and parity-first while preview controls still cover the richer future workflow.',
+            'action' => '/admin/card-types',
+            'submitLabel' => 'Create card type',
+            'fields' => [
+                ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold'],
+                ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'gold'],
+                ['name' => 'points_rate', 'label' => 'Points rate', 'type' => 'number', 'value' => '1.50'],
+                ['name' => 'is_active', 'label' => 'Active flag (1 or 0)', 'type' => 'number', 'value' => '1'],
+            ],
+        ],
         'form' => [
             'title' => 'Create or edit card type',
             'sections' => [
@@ -511,8 +523,8 @@ return [
             ],
         ],
         'notice' => [
-            'title' => 'Card type rules are still preview-only',
-            'description' => 'This screen is shaping the final Galaxy management flow, but save and publish actions are not connected to Laravel handlers yet.',
+            'title' => 'Card type workflow is partially live',
+            'description' => 'A minimal Laravel create path now exists for card types, while the richer tier rules and publish workflow remain preview-only.',
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy card tier catalog'],
@@ -526,11 +538,12 @@ return [
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Legacy tier names mapped'],
             ['status' => 'ready', 'label' => 'Preview actions and grouped fields defined'],
-            ['status' => 'pending', 'label' => 'Laravel save handler still unavailable without PHP runtime'],
+            ['status' => 'ready', 'label' => 'Minimal Laravel create path is now wired for card types'],
+            ['status' => 'pending', 'label' => 'Tier rule publishing and richer workflow handlers still need PHP-backed follow-through'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'CardType model and migration skeleton exist'],
-            ['label' => 'Backend dependency', 'value' => 'Form request, controller action, and persistence wiring still pending'],
+            ['label' => 'Backend dependency', 'value' => 'Minimal create wiring now exists, but update flow, publish logic, and rule imports are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Legacy accrual rules need live verification before publish flow is enabled'],
         ],
         'operatorChecklist' => [

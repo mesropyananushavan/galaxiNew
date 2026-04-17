@@ -958,6 +958,14 @@
 ### Next step after workflow depth docs checkpoint
 - Stop adding preview-only depth unless one more screen is clearly worth it, and bias the next code change toward the first real Laravel request flow as soon as PHP execution becomes available.
 
+### Card type live create flow checkpoint
+- Added a first real Laravel-oriented write slice for `card-types`: a POST route, `StoreCardTypeRequest`, and `CardTypeStoreController` that persists a minimal card type record and redirects back with a status message.
+- Extended the admin shell with a config-driven `liveForm` block and used it on the `card-types` page so Phase 1 now contains one small but concrete backend-backed create path instead of only preview metadata.
+- Updated feature and normalizer coverage around the new live form path, while keeping the richer tier workflow and publish flow explicitly marked as still pending.
+
+### Next step after card type live create flow checkpoint
+- Once PHP execution is available, verify and refine the new card-type create flow end-to-end, then choose whether to add update handling or repeat the same minimal live-write pattern for one more core Galaxy entity.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

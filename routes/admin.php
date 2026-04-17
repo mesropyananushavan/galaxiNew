@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CardTypeStoreController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ResourceIndexController;
 use Illuminate\Support\Facades\Route;
@@ -14,6 +15,7 @@ Route::prefix('admin')
         Route::get('/cards', ResourceIndexController::class)->defaults('resource', 'cards')->name('cards.index');
         Route::get('/checks-points', ResourceIndexController::class)->defaults('resource', 'checks-points')->name('checks-points.index');
         Route::get('/card-types', ResourceIndexController::class)->defaults('resource', 'card-types')->name('card-types.index');
+        Route::post('/card-types', CardTypeStoreController::class)->name('card-types.store');
         Route::get('/services-rules', ResourceIndexController::class)->defaults('resource', 'services-rules')->name('services-rules.index');
         Route::get('/gifts', ResourceIndexController::class)->defaults('resource', 'gifts')->name('gifts.index');
         Route::get('/roles-permissions', ResourceIndexController::class)->defaults('resource', 'roles-permissions')->name('roles-permissions.index');

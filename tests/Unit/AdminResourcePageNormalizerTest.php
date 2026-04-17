@@ -46,6 +46,7 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertSame([], $normalized['openIssues']);
         $this->assertSame([], $normalized['emptyState']);
         $this->assertSame([], $normalized['form']);
+        $this->assertSame([], $normalized['liveForm']);
     }
 
     public function test_normalize_returns_empty_rows_when_table_rows_block_is_malformed(): void
@@ -84,6 +85,28 @@ class AdminResourcePageNormalizerTest extends TestCase
             ['label' => 'Publish role', 'tone' => 'primary'],
         ], $normalized['form']['actions']);
         $this->assertSame([], $normalized['form']['sections']);
+    }
+
+    public function test_normalize_live_form_keeps_valid_fields_and_ignores_malformed_entries(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'liveForm' => [
+                'title' => 'Create card type in Laravel',
+                'action' => '/admin/card-types',
+                'submitLabel' => 'Create card type',
+                'fields' => [
+                    ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold'],
+                    ['label' => 'Missing name', 'type' => 'text'],
+                ],
+            ],
+        ]);
+
+        $this->assertSame('Create card type in Laravel', $normalized['liveForm']['title']);
+        $this->assertSame('/admin/card-types', $normalized['liveForm']['action']);
+        $this->assertSame('Create card type', $normalized['liveForm']['submitLabel']);
+        $this->assertCount(1, $normalized['liveForm']['fields']);
     }
 
     public function test_normalize_keeps_valid_table_rows_when_neighboring_rows_are_malformed(): void
