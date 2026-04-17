@@ -261,6 +261,47 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertSame('text', $normalized['liveForm']['fields'][1]['type']);
     }
 
+    public function test_normalize_live_form_casts_scalar_values_to_strings(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'liveForm' => [
+                'title' => 'Update card type in Laravel',
+                'action' => '/admin/card-types/1',
+                'submitLabel' => 'Update card type',
+                'fields' => [
+                    [
+                        'name' => 'points_rate',
+                        'label' => 'Points rate',
+                        'type' => 'number',
+                        'value' => 1.5,
+                    ],
+                    [
+                        'name' => 'is_active',
+                        'label' => 'Status',
+                        'type' => 'select',
+                        'value' => true,
+                        'options' => [
+                            ['label' => 'Active', 'value' => '1'],
+                            ['label' => 'Draft', 'value' => '0'],
+                        ],
+                    ],
+                    [
+                        'name' => 'sort_order',
+                        'label' => 'Sort order',
+                        'type' => 'number',
+                        'value' => 2,
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertSame('1.5', $normalized['liveForm']['fields'][0]['value']);
+        $this->assertSame('1', $normalized['liveForm']['fields'][1]['value']);
+        $this->assertSame('2', $normalized['liveForm']['fields'][2]['value']);
+    }
+
     public function test_normalize_keeps_valid_table_rows_when_neighboring_rows_are_malformed(): void
     {
         $normalizer = new AdminResourcePageNormalizer();

@@ -1222,6 +1222,14 @@
 ### Next step after live form boolean attribute checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Live form scalar value checkpoint
+- Extended shared live-form value normalization so config-driven fields can safely accept scalar values, not just pre-stringified ones.
+- Added unit coverage for float, boolean, and integer field values plus feature coverage proving the `card-types` form can render numeric and select defaults from scalar config input.
+- This is a small bridge step, but it makes a future model-backed edit state less brittle because controller/config code no longer has to pre-cast every form value manually.
+
+### Next step after live form scalar value checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

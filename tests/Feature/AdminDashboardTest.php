@@ -1739,6 +1739,28 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('readonly="1"', false);
     }
 
+    public function test_card_types_page_renders_scalar_live_form_values(): void
+    {
+        Config::set('admin-pages.card-types.liveForm.fields', [
+            ...array_map(function (array $field): array {
+                return match ($field['name']) {
+                    'points_rate' => [...$field, 'value' => 2.75],
+                    'is_active' => [...$field, 'value' => false],
+                    default => $field,
+                };
+            }, Config::get('admin-pages.card-types.liveForm.fields', [])),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('value="2.75"', false)
+            ->assertSee('<option value="0" selected>', false);
+    }
+
     public function test_card_types_page_renders_live_form_field_attributes(): void
     {
         $user = User::factory()->create();

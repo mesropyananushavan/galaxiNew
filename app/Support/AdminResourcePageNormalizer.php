@@ -251,7 +251,7 @@ class AdminResourcePageNormalizer
                     'name' => $field['name'],
                     'label' => is_string($field['label'] ?? null) ? $field['label'] : '',
                     'type' => $type,
-                    'value' => is_string($field['value'] ?? null) ? $field['value'] : '',
+                    'value' => $this->liveFormValue($field['value'] ?? null),
                     'required' => is_bool($field['required'] ?? null) ? $field['required'] : false,
                     'autofocus' => is_bool($field['autofocus'] ?? null) ? $field['autofocus'] : false,
                     'placeholder' => is_string($field['placeholder'] ?? null) ? $field['placeholder'] : null,
@@ -274,6 +274,23 @@ class AdminResourcePageNormalizer
         return in_array($method, ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], true)
             ? $method
             : 'POST';
+    }
+
+    private function liveFormValue(mixed $value): string
+    {
+        if (is_string($value)) {
+            return $value;
+        }
+
+        if (is_int($value) || is_float($value)) {
+            return (string) $value;
+        }
+
+        if (is_bool($value)) {
+            return $value ? '1' : '0';
+        }
+
+        return '';
     }
 
     private function liveFormCancelAction(mixed $action): ?array
