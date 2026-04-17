@@ -46,17 +46,24 @@ class AdminResourcePageNormalizer
             return [];
         }
 
-        $rows = is_array($table['rows'] ?? null) ? $table['rows'] : [];
-
         return [
             'filters' => $this->stringList($table['filters'] ?? []),
             'columns' => $this->stringList($table['columns'] ?? []),
-            'rows' => array_values(array_filter(
-                $rows,
-                fn (mixed $row): bool => is_array($row)
-                    && array_values(array_filter($row, fn (mixed $cell): bool => is_string($cell))) === array_values($row)
-            )),
+            'rows' => $this->tableRows($table['rows'] ?? []),
         ];
+    }
+
+    private function tableRows(mixed $rows): array
+    {
+        if (! is_array($rows)) {
+            return [];
+        }
+
+        return array_values(array_filter(
+            $rows,
+            fn (mixed $row): bool => is_array($row)
+                && array_values(array_filter($row, fn (mixed $cell): bool => is_string($cell))) === array_values($row)
+        ));
     }
 
     private function notice(mixed $notice): array

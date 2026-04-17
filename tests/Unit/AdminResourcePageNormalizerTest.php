@@ -86,6 +86,27 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertSame([], $normalized['form']['sections']);
     }
 
+    public function test_normalize_keeps_valid_table_rows_when_neighboring_rows_are_malformed(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'table' => [
+                'columns' => ['Code', 'Name'],
+                'rows' => [
+                    ['GC-001', 'Galaxy Classic'],
+                    ['GC-002', 42],
+                    'invalid-row',
+                ],
+            ],
+        ]);
+
+        $this->assertSame(['Code', 'Name'], $normalized['table']['columns']);
+        $this->assertSame([
+            ['GC-001', 'Galaxy Classic'],
+        ], $normalized['table']['rows']);
+    }
+
     public function test_normalize_keeps_valid_form_sections_when_other_section_fields_are_malformed(): void
     {
         $normalizer = new AdminResourcePageNormalizer();
