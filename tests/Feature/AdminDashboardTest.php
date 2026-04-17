@@ -1686,7 +1686,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('method="POST"', false)
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false)
             ->assertSee('name="_method"', false)
-            ->assertSee('value="PATCH"', false);
+            ->assertSee('value="PATCH"', false)
+            ->assertSee('href="/admin/card-types"', false)
+            ->assertSee('Back to catalog');
     }
 
     public function test_card_types_page_renders_live_form_field_attributes(): void
