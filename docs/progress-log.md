@@ -878,6 +878,14 @@
 ### Next step after form sections fallback checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further shell refactors and save the next code changes for a real backend slice.
 
+### Table rows fallback checkpoint
+- Hardened `AdminResourcePageNormalizer` so malformed `table.rows` payloads now degrade to an empty row set instead of risking a type mismatch during admin page assembly.
+- Added unit coverage proving valid filter and column metadata still survives when only the row block is malformed.
+- This keeps the Phase 1 Galaxy admin shell safer as more config-driven operational tables continue replacing starter-style placeholders.
+
+### Next step after table rows fallback checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further shell refactors and save the next code changes for a real backend slice.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

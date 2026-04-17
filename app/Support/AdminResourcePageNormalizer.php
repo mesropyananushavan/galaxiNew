@@ -46,11 +46,13 @@ class AdminResourcePageNormalizer
             return [];
         }
 
+        $rows = is_array($table['rows'] ?? null) ? $table['rows'] : [];
+
         return [
             'filters' => $this->stringList($table['filters'] ?? []),
             'columns' => $this->stringList($table['columns'] ?? []),
             'rows' => array_values(array_filter(
-                $table['rows'] ?? [],
+                $rows,
                 fn (mixed $row): bool => is_array($row)
                     && array_values(array_filter($row, fn (mixed $cell): bool => is_string($cell))) === array_values($row)
             )),

@@ -48,6 +48,23 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertSame([], $normalized['form']);
     }
 
+    public function test_normalize_returns_empty_rows_when_table_rows_block_is_malformed(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'table' => [
+                'filters' => ['Active only'],
+                'columns' => ['Code', 'Name'],
+                'rows' => 'invalid-rows',
+            ],
+        ]);
+
+        $this->assertSame(['Active only'], $normalized['table']['filters']);
+        $this->assertSame(['Code', 'Name'], $normalized['table']['columns']);
+        $this->assertSame([], $normalized['table']['rows']);
+    }
+
     public function test_normalize_returns_empty_sections_when_form_sections_block_is_malformed(): void
     {
         $normalizer = new AdminResourcePageNormalizer();
