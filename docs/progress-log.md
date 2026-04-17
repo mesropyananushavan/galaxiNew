@@ -862,6 +862,22 @@
 ### Next step after normalizer unit coverage checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further shell refactors and save the next code changes for a real backend slice.
 
+### Normalizer top-level fallback coverage checkpoint
+- Added a second unit case for `AdminResourcePageNormalizer` covering missing or malformed top-level page blocks.
+- The new test proves the extracted normalizer returns empty safe defaults for invalid top-level metadata contracts instead of leaking bad config deeper into the render path.
+- This strengthens the direct safety net around the extracted Phase 1 shell normalizer without changing visible UI behavior.
+
+### Next step after normalizer top-level fallback coverage checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further shell refactors and save the next code changes for a real backend slice.
+
+### Form sections fallback checkpoint
+- Hardened `AdminResourcePageNormalizer` so a malformed `form.sections` block now collapses to an empty list instead of risking a type error during page normalization.
+- Added unit coverage proving valid form metadata still survives while invalid section payloads are safely ignored.
+- This keeps the Phase 1 admin shell config-driven and more resilient as richer Galaxy-specific page definitions keep expanding.
+
+### Next step after form sections fallback checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further shell refactors and save the next code changes for a real backend slice.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

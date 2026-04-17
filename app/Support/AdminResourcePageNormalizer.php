@@ -189,6 +189,8 @@ class AdminResourcePageNormalizer
             return [];
         }
 
+        $sections = is_array($form['sections'] ?? null) ? $form['sections'] : [];
+
         return [
             'title' => $form['title'],
             'actions' => $this->actions($form['actions'] ?? []),
@@ -208,7 +210,7 @@ class AdminResourcePageNormalizer
                             && is_string($field['value'] ?? null)
                     )),
                 ];
-            }, $form['sections'] ?? []))),
+            }, $sections))),
         ];
     }
 

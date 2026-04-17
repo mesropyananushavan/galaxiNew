@@ -7,6 +7,68 @@ use Tests\TestCase;
 
 class AdminResourcePageNormalizerTest extends TestCase
 {
+    public function test_normalize_returns_empty_safe_defaults_for_missing_or_malformed_top_level_blocks(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'actions' => 'invalid-actions',
+            'metrics' => 'invalid-metrics',
+            'table' => 'invalid-table',
+            'notice' => 'invalid-notice',
+            'readinessChecklist' => 'invalid-readiness',
+            'activityTimeline' => 'invalid-timeline',
+            'dependencyStatus' => 'invalid-dependency-status',
+            'legacyMapping' => 'invalid-legacy-mapping',
+            'implementationHandoff' => 'invalid-handoff',
+            'operationalNextSlice' => 'invalid-next-slice',
+            'operatorChecklist' => 'invalid-operator-checklist',
+            'escalationGuide' => 'invalid-escalation-guide',
+            'shiftHandoff' => 'invalid-shift-handoff',
+            'openIssues' => 'invalid-open-issues',
+            'emptyState' => 'invalid-empty-state',
+            'form' => 'invalid-form',
+        ]);
+
+        $this->assertSame([], $normalized['actions']);
+        $this->assertSame([], $normalized['metrics']);
+        $this->assertSame([], $normalized['table']);
+        $this->assertSame([], $normalized['notice']);
+        $this->assertSame([], $normalized['readinessChecklist']);
+        $this->assertSame([], $normalized['activityTimeline']);
+        $this->assertSame([], $normalized['dependencyStatus']);
+        $this->assertSame([], $normalized['legacyMapping']);
+        $this->assertSame([], $normalized['implementationHandoff']);
+        $this->assertSame([], $normalized['operationalNextSlice']);
+        $this->assertSame([], $normalized['operatorChecklist']);
+        $this->assertSame([], $normalized['escalationGuide']);
+        $this->assertSame([], $normalized['shiftHandoff']);
+        $this->assertSame([], $normalized['openIssues']);
+        $this->assertSame([], $normalized['emptyState']);
+        $this->assertSame([], $normalized['form']);
+    }
+
+    public function test_normalize_returns_empty_sections_when_form_sections_block_is_malformed(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'form' => [
+                'title' => 'Create or edit role',
+                'actions' => [
+                    ['label' => 'Publish role', 'tone' => 'primary'],
+                ],
+                'sections' => 'invalid-sections',
+            ],
+        ]);
+
+        $this->assertSame('Create or edit role', $normalized['form']['title']);
+        $this->assertSame([
+            ['label' => 'Publish role', 'tone' => 'primary'],
+        ], $normalized['form']['actions']);
+        $this->assertSame([], $normalized['form']['sections']);
+    }
+
     public function test_normalize_filters_malformed_nested_page_metadata(): void
     {
         $normalizer = new AdminResourcePageNormalizer();
