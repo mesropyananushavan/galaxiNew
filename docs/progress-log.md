@@ -926,6 +926,14 @@
 ### Next step after service rules workflow metadata checkpoint
 - Apply the same workflow-depth treatment to another high-value management screen like gifts, or convert one preview form into the first real Laravel request flow when PHP execution becomes available.
 
+### Gifts workflow metadata checkpoint
+- Expanded the `gifts` admin page definition with operator checklist, escalation guide, shift handoff, and open issues metadata.
+- Extended feature expectations so the gift management preview now carries explicit operational redemption and stock-handling cues, not just catalog form placeholders.
+- This pushes another high-value Galaxy-specific screen closer to a recognizable back-office workflow instead of a generic starter admin preview.
+
+### Next step after gifts workflow metadata checkpoint
+- Apply the same workflow-depth treatment to roles/permissions, or convert one preview form into the first real Laravel request flow when PHP execution becomes available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

@@ -748,6 +748,35 @@ return [
             ['label' => 'Backend dependency', 'value' => 'CRUD handlers, stock updates, and redemption persistence are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Warehouse and loyalty parity checks are needed before enabling publish flow'],
         ],
+        'operatorChecklist' => [
+            'summary' => 'Keep the gift catalog aligned with redemption reality while the workflow is still preview-only.',
+            'items' => [
+                'Review zero-stock rewards before reopening a paused gift.',
+                'Confirm shop scope against the legacy reward catalog before publishing changes.',
+                'Check points cost parity before drafting a replacement reward.',
+            ],
+        ],
+        'escalationGuide' => [
+            'summary' => 'Escalate stock and redemption mismatches before changing a live-facing reward offer.',
+            'items' => [
+                'Escalate stock discrepancies before reactivating a paused reward.',
+                'Escalate point-cost disagreements to the loyalty operations owner before publish review.',
+            ],
+        ],
+        'shiftHandoff' => [
+            'summary' => 'Carry unresolved gift-catalog risks forward with enough detail to preserve legacy redemption behavior.',
+            'items' => [
+                'Hand off paused rewards with the latest stock assumption and shop scope.',
+                'Note any rewards still waiting on parity confirmation for point cost or availability.',
+            ],
+        ],
+        'openIssues' => [
+            'summary' => 'Known gift migration gaps that still block safe rollout.',
+            'items' => [
+                'Premium dessert set remains paused until zero-stock parity is confirmed.',
+                'Warehouse synchronization is still undefined for the first Laravel write slice.',
+            ],
+        ],
         'implementationHandoff' => [
             'summary' => 'When PHP is available, begin with basic gift CRUD and defer stock synchronization until after the first write path works.',
             'steps' => [
