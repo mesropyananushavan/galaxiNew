@@ -228,6 +228,37 @@ class AdminResourcePageNormalizerTest extends TestCase
         ], $normalized['liveForm']['fields'][0]['options']);
     }
 
+    public function test_normalize_live_form_keeps_hidden_fields_without_requiring_labels(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'liveForm' => [
+                'title' => 'Update card type in Laravel',
+                'action' => '/admin/card-types/1',
+                'submitLabel' => 'Update card type',
+                'fields' => [
+                    [
+                        'name' => 'mode',
+                        'type' => 'hidden',
+                        'value' => 'edit',
+                    ],
+                    [
+                        'name' => 'name',
+                        'label' => 'Type name',
+                        'type' => 'text',
+                        'value' => 'Galaxy Prime',
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertSame('hidden', $normalized['liveForm']['fields'][0]['type']);
+        $this->assertSame('', $normalized['liveForm']['fields'][0]['label']);
+        $this->assertSame('edit', $normalized['liveForm']['fields'][0]['value']);
+        $this->assertSame('text', $normalized['liveForm']['fields'][1]['type']);
+    }
+
     public function test_normalize_keeps_valid_table_rows_when_neighboring_rows_are_malformed(): void
     {
         $normalizer = new AdminResourcePageNormalizer();

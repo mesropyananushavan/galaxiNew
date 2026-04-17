@@ -1206,6 +1206,14 @@
 ### Next step after card type PATCH cancel action checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Live form hidden field foundation checkpoint
+- Tightened the shared live-form foundation so config-driven hidden fields no longer need labels and render outside visible label markup.
+- Added unit coverage for hidden-field normalization and feature coverage proving a hidden field can be injected into the `card-types` live form without generating stray label UI.
+- This is a small structural step, but it gives the future edit/update state a cleaner way to carry mode or record context without forking the Blade partial.
+
+### Next step after live form hidden field foundation checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

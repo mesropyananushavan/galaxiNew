@@ -236,16 +236,21 @@ class AdminResourcePageNormalizer
             'fields' => array_values(array_filter(array_map(function (mixed $field): ?array {
                 if (! is_array($field)
                     || ! is_string($field['name'] ?? null)
-                    || ! is_string($field['label'] ?? null)
                     || ! is_string($field['type'] ?? null)
                 ) {
                     return null;
                 }
 
+                $type = $field['type'];
+
+                if ($type !== 'hidden' && ! is_string($field['label'] ?? null)) {
+                    return null;
+                }
+
                 return [
                     'name' => $field['name'],
-                    'label' => $field['label'],
-                    'type' => $field['type'],
+                    'label' => is_string($field['label'] ?? null) ? $field['label'] : '',
+                    'type' => $type,
                     'value' => is_string($field['value'] ?? null) ? $field['value'] : '',
                     'required' => is_bool($field['required'] ?? null) ? $field['required'] : false,
                     'autofocus' => is_bool($field['autofocus'] ?? null) ? $field['autofocus'] : false,

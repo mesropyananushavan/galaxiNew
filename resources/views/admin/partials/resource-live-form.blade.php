@@ -34,6 +34,11 @@
 
         <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
             @foreach ($liveForm['fields'] as $field)
+                @if ($field['type'] === 'hidden')
+                    <input type="hidden" name="{{ $field['name'] }}" value="{{ old($field['name'], $field['value']) }}">
+                    @continue
+                @endif
+
                 @php
                     $fieldId = 'live-form-'.str_replace(['[', ']', ' '], ['-', '', '-'], $field['name']);
                     $helpId = $fieldId.'-help';
@@ -52,9 +57,7 @@
                         @endif
                     </span>
 
-                    @if ($field['type'] === 'hidden')
-                        <input type="hidden" name="{{ $field['name'] }}" value="{{ old($field['name'], $field['value']) }}">
-                    @elseif ($field['type'] === 'select')
+                    @if ($field['type'] === 'select')
                         <select
                             id="{{ $fieldId }}"
                             name="{{ $field['name'] }}"
