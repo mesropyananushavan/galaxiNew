@@ -6,6 +6,7 @@ use App\Models\CardType;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
 class AdminDashboardTest extends TestCase
@@ -1620,6 +1621,29 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('method="POST"', false)
             ->assertSee('action="/admin/card-types"', false);
+    }
+
+    public function test_card_types_page_resolves_live_form_action_route_parameters(): void
+    {
+        Route::middleware(['web', 'auth', 'can:access-admin'])
+            ->prefix('admin')
+            ->as('admin.')
+            ->get('/card-types/{cardType}/draft-preview', fn (string $cardType) => $cardType)
+            ->name('card-types.draft-preview');
+
+        Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
+        Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
+            'cardType' => 'gold',
+            'ignored' => ['bad'],
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('action="/admin/card-types/gold/draft-preview"', false);
     }
 
     public function test_card_types_page_renders_live_form_field_attributes(): void

@@ -48,10 +48,28 @@ class ResourceIndexController extends Controller
         $page = $pages[$resource];
 
         if (is_array($page['liveForm'] ?? null) && is_string($page['liveForm']['actionRoute'] ?? null)) {
-            $page['liveForm']['action'] = route($page['liveForm']['actionRoute'], absolute: false);
+            $page['liveForm']['action'] = route(
+                $page['liveForm']['actionRoute'],
+                $this->liveFormActionParameters($page['liveForm']['actionRouteParameters'] ?? []),
+                absolute: false,
+            );
         }
 
         return $page;
+    }
+
+    private function liveFormActionParameters(mixed $parameters): array
+    {
+        if (! is_array($parameters)) {
+            return [];
+        }
+
+        return array_filter(
+            $parameters,
+            fn (mixed $value, mixed $key): bool => (is_string($key) || is_int($key))
+                && (is_string($value) || is_int($value)),
+            ARRAY_FILTER_USE_BOTH,
+        );
     }
 
     private function resourceBlocks(array $defaults): array

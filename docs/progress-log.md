@@ -1118,6 +1118,14 @@
 ### Next step after card type live form method checkpoint
 - Add edit/update handling on top of the live `card-types` slice, using the new method-aware live-form foundation when PHP execution is available.
 
+### Card type live form route-parameter checkpoint
+- Extended `ResourceIndexController` so live forms can now resolve action routes with config-driven route parameters instead of only fixed route names.
+- Added feature coverage proving `card-types` can render a parameterized live-form action while ignoring malformed route-parameter config entries.
+- This is a small but practical foundation step toward future edit/update flows that need resource-specific action URLs.
+
+### Next step after card type live form route-parameter checkpoint
+- Add edit/update handling on top of the live `card-types` slice, using the new route-parameter-aware live-form foundation when PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
