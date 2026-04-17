@@ -1142,6 +1142,14 @@
 ### Next step after card type update route checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Card type update validation checkpoint
+- Extended the new PATCH `card-types` flow with feature coverage for invalid update payloads and operator-friendly validation messages.
+- Locked in the expectation that failed updates keep the existing record untouched while still using the same anchored recovery path and human-facing validation copy as the create flow.
+- This makes the new update backend slice feel much less provisional, even before the edit UI is wired in.
+
+### Next step after card type update validation checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

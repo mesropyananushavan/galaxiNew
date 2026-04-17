@@ -1849,4 +1849,65 @@ class AdminDashboardTest extends TestCase
                 'slug' => 'This card type slug is already in use.',
             ]);
     }
+
+    public function test_card_type_update_returns_validation_errors_for_invalid_payload(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index'))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+            'name' => '',
+            'slug' => 'invalid slug',
+            'points_rate' => '-1',
+            'is_active' => 'not-a-boolean',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+    }
+
+    public function test_card_type_update_returns_operator_friendly_validation_messages(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $otherCardType = CardType::create([
+            'name' => 'Galaxy Silver',
+            'slug' => 'galaxy-silver',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index'))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+            'name' => 'Galaxy Prime Copy',
+            'slug' => $otherCardType->slug,
+            'points_rate' => '1.50',
+            'is_active' => 'not-a-boolean',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'This card type slug is already in use.',
+                'is_active' => 'The status field must be Active or Draft.',
+            ]);
+    }
 }
