@@ -1150,6 +1150,14 @@
 ### Next step after card type update validation checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Card type update flash checkpoint
+- Added a stable DOM id to the shared backend flow status banner and extended feature coverage for the visible update-success flash on the `card-types` page.
+- This keeps the new PATCH update slice checked not only at the route level, but also at the operator-facing feedback layer after redirect.
+- The shared status banner is now easier to target as more real backend flows arrive.
+
+### Next step after card type update flash checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

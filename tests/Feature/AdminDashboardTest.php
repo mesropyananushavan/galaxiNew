@@ -1850,6 +1850,21 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_types_page_shows_update_success_flash_message(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)
+            ->withSession(['status' => 'Card type "Galaxy Prime Plus" was updated.'])
+            ->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('id="backend-flow-status"', false)
+            ->assertSee('Backend flow checkpoint')
+            ->assertSee('Card type "Galaxy Prime Plus" was updated.');
+    }
+
     public function test_card_type_update_returns_validation_errors_for_invalid_payload(): void
     {
         $user = User::factory()->create();
