@@ -172,9 +172,14 @@ class AdminResourcePageNormalizer
         return is_string($block['summary'] ?? null)
             ? [
                 'summary' => $block['summary'],
-                $itemsKey => $this->stringList($block[$itemsKey] ?? []),
+                $itemsKey => $this->summaryListItems($block[$itemsKey] ?? []),
             ]
             : [];
+    }
+
+    private function summaryListItems(mixed $items): array
+    {
+        return $this->stringList($items);
     }
 
     private function emptyState(mixed $emptyState): array

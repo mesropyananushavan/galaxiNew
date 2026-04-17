@@ -137,6 +137,27 @@ class AdminResourcePageNormalizerTest extends TestCase
         ], $normalized['form']['sections'][0]['fields']);
     }
 
+    public function test_normalize_keeps_valid_summary_steps_when_neighboring_steps_are_malformed(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'implementationHandoff' => [
+                'summary' => 'Start with a minimal role create path.',
+                'steps' => [
+                    'Persist a minimal role record.',
+                    ['invalid-step'],
+                    42,
+                ],
+            ],
+        ]);
+
+        $this->assertSame('Start with a minimal role create path.', $normalized['implementationHandoff']['summary']);
+        $this->assertSame([
+            'Persist a minimal role record.',
+        ], $normalized['implementationHandoff']['steps']);
+    }
+
     public function test_normalize_filters_malformed_nested_page_metadata(): void
     {
         $normalizer = new AdminResourcePageNormalizer();
