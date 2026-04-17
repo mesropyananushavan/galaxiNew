@@ -934,6 +934,14 @@
 ### Next step after gifts workflow metadata checkpoint
 - Apply the same workflow-depth treatment to roles/permissions, or convert one preview form into the first real Laravel request flow when PHP execution becomes available.
 
+### Roles and permissions workflow metadata checkpoint
+- Expanded the `roles-permissions` admin page definition with operator checklist, escalation guide, shift handoff, and open issues metadata.
+- Extended feature expectations so the access-management preview now carries explicit staff-role and shop-scope workflow cues, not just matrix and form placeholders.
+- This strengthens one of the core Galaxy-specific Phase 1 foundation screens around authorization and shop-scoped operations.
+
+### Next step after roles and permissions workflow metadata checkpoint
+- Deepen another high-value admin screen like card-types with the same operational workflow treatment, or convert one preview form into the first real Laravel request flow when PHP execution becomes available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

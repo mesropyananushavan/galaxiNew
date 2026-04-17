@@ -870,6 +870,35 @@ return [
             ['label' => 'Backend dependency', 'value' => 'Assignment UI, policy wiring, and persistence handlers are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Shop-scoped access rules must be verified against legacy staff behavior before activation'],
         ],
+        'operatorChecklist' => [
+            'summary' => 'Keep access changes tightly aligned with the old Galaxy staff model until real authorization flows are live.',
+            'items' => [
+                'Review shop scope before publishing a manager or cashier role change.',
+                'Compare permission bundles against the legacy staff matrix before drafting a new role.',
+                'Keep assignment-sensitive roles in draft until shop-scoped behavior is verified.',
+            ],
+        ],
+        'escalationGuide' => [
+            'summary' => 'Escalate access-boundary uncertainty before changing live-facing staff permissions.',
+            'items' => [
+                'Escalate shop-scope disagreements before changing a role bundle.',
+                'Escalate permission gaps that could block cashier or manager workflows.',
+            ],
+        ],
+        'shiftHandoff' => [
+            'summary' => 'Carry unresolved access and assignment questions forward with enough detail to preserve legacy staff behavior.',
+            'items' => [
+                'Hand off draft roles with the exact legacy bundle they are meant to mirror.',
+                'Note any assignment rules still waiting on shop-scoped parity confirmation.',
+            ],
+        ],
+        'openIssues' => [
+            'summary' => 'Known access-control migration gaps that still block safe rollout.',
+            'items' => [
+                'Cashier assignment rules remain unverified against legacy shop-scoped behavior.',
+                'Permission matrix editing is still undefined for the first Laravel write slice.',
+            ],
+        ],
         'implementationHandoff' => [
             'summary' => 'Once PHP-backed flows are possible, start with a minimal role create/update path before exposing full assignment screens.',
             'steps' => [
