@@ -1660,6 +1660,35 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Return to draft preview');
     }
 
+    public function test_card_types_page_renders_live_form_patch_method_spoofing(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Config::set('admin-pages.card-types.liveForm.method', 'PATCH');
+        Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.update');
+        Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
+            'cardType' => $cardType->id,
+        ]);
+        Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.index');
+        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Back to catalog');
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('method="POST"', false)
+            ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false)
+            ->assertSee('name="_method"', false)
+            ->assertSee('value="PATCH"', false);
+    }
+
     public function test_card_types_page_renders_live_form_field_attributes(): void
     {
         $user = User::factory()->create();

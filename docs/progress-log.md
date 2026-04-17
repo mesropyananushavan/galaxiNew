@@ -1182,6 +1182,14 @@
 ### Next step after backend flow status live-region checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Card type live form PATCH rendering checkpoint
+- Added feature coverage proving the shared live-form foundation can render a PATCH-backed `card-types` action through Laravel method spoofing.
+- This locks in the key bridge behavior the future edit/update UI will need: POST form markup paired with `_method=PATCH` and a resource-specific update route.
+- It is still a small step, but now the route, controller, request, and shared form rendering are all explicitly lined up for the first real edit state.
+
+### Next step after card type live form PATCH rendering checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
