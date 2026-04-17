@@ -974,6 +974,14 @@
 ### Next step after card type live validation feedback checkpoint
 - Once PHP execution is available, verify the new create flow manually in-browser, then either add edit/update handling for card types or apply the same minimal live-write pattern to another core Galaxy entity.
 
+### Card type model casting checkpoint
+- Added explicit `points_rate` and `is_active` casts to `App\Models\CardType` so the first live write path returns stable decimal and boolean values instead of raw database typing.
+- Added unit coverage for the `CardType` model casts.
+- This is a small foundation step, but it makes the new backend-backed card-type flow safer to build on as soon as more read and update logic lands.
+
+### Next step after card type model casting checkpoint
+- Keep building on the live `card-types` slice with update/edit handling, or repeat the same minimal live-write pattern for one more core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

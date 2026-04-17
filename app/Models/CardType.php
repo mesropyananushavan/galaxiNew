@@ -12,6 +12,14 @@ class CardType extends Model
 {
     use HasFactory;
 
+    protected function casts(): array
+    {
+        return [
+            'points_rate' => 'decimal:2',
+            'is_active' => 'boolean',
+        ];
+    }
+
     public function cards(): HasMany
     {
         return $this->hasMany(Card::class);
