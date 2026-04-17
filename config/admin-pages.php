@@ -533,6 +533,35 @@ return [
             ['label' => 'Backend dependency', 'value' => 'Form request, controller action, and persistence wiring still pending'],
             ['label' => 'Operational dependency', 'value' => 'Legacy accrual rules need live verification before publish flow is enabled'],
         ],
+        'operatorChecklist' => [
+            'summary' => 'Keep card-tier changes aligned with the legacy accrual model until real write flows are available.',
+            'items' => [
+                'Review activation mode before publishing a new or changed tier.',
+                'Compare points rate against the legacy card catalog before drafting a replacement type.',
+                'Keep approval-based tiers in draft until parity checks are complete.',
+            ],
+        ],
+        'escalationGuide' => [
+            'summary' => 'Escalate tier-rule uncertainty before changing a loyalty behavior that customers will feel immediately.',
+            'items' => [
+                'Escalate activation-rule disagreements before publishing a tier change.',
+                'Escalate points-rate mismatches that could alter accrual parity.',
+            ],
+        ],
+        'shiftHandoff' => [
+            'summary' => 'Carry unresolved tier-rule questions forward with enough detail to preserve legacy card behavior.',
+            'items' => [
+                'Hand off draft tiers with the exact legacy rate and activation mode they are meant to mirror.',
+                'Note any tier rules still waiting on parity confirmation from operations.',
+            ],
+        ],
+        'openIssues' => [
+            'summary' => 'Known card-type migration gaps that still block safe rollout.',
+            'items' => [
+                'Partner tier approval flow parity is still unresolved against the legacy workflow.',
+                'Rule import behavior is still undefined for the first Laravel write slice.',
+            ],
+        ],
         'implementationHandoff' => [
             'summary' => 'When PHP becomes available, start by turning the card type preview into a real create/update path with the smallest possible write flow.',
             'steps' => [

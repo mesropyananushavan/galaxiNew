@@ -942,6 +942,14 @@
 ### Next step after roles and permissions workflow metadata checkpoint
 - Deepen another high-value admin screen like card-types with the same operational workflow treatment, or convert one preview form into the first real Laravel request flow when PHP execution becomes available.
 
+### Card types workflow metadata checkpoint
+- Expanded the `card-types` admin page definition with operator checklist, escalation guide, shift handoff, and open issues metadata.
+- Extended feature expectations so the card-type management preview now carries explicit tier-rule and activation-flow workflow cues, not just catalog form placeholders.
+- This makes another core Galaxy-specific catalog screen feel closer to the old operational back office instead of a generic starter admin page.
+
+### Next step after card types workflow metadata checkpoint
+- Either apply the same workflow-depth treatment to one remaining high-value admin screen, or stop adding preview-only depth and save the next changes for the first real Laravel request flow when PHP execution becomes available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
