@@ -1584,7 +1584,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index'))
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
             ->assertSessionHas('status', 'Card type "Galaxy Prime" was created.');
 
         $this->assertDatabaseHas('card_types', [
@@ -1606,7 +1606,8 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Backend flow checkpoint')
-            ->assertSee('Card type "Galaxy Prime" was created.');
+            ->assertSee('Card type "Galaxy Prime" was created.')
+            ->assertSee('id="live-form"', false);
     }
 
     public function test_card_types_page_resolves_live_form_action_from_route_name(): void
@@ -1650,7 +1651,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index'))
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
             ->assertSessionHas('status', 'Card type "Galaxy Prime Plus" was created.');
 
         $this->assertDatabaseHas('card_types', [

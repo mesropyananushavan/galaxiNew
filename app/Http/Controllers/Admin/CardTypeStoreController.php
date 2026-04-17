@@ -14,7 +14,7 @@ class CardTypeStoreController extends Controller
         $cardType = CardType::create($request->validated());
 
         return redirect()
-            ->route('admin.card-types.index')
+            ->to(route('admin.card-types.index', absolute: false).'#live-form')
             ->with('status', sprintf('Card type "%s" was created.', $cardType->name));
     }
 }

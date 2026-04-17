@@ -1,4 +1,4 @@
-<section class="card">
+<section class="card" id="live-form">
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
         <h3 style="margin: 0; font-size: 1.1rem;">{{ $liveForm['title'] }}</h3>
     </div>
