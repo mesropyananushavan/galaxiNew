@@ -2,7 +2,7 @@
 
 @section('content')
     @if (session('status'))
-        <section class="card" id="backend-flow-status" style="border-color: rgba(34, 197, 94, 0.35); background: rgba(34, 197, 94, 0.08);">
+        <section class="card" id="backend-flow-status" tabindex="-1" style="border-color: rgba(34, 197, 94, 0.35); background: rgba(34, 197, 94, 0.08);">
             <strong style="display: block; margin-bottom: 6px;">Backend flow checkpoint</strong>
             <span>{{ session('status') }}</span>
         </section>
