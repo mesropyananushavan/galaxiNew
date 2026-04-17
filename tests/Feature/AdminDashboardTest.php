@@ -1637,6 +1637,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('placeholder="Galaxy Prime"', false)
             ->assertSee('placeholder="galaxy-prime"', false)
             ->assertSee('placeholder="1.50"', false)
+            ->assertSee('required', false)
+            ->assertSee('Type name', false)
+            ->assertSee('Slug', false)
+            ->assertSee('Points rate', false)
+            ->assertSee('Status', false)
             ->assertSee('Use the operator-facing tier name from the Galaxy catalog.')
             ->assertSee('Lowercase identifier used in imports and rule mapping.')
             ->assertSee('Decimal multiplier applied to spend accrual for this tier.');

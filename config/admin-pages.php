@@ -478,10 +478,10 @@ return [
             'actionRoute' => 'admin.card-types.store',
             'submitLabel' => 'Create card type',
             'fields' => [
-                ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold', 'placeholder' => 'Galaxy Prime', 'help' => 'Use the operator-facing tier name from the Galaxy catalog.', 'attributes' => ['autocomplete' => 'organization-title']],
-                ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'gold', 'placeholder' => 'galaxy-prime', 'help' => 'Lowercase identifier used in imports and rule mapping.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
-                ['name' => 'points_rate', 'label' => 'Points rate', 'type' => 'number', 'value' => '1.50', 'placeholder' => '1.50', 'help' => 'Decimal multiplier applied to spend accrual for this tier.', 'attributes' => ['step' => '0.01', 'min' => '0', 'inputmode' => 'decimal']],
-                ['name' => 'is_active', 'label' => 'Status', 'type' => 'select', 'value' => '1', 'options' => [
+                ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold', 'required' => true, 'placeholder' => 'Galaxy Prime', 'help' => 'Use the operator-facing tier name from the Galaxy catalog.', 'attributes' => ['autocomplete' => 'organization-title']],
+                ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'gold', 'required' => true, 'placeholder' => 'galaxy-prime', 'help' => 'Lowercase identifier used in imports and rule mapping.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
+                ['name' => 'points_rate', 'label' => 'Points rate', 'type' => 'number', 'value' => '1.50', 'required' => true, 'placeholder' => '1.50', 'help' => 'Decimal multiplier applied to spend accrual for this tier.', 'attributes' => ['step' => '0.01', 'min' => '0', 'inputmode' => 'decimal']],
+                ['name' => 'is_active', 'label' => 'Status', 'type' => 'select', 'value' => '1', 'required' => true, 'options' => [
                     ['label' => 'Active', 'value' => '1'],
                     ['label' => 'Draft', 'value' => '0'],
                 ]],

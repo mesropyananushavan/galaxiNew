@@ -1054,6 +1054,14 @@
 ### Next step after card type live form placeholder-help checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form guidance support for another core Galaxy entity once PHP execution is available.
 
+### Card type live form required-marker checkpoint
+- Extended the config-driven live form layer so fields can declare required status alongside validation-oriented metadata.
+- Applied required markers to the first real `card-types` create fields and rendered both visible label indicators and native HTML `required` attributes.
+- Added unit and feature coverage so required-field cues stay aligned with the server-side validation baseline.
+
+### Next step after card type live form required-marker checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form required-field support for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

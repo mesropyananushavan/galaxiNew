@@ -124,6 +124,7 @@ class AdminResourcePageNormalizerTest extends TestCase
                         'label' => 'Points rate',
                         'type' => 'number',
                         'value' => '1.50',
+                        'required' => true,
                         'placeholder' => '1.50',
                         'help' => 'Decimal multiplier for accrual.',
                         'attributes' => [
@@ -138,6 +139,7 @@ class AdminResourcePageNormalizerTest extends TestCase
             ],
         ]);
 
+        $this->assertTrue($normalized['liveForm']['fields'][0]['required']);
         $this->assertSame('1.50', $normalized['liveForm']['fields'][0]['placeholder']);
         $this->assertSame('Decimal multiplier for accrual.', $normalized['liveForm']['fields'][0]['help']);
         $this->assertSame([

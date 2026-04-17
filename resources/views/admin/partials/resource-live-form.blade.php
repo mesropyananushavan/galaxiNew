@@ -24,13 +24,19 @@
         <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
             @foreach ($liveForm['fields'] as $field)
                 <label style="display: grid; gap: 8px; font-weight: 600;">
-                    <span>{{ $field['label'] }}</span>
+                    <span>
+                        {{ $field['label'] }}
+                        @if ($field['required'])
+                            <span style="color: rgb(248, 113, 113);">*</span>
+                        @endif
+                    </span>
 
                     @if ($field['type'] === 'hidden')
                         <input type="hidden" name="{{ $field['name'] }}" value="{{ old($field['name'], $field['value']) }}">
                     @elseif ($field['type'] === 'select')
                         <select
                             name="{{ $field['name'] }}"
+                            @required($field['required'])
                             @foreach ($field['attributes'] as $attribute => $value)
                                 {{ $attribute }}="{{ $value }}"
                             @endforeach
@@ -45,6 +51,7 @@
                             type="{{ $field['type'] }}"
                             name="{{ $field['name'] }}"
                             value="{{ old($field['name'], $field['value']) }}"
+                            @required($field['required'])
                             @if (! empty($field['placeholder']))
                                 placeholder="{{ $field['placeholder'] }}"
                             @endif
