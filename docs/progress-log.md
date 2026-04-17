@@ -1014,6 +1014,14 @@
 ### Next step after card type validation copy checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the same end-to-end live-write pattern for another core Galaxy entity once PHP execution is available.
 
+### Card type live form route-resolution checkpoint
+- Switched the `card-types` live form config from a hardcoded path to an admin route name and resolved the action URL inside `ResourceIndexController`.
+- Added feature coverage proving the rendered page now resolves the live form action from the route layer.
+- This is a small structural cleanup, but it keeps the first real write flow aligned with Laravel routing instead of freezing a raw URL into page config.
+
+### Next step after card type live form route-resolution checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the same end-to-end live-write pattern for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

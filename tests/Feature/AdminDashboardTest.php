@@ -1609,6 +1609,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card type "Galaxy Prime" was created.');
     }
 
+    public function test_card_types_page_resolves_live_form_action_from_route_name(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('action="/admin/card-types"', false);
+    }
+
     public function test_card_type_live_admin_form_returns_validation_errors_for_invalid_payload(): void
     {
         $user = User::factory()->create();

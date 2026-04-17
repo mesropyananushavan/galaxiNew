@@ -475,7 +475,7 @@ return [
         'liveForm' => [
             'title' => 'Create card type in Laravel',
             'description' => 'This is the first real write-oriented Phase 1 form path. Keep it minimal and parity-first while preview controls still cover the richer future workflow.',
-            'action' => '/admin/card-types',
+            'actionRoute' => 'admin.card-types.store',
             'submitLabel' => 'Create card type',
             'fields' => [
                 ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold'],

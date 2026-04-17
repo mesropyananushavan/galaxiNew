@@ -45,7 +45,13 @@ class ResourceIndexController extends Controller
             return null;
         }
 
-        return $pages[$resource];
+        $page = $pages[$resource];
+
+        if (is_array($page['liveForm'] ?? null) && is_string($page['liveForm']['actionRoute'] ?? null)) {
+            $page['liveForm']['action'] = route($page['liveForm']['actionRoute'], absolute: false);
+        }
+
+        return $page;
     }
 
     private function resourceBlocks(array $defaults): array
