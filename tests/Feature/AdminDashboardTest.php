@@ -1761,6 +1761,37 @@ class AdminDashboardTest extends TestCase
             ->assertSee('<option value="0" selected>', false);
     }
 
+    public function test_card_types_page_renders_scalar_live_form_option_values(): void
+    {
+        Config::set('admin-pages.card-types.liveForm.fields', [
+            ...array_map(function (array $field): array {
+                if ($field['name'] !== 'is_active') {
+                    return $field;
+                }
+
+                return [
+                    ...$field,
+                    'value' => true,
+                    'options' => [
+                        ['label' => 'Active', 'value' => true],
+                        ['label' => 'Draft', 'value' => false],
+                        ['label' => 'Archived', 'value' => 2],
+                    ],
+                ];
+            }, Config::get('admin-pages.card-types.liveForm.fields', [])),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('<option value="1" selected>', false)
+            ->assertSee('<option value="0"', false)
+            ->assertSee('<option value="2"', false);
+    }
+
     public function test_card_types_page_renders_live_form_field_attributes(): void
     {
         $user = User::factory()->create();

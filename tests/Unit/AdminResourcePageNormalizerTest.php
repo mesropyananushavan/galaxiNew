@@ -215,9 +215,11 @@ class AdminResourcePageNormalizerTest extends TestCase
                         'type' => 'select',
                         'value' => '1',
                         'options' => [
-                            ['label' => 'Active', 'value' => '1'],
-                            ['label' => 'Draft', 'value' => '0'],
+                            ['label' => 'Active', 'value' => true],
+                            ['label' => 'Draft', 'value' => 0],
+                            ['label' => 'Archived', 'value' => 2],
                             ['label' => 'Broken option'],
+                            ['label' => 'Empty option', 'value' => null],
                         ],
                     ],
                 ],
@@ -227,6 +229,7 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertSame([
             ['label' => 'Active', 'value' => '1'],
             ['label' => 'Draft', 'value' => '0'],
+            ['label' => 'Archived', 'value' => '2'],
         ], $normalized['liveForm']['fields'][0]['options']);
     }
 

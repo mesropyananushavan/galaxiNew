@@ -1230,6 +1230,14 @@
 ### Next step after live form scalar value checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Live form scalar option checkpoint
+- Extended shared live-form option normalization so select options can accept scalar values instead of only pre-stringified ones.
+- Added unit coverage for boolean and integer option values plus feature coverage proving the `card-types` status select still renders normalized option values and selection state correctly.
+- This is another small bridge step, but it reduces friction for a future model-backed edit state where option values may come straight from typed config or controller data.
+
+### Next step after live form scalar option checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

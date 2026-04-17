@@ -317,14 +317,19 @@ class AdminResourcePageNormalizer
         return array_values(array_filter(array_map(function (mixed $option): ?array {
             if (! is_array($option)
                 || ! is_string($option['label'] ?? null)
-                || ! is_string($option['value'] ?? null)
             ) {
+                return null;
+            }
+
+            $value = $this->liveFormValue($option['value'] ?? null);
+
+            if ($value === '') {
                 return null;
             }
 
             return [
                 'label' => $option['label'],
-                'value' => $option['value'],
+                'value' => $value,
             ];
         }, $options)));
     }
