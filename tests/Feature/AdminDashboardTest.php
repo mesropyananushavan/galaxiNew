@@ -1633,7 +1633,13 @@ class AdminDashboardTest extends TestCase
             ->assertSee('spellcheck="false"', false)
             ->assertSee('step="0.01"', false)
             ->assertSee('min="0"', false)
-            ->assertSee('inputmode="decimal"', false);
+            ->assertSee('inputmode="decimal"', false)
+            ->assertSee('placeholder="Galaxy Prime"', false)
+            ->assertSee('placeholder="galaxy-prime"', false)
+            ->assertSee('placeholder="1.50"', false)
+            ->assertSee('Use the operator-facing tier name from the Galaxy catalog.')
+            ->assertSee('Lowercase identifier used in imports and rule mapping.')
+            ->assertSee('Decimal multiplier applied to spend accrual for this tier.');
     }
 
     public function test_card_type_live_admin_form_returns_validation_errors_for_invalid_payload(): void

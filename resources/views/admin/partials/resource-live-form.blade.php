@@ -45,11 +45,18 @@
                             type="{{ $field['type'] }}"
                             name="{{ $field['name'] }}"
                             value="{{ old($field['name'], $field['value']) }}"
+                            @if (! empty($field['placeholder']))
+                                placeholder="{{ $field['placeholder'] }}"
+                            @endif
                             @foreach ($field['attributes'] as $attribute => $value)
                                 {{ $attribute }}="{{ $value }}"
                             @endforeach
                             style="border: 1px solid {{ $errors->has($field['name']) ? 'rgba(239, 68, 68, 0.55)' : 'var(--border)' }}; border-radius: 12px; padding: 12px 14px; background: var(--surface-muted); color: var(--text-main);"
                         >
+                    @endif
+
+                    @if (! empty($field['help']))
+                        <span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">{{ $field['help'] }}</span>
                     @endif
 
                     @error($field['name'])

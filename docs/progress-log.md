@@ -1046,6 +1046,14 @@
 ### Next step after card type live form field-attribute checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form field-attribute support for another core Galaxy entity once PHP execution is available.
 
+### Card type live form placeholder-help checkpoint
+- Extended the config-driven live form layer so fields can now carry placeholder and inline help copy in addition to raw HTML attributes.
+- Applied the first Galaxy-specific guidance to the live `card-types` create form, clarifying tier naming, slug usage, and points-rate semantics right next to the real inputs.
+- Added unit and feature coverage so this operator-facing guidance layer stays stable as more Phase 1 live forms appear.
+
+### Next step after card type live form placeholder-help checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form guidance support for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

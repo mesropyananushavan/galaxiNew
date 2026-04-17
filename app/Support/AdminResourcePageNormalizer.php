@@ -245,6 +245,8 @@ class AdminResourcePageNormalizer
                     'label' => $field['label'],
                     'type' => $field['type'],
                     'value' => is_string($field['value'] ?? null) ? $field['value'] : '',
+                    'placeholder' => is_string($field['placeholder'] ?? null) ? $field['placeholder'] : null,
+                    'help' => is_string($field['help'] ?? null) ? $field['help'] : null,
                     'options' => $this->liveFormOptions($field['options'] ?? []),
                     'attributes' => $this->liveFormAttributes($field['attributes'] ?? []),
                 ];
