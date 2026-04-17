@@ -117,10 +117,15 @@ class AdminResourcePageNormalizer
 
         return array_values(array_filter(
             $items,
-            fn (mixed $item): bool => is_array($item)
-                && is_string($item['label'] ?? null)
-                && is_string($item['value'] ?? null)
+            fn (mixed $item): bool => $this->isKeyValueItem($item)
         ));
+    }
+
+    private function isKeyValueItem(mixed $item): bool
+    {
+        return is_array($item)
+            && is_string($item['label'] ?? null)
+            && is_string($item['value'] ?? null);
     }
 
     private function primaryPageBlocks(array $page): array

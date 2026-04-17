@@ -158,6 +158,23 @@ class AdminResourcePageNormalizerTest extends TestCase
         ], $normalized['implementationHandoff']['steps']);
     }
 
+    public function test_normalize_keeps_valid_key_value_items_when_neighboring_items_are_malformed(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'dependencyStatus' => [
+                ['label' => 'Domain model', 'value' => 'Role and Permission models exist'],
+                ['label' => 'Missing value'],
+                'invalid-item',
+            ],
+        ]);
+
+        $this->assertSame([
+            ['label' => 'Domain model', 'value' => 'Role and Permission models exist'],
+        ], $normalized['dependencyStatus']);
+    }
+
     public function test_normalize_filters_malformed_nested_page_metadata(): void
     {
         $normalizer = new AdminResourcePageNormalizer();

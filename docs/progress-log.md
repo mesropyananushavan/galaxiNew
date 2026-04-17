@@ -910,6 +910,14 @@
 ### Next step after summary list normalizer extraction checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue small config-driven shell hardening where it still reduces Phase 1 migration risk.
 
+### Key-value item predicate checkpoint
+- Extracted a dedicated predicate for key-value metadata items inside `AdminResourcePageNormalizer`.
+- Added unit coverage proving valid dependency-status entries still survive when neighboring key-value payloads are malformed.
+- This keeps the config-driven Galaxy admin context blocks a little easier to evolve without spreading repeated shape checks across the normalizer.
+
+### Next step after key-value item predicate checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue small config-driven shell hardening where it still reduces Phase 1 migration risk.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
