@@ -626,6 +626,35 @@ return [
             ['label' => 'Backend dependency', 'value' => 'Rule CRUD endpoints and validation are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Legacy priority resolution needs verification before condition editing goes live'],
         ],
+        'operatorChecklist' => [
+            'summary' => 'Keep the rules workspace focused on parity-first operational review until real CRUD is available.',
+            'items' => [
+                'Review priority collisions before drafting a replacement rule.',
+                'Confirm shop scope against the legacy rule matrix before publishing changes.',
+                'Keep bar-service exclusions in draft until parity review is complete.',
+            ],
+        ],
+        'escalationGuide' => [
+            'summary' => 'Route rule conflicts through operations owners before changing customer-facing loyalty behavior.',
+            'items' => [
+                'Escalate overlapping priority conflicts before introducing a new accrual rule.',
+                'Escalate shop-scope disagreements to the loyalty operations owner.',
+            ],
+        ],
+        'shiftHandoff' => [
+            'summary' => 'Carry unresolved rule parity work forward with enough context to avoid accidental behavior drift.',
+            'items' => [
+                'Hand off unresolved priority conflicts with the compared legacy rule names.',
+                'Note any shop-scope questions still waiting on operations confirmation.',
+            ],
+        ],
+        'openIssues' => [
+            'summary' => 'Known service-rule migration gaps that still block safe rollout.',
+            'items' => [
+                'Night service block parity is still under review against legacy exclusions.',
+                'Priority resolution needs live confirmation before enabling write flows.',
+            ],
+        ],
         'implementationHandoff' => [
             'summary' => 'When backend work starts, introduce the smallest rule persistence path before attempting full condition-builder parity.',
             'steps' => [

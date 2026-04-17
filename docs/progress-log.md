@@ -918,6 +918,14 @@
 ### Next step after key-value item predicate checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue small config-driven shell hardening where it still reduces Phase 1 migration risk.
 
+### Service rules workflow metadata checkpoint
+- Expanded the `services-rules` admin page definition with operator checklist, escalation guide, shift handoff, and open issues metadata.
+- Extended feature expectations so the service-rules management preview now has explicit operational workflow cues, not just form and dependency placeholders.
+- This moves one of the most Galaxy-specific Phase 1 screens closer to a real back-office surface instead of a generic Laravel starter-style preview.
+
+### Next step after service rules workflow metadata checkpoint
+- Apply the same workflow-depth treatment to another high-value management screen like gifts, or convert one preview form into the first real Laravel request flow when PHP execution becomes available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
