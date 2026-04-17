@@ -1006,6 +1006,14 @@
 ### Next step after card type success flash checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the same end-to-end live-write pattern for another core Galaxy entity once PHP execution is available.
 
+### Card type validation copy checkpoint
+- Added operator-friendly validation attribute labels and custom messages to the live `card-types` request.
+- Extended feature coverage so duplicate slug and invalid status input now have explicit human-facing validation expectations.
+- This makes the first real Phase 1 write flow feel less like raw framework validation and more like an admin surface shaped for actual operators.
+
+### Next step after card type validation copy checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the same end-to-end live-write pattern for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

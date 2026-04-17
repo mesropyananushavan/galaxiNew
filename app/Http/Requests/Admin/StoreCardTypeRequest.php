@@ -30,4 +30,22 @@ class StoreCardTypeRequest extends FormRequest
                 ?? $this->input('is_active'),
         ]);
     }
+
+    public function attributes(): array
+    {
+        return [
+            'name' => 'card type name',
+            'slug' => 'card type slug',
+            'points_rate' => 'points rate',
+            'is_active' => 'status',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'slug.unique' => 'This card type slug is already in use.',
+            'is_active.boolean' => 'The status field must be Active or Draft.',
+        ];
+    }
 }
