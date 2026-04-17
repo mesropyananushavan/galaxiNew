@@ -8,6 +8,8 @@ use Illuminate\Support\Str;
 
 class StoreCardTypeRequest extends FormRequest
 {
+    protected string $redirectRoute = 'admin.card-types.index';
+
     public function authorize(): bool
     {
         return $this->user()?->can('access-admin') ?? false;

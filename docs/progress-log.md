@@ -1190,6 +1190,14 @@
 ### Next step after card type live form PATCH rendering checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Card type validation redirect fallback checkpoint
+- Pinned `StoreCardTypeRequest` validation redirects to `admin.card-types.index`, which also gives the inherited update request a predictable fallback target.
+- Added feature coverage for invalid create and update submissions without an explicit referrer so both flows still land on `#live-form` on the shared index page.
+- This is a small backend hardening step, but it makes the first live `card-types` flows less dependent on browser referrer behavior.
+
+### Next step after card type validation redirect fallback checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

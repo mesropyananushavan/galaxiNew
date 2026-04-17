@@ -1812,6 +1812,22 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_type_create_validation_redirects_to_index_without_referrer(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => '',
+            'slug' => 'invalid slug',
+            'points_rate' => '-1',
+            'is_active' => 'not-a-boolean',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
+    }
+
     public function test_authenticated_user_can_update_card_type_from_live_admin_flow(): void
     {
         $user = User::factory()->create();
@@ -1960,5 +1976,27 @@ class AdminDashboardTest extends TestCase
                 'slug' => 'This card type slug is already in use.',
                 'is_active' => 'The status field must be Active or Draft.',
             ]);
+    }
+
+    public function test_card_type_update_validation_redirects_to_index_without_referrer(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+            'name' => '',
+            'slug' => 'invalid slug',
+            'points_rate' => '-1',
+            'is_active' => 'not-a-boolean',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
     }
 }
