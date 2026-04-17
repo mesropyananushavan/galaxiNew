@@ -1070,6 +1070,14 @@
 ### Next step after card type live form accessibility-linkage checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form linkage pattern for another core Galaxy entity once PHP execution is available.
 
+### Card type live form aria-state checkpoint
+- Extended the live form markup so fields now expose `aria-invalid` state and inline validation messages render with `role="alert"`.
+- Added feature coverage for both the clean default state and the error state after a validation redirect.
+- This is another small polish step, but it makes the first real Phase 1 form more explicit about field validity without changing the current request flow.
+
+### Next step after card type live form aria-state checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form accessibility state pattern for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

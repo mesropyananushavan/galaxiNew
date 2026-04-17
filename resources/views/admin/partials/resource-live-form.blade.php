@@ -51,6 +51,7 @@
                             @if ($describedBy !== '')
                                 aria-describedby="{{ $describedBy }}"
                             @endif
+                            aria-invalid="{{ $errors->has($field['name']) ? 'true' : 'false' }}"
                             @foreach ($field['attributes'] as $attribute => $value)
                                 {{ $attribute }}="{{ $value }}"
                             @endforeach
@@ -73,6 +74,7 @@
                             @if ($describedBy !== '')
                                 aria-describedby="{{ $describedBy }}"
                             @endif
+                            aria-invalid="{{ $errors->has($field['name']) ? 'true' : 'false' }}"
                             @foreach ($field['attributes'] as $attribute => $value)
                                 {{ $attribute }}="{{ $value }}"
                             @endforeach
@@ -85,7 +87,7 @@
                     @endif
 
                     @error($field['name'])
-                        <span id="{{ $errorId }}" style="font-size: 0.85rem; color: rgb(248, 113, 113);">{{ $message }}</span>
+                        <span id="{{ $errorId }}" role="alert" style="font-size: 0.85rem; color: rgb(248, 113, 113);">{{ $message }}</span>
                     @enderror
                 </label>
             @endforeach

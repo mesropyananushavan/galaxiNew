@@ -1641,6 +1641,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('for="live-form-name"', false)
             ->assertSee('id="live-form-name-help"', false)
             ->assertSee('aria-describedby="live-form-name-help"', false)
+            ->assertSee('aria-invalid="false"', false)
             ->assertSee('required', false)
             ->assertSee('Use the operator-facing tier name from the Galaxy catalog.')
             ->assertSee('Lowercase identifier used in imports and rule mapping.')
@@ -1661,7 +1662,9 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('id="live-form-name-error"', false)
+            ->assertSee('role="alert"', false)
             ->assertSee('aria-describedby="live-form-name-help live-form-name-error"', false)
+            ->assertSee('aria-invalid="true"', false)
             ->assertSee('id="live-form-points_rate-error"', false);
     }
 
