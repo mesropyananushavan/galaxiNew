@@ -53,6 +53,7 @@
                             id="{{ $fieldId }}"
                             name="{{ $field['name'] }}"
                             @required($field['required'])
+                            @autofocus($field['autofocus'])
                             @if ($describedBy !== '')
                                 aria-describedby="{{ $describedBy }}"
                             @endif
@@ -76,6 +77,7 @@
                             name="{{ $field['name'] }}"
                             value="{{ old($field['name'], $field['value']) }}"
                             @required($field['required'])
+                            @autofocus($field['autofocus'])
                             @if (! empty($field['placeholder']))
                                 placeholder="{{ $field['placeholder'] }}"
                             @endif

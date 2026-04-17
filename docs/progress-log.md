@@ -1102,6 +1102,14 @@
 ### Next step after card type live form validation-summary-announcement checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the improved validation-summary pattern for another core Galaxy entity once PHP execution is available.
 
+### Card type live form autofocus checkpoint
+- Extended the config-driven live form layer so fields can declare `autofocus` alongside the existing required and guidance metadata.
+- Applied autofocus to the primary `card-types` name field and added unit plus feature coverage so the first real create flow lands on the most important operator input.
+- This is a small ergonomics step, but it strengthens the reusable live-form foundation rather than hardcoding behavior into one view.
+
+### Next step after card type live form autofocus checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form autofocus support for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

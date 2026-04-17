@@ -1641,6 +1641,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('for="live-form-name"', false)
             ->assertSee('id="live-form-name-help"', false)
             ->assertSee('aria-describedby="live-form-name-help"', false)
+            ->assertSee('autofocus', false)
             ->assertDontSee('aria-errormessage=', false)
             ->assertSee('aria-invalid="false"', false)
             ->assertSee('required', false)
