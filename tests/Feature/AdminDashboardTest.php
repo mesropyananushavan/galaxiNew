@@ -1637,14 +1637,32 @@ class AdminDashboardTest extends TestCase
             ->assertSee('placeholder="Galaxy Prime"', false)
             ->assertSee('placeholder="galaxy-prime"', false)
             ->assertSee('placeholder="1.50"', false)
+            ->assertSee('id="live-form-name"', false)
+            ->assertSee('for="live-form-name"', false)
+            ->assertSee('id="live-form-name-help"', false)
+            ->assertSee('aria-describedby="live-form-name-help"', false)
             ->assertSee('required', false)
-            ->assertSee('Type name', false)
-            ->assertSee('Slug', false)
-            ->assertSee('Points rate', false)
-            ->assertSee('Status', false)
             ->assertSee('Use the operator-facing tier name from the Galaxy catalog.')
             ->assertSee('Lowercase identifier used in imports and rule mapping.')
             ->assertSee('Decimal multiplier applied to spend accrual for this tier.');
+    }
+
+    public function test_card_types_page_links_live_form_errors_to_field_descriptions(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => '',
+            'slug' => 'invalid slug',
+            'points_rate' => '-1',
+            'is_active' => 'not-a-boolean',
+        ])->followRedirects();
+
+        $response
+            ->assertOk()
+            ->assertSee('id="live-form-name-error"', false)
+            ->assertSee('aria-describedby="live-form-name-help live-form-name-error"', false)
+            ->assertSee('id="live-form-points_rate-error"', false);
     }
 
     public function test_card_type_live_admin_form_returns_validation_errors_for_invalid_payload(): void

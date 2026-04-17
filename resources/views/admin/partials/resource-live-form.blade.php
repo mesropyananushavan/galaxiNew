@@ -23,7 +23,17 @@
 
         <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
             @foreach ($liveForm['fields'] as $field)
-                <label style="display: grid; gap: 8px; font-weight: 600;">
+                @php
+                    $fieldId = 'live-form-'.str_replace(['[', ']', ' '], ['-', '', '-'], $field['name']);
+                    $helpId = $fieldId.'-help';
+                    $errorId = $fieldId.'-error';
+                    $describedBy = collect([
+                        ! empty($field['help']) ? $helpId : null,
+                        $errors->has($field['name']) ? $errorId : null,
+                    ])->filter()->implode(' ');
+                @endphp
+
+                <label for="{{ $fieldId }}" style="display: grid; gap: 8px; font-weight: 600;">
                     <span>
                         {{ $field['label'] }}
                         @if ($field['required'])
@@ -35,8 +45,12 @@
                         <input type="hidden" name="{{ $field['name'] }}" value="{{ old($field['name'], $field['value']) }}">
                     @elseif ($field['type'] === 'select')
                         <select
+                            id="{{ $fieldId }}"
                             name="{{ $field['name'] }}"
                             @required($field['required'])
+                            @if ($describedBy !== '')
+                                aria-describedby="{{ $describedBy }}"
+                            @endif
                             @foreach ($field['attributes'] as $attribute => $value)
                                 {{ $attribute }}="{{ $value }}"
                             @endforeach
@@ -48,12 +62,16 @@
                         </select>
                     @else
                         <input
+                            id="{{ $fieldId }}"
                             type="{{ $field['type'] }}"
                             name="{{ $field['name'] }}"
                             value="{{ old($field['name'], $field['value']) }}"
                             @required($field['required'])
                             @if (! empty($field['placeholder']))
                                 placeholder="{{ $field['placeholder'] }}"
+                            @endif
+                            @if ($describedBy !== '')
+                                aria-describedby="{{ $describedBy }}"
                             @endif
                             @foreach ($field['attributes'] as $attribute => $value)
                                 {{ $attribute }}="{{ $value }}"
@@ -63,11 +81,11 @@
                     @endif
 
                     @if (! empty($field['help']))
-                        <span style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">{{ $field['help'] }}</span>
+                        <span id="{{ $helpId }}" style="font-size: 0.85rem; font-weight: 400; color: var(--text-muted);">{{ $field['help'] }}</span>
                     @endif
 
                     @error($field['name'])
-                        <span style="font-size: 0.85rem; color: rgb(248, 113, 113);">{{ $message }}</span>
+                        <span id="{{ $errorId }}" style="font-size: 0.85rem; color: rgb(248, 113, 113);">{{ $message }}</span>
                     @enderror
                 </label>
             @endforeach
