@@ -1641,6 +1641,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('for="live-form-name"', false)
             ->assertSee('id="live-form-name-help"', false)
             ->assertSee('aria-describedby="live-form-name-help"', false)
+            ->assertDontSee('aria-errormessage=', false)
             ->assertSee('aria-invalid="false"', false)
             ->assertSee('required', false)
             ->assertSee('Use the operator-facing tier name from the Galaxy catalog.')
@@ -1666,8 +1667,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('id="live-form-name-error"', false)
             ->assertSee('role="alert"', false)
             ->assertSee('aria-describedby="live-form-name-help live-form-name-error"', false)
+            ->assertSee('aria-errormessage="live-form-name-error"', false)
             ->assertSee('aria-invalid="true"', false)
-            ->assertSee('id="live-form-points_rate-error"', false);
+            ->assertSee('id="live-form-points_rate-error"', false)
+            ->assertSee('aria-errormessage="live-form-points_rate-error"', false);
     }
 
     public function test_card_type_live_admin_form_returns_validation_errors_for_invalid_payload(): void
