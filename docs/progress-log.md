@@ -998,6 +998,14 @@
 ### Next step after card type live form select checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form building blocks for another core Galaxy entity once PHP execution is available.
 
+### Card type success flash checkpoint
+- Added feature coverage proving the `card-types` page renders the live-flow success flash banner after a create redirect.
+- This keeps the first backend-backed Phase 1 flow honest at the UX level, not only at the route and persistence level.
+- The create path now has clearer end-to-end coverage from validation through persistence to visible operator feedback.
+
+### Next step after card type success flash checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the same end-to-end live-write pattern for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

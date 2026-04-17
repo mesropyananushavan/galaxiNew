@@ -1594,6 +1594,20 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_types_page_shows_live_flow_success_flash_message(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)
+            ->withSession(['status' => 'Card type "Galaxy Prime" was created.'])
+            ->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('Backend flow checkpoint')
+            ->assertSee('Card type "Galaxy Prime" was created.');
+    }
+
     public function test_card_type_live_admin_form_returns_validation_errors_for_invalid_payload(): void
     {
         $user = User::factory()->create();
