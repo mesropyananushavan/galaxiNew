@@ -1608,6 +1608,8 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('id="backend-flow-status"', false)
             ->assertSee('tabindex="-1"', false)
+            ->assertSee('role="status"', false)
+            ->assertSee('aria-live="polite"', false)
             ->assertSee('Backend flow checkpoint')
             ->assertSee('Card type "Galaxy Prime" was created.')
             ->assertSee('id="live-form"', false);
@@ -1864,6 +1866,8 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('id="backend-flow-status"', false)
             ->assertSee('tabindex="-1"', false)
+            ->assertSee('role="status"', false)
+            ->assertSee('aria-live="polite"', false)
             ->assertSee('Backend flow checkpoint')
             ->assertSee('Card type "Galaxy Prime Plus" was updated.');
     }

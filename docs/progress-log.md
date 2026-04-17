@@ -1174,6 +1174,14 @@
 ### Next step after backend flow status focus-target checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Backend flow status live-region checkpoint
+- Tightened the shared success banner markup with `role="status"` and `aria-live="polite"` so create and update confirmations are exposed as a clearer live region.
+- Extended feature coverage for both create and update flash states to keep those announcement semantics explicit.
+- This is a small accessibility follow-through, but it fits the new success-redirect target we introduced for the first real backend flows.
+
+### Next step after backend flow status live-region checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
