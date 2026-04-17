@@ -28,6 +28,15 @@
 
                     @if ($field['type'] === 'hidden')
                         <input type="hidden" name="{{ $field['name'] }}" value="{{ old($field['name'], $field['value']) }}">
+                    @elseif ($field['type'] === 'select')
+                        <select
+                            name="{{ $field['name'] }}"
+                            style="border: 1px solid {{ $errors->has($field['name']) ? 'rgba(239, 68, 68, 0.55)' : 'var(--border)' }}; border-radius: 12px; padding: 12px 14px; background: var(--surface-muted); color: var(--text-main);"
+                        >
+                            @foreach ($field['options'] as $option)
+                                <option value="{{ $option['value'] }}" @selected(old($field['name'], $field['value']) === $option['value'])>{{ $option['label'] }}</option>
+                            @endforeach
+                        </select>
                     @else
                         <input
                             type="{{ $field['type'] }}"

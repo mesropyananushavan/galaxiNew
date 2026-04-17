@@ -990,6 +990,14 @@
 ### Next step after card type request normalization checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the same small live-write pattern for another core Galaxy entity once PHP execution is available.
 
+### Card type live form select checkpoint
+- Upgraded the live `card-types` form so `is_active` is now rendered as a real status select instead of a raw numeric input.
+- Extended live-form normalization to support select options and added test coverage for both select-option filtering and the new visible status choices on the card-type page.
+- This is a small usability improvement, but it makes the first backend-backed admin form feel more like a real Galaxy operator screen.
+
+### Next step after card type live form select checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form building blocks for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

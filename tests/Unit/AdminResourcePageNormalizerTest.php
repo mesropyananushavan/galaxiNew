@@ -109,6 +109,37 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertCount(1, $normalized['liveForm']['fields']);
     }
 
+    public function test_normalize_live_form_keeps_valid_select_options_and_ignores_malformed_entries(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'liveForm' => [
+                'title' => 'Create card type in Laravel',
+                'action' => '/admin/card-types',
+                'submitLabel' => 'Create card type',
+                'fields' => [
+                    [
+                        'name' => 'is_active',
+                        'label' => 'Status',
+                        'type' => 'select',
+                        'value' => '1',
+                        'options' => [
+                            ['label' => 'Active', 'value' => '1'],
+                            ['label' => 'Draft', 'value' => '0'],
+                            ['label' => 'Broken option'],
+                        ],
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertSame([
+            ['label' => 'Active', 'value' => '1'],
+            ['label' => 'Draft', 'value' => '0'],
+        ], $normalized['liveForm']['fields'][0]['options']);
+    }
+
     public function test_normalize_keeps_valid_table_rows_when_neighboring_rows_are_malformed(): void
     {
         $normalizer = new AdminResourcePageNormalizer();

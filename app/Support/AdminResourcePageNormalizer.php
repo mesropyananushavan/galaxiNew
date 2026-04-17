@@ -245,9 +245,31 @@ class AdminResourcePageNormalizer
                     'label' => $field['label'],
                     'type' => $field['type'],
                     'value' => is_string($field['value'] ?? null) ? $field['value'] : '',
+                    'options' => $this->liveFormOptions($field['options'] ?? []),
                 ];
             }, is_array($form['fields'] ?? null) ? $form['fields'] : []))),
         ];
+    }
+
+    private function liveFormOptions(mixed $options): array
+    {
+        if (! is_array($options)) {
+            return [];
+        }
+
+        return array_values(array_filter(array_map(function (mixed $option): ?array {
+            if (! is_array($option)
+                || ! is_string($option['label'] ?? null)
+                || ! is_string($option['value'] ?? null)
+            ) {
+                return null;
+            }
+
+            return [
+                'label' => $option['label'],
+                'value' => $option['value'],
+            ];
+        }, $options)));
     }
 
     private function formSections(mixed $sections): array

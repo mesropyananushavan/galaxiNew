@@ -481,7 +481,10 @@ return [
                 ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold'],
                 ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'gold'],
                 ['name' => 'points_rate', 'label' => 'Points rate', 'type' => 'number', 'value' => '1.50'],
-                ['name' => 'is_active', 'label' => 'Active flag (1 or 0)', 'type' => 'number', 'value' => '1'],
+                ['name' => 'is_active', 'label' => 'Status', 'type' => 'select', 'value' => '1', 'options' => [
+                    ['label' => 'Active', 'value' => '1'],
+                    ['label' => 'Draft', 'value' => '0'],
+                ]],
             ],
         ],
         'form' => [
