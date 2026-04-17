@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Str;
 
 class StoreCardTypeRequest extends FormRequest
@@ -47,5 +48,25 @@ class StoreCardTypeRequest extends FormRequest
             'slug.unique' => 'This card type slug is already in use.',
             'is_active.boolean' => 'The status field must be Active or Draft.',
         ];
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        /** @var UrlGenerator $url */
+        $url = $this->redirector->getUrlGenerator();
+
+        if ($this->redirect) {
+            return $url->to($this->redirect).'#live-form';
+        }
+
+        if ($this->redirectRoute) {
+            return $url->route($this->redirectRoute).'#live-form';
+        }
+
+        if ($this->redirectAction) {
+            return $url->action($this->redirectAction).'#live-form';
+        }
+
+        return $url->previous().'#live-form';
     }
 }

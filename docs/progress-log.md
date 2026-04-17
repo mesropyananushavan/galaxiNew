@@ -1030,6 +1030,14 @@
 ### Next step after card type live form anchor checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the same end-to-end live-write pattern for another core Galaxy entity once PHP execution is available.
 
+### Card type validation redirect anchor checkpoint
+- Updated the live `card-types` request so validation failures also redirect back to `#live-form` instead of dropping operators at the top of the page.
+- Extended feature coverage for anchored validation redirects on both generic invalid payloads and operator-friendly custom-message cases.
+- This keeps the first real Phase 1 write flow consistent on both success and failure paths.
+
+### Next step after card type validation redirect anchor checkpoint
+- Add edit/update handling on top of the live `card-types` slice, or reuse the same end-to-end live-write pattern for another core Galaxy entity once PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

@@ -1633,7 +1633,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index'))
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
             ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
 
         $this->assertDatabaseCount('card_types', 0);
@@ -1681,7 +1681,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index'))
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
             ->assertSessionHasErrors([
                 'slug' => 'This card type slug is already in use.',
                 'is_active' => 'The status field must be Active or Draft.',
