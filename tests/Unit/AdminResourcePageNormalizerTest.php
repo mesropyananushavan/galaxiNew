@@ -134,6 +134,7 @@ class AdminResourcePageNormalizerTest extends TestCase
                             'step' => '0.01',
                             'min' => '0',
                             'inputmode' => 'decimal',
+                            'readonly' => true,
                             'spellcheck' => false,
                             0 => 'broken',
                         ],
@@ -150,6 +151,7 @@ class AdminResourcePageNormalizerTest extends TestCase
             'step' => '0.01',
             'min' => '0',
             'inputmode' => 'decimal',
+            'readonly' => true,
         ], $normalized['liveForm']['fields'][0]['attributes']);
     }
 

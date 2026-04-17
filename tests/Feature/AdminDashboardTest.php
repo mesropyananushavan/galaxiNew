@@ -1714,6 +1714,31 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('<label for="live-form-mode"', false);
     }
 
+    public function test_card_types_page_renders_boolean_live_form_attributes(): void
+    {
+        Config::set('admin-pages.card-types.liveForm.fields', [
+            ...array_map(function (array $field): array {
+                if ($field['name'] !== 'slug') {
+                    return $field;
+                }
+
+                $field['attributes']['readonly'] = true;
+
+                return $field;
+            }, Config::get('admin-pages.card-types.liveForm.fields', [])),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('name="slug"', false)
+            ->assertSee('readonly', false)
+            ->assertDontSee('readonly="1"', false);
+    }
+
     public function test_card_types_page_renders_live_form_field_attributes(): void
     {
         $user = User::factory()->create();

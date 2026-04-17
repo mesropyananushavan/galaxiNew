@@ -71,7 +71,11 @@
                             @endif
                             aria-invalid="{{ $errors->has($field['name']) ? 'true' : 'false' }}"
                             @foreach ($field['attributes'] as $attribute => $value)
-                                {{ $attribute }}="{{ $value }}"
+                                @if ($value === true)
+                                    {{ $attribute }}
+                                @else
+                                    {{ $attribute }}="{{ $value }}"
+                                @endif
                             @endforeach
                             style="border: 1px solid {{ $errors->has($field['name']) ? 'rgba(239, 68, 68, 0.55)' : 'var(--border)' }}; border-radius: 12px; padding: 12px 14px; background: var(--surface-muted); color: var(--text-main);"
                         >
@@ -98,7 +102,11 @@
                             @endif
                             aria-invalid="{{ $errors->has($field['name']) ? 'true' : 'false' }}"
                             @foreach ($field['attributes'] as $attribute => $value)
-                                {{ $attribute }}="{{ $value }}"
+                                @if ($value === true)
+                                    {{ $attribute }}
+                                @else
+                                    {{ $attribute }}="{{ $value }}"
+                                @endif
                             @endforeach
                             style="border: 1px solid {{ $errors->has($field['name']) ? 'rgba(239, 68, 68, 0.55)' : 'var(--border)' }}; border-radius: 12px; padding: 12px 14px; background: var(--surface-muted); color: var(--text-main);"
                         >

@@ -1214,6 +1214,14 @@
 ### Next step after live form hidden field foundation checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Live form boolean attribute checkpoint
+- Extended shared live-form field attributes to keep boolean HTML attributes such as `readonly` when they are explicitly enabled in config.
+- Updated Blade rendering so boolean attributes are emitted without awkward string values, and added unit plus feature coverage around that behavior.
+- This is a small foundation cleanup, but it gives future edit-oriented form states a cleaner way to lock fields without bespoke template logic.
+
+### Next step after live form boolean attribute checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

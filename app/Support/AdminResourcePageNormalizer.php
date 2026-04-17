@@ -318,7 +318,17 @@ class AdminResourcePageNormalizer
             return [];
         }
 
-        return array_filter($attributes, fn (mixed $value, mixed $key): bool => is_string($key) && is_string($value), ARRAY_FILTER_USE_BOTH);
+        return array_filter($attributes, function (mixed $value, mixed $key): bool {
+            if (! is_string($key)) {
+                return false;
+            }
+
+            if (is_string($value)) {
+                return true;
+            }
+
+            return $value === true;
+        }, ARRAY_FILTER_USE_BOTH);
     }
 
     private function formSections(mixed $sections): array
