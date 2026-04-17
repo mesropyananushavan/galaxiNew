@@ -1618,6 +1618,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('method="POST"', false)
             ->assertSee('action="/admin/card-types"', false);
     }
 

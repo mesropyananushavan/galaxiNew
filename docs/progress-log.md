@@ -1110,6 +1110,14 @@
 ### Next step after card type live form autofocus checkpoint
 - Add edit/update handling on top of the live `card-types` slice, or reuse the improved live-form autofocus support for another core Galaxy entity once PHP execution is available.
 
+### Card type live form method checkpoint
+- Extended the config-driven live form layer so forms now declare an explicit HTTP method, with normalization guarding unsupported values back to `POST`.
+- Updated the shared live form partial to render method-aware HTML plus spoofed Laravel verbs, and set the current `card-types` create flow to explicit `POST` config.
+- Added unit and feature coverage so this shared foundation is ready for a future edit/update slice without hardcoding another form path.
+
+### Next step after card type live form method checkpoint
+- Add edit/update handling on top of the live `card-types` slice, using the new method-aware live-form foundation when PHP execution is available.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

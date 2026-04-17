@@ -229,6 +229,7 @@ class AdminResourcePageNormalizer
         return [
             'title' => $form['title'],
             'description' => is_string($form['description'] ?? null) ? $form['description'] : null,
+            'method' => $this->liveFormMethod($form['method'] ?? null),
             'action' => $form['action'],
             'submitLabel' => $form['submitLabel'],
             'fields' => array_values(array_filter(array_map(function (mixed $field): ?array {
@@ -254,6 +255,19 @@ class AdminResourcePageNormalizer
                 ];
             }, is_array($form['fields'] ?? null) ? $form['fields'] : []))),
         ];
+    }
+
+    private function liveFormMethod(mixed $method): string
+    {
+        if (! is_string($method)) {
+            return 'POST';
+        }
+
+        $method = strtoupper($method);
+
+        return in_array($method, ['GET', 'POST', 'PUT', 'PATCH', 'DELETE'], true)
+            ? $method
+            : 'POST';
     }
 
     private function liveFormOptions(mixed $options): array

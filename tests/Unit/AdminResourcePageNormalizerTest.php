@@ -104,6 +104,7 @@ class AdminResourcePageNormalizerTest extends TestCase
         ]);
 
         $this->assertSame('Create card type in Laravel', $normalized['liveForm']['title']);
+        $this->assertSame('POST', $normalized['liveForm']['method']);
         $this->assertSame('/admin/card-types', $normalized['liveForm']['action']);
         $this->assertSame('Create card type', $normalized['liveForm']['submitLabel']);
         $this->assertCount(1, $normalized['liveForm']['fields']);
@@ -149,6 +150,25 @@ class AdminResourcePageNormalizerTest extends TestCase
             'min' => '0',
             'inputmode' => 'decimal',
         ], $normalized['liveForm']['fields'][0]['attributes']);
+    }
+
+    public function test_normalize_live_form_defaults_invalid_method_to_post(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'liveForm' => [
+                'title' => 'Update card type in Laravel',
+                'method' => 'trace',
+                'action' => '/admin/card-types/gold',
+                'submitLabel' => 'Update card type',
+                'fields' => [
+                    ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold'],
+                ],
+            ],
+        ]);
+
+        $this->assertSame('POST', $normalized['liveForm']['method']);
     }
 
     public function test_normalize_live_form_keeps_valid_select_options_and_ignores_malformed_entries(): void

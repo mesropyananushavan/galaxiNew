@@ -23,8 +23,14 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ $liveForm['action'] }}" style="display: grid; gap: 16px;">
-        @csrf
+    <form method="{{ in_array($liveForm['method'], ['GET', 'POST'], true) ? $liveForm['method'] : 'POST' }}" action="{{ $liveForm['action'] }}" style="display: grid; gap: 16px;">
+        @if ($liveForm['method'] !== 'GET')
+            @csrf
+        @endif
+
+        @if (in_array($liveForm['method'], ['PUT', 'PATCH', 'DELETE'], true))
+            @method($liveForm['method'])
+        @endif
 
         <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px;">
             @foreach ($liveForm['fields'] as $field)
