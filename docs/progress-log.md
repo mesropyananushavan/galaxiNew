@@ -886,6 +886,14 @@
 ### Next step after table rows fallback checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further shell refactors and save the next code changes for a real backend slice.
 
+### Form section normalizer extraction checkpoint
+- Extracted dedicated helpers for normalizing form sections and form fields inside `AdminResourcePageNormalizer`.
+- Added unit coverage proving valid form sections still survive when neighboring section payloads are malformed.
+- This is a small structural cleanup, but it makes the growing Galaxy-specific admin shell easier to extend without burying more logic inside one large method.
+
+### Next step after form section normalizer extraction checkpoint
+- Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or continue small config-driven shell hardening where it still reduces Phase 1 migration risk.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

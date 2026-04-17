@@ -191,29 +191,45 @@ class AdminResourcePageNormalizer
             return [];
         }
 
-        $sections = is_array($form['sections'] ?? null) ? $form['sections'] : [];
-
         return [
             'title' => $form['title'],
             'actions' => $this->actions($form['actions'] ?? []),
-            'sections' => array_values(array_filter(array_map(function (mixed $section): ?array {
-                if (! is_array($section) || ! is_string($section['title'] ?? null) || ! is_array($section['fields'] ?? null)) {
-                    return null;
-                }
-
-                return [
-                    'title' => $section['title'],
-                    'help' => is_string($section['help'] ?? null) ? $section['help'] : null,
-                    'actions' => $this->actions($section['actions'] ?? []),
-                    'fields' => array_values(array_filter(
-                        $section['fields'],
-                        fn (mixed $field): bool => is_array($field)
-                            && is_string($field['label'] ?? null)
-                            && is_string($field['value'] ?? null)
-                    )),
-                ];
-            }, $sections))),
+            'sections' => $this->formSections($form['sections'] ?? []),
         ];
+    }
+
+    private function formSections(mixed $sections): array
+    {
+        if (! is_array($sections)) {
+            return [];
+        }
+
+        return array_values(array_filter(array_map(function (mixed $section): ?array {
+            if (! is_array($section) || ! is_string($section['title'] ?? null) || ! is_array($section['fields'] ?? null)) {
+                return null;
+            }
+
+            return [
+                'title' => $section['title'],
+                'help' => is_string($section['help'] ?? null) ? $section['help'] : null,
+                'actions' => $this->actions($section['actions'] ?? []),
+                'fields' => $this->formFields($section['fields']),
+            ];
+        }, $sections)));
+    }
+
+    private function formFields(mixed $fields): array
+    {
+        if (! is_array($fields)) {
+            return [];
+        }
+
+        return array_values(array_filter(
+            $fields,
+            fn (mixed $field): bool => is_array($field)
+                && is_string($field['label'] ?? null)
+                && is_string($field['value'] ?? null)
+        ));
     }
 
     private function stringList(mixed $items): array

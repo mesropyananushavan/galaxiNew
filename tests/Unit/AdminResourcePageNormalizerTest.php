@@ -86,6 +86,36 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertSame([], $normalized['form']['sections']);
     }
 
+    public function test_normalize_keeps_valid_form_sections_when_other_section_fields_are_malformed(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'form' => [
+                'title' => 'Create or edit role',
+                'sections' => [
+                    [
+                        'title' => 'Role identity',
+                        'fields' => [
+                            ['label' => 'Role name', 'value' => 'Shop Manager'],
+                            ['label' => 'Scope'],
+                        ],
+                    ],
+                    [
+                        'title' => 'Broken section',
+                        'fields' => 'invalid-fields',
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertCount(1, $normalized['form']['sections']);
+        $this->assertSame('Role identity', $normalized['form']['sections'][0]['title']);
+        $this->assertSame([
+            ['label' => 'Role name', 'value' => 'Shop Manager'],
+        ], $normalized['form']['sections'][0]['fields']);
+    }
+
     public function test_normalize_filters_malformed_nested_page_metadata(): void
     {
         $normalizer = new AdminResourcePageNormalizer();
