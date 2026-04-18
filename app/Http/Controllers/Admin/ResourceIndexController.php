@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CardType;
 use App\Support\AdminResourcePageNormalizer;
 use BackedEnum;
 use Illuminate\Contracts\Routing\UrlRoutable;
@@ -50,6 +51,8 @@ class ResourceIndexController extends Controller
         }
 
         $page = $pages[$resource];
+
+        $page = $this->enrichPage($resource, $page);
 
         if (is_array($page['liveForm'] ?? null)) {
             $page['liveForm']['title'] = $this->resolveLiveFormString(
@@ -108,6 +111,65 @@ class ResourceIndexController extends Controller
                 ];
             }
         }
+
+        return $page;
+    }
+
+    private function enrichPage(string $resource, array $page): array
+    {
+        if ($resource !== 'card-types') {
+            return $page;
+        }
+
+        return $this->enrichCardTypesPage($page);
+    }
+
+    private function enrichCardTypesPage(array $page): array
+    {
+        $latestCardType = CardType::query()->latest('id')->first();
+
+        if ($latestCardType !== null) {
+            $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
+
+            $page['actions'] = [
+                ...$actions,
+                [
+                    'label' => 'Edit latest saved type',
+                    'tone' => 'secondary',
+                    'href' => route('admin.card-types.index', ['cardType' => $latestCardType->id], absolute: false).'#live-form',
+                ],
+            ];
+        }
+
+        $selectedCardTypeId = request()->integer('cardType');
+
+        if ($selectedCardTypeId < 1) {
+            return $page;
+        }
+
+        $selectedCardType = CardType::query()->find($selectedCardTypeId);
+
+        if ($selectedCardType === null || ! is_array($page['liveForm'] ?? null)) {
+            return $page;
+        }
+
+        $page['liveForm']['title'] = 'Edit card type in Laravel';
+        $page['liveForm']['description'] = 'Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.';
+        $page['liveForm']['method'] = 'PATCH';
+        $page['liveForm']['actionRoute'] = 'admin.card-types.update';
+        $page['liveForm']['actionRouteParameters'] = [
+            'cardType' => $selectedCardType,
+        ];
+        $page['liveForm']['cancelRoute'] = 'admin.card-types.index';
+        $page['liveForm']['cancelLabel'] = 'Create new type';
+        $page['liveForm']['cancelRouteParameters'] = [];
+        $page['liveForm']['submitLabel'] = 'Save card type changes';
+        $page['liveForm']['valuesResolver'] = [
+            'name' => $selectedCardType->name,
+            'slug' => $selectedCardType->slug,
+            'points_rate' => (string) $selectedCardType->points_rate,
+            'is_active' => $selectedCardType->is_active ? '1' : '0',
+        ];
 
         return $page;
     }

@@ -1354,3 +1354,11 @@
 
 ### Next step after card type live-form entry-link checkpoint
 - Reuse the same linked action pattern for the first real edit/update entry point on `card-types`, or save the next code change for a request-driven edit state once PHP execution is available.
+
+### Card type edit-entry checkpoint
+- Added a small real backend slice to the `card-types` page: when saved card types exist, the admin shell now exposes an `Edit latest saved type` action that deep-links back into the shared live form.
+- Extended `ResourceIndexController` so `?cardType=<id>` switches the shared `card-types` live form into a real PATCH/update state with model-backed field values and a reset path back to create mode.
+- Added feature coverage for both the saved-type edit entry link and the request-driven edit-mode rendering, so this first read/write bridge stays visible in Phase 1 Git history.
+
+### Next step after card type edit-entry checkpoint
+- Reuse the same request-driven edit-state pattern for row-level edit links or another small model-backed admin read surface, instead of adding more preview-only shell depth.

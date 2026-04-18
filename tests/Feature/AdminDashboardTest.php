@@ -1661,6 +1661,61 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1.50x');
     }
 
+    public function test_card_types_page_exposes_edit_link_for_latest_saved_type(): void
+    {
+        CardType::create([
+            'name' => 'Gold',
+            'slug' => 'gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $latestCardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '2.00',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit latest saved type')
+            ->assertSee('href="/admin/card-types?cardType='.$latestCardType->id.'#live-form"', false);
+    }
+
+    public function test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.75',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index', ['cardType' => $cardType->id]));
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.')
+            ->assertSee('>Save card type changes<', false)
+            ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false)
+            ->assertSee('name="_method"', false)
+            ->assertSee('value="PATCH"', false)
+            ->assertSee('value="Galaxy Prime"', false)
+            ->assertSee('value="galaxy-prime"', false)
+            ->assertSee('value="1.75"', false)
+            ->assertSee('<option value="0" selected>Draft</option>', false)
+            ->assertSee('href="/admin/card-types"', false)
+            ->assertSee('Create new type');
+    }
+
     public function test_authenticated_user_can_store_card_type_from_live_admin_form(): void
     {
         $user = User::factory()->create();
