@@ -156,6 +156,11 @@
 - Confirmed the selected edit context, summary links, and field error wiring hold together in the retry flow, `2 passed`.
 - This keeps the current write-backed slice more resilient and operator-friendly by ensuring validation feedback still points at the right live form fields inside the chosen tier context.
 
+### Card-types validation cancel-action checkpoint
+- Added regression coverage proving the selected `card-types` edit retry path keeps the secondary `Create new type` action pointed at the safe generic create-state after validation fails.
+- Confirmed the retry flow still stays in selected edit mode while the cancel action avoids a stale selected-record URL, `2 passed`.
+- This slightly reduces operator footguns in the current write slice by keeping the escape hatch predictable even after a failed save.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

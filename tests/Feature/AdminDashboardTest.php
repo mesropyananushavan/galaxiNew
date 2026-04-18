@@ -3672,6 +3672,34 @@ class AdminDashboardTest extends TestCase
             ->assertSee('aria-errormessage="live-form-is_active-error"', false);
     }
 
+    public function test_card_type_update_validation_keeps_safe_cancel_action_in_selected_edit_mode(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-cancel-action',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType], absolute: false))
+            ->actingAs($user)
+            ->followingRedirects()
+            ->patch(route('admin.card-types.update', $cardType), [
+                'name' => '',
+                'slug' => 'invalid slug',
+                'points_rate' => '-1',
+                'is_active' => 'not-a-boolean',
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Create new type')
+            ->assertSee('href="/admin/card-types"', false)
+            ->assertDontSee('href="/admin/card-types?cardType='.$cardType->id.'"', false);
+    }
+
     private function registerAdminPreviewRoute(string $uri, callable $action, string $name): void
     {
         Route::middleware(['web', 'auth', 'can:access-admin'])
