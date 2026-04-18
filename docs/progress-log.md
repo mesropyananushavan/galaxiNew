@@ -1270,6 +1270,14 @@
 ### Next step after live form cancel attribute checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Live form attribute rendering cleanup checkpoint
+- Collapsed the repeated Blade attribute-rendering logic in the shared live-form partial into one local helper closure.
+- The shared form, field, submit, and cancel surfaces now all use the same rendering path, which lowers the risk of the attribute-capability work drifting out of sync.
+- This is a small refactor, but it makes the growing live-form foundation easier to keep consistent as the first real edit state lands.
+
+### Next step after live form attribute rendering cleanup checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

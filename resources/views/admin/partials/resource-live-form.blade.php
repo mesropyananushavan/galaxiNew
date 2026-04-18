@@ -1,3 +1,13 @@
+@php
+    $renderAttributes = static function (array $attributes): string {
+        return collect($attributes)
+            ->map(fn (mixed $value, string $attribute): string => $value === true
+                ? $attribute
+                : sprintf('%s="%s"', $attribute, e($value)))
+            ->implode(' ');
+    };
+@endphp
+
 <section class="card" id="live-form">
     <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px;">
         <h3 style="margin: 0; font-size: 1.1rem;">{{ $liveForm['title'] }}</h3>
@@ -24,13 +34,7 @@
     @endif
 
     <form method="{{ in_array($liveForm['method'], ['GET', 'POST'], true) ? $liveForm['method'] : 'POST' }}" action="{{ $liveForm['action'] }}"
-        @foreach ($liveForm['formAttributes'] as $attribute => $value)
-            @if ($value === true)
-                {{ $attribute }}
-            @else
-                {{ $attribute }}="{{ $value }}"
-            @endif
-        @endforeach
+        {!! $renderAttributes($liveForm['formAttributes']) !!}
         style="display: grid; gap: 16px;">
         @if ($liveForm['method'] !== 'GET')
             @csrf
@@ -78,13 +82,7 @@
                                 aria-errormessage="{{ $errorId }}"
                             @endif
                             aria-invalid="{{ $errors->has($field['name']) ? 'true' : 'false' }}"
-                            @foreach ($field['attributes'] as $attribute => $value)
-                                @if ($value === true)
-                                    {{ $attribute }}
-                                @else
-                                    {{ $attribute }}="{{ $value }}"
-                                @endif
-                            @endforeach
+                            {!! $renderAttributes($field['attributes']) !!}
                             style="border: 1px solid {{ $errors->has($field['name']) ? 'rgba(239, 68, 68, 0.55)' : 'var(--border)' }}; border-radius: 12px; padding: 12px 14px; background: var(--surface-muted); color: var(--text-main);"
                         >
                             @foreach ($field['options'] as $option)
@@ -109,13 +107,7 @@
                                 aria-errormessage="{{ $errorId }}"
                             @endif
                             aria-invalid="{{ $errors->has($field['name']) ? 'true' : 'false' }}"
-                            @foreach ($field['attributes'] as $attribute => $value)
-                                @if ($value === true)
-                                    {{ $attribute }}
-                                @else
-                                    {{ $attribute }}="{{ $value }}"
-                                @endif
-                            @endforeach
+                            {!! $renderAttributes($field['attributes']) !!}
                             style="border: 1px solid {{ $errors->has($field['name']) ? 'rgba(239, 68, 68, 0.55)' : 'var(--border)' }}; border-radius: 12px; padding: 12px 14px; background: var(--surface-muted); color: var(--text-main);"
                         >
                     @endif
@@ -133,24 +125,12 @@
 
         <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
             <button type="submit" class="button button-primary"
-                @foreach ($liveForm['submitAttributes'] as $attribute => $value)
-                    @if ($value === true)
-                        {{ $attribute }}
-                    @else
-                        {{ $attribute }}="{{ $value }}"
-                    @endif
-                @endforeach
+                {!! $renderAttributes($liveForm['submitAttributes']) !!}
             >{{ $liveForm['submitLabel'] }}</button>
 
             @if (! empty($liveForm['cancelAction']))
                 <a href="{{ $liveForm['cancelAction']['href'] }}" class="button button-secondary"
-                    @foreach ($liveForm['cancelAttributes'] as $attribute => $value)
-                        @if ($value === true)
-                            {{ $attribute }}
-                        @else
-                            {{ $attribute }}="{{ $value }}"
-                        @endif
-                    @endforeach
+                    {!! $renderAttributes($liveForm['cancelAttributes']) !!}
                 >{{ $liveForm['cancelAction']['label'] }}</a>
             @endif
         </div>
