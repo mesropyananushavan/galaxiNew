@@ -2147,8 +2147,8 @@ class AdminDashboardTest extends TestCase
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.context-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', function (string $resource, array $page, array $liveForm): array {
             $this->assertSame('card-types', $resource);
-            $this->assertSame('Card types', $page['pageTitle']);
-            $this->assertSame('Create card type', $liveForm['title']);
+            $this->assertSame('Card Types', $page['pageTitle']);
+            $this->assertSame('Create card type in Laravel', $liveForm['title']);
 
             return [
                 'cardType' => new AdminCardTypePreviewRoutable('gold'),
@@ -2503,12 +2503,12 @@ class AdminDashboardTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+        $response = $this->followingRedirects()->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
             'name' => '',
             'slug' => 'invalid slug',
             'points_rate' => '-1',
             'is_active' => 'not-a-boolean',
-        ])->followRedirects();
+        ]);
 
         $response
             ->assertOk()

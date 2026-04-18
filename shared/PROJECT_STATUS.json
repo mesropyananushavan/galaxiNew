@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T08:31:00Z",
+  "updated_at": "2026-04-18T08:35:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -55,7 +55,7 @@
     "module": "Tests / Parity Checks",
     "status": "IN_PROGRESS",
     "owner": "qa",
-    "summary": "QA bootstrap now reaches real Laravel test execution, and the shared card-type live form no longer crashes when optional attribute bags are omitted from config.",
+    "summary": "QA confirmed the shared card-type live form no longer crashes; the next focused failures are narrowed to stale card-type feature expectations and preview-route test wiring.",
     "code_paths": [
       "app/Http/Controllers/Admin/ResourceIndexController.php",
       "tests/Feature/AdminDashboardTest.php"
@@ -64,6 +64,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "awaiting a fresh focused QA pass to verify the card-type flow progresses beyond the shared live-form render path"
+    "blocker_reason": "focused card-type QA now fails in test expectations and preview-route wiring after the live-form render blocker was removed"
   }
 }

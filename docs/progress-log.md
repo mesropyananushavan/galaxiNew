@@ -11,6 +11,12 @@
 ### Next step after live form optional-attributes render checkpoint
 - Re-run the focused QA card-type slice to confirm the flow now advances past the shared live-form render stage.
 
+### QA advanced beyond the shared live-form crash
+- Re-ran the focused `card_type` slice and confirmed the shared `resource-live-form` blocker is gone.
+- The next failures now sit in `tests/Feature/AdminDashboardTest.php`, where some card-type expectations still reflect older generic copy and an outdated redirect-following pattern.
+- Updated those feature assertions to match the current Galaxy-specific card-type page copy and Laravel's supported redirect test helper.
+- Focused QA still fails deeper in card-type preview-route expectations, so the next pass should align the preview-route harness without reopening the shared render path.
+
 ## 2026-04-18
 
 ### QA reached application-level failures checkpoint
