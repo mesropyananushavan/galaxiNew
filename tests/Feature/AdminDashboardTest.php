@@ -315,6 +315,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected role')
             ->assertSee('Scope')
             ->assertSee('Assigned users')
+            ->assertSee('Assignment guidance')
+            ->assertSee('Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.')
             ->assertSee('Permission count')
             ->assertSee('Permission bundle')
             ->assertSee('Manage cards')

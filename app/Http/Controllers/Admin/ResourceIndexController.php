@@ -191,6 +191,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
+            ['label' => 'Assignment guidance', 'value' => $selectedRole->users_count > 0
+                ? 'Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.'
+                : 'No staff are linked yet, which keeps this role safer for draft access review before assignment parity is confirmed.'],
             ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
             ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
             ['label' => 'Laravel status', 'value' => $selectedRole->permissions_count > 0 ? 'active' : 'draft'],

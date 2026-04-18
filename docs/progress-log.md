@@ -216,6 +216,11 @@
 - Confirmed the selected-role review now surfaces that assignment/scope cue alongside the existing permission-bundle activity note, `1 passed`.
 - This makes the live access-review slice feel more operational because the timeline now reflects not only what permissions a role carries, but also how that role is currently scoped in Laravel data.
 
+### Roles-permissions assignment-guidance summary checkpoint
+- Extended the selected `roles-permissions` summary so the chosen Laravel role now exposes explicit assignment guidance next to the assigned-user count.
+- Confirmed the selected-role review now distinguishes between roles that already affect linked staff and safer draft roles with no assigned users, `1 passed`.
+- This makes the live access-review slice more useful for real operator checks because the summary now explains what the current assignment count means for parity-sensitive access changes.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
