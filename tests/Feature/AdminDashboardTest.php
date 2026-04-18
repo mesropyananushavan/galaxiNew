@@ -3637,6 +3637,41 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This card type slug is already in use.');
     }
 
+    public function test_card_type_update_validation_preserves_error_summary_links_in_selected_edit_mode(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-error-links',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType], absolute: false))
+            ->actingAs($user)
+            ->followingRedirects()
+            ->patch(route('admin.card-types.update', $cardType), [
+                'name' => '',
+                'slug' => 'invalid slug',
+                'points_rate' => '-1',
+                'is_active' => 'not-a-boolean',
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Selected tier:')
+            ->assertSee('Galaxy Prime')
+            ->assertSee('id="live-form-validation-title"', false)
+            ->assertSee('aria-labelledby="live-form-validation-title"', false)
+            ->assertSee('href="#live-form-name"', false)
+            ->assertSee('href="#live-form-points_rate"', false)
+            ->assertSee('href="#live-form-is_active"', false)
+            ->assertSee('aria-errormessage="live-form-name-error"', false)
+            ->assertSee('aria-errormessage="live-form-points_rate-error"', false)
+            ->assertSee('aria-errormessage="live-form-is_active-error"', false);
+    }
+
     private function registerAdminPreviewRoute(string $uri, callable $action, string $name): void
     {
         Route::middleware(['web', 'auth', 'can:access-admin'])

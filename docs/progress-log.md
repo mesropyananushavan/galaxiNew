@@ -151,6 +151,11 @@
 - Confirmed the retry path stays in selected edit mode while preserving the attempted name, duplicate slug, points rate, and draft selection, `2 passed`.
 - This makes the current minimal write slice less frustrating for operators because a failed save still behaves like an edit retry, not a partial form reset.
 
+### Card-types validation summary accessibility checkpoint
+- Added regression coverage proving the selected `card-types` edit retry path also preserves the validation summary anchor links and field-level `aria-errormessage` bindings after backend validation fails.
+- Confirmed the selected edit context, summary links, and field error wiring hold together in the retry flow, `2 passed`.
+- This keeps the current write-backed slice more resilient and operator-friendly by ensuring validation feedback still points at the right live form fields inside the chosen tier context.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
