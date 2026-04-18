@@ -261,6 +261,11 @@
 - Confirmed the selected-role review now surfaces that compact mode cue alongside the richer staff, scope, and permission context, `1 passed`.
 - This makes the live access-review slice easier to scan because the operator no longer has to infer overall review posture from several separate summary and dependency lines.
 
+### Roles-permissions permission-coverage checkpoint
+- Extended the selected `roles-permissions` summary with an explicit `Permission coverage` line so the visible permission count now carries a direct parity-review interpretation instead of reading as a bare number.
+- Confirmed the selected-role review now explains that a live bundle should be treated as parity-sensitive access coverage, `1 passed`.
+- This makes the live access-review slice more useful because permission visibility and permission meaning now sit together in the summary context instead of being split between counts and later guidance copy.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

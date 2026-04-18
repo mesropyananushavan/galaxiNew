@@ -327,6 +327,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assignment guidance')
             ->assertSee('Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.')
             ->assertSee('Permission count')
+            ->assertSee('Permission coverage')
+            ->assertSee('Live bundle present, review changes as parity-sensitive access coverage.')
             ->assertSee('Permission bundle')
             ->assertSee('Manage cards')
             ->assertSee('Laravel status')

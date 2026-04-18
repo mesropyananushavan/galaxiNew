@@ -784,6 +784,9 @@ class ResourceIndexController extends Controller
                 ? 'Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.'
                 : 'No staff are linked yet, which keeps this role safer for draft access review before assignment parity is confirmed.'],
             ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
+            ['label' => 'Permission coverage', 'value' => $selectedRole->permissions_count > 0
+                ? 'Live bundle present, review changes as parity-sensitive access coverage.'
+                : 'No bundle linked yet, this role remains safer for draft parity review.'],
             ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
             ['label' => 'Laravel status', 'value' => $selectedRole->permissions_count > 0 ? 'active' : 'draft'],
             [
