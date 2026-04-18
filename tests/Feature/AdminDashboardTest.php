@@ -56,6 +56,40 @@ final class AdminCardTypePreviewRoutable implements \Illuminate\Contracts\Routin
     }
 }
 
+final class AdminCardTypePreviewMixedRouteValue implements \Illuminate\Contracts\Routing\UrlRoutable, \Stringable
+{
+    public function __construct(
+        private readonly string $routeKey,
+        private readonly string $stringValue,
+    ) {
+    }
+
+    public function __toString(): string
+    {
+        return $this->stringValue;
+    }
+
+    public function getRouteKey(): string
+    {
+        return $this->routeKey;
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'cardType';
+    }
+
+    public function resolveRouteBinding($value, $field = null): ?self
+    {
+        return new self((string) $value, (string) $value);
+    }
+
+    public function resolveChildRouteBinding($childType, $value, $field): ?self
+    {
+        return new self((string) $value, (string) $value);
+    }
+}
+
 class AdminDashboardTest extends TestCase
 {
     use RefreshDatabase;
@@ -1704,6 +1738,37 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('action="/admin/card-types/gold/draft-preview"', false)
             ->assertSee('href="/admin/card-types/silver/draft-preview"', false)
+            ->assertSee('Return to draft preview');
+    }
+
+    public function test_card_types_page_prefers_routable_route_keys_over_stringable_values(): void
+    {
+        Route::middleware(['web', 'auth', 'can:access-admin'])
+            ->prefix('admin')
+            ->as('admin.')
+            ->get('/card-types/{cardType}/draft-preview', fn (string $cardType) => $cardType)
+            ->name('card-types.draft-preview');
+
+        Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
+        Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
+            'cardType' => new AdminCardTypePreviewMixedRouteValue('gold', 'string-only-gold'),
+        ]);
+        Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.draft-preview');
+        Config::set('admin-pages.card-types.liveForm.cancelRouteParameters', [
+            'cardType' => new AdminCardTypePreviewMixedRouteValue('silver', 'string-only-silver'),
+        ]);
+        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Return to draft preview');
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('action="/admin/card-types/gold/draft-preview"', false)
+            ->assertSee('href="/admin/card-types/silver/draft-preview"', false)
+            ->assertDontSee('/admin/card-types/string-only-gold/draft-preview', false)
+            ->assertDontSee('/admin/card-types/string-only-silver/draft-preview', false)
             ->assertSee('Return to draft preview');
     }
 
