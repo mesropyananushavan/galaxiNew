@@ -1238,6 +1238,14 @@
 ### Next step after live form scalar option checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Hidden live form zero-value checkpoint
+- Added explicit unit and feature coverage for hidden live-form fields carrying a scalar `0` value.
+- This keeps a common edit-state footgun visible, because mode-like or status-like hidden context often breaks when zero is treated as empty.
+- The foundation behavior itself already handled this, but now that contract is pinned down before a real edit state starts depending on it.
+
+### Next step after hidden live form zero-value checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

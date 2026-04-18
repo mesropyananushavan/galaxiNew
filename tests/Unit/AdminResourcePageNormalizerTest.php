@@ -275,6 +275,11 @@ class AdminResourcePageNormalizerTest extends TestCase
                 'submitLabel' => 'Update card type',
                 'fields' => [
                     [
+                        'name' => 'mode',
+                        'type' => 'hidden',
+                        'value' => 0,
+                    ],
+                    [
                         'name' => 'points_rate',
                         'label' => 'Points rate',
                         'type' => 'number',
@@ -300,9 +305,10 @@ class AdminResourcePageNormalizerTest extends TestCase
             ],
         ]);
 
-        $this->assertSame('1.5', $normalized['liveForm']['fields'][0]['value']);
-        $this->assertSame('1', $normalized['liveForm']['fields'][1]['value']);
-        $this->assertSame('2', $normalized['liveForm']['fields'][2]['value']);
+        $this->assertSame('0', $normalized['liveForm']['fields'][0]['value']);
+        $this->assertSame('1.5', $normalized['liveForm']['fields'][1]['value']);
+        $this->assertSame('1', $normalized['liveForm']['fields'][2]['value']);
+        $this->assertSame('2', $normalized['liveForm']['fields'][3]['value']);
     }
 
     public function test_normalize_keeps_valid_table_rows_when_neighboring_rows_are_malformed(): void

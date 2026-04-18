@@ -1714,6 +1714,28 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('<label for="live-form-mode"', false);
     }
 
+    public function test_card_types_page_renders_hidden_live_form_zero_values(): void
+    {
+        Config::set('admin-pages.card-types.liveForm.fields', [
+            [
+                'name' => 'mode',
+                'type' => 'hidden',
+                'value' => 0,
+            ],
+            ...Config::get('admin-pages.card-types.liveForm.fields', []),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('type="hidden"', false)
+            ->assertSee('name="mode"', false)
+            ->assertSee('value="0"', false);
+    }
+
     public function test_card_types_page_renders_boolean_live_form_attributes(): void
     {
         Config::set('admin-pages.card-types.liveForm.fields', [
