@@ -559,6 +559,19 @@ class ResourceIndexController extends Controller
             'description' => 'Catalog metrics and report entry rows now reflect live Galaxy source counts from Laravel models, while presets and exports remain preview-only.',
         ];
 
+        $page['activityTimeline'] = [
+            [
+                'title' => 'Live reporting sources reflected from Laravel models',
+                'time' => 'Current request',
+                'description' => sprintf('The reporting workspace now sees %d shops, %d cards, %d cardholders, and %d roles through the current Laravel foundation.', $shopCount, $cardCount, $cardHolderCount, $roleCount),
+            ],
+            [
+                'title' => 'Export catalog remains parity-first',
+                'time' => 'Current request',
+                'description' => 'Metrics and entry rows are live-backed now, but preset handling and export generation still stay blocked until the reporting pipeline is verified.',
+            ],
+        ];
+
         $page['dependencyStatus'] = [
             ['label' => 'Domain model', 'value' => 'Report catalog is still lightweight, but source counts now come from live Laravel models'],
             ['label' => 'Backend dependency', 'value' => 'Preset handling, query shaping, and export pipeline are still pending'],

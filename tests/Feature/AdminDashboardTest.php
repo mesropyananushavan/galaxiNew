@@ -1318,6 +1318,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 roles')
             ->assertSee('Reporting workspace is now partially Laravel-backed')
             ->assertSee('Catalog metrics and report entry rows now reflect live Galaxy source counts from Laravel models, while presets and exports remain preview-only.')
+            ->assertSee('Live reporting sources reflected from Laravel models')
+            ->assertSee('The reporting workspace now sees 1 shops, 1 cards, 1 cardholders, and 1 roles through the current Laravel foundation.')
+            ->assertSee('Export catalog remains parity-first')
+            ->assertSee('Metrics and entry rows are live-backed now, but preset handling and export generation still stay blocked until the reporting pipeline is verified.')
             ->assertSee('Report catalog is still lightweight, but source counts now come from live Laravel models')
             ->assertSee('Preset handling, query shaping, and export pipeline are still pending');
     }

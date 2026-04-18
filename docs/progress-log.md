@@ -271,6 +271,11 @@
 - The reports workspace now surfaces live source counts, model-backed report entry rows, and a partially Laravel-backed notice while keeping the empty-data preview path intact, `2 passed`.
 - This opens a new safe Phase 1 slice outside `roles-permissions` because the reporting workspace now reflects real Galaxy data sources without introducing export or analytics write scope.
 
+### Reports live-activity checkpoint
+- Extended the new Laravel-backed `reports` slice with explicit activity timeline entries derived from current model counts instead of leaving the page activity block fully static.
+- Confirmed the reports workspace now narrates the live source snapshot and the remaining parity-first export blocker together, `2 passed`.
+- This makes the reporting slice feel less like a starter placeholder because live reporting context now appears in both summary metrics and the operational timeline.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
