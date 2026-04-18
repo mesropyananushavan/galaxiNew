@@ -1311,7 +1311,12 @@
 - Added feature coverage proving unit-enum parameters resolve through the enum case name when no backed value exists.
 - This is another small controller-level bridge step, but it keeps typed mode or state enums on the same config-driven path as the eventual edit/update UI.
 
-### Next step after live form unit-enum route-parameter checkpoint
+### Live form route-parameter helper checkpoint
+- Extracted the typed live-form route-parameter normalization into a dedicated controller helper instead of leaving the precedence chain inline inside `array_map()`.
+- Existing feature coverage for backed enums, routable objects, stringable values, mixed routable/stringable priority, and unit enums now exercises that single helper path.
+- This is a small internal cleanup step, but it makes the next model-backed edit-state wiring easier to extend without duplicating or reshuffling the parameter precedence logic.
+
+### Next step after live form route-parameter helper checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
 ### Injected normalizer checkpoint

@@ -82,29 +82,32 @@ class ResourceIndexController extends Controller
         }
 
         return array_filter(
-            array_map(function (mixed $value): mixed {
-                if ($value instanceof BackedEnum) {
-                    return $value->value;
-                }
-
-                if ($value instanceof UnitEnum) {
-                    return $value->name;
-                }
-
-                if ($value instanceof UrlRoutable) {
-                    return $value->getRouteKey();
-                }
-
-                if ($value instanceof Stringable) {
-                    return (string) $value;
-                }
-
-                return $value;
-            }, $parameters),
+            array_map($this->resolveLiveFormRouteParameterValue(...), $parameters),
             fn (mixed $value, mixed $key): bool => (is_string($key) || is_int($key))
                 && (is_string($value) || is_int($value)),
             ARRAY_FILTER_USE_BOTH,
         );
+    }
+
+    private function resolveLiveFormRouteParameterValue(mixed $value): mixed
+    {
+        if ($value instanceof BackedEnum) {
+            return $value->value;
+        }
+
+        if ($value instanceof UnitEnum) {
+            return $value->name;
+        }
+
+        if ($value instanceof UrlRoutable) {
+            return $value->getRouteKey();
+        }
+
+        if ($value instanceof Stringable) {
+            return (string) $value;
+        }
+
+        return $value;
     }
 
     private function resourceBlocks(array $defaults): array
