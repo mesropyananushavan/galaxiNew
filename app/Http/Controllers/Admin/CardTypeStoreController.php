@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Admin\Concerns\RedirectsToSelectedCardTypeContext;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreCardTypeRequest;
 use App\Models\CardType;
@@ -9,12 +10,15 @@ use Illuminate\Http\RedirectResponse;
 
 class CardTypeStoreController extends Controller
 {
+    use RedirectsToSelectedCardTypeContext;
+
     public function __invoke(StoreCardTypeRequest $request): RedirectResponse
     {
         $cardType = CardType::create($request->validated());
 
-        return redirect()
-            ->to(route('admin.card-types.index', ['cardType' => $cardType], absolute: false).'#backend-flow-status')
-            ->with('status', sprintf('Card type "%s" was created.', $cardType->name));
+        return $this->redirectToSelectedCardType(
+            $cardType,
+            sprintf('Card type "%s" was created.', $cardType->name),
+        );
     }
 }

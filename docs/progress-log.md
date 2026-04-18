@@ -171,6 +171,11 @@
 - Added focused coverage proving both the store redirect and the create success flash now land inside the selected-tier workspace, `2 passed`.
 - This makes the current write-backed Phase 1 slice feel more like a real Galaxy management surface because new tiers open immediately in their own Laravel-backed edit context after creation.
 
+### Card-types redirect pattern hardening checkpoint
+- Extracted a shared `RedirectsToSelectedCardTypeContext` controller concern so the live `card-types` create, update, and toggle-status flows all use one selected-tier success redirect pattern.
+- Re-ran focused write-flow coverage for store, update, and row-level status toggles, `3 passed`.
+- This trims controller duplication and makes the request-driven `card-types` workspace less likely to drift if the success redirect contract changes again.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
