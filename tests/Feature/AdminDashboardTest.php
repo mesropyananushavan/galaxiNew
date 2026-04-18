@@ -3494,7 +3494,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
         ]);
 
-        $response = $this->from(route('admin.card-types.index'))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType]))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
             'name' => '',
             'slug' => 'invalid slug',
             'points_rate' => '-1',
@@ -3502,7 +3502,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#live-form')
             ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
 
         $this->assertDatabaseHas('card_types', [
@@ -3545,7 +3545,7 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
-    public function test_card_type_update_validation_redirects_to_index_without_referrer(): void
+    public function test_card_type_update_validation_redirects_to_selected_index_without_referrer(): void
     {
         $user = User::factory()->create();
         $cardType = CardType::create([
@@ -3563,8 +3563,40 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#live-form')
             ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
+    }
+
+    public function test_card_type_update_validation_keeps_selected_edit_context_after_redirect(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-context',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType]))
+            ->actingAs($user)
+            ->followingRedirects()
+            ->patch(route('admin.card-types.update', $cardType), [
+                'name' => '',
+                'slug' => 'invalid slug',
+                'points_rate' => '-1',
+                'is_active' => 'not-a-boolean',
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Save card type changes')
+            ->assertSee('Selected tier:')
+            ->assertSee('Galaxy Prime')
+            ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false)
+            ->assertSee('The card type name field is required.')
+            ->assertSee('The points rate field must be at least 0.')
+            ->assertSee('The status field must be Active or Draft.');
     }
 
     private function registerAdminPreviewRoute(string $uri, callable $action, string $name): void

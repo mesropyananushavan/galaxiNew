@@ -141,6 +141,11 @@
 - Confirmed the helper returns `0` when checkpoint files are synced and `2` when the shared status file is dirty, so the new guard behavior is now verified instead of only documented.
 - This makes the repo-side checkpoint discipline more durable before the next run of substantive Phase 1 backend work.
 
+### Card-types validation redirect context checkpoint
+- Updated the `card-types` update request so validation failures now redirect back to `/admin/card-types?cardType=<id>#live-form` instead of dropping operators into the generic create-state.
+- Added focused coverage proving invalid update payloads keep the selected tier in edit mode after redirect, including the selected-record summary and the PATCH-backed live form.
+- This strengthens the one real write-backed Phase 1 slice by preserving request-driven context even when backend validation blocks the save.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

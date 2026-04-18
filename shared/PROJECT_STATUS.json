@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T15:04:00Z",
+  "updated_at": "2026-04-18T15:19:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,18 +52,18 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Checkpoint Workflow",
+    "module": "Card Types",
     "status": "IN_PROGRESS",
-    "owner": "qa",
-    "summary": "The checkpoint sync helper now has shell-backed test coverage proving it stays green on clean checkpoint files and fails with a non-zero exit when PROJECT_STATUS is dirty.",
+    "owner": "backend",
+    "summary": "The live card-types write slice now preserves the selected edit context on validation failures, redirecting back to the chosen tier instead of dropping operators into the generic create-state.",
     "code_paths": [
-      "scripts/checkpoint-sync.sh",
-      "tests/Feature/CheckpointSyncScriptTest.php"
+      "app/Http/Requests/Admin/UpdateCardTypeRequest.php",
+      "tests/Feature/AdminDashboardTest.php"
     ],
     "doc_paths": [
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "checkpoint hygiene is now guarded and tested, but the next substantive Phase 1 step still needs either a new Laravel-backed slice or a safe expansion of an existing write flow"
+    "blocker_reason": "the minimal card-types write flow is now more stable under validation errors, but publish logic and rule-import parity still remain preview-only beyond this slice"
   }
 }
