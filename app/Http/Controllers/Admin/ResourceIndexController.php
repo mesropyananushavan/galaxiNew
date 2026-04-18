@@ -144,13 +144,89 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $shops->map(fn (Shop $shop): array => [
-            $shop->name,
+            [
+                'label' => $shop->name,
+                'href' => route('admin.shops.index', ['shop' => $shop->id], absolute: false),
+            ],
             $shop->code,
             $shop->users->first()?->name ?? 'Unassigned',
             (string) $shop->card_holders_count,
             (string) $shop->cards_count,
             $shop->is_active ? 'active' : 'paused',
         ])->all();
+
+        $latestShop = $shops->sortByDesc('id')->first();
+
+        if ($latestShop !== null) {
+            $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
+
+            $page['actions'] = [
+                ...$actions,
+                [
+                    'label' => 'Review latest saved shop',
+                    'tone' => 'secondary',
+                    'href' => route('admin.shops.index', ['shop' => $latestShop->id], absolute: false),
+                ],
+            ];
+        }
+
+        $selectedShopId = request()->integer('shop');
+
+        if ($selectedShopId < 1) {
+            return $page;
+        }
+
+        $selectedShop = $shops->firstWhere('id', $selectedShopId);
+
+        if (! $selectedShop instanceof Shop) {
+            return $page;
+        }
+
+        $page['selectedRecordSummary'] = [
+            ['label' => 'Selected shop', 'value' => $selectedShop->name],
+            ['label' => 'Code', 'value' => $selectedShop->code],
+            ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
+            ['label' => 'Cardholders', 'value' => (string) $selectedShop->card_holders_count],
+            ['label' => 'Cards', 'value' => (string) $selectedShop->cards_count],
+            ['label' => 'Laravel status', 'value' => $selectedShop->is_active ? 'active' : 'paused'],
+            [
+                'label' => 'Branch guidance',
+                'value' => $selectedShop->is_active
+                    ? 'This branch is already active in Laravel, so scope and manager changes should stay parity-first until branch ownership rules are verified.'
+                    : 'This branch is still paused, which keeps it safe for parity checks before operators treat it as fully live.',
+            ],
+        ];
+
+        $page['actions'] = [
+            [
+                'label' => 'Back to all shops',
+                'tone' => 'primary',
+                'href' => route('admin.shops.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedShop->name),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Review branch scope',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
+            ],
+        ];
+
+        $page['activityTimeline'] = [
+            [
+                'title' => sprintf('%s selected for Laravel review', $selectedShop->name),
+                'time' => 'Current request',
+                'description' => 'The shared shops workspace is now loading this saved branch from Laravel data instead of only static preview rows.',
+            ],
+            [
+                'title' => sprintf('%s status reflected from model state', $selectedShop->name),
+                'time' => 'Current request',
+                'description' => sprintf('This branch is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedShop->is_active ? 'active' : 'paused'),
+            ],
+        ];
 
         return $page;
     }

@@ -61,6 +61,11 @@
 - The shop workspace now derives active/paused counts, assigned-manager count, manager names, and holder/card totals from Laravel models instead of only static config rows.
 - Added feature coverage proving the page swaps from preview rows to model-backed data once real shops are present, making `shops` the next real Phase 1 read slice outside `card-types`.
 
+### Shops selected-record context checkpoint
+- Extended the model-backed `shops` slice so table rows now link into a request-driven `?shop=` review state instead of staying as plain static labels.
+- When a saved shop is selected, the workspace now shows Laravel-backed branch summary data, current-status guidance, and request-specific activity notes instead of only the generic preview context.
+- Added feature coverage proving the selected shop context and latest-saved-shop shortcut remain visible once real records exist.
+
 ### Card-type preview-route harness checkpoint
 - Fixed the failing card-type preview-route wiring locally in `tests/Feature/AdminDashboardTest.php` instead of widening production routing scope.
 - Replaced the inline preview-route registration pattern with a tiny test helper that registers full `admin.*` preview route names and refreshes Laravel's route name/action lookups for runtime-added test routes.

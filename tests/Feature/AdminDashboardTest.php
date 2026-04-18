@@ -436,15 +436,78 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Galaxy Central')
+            ->assertSee('href="/admin/shops?shop='.$shop->id.'"', false)
             ->assertSee('galaxy-central')
             ->assertSee('Nare Gevorgyan')
             ->assertSee('Galaxy Airport')
+            ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
             ->assertSee('galaxy-airport')
             ->assertSee('Unassigned')
+            ->assertSee('Review latest saved shop')
+            ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
             ->assertSee('Assigned managers')
             ->assertSee('>1<', false)
             ->assertSee('active')
             ->assertSee('paused');
+    }
+
+    public function test_shops_page_surfaces_selected_shop_context_from_laravel_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central',
+            'is_active' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Nare Gevorgyan',
+            'shop_id' => $shop->id,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Aram Petrosyan',
+            'phone' => '+37410000000',
+            'email' => 'aram@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-200001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$shop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all shops')
+            ->assertSee('href="/admin/shops"', false)
+            ->assertSee('Reviewing: Galaxy Central')
+            ->assertSee('Selected shop')
+            ->assertSee('Code')
+            ->assertSee('Assigned manager')
+            ->assertSee('Cardholders')
+            ->assertSee('Cards')
+            ->assertSee('Laravel status')
+            ->assertSee('Branch guidance')
+            ->assertSee('This branch is already active in Laravel, so scope and manager changes should stay parity-first until branch ownership rules are verified.')
+            ->assertSee('Galaxy Central selected for Laravel review')
+            ->assertSee('Current request')
+            ->assertSee('The shared shops workspace is now loading this saved branch from Laravel data instead of only static preview rows.')
+            ->assertSee('Galaxy Central status reflected from model state');
     }
 
     public function test_authenticated_user_can_access_checks_points_operational_index_shape(): void

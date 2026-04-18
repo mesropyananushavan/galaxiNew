@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T10:18:00Z",
+  "updated_at": "2026-04-18T10:33:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -55,7 +55,7 @@
     "module": "Shops",
     "status": "IN_PROGRESS",
     "owner": "backend",
-    "summary": "The shops workspace now swaps preview rows and summary metrics for Eloquent-backed data when real Shop records exist, making it the next real Laravel read slice outside card-types.",
+    "summary": "The shops workspace now supports both a model-backed index and a request-driven selected-shop context, making it the next real Laravel read slice outside card-types with record-specific review state.",
     "code_paths": [
       "app/Http/Controllers/Admin/ResourceIndexController.php",
       "tests/Feature/AdminDashboardTest.php"
@@ -64,6 +64,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "shop creation and scope review remain intentionally gated until write flows and branch-ownership parity checks are ready, even though the read-only index slice is now live"
+    "blocker_reason": "shop creation and scope review remain intentionally gated until write flows and branch-ownership parity checks are ready, even though the read-only index and selected-shop review slice are now live"
   }
 }
