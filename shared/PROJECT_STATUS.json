@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T11:18:00Z",
+  "updated_at": "2026-04-18T11:33:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,10 +52,10 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Cards",
+    "module": "Cardholders",
     "status": "IN_PROGRESS",
     "owner": "backend",
-    "summary": "The cards workspace now supports both a model-backed inventory index and a request-driven selected-card context, making it the next real Laravel read slice after cardholders with record-specific review state.",
+    "summary": "The cardholders workspace now supports both a model-backed index and a request-driven selected-holder context, making it a real Laravel read slice with record-specific lookup review state.",
     "code_paths": [
       "app/Http/Controllers/Admin/ResourceIndexController.php",
       "tests/Feature/AdminDashboardTest.php"
@@ -64,6 +64,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "issue, block, and assignment flows remain pending even though the model-backed card inventory and selected-card review slice are now live"
+    "blocker_reason": "search, profile reads, and activity sourcing remain pending even though the model-backed cardholder index and selected-holder review slice are now live"
   }
 }

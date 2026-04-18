@@ -71,6 +71,11 @@
 - The cardholders workspace now derives active/inactive counts, linked-card totals, shop names, and phone/status rows from Laravel models instead of only static config rows.
 - Added feature coverage proving the page swaps from preview rows to model-backed data once real cardholders are present, making `cardholders` the next real Phase 1 read slice after `shops`.
 
+### Cardholders selected-record context checkpoint
+- Extended the model-backed `cardholders` slice so holder rows now link into a request-driven `?cardholder=` review state instead of staying as plain static labels.
+- When a saved holder is selected, the workspace now shows Laravel-backed lookup summary data, status-specific guidance, and request-specific activity notes instead of only the generic preview context.
+- Added feature coverage proving the selected holder context and latest-saved-holder shortcut remain visible once real records exist.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
