@@ -1575,6 +1575,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create or edit gift')
             ->assertSee('Publish gift')
             ->assertSee('New gift')
+            ->assertSee('Blocked until the first Laravel-backed gift write flow exists for catalog, scope, cost, and stock state.')
             ->assertSee('Stock audit')
             ->assertSee('Blocked until stock checks are backed by Laravel inventory data.')
             ->assertSee('Blocked until gift CRUD and redemption parity exist beyond the preview shell.')

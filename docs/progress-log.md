@@ -46,6 +46,11 @@
 - Added explicit Galaxy-specific blocker copy tying rule creation to the first Laravel-backed write slice for rule group, scope, effect, and priority.
 - Extended feature coverage so the disabled create cue stays visible alongside the already gated priority review and publish actions.
 
+### Gifts action-gating checkpoint
+- Reused the staged disabled-action pattern on `gifts`, so the primary `New gift` control no longer reads like a generic placeholder action.
+- Added Galaxy-specific blocker copy tying gift creation to the first Laravel-backed write slice for catalog identity, shop scope, point cost, and stock state.
+- Extended feature coverage so the disabled create cue stays visible next to the already gated stock-audit and publish controls.
+
 ### Card-type preview-route harness checkpoint
 - Fixed the failing card-type preview-route wiring locally in `tests/Feature/AdminDashboardTest.php` instead of widening production routing scope.
 - Replaced the inline preview-route registration pattern with a tiny test helper that registers full `admin.*` preview route names and refreshes Laravel's route name/action lookups for runtime-added test routes.

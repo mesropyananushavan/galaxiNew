@@ -733,7 +733,12 @@ return [
         'summary' => 'Baseline management screen for gift catalog, redemption settings, and stock-aware reward management.',
         'nextStep' => 'Replace sample controls with real gift CRUD, stock tracking, and redemption flows.',
         'actions' => [
-            ['label' => 'New gift', 'tone' => 'primary'],
+            [
+                'label' => 'New gift',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until the first Laravel-backed gift write flow exists for catalog, scope, cost, and stock state.',
+            ],
             ['label' => 'Stock audit', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until stock checks are backed by Laravel inventory data.'],
         ],
         'metrics' => [
