@@ -286,6 +286,11 @@
 - Confirmed the reporting workspace now carries that posture cue alongside source coverage and backend dependency status, `2 passed`.
 - This makes the reporting slice easier to scan because operators no longer have to combine notice text and blocker copy to understand the current safe operating mode.
 
+### Reports readiness checkpoint
+- Extended the Laravel-backed `reports` dependency context with an explicit `Readiness signal` so operators can see that live source review is already working while preset/export work remains intentionally blocked.
+- Confirmed the reporting workspace now states that partial readiness cue alongside reporting posture and source coverage, `2 passed`.
+- This makes the reporting slice more actionable because the current safe boundary is now visible as a compact readiness status instead of being spread across several notes.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
