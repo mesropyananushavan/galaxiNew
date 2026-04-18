@@ -1331,7 +1331,12 @@
 - Added feature coverage proving those callbacks receive the current `card-types` page context and can return typed route metadata that still flows through the shared route-parameter normalization chain.
 - This is another small bridge toward the real edit/update UI, because the shared form can now derive model-backed action and cancel URLs from runtime context without bespoke controller branches.
 
-### Next step after live form route-parameter resolver checkpoint
+### Live form mode-copy resolver checkpoint
+- Extended the shared controller path so `liveForm.title`, `description`, `submitLabel`, and `method` can also come from config callbacks.
+- Added feature coverage proving the `card-types` form can now switch into an edit-style PATCH presentation, including runtime copy changes and method spoofing, without a bespoke Blade template.
+- This is another direct bridge to the real create/update UI because the shared form can now swap core mode-facing copy and HTTP intent from runtime context.
+
+### Next step after live form mode-copy resolver checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
 ### Injected normalizer checkpoint

@@ -1904,6 +1904,33 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Return to context preview');
     }
 
+    public function test_card_types_page_resolves_live_form_mode_copy_from_config_callbacks(): void
+    {
+        Config::set('admin-pages.card-types.liveForm.title', fn () => 'Edit card type');
+        Config::set('admin-pages.card-types.liveForm.description', fn () => 'Update the selected Galaxy tier without leaving the shared live form.');
+        Config::set('admin-pages.card-types.liveForm.submitLabel', fn () => 'Save card type changes');
+        Config::set('admin-pages.card-types.liveForm.method', fn () => 'PATCH');
+        Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.update');
+        Config::set('admin-pages.card-types.liveForm.actionRouteParameters', fn () => [
+            'cardType' => 7,
+        ]);
+        Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.index');
+        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Back to catalog');
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit card type')
+            ->assertSee('Update the selected Galaxy tier without leaving the shared live form.')
+            ->assertSee('>Save card type changes<', false)
+            ->assertSee('action="/admin/card-types/7"', false)
+            ->assertSee('name="_method"', false)
+            ->assertSee('value="PATCH"', false);
+    }
+
     public function test_card_types_page_renders_live_form_patch_method_spoofing(): void
     {
         $cardType = CardType::create([

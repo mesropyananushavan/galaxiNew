@@ -52,6 +52,26 @@ class ResourceIndexController extends Controller
         $page = $pages[$resource];
 
         if (is_array($page['liveForm'] ?? null)) {
+            $page['liveForm']['title'] = $this->resolveLiveFormString(
+                $page['liveForm']['title'] ?? null,
+                $resource,
+                $page,
+            );
+            $page['liveForm']['description'] = $this->resolveLiveFormNullableString(
+                $page['liveForm']['description'] ?? null,
+                $resource,
+                $page,
+            );
+            $page['liveForm']['submitLabel'] = $this->resolveLiveFormString(
+                $page['liveForm']['submitLabel'] ?? null,
+                $resource,
+                $page,
+            );
+            $page['liveForm']['method'] = $this->resolveLiveFormString(
+                $page['liveForm']['method'] ?? null,
+                $resource,
+                $page,
+            );
             $page['liveForm']['fields'] = $this->applyLiveFormValues(
                 $page['liveForm']['fields'] ?? [],
                 $this->resolveLiveFormValues($page['liveForm']['valuesResolver'] ?? null, $resource, $page),
@@ -133,19 +153,33 @@ class ResourceIndexController extends Controller
 
     private function resolveLiveFormValues(mixed $resolver, string $resource, array $page): array
     {
-        $values = $this->resolveLiveFormConfigArray($resolver, $resource, $page);
+        $values = $this->resolveLiveFormConfigValue($resolver, $resource, $page);
 
         return is_array($values) ? $values : [];
     }
 
     private function resolveLiveFormRouteParameters(mixed $parameters, string $resource, array $page): array
     {
-        $parameters = $this->resolveLiveFormConfigArray($parameters, $resource, $page);
+        $parameters = $this->resolveLiveFormConfigValue($parameters, $resource, $page);
 
         return is_array($parameters) ? $parameters : [];
     }
 
-    private function resolveLiveFormConfigArray(mixed $value, string $resource, array $page): mixed
+    private function resolveLiveFormString(mixed $value, string $resource, array $page): string
+    {
+        $value = $this->resolveLiveFormConfigValue($value, $resource, $page);
+
+        return is_string($value) ? $value : '';
+    }
+
+    private function resolveLiveFormNullableString(mixed $value, string $resource, array $page): ?string
+    {
+        $value = $this->resolveLiveFormConfigValue($value, $resource, $page);
+
+        return is_string($value) ? $value : null;
+    }
+
+    private function resolveLiveFormConfigValue(mixed $value, string $resource, array $page): mixed
     {
         if (! is_callable($value)) {
             return $value;
