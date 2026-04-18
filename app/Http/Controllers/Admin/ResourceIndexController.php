@@ -8,6 +8,7 @@ use BackedEnum;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\View;
 use Stringable;
+use UnitEnum;
 
 class ResourceIndexController extends Controller
 {
@@ -84,6 +85,10 @@ class ResourceIndexController extends Controller
             array_map(function (mixed $value): mixed {
                 if ($value instanceof BackedEnum) {
                     return $value->value;
+                }
+
+                if ($value instanceof UnitEnum) {
+                    return $value->name;
                 }
 
                 if ($value instanceof UrlRoutable) {

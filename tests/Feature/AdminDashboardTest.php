@@ -15,6 +15,12 @@ enum AdminCardTypePreviewRoute: string
     case Silver = 'silver';
 }
 
+enum AdminCardTypePreviewMode
+{
+    case Gold;
+    case Silver;
+}
+
 final class AdminCardTypePreviewStringable implements \Stringable
 {
     public function __construct(
@@ -1769,6 +1775,35 @@ class AdminDashboardTest extends TestCase
             ->assertSee('href="/admin/card-types/silver/draft-preview"', false)
             ->assertDontSee('/admin/card-types/string-only-gold/draft-preview', false)
             ->assertDontSee('/admin/card-types/string-only-silver/draft-preview', false)
+            ->assertSee('Return to draft preview');
+    }
+
+    public function test_card_types_page_resolves_unit_enum_route_parameters_by_name(): void
+    {
+        Route::middleware(['web', 'auth', 'can:access-admin'])
+            ->prefix('admin')
+            ->as('admin.')
+            ->get('/card-types/{cardType}/draft-preview', fn (string $cardType) => $cardType)
+            ->name('card-types.draft-preview');
+
+        Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
+        Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
+            'cardType' => AdminCardTypePreviewMode::Gold,
+        ]);
+        Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.draft-preview');
+        Config::set('admin-pages.card-types.liveForm.cancelRouteParameters', [
+            'cardType' => AdminCardTypePreviewMode::Silver,
+        ]);
+        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Return to draft preview');
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('action="/admin/card-types/Gold/draft-preview"', false)
+            ->assertSee('href="/admin/card-types/Silver/draft-preview"', false)
             ->assertSee('Return to draft preview');
     }
 

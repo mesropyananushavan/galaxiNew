@@ -1306,7 +1306,12 @@
 - The route wiring now has an explicit regression guard proving live-form URLs prefer route keys over `__toString()` output when both are available.
 - This is still a small bridge step, but it makes the future model-backed edit state safer as richer helper objects start feeding shared action metadata.
 
-### Next step after live form route-parameter priority checkpoint
+### Live form unit-enum route-parameter checkpoint
+- Extended shared live-form route-parameter resolution so pure `UnitEnum` values can also feed action and cancel routes without manual casting.
+- Added feature coverage proving unit-enum parameters resolve through the enum case name when no backed value exists.
+- This is another small controller-level bridge step, but it keeps typed mode or state enums on the same config-driven path as the eventual edit/update UI.
+
+### Next step after live form unit-enum route-parameter checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
 ### Injected normalizer checkpoint
