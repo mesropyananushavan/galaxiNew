@@ -15,6 +15,19 @@ enum AdminCardTypePreviewRoute: string
     case Silver = 'silver';
 }
 
+final class AdminCardTypePreviewStringable implements \Stringable
+{
+    public function __construct(
+        private readonly string $value,
+    ) {
+    }
+
+    public function __toString(): string
+    {
+        return $this->value;
+    }
+}
+
 class AdminDashboardTest extends TestCase
 {
     use RefreshDatabase;
@@ -1650,7 +1663,7 @@ class AdminDashboardTest extends TestCase
         ]);
         Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.draft-preview');
         Config::set('admin-pages.card-types.liveForm.cancelRouteParameters', [
-            'cardType' => AdminCardTypePreviewRoute::Silver,
+            'cardType' => new AdminCardTypePreviewStringable('silver'),
             'ignored' => ['bad'],
         ]);
         Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Return to draft preview');

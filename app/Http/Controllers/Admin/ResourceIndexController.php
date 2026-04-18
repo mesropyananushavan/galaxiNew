@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Support\AdminResourcePageNormalizer;
 use BackedEnum;
 use Illuminate\Contracts\View\View;
+use Stringable;
 
 class ResourceIndexController extends Controller
 {
@@ -79,10 +80,17 @@ class ResourceIndexController extends Controller
         }
 
         return array_filter(
-            array_map(
-                fn (mixed $value): mixed => $value instanceof BackedEnum ? $value->value : $value,
-                $parameters,
-            ),
+            array_map(function (mixed $value): mixed {
+                if ($value instanceof BackedEnum) {
+                    return $value->value;
+                }
+
+                if ($value instanceof Stringable) {
+                    return (string) $value;
+                }
+
+                return $value;
+            }, $parameters),
             fn (mixed $value, mixed $key): bool => (is_string($key) || is_int($key))
                 && (is_string($value) || is_int($value)),
             ARRAY_FILTER_USE_BOTH,

@@ -1291,7 +1291,12 @@
 - Updated feature coverage to prove enum-backed route parameters still resolve to the expected `card-types` draft-preview URLs.
 - This is a small controller-level bridge step, but it makes the shared live-form route wiring friendlier to typed config or controller data as the first real edit state evolves.
 
-### Next step after live form enum route-parameter checkpoint
+### Live form stringable route-parameter checkpoint
+- Extended the same shared route-parameter path so `Stringable` values also resolve cleanly for live-form action and cancel routes.
+- Updated feature coverage so the `card-types` cancel route now proves a stringable helper object still resolves to the expected draft-preview URL.
+- This is another small controller-level bridge step, but it further reduces manual casting around typed route metadata before a real edit state starts feeding the shared form.
+
+### Next step after live form stringable route-parameter checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
 ### Injected normalizer checkpoint
