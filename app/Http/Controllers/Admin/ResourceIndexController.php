@@ -259,6 +259,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Review posture', 'value' => 'Selected-role review is running in Laravel-backed read mode only'],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
+            ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
+                ? 'Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.'
+                : 'No linked staff are affected yet, which keeps this role safer for draft review before assignment parity is confirmed.'],
             ['label' => 'Permission posture', 'value' => $permissionPreview->isNotEmpty()
                 ? 'The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.'
                 : 'No permissions are linked yet, so this role remains a safer draft shell for parity-first access review.'],
