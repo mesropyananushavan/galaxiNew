@@ -226,6 +226,11 @@
 - Confirmed the selected-role review now carries that permission-specific parity cue alongside matrix, publish, and scope posture, `1 passed`.
 - This makes the live access-review slice less generic because permission-bundle state is now called out directly in the parity posture block instead of being implied only by summary text.
 
+### Roles-permissions assigned-staff preview checkpoint
+- Extended the selected `roles-permissions` summary so the chosen Laravel role now shows an explicit `Assigned staff preview` line with real linked user names when they exist.
+- Confirmed the selected-role review now surfaces a concrete assigned-user name in the summary context instead of only an abstract count, `1 passed`.
+- This makes the live access-review slice more operator-friendly because staff impact is now visible at a glance without forcing the reviewer to infer everything from counts and posture copy.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

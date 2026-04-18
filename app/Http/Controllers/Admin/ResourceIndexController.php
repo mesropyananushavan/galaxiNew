@@ -186,11 +186,13 @@ class ResourceIndexController extends Controller
 
         $scope = $selectedRole->users->pluck('shop.name')->filter()->unique();
         $permissionPreview = $selectedRole->permissions->pluck('name');
+        $assignedUserPreview = $selectedRole->users->pluck('name')->filter()->take(3);
 
         $page['selectedRecordSummary'] = [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
+            ['label' => 'Assigned staff preview', 'value' => $assignedUserPreview->isNotEmpty() ? $assignedUserPreview->join(', ') : 'No staff linked yet'],
             ['label' => 'Assignment guidance', 'value' => $selectedRole->users_count > 0
                 ? 'Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.'
                 : 'No staff are linked yet, which keeps this role safer for draft access review before assignment parity is confirmed.'],

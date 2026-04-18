@@ -298,6 +298,7 @@ class AdminDashboardTest extends TestCase
         $role->permissions()->attach($permission->id);
 
         $assignedUser = User::factory()->create([
+            'name' => 'Nare Gevorgyan',
             'shop_id' => $shop->id,
         ]);
 
@@ -315,6 +316,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected role')
             ->assertSee('Scope')
             ->assertSee('Assigned users')
+            ->assertSee('Assigned staff preview')
+            ->assertSee('Nare Gevorgyan')
             ->assertSee('Assignment guidance')
             ->assertSee('Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.')
             ->assertSee('Permission count')
