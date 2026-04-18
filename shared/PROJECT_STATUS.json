@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T14:49:00Z",
+  "updated_at": "2026-04-18T15:04:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -54,16 +54,16 @@
   "recent_checkpoint": {
     "module": "Checkpoint Workflow",
     "status": "IN_PROGRESS",
-    "owner": "backend",
-    "summary": "The checkpoint sync helper now fails with a non-zero exit code when progress-log or PROJECT_STATUS are still dirty, making it usable as a lightweight guard before Phase 1 checkpoint commits.",
+    "owner": "qa",
+    "summary": "The checkpoint sync helper now has shell-backed test coverage proving it stays green on clean checkpoint files and fails with a non-zero exit when PROJECT_STATUS is dirty.",
     "code_paths": [
       "scripts/checkpoint-sync.sh",
-      "README.md"
+      "tests/Feature/CheckpointSyncScriptTest.php"
     ],
     "doc_paths": [
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "checkpoint hygiene is stronger now, but the next substantive Phase 1 step still needs either a new Laravel-backed slice or a safe expansion of an existing write flow"
+    "blocker_reason": "checkpoint hygiene is now guarded and tested, but the next substantive Phase 1 step still needs either a new Laravel-backed slice or a safe expansion of an existing write flow"
   }
 }

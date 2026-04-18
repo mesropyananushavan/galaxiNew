@@ -136,6 +136,11 @@
 - Updated `README.md` to document that the helper can act as a simple guard before commit/push, not just as an informational check.
 - Re-ran the helper on the current clean tree to confirm the stricter behavior still passes when checkpoint docs are already synced.
 
+### Checkpoint sync test coverage checkpoint
+- Added shell-backed feature coverage for `scripts/checkpoint-sync.sh`, covering both the clean path and a deliberately dirtied `shared/PROJECT_STATUS.json` path.
+- Confirmed the helper returns `0` when checkpoint files are synced and `2` when the shared status file is dirty, so the new guard behavior is now verified instead of only documented.
+- This makes the repo-side checkpoint discipline more durable before the next run of substantive Phase 1 backend work.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
