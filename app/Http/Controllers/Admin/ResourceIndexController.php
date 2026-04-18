@@ -52,6 +52,11 @@ class ResourceIndexController extends Controller
         $page = $pages[$resource];
 
         if (is_array($page['liveForm'] ?? null)) {
+            $page['liveForm']['fields'] = $this->applyLiveFormValues(
+                $page['liveForm']['fields'] ?? [],
+                $this->resolveLiveFormValues($page['liveForm']['valuesResolver'] ?? null, $resource, $page),
+            );
+
             if (is_string($page['liveForm']['actionRoute'] ?? null)) {
                 $page['liveForm']['action'] = route(
                     $page['liveForm']['actionRoute'],
@@ -112,6 +117,42 @@ class ResourceIndexController extends Controller
         }
 
         return $value;
+    }
+
+    private function resolveLiveFormValues(mixed $resolver, string $resource, array $page): array
+    {
+        if (! is_callable($resolver)) {
+            return [];
+        }
+
+        $values = app()->call($resolver, [
+            'resource' => $resource,
+            'page' => $page,
+            'liveForm' => $page['liveForm'] ?? [],
+        ]);
+
+        return is_array($values) ? $values : [];
+    }
+
+    private function applyLiveFormValues(mixed $fields, array $values): array
+    {
+        if (! is_array($fields) || $values === []) {
+            return is_array($fields) ? $fields : [];
+        }
+
+        return array_map(function (mixed $field) use ($values): mixed {
+            if (! is_array($field) || ! is_string($field['name'] ?? null)) {
+                return $field;
+            }
+
+            if (! array_key_exists($field['name'], $values)) {
+                return $field;
+            }
+
+            $field['value'] = $values[$field['name']];
+
+            return $field;
+        }, $fields);
     }
 
     private function resourceBlocks(array $defaults): array

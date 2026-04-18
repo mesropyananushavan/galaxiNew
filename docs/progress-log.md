@@ -1321,7 +1321,12 @@
 - Added feature coverage proving action and cancel routes can now carry boolean route metadata through the shared `card-types` live-form path.
 - This is a small controller-level bridge step, but it keeps typed toggle-style metadata usable in the same config-driven route pipeline as the future edit/update state.
 
-### Next step after live form boolean route-parameter checkpoint
+### Live form values-resolver checkpoint
+- Extended `ResourceIndexController` so a config-driven `liveForm.valuesResolver` callback can inject field values before the shared normalizer and Blade partial render the form.
+- Added feature coverage proving the callback receives the resource key plus current page/live-form config and can prefill `card-types` fields, including select-backed status values.
+- This is the first small controller bridge aimed directly at a real edit/update state, because the shared form can now accept model-backed defaults without a bespoke Blade template.
+
+### Next step after live form values-resolver checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
 ### Injected normalizer checkpoint

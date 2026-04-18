@@ -1838,6 +1838,33 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Return to toggle preview');
     }
 
+    public function test_card_types_page_resolves_live_form_values_from_config_callback(): void
+    {
+        Config::set('admin-pages.card-types.liveForm.valuesResolver', function (string $resource, array $page, array $liveForm): array {
+            $this->assertSame('card-types', $resource);
+            $this->assertSame('Create card type', $liveForm['title']);
+            $this->assertSame('Card types', $page['pageTitle']);
+
+            return [
+                'name' => 'Galaxy Prime',
+                'slug' => 'galaxy-prime',
+                'points_rate' => 2.25,
+                'is_active' => false,
+            ];
+        });
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('value="Galaxy Prime"', false)
+            ->assertSee('value="galaxy-prime"', false)
+            ->assertSee('value="2.25"', false)
+            ->assertSee('<option value="0" selected>Draft</option>', false);
+    }
+
     public function test_card_types_page_renders_live_form_patch_method_spoofing(): void
     {
         $cardType = CardType::create([
