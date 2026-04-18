@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T08:07:00Z",
+  "updated_at": "2026-04-18T08:15:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -53,16 +53,16 @@
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
     "module": "Tests / Parity Checks",
-    "status": "BLOCKED",
+    "status": "IN_PROGRESS",
     "owner": "qa",
-    "summary": "Repository-level QA bootstrap documentation added, but actual Laravel test execution is blocked until Composer is available and dependencies are installed.",
+    "summary": "QA bootstrap now reaches real Laravel test execution; card-type failures moved from environment setup into application code, with two rendering/compatibility fixes already landed.",
     "code_paths": [
-      "README.md"
+      "app/Http/Requests/Admin/StoreCardTypeRequest.php",
+      "resources/views/admin/partials/operational-index-table.blade.php"
     ],
     "doc_paths": [
-      "docs/qa-test-environment.md",
       "docs/progress-log.md"
     ],
-    "blocker_reason": "composer not found in PATH on the current host"
+    "blocker_reason": "focused card-type tests now fail deeper in resource-live-form because optional formAttributes data is not normalized for every render path"
   }
 }

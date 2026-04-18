@@ -2,6 +2,17 @@
 
 ## 2026-04-18
 
+### QA reached application-level failures checkpoint
+- Brought the host far enough for a real Laravel bootstrap: dependencies install, package discovery, and `artisan` execution now run under PHP 8.4.
+- Fixed one concrete Phase 1 compatibility bug by removing the typed `$redirectRoute` property from `StoreCardTypeRequest`, which was incompatible with the Laravel base request contract.
+- Fixed the operational index table partial so mixed string and array cells no longer crash the admin view during card-type feature tests.
+- After those fixes, QA now fails deeper in `resource-live-form` on a missing `formAttributes` key, which is a real application-level rendering defect rather than an environment blocker.
+
+### Next step after QA reached application-level failures checkpoint
+- Normalize `resource-live-form` defaults so missing optional keys such as `formAttributes` cannot break the card-type admin workspace, then rerun the focused card-type test slice.
+
+## 2026-04-18
+
 ### QA test environment bootstrap checkpoint
 - Added a dedicated QA bootstrap note so the repository itself now explains the minimum Laravel setup required to run tests.
 - Documented that the current environment is already configured for in-memory SQLite test runs, and that the remaining bootstrap blocker is missing Composer tooling on the host.

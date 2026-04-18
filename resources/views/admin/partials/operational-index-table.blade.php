@@ -21,22 +21,25 @@
                 @foreach ($table['rows'] as $row)
                     <tr>
                         @foreach ($row as $cell)
+                            @php
+                                $cellData = is_array($cell) ? $cell : ['label' => (string) $cell];
+                            @endphp
                             <td style="padding: 14px 0; border-bottom: 1px solid var(--border);">
-                                @if (! empty($cell['href']) && ! empty($cell['method']) && ! in_array($cell['method'], ['GET'], true))
-                                    <form method="POST" action="{{ $cell['href'] }}" style="margin: 0; display: inline;">
+                                @if (! empty($cellData['href']) && ! empty($cellData['method']) && ! in_array($cellData['method'], ['GET'], true))
+                                    <form method="POST" action="{{ $cellData['href'] }}" style="margin: 0; display: inline;">
                                         @csrf
-                                        @if ($cell['method'] !== 'POST')
-                                            @method($cell['method'])
+                                        @if ($cellData['method'] !== 'POST')
+                                            @method($cellData['method'])
                                         @endif
 
                                         <button type="submit" style="border: 0; padding: 0; background: transparent; color: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; font: inherit;">
-                                            {{ $cell['label'] }}
+                                            {{ $cellData['label'] }}
                                         </button>
                                     </form>
-                                @elseif (! empty($cell['href']))
-                                    <a href="{{ $cell['href'] }}" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">{{ $cell['label'] }}</a>
+                                @elseif (! empty($cellData['href']))
+                                    <a href="{{ $cellData['href'] }}" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">{{ $cellData['label'] }}</a>
                                 @else
-                                    {{ $cell['label'] }}
+                                    {{ $cellData['label'] }}
                                 @endif
                             </td>
                         @endforeach
