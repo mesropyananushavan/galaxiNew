@@ -97,6 +97,7 @@ php artisan test
 ```
 
 Скрипт валидирует `shared/PROJECT_STATUS.json` и показывает, остались ли `docs/progress-log.md` или `shared/PROJECT_STATUS.json` незакоммиченными.
+Если checkpoint-файлы dirty, скрипт завершается с non-zero exit code, чтобы его можно было использовать как простой guard перед commit/push.
 
 ## License
 

@@ -131,6 +131,11 @@
 - Re-ran the focused `card-types` selected-record coverage, `3 passed`, to confirm the real edit-mode path and both fallback cases hold together.
 - This brings the write-backed card-type workspace in line with the request-driven fallback discipline already added to the live read slices.
 
+### Checkpoint sync guard hardening checkpoint
+- Tightened `scripts/checkpoint-sync.sh` so it now exits non-zero when `docs/progress-log.md` or `shared/PROJECT_STATUS.json` are still dirty, instead of only printing a reminder.
+- Updated `README.md` to document that the helper can act as a simple guard before commit/push, not just as an informational check.
+- Re-ran the helper on the current clean tree to confirm the stricter behavior still passes when checkpoint docs are already synced.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

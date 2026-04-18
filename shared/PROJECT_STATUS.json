@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T14:34:00Z",
+  "updated_at": "2026-04-18T14:49:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,18 +52,18 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Card Types",
+    "module": "Checkpoint Workflow",
     "status": "IN_PROGRESS",
-    "owner": "qa",
-    "summary": "The live card-types workspace now has regression coverage proving both unknown and malformed selected-card-type queries fall back cleanly to the model-backed index instead of rendering a broken edit-mode context.",
+    "owner": "backend",
+    "summary": "The checkpoint sync helper now fails with a non-zero exit code when progress-log or PROJECT_STATUS are still dirty, making it usable as a lightweight guard before Phase 1 checkpoint commits.",
     "code_paths": [
-      "app/Http/Controllers/Admin/ResourceIndexController.php",
-      "tests/Feature/AdminDashboardTest.php"
+      "scripts/checkpoint-sync.sh",
+      "README.md"
     ],
     "doc_paths": [
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "card-types selected-record fallback is now covered, but publish logic and rule-import parity still remain preview-only beyond the current minimal write flow"
+    "blocker_reason": "checkpoint hygiene is stronger now, but the next substantive Phase 1 step still needs either a new Laravel-backed slice or a safe expansion of an existing write flow"
   }
 }

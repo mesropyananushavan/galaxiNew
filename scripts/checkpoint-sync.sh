@@ -26,8 +26,9 @@ if [[ -z "$tracked_changes" ]]; then
   exit 0
 fi
 
-echo "Checkpoint docs changed:"
-echo "$tracked_changes"
+echo "Checkpoint docs changed:" >&2
+echo "$tracked_changes" >&2
 
-echo
-echo "Next step: include both files in the same checkpoint commit when code or QA state changes."
+echo >&2
+echo "Next step: include both files in the same checkpoint commit when code or QA state changes." >&2
+exit 2
