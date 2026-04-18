@@ -1326,7 +1326,12 @@
 - Added feature coverage proving the callback receives the resource key plus current page/live-form config and can prefill `card-types` fields, including select-backed status values.
 - This is the first small controller bridge aimed directly at a real edit/update state, because the shared form can now accept model-backed defaults without a bespoke Blade template.
 
-### Next step after live form values-resolver checkpoint
+### Live form route-parameter resolver checkpoint
+- Extended the same controller path so `actionRouteParameters` and `cancelRouteParameters` can also come from config callbacks instead of only static arrays.
+- Added feature coverage proving those callbacks receive the current `card-types` page context and can return typed route metadata that still flows through the shared route-parameter normalization chain.
+- This is another small bridge toward the real edit/update UI, because the shared form can now derive model-backed action and cancel URLs from runtime context without bespoke controller branches.
+
+### Next step after live form route-parameter resolver checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
 ### Injected normalizer checkpoint

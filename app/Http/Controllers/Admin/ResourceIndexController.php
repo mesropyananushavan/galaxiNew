@@ -60,7 +60,13 @@ class ResourceIndexController extends Controller
             if (is_string($page['liveForm']['actionRoute'] ?? null)) {
                 $page['liveForm']['action'] = route(
                     $page['liveForm']['actionRoute'],
-                    $this->liveFormActionParameters($page['liveForm']['actionRouteParameters'] ?? []),
+                    $this->liveFormActionParameters(
+                        $this->resolveLiveFormRouteParameters(
+                            $page['liveForm']['actionRouteParameters'] ?? [],
+                            $resource,
+                            $page,
+                        ),
+                    ),
                     absolute: false,
                 );
             }
@@ -70,7 +76,13 @@ class ResourceIndexController extends Controller
                     'label' => is_string($page['liveForm']['cancelLabel'] ?? null) ? $page['liveForm']['cancelLabel'] : 'Back',
                     'href' => route(
                         $page['liveForm']['cancelRoute'],
-                        $this->liveFormActionParameters($page['liveForm']['cancelRouteParameters'] ?? []),
+                        $this->liveFormActionParameters(
+                            $this->resolveLiveFormRouteParameters(
+                                $page['liveForm']['cancelRouteParameters'] ?? [],
+                                $resource,
+                                $page,
+                            ),
+                        ),
                         absolute: false,
                     ),
                 ];
@@ -121,17 +133,29 @@ class ResourceIndexController extends Controller
 
     private function resolveLiveFormValues(mixed $resolver, string $resource, array $page): array
     {
-        if (! is_callable($resolver)) {
-            return [];
+        $values = $this->resolveLiveFormConfigArray($resolver, $resource, $page);
+
+        return is_array($values) ? $values : [];
+    }
+
+    private function resolveLiveFormRouteParameters(mixed $parameters, string $resource, array $page): array
+    {
+        $parameters = $this->resolveLiveFormConfigArray($parameters, $resource, $page);
+
+        return is_array($parameters) ? $parameters : [];
+    }
+
+    private function resolveLiveFormConfigArray(mixed $value, string $resource, array $page): mixed
+    {
+        if (! is_callable($value)) {
+            return $value;
         }
 
-        $values = app()->call($resolver, [
+        return app()->call($value, [
             'resource' => $resource,
             'page' => $page,
             'liveForm' => $page['liveForm'] ?? [],
         ]);
-
-        return is_array($values) ? $values : [];
     }
 
     private function applyLiveFormValues(mixed $fields, array $values): array

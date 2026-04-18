@@ -1865,6 +1865,45 @@ class AdminDashboardTest extends TestCase
             ->assertSee('<option value="0" selected>Draft</option>', false);
     }
 
+    public function test_card_types_page_resolves_route_parameters_from_config_callback(): void
+    {
+        Route::middleware(['web', 'auth', 'can:access-admin'])
+            ->prefix('admin')
+            ->as('admin.')
+            ->get('/card-types/{cardType}/preview/{mode}', fn (string $cardType, string $mode) => $cardType.'-'.$mode)
+            ->name('card-types.context-preview');
+
+        Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.context-preview');
+        Config::set('admin-pages.card-types.liveForm.actionRouteParameters', function (string $resource, array $page, array $liveForm): array {
+            $this->assertSame('card-types', $resource);
+            $this->assertSame('Card types', $page['pageTitle']);
+            $this->assertSame('Create card type', $liveForm['title']);
+
+            return [
+                'cardType' => new AdminCardTypePreviewRoutable('gold'),
+                'mode' => AdminCardTypePreviewMode::Silver,
+            ];
+        });
+        Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.context-preview');
+        Config::set('admin-pages.card-types.liveForm.cancelRouteParameters', function (): array {
+            return [
+                'cardType' => new AdminCardTypePreviewStringable('silver'),
+                'mode' => true,
+            ];
+        });
+        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Return to context preview');
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('action="/admin/card-types/gold/preview/Silver"', false)
+            ->assertSee('href="/admin/card-types/silver/preview/1"', false)
+            ->assertSee('Return to context preview');
+    }
+
     public function test_card_types_page_renders_live_form_patch_method_spoofing(): void
     {
         $cardType = CardType::create([
