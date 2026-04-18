@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Card;
+use App\Models\CardHolder;
 use App\Models\CardType;
+use App\Models\Role;
+use App\Models\Shop;
 use App\Support\AdminResourcePageNormalizer;
 use BackedEnum;
 use Illuminate\Contracts\Routing\UrlRoutable;
@@ -117,11 +121,414 @@ class ResourceIndexController extends Controller
 
     private function enrichPage(string $resource, array $page): array
     {
-        if ($resource !== 'card-types') {
+        return match ($resource) {
+            'card-types' => $this->enrichCardTypesPage($page),
+            'shops' => $this->enrichShopsPage($page),
+            'cardholders' => $this->enrichCardHoldersPage($page),
+            'cards' => $this->enrichCardsPage($page),
+            'roles-permissions' => $this->enrichRolesPermissionsPage($page),
+            default => $page,
+        };
+    }
+
+    private function enrichRolesPermissionsPage(array $page): array
+    {
+        $roles = Role::query()
+            ->with(['permissions' => fn ($query) => $query->orderBy('name'), 'users.shop'])
+            ->withCount(['permissions', 'users'])
+            ->orderBy('name')
+            ->get();
+
+        if ($roles->isEmpty()) {
             return $page;
         }
 
-        return $this->enrichCardTypesPage($page);
+        $page['metrics'] = [
+            ['label' => 'Active roles', 'value' => (string) $roles->filter(fn (Role $role): bool => $role->permissions_count > 0)->count()],
+            ['label' => 'Draft roles', 'value' => (string) $roles->filter(fn (Role $role): bool => $role->permissions_count === 0)->count()],
+            ['label' => 'Scoped shops', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
+        ];
+
+        $page['table']['rows'] = $roles->map(function (Role $role): array {
+            $scope = $role->users->pluck('shop.name')->filter()->unique();
+            $permissionPreview = $role->permissions->pluck('name')->take(3)->implode(', ');
+
+            return [
+                $this->linkedTableCell($role->name, 'admin.roles-permissions.index', ['role' => $role->id]),
+                $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice',
+                $permissionPreview !== '' ? $permissionPreview : 'No permissions linked yet',
+                (string) $role->users_count,
+                $role->permissions_count > 0 ? 'active' : 'draft',
+            ];
+        })->all();
+
+        $latestRole = $roles->sortByDesc('id')->first();
+
+        if ($latestRole !== null) {
+            $page = $this->appendPageAction($page, [
+                'label' => 'Review latest saved role',
+                'tone' => 'secondary',
+                'href' => route('admin.roles-permissions.index', ['role' => $latestRole->id], absolute: false),
+            ]);
+        }
+
+        $selectedRoleId = $this->selectedRecordId('role');
+
+        if ($selectedRoleId < 1) {
+            return $page;
+        }
+
+        $selectedRole = $roles->firstWhere('id', $selectedRoleId);
+
+        if (! $selectedRole instanceof Role) {
+            return $page;
+        }
+
+        $scope = $selectedRole->users->pluck('shop.name')->filter()->unique();
+        $permissionPreview = $selectedRole->permissions->pluck('name');
+
+        $page['selectedRecordSummary'] = [
+            ['label' => 'Selected role', 'value' => $selectedRole->name],
+            ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
+            ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
+            ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
+            ['label' => 'Laravel status', 'value' => $selectedRole->permissions_count > 0 ? 'active' : 'draft'],
+            [
+                'label' => 'Access guidance',
+                'value' => $selectedRole->permissions_count > 0
+                    ? 'This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.'
+                    : 'This role is still a draft shell in Laravel, which keeps it safe for parity checks before operators rely on it for staff access.',
+            ],
+        ];
+
+        $page['actions'] = [
+            [
+                'label' => 'Back to all roles',
+                'tone' => 'primary',
+                'href' => route('admin.roles-permissions.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedRole->name),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Review matrix',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.',
+            ],
+        ];
+
+        $page['activityTimeline'] = [
+            [
+                'title' => sprintf('%s selected for Laravel review', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => 'The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.',
+            ],
+            [
+                'title' => sprintf('%s permission bundle reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $permissionPreview->isNotEmpty()
+                    ? sprintf('This role currently exposes %s in Laravel and the review context now mirrors that access bundle.', $permissionPreview->take(3)->implode(', '))
+                    : 'This role currently has no linked permissions in Laravel, so it remains a safe draft for parity-first access review.',
+            ],
+        ];
+
+        return $page;
+    }
+
+    private function enrichCardsPage(array $page): array
+    {
+        $cards = Card::query()
+            ->with(['shop', 'holder', 'type'])
+            ->orderBy('number')
+            ->get();
+
+        if ($cards->isEmpty()) {
+            return $page;
+        }
+
+        $page['metrics'] = [
+            ['label' => 'Active cards', 'value' => (string) $cards->where('status', 'active')->count()],
+            ['label' => 'Draft cards', 'value' => (string) $cards->where('status', 'draft')->count()],
+            ['label' => 'Blocked cards', 'value' => (string) $cards->where('status', 'blocked')->count()],
+        ];
+
+        $page['table']['rows'] = $cards->map(fn (Card $card): array => [
+            $this->linkedTableCell($card->number, 'admin.cards.index', ['card' => $card->id]),
+            $card->holder?->full_name ?? 'Unassigned',
+            $card->type?->name ?? 'Unknown',
+            $card->shop?->name ?? 'Unassigned',
+            $card->status,
+            $card->activated_at?->format('Y-m-d') ?? '—',
+        ])->all();
+
+        $latestCard = $cards->sortByDesc('id')->first();
+
+        if ($latestCard !== null) {
+            $page = $this->appendPageAction($page, [
+                'label' => 'Review latest saved card',
+                'tone' => 'secondary',
+                'href' => route('admin.cards.index', ['card' => $latestCard->id], absolute: false),
+            ]);
+        }
+
+        $selectedCardId = $this->selectedRecordId('card');
+
+        if ($selectedCardId < 1) {
+            return $page;
+        }
+
+        $selectedCard = $cards->firstWhere('id', $selectedCardId);
+
+        if (! $selectedCard instanceof Card) {
+            return $page;
+        }
+
+        $page['selectedRecordSummary'] = [
+            ['label' => 'Selected card', 'value' => $selectedCard->number],
+            ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
+            ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
+            ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
+            ['label' => 'Laravel status', 'value' => $selectedCard->status],
+            ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
+            [
+                'label' => 'Inventory guidance',
+                'value' => match ($selectedCard->status) {
+                    'active' => 'This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.',
+                    'blocked' => 'This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.',
+                    default => 'This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.',
+                },
+            ],
+        ];
+
+        $page['actions'] = [
+            [
+                'label' => 'Back to all cards',
+                'tone' => 'primary',
+                'href' => route('admin.cards.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedCard->number),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Review blocked cards',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until legacy blocked-card semantics are verified against the Laravel inventory flow.',
+            ],
+        ];
+
+        $page['activityTimeline'] = [
+            [
+                'title' => sprintf('%s selected for Laravel review', $selectedCard->number),
+                'time' => 'Current request',
+                'description' => 'The shared cards workspace is now loading this saved inventory record from Laravel data instead of only static preview rows.',
+            ],
+            [
+                'title' => sprintf('%s status reflected from model state', $selectedCard->number),
+                'time' => 'Current request',
+                'description' => sprintf('This card is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedCard->status),
+            ],
+        ];
+
+        return $page;
+    }
+
+    private function enrichCardHoldersPage(array $page): array
+    {
+        $cardHolders = CardHolder::query()
+            ->with(['shop'])
+            ->withCount('cards')
+            ->orderBy('full_name')
+            ->get();
+
+        if ($cardHolders->isEmpty()) {
+            return $page;
+        }
+
+        $page['metrics'] = [
+            ['label' => 'Active holders', 'value' => (string) $cardHolders->where('is_active', true)->count()],
+            ['label' => 'Inactive holders', 'value' => (string) $cardHolders->where('is_active', false)->count()],
+            ['label' => 'Linked cards', 'value' => (string) $cardHolders->sum('cards_count')],
+        ];
+
+        $page['table']['rows'] = $cardHolders->map(fn (CardHolder $cardHolder): array => [
+            $this->linkedTableCell($cardHolder->full_name, 'admin.cardholders.index', ['cardholder' => $cardHolder->id]),
+            $cardHolder->phone ?? '—',
+            $cardHolder->shop?->name ?? 'Unassigned',
+            (string) $cardHolder->cards_count,
+            $cardHolder->is_active ? 'active' : 'inactive',
+            $cardHolder->updated_at?->format('Y-m-d') ?? '—',
+        ])->all();
+
+        $latestCardHolder = $cardHolders->sortByDesc('id')->first();
+
+        if ($latestCardHolder !== null) {
+            $page = $this->appendPageAction($page, [
+                'label' => 'Review latest saved holder',
+                'tone' => 'secondary',
+                'href' => route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id], absolute: false),
+            ]);
+        }
+
+        $selectedCardHolderId = $this->selectedRecordId('cardholder');
+
+        if ($selectedCardHolderId < 1) {
+            return $page;
+        }
+
+        $selectedCardHolder = $cardHolders->firstWhere('id', $selectedCardHolderId);
+
+        if (! $selectedCardHolder instanceof CardHolder) {
+            return $page;
+        }
+
+        $page['selectedRecordSummary'] = [
+            ['label' => 'Selected holder', 'value' => $selectedCardHolder->full_name],
+            ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
+            ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
+            ['label' => 'Linked cards', 'value' => (string) $selectedCardHolder->cards_count],
+            ['label' => 'Laravel status', 'value' => $selectedCardHolder->is_active ? 'active' : 'inactive'],
+            [
+                'label' => 'Lookup guidance',
+                'value' => $selectedCardHolder->is_active
+                    ? 'This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.'
+                    : 'This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
+            ],
+        ];
+
+        $page['actions'] = [
+            [
+                'label' => 'Back to all holders',
+                'tone' => 'primary',
+                'href' => route('admin.cardholders.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedCardHolder->full_name),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Review recent activity',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until a stable Laravel activity source exists for holder lookup parity.',
+            ],
+        ];
+
+        $page['activityTimeline'] = [
+            [
+                'title' => sprintf('%s selected for Laravel review', $selectedCardHolder->full_name),
+                'time' => 'Current request',
+                'description' => 'The shared cardholders workspace is now loading this saved holder from Laravel data instead of only static preview rows.',
+            ],
+            [
+                'title' => sprintf('%s status reflected from model state', $selectedCardHolder->full_name),
+                'time' => 'Current request',
+                'description' => sprintf('This holder is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedCardHolder->is_active ? 'active' : 'inactive'),
+            ],
+        ];
+
+        return $page;
+    }
+
+    private function enrichShopsPage(array $page): array
+    {
+        $shops = Shop::query()
+            ->withCount(['users', 'cardHolders', 'cards'])
+            ->with(['users' => fn ($query) => $query->orderBy('name')])
+            ->orderBy('name')
+            ->get();
+
+        if ($shops->isEmpty()) {
+            return $page;
+        }
+
+        $page['metrics'] = [
+            ['label' => 'Active shops', 'value' => (string) $shops->where('is_active', true)->count()],
+            ['label' => 'Paused shops', 'value' => (string) $shops->where('is_active', false)->count()],
+            ['label' => 'Assigned managers', 'value' => (string) $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count()],
+        ];
+
+        $page['table']['rows'] = $shops->map(fn (Shop $shop): array => [
+            $this->linkedTableCell($shop->name, 'admin.shops.index', ['shop' => $shop->id]),
+            $shop->code,
+            $shop->users->first()?->name ?? 'Unassigned',
+            (string) $shop->card_holders_count,
+            (string) $shop->cards_count,
+            $shop->is_active ? 'active' : 'paused',
+        ])->all();
+
+        $latestShop = $shops->sortByDesc('id')->first();
+
+        if ($latestShop !== null) {
+            $page = $this->appendPageAction($page, [
+                'label' => 'Review latest saved shop',
+                'tone' => 'secondary',
+                'href' => route('admin.shops.index', ['shop' => $latestShop->id], absolute: false),
+            ]);
+        }
+
+        $selectedShopId = $this->selectedRecordId('shop');
+
+        if ($selectedShopId < 1) {
+            return $page;
+        }
+
+        $selectedShop = $shops->firstWhere('id', $selectedShopId);
+
+        if (! $selectedShop instanceof Shop) {
+            return $page;
+        }
+
+        $page['selectedRecordSummary'] = [
+            ['label' => 'Selected shop', 'value' => $selectedShop->name],
+            ['label' => 'Code', 'value' => $selectedShop->code],
+            ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
+            ['label' => 'Cardholders', 'value' => (string) $selectedShop->card_holders_count],
+            ['label' => 'Cards', 'value' => (string) $selectedShop->cards_count],
+            ['label' => 'Laravel status', 'value' => $selectedShop->is_active ? 'active' : 'paused'],
+            [
+                'label' => 'Branch guidance',
+                'value' => $selectedShop->is_active
+                    ? 'This branch is already active in Laravel, so scope and manager changes should stay parity-first until branch ownership rules are verified.'
+                    : 'This branch is still paused, which keeps it safe for parity checks before operators treat it as fully live.',
+            ],
+        ];
+
+        $page['actions'] = [
+            [
+                'label' => 'Back to all shops',
+                'tone' => 'primary',
+                'href' => route('admin.shops.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedShop->name),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Review branch scope',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
+            ],
+        ];
+
+        $page['activityTimeline'] = [
+            [
+                'title' => sprintf('%s selected for Laravel review', $selectedShop->name),
+                'time' => 'Current request',
+                'description' => 'The shared shops workspace is now loading this saved branch from Laravel data instead of only static preview rows.',
+            ],
+            [
+                'title' => sprintf('%s status reflected from model state', $selectedShop->name),
+                'time' => 'Current request',
+                'description' => sprintf('This branch is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedShop->is_active ? 'active' : 'paused'),
+            ],
+        ];
+
+        return $page;
     }
 
     private function enrichCardTypesPage(array $page): array
@@ -338,6 +745,29 @@ class ResourceIndexController extends Controller
         $parameters = $this->resolveLiveFormConfigValue($parameters, $resource, $page);
 
         return is_array($parameters) ? $parameters : [];
+    }
+
+    private function appendPageAction(array $page, array $action): array
+    {
+        $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
+        $page['actions'] = [...$actions, $action];
+
+        return $page;
+    }
+
+    private function linkedTableCell(string $label, string $routeName, array $parameters): array
+    {
+        return [
+            'label' => $label,
+            'href' => route($routeName, $parameters, absolute: false),
+        ];
+    }
+
+    private function selectedRecordId(string $queryKey): int
+    {
+        $selectedId = request()->integer($queryKey);
+
+        return $selectedId > 0 ? $selectedId : 0;
     }
 
     private function resolveLiveFormString(mixed $value, string $resource, array $page): string

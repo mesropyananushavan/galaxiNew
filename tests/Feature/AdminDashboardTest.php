@@ -2,7 +2,12 @@
 
 namespace Tests\Feature;
 
+use App\Models\Card;
+use App\Models\CardHolder;
 use App\Models\CardType;
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
@@ -216,6 +221,150 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scoped to assigned shop');
     }
 
+    public function test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-roles',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Manager',
+            'slug' => 'shop-manager-live',
+        ]);
+
+        $permissionA = Permission::create([
+            'name' => 'Manage cards',
+            'slug' => 'manage-cards-live',
+        ]);
+
+        $permissionB = Permission::create([
+            'name' => 'Manage gifts',
+            'slug' => 'manage-gifts-live',
+        ]);
+
+        $role->permissions()->attach([$permissionA->id, $permissionB->id]);
+
+        $userWithRole = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $userWithRole->roles()->attach($role->id);
+
+        $draftRole = Role::create([
+            'name' => 'Cashier Draft',
+            'slug' => 'cashier-draft-live',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shop Manager')
+            ->assertSee('href="/admin/roles-permissions?role=', false)
+            ->assertSee('Galaxy Central')
+            ->assertSee('Manage cards, Manage gifts')
+            ->assertSee('Cashier Draft')
+            ->assertSee('No permissions linked yet')
+            ->assertSee('Review latest saved role')
+            ->assertSee('Active roles')
+            ->assertSee('Draft roles')
+            ->assertSee('Scoped shops')
+            ->assertSee('active')
+            ->assertSee('draft');
+    }
+
+    public function test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-selected-role',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Manager',
+            'slug' => 'shop-manager-selected-role',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Manage cards',
+            'slug' => 'manage-cards-selected-role',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $assignedUser = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all roles')
+            ->assertSee('href="/admin/roles-permissions"', false)
+            ->assertSee('Reviewing: Shop Manager')
+            ->assertSee('Selected role')
+            ->assertSee('Scope')
+            ->assertSee('Assigned users')
+            ->assertSee('Permission count')
+            ->assertSee('Laravel status')
+            ->assertSee('Access guidance')
+            ->assertSee('This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.')
+            ->assertSee('Shop Manager selected for Laravel review')
+            ->assertSee('Current request')
+            ->assertSee('The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.')
+            ->assertSee('Shop Manager permission bundle reflected from model state')
+            ->assertSee('Manage cards');
+    }
+
+    public function test_roles_permissions_page_ignores_unknown_selected_role_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-unknown-role',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Manager',
+            'slug' => 'shop-manager-unknown-role',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Manage cards',
+            'slug' => 'manage-cards-unknown-role',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $assignedUser = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shop Manager')
+            ->assertSee('Review latest saved role')
+            ->assertDontSee('Back to all roles')
+            ->assertDontSee('Selected role')
+            ->assertDontSee('selected for Laravel review');
+    }
+
     public function test_authenticated_user_can_access_cards_operational_index_shape(): void
     {
         $user = User::factory()->create();
@@ -269,6 +418,132 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Retain clear visibility for unassigned, active, and blocked card states.')
             ->assertSee('Card type')
             ->assertSee('Activation period');
+    }
+
+    public function test_cards_page_replaces_preview_rows_with_model_backed_inventory_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-cards',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-cards@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Gold',
+            'slug' => 'galaxy-gold-cards',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-900001',
+            'status' => 'active',
+            'activated_at' => '2026-04-10 10:00:00',
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-900002',
+            'status' => 'draft',
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-900003',
+            'status' => 'blocked',
+            'activated_at' => '2026-03-28 09:15:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards');
+
+        $response
+            ->assertOk()
+            ->assertSee('GX-900001')
+            ->assertSee('href="/admin/cards?card=', false)
+            ->assertSee('GX-900002')
+            ->assertSee('GX-900003')
+            ->assertSee('Anna Petrova')
+            ->assertSee('Unassigned')
+            ->assertSee('Galaxy Gold')
+            ->assertSee('Galaxy Central')
+            ->assertSee('Review latest saved card')
+            ->assertSee('Active cards')
+            ->assertSee('Draft cards')
+            ->assertSee('Blocked cards')
+            ->assertSee('2026-04-10')
+            ->assertSee('2026-03-28');
+    }
+
+    public function test_cards_page_surfaces_selected_card_context_from_laravel_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-selected-card',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-selected-card@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Gold',
+            'slug' => 'galaxy-gold-selected-card',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-910001',
+            'status' => 'blocked',
+            'activated_at' => '2026-03-28 09:15:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all cards')
+            ->assertSee('href="/admin/cards"', false)
+            ->assertSee('Reviewing: GX-910001')
+            ->assertSee('Selected card')
+            ->assertSee('Holder')
+            ->assertSee('Card type')
+            ->assertSee('Shop')
+            ->assertSee('Laravel status')
+            ->assertSee('Activated')
+            ->assertSee('Inventory guidance')
+            ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.')
+            ->assertSee('GX-910001 selected for Laravel review')
+            ->assertSee('Current request')
+            ->assertSee('The shared cards workspace is now loading this saved inventory record from Laravel data instead of only static preview rows.')
+            ->assertSee('GX-910001 status reflected from model state');
     }
 
     public function test_authenticated_user_can_access_cardholders_operational_index_shape(): void
@@ -382,6 +657,232 @@ class AdminDashboardTest extends TestCase
             ->assertSee('branch ownership model')
             ->assertSee('Manager assigned')
             ->assertSee('Airport Kiosk');
+    }
+
+    public function test_shops_page_replaces_preview_rows_with_model_backed_index_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Airport',
+            'code' => 'galaxy-airport',
+            'is_active' => false,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Nare Gevorgyan',
+            'shop_id' => $shop->id,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Aram Petrosyan',
+            'phone' => '+37410000000',
+            'email' => 'aram@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-200001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Central')
+            ->assertSee('href="/admin/shops?shop='.$shop->id.'"', false)
+            ->assertSee('galaxy-central')
+            ->assertSee('Nare Gevorgyan')
+            ->assertSee('Galaxy Airport')
+            ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
+            ->assertSee('galaxy-airport')
+            ->assertSee('Unassigned')
+            ->assertSee('Review latest saved shop')
+            ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
+            ->assertSee('Assigned managers')
+            ->assertSee('>1<', false)
+            ->assertSee('active')
+            ->assertSee('paused');
+    }
+
+    public function test_shops_page_surfaces_selected_shop_context_from_laravel_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central',
+            'is_active' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Nare Gevorgyan',
+            'shop_id' => $shop->id,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Aram Petrosyan',
+            'phone' => '+37410000000',
+            'email' => 'aram@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-200001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$shop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all shops')
+            ->assertSee('href="/admin/shops"', false)
+            ->assertSee('Reviewing: Galaxy Central')
+            ->assertSee('Selected shop')
+            ->assertSee('Code')
+            ->assertSee('Assigned manager')
+            ->assertSee('Cardholders')
+            ->assertSee('Cards')
+            ->assertSee('Laravel status')
+            ->assertSee('Branch guidance')
+            ->assertSee('This branch is already active in Laravel, so scope and manager changes should stay parity-first until branch ownership rules are verified.')
+            ->assertSee('Galaxy Central selected for Laravel review')
+            ->assertSee('Current request')
+            ->assertSee('The shared shops workspace is now loading this saved branch from Laravel data instead of only static preview rows.')
+            ->assertSee('Galaxy Central status reflected from model state');
+    }
+
+    public function test_cardholders_page_replaces_preview_rows_with_model_backed_index_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central',
+            'is_active' => true,
+        ]);
+
+        $inactiveShop = Shop::create([
+            'name' => 'Galaxy North',
+            'code' => 'galaxy-north',
+            'is_active' => true,
+        ]);
+
+        $activeHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna@example.com',
+            'is_active' => true,
+        ]);
+
+        $inactiveHolder = CardHolder::create([
+            'shop_id' => $inactiveShop->id,
+            'full_name' => 'Arman Hakobyan',
+            'phone' => '+37491100003',
+            'email' => 'arman@example.com',
+            'is_active' => false,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-cardholders',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $activeHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-300001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders');
+
+        $response
+            ->assertOk()
+            ->assertSee('Anna Petrova')
+            ->assertSee('href="/admin/cardholders?cardholder=', false)
+            ->assertSee('+37491100001')
+            ->assertSee('Galaxy Central')
+            ->assertSee('Arman Hakobyan')
+            ->assertSee('+37491100003')
+            ->assertSee('Galaxy North')
+            ->assertSee('Review latest saved holder')
+            ->assertSee('Linked cards')
+            ->assertSee('>1<', false)
+            ->assertSee('active')
+            ->assertSee('inactive');
+    }
+
+    public function test_cardholders_page_surfaces_selected_holder_context_from_laravel_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-selected-holder',
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-selected-holder@example.com',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$cardHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all holders')
+            ->assertSee('href="/admin/cardholders"', false)
+            ->assertSee('Reviewing: Anna Petrova')
+            ->assertSee('Selected holder')
+            ->assertSee('Phone')
+            ->assertSee('Shop')
+            ->assertSee('Linked cards')
+            ->assertSee('Laravel status')
+            ->assertSee('Lookup guidance')
+            ->assertSee('This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.')
+            ->assertSee('Anna Petrova selected for Laravel review')
+            ->assertSee('Current request')
+            ->assertSee('The shared cardholders workspace is now loading this saved holder from Laravel data instead of only static preview rows.')
+            ->assertSee('Anna Petrova status reflected from model state');
     }
 
     public function test_authenticated_user_can_access_checks_points_operational_index_shape(): void

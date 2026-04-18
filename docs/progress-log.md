@@ -56,6 +56,66 @@
 - Added Galaxy-specific blocker copy tying role creation to the first Laravel-backed write slice for role identity, scope, and permission-bundle parity.
 - Extended feature coverage so the disabled create cue stays visible alongside the already gated matrix review and role publish controls.
 
+### Shops model-backed read checkpoint
+- Replaced the preview-only `shops` table and summary metrics with Eloquent-backed values whenever real `Shop` records exist.
+- The shop workspace now derives active/paused counts, assigned-manager count, manager names, and holder/card totals from Laravel models instead of only static config rows.
+- Added feature coverage proving the page swaps from preview rows to model-backed data once real shops are present, making `shops` the next real Phase 1 read slice outside `card-types`.
+
+### Shops selected-record context checkpoint
+- Extended the model-backed `shops` slice so table rows now link into a request-driven `?shop=` review state instead of staying as plain static labels.
+- When a saved shop is selected, the workspace now shows Laravel-backed branch summary data, current-status guidance, and request-specific activity notes instead of only the generic preview context.
+- Added feature coverage proving the selected shop context and latest-saved-shop shortcut remain visible once real records exist.
+
+### Cardholders model-backed read checkpoint
+- Replaced the preview-only `cardholders` table and summary metrics with Eloquent-backed values whenever real `CardHolder` records exist.
+- The cardholders workspace now derives active/inactive counts, linked-card totals, shop names, and phone/status rows from Laravel models instead of only static config rows.
+- Added feature coverage proving the page swaps from preview rows to model-backed data once real cardholders are present, making `cardholders` the next real Phase 1 read slice after `shops`.
+
+### Cardholders selected-record context checkpoint
+- Extended the model-backed `cardholders` slice so holder rows now link into a request-driven `?cardholder=` review state instead of staying as plain static labels.
+- When a saved holder is selected, the workspace now shows Laravel-backed lookup summary data, status-specific guidance, and request-specific activity notes instead of only the generic preview context.
+- Added feature coverage proving the selected holder context and latest-saved-holder shortcut remain visible once real records exist.
+
+### QA checkpoint for live Phase 1 read slices
+- Re-ran the focused Laravel-backed read-slice coverage for `shops`, `cardholders`, and `cards` after their new selected-record contexts landed.
+- Confirmed that all six targeted feature tests pass together, `6 passed`, so the current read-only slices hold as one coherent Phase 1 checkpoint rather than isolated one-off changes.
+- This gives a cleaner base for the next real slice, because the current live review paths are now verified together before more modules start switching away from preview-only data.
+
+### Roles-permissions model-backed read checkpoint
+- Replaced the preview-only `roles-permissions` table and summary metrics with Eloquent-backed values whenever real `Role` records exist.
+- The access workspace now derives active/draft counts, scoped-shop count, permission previews, and assigned-user totals from Laravel models instead of only static config rows.
+- Added feature coverage proving the page swaps from preview rows to model-backed access data once real roles and permissions are present, making `roles-permissions` the next real Phase 1 read slice after the operational modules.
+
+### Roles-permissions selected-record context checkpoint
+- Extended the model-backed `roles-permissions` slice so role rows now link into a request-driven `?role=` review state instead of staying as plain static labels.
+- When a saved role is selected, the workspace now shows Laravel-backed access summary data, permission-bundle guidance, and request-specific activity notes instead of only the generic preview context.
+- Added feature coverage proving the selected role context and latest-saved-role shortcut remain visible once real roles and permissions exist.
+
+### QA checkpoint for live Phase 1 access and operational read slices
+- Re-ran the focused Laravel-backed read-slice coverage for `shops`, `cardholders`, `cards`, and `roles-permissions` after the new selected-role context landed.
+- Confirmed that all nine targeted feature tests pass together, `9 passed`, so the current read-only Galaxy foundation now holds across both operational modules and the access workspace.
+- This keeps Phase 1 parity-first work honest, because the live review paths are now verified together before any broader write flow or next module slice is introduced.
+
+### Resource index structural hardening checkpoint
+- Reduced repeated selected-record and latest-saved action wiring inside `ResourceIndexController` by extracting small shared helpers for linked table cells, appended actions, and request record selection.
+- Re-ran the selected-record feature coverage for `shops`, `cardholders`, `cards`, and `roles-permissions`, `4 passed`, to prove the controller cleanup did not change the live review behavior.
+- This keeps the Phase 1 read-slice foundation easier to extend, because future Laravel-backed modules can reuse the same request-driven review pattern with less controller duplication.
+
+### Roles-permissions invalid-selection fallback checkpoint
+- Added regression coverage proving the live `roles-permissions` slice ignores an unknown `?role=` query and safely falls back to the model-backed index state instead of rendering a broken selected-record context.
+- Re-ran the focused `roles-permissions` Laravel-backed coverage, `3 passed`, to confirm the normal selected-role path and the new fallback behavior hold together.
+- This hardens the request-driven access review flow before more controller or routing cleanup lands in Phase 1.
+
+### Cards model-backed read checkpoint
+- Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
+- The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
+- Added feature coverage proving the page swaps from preview rows to model-backed inventory data once real cards are present, making `cards` the next real Phase 1 read slice after `cardholders`.
+
+### Cards selected-record context checkpoint
+- Extended the model-backed `cards` slice so inventory rows now link into a request-driven `?card=` review state instead of staying as plain static labels.
+- When a saved card is selected, the workspace now shows Laravel-backed inventory summary data, state-specific guidance, and request-specific activity notes instead of only the generic preview context.
+- Added feature coverage proving the selected card context and latest-saved-card shortcut remain visible once real inventory records exist.
+
 ### Card-type preview-route harness checkpoint
 - Fixed the failing card-type preview-route wiring locally in `tests/Feature/AdminDashboardTest.php` instead of widening production routing scope.
 - Replaced the inline preview-route registration pattern with a tiny test helper that registers full `admin.*` preview route names and refreshes Laravel's route name/action lookups for runtime-added test routes.

@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T10:03:00Z",
+  "updated_at": "2026-04-18T13:04:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -54,16 +54,15 @@
   "recent_checkpoint": {
     "module": "Roles & Permissions",
     "status": "IN_PROGRESS",
-    "owner": "frontend",
-    "summary": "The roles-permissions workspace now explicitly gates role creation, matrix review, and publishing so the admin shell reads as intentionally staged while the first Laravel-backed authorization write flow is still pending.",
+    "owner": "qa",
+    "summary": "The live roles-permissions read slice now has regression coverage proving an unknown selected-role query falls back cleanly to the model-backed index instead of rendering a broken record-review state.",
     "code_paths": [
-      "config/admin-pages.php",
       "tests/Feature/AdminDashboardTest.php"
     ],
     "doc_paths": [
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "role creation and publishing remain intentionally blocked until the first Laravel-backed role write flow and legacy permission parity checks are ready"
+    "blocker_reason": "roles-permissions read-state fallback is now covered, but assignment UI, matrix editing, and authorization write flows still remain pending"
   }
 }
