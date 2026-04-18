@@ -206,6 +206,11 @@
 - Confirmed the selected-role access review now carries those parity cues alongside the existing summary, actions, and timeline, `1 passed`.
 - This makes the live access-review slice feel more like an operational Galaxy workspace because the selected role now exposes explicit parity posture instead of relying only on summary copy.
 
+### Roles-permissions permission-bundle summary checkpoint
+- Extended the selected `roles-permissions` summary so the chosen Laravel role now shows an explicit `Permission bundle` line instead of forcing operators to infer access payload only from counts or timeline copy.
+- Confirmed the selected-role review keeps surfacing the linked permission names in the summary context, `1 passed`.
+- This makes the live access-review slice more useful for real operator checks because the selected role now exposes both the size and the visible shape of its current permission bundle.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

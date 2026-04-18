@@ -192,6 +192,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
             ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
+            ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
             ['label' => 'Laravel status', 'value' => $selectedRole->permissions_count > 0 ? 'active' : 'draft'],
             [
                 'label' => 'Access guidance',

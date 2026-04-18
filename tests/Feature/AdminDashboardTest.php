@@ -316,6 +316,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope')
             ->assertSee('Assigned users')
             ->assertSee('Permission count')
+            ->assertSee('Permission bundle')
+            ->assertSee('Manage cards')
             ->assertSee('Laravel status')
             ->assertSee('Access guidance')
             ->assertSee('This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.')
