@@ -325,6 +325,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Current request')
             ->assertSee('The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.')
             ->assertSee('Shop Manager permission bundle reflected from model state')
+            ->assertSee('Shop Manager assignment scope reflected from model state')
+            ->assertSee('This role is currently linked to 1 assigned users across Galaxy Central in Laravel review mode.')
             ->assertSee('Manage cards')
             ->assertSee('Publish role')
             ->assertSee('Blocked until live role assignment parity is verified for this Laravel permission bundle.')

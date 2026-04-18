@@ -241,6 +241,13 @@ class ResourceIndexController extends Controller
                     ? sprintf('This role currently exposes %s in Laravel and the review context now mirrors that access bundle.', $permissionPreview->take(3)->implode(', '))
                     : 'This role currently has no linked permissions in Laravel, so it remains a safe draft for parity-first access review.',
             ],
+            [
+                'title' => sprintf('%s assignment scope reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $scope->isNotEmpty()
+                    ? sprintf('This role is currently linked to %d assigned users across %s in Laravel review mode.', $selectedRole->users_count, $scope->join(', '))
+                    : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.',
+            ],
         ];
 
         $page['dependencyStatus'] = [
