@@ -612,12 +612,7 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        if (is_string(session('status'))) {
-            $page['selectedRecordSummary'][] = [
-                'label' => 'Latest flow result',
-                'value' => session('status'),
-            ];
-        }
+        $page = $this->appendCardTypeLatestFlowFeedback($page);
 
         $page['actions'] = [
             [
@@ -658,13 +653,7 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        if (is_string(session('status'))) {
-            array_unshift($page['activityTimeline'], [
-                'title' => 'Latest backend write result',
-                'time' => 'Current request',
-                'description' => session('status'),
-            ]);
-        }
+        $page = $this->prependCardTypeLatestFlowTimelineItem($page);
 
         $page['dependencyStatus'] = [
             ['label' => 'Selected record', 'value' => $selectedCardType->name],
@@ -754,6 +743,43 @@ class ResourceIndexController extends Controller
     {
         $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
         $page['actions'] = [...$actions, $action];
+
+        return $page;
+    }
+
+    private function appendCardTypeLatestFlowFeedback(array $page): array
+    {
+        $status = session('status');
+
+        if (! is_string($status)) {
+            return $page;
+        }
+
+        $summary = is_array($page['selectedRecordSummary'] ?? null) ? $page['selectedRecordSummary'] : [];
+        $summary[] = [
+            'label' => 'Latest flow result',
+            'value' => $status,
+        ];
+        $page['selectedRecordSummary'] = $summary;
+
+        return $page;
+    }
+
+    private function prependCardTypeLatestFlowTimelineItem(array $page): array
+    {
+        $status = session('status');
+
+        if (! is_string($status)) {
+            return $page;
+        }
+
+        $timeline = is_array($page['activityTimeline'] ?? null) ? $page['activityTimeline'] : [];
+        array_unshift($timeline, [
+            'title' => 'Latest backend write result',
+            'time' => 'Current request',
+            'description' => $status,
+        ]);
+        $page['activityTimeline'] = $timeline;
 
         return $page;
     }
