@@ -658,6 +658,14 @@ class ResourceIndexController extends Controller
             ],
         ];
 
+        if (is_string(session('status'))) {
+            array_unshift($page['activityTimeline'], [
+                'title' => 'Latest backend write result',
+                'time' => 'Current request',
+                'description' => session('status'),
+            ]);
+        }
+
         $page['dependencyStatus'] = [
             ['label' => 'Selected record', 'value' => $selectedCardType->name],
             ['label' => 'Edit flow state', 'value' => 'Shared live form is running in request-driven PATCH mode'],

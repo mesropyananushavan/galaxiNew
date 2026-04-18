@@ -176,6 +176,11 @@
 - Re-ran focused write-flow coverage for store, update, and row-level status toggles, `3 passed`.
 - This trims controller duplication and makes the request-driven `card-types` workspace less likely to drift if the success redirect contract changes again.
 
+### Card-types activity timeline feedback checkpoint
+- Extended the selected `card-types` workspace so a backend write result now also appears as the first item in the recent activity timeline when the request carries a flash status.
+- Confirmed the toggle-status success flow still surfaces the write result in flash, selected summary, and the timeline together, `1 passed`.
+- This makes the current Phase 1 write slice feel more like an operational Galaxy workspace because the latest backend action now shows up in the same history block operators already scan for recent context.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
