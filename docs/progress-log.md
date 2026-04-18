@@ -41,6 +41,11 @@
 - Added Galaxy-specific blocker copy explaining that shop creation depends on a real Laravel-backed index and manager-assignment parity, while scope review stays blocked on legacy branch-ownership verification.
 - Extended feature coverage so the disabled branch-management cues remain visible as the shop workspace moves away from starter-style placeholders.
 
+### Services-rules action-gating checkpoint
+- Reused the same disabled-action pattern on `services-rules`, so the primary `New rule` control no longer looks prematurely available while the workspace is still preview-only.
+- Added explicit Galaxy-specific blocker copy tying rule creation to the first Laravel-backed write slice for rule group, scope, effect, and priority.
+- Extended feature coverage so the disabled create cue stays visible alongside the already gated priority review and publish actions.
+
 ### Card-type preview-route harness checkpoint
 - Fixed the failing card-type preview-route wiring locally in `tests/Feature/AdminDashboardTest.php` instead of widening production routing scope.
 - Replaced the inline preview-route registration pattern with a tiny test helper that registers full `admin.*` preview route names and refreshes Laravel's route name/action lookups for runtime-added test routes.

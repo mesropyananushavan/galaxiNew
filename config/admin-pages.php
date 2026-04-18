@@ -606,7 +606,12 @@ return [
         'summary' => 'Baseline management screen for service groups, eligibility rules, and business conditions that drive loyalty behavior.',
         'nextStep' => 'Replace sample controls with real rule CRUD, priority ordering, and condition editing.',
         'actions' => [
-            ['label' => 'New rule', 'tone' => 'primary'],
+            [
+                'label' => 'New rule',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until the first Laravel-backed service-rule write flow exists for group, scope, effect, and priority.',
+            ],
             ['label' => 'Review priorities', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until rule priority resolution is verified in Laravel.'],
         ],
         'metrics' => [

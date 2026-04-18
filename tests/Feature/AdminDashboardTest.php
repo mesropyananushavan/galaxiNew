@@ -1511,6 +1511,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create or edit service rule')
             ->assertSee('Publish rule')
             ->assertSee('New rule')
+            ->assertSee('Blocked until the first Laravel-backed service-rule write flow exists for group, scope, effect, and priority.')
             ->assertSee('Review priorities')
             ->assertSee('Blocked until rule priority resolution is verified in Laravel.')
             ->assertSee('Blocked until rule CRUD and parity checks exist beyond the preview shell.')

@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T09:18:00Z",
+  "updated_at": "2026-04-18T09:33:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,10 +52,10 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Shops",
+    "module": "Services & Rules",
     "status": "IN_PROGRESS",
     "owner": "frontend",
-    "summary": "The shops workspace now uses explicit disabled-action gating for branch creation and scope review, making the admin shell more Galaxy-specific while the first Laravel-backed shop index is still pending.",
+    "summary": "The services-rules workspace now explicitly gates rule creation, priority review, and publishing so the admin shell reads as intentionally staged while the first Laravel-backed rule write slice is still pending.",
     "code_paths": [
       "config/admin-pages.php",
       "tests/Feature/AdminDashboardTest.php"
@@ -64,6 +64,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "shop creation and scope review remain intentionally blocked until the query-backed shops index and legacy branch-ownership parity checks are ready"
+    "blocker_reason": "rule creation and publishing remain intentionally blocked until the first Laravel-backed service-rule write flow and parity checks are ready"
   }
 }
