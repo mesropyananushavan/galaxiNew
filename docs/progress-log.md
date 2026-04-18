@@ -196,6 +196,11 @@
 - Re-ran the focused toggle-success regression after the extraction, `1 passed`.
 - This keeps the live `card-types` workspace a bit easier to maintain as the selected-tier feedback model keeps getting richer.
 
+### Roles-permissions selected publish-gating checkpoint
+- Extended the selected `roles-permissions` workspace so a reviewed role now shows an explicitly disabled `Publish role` action alongside the existing matrix-review blocker.
+- The disabled reason now reacts to whether the chosen Laravel role already has a permission bundle or is still a draft shell, `1 passed`.
+- This makes the live access-review slice feel less like a generic preview because publish-style next steps are now visibly gated per selected role instead of staying implicit.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

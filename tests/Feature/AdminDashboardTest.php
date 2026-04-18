@@ -323,7 +323,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Current request')
             ->assertSee('The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.')
             ->assertSee('Shop Manager permission bundle reflected from model state')
-            ->assertSee('Manage cards');
+            ->assertSee('Manage cards')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until live role assignment parity is verified for this Laravel permission bundle.');
     }
 
     public function test_roles_permissions_page_ignores_unknown_selected_role_query(): void

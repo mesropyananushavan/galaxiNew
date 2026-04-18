@@ -217,6 +217,14 @@ class ResourceIndexController extends Controller
                 'disabled' => true,
                 'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.',
             ],
+            [
+                'label' => 'Publish role',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $selectedRole->permissions_count > 0
+                    ? 'Blocked until live role assignment parity is verified for this Laravel permission bundle.'
+                    : 'Blocked until this draft role has a verified permission bundle and shop scope parity.',
+            ],
         ];
 
         $page['activityTimeline'] = [
