@@ -190,6 +190,18 @@ class ResourceIndexController extends Controller
                     ? 'This tier is live in the current Laravel foundation, so operators should move it back to draft before parity-sensitive rule changes.'
                     : 'This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.',
             ],
+            [
+                'label' => 'Rule-import blocker',
+                'value' => $selectedCardType->is_active
+                    ? 'Rule import should stay blocked for this live tier until legacy accrual parity is verified against the active behavior.'
+                    : 'Rule import is still blocked, but draft state keeps this tier safe for parity-first catalog and accrual checks.',
+            ],
+            [
+                'label' => 'Publish guidance',
+                'value' => $selectedCardType->is_active
+                    ? 'Treat this tier as already live in Laravel, so publish-like changes should wait for rule parity and operator confirmation.'
+                    : 'Keep this tier in draft until rule import expectations and old Galaxy behavior are mapped clearly enough to publish safely.',
+            ],
         ];
 
         if (is_string(session('status'))) {
@@ -238,6 +250,8 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected record', 'value' => $selectedCardType->name],
             ['label' => 'Edit flow state', 'value' => 'Shared live form is running in request-driven PATCH mode'],
             ['label' => 'Current status posture', 'value' => $selectedCardType->is_active ? 'Active tiers should stay stable unless parity checks are complete' : 'Draft tiers are the safe place for parity-first validation and copy changes'],
+            ['label' => 'Rule-import posture', 'value' => $selectedCardType->is_active ? 'Keep imports blocked until active-tier accrual parity is verified' : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet'],
+            ['label' => 'Publish posture', 'value' => $selectedCardType->is_active ? 'Live tiers need parity confirmation before further publish-style changes' : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly'],
             ['label' => 'Remaining backend gap', 'value' => 'Publish logic and rule-import parity still remain preview-only for this tier'],
         ];
 

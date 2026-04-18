@@ -1721,6 +1721,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('draft')
             ->assertSee('Status guidance:')
             ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
+            ->assertSee('Rule-import blocker:')
+            ->assertSee('Rule import is still blocked, but draft state keeps this tier safe for parity-first catalog and accrual checks.')
+            ->assertSee('Publish guidance:')
+            ->assertSee('Keep this tier in draft until rule import expectations and old Galaxy behavior are mapped clearly enough to publish safely.')
             ->assertSee('Recent activity preview')
             ->assertSee('Galaxy Prime selected for Laravel edit flow')
             ->assertSee('Current request')
@@ -1733,6 +1737,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shared live form is running in request-driven PATCH mode')
             ->assertSee('Current status posture:')
             ->assertSee('Draft tiers are the safe place for parity-first validation and copy changes')
+            ->assertSee('Rule-import posture:')
+            ->assertSee('Imports can be reviewed in draft mode, but they are still not safe to enable yet')
+            ->assertSee('Publish posture:')
+            ->assertSee('Draft tiers should stay unpublished until legacy behavior is mapped more explicitly')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Publish logic and rule-import parity still remain preview-only for this tier')
             ->assertSee('Edit card type in Laravel')
@@ -1849,8 +1857,16 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card type "Galaxy Prime" is now draft.')
             ->assertSee('Status guidance:')
             ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
+            ->assertSee('Rule-import blocker:')
+            ->assertSee('Rule import is still blocked, but draft state keeps this tier safe for parity-first catalog and accrual checks.')
+            ->assertSee('Publish guidance:')
+            ->assertSee('Keep this tier in draft until rule import expectations and old Galaxy behavior are mapped clearly enough to publish safely.')
             ->assertSee('Current status posture:')
-            ->assertSee('Draft tiers are the safe place for parity-first validation and copy changes');
+            ->assertSee('Draft tiers are the safe place for parity-first validation and copy changes')
+            ->assertSee('Rule-import posture:')
+            ->assertSee('Imports can be reviewed in draft mode, but they are still not safe to enable yet')
+            ->assertSee('Publish posture:')
+            ->assertSee('Draft tiers should stay unpublished until legacy behavior is mapped more explicitly');
     }
 
     public function test_card_types_page_replaces_preview_metrics_with_model_backed_counts(): void

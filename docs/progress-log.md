@@ -1434,3 +1434,11 @@
 
 ### Next step after card type status guidance checkpoint
 - Reuse the status-guidance pattern on another entity page, or keep deepening `card-types` with one more small backend slice such as selected-record-aware rule-import blockers or publish guidance.
+
+### Card type publish-blocker guidance checkpoint
+- Extended the selected `card-types` context so a chosen tier now shows explicit rule-import blocker and publish-guidance cues, not only generic status guidance.
+- The selected-record summary and dependency cards now explain whether the current draft/live state changes how operators should think about imports and publish-like changes for that exact tier.
+- Added feature coverage so these publish/rule-import blocker cues remain visible in both normal edit mode and after a successful toggle redirect.
+
+### Next step after card type publish-blocker guidance checkpoint
+- Reuse the selected-record blocker-guidance pattern on another entity page, or keep deepening `card-types` with one more backend slice such as selected-record-aware readiness or action gating.
