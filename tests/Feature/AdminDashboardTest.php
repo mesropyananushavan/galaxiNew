@@ -1323,6 +1323,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Export catalog remains parity-first')
             ->assertSee('Metrics and entry rows are live-backed now, but preset handling and export generation still stay blocked until the reporting pipeline is verified.')
             ->assertSee('Report catalog is still lightweight, but source counts now come from live Laravel models')
+            ->assertSee('Source coverage')
+            ->assertSee('Laravel reporting inputs currently cover 1 shops, 1 cards, 1 cardholders, and 1 roles for read-only review.')
             ->assertSee('Preset handling, query shaping, and export pipeline are still pending');
     }
 

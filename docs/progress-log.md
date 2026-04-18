@@ -276,6 +276,11 @@
 - Confirmed the reports workspace now narrates the live source snapshot and the remaining parity-first export blocker together, `2 passed`.
 - This makes the reporting slice feel less like a starter placeholder because live reporting context now appears in both summary metrics and the operational timeline.
 
+### Reports source-coverage checkpoint
+- Extended the Laravel-backed `reports` dependency context with an explicit `Source coverage` line so operators can see which live Galaxy domains are already feeding the read-only reporting slice.
+- Confirmed the reporting workspace now spells out current shop, card, cardholder, and role coverage in the dependency block, `2 passed`.
+- This makes the reporting slice more reviewable because source availability is now stated directly instead of being inferred only from metrics and rows.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
