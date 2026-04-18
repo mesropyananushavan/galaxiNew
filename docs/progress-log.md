@@ -316,6 +316,11 @@
 - Confirmed the disabled-state cue stays visible in both the preview baseline and the live Laravel-backed reporting slice, `2 passed`.
 - This makes the reporting workspace less starter-like because preset review now looks intentionally staged, not generically clickable.
 
+### Reports live-catalog action checkpoint
+- Renamed the primary `reports` action from `Open report catalog` to `Open live report catalog` so the entry point now reflects that this workspace is operating as a live-backed review layer, not a generic placeholder catalog.
+- Confirmed the updated action label stays visible in both the preview baseline and the live Laravel-backed reporting slice, `2 passed`.
+- This makes the reporting workspace read more like a Galaxy-specific review tool because the primary action now matches the current live-source Phase 1 posture.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

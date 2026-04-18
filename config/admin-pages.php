@@ -987,7 +987,7 @@ return [
         'summary' => 'Operational placeholder for analytics, histories, and export-oriented admin reporting.',
         'nextStep' => 'Add report catalog, date-range presets, and export entry points.',
         'actions' => [
-            ['label' => 'Open report catalog', 'tone' => 'primary'],
+            ['label' => 'Open live report catalog', 'tone' => 'primary'],
             ['label' => 'Review export presets', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until preset handling is backed by Laravel reporting flow validation.'],
         ],
         'metrics' => [
