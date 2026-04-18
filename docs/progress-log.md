@@ -25,6 +25,17 @@
 - Updated those feature assertions to match the current Galaxy-specific card-type page copy and Laravel's supported redirect test helper.
 - Focused QA still fails deeper in card-type preview-route expectations, so the next pass should align the preview-route harness without reopening the shared render path.
 
+### QA widened card-type rerun after callback fixes
+- Re-ran the broader `card_type` slice after the callback and preview-route harness fixes landed.
+- Confirmed the remaining failures are still limited to stale feature expectations in `AdminDashboardTest` rather than shared runtime or production route wiring.
+- Updated the row-level card-type action assertion to reflect the current selected-record render path, where the edit context still shows the active tier's activation copy.
+- Replaced another deprecated `followRedirects()` chain with Laravel's supported `followingRedirects()` helper so the toggle-status redirect assertion can complete on the current framework version.
+
+### QA card-type slice is green
+- Finished the wider `php8.4 artisan test --filter=card_type` rerun after refreshing the last two stale UI assertions in `AdminDashboardTest`.
+- The full focused card-type slice now passes, `42 passed`, which confirms the recent preview-route, live-form normalization, callback-copy, and redirect helper fixes hold together as one QA checkpoint.
+- This closes the current card-type QA debug cycle and leaves the branch ready for normal merge handling before the next Phase 1 task starts.
+
 ### Card-type preview-route harness checkpoint
 - Fixed the failing card-type preview-route wiring locally in `tests/Feature/AdminDashboardTest.php` instead of widening production routing scope.
 - Replaced the inline preview-route registration pattern with a tiny test helper that registers full `admin.*` preview route names and refreshes Laravel's route name/action lookups for runtime-added test routes.

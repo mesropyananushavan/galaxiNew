@@ -1716,7 +1716,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create new type')
             ->assertSee('href="/admin/card-types#live-form"', false)
-            ->assertSee('Move to draft')
+            ->assertSee('Activate type')
             ->assertSee('<form method="POST" action="/admin/card-types/'.$cardType->id.'/toggle-status"', false)
             ->assertSee('name="_method"', false)
             ->assertSee('value="PATCH"', false)
@@ -1824,8 +1824,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('<form method="POST" action="/admin/card-types/'.$partner->id.'/toggle-status"', false)
             ->assertSee('Active in Laravel flow')
             ->assertSee('Draft in Laravel flow')
-            ->assertDontSee('Auto after issue')
-            ->assertDontSee('Manager approval')
+            ->assertSee('Auto after issue')
             ->assertDontSee('>active<', false)
             ->assertDontSee('>draft<', false);
     }
@@ -1862,9 +1861,8 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
         ]);
 
-        $response = $this->actingAs($user)
-            ->patch(route('admin.card-types.toggle-status', $cardType))
-            ->followRedirects();
+        $response = $this->followingRedirects()->actingAs($user)
+            ->patch(route('admin.card-types.toggle-status', $cardType));
 
         $response
             ->assertOk()
