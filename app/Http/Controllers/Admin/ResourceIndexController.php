@@ -559,29 +559,9 @@ class ResourceIndexController extends Controller
             'description' => 'Catalog metrics and report entry rows now reflect live Galaxy source counts from Laravel models, while presets and exports remain preview-only.',
         ];
 
-        $page['activityTimeline'] = [
-            [
-                'title' => 'Live reporting sources reflected from Laravel models',
-                'time' => 'Current request',
-                'description' => sprintf('The reporting workspace now sees %d shops, %d cards, %d cardholders, and %d roles through the current Laravel foundation.', $shopCount, $cardCount, $cardHolderCount, $roleCount),
-            ],
-            [
-                'title' => 'Export catalog remains parity-first',
-                'time' => 'Current request',
-                'description' => 'Metrics and entry rows are live-backed now, but preset handling and export generation still stay blocked until the reporting pipeline is verified.',
-            ],
-        ];
+        $page['activityTimeline'] = $this->reportsActivityTimeline($shopCount, $cardCount, $cardHolderCount, $roleCount);
 
-        $page['dependencyStatus'] = [
-            ['label' => 'Domain model', 'value' => 'Report catalog is still lightweight, but source counts now come from live Laravel models'],
-            ['label' => 'Reporting posture', 'value' => 'This workspace is now live-backed for read-only source review, but preset and export flows should stay parity-first until the reporting pipeline is verified.'],
-            ['label' => 'Readiness signal', 'value' => 'Partially ready: live source review works now, while preset handling and exports stay blocked behind later reporting-pipeline verification.'],
-            ['label' => 'Preset posture', 'value' => 'Preset periods are still preview-only, so operators should treat the live source layer as reviewable while preset-driven report flows remain gated.'],
-            ['label' => 'Export posture', 'value' => 'Export generation is still blocked, so the live reporting layer should stay review-only until file delivery and parity checks are verified.'],
-            ['label' => 'Source coverage', 'value' => sprintf('Laravel reporting inputs currently cover %d shops, %d cards, %d cardholders, and %d roles for read-only review.', $shopCount, $cardCount, $cardHolderCount, $roleCount)],
-            ['label' => 'Backend dependency', 'value' => 'Preset handling, query shaping, and export pipeline are still pending'],
-            ['label' => 'Operational dependency', 'value' => 'Legacy report presets and export expectations still need live verification'],
-        ];
+        $page['dependencyStatus'] = $this->reportsDependencyStatus($shopCount, $cardCount, $cardHolderCount, $roleCount);
 
         return $page;
     }
@@ -820,6 +800,36 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = $summary;
 
         return $page;
+    }
+
+    private function reportsActivityTimeline(int $shopCount, int $cardCount, int $cardHolderCount, int $roleCount): array
+    {
+        return [
+            [
+                'title' => 'Live reporting sources reflected from Laravel models',
+                'time' => 'Current request',
+                'description' => sprintf('The reporting workspace now sees %d shops, %d cards, %d cardholders, and %d roles through the current Laravel foundation.', $shopCount, $cardCount, $cardHolderCount, $roleCount),
+            ],
+            [
+                'title' => 'Export catalog remains parity-first',
+                'time' => 'Current request',
+                'description' => 'Metrics and entry rows are live-backed now, but preset handling and export generation still stay blocked until the reporting pipeline is verified.',
+            ],
+        ];
+    }
+
+    private function reportsDependencyStatus(int $shopCount, int $cardCount, int $cardHolderCount, int $roleCount): array
+    {
+        return [
+            ['label' => 'Domain model', 'value' => 'Report catalog is still lightweight, but source counts now come from live Laravel models'],
+            ['label' => 'Reporting posture', 'value' => 'This workspace is now live-backed for read-only source review, but preset and export flows should stay parity-first until the reporting pipeline is verified.'],
+            ['label' => 'Readiness signal', 'value' => 'Partially ready: live source review works now, while preset handling and exports stay blocked behind later reporting-pipeline verification.'],
+            ['label' => 'Preset posture', 'value' => 'Preset periods are still preview-only, so operators should treat the live source layer as reviewable while preset-driven report flows remain gated.'],
+            ['label' => 'Export posture', 'value' => 'Export generation is still blocked, so the live reporting layer should stay review-only until file delivery and parity checks are verified.'],
+            ['label' => 'Source coverage', 'value' => sprintf('Laravel reporting inputs currently cover %d shops, %d cards, %d cardholders, and %d roles for read-only review.', $shopCount, $cardCount, $cardHolderCount, $roleCount)],
+            ['label' => 'Backend dependency', 'value' => 'Preset handling, query shaping, and export pipeline are still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Legacy report presets and export expectations still need live verification'],
+        ];
     }
 
     private function rolesPermissionsSelectedRoleSummary(Role $selectedRole, mixed $scope, mixed $permissionPreview, mixed $assignedUserPreview): array

@@ -301,6 +301,11 @@
 - Confirmed the reporting workspace now carries that export-specific gating cue alongside preset posture, readiness, and source coverage, `2 passed`.
 - This makes the reporting slice clearer because source review, preset flow, and export flow are now separated into explicit safe-boundary cues instead of one blended blocker message.
 
+### Reports structural hardening checkpoint
+- Refactored the Laravel-backed `reports` slice in `ResourceIndexController` so the live reporting activity timeline and dependency posture now come from dedicated helper methods instead of one growing inline block.
+- Re-ran the focused reports set covering both the preview baseline and the live-source read slice, `2 passed`.
+- This keeps the new reporting slice safer to extend because live reporting cues now have clearer internal boundaries before selected-report or preset-aware read steps are added.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
