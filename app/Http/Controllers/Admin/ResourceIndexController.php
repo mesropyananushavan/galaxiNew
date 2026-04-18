@@ -255,13 +255,88 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $cardHolders->map(fn (CardHolder $cardHolder): array => [
-            $cardHolder->full_name,
+            [
+                'label' => $cardHolder->full_name,
+                'href' => route('admin.cardholders.index', ['cardholder' => $cardHolder->id], absolute: false),
+            ],
             $cardHolder->phone ?? '—',
             $cardHolder->shop?->name ?? 'Unassigned',
             (string) $cardHolder->cards_count,
             $cardHolder->is_active ? 'active' : 'inactive',
             $cardHolder->updated_at?->format('Y-m-d') ?? '—',
         ])->all();
+
+        $latestCardHolder = $cardHolders->sortByDesc('id')->first();
+
+        if ($latestCardHolder !== null) {
+            $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
+
+            $page['actions'] = [
+                ...$actions,
+                [
+                    'label' => 'Review latest saved holder',
+                    'tone' => 'secondary',
+                    'href' => route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id], absolute: false),
+                ],
+            ];
+        }
+
+        $selectedCardHolderId = request()->integer('cardholder');
+
+        if ($selectedCardHolderId < 1) {
+            return $page;
+        }
+
+        $selectedCardHolder = $cardHolders->firstWhere('id', $selectedCardHolderId);
+
+        if (! $selectedCardHolder instanceof CardHolder) {
+            return $page;
+        }
+
+        $page['selectedRecordSummary'] = [
+            ['label' => 'Selected holder', 'value' => $selectedCardHolder->full_name],
+            ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
+            ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
+            ['label' => 'Linked cards', 'value' => (string) $selectedCardHolder->cards_count],
+            ['label' => 'Laravel status', 'value' => $selectedCardHolder->is_active ? 'active' : 'inactive'],
+            [
+                'label' => 'Lookup guidance',
+                'value' => $selectedCardHolder->is_active
+                    ? 'This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.'
+                    : 'This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
+            ],
+        ];
+
+        $page['actions'] = [
+            [
+                'label' => 'Back to all holders',
+                'tone' => 'primary',
+                'href' => route('admin.cardholders.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedCardHolder->full_name),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Review recent activity',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until a stable Laravel activity source exists for holder lookup parity.',
+            ],
+        ];
+
+        $page['activityTimeline'] = [
+            [
+                'title' => sprintf('%s selected for Laravel review', $selectedCardHolder->full_name),
+                'time' => 'Current request',
+                'description' => 'The shared cardholders workspace is now loading this saved holder from Laravel data instead of only static preview rows.',
+            ],
+            [
+                'title' => sprintf('%s status reflected from model state', $selectedCardHolder->full_name),
+                'time' => 'Current request',
+                'description' => sprintf('This holder is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedCardHolder->is_active ? 'active' : 'inactive'),
+            ],
+        ];
 
         return $page;
     }

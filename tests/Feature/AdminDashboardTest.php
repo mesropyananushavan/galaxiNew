@@ -688,15 +688,55 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Anna Petrova')
+            ->assertSee('href="/admin/cardholders?cardholder=', false)
             ->assertSee('+37491100001')
             ->assertSee('Galaxy Central')
             ->assertSee('Arman Hakobyan')
             ->assertSee('+37491100003')
             ->assertSee('Galaxy North')
+            ->assertSee('Review latest saved holder')
             ->assertSee('Linked cards')
             ->assertSee('>1<', false)
             ->assertSee('active')
             ->assertSee('inactive');
+    }
+
+    public function test_cardholders_page_surfaces_selected_holder_context_from_laravel_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-selected-holder',
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-selected-holder@example.com',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$cardHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all holders')
+            ->assertSee('href="/admin/cardholders"', false)
+            ->assertSee('Reviewing: Anna Petrova')
+            ->assertSee('Selected holder')
+            ->assertSee('Phone')
+            ->assertSee('Shop')
+            ->assertSee('Linked cards')
+            ->assertSee('Laravel status')
+            ->assertSee('Lookup guidance')
+            ->assertSee('This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.')
+            ->assertSee('Anna Petrova selected for Laravel review')
+            ->assertSee('Current request')
+            ->assertSee('The shared cardholders workspace is now loading this saved holder from Laravel data instead of only static preview rows.')
+            ->assertSee('Anna Petrova status reflected from model state');
     }
 
     public function test_authenticated_user_can_access_checks_points_operational_index_shape(): void
