@@ -171,8 +171,11 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
+            ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
+            ->assertSee('aria-disabled="true"', false)
             ->assertSee('New role')
             ->assertSee('Review matrix')
+            ->assertSee('Blocked until the Laravel permission matrix can be verified against legacy staff access.')
             ->assertSee('Management snapshot')
             ->assertSee('Active roles')
             ->assertSee('Scoped shops')
@@ -1362,6 +1365,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
+            ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('Role identity')
             ->assertSee('Keep legacy naming visible while the matrix is still preview-only.')
             ->assertSee('Compare staff roles')
@@ -1432,6 +1436,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
+            ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Create first role');
     }
@@ -1472,6 +1477,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
+            ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Preview notice')
             ->assertSee('Migration readiness checklist');

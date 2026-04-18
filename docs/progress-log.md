@@ -1,5 +1,15 @@
 # Progress Log
 
+## 2026-04-18
+
+### Roles and permissions action-gating checkpoint
+- Reused the shared disabled-action pattern on `roles-permissions`, so matrix review and role publishing now read as intentionally gated instead of looking prematurely available.
+- This makes the access-control workspace feel more Galaxy-specific and less like a generic starter while keeping parity-first warnings visible around shop-scoped authorization work.
+- Extended feature coverage so the new access gating cues stay visible on the management preview.
+
+### Next step after roles and permissions action-gating checkpoint
+- Turn one access preview control into the first real Laravel-backed flow, or reuse the same readiness-driven gating language on another admin workspace that still looks overly generic.
+
 ## 2026-04-13
 
 ### Established process

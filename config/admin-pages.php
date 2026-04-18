@@ -841,7 +841,7 @@ return [
         'nextStep' => 'Replace sample controls with real role assignment, permission matrix, and shop-aware policy flows.',
         'actions' => [
             ['label' => 'New role', 'tone' => 'primary'],
-            ['label' => 'Review matrix', 'tone' => 'secondary'],
+            ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.'],
         ],
         'metrics' => [
             ['label' => 'Active roles', 'value' => '2'],
@@ -885,7 +885,7 @@ return [
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
-                ['label' => 'Publish role', 'tone' => 'primary'],
+                ['label' => 'Publish role', 'tone' => 'primary', 'disabled' => true, 'disabledReason' => 'Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.'],
             ],
         ],
         'emptyState' => [
