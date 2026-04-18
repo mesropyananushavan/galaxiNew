@@ -188,28 +188,12 @@ class ResourceIndexController extends Controller
         $permissionPreview = $selectedRole->permissions->pluck('name');
         $assignedUserPreview = $selectedRole->users->pluck('name')->filter()->take(3);
 
-        $page['selectedRecordSummary'] = [
-            ['label' => 'Selected role', 'value' => $selectedRole->name],
-            ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
-            ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
-            ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
-                ? 'This role already has visible shop scope in Laravel, so any scope change should be treated as a parity-sensitive access change.'
-                : 'No shop scope is linked yet, which keeps this role safer for draft review before scope parity is confirmed.'],
-            ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
-            ['label' => 'Assigned staff preview', 'value' => $assignedUserPreview->isNotEmpty() ? $assignedUserPreview->join(', ') : 'No staff linked yet'],
-            ['label' => 'Assignment guidance', 'value' => $selectedRole->users_count > 0
-                ? 'Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.'
-                : 'No staff are linked yet, which keeps this role safer for draft access review before assignment parity is confirmed.'],
-            ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
-            ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
-            ['label' => 'Laravel status', 'value' => $selectedRole->permissions_count > 0 ? 'active' : 'draft'],
-            [
-                'label' => 'Access guidance',
-                'value' => $selectedRole->permissions_count > 0
-                    ? 'This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.'
-                    : 'This role is still a draft shell in Laravel, which keeps it safe for parity checks before operators rely on it for staff access.',
-            ],
-        ];
+        $page['selectedRecordSummary'] = $this->rolesPermissionsSelectedRoleSummary(
+            $selectedRole,
+            $scope,
+            $permissionPreview,
+            $assignedUserPreview,
+        );
 
         $page['actions'] = [
             [
@@ -237,46 +221,17 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        $page['activityTimeline'] = [
-            [
-                'title' => sprintf('%s selected for Laravel review', $selectedRole->name),
-                'time' => 'Current request',
-                'description' => 'The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.',
-            ],
-            [
-                'title' => sprintf('%s permission bundle reflected from model state', $selectedRole->name),
-                'time' => 'Current request',
-                'description' => $permissionPreview->isNotEmpty()
-                    ? sprintf('This role currently exposes %s in Laravel and the review context now mirrors that access bundle.', $permissionPreview->take(3)->implode(', '))
-                    : 'This role currently has no linked permissions in Laravel, so it remains a safe draft for parity-first access review.',
-            ],
-            [
-                'title' => sprintf('%s assignment scope reflected from model state', $selectedRole->name),
-                'time' => 'Current request',
-                'description' => $scope->isNotEmpty()
-                    ? sprintf('This role is currently linked to %d assigned users across %s in Laravel review mode.', $selectedRole->users_count, $scope->join(', '))
-                    : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.',
-            ],
-        ];
+        $page['activityTimeline'] = $this->rolesPermissionsSelectedRoleTimeline(
+            $selectedRole,
+            $scope,
+            $permissionPreview,
+        );
 
-        $page['dependencyStatus'] = [
-            ['label' => 'Selected role', 'value' => $selectedRole->name],
-            ['label' => 'Review posture', 'value' => 'Selected-role review is running in Laravel-backed read mode only'],
-            ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
-            ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
-                ? 'Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.'
-                : 'No linked staff are affected yet, which keeps this role safer for draft review before assignment parity is confirmed.'],
-            ['label' => 'Permission posture', 'value' => $permissionPreview->isNotEmpty()
-                ? 'The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.'
-                : 'No permissions are linked yet, so this role remains a safer draft shell for parity-first access review.'],
-            ['label' => 'Publish posture', 'value' => $selectedRole->permissions_count > 0
-                ? 'This live permission bundle still needs assignment parity checks before publish-style role changes are safe.'
-                : 'This draft role should stay unpublished until permission bundle and shop-scope parity are mapped more explicitly.'],
-            ['label' => 'Scope posture', 'value' => $scope->isNotEmpty()
-                ? 'Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.'
-                : 'No shop scope is linked yet, which keeps this role safe for draft access review.'],
-            ['label' => 'Remaining backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace'],
-        ];
+        $page['dependencyStatus'] = $this->rolesPermissionsSelectedRoleDependencyStatus(
+            $selectedRole,
+            $scope,
+            $permissionPreview,
+        );
 
         return $page;
     }
@@ -809,6 +764,79 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = $summary;
 
         return $page;
+    }
+
+    private function rolesPermissionsSelectedRoleSummary(Role $selectedRole, mixed $scope, mixed $permissionPreview, mixed $assignedUserPreview): array
+    {
+        return [
+            ['label' => 'Selected role', 'value' => $selectedRole->name],
+            ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
+            ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
+            ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
+                ? 'This role already has visible shop scope in Laravel, so any scope change should be treated as a parity-sensitive access change.'
+                : 'No shop scope is linked yet, which keeps this role safer for draft review before scope parity is confirmed.'],
+            ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
+            ['label' => 'Assigned staff preview', 'value' => $assignedUserPreview->isNotEmpty() ? $assignedUserPreview->join(', ') : 'No staff linked yet'],
+            ['label' => 'Assignment guidance', 'value' => $selectedRole->users_count > 0
+                ? 'Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.'
+                : 'No staff are linked yet, which keeps this role safer for draft access review before assignment parity is confirmed.'],
+            ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
+            ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
+            ['label' => 'Laravel status', 'value' => $selectedRole->permissions_count > 0 ? 'active' : 'draft'],
+            [
+                'label' => 'Access guidance',
+                'value' => $selectedRole->permissions_count > 0
+                    ? 'This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.'
+                    : 'This role is still a draft shell in Laravel, which keeps it safe for parity checks before operators rely on it for staff access.',
+            ],
+        ];
+    }
+
+    private function rolesPermissionsSelectedRoleTimeline(Role $selectedRole, mixed $scope, mixed $permissionPreview): array
+    {
+        return [
+            [
+                'title' => sprintf('%s selected for Laravel review', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => 'The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.',
+            ],
+            [
+                'title' => sprintf('%s permission bundle reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $permissionPreview->isNotEmpty()
+                    ? sprintf('This role currently exposes %s in Laravel and the review context now mirrors that access bundle.', $permissionPreview->take(3)->implode(', '))
+                    : 'This role currently has no linked permissions in Laravel, so it remains a safe draft for parity-first access review.',
+            ],
+            [
+                'title' => sprintf('%s assignment scope reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $scope->isNotEmpty()
+                    ? sprintf('This role is currently linked to %d assigned users across %s in Laravel review mode.', $selectedRole->users_count, $scope->join(', '))
+                    : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.',
+            ],
+        ];
+    }
+
+    private function rolesPermissionsSelectedRoleDependencyStatus(Role $selectedRole, mixed $scope, mixed $permissionPreview): array
+    {
+        return [
+            ['label' => 'Selected role', 'value' => $selectedRole->name],
+            ['label' => 'Review posture', 'value' => 'Selected-role review is running in Laravel-backed read mode only'],
+            ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
+            ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
+                ? 'Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.'
+                : 'No linked staff are affected yet, which keeps this role safer for draft review before assignment parity is confirmed.'],
+            ['label' => 'Permission posture', 'value' => $permissionPreview->isNotEmpty()
+                ? 'The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.'
+                : 'No permissions are linked yet, so this role remains a safer draft shell for parity-first access review.'],
+            ['label' => 'Publish posture', 'value' => $selectedRole->permissions_count > 0
+                ? 'This live permission bundle still needs assignment parity checks before publish-style role changes are safe.'
+                : 'This draft role should stay unpublished until permission bundle and shop-scope parity are mapped more explicitly.'],
+            ['label' => 'Scope posture', 'value' => $scope->isNotEmpty()
+                ? 'Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.'
+                : 'No shop scope is linked yet, which keeps this role safe for draft access review.'],
+            ['label' => 'Remaining backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace'],
+        ];
     }
 
     private function prependCardTypeLatestFlowTimelineItem(array $page): array

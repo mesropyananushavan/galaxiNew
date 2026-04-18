@@ -246,6 +246,11 @@
 - Confirmed the selected-role review now explains that linked shop scope should be treated as a parity-sensitive access change, `1 passed`.
 - This makes the live access-review slice more useful because scope visibility and scope meaning now sit together in the summary context instead of being split between summary and posture blocks.
 
+### Roles-permissions structural hardening checkpoint
+- Refactored the selected `roles-permissions` review wiring in `ResourceIndexController` so selected-role summary, timeline, and dependency posture now come from dedicated helper methods instead of one large inline block.
+- Re-ran the focused roles-permissions Laravel-backed review set covering live rows, selected-role context, unknown selection fallback, and malformed selection fallback, `4 passed`.
+- This keeps the live access-review slice safer to extend because the selected-role checkpoint logic now has clearer internal boundaries before more read-only parity cues are added.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
