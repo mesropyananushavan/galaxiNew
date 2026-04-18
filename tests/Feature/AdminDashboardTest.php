@@ -2728,11 +2728,14 @@ class AdminDashboardTest extends TestCase
             'is_active' => '1',
         ]);
 
+        $cardType = CardType::query()->where('slug', 'galaxy-prime')->firstOrFail();
+
         $response
-            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime" was created.');
 
         $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
             'name' => 'Galaxy Prime',
             'slug' => 'galaxy-prime',
             'points_rate' => '1.75',
@@ -2743,10 +2746,16 @@ class AdminDashboardTest extends TestCase
     public function test_card_types_page_shows_live_flow_success_flash_message(): void
     {
         $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-created-flash',
+            'points_rate' => '1.75',
+            'is_active' => true,
+        ]);
 
         $response = $this->actingAs($user)
             ->withSession(['status' => 'Card type "Galaxy Prime" was created.'])
-            ->get(route('admin.card-types.index'));
+            ->get(route('admin.card-types.index', ['cardType' => $cardType]));
 
         $response
             ->assertOk()
@@ -2756,7 +2765,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('aria-live="polite"', false)
             ->assertSee('Backend flow checkpoint')
             ->assertSee('Card type "Galaxy Prime" was created.')
-            ->assertSee('id="live-form"', false);
+            ->assertSee('Selected tier:')
+            ->assertSee('Galaxy Prime')
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }
 
     public function test_card_types_page_resolves_live_form_action_from_route_name(): void

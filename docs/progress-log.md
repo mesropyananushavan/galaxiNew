@@ -166,6 +166,11 @@
 - Added focused coverage proving successful updates, duplicate-slug retry coverage, and update flash rendering all align with the selected-tier context, `3 passed`.
 - This keeps the only live write-backed Phase 1 slice closer to request-driven parity by letting operators save and remain anchored in the same Galaxy tier workspace.
 
+### Card-types create success selected-context checkpoint
+- Updated the live `card-types` create flow so a successful POST now redirects straight into the newly created tier context at `/admin/card-types?cardType=<id>#backend-flow-status` instead of dropping operators back into the generic create-state.
+- Added focused coverage proving both the store redirect and the create success flash now land inside the selected-tier workspace, `2 passed`.
+- This makes the current write-backed Phase 1 slice feel more like a real Galaxy management surface because new tiers open immediately in their own Laravel-backed edit context after creation.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
