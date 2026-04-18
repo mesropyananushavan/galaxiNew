@@ -1329,6 +1329,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Partially ready: live source review works now, while preset handling and exports stay blocked behind later reporting-pipeline verification.')
             ->assertSee('Preset posture')
             ->assertSee('Preset periods are still preview-only, so operators should treat the live source layer as reviewable while preset-driven report flows remain gated.')
+            ->assertSee('Export posture')
+            ->assertSee('Export generation is still blocked, so the live reporting layer should stay review-only until file delivery and parity checks are verified.')
             ->assertSee('Source coverage')
             ->assertSee('Laravel reporting inputs currently cover 1 shops, 1 cards, 1 cardholders, and 1 roles for read-only review.')
             ->assertSee('Preset handling, query shaping, and export pipeline are still pending');
