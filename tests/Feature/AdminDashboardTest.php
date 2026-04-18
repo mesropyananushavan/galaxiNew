@@ -314,6 +314,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('href="/admin/roles-permissions"', false)
             ->assertSee('Reviewing: Shop Manager')
             ->assertSee('Selected role')
+            ->assertSee('Review mode')
+            ->assertSee('Live-impact review, linked staff or permissions already exist in Laravel')
             ->assertSee('Scope')
             ->assertSee('Shop scope preview')
             ->assertSee('Galaxy Central')

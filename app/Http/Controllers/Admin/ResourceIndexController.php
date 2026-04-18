@@ -770,6 +770,9 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
+            ['label' => 'Review mode', 'value' => $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0
+                ? 'Live-impact review, linked staff or permissions already exist in Laravel'
+                : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
             ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
