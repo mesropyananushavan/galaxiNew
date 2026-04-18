@@ -36,6 +36,11 @@
 - The full focused card-type slice now passes, `42 passed`, which confirms the recent preview-route, live-form normalization, callback-copy, and redirect helper fixes hold together as one QA checkpoint.
 - This closes the current card-type QA debug cycle and leaves the branch ready for normal merge handling before the next Phase 1 task starts.
 
+### Shops action-gating checkpoint
+- Reused the shared disabled-action pattern on the `shops` workspace so create and branch-scope actions now read as intentionally staged, not generically idle.
+- Added Galaxy-specific blocker copy explaining that shop creation depends on a real Laravel-backed index and manager-assignment parity, while scope review stays blocked on legacy branch-ownership verification.
+- Extended feature coverage so the disabled branch-management cues remain visible as the shop workspace moves away from starter-style placeholders.
+
 ### Card-type preview-route harness checkpoint
 - Fixed the failing card-type preview-route wiring locally in `tests/Feature/AdminDashboardTest.php` instead of widening production routing scope.
 - Replaced the inline preview-route registration pattern with a tiny test helper that registers full `admin.*` preview route names and refreshes Laravel's route name/action lookups for runtime-added test routes.

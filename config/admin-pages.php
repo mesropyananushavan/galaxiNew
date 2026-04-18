@@ -7,8 +7,18 @@ return [
         'summary' => 'Baseline operational index for shop scope boundaries, activation state, and future access rules.',
         'nextStep' => 'Replace sample rows with real shop records, manager info, and scoped access actions.',
         'actions' => [
-            ['label' => 'New shop', 'tone' => 'primary'],
-            ['label' => 'Review branch scope', 'tone' => 'secondary'],
+            [
+                'label' => 'New shop',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until the first Laravel-backed shops index and manager assignment parity checks are verified.',
+            ],
+            [
+                'label' => 'Review branch scope',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
+            ],
         ],
         'metrics' => [
             ['label' => 'Active shops', 'value' => '2'],

@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T09:05:00Z",
+  "updated_at": "2026-04-18T09:18:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,17 +52,18 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Tests / Parity Checks",
+    "module": "Shops",
     "status": "IN_PROGRESS",
-    "owner": "backend",
-    "summary": "The broader card-type QA rerun now passes end-to-end, confirming that the remaining failures were stale feature expectations rather than shared runtime or route-wiring defects.",
+    "owner": "frontend",
+    "summary": "The shops workspace now uses explicit disabled-action gating for branch creation and scope review, making the admin shell more Galaxy-specific while the first Laravel-backed shop index is still pending.",
     "code_paths": [
+      "config/admin-pages.php",
       "tests/Feature/AdminDashboardTest.php"
     ],
     "doc_paths": [
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "the card-type QA slice is now green; the next step is to record cycle closure and fold this QA branch back through the normal merge flow before taking the next Phase 1 task"
+    "blocker_reason": "shop creation and scope review remain intentionally blocked until the query-backed shops index and legacy branch-ownership parity checks are ready"
   }
 }
