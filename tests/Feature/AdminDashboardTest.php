@@ -629,6 +629,50 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('selected for Laravel review');
     }
 
+    public function test_cards_page_ignores_malformed_selected_card_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-malformed-card',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-malformed-card@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Gold',
+            'slug' => 'galaxy-gold-malformed-card',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-930001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card=not-a-number');
+
+        $response
+            ->assertOk()
+            ->assertSee('GX-930001')
+            ->assertSee('Review latest saved card')
+            ->assertDontSee('Back to all cards')
+            ->assertDontSee('Selected card')
+            ->assertDontSee('selected for Laravel review');
+    }
+
     public function test_authenticated_user_can_access_cardholders_operational_index_shape(): void
     {
         $user = User::factory()->create();
@@ -891,6 +935,32 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('selected for Laravel review');
     }
 
+    public function test_shops_page_ignores_malformed_selected_shop_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-malformed-shop',
+            'is_active' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Nare Gevorgyan',
+            'shop_id' => $shop->id,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop=not-a-number');
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Central')
+            ->assertSee('Review latest saved shop')
+            ->assertDontSee('Back to all shops')
+            ->assertDontSee('Selected shop')
+            ->assertDontSee('selected for Laravel review');
+    }
+
     public function test_cardholders_page_replaces_preview_rows_with_model_backed_index_data(): void
     {
         $shop = Shop::create([
@@ -1013,6 +1083,35 @@ class AdminDashboardTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get('/admin/cardholders?cardholder=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('Anna Petrova')
+            ->assertSee('Review latest saved holder')
+            ->assertDontSee('Back to all holders')
+            ->assertDontSee('Selected holder')
+            ->assertDontSee('selected for Laravel review');
+    }
+
+    public function test_cardholders_page_ignores_malformed_selected_holder_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-malformed-holder',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-malformed-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder=not-a-number');
 
         $response
             ->assertOk()
