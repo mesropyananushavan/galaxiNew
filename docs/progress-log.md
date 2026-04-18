@@ -306,6 +306,11 @@
 - Re-ran the focused reports set covering both the preview baseline and the live-source read slice, `2 passed`.
 - This keeps the new reporting slice safer to extend because live reporting cues now have clearer internal boundaries before selected-report or preset-aware read steps are added.
 
+### Reports QA consolidation checkpoint
+- Re-ran the focused `reports` set after the recent live-source, posture, readiness, preset, export, and structural-hardening steps.
+- Verified the preview baseline and the live Laravel-backed reporting slice together, `2 passed`.
+- This confirms the reporting workspace is still coherent as one Phase 1 slice instead of only passing after isolated incremental changes.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
