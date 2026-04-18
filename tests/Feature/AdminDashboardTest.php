@@ -1778,6 +1778,27 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('novalidate="1"', false);
     }
 
+    public function test_card_types_page_renders_cancel_attributes(): void
+    {
+        Config::set('admin-pages.card-types.liveForm.cancelAttributes', [
+            'data-cancel-mode' => 'update',
+            'download' => true,
+            'aria-controls' => 'live-form',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('href="/admin/card-types" class="button button-secondary"', false)
+            ->assertSee('data-cancel-mode="update"', false)
+            ->assertSee('download', false)
+            ->assertSee('aria-controls="live-form"', false)
+            ->assertDontSee('download="1"', false);
+    }
+
     public function test_card_types_page_renders_boolean_live_form_attributes(): void
     {
         Config::set('admin-pages.card-types.liveForm.fields', [

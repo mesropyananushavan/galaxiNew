@@ -143,7 +143,15 @@
             >{{ $liveForm['submitLabel'] }}</button>
 
             @if (! empty($liveForm['cancelAction']))
-                <a href="{{ $liveForm['cancelAction']['href'] }}" class="button button-secondary">{{ $liveForm['cancelAction']['label'] }}</a>
+                <a href="{{ $liveForm['cancelAction']['href'] }}" class="button button-secondary"
+                    @foreach ($liveForm['cancelAttributes'] as $attribute => $value)
+                        @if ($value === true)
+                            {{ $attribute }}
+                        @else
+                            {{ $attribute }}="{{ $value }}"
+                        @endif
+                    @endforeach
+                >{{ $liveForm['cancelAction']['label'] }}</a>
             @endif
         </div>
     </form>

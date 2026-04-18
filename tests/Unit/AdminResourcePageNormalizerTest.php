@@ -255,6 +255,38 @@ class AdminResourcePageNormalizerTest extends TestCase
         ], $normalized['liveForm']['formAttributes']);
     }
 
+    public function test_normalize_live_form_keeps_valid_cancel_attributes(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'liveForm' => [
+                'title' => 'Create card type in Laravel',
+                'action' => '/admin/card-types',
+                'submitLabel' => 'Create card type',
+                'cancelAction' => [
+                    'label' => 'Back to catalog',
+                    'href' => '/admin/card-types',
+                ],
+                'cancelAttributes' => [
+                    'data-cancel-mode' => 'update',
+                    'download' => true,
+                    'aria-controls' => 'live-form',
+                    'aria-hidden' => false,
+                ],
+                'fields' => [
+                    ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold'],
+                ],
+            ],
+        ]);
+
+        $this->assertSame([
+            'data-cancel-mode' => 'update',
+            'download' => true,
+            'aria-controls' => 'live-form',
+        ], $normalized['liveForm']['cancelAttributes']);
+    }
+
     public function test_normalize_live_form_keeps_valid_select_options_and_ignores_malformed_entries(): void
     {
         $normalizer = new AdminResourcePageNormalizer();

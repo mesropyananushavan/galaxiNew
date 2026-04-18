@@ -1262,6 +1262,14 @@
 ### Next step after live form container attribute checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Live form cancel attribute checkpoint
+- Added config-driven `cancelAttributes` support to the shared live-form foundation so the secondary cancel link can carry mode-specific metadata without leaving the reusable partial.
+- Reused the same normalized attribute handling already used for fields, form, and submit button paths, and added unit plus feature coverage for the cancel-link path.
+- This is a small structural step, but it rounds out the main shared live-form action surfaces before a real edit/update state starts leaning on them.
+
+### Next step after live form cancel attribute checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.
