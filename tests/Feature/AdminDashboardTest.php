@@ -1704,6 +1704,10 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create new type')
             ->assertSee('href="/admin/card-types#live-form"', false)
+            ->assertSee('Move to draft')
+            ->assertSee('<form method="POST" action="/admin/card-types/'.$cardType->id.'/toggle-status"', false)
+            ->assertSee('name="_method"', false)
+            ->assertSee('value="PATCH"', false)
             ->assertSee('Editing: Galaxy Prime')
             ->assertSee('Import rules')
             ->assertSee('Selected record summary')
@@ -1738,6 +1742,28 @@ class AdminDashboardTest extends TestCase
             ->assertSee('value="1.75"', false)
             ->assertSee('<option value="0" selected>Draft</option>', false)
             ->assertSee('href="/admin/card-types"', false);
+    }
+
+    public function test_authenticated_user_can_toggle_card_type_status_from_header_action(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.card-types.toggle-status', $cardType));
+
+        $response
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card type "Galaxy Prime" is now draft.');
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'is_active' => false,
+        ]);
     }
 
     public function test_card_types_page_replaces_preview_rows_with_model_backed_edit_links(): void

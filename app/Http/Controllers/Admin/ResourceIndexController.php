@@ -189,6 +189,12 @@ class ResourceIndexController extends Controller
                 'href' => route('admin.card-types.index', absolute: false).'#live-form',
             ],
             [
+                'label' => $selectedCardType->is_active ? 'Move to draft' : 'Activate type',
+                'tone' => 'secondary',
+                'href' => route('admin.card-types.toggle-status', $selectedCardType, absolute: false),
+                'method' => 'PATCH',
+            ],
+            [
                 'label' => sprintf('Editing: %s', $selectedCardType->name),
                 'tone' => 'secondary',
             ],

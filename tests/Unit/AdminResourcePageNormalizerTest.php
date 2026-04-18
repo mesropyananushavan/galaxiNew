@@ -668,4 +668,20 @@ class AdminResourcePageNormalizerTest extends TestCase
             ['label' => 'Create first type', 'tone' => 'primary', 'href' => '#live-form'],
         ], $normalized['emptyState']['actions']);
     }
+
+    public function test_normalize_keeps_action_methods_when_method_is_valid(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'actions' => [
+                ['label' => 'Activate type', 'tone' => 'secondary', 'href' => '/admin/card-types/7/toggle-status', 'method' => 'PATCH'],
+                ['label' => 'Broken method', 'href' => '/admin/card-types/7/toggle-status', 'method' => ['PATCH']],
+            ],
+        ]);
+
+        $this->assertSame([
+            ['label' => 'Activate type', 'tone' => 'secondary', 'href' => '/admin/card-types/7/toggle-status', 'method' => 'PATCH'],
+        ], $normalized['actions']);
+    }
 }

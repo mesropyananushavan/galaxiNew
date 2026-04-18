@@ -1402,3 +1402,11 @@
 
 ### Next step after card type selected-record header actions checkpoint
 - Reuse the same selected-record-aware action pattern on another entity page, or keep deepening `card-types` with one more backend slice such as a first real status toggle flow.
+
+### Card type status toggle checkpoint
+- Added the first small status-mutation flow for `card-types`: a dedicated PATCH route/controller can now flip a saved tier between active and draft.
+- Extended the shared header action renderer so selected-record actions can submit non-GET Laravel requests, then wired `card-types` edit mode to expose an `Activate type` or `Move to draft` action for the selected record.
+- Added unit and feature coverage for method-aware actions and the new status toggle flow, so this first real mutation path stays visible in Phase 1 Git history.
+
+### Next step after card type status toggle checkpoint
+- Reuse the method-aware selected-action pattern on another entity page, or keep deepening `card-types` with one more small backend slice such as selected-record-aware success feedback or row-level status actions.

@@ -23,6 +23,7 @@ class AdminResourcePageNormalizer
                 || ! is_string($action['label'] ?? null)
                 || (array_key_exists('tone', $action) && ! is_string($action['tone']))
                 || (array_key_exists('href', $action) && ! is_string($action['href']))
+                || (array_key_exists('method', $action) && ! is_string($action['method']))
             ) {
                 return null;
             }
@@ -31,6 +32,7 @@ class AdminResourcePageNormalizer
                 'label' => $action['label'],
                 'tone' => $action['tone'] ?? null,
                 'href' => $action['href'] ?? null,
+                'method' => $action['method'] ?? null,
             ], fn (mixed $value): bool => $value !== null);
         }, $actions)));
     }
