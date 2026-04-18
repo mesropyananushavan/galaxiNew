@@ -988,7 +988,7 @@ return [
         'nextStep' => 'Add report catalog, date-range presets, and export entry points.',
         'actions' => [
             ['label' => 'Open report catalog', 'tone' => 'primary'],
-            ['label' => 'Review export presets', 'tone' => 'secondary'],
+            ['label' => 'Review export presets', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until preset handling is backed by Laravel reporting flow validation.'],
         ],
         'metrics' => [
             ['label' => 'Planned reports', 'value' => '3'],

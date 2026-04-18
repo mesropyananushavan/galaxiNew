@@ -311,6 +311,11 @@
 - Verified the preview baseline and the live Laravel-backed reporting slice together, `2 passed`.
 - This confirms the reporting workspace is still coherent as one Phase 1 slice instead of only passing after isolated incremental changes.
 
+### Reports preset-action gating checkpoint
+- Updated the `reports` page actions so `Review export presets` now renders as an explicitly gated action with a visible Laravel-flow blocker reason instead of looking like an available path.
+- Confirmed the disabled-state cue stays visible in both the preview baseline and the live Laravel-backed reporting slice, `2 passed`.
+- This makes the reporting workspace less starter-like because preset review now looks intentionally staged, not generically clickable.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
