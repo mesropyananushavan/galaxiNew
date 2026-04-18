@@ -2518,6 +2518,50 @@ class AdminDashboardTest extends TestCase
             ->assertSee('href="/admin/card-types"', false);
     }
 
+    public function test_card_types_page_ignores_unknown_selected_card_type_query(): void
+    {
+        CardType::create([
+            'name' => 'Galaxy Silver',
+            'slug' => 'galaxy-silver-unknown-selected',
+            'points_rate' => '1.25',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/card-types?cardType=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Silver')
+            ->assertSee('Edit latest saved type')
+            ->assertDontSee('Edit card type in Laravel')
+            ->assertDontSee('Selected tier')
+            ->assertDontSee('selected for Laravel edit flow');
+    }
+
+    public function test_card_types_page_ignores_malformed_selected_card_type_query(): void
+    {
+        CardType::create([
+            'name' => 'Galaxy Silver',
+            'slug' => 'galaxy-silver-malformed-selected',
+            'points_rate' => '1.25',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/card-types?cardType=not-a-number');
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Silver')
+            ->assertSee('Edit latest saved type')
+            ->assertDontSee('Edit card type in Laravel')
+            ->assertDontSee('Selected tier')
+            ->assertDontSee('selected for Laravel edit flow');
+    }
+
     public function test_authenticated_user_can_toggle_card_type_status_from_header_action(): void
     {
         $user = User::factory()->create();

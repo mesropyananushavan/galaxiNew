@@ -562,19 +562,14 @@ class ResourceIndexController extends Controller
         }
 
         if ($latestCardType !== null) {
-            $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
-
-            $page['actions'] = [
-                ...$actions,
-                [
-                    'label' => 'Edit latest saved type',
-                    'tone' => 'secondary',
-                    'href' => route('admin.card-types.index', ['cardType' => $latestCardType->id], absolute: false).'#live-form',
-                ],
-            ];
+            $page = $this->appendPageAction($page, [
+                'label' => 'Edit latest saved type',
+                'tone' => 'secondary',
+                'href' => route('admin.card-types.index', ['cardType' => $latestCardType->id], absolute: false).'#live-form',
+            ]);
         }
 
-        $selectedCardTypeId = request()->integer('cardType');
+        $selectedCardTypeId = $this->selectedRecordId('cardType');
 
         if ($selectedCardTypeId < 1) {
             return $page;
