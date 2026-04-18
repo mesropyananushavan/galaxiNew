@@ -510,6 +510,69 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy Central status reflected from model state');
     }
 
+    public function test_cardholders_page_replaces_preview_rows_with_model_backed_index_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central',
+            'is_active' => true,
+        ]);
+
+        $inactiveShop = Shop::create([
+            'name' => 'Galaxy North',
+            'code' => 'galaxy-north',
+            'is_active' => true,
+        ]);
+
+        $activeHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna@example.com',
+            'is_active' => true,
+        ]);
+
+        $inactiveHolder = CardHolder::create([
+            'shop_id' => $inactiveShop->id,
+            'full_name' => 'Arman Hakobyan',
+            'phone' => '+37491100003',
+            'email' => 'arman@example.com',
+            'is_active' => false,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-cardholders',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $activeHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-300001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders');
+
+        $response
+            ->assertOk()
+            ->assertSee('Anna Petrova')
+            ->assertSee('+37491100001')
+            ->assertSee('Galaxy Central')
+            ->assertSee('Arman Hakobyan')
+            ->assertSee('+37491100003')
+            ->assertSee('Galaxy North')
+            ->assertSee('Linked cards')
+            ->assertSee('>1<', false)
+            ->assertSee('active')
+            ->assertSee('inactive');
+    }
+
     public function test_authenticated_user_can_access_checks_points_operational_index_shape(): void
     {
         $user = User::factory()->create();

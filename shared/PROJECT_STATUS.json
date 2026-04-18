@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T10:33:00Z",
+  "updated_at": "2026-04-18T10:48:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,10 +52,10 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Shops",
+    "module": "Cardholders",
     "status": "IN_PROGRESS",
     "owner": "backend",
-    "summary": "The shops workspace now supports both a model-backed index and a request-driven selected-shop context, making it the next real Laravel read slice outside card-types with record-specific review state.",
+    "summary": "The cardholders workspace now swaps preview rows and summary metrics for Eloquent-backed data when real CardHolder records exist, making it the next real Laravel read slice after shops.",
     "code_paths": [
       "app/Http/Controllers/Admin/ResourceIndexController.php",
       "tests/Feature/AdminDashboardTest.php"
@@ -64,6 +64,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "shop creation and scope review remain intentionally gated until write flows and branch-ownership parity checks are ready, even though the read-only index and selected-shop review slice are now live"
+    "blocker_reason": "search, profile reads, and activity sourcing remain pending even though the model-backed cardholder index slice is now live"
   }
 }

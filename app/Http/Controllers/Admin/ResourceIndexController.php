@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\CardHolder;
 use App\Models\CardType;
 use App\Models\Shop;
 use App\Support\AdminResourcePageNormalizer;
@@ -121,8 +122,39 @@ class ResourceIndexController extends Controller
         return match ($resource) {
             'card-types' => $this->enrichCardTypesPage($page),
             'shops' => $this->enrichShopsPage($page),
+            'cardholders' => $this->enrichCardHoldersPage($page),
             default => $page,
         };
+    }
+
+    private function enrichCardHoldersPage(array $page): array
+    {
+        $cardHolders = CardHolder::query()
+            ->with(['shop'])
+            ->withCount('cards')
+            ->orderBy('full_name')
+            ->get();
+
+        if ($cardHolders->isEmpty()) {
+            return $page;
+        }
+
+        $page['metrics'] = [
+            ['label' => 'Active holders', 'value' => (string) $cardHolders->where('is_active', true)->count()],
+            ['label' => 'Inactive holders', 'value' => (string) $cardHolders->where('is_active', false)->count()],
+            ['label' => 'Linked cards', 'value' => (string) $cardHolders->sum('cards_count')],
+        ];
+
+        $page['table']['rows'] = $cardHolders->map(fn (CardHolder $cardHolder): array => [
+            $cardHolder->full_name,
+            $cardHolder->phone ?? '—',
+            $cardHolder->shop?->name ?? 'Unassigned',
+            (string) $cardHolder->cards_count,
+            $cardHolder->is_active ? 'active' : 'inactive',
+            $cardHolder->updated_at?->format('Y-m-d') ?? '—',
+        ])->all();
+
+        return $page;
     }
 
     private function enrichShopsPage(array $page): array
