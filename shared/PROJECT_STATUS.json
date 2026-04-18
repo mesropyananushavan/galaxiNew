@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T08:35:00Z",
+  "updated_at": "2026-04-18T08:50:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -54,16 +54,15 @@
   "recent_checkpoint": {
     "module": "Tests / Parity Checks",
     "status": "IN_PROGRESS",
-    "owner": "qa",
-    "summary": "QA confirmed the shared card-type live form no longer crashes; the next focused failures are narrowed to stale card-type feature expectations and preview-route test wiring.",
+    "owner": "backend",
+    "summary": "The card-type preview-route blocker was fixed in the feature-test harness by registering full admin preview route names and refreshing runtime route lookups, so the narrow preview-route slice now passes without widening production scope.",
     "code_paths": [
-      "app/Http/Controllers/Admin/ResourceIndexController.php",
       "tests/Feature/AdminDashboardTest.php"
     ],
     "doc_paths": [
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "focused card-type QA now fails in test expectations and preview-route wiring after the live-form render blocker was removed"
+    "blocker_reason": "a separate callback-value expectation mismatch still remains in the broader card-type QA slice after the preview-route harness issue was cleared"
   }
 }

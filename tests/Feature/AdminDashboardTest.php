@@ -1989,11 +1989,11 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_resolves_live_form_action_route_parameters(): void
     {
-        Route::middleware(['web', 'auth', 'can:access-admin'])
-            ->prefix('admin')
-            ->as('admin.')
-            ->get('/card-types/{cardType}/draft-preview', fn (string $cardType) => $cardType)
-            ->name('card-types.draft-preview');
+        $this->registerAdminPreviewRoute(
+            '/card-types/{cardType}/draft-preview',
+            fn (string $cardType) => $cardType,
+            'card-types.draft-preview',
+        );
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
@@ -2020,11 +2020,11 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_prefers_routable_route_keys_over_stringable_values(): void
     {
-        Route::middleware(['web', 'auth', 'can:access-admin'])
-            ->prefix('admin')
-            ->as('admin.')
-            ->get('/card-types/{cardType}/draft-preview', fn (string $cardType) => $cardType)
-            ->name('card-types.draft-preview');
+        $this->registerAdminPreviewRoute(
+            '/card-types/{cardType}/draft-preview',
+            fn (string $cardType) => $cardType,
+            'card-types.draft-preview',
+        );
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
@@ -2051,11 +2051,11 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_resolves_unit_enum_route_parameters_by_name(): void
     {
-        Route::middleware(['web', 'auth', 'can:access-admin'])
-            ->prefix('admin')
-            ->as('admin.')
-            ->get('/card-types/{cardType}/draft-preview', fn (string $cardType) => $cardType)
-            ->name('card-types.draft-preview');
+        $this->registerAdminPreviewRoute(
+            '/card-types/{cardType}/draft-preview',
+            fn (string $cardType) => $cardType,
+            'card-types.draft-preview',
+        );
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
@@ -2080,11 +2080,11 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_resolves_boolean_route_parameters(): void
     {
-        Route::middleware(['web', 'auth', 'can:access-admin'])
-            ->prefix('admin')
-            ->as('admin.')
-            ->get('/card-types/{cardType}/toggle/{enabled}', fn (string $cardType, string $enabled) => $cardType.'-'.$enabled)
-            ->name('card-types.toggle-preview');
+        $this->registerAdminPreviewRoute(
+            '/card-types/{cardType}/toggle/{enabled}',
+            fn (string $cardType, string $enabled) => $cardType.'-'.$enabled,
+            'card-types.toggle-preview',
+        );
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.toggle-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
@@ -2138,11 +2138,11 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_resolves_route_parameters_from_config_callback(): void
     {
-        Route::middleware(['web', 'auth', 'can:access-admin'])
-            ->prefix('admin')
-            ->as('admin.')
-            ->get('/card-types/{cardType}/preview/{mode}', fn (string $cardType, string $mode) => $cardType.'-'.$mode)
-            ->name('card-types.context-preview');
+        $this->registerAdminPreviewRoute(
+            '/card-types/{cardType}/preview/{mode}',
+            fn (string $cardType, string $mode) => $cardType.'-'.$mode,
+            'card-types.context-preview',
+        );
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.context-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', function (string $resource, array $page, array $liveForm): array {
@@ -2779,5 +2779,15 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertRedirect(route('admin.card-types.index').'#live-form')
             ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
+    }
+
+    private function registerAdminPreviewRoute(string $uri, callable $action, string $name): void
+    {
+        Route::middleware(['web', 'auth', 'can:access-admin'])
+            ->get('/admin'.(str_starts_with($uri, '/') ? $uri : '/'.$uri), $action)
+            ->name('admin.'.$name);
+
+        app('router')->getRoutes()->refreshNameLookups();
+        app('router')->getRoutes()->refreshActionLookups();
     }
 }

@@ -17,6 +17,15 @@
 - Updated those feature assertions to match the current Galaxy-specific card-type page copy and Laravel's supported redirect test helper.
 - Focused QA still fails deeper in card-type preview-route expectations, so the next pass should align the preview-route harness without reopening the shared render path.
 
+### Card-type preview-route harness checkpoint
+- Fixed the failing card-type preview-route wiring locally in `tests/Feature/AdminDashboardTest.php` instead of widening production routing scope.
+- Replaced the inline preview-route registration pattern with a tiny test helper that registers full `admin.*` preview route names and refreshes Laravel's route name/action lookups for runtime-added test routes.
+- Re-ran the narrow preview-route slice covering action, cancel, enum, boolean, and callback-based parameter resolution, and that focused set now passes.
+- A wider callback-oriented slice still shows a separate pre-existing expectation mismatch in the live-form values callback test, so the preview-route blocker is cleared but the whole card-type QA stack is not yet fully green.
+
+### Next step after card-type preview-route harness checkpoint
+- Update the remaining live-form values callback expectation to match the current card-type page context, then re-run the broader focused card-type QA slice.
+
 ## 2026-04-18
 
 ### QA reached application-level failures checkpoint
