@@ -126,6 +126,11 @@
 - Documented the helper in `README.md` so repeated Phase 1 checkpoints can keep code, docs, and status aligned without relying only on chat memory.
 - Ran the helper locally to confirm the current checkpoint files are clean before the next implementation slice.
 
+### Card-types selected-record fallback checkpoint
+- Added regression coverage proving the live `card-types` workspace ignores both unknown and malformed `?cardType=` queries and falls back cleanly to the model-backed index state instead of rendering a broken edit-mode context.
+- Re-ran the focused `card-types` selected-record coverage, `3 passed`, to confirm the real edit-mode path and both fallback cases hold together.
+- This brings the write-backed card-type workspace in line with the request-driven fallback discipline already added to the live read slices.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
