@@ -130,6 +130,14 @@ class ResourceIndexController extends Controller
         $cardTypes = CardType::query()->orderBy('name')->get();
 
         if ($cardTypes->isNotEmpty()) {
+            $page['metrics'] = [
+                ['label' => 'Active tiers', 'value' => (string) $cardTypes->where('is_active', true)->count()],
+                ['label' => 'Draft tiers', 'value' => (string) $cardTypes->where('is_active', false)->count()],
+                ['label' => 'Saved types', 'value' => (string) $cardTypes->count()],
+            ];
+        }
+
+        if ($cardTypes->isNotEmpty()) {
             $page['table']['rows'] = $cardTypes->map(fn (CardType $cardType): array => [
                 [
                     'label' => $cardType->name,

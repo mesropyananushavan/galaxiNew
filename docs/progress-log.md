@@ -1370,3 +1370,11 @@
 
 ### Next step after card type table edit-link checkpoint
 - Add one more small model-backed read detail, such as real status metrics for `card-types`, or reuse the same linked-table pattern on another Phase 1 entity page.
+
+### Card type model-backed metrics checkpoint
+- Extended the `card-types` page enrichment so summary metrics now switch from preview values to real counts when saved `CardType` records exist.
+- The management snapshot now reports active tiers, draft tiers, and total saved types from Laravel data, making the page less starter-like and more like a real Galaxy admin surface.
+- Added feature coverage proving the preview-only `Imported rules` metric is replaced by model-backed counts once real records are available.
+
+### Next step after card type model-backed metrics checkpoint
+- Keep pushing `card-types` from preview toward foundation by adding one more real read cue, such as a selected-record summary, or reuse the same model-backed metric pattern on another Phase 1 entity page.

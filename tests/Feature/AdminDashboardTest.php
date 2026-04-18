@@ -1746,6 +1746,44 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Manager approval');
     }
 
+    public function test_card_types_page_replaces_preview_metrics_with_model_backed_counts(): void
+    {
+        CardType::create([
+            'name' => 'Gold',
+            'slug' => 'gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        CardType::create([
+            'name' => 'Silver',
+            'slug' => 'silver',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        CardType::create([
+            'name' => 'Partner',
+            'slug' => 'partner',
+            'points_rate' => '1.20',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('Active tiers')
+            ->assertSee('Draft tiers')
+            ->assertSee('Saved types')
+            ->assertDontSee('Imported rules')
+            ->assertSee('>2<', false)
+            ->assertSee('>1<', false)
+            ->assertSee('>3<', false);
+    }
+
     public function test_authenticated_user_can_store_card_type_from_live_admin_form(): void
     {
         $user = User::factory()->create();
