@@ -546,6 +546,50 @@ class AdminDashboardTest extends TestCase
             ->assertSee('GX-910001 status reflected from model state');
     }
 
+    public function test_cards_page_ignores_unknown_selected_card_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-unknown-card',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-unknown-card@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Gold',
+            'slug' => 'galaxy-gold-unknown-card',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-920001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('GX-920001')
+            ->assertSee('Review latest saved card')
+            ->assertDontSee('Back to all cards')
+            ->assertDontSee('Selected card')
+            ->assertDontSee('selected for Laravel review');
+    }
+
     public function test_authenticated_user_can_access_cardholders_operational_index_shape(): void
     {
         $user = User::factory()->create();
@@ -782,6 +826,32 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy Central status reflected from model state');
     }
 
+    public function test_shops_page_ignores_unknown_selected_shop_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-unknown-shop',
+            'is_active' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Nare Gevorgyan',
+            'shop_id' => $shop->id,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Central')
+            ->assertSee('Review latest saved shop')
+            ->assertDontSee('Back to all shops')
+            ->assertDontSee('Selected shop')
+            ->assertDontSee('selected for Laravel review');
+    }
+
     public function test_cardholders_page_replaces_preview_rows_with_model_backed_index_data(): void
     {
         $shop = Shop::create([
@@ -883,6 +953,35 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Current request')
             ->assertSee('The shared cardholders workspace is now loading this saved holder from Laravel data instead of only static preview rows.')
             ->assertSee('Anna Petrova status reflected from model state');
+    }
+
+    public function test_cardholders_page_ignores_unknown_selected_holder_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-unknown-holder',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-unknown-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('Anna Petrova')
+            ->assertSee('Review latest saved holder')
+            ->assertDontSee('Back to all holders')
+            ->assertDontSee('Selected holder')
+            ->assertDontSee('selected for Laravel review');
     }
 
     public function test_authenticated_user_can_access_checks_points_operational_index_shape(): void

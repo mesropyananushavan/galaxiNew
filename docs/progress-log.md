@@ -106,6 +106,11 @@
 - Re-ran the focused `roles-permissions` Laravel-backed coverage, `3 passed`, to confirm the normal selected-role path and the new fallback behavior hold together.
 - This hardens the request-driven access review flow before more controller or routing cleanup lands in Phase 1.
 
+### Operational invalid-selection fallback checkpoint
+- Added regression coverage proving the live `shops`, `cardholders`, and `cards` slices also ignore unknown selected-record queries and fall back cleanly to their model-backed index states.
+- Re-ran the focused selected-record coverage for those operational modules, `6 passed`, to confirm the normal review paths and the new fallback behavior hold together.
+- This makes the shared request-driven review foundation more resilient before the next round of controller cleanup or new Phase 1 slices.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
