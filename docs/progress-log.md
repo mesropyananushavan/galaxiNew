@@ -1254,6 +1254,14 @@
 ### Next step after live form submit attribute checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Live form container attribute checkpoint
+- Added config-driven `formAttributes` support to the shared live-form foundation so the form element itself can carry mode-specific metadata or browser-behavior flags without forking the partial.
+- Reused the same normalized attribute handling already used for fields and submit buttons, and added unit plus feature coverage for the new form-level path.
+- This is a small structural step, but it gives the future `card-types` edit/update state a cleaner place to hang form-level behavior or instrumentation.
+
+### Next step after live form container attribute checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

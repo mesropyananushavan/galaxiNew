@@ -231,6 +231,7 @@ class AdminResourcePageNormalizer
             'description' => is_string($form['description'] ?? null) ? $form['description'] : null,
             'method' => $this->liveFormMethod($form['method'] ?? null),
             'action' => $form['action'],
+            'formAttributes' => $this->liveFormAttributes($form['formAttributes'] ?? []),
             'submitLabel' => $form['submitLabel'],
             'submitAttributes' => $this->liveFormAttributes($form['submitAttributes'] ?? []),
             'cancelAction' => $this->liveFormCancelAction($form['cancelAction'] ?? null),

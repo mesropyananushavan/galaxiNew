@@ -227,6 +227,34 @@ class AdminResourcePageNormalizerTest extends TestCase
         ], $normalized['liveForm']['submitAttributes']);
     }
 
+    public function test_normalize_live_form_keeps_valid_form_attributes(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'liveForm' => [
+                'title' => 'Create card type in Laravel',
+                'action' => '/admin/card-types',
+                'submitLabel' => 'Create card type',
+                'formAttributes' => [
+                    'data-form-mode' => 'update',
+                    'novalidate' => true,
+                    'aria-controls' => 'backend-flow-status',
+                    'aria-hidden' => false,
+                ],
+                'fields' => [
+                    ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold'],
+                ],
+            ],
+        ]);
+
+        $this->assertSame([
+            'data-form-mode' => 'update',
+            'novalidate' => true,
+            'aria-controls' => 'backend-flow-status',
+        ], $normalized['liveForm']['formAttributes']);
+    }
+
     public function test_normalize_live_form_keeps_valid_select_options_and_ignores_malformed_entries(): void
     {
         $normalizer = new AdminResourcePageNormalizer();

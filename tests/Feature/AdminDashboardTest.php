@@ -1757,6 +1757,27 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('disabled="1"', false);
     }
 
+    public function test_card_types_page_renders_form_attributes(): void
+    {
+        Config::set('admin-pages.card-types.liveForm.formAttributes', [
+            'data-form-mode' => 'update',
+            'novalidate' => true,
+            'aria-controls' => 'backend-flow-status',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('<form method="POST" action="/admin/card-types"', false)
+            ->assertSee('data-form-mode="update"', false)
+            ->assertSee('novalidate', false)
+            ->assertSee('aria-controls="backend-flow-status"', false)
+            ->assertDontSee('novalidate="1"', false);
+    }
+
     public function test_card_types_page_renders_boolean_live_form_attributes(): void
     {
         Config::set('admin-pages.card-types.liveForm.fields', [

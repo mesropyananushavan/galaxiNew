@@ -23,7 +23,15 @@
         </div>
     @endif
 
-    <form method="{{ in_array($liveForm['method'], ['GET', 'POST'], true) ? $liveForm['method'] : 'POST' }}" action="{{ $liveForm['action'] }}" style="display: grid; gap: 16px;">
+    <form method="{{ in_array($liveForm['method'], ['GET', 'POST'], true) ? $liveForm['method'] : 'POST' }}" action="{{ $liveForm['action'] }}"
+        @foreach ($liveForm['formAttributes'] as $attribute => $value)
+            @if ($value === true)
+                {{ $attribute }}
+            @else
+                {{ $attribute }}="{{ $value }}"
+            @endif
+        @endforeach
+        style="display: grid; gap: 16px;">
         @if ($liveForm['method'] !== 'GET')
             @csrf
         @endif
