@@ -186,6 +186,13 @@ class ResourceIndexController extends Controller
             ['label' => 'Laravel status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
         ];
 
+        if (is_string(session('status'))) {
+            $page['selectedRecordSummary'][] = [
+                'label' => 'Latest flow result',
+                'value' => session('status'),
+            ];
+        }
+
         $page['actions'] = [
             [
                 'label' => 'Create new type',

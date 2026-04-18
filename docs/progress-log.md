@@ -1418,3 +1418,11 @@
 
 ### Next step after card type row-level status action checkpoint
 - Reuse the method-aware table-cell pattern on another entity page, or keep deepening `card-types` with one more backend slice such as row-level success cues or selected-record-aware status guidance.
+
+### Card type row-level success cue checkpoint
+- Extended `card-types` selected-record summary so, when a backend mutation redirects back with a flash status, the selected record card also shows the latest flow result alongside the current model state.
+- This gives the new row-level and header-level toggle flows a more workspace-like confirmation path than relying on the global flash banner alone.
+- Added feature coverage proving the row-level status toggle now returns to a page that shows the success message both in the backend checkpoint banner and in the selected-record context.
+
+### Next step after card type row-level success cue checkpoint
+- Reuse the selected-record success-cue pattern on another real mutation surface, or keep deepening `card-types` with selected-record-aware guidance for why a tier is active versus draft.

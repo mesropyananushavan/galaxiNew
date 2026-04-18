@@ -1822,6 +1822,29 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_type_toggle_status_surfaces_selected_record_success_cue_after_redirect(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)
+            ->patch(route('admin.card-types.toggle-status', $cardType))
+            ->followRedirects();
+
+        $response
+            ->assertOk()
+            ->assertSee('Backend flow checkpoint')
+            ->assertSee('Card type "Galaxy Prime" is now draft.')
+            ->assertSee('Selected record summary')
+            ->assertSee('Latest flow result:')
+            ->assertSee('Card type "Galaxy Prime" is now draft.');
+    }
+
     public function test_card_types_page_replaces_preview_metrics_with_model_backed_counts(): void
     {
         CardType::create([
