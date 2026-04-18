@@ -1286,6 +1286,14 @@
 ### Next step after live form field-wrapper attribute checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Live form enum route-parameter checkpoint
+- Extended shared live-form route-parameter resolution so action and cancel routes can accept `BackedEnum` values in addition to plain strings and integers.
+- Updated feature coverage to prove enum-backed route parameters still resolve to the expected `card-types` draft-preview URLs.
+- This is a small controller-level bridge step, but it makes the shared live-form route wiring friendlier to typed config or controller data as the first real edit state evolves.
+
+### Next step after live form enum route-parameter checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

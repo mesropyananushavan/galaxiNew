@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Support\AdminResourcePageNormalizer;
+use BackedEnum;
 use Illuminate\Contracts\View\View;
 
 class ResourceIndexController extends Controller
@@ -78,7 +79,10 @@ class ResourceIndexController extends Controller
         }
 
         return array_filter(
-            $parameters,
+            array_map(
+                fn (mixed $value): mixed => $value instanceof BackedEnum ? $value->value : $value,
+                $parameters,
+            ),
             fn (mixed $value, mixed $key): bool => (is_string($key) || is_int($key))
                 && (is_string($value) || is_int($value)),
             ARRAY_FILTER_USE_BOTH,

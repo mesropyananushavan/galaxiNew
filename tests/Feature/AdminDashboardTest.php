@@ -9,6 +9,12 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
 
+enum AdminCardTypePreviewRoute: string
+{
+    case Gold = 'gold';
+    case Silver = 'silver';
+}
+
 class AdminDashboardTest extends TestCase
 {
     use RefreshDatabase;
@@ -1639,12 +1645,12 @@ class AdminDashboardTest extends TestCase
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
-            'cardType' => 'gold',
+            'cardType' => AdminCardTypePreviewRoute::Gold,
             'ignored' => ['bad'],
         ]);
         Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.draft-preview');
         Config::set('admin-pages.card-types.liveForm.cancelRouteParameters', [
-            'cardType' => 'silver',
+            'cardType' => AdminCardTypePreviewRoute::Silver,
             'ignored' => ['bad'],
         ]);
         Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Return to draft preview');
