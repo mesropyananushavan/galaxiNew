@@ -175,6 +175,13 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
+        $page['selectedRecordSummary'] = [
+            ['label' => 'Selected tier', 'value' => $selectedCardType->name],
+            ['label' => 'Slug', 'value' => $selectedCardType->slug],
+            ['label' => 'Points rate', 'value' => number_format((float) $selectedCardType->points_rate, 2).'x'],
+            ['label' => 'Laravel status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
+        ];
+
         $page['liveForm']['title'] = 'Edit card type in Laravel';
         $page['liveForm']['description'] = 'Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.';
         $page['liveForm']['method'] = 'PATCH';

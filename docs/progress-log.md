@@ -1378,3 +1378,11 @@
 
 ### Next step after card type model-backed metrics checkpoint
 - Keep pushing `card-types` from preview toward foundation by adding one more real read cue, such as a selected-record summary, or reuse the same model-backed metric pattern on another Phase 1 entity page.
+
+### Card type selected-record summary checkpoint
+- Added a reusable selected-record summary block to the preview shell so a request-driven edit state can expose real model context outside the form itself.
+- Wired `card-types` edit mode to show the selected tier, slug, points rate, and current Laravel status when `?cardType=<id>` is present.
+- Added unit and feature coverage so this first model-backed management context card stays visible as Phase 1 keeps replacing preview-only shell pieces.
+
+### Next step after card type selected-record summary checkpoint
+- Reuse the same selected-record context pattern for another entity page, or keep deepening `card-types` with one more small real read cue such as selected-record activity or status-focused guidance.

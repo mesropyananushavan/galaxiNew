@@ -197,6 +197,7 @@ class AdminResourcePageNormalizer
         return [
             'dependencyStatus' => $this->keyValueItems($page['dependencyStatus'] ?? []),
             'legacyMapping' => $this->keyValueItems($page['legacyMapping'] ?? []),
+            'selectedRecordSummary' => $this->keyValueItems($page['selectedRecordSummary'] ?? []),
         ];
     }
 

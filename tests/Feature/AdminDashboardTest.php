@@ -1702,6 +1702,15 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Selected record summary')
+            ->assertSee('Selected tier:')
+            ->assertSee('Galaxy Prime')
+            ->assertSee('Slug:')
+            ->assertSee('galaxy-prime')
+            ->assertSee('Points rate:')
+            ->assertSee('1.75x')
+            ->assertSee('Laravel status:')
+            ->assertSee('draft')
             ->assertSee('Edit card type in Laravel')
             ->assertSee('Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.')
             ->assertSee('>Save card type changes<', false)

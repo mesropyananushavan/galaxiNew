@@ -20,6 +20,7 @@ class AdminResourcePageNormalizerTest extends TestCase
             'activityTimeline' => 'invalid-timeline',
             'dependencyStatus' => 'invalid-dependency-status',
             'legacyMapping' => 'invalid-legacy-mapping',
+            'selectedRecordSummary' => 'invalid-selected-record-summary',
             'implementationHandoff' => 'invalid-handoff',
             'operationalNextSlice' => 'invalid-next-slice',
             'operatorChecklist' => 'invalid-operator-checklist',
@@ -38,6 +39,7 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertSame([], $normalized['activityTimeline']);
         $this->assertSame([], $normalized['dependencyStatus']);
         $this->assertSame([], $normalized['legacyMapping']);
+        $this->assertSame([], $normalized['selectedRecordSummary']);
         $this->assertSame([], $normalized['implementationHandoff']);
         $this->assertSame([], $normalized['operationalNextSlice']);
         $this->assertSame([], $normalized['operatorChecklist']);
@@ -579,6 +581,10 @@ class AdminResourcePageNormalizerTest extends TestCase
                 ['label' => 'Legacy source', 'value' => 'Old Galaxy staff and access matrix'],
                 'invalid-legacy-entry',
             ],
+            'selectedRecordSummary' => [
+                ['label' => 'Selected tier', 'value' => 'Galaxy Prime'],
+                ['label' => 'Broken selected record'],
+            ],
             'implementationHandoff' => [
                 'summary' => 'Start with a minimal role create or update path.',
                 'steps' => ['Persist a minimal role record.', 42],
@@ -624,6 +630,7 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertCount(1, $normalized['activityTimeline']);
         $this->assertCount(1, $normalized['dependencyStatus']);
         $this->assertCount(1, $normalized['legacyMapping']);
+        $this->assertCount(1, $normalized['selectedRecordSummary']);
         $this->assertSame(['Persist a minimal role record.'], $normalized['implementationHandoff']['steps']);
         $this->assertSame([
             ['label' => 'Create first role', 'tone' => 'primary'],
