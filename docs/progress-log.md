@@ -1442,3 +1442,11 @@
 
 ### Next step after card type publish-blocker guidance checkpoint
 - Reuse the selected-record blocker-guidance pattern on another entity page, or keep deepening `card-types` with one more backend slice such as selected-record-aware readiness or action gating.
+
+### Card type readiness gating checkpoint
+- Extended the selected `card-types` context with a readiness signal and explicit action-gating guidance for the chosen tier.
+- The page now explains not just what blocks imports/publish-like changes, but whether the selected record is actually ready for anything beyond draft-safe edits and small state corrections.
+- Added feature coverage so these readiness and gating cues remain visible in normal edit mode and after a successful toggle redirect.
+
+### Next step after card type readiness gating checkpoint
+- Reuse the readiness-gating pattern on another entity page, or keep deepening `card-types` with one more backend slice such as action availability that reacts directly to these readiness cues.
