@@ -236,6 +236,10 @@ class ResourceIndexController extends Controller
             [
                 'label' => 'Import rules',
                 'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $selectedCardType->is_active
+                    ? 'Blocked until live-tier accrual parity is verified.'
+                    : 'Blocked until draft parity review is complete.',
             ],
         ];
 

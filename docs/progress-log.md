@@ -1450,3 +1450,11 @@
 
 ### Next step after card type readiness gating checkpoint
 - Reuse the readiness-gating pattern on another entity page, or keep deepening `card-types` with one more backend slice such as action availability that reacts directly to these readiness cues.
+
+### Card type action-gating UI checkpoint
+- Extended shared admin action normalization and rendering so page actions can carry a disabled state with a visible gating reason.
+- Used that shared pattern on the selected `card-types` workspace so `Import rules` now renders as an explicitly gated action instead of a neutral placeholder.
+- Added feature and unit coverage for the disabled-action state to keep this reusable across other Phase 1 admin pages.
+
+### Next step after card type action-gating UI checkpoint
+- Reuse disabled action-gating on another Galaxy-specific page, or let `card-types` react further by switching more header actions from placeholder copy into explicit ready versus blocked states.

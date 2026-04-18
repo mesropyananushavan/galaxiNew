@@ -124,6 +124,35 @@ class AdminResourcePageNormalizerTest extends TestCase
         ], $normalized['table']['rows']);
     }
 
+    public function test_normalize_keeps_actions_with_disabled_state_and_reason(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'actions' => [
+                [
+                    'label' => 'Import rules',
+                    'tone' => 'secondary',
+                    'disabled' => true,
+                    'disabledReason' => 'Blocked until parity review is complete.',
+                ],
+                [
+                    'label' => 'Broken action',
+                    'disabled' => 'yes',
+                ],
+            ],
+        ]);
+
+        $this->assertSame([
+            [
+                'label' => 'Import rules',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until parity review is complete.',
+            ],
+        ], $normalized['actions']);
+    }
+
     public function test_normalize_returns_empty_sections_when_form_sections_block_is_malformed(): void
     {
         $normalizer = new AdminResourcePageNormalizer();
