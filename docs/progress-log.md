@@ -1466,3 +1466,11 @@
 
 ### Next step after services rules action-gating checkpoint
 - Reuse disabled action-gating on one more Galaxy-specific preview page such as `gifts` or `roles-permissions`, or start turning one of those blocked actions into a more explicit readiness-driven state model.
+
+### Gifts action-gating checkpoint
+- Reused the shared disabled-action pattern on the `gifts` preview so blocked stock and publish work now reads as intentionally staged instead of generically available.
+- The page header and form preview now explain why stock audit and gift publishing remain unavailable while the reward workspace is still config-backed.
+- Added feature coverage so the disabled-action cues remain visible as the Galaxy-specific admin shell gets less starter-like across multiple sections.
+
+### Next step after gifts action-gating checkpoint
+- Reuse disabled action-gating on `roles-permissions`, or start turning one of the blocked preview actions into a more explicit readiness-driven state model tied to parity cues.

@@ -719,7 +719,7 @@ return [
         'nextStep' => 'Replace sample controls with real gift CRUD, stock tracking, and redemption flows.',
         'actions' => [
             ['label' => 'New gift', 'tone' => 'primary'],
-            ['label' => 'Stock audit', 'tone' => 'secondary'],
+            ['label' => 'Stock audit', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until stock checks are backed by Laravel inventory data.'],
         ],
         'metrics' => [
             ['label' => 'Active gifts', 'value' => '2'],
@@ -763,7 +763,7 @@ return [
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
-                ['label' => 'Publish gift', 'tone' => 'primary'],
+                ['label' => 'Publish gift', 'tone' => 'primary', 'disabled' => true, 'disabledReason' => 'Blocked until gift CRUD and redemption parity exist beyond the preview shell.'],
             ],
         ],
         'emptyState' => [
