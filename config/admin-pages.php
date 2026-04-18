@@ -597,7 +597,7 @@ return [
         'nextStep' => 'Replace sample controls with real rule CRUD, priority ordering, and condition editing.',
         'actions' => [
             ['label' => 'New rule', 'tone' => 'primary'],
-            ['label' => 'Review priorities', 'tone' => 'secondary'],
+            ['label' => 'Review priorities', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until rule priority resolution is verified in Laravel.'],
         ],
         'metrics' => [
             ['label' => 'Active rules', 'value' => '2'],
@@ -641,7 +641,7 @@ return [
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
-                ['label' => 'Publish rule', 'tone' => 'primary'],
+                ['label' => 'Publish rule', 'tone' => 'primary', 'disabled' => true, 'disabledReason' => 'Blocked until rule CRUD and parity checks exist beyond the preview shell.'],
             ],
         ],
         'emptyState' => [

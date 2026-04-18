@@ -1458,3 +1458,11 @@
 
 ### Next step after card type action-gating UI checkpoint
 - Reuse disabled action-gating on another Galaxy-specific page, or let `card-types` react further by switching more header actions from placeholder copy into explicit ready versus blocked states.
+
+### Services rules action-gating checkpoint
+- Reused the shared disabled-action pattern on the `services-rules` preview so blocked work now looks intentionally gated instead of generically clickable.
+- The page header and form preview now explain why priority review and rule publishing are still unavailable while Phase 1 remains preview-only for this workspace.
+- Added feature coverage so the disabled-state cues stay visible as this shared action pattern spreads beyond `card-types`.
+
+### Next step after services rules action-gating checkpoint
+- Reuse disabled action-gating on one more Galaxy-specific preview page such as `gifts` or `roles-permissions`, or start turning one of those blocked actions into a more explicit readiness-driven state model.
