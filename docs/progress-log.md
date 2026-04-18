@@ -86,6 +86,11 @@
 - The access workspace now derives active/draft counts, scoped-shop count, permission previews, and assigned-user totals from Laravel models instead of only static config rows.
 - Added feature coverage proving the page swaps from preview rows to model-backed access data once real roles and permissions are present, making `roles-permissions` the next real Phase 1 read slice after the operational modules.
 
+### Roles-permissions selected-record context checkpoint
+- Extended the model-backed `roles-permissions` slice so role rows now link into a request-driven `?role=` review state instead of staying as plain static labels.
+- When a saved role is selected, the workspace now shows Laravel-backed access summary data, permission-bundle guidance, and request-specific activity notes instead of only the generic preview context.
+- Added feature coverage proving the selected role context and latest-saved-role shortcut remain visible once real roles and permissions exist.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

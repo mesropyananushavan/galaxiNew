@@ -154,13 +154,93 @@ class ResourceIndexController extends Controller
             $permissionPreview = $role->permissions->pluck('name')->take(3)->implode(', ');
 
             return [
-                $role->name,
+                [
+                    'label' => $role->name,
+                    'href' => route('admin.roles-permissions.index', ['role' => $role->id], absolute: false),
+                ],
                 $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice',
                 $permissionPreview !== '' ? $permissionPreview : 'No permissions linked yet',
                 (string) $role->users_count,
                 $role->permissions_count > 0 ? 'active' : 'draft',
             ];
         })->all();
+
+        $latestRole = $roles->sortByDesc('id')->first();
+
+        if ($latestRole !== null) {
+            $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
+
+            $page['actions'] = [
+                ...$actions,
+                [
+                    'label' => 'Review latest saved role',
+                    'tone' => 'secondary',
+                    'href' => route('admin.roles-permissions.index', ['role' => $latestRole->id], absolute: false),
+                ],
+            ];
+        }
+
+        $selectedRoleId = request()->integer('role');
+
+        if ($selectedRoleId < 1) {
+            return $page;
+        }
+
+        $selectedRole = $roles->firstWhere('id', $selectedRoleId);
+
+        if (! $selectedRole instanceof Role) {
+            return $page;
+        }
+
+        $scope = $selectedRole->users->pluck('shop.name')->filter()->unique();
+        $permissionPreview = $selectedRole->permissions->pluck('name');
+
+        $page['selectedRecordSummary'] = [
+            ['label' => 'Selected role', 'value' => $selectedRole->name],
+            ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
+            ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
+            ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
+            ['label' => 'Laravel status', 'value' => $selectedRole->permissions_count > 0 ? 'active' : 'draft'],
+            [
+                'label' => 'Access guidance',
+                'value' => $selectedRole->permissions_count > 0
+                    ? 'This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.'
+                    : 'This role is still a draft shell in Laravel, which keeps it safe for parity checks before operators rely on it for staff access.',
+            ],
+        ];
+
+        $page['actions'] = [
+            [
+                'label' => 'Back to all roles',
+                'tone' => 'primary',
+                'href' => route('admin.roles-permissions.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedRole->name),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Review matrix',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.',
+            ],
+        ];
+
+        $page['activityTimeline'] = [
+            [
+                'title' => sprintf('%s selected for Laravel review', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => 'The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.',
+            ],
+            [
+                'title' => sprintf('%s permission bundle reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $permissionPreview->isNotEmpty()
+                    ? sprintf('This role currently exposes %s in Laravel and the review context now mirrors that access bundle.', $permissionPreview->take(3)->implode(', '))
+                    : 'This role currently has no linked permissions in Laravel, so it remains a safe draft for parity-first access review.',
+            ],
+        ];
 
         return $page;
     }

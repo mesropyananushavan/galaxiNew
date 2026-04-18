@@ -264,15 +264,66 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Shop Manager')
+            ->assertSee('href="/admin/roles-permissions?role=', false)
             ->assertSee('Galaxy Central')
             ->assertSee('Manage cards, Manage gifts')
             ->assertSee('Cashier Draft')
             ->assertSee('No permissions linked yet')
+            ->assertSee('Review latest saved role')
             ->assertSee('Active roles')
             ->assertSee('Draft roles')
             ->assertSee('Scoped shops')
             ->assertSee('active')
             ->assertSee('draft');
+    }
+
+    public function test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-selected-role',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Manager',
+            'slug' => 'shop-manager-selected-role',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Manage cards',
+            'slug' => 'manage-cards-selected-role',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $assignedUser = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all roles')
+            ->assertSee('href="/admin/roles-permissions"', false)
+            ->assertSee('Reviewing: Shop Manager')
+            ->assertSee('Selected role')
+            ->assertSee('Scope')
+            ->assertSee('Assigned users')
+            ->assertSee('Permission count')
+            ->assertSee('Laravel status')
+            ->assertSee('Access guidance')
+            ->assertSee('This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.')
+            ->assertSee('Shop Manager selected for Laravel review')
+            ->assertSee('Current request')
+            ->assertSee('The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.')
+            ->assertSee('Shop Manager permission bundle reflected from model state')
+            ->assertSee('Manage cards');
     }
 
     public function test_authenticated_user_can_access_cards_operational_index_shape(): void

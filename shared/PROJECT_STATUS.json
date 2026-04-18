@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T12:03:00Z",
+  "updated_at": "2026-04-18T12:18:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -55,7 +55,7 @@
     "module": "Roles & Permissions",
     "status": "IN_PROGRESS",
     "owner": "backend",
-    "summary": "The roles-permissions workspace now swaps preview rows and summary metrics for Eloquent-backed role and permission data when real records exist, making it the next real Laravel read slice after the operational modules.",
+    "summary": "The roles-permissions workspace now supports both a model-backed index and a request-driven selected-role context, making it a real Laravel read slice with record-specific access review state.",
     "code_paths": [
       "app/Http/Controllers/Admin/ResourceIndexController.php",
       "tests/Feature/AdminDashboardTest.php"
@@ -64,6 +64,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "assignment UI, matrix editing, and authorization write flows remain pending even though the model-backed roles-permissions read slice is now live"
+    "blocker_reason": "assignment UI, matrix editing, and authorization write flows remain pending even though the model-backed roles-permissions index and selected-role review slice are now live"
   }
 }
