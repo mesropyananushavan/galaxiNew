@@ -665,12 +665,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Remaining backend gap', 'value' => 'Publish logic and rule-import parity still remain preview-only for this tier'],
         ];
 
-        if (is_string(session('status'))) {
-            $page['dependencyStatus'][] = [
-                'label' => 'Latest flow result',
-                'value' => session('status'),
-            ];
-        }
+        $page = $this->appendCardTypeLatestFlowDependencyStatus($page);
 
         $page['liveForm']['title'] = 'Edit card type in Laravel';
         $page['liveForm']['description'] = 'Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.';
@@ -787,6 +782,24 @@ class ResourceIndexController extends Controller
             'description' => $status,
         ]);
         $page['activityTimeline'] = $timeline;
+
+        return $page;
+    }
+
+    private function appendCardTypeLatestFlowDependencyStatus(array $page): array
+    {
+        $status = session('status');
+
+        if (! is_string($status)) {
+            return $page;
+        }
+
+        $dependencyStatus = is_array($page['dependencyStatus'] ?? null) ? $page['dependencyStatus'] : [];
+        $dependencyStatus[] = [
+            'label' => 'Latest flow result',
+            'value' => $status,
+        ];
+        $page['dependencyStatus'] = $dependencyStatus;
 
         return $page;
     }

@@ -191,6 +191,11 @@
 - Confirmed the toggle-success flow now keeps the same latest-write cue visible across flash, selected summary, recent activity, and dependency context together, `1 passed`.
 - This makes the current Phase 1 workspace more coherent for operators because every main context block now agrees on the latest action outcome for the selected tier.
 
+### Card-types dependency feedback pattern hardening checkpoint
+- Extracted the selected `card-types` dependency-status latest-write cue into a small helper so all latest-flow feedback paths now follow the same controller pattern instead of growing as inline session checks.
+- Re-ran the focused toggle-success regression after the extraction, `1 passed`.
+- This keeps the live `card-types` workspace a bit easier to maintain as the selected-tier feedback model keeps getting richer.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
