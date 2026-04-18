@@ -281,6 +281,11 @@
 - Confirmed the reporting workspace now spells out current shop, card, cardholder, and role coverage in the dependency block, `2 passed`.
 - This makes the reporting slice more reviewable because source availability is now stated directly instead of being inferred only from metrics and rows.
 
+### Reports reporting-posture checkpoint
+- Extended the Laravel-backed `reports` dependency context with an explicit `Reporting posture` line so the page now states in one place that reporting is live-backed for read-only review but still parity-first for presets and exports.
+- Confirmed the reporting workspace now carries that posture cue alongside source coverage and backend dependency status, `2 passed`.
+- This makes the reporting slice easier to scan because operators no longer have to combine notice text and blocker copy to understand the current safe operating mode.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

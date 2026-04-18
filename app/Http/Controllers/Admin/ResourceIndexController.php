@@ -574,6 +574,7 @@ class ResourceIndexController extends Controller
 
         $page['dependencyStatus'] = [
             ['label' => 'Domain model', 'value' => 'Report catalog is still lightweight, but source counts now come from live Laravel models'],
+            ['label' => 'Reporting posture', 'value' => 'This workspace is now live-backed for read-only source review, but preset and export flows should stay parity-first until the reporting pipeline is verified.'],
             ['label' => 'Source coverage', 'value' => sprintf('Laravel reporting inputs currently cover %d shops, %d cards, %d cardholders, and %d roles for read-only review.', $shopCount, $cardCount, $cardHolderCount, $roleCount)],
             ['label' => 'Backend dependency', 'value' => 'Preset handling, query shaping, and export pipeline are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Legacy report presets and export expectations still need live verification'],
