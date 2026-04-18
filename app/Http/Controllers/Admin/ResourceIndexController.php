@@ -192,6 +192,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
+            ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
+                ? 'This role already has visible shop scope in Laravel, so any scope change should be treated as a parity-sensitive access change.'
+                : 'No shop scope is linked yet, which keeps this role safer for draft review before scope parity is confirmed.'],
             ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
             ['label' => 'Assigned staff preview', 'value' => $assignedUserPreview->isNotEmpty() ? $assignedUserPreview->join(', ') : 'No staff linked yet'],
             ['label' => 'Assignment guidance', 'value' => $selectedRole->users_count > 0

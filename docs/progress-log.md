@@ -241,6 +241,11 @@
 - Confirmed the selected-role review now surfaces the current linked shop name directly in the summary context, `1 passed`.
 - This makes the live access-review slice more readable for operators because shop scope is now visible as its own quick preview cue alongside staff and permission previews.
 
+### Roles-permissions scope-guidance summary checkpoint
+- Extended the selected `roles-permissions` summary with an explicit `Scope guidance` line so visible shop scope now carries a direct parity-review interpretation instead of reading as a bare list.
+- Confirmed the selected-role review now explains that linked shop scope should be treated as a parity-sensitive access change, `1 passed`.
+- This makes the live access-review slice more useful because scope visibility and scope meaning now sit together in the summary context instead of being split between summary and posture blocks.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

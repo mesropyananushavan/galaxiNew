@@ -317,6 +317,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope')
             ->assertSee('Shop scope preview')
             ->assertSee('Galaxy Central')
+            ->assertSee('Scope guidance')
+            ->assertSee('This role already has visible shop scope in Laravel, so any scope change should be treated as a parity-sensitive access change.')
             ->assertSee('Assigned users')
             ->assertSee('Assigned staff preview')
             ->assertSee('Nare Gevorgyan')
