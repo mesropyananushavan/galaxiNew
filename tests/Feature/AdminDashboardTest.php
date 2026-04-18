@@ -330,17 +330,74 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('GX-900001')
+            ->assertSee('href="/admin/cards?card=', false)
             ->assertSee('GX-900002')
             ->assertSee('GX-900003')
             ->assertSee('Anna Petrova')
             ->assertSee('Unassigned')
             ->assertSee('Galaxy Gold')
             ->assertSee('Galaxy Central')
+            ->assertSee('Review latest saved card')
             ->assertSee('Active cards')
             ->assertSee('Draft cards')
             ->assertSee('Blocked cards')
             ->assertSee('2026-04-10')
             ->assertSee('2026-03-28');
+    }
+
+    public function test_cards_page_surfaces_selected_card_context_from_laravel_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-selected-card',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-selected-card@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Gold',
+            'slug' => 'galaxy-gold-selected-card',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-910001',
+            'status' => 'blocked',
+            'activated_at' => '2026-03-28 09:15:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all cards')
+            ->assertSee('href="/admin/cards"', false)
+            ->assertSee('Reviewing: GX-910001')
+            ->assertSee('Selected card')
+            ->assertSee('Holder')
+            ->assertSee('Card type')
+            ->assertSee('Shop')
+            ->assertSee('Laravel status')
+            ->assertSee('Activated')
+            ->assertSee('Inventory guidance')
+            ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.')
+            ->assertSee('GX-910001 selected for Laravel review')
+            ->assertSee('Current request')
+            ->assertSee('The shared cards workspace is now loading this saved inventory record from Laravel data instead of only static preview rows.')
+            ->assertSee('GX-910001 status reflected from model state');
     }
 
     public function test_authenticated_user_can_access_cardholders_operational_index_shape(): void

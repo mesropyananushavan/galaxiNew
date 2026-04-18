@@ -147,13 +147,91 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $cards->map(fn (Card $card): array => [
-            $card->number,
+            [
+                'label' => $card->number,
+                'href' => route('admin.cards.index', ['card' => $card->id], absolute: false),
+            ],
             $card->holder?->full_name ?? 'Unassigned',
             $card->type?->name ?? 'Unknown',
             $card->shop?->name ?? 'Unassigned',
             $card->status,
             $card->activated_at?->format('Y-m-d') ?? '—',
         ])->all();
+
+        $latestCard = $cards->sortByDesc('id')->first();
+
+        if ($latestCard !== null) {
+            $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
+
+            $page['actions'] = [
+                ...$actions,
+                [
+                    'label' => 'Review latest saved card',
+                    'tone' => 'secondary',
+                    'href' => route('admin.cards.index', ['card' => $latestCard->id], absolute: false),
+                ],
+            ];
+        }
+
+        $selectedCardId = request()->integer('card');
+
+        if ($selectedCardId < 1) {
+            return $page;
+        }
+
+        $selectedCard = $cards->firstWhere('id', $selectedCardId);
+
+        if (! $selectedCard instanceof Card) {
+            return $page;
+        }
+
+        $page['selectedRecordSummary'] = [
+            ['label' => 'Selected card', 'value' => $selectedCard->number],
+            ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
+            ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
+            ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
+            ['label' => 'Laravel status', 'value' => $selectedCard->status],
+            ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
+            [
+                'label' => 'Inventory guidance',
+                'value' => match ($selectedCard->status) {
+                    'active' => 'This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.',
+                    'blocked' => 'This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.',
+                    default => 'This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.',
+                },
+            ],
+        ];
+
+        $page['actions'] = [
+            [
+                'label' => 'Back to all cards',
+                'tone' => 'primary',
+                'href' => route('admin.cards.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedCard->number),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Review blocked cards',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until legacy blocked-card semantics are verified against the Laravel inventory flow.',
+            ],
+        ];
+
+        $page['activityTimeline'] = [
+            [
+                'title' => sprintf('%s selected for Laravel review', $selectedCard->number),
+                'time' => 'Current request',
+                'description' => 'The shared cards workspace is now loading this saved inventory record from Laravel data instead of only static preview rows.',
+            ],
+            [
+                'title' => sprintf('%s status reflected from model state', $selectedCard->number),
+                'time' => 'Current request',
+                'description' => sprintf('This card is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedCard->status),
+            ],
+        ];
 
         return $page;
     }

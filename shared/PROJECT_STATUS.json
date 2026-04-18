@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T11:03:00Z",
+  "updated_at": "2026-04-18T11:18:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -55,7 +55,7 @@
     "module": "Cards",
     "status": "IN_PROGRESS",
     "owner": "backend",
-    "summary": "The cards workspace now swaps preview rows and summary metrics for Eloquent-backed inventory data when real Card records exist, making it the next real Laravel read slice after cardholders.",
+    "summary": "The cards workspace now supports both a model-backed inventory index and a request-driven selected-card context, making it the next real Laravel read slice after cardholders with record-specific review state.",
     "code_paths": [
       "app/Http/Controllers/Admin/ResourceIndexController.php",
       "tests/Feature/AdminDashboardTest.php"
@@ -64,6 +64,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "issue, block, and assignment flows remain pending even though the model-backed card inventory slice is now live"
+    "blocker_reason": "issue, block, and assignment flows remain pending even though the model-backed card inventory and selected-card review slice are now live"
   }
 }
