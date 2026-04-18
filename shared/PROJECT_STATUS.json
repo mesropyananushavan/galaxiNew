@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T10:03:00Z",
+  "updated_at": "2026-04-18T10:18:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,18 +52,18 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Roles & Permissions",
+    "module": "Shops",
     "status": "IN_PROGRESS",
-    "owner": "frontend",
-    "summary": "The roles-permissions workspace now explicitly gates role creation, matrix review, and publishing so the admin shell reads as intentionally staged while the first Laravel-backed authorization write flow is still pending.",
+    "owner": "backend",
+    "summary": "The shops workspace now swaps preview rows and summary metrics for Eloquent-backed data when real Shop records exist, making it the next real Laravel read slice outside card-types.",
     "code_paths": [
-      "config/admin-pages.php",
+      "app/Http/Controllers/Admin/ResourceIndexController.php",
       "tests/Feature/AdminDashboardTest.php"
     ],
     "doc_paths": [
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "role creation and publishing remain intentionally blocked until the first Laravel-backed role write flow and legacy permission parity checks are ready"
+    "blocker_reason": "shop creation and scope review remain intentionally gated until write flows and branch-ownership parity checks are ready, even though the read-only index slice is now live"
   }
 }

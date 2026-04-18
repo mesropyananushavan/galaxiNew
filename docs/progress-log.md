@@ -56,6 +56,11 @@
 - Added Galaxy-specific blocker copy tying role creation to the first Laravel-backed write slice for role identity, scope, and permission-bundle parity.
 - Extended feature coverage so the disabled create cue stays visible alongside the already gated matrix review and role publish controls.
 
+### Shops model-backed read checkpoint
+- Replaced the preview-only `shops` table and summary metrics with Eloquent-backed values whenever real `Shop` records exist.
+- The shop workspace now derives active/paused counts, assigned-manager count, manager names, and holder/card totals from Laravel models instead of only static config rows.
+- Added feature coverage proving the page swaps from preview rows to model-backed data once real shops are present, making `shops` the next real Phase 1 read slice outside `card-types`.
+
 ### Card-type preview-route harness checkpoint
 - Fixed the failing card-type preview-route wiring locally in `tests/Feature/AdminDashboardTest.php` instead of widening production routing scope.
 - Replaced the inline preview-route registration pattern with a tiny test helper that registers full `admin.*` preview route names and refreshes Laravel's route name/action lookups for runtime-added test routes.

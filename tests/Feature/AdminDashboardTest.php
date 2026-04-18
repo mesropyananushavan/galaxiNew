@@ -2,7 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Models\Card;
+use App\Models\CardHolder;
 use App\Models\CardType;
+use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Config;
@@ -382,6 +385,66 @@ class AdminDashboardTest extends TestCase
             ->assertSee('branch ownership model')
             ->assertSee('Manager assigned')
             ->assertSee('Airport Kiosk');
+    }
+
+    public function test_shops_page_replaces_preview_rows_with_model_backed_index_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Airport',
+            'code' => 'galaxy-airport',
+            'is_active' => false,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Nare Gevorgyan',
+            'shop_id' => $shop->id,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Aram Petrosyan',
+            'phone' => '+37410000000',
+            'email' => 'aram@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-200001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Central')
+            ->assertSee('galaxy-central')
+            ->assertSee('Nare Gevorgyan')
+            ->assertSee('Galaxy Airport')
+            ->assertSee('galaxy-airport')
+            ->assertSee('Unassigned')
+            ->assertSee('Assigned managers')
+            ->assertSee('>1<', false)
+            ->assertSee('active')
+            ->assertSee('paused');
     }
 
     public function test_authenticated_user_can_access_checks_points_operational_index_shape(): void

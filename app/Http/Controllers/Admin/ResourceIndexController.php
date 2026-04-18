@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\CardType;
+use App\Models\Shop;
 use App\Support\AdminResourcePageNormalizer;
 use BackedEnum;
 use Illuminate\Contracts\Routing\UrlRoutable;
@@ -117,11 +118,41 @@ class ResourceIndexController extends Controller
 
     private function enrichPage(string $resource, array $page): array
     {
-        if ($resource !== 'card-types') {
+        return match ($resource) {
+            'card-types' => $this->enrichCardTypesPage($page),
+            'shops' => $this->enrichShopsPage($page),
+            default => $page,
+        };
+    }
+
+    private function enrichShopsPage(array $page): array
+    {
+        $shops = Shop::query()
+            ->withCount(['users', 'cardHolders', 'cards'])
+            ->with(['users' => fn ($query) => $query->orderBy('name')])
+            ->orderBy('name')
+            ->get();
+
+        if ($shops->isEmpty()) {
             return $page;
         }
 
-        return $this->enrichCardTypesPage($page);
+        $page['metrics'] = [
+            ['label' => 'Active shops', 'value' => (string) $shops->where('is_active', true)->count()],
+            ['label' => 'Paused shops', 'value' => (string) $shops->where('is_active', false)->count()],
+            ['label' => 'Assigned managers', 'value' => (string) $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count()],
+        ];
+
+        $page['table']['rows'] = $shops->map(fn (Shop $shop): array => [
+            $shop->name,
+            $shop->code,
+            $shop->users->first()?->name ?? 'Unassigned',
+            (string) $shop->card_holders_count,
+            (string) $shop->cards_count,
+            $shop->is_active ? 'active' : 'paused',
+        ])->all();
+
+        return $page;
     }
 
     private function enrichCardTypesPage(array $page): array
