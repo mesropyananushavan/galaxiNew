@@ -1263,6 +1263,65 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gift redemption report');
     }
 
+    public function test_reports_page_replaces_preview_catalog_with_model_backed_reporting_sources(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-reports',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Tier',
+            'slug' => 'reporting-tier-reports',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Sargsyan',
+            'phone' => '+37499111223',
+            'email' => 'mariam.reports@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223344',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        Role::create([
+            'name' => 'Reporting Lead',
+            'slug' => 'reporting-lead-reports',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports');
+
+        $response
+            ->assertOk()
+            ->assertSee('Live sources')
+            ->assertSee('Tracked shops')
+            ->assertSee('Tracked cards')
+            ->assertSee('1')
+            ->assertSee('Cards by shop')
+            ->assertSee('1 shops')
+            ->assertSee('Cardholder status overview')
+            ->assertSee('1 holders')
+            ->assertSee('Role access coverage')
+            ->assertSee('1 roles')
+            ->assertSee('Reporting workspace is now partially Laravel-backed')
+            ->assertSee('Catalog metrics and report entry rows now reflect live Galaxy source counts from Laravel models, while presets and exports remain preview-only.')
+            ->assertSee('Report catalog is still lightweight, but source counts now come from live Laravel models')
+            ->assertSee('Preset handling, query shaping, and export pipeline are still pending');
+    }
+
     public function test_authenticated_user_can_access_services_rules_operational_index_shape(): void
     {
         $user = User::factory()->create();

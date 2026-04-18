@@ -266,6 +266,11 @@
 - Confirmed the selected-role review now explains that a live bundle should be treated as parity-sensitive access coverage, `1 passed`.
 - This makes the live access-review slice more useful because permission visibility and permission meaning now sit together in the summary context instead of being split between counts and later guidance copy.
 
+### Reports live-source read-slice checkpoint
+- Added the first real Laravel-backed `reports` read slice in `ResourceIndexController`, reusing existing `Shop`, `Card`, `CardHolder`, and `Role` models to replace preview metrics and report rows when live data exists.
+- The reports workspace now surfaces live source counts, model-backed report entry rows, and a partially Laravel-backed notice while keeping the empty-data preview path intact, `2 passed`.
+- This opens a new safe Phase 1 slice outside `roles-permissions` because the reporting workspace now reflects real Galaxy data sources without introducing export or analytics write scope.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

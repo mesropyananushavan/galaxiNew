@@ -127,6 +127,7 @@ class ResourceIndexController extends Controller
             'cardholders' => $this->enrichCardHoldersPage($page),
             'cards' => $this->enrichCardsPage($page),
             'roles-permissions' => $this->enrichRolesPermissionsPage($page),
+            'reports' => $this->enrichReportsPage($page),
             default => $page,
         };
     }
@@ -525,6 +526,43 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => sprintf('This branch is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedShop->is_active ? 'active' : 'paused'),
             ],
+        ];
+
+        return $page;
+    }
+
+    private function enrichReportsPage(array $page): array
+    {
+        $shopCount = Shop::query()->count();
+        $cardCount = Card::query()->count();
+        $cardHolderCount = CardHolder::query()->count();
+        $roleCount = Role::query()->count();
+
+        if ($shopCount === 0 && $cardCount === 0 && $cardHolderCount === 0 && $roleCount === 0) {
+            return $page;
+        }
+
+        $page['metrics'] = [
+            ['label' => 'Live sources', 'value' => (string) collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])->filter(fn (int $count): bool => $count > 0)->count()],
+            ['label' => 'Tracked shops', 'value' => (string) $shopCount],
+            ['label' => 'Tracked cards', 'value' => (string) $cardCount],
+        ];
+
+        $page['table']['rows'] = [
+            ['Cards by shop', $shopCount > 0 ? sprintf('%d shops', $shopCount) : 'No shops tracked yet', 'Current snapshot', 'Table', $cardCount > 0 ? 'live' : 'draft'],
+            ['Cardholder status overview', $cardHolderCount > 0 ? sprintf('%d holders', $cardHolderCount) : 'No holders tracked yet', 'Current snapshot', 'Table', $cardHolderCount > 0 ? 'live' : 'draft'],
+            ['Role access coverage', $roleCount > 0 ? sprintf('%d roles', $roleCount) : 'No roles tracked yet', 'Current snapshot', 'Table', $roleCount > 0 ? 'live' : 'draft'],
+        ];
+
+        $page['notice'] = [
+            'title' => 'Reporting workspace is now partially Laravel-backed',
+            'description' => 'Catalog metrics and report entry rows now reflect live Galaxy source counts from Laravel models, while presets and exports remain preview-only.',
+        ];
+
+        $page['dependencyStatus'] = [
+            ['label' => 'Domain model', 'value' => 'Report catalog is still lightweight, but source counts now come from live Laravel models'],
+            ['label' => 'Backend dependency', 'value' => 'Preset handling, query shaping, and export pipeline are still pending'],
+            ['label' => 'Operational dependency', 'value' => 'Legacy report presets and export expectations still need live verification'],
         ];
 
         return $page;
