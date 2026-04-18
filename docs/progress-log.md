@@ -1246,6 +1246,14 @@
 ### Next step after hidden live form zero-value checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Live form submit attribute checkpoint
+- Added config-driven `submitAttributes` support to the shared live-form foundation so submit buttons can carry mode-specific metadata without forking the Blade partial.
+- Reused the same normalized attribute rules already used by fields, including clean boolean-attribute rendering, and added unit plus feature coverage for the new button path.
+- This is a small UI-structure step, but it gives the future `card-types` edit/update state a cleaner way to distinguish submit intent or button state inside the shared form shell.
+
+### Next step after live form submit attribute checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

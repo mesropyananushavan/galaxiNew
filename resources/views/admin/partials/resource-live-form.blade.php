@@ -124,7 +124,15 @@
         </div>
 
         <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-            <button type="submit" class="button button-primary">{{ $liveForm['submitLabel'] }}</button>
+            <button type="submit" class="button button-primary"
+                @foreach ($liveForm['submitAttributes'] as $attribute => $value)
+                    @if ($value === true)
+                        {{ $attribute }}
+                    @else
+                        {{ $attribute }}="{{ $value }}"
+                    @endif
+                @endforeach
+            >{{ $liveForm['submitLabel'] }}</button>
 
             @if (! empty($liveForm['cancelAction']))
                 <a href="{{ $liveForm['cancelAction']['href'] }}" class="button button-secondary">{{ $liveForm['cancelAction']['label'] }}</a>

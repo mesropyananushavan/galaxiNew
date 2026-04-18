@@ -232,6 +232,7 @@ class AdminResourcePageNormalizer
             'method' => $this->liveFormMethod($form['method'] ?? null),
             'action' => $form['action'],
             'submitLabel' => $form['submitLabel'],
+            'submitAttributes' => $this->liveFormAttributes($form['submitAttributes'] ?? []),
             'cancelAction' => $this->liveFormCancelAction($form['cancelAction'] ?? null),
             'fields' => array_values(array_filter(array_map(function (mixed $field): ?array {
                 if (! is_array($field)
