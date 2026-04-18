@@ -76,6 +76,11 @@
 - When a saved holder is selected, the workspace now shows Laravel-backed lookup summary data, status-specific guidance, and request-specific activity notes instead of only the generic preview context.
 - Added feature coverage proving the selected holder context and latest-saved-holder shortcut remain visible once real records exist.
 
+### QA checkpoint for live Phase 1 read slices
+- Re-ran the focused Laravel-backed read-slice coverage for `shops`, `cardholders`, and `cards` after their new selected-record contexts landed.
+- Confirmed that all six targeted feature tests pass together, `6 passed`, so the current read-only slices hold as one coherent Phase 1 checkpoint rather than isolated one-off changes.
+- This gives a cleaner base for the next real slice, because the current live review paths are now verified together before more modules start switching away from preview-only data.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
