@@ -116,6 +116,11 @@
 - Re-ran the focused `roles-permissions` Laravel-backed coverage, `4 passed`, to confirm the normal selected-role path plus both fallback cases hold together.
 - This keeps the access review foundation safer as the shared selected-record plumbing continues to evolve.
 
+### Operational malformed-selection fallback checkpoint
+- Added regression coverage proving the live `shops`, `cardholders`, and `cards` slices also ignore malformed non-numeric selected-record queries and fall back cleanly to model-backed index states.
+- Re-ran the focused malformed-query coverage for those operational modules, `6 passed`, to confirm both unknown-id and malformed-query fallback behavior remain stable.
+- This completes the basic hardening loop for request-driven operational review state before the next bigger Phase 1 slice lands.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
