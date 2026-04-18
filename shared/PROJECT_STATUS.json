@@ -1,287 +1,54 @@
 {
-  "version": 1,
-  "project": "galaxi migration",
-  "status_source": "galaxiNew/shared/PROJECT_STATUS.json",
-  "language": "ru",
+  "project": "galaxiNew",
   "updated_at": "2026-04-18T07:51:00Z",
-  "updated_by": "pm",
-  "notes": [
-    "PM bootstrap выполнен на основе фактически найденных репозиториев в /home/openclaw/.openclaw/workspace/repos, так как пути /workspace/galaxiOld и /workspace/galaxiNew отсутствуют.",
-    "На этом этапе задачи не помечаются DONE: для завершения требуются код, документация и QA-подтверждение.",
-    "Ownership разведен по модулям без пересечений внутри списка задач."
-  ],
-  "repositories": {
+  "source_of_truth": true,
+  "bootstrap": {
+    "type": "architect-migration-bootstrap",
+    "status": "completed",
+    "notes": [
+      "Legacy and target repos were analyzed under /home/openclaw/.openclaw/workspace/repos because the paths from the task did not exist.",
+      "Only documentation/specification artifacts were updated in this bootstrap.",
+      "Traceability and parity rules were applied across migration documents."
+    ]
+  },
+  "repos": {
     "legacy": {
       "path": "/home/openclaw/.openclaw/workspace/repos/galaxiOld",
       "branch": "main",
-      "access": "read"
+      "sync": "fetched"
     },
     "target": {
       "path": "/home/openclaw/.openclaw/workspace/repos/galaxiNew",
-      "branch": "role-pm/bootstrap-project-status",
+      "branch": "architect/bootstrap-migration-docs",
       "base_branch": "role-backend/init-laravel-foundation",
-      "access": "write"
+      "sync": "fetched"
     }
   },
-  "rules": {
-    "done_policy": "DONE допустим только при наличии кода, актуальной документации и QA-подтверждения.",
-    "default_task_state": "TODO",
-    "allowed_active_states": [
-      "TODO",
-      "IN_PROGRESS",
-      "BLOCKED"
-    ],
-    "allowed_qa_states": [
-      "NOT_STARTED",
-      "NEEDS_QA",
-      "IN_QA",
-      "PASSED"
-    ]
+  "documents": {
+    "migration_plan": "docs/migration_plan.md",
+    "db_schema": "docs/db_schema.md",
+    "api_endpoints": "docs/api_endpoints.md",
+    "module_mapping": "docs/module_mapping.md"
   },
-  "tasks": [
-    {
-      "id": "AUTH-001",
-      "module": "Auth",
-      "title": "Сверить legacy auth/access model и зафиксировать Laravel parity backlog",
-      "status": "TODO",
-      "owner": "backend-auth",
-      "depends_on": [],
-      "spec_files": [
-        "docs/migration-plan.md",
-        "docs/blueprint.md",
-        "docs/phase-1-plan.md"
-      ],
-      "code_paths": [
-        "galaxiOld/public_html/index.php",
-        "galaxiOld/public_html/config.php",
-        "galaxiNew/config/auth.php",
-        "galaxiNew/app/Models",
-        "galaxiNew/database/migrations"
-      ],
-      "qa_status": "NOT_STARTED",
-      "last_updated": "2026-04-18T07:51:00Z",
-      "notes": "Нужно описать роли, shop-scoped доступ, login/logout и разрывы parity между legacy и Laravel foundation."
-    },
-    {
-      "id": "DB-001",
-      "module": "DB Schema",
-      "title": "Построить карту legacy таблиц и целевую схему миграции",
-      "status": "TODO",
-      "owner": "backend-db",
-      "depends_on": [
-        "AUTH-001"
-      ],
-      "spec_files": [
-        "docs/migration-plan.md",
-        "docs/phase-1-plan.md"
-      ],
-      "code_paths": [
-        "galaxiOld/public_html/config_db.php",
-        "galaxiOld/public_html/*.php",
-        "galaxiNew/database/migrations",
-        "galaxiNew/app/Models"
-      ],
-      "qa_status": "NOT_STARTED",
-      "last_updated": "2026-04-18T07:51:00Z",
-      "notes": "Собрать сущности cards, cardholders, checks, gifts, services, shops и связи. Зафиксировать missing fields и преобразования."
-    },
-    {
-      "id": "BL-001",
-      "module": "Business Logic",
-      "title": "Разобрать критичную бизнес-логику начислений, блокировок и reward flows",
-      "status": "TODO",
-      "owner": "backend-domain",
-      "depends_on": [
-        "DB-001"
-      ],
-      "spec_files": [
-        "docs/migration-plan.md",
-        "docs/blueprint.md"
-      ],
-      "code_paths": [
-        "galaxiOld/public_html/ajax.php",
-        "galaxiOld/public_html/ajax_old.php",
-        "galaxiOld/public_html/checks.php",
-        "galaxiOld/public_html/gifts.php",
-        "galaxiNew/app",
-        "galaxiNew/app/Support"
-      ],
-      "qa_status": "NOT_STARTED",
-      "last_updated": "2026-04-18T07:51:00Z",
-      "notes": "Нужен parity inventory по points/checks/gifts/services до переноса в сервисы Laravel."
-    },
-    {
-      "id": "API-001",
-      "module": "API",
-      "title": "Определить внутренние HTTP endpoints и контракты для admin workflows",
-      "status": "IN_PROGRESS",
-      "owner": "backend-api",
-      "depends_on": [
-        "AUTH-001",
-        "DB-001",
-        "BL-001"
-      ],
-      "spec_files": [
-        "docs/migration-plan.md",
-        "docs/progress-log.md"
-      ],
-      "code_paths": [
-        "galaxiOld/public_html/ajax.php",
-        "galaxiOld/public_html/ajax_old.php",
-        "galaxiNew/routes",
-        "galaxiNew/app/Http"
-      ],
-      "qa_status": "NOT_STARTED",
-      "last_updated": "2026-04-18T07:51:00Z",
-      "notes": "В новом репо уже есть Laravel route/controller foundation, но API-контракты миграции ещё не нормализованы в единый backlog."
-    },
-    {
-      "id": "VAL-001",
-      "module": "Validation",
-      "title": "Собрать правила валидации и операторские сообщения для parity-critical форм",
-      "status": "TODO",
-      "owner": "backend-validation",
-      "depends_on": [
-        "API-001"
-      ],
-      "spec_files": [
-        "docs/progress-log.md",
-        "docs/migration-plan.md"
-      ],
-      "code_paths": [
-        "galaxiOld/public_html/*.php",
-        "galaxiNew/app/Http/Requests",
-        "galaxiNew/resources/views"
-      ],
-      "qa_status": "NOT_STARTED",
-      "last_updated": "2026-04-18T07:51:00Z",
-      "notes": "Нужно унифицировать обязательные поля, edge cases и human-readable validation copy по legacy-поведению."
-    },
-    {
-      "id": "UI-001",
-      "module": "Admin/UI",
-      "title": "Довести admin shell до parity map и связать экраны с реальными рабочими сценариями",
-      "status": "IN_PROGRESS",
-      "owner": "frontend-admin",
-      "depends_on": [
-        "AUTH-001",
-        "API-001"
-      ],
-      "spec_files": [
-        "docs/admin-shell-layering.md",
-        "docs/admin-shell-config-map.md",
-        "docs/phase-1-plan.md",
-        "docs/progress-log.md"
-      ],
-      "code_paths": [
-        "galaxiOld/public_html/header.php",
-        "galaxiOld/public_html/*.php",
-        "galaxiNew/resources/views",
-        "galaxiNew/config/admin-pages.php",
-        "galaxiNew/config/admin-navigation.php",
-        "galaxiNew/routes/admin.php"
-      ],
-      "qa_status": "NOT_STARTED",
-      "last_updated": "2026-04-18T07:51:00Z",
-      "notes": "UI foundation уже движется, но большинство экранов ещё preview/config-driven и требует реальных read/write flows."
-    },
-    {
-      "id": "JOBS-001",
-      "module": "Background Jobs",
-      "title": "Выявить batch/cron/background процессы legacy и спланировать перенос на queues/commands",
-      "status": "TODO",
-      "owner": "backend-jobs",
-      "depends_on": [
-        "DB-001",
-        "BL-001"
-      ],
-      "spec_files": [
-        "docs/migration-plan.md",
-        "docs/blueprint.md"
-      ],
-      "code_paths": [
-        "galaxiOld/public_html",
-        "galaxiOld/logs",
-        "galaxiNew/routes/console.php",
-        "galaxiNew/config/queue.php",
-        "galaxiNew/app"
-      ],
-      "qa_status": "NOT_STARTED",
-      "last_updated": "2026-04-18T07:51:00Z",
-      "notes": "Пока нет инвентаря фоновых процессов, пересчётов и nightly routines. Требуется отдельный аудит."
-    },
-    {
-      "id": "UTIL-001",
-      "module": "Shared Utilities / Helpers",
-      "title": "Инвентаризировать shared helpers и определить стратегию переноса в Laravel support layer",
-      "status": "TODO",
-      "owner": "backend-shared",
-      "depends_on": [
-        "BL-001"
-      ],
-      "spec_files": [
-        "docs/blueprint.md",
-        "docs/progress-log.md"
-      ],
-      "code_paths": [
-        "galaxiOld/public_html/*.php",
-        "galaxiNew/app/Support",
-        "galaxiNew/config"
-      ],
-      "qa_status": "NOT_STARTED",
-      "last_updated": "2026-04-18T07:51:00Z",
-      "notes": "Нужно отделить reusable helper logic от page-specific procedural code и определить целевые shared abstractions."
-    },
-    {
-      "id": "CFG-001",
-      "module": "Config / Env / Bootstrapping",
-      "title": "Нормализовать runtime/config bootstrap и список обязательных env-переменных",
-      "status": "IN_PROGRESS",
-      "owner": "platform-config",
-      "depends_on": [],
-      "spec_files": [
-        "README.md",
-        "docs/blueprint.md",
-        "docs/progress-log.md"
-      ],
-      "code_paths": [
-        "galaxiOld/public_html/config.php",
-        "galaxiOld/public_html/config_db.php",
-        "galaxiNew/bootstrap",
-        "galaxiNew/config",
-        "galaxiNew/.env.example"
-      ],
-      "qa_status": "NOT_STARTED",
-      "last_updated": "2026-04-18T07:51:00Z",
-      "notes": "Laravel foundation уже есть, но нужен явный migration bootstrap по env, secrets, DB connectivity и operational defaults."
-    },
-    {
-      "id": "QA-001",
-      "module": "Tests / Parity Checks",
-      "title": "Собрать матрицу parity-checks и тестовых сценариев для миграции",
-      "status": "TODO",
-      "owner": "qa-parity",
-      "depends_on": [
-        "AUTH-001",
-        "DB-001",
-        "BL-001",
-        "API-001",
-        "UI-001"
-      ],
-      "spec_files": [
-        "docs/migration-plan.md",
-        "docs/progress-log.md",
-        "phpunit.xml"
-      ],
-      "code_paths": [
-        "galaxiOld/public_html",
-        "galaxiNew/tests/Feature",
-        "galaxiNew/tests/Unit",
-        "galaxiNew/phpunit.xml"
-      ],
-      "qa_status": "NOT_STARTED",
-      "last_updated": "2026-04-18T07:51:00Z",
-      "notes": "Нужны smoke, regression и business parity сценарии. DONE недопустим без подтверждённого QA."
-    }
-  ]
+  "primary_modules": [
+    {"id": "M01", "name": "Auth and access control", "status": "documented"},
+    {"id": "M02", "name": "Shops", "status": "documented"},
+    {"id": "M03", "name": "Clients / cardholders", "status": "documented"},
+    {"id": "M04", "name": "Client job history", "status": "documented"},
+    {"id": "M05", "name": "Cards", "status": "documented"},
+    {"id": "M06", "name": "Card types", "status": "documented"},
+    {"id": "M07", "name": "Card history and card change workflow", "status": "documented"},
+    {"id": "M08", "name": "Checks / purchases", "status": "documented"},
+    {"id": "M09", "name": "Client deactivation / blocking", "status": "documented"},
+    {"id": "M10", "name": "Services and client services", "status": "documented"},
+    {"id": "M11", "name": "Gifts", "status": "documented_with_tbd"},
+    {"id": "M12", "name": "Reports and dashboard", "status": "documented_with_tbd"},
+    {"id": "M13", "name": "Settings", "status": "documented"},
+    {"id": "M14", "name": "Audit logs and notifications", "status": "documented_with_tbd"}
+  ],
+  "blockers": [
+    "Requested repo paths were missing; actual repos were found under workspace/repos.",
+    "No direct legacy DB dump/schema file was present, so some table/column details remain TBD."
+  ],
+  "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition."
 }
