@@ -1386,3 +1386,11 @@
 
 ### Next step after card type selected-record summary checkpoint
 - Reuse the same selected-record context pattern for another entity page, or keep deepening `card-types` with one more small real read cue such as selected-record activity or status-focused guidance.
+
+### Card type selected-record context checkpoint
+- Extended `card-types` edit mode so the selected record now drives not only the shared form and summary card, but also the nearby activity and dependency context.
+- When `?cardType=<id>` is present, the page now shows request-specific activity notes and edit-state dependency cues tied to the selected Laravel model instead of only the generic preview metadata.
+- Added feature coverage so this selected-record management context remains visible as the Phase 1 shell keeps shifting from preview-only cards toward real Laravel-backed reads.
+
+### Next step after card type selected-record context checkpoint
+- Reuse the same selected-record context pattern on another entity page, or keep pushing `card-types` with one more small backend slice such as selected-record-aware page actions or status toggles.

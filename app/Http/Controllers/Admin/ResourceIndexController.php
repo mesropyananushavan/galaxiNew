@@ -182,6 +182,25 @@ class ResourceIndexController extends Controller
             ['label' => 'Laravel status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
         ];
 
+        $page['activityTimeline'] = [
+            [
+                'title' => sprintf('%s selected for Laravel edit flow', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => 'The shared card-type form is now loading this saved tier directly from Laravel data instead of preview-only defaults.',
+            ],
+            [
+                'title' => sprintf('%s status reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => sprintf('This tier is currently marked as %s in Laravel and the management context card now mirrors that state.', $selectedCardType->is_active ? 'active' : 'draft'),
+            ],
+        ];
+
+        $page['dependencyStatus'] = [
+            ['label' => 'Selected record', 'value' => $selectedCardType->name],
+            ['label' => 'Edit flow state', 'value' => 'Shared live form is running in request-driven PATCH mode'],
+            ['label' => 'Remaining backend gap', 'value' => 'Publish logic and rule-import parity still remain preview-only for this tier'],
+        ];
+
         $page['liveForm']['title'] = 'Edit card type in Laravel';
         $page['liveForm']['description'] = 'Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.';
         $page['liveForm']['method'] = 'PATCH';
