@@ -7,8 +7,18 @@ return [
         'summary' => 'Baseline operational index for shop scope boundaries, activation state, and future access rules.',
         'nextStep' => 'Replace sample rows with real shop records, manager info, and scoped access actions.',
         'actions' => [
-            ['label' => 'New shop', 'tone' => 'primary'],
-            ['label' => 'Review branch scope', 'tone' => 'secondary'],
+            [
+                'label' => 'New shop',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until the first Laravel-backed shops index and manager assignment parity checks are verified.',
+            ],
+            [
+                'label' => 'Review branch scope',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
+            ],
         ],
         'metrics' => [
             ['label' => 'Active shops', 'value' => '2'],
@@ -596,7 +606,12 @@ return [
         'summary' => 'Baseline management screen for service groups, eligibility rules, and business conditions that drive loyalty behavior.',
         'nextStep' => 'Replace sample controls with real rule CRUD, priority ordering, and condition editing.',
         'actions' => [
-            ['label' => 'New rule', 'tone' => 'primary'],
+            [
+                'label' => 'New rule',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until the first Laravel-backed service-rule write flow exists for group, scope, effect, and priority.',
+            ],
             ['label' => 'Review priorities', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until rule priority resolution is verified in Laravel.'],
         ],
         'metrics' => [
@@ -718,7 +733,12 @@ return [
         'summary' => 'Baseline management screen for gift catalog, redemption settings, and stock-aware reward management.',
         'nextStep' => 'Replace sample controls with real gift CRUD, stock tracking, and redemption flows.',
         'actions' => [
-            ['label' => 'New gift', 'tone' => 'primary'],
+            [
+                'label' => 'New gift',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until the first Laravel-backed gift write flow exists for catalog, scope, cost, and stock state.',
+            ],
             ['label' => 'Stock audit', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until stock checks are backed by Laravel inventory data.'],
         ],
         'metrics' => [
@@ -840,8 +860,13 @@ return [
         'summary' => 'Baseline management screen for admin roles, permission bundles, and future shop-scoped access rules.',
         'nextStep' => 'Replace sample controls with real role assignment, permission matrix, and shop-aware policy flows.',
         'actions' => [
-            ['label' => 'New role', 'tone' => 'primary'],
-            ['label' => 'Review matrix', 'tone' => 'secondary'],
+            [
+                'label' => 'New role',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until the first Laravel-backed role write flow exists for role identity, scope, and permission bundle parity.',
+            ],
+            ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.'],
         ],
         'metrics' => [
             ['label' => 'Active roles', 'value' => '2'],
@@ -885,7 +910,7 @@ return [
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
-                ['label' => 'Publish role', 'tone' => 'primary'],
+                ['label' => 'Publish role', 'tone' => 'primary', 'disabled' => true, 'disabledReason' => 'Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.'],
             ],
         ],
         'emptyState' => [

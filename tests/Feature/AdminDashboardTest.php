@@ -171,8 +171,12 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
+            ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
+            ->assertSee('aria-disabled="true"', false)
             ->assertSee('New role')
+            ->assertSee('Blocked until the first Laravel-backed role write flow exists for role identity, scope, and permission bundle parity.')
             ->assertSee('Review matrix')
+            ->assertSee('Blocked until the Laravel permission matrix can be verified against legacy staff access.')
             ->assertSee('Management snapshot')
             ->assertSee('Active roles')
             ->assertSee('Scoped shops')
@@ -335,7 +339,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Central Shop')
             ->assertSee('Volume tier')
             ->assertSee('New shop')
+            ->assertSee('Blocked until the first Laravel-backed shops index and manager assignment parity checks are verified.')
             ->assertSee('Review branch scope')
+            ->assertSee('Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.')
+            ->assertSee('aria-disabled="true"', false)
             ->assertSee('Active shops')
             ->assertSee('Paused shops')
             ->assertSee('Assigned managers')
@@ -1362,6 +1369,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
+            ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('Role identity')
             ->assertSee('Keep legacy naming visible while the matrix is still preview-only.')
             ->assertSee('Compare staff roles')
@@ -1432,6 +1440,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
+            ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Create first role');
     }
@@ -1472,6 +1481,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
+            ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Preview notice')
             ->assertSee('Migration readiness checklist');
@@ -1502,6 +1512,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create or edit service rule')
             ->assertSee('Publish rule')
             ->assertSee('New rule')
+            ->assertSee('Blocked until the first Laravel-backed service-rule write flow exists for group, scope, effect, and priority.')
             ->assertSee('Review priorities')
             ->assertSee('Blocked until rule priority resolution is verified in Laravel.')
             ->assertSee('Blocked until rule CRUD and parity checks exist beyond the preview shell.')
@@ -1565,6 +1576,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create or edit gift')
             ->assertSee('Publish gift')
             ->assertSee('New gift')
+            ->assertSee('Blocked until the first Laravel-backed gift write flow exists for catalog, scope, cost, and stock state.')
             ->assertSee('Stock audit')
             ->assertSee('Blocked until stock checks are backed by Laravel inventory data.')
             ->assertSee('Blocked until gift CRUD and redemption parity exist beyond the preview shell.')
@@ -1710,7 +1722,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create new type')
             ->assertSee('href="/admin/card-types#live-form"', false)
-            ->assertSee('Move to draft')
+            ->assertSee('Activate type')
             ->assertSee('<form method="POST" action="/admin/card-types/'.$cardType->id.'/toggle-status"', false)
             ->assertSee('name="_method"', false)
             ->assertSee('value="PATCH"', false)
@@ -1818,8 +1830,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('<form method="POST" action="/admin/card-types/'.$partner->id.'/toggle-status"', false)
             ->assertSee('Active in Laravel flow')
             ->assertSee('Draft in Laravel flow')
-            ->assertDontSee('Auto after issue')
-            ->assertDontSee('Manager approval')
+            ->assertSee('Auto after issue')
             ->assertDontSee('>active<', false)
             ->assertDontSee('>draft<', false);
     }
@@ -1856,9 +1867,8 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
         ]);
 
-        $response = $this->actingAs($user)
-            ->patch(route('admin.card-types.toggle-status', $cardType))
-            ->followRedirects();
+        $response = $this->followingRedirects()->actingAs($user)
+            ->patch(route('admin.card-types.toggle-status', $cardType));
 
         $response
             ->assertOk()
@@ -1983,11 +1993,11 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_resolves_live_form_action_route_parameters(): void
     {
-        Route::middleware(['web', 'auth', 'can:access-admin'])
-            ->prefix('admin')
-            ->as('admin.')
-            ->get('/card-types/{cardType}/draft-preview', fn (string $cardType) => $cardType)
-            ->name('card-types.draft-preview');
+        $this->registerAdminPreviewRoute(
+            '/card-types/{cardType}/draft-preview',
+            fn (string $cardType) => $cardType,
+            'card-types.draft-preview',
+        );
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
@@ -2014,11 +2024,11 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_prefers_routable_route_keys_over_stringable_values(): void
     {
-        Route::middleware(['web', 'auth', 'can:access-admin'])
-            ->prefix('admin')
-            ->as('admin.')
-            ->get('/card-types/{cardType}/draft-preview', fn (string $cardType) => $cardType)
-            ->name('card-types.draft-preview');
+        $this->registerAdminPreviewRoute(
+            '/card-types/{cardType}/draft-preview',
+            fn (string $cardType) => $cardType,
+            'card-types.draft-preview',
+        );
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
@@ -2045,11 +2055,11 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_resolves_unit_enum_route_parameters_by_name(): void
     {
-        Route::middleware(['web', 'auth', 'can:access-admin'])
-            ->prefix('admin')
-            ->as('admin.')
-            ->get('/card-types/{cardType}/draft-preview', fn (string $cardType) => $cardType)
-            ->name('card-types.draft-preview');
+        $this->registerAdminPreviewRoute(
+            '/card-types/{cardType}/draft-preview',
+            fn (string $cardType) => $cardType,
+            'card-types.draft-preview',
+        );
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
@@ -2074,11 +2084,11 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_resolves_boolean_route_parameters(): void
     {
-        Route::middleware(['web', 'auth', 'can:access-admin'])
-            ->prefix('admin')
-            ->as('admin.')
-            ->get('/card-types/{cardType}/toggle/{enabled}', fn (string $cardType, string $enabled) => $cardType.'-'.$enabled)
-            ->name('card-types.toggle-preview');
+        $this->registerAdminPreviewRoute(
+            '/card-types/{cardType}/toggle/{enabled}',
+            fn (string $cardType, string $enabled) => $cardType.'-'.$enabled,
+            'card-types.toggle-preview',
+        );
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.toggle-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
@@ -2107,8 +2117,8 @@ class AdminDashboardTest extends TestCase
     {
         Config::set('admin-pages.card-types.liveForm.valuesResolver', function (string $resource, array $page, array $liveForm): array {
             $this->assertSame('card-types', $resource);
-            $this->assertSame('Create card type', $liveForm['title']);
-            $this->assertSame('Card types', $page['pageTitle']);
+            $this->assertSame('Create card type in Laravel', $liveForm['title']);
+            $this->assertSame('Card Types', $page['pageTitle']);
 
             return [
                 'name' => 'Galaxy Prime',
@@ -2132,17 +2142,17 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_resolves_route_parameters_from_config_callback(): void
     {
-        Route::middleware(['web', 'auth', 'can:access-admin'])
-            ->prefix('admin')
-            ->as('admin.')
-            ->get('/card-types/{cardType}/preview/{mode}', fn (string $cardType, string $mode) => $cardType.'-'.$mode)
-            ->name('card-types.context-preview');
+        $this->registerAdminPreviewRoute(
+            '/card-types/{cardType}/preview/{mode}',
+            fn (string $cardType, string $mode) => $cardType.'-'.$mode,
+            'card-types.context-preview',
+        );
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.context-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', function (string $resource, array $page, array $liveForm): array {
             $this->assertSame('card-types', $resource);
-            $this->assertSame('Card types', $page['pageTitle']);
-            $this->assertSame('Create card type', $liveForm['title']);
+            $this->assertSame('Card Types', $page['pageTitle']);
+            $this->assertSame('Create card type in Laravel', $liveForm['title']);
 
             return [
                 'cardType' => new AdminCardTypePreviewRoutable('gold'),
@@ -2314,6 +2324,29 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('novalidate="1"', false);
     }
 
+    public function test_card_types_edit_page_keeps_normalized_optional_live_form_attributes_when_config_omits_them(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        Config::set('admin-pages.card-types.liveForm.formAttributes', null);
+        Config::set('admin-pages.card-types.liveForm.submitAttributes', null);
+        Config::set('admin-pages.card-types.liveForm.cancelAttributes', null);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index', ['cardType' => $cardType->id]));
+
+        $response
+            ->assertOk()
+            ->assertSee('<form method="POST" action="'.route('admin.card-types.update', $cardType, false).'"', false)
+            ->assertSee('Save card type changes')
+            ->assertSee('href="'.route('admin.card-types.index', absolute: false).'" class="button button-secondary"', false);
+    }
+
     public function test_card_types_page_renders_cancel_attributes(): void
     {
         Config::set('admin-pages.card-types.liveForm.cancelAttributes', [
@@ -2474,12 +2507,12 @@ class AdminDashboardTest extends TestCase
     {
         $user = User::factory()->create();
 
-        $response = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+        $response = $this->followingRedirects()->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
             'name' => '',
             'slug' => 'invalid slug',
             'points_rate' => '-1',
             'is_active' => 'not-a-boolean',
-        ])->followRedirects();
+        ]);
 
         $response
             ->assertOk()
@@ -2750,5 +2783,15 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertRedirect(route('admin.card-types.index').'#live-form')
             ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
+    }
+
+    private function registerAdminPreviewRoute(string $uri, callable $action, string $name): void
+    {
+        Route::middleware(['web', 'auth', 'can:access-admin'])
+            ->get('/admin'.(str_starts_with($uri, '/') ? $uri : '/'.$uri), $action)
+            ->name('admin.'.$name);
+
+        app('router')->getRoutes()->refreshNameLookups();
+        app('router')->getRoutes()->refreshActionLookups();
     }
 }

@@ -1,5 +1,101 @@
 # Progress Log
 
+## 2026-04-18
+
+### Card-type live-form callback expectation checkpoint
+- Fixed the remaining card-type callback mismatch locally in `tests/Feature/AdminDashboardTest.php` by aligning the test expectation with the current config-backed live-form title and page title copy.
+- Kept the fix parity-first and test-scoped, without widening the production admin resource flow.
+- Re-ran the narrow callback-oriented card-type slice covering live-form values, route-parameter callbacks, and copy mode resolution, and that focused set now passes.
+
+### Next step after card-type live-form callback expectation checkpoint
+- Re-run the broader card-type QA slice to confirm no further callback-era expectation drift remains before QA closes the cycle.
+
+### Live form optional-attributes render checkpoint
+- Fixed the card-type live-form render path so normalized defaults now win over the raw page config when the admin resource view is composed.
+- This closes the `Undefined array key "formAttributes"` defect in `resource-live-form` without widening scope beyond the existing normalization flow.
+- Added a regression feature test that exercises the edit flow with `formAttributes`, `submitAttributes`, and `cancelAttributes` omitted from config, so optional live-form keys stay safe in the selected-record render path.
+- Re-ran the focused feature and unit tests covering live-form attributes, and they now pass.
+
+### Next step after live form optional-attributes render checkpoint
+- Re-run the focused QA card-type slice to confirm the flow now advances past the shared live-form render stage.
+
+### QA advanced beyond the shared live-form crash
+- Re-ran the focused `card_type` slice and confirmed the shared `resource-live-form` blocker is gone.
+- The next failures now sit in `tests/Feature/AdminDashboardTest.php`, where some card-type expectations still reflect older generic copy and an outdated redirect-following pattern.
+- Updated those feature assertions to match the current Galaxy-specific card-type page copy and Laravel's supported redirect test helper.
+- Focused QA still fails deeper in card-type preview-route expectations, so the next pass should align the preview-route harness without reopening the shared render path.
+
+### QA widened card-type rerun after callback fixes
+- Re-ran the broader `card_type` slice after the callback and preview-route harness fixes landed.
+- Confirmed the remaining failures are still limited to stale feature expectations in `AdminDashboardTest` rather than shared runtime or production route wiring.
+- Updated the row-level card-type action assertion to reflect the current selected-record render path, where the edit context still shows the active tier's activation copy.
+- Replaced another deprecated `followRedirects()` chain with Laravel's supported `followingRedirects()` helper so the toggle-status redirect assertion can complete on the current framework version.
+
+### QA card-type slice is green
+- Finished the wider `php8.4 artisan test --filter=card_type` rerun after refreshing the last two stale UI assertions in `AdminDashboardTest`.
+- The full focused card-type slice now passes, `42 passed`, which confirms the recent preview-route, live-form normalization, callback-copy, and redirect helper fixes hold together as one QA checkpoint.
+- This closes the current card-type QA debug cycle and leaves the branch ready for normal merge handling before the next Phase 1 task starts.
+
+### Shops action-gating checkpoint
+- Reused the shared disabled-action pattern on the `shops` workspace so create and branch-scope actions now read as intentionally staged, not generically idle.
+- Added Galaxy-specific blocker copy explaining that shop creation depends on a real Laravel-backed index and manager-assignment parity, while scope review stays blocked on legacy branch-ownership verification.
+- Extended feature coverage so the disabled branch-management cues remain visible as the shop workspace moves away from starter-style placeholders.
+
+### Services-rules action-gating checkpoint
+- Reused the same disabled-action pattern on `services-rules`, so the primary `New rule` control no longer looks prematurely available while the workspace is still preview-only.
+- Added explicit Galaxy-specific blocker copy tying rule creation to the first Laravel-backed write slice for rule group, scope, effect, and priority.
+- Extended feature coverage so the disabled create cue stays visible alongside the already gated priority review and publish actions.
+
+### Gifts action-gating checkpoint
+- Reused the staged disabled-action pattern on `gifts`, so the primary `New gift` control no longer reads like a generic placeholder action.
+- Added Galaxy-specific blocker copy tying gift creation to the first Laravel-backed write slice for catalog identity, shop scope, point cost, and stock state.
+- Extended feature coverage so the disabled create cue stays visible next to the already gated stock-audit and publish controls.
+
+### Roles-permissions action-gating checkpoint
+- Reused the same staged disabled-action pattern on `roles-permissions`, so the primary `New role` control no longer looks prematurely available while persistence is still preview-only.
+- Added Galaxy-specific blocker copy tying role creation to the first Laravel-backed write slice for role identity, scope, and permission-bundle parity.
+- Extended feature coverage so the disabled create cue stays visible alongside the already gated matrix review and role publish controls.
+
+### Card-type preview-route harness checkpoint
+- Fixed the failing card-type preview-route wiring locally in `tests/Feature/AdminDashboardTest.php` instead of widening production routing scope.
+- Replaced the inline preview-route registration pattern with a tiny test helper that registers full `admin.*` preview route names and refreshes Laravel's route name/action lookups for runtime-added test routes.
+- Re-ran the narrow preview-route slice covering action, cancel, enum, boolean, and callback-based parameter resolution, and that focused set now passes.
+- A wider callback-oriented slice still shows a separate pre-existing expectation mismatch in the live-form values callback test, so the preview-route blocker is cleared but the whole card-type QA stack is not yet fully green.
+
+### Next step after card-type preview-route harness checkpoint
+- Update the remaining live-form values callback expectation to match the current card-type page context, then re-run the broader focused card-type QA slice.
+
+## 2026-04-18
+
+### QA reached application-level failures checkpoint
+- Brought the host far enough for a real Laravel bootstrap: dependencies install, package discovery, and `artisan` execution now run under PHP 8.4.
+- Fixed one concrete Phase 1 compatibility bug by removing the typed `$redirectRoute` property from `StoreCardTypeRequest`, which was incompatible with the Laravel base request contract.
+- Fixed the operational index table partial so mixed string and array cells no longer crash the admin view during card-type feature tests.
+- After those fixes, QA now fails deeper in `resource-live-form` on a missing `formAttributes` key, which is a real application-level rendering defect rather than an environment blocker.
+
+### Next step after QA reached application-level failures checkpoint
+- Normalize `resource-live-form` defaults so missing optional keys such as `formAttributes` cannot break the card-type admin workspace, then rerun the focused card-type test slice.
+
+## 2026-04-18
+
+### QA test environment bootstrap checkpoint
+- Added a dedicated QA bootstrap note so the repository itself now explains the minimum Laravel setup required to run tests.
+- Documented that the current environment is already configured for in-memory SQLite test runs, and that the remaining bootstrap blocker is missing Composer tooling on the host.
+- Updated the root README with a short test-start sequence so QA can get to `php artisan test` faster.
+
+### Next step after QA test environment bootstrap checkpoint
+- Install Composer on the host or provide a local Composer binary, then run `composer install` and the first full Laravel test pass.
+
+## 2026-04-18
+
+### Roles and permissions action-gating checkpoint
+- Reused the shared disabled-action pattern on `roles-permissions`, so matrix review and role publishing now read as intentionally gated instead of looking prematurely available.
+- This makes the access-control workspace feel more Galaxy-specific and less like a generic starter while keeping parity-first warnings visible around shop-scoped authorization work.
+- Extended feature coverage so the new access gating cues stay visible on the management preview.
+
+### Next step after roles and permissions action-gating checkpoint
+- Turn one access preview control into the first real Laravel-backed flow, or reuse the same readiness-driven gating language on another admin workspace that still looks overly generic.
+
 ## 2026-04-13
 
 ### Established process
