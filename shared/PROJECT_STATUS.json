@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T08:50:00Z",
+  "updated_at": "2026-04-18T08:58:59Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -55,7 +55,7 @@
     "module": "Tests / Parity Checks",
     "status": "IN_PROGRESS",
     "owner": "backend",
-    "summary": "The card-type preview-route blocker was fixed in the feature-test harness by registering full admin preview route names and refreshing runtime route lookups, so the narrow preview-route slice now passes without widening production scope.",
+    "summary": "The remaining card-type live-form callback mismatch was fixed locally in the feature test by aligning expectations with the current config-backed title and page title copy, and the focused callback slice now passes without widening production scope.",
     "code_paths": [
       "tests/Feature/AdminDashboardTest.php"
     ],
@@ -63,6 +63,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "a separate callback-value expectation mismatch still remains in the broader card-type QA slice after the preview-route harness issue was cleared"
+    "blocker_reason": "the narrow callback slice is green, but the broader card-type QA cycle still needs one more focused rerun before QA can safely close and merge"
   }
 }

@@ -2,6 +2,14 @@
 
 ## 2026-04-18
 
+### Card-type live-form callback expectation checkpoint
+- Fixed the remaining card-type callback mismatch locally in `tests/Feature/AdminDashboardTest.php` by aligning the test expectation with the current config-backed live-form title and page title copy.
+- Kept the fix parity-first and test-scoped, without widening the production admin resource flow.
+- Re-ran the narrow callback-oriented card-type slice covering live-form values, route-parameter callbacks, and copy mode resolution, and that focused set now passes.
+
+### Next step after card-type live-form callback expectation checkpoint
+- Re-run the broader card-type QA slice to confirm no further callback-era expectation drift remains before QA closes the cycle.
+
 ### Live form optional-attributes render checkpoint
 - Fixed the card-type live-form render path so normalized defaults now win over the raw page config when the admin resource view is composed.
 - This closes the `Undefined array key "formAttributes"` defect in `resource-live-form` without widening scope beyond the existing normalization flow.

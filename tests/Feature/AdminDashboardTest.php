@@ -2113,8 +2113,8 @@ class AdminDashboardTest extends TestCase
     {
         Config::set('admin-pages.card-types.liveForm.valuesResolver', function (string $resource, array $page, array $liveForm): array {
             $this->assertSame('card-types', $resource);
-            $this->assertSame('Create card type', $liveForm['title']);
-            $this->assertSame('Card types', $page['pageTitle']);
+            $this->assertSame('Create card type in Laravel', $liveForm['title']);
+            $this->assertSame('Card Types', $page['pageTitle']);
 
             return [
                 'name' => 'Galaxy Prime',
