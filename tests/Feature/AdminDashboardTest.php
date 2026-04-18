@@ -325,7 +325,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop Manager permission bundle reflected from model state')
             ->assertSee('Manage cards')
             ->assertSee('Publish role')
-            ->assertSee('Blocked until live role assignment parity is verified for this Laravel permission bundle.');
+            ->assertSee('Blocked until live role assignment parity is verified for this Laravel permission bundle.')
+            ->assertSee('Review posture:')
+            ->assertSee('Selected-role review is running in Laravel-backed read mode only')
+            ->assertSee('Matrix posture:')
+            ->assertSee('Keep matrix editing blocked until legacy staff-access parity is verified in Laravel')
+            ->assertSee('Publish posture:')
+            ->assertSee('This live permission bundle still needs assignment parity checks before publish-style role changes are safe.')
+            ->assertSee('Scope posture:')
+            ->assertSee('Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace');
     }
 
     public function test_roles_permissions_page_ignores_unknown_selected_role_query(): void

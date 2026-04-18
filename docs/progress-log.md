@@ -201,6 +201,11 @@
 - The disabled reason now reacts to whether the chosen Laravel role already has a permission bundle or is still a draft shell, `1 passed`.
 - This makes the live access-review slice feel less like a generic preview because publish-style next steps are now visibly gated per selected role instead of staying implicit.
 
+### Roles-permissions dependency posture checkpoint
+- Extended the selected `roles-permissions` workspace with a Laravel-backed dependency-status block so review posture, matrix posture, publish posture, scope posture, and the remaining backend gap are now visible for the chosen role.
+- Confirmed the selected-role access review now carries those parity cues alongside the existing summary, actions, and timeline, `1 passed`.
+- This makes the live access-review slice feel more like an operational Galaxy workspace because the selected role now exposes explicit parity posture instead of relying only on summary copy.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

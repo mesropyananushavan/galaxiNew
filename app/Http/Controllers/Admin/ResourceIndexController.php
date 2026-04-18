@@ -242,6 +242,19 @@ class ResourceIndexController extends Controller
             ],
         ];
 
+        $page['dependencyStatus'] = [
+            ['label' => 'Selected role', 'value' => $selectedRole->name],
+            ['label' => 'Review posture', 'value' => 'Selected-role review is running in Laravel-backed read mode only'],
+            ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
+            ['label' => 'Publish posture', 'value' => $selectedRole->permissions_count > 0
+                ? 'This live permission bundle still needs assignment parity checks before publish-style role changes are safe.'
+                : 'This draft role should stay unpublished until permission bundle and shop-scope parity are mapped more explicitly.'],
+            ['label' => 'Scope posture', 'value' => $scope->isNotEmpty()
+                ? 'Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.'
+                : 'No shop scope is linked yet, which keeps this role safe for draft access review.'],
+            ['label' => 'Remaining backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace'],
+        ];
+
         return $page;
     }
 
