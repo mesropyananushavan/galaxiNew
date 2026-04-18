@@ -1316,7 +1316,12 @@
 - Existing feature coverage for backed enums, routable objects, stringable values, mixed routable/stringable priority, and unit enums now exercises that single helper path.
 - This is a small internal cleanup step, but it makes the next model-backed edit-state wiring easier to extend without duplicating or reshuffling the parameter precedence logic.
 
-### Next step after live form route-parameter helper checkpoint
+### Live form boolean route-parameter checkpoint
+- Extended the shared live-form route-parameter helper so boolean values normalize to `'1'` and `'0'` instead of being dropped.
+- Added feature coverage proving action and cancel routes can now carry boolean route metadata through the shared `card-types` live-form path.
+- This is a small controller-level bridge step, but it keeps typed toggle-style metadata usable in the same config-driven route pipeline as the future edit/update state.
+
+### Next step after live form boolean route-parameter checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
 ### Injected normalizer checkpoint

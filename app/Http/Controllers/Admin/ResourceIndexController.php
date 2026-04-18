@@ -107,6 +107,10 @@ class ResourceIndexController extends Controller
             return (string) $value;
         }
 
+        if (is_bool($value)) {
+            return $value ? '1' : '0';
+        }
+
         return $value;
     }
 

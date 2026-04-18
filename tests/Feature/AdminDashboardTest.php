@@ -1807,6 +1807,37 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Return to draft preview');
     }
 
+    public function test_card_types_page_resolves_boolean_route_parameters(): void
+    {
+        Route::middleware(['web', 'auth', 'can:access-admin'])
+            ->prefix('admin')
+            ->as('admin.')
+            ->get('/card-types/{cardType}/toggle/{enabled}', fn (string $cardType, string $enabled) => $cardType.'-'.$enabled)
+            ->name('card-types.toggle-preview');
+
+        Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.toggle-preview');
+        Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
+            'cardType' => 'gold',
+            'enabled' => true,
+        ]);
+        Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.toggle-preview');
+        Config::set('admin-pages.card-types.liveForm.cancelRouteParameters', [
+            'cardType' => 'silver',
+            'enabled' => false,
+        ]);
+        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Return to toggle preview');
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('action="/admin/card-types/gold/toggle/1"', false)
+            ->assertSee('href="/admin/card-types/silver/toggle/0"', false)
+            ->assertSee('Return to toggle preview');
+    }
+
     public function test_card_types_page_renders_live_form_patch_method_spoofing(): void
     {
         $cardType = CardType::create([
