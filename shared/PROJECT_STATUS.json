@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T13:35:00Z",
+  "updated_at": "2026-04-18T13:49:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,10 +52,10 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Tests / Parity Checks",
+    "module": "Roles & Permissions",
     "status": "IN_PROGRESS",
     "owner": "qa",
-    "summary": "The live operational read slices for shops, cardholders, and cards now have regression coverage proving unknown selected-record queries fall back cleanly to model-backed index states instead of rendering broken review contexts.",
+    "summary": "The live roles-permissions read slice now has regression coverage proving both unknown and malformed selected-role queries fall back cleanly to the model-backed index instead of rendering broken review contexts.",
     "code_paths": [
       "tests/Feature/AdminDashboardTest.php"
     ],
@@ -63,6 +63,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "read-state fallback is now covered across the operational modules, but create/update flows beyond card-types still remain pending before these modules can move past read-state parity"
+    "blocker_reason": "roles-permissions fallback behavior is now covered for both unknown and malformed queries, but assignment UI, matrix editing, and authorization write flows still remain pending"
   }
 }
