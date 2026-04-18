@@ -455,7 +455,7 @@ return [
         'summary' => 'Baseline management screen for Galaxy card tiers, points rules, and activation settings.',
         'nextStep' => 'Replace sample controls with real CRUD handlers and validation.',
         'actions' => [
-            ['label' => 'New type', 'tone' => 'primary'],
+            ['label' => 'New type', 'tone' => 'primary', 'href' => '#live-form'],
             ['label' => 'Import rules', 'tone' => 'secondary'],
         ],
         'metrics' => [
@@ -525,7 +525,7 @@ return [
             'title' => 'No custom card types configured yet',
             'description' => 'Start by creating the first Galaxy-specific card tier, then import or rebuild rules from the old operational setup.',
             'actions' => [
-                ['label' => 'Create first type', 'tone' => 'primary'],
+                ['label' => 'Create first type', 'tone' => 'primary', 'href' => '#live-form'],
             ],
         ],
         'notice' => [

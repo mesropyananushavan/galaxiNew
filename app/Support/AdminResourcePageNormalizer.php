@@ -18,12 +18,21 @@ class AdminResourcePageNormalizer
             return [];
         }
 
-        return array_values(array_filter(
-            $actions,
-            fn (mixed $action): bool => is_array($action)
-                && is_string($action['label'] ?? null)
-                && (! array_key_exists('tone', $action) || is_string($action['tone']))
-        ));
+        return array_values(array_filter(array_map(function (mixed $action): ?array {
+            if (! is_array($action)
+                || ! is_string($action['label'] ?? null)
+                || (array_key_exists('tone', $action) && ! is_string($action['tone']))
+                || (array_key_exists('href', $action) && ! is_string($action['href']))
+            ) {
+                return null;
+            }
+
+            return array_filter([
+                'label' => $action['label'],
+                'tone' => $action['tone'] ?? null,
+                'href' => $action['href'] ?? null,
+            ], fn (mixed $value): bool => $value !== null);
+        }, $actions)));
     }
 
     private function metrics(mixed $metrics): array

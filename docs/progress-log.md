@@ -1346,3 +1346,11 @@
 
 ### Next step after injected normalizer checkpoint
 - Convert one management preview into a first real Laravel request flow when PHP execution becomes available, or pause further shell refactors and save the next code changes for a real backend slice.
+
+### Card type live-form entry-link checkpoint
+- Extended the shared admin action metadata so resource and empty-state actions can carry real `href` targets instead of rendering as label-only chips.
+- Wired the `card-types` page-level `New type` and empty-state `Create first type` actions directly to `#live-form`, making the first live Laravel write path easier to reach from the Galaxy shell.
+- Added unit and feature coverage for linked action metadata so this small UX bridge stays intact as the config-driven admin shell evolves.
+
+### Next step after card type live-form entry-link checkpoint
+- Reuse the same linked action pattern for the first real edit/update entry point on `card-types`, or save the next code change for a request-driven edit state once PHP execution is available.

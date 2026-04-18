@@ -1619,6 +1619,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create or edit card type')
             ->assertSee('Publish type')
             ->assertSee('New type')
+            ->assertSee('href="#live-form"', false)
             ->assertSee('Import rules')
             ->assertSee('Management snapshot')
             ->assertSee('Active tiers')

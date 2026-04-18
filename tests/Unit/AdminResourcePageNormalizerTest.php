@@ -605,4 +605,32 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertCount(1, $normalized['form']['sections'][0]['actions']);
         $this->assertCount(1, $normalized['form']['sections'][0]['fields']);
     }
+
+    public function test_normalize_keeps_action_links_when_href_is_valid(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'actions' => [
+                ['label' => 'New type', 'tone' => 'primary', 'href' => '#live-form'],
+                ['label' => 'Broken link', 'tone' => 'secondary', 'href' => ['invalid-href']],
+            ],
+            'emptyState' => [
+                'title' => 'No custom card types configured yet',
+                'description' => 'Start by creating the first Galaxy-specific card tier.',
+                'actions' => [
+                    ['label' => 'Create first type', 'tone' => 'primary', 'href' => '#live-form'],
+                    ['label' => 'Broken empty-state link', 'href' => ['invalid-href']],
+                ],
+            ],
+        ]);
+
+        $this->assertSame([
+            ['label' => 'New type', 'tone' => 'primary', 'href' => '#live-form'],
+        ], $normalized['actions']);
+
+        $this->assertSame([
+            ['label' => 'Create first type', 'tone' => 'primary', 'href' => '#live-form'],
+        ], $normalized['emptyState']['actions']);
+    }
 }
