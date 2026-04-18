@@ -251,6 +251,11 @@
 - Re-ran the focused roles-permissions Laravel-backed review set covering live rows, selected-role context, unknown selection fallback, and malformed selection fallback, `4 passed`.
 - This keeps the live access-review slice safer to extend because the selected-role checkpoint logic now has clearer internal boundaries before more read-only parity cues are added.
 
+### Roles-permissions QA consolidation checkpoint
+- Re-ran the focused Laravel-backed `roles-permissions` review set after the recent selected-role summary/posture additions and structural extraction.
+- Verified preview access, live role rows, selected-role review context, unknown selected-role fallback, and malformed selected-role fallback together, `5 passed`.
+- This confirms the live access-review slice is still coherent as one Phase 1 workspace instead of only passing in isolated single-test increments.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
