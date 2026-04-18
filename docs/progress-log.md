@@ -146,6 +146,11 @@
 - Added focused coverage proving invalid update payloads keep the selected tier in edit mode after redirect, including the selected-record summary and the PATCH-backed live form.
 - This strengthens the one real write-backed Phase 1 slice by preserving request-driven context even when backend validation blocks the save.
 
+### Card-types validation old-input checkpoint
+- Added regression coverage proving the selected `card-types` edit flow also keeps operator-entered form values after a validation failure instead of snapping every field back to the saved database state.
+- Confirmed the retry path stays in selected edit mode while preserving the attempted name, duplicate slug, points rate, and draft selection, `2 passed`.
+- This makes the current minimal write slice less frustrating for operators because a failed save still behaves like an edit retry, not a partial form reset.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

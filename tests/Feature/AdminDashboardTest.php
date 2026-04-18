@@ -3577,7 +3577,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
         ]);
 
-        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType]))
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType], absolute: false))
             ->actingAs($user)
             ->followingRedirects()
             ->patch(route('admin.card-types.update', $cardType), [
@@ -3597,6 +3597,44 @@ class AdminDashboardTest extends TestCase
             ->assertSee('The card type name field is required.')
             ->assertSee('The points rate field must be at least 0.')
             ->assertSee('The status field must be Active or Draft.');
+    }
+
+    public function test_card_type_update_validation_keeps_operator_input_in_selected_edit_mode(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-old-values',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        CardType::create([
+            'name' => 'Galaxy Silver',
+            'slug' => 'galaxy-silver-duplicate-target',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType], absolute: false))
+            ->actingAs($user)
+            ->followingRedirects()
+            ->patch(route('admin.card-types.update', $cardType), [
+                'name' => 'Galaxy Prime Attempt',
+                'slug' => 'galaxy-silver-duplicate-target',
+                'points_rate' => '2.75',
+                'is_active' => '0',
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('value="Galaxy Prime Attempt"', false)
+            ->assertSee('value="galaxy-silver-duplicate-target"', false)
+            ->assertSee('value="2.75"', false)
+            ->assertSee('<option value="0" selected>Draft</option>', false)
+            ->assertDontSee('value="Galaxy Prime"', false)
+            ->assertDontSee('value="1.50"', false)
+            ->assertSee('This card type slug is already in use.');
     }
 
     private function registerAdminPreviewRoute(string $uri, callable $action, string $name): void
