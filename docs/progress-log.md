@@ -91,6 +91,11 @@
 - When a saved role is selected, the workspace now shows Laravel-backed access summary data, permission-bundle guidance, and request-specific activity notes instead of only the generic preview context.
 - Added feature coverage proving the selected role context and latest-saved-role shortcut remain visible once real roles and permissions exist.
 
+### QA checkpoint for live Phase 1 access and operational read slices
+- Re-ran the focused Laravel-backed read-slice coverage for `shops`, `cardholders`, `cards`, and `roles-permissions` after the new selected-role context landed.
+- Confirmed that all nine targeted feature tests pass together, `9 passed`, so the current read-only Galaxy foundation now holds across both operational modules and the access workspace.
+- This keeps Phase 1 parity-first work honest, because the live review paths are now verified together before any broader write flow or next module slice is introduced.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
