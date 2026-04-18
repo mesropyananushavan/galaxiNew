@@ -61,7 +61,7 @@
                     ])->filter()->implode(' ');
                 @endphp
 
-                <label for="{{ $fieldId }}" style="display: grid; gap: 8px; font-weight: 600;">
+                <label for="{{ $fieldId }}" {!! $renderAttributes($field['wrapperAttributes']) !!} style="display: grid; gap: 8px; font-weight: 600;">
                     <span>
                         {{ $field['label'] }}
                         @if ($field['required'])

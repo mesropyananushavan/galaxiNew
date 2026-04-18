@@ -1799,6 +1799,34 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('download="1"', false);
     }
 
+    public function test_card_types_page_renders_field_wrapper_attributes(): void
+    {
+        Config::set('admin-pages.card-types.liveForm.fields', [
+            ...array_map(function (array $field): array {
+                if ($field['name'] !== 'name') {
+                    return $field;
+                }
+
+                $field['wrapperAttributes'] = [
+                    'data-field-mode' => 'edit',
+                    'hidden' => true,
+                    'aria-hidden' => 'true',
+                ];
+
+                return $field;
+            }, Config::get('admin-pages.card-types.liveForm.fields', [])),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('<label for="live-form-name" data-field-mode="edit" hidden aria-hidden="true"', false)
+            ->assertDontSee('hidden="1"', false);
+    }
+
     public function test_card_types_page_renders_boolean_live_form_attributes(): void
     {
         Config::set('admin-pages.card-types.liveForm.fields', [

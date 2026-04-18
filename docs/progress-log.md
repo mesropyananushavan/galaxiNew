@@ -1278,6 +1278,14 @@
 ### Next step after live form attribute rendering cleanup checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
+### Live form field-wrapper attribute checkpoint
+- Added config-driven `wrapperAttributes` support for visible live-form fields so per-field wrapper state can travel through the shared layer.
+- The shared partial now renders those attributes on the label wrapper, and unit plus feature coverage keep the new per-field metadata path explicit.
+- This is a small structural step, but it gives the future `card-types` edit/update state a cleaner way to mark field-level mode or visibility without bespoke markup.
+
+### Next step after live form field-wrapper attribute checkpoint
+- Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
+
 ### Injected normalizer checkpoint
 - Switched `App\Http\Controllers\Admin\ResourceIndexController` from service-locator lookup to explicit constructor injection for `App\Support\AdminResourcePageNormalizer`.
 - This keeps the extracted Phase 1 page normalizer visible in the controller contract and makes the render path easier to reason about.

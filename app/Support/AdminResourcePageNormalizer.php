@@ -261,6 +261,7 @@ class AdminResourcePageNormalizer
                     'help' => is_string($field['help'] ?? null) ? $field['help'] : null,
                     'options' => $this->liveFormOptions($field['options'] ?? []),
                     'attributes' => $this->liveFormAttributes($field['attributes'] ?? []),
+                    'wrapperAttributes' => $this->liveFormAttributes($field['wrapperAttributes'] ?? []),
                 ];
             }, is_array($form['fields'] ?? null) ? $form['fields'] : []))),
         ];
