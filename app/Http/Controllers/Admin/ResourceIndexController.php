@@ -184,6 +184,12 @@ class ResourceIndexController extends Controller
             ['label' => 'Slug', 'value' => $selectedCardType->slug],
             ['label' => 'Points rate', 'value' => number_format((float) $selectedCardType->points_rate, 2).'x'],
             ['label' => 'Laravel status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
+            [
+                'label' => 'Status guidance',
+                'value' => $selectedCardType->is_active
+                    ? 'This tier is live in the current Laravel foundation, so operators should move it back to draft before parity-sensitive rule changes.'
+                    : 'This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.',
+            ],
         ];
 
         if (is_string(session('status'))) {
@@ -231,6 +237,7 @@ class ResourceIndexController extends Controller
         $page['dependencyStatus'] = [
             ['label' => 'Selected record', 'value' => $selectedCardType->name],
             ['label' => 'Edit flow state', 'value' => 'Shared live form is running in request-driven PATCH mode'],
+            ['label' => 'Current status posture', 'value' => $selectedCardType->is_active ? 'Active tiers should stay stable unless parity checks are complete' : 'Draft tiers are the safe place for parity-first validation and copy changes'],
             ['label' => 'Remaining backend gap', 'value' => 'Publish logic and rule-import parity still remain preview-only for this tier'],
         ];
 

@@ -1426,3 +1426,11 @@
 
 ### Next step after card type row-level success cue checkpoint
 - Reuse the selected-record success-cue pattern on another real mutation surface, or keep deepening `card-types` with selected-record-aware guidance for why a tier is active versus draft.
+
+### Card type status guidance checkpoint
+- Extended the `card-types` selected-record context so active versus draft state now carries explicit operator guidance instead of reading as a bare status flag.
+- When a tier is selected, the summary and dependency cards now explain whether the current state is safe for parity validation or should stay stable as a live tier.
+- Added feature coverage so this status-focused guidance remains visible both in normal edit mode and after a successful toggle redirect.
+
+### Next step after card type status guidance checkpoint
+- Reuse the status-guidance pattern on another entity page, or keep deepening `card-types` with one more small backend slice such as selected-record-aware rule-import blockers or publish guidance.

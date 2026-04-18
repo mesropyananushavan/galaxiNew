@@ -1719,6 +1719,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1.75x')
             ->assertSee('Laravel status:')
             ->assertSee('draft')
+            ->assertSee('Status guidance:')
+            ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
             ->assertSee('Recent activity preview')
             ->assertSee('Galaxy Prime selected for Laravel edit flow')
             ->assertSee('Current request')
@@ -1729,6 +1731,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected record:')
             ->assertSee('Edit flow state:')
             ->assertSee('Shared live form is running in request-driven PATCH mode')
+            ->assertSee('Current status posture:')
+            ->assertSee('Draft tiers are the safe place for parity-first validation and copy changes')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Publish logic and rule-import parity still remain preview-only for this tier')
             ->assertSee('Edit card type in Laravel')
@@ -1842,7 +1846,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card type "Galaxy Prime" is now draft.')
             ->assertSee('Selected record summary')
             ->assertSee('Latest flow result:')
-            ->assertSee('Card type "Galaxy Prime" is now draft.');
+            ->assertSee('Card type "Galaxy Prime" is now draft.')
+            ->assertSee('Status guidance:')
+            ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
+            ->assertSee('Current status posture:')
+            ->assertSee('Draft tiers are the safe place for parity-first validation and copy changes');
     }
 
     public function test_card_types_page_replaces_preview_metrics_with_model_backed_counts(): void
