@@ -1296,7 +1296,12 @@
 - Updated feature coverage so the `card-types` cancel route now proves a stringable helper object still resolves to the expected draft-preview URL.
 - This is another small controller-level bridge step, but it further reduces manual casting around typed route metadata before a real edit state starts feeding the shared form.
 
-### Next step after live form stringable route-parameter checkpoint
+### Live form routable route-parameter checkpoint
+- Extended shared live-form route-parameter resolution one step further so `UrlRoutable` objects can feed action and cancel routes without manual extraction.
+- Updated feature coverage so the `card-types` action route now resolves through a routable helper object while the cancel route still proves the stringable path.
+- This is a small controller-level bridge step, but it moves the shared route wiring closer to real model-backed edit flows.
+
+### Next step after live form routable route-parameter checkpoint
 - Connect the shared live-form foundation to a real `card-types` edit/update UI state once PHP execution is available, instead of only exposing the backend route.
 
 ### Injected normalizer checkpoint

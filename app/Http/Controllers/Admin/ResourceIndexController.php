@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Support\AdminResourcePageNormalizer;
 use BackedEnum;
+use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\View;
 use Stringable;
 
@@ -83,6 +84,10 @@ class ResourceIndexController extends Controller
             array_map(function (mixed $value): mixed {
                 if ($value instanceof BackedEnum) {
                     return $value->value;
+                }
+
+                if ($value instanceof UrlRoutable) {
+                    return $value->getRouteKey();
                 }
 
                 if ($value instanceof Stringable) {

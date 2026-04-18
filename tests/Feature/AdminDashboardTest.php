@@ -28,6 +28,34 @@ final class AdminCardTypePreviewStringable implements \Stringable
     }
 }
 
+final class AdminCardTypePreviewRoutable implements \Illuminate\Contracts\Routing\UrlRoutable
+{
+    public function __construct(
+        private readonly string $value,
+    ) {
+    }
+
+    public function getRouteKey(): string
+    {
+        return $this->value;
+    }
+
+    public function getRouteKeyName(): string
+    {
+        return 'cardType';
+    }
+
+    public function resolveRouteBinding($value, $field = null): ?self
+    {
+        return new self((string) $value);
+    }
+
+    public function resolveChildRouteBinding($childType, $value, $field): ?self
+    {
+        return new self((string) $value);
+    }
+}
+
 class AdminDashboardTest extends TestCase
 {
     use RefreshDatabase;
@@ -1658,7 +1686,7 @@ class AdminDashboardTest extends TestCase
 
         Config::set('admin-pages.card-types.liveForm.actionRoute', 'admin.card-types.draft-preview');
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', [
-            'cardType' => AdminCardTypePreviewRoute::Gold,
+            'cardType' => new AdminCardTypePreviewRoutable('gold'),
             'ignored' => ['bad'],
         ]);
         Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.draft-preview');
