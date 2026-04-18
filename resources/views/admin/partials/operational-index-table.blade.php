@@ -21,7 +21,13 @@
                 @foreach ($table['rows'] as $row)
                     <tr>
                         @foreach ($row as $cell)
-                            <td style="padding: 14px 0; border-bottom: 1px solid var(--border);">{{ $cell }}</td>
+                            <td style="padding: 14px 0; border-bottom: 1px solid var(--border);">
+                                @if (! empty($cell['href']))
+                                    <a href="{{ $cell['href'] }}" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">{{ $cell['label'] }}</a>
+                                @else
+                                    {{ $cell['label'] }}
+                                @endif
+                            </td>
                         @endforeach
                     </tr>
                 @endforeach

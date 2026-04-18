@@ -1716,6 +1716,36 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create new type');
     }
 
+    public function test_card_types_page_replaces_preview_rows_with_model_backed_edit_links(): void
+    {
+        $gold = CardType::create([
+            'name' => 'Gold',
+            'slug' => 'gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $partner = CardType::create([
+            'name' => 'Partner',
+            'slug' => 'partner',
+            'points_rate' => '1.20',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('href="/admin/card-types?cardType='.$gold->id.'#live-form"', false)
+            ->assertSee('href="/admin/card-types?cardType='.$partner->id.'#live-form"', false)
+            ->assertSee('Active in Laravel flow')
+            ->assertSee('Draft in Laravel flow')
+            ->assertDontSee('Auto after issue')
+            ->assertDontSee('Manager approval');
+    }
+
     public function test_authenticated_user_can_store_card_type_from_live_admin_form(): void
     {
         $user = User::factory()->create();

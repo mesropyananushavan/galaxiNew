@@ -66,6 +66,34 @@ class AdminResourcePageNormalizerTest extends TestCase
         $this->assertSame([], $normalized['table']['rows']);
     }
 
+    public function test_normalize_keeps_table_cells_with_optional_links(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'table' => [
+                'columns' => ['Type', 'Status'],
+                'rows' => [
+                    [
+                        ['label' => 'Galaxy Prime', 'href' => '/admin/card-types?cardType=1#live-form'],
+                        'draft',
+                    ],
+                    [
+                        ['label' => 'Broken link', 'href' => ['invalid-href']],
+                        'active',
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertSame([
+            [
+                ['label' => 'Galaxy Prime', 'href' => '/admin/card-types?cardType=1#live-form'],
+                ['label' => 'draft'],
+            ],
+        ], $normalized['table']['rows']);
+    }
+
     public function test_normalize_returns_empty_sections_when_form_sections_block_is_malformed(): void
     {
         $normalizer = new AdminResourcePageNormalizer();

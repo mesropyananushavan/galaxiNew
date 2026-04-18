@@ -127,6 +127,20 @@ class ResourceIndexController extends Controller
     private function enrichCardTypesPage(array $page): array
     {
         $latestCardType = CardType::query()->latest('id')->first();
+        $cardTypes = CardType::query()->orderBy('name')->get();
+
+        if ($cardTypes->isNotEmpty()) {
+            $page['table']['rows'] = $cardTypes->map(fn (CardType $cardType): array => [
+                [
+                    'label' => $cardType->name,
+                    'href' => route('admin.card-types.index', ['cardType' => $cardType->id], absolute: false).'#live-form',
+                ],
+                $cardType->slug,
+                number_format((float) $cardType->points_rate, 2).'x',
+                $cardType->is_active ? 'Active in Laravel flow' : 'Draft in Laravel flow',
+                $cardType->is_active ? 'active' : 'draft',
+            ])->all();
+        }
 
         if ($latestCardType !== null) {
             $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];

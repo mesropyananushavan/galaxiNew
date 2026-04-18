@@ -68,11 +68,33 @@ class AdminResourcePageNormalizer
             return [];
         }
 
-        return array_values(array_filter(
-            $rows,
-            fn (mixed $row): bool => is_array($row)
-                && array_values(array_filter($row, fn (mixed $cell): bool => is_string($cell))) === array_values($row)
-        ));
+        return array_values(array_filter(array_map(function (mixed $row): ?array {
+            if (! is_array($row)) {
+                return null;
+            }
+
+            $cells = array_values(array_filter(array_map(function (mixed $cell): ?array {
+                if (is_string($cell)) {
+                    return ['label' => $cell];
+                }
+
+                if (! is_array($cell)
+                    || ! is_string($cell['label'] ?? null)
+                    || (array_key_exists('href', $cell) && ! is_string($cell['href']))
+                ) {
+                    return null;
+                }
+
+                return array_filter([
+                    'label' => $cell['label'],
+                    'href' => $cell['href'] ?? null,
+                ], fn (mixed $value): bool => $value !== null);
+            }, $row)));
+
+            return count($cells) === count($row)
+                ? $cells
+                : null;
+        }, $rows)));
     }
 
     private function notice(mixed $notice): array

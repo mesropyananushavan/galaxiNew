@@ -1362,3 +1362,11 @@
 
 ### Next step after card type edit-entry checkpoint
 - Reuse the same request-driven edit-state pattern for row-level edit links or another small model-backed admin read surface, instead of adding more preview-only shell depth.
+
+### Card type table edit-link checkpoint
+- Extended the shared operational table path so table cells can render real links, not only static strings.
+- Switched `card-types` to the first small model-backed table read slice: when real `CardType` records exist, the preview rows are replaced with Laravel-backed rows whose type names deep-link into edit mode.
+- Added unit and feature coverage for linked table cells and the model-backed `card-types` table replacement, so this first row-level edit surface is preserved in Git history.
+
+### Next step after card type table edit-link checkpoint
+- Add one more small model-backed read detail, such as real status metrics for `card-types`, or reuse the same linked-table pattern on another Phase 1 entity page.
