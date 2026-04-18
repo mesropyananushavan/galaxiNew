@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T19:49:00Z",
+  "updated_at": "2026-04-18T20:04:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -55,7 +55,7 @@
     "module": "Card Types",
     "status": "IN_PROGRESS",
     "owner": "backend",
-    "summary": "The live card-types write slice keeps deepening around request-driven write feedback, and the live roles-permissions review slice now exposes selected-role publish gating, dependency/posture guidance, visible permission-bundle summary, assigned-staff preview, assignment/scope activity cues, assignment guidance, and explicit staff plus permission posture instead of leaving access shape implicit.",
+    "summary": "The live card-types write slice keeps deepening around request-driven write feedback, and the live roles-permissions review slice now exposes selected-role publish gating, dependency/posture guidance, visible staff, shop-scope, and permission-bundle previews, assignment/scope activity cues, assignment guidance, and explicit staff plus permission posture instead of leaving access shape implicit.",
     "code_paths": [
       "app/Http/Requests/Admin/UpdateCardTypeRequest.php",
       "tests/Feature/AdminDashboardTest.php"
@@ -64,6 +64,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "card-types still lacks publish logic and rule-import parity, and roles-permissions still lacks real role assignment/matrix writes beyond selected-role review guidance, staff/bundle visibility, staff/permission/scope cues, assignment context, and gating"
+    "blocker_reason": "card-types still lacks publish logic and rule-import parity, and roles-permissions still lacks real role assignment/matrix writes beyond selected-role review guidance, staff/shop/bundle visibility, staff/permission/scope cues, assignment context, and gating"
   }
 }

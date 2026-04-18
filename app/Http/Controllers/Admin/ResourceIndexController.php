@@ -191,6 +191,7 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
+            ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
             ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
             ['label' => 'Assigned staff preview', 'value' => $assignedUserPreview->isNotEmpty() ? $assignedUserPreview->join(', ') : 'No staff linked yet'],
             ['label' => 'Assignment guidance', 'value' => $selectedRole->users_count > 0

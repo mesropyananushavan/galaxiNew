@@ -315,6 +315,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: Shop Manager')
             ->assertSee('Selected role')
             ->assertSee('Scope')
+            ->assertSee('Shop scope preview')
+            ->assertSee('Galaxy Central')
             ->assertSee('Assigned users')
             ->assertSee('Assigned staff preview')
             ->assertSee('Nare Gevorgyan')
