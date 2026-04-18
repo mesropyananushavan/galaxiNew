@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T08:15:00Z",
+  "updated_at": "2026-04-18T08:31:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -55,14 +55,15 @@
     "module": "Tests / Parity Checks",
     "status": "IN_PROGRESS",
     "owner": "qa",
-    "summary": "QA bootstrap now reaches real Laravel test execution; card-type failures moved from environment setup into application code, with two rendering/compatibility fixes already landed.",
+    "summary": "QA bootstrap now reaches real Laravel test execution, and the shared card-type live form no longer crashes when optional attribute bags are omitted from config.",
     "code_paths": [
-      "app/Http/Requests/Admin/StoreCardTypeRequest.php",
-      "resources/views/admin/partials/operational-index-table.blade.php"
+      "app/Http/Controllers/Admin/ResourceIndexController.php",
+      "tests/Feature/AdminDashboardTest.php"
     ],
     "doc_paths": [
-      "docs/progress-log.md"
+      "docs/progress-log.md",
+      "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "focused card-type tests now fail deeper in resource-live-form because optional formAttributes data is not normalized for every render path"
+    "blocker_reason": "awaiting a fresh focused QA pass to verify the card-type flow progresses beyond the shared live-form render path"
   }
 }

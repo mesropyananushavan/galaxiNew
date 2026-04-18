@@ -31,7 +31,7 @@ class ResourceIndexController extends Controller
 
         $normalizedPage = $this->normalizer->normalize($page);
 
-        return view('admin.resource-index', $page + $normalizedPage + [
+        return view('admin.resource-index', $normalizedPage + $page + [
             'resourceKey' => $resource,
             'resourceBlocks' => $this->resourceBlocks($defaults),
             'phase' => $this->phase($defaults),

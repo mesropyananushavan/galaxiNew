@@ -2,6 +2,17 @@
 
 ## 2026-04-18
 
+### Live form optional-attributes render checkpoint
+- Fixed the card-type live-form render path so normalized defaults now win over the raw page config when the admin resource view is composed.
+- This closes the `Undefined array key "formAttributes"` defect in `resource-live-form` without widening scope beyond the existing normalization flow.
+- Added a regression feature test that exercises the edit flow with `formAttributes`, `submitAttributes`, and `cancelAttributes` omitted from config, so optional live-form keys stay safe in the selected-record render path.
+- Re-ran the focused feature and unit tests covering live-form attributes, and they now pass.
+
+### Next step after live form optional-attributes render checkpoint
+- Re-run the focused QA card-type slice to confirm the flow now advances past the shared live-form render stage.
+
+## 2026-04-18
+
 ### QA reached application-level failures checkpoint
 - Brought the host far enough for a real Laravel bootstrap: dependencies install, package discovery, and `artisan` execution now run under PHP 8.4.
 - Fixed one concrete Phase 1 compatibility bug by removing the typed `$redirectRoute` property from `StoreCardTypeRequest`, which was incompatible with the Laravel base request contract.

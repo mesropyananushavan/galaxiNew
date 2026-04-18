@@ -2320,6 +2320,29 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('novalidate="1"', false);
     }
 
+    public function test_card_types_edit_page_keeps_normalized_optional_live_form_attributes_when_config_omits_them(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        Config::set('admin-pages.card-types.liveForm.formAttributes', null);
+        Config::set('admin-pages.card-types.liveForm.submitAttributes', null);
+        Config::set('admin-pages.card-types.liveForm.cancelAttributes', null);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index', ['cardType' => $cardType->id]));
+
+        $response
+            ->assertOk()
+            ->assertSee('<form method="POST" action="'.route('admin.card-types.update', $cardType, false).'"', false)
+            ->assertSee('Save card type changes')
+            ->assertSee('href="'.route('admin.card-types.index', absolute: false).'" class="button button-secondary"', false);
+    }
+
     public function test_card_types_page_renders_cancel_attributes(): void
     {
         Config::set('admin-pages.card-types.liveForm.cancelAttributes', [
