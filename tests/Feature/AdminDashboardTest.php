@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use App\Models\Card;
 use App\Models\CardHolder;
 use App\Models\CardType;
+use App\Models\Permission;
+use App\Models\Role;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -217,6 +219,60 @@ class AdminDashboardTest extends TestCase
             ->assertSee('cashier/manager split')
             ->assertSee('Shop Manager')
             ->assertSee('Scoped to assigned shop');
+    }
+
+    public function test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-roles',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Manager',
+            'slug' => 'shop-manager-live',
+        ]);
+
+        $permissionA = Permission::create([
+            'name' => 'Manage cards',
+            'slug' => 'manage-cards-live',
+        ]);
+
+        $permissionB = Permission::create([
+            'name' => 'Manage gifts',
+            'slug' => 'manage-gifts-live',
+        ]);
+
+        $role->permissions()->attach([$permissionA->id, $permissionB->id]);
+
+        $userWithRole = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $userWithRole->roles()->attach($role->id);
+
+        $draftRole = Role::create([
+            'name' => 'Cashier Draft',
+            'slug' => 'cashier-draft-live',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shop Manager')
+            ->assertSee('Galaxy Central')
+            ->assertSee('Manage cards, Manage gifts')
+            ->assertSee('Cashier Draft')
+            ->assertSee('No permissions linked yet')
+            ->assertSee('Active roles')
+            ->assertSee('Draft roles')
+            ->assertSee('Scoped shops')
+            ->assertSee('active')
+            ->assertSee('draft');
     }
 
     public function test_authenticated_user_can_access_cards_operational_index_shape(): void

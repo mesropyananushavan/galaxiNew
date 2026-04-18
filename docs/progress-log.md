@@ -81,6 +81,11 @@
 - Confirmed that all six targeted feature tests pass together, `6 passed`, so the current read-only slices hold as one coherent Phase 1 checkpoint rather than isolated one-off changes.
 - This gives a cleaner base for the next real slice, because the current live review paths are now verified together before more modules start switching away from preview-only data.
 
+### Roles-permissions model-backed read checkpoint
+- Replaced the preview-only `roles-permissions` table and summary metrics with Eloquent-backed values whenever real `Role` records exist.
+- The access workspace now derives active/draft counts, scoped-shop count, permission previews, and assigned-user totals from Laravel models instead of only static config rows.
+- Added feature coverage proving the page swaps from preview rows to model-backed access data once real roles and permissions are present, making `roles-permissions` the next real Phase 1 read slice after the operational modules.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

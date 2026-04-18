@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Card;
 use App\Models\CardHolder;
 use App\Models\CardType;
+use App\Models\Role;
 use App\Models\Shop;
 use App\Support\AdminResourcePageNormalizer;
 use BackedEnum;
@@ -125,8 +126,43 @@ class ResourceIndexController extends Controller
             'shops' => $this->enrichShopsPage($page),
             'cardholders' => $this->enrichCardHoldersPage($page),
             'cards' => $this->enrichCardsPage($page),
+            'roles-permissions' => $this->enrichRolesPermissionsPage($page),
             default => $page,
         };
+    }
+
+    private function enrichRolesPermissionsPage(array $page): array
+    {
+        $roles = Role::query()
+            ->with(['permissions' => fn ($query) => $query->orderBy('name'), 'users.shop'])
+            ->withCount(['permissions', 'users'])
+            ->orderBy('name')
+            ->get();
+
+        if ($roles->isEmpty()) {
+            return $page;
+        }
+
+        $page['metrics'] = [
+            ['label' => 'Active roles', 'value' => (string) $roles->filter(fn (Role $role): bool => $role->permissions_count > 0)->count()],
+            ['label' => 'Draft roles', 'value' => (string) $roles->filter(fn (Role $role): bool => $role->permissions_count === 0)->count()],
+            ['label' => 'Scoped shops', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
+        ];
+
+        $page['table']['rows'] = $roles->map(function (Role $role): array {
+            $scope = $role->users->pluck('shop.name')->filter()->unique();
+            $permissionPreview = $role->permissions->pluck('name')->take(3)->implode(', ');
+
+            return [
+                $role->name,
+                $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice',
+                $permissionPreview !== '' ? $permissionPreview : 'No permissions linked yet',
+                (string) $role->users_count,
+                $role->permissions_count > 0 ? 'active' : 'draft',
+            ];
+        })->all();
+
+        return $page;
     }
 
     private function enrichCardsPage(array $page): array
