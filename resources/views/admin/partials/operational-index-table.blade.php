@@ -22,7 +22,18 @@
                     <tr>
                         @foreach ($row as $cell)
                             <td style="padding: 14px 0; border-bottom: 1px solid var(--border);">
-                                @if (! empty($cell['href']))
+                                @if (! empty($cell['href']) && ! empty($cell['method']) && ! in_array($cell['method'], ['GET'], true))
+                                    <form method="POST" action="{{ $cell['href'] }}" style="margin: 0; display: inline;">
+                                        @csrf
+                                        @if ($cell['method'] !== 'POST')
+                                            @method($cell['method'])
+                                        @endif
+
+                                        <button type="submit" style="border: 0; padding: 0; background: transparent; color: inherit; text-decoration: underline; text-underline-offset: 2px; cursor: pointer; font: inherit;">
+                                            {{ $cell['label'] }}
+                                        </button>
+                                    </form>
+                                @elseif (! empty($cell['href']))
                                     <a href="{{ $cell['href'] }}" style="color: inherit; text-decoration: underline; text-underline-offset: 2px;">{{ $cell['label'] }}</a>
                                 @else
                                     {{ $cell['label'] }}

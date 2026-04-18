@@ -1790,10 +1790,36 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('href="/admin/card-types?cardType='.$gold->id.'#live-form"', false)
             ->assertSee('href="/admin/card-types?cardType='.$partner->id.'#live-form"', false)
+            ->assertSee('<form method="POST" action="/admin/card-types/'.$gold->id.'/toggle-status"', false)
+            ->assertSee('<form method="POST" action="/admin/card-types/'.$partner->id.'/toggle-status"', false)
             ->assertSee('Active in Laravel flow')
             ->assertSee('Draft in Laravel flow')
             ->assertDontSee('Auto after issue')
-            ->assertDontSee('Manager approval');
+            ->assertDontSee('Manager approval')
+            ->assertDontSee('>active<', false)
+            ->assertDontSee('>draft<', false);
+    }
+
+    public function test_authenticated_user_can_toggle_card_type_status_from_row_level_action(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Partner',
+            'slug' => 'galaxy-partner',
+            'points_rate' => '1.20',
+            'is_active' => false,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.card-types.toggle-status', $cardType));
+
+        $response
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card type "Galaxy Partner" is now active.');
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'is_active' => true,
+        ]);
     }
 
     public function test_card_types_page_replaces_preview_metrics_with_model_backed_counts(): void

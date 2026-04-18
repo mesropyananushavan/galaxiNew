@@ -83,6 +83,7 @@ class AdminResourcePageNormalizer
                 if (! is_array($cell)
                     || ! is_string($cell['label'] ?? null)
                     || (array_key_exists('href', $cell) && ! is_string($cell['href']))
+                    || (array_key_exists('method', $cell) && ! is_string($cell['method']))
                 ) {
                     return null;
                 }
@@ -90,6 +91,7 @@ class AdminResourcePageNormalizer
                 return array_filter([
                     'label' => $cell['label'],
                     'href' => $cell['href'] ?? null,
+                    'method' => $cell['method'] ?? null,
                 ], fn (mixed $value): bool => $value !== null);
             }, $row)));
 

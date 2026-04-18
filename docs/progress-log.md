@@ -1410,3 +1410,11 @@
 
 ### Next step after card type status toggle checkpoint
 - Reuse the method-aware selected-action pattern on another entity page, or keep deepening `card-types` with one more small backend slice such as selected-record-aware success feedback or row-level status actions.
+
+### Card type row-level status action checkpoint
+- Extended the shared operational table renderer so linked cells can also submit non-GET Laravel requests, not only navigate by href.
+- Replaced the preview-only `card-types` status column with row-level toggle actions, so saved tiers can now move between active and draft directly from the model-backed table.
+- Added unit and feature coverage for method-aware table cells and the row-level `card-types` status action surface, keeping this mutation step visible in Phase 1 Git history.
+
+### Next step after card type row-level status action checkpoint
+- Reuse the method-aware table-cell pattern on another entity page, or keep deepening `card-types` with one more backend slice such as row-level success cues or selected-record-aware status guidance.

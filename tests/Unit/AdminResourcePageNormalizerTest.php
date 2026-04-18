@@ -96,6 +96,34 @@ class AdminResourcePageNormalizerTest extends TestCase
         ], $normalized['table']['rows']);
     }
 
+    public function test_normalize_keeps_table_cells_with_optional_methods(): void
+    {
+        $normalizer = new AdminResourcePageNormalizer();
+
+        $normalized = $normalizer->normalize([
+            'table' => [
+                'columns' => ['Type', 'Status action'],
+                'rows' => [
+                    [
+                        'Galaxy Prime',
+                        ['label' => 'Move to draft', 'href' => '/admin/card-types/7/toggle-status', 'method' => 'PATCH'],
+                    ],
+                    [
+                        'Broken method',
+                        ['label' => 'Broken action', 'href' => '/admin/card-types/7/toggle-status', 'method' => ['PATCH']],
+                    ],
+                ],
+            ],
+        ]);
+
+        $this->assertSame([
+            [
+                ['label' => 'Galaxy Prime'],
+                ['label' => 'Move to draft', 'href' => '/admin/card-types/7/toggle-status', 'method' => 'PATCH'],
+            ],
+        ], $normalized['table']['rows']);
+    }
+
     public function test_normalize_returns_empty_sections_when_form_sections_block_is_malformed(): void
     {
         $normalizer = new AdminResourcePageNormalizer();

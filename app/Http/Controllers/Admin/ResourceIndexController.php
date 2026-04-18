@@ -146,7 +146,11 @@ class ResourceIndexController extends Controller
                 $cardType->slug,
                 number_format((float) $cardType->points_rate, 2).'x',
                 $cardType->is_active ? 'Active in Laravel flow' : 'Draft in Laravel flow',
-                $cardType->is_active ? 'active' : 'draft',
+                [
+                    'label' => $cardType->is_active ? 'Move to draft' : 'Activate type',
+                    'href' => route('admin.card-types.toggle-status', $cardType, absolute: false),
+                    'method' => 'PATCH',
+                ],
             ])->all();
         }
 
