@@ -96,6 +96,11 @@
 - Confirmed that all nine targeted feature tests pass together, `9 passed`, so the current read-only Galaxy foundation now holds across both operational modules and the access workspace.
 - This keeps Phase 1 parity-first work honest, because the live review paths are now verified together before any broader write flow or next module slice is introduced.
 
+### Resource index structural hardening checkpoint
+- Reduced repeated selected-record and latest-saved action wiring inside `ResourceIndexController` by extracting small shared helpers for linked table cells, appended actions, and request record selection.
+- Re-ran the selected-record feature coverage for `shops`, `cardholders`, `cards`, and `roles-permissions`, `4 passed`, to prove the controller cleanup did not change the live review behavior.
+- This keeps the Phase 1 read-slice foundation easier to extend, because future Laravel-backed modules can reuse the same request-driven review pattern with less controller duplication.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

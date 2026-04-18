@@ -154,10 +154,7 @@ class ResourceIndexController extends Controller
             $permissionPreview = $role->permissions->pluck('name')->take(3)->implode(', ');
 
             return [
-                [
-                    'label' => $role->name,
-                    'href' => route('admin.roles-permissions.index', ['role' => $role->id], absolute: false),
-                ],
+                $this->linkedTableCell($role->name, 'admin.roles-permissions.index', ['role' => $role->id]),
                 $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice',
                 $permissionPreview !== '' ? $permissionPreview : 'No permissions linked yet',
                 (string) $role->users_count,
@@ -168,19 +165,14 @@ class ResourceIndexController extends Controller
         $latestRole = $roles->sortByDesc('id')->first();
 
         if ($latestRole !== null) {
-            $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
-
-            $page['actions'] = [
-                ...$actions,
-                [
-                    'label' => 'Review latest saved role',
-                    'tone' => 'secondary',
-                    'href' => route('admin.roles-permissions.index', ['role' => $latestRole->id], absolute: false),
-                ],
-            ];
+            $page = $this->appendPageAction($page, [
+                'label' => 'Review latest saved role',
+                'tone' => 'secondary',
+                'href' => route('admin.roles-permissions.index', ['role' => $latestRole->id], absolute: false),
+            ]);
         }
 
-        $selectedRoleId = request()->integer('role');
+        $selectedRoleId = $this->selectedRecordId('role');
 
         if ($selectedRoleId < 1) {
             return $page;
@@ -263,10 +255,7 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $cards->map(fn (Card $card): array => [
-            [
-                'label' => $card->number,
-                'href' => route('admin.cards.index', ['card' => $card->id], absolute: false),
-            ],
+            $this->linkedTableCell($card->number, 'admin.cards.index', ['card' => $card->id]),
             $card->holder?->full_name ?? 'Unassigned',
             $card->type?->name ?? 'Unknown',
             $card->shop?->name ?? 'Unassigned',
@@ -277,19 +266,14 @@ class ResourceIndexController extends Controller
         $latestCard = $cards->sortByDesc('id')->first();
 
         if ($latestCard !== null) {
-            $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
-
-            $page['actions'] = [
-                ...$actions,
-                [
-                    'label' => 'Review latest saved card',
-                    'tone' => 'secondary',
-                    'href' => route('admin.cards.index', ['card' => $latestCard->id], absolute: false),
-                ],
-            ];
+            $page = $this->appendPageAction($page, [
+                'label' => 'Review latest saved card',
+                'tone' => 'secondary',
+                'href' => route('admin.cards.index', ['card' => $latestCard->id], absolute: false),
+            ]);
         }
 
-        $selectedCardId = request()->integer('card');
+        $selectedCardId = $this->selectedRecordId('card');
 
         if ($selectedCardId < 1) {
             return $page;
@@ -371,10 +355,7 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $cardHolders->map(fn (CardHolder $cardHolder): array => [
-            [
-                'label' => $cardHolder->full_name,
-                'href' => route('admin.cardholders.index', ['cardholder' => $cardHolder->id], absolute: false),
-            ],
+            $this->linkedTableCell($cardHolder->full_name, 'admin.cardholders.index', ['cardholder' => $cardHolder->id]),
             $cardHolder->phone ?? '—',
             $cardHolder->shop?->name ?? 'Unassigned',
             (string) $cardHolder->cards_count,
@@ -385,19 +366,14 @@ class ResourceIndexController extends Controller
         $latestCardHolder = $cardHolders->sortByDesc('id')->first();
 
         if ($latestCardHolder !== null) {
-            $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
-
-            $page['actions'] = [
-                ...$actions,
-                [
-                    'label' => 'Review latest saved holder',
-                    'tone' => 'secondary',
-                    'href' => route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id], absolute: false),
-                ],
-            ];
+            $page = $this->appendPageAction($page, [
+                'label' => 'Review latest saved holder',
+                'tone' => 'secondary',
+                'href' => route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id], absolute: false),
+            ]);
         }
 
-        $selectedCardHolderId = request()->integer('cardholder');
+        $selectedCardHolderId = $this->selectedRecordId('cardholder');
 
         if ($selectedCardHolderId < 1) {
             return $page;
@@ -476,10 +452,7 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $shops->map(fn (Shop $shop): array => [
-            [
-                'label' => $shop->name,
-                'href' => route('admin.shops.index', ['shop' => $shop->id], absolute: false),
-            ],
+            $this->linkedTableCell($shop->name, 'admin.shops.index', ['shop' => $shop->id]),
             $shop->code,
             $shop->users->first()?->name ?? 'Unassigned',
             (string) $shop->card_holders_count,
@@ -490,19 +463,14 @@ class ResourceIndexController extends Controller
         $latestShop = $shops->sortByDesc('id')->first();
 
         if ($latestShop !== null) {
-            $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
-
-            $page['actions'] = [
-                ...$actions,
-                [
-                    'label' => 'Review latest saved shop',
-                    'tone' => 'secondary',
-                    'href' => route('admin.shops.index', ['shop' => $latestShop->id], absolute: false),
-                ],
-            ];
+            $page = $this->appendPageAction($page, [
+                'label' => 'Review latest saved shop',
+                'tone' => 'secondary',
+                'href' => route('admin.shops.index', ['shop' => $latestShop->id], absolute: false),
+            ]);
         }
 
-        $selectedShopId = request()->integer('shop');
+        $selectedShopId = $this->selectedRecordId('shop');
 
         if ($selectedShopId < 1) {
             return $page;
@@ -777,6 +745,29 @@ class ResourceIndexController extends Controller
         $parameters = $this->resolveLiveFormConfigValue($parameters, $resource, $page);
 
         return is_array($parameters) ? $parameters : [];
+    }
+
+    private function appendPageAction(array $page, array $action): array
+    {
+        $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
+        $page['actions'] = [...$actions, $action];
+
+        return $page;
+    }
+
+    private function linkedTableCell(string $label, string $routeName, array $parameters): array
+    {
+        return [
+            'label' => $label,
+            'href' => route($routeName, $parameters, absolute: false),
+        ];
+    }
+
+    private function selectedRecordId(string $queryKey): int
+    {
+        $selectedId = request()->integer($queryKey);
+
+        return $selectedId > 0 ? $selectedId : 0;
     }
 
     private function resolveLiveFormString(mixed $value, string $resource, array $page): string
