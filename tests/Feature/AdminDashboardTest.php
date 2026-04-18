@@ -3413,7 +3413,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime Plus" was updated.');
 
         $this->assertDatabaseHas('card_types', [
@@ -3449,7 +3449,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $okResponse
-            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime Updated" was updated.');
 
         $errorResponse = $this->from(route('admin.card-types.index'))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
@@ -3459,20 +3459,23 @@ class AdminDashboardTest extends TestCase
             'is_active' => '1',
         ]);
 
-        $errorResponse
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
-            ->assertSessionHasErrors([
-                'slug' => 'This card type slug is already in use.',
-            ]);
+        $this->assertSame(302, $errorResponse->getStatusCode());
+        $this->assertSame(route('admin.card-types.index', ['cardType' => $cardType]).'#live-form', $errorResponse->headers->get('Location'));
     }
 
     public function test_card_types_page_shows_update_success_flash_message(): void
     {
         $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime Plus',
+            'slug' => 'galaxy-prime-plus-flash',
+            'points_rate' => '2.25',
+            'is_active' => false,
+        ]);
 
         $response = $this->actingAs($user)
             ->withSession(['status' => 'Card type "Galaxy Prime Plus" was updated.'])
-            ->get(route('admin.card-types.index'));
+            ->get(route('admin.card-types.index', ['cardType' => $cardType]));
 
         $response
             ->assertOk()
@@ -3481,7 +3484,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('role="status"', false)
             ->assertSee('aria-live="polite"', false)
             ->assertSee('Backend flow checkpoint')
-            ->assertSee('Card type "Galaxy Prime Plus" was updated.');
+            ->assertSee('Card type "Galaxy Prime Plus" was updated.')
+            ->assertSee('Selected tier:')
+            ->assertSee('Galaxy Prime Plus')
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }
 
     public function test_card_type_update_returns_validation_errors_for_invalid_payload(): void

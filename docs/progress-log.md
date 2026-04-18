@@ -161,6 +161,11 @@
 - Confirmed the retry flow still stays in selected edit mode while the cancel action avoids a stale selected-record URL, `2 passed`.
 - This slightly reduces operator footguns in the current write slice by keeping the escape hatch predictable even after a failed save.
 
+### Card-types update success selected-context checkpoint
+- Updated the live `card-types` write flow so a successful PATCH now redirects back to `/admin/card-types?cardType=<id>#backend-flow-status` instead of dropping operators into the generic index state.
+- Added focused coverage proving successful updates, duplicate-slug retry coverage, and update flash rendering all align with the selected-tier context, `3 passed`.
+- This keeps the only live write-backed Phase 1 slice closer to request-driven parity by letting operators save and remain anchored in the same Galaxy tier workspace.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
