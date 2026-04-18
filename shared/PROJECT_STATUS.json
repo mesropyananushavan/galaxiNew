@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T12:49:00Z",
+  "updated_at": "2026-04-18T13:04:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,18 +52,17 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Resource Controller Foundation",
+    "module": "Roles & Permissions",
     "status": "IN_PROGRESS",
-    "owner": "backend",
-    "summary": "The shared ResourceIndexController now uses small helper methods for linked table cells, appended review actions, and request-driven selected-record lookup, reducing duplication across the live Phase 1 Laravel read slices.",
+    "owner": "qa",
+    "summary": "The live roles-permissions read slice now has regression coverage proving an unknown selected-role query falls back cleanly to the model-backed index instead of rendering a broken record-review state.",
     "code_paths": [
-      "app/Http/Controllers/Admin/ResourceIndexController.php",
       "tests/Feature/AdminDashboardTest.php"
     ],
     "doc_paths": [
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "the controller foundation is cleaner, but create/update flows beyond card-types still remain pending before these modules can move past read-state parity"
+    "blocker_reason": "roles-permissions read-state fallback is now covered, but assignment UI, matrix editing, and authorization write flows still remain pending"
   }
 }

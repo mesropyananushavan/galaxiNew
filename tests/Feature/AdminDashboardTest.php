@@ -326,6 +326,45 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Manage cards');
     }
 
+    public function test_roles_permissions_page_ignores_unknown_selected_role_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-unknown-role',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Manager',
+            'slug' => 'shop-manager-unknown-role',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Manage cards',
+            'slug' => 'manage-cards-unknown-role',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $assignedUser = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shop Manager')
+            ->assertSee('Review latest saved role')
+            ->assertDontSee('Back to all roles')
+            ->assertDontSee('Selected role')
+            ->assertDontSee('selected for Laravel review');
+    }
+
     public function test_authenticated_user_can_access_cards_operational_index_shape(): void
     {
         $user = User::factory()->create();
