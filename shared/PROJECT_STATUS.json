@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T10:48:00Z",
+  "updated_at": "2026-04-18T11:03:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,10 +52,10 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Cardholders",
+    "module": "Cards",
     "status": "IN_PROGRESS",
     "owner": "backend",
-    "summary": "The cardholders workspace now swaps preview rows and summary metrics for Eloquent-backed data when real CardHolder records exist, making it the next real Laravel read slice after shops.",
+    "summary": "The cards workspace now swaps preview rows and summary metrics for Eloquent-backed inventory data when real Card records exist, making it the next real Laravel read slice after cardholders.",
     "code_paths": [
       "app/Http/Controllers/Admin/ResourceIndexController.php",
       "tests/Feature/AdminDashboardTest.php"
@@ -64,6 +64,6 @@
       "docs/progress-log.md",
       "shared/PROJECT_STATUS.json"
     ],
-    "blocker_reason": "search, profile reads, and activity sourcing remain pending even though the model-backed cardholder index slice is now live"
+    "blocker_reason": "issue, block, and assignment flows remain pending even though the model-backed card inventory slice is now live"
   }
 }

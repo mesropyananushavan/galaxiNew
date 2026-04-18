@@ -274,6 +274,75 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Activation period');
     }
 
+    public function test_cards_page_replaces_preview_rows_with_model_backed_inventory_data(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-cards',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-cards@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Gold',
+            'slug' => 'galaxy-gold-cards',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-900001',
+            'status' => 'active',
+            'activated_at' => '2026-04-10 10:00:00',
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-900002',
+            'status' => 'draft',
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-900003',
+            'status' => 'blocked',
+            'activated_at' => '2026-03-28 09:15:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards');
+
+        $response
+            ->assertOk()
+            ->assertSee('GX-900001')
+            ->assertSee('GX-900002')
+            ->assertSee('GX-900003')
+            ->assertSee('Anna Petrova')
+            ->assertSee('Unassigned')
+            ->assertSee('Galaxy Gold')
+            ->assertSee('Galaxy Central')
+            ->assertSee('Active cards')
+            ->assertSee('Draft cards')
+            ->assertSee('Blocked cards')
+            ->assertSee('2026-04-10')
+            ->assertSee('2026-03-28');
+    }
+
     public function test_authenticated_user_can_access_cardholders_operational_index_shape(): void
     {
         $user = User::factory()->create();
