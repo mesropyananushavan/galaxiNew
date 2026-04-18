@@ -86,6 +86,18 @@ php artisan test
 
 Подробности и текущие блокеры окружения: `docs/qa-test-environment.md`
 
+## Checkpoint hygiene
+
+Для Phase 1 checkpoints код, `docs/progress-log.md` и `shared/PROJECT_STATUS.json` должны обновляться вместе.
+
+Перед commit/push можно быстро проверить sync так:
+
+```bash
+./scripts/checkpoint-sync.sh
+```
+
+Скрипт валидирует `shared/PROJECT_STATUS.json` и показывает, остались ли `docs/progress-log.md` или `shared/PROJECT_STATUS.json` незакоммиченными.
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).

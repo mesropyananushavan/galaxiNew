@@ -121,6 +121,11 @@
 - Re-ran the focused malformed-query coverage for those operational modules, `6 passed`, to confirm both unknown-id and malformed-query fallback behavior remain stable.
 - This completes the basic hardening loop for request-driven operational review state before the next bigger Phase 1 slice lands.
 
+### Checkpoint sync helper checkpoint
+- Added a repo-side helper script, `scripts/checkpoint-sync.sh`, to validate `shared/PROJECT_STATUS.json` and show whether `docs/progress-log.md` or `shared/PROJECT_STATUS.json` are still dirty before a checkpoint commit.
+- Documented the helper in `README.md` so repeated Phase 1 checkpoints can keep code, docs, and status aligned without relying only on chat memory.
+- Ran the helper locally to confirm the current checkpoint files are clean before the next implementation slice.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
