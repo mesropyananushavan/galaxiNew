@@ -665,6 +665,13 @@ class ResourceIndexController extends Controller
             ['label' => 'Remaining backend gap', 'value' => 'Publish logic and rule-import parity still remain preview-only for this tier'],
         ];
 
+        if (is_string(session('status'))) {
+            $page['dependencyStatus'][] = [
+                'label' => 'Latest flow result',
+                'value' => session('status'),
+            ];
+        }
+
         $page['liveForm']['title'] = 'Edit card type in Laravel';
         $page['liveForm']['description'] = 'Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.';
         $page['liveForm']['method'] = 'PATCH';

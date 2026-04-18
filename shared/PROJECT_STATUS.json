@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T17:20:00Z",
+  "updated_at": "2026-04-18T17:34:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -55,7 +55,7 @@
     "module": "Card Types",
     "status": "IN_PROGRESS",
     "owner": "backend",
-    "summary": "The live card-types write slice now preserves selected edit context across validation failures and successful writes, including attempted form values, validation feedback bindings, safe cancel behavior, selected-tier redirects after create/update, shared redirect and latest-feedback patterns for write actions, and timeline-visible latest write feedback.",
+    "summary": "The live card-types write slice now preserves selected edit context across validation failures and successful writes, including attempted form values, validation feedback bindings, safe cancel behavior, selected-tier redirects after create/update, shared redirect and latest-feedback patterns for write actions, and latest-write cues across summary, timeline, and dependency context.",
     "code_paths": [
       "app/Http/Requests/Admin/UpdateCardTypeRequest.php",
       "tests/Feature/AdminDashboardTest.php"

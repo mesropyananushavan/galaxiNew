@@ -2679,7 +2679,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Publish posture:')
             ->assertSee('Draft tiers should stay unpublished until legacy behavior is mapped more explicitly')
             ->assertSee('Action gating:')
-            ->assertSee('Allow draft-safe edits and validation only, keep live-facing actions gated');
+            ->assertSee('Allow draft-safe edits and validation only, keep live-facing actions gated')
+            ->assertSee('Latest flow result:')
+            ->assertSee('Card type "Galaxy Prime" is now draft.');
     }
 
     public function test_card_types_page_replaces_preview_metrics_with_model_backed_counts(): void

@@ -186,6 +186,11 @@
 - Re-ran focused success-feedback coverage for toggle, create, and update selected-context flows, `3 passed`.
 - This keeps the live `card-types` workspace easier to extend without reintroducing drift between flash, selected summary, and timeline feedback paths.
 
+### Card-types dependency context feedback checkpoint
+- Extended the selected `card-types` dependency-status block so the latest backend write result now appears there as well when the request carries a flash status.
+- Confirmed the toggle-success flow now keeps the same latest-write cue visible across flash, selected summary, recent activity, and dependency context together, `1 passed`.
+- This makes the current Phase 1 workspace more coherent for operators because every main context block now agrees on the latest action outcome for the selected tier.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
