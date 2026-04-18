@@ -336,6 +336,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected-role review is running in Laravel-backed read mode only')
             ->assertSee('Matrix posture:')
             ->assertSee('Keep matrix editing blocked until legacy staff-access parity is verified in Laravel')
+            ->assertSee('Permission posture:')
+            ->assertSee('The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.')
             ->assertSee('Publish posture:')
             ->assertSee('This live permission bundle still needs assignment parity checks before publish-style role changes are safe.')
             ->assertSee('Scope posture:')
