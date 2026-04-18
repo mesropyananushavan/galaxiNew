@@ -1702,6 +1702,10 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Create new type')
+            ->assertSee('href="/admin/card-types#live-form"', false)
+            ->assertSee('Editing: Galaxy Prime')
+            ->assertSee('Import rules')
             ->assertSee('Selected record summary')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
@@ -1733,8 +1737,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('value="galaxy-prime"', false)
             ->assertSee('value="1.75"', false)
             ->assertSee('<option value="0" selected>Draft</option>', false)
-            ->assertSee('href="/admin/card-types"', false)
-            ->assertSee('Create new type');
+            ->assertSee('href="/admin/card-types"', false);
     }
 
     public function test_card_types_page_replaces_preview_rows_with_model_backed_edit_links(): void

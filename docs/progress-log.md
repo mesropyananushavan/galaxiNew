@@ -1394,3 +1394,11 @@
 
 ### Next step after card type selected-record context checkpoint
 - Reuse the same selected-record context pattern on another entity page, or keep pushing `card-types` with one more small backend slice such as selected-record-aware page actions or status toggles.
+
+### Card type selected-record header actions checkpoint
+- Extended `card-types` edit mode so the page-level header actions now react to the selected Laravel record instead of staying in the generic preview state.
+- When `?cardType=<id>` is present, the header now exposes a direct return path to create mode and shows an explicit `Editing: <name>` cue in the top action layer.
+- Added feature coverage so this selected-record-aware action state stays visible as the Phase 1 shell keeps moving from preview copy toward real workspace behavior.
+
+### Next step after card type selected-record header actions checkpoint
+- Reuse the same selected-record-aware action pattern on another entity page, or keep deepening `card-types` with one more backend slice such as a first real status toggle flow.

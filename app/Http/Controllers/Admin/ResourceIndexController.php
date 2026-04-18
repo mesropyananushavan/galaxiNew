@@ -182,6 +182,22 @@ class ResourceIndexController extends Controller
             ['label' => 'Laravel status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
         ];
 
+        $page['actions'] = [
+            [
+                'label' => 'Create new type',
+                'tone' => 'primary',
+                'href' => route('admin.card-types.index', absolute: false).'#live-form',
+            ],
+            [
+                'label' => sprintf('Editing: %s', $selectedCardType->name),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Import rules',
+                'tone' => 'secondary',
+            ],
+        ];
+
         $page['activityTimeline'] = [
             [
                 'title' => sprintf('%s selected for Laravel edit flow', $selectedCardType->name),
