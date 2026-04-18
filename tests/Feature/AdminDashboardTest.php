@@ -174,6 +174,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('aria-disabled="true"', false)
             ->assertSee('New role')
+            ->assertSee('Blocked until the first Laravel-backed role write flow exists for role identity, scope, and permission bundle parity.')
             ->assertSee('Review matrix')
             ->assertSee('Blocked until the Laravel permission matrix can be verified against legacy staff access.')
             ->assertSee('Management snapshot')

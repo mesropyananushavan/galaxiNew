@@ -860,7 +860,12 @@ return [
         'summary' => 'Baseline management screen for admin roles, permission bundles, and future shop-scoped access rules.',
         'nextStep' => 'Replace sample controls with real role assignment, permission matrix, and shop-aware policy flows.',
         'actions' => [
-            ['label' => 'New role', 'tone' => 'primary'],
+            [
+                'label' => 'New role',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until the first Laravel-backed role write flow exists for role identity, scope, and permission bundle parity.',
+            ],
             ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.'],
         ],
         'metrics' => [
