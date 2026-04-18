@@ -2,6 +2,16 @@
 
 ## 2026-04-18
 
+### QA test environment bootstrap checkpoint
+- Added a dedicated QA bootstrap note so the repository itself now explains the minimum Laravel setup required to run tests.
+- Documented that the current environment is already configured for in-memory SQLite test runs, and that the remaining bootstrap blocker is missing Composer tooling on the host.
+- Updated the root README with a short test-start sequence so QA can get to `php artisan test` faster.
+
+### Next step after QA test environment bootstrap checkpoint
+- Install Composer on the host or provide a local Composer binary, then run `composer install` and the first full Laravel test pass.
+
+## 2026-04-18
+
 ### Roles and permissions action-gating checkpoint
 - Reused the shared disabled-action pattern on `roles-permissions`, so matrix review and role publishing now read as intentionally gated instead of looking prematurely available.
 - This makes the access-control workspace feel more Galaxy-specific and less like a generic starter while keeping parity-first warnings visible around shop-scoped authorization work.

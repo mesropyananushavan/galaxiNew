@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-18T08:00:00Z",
+  "updated_at": "2026-04-18T08:07:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -52,16 +52,17 @@
   ],
   "next_recommended_step": "Use these documents as the required source for implementation planning and migration task decomposition.",
   "recent_checkpoint": {
-    "module": "Auth and access control",
-    "status": "IN_PROGRESS",
-    "owner": "frontend",
-    "summary": "Roles and permissions preview now uses explicit action gating for matrix review and role publishing, with matching feature coverage.",
+    "module": "Tests / Parity Checks",
+    "status": "BLOCKED",
+    "owner": "qa",
+    "summary": "Repository-level QA bootstrap documentation added, but actual Laravel test execution is blocked until Composer is available and dependencies are installed.",
     "code_paths": [
-      "config/admin-pages.php",
-      "tests/Feature/AdminDashboardTest.php"
+      "README.md"
     ],
     "doc_paths": [
+      "docs/qa-test-environment.md",
       "docs/progress-log.md"
-    ]
+    ],
+    "blocker_reason": "composer not found in PATH on the current host"
   }
 }

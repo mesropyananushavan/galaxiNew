@@ -72,6 +72,20 @@ A minimal admin shell is available as the first post-foundation vertical slice:
 
 This is an intentional baseline step, not a full roles / permissions system yet.
 
+## QA / test bootstrap
+
+Минимальный запуск тестов для локального QA:
+
+```bash
+cd /home/openclaw/.openclaw/workspace/repos/galaxiNew
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan test
+```
+
+Подробности и текущие блокеры окружения: `docs/qa-test-environment.md`
+
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
