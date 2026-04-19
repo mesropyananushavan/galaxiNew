@@ -128,8 +128,153 @@ class ResourceIndexController extends Controller
             'cards' => $this->enrichCardsPage($page),
             'roles-permissions' => $this->enrichRolesPermissionsPage($page),
             'reports' => $this->enrichReportsPage($page),
+            'services-rules' => $this->enrichServicesRulesPage($page),
             default => $page,
         };
+    }
+
+    private function enrichServicesRulesPage(array $page): array
+    {
+        $rulePreviews = [
+            [
+                'key' => 'birthday-bonus',
+                'label' => 'Birthday bonus',
+                'scope' => 'All shops',
+                'condition' => 'Holder birthday window',
+                'effect' => '+10% points',
+                'priority' => '10',
+                'status' => 'active',
+                'summary' => [
+                    ['label' => 'Selected rule preview', 'value' => 'Birthday bonus'],
+                    ['label' => 'Scope', 'value' => 'All shops'],
+                    ['label' => 'Condition posture', 'value' => 'Birthday window logic should stay parity-first, because date-sensitive loyalty rules are easy to drift during migration.'],
+                    ['label' => 'Priority posture', 'value' => 'Keep this rule near the top of the preview stack until Laravel priority resolution is verified against the old Galaxy order.'],
+                    ['label' => 'Effect guidance', 'value' => 'Treat the uplift as review-only until accrual calculations and birthday eligibility are backed by Laravel writes.'],
+                ],
+                'timeline' => [
+                    ['title' => 'Birthday bonus selected for rule review', 'time' => 'Current request', 'description' => 'This preview now keeps the highest-visibility loyalty uplift in a dedicated Galaxy review context instead of a flat catalog row.'],
+                    ['title' => 'Birthday rule handoff stays parity-first', 'time' => 'Current request', 'description' => 'Operators should carry birthday eligibility and accrual notes in the workspace before trusting any future write flow.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected rule', 'value' => 'Birthday bonus'],
+                    ['label' => 'Scope posture', 'value' => 'All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.'],
+                    ['label' => 'Priority posture', 'value' => 'Priority resolution remains preview-only until overlapping rule order is validated in Laravel.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Rule persistence, condition editing, and publish flow still remain blocked for this rule preview.'],
+                ],
+            ],
+            [
+                'key' => 'partner-card-uplift',
+                'label' => 'Partner card uplift',
+                'scope' => 'Central Shop',
+                'condition' => 'Card type = Partner',
+                'effect' => '+5% points',
+                'priority' => '20',
+                'status' => 'active',
+                'summary' => [
+                    ['label' => 'Selected rule preview', 'value' => 'Partner card uplift'],
+                    ['label' => 'Scope', 'value' => 'Central Shop'],
+                    ['label' => 'Condition posture', 'value' => 'Partner-card checks should stay tied to visible card-type parity before any Laravel rule editor opens them up.'],
+                    ['label' => 'Priority posture', 'value' => 'This scoped uplift should remain below birthday-wide behavior until legacy overlap order is rechecked.'],
+                    ['label' => 'Effect guidance', 'value' => 'Treat the partner uplift as review-only until scoped accrual behavior is backed by Laravel rule writes.'],
+                ],
+                'timeline' => [
+                    ['title' => 'Partner card uplift selected for scope review', 'time' => 'Current request', 'description' => 'This preview now keeps the scoped partner-card rule visible in its own Galaxy review context.'],
+                    ['title' => 'Scoped uplift handoff stays branch-aware', 'time' => 'Current request', 'description' => 'Operators should pass along Central Shop scope assumptions here before relying on future rule-editing flows.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected rule', 'value' => 'Partner card uplift'],
+                    ['label' => 'Scope posture', 'value' => 'Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.'],
+                    ['label' => 'Priority posture', 'value' => 'Overlap with broader loyalty rules still needs parity verification before any publish path is safe.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Rule persistence, scoped validation, and publish flow still remain blocked for this rule preview.'],
+                ],
+            ],
+            [
+                'key' => 'night-service-block',
+                'label' => 'Night service block',
+                'scope' => 'North Shop',
+                'condition' => 'Service group = Bar',
+                'effect' => 'No accrual',
+                'priority' => '30',
+                'status' => 'draft',
+                'summary' => [
+                    ['label' => 'Selected rule preview', 'value' => 'Night service block'],
+                    ['label' => 'Scope', 'value' => 'North Shop'],
+                    ['label' => 'Condition posture', 'value' => 'Bar-service exclusions should remain draft-only until legacy exception behavior is rechecked in Laravel.'],
+                    ['label' => 'Priority posture', 'value' => 'Keep this blocking rule below confirmed accrual logic until exclusion order is verified.'],
+                    ['label' => 'Effect guidance', 'value' => 'Treat the no-accrual effect as a review-only exception until Laravel can safely reproduce the old block semantics.'],
+                ],
+                'timeline' => [
+                    ['title' => 'Night service block selected for exception review', 'time' => 'Current request', 'description' => 'This preview now keeps the draft exclusion rule in a dedicated Galaxy review context instead of leaving it as a flat table row.'],
+                    ['title' => 'Draft exclusion handoff stays cautious', 'time' => 'Current request', 'description' => 'Operators should hand off bar-service parity concerns here before any future publish flow is allowed.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected rule', 'value' => 'Night service block'],
+                    ['label' => 'Scope posture', 'value' => 'North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.'],
+                    ['label' => 'Priority posture', 'value' => 'Blocking-rule order is still preview-only until exclusion precedence is validated in Laravel.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Rule persistence, exclusion validation, and publish flow still remain blocked for this draft rule preview.'],
+                ],
+            ],
+        ];
+
+        $page['table']['rows'] = collect($rulePreviews)->map(fn (array $rule): array => [
+            $this->linkedTableCell($rule['label'], 'admin.services-rules.index', ['rule' => $rule['key']]),
+            $rule['scope'],
+            $rule['condition'],
+            $rule['effect'],
+            $rule['priority'],
+            $rule['status'],
+        ])->all();
+
+        $latestRulePreview = collect($rulePreviews)->first();
+
+        if (is_array($latestRulePreview)) {
+            $page = $this->appendPageAction($page, [
+                'label' => sprintf('Review %s rule', strtolower($latestRulePreview['label'])),
+                'tone' => 'secondary',
+                'href' => route('admin.services-rules.index', ['rule' => $latestRulePreview['key']], absolute: false),
+            ]);
+        }
+
+        $selectedRule = request()->query('rule');
+
+        if (! is_string($selectedRule)) {
+            return $page;
+        }
+
+        $selectedRulePreview = collect($rulePreviews)->first(fn (array $rule): bool => $rule['key'] === $selectedRule);
+
+        if (! is_array($selectedRulePreview)) {
+            return $page;
+        }
+
+        $page['selectedRecordSummary'] = $selectedRulePreview['summary'];
+        $page['actions'] = [
+            [
+                'label' => 'Back to all rules',
+                'tone' => 'primary',
+                'href' => route('admin.services-rules.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedRulePreview['label']),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Review priorities',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until rule priority resolution is verified in Laravel.',
+            ],
+            [
+                'label' => 'Publish rule',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until rule CRUD and parity checks exist beyond the preview shell.',
+            ],
+        ];
+        $page['activityTimeline'] = $selectedRulePreview['timeline'];
+        $page['dependencyStatus'] = $selectedRulePreview['dependencyStatus'];
+
+        return $page;
     }
 
     private function enrichRolesPermissionsPage(array $page): array

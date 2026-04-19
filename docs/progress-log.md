@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Services-rules selected-rule review checkpoint
+- Extended the preview-heavy `services-rules` workspace so each rule row now links into a request-driven `?rule=` review state instead of staying as a flat placeholder table.
+- Added selected-rule summary, parity-first activity, dependency posture, and disabled review actions for rule previews, while safely ignoring unknown rule queries and falling back to the catalog.
+- Re-ran the focused `php artisan test --filter=services_rules` slice, `4 passed`, to confirm the new selected-rule review flow and fallback behavior hold together.
+
+### Next step after services-rules selected-rule review checkpoint
+- Give `gifts` or another preview-heavy catalog workspace the same request-driven review treatment so more of the Galaxy shell stops reading like a generic starter.
+
 ### Reports format-and-handoff cue checkpoint
 - Extended the selected-source `reports` review state with source-specific format guidance and operator handoff activity cues, so live reporting review now carries more Galaxy-like operational intent instead of reading like a generic catalog detail page.
 - Kept the change read-only and parity-first, with exports still explicitly blocked while on-screen review remains the primary reporting posture.

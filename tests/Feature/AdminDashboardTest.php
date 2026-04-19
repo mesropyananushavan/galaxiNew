@@ -1586,10 +1586,50 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Services &amp; Rules placeholder')
+            ->assertSeeText('Catalog / Services & Rules')
             ->assertSee('Birthday bonus')
+            ->assertSee('/admin/services-rules?rule=birthday-bonus')
             ->assertSee('Rule type')
-            ->assertSee('Partner card uplift');
+            ->assertSee('Partner card uplift')
+            ->assertSee('/admin/services-rules?rule=partner-card-uplift')
+            ->assertSee('Review birthday bonus rule');
+    }
+
+    public function test_services_rules_page_supports_selected_rule_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules?rule=night-service-block');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all rules')
+            ->assertSee('/admin/services-rules')
+            ->assertSee('Reviewing: Night service block')
+            ->assertSee('Publish rule')
+            ->assertSee('Blocked until rule CRUD and parity checks exist beyond the preview shell.')
+            ->assertSee('Selected rule preview')
+            ->assertSee('Night service block')
+            ->assertSee('Condition posture')
+            ->assertSee('Bar-service exclusions should remain draft-only until legacy exception behavior is rechecked in Laravel.')
+            ->assertSee('Priority posture')
+            ->assertSee('Keep this blocking rule below confirmed accrual logic until exclusion order is verified.')
+            ->assertSee('Night service block selected for exception review')
+            ->assertSee('Draft exclusion handoff stays cautious')
+            ->assertSee('North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.');
+    }
+
+    public function test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules?rule=unknown-rule');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review birthday bonus rule')
+            ->assertDontSee('Back to all rules')
+            ->assertDontSee('Selected rule preview');
     }
 
     public function test_resource_page_shell_keeps_shared_header_and_rationale_visible(): void
