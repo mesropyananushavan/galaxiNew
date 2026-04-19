@@ -154,15 +154,17 @@ class AdminDashboardTest extends TestCase
             'issued_at' => now(),
         ]);
 
-        Role::create([
+        $role = Role::create([
             'name' => 'Dashboard Lead',
             'slug' => 'dashboard-lead',
         ]);
 
-        Permission::create([
+        $permission = Permission::create([
             'name' => 'Manage dashboard',
             'slug' => 'manage-dashboard',
         ]);
+
+        $role->permissions()->attach($permission);
 
         $user = User::factory()->create();
 
@@ -200,15 +202,15 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review live reporting sources')
             ->assertSee('/admin/reports')
             ->assertSee('Resume latest live work')
-            ->assertSee('Open latest shop review: Galaxy Central')
+            ->assertSee('Open latest shop review: Galaxy Central (active)')
             ->assertSee('/admin/shops?shop=1')
-            ->assertSee('Open latest cardholder review: Mariam Dashboard')
+            ->assertSee('Open latest cardholder review: Mariam Dashboard (active)')
             ->assertSee('/admin/cardholders?cardholder=1')
-            ->assertSee('Open latest card review: 550011223344')
+            ->assertSee('Open latest card review: 550011223344 (active)')
             ->assertSee('/admin/cards?card=1')
-            ->assertSee('Open latest card type workspace: Dashboard Tier')
+            ->assertSee('Open latest card type workspace: Dashboard Tier (active)')
             ->assertSee('/admin/card-types?cardType=1')
-            ->assertSee('Open latest role review: Dashboard Lead')
+            ->assertSee('Open latest role review: Dashboard Lead (1 permissions)')
             ->assertSee('/admin/roles-permissions?role=1')
             ->assertSee('1');
     }

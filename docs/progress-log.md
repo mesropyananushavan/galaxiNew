@@ -381,6 +381,11 @@
 - Confirmed both populated and empty-state dashboard behaviors still pass in the focused dashboard test set, `2 passed`.
 - This makes the admin hub more usable because operators can now see which exact Galaxy record they are resuming before they click into the selected workspace.
 
+### Dashboard status-aware latest-workspace checkpoint
+- Extended the `Resume latest live work` links with compact status cues, so the dashboard now shows active or inactive posture for shops, cardholders, cards, and card types, plus current permission-bundle size for the latest role.
+- Confirmed both populated and empty-state dashboard behaviors still pass in the focused dashboard test set, `2 passed`.
+- This makes the admin hub more operational because operators can now see the current state of the latest live record before opening the selected workspace.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
