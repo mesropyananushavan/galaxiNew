@@ -29,6 +29,15 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function canAccessAdminPanel(): bool
+    {
+        if ($this->shop_id === null) {
+            return true;
+        }
+
+        return (bool) $this->shop()->value('is_active');
+    }
+
     /**
      * Get the attributes that should be cast.
      *

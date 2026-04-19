@@ -215,6 +215,41 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1');
     }
 
+    public function test_user_assigned_to_active_shop_can_access_admin_dashboard(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-admin-access',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $this->actingAs($user)
+            ->get('/admin')
+            ->assertOk()
+            ->assertSee('Galaxi Admin');
+    }
+
+    public function test_user_assigned_to_paused_shop_cannot_access_admin_dashboard(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Airport',
+            'code' => 'galaxy-airport-admin-access',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $this->actingAs($user)
+            ->get('/admin')
+            ->assertForbidden();
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

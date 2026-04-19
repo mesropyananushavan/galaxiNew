@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Admin access baseline checkpoint
+- Replaced the placeholder `access-admin` gate behavior with a small explicit admin-access baseline on `User`, so admin entry now stays open for unscoped setup users while denying users assigned to paused shops.
+- Kept the rule deliberately low-risk and Phase 1 friendly: this does not attempt full role-policy parity yet, but it starts honoring branch posture instead of treating admin access as unconditional starter behavior.
+- Added focused dashboard coverage for active-shop and paused-shop users, and re-ran the dashboard slice, `6 passed`, to confirm the new baseline behaves cleanly.
+
+### Next step after admin access baseline checkpoint
+- Continue toward the planned authorization and shop-scope baseline with another small rule, likely tightening access around explicit role/shop context without breaking the current parity-first read slices.
+
 ### Live selected-summary parity checkpoint
 - Extended the live Laravel-backed `cards`, `cardholders`, and `shops` selected review summaries with clearer Galaxy-style review-mode and branch/scope guidance cues, so those workspaces read less like generic record detail views and more like parity-first operational review surfaces.
 - Extracted the selected-summary composition for those workspaces into dedicated controller helpers, which keeps the current live read slices easier to extend without reintroducing summary drift.
