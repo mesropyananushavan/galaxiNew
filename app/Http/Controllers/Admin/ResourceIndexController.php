@@ -609,16 +609,11 @@ class ResourceIndexController extends Controller
             $assignedUserPreview,
         );
 
-        $page['actions'] = [
+        $page['actions'] = $this->selectedReadContextActions(
+            'admin.roles-permissions.index',
+            'Back to all roles',
+            $selectedRole->name,
             [
-                'label' => 'Back to all roles',
-                'tone' => 'primary',
-                'href' => route('admin.roles-permissions.index', absolute: false),
-            ],
-            [
-                'label' => sprintf('Reviewing: %s', $selectedRole->name),
-                'tone' => 'secondary',
-            ],
             [
                 'label' => 'Review matrix',
                 'tone' => 'secondary',
@@ -633,7 +628,8 @@ class ResourceIndexController extends Controller
                     ? 'Blocked until live role assignment parity is verified for this Laravel permission bundle.'
                     : 'Blocked until this draft role has a verified permission bundle and shop scope parity.',
             ],
-        ];
+            ],
+        );
 
         $page['activityTimeline'] = $this->rolesPermissionsSelectedRoleTimeline(
             $selectedRole,
@@ -715,23 +711,19 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        $page['actions'] = [
+        $page['actions'] = $this->selectedReadContextActions(
+            'admin.cards.index',
+            'Back to all cards',
+            $selectedCard->number,
             [
-                'label' => 'Back to all cards',
-                'tone' => 'primary',
-                'href' => route('admin.cards.index', absolute: false),
-            ],
-            [
-                'label' => sprintf('Reviewing: %s', $selectedCard->number),
-                'tone' => 'secondary',
-            ],
             [
                 'label' => 'Review blocked cards',
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => 'Blocked until legacy blocked-card semantics are verified against the Laravel inventory flow.',
             ],
-        ];
+            ],
+        );
 
         $page['activityTimeline'] = [
             [
@@ -812,23 +804,19 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        $page['actions'] = [
+        $page['actions'] = $this->selectedReadContextActions(
+            'admin.cardholders.index',
+            'Back to all holders',
+            $selectedCardHolder->full_name,
             [
-                'label' => 'Back to all holders',
-                'tone' => 'primary',
-                'href' => route('admin.cardholders.index', absolute: false),
-            ],
-            [
-                'label' => sprintf('Reviewing: %s', $selectedCardHolder->full_name),
-                'tone' => 'secondary',
-            ],
             [
                 'label' => 'Review recent activity',
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => 'Blocked until a stable Laravel activity source exists for holder lookup parity.',
             ],
-        ];
+            ],
+        );
 
         $page['activityTimeline'] = [
             [
@@ -910,23 +898,19 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        $page['actions'] = [
+        $page['actions'] = $this->selectedReadContextActions(
+            'admin.shops.index',
+            'Back to all shops',
+            $selectedShop->name,
             [
-                'label' => 'Back to all shops',
-                'tone' => 'primary',
-                'href' => route('admin.shops.index', absolute: false),
-            ],
-            [
-                'label' => sprintf('Reviewing: %s', $selectedShop->name),
-                'tone' => 'secondary',
-            ],
             [
                 'label' => 'Review branch scope',
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
             ],
-        ];
+            ],
+        );
 
         $page['activityTimeline'] = [
             [
@@ -1363,6 +1347,26 @@ class ResourceIndexController extends Controller
         $page['dependencyStatus'] = is_array($selectedPreview['dependencyStatus'] ?? null) ? $selectedPreview['dependencyStatus'] : [];
 
         return $page;
+    }
+
+    private function selectedReadContextActions(
+        string $indexRouteName,
+        string $backLabel,
+        string $selectedLabel,
+        array $additionalActions,
+    ): array {
+        return [
+            [
+                'label' => $backLabel,
+                'tone' => 'primary',
+                'href' => route($indexRouteName, absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedLabel),
+                'tone' => 'secondary',
+            ],
+            ...$additionalActions,
+        ];
     }
 
     private function selectedPreviewByKey(array $previews, string $queryKey): ?array

@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Live selected-context action cleanup checkpoint
+- Extracted shared selected-context action wiring for the live Laravel-backed `roles-permissions`, `cards`, `cardholders`, and `shops` workspaces, so those read slices now reuse one helper for the standard back-link plus reviewing-state action pattern.
+- Re-ran focused live workspace tests after the controller cleanup, including the role slice, and fixed one older brittle placeholder assertion while confirming the selected-context behavior still holds.
+- This keeps the current Phase 1 Laravel-backed review surfaces more consistent and lowers the risk of controller drift as additional live admin flows are migrated.
+
+### Next step after live selected-context action cleanup checkpoint
+- Keep pushing toward a more explicitly Galaxy-specific Laravel foundation, ideally with a small shared hardening step around live workspace dependency/status context or another low-risk read slice that reduces starter-template residue.
+
 ### Preview selection-key hardening checkpoint
 - Extracted shared string-key preview selection in `ResourceIndexController`, so `checks-points`, `reports`, `services-rules`, and `gifts` now use one normalized query-key lookup path instead of hand-rolled per-workspace selection code.
 - Hardened those request-driven review flows to accept case-insensitive selected preview queries while still falling back safely on unknown values.

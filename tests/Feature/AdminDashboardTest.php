@@ -285,7 +285,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Roles &amp; Permissions placeholder')
+            ->assertSeeText('Administration / Roles & Permissions')
             ->assertSee('roles-permissions')
             ->assertSee('shop-scoped access rules');
     }
