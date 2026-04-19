@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Checks-points format-and-handoff cue checkpoint
+- Extended the new selected-receipt `checks-points` review state with receipt-specific format guidance and evidence-first handoff cues, so the flow reads more like Galaxy troubleshooting instead of a generic preview detail page.
+- Kept the change parity-first and read-only, with receipt lookup and accrual-gap actions still explicitly blocked until Laravel transaction reads exist.
+- Re-ran the focused `php artisan test --filter=checks_points` slice, `3 passed`, to confirm the richer receipt review context still behaves cleanly.
+
+### Next step after checks-points format-and-handoff cue checkpoint
+- Either carry the same deeper parity-cue treatment into another newly added review flow, or pivot back to a backend-oriented Phase 1 slice now that the main preview-heavy workspaces have request-driven contexts.
+
 ### Checks-points selected-receipt review checkpoint
 - Extended the preview-heavy `checks-points` workspace so each receipt row now links into a request-driven `?receipt=` review state instead of staying as a flat placeholder table.
 - Added selected-receipt summary, parity-first activity, dependency posture, and disabled troubleshooting actions for receipt previews, while safely ignoring unknown receipt queries and falling back to the catalog.

@@ -1352,10 +1352,14 @@ class AdminDashboardTest extends TestCase
             ->assertSee('CHK-90407')
             ->assertSee('Accrual posture')
             ->assertSee('Zero-accrual receipts should stay highly visible, because they drive the most parity-sensitive troubleshooting in the old Galaxy flow.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep zero-accrual receipts in compact on-screen review first, because operators need amount, points, and rule context together before escalating.')
             ->assertSee('Troubleshooting guidance')
             ->assertSee('Treat this receipt as read-only review until Laravel transaction history and rule-backed explanations exist.')
             ->assertSee('CHK-90407 selected for zero-accrual review')
             ->assertSee('Zero-accrual handoff stays cautious')
+            ->assertSee('Zero-accrual handoff stays evidence-first')
+            ->assertSee('Receipt, amount, and zero-point outcome should stay visible in the workspace before any rule-gap discussion moves forward.')
             ->assertSee('Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.');
     }
 

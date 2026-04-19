@@ -151,11 +151,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Card', 'value' => 'GX-100001'],
                     ['label' => 'Shop context', 'value' => 'Central Shop'],
                     ['label' => 'Accrual posture', 'value' => 'Positive accrual receipts should stay parity-first, because receipt math must match the old Galaxy ledger before any correction flow appears.'],
+                    ['label' => 'Format guidance', 'value' => 'Keep this receipt in table-first review mode, because operators usually compare amount, points, and timestamp together before opening deeper investigation.'],
                     ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and adjustment flows exist.'],
                 ],
                 'timeline' => [
                     ['title' => 'CHK-90421 selected for receipt review', 'time' => 'Current request', 'description' => 'This preview now keeps the positive-accrual receipt in a dedicated Galaxy review context instead of a flat transaction row.'],
                     ['title' => 'Receipt-first handoff stays visible', 'time' => 'Current request', 'description' => 'Operators should pass along verified receipt, card, and shop context here before discussing any later correction flow.'],
+                    ['title' => 'Positive-accrual handoff stays evidence-first', 'time' => 'Current request', 'description' => 'Amount, points, and timestamp should stay visible in the workspace before any future export or correction discussion begins.'],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected receipt', 'value' => 'CHK-90421'],
@@ -177,11 +179,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Card', 'value' => 'GX-100003'],
                     ['label' => 'Shop context', 'value' => 'Central Shop'],
                     ['label' => 'Accrual posture', 'value' => 'Zero-accrual receipts should stay highly visible, because they drive the most parity-sensitive troubleshooting in the old Galaxy flow.'],
+                    ['label' => 'Format guidance', 'value' => 'Keep zero-accrual receipts in compact on-screen review first, because operators need amount, points, and rule context together before escalating.'],
                     ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and rule-backed explanations exist.'],
                 ],
                 'timeline' => [
                     ['title' => 'CHK-90407 selected for zero-accrual review', 'time' => 'Current request', 'description' => 'This preview now keeps the zero-accrual receipt in a dedicated Galaxy review context instead of a flat transaction row.'],
                     ['title' => 'Zero-accrual handoff stays cautious', 'time' => 'Current request', 'description' => 'Operators should hand off receipt evidence and shop context here before escalating to future correction workflows.'],
+                    ['title' => 'Zero-accrual handoff stays evidence-first', 'time' => 'Current request', 'description' => 'Receipt, amount, and zero-point outcome should stay visible in the workspace before any rule-gap discussion moves forward.'],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected receipt', 'value' => 'CHK-90407'],
@@ -203,11 +207,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Card', 'value' => 'GX-100002'],
                     ['label' => 'Shop context', 'value' => 'North Shop'],
                     ['label' => 'Accrual posture', 'value' => 'North Shop accrual receipts should stay branch-aware, because cross-shop troubleshooting must preserve local receipt context.'],
+                    ['label' => 'Format guidance', 'value' => 'Keep branch receipts in table-first review mode, because operators need the shop, amount, and points visible together before cross-shop comparisons begin.'],
                     ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and shop-aware filters exist.'],
                 ],
                 'timeline' => [
                     ['title' => 'CHK-90388 selected for branch receipt review', 'time' => 'Current request', 'description' => 'This preview now keeps the North Shop receipt in a dedicated Galaxy review context instead of a flat transaction row.'],
                     ['title' => 'Branch-specific handoff stays receipt-first', 'time' => 'Current request', 'description' => 'Operators should hand off receipt and shop context here before any future transaction-edit or correction flow is considered.'],
+                    ['title' => 'Branch receipt handoff keeps local evidence visible', 'time' => 'Current request', 'description' => 'Shop, amount, and points should stay visible in the workspace before any cross-branch troubleshooting discussion begins.'],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected receipt', 'value' => 'CHK-90388'],
