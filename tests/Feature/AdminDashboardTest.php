@@ -232,6 +232,13 @@ class AdminDashboardTest extends TestCase
             'slug' => 'shop-supervisor-admin-access',
         ]);
 
+        $permission = Permission::create([
+            'name' => 'Access admin dashboard',
+            'slug' => 'access-admin-dashboard',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
         $user->roles()->attach($role->id);
 
         $this->actingAs($user)
@@ -251,6 +258,30 @@ class AdminDashboardTest extends TestCase
         $user = User::factory()->create([
             'shop_id' => $shop->id,
         ]);
+
+        $this->actingAs($user)
+            ->get('/admin')
+            ->assertForbidden();
+    }
+
+    public function test_user_assigned_to_active_shop_with_role_but_without_permissions_cannot_access_admin_dashboard(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy East',
+            'code' => 'galaxy-east-admin-access',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Trainee',
+            'slug' => 'shop-trainee-admin-access',
+        ]);
+
+        $user->roles()->attach($role->id);
 
         $this->actingAs($user)
             ->get('/admin')

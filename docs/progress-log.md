@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Permission-bearing admin access checkpoint
+- Tightened the shop-bound `access-admin` baseline again so active-shop users now need a role with at least one linked permission before they can enter the admin workspace.
+- Kept bootstrap access for unscoped setup users, while making shop-bound access feel more like a real Galaxy authorization baseline instead of a starter-level role-presence check.
+- Added focused dashboard coverage for the new role-without-permissions denial path and re-ran the dashboard slice, `8 passed`, to confirm the stricter rule behaves cleanly.
+
+### Next step after permission-bearing admin access checkpoint
+- Keep moving toward the planned authorization baseline, likely by making the gate intent more explicit in code or by introducing one small shop-aware access helper that future policies can reuse.
+
 ### Shop-bound admin access tightening checkpoint
 - Tightened the new `access-admin` baseline one more step so shop-bound users now need both an active shop and at least one assigned role before they can enter the admin workspace, while unscoped setup users still keep bootstrap access.
 - Kept the change Phase 1 safe by using existing shop and role relations instead of jumping straight to full permission-policy parity.

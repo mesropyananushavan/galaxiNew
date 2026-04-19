@@ -39,7 +39,7 @@ class User extends Authenticatable
             return false;
         }
 
-        return $this->roles()->exists();
+        return $this->roles()->whereHas('permissions')->exists();
     }
 
     /**
