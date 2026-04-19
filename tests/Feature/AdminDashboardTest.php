@@ -227,10 +227,34 @@ class AdminDashboardTest extends TestCase
             'shop_id' => $shop->id,
         ]);
 
+        $role = Role::create([
+            'name' => 'Shop Supervisor',
+            'slug' => 'shop-supervisor-admin-access',
+        ]);
+
+        $user->roles()->attach($role->id);
+
         $this->actingAs($user)
             ->get('/admin')
             ->assertOk()
             ->assertSee('Galaxi Admin');
+    }
+
+    public function test_user_assigned_to_active_shop_without_role_cannot_access_admin_dashboard(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy North',
+            'code' => 'galaxy-north-admin-access',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $this->actingAs($user)
+            ->get('/admin')
+            ->assertForbidden();
     }
 
     public function test_user_assigned_to_paused_shop_cannot_access_admin_dashboard(): void

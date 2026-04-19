@@ -35,7 +35,11 @@ class User extends Authenticatable
             return true;
         }
 
-        return (bool) $this->shop()->value('is_active');
+        if (! (bool) $this->shop()->value('is_active')) {
+            return false;
+        }
+
+        return $this->roles()->exists();
     }
 
     /**
