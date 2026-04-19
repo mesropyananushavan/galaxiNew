@@ -331,6 +331,11 @@
 - Confirmed the new role-coverage metric stays visible in the focused preview-plus-live reporting test set, `2 passed`.
 - This makes the reporting slice more complete because access-coverage inputs are now visible at the same summary level as shops, cards, and cardholders.
 
+### Dashboard live-metrics checkpoint
+- Added the first Laravel-backed read step for `/admin` dashboard so the landing page now surfaces live counts for shops, cardholders, cards, and roles instead of only route namespace and planned-section metadata.
+- Confirmed the dashboard still renders the Galaxy admin shell while exposing those live model counts, `1 passed`.
+- This opens a new safe Phase 1 slice because the admin landing page now reflects real Galaxy foundation data without introducing any write flow or navigation scope change.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

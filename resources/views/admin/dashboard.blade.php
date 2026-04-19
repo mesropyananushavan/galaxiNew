@@ -19,8 +19,20 @@
                 <p class="metric-value">{{ $plannedSectionCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Next step</p>
-                <p class="metric-value">Admin pages</p>
+                <p class="metric-label">Live shops</p>
+                <p class="metric-value">{{ $shopCount }}</p>
+            </article>
+            <article class="metric">
+                <p class="metric-label">Live cardholders</p>
+                <p class="metric-value">{{ $cardHolderCount }}</p>
+            </article>
+            <article class="metric">
+                <p class="metric-label">Live cards</p>
+                <p class="metric-value">{{ $cardCount }}</p>
+            </article>
+            <article class="metric">
+                <p class="metric-label">Live roles</p>
+                <p class="metric-value">{{ $roleCount }}</p>
             </article>
         </div>
     </section>

@@ -124,6 +124,41 @@ class AdminDashboardTest extends TestCase
 
     public function test_authenticated_user_can_access_admin_dashboard(): void
     {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-dashboard',
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Dashboard',
+            'phone' => '+37499111000',
+            'email' => 'mariam.dashboard@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Dashboard Tier',
+            'slug' => 'dashboard-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => '550011223344',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        Role::create([
+            'name' => 'Dashboard Lead',
+            'slug' => 'dashboard-lead',
+        ]);
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get('/admin');
@@ -135,9 +170,14 @@ class AdminDashboardTest extends TestCase
             ->assertSee('/admin')
             ->assertSee('Operations')
             ->assertSee('Cardholders')
-            ->assertSee('Roles &amp; Permissions')
+            ->assertSee('Roles & Permissions')
             ->assertSee('Planned sections')
-            ->assertSee('9');
+            ->assertSee('9')
+            ->assertSee('Live shops')
+            ->assertSee('Live cardholders')
+            ->assertSee('Live cards')
+            ->assertSee('Live roles')
+            ->assertSee('1');
     }
 
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void
