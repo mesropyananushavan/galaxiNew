@@ -1,5 +1,15 @@
 # Progress Log
 
+## 2026-04-19
+
+### Reports selected-source review checkpoint
+- Extended the partially live-backed `reports` workspace so each live reporting source row now links into a request-driven `?source=` review state instead of staying as a flat catalog row.
+- Added selected-source summary, activity, dependency posture, and disabled export gating for live report-source review, while safely ignoring unknown source queries and falling back to the catalog.
+- Re-ran the focused `php artisan test --filter=reports` slice, `4 passed`, to confirm both the new selected-source flow and the fallback behavior hold together.
+
+### Next step after reports selected-source review checkpoint
+- Extend the reporting source drill-in with one more Galaxy-specific parity cue, likely preset-period posture or source-specific scope guidance, before attempting broader Phase 1 reporting writes or export plumbing.
+
 ## 2026-04-18
 
 ### Card-type live-form callback expectation checkpoint

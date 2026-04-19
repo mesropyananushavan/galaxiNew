@@ -550,11 +550,101 @@ class ResourceIndexController extends Controller
             ['label' => 'Tracked roles', 'value' => (string) $roleCount],
         ];
 
-        $page['table']['rows'] = [
-            ['Cards by shop', $shopCount > 0 ? sprintf('%d shops', $shopCount) : 'No shops tracked yet', 'Current snapshot', 'Table', $cardCount > 0 ? 'live' : 'draft'],
-            ['Cardholder status overview', $cardHolderCount > 0 ? sprintf('%d holders', $cardHolderCount) : 'No holders tracked yet', 'Current snapshot', 'Table', $cardHolderCount > 0 ? 'live' : 'draft'],
-            ['Role access coverage', $roleCount > 0 ? sprintf('%d roles', $roleCount) : 'No roles tracked yet', 'Current snapshot', 'Table', $roleCount > 0 ? 'live' : 'draft'],
+        $reportSources = [
+            [
+                'key' => 'cards-by-shop',
+                'label' => 'Cards by shop',
+                'scope' => $shopCount > 0 ? sprintf('%d shops', $shopCount) : 'No shops tracked yet',
+                'status' => $cardCount > 0 ? 'live' : 'draft',
+                'selectedSummary' => [
+                    ['label' => 'Selected report source', 'value' => 'Cards by shop'],
+                    ['label' => 'Review mode', 'value' => $cardCount > 0
+                        ? 'Live-source review, card inventory already exists in Laravel for shop-level reporting checks.'
+                        : 'Draft-safe review, no cards are tracked yet so this source remains a catalog-only planning stub.'],
+                    ['label' => 'Source coverage', 'value' => sprintf('%d cards across %d tracked shops are currently available for read-only reporting review.', $cardCount, $shopCount)],
+                    ['label' => 'Preset posture', 'value' => 'Keep period presets preview-only until shop-level totals and export parity are verified.'],
+                    ['label' => 'Export posture', 'value' => 'Treat this source as review-only until file export formatting and delivery are validated.'],
+                ],
+                'timeline' => [
+                    ['title' => 'Cards by shop source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked cards across %d shops from the current Laravel foundation.', $cardCount, $shopCount)],
+                    ['title' => 'Shop-level inventory parity stays review-only', 'time' => 'Current request', 'description' => 'Counts are live-backed now, but grouped report shaping and export output should stay parity-first until reporting pipeline checks exist.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected source', 'value' => 'Cards by shop'],
+                    ['label' => 'Laravel inputs', 'value' => sprintf('%d cards and %d shops are currently visible to the reporting workspace.', $cardCount, $shopCount)],
+                    ['label' => 'Grouping posture', 'value' => 'Shop grouping should stay read-only until query shaping is verified against legacy report totals.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Preset handling, grouped query shaping, and export generation still remain preview-only for this source.'],
+                ],
+            ],
+            [
+                'key' => 'cardholder-status',
+                'label' => 'Cardholder status overview',
+                'scope' => $cardHolderCount > 0 ? sprintf('%d holders', $cardHolderCount) : 'No holders tracked yet',
+                'status' => $cardHolderCount > 0 ? 'live' : 'draft',
+                'selectedSummary' => [
+                    ['label' => 'Selected report source', 'value' => 'Cardholder status overview'],
+                    ['label' => 'Review mode', 'value' => $cardHolderCount > 0
+                        ? 'Live-source review, holder status records already exist in Laravel for read-only reporting checks.'
+                        : 'Draft-safe review, no cardholders are tracked yet so this source remains a planning-only catalog entry.'],
+                    ['label' => 'Source coverage', 'value' => sprintf('%d cardholders are currently available for read-only status reporting review.', $cardHolderCount)],
+                    ['label' => 'Preset posture', 'value' => 'Keep status-period presets preview-only until holder lifecycle parity is verified.'],
+                    ['label' => 'Export posture', 'value' => 'Treat this source as review-only until summary exports and lifecycle report expectations are validated.'],
+                ],
+                'timeline' => [
+                    ['title' => 'Cardholder status source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked cardholders from the current Laravel foundation.', $cardHolderCount)],
+                    ['title' => 'Lifecycle reporting parity stays review-only', 'time' => 'Current request', 'description' => 'Source counts are live-backed now, but period presets and export behavior should stay blocked until reporting parity is verified.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected source', 'value' => 'Cardholder status overview'],
+                    ['label' => 'Laravel inputs', 'value' => sprintf('%d cardholders are currently visible to the reporting workspace.', $cardHolderCount)],
+                    ['label' => 'Lifecycle posture', 'value' => 'Status aggregation should stay read-only until holder lifecycle and activity parity are verified.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Preset handling, report shaping, and export generation still remain preview-only for this source.'],
+                ],
+            ],
+            [
+                'key' => 'role-access',
+                'label' => 'Role access coverage',
+                'scope' => $roleCount > 0 ? sprintf('%d roles', $roleCount) : 'No roles tracked yet',
+                'status' => $roleCount > 0 ? 'live' : 'draft',
+                'selectedSummary' => [
+                    ['label' => 'Selected report source', 'value' => 'Role access coverage'],
+                    ['label' => 'Review mode', 'value' => $roleCount > 0
+                        ? 'Live-source review, access roles already exist in Laravel for read-only reporting checks.'
+                        : 'Draft-safe review, no roles are tracked yet so this source remains a catalog-only planning stub.'],
+                    ['label' => 'Source coverage', 'value' => sprintf('%d roles are currently available for read-only access reporting review.', $roleCount)],
+                    ['label' => 'Preset posture', 'value' => 'Keep access-report presets preview-only until role and scope parity are verified.'],
+                    ['label' => 'Export posture', 'value' => 'Treat this source as review-only until access export expectations and file delivery are validated.'],
+                ],
+                'timeline' => [
+                    ['title' => 'Role access source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked roles from the current Laravel foundation.', $roleCount)],
+                    ['title' => 'Access reporting parity stays review-only', 'time' => 'Current request', 'description' => 'Source counts are live-backed now, but grouped role exports and access analytics should stay blocked until reporting parity is verified.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected source', 'value' => 'Role access coverage'],
+                    ['label' => 'Laravel inputs', 'value' => sprintf('%d roles are currently visible to the reporting workspace.', $roleCount)],
+                    ['label' => 'Access posture', 'value' => 'Role coverage should stay read-only until access-report parity and scope shaping are verified.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Preset handling, report shaping, and export generation still remain preview-only for this source.'],
+                ],
+            ],
         ];
+
+        $page['table']['rows'] = collect($reportSources)->map(fn (array $source): array => [
+            $this->linkedTableCell($source['label'], 'admin.reports.index', ['source' => $source['key']]),
+            $source['scope'],
+            'Current snapshot',
+            'Table',
+            $source['status'],
+        ])->all();
+
+        $latestLiveSource = collect($reportSources)->first(fn (array $source): bool => $source['status'] === 'live');
+
+        if (is_array($latestLiveSource)) {
+            $page = $this->appendPageAction($page, [
+                'label' => sprintf('Review %s source', strtolower($latestLiveSource['label'])),
+                'tone' => 'secondary',
+                'href' => route('admin.reports.index', ['source' => $latestLiveSource['key']], absolute: false),
+            ]);
+        }
 
         $page['notice'] = [
             'title' => 'Reporting workspace is now partially Laravel-backed',
@@ -564,6 +654,45 @@ class ResourceIndexController extends Controller
         $page['activityTimeline'] = $this->reportsActivityTimeline($shopCount, $cardCount, $cardHolderCount, $roleCount);
 
         $page['dependencyStatus'] = $this->reportsDependencyStatus($shopCount, $cardCount, $cardHolderCount, $roleCount);
+
+        $selectedSource = request()->query('source');
+
+        if (! is_string($selectedSource)) {
+            return $page;
+        }
+
+        $selectedReportSource = collect($reportSources)->first(fn (array $source): bool => $source['key'] === $selectedSource);
+
+        if (! is_array($selectedReportSource)) {
+            return $page;
+        }
+
+        $page['selectedRecordSummary'] = $selectedReportSource['selectedSummary'];
+        $page['actions'] = [
+            [
+                'label' => 'Back to report catalog',
+                'tone' => 'primary',
+                'href' => route('admin.reports.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedReportSource['label']),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Review export presets',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until preset handling is backed by Laravel reporting flow validation.',
+            ],
+            [
+                'label' => 'Export source snapshot',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until reporting exports and file delivery are verified against legacy Galaxy output expectations.',
+            ],
+        ];
+        $page['activityTimeline'] = $selectedReportSource['timeline'];
+        $page['dependencyStatus'] = $selectedReportSource['dependencyStatus'];
 
         return $page;
     }

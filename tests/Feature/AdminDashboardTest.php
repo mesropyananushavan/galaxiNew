@@ -1438,11 +1438,15 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Tracked roles')
             ->assertSee('1')
             ->assertSee('Cards by shop')
+            ->assertSee('/admin/reports?source=cards-by-shop')
             ->assertSee('1 shops')
             ->assertSee('Cardholder status overview')
+            ->assertSee('/admin/reports?source=cardholder-status')
             ->assertSee('1 holders')
             ->assertSee('Role access coverage')
+            ->assertSee('/admin/reports?source=role-access')
             ->assertSee('1 roles')
+            ->assertSee('Review cards by shop source')
             ->assertSee('Open live report catalog')
             ->assertSee('Review export presets')
             ->assertSee('Blocked until preset handling is backed by Laravel reporting flow validation.')
@@ -1464,6 +1468,104 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Source coverage')
             ->assertSee('Laravel reporting inputs currently cover 1 shops, 1 cards, 1 cardholders, and 1 roles for read-only review.')
             ->assertSee('Preset handling, query shaping, and export pipeline are still pending');
+    }
+
+    public function test_reports_page_supports_selected_live_source_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-reports-selected',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Tier Selected',
+            'slug' => 'reporting-tier-selected',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Reporting Selected',
+            'phone' => '+37499111224',
+            'email' => 'mariam.reports.selected@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223345',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=cards-by-shop');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to report catalog')
+            ->assertSee('/admin/reports')
+            ->assertSee('Reviewing: Cards by shop')
+            ->assertSee('Export source snapshot')
+            ->assertSee('Blocked until reporting exports and file delivery are verified against legacy Galaxy output expectations.')
+            ->assertSee('Selected report source')
+            ->assertSee('Cards by shop')
+            ->assertSee('Review mode')
+            ->assertSee('Live-source review, card inventory already exists in Laravel for shop-level reporting checks.')
+            ->assertSee('Source coverage')
+            ->assertSee('1 cards across 1 tracked shops are currently available for read-only reporting review.')
+            ->assertSee('Cards by shop source selected for Laravel review')
+            ->assertSee('This reporting view now reflects 1 tracked cards across 1 shops from the current Laravel foundation.')
+            ->assertSee('Grouping posture')
+            ->assertSee('Shop grouping should stay read-only until query shaping is verified against legacy report totals.');
+    }
+
+    public function test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-reports-fallback',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Tier Fallback',
+            'slug' => 'reporting-tier-fallback',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Reporting Fallback',
+            'phone' => '+37499111225',
+            'email' => 'mariam.reports.fallback@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223346',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=unknown-source');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review cards by shop source')
+            ->assertDontSee('Back to report catalog')
+            ->assertDontSee('Selected report source');
     }
 
     public function test_authenticated_user_can_access_services_rules_operational_index_shape(): void
