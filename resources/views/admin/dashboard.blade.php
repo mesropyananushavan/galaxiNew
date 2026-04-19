@@ -39,6 +39,10 @@
                 <p class="metric-value">{{ $cardCount }}</p>
             </article>
             <article class="metric">
+                <p class="metric-label">Active cards</p>
+                <p class="metric-value">{{ $activeCardCount }}</p>
+            </article>
+            <article class="metric">
                 <p class="metric-label">Live roles</p>
                 <p class="metric-value">{{ $roleCount }}</p>
             </article>

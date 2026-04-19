@@ -178,6 +178,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Live cardholders')
             ->assertSee('Active cardholders')
             ->assertSee('Live cards')
+            ->assertSee('Active cards')
             ->assertSee('Live roles')
             ->assertSee('1');
     }

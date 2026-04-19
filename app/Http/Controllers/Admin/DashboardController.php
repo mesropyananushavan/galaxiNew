@@ -24,6 +24,7 @@ class DashboardController extends Controller
             'cardHolderCount' => CardHolder::query()->count(),
             'activeCardHolderCount' => CardHolder::query()->where('status', 'active')->count(),
             'cardCount' => Card::query()->count(),
+            'activeCardCount' => Card::query()->where('status', 'active')->count(),
             'roleCount' => Role::query()->count(),
         ]);
     }
