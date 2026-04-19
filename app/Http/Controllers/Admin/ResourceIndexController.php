@@ -547,6 +547,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Tracked shops', 'value' => (string) $shopCount],
             ['label' => 'Tracked cards', 'value' => (string) $cardCount],
             ['label' => 'Tracked cardholders', 'value' => (string) $cardHolderCount],
+            ['label' => 'Tracked roles', 'value' => (string) $roleCount],
         ];
 
         $page['table']['rows'] = [

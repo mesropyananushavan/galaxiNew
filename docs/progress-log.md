@@ -326,6 +326,11 @@
 - Confirmed the new holder-coverage metric stays visible in the focused preview-plus-live reporting test set, `2 passed`.
 - This makes the reporting slice more informative because holder coverage is now surfaced directly in metrics instead of only appearing later in the report-row list and dependency copy.
 
+### Reports tracked-roles metric checkpoint
+- Extended the live Laravel-backed `reports` metrics with an explicit `Tracked roles` value so the top-level summary now mirrors the full live-source coverage already described in report rows and dependency status.
+- Confirmed the new role-coverage metric stays visible in the focused preview-plus-live reporting test set, `2 passed`.
+- This makes the reporting slice more complete because access-coverage inputs are now visible at the same summary level as shops, cards, and cardholders.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

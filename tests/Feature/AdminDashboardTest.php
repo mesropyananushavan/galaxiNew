@@ -1311,6 +1311,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Tracked shops')
             ->assertSee('Tracked cards')
             ->assertSee('Tracked cardholders')
+            ->assertSee('Tracked roles')
             ->assertSee('1')
             ->assertSee('Cards by shop')
             ->assertSee('1 shops')
