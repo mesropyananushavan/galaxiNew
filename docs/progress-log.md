@@ -396,6 +396,11 @@
 - Confirmed the structural refactor preserves populated, empty-state, and partial-data dashboard behaviors in the focused dashboard test set, `3 passed`.
 - This makes the dashboard slice safer to extend because future latest-work additions can now plug into one structured pattern instead of duplicating view conditionals.
 
+### Dashboard entry-point structure checkpoint
+- Refactored `DashboardController` so the `Live review entry points` block is now assembled through a unified `liveReviewEntryPoints` context array and the same shared dashboard link helper instead of a hard-coded Blade list.
+- Fixed a small helper-signature regression during the refactor, then confirmed populated, empty-state, and partial-data dashboard behaviors in the focused dashboard test set, `3 passed`.
+- This makes the dashboard slice more coherent because both hub blocks now follow the same structured controller-to-view pattern.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

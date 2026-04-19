@@ -29,6 +29,14 @@ class DashboardController extends Controller
             'activeCardCount' => Card::query()->where('status', 'active')->count(),
             'roleCount' => Role::query()->count(),
             'permissionCount' => Permission::query()->count(),
+            'liveReviewEntryPoints' => [
+                $this->workspaceLink('Review live shops', 'admin.shops.index'),
+                $this->workspaceLink('Review live cardholders', 'admin.cardholders.index'),
+                $this->workspaceLink('Review live cards', 'admin.cards.index'),
+                $this->workspaceLink('Review live card types', 'admin.card-types.index'),
+                $this->workspaceLink('Review live access roles', 'admin.roles-permissions.index'),
+                $this->workspaceLink('Review live reporting sources', 'admin.reports.index'),
+            ],
             'latestWorkspaces' => array_values(array_filter([
                 $this->latestShopWorkspace(),
                 $this->latestCardHolderWorkspace(),
@@ -100,7 +108,7 @@ class DashboardController extends Controller
         ) : null;
     }
 
-    protected function workspaceLink(string $label, string $routeName, array $parameters): array
+    protected function workspaceLink(string $label, string $routeName, array $parameters = []): array
     {
         return [
             'label' => $label,
