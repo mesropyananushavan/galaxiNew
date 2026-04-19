@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Preview selection-key hardening checkpoint
+- Extracted shared string-key preview selection in `ResourceIndexController`, so `checks-points`, `reports`, `services-rules`, and `gifts` now use one normalized query-key lookup path instead of hand-rolled per-workspace selection code.
+- Hardened those request-driven review flows to accept case-insensitive selected preview queries while still falling back safely on unknown values.
+- Re-ran the combined focused preview-review slice across those four workspaces, `19 passed`, to confirm the shared lookup and new case-insensitive behavior hold together.
+
+### Next step after preview selection-key hardening checkpoint
+- Return to a real Laravel-backed Phase 1 slice, likely a small read-oriented hardening pass on the existing live workspaces or another shared controller cleanup that supports future model-backed expansion.
+
 ### Preview review-context controller cleanup checkpoint
 - Extracted shared selected-preview context wiring in `ResourceIndexController`, so `checks-points`, `services-rules`, and `gifts` now reuse one helper for back-link actions, reviewing state, summary, timeline, and dependency context.
 - Re-ran the combined focused preview-review slice for those three workspaces, `11 passed`, to confirm the cleanup did not change the new Galaxy-style review behavior.

@@ -243,13 +243,7 @@ class ResourceIndexController extends Controller
             ]);
         }
 
-        $selectedReceipt = request()->query('receipt');
-
-        if (! is_string($selectedReceipt)) {
-            return $page;
-        }
-
-        $selectedReceiptPreview = collect($receiptPreviews)->first(fn (array $receipt): bool => $receipt['key'] === strtolower($selectedReceipt));
+        $selectedReceiptPreview = $this->selectedPreviewByKey($receiptPreviews, 'receipt');
 
         if (! is_array($selectedReceiptPreview)) {
             return $page;
@@ -387,13 +381,7 @@ class ResourceIndexController extends Controller
             ]);
         }
 
-        $selectedRule = request()->query('rule');
-
-        if (! is_string($selectedRule)) {
-            return $page;
-        }
-
-        $selectedRulePreview = collect($rulePreviews)->first(fn (array $rule): bool => $rule['key'] === $selectedRule);
+        $selectedRulePreview = $this->selectedPreviewByKey($rulePreviews, 'rule');
 
         if (! is_array($selectedRulePreview)) {
             return $page;
@@ -527,13 +515,7 @@ class ResourceIndexController extends Controller
             ]);
         }
 
-        $selectedGift = request()->query('gift');
-
-        if (! is_string($selectedGift)) {
-            return $page;
-        }
-
-        $selectedGiftPreview = collect($giftPreviews)->first(fn (array $gift): bool => $gift['key'] === $selectedGift);
+        $selectedGiftPreview = $this->selectedPreviewByKey($giftPreviews, 'gift');
 
         if (! is_array($selectedGiftPreview)) {
             return $page;
@@ -1103,13 +1085,7 @@ class ResourceIndexController extends Controller
 
         $page['dependencyStatus'] = $this->reportsDependencyStatus($shopCount, $cardCount, $cardHolderCount, $roleCount);
 
-        $selectedSource = request()->query('source');
-
-        if (! is_string($selectedSource)) {
-            return $page;
-        }
-
-        $selectedReportSource = collect($reportSources)->first(fn (array $source): bool => $source['key'] === $selectedSource);
+        $selectedReportSource = $this->selectedPreviewByKey($reportSources, 'source');
 
         if (! is_array($selectedReportSource)) {
             return $page;
@@ -1387,6 +1363,27 @@ class ResourceIndexController extends Controller
         $page['dependencyStatus'] = is_array($selectedPreview['dependencyStatus'] ?? null) ? $selectedPreview['dependencyStatus'] : [];
 
         return $page;
+    }
+
+    private function selectedPreviewByKey(array $previews, string $queryKey): ?array
+    {
+        $selectedKey = request()->query($queryKey);
+
+        if (! is_string($selectedKey)) {
+            return null;
+        }
+
+        $normalizedKey = strtolower(trim($selectedKey));
+
+        if ($normalizedKey === '') {
+            return null;
+        }
+
+        $selectedPreview = collect($previews)->first(
+            fn (array $preview): bool => strtolower((string) ($preview['key'] ?? '')) === $normalizedKey
+        );
+
+        return is_array($selectedPreview) ? $selectedPreview : null;
     }
 
     private function appendCardTypeLatestFlowFeedback(array $page): array

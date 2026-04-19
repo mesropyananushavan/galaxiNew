@@ -1376,6 +1376,19 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Selected receipt preview');
     }
 
+    public function test_checks_points_page_accepts_case_insensitive_selected_receipt_query(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=CHK-90407');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all receipts')
+            ->assertSee('Reviewing: CHK-90407')
+            ->assertSee('Selected receipt preview');
+    }
+
     public function test_authenticated_user_can_access_reports_operational_index_shape(): void
     {
         $user = User::factory()->create();
@@ -1621,6 +1634,49 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Selected report source');
     }
 
+    public function test_reports_page_accepts_case_insensitive_selected_source_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-reports-case-insensitive',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Tier Case Insensitive',
+            'slug' => 'reporting-tier-case-insensitive',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Reporting Case Insensitive',
+            'phone' => '+37499111226',
+            'email' => 'mariam.reports.case@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223347',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=CARDS-BY-SHOP');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to report catalog')
+            ->assertSee('Reviewing: Cards by shop')
+            ->assertSee('Selected report source');
+    }
+
     public function test_authenticated_user_can_access_services_rules_operational_index_shape(): void
     {
         $user = User::factory()->create();
@@ -1677,6 +1733,19 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review birthday bonus rule')
             ->assertDontSee('Back to all rules')
             ->assertDontSee('Selected rule preview');
+    }
+
+    public function test_services_rules_page_accepts_case_insensitive_selected_rule_query(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules?rule=NIGHT-SERVICE-BLOCK');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all rules')
+            ->assertSee('Reviewing: Night service block')
+            ->assertSee('Selected rule preview');
     }
 
     public function test_resource_page_shell_keeps_shared_header_and_rationale_visible(): void
@@ -2780,6 +2849,19 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review coffee voucher gift')
             ->assertDontSee('Back to all gifts')
             ->assertDontSee('Selected gift preview');
+    }
+
+    public function test_gifts_page_accepts_case_insensitive_selected_gift_query(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=PREMIUM-DESSERT-SET');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all gifts')
+            ->assertSee('Reviewing: Premium dessert set')
+            ->assertSee('Selected gift preview');
     }
 
     public function test_authenticated_user_can_access_gifts_management_preview(): void
