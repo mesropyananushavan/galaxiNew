@@ -29,17 +29,36 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function canAccessAdminPanel(): bool
+    public function hasBootstrapAdminAccess(): bool
+    {
+        return $this->shop_id === null;
+    }
+
+    public function belongsToActiveShop(): bool
     {
         if ($this->shop_id === null) {
-            return true;
-        }
-
-        if (! (bool) $this->shop()->value('is_active')) {
             return false;
         }
 
+        return (bool) $this->shop()->value('is_active');
+    }
+
+    public function hasPermissionBearingRole(): bool
+    {
         return $this->roles()->whereHas('permissions')->exists();
+    }
+
+    public function canAccessAdminPanel(): bool
+    {
+        if ($this->hasBootstrapAdminAccess()) {
+            return true;
+        }
+
+        if (! $this->belongsToActiveShop()) {
+            return false;
+        }
+
+        return $this->hasPermissionBearingRole();
     }
 
     /**

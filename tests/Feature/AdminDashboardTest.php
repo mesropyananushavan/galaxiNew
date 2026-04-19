@@ -245,6 +245,11 @@ class AdminDashboardTest extends TestCase
             ->get('/admin')
             ->assertOk()
             ->assertSee('Galaxi Admin');
+
+        $this->assertFalse($user->hasBootstrapAdminAccess());
+        $this->assertTrue($user->belongsToActiveShop());
+        $this->assertTrue($user->hasPermissionBearingRole());
+        $this->assertTrue($user->canAccessAdminPanel());
     }
 
     public function test_user_assigned_to_active_shop_without_role_cannot_access_admin_dashboard(): void
@@ -262,6 +267,11 @@ class AdminDashboardTest extends TestCase
         $this->actingAs($user)
             ->get('/admin')
             ->assertForbidden();
+
+        $this->assertFalse($user->hasBootstrapAdminAccess());
+        $this->assertTrue($user->belongsToActiveShop());
+        $this->assertFalse($user->hasPermissionBearingRole());
+        $this->assertFalse($user->canAccessAdminPanel());
     }
 
     public function test_user_assigned_to_active_shop_with_role_but_without_permissions_cannot_access_admin_dashboard(): void
@@ -286,6 +296,11 @@ class AdminDashboardTest extends TestCase
         $this->actingAs($user)
             ->get('/admin')
             ->assertForbidden();
+
+        $this->assertFalse($user->hasBootstrapAdminAccess());
+        $this->assertTrue($user->belongsToActiveShop());
+        $this->assertFalse($user->hasPermissionBearingRole());
+        $this->assertFalse($user->canAccessAdminPanel());
     }
 
     public function test_user_assigned_to_paused_shop_cannot_access_admin_dashboard(): void
@@ -303,6 +318,20 @@ class AdminDashboardTest extends TestCase
         $this->actingAs($user)
             ->get('/admin')
             ->assertForbidden();
+
+        $this->assertFalse($user->hasBootstrapAdminAccess());
+        $this->assertFalse($user->belongsToActiveShop());
+        $this->assertFalse($user->canAccessAdminPanel());
+    }
+
+    public function test_unscoped_user_keeps_bootstrap_admin_access_helpers(): void
+    {
+        $user = User::factory()->create();
+
+        $this->assertTrue($user->hasBootstrapAdminAccess());
+        $this->assertFalse($user->belongsToActiveShop());
+        $this->assertFalse($user->hasPermissionBearingRole());
+        $this->assertTrue($user->canAccessAdminPanel());
     }
 
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void

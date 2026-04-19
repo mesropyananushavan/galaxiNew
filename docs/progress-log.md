@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Admin access helper extraction checkpoint
+- Split the emerging admin-access baseline on `User` into explicit helper methods for bootstrap access, active-shop posture, and permission-bearing role presence, so the current gate logic reads more like Phase 1 authorization intent than a single opaque boolean check.
+- Added focused assertions around those helpers for unscoped, active-shop, paused-shop, and permissionless-role cases while re-running the dashboard slice, `9 passed`.
+- This keeps the current access baseline low-risk, but leaves a cleaner seam for the next shop-scope or policy-oriented authorization step.
+
+### Next step after admin access helper extraction checkpoint
+- Reuse the new explicit access helpers in one more small authorization slice, likely a shared shop-aware helper or first policy-style check that still preserves the current parity-first admin reads.
+
 ### Permission-bearing admin access checkpoint
 - Tightened the shop-bound `access-admin` baseline again so active-shop users now need a role with at least one linked permission before they can enter the admin workspace.
 - Kept bootstrap access for unscoped setup users, while making shop-bound access feel more like a real Galaxy authorization baseline instead of a starter-level role-presence check.
