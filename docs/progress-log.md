@@ -341,6 +341,11 @@
 - Confirmed the new active-shop metric stays visible in the focused dashboard test, `1 passed`.
 - This makes the dashboard slice more useful because the landing summary now carries one basic live-status signal instead of only raw entity totals.
 
+### Dashboard active-cardholder metric checkpoint
+- Extended the Laravel-backed dashboard metrics with an explicit `Active cardholders` value so the landing page now shows not only total holder volume but also a basic live-status view of the holder base.
+- Confirmed the new active-cardholder metric stays visible in the focused dashboard test, `1 passed`.
+- This makes the dashboard slice more useful because the top-level admin summary now carries a second operational state signal alongside branch activity.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

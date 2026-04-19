@@ -22,6 +22,7 @@ class DashboardController extends Controller
             'shopCount' => Shop::query()->count(),
             'activeShopCount' => Shop::query()->where('is_active', true)->count(),
             'cardHolderCount' => CardHolder::query()->count(),
+            'activeCardHolderCount' => CardHolder::query()->where('status', 'active')->count(),
             'cardCount' => Card::query()->count(),
             'roleCount' => Role::query()->count(),
         ]);
