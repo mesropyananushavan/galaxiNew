@@ -70,19 +70,19 @@
         @if ($latestShop || $latestCardHolder || $latestCard || $latestCardType || $latestRole)
             <ul class="list">
                 @if ($latestShop)
-                    <li><a href="{{ route('admin.shops.index', ['shop' => $latestShop->id]) }}">Open latest shop review</a></li>
+                    <li><a href="{{ route('admin.shops.index', ['shop' => $latestShop->id]) }}">Open latest shop review: {{ $latestShop->name }}</a></li>
                 @endif
                 @if ($latestCardHolder)
-                    <li><a href="{{ route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id]) }}">Open latest cardholder review</a></li>
+                    <li><a href="{{ route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id]) }}">Open latest cardholder review: {{ $latestCardHolder->full_name }}</a></li>
                 @endif
                 @if ($latestCard)
-                    <li><a href="{{ route('admin.cards.index', ['card' => $latestCard->id]) }}">Open latest card review</a></li>
+                    <li><a href="{{ route('admin.cards.index', ['card' => $latestCard->id]) }}">Open latest card review: {{ $latestCard->number }}</a></li>
                 @endif
                 @if ($latestCardType)
-                    <li><a href="{{ route('admin.card-types.index', ['cardType' => $latestCardType->id]) }}">Open latest card type workspace</a></li>
+                    <li><a href="{{ route('admin.card-types.index', ['cardType' => $latestCardType->id]) }}">Open latest card type workspace: {{ $latestCardType->name }}</a></li>
                 @endif
                 @if ($latestRole)
-                    <li><a href="{{ route('admin.roles-permissions.index', ['role' => $latestRole->id]) }}">Open latest role review</a></li>
+                    <li><a href="{{ route('admin.roles-permissions.index', ['role' => $latestRole->id]) }}">Open latest role review: {{ $latestRole->name }}</a></li>
                 @endif
             </ul>
         @else

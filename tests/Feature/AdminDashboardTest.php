@@ -200,15 +200,15 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review live reporting sources')
             ->assertSee('/admin/reports')
             ->assertSee('Resume latest live work')
-            ->assertSee('Open latest shop review')
+            ->assertSee('Open latest shop review: Galaxy Central')
             ->assertSee('/admin/shops?shop=1')
-            ->assertSee('Open latest cardholder review')
+            ->assertSee('Open latest cardholder review: Mariam Dashboard')
             ->assertSee('/admin/cardholders?cardholder=1')
-            ->assertSee('Open latest card review')
+            ->assertSee('Open latest card review: 550011223344')
             ->assertSee('/admin/cards?card=1')
-            ->assertSee('Open latest card type workspace')
+            ->assertSee('Open latest card type workspace: Dashboard Tier')
             ->assertSee('/admin/card-types?cardType=1')
-            ->assertSee('Open latest role review')
+            ->assertSee('Open latest role review: Dashboard Lead')
             ->assertSee('/admin/roles-permissions?role=1')
             ->assertSee('1');
     }
@@ -223,11 +223,11 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Resume latest live work')
             ->assertSee('No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.')
-            ->assertDontSee('Open latest shop review')
-            ->assertDontSee('Open latest cardholder review')
-            ->assertDontSee('Open latest card review')
-            ->assertDontSee('Open latest card type workspace')
-            ->assertDontSee('Open latest role review');
+            ->assertDontSee('Open latest shop review:')
+            ->assertDontSee('Open latest cardholder review:')
+            ->assertDontSee('Open latest card review:')
+            ->assertDontSee('Open latest card type workspace:')
+            ->assertDontSee('Open latest role review:');
     }
 
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void
