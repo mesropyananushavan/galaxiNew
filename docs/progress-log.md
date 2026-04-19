@@ -356,6 +356,11 @@
 - Confirmed the new permission metric stays visible in the focused dashboard test, `1 passed`.
 - This makes the dashboard slice more Galaxy-specific because access review now starts from a real permission footprint instead of only navigation and role totals.
 
+### Dashboard live-entry-points checkpoint
+- Added a dedicated `Live review entry points` block to `/admin` so the dashboard now links directly into the already-live Laravel-backed Phase 1 slices for shops, cardholders, cards, roles-permissions, and reports.
+- Confirmed the new dashboard links render alongside the live metrics in the focused dashboard test, `1 passed`.
+- This makes the admin landing page more operational because it now acts as a real Galaxy review hub instead of only a summary screen.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

@@ -186,6 +186,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active cards')
             ->assertSee('Live roles')
             ->assertSee('Live permissions')
+            ->assertSee('Live review entry points')
+            ->assertSee('Review live shops')
+            ->assertSee('/admin/shops')
+            ->assertSee('Review live cardholders')
+            ->assertSee('/admin/cardholders')
+            ->assertSee('Review live cards')
+            ->assertSee('/admin/cards')
+            ->assertSee('Review live access roles')
+            ->assertSee('/admin/roles-permissions')
+            ->assertSee('Review live reporting sources')
+            ->assertSee('/admin/reports')
             ->assertSee('1');
     }
 

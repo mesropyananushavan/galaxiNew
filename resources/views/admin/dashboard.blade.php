@@ -54,6 +54,17 @@
     </section>
 
     <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Live review entry points</h3>
+        <ul class="list">
+            <li><a href="{{ route('admin.shops.index') }}">Review live shops</a></li>
+            <li><a href="{{ route('admin.cardholders.index') }}">Review live cardholders</a></li>
+            <li><a href="{{ route('admin.cards.index') }}">Review live cards</a></li>
+            <li><a href="{{ route('admin.roles-permissions.index') }}">Review live access roles</a></li>
+            <li><a href="{{ route('admin.reports.index') }}">Review live reporting sources</a></li>
+        </ul>
+    </section>
+
+    <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Mapped sections for migration</h3>
         <ul class="list">
             @foreach ($navigationGroups as $group)
