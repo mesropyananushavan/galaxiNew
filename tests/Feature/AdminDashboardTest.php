@@ -1287,11 +1287,13 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Checks &amp; Points placeholder')
+            ->assertSeeText('Operations / Checks & Points')
             ->assertSee('CHK-90421')
+            ->assertSee('/admin/checks-points?receipt=chk-90421')
             ->assertSee('Fiscal receipt')
             ->assertSee('Find receipt')
             ->assertSee('Review accrual gaps')
+            ->assertSee('Review chk-90421 receipt')
             ->assertSee('Receipts listed')
             ->assertSee('Positive accruals')
             ->assertSee('Zero accruals')
@@ -1331,6 +1333,43 @@ class AdminDashboardTest extends TestCase
             ->assertSee('receipt-first lookup')
             ->assertSee('The loyalty delta applied after receipt validation')
             ->assertSee('GX-100001');
+    }
+
+    public function test_checks_points_page_supports_selected_receipt_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=chk-90407');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all receipts')
+            ->assertSee('/admin/checks-points')
+            ->assertSee('Reviewing: CHK-90407')
+            ->assertSee('Blocked until receipt lookup is backed by Laravel transaction reads.')
+            ->assertSee('Blocked until accrual-gap review is backed by Laravel transaction and rule data.')
+            ->assertSee('Selected receipt preview')
+            ->assertSee('CHK-90407')
+            ->assertSee('Accrual posture')
+            ->assertSee('Zero-accrual receipts should stay highly visible, because they drive the most parity-sensitive troubleshooting in the old Galaxy flow.')
+            ->assertSee('Troubleshooting guidance')
+            ->assertSee('Treat this receipt as read-only review until Laravel transaction history and rule-backed explanations exist.')
+            ->assertSee('CHK-90407 selected for zero-accrual review')
+            ->assertSee('Zero-accrual handoff stays cautious')
+            ->assertSee('Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.');
+    }
+
+    public function test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=unknown-receipt');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review chk-90421 receipt')
+            ->assertDontSee('Back to all receipts')
+            ->assertDontSee('Selected receipt preview');
     }
 
     public function test_authenticated_user_can_access_reports_operational_index_shape(): void

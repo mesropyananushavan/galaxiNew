@@ -126,12 +126,157 @@ class ResourceIndexController extends Controller
             'shops' => $this->enrichShopsPage($page),
             'cardholders' => $this->enrichCardHoldersPage($page),
             'cards' => $this->enrichCardsPage($page),
+            'checks-points' => $this->enrichChecksPointsPage($page),
             'roles-permissions' => $this->enrichRolesPermissionsPage($page),
             'reports' => $this->enrichReportsPage($page),
             'services-rules' => $this->enrichServicesRulesPage($page),
             'gifts' => $this->enrichGiftsPage($page),
             default => $page,
         };
+    }
+
+    private function enrichChecksPointsPage(array $page): array
+    {
+        $receiptPreviews = [
+            [
+                'key' => 'chk-90421',
+                'label' => 'CHK-90421',
+                'card' => 'GX-100001',
+                'shop' => 'Central Shop',
+                'amount' => '24,500',
+                'points' => '+245',
+                'created' => '2026-04-13 18:42',
+                'summary' => [
+                    ['label' => 'Selected receipt preview', 'value' => 'CHK-90421'],
+                    ['label' => 'Card', 'value' => 'GX-100001'],
+                    ['label' => 'Shop context', 'value' => 'Central Shop'],
+                    ['label' => 'Accrual posture', 'value' => 'Positive accrual receipts should stay parity-first, because receipt math must match the old Galaxy ledger before any correction flow appears.'],
+                    ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and adjustment flows exist.'],
+                ],
+                'timeline' => [
+                    ['title' => 'CHK-90421 selected for receipt review', 'time' => 'Current request', 'description' => 'This preview now keeps the positive-accrual receipt in a dedicated Galaxy review context instead of a flat transaction row.'],
+                    ['title' => 'Receipt-first handoff stays visible', 'time' => 'Current request', 'description' => 'Operators should pass along verified receipt, card, and shop context here before discussing any later correction flow.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected receipt', 'value' => 'CHK-90421'],
+                    ['label' => 'Receipt posture', 'value' => 'Fiscal receipt review should remain read-only until Laravel transaction history is verified against the legacy ledger.'],
+                    ['label' => 'Accrual posture', 'value' => 'Positive point outcomes still need live transaction-domain parity before any adjustment path is safe.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Transaction tables, receipt reads, and adjustment handlers still remain blocked for this receipt preview.'],
+                ],
+            ],
+            [
+                'key' => 'chk-90407',
+                'label' => 'CHK-90407',
+                'card' => 'GX-100003',
+                'shop' => 'Central Shop',
+                'amount' => '11,000',
+                'points' => '0',
+                'created' => '2026-04-13 14:05',
+                'summary' => [
+                    ['label' => 'Selected receipt preview', 'value' => 'CHK-90407'],
+                    ['label' => 'Card', 'value' => 'GX-100003'],
+                    ['label' => 'Shop context', 'value' => 'Central Shop'],
+                    ['label' => 'Accrual posture', 'value' => 'Zero-accrual receipts should stay highly visible, because they drive the most parity-sensitive troubleshooting in the old Galaxy flow.'],
+                    ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and rule-backed explanations exist.'],
+                ],
+                'timeline' => [
+                    ['title' => 'CHK-90407 selected for zero-accrual review', 'time' => 'Current request', 'description' => 'This preview now keeps the zero-accrual receipt in a dedicated Galaxy review context instead of a flat transaction row.'],
+                    ['title' => 'Zero-accrual handoff stays cautious', 'time' => 'Current request', 'description' => 'Operators should hand off receipt evidence and shop context here before escalating to future correction workflows.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected receipt', 'value' => 'CHK-90407'],
+                    ['label' => 'Receipt posture', 'value' => 'Receipt lookup should stay read-only until Laravel transaction history is verified against legacy fiscal search behavior.'],
+                    ['label' => 'Accrual posture', 'value' => 'Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Transaction tables, receipt reads, and adjustment handlers still remain blocked for this receipt preview.'],
+                ],
+            ],
+            [
+                'key' => 'chk-90388',
+                'label' => 'CHK-90388',
+                'card' => 'GX-100002',
+                'shop' => 'North Shop',
+                'amount' => '7,300',
+                'points' => '+73',
+                'created' => '2026-04-13 10:11',
+                'summary' => [
+                    ['label' => 'Selected receipt preview', 'value' => 'CHK-90388'],
+                    ['label' => 'Card', 'value' => 'GX-100002'],
+                    ['label' => 'Shop context', 'value' => 'North Shop'],
+                    ['label' => 'Accrual posture', 'value' => 'North Shop accrual receipts should stay branch-aware, because cross-shop troubleshooting must preserve local receipt context.'],
+                    ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and shop-aware filters exist.'],
+                ],
+                'timeline' => [
+                    ['title' => 'CHK-90388 selected for branch receipt review', 'time' => 'Current request', 'description' => 'This preview now keeps the North Shop receipt in a dedicated Galaxy review context instead of a flat transaction row.'],
+                    ['title' => 'Branch-specific handoff stays receipt-first', 'time' => 'Current request', 'description' => 'Operators should hand off receipt and shop context here before any future transaction-edit or correction flow is considered.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected receipt', 'value' => 'CHK-90388'],
+                    ['label' => 'Receipt posture', 'value' => 'Branch receipt lookup should stay read-only until Laravel shop filters and transaction history are verified against the old flow.'],
+                    ['label' => 'Accrual posture', 'value' => 'Positive branch accrual outcomes still need live transaction-domain parity before any adjustment path is safe.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Transaction tables, receipt reads, and adjustment handlers still remain blocked for this receipt preview.'],
+                ],
+            ],
+        ];
+
+        $page['table']['rows'] = collect($receiptPreviews)->map(fn (array $receipt): array => [
+            $this->linkedTableCell($receipt['label'], 'admin.checks-points.index', ['receipt' => $receipt['key']]),
+            $receipt['card'],
+            $receipt['shop'],
+            $receipt['amount'],
+            $receipt['points'],
+            $receipt['created'],
+        ])->all();
+
+        $latestReceiptPreview = collect($receiptPreviews)->first();
+
+        if (is_array($latestReceiptPreview)) {
+            $page = $this->appendPageAction($page, [
+                'label' => sprintf('Review %s receipt', strtolower($latestReceiptPreview['label'])),
+                'tone' => 'secondary',
+                'href' => route('admin.checks-points.index', ['receipt' => $latestReceiptPreview['key']], absolute: false),
+            ]);
+        }
+
+        $selectedReceipt = request()->query('receipt');
+
+        if (! is_string($selectedReceipt)) {
+            return $page;
+        }
+
+        $selectedReceiptPreview = collect($receiptPreviews)->first(fn (array $receipt): bool => $receipt['key'] === strtolower($selectedReceipt));
+
+        if (! is_array($selectedReceiptPreview)) {
+            return $page;
+        }
+
+        $page['selectedRecordSummary'] = $selectedReceiptPreview['summary'];
+        $page['actions'] = [
+            [
+                'label' => 'Back to all receipts',
+                'tone' => 'primary',
+                'href' => route('admin.checks-points.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedReceiptPreview['label']),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Find receipt',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until receipt lookup is backed by Laravel transaction reads.',
+            ],
+            [
+                'label' => 'Review accrual gaps',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until accrual-gap review is backed by Laravel transaction and rule data.',
+            ],
+        ];
+        $page['activityTimeline'] = $selectedReceiptPreview['timeline'];
+        $page['dependencyStatus'] = $selectedReceiptPreview['dependencyStatus'];
+
+        return $page;
     }
 
     private function enrichServicesRulesPage(array $page): array

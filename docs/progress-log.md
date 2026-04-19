@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Checks-points selected-receipt review checkpoint
+- Extended the preview-heavy `checks-points` workspace so each receipt row now links into a request-driven `?receipt=` review state instead of staying as a flat placeholder table.
+- Added selected-receipt summary, parity-first activity, dependency posture, and disabled troubleshooting actions for receipt previews, while safely ignoring unknown receipt queries and falling back to the catalog.
+- Re-ran the focused `php artisan test --filter=checks_points` slice, `3 passed`, to confirm the new selected-receipt review flow and fallback behavior hold together.
+
+### Next step after checks-points selected-receipt review checkpoint
+- Add one more Galaxy-specific parity cue inside the new receipt review flow, or return to a more backend-oriented Phase 1 slice now that several preview-heavy workspaces have request-driven review states.
+
 ### Gifts selected-gift review checkpoint
 - Extended the preview-heavy `gifts` workspace so each gift row now links into a request-driven `?gift=` review state instead of staying as a flat placeholder table.
 - Added selected-gift summary, parity-first activity, dependency posture, and disabled review actions for reward previews, while safely ignoring unknown gift queries and falling back to the catalog.
