@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Live selected-summary parity checkpoint
+- Extended the live Laravel-backed `cards`, `cardholders`, and `shops` selected review summaries with clearer Galaxy-style review-mode and branch/scope guidance cues, so those workspaces read less like generic record detail views and more like parity-first operational review surfaces.
+- Extracted the selected-summary composition for those workspaces into dedicated controller helpers, which keeps the current live read slices easier to extend without reintroducing summary drift.
+- Re-ran the focused live workspace test slice, `16 passed`, to confirm the richer summaries still render cleanly with the existing action, timeline, and dependency-status layers.
+
+### Next step after live selected-summary parity checkpoint
+- Keep nudging the Laravel-backed admin foundation toward Phase 1 access and shop-scope goals, ideally with a small low-risk authorization baseline or another shared live-slice hardening pass that removes starter-style generic detail behavior.
+
 ### Live dependency-status parity checkpoint
 - Extended the live Laravel-backed `cards`, `cardholders`, and `shops` selected review states with explicit dependency-status blocks, so those workspaces now communicate read-only posture and remaining backend gaps more like the richer Galaxy-style role and report slices.
 - Kept the change parity-first and read-only, covering lifecycle, assignment, branch, and activity posture cues without introducing risky write flows.

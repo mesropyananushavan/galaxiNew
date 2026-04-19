@@ -694,22 +694,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $page['selectedRecordSummary'] = [
-            ['label' => 'Selected card', 'value' => $selectedCard->number],
-            ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
-            ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
-            ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
-            ['label' => 'Laravel status', 'value' => $selectedCard->status],
-            ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
-            [
-                'label' => 'Inventory guidance',
-                'value' => match ($selectedCard->status) {
-                    'active' => 'This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.',
-                    'blocked' => 'This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.',
-                    default => 'This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.',
-                },
-            ],
-        ];
+        $page['selectedRecordSummary'] = $this->cardsSelectedCardSummary($selectedCard);
 
         $page['actions'] = $this->selectedReadContextActions(
             'admin.cards.index',
@@ -792,19 +777,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $page['selectedRecordSummary'] = [
-            ['label' => 'Selected holder', 'value' => $selectedCardHolder->full_name],
-            ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
-            ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
-            ['label' => 'Linked cards', 'value' => (string) $selectedCardHolder->cards_count],
-            ['label' => 'Laravel status', 'value' => $selectedCardHolder->is_active ? 'active' : 'inactive'],
-            [
-                'label' => 'Lookup guidance',
-                'value' => $selectedCardHolder->is_active
-                    ? 'This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.'
-                    : 'This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
-            ],
-        ];
+        $page['selectedRecordSummary'] = $this->cardholdersSelectedHolderSummary($selectedCardHolder);
 
         $page['actions'] = $this->selectedReadContextActions(
             'admin.cardholders.index',
@@ -887,20 +860,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $page['selectedRecordSummary'] = [
-            ['label' => 'Selected shop', 'value' => $selectedShop->name],
-            ['label' => 'Code', 'value' => $selectedShop->code],
-            ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
-            ['label' => 'Cardholders', 'value' => (string) $selectedShop->card_holders_count],
-            ['label' => 'Cards', 'value' => (string) $selectedShop->cards_count],
-            ['label' => 'Laravel status', 'value' => $selectedShop->is_active ? 'active' : 'paused'],
-            [
-                'label' => 'Branch guidance',
-                'value' => $selectedShop->is_active
-                    ? 'This branch is already active in Laravel, so scope and manager changes should stay parity-first until branch ownership rules are verified.'
-                    : 'This branch is still paused, which keeps it safe for parity checks before operators treat it as fully live.',
-            ],
-        ];
+        $page['selectedRecordSummary'] = $this->shopsSelectedShopSummary($selectedShop);
 
         $page['actions'] = $this->selectedReadContextActions(
             'admin.shops.index',
@@ -1523,6 +1483,32 @@ class ResourceIndexController extends Controller
         ];
     }
 
+    private function cardsSelectedCardSummary(Card $selectedCard): array
+    {
+        return [
+            ['label' => 'Selected card', 'value' => $selectedCard->number],
+            ['label' => 'Review mode', 'value' => $selectedCard->status === 'draft'
+                ? 'Draft-safe review, this inventory record is still safer for parity checks before operators treat it as issued stock.'
+                : 'Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.'],
+            ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
+            ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
+            ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
+            ['label' => 'Shop guidance', 'value' => $selectedCard->shop !== null
+                ? 'Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.'
+                : 'No branch is linked yet, so shop-level handling should stay in parity review before operators rely on this card record operationally.'],
+            ['label' => 'Laravel status', 'value' => $selectedCard->status],
+            ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
+            [
+                'label' => 'Inventory guidance',
+                'value' => match ($selectedCard->status) {
+                    'active' => 'This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.',
+                    'blocked' => 'This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.',
+                    default => 'This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.',
+                },
+            ],
+        ];
+    }
+
     private function cardsSelectedCardDependencyStatus(Card $selectedCard): array
     {
         return [
@@ -1543,6 +1529,29 @@ class ResourceIndexController extends Controller
         ];
     }
 
+    private function cardholdersSelectedHolderSummary(CardHolder $selectedCardHolder): array
+    {
+        return [
+            ['label' => 'Selected holder', 'value' => $selectedCardHolder->full_name],
+            ['label' => 'Review mode', 'value' => $selectedCardHolder->is_active
+                ? 'Live profile review, this holder already participates in the Laravel lookup surface and should stay parity-first.'
+                : 'Dormant-profile review, this inactive holder stays safer for parity checks before any reactivation path is trusted.'],
+            ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
+            ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
+            ['label' => 'Shop guidance', 'value' => $selectedCardHolder->shop !== null
+                ? 'Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.'
+                : 'No branch is linked yet, so shop-aware lookup behavior should stay in parity review before profile actions are widened.'],
+            ['label' => 'Linked cards', 'value' => (string) $selectedCardHolder->cards_count],
+            ['label' => 'Laravel status', 'value' => $selectedCardHolder->is_active ? 'active' : 'inactive'],
+            [
+                'label' => 'Lookup guidance',
+                'value' => $selectedCardHolder->is_active
+                    ? 'This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.'
+                    : 'This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
+            ],
+        ];
+    }
+
     private function cardholdersSelectedHolderDependencyStatus(CardHolder $selectedCardHolder): array
     {
         return [
@@ -1556,6 +1565,30 @@ class ResourceIndexController extends Controller
                 : 'No linked cards exist yet, which keeps this holder safer for identity review before card-link flows are enabled.'],
             ['label' => 'Activity posture', 'value' => 'Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.'],
             ['label' => 'Remaining backend gap', 'value' => 'Holder search, profile writes, and recent-activity sourcing still remain preview-only for this workspace'],
+        ];
+    }
+
+    private function shopsSelectedShopSummary(Shop $selectedShop): array
+    {
+        return [
+            ['label' => 'Selected shop', 'value' => $selectedShop->name],
+            ['label' => 'Review mode', 'value' => $selectedShop->is_active
+                ? 'Live branch review, this Laravel shop already carries operational visibility and should stay parity-first.'
+                : 'Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.'],
+            ['label' => 'Code', 'value' => $selectedShop->code],
+            ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
+            ['label' => 'Manager guidance', 'value' => $selectedShop->users_count > 0
+                ? 'Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.'
+                : 'No manager is assigned yet, so ownership expectations should stay parity-first until assignment rules are verified.'],
+            ['label' => 'Cardholders', 'value' => (string) $selectedShop->card_holders_count],
+            ['label' => 'Cards', 'value' => (string) $selectedShop->cards_count],
+            ['label' => 'Laravel status', 'value' => $selectedShop->is_active ? 'active' : 'paused'],
+            [
+                'label' => 'Branch guidance',
+                'value' => $selectedShop->is_active
+                    ? 'This branch is already active in Laravel, so scope and manager changes should stay parity-first until branch ownership rules are verified.'
+                    : 'This branch is still paused, which keeps it safe for parity checks before operators treat it as fully live.',
+            ],
         ];
     }
 
