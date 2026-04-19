@@ -321,6 +321,11 @@
 - Confirmed the updated action label stays visible in both the preview baseline and the live Laravel-backed reporting slice, `2 passed`.
 - This makes the reporting workspace read more like a Galaxy-specific review tool because the primary action now matches the current live-source Phase 1 posture.
 
+### Reports tracked-cardholders metric checkpoint
+- Extended the live Laravel-backed `reports` metrics with an explicit `Tracked cardholders` value so reporting coverage is not limited to shops and cards at the top-level summary.
+- Confirmed the new holder-coverage metric stays visible in the focused preview-plus-live reporting test set, `2 passed`.
+- This makes the reporting slice more informative because holder coverage is now surfaced directly in metrics instead of only appearing later in the report-row list and dependency copy.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

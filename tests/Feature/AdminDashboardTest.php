@@ -1310,6 +1310,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Live sources')
             ->assertSee('Tracked shops')
             ->assertSee('Tracked cards')
+            ->assertSee('Tracked cardholders')
             ->assertSee('1')
             ->assertSee('Cards by shop')
             ->assertSee('1 shops')

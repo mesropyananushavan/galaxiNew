@@ -546,6 +546,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Live sources', 'value' => (string) collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])->filter(fn (int $count): bool => $count > 0)->count()],
             ['label' => 'Tracked shops', 'value' => (string) $shopCount],
             ['label' => 'Tracked cards', 'value' => (string) $cardCount],
+            ['label' => 'Tracked cardholders', 'value' => (string) $cardHolderCount],
         ];
 
         $page['table']['rows'] = [
