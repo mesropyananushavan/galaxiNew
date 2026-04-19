@@ -159,6 +159,11 @@ class AdminDashboardTest extends TestCase
             'slug' => 'dashboard-lead',
         ]);
 
+        Permission::create([
+            'name' => 'Manage dashboard',
+            'slug' => 'manage-dashboard',
+        ]);
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get('/admin');
@@ -180,6 +185,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Live cards')
             ->assertSee('Active cards')
             ->assertSee('Live roles')
+            ->assertSee('Live permissions')
             ->assertSee('1');
     }
 

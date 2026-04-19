@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Card;
 use App\Models\CardHolder;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\Shop;
 use Illuminate\Contracts\View\View;
@@ -26,6 +27,7 @@ class DashboardController extends Controller
             'cardCount' => Card::query()->count(),
             'activeCardCount' => Card::query()->where('status', 'active')->count(),
             'roleCount' => Role::query()->count(),
+            'permissionCount' => Permission::query()->count(),
         ]);
     }
 }

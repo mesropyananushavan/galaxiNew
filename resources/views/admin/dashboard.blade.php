@@ -46,6 +46,10 @@
                 <p class="metric-label">Live roles</p>
                 <p class="metric-value">{{ $roleCount }}</p>
             </article>
+            <article class="metric">
+                <p class="metric-label">Live permissions</p>
+                <p class="metric-value">{{ $permissionCount }}</p>
+            </article>
         </div>
     </section>
 

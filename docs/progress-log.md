@@ -351,6 +351,11 @@
 - Confirmed the new active-card metric stays visible in the focused dashboard test, `1 passed`.
 - This makes the dashboard slice more informative because the top-level admin summary now carries a card-inventory state signal alongside shops and cardholders.
 
+### Dashboard permission-surface metric checkpoint
+- Extended the Laravel-backed dashboard metrics with an explicit `Live permissions` value so the admin landing page now reflects the current access surface in addition to role counts.
+- Confirmed the new permission metric stays visible in the focused dashboard test, `1 passed`.
+- This makes the dashboard slice more Galaxy-specific because access review now starts from a real permission footprint instead of only navigation and role totals.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
