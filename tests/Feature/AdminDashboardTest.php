@@ -2754,10 +2754,14 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Premium dessert set')
             ->assertSee('Stock posture')
             ->assertSee('Zero-stock rewards should remain paused in review mode until Laravel inventory and reopening flows can reproduce the old behavior safely.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep paused zero-stock rewards in compact on-screen review first, because operators need scope, stock, and cost visible together before discussing reopening.')
             ->assertSee('Redemption guidance')
             ->assertSee('Treat this paused reward as review-only until stock recovery and redemption parity are backed by Laravel flows.')
             ->assertSee('Premium dessert set selected for paused reward review')
             ->assertSee('Paused reward handoff stays cautious')
+            ->assertSee('Paused reward handoff keeps stock evidence visible')
+            ->assertSee('Scope, zero-stock state, and points cost should stay visible in the workspace before any reopening discussion begins.')
             ->assertSee('Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in Laravel.');
     }
 

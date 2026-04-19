@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Gifts format-and-handoff cue checkpoint
+- Extended the new selected-gift `gifts` review state with reward-specific format guidance and evidence-first handoff cues, so the flow reads more like Galaxy reward operations instead of a generic preview detail page.
+- Kept the change parity-first and read-only, with stock audit and publish actions still explicitly blocked until Laravel inventory and redemption flows exist.
+- Re-ran the focused `php artisan test --filter=gifts` slice, `4 passed`, to confirm the richer gift review context still behaves cleanly.
+
+### Next step after gifts format-and-handoff cue checkpoint
+- Either carry the same deeper parity-cue treatment into `services-rules`, or pivot back to a more backend-oriented Phase 1 slice now that several preview-heavy workspaces have richer request-driven review states.
+
 ### Checks-points format-and-handoff cue checkpoint
 - Extended the new selected-receipt `checks-points` review state with receipt-specific format guidance and evidence-first handoff cues, so the flow reads more like Galaxy troubleshooting instead of a generic preview detail page.
 - Kept the change parity-first and read-only, with receipt lookup and accrual-gap actions still explicitly blocked until Laravel transaction reads exist.

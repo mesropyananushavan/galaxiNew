@@ -444,11 +444,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Points cost', 'value' => '150'],
                     ['label' => 'Scope posture', 'value' => 'All-shop rewards should stay parity-first, because wide-scope catalog changes affect the most operators and redemptions.'],
                     ['label' => 'Stock posture', 'value' => 'Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Laravel inventory writes exist.'],
+                    ['label' => 'Format guidance', 'value' => 'Keep this reward in table-first review mode, because operators usually compare scope, stock policy, and points cost together before discussing publication.'],
                     ['label' => 'Redemption guidance', 'value' => 'Treat this reward as review-only until gift CRUD and redemption parity are backed by Laravel flows.'],
                 ],
                 'timeline' => [
                     ['title' => 'Coffee voucher selected for reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the baseline all-shop reward in a dedicated Galaxy review context instead of a flat catalog row.'],
                     ['title' => 'All-shop reward handoff stays stock-aware', 'time' => 'Current request', 'description' => 'Operators should carry stock assumptions and reward-availability notes here before trusting future publish flows.'],
+                    ['title' => 'All-shop reward handoff keeps catalog evidence visible', 'time' => 'Current request', 'description' => 'Points cost, stock policy, and shop scope should stay visible in the workspace before any publish discussion begins.'],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Coffee voucher'],
@@ -469,11 +471,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Points cost', 'value' => '900'],
                     ['label' => 'Scope posture', 'value' => 'Kiosk-scoped rewards should stay branch-aware, because legacy redemption expectations depended on local availability.'],
                     ['label' => 'Stock posture', 'value' => 'Finite stock should remain review-only until Laravel inventory updates can preserve remaining-quantity parity.'],
+                    ['label' => 'Format guidance', 'value' => 'Keep kiosk-scoped rewards in compact on-screen review first, because operators need cost, stock, and local scope visible together before escalating.'],
                     ['label' => 'Redemption guidance', 'value' => 'Treat this scoped reward as review-only until stock-aware redemption behavior is backed by Laravel flows.'],
                 ],
                 'timeline' => [
                     ['title' => 'Airport transfer selected for scoped reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the kiosk-scoped reward in its own Galaxy review context instead of a flat catalog row.'],
                     ['title' => 'Finite-stock handoff stays branch-specific', 'time' => 'Current request', 'description' => 'Operators should hand off Airport Kiosk stock assumptions here before relying on future gift-write flows.'],
+                    ['title' => 'Finite-stock handoff keeps kiosk evidence visible', 'time' => 'Current request', 'description' => 'Scope, remaining stock, and points cost should stay visible in the workspace before any publish discussion begins.'],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Airport transfer'],
@@ -494,11 +498,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Points cost', 'value' => '450'],
                     ['label' => 'Scope posture', 'value' => 'Central Shop reward availability should stay parity-first until paused reward behavior matches the legacy catalog.'],
                     ['label' => 'Stock posture', 'value' => 'Zero-stock rewards should remain paused in review mode until Laravel inventory and reopening flows can reproduce the old behavior safely.'],
+                    ['label' => 'Format guidance', 'value' => 'Keep paused zero-stock rewards in compact on-screen review first, because operators need scope, stock, and cost visible together before discussing reopening.'],
                     ['label' => 'Redemption guidance', 'value' => 'Treat this paused reward as review-only until stock recovery and redemption parity are backed by Laravel flows.'],
                 ],
                 'timeline' => [
                     ['title' => 'Premium dessert set selected for paused reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the zero-stock reward in a dedicated Galaxy review context instead of leaving it as a flat table row.'],
                     ['title' => 'Paused reward handoff stays cautious', 'time' => 'Current request', 'description' => 'Operators should hand off zero-stock and reopening assumptions here before any future publish or stock-update flow is allowed.'],
+                    ['title' => 'Paused reward handoff keeps stock evidence visible', 'time' => 'Current request', 'description' => 'Scope, zero-stock state, and points cost should stay visible in the workspace before any reopening discussion begins.'],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Premium dessert set'],
