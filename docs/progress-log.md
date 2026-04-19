@@ -336,6 +336,11 @@
 - Confirmed the dashboard still renders the Galaxy admin shell while exposing those live model counts, `1 passed`.
 - This opens a new safe Phase 1 slice because the admin landing page now reflects real Galaxy foundation data without introducing any write flow or navigation scope change.
 
+### Dashboard active-shop metric checkpoint
+- Extended the Laravel-backed dashboard metrics with an explicit `Active shops` value so the landing page now shows not only total branch count but also immediate operational shop-state coverage.
+- Confirmed the new active-shop metric stays visible in the focused dashboard test, `1 passed`.
+- This makes the dashboard slice more useful because the landing summary now carries one basic live-status signal instead of only raw entity totals.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

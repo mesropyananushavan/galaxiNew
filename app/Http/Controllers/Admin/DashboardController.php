@@ -20,6 +20,7 @@ class DashboardController extends Controller
             'navigationGroups' => $navigation,
             'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),
             'shopCount' => Shop::query()->count(),
+            'activeShopCount' => Shop::query()->where('is_active', true)->count(),
             'cardHolderCount' => CardHolder::query()->count(),
             'cardCount' => Card::query()->count(),
             'roleCount' => Role::query()->count(),

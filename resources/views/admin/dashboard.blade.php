@@ -23,6 +23,10 @@
                 <p class="metric-value">{{ $shopCount }}</p>
             </article>
             <article class="metric">
+                <p class="metric-label">Active shops</p>
+                <p class="metric-value">{{ $activeShopCount }}</p>
+            </article>
+            <article class="metric">
                 <p class="metric-label">Live cardholders</p>
                 <p class="metric-value">{{ $cardHolderCount }}</p>
             </article>
