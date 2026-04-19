@@ -738,6 +738,8 @@ class ResourceIndexController extends Controller
             ],
         ];
 
+        $page['dependencyStatus'] = $this->cardsSelectedCardDependencyStatus($selectedCard);
+
         return $page;
     }
 
@@ -830,6 +832,8 @@ class ResourceIndexController extends Controller
                 'description' => sprintf('This holder is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedCardHolder->is_active ? 'active' : 'inactive'),
             ],
         ];
+
+        $page['dependencyStatus'] = $this->cardholdersSelectedHolderDependencyStatus($selectedCardHolder);
 
         return $page;
     }
@@ -924,6 +928,8 @@ class ResourceIndexController extends Controller
                 'description' => sprintf('This branch is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedShop->is_active ? 'active' : 'paused'),
             ],
         ];
+
+        $page['dependencyStatus'] = $this->shopsSelectedShopDependencyStatus($selectedShop);
 
         return $page;
     }
@@ -1514,6 +1520,58 @@ class ResourceIndexController extends Controller
                 ? 'Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.'
                 : 'No shop scope is linked yet, which keeps this role safe for draft access review.'],
             ['label' => 'Remaining backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace'],
+        ];
+    }
+
+    private function cardsSelectedCardDependencyStatus(Card $selectedCard): array
+    {
+        return [
+            ['label' => 'Selected card', 'value' => $selectedCard->number],
+            ['label' => 'Inventory posture', 'value' => 'Selected-card review is running in Laravel-backed read mode only'],
+            ['label' => 'Lifecycle posture', 'value' => match ($selectedCard->status) {
+                'active' => 'This active card should stay read-only until issue, block, and replacement parity are verified.',
+                'blocked' => 'This blocked card should stay under review-only handling until dispute and replacement semantics match the old Galaxy flow.',
+                default => 'This draft card should stay in parity review until issuance rules are confirmed in Laravel.',
+            }],
+            ['label' => 'Assignment posture', 'value' => $selectedCard->holder !== null
+                ? 'Holder linkage is visible now, but reassignment and replacement actions should stay blocked until inventory parity is verified.'
+                : 'No holder is linked yet, which keeps this inventory record safer for parity review before assignment flows are enabled.'],
+            ['label' => 'Shop posture', 'value' => $selectedCard->shop !== null
+                ? 'Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.'
+                : 'No shop is assigned yet, so branch-level inventory handling should stay in review mode only.'],
+            ['label' => 'Remaining backend gap', 'value' => 'Card lifecycle writes, blocked-card handling, and replacement flows still remain preview-only for this workspace'],
+        ];
+    }
+
+    private function cardholdersSelectedHolderDependencyStatus(CardHolder $selectedCardHolder): array
+    {
+        return [
+            ['label' => 'Selected holder', 'value' => $selectedCardHolder->full_name],
+            ['label' => 'Lookup posture', 'value' => 'Selected-holder review is running in Laravel-backed read mode only'],
+            ['label' => 'Status posture', 'value' => $selectedCardHolder->is_active
+                ? 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.'
+                : 'This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.'],
+            ['label' => 'Card linkage posture', 'value' => $selectedCardHolder->cards_count > 0
+                ? 'Linked cards are visible in Laravel, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.'
+                : 'No linked cards exist yet, which keeps this holder safer for identity review before card-link flows are enabled.'],
+            ['label' => 'Activity posture', 'value' => 'Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.'],
+            ['label' => 'Remaining backend gap', 'value' => 'Holder search, profile writes, and recent-activity sourcing still remain preview-only for this workspace'],
+        ];
+    }
+
+    private function shopsSelectedShopDependencyStatus(Shop $selectedShop): array
+    {
+        return [
+            ['label' => 'Selected shop', 'value' => $selectedShop->name],
+            ['label' => 'Branch posture', 'value' => 'Selected-shop review is running in Laravel-backed read mode only'],
+            ['label' => 'Status posture', 'value' => $selectedShop->is_active
+                ? 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'
+                : 'This paused branch should stay review-only until recovery and ownership parity are verified.'],
+            ['label' => 'Manager posture', 'value' => $selectedShop->users_count > 0
+                ? 'Assigned managers are visible in Laravel, but reassignment should stay blocked until branch ownership parity is confirmed.'
+                : 'No manager is assigned yet, which keeps this branch safer for parity review before ownership flows are enabled.'],
+            ['label' => 'Coverage posture', 'value' => sprintf('This branch currently exposes %d cardholders and %d cards for read-only Laravel review.', $selectedShop->card_holders_count, $selectedShop->cards_count)],
+            ['label' => 'Remaining backend gap', 'value' => 'Branch writes, manager reassignment, and shop-scope mutation flows still remain preview-only for this workspace'],
         ];
     }
 

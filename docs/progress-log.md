@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Live dependency-status parity checkpoint
+- Extended the live Laravel-backed `cards`, `cardholders`, and `shops` selected review states with explicit dependency-status blocks, so those workspaces now communicate read-only posture and remaining backend gaps more like the richer Galaxy-style role and report slices.
+- Kept the change parity-first and read-only, covering lifecycle, assignment, branch, and activity posture cues without introducing risky write flows.
+- Re-ran the focused live workspace test slice, `16 passed`, to confirm the new dependency context renders cleanly alongside the existing selected-record summaries and timelines.
+
+### Next step after live dependency-status parity checkpoint
+- Keep reducing generic-starter residue inside the live Laravel-backed workspaces, likely with one more small shared hardening step around selected-record summaries or a first lightweight authorization/shop-scope baseline slice if it can stay low-risk.
+
 ### Live selected-context action cleanup checkpoint
 - Extracted shared selected-context action wiring for the live Laravel-backed `roles-permissions`, `cards`, `cardholders`, and `shops` workspaces, so those read slices now reuse one helper for the standard back-link plus reviewing-state action pattern.
 - Re-ran focused live workspace tests after the controller cleanup, including the role slice, and fixed one older brittle placeholder assertion while confirming the selected-context behavior still holds.

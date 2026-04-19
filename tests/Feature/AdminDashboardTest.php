@@ -739,7 +739,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('GX-910001 selected for Laravel review')
             ->assertSee('Current request')
             ->assertSee('The shared cards workspace is now loading this saved inventory record from Laravel data instead of only static preview rows.')
-            ->assertSee('GX-910001 status reflected from model state');
+            ->assertSee('GX-910001 status reflected from model state')
+            ->assertSee('Inventory posture:')
+            ->assertSee('Selected-card review is running in Laravel-backed read mode only')
+            ->assertSee('Lifecycle posture:')
+            ->assertSee('This blocked card should stay under review-only handling until dispute and replacement semantics match the old Galaxy flow.')
+            ->assertSee('Assignment posture:')
+            ->assertSee('Holder linkage is visible now, but reassignment and replacement actions should stay blocked until inventory parity is verified.')
+            ->assertSee('Shop posture:')
+            ->assertSee('Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows still remain preview-only for this workspace');
     }
 
     public function test_cards_page_ignores_unknown_selected_card_query(): void
@@ -1063,7 +1073,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy Central selected for Laravel review')
             ->assertSee('Current request')
             ->assertSee('The shared shops workspace is now loading this saved branch from Laravel data instead of only static preview rows.')
-            ->assertSee('Galaxy Central status reflected from model state');
+            ->assertSee('Galaxy Central status reflected from model state')
+            ->assertSee('Branch posture:')
+            ->assertSee('Selected-shop review is running in Laravel-backed read mode only')
+            ->assertSee('Status posture:')
+            ->assertSee('This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.')
+            ->assertSee('Manager posture:')
+            ->assertSee('Assigned managers are visible in Laravel, but reassignment should stay blocked until branch ownership parity is confirmed.')
+            ->assertSee('Coverage posture:')
+            ->assertSee('This branch currently exposes 1 cardholders and 1 cards for read-only Laravel review.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows still remain preview-only for this workspace');
     }
 
     public function test_shops_page_ignores_unknown_selected_shop_query(): void
@@ -1218,7 +1238,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Anna Petrova selected for Laravel review')
             ->assertSee('Current request')
             ->assertSee('The shared cardholders workspace is now loading this saved holder from Laravel data instead of only static preview rows.')
-            ->assertSee('Anna Petrova status reflected from model state');
+            ->assertSee('Anna Petrova status reflected from model state')
+            ->assertSee('Lookup posture:')
+            ->assertSee('Selected-holder review is running in Laravel-backed read mode only')
+            ->assertSee('Status posture:')
+            ->assertSee('This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.')
+            ->assertSee('Card linkage posture:')
+            ->assertSee('No linked cards exist yet, which keeps this holder safer for identity review before card-link flows are enabled.')
+            ->assertSee('Activity posture:')
+            ->assertSee('Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Holder search, profile writes, and recent-activity sourcing still remain preview-only for this workspace');
     }
 
     public function test_cardholders_page_ignores_unknown_selected_holder_query(): void
