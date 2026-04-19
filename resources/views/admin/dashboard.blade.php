@@ -66,6 +66,27 @@
     </section>
 
     <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Resume latest live work</h3>
+        <ul class="list">
+            @if ($latestShop)
+                <li><a href="{{ route('admin.shops.index', ['shop' => $latestShop->id]) }}">Open latest shop review</a></li>
+            @endif
+            @if ($latestCardHolder)
+                <li><a href="{{ route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id]) }}">Open latest cardholder review</a></li>
+            @endif
+            @if ($latestCard)
+                <li><a href="{{ route('admin.cards.index', ['card' => $latestCard->id]) }}">Open latest card review</a></li>
+            @endif
+            @if ($latestCardType)
+                <li><a href="{{ route('admin.card-types.index', ['cardType' => $latestCardType->id]) }}">Open latest card type workspace</a></li>
+            @endif
+            @if ($latestRole)
+                <li><a href="{{ route('admin.roles-permissions.index', ['role' => $latestRole->id]) }}">Open latest role review</a></li>
+            @endif
+        </ul>
+    </section>
+
+    <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Mapped sections for migration</h3>
         <ul class="list">
             @foreach ($navigationGroups as $group)

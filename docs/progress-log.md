@@ -366,6 +366,11 @@
 - Confirmed the new card-type link renders in the focused dashboard test, `1 passed`.
 - This makes the admin hub more aligned with active migration work because operators can now jump from `/admin` into the main live write slice without detouring through the navigation shell.
 
+### Dashboard latest-workspace checkpoint
+- Added a dedicated `Resume latest live work` block to `/admin` so the dashboard now links directly into request-driven selected contexts for the latest shop, cardholder, card, card type, and role records.
+- Confirmed the new latest-workspace links render with the expected selected-query URLs in the focused dashboard test, `1 passed`.
+- This makes the landing page materially more operational because it now resumes the real Phase 1 workspaces we already hardened, instead of only linking to generic module indexes.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

@@ -199,6 +199,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('/admin/roles-permissions')
             ->assertSee('Review live reporting sources')
             ->assertSee('/admin/reports')
+            ->assertSee('Resume latest live work')
+            ->assertSee('Open latest shop review')
+            ->assertSee('/admin/shops?shop=1')
+            ->assertSee('Open latest cardholder review')
+            ->assertSee('/admin/cardholders?cardholder=1')
+            ->assertSee('Open latest card review')
+            ->assertSee('/admin/cards?card=1')
+            ->assertSee('Open latest card type workspace')
+            ->assertSee('/admin/card-types?cardType=1')
+            ->assertSee('Open latest role review')
+            ->assertSee('/admin/roles-permissions?role=1')
             ->assertSee('1');
     }
 
