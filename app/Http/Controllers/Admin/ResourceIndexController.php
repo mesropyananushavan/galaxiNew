@@ -255,17 +255,12 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $page['selectedRecordSummary'] = $selectedReceiptPreview['summary'];
-        $page['actions'] = [
+        $page = $this->applySelectedPreviewContext(
+            $page,
+            $selectedReceiptPreview,
+            'admin.checks-points.index',
+            'Back to all receipts',
             [
-                'label' => 'Back to all receipts',
-                'tone' => 'primary',
-                'href' => route('admin.checks-points.index', absolute: false),
-            ],
-            [
-                'label' => sprintf('Reviewing: %s', $selectedReceiptPreview['label']),
-                'tone' => 'secondary',
-            ],
             [
                 'label' => 'Find receipt',
                 'tone' => 'secondary',
@@ -278,9 +273,8 @@ class ResourceIndexController extends Controller
                 'disabled' => true,
                 'disabledReason' => 'Blocked until accrual-gap review is backed by Laravel transaction and rule data.',
             ],
-        ];
-        $page['activityTimeline'] = $selectedReceiptPreview['timeline'];
-        $page['dependencyStatus'] = $selectedReceiptPreview['dependencyStatus'];
+            ],
+        );
 
         return $page;
     }
@@ -405,17 +399,12 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $page['selectedRecordSummary'] = $selectedRulePreview['summary'];
-        $page['actions'] = [
+        $page = $this->applySelectedPreviewContext(
+            $page,
+            $selectedRulePreview,
+            'admin.services-rules.index',
+            'Back to all rules',
             [
-                'label' => 'Back to all rules',
-                'tone' => 'primary',
-                'href' => route('admin.services-rules.index', absolute: false),
-            ],
-            [
-                'label' => sprintf('Reviewing: %s', $selectedRulePreview['label']),
-                'tone' => 'secondary',
-            ],
             [
                 'label' => 'Review priorities',
                 'tone' => 'secondary',
@@ -428,9 +417,8 @@ class ResourceIndexController extends Controller
                 'disabled' => true,
                 'disabledReason' => 'Blocked until rule CRUD and parity checks exist beyond the preview shell.',
             ],
-        ];
-        $page['activityTimeline'] = $selectedRulePreview['timeline'];
-        $page['dependencyStatus'] = $selectedRulePreview['dependencyStatus'];
+            ],
+        );
 
         return $page;
     }
@@ -551,17 +539,12 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $page['selectedRecordSummary'] = $selectedGiftPreview['summary'];
-        $page['actions'] = [
+        $page = $this->applySelectedPreviewContext(
+            $page,
+            $selectedGiftPreview,
+            'admin.gifts.index',
+            'Back to all gifts',
             [
-                'label' => 'Back to all gifts',
-                'tone' => 'primary',
-                'href' => route('admin.gifts.index', absolute: false),
-            ],
-            [
-                'label' => sprintf('Reviewing: %s', $selectedGiftPreview['label']),
-                'tone' => 'secondary',
-            ],
             [
                 'label' => 'Stock audit',
                 'tone' => 'secondary',
@@ -574,9 +557,8 @@ class ResourceIndexController extends Controller
                 'disabled' => true,
                 'disabledReason' => 'Blocked until gift CRUD and redemption parity exist beyond the preview shell.',
             ],
-        ];
-        $page['activityTimeline'] = $selectedGiftPreview['timeline'];
-        $page['dependencyStatus'] = $selectedGiftPreview['dependencyStatus'];
+            ],
+        );
 
         return $page;
     }
@@ -1377,6 +1359,32 @@ class ResourceIndexController extends Controller
     {
         $actions = is_array($page['actions'] ?? null) ? $page['actions'] : [];
         $page['actions'] = [...$actions, $action];
+
+        return $page;
+    }
+
+    private function applySelectedPreviewContext(
+        array $page,
+        array $selectedPreview,
+        string $indexRouteName,
+        string $backLabel,
+        array $additionalActions,
+    ): array {
+        $page['selectedRecordSummary'] = is_array($selectedPreview['summary'] ?? null) ? $selectedPreview['summary'] : [];
+        $page['actions'] = [
+            [
+                'label' => $backLabel,
+                'tone' => 'primary',
+                'href' => route($indexRouteName, absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', (string) ($selectedPreview['label'] ?? 'Preview item')),
+                'tone' => 'secondary',
+            ],
+            ...$additionalActions,
+        ];
+        $page['activityTimeline'] = is_array($selectedPreview['timeline'] ?? null) ? $selectedPreview['timeline'] : [];
+        $page['dependencyStatus'] = is_array($selectedPreview['dependencyStatus'] ?? null) ? $selectedPreview['dependencyStatus'] : [];
 
         return $page;
     }

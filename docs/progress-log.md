@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Preview review-context controller cleanup checkpoint
+- Extracted shared selected-preview context wiring in `ResourceIndexController`, so `checks-points`, `services-rules`, and `gifts` now reuse one helper for back-link actions, reviewing state, summary, timeline, and dependency context.
+- Re-ran the combined focused preview-review slice for those three workspaces, `11 passed`, to confirm the cleanup did not change the new Galaxy-style review behavior.
+- This makes the request-driven Phase 1 shell easier to extend without reintroducing controller drift as more preview-heavy workspaces or parity cues are added.
+
+### Next step after preview review-context controller cleanup checkpoint
+- Use the cleaner controller base to return to a real Laravel-backed Phase 1 slice, likely another small read-oriented improvement or a shared hardening pass on the existing live workspaces.
+
 ### Services-rules format-and-handoff cue checkpoint
 - Extended the new selected-rule `services-rules` review state with rule-specific format guidance and evidence-first handoff cues, so the flow reads more like Galaxy rule operations instead of a generic preview detail page.
 - Kept the change parity-first and read-only, with priority review and publish actions still explicitly blocked until Laravel rule flows exist.
