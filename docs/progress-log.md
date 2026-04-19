@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Reports format-and-handoff cue checkpoint
+- Extended the selected-source `reports` review state with source-specific format guidance and operator handoff activity cues, so live reporting review now carries more Galaxy-like operational intent instead of reading like a generic catalog detail page.
+- Kept the change read-only and parity-first, with exports still explicitly blocked while on-screen review remains the primary reporting posture.
+- Re-ran the focused `php artisan test --filter=reports` slice, `4 passed`, to confirm the richer source context still behaves cleanly.
+
+### Next step after reports format-and-handoff cue checkpoint
+- Shift to another small Phase 1 foundation slice, likely strengthening `reports` with source-specific disabled actions or moving to the next preview-heavy workspace that still lacks a comparable live review context.
+
 ### Reports source-scope parity cue checkpoint
 - Extended the new selected-source `reports` review state with source-specific scope guidance and default-period posture cues, so each live reporting source now reads more like Galaxy operational reporting instead of a generic catalog drill-in.
 - Added matching dependency-posture cues for branch comparison, holder-status review, and role-scope visibility, while keeping exports and presets explicitly gated.
