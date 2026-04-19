@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Reports source-scope parity cue checkpoint
+- Extended the new selected-source `reports` review state with source-specific scope guidance and default-period posture cues, so each live reporting source now reads more like Galaxy operational reporting instead of a generic catalog drill-in.
+- Added matching dependency-posture cues for branch comparison, holder-status review, and role-scope visibility, while keeping exports and presets explicitly gated.
+- Re-ran the focused `php artisan test --filter=reports` slice, `4 passed`, to confirm the richer selected-source context still holds together.
+
+### Next step after reports source-scope parity cue checkpoint
+- Add one more lightweight Galaxy-specific reporting cue, likely source-specific format guidance or operator handoff copy, before any attempt at report services or export plumbing.
+
 ### Reports selected-source review checkpoint
 - Extended the partially live-backed `reports` workspace so each live reporting source row now links into a request-driven `?source=` review state instead of staying as a flat catalog row.
 - Added selected-source summary, activity, dependency posture, and disabled export gating for live report-source review, while safely ignoring unknown source queries and falling back to the catalog.

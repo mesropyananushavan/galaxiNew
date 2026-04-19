@@ -1519,8 +1519,14 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Live-source review, card inventory already exists in Laravel for shop-level reporting checks.')
             ->assertSee('Source coverage')
             ->assertSee('1 cards across 1 tracked shops are currently available for read-only reporting review.')
+            ->assertSee('Scope guidance')
+            ->assertSee('Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.')
+            ->assertSee('Default period posture')
+            ->assertSee('Use current snapshot review first, then keep preset periods staged until branch-total parity is verified.')
             ->assertSee('Cards by shop source selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked cards across 1 shops from the current Laravel foundation.')
+            ->assertSee('Scope posture')
+            ->assertSee('Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.')
             ->assertSee('Grouping posture')
             ->assertSee('Shop grouping should stay read-only until query shaping is verified against legacy report totals.');
     }
