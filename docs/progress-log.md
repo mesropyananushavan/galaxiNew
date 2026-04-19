@@ -371,6 +371,11 @@
 - Confirmed the new latest-workspace links render with the expected selected-query URLs in the focused dashboard test, `1 passed`.
 - This makes the landing page materially more operational because it now resumes the real Phase 1 workspaces we already hardened, instead of only linking to generic module indexes.
 
+### Dashboard latest-workspace fallback checkpoint
+- Hardened the `Resume latest live work` block so it now shows explicit guidance when no live records exist yet, instead of rendering an empty list on a fresh database.
+- Confirmed both populated and empty-state dashboard behaviors in the focused dashboard test set, `2 passed`.
+- This keeps the new dashboard hub honest on clean environments because operators still get a useful next step even before the first Galaxy-backed records exist.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

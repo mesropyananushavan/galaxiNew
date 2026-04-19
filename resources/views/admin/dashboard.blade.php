@@ -67,23 +67,29 @@
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Resume latest live work</h3>
-        <ul class="list">
-            @if ($latestShop)
-                <li><a href="{{ route('admin.shops.index', ['shop' => $latestShop->id]) }}">Open latest shop review</a></li>
-            @endif
-            @if ($latestCardHolder)
-                <li><a href="{{ route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id]) }}">Open latest cardholder review</a></li>
-            @endif
-            @if ($latestCard)
-                <li><a href="{{ route('admin.cards.index', ['card' => $latestCard->id]) }}">Open latest card review</a></li>
-            @endif
-            @if ($latestCardType)
-                <li><a href="{{ route('admin.card-types.index', ['cardType' => $latestCardType->id]) }}">Open latest card type workspace</a></li>
-            @endif
-            @if ($latestRole)
-                <li><a href="{{ route('admin.roles-permissions.index', ['role' => $latestRole->id]) }}">Open latest role review</a></li>
-            @endif
-        </ul>
+        @if ($latestShop || $latestCardHolder || $latestCard || $latestCardType || $latestRole)
+            <ul class="list">
+                @if ($latestShop)
+                    <li><a href="{{ route('admin.shops.index', ['shop' => $latestShop->id]) }}">Open latest shop review</a></li>
+                @endif
+                @if ($latestCardHolder)
+                    <li><a href="{{ route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id]) }}">Open latest cardholder review</a></li>
+                @endif
+                @if ($latestCard)
+                    <li><a href="{{ route('admin.cards.index', ['card' => $latestCard->id]) }}">Open latest card review</a></li>
+                @endif
+                @if ($latestCardType)
+                    <li><a href="{{ route('admin.card-types.index', ['cardType' => $latestCardType->id]) }}">Open latest card type workspace</a></li>
+                @endif
+                @if ($latestRole)
+                    <li><a href="{{ route('admin.roles-permissions.index', ['role' => $latestRole->id]) }}">Open latest role review</a></li>
+                @endif
+            </ul>
+        @else
+            <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;">
+                No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.
+            </p>
+        @endif
     </section>
 
     <section class="card">

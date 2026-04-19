@@ -213,6 +213,23 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1');
     }
 
+    public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Resume latest live work')
+            ->assertSee('No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.')
+            ->assertDontSee('Open latest shop review')
+            ->assertDontSee('Open latest cardholder review')
+            ->assertDontSee('Open latest card review')
+            ->assertDontSee('Open latest card type workspace')
+            ->assertDontSee('Open latest role review');
+    }
+
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void
     {
         $user = User::factory()->create();
