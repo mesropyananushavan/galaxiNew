@@ -232,6 +232,38 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Open latest role review:');
     }
 
+    public function test_dashboard_shows_only_available_latest_workspace_links(): void
+    {
+        Shop::create([
+            'name' => 'Partial Dashboard Shop',
+            'code' => 'partial-dashboard-shop',
+            'is_active' => false,
+        ]);
+
+        CardType::create([
+            'name' => 'Partial Dashboard Tier',
+            'slug' => 'partial-dashboard-tier',
+            'points_rate' => 1.00,
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Resume latest live work')
+            ->assertSee('Open latest shop review: Partial Dashboard Shop (inactive)')
+            ->assertSee('/admin/shops?shop=1')
+            ->assertSee('Open latest card type workspace: Partial Dashboard Tier (draft)')
+            ->assertSee('/admin/card-types?cardType=1')
+            ->assertDontSee('No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.')
+            ->assertDontSee('Open latest cardholder review:')
+            ->assertDontSee('Open latest card review:')
+            ->assertDontSee('Open latest role review:');
+    }
+
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void
     {
         $user = User::factory()->create();

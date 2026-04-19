@@ -386,6 +386,11 @@
 - Confirmed both populated and empty-state dashboard behaviors still pass in the focused dashboard test set, `2 passed`.
 - This makes the admin hub more operational because operators can now see the current state of the latest live record before opening the selected workspace.
 
+### Dashboard partial latest-workspace checkpoint
+- Added focused regression coverage for partial-data dashboard state so `Resume latest live work` now proves it renders only the available latest links without falling back to the empty-state guidance.
+- Confirmed populated, empty-state, and partial-data dashboard behaviors together in the focused dashboard test set, `3 passed`.
+- This hardens the new admin hub because mixed real-world states no longer rely on implicit Blade branching behavior.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.

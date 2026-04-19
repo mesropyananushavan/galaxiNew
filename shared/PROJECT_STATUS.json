@@ -1,6 +1,6 @@
 {
   "project": "galaxiNew",
-  "updated_at": "2026-04-19T03:04:00Z",
+  "updated_at": "2026-04-19T03:19:00Z",
   "source_of_truth": true,
   "bootstrap": {
     "type": "architect-migration-bootstrap",
@@ -55,7 +55,7 @@
     "module": "Card Types",
     "status": "IN_PROGRESS",
     "owner": "backend",
-    "summary": "The live card-types write slice keeps deepening around request-driven write feedback, the live roles-permissions review slice now exposes selected-role publish gating plus richer summary/posture cues, the reports workspace now has a rich Laravel-backed read layer, and the admin dashboard now surfaces live Galaxy counts, active operational coverage, permission visibility, direct review entry points, status-aware latest-workspace resume links, and clean empty-state guidance instead of staying fully static.",
+    "summary": "The live card-types write slice keeps deepening around request-driven write feedback, the live roles-permissions review slice now exposes selected-role publish gating plus richer summary/posture cues, the reports workspace now has a rich Laravel-backed read layer, and the admin dashboard now surfaces live Galaxy counts, active operational coverage, permission visibility, direct review entry points, status-aware latest-workspace resume links, clean empty-state guidance, and partial-data hardening instead of staying fully static.",
     "code_paths": [
       "app/Http/Controllers/Admin/DashboardController.php",
       "app/Http/Controllers/Admin/ResourceIndexController.php",
