@@ -301,11 +301,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope', 'value' => 'All shops'],
                     ['label' => 'Condition posture', 'value' => 'Birthday window logic should stay parity-first, because date-sensitive loyalty rules are easy to drift during migration.'],
                     ['label' => 'Priority posture', 'value' => 'Keep this rule near the top of the preview stack until Laravel priority resolution is verified against the old Galaxy order.'],
+                    ['label' => 'Format guidance', 'value' => 'Keep this rule in table-first review mode, because operators usually compare scope, effect, and priority together before discussing publication.' ],
                     ['label' => 'Effect guidance', 'value' => 'Treat the uplift as review-only until accrual calculations and birthday eligibility are backed by Laravel writes.'],
                 ],
                 'timeline' => [
                     ['title' => 'Birthday bonus selected for rule review', 'time' => 'Current request', 'description' => 'This preview now keeps the highest-visibility loyalty uplift in a dedicated Galaxy review context instead of a flat catalog row.'],
                     ['title' => 'Birthday rule handoff stays parity-first', 'time' => 'Current request', 'description' => 'Operators should carry birthday eligibility and accrual notes in the workspace before trusting any future write flow.'],
+                    ['title' => 'Birthday rule handoff keeps parity evidence visible', 'time' => 'Current request', 'description' => 'Scope, priority, and uplift effect should stay visible in the workspace before any publish discussion begins.'],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected rule', 'value' => 'Birthday bonus'],
@@ -327,11 +329,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope', 'value' => 'Central Shop'],
                     ['label' => 'Condition posture', 'value' => 'Partner-card checks should stay tied to visible card-type parity before any Laravel rule editor opens them up.'],
                     ['label' => 'Priority posture', 'value' => 'This scoped uplift should remain below birthday-wide behavior until legacy overlap order is rechecked.'],
+                    ['label' => 'Format guidance', 'value' => 'Keep scoped uplift rules in compact on-screen review first, because operators need scope, condition, and priority visible together before escalating.' ],
                     ['label' => 'Effect guidance', 'value' => 'Treat the partner uplift as review-only until scoped accrual behavior is backed by Laravel rule writes.'],
                 ],
                 'timeline' => [
                     ['title' => 'Partner card uplift selected for scope review', 'time' => 'Current request', 'description' => 'This preview now keeps the scoped partner-card rule visible in its own Galaxy review context.'],
                     ['title' => 'Scoped uplift handoff stays branch-aware', 'time' => 'Current request', 'description' => 'Operators should pass along Central Shop scope assumptions here before relying on future rule-editing flows.'],
+                    ['title' => 'Scoped uplift handoff keeps branch evidence visible', 'time' => 'Current request', 'description' => 'Scope, condition, and priority should stay visible in the workspace before any publish discussion begins.'],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected rule', 'value' => 'Partner card uplift'],
@@ -353,11 +357,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope', 'value' => 'North Shop'],
                     ['label' => 'Condition posture', 'value' => 'Bar-service exclusions should remain draft-only until legacy exception behavior is rechecked in Laravel.'],
                     ['label' => 'Priority posture', 'value' => 'Keep this blocking rule below confirmed accrual logic until exclusion order is verified.'],
+                    ['label' => 'Format guidance', 'value' => 'Keep draft exclusion rules in compact on-screen review first, because operators need scope, condition, and effect visible together before discussing publication.' ],
                     ['label' => 'Effect guidance', 'value' => 'Treat the no-accrual effect as a review-only exception until Laravel can safely reproduce the old block semantics.'],
                 ],
                 'timeline' => [
                     ['title' => 'Night service block selected for exception review', 'time' => 'Current request', 'description' => 'This preview now keeps the draft exclusion rule in a dedicated Galaxy review context instead of leaving it as a flat table row.'],
                     ['title' => 'Draft exclusion handoff stays cautious', 'time' => 'Current request', 'description' => 'Operators should hand off bar-service parity concerns here before any future publish flow is allowed.'],
+                    ['title' => 'Draft exclusion handoff keeps parity evidence visible', 'time' => 'Current request', 'description' => 'Scope, blocking condition, and no-accrual effect should stay visible in the workspace before any publish discussion begins.'],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected rule', 'value' => 'Night service block'],

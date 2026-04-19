@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Services-rules format-and-handoff cue checkpoint
+- Extended the new selected-rule `services-rules` review state with rule-specific format guidance and evidence-first handoff cues, so the flow reads more like Galaxy rule operations instead of a generic preview detail page.
+- Kept the change parity-first and read-only, with priority review and publish actions still explicitly blocked until Laravel rule flows exist.
+- Re-ran the focused `php artisan test --filter=services_rules` slice, `4 passed`, to confirm the richer rule review context still behaves cleanly.
+
+### Next step after services-rules format-and-handoff cue checkpoint
+- Pivot back to a more backend-oriented Phase 1 slice, since the main preview-heavy workspaces now all have richer request-driven review states and clearer Galaxy-specific posture.
+
 ### Gifts format-and-handoff cue checkpoint
 - Extended the new selected-gift `gifts` review state with reward-specific format guidance and evidence-first handoff cues, so the flow reads more like Galaxy reward operations instead of a generic preview detail page.
 - Kept the change parity-first and read-only, with stock audit and publish actions still explicitly blocked until Laravel inventory and redemption flows exist.
