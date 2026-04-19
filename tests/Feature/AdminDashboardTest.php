@@ -193,6 +193,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('/admin/cardholders')
             ->assertSee('Review live cards')
             ->assertSee('/admin/cards')
+            ->assertSee('Review live card types')
+            ->assertSee('/admin/card-types')
             ->assertSee('Review live access roles')
             ->assertSee('/admin/roles-permissions')
             ->assertSee('Review live reporting sources')

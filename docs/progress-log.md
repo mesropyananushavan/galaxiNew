@@ -361,6 +361,11 @@
 - Confirmed the new dashboard links render alongside the live metrics in the focused dashboard test, `1 passed`.
 - This makes the admin landing page more operational because it now acts as a real Galaxy review hub instead of only a summary screen.
 
+### Dashboard card-type entry-point checkpoint
+- Extended the dashboard entry-point block with a direct link to the live `card-types` workspace so the landing page now exposes the current write-backed Phase 1 slice alongside the review-only modules.
+- Confirmed the new card-type link renders in the focused dashboard test, `1 passed`.
+- This makes the admin hub more aligned with active migration work because operators can now jump from `/admin` into the main live write slice without detouring through the navigation shell.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
