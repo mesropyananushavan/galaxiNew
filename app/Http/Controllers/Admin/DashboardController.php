@@ -29,11 +29,82 @@ class DashboardController extends Controller
             'activeCardCount' => Card::query()->where('status', 'active')->count(),
             'roleCount' => Role::query()->count(),
             'permissionCount' => Permission::query()->count(),
-            'latestShop' => Shop::query()->latest('id')->first(),
-            'latestCardHolder' => CardHolder::query()->latest('id')->first(),
-            'latestCard' => Card::query()->latest('id')->first(),
-            'latestCardType' => CardType::query()->latest('id')->first(),
-            'latestRole' => Role::query()->latest('id')->first(),
+            'latestWorkspaces' => array_values(array_filter([
+                $this->latestShopWorkspace(),
+                $this->latestCardHolderWorkspace(),
+                $this->latestCardWorkspace(),
+                $this->latestCardTypeWorkspace(),
+                $this->latestRoleWorkspace(),
+            ])),
         ]);
+    }
+
+    protected function latestShopWorkspace(): ?array
+    {
+        $shop = Shop::query()->latest('id')->first();
+
+        return $shop ? $this->workspaceLink(
+            label: sprintf('Open latest shop review: %s (%s)', $shop->name, $shop->is_active ? 'active' : 'inactive'),
+            routeName: 'admin.shops.index',
+            parameters: ['shop' => $shop->id],
+        ) : null;
+    }
+
+    protected function latestCardHolderWorkspace(): ?array
+    {
+        $cardHolder = CardHolder::query()->latest('id')->first();
+
+        if (! $cardHolder) {
+            return null;
+        }
+
+        $status = $cardHolder->status ?? ($cardHolder->is_active ? 'active' : 'inactive');
+
+        return $this->workspaceLink(
+            label: sprintf('Open latest cardholder review: %s (%s)', $cardHolder->full_name, $status),
+            routeName: 'admin.cardholders.index',
+            parameters: ['cardholder' => $cardHolder->id],
+        );
+    }
+
+    protected function latestCardWorkspace(): ?array
+    {
+        $card = Card::query()->latest('id')->first();
+
+        return $card ? $this->workspaceLink(
+            label: sprintf('Open latest card review: %s (%s)', $card->number, $card->status),
+            routeName: 'admin.cards.index',
+            parameters: ['card' => $card->id],
+        ) : null;
+    }
+
+    protected function latestCardTypeWorkspace(): ?array
+    {
+        $cardType = CardType::query()->latest('id')->first();
+
+        return $cardType ? $this->workspaceLink(
+            label: sprintf('Open latest card type workspace: %s (%s)', $cardType->name, $cardType->is_active ? 'active' : 'draft'),
+            routeName: 'admin.card-types.index',
+            parameters: ['cardType' => $cardType->id],
+        ) : null;
+    }
+
+    protected function latestRoleWorkspace(): ?array
+    {
+        $role = Role::query()->latest('id')->first();
+
+        return $role ? $this->workspaceLink(
+            label: sprintf('Open latest role review: %s (%d permissions)', $role->name, $role->permissions()->count()),
+            routeName: 'admin.roles-permissions.index',
+            parameters: ['role' => $role->id],
+        ) : null;
+    }
+
+    protected function workspaceLink(string $label, string $routeName, array $parameters): array
+    {
+        return [
+            'label' => $label,
+            'route' => route($routeName, $parameters),
+        ];
     }
 }

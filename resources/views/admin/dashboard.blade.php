@@ -67,23 +67,11 @@
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Resume latest live work</h3>
-        @if ($latestShop || $latestCardHolder || $latestCard || $latestCardType || $latestRole)
+        @if ($latestWorkspaces !== [])
             <ul class="list">
-                @if ($latestShop)
-                    <li><a href="{{ route('admin.shops.index', ['shop' => $latestShop->id]) }}">Open latest shop review: {{ $latestShop->name }} ({{ $latestShop->is_active ? 'active' : 'inactive' }})</a></li>
-                @endif
-                @if ($latestCardHolder)
-                    <li><a href="{{ route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id]) }}">Open latest cardholder review: {{ $latestCardHolder->full_name }} ({{ $latestCardHolder->status ?? ($latestCardHolder->is_active ? 'active' : 'inactive') }})</a></li>
-                @endif
-                @if ($latestCard)
-                    <li><a href="{{ route('admin.cards.index', ['card' => $latestCard->id]) }}">Open latest card review: {{ $latestCard->number }} ({{ $latestCard->status }})</a></li>
-                @endif
-                @if ($latestCardType)
-                    <li><a href="{{ route('admin.card-types.index', ['cardType' => $latestCardType->id]) }}">Open latest card type workspace: {{ $latestCardType->name }} ({{ $latestCardType->is_active ? 'active' : 'draft' }})</a></li>
-                @endif
-                @if ($latestRole)
-                    <li><a href="{{ route('admin.roles-permissions.index', ['role' => $latestRole->id]) }}">Open latest role review: {{ $latestRole->name }} ({{ $latestRole->permissions()->count() }} permissions)</a></li>
-                @endif
+                @foreach ($latestWorkspaces as $workspace)
+                    <li><a href="{{ $workspace['route'] }}">{{ $workspace['label'] }}</a></li>
+                @endforeach
             </ul>
         @else
             <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;">

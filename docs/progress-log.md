@@ -391,6 +391,11 @@
 - Confirmed populated, empty-state, and partial-data dashboard behaviors together in the focused dashboard test set, `3 passed`.
 - This hardens the new admin hub because mixed real-world states no longer rely on implicit Blade branching behavior.
 
+### Dashboard latest-workspace structure checkpoint
+- Refactored `DashboardController` so the latest-workspace block is now assembled as a unified `latestWorkspaces` context array through dedicated helper methods instead of separate model props leaking directly into Blade.
+- Confirmed the structural refactor preserves populated, empty-state, and partial-data dashboard behaviors in the focused dashboard test set, `3 passed`.
+- This makes the dashboard slice safer to extend because future latest-work additions can now plug into one structured pattern instead of duplicating view conditionals.
+
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
 - The cards workspace now derives active/draft/blocked counts plus holder, type, shop, and activation-date rows from Laravel models instead of only static config rows.
