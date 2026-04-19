@@ -2,6 +2,14 @@
 
 ## 2026-04-19
 
+### Gifts selected-gift review checkpoint
+- Extended the preview-heavy `gifts` workspace so each gift row now links into a request-driven `?gift=` review state instead of staying as a flat placeholder table.
+- Added selected-gift summary, parity-first activity, dependency posture, and disabled review actions for reward previews, while safely ignoring unknown gift queries and falling back to the catalog.
+- Re-ran the focused `php artisan test --filter=gifts` slice, `4 passed`, to confirm the new selected-gift review flow and fallback behavior hold together.
+
+### Next step after gifts selected-gift review checkpoint
+- Either add one more Galaxy-specific parity cue to `gifts` or move to the next remaining preview-heavy area so the Phase 1 shell keeps replacing generic starter patterns with request-driven review states.
+
 ### Services-rules selected-rule review checkpoint
 - Extended the preview-heavy `services-rules` workspace so each rule row now links into a request-driven `?rule=` review state instead of staying as a flat placeholder table.
 - Added selected-rule summary, parity-first activity, dependency posture, and disabled review actions for rule previews, while safely ignoring unknown rule queries and falling back to the catalog.

@@ -129,6 +129,7 @@ class ResourceIndexController extends Controller
             'roles-permissions' => $this->enrichRolesPermissionsPage($page),
             'reports' => $this->enrichReportsPage($page),
             'services-rules' => $this->enrichServicesRulesPage($page),
+            'gifts' => $this->enrichGiftsPage($page),
             default => $page,
         };
     }
@@ -273,6 +274,146 @@ class ResourceIndexController extends Controller
         ];
         $page['activityTimeline'] = $selectedRulePreview['timeline'];
         $page['dependencyStatus'] = $selectedRulePreview['dependencyStatus'];
+
+        return $page;
+    }
+
+    private function enrichGiftsPage(array $page): array
+    {
+        $giftPreviews = [
+            [
+                'key' => 'coffee-voucher',
+                'label' => 'Coffee voucher',
+                'pointsCost' => '150',
+                'scope' => 'All shops',
+                'stock' => 'Unlimited',
+                'status' => 'active',
+                'summary' => [
+                    ['label' => 'Selected gift preview', 'value' => 'Coffee voucher'],
+                    ['label' => 'Points cost', 'value' => '150'],
+                    ['label' => 'Scope posture', 'value' => 'All-shop rewards should stay parity-first, because wide-scope catalog changes affect the most operators and redemptions.'],
+                    ['label' => 'Stock posture', 'value' => 'Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Laravel inventory writes exist.'],
+                    ['label' => 'Redemption guidance', 'value' => 'Treat this reward as review-only until gift CRUD and redemption parity are backed by Laravel flows.'],
+                ],
+                'timeline' => [
+                    ['title' => 'Coffee voucher selected for reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the baseline all-shop reward in a dedicated Galaxy review context instead of a flat catalog row.'],
+                    ['title' => 'All-shop reward handoff stays stock-aware', 'time' => 'Current request', 'description' => 'Operators should carry stock assumptions and reward-availability notes here before trusting future publish flows.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected gift', 'value' => 'Coffee voucher'],
+                    ['label' => 'Scope posture', 'value' => 'All-shop reward coverage should remain stable until Laravel scope handling is verified against the legacy catalog.'],
+                    ['label' => 'Stock posture', 'value' => 'Unlimited-stock assumptions still need backend inventory wiring before operators can trust live publish behavior.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this reward preview.'],
+                ],
+            ],
+            [
+                'key' => 'airport-transfer',
+                'label' => 'Airport transfer',
+                'pointsCost' => '900',
+                'scope' => 'Airport Kiosk',
+                'stock' => '12',
+                'status' => 'active',
+                'summary' => [
+                    ['label' => 'Selected gift preview', 'value' => 'Airport transfer'],
+                    ['label' => 'Points cost', 'value' => '900'],
+                    ['label' => 'Scope posture', 'value' => 'Kiosk-scoped rewards should stay branch-aware, because legacy redemption expectations depended on local availability.'],
+                    ['label' => 'Stock posture', 'value' => 'Finite stock should remain review-only until Laravel inventory updates can preserve remaining-quantity parity.'],
+                    ['label' => 'Redemption guidance', 'value' => 'Treat this scoped reward as review-only until stock-aware redemption behavior is backed by Laravel flows.'],
+                ],
+                'timeline' => [
+                    ['title' => 'Airport transfer selected for scoped reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the kiosk-scoped reward in its own Galaxy review context instead of a flat catalog row.'],
+                    ['title' => 'Finite-stock handoff stays branch-specific', 'time' => 'Current request', 'description' => 'Operators should hand off Airport Kiosk stock assumptions here before relying on future gift-write flows.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected gift', 'value' => 'Airport transfer'],
+                    ['label' => 'Scope posture', 'value' => 'Shop-scoped reward behavior should stay preview-only until Laravel scope checks are verified against legacy kiosk rules.'],
+                    ['label' => 'Stock posture', 'value' => 'Finite-stock handling still needs backend inventory wiring before a publish path is safe.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this reward preview.'],
+                ],
+            ],
+            [
+                'key' => 'premium-dessert-set',
+                'label' => 'Premium dessert set',
+                'pointsCost' => '450',
+                'scope' => 'Central Shop',
+                'stock' => '0',
+                'status' => 'paused',
+                'summary' => [
+                    ['label' => 'Selected gift preview', 'value' => 'Premium dessert set'],
+                    ['label' => 'Points cost', 'value' => '450'],
+                    ['label' => 'Scope posture', 'value' => 'Central Shop reward availability should stay parity-first until paused reward behavior matches the legacy catalog.'],
+                    ['label' => 'Stock posture', 'value' => 'Zero-stock rewards should remain paused in review mode until Laravel inventory and reopening flows can reproduce the old behavior safely.'],
+                    ['label' => 'Redemption guidance', 'value' => 'Treat this paused reward as review-only until stock recovery and redemption parity are backed by Laravel flows.'],
+                ],
+                'timeline' => [
+                    ['title' => 'Premium dessert set selected for paused reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the zero-stock reward in a dedicated Galaxy review context instead of leaving it as a flat table row.'],
+                    ['title' => 'Paused reward handoff stays cautious', 'time' => 'Current request', 'description' => 'Operators should hand off zero-stock and reopening assumptions here before any future publish or stock-update flow is allowed.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected gift', 'value' => 'Premium dessert set'],
+                    ['label' => 'Scope posture', 'value' => 'Paused shop-scoped reward behavior should stay preview-only until Laravel scope and reopening checks are verified.'],
+                    ['label' => 'Stock posture', 'value' => 'Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in Laravel.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this paused reward preview.'],
+                ],
+            ],
+        ];
+
+        $page['table']['rows'] = collect($giftPreviews)->map(fn (array $gift): array => [
+            $this->linkedTableCell($gift['label'], 'admin.gifts.index', ['gift' => $gift['key']]),
+            $gift['pointsCost'],
+            $gift['scope'],
+            $gift['stock'],
+            $gift['status'],
+        ])->all();
+
+        $latestGiftPreview = collect($giftPreviews)->first();
+
+        if (is_array($latestGiftPreview)) {
+            $page = $this->appendPageAction($page, [
+                'label' => sprintf('Review %s gift', strtolower($latestGiftPreview['label'])),
+                'tone' => 'secondary',
+                'href' => route('admin.gifts.index', ['gift' => $latestGiftPreview['key']], absolute: false),
+            ]);
+        }
+
+        $selectedGift = request()->query('gift');
+
+        if (! is_string($selectedGift)) {
+            return $page;
+        }
+
+        $selectedGiftPreview = collect($giftPreviews)->first(fn (array $gift): bool => $gift['key'] === $selectedGift);
+
+        if (! is_array($selectedGiftPreview)) {
+            return $page;
+        }
+
+        $page['selectedRecordSummary'] = $selectedGiftPreview['summary'];
+        $page['actions'] = [
+            [
+                'label' => 'Back to all gifts',
+                'tone' => 'primary',
+                'href' => route('admin.gifts.index', absolute: false),
+            ],
+            [
+                'label' => sprintf('Reviewing: %s', $selectedGiftPreview['label']),
+                'tone' => 'secondary',
+            ],
+            [
+                'label' => 'Stock audit',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until stock checks are backed by Laravel inventory data.',
+            ],
+            [
+                'label' => 'Publish gift',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => 'Blocked until gift CRUD and redemption parity exist beyond the preview shell.',
+            ],
+        ];
+        $page['activityTimeline'] = $selectedGiftPreview['timeline'];
+        $page['dependencyStatus'] = $selectedGiftPreview['dependencyStatus'];
 
         return $page;
     }

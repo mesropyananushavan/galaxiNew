@@ -2687,8 +2687,48 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Gifts placeholder')
             ->assertSee('Coffee voucher')
+            ->assertSee('/admin/gifts?gift=coffee-voucher')
             ->assertSee('Points range')
-            ->assertSee('Premium dessert set');
+            ->assertSee('Premium dessert set')
+            ->assertSee('/admin/gifts?gift=premium-dessert-set')
+            ->assertSee('Review coffee voucher gift');
+    }
+
+    public function test_gifts_page_supports_selected_gift_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=premium-dessert-set');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all gifts')
+            ->assertSee('/admin/gifts')
+            ->assertSee('Reviewing: Premium dessert set')
+            ->assertSee('Publish gift')
+            ->assertSee('Blocked until gift CRUD and redemption parity exist beyond the preview shell.')
+            ->assertSee('Selected gift preview')
+            ->assertSee('Premium dessert set')
+            ->assertSee('Stock posture')
+            ->assertSee('Zero-stock rewards should remain paused in review mode until Laravel inventory and reopening flows can reproduce the old behavior safely.')
+            ->assertSee('Redemption guidance')
+            ->assertSee('Treat this paused reward as review-only until stock recovery and redemption parity are backed by Laravel flows.')
+            ->assertSee('Premium dessert set selected for paused reward review')
+            ->assertSee('Paused reward handoff stays cautious')
+            ->assertSee('Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in Laravel.');
+    }
+
+    public function test_gifts_page_ignores_unknown_selected_gift_and_falls_back_to_catalog(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=unknown-gift');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review coffee voucher gift')
+            ->assertDontSee('Back to all gifts')
+            ->assertDontSee('Selected gift preview');
     }
 
     public function test_authenticated_user_can_access_gifts_management_preview(): void
