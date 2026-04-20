@@ -48,17 +48,22 @@ class User extends Authenticatable
         return $this->roles()->whereHas('permissions')->exists();
     }
 
+    public function hasShopScopedAdminAccess(): bool
+    {
+        if (! $this->belongsToActiveShop()) {
+            return false;
+        }
+
+        return $this->hasPermissionBearingRole();
+    }
+
     public function canAccessAdminPanel(): bool
     {
         if ($this->hasBootstrapAdminAccess()) {
             return true;
         }
 
-        if (! $this->belongsToActiveShop()) {
-            return false;
-        }
-
-        return $this->hasPermissionBearingRole();
+        return $this->hasShopScopedAdminAccess();
     }
 
     /**

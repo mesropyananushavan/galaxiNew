@@ -1,5 +1,15 @@
 # Progress Log
 
+## 2026-04-20
+
+### Shop-scoped admin access helper checkpoint
+- Extracted the current active-shop-plus-permission rule on `User` into an explicit `hasShopScopedAdminAccess()` helper, so the Phase 1 admin baseline now exposes a clearer seam for upcoming shop-aware policies without changing behavior.
+- Updated the focused admin access assertions to prove bootstrap access, active scoped access, and denial cases now all read through the new helper instead of only the top-level panel check.
+- Re-ran the focused dashboard access slice, `6 passed`, to confirm the helper extraction stayed low-risk.
+
+### Next step after shop-scoped admin access helper checkpoint
+- Reuse the new shop-scoped helper in one more small authorization slice, likely a first explicit policy-style check or another shared admin gate helper that keeps Phase 1 access intent readable.
+
 ## 2026-04-19
 
 ### Admin access helper extraction checkpoint

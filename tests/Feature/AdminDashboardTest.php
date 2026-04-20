@@ -249,6 +249,7 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->hasBootstrapAdminAccess());
         $this->assertTrue($user->belongsToActiveShop());
         $this->assertTrue($user->hasPermissionBearingRole());
+        $this->assertTrue($user->hasShopScopedAdminAccess());
         $this->assertTrue($user->canAccessAdminPanel());
     }
 
@@ -271,6 +272,7 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->hasBootstrapAdminAccess());
         $this->assertTrue($user->belongsToActiveShop());
         $this->assertFalse($user->hasPermissionBearingRole());
+        $this->assertFalse($user->hasShopScopedAdminAccess());
         $this->assertFalse($user->canAccessAdminPanel());
     }
 
@@ -300,6 +302,7 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->hasBootstrapAdminAccess());
         $this->assertTrue($user->belongsToActiveShop());
         $this->assertFalse($user->hasPermissionBearingRole());
+        $this->assertFalse($user->hasShopScopedAdminAccess());
         $this->assertFalse($user->canAccessAdminPanel());
     }
 
@@ -321,6 +324,7 @@ class AdminDashboardTest extends TestCase
 
         $this->assertFalse($user->hasBootstrapAdminAccess());
         $this->assertFalse($user->belongsToActiveShop());
+        $this->assertFalse($user->hasShopScopedAdminAccess());
         $this->assertFalse($user->canAccessAdminPanel());
     }
 
@@ -331,6 +335,7 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->hasBootstrapAdminAccess());
         $this->assertFalse($user->belongsToActiveShop());
         $this->assertFalse($user->hasPermissionBearingRole());
+        $this->assertFalse($user->hasShopScopedAdminAccess());
         $this->assertTrue($user->canAccessAdminPanel());
     }
 
