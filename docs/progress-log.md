@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard scoped entry-label checkpoint
+- Tightened the live entry labels for shop-scoped admins so `shops`, `cardholders`, and `cards` now explicitly say `in assigned branch`, making the dashboard entry layer itself read less like a generic global starter menu.
+- Kept the step Phase 1 safe by only changing operator-facing labels while preserving the broader shared entry behavior and unscoped copy for bootstrap admins.
+- Extended the focused dashboard assertions for scoped and unscoped entry labels, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard scoped entry-label checkpoint
+- Carry the same scoped-vs-shared wording cleanup into another admin surface, or turn one of these cues into the next small enforced boundary if it can stay low-risk.
+
 ### Dashboard live-entry scope note checkpoint
 - Added a matching scoped note under `Live review entry points`, clarifying that the entry links still open shared Phase 1 workspaces while the live `shops`, `cardholders`, and `cards` review state narrows to branch scope after the workspace loads.
 - Kept the change strictly operator-facing and read-only, so the dashboard now communicates both halves of the current migration posture instead of leaving live-entry scope behavior implicit.

@@ -33,14 +33,7 @@ class DashboardController extends Controller
             'dashboardScopeSummary' => $this->dashboardScopeSummary(),
             'liveEntryScopeNote' => $this->liveEntryScopeNote(),
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
-            'liveReviewEntryPoints' => [
-                $this->workspaceLink('Review live shops', 'admin.shops.index'),
-                $this->workspaceLink('Review live cardholders', 'admin.cardholders.index'),
-                $this->workspaceLink('Review live cards', 'admin.cards.index'),
-                $this->workspaceLink('Review live card types', 'admin.card-types.index'),
-                $this->workspaceLink('Review live access roles', 'admin.roles-permissions.index'),
-                $this->workspaceLink('Review live reporting sources', 'admin.reports.index'),
-            ],
+            'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'latestWorkspaces' => array_values(array_filter([
                 $this->latestShopWorkspace(),
                 $this->latestCardHolderWorkspace(),
@@ -129,6 +122,29 @@ class DashboardController extends Controller
         ];
     }
 
+    protected function liveReviewEntryPoints(): array
+    {
+        if (! $this->isShopScopedAdmin()) {
+            return [
+                $this->workspaceLink('Review live shops', 'admin.shops.index'),
+                $this->workspaceLink('Review live cardholders', 'admin.cardholders.index'),
+                $this->workspaceLink('Review live cards', 'admin.cards.index'),
+                $this->workspaceLink('Review live card types', 'admin.card-types.index'),
+                $this->workspaceLink('Review live access roles', 'admin.roles-permissions.index'),
+                $this->workspaceLink('Review live reporting sources', 'admin.reports.index'),
+            ];
+        }
+
+        return [
+            $this->workspaceLink('Review live shops in assigned branch', 'admin.shops.index'),
+            $this->workspaceLink('Review live cardholders in assigned branch', 'admin.cardholders.index'),
+            $this->workspaceLink('Review live cards in assigned branch', 'admin.cards.index'),
+            $this->workspaceLink('Review live card types', 'admin.card-types.index'),
+            $this->workspaceLink('Review live access roles', 'admin.roles-permissions.index'),
+            $this->workspaceLink('Review live reporting sources', 'admin.reports.index'),
+        ];
+    }
+
     protected function adminUser(): ?User
     {
         $user = request()->user();
@@ -136,15 +152,22 @@ class DashboardController extends Controller
         return $user instanceof User ? $user : null;
     }
 
+    protected function isShopScopedAdmin(): bool
+    {
+        $user = $this->adminUser();
+
+        return $user instanceof User && $user->hasShopScopedAdminAccess();
+    }
+
     protected function dashboardScopeSummary(): ?array
     {
         $user = $this->adminUser();
 
-        if (! $user instanceof User || ! $user->hasShopScopedAdminAccess()) {
+        if (! $this->isShopScopedAdmin()) {
             return null;
         }
 
-        $shopName = $user->shop?->name ?? 'assigned shop';
+        $shopName = $user?->shop?->name ?? 'assigned shop';
 
         return [
             'label' => 'Current review scope',
@@ -154,9 +177,7 @@ class DashboardController extends Controller
 
     protected function liveEntryScopeNote(): ?array
     {
-        $user = $this->adminUser();
-
-        if (! $user instanceof User || ! $user->hasShopScopedAdminAccess()) {
+        if (! $this->isShopScopedAdmin()) {
             return null;
         }
 
@@ -168,9 +189,7 @@ class DashboardController extends Controller
 
     protected function latestWorkspaceScopeNote(): ?array
     {
-        $user = $this->adminUser();
-
-        if (! $user instanceof User || ! $user->hasShopScopedAdminAccess()) {
+        if (! $this->isShopScopedAdmin()) {
             return null;
         }
 
