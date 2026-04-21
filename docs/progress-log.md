@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch posture cue checkpoint
+- Extended the assigned-branch snapshot with `Branch posture`, so scoped admins now get one compact Galaxy-style read on whether their branch is paused, active with live activity, or active but still empty.
+- Kept the step low-risk and read-only by deriving the posture from the assigned shop status plus the same latest branch-local holder/card presence already shown in the snapshot.
+- Extended the focused dashboard assertions for the new posture cue and re-ran `php artisan test --filter=dashboard_latest_live_work_shortcuts_respect_shop_scope`, `1 passed`.
+
+### Next step after dashboard branch posture cue checkpoint
+- Start turning one scoped dashboard cue into a stricter branch-aware entry boundary, or add one more compact branch console cue around empty-branch follow-up posture.
+
 ### Dashboard branch activity-freshness cue checkpoint
 - Extended the assigned-branch snapshot with `Activity freshness`, so scoped admins can immediately see whether the newest visible branch movement still looks fresh or has already gone stale.
 - Kept the step low-risk and read-only by deriving the freshness cue from the same latest branch-local holder/card timestamps already exposed in the snapshot.

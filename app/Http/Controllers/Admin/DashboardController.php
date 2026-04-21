@@ -224,12 +224,14 @@ class DashboardController extends Controller
 
         $latestActivity = $this->latestBranchActivitySummary($latestHolder, $latestCard);
         $activityFreshness = $this->latestBranchActivityFreshness($latestHolder, $latestCard);
+        $branchPosture = $this->branchOperationalPosture($shop, $latestHolder, $latestCard);
 
         return [
             'label' => 'Assigned branch snapshot',
             'items' => [
                 ['label' => 'Branch', 'value' => $shop->name],
                 ['label' => 'Branch code', 'value' => $shop->code],
+                ['label' => 'Branch posture', 'value' => $branchPosture],
                 ['label' => 'Primary manager', 'value' => $shop->users->first()?->name ?? 'Unassigned'],
                 ['label' => 'Laravel status', 'value' => $shop->is_active ? 'active' : 'paused'],
                 ['label' => 'Visible cardholders', 'value' => (string) $shop->card_holders_count],
@@ -299,6 +301,19 @@ class DashboardController extends Controller
         return now()->diffInDays($latestTimestamp) <= 1
             ? 'fresh activity'
             : 'stale activity';
+    }
+
+    protected function branchOperationalPosture(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
+    {
+        if (! $shop->is_active) {
+            return 'paused branch';
+        }
+
+        if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
+            return 'active branch, no live activity yet';
+        }
+
+        return 'active branch, live activity visible';
     }
 
     protected function liveEntryScopeNote(): ?array
