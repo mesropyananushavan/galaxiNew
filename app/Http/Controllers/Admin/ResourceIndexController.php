@@ -636,6 +636,11 @@ class ResourceIndexController extends Controller
             $selectedRole->name,
             [
             [
+                'label' => 'Create new role',
+                'tone' => 'secondary',
+                'href' => route('admin.roles-permissions.index', absolute: false).'#live-form',
+            ],
+            [
                 'label' => 'Review matrix',
                 'tone' => 'secondary',
                 'disabled' => true,
@@ -1469,6 +1474,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
+            ['label' => 'Role slug', 'value' => $selectedRole->slug],
             ['label' => 'Review mode', 'value' => $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0
                 ? 'Live-impact review, linked staff or permissions already exist in Laravel'
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
