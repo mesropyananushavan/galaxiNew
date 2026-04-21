@@ -87,7 +87,7 @@ class DashboardController extends Controller
         $status = $cardHolder->status ?? ($cardHolder->is_active ? 'active' : 'inactive');
 
         return $this->workspaceLink(
-            label: sprintf('Open latest cardholder review: %s (%s)', $cardHolder->full_name, $status),
+            label: sprintf('%s: %s (%s)', $this->latestCardHolderWorkspaceLabel(), $cardHolder->full_name, $status),
             routeName: 'admin.cardholders.index',
             parameters: ['cardholder' => $cardHolder->id],
         );
@@ -101,7 +101,7 @@ class DashboardController extends Controller
         );
 
         return $card ? $this->workspaceLink(
-            label: sprintf('Open latest card review: %s (%s)', $card->number, $card->status),
+            label: sprintf('%s: %s (%s)', $this->latestCardWorkspaceLabel(), $card->number, $card->status),
             routeName: 'admin.cards.index',
             parameters: ['card' => $card->id],
         ) : $this->scopedLatestSetupWorkspaceLink(
@@ -120,6 +120,20 @@ class DashboardController extends Controller
             routeName: 'admin.card-types.index',
             parameters: ['cardType' => $cardType->id],
         ) : null;
+    }
+
+    protected function latestCardHolderWorkspaceLabel(): string
+    {
+        return $this->isShopScopedAdmin()
+            ? 'Open latest branch cardholder review'
+            : 'Open latest cardholder review';
+    }
+
+    protected function latestCardWorkspaceLabel(): string
+    {
+        return $this->isShopScopedAdmin()
+            ? 'Open latest branch card review'
+            : 'Open latest card review';
     }
 
     protected function latestRoleWorkspace(): ?array

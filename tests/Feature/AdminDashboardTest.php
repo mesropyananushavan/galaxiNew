@@ -606,12 +606,12 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Open latest shop review: Dashboard Home Shop (active)')
             ->assertSee('/admin/shops?shop='.$assignedShop->id)
             ->assertDontSee('Open latest shop review: Dashboard Other Shop (active)')
-            ->assertSee('Open latest cardholder review: Scoped Dashboard Holder (active)')
+            ->assertSee('Open latest branch cardholder review: Scoped Dashboard Holder (active)')
             ->assertSee('/admin/cardholders?cardholder='.$assignedHolder->id)
-            ->assertDontSee('Open latest cardholder review: Other Dashboard Holder (active)')
-            ->assertSee('Open latest card review: GX-DASH-001 (active)')
+            ->assertDontSee('Open latest branch cardholder review: Other Dashboard Holder (active)')
+            ->assertSee('Open latest branch card review: GX-DASH-001 (active)')
             ->assertSee('/admin/cards?card='.$assignedCard->id)
-            ->assertDontSee('Open latest card review: GX-DASH-002 (blocked)');
+            ->assertDontSee('Open latest branch card review: GX-DASH-002 (blocked)');
 
         Carbon::setTestNow();
     }

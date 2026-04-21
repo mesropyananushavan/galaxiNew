@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch-specific latest-work labels checkpoint
+- Tightened the scoped latest-work wording for live cardholder and card shortcuts so shop-scoped admins now see `Open latest branch cardholder review` and `Open latest branch card review` instead of the more generic global review phrasing.
+- Kept the step low-risk by changing only scoped shortcut labels while preserving the same routes, records, and empty-branch setup fallbacks.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the branch-specific latest-work label update.
+
+### Next step after dashboard branch-specific latest-work labels checkpoint
+- Carry the same scoped wording pattern into one more dashboard surface or helper, or switch to a small structural cleanup now that the latest-work shortcuts read more branch-specific for scoped admins.
+
 ### Dashboard note-style cleanup checkpoint
 - Extracted the repeated dashboard note styles in the Blade view into local variables so the growing set of Galaxy-specific guidance blocks now shares one small formatting baseline instead of repeating the same inline style strings.
 - Kept the step low-risk and behavior-safe by making only presentational structure cleanup changes, with no copy, route, or branch-aware logic changes.
