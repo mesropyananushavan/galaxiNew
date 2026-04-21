@@ -222,6 +222,8 @@ class DashboardController extends Controller
             ];
         }
 
+        $latestActivity = $this->latestBranchActivitySummary($latestHolder, $latestCard);
+
         return [
             'label' => 'Assigned branch snapshot',
             'items' => [
@@ -238,9 +240,44 @@ class DashboardController extends Controller
                 ['label' => 'Latest card', 'value' => $latestCard instanceof Card ? $latestCard->number : 'No cards in assigned branch yet'],
                 ['label' => 'Latest card status', 'value' => $latestCard instanceof Card ? $latestCard->status : 'n/a'],
                 ['label' => 'Latest card issued', 'value' => $latestCard instanceof Card ? $latestCard->created_at?->toDateString() ?? 'unknown' : 'n/a'],
+                ['label' => 'Latest activity source', 'value' => $latestActivity],
             ],
             'actions' => $actions,
         ];
+    }
+
+    protected function latestBranchActivitySummary(?CardHolder $latestHolder, ?Card $latestCard): string
+    {
+        if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
+            return 'No branch activity yet';
+        }
+
+        if (! $latestCard instanceof Card) {
+            return 'Cardholder added';
+        }
+
+        if (! $latestHolder instanceof CardHolder) {
+            return 'Card issued';
+        }
+
+        $holderCreatedAt = $latestHolder->created_at;
+        $cardCreatedAt = $latestCard->created_at;
+
+        if ($holderCreatedAt === null && $cardCreatedAt === null) {
+            return 'Latest branch record updated';
+        }
+
+        if ($holderCreatedAt === null) {
+            return 'Card issued';
+        }
+
+        if ($cardCreatedAt === null) {
+            return 'Cardholder added';
+        }
+
+        return $cardCreatedAt->greaterThanOrEqualTo($holderCreatedAt)
+            ? 'Card issued'
+            : 'Cardholder added';
     }
 
     protected function liveEntryScopeNote(): ?array

@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch activity-source cue checkpoint
+- Extended the assigned-branch snapshot with `Latest activity source`, so scoped admins can immediately see whether the newest visible branch movement was a card issuance or a cardholder addition.
+- Kept the step low-risk and read-only by deriving the cue from the same latest branch-local holder/card records already shown in the snapshot.
+- Extended the focused dashboard assertions for the new activity-source cue and re-ran `php artisan test --filter=dashboard_latest_live_work_shortcuts_respect_shop_scope`, `1 passed`.
+
+### Next step after dashboard branch activity-source cue checkpoint
+- Add one more low-risk branch console cue around stale versus fresh activity posture, or start converting one of the scoped dashboard cues into a stricter branch-aware entry boundary.
+
 ### Dashboard branch activity-date cue checkpoint
 - Extended the assigned-branch snapshot with `Latest holder added` and `Latest card issued`, so scoped admins can immediately tell how fresh the branch's newest live records are instead of only seeing names and statuses.
 - Kept the step low-risk and read-only by deriving the new cues from the existing latest branch-local holder/card records already loaded for the snapshot.
