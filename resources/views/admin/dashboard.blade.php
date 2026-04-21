@@ -138,6 +138,9 @@
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Galaxy migration map</h3>
+        <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+            These grouped sections mark the Galaxy admin surfaces that still need parity work, so each Phase 1 slice can land against a visible target map.
+        </p>
         <ul class="list">
             @foreach ($navigationGroups as $group)
                 <li>

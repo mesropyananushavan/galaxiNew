@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard migration-map guidance checkpoint
+- Added a Galaxy-specific guidance note to the `Galaxy migration map` section so the grouped navigation list now reads as a visible parity target for upcoming Phase 1 slices instead of a plain section dump.
+- Kept the step low-risk and visual-only by changing migration-map framing without touching routes, navigation config, or branch-aware dashboard behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the migration-map guidance update.
+
+### Next step after dashboard migration-map guidance checkpoint
+- Return to a small branch-aware behavior step now that the main dashboard sections all carry Galaxy-specific framing, or make one more tiny structural cleanup in the dashboard view to keep the copy additions tidy.
+
 ### Dashboard empty latest-work guidance checkpoint
 - Added a Galaxy-specific Phase 1 note to the empty `Resume latest live work` fallback so the zero-record state now points operators toward first-pass setup across shops, cardholders, cards, and access structure instead of stopping at a generic absence message.
 - Kept the step low-risk and visual-only by changing fallback framing without touching latest-work routing or branch-aware shortcut behavior.

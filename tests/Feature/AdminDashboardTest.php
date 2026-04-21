@@ -207,6 +207,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review live reporting sources')
             ->assertSee('/admin/reports')
             ->assertSee('Galaxy migration map')
+            ->assertSee('These grouped sections mark the Galaxy admin surfaces that still need parity work, so each Phase 1 slice can land against a visible target map')
             ->assertSee('Resume latest live work')
             ->assertSee('Jump back into the latest Galaxy workspace for the branch, cardholder, card, or access item that most recently changed')
             ->assertSee('Open latest shop review: Galaxy Central (active)')
