@@ -1,5 +1,15 @@
 # Progress Log
 
+## 2026-04-21
+
+### Shop-target admin access helper checkpoint
+- Added an explicit `User::canAccessShop(?Shop $shop)` helper, so the emerging Phase 1 access baseline now expresses not only admin entry but also which shop a scoped admin can legitimately review.
+- Kept the rule intentionally small and safe: bootstrap users still retain setup reach, while scoped users must still satisfy the active-shop-plus-permission baseline and are limited to their assigned shop.
+- Added focused assertions for assigned-shop allow, other-shop deny, paused-shop deny, and null-shop deny, then re-ran the dashboard access slice, `8 passed`.
+
+### Next step after shop-target admin access helper checkpoint
+- Reuse the new shop-target helper in one small read-oriented admin slice, likely the `shops` workspace selection flow or a first policy-style boundary around shop-specific review.
+
 ## 2026-04-20
 
 ### Shop-scoped admin access helper checkpoint

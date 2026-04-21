@@ -331,12 +331,85 @@ class AdminDashboardTest extends TestCase
     public function test_unscoped_user_keeps_bootstrap_admin_access_helpers(): void
     {
         $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Bootstrap Review Shop',
+            'code' => 'bootstrap-review-shop',
+            'is_active' => true,
+        ]);
 
         $this->assertTrue($user->hasBootstrapAdminAccess());
         $this->assertFalse($user->belongsToActiveShop());
         $this->assertFalse($user->hasPermissionBearingRole());
         $this->assertFalse($user->hasShopScopedAdminAccess());
         $this->assertTrue($user->canAccessAdminPanel());
+        $this->assertTrue($user->canAccessShop($shop));
+        $this->assertFalse($user->canAccessShop(null));
+    }
+
+    public function test_shop_scoped_admin_access_helper_allows_only_the_users_assigned_shop(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Assigned Shop',
+            'code' => 'galaxy-assigned-shop-access',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Other Shop',
+            'code' => 'galaxy-other-shop-access',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Manager',
+            'slug' => 'scoped-manager-shop-access',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Access scoped shop admin',
+            'slug' => 'access-scoped-shop-admin',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $this->assertTrue($user->hasShopScopedAdminAccess());
+        $this->assertTrue($user->canAccessShop($assignedShop));
+        $this->assertFalse($user->canAccessShop($otherShop));
+        $this->assertFalse($user->canAccessShop(null));
+    }
+
+    public function test_shop_scoped_admin_access_helper_denies_paused_shop_users_even_for_their_assigned_shop(): void
+    {
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Paused Scoped Shop',
+            'code' => 'galaxy-paused-scoped-shop-access',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Paused Scoped Manager',
+            'slug' => 'paused-scoped-manager-shop-access',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Access paused scoped shop admin',
+            'slug' => 'access-paused-scoped-shop-admin',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $this->assertFalse($user->hasShopScopedAdminAccess());
+        $this->assertFalse($user->canAccessShop($pausedShop));
     }
 
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void

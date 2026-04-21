@@ -66,6 +66,23 @@ class User extends Authenticatable
         return $this->hasShopScopedAdminAccess();
     }
 
+    public function canAccessShop(?Shop $shop): bool
+    {
+        if ($shop === null) {
+            return false;
+        }
+
+        if ($this->hasBootstrapAdminAccess()) {
+            return true;
+        }
+
+        if (! $this->hasShopScopedAdminAccess()) {
+            return false;
+        }
+
+        return (int) $this->shop_id === (int) $shop->getKey();
+    }
+
     /**
      * Get the attributes that should be cast.
      *
