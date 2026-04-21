@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Card-types lifecycle timestamp cue checkpoint
+- Added read-only `Lifecycle freshness` and `Last saved in Laravel` cues to the selected card-type context, including summary rows, timeline events, and dependency-status entries, so operators can review whether a saved tier is still in its first Laravel-backed state.
+- Kept the step Phase 1-safe: it reuses existing Laravel timestamps for card-type review context only and does not widen publish logic, activation behavior, or rule-import writes.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_replaces_preview_rows_with_model_backed_edit_links|test_card_types_page_replaces_preview_metrics_with_model_backed_counts)'`, `3 passed`, after adding the card-type lifecycle timestamp cues.
+
+### Next step after card-types lifecycle timestamp cue checkpoint
+- Align one more safe card-type review cue behind shared helpers, or reuse the same read-only lifecycle metadata pattern on another live Laravel-backed admin surface.
+
 ### Card-types review-note index visibility checkpoint
 - Surfaced the new persisted card-type `review_note` slice at the catalog level by adding a `Reviewed tiers` metric and a `Review note` table column, so parity-sensitive tier notes are visible before operators drill into selected-tier edit context.
 - Kept the step small and safe: it reuses saved note text on read-only index surfaces and does not widen publish logic, activation behavior, or rule-import writes.

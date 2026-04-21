@@ -1198,6 +1198,8 @@ class ResourceIndexController extends Controller
             ['label' => 'Slug', 'value' => $selectedCardType->slug],
             ['label' => 'Points rate', 'value' => number_format((float) $selectedCardType->points_rate, 2).'x'],
             ['label' => 'Laravel status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
+            ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
             [
                 'label' => 'Status guidance',
@@ -1265,6 +1267,16 @@ class ResourceIndexController extends Controller
                 'description' => sprintf('This tier is currently marked as %s in Laravel and the management context card now mirrors that state.', $selectedCardType->is_active ? 'active' : 'draft'),
             ],
             [
+                'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $this->cardTypesLifecycleFreshnessDescription($selectedCardType),
+            ],
+            [
+                'title' => sprintf('%s last saved timestamp reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => sprintf('The latest saved Laravel timestamp for this tier is %s, giving operators a concrete checkpoint for the current catalog shell.', $this->cardTypesLastSavedLabel($selectedCardType)),
+            ],
+            [
                 'title' => sprintf('%s review note reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
                 'description' => $selectedCardType->review_note !== null && trim($selectedCardType->review_note) !== ''
@@ -1278,6 +1290,8 @@ class ResourceIndexController extends Controller
         $page['dependencyStatus'] = [
             ['label' => 'Selected record', 'value' => $selectedCardType->name],
             ['label' => 'Edit flow state', 'value' => 'Shared live form is running in request-driven PATCH mode'],
+            ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
             ['label' => 'Current status posture', 'value' => $selectedCardType->is_active ? 'Active tiers should stay stable unless parity checks are complete' : 'Draft tiers are the safe place for parity-first validation and copy changes'],
             ['label' => 'Rule-import posture', 'value' => $selectedCardType->is_active ? 'Keep imports blocked until active-tier accrual parity is verified' : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet'],
@@ -1308,6 +1322,35 @@ class ResourceIndexController extends Controller
         ];
 
         return $page;
+    }
+
+    private function cardTypesLifecycleFreshnessLabel(CardType $selectedCardType): string
+    {
+        if ($selectedCardType->updated_at === null || $selectedCardType->created_at === null) {
+            return 'timestamp visibility pending';
+        }
+
+        return $selectedCardType->updated_at->equalTo($selectedCardType->created_at)
+            ? 'newly created in Laravel review'
+            : 'updated after initial Laravel creation';
+    }
+
+    private function cardTypesLifecycleFreshnessDescription(CardType $selectedCardType): string
+    {
+        if ($selectedCardType->updated_at === null || $selectedCardType->created_at === null) {
+            return 'This tier does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.';
+        }
+
+        if ($selectedCardType->updated_at->equalTo($selectedCardType->created_at)) {
+            return sprintf('This tier was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved catalog shell.', $selectedCardType->created_at->format('Y-m-d H:i:s T'));
+        }
+
+        return sprintf('This tier was first created in Laravel on %s and last updated on %s, so operators are reviewing a catalog shell that has already changed after initial setup.', $selectedCardType->created_at->format('Y-m-d H:i:s T'), $selectedCardType->updated_at->format('Y-m-d H:i:s T'));
+    }
+
+    private function cardTypesLastSavedLabel(CardType $selectedCardType): string
+    {
+        return $selectedCardType->updated_at?->format('Y-m-d H:i:s T') ?? 'Timestamp pending';
     }
 
     private function liveFormActionParameters(mixed $parameters): array
