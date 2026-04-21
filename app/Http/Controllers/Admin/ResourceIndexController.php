@@ -1448,6 +1448,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review mode', 'value' => $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0
                 ? 'Live-impact review, linked staff or permissions already exist in Laravel'
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
+            ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
             ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
@@ -1471,6 +1472,16 @@ class ResourceIndexController extends Controller
                     : 'This role is still a draft shell in Laravel, which keeps it safe for parity checks before operators rely on it for staff access.',
             ],
         ];
+    }
+
+    private function rolesPermissionsOperationalReadiness(Role $selectedRole): string
+    {
+        return match (true) {
+            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'assignment-sensitive live role',
+            $selectedRole->permissions_count > 0 => 'permission bundle live, assignment rollout pending',
+            $selectedRole->users_count > 0 => 'assignment linked, permission bundle still pending review',
+            default => 'draft-safe role shell',
+        };
     }
 
     private function rolesPermissionsSelectedRoleTimeline(Role $selectedRole, mixed $scope, mixed $permissionPreview): array

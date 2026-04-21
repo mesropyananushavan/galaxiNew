@@ -1072,6 +1072,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected role')
             ->assertSee('Review mode')
             ->assertSee('Live-impact review, linked staff or permissions already exist in Laravel')
+            ->assertSee('Operational readiness')
+            ->assertSee('assignment-sensitive live role')
             ->assertSee('Scope')
             ->assertSee('Shop scope preview')
             ->assertSee('Galaxy Central')

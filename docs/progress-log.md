@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Roles-permissions operational readiness cue checkpoint
+- Moved beyond the dashboard and added an `Operational readiness` cue to the Laravel-backed selected-role review context in `roles-permissions`, so role review now surfaces a simple Galaxy-style operator posture instead of only generic summary fields.
+- The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded role assignments and permission counts, with states such as `assignment-sensitive live role` and `draft-safe role shell`.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query)'`, `6 passed`, after adding the roles-permissions readiness cue.
+
+### Next step after roles-permissions operational readiness cue checkpoint
+- Add one more small Laravel-backed operator cue to a non-dashboard surface such as cards or roles-permissions, or move toward the next thin write-path foundation slice.
+
 ### Dashboard mirrored partial-branch follow-up checkpoint
 - Added focused coverage for the mirrored partial branch state where cards exist before cardholders, so the assigned-branch snapshot now explicitly protects the backfill guidance for that asymmetrical setup path too.
 - The dashboard continues to steer that branch state toward `Review assigned branch cards and backfill the first visible cardholder record.`, while exposing the latest card shortcut and withholding the missing holder shortcut.
