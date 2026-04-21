@@ -1536,6 +1536,13 @@ class ResourceIndexController extends Controller
                 'description' => 'The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.',
             ],
             [
+                'title' => sprintf('%s status reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $selectedRole->is_active
+                    ? 'This role is currently marked as active in Laravel and the management context now treats it as a live access shell.'
+                    : 'This role is currently marked as draft in Laravel, so the management context keeps it in a safer parity-review posture.',
+            ],
+            [
                 'title' => sprintf('%s permission bundle reflected from model state', $selectedRole->name),
                 'time' => 'Current request',
                 'description' => $permissionPreview->isNotEmpty()
@@ -1557,6 +1564,9 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Review posture', 'value' => 'Selected-role review is running in Laravel-backed read mode only'],
+            ['label' => 'Status posture', 'value' => $selectedRole->is_active
+                ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
+                : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
             ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
                 ? 'Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.'
