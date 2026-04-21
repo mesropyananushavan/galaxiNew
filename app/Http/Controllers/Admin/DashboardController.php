@@ -138,10 +138,11 @@ class DashboardController extends Controller
 
         $shop = $this->adminUser()?->shop;
         $primaryScopedShopEntryLabel = $this->scopedShopEntryLabel($shop);
+        $primaryScopedCardholderEntryLabel = $this->scopedCardholderEntryLabel($shop);
 
         return [
             $this->workspaceLink($primaryScopedShopEntryLabel, 'admin.shops.index'),
-            $this->workspaceLink('Review live cardholders in assigned branch', 'admin.cardholders.index'),
+            $this->workspaceLink($primaryScopedCardholderEntryLabel, 'admin.cardholders.index'),
             $this->workspaceLink('Review live cards in assigned branch', 'admin.cards.index'),
             $this->workspaceLink('Review live card types', 'admin.card-types.index'),
             $this->workspaceLink('Review live access roles', 'admin.roles-permissions.index'),
@@ -359,6 +360,21 @@ class DashboardController extends Controller
         }
 
         return 'Review live shops in assigned branch';
+    }
+
+    protected function scopedCardholderEntryLabel(?Shop $shop): string
+    {
+        if (! $shop instanceof Shop || ! $shop->is_active) {
+            return 'Review live cardholders in assigned branch';
+        }
+
+        $shop->loadCount(['cardHolders']);
+
+        if ($shop->card_holders_count === 0) {
+            return 'Set up first cardholder in assigned branch';
+        }
+
+        return 'Review live cardholders in assigned branch';
     }
 
     protected function liveEntryScopeNote(): ?array
