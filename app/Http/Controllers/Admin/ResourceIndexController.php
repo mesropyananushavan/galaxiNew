@@ -1480,7 +1480,7 @@ class ResourceIndexController extends Controller
                 ? 'Live-impact review, linked staff or permissions already exist in Laravel'
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
-            ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleFreshness($selectedRole)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleFreshnessLabel($selectedRole)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
@@ -1539,6 +1539,21 @@ class ResourceIndexController extends Controller
         return $selectedRole->updated_at->equalTo($selectedRole->created_at)
             ? 'newly created in Laravel review'
             : 'updated after initial Laravel creation';
+    }
+
+    private function rolesPermissionsLifecycleFreshnessLabel(Role $selectedRole): string
+    {
+        return $this->rolesPermissionsLifecycleFreshness($selectedRole);
+    }
+
+    private function rolesPermissionsLifecycleTimelineTitle(Role $selectedRole): string
+    {
+        return sprintf('%s lifecycle freshness reflected from model state', $selectedRole->name);
+    }
+
+    private function rolesPermissionsLifecycleDependencyLabel(Role $selectedRole): string
+    {
+        return $this->rolesPermissionsLifecycleFreshness($selectedRole);
     }
 
     private function rolesPermissionsLifecycleTimelineDescription(Role $selectedRole): string
@@ -1626,7 +1641,7 @@ class ResourceIndexController extends Controller
                     : 'This role is currently marked as draft in Laravel, so the management context keeps it in a safer parity-review posture.',
             ],
             [
-                'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedRole->name),
+                'title' => $this->rolesPermissionsLifecycleTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsLifecycleTimelineDescription($selectedRole),
             ],
@@ -1665,7 +1680,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Status posture', 'value' => $selectedRole->is_active
                 ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
-            ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleFreshness($selectedRole)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleDependencyLabel($selectedRole)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageDependencyLabel($scope)],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],

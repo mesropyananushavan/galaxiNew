@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Roles-permissions lifecycle cue helper alignment checkpoint
+- Aligned the new lifecycle-freshness cues behind shared helper methods in `ResourceIndexController` so selected-role summary, timeline, and dependency status all resolve lifecycle wording from one backend path.
+- Kept the step intentionally small and safe: no new writes or surfaces were added, but the role lifecycle metadata layer is now less likely to drift before the next persisted slice.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after aligning the lifecycle helpers.
+
+### Next step after roles-permissions lifecycle cue helper alignment checkpoint
+- Turn one safe role review-metadata cue or scope-related cue into the next thin persisted slice, while keeping assignment and permission-matrix writes blocked.
+
 ### Roles-permissions lifecycle freshness cue checkpoint
 - Added a live `Lifecycle freshness` cue to the selected-role summary, timeline, and dependency status so the review workspace now shows whether a saved role is still in its first Laravel-created state or has already been updated.
 - Kept the step Phase 1-safe: it reuses existing role timestamps for review metadata only and does not open any new access, scope, or permission writes.
