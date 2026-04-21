@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard empty-branch card-entry CTA checkpoint
+- Tightened the scoped card live-entry label so active branches with no card records now surface `Set up first card in assigned branch` instead of the generic review label.
+- Kept the step low-risk and read-only by changing only the operator-facing entry copy while preserving the same scoped card route and existing review label once branch cards exist.
+- Extended the empty-branch dashboard assertions for the new card-entry CTA and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard empty-branch card-entry CTA checkpoint
+- Extract the growing scoped entry-label branching into one shared helper, or start moving the same empty-versus-live posture into another branch-aware dashboard surface.
+
 ### Dashboard empty-branch cardholder-entry CTA checkpoint
 - Tightened the scoped cardholder live-entry label so active branches with no holder records now surface `Set up first cardholder in assigned branch` instead of the more advanced review label.
 - Kept the step low-risk and read-only by changing only the operator-facing entry copy while preserving the same scoped cardholder route and existing review label once branch holders exist.
