@@ -178,13 +178,9 @@ class DashboardController extends Controller
 
     protected function shouldShowScopedLatestSetupWorkspace(string $relation): bool
     {
-        if (! $this->isShopScopedAdmin()) {
-            return false;
-        }
+        $shop = $this->activeScopedShop();
 
-        $shop = $this->adminUser()?->shop;
-
-        if (! $shop instanceof Shop || ! $shop->is_active) {
+        if (! $shop instanceof Shop) {
             return false;
         }
 
@@ -200,6 +196,19 @@ class DashboardController extends Controller
         return $this->shopHasNoRecords($shop, $emptyRelations)
             ? $setupLabel
             : $reviewLabel;
+    }
+
+    protected function activeScopedShop(): ?Shop
+    {
+        if (! $this->isShopScopedAdmin()) {
+            return null;
+        }
+
+        $shop = $this->adminUser()?->shop;
+
+        return $shop instanceof Shop && $shop->is_active
+            ? $shop
+            : null;
     }
 
     protected function shopHasNoRecords(Shop $shop, array $relations): bool

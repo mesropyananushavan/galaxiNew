@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard active-scoped-shop helper cleanup checkpoint
+- Extracted the repeated scoped-and-active shop guard used by the latest-work setup path into an `activeScopedShop` helper, so the scoped latest-setup logic now reads through one shared gate before applying empty-state predicates.
+- Kept the step low-risk and behavior-safe by preserving the current latest-work setup/review behavior while removing one more inline scope check.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the active-scoped-shop helper cleanup.
+
+### Next step after dashboard active-scoped-shop helper cleanup checkpoint
+- Reuse the new active scoped shop helper in one more dashboard rule, or move to the next small Phase 1 behavior step beyond dashboard helper cleanup.
+
 ### Dashboard scoped entry predicate cleanup checkpoint
 - Reused the shared `shopHasNoRecords` predicate for the scoped cardholder and card live-entry setup rules, so all three scoped entry labels now read through the same empty-state predicate family instead of mixing helper calls with inline count checks.
 - Kept the step low-risk and behavior-safe by preserving the current scoped entry labels and routes while removing the remaining inline count comparisons in the entry-label trio.
