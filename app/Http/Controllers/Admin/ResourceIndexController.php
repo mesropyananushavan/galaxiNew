@@ -872,6 +872,16 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => sprintf('This holder is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedCardHolder->is_active ? 'active' : 'inactive'),
             ],
+            [
+                'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedCardHolder->full_name),
+                'time' => 'Current request',
+                'description' => $this->cardholdersLifecycleFreshnessDescription($selectedCardHolder),
+            ],
+            [
+                'title' => sprintf('%s last saved timestamp reflected from model state', $selectedCardHolder->full_name),
+                'time' => 'Current request',
+                'description' => sprintf('The latest saved Laravel timestamp for this holder is %s, giving operators a concrete checkpoint for the current profile shell.', $this->cardholdersLastSavedLabel($selectedCardHolder)),
+            ],
         ];
 
         $page['dependencyStatus'] = $this->cardholdersSelectedHolderDependencyStatus($selectedCardHolder);
@@ -1904,6 +1914,8 @@ class ResourceIndexController extends Controller
                 ? 'Live profile review, this holder already participates in the Laravel lookup surface and should stay parity-first.'
                 : 'Dormant-profile review, this inactive holder stays safer for parity checks before any reactivation path is trusted.'],
             ['label' => 'Operational readiness', 'value' => $this->cardholdersOperationalReadiness($selectedCardHolder)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCardHolder->shop !== null
@@ -1929,11 +1941,42 @@ class ResourceIndexController extends Controller
         };
     }
 
+    private function cardholdersLifecycleFreshnessLabel(CardHolder $selectedCardHolder): string
+    {
+        if ($selectedCardHolder->updated_at === null || $selectedCardHolder->created_at === null) {
+            return 'timestamp visibility pending';
+        }
+
+        return $selectedCardHolder->updated_at->equalTo($selectedCardHolder->created_at)
+            ? 'newly created in Laravel review'
+            : 'updated after initial Laravel creation';
+    }
+
+    private function cardholdersLifecycleFreshnessDescription(CardHolder $selectedCardHolder): string
+    {
+        if ($selectedCardHolder->updated_at === null || $selectedCardHolder->created_at === null) {
+            return 'This holder does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.';
+        }
+
+        if ($selectedCardHolder->updated_at->equalTo($selectedCardHolder->created_at)) {
+            return sprintf('This holder was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved profile shell.', $selectedCardHolder->created_at->format('Y-m-d H:i:s T'));
+        }
+
+        return sprintf('This holder was first created in Laravel on %s and last updated on %s, so operators are reviewing a profile shell that has already changed after initial setup.', $selectedCardHolder->created_at->format('Y-m-d H:i:s T'), $selectedCardHolder->updated_at->format('Y-m-d H:i:s T'));
+    }
+
+    private function cardholdersLastSavedLabel(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->updated_at?->format('Y-m-d H:i:s T') ?? 'Timestamp pending';
+    }
+
     private function cardholdersSelectedHolderDependencyStatus(CardHolder $selectedCardHolder): array
     {
         return [
             ['label' => 'Selected holder', 'value' => $selectedCardHolder->full_name],
             ['label' => 'Lookup posture', 'value' => 'Selected-holder review is running in Laravel-backed read mode only'],
+            ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Status posture', 'value' => $selectedCardHolder->is_active
                 ? 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.'
                 : 'This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.'],

@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Cardholders lifecycle timestamp cue checkpoint
+- Added read-only `Lifecycle freshness` and `Last saved in Laravel` cues to the selected cardholder context, including summary rows, timeline events, and dependency-status entries, so operators can review whether a saved holder profile is still in its first Laravel-backed state.
+- Kept the step Phase 1-safe: it reuses existing Laravel timestamps for cardholder review context only and does not widen holder search, profile writes, or recent-activity sourcing.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_replaces_preview_rows_with_model_backed_holder_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query)'`, `4 passed`, after adding the cardholder lifecycle timestamp cues.
+
+### Next step after cardholders lifecycle timestamp cue checkpoint
+- Reuse the same read-only lifecycle metadata pattern on `shops`, or start aligning the repeated lifecycle cue logic behind shared helper paths before the next persisted slice.
+
 ### Cards lifecycle timestamp cue checkpoint
 - Added read-only `Lifecycle freshness` and `Last saved in Laravel` cues to the selected card context, including summary rows, timeline events, and dependency-status entries, so operators can review whether a saved inventory record is still in its first Laravel-backed state.
 - Kept the step Phase 1-safe: it reuses existing Laravel timestamps for card review context only and does not widen card lifecycle writes, blocked-card handling, or replacement flows.
