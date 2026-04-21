@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard snapshot scoped-shop helper reuse checkpoint
+- Reused the shared `activeScopedShop` helper in `assignedBranchSnapshot`, so the snapshot loader now resolves its assigned active branch through the same shared gate already used by the scoped summary, live-entry, and latest-work paths.
+- Kept the step low-risk and behavior-safe by preserving the current snapshot content and behavior while removing one more inline scoped shop lookup.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the snapshot scoped-shop helper reuse.
+
+### Next step after dashboard snapshot scoped-shop helper reuse checkpoint
+- Move to the next small Phase 1 behavior step beyond dashboard helper cleanup, since the main scoped dashboard surfaces now share the same active-branch gate.
+
 ### Dashboard scope-summary scoped-shop helper reuse checkpoint
 - Reused the shared `activeScopedShop` helper in `dashboardScopeSummary`, so the scoped summary card now resolves its assigned active branch through the same gate already used by the live-entry and latest-work scoped paths.
 - Kept the step low-risk and behavior-safe by preserving the current summary copy while removing one more inline scoped shop lookup.

@@ -300,13 +300,7 @@ class DashboardController extends Controller
 
     protected function assignedBranchSnapshot(): ?array
     {
-        $user = $this->adminUser();
-
-        if (! $this->isShopScopedAdmin() || ! $user?->relationLoaded('shop')) {
-            $user?->loadMissing('shop');
-        }
-
-        $shop = $user?->shop;
+        $shop = $this->activeScopedShop();
 
         if (! $shop instanceof Shop) {
             return null;
