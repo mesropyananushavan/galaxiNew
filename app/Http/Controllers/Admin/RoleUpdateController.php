@@ -14,7 +14,13 @@ class RoleUpdateController extends Controller
 
     public function __invoke(UpdateRoleRequest $request, Role $role): RedirectResponse
     {
-        $role->update($request->validated());
+        $validated = $request->validated();
+
+        $role->update([
+            'name' => $validated['name'],
+            'slug' => $validated['slug'],
+            'is_active' => $request->boolean('is_active'),
+        ]);
 
         return $this->redirectToSelectedRole(
             $role,

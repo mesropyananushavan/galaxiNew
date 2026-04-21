@@ -14,7 +14,13 @@ class RoleStoreController extends Controller
 
     public function __invoke(StoreRoleRequest $request): RedirectResponse
     {
-        $role = Role::create($request->validated());
+        $validated = $request->validated();
+
+        $role = Role::create([
+            'name' => $validated['name'],
+            'slug' => $validated['slug'],
+            'is_active' => $request->boolean('is_active'),
+        ]);
 
         return $this->redirectToSelectedRole(
             $role,

@@ -559,8 +559,8 @@ class ResourceIndexController extends Controller
         }
 
         $page['metrics'] = [
-            ['label' => 'Active roles', 'value' => (string) $roles->filter(fn (Role $role): bool => $role->permissions_count > 0)->count()],
-            ['label' => 'Draft roles', 'value' => (string) $roles->filter(fn (Role $role): bool => $role->permissions_count === 0)->count()],
+            ['label' => 'Active roles', 'value' => (string) $roles->where('is_active', true)->count()],
+            ['label' => 'Draft roles', 'value' => (string) $roles->where('is_active', false)->count()],
             ['label' => 'Scoped shops', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
         ];
 
@@ -573,7 +573,7 @@ class ResourceIndexController extends Controller
                 $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice',
                 $permissionPreview !== '' ? $permissionPreview : 'No permissions linked yet',
                 (string) $role->users_count,
-                $role->permissions_count > 0 ? 'active' : 'draft',
+                $role->is_active ? 'active' : 'draft',
             ];
         })->all();
 
@@ -625,6 +625,7 @@ class ResourceIndexController extends Controller
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedRole->name,
                 'slug' => $selectedRole->slug,
+                'is_active' => $selectedRole->is_active ? '1' : '0',
                 'scope_rollout' => $scope->isNotEmpty() ? 'shop-scope-visible' : 'shop-scope-pending',
                 'publish_posture' => $this->rolesPermissionsPublishPostureValue($selectedRole),
             ];
@@ -650,7 +651,7 @@ class ResourceIndexController extends Controller
                 'label' => 'Publish role',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => $selectedRole->permissions_count > 0
+                'disabledReason' => $selectedRole->is_active
                     ? 'Blocked until live role assignment parity is verified for this Laravel permission bundle.'
                     : 'Blocked until this draft role has a verified permission bundle and shop scope parity.',
             ],
@@ -1475,7 +1476,7 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Role slug', 'value' => $selectedRole->slug],
-            ['label' => 'Review mode', 'value' => $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0
+            ['label' => 'Review mode', 'value' => $selectedRole->is_active || $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0
                 ? 'Live-impact review, linked staff or permissions already exist in Laravel'
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
@@ -1494,12 +1495,14 @@ class ResourceIndexController extends Controller
                 ? 'Live bundle present, review changes as parity-sensitive access coverage.'
                 : 'No bundle linked yet, this role remains safer for draft parity review.'],
             ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
-            ['label' => 'Laravel status', 'value' => $selectedRole->permissions_count > 0 ? 'active' : 'draft'],
+            ['label' => 'Laravel status', 'value' => $selectedRole->is_active ? 'active' : 'draft'],
             [
                 'label' => 'Access guidance',
-                'value' => $selectedRole->permissions_count > 0
-                    ? 'This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.'
-                    : 'This role is still a draft shell in Laravel, which keeps it safe for parity checks before operators rely on it for staff access.',
+                'value' => match (true) {
+                    $selectedRole->is_active && $selectedRole->permissions_count > 0 => 'This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.',
+                    $selectedRole->is_active => 'This role is active in Laravel, but permission bundle and assignment follow-up should stay parity-first until the matrix editor is verified.',
+                    default => 'This role is still a draft shell in Laravel, which keeps it safe for parity checks before operators rely on it for staff access.',
+                },
             ],
         ];
     }
@@ -1507,19 +1510,20 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsOperationalReadiness(Role $selectedRole): string
     {
         return match (true) {
+            ! $selectedRole->is_active => 'draft-safe role shell',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'assignment-sensitive live role',
             $selectedRole->permissions_count > 0 => 'permission bundle live, assignment rollout pending',
             $selectedRole->users_count > 0 => 'assignment linked, permission bundle still pending review',
-            default => 'draft-safe role shell',
+            default => 'active role shell, permission bundle still pending review',
         };
     }
 
     private function rolesPermissionsPublishPostureValue(Role $selectedRole): string
     {
         return match (true) {
+            ! $selectedRole->is_active => 'draft-only',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'assignment-sensitive',
-            $selectedRole->permissions_count > 0 => 'parity-sensitive',
-            default => 'draft-only',
+            default => 'parity-sensitive',
         };
     }
 
@@ -1560,7 +1564,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Permission posture', 'value' => $permissionPreview->isNotEmpty()
                 ? 'The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.'
                 : 'No permissions are linked yet, so this role remains a safer draft shell for parity-first access review.'],
-            ['label' => 'Publish posture', 'value' => $selectedRole->permissions_count > 0
+            ['label' => 'Publish posture', 'value' => $selectedRole->is_active
                 ? 'This live permission bundle still needs assignment parity checks before publish-style role changes are safe.'
                 : 'This draft role should stay unpublished until permission bundle and shop-scope parity are mapped more explicitly.'],
             ['label' => 'Scope posture', 'value' => $scope->isNotEmpty()

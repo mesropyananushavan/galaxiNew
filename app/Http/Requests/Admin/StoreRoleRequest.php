@@ -20,13 +20,22 @@ class StoreRoleRequest extends FormRequest
         return [
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'alpha_dash', 'unique:roles,slug'],
+            'is_active' => ['required', 'boolean'],
         ];
     }
 
     protected function prepareForValidation(): void
     {
+        $status = $this->input('is_active');
+
         $this->merge([
             'slug' => is_string($this->input('slug')) ? Str::slug($this->input('slug')) : $this->input('slug'),
+            'is_active' => match (true) {
+                is_bool($status) => $status,
+                is_string($status) => in_array(strtolower($status), ['1', 'true', 'on', 'yes'], true),
+                is_int($status) => $status === 1,
+                default => false,
+            },
         ]);
     }
 
@@ -35,6 +44,7 @@ class StoreRoleRequest extends FormRequest
         return [
             'name' => 'role name',
             'slug' => 'role slug',
+            'is_active' => 'role status',
         ];
     }
 

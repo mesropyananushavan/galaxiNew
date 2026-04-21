@@ -934,12 +934,16 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create role')
             ->assertSee('Role name')
             ->assertSee('Slug')
+            ->assertSee('Laravel status')
+            ->assertSee('Draft')
+            ->assertSee('Active')
+            ->assertSee('Draft roles stay safer for parity review. Active status is now persistable, but publish-style access changes should still stay parity-first.')
             ->assertSee('Scope rollout')
             ->assertSee('Shop scope still pending')
             ->assertSee('Phase 1 keeps shop scope review-only until the next thin write slice is ready.')
             ->assertSee('Publish posture')
             ->assertSee('Draft-safe only')
-            ->assertSee('Publishing remains blocked even though role identity can already be saved in Laravel.')
+            ->assertSee('Publishing remains blocked even though role identity and status can already be saved in Laravel.')
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
@@ -1000,6 +1004,7 @@ class AdminDashboardTest extends TestCase
         $role = Role::create([
             'name' => 'Shop Manager',
             'slug' => 'shop-manager-live',
+            'is_active' => true,
         ]);
 
         $permissionA = Permission::create([
@@ -1023,6 +1028,7 @@ class AdminDashboardTest extends TestCase
         $draftRole = Role::create([
             'name' => 'Cashier Draft',
             'slug' => 'cashier-draft-live',
+            'is_active' => false,
         ]);
 
         $user = User::factory()->create();
@@ -1056,6 +1062,7 @@ class AdminDashboardTest extends TestCase
         $role = Role::create([
             'name' => 'Shop Manager',
             'slug' => 'shop-manager-selected-role',
+            'is_active' => true,
         ]);
 
         $permission = Permission::create([
@@ -1089,6 +1096,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create new role')
             ->assertSee('href="/admin/roles-permissions#live-form"', false)
             ->assertSee('action="/admin/roles-permissions/'.$role->id.'"', false)
+            ->assertSee('Laravel status')
+            ->assertSee('selected>Active</option>', false)
             ->assertSee('Scope rollout')
             ->assertSee('Shop scope visible in review')
             ->assertSee('Publish posture')
@@ -1225,6 +1234,7 @@ class AdminDashboardTest extends TestCase
         $response = $this->actingAs($user)->post(route('admin.roles-permissions.store'), [
             'name' => 'Branch Supervisor',
             'slug' => 'Branch Supervisor',
+            'is_active' => '1',
         ]);
 
         $role = Role::query()->where('name', 'Branch Supervisor')->firstOrFail();
@@ -1237,6 +1247,7 @@ class AdminDashboardTest extends TestCase
             'id' => $role->id,
             'name' => 'Branch Supervisor',
             'slug' => 'branch-supervisor',
+            'is_active' => true,
         ]);
     }
 
@@ -1288,6 +1299,7 @@ class AdminDashboardTest extends TestCase
         $response = $this->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
             'name' => 'Branch Operations Lead',
             'slug' => 'Branch Operations Lead',
+            'is_active' => '1',
         ]);
 
         $response
@@ -1298,6 +1310,7 @@ class AdminDashboardTest extends TestCase
             'id' => $role->id,
             'name' => 'Branch Operations Lead',
             'slug' => 'branch-operations-lead',
+            'is_active' => true,
         ]);
     }
 
