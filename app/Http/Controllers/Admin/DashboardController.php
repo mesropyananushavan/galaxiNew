@@ -53,10 +53,29 @@ class DashboardController extends Controller
         );
 
         return $shop ? $this->workspaceLink(
-            label: sprintf('Open latest shop review: %s (%s)', $shop->name, $shop->is_active ? 'active' : 'inactive'),
+            label: sprintf('%s: %s (%s)', $this->latestShopWorkspaceLabel($shop), $shop->name, $shop->is_active ? 'active' : 'inactive'),
             routeName: 'admin.shops.index',
             parameters: ['shop' => $shop->id],
         ) : null;
+    }
+
+    protected function latestShopWorkspaceLabel(Shop $shop): string
+    {
+        if (! $this->isShopScopedAdmin()) {
+            return 'Open latest shop review';
+        }
+
+        if (! $shop->is_active) {
+            return 'Open latest shop review';
+        }
+
+        $shop->loadCount(['cardHolders', 'cards']);
+
+        if ($shop->card_holders_count === 0 && $shop->cards_count === 0) {
+            return 'Open branch setup';
+        }
+
+        return 'Open latest shop review';
     }
 
     protected function latestCardHolderWorkspace(): ?array
