@@ -1481,6 +1481,7 @@ class ResourceIndexController extends Controller
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
             ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleFreshnessLabel($selectedRole)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->rolesPermissionsLastSavedLabel($selectedRole)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
@@ -1567,6 +1568,18 @@ class ResourceIndexController extends Controller
             : sprintf('This role was last updated in Laravel on %s, so the review workspace now reflects post-creation access metadata.', $selectedRole->updated_at->format('Y-m-d H:i'));
     }
 
+    private function rolesPermissionsLastSavedLabel(Role $selectedRole): string
+    {
+        return $selectedRole->updated_at?->format('Y-m-d H:i') ?? 'timestamp visibility pending';
+    }
+
+    private function rolesPermissionsLastSavedTimelineDescription(Role $selectedRole): string
+    {
+        return $selectedRole->updated_at !== null
+            ? sprintf('The latest saved Laravel timestamp for this role is %s, giving operators a concrete checkpoint for the current access shell.', $selectedRole->updated_at->format('Y-m-d H:i'))
+            : 'This role does not expose a latest saved Laravel timestamp yet, so the current access shell should stay in review-only posture.';
+    }
+
     private function rolesPermissionsScopeRolloutValue(mixed $scope): string
     {
         return $scope->isNotEmpty() ? 'shop-scope-visible' : 'shop-scope-pending';
@@ -1646,6 +1659,11 @@ class ResourceIndexController extends Controller
                 'description' => $this->rolesPermissionsLifecycleTimelineDescription($selectedRole),
             ],
             [
+                'title' => sprintf('%s last saved timestamp reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $this->rolesPermissionsLastSavedTimelineDescription($selectedRole),
+            ],
+            [
                 'title' => sprintf('%s scope posture reflected from model state', $selectedRole->name),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsScopeRolloutTimelineDescription($scope),
@@ -1681,6 +1699,7 @@ class ResourceIndexController extends Controller
                 ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
             ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleDependencyLabel($selectedRole)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->rolesPermissionsLastSavedLabel($selectedRole)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageDependencyLabel($scope)],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
