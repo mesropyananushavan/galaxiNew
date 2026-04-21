@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Shop-scoped cardholders workspace boundary checkpoint
+- Carried the new shop-target access boundary into the live `cardholders` workspace, so shop-scoped admins now only get holder review links and latest-holder shortcuts for records attached to their own branch.
+- Kept the change low-risk and read-only: inaccessible selected-holder queries now fall back to the index state instead of opening cross-shop holder context, while bootstrap access still keeps the broader setup posture.
+- Added focused coverage for hidden cross-shop holder links and inaccessible selected-holder fallback, then re-ran the `cardholders` slice, `6 passed`.
+
+### Next step after shop-scoped cardholders workspace boundary checkpoint
+- Apply the same shop-aware read boundary to the live `cards` workspace so the main Phase 1 operational review surfaces align on branch scope before deeper policy work starts.
+
 ### Shop-scoped shops workspace boundary checkpoint
 - Reused the new shop-target access helper inside the live `shops` workspace, so scoped admins now only get review links and latest-shop shortcuts for branches they are actually allowed to review.
 - Kept the step Phase 1 safe by limiting the boundary to the `shops` read slice: inaccessible selected-shop queries now fall back cleanly to the index state instead of opening a cross-shop review context.

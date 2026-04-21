@@ -1603,6 +1603,122 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('selected for Laravel review');
     }
 
+    public function test_cardholders_page_hides_other_shop_holder_review_links_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Holder Home',
+            'code' => 'galaxy-holder-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Holder Other',
+            'code' => 'galaxy-holder-other',
+            'is_active' => true,
+        ]);
+
+        $assignedHolder = CardHolder::create([
+            'shop_id' => $assignedShop->id,
+            'full_name' => 'Assigned Holder',
+            'phone' => '+37491111111',
+            'email' => 'assigned-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $otherHolder = CardHolder::create([
+            'shop_id' => $otherShop->id,
+            'full_name' => 'Other Holder',
+            'phone' => '+37492222222',
+            'email' => 'other-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Holder Reviewer',
+            'slug' => 'scoped-holder-reviewer-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped holder workspace',
+            'slug' => 'review-scoped-holder-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/cardholders');
+
+        $response
+            ->assertOk()
+            ->assertSee('href="/admin/cardholders?cardholder='.$assignedHolder->id.'"', false)
+            ->assertDontSee('href="/admin/cardholders?cardholder='.$otherHolder->id.'"', false)
+            ->assertSee('Review latest saved holder')
+            ->assertSee('href="/admin/cardholders?cardholder='.$assignedHolder->id.'"', false);
+    }
+
+    public function test_cardholders_page_ignores_inaccessible_selected_holder_query_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Holder Review Home',
+            'code' => 'galaxy-holder-review-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Holder Review Other',
+            'code' => 'galaxy-holder-review-other',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'shop_id' => $assignedShop->id,
+            'full_name' => 'Assigned Holder Review',
+            'phone' => '+37493333333',
+            'email' => 'assigned-holder-review@example.com',
+            'is_active' => true,
+        ]);
+
+        $otherHolder = CardHolder::create([
+            'shop_id' => $otherShop->id,
+            'full_name' => 'Other Holder Review',
+            'phone' => '+37494444444',
+            'email' => 'other-holder-review@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Holder Selector',
+            'slug' => 'scoped-holder-selector-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Select scoped holder workspace',
+            'slug' => 'select-scoped-holder-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$otherHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Assigned Holder Review')
+            ->assertSee('Other Holder Review')
+            ->assertDontSee('Back to all holders')
+            ->assertDontSee('Reviewing: Other Holder Review')
+            ->assertDontSee('Selected holder')
+            ->assertSee('Review latest saved holder');
+    }
+
     public function test_authenticated_user_can_access_checks_points_operational_index_shape(): void
     {
         $user = User::factory()->create();

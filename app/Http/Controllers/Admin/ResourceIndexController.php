@@ -741,6 +741,12 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
+        $user = request()->user();
+        $adminUser = $user instanceof User ? $user : null;
+        $accessibleCardHolders = $adminUser instanceof User
+            ? $cardHolders->filter(fn (CardHolder $cardHolder): bool => $adminUser->canAccessShop($cardHolder->shop))->values()
+            : $cardHolders;
+
         $page['metrics'] = [
             ['label' => 'Active holders', 'value' => (string) $cardHolders->where('is_active', true)->count()],
             ['label' => 'Inactive holders', 'value' => (string) $cardHolders->where('is_active', false)->count()],
@@ -748,7 +754,9 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $cardHolders->map(fn (CardHolder $cardHolder): array => [
-            $this->linkedTableCell($cardHolder->full_name, 'admin.cardholders.index', ['cardholder' => $cardHolder->id]),
+            $adminUser instanceof User && ! $adminUser->canAccessShop($cardHolder->shop)
+                ? $cardHolder->full_name
+                : $this->linkedTableCell($cardHolder->full_name, 'admin.cardholders.index', ['cardholder' => $cardHolder->id]),
             $cardHolder->phone ?? '—',
             $cardHolder->shop?->name ?? 'Unassigned',
             (string) $cardHolder->cards_count,
@@ -756,7 +764,7 @@ class ResourceIndexController extends Controller
             $cardHolder->updated_at?->format('Y-m-d') ?? '—',
         ])->all();
 
-        $latestCardHolder = $cardHolders->sortByDesc('id')->first();
+        $latestCardHolder = $accessibleCardHolders->sortByDesc('id')->first();
 
         if ($latestCardHolder !== null) {
             $page = $this->appendPageAction($page, [
@@ -775,6 +783,10 @@ class ResourceIndexController extends Controller
         $selectedCardHolder = $cardHolders->firstWhere('id', $selectedCardHolderId);
 
         if (! $selectedCardHolder instanceof CardHolder) {
+            return $page;
+        }
+
+        if ($adminUser instanceof User && ! $adminUser->canAccessShop($selectedCardHolder->shop)) {
             return $page;
         }
 
