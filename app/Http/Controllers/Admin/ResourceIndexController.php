@@ -977,6 +977,16 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => sprintf('This branch is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedShop->is_active ? 'active' : 'paused'),
             ],
+            [
+                'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedShop->name),
+                'time' => 'Current request',
+                'description' => $this->shopsLifecycleFreshnessDescription($selectedShop),
+            ],
+            [
+                'title' => sprintf('%s last saved timestamp reflected from model state', $selectedShop->name),
+                'time' => 'Current request',
+                'description' => sprintf('The latest saved Laravel timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.', $this->shopsLastSavedLabel($selectedShop)),
+            ],
         ];
 
         $page['dependencyStatus'] = $this->shopsSelectedShopDependencyStatus($selectedShop);
@@ -1996,6 +2006,8 @@ class ResourceIndexController extends Controller
                 ? 'Live branch review, this Laravel shop already carries operational visibility and should stay parity-first.'
                 : 'Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.'],
             ['label' => 'Operational readiness', 'value' => $this->shopsOperationalReadiness($selectedShop)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->shopsLastSavedLabel($selectedShop)],
             ['label' => 'Code', 'value' => $selectedShop->code],
             ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
             ['label' => 'Manager guidance', 'value' => $selectedShop->users_count > 0
@@ -2023,11 +2035,42 @@ class ResourceIndexController extends Controller
         };
     }
 
+    private function shopsLifecycleFreshnessLabel(Shop $selectedShop): string
+    {
+        if ($selectedShop->updated_at === null || $selectedShop->created_at === null) {
+            return 'timestamp visibility pending';
+        }
+
+        return $selectedShop->updated_at->equalTo($selectedShop->created_at)
+            ? 'newly created in Laravel review'
+            : 'updated after initial Laravel creation';
+    }
+
+    private function shopsLifecycleFreshnessDescription(Shop $selectedShop): string
+    {
+        if ($selectedShop->updated_at === null || $selectedShop->created_at === null) {
+            return 'This branch does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.';
+        }
+
+        if ($selectedShop->updated_at->equalTo($selectedShop->created_at)) {
+            return sprintf('This branch was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved branch shell.', $selectedShop->created_at->format('Y-m-d H:i:s T'));
+        }
+
+        return sprintf('This branch was first created in Laravel on %s and last updated on %s, so operators are reviewing a branch shell that has already changed after initial setup.', $selectedShop->created_at->format('Y-m-d H:i:s T'), $selectedShop->updated_at->format('Y-m-d H:i:s T'));
+    }
+
+    private function shopsLastSavedLabel(Shop $selectedShop): string
+    {
+        return $selectedShop->updated_at?->format('Y-m-d H:i:s T') ?? 'Timestamp pending';
+    }
+
     private function shopsSelectedShopDependencyStatus(Shop $selectedShop): array
     {
         return [
             ['label' => 'Selected shop', 'value' => $selectedShop->name],
             ['label' => 'Branch posture', 'value' => 'Selected-shop review is running in Laravel-backed read mode only'],
+            ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->shopsLastSavedLabel($selectedShop)],
             ['label' => 'Status posture', 'value' => $selectedShop->is_active
                 ? 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'
                 : 'This paused branch should stay review-only until recovery and ownership parity are verified.'],
