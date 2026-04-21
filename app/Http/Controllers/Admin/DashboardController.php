@@ -9,6 +9,7 @@ use App\Models\CardType;
 use App\Models\Permission;
 use App\Models\Role;
 use App\Models\Shop;
+use App\Models\User;
 use Illuminate\Contracts\View\View;
 
 class DashboardController extends Controller
@@ -49,7 +50,10 @@ class DashboardController extends Controller
 
     protected function latestShopWorkspace(): ?array
     {
-        $shop = Shop::query()->latest('id')->first();
+        $shop = $this->latestAccessibleRecord(
+            Shop::query()->latest('id')->get(),
+            fn (Shop $shop): ?Shop => $shop,
+        );
 
         return $shop ? $this->workspaceLink(
             label: sprintf('Open latest shop review: %s (%s)', $shop->name, $shop->is_active ? 'active' : 'inactive'),
@@ -60,7 +64,10 @@ class DashboardController extends Controller
 
     protected function latestCardHolderWorkspace(): ?array
     {
-        $cardHolder = CardHolder::query()->latest('id')->first();
+        $cardHolder = $this->latestAccessibleRecord(
+            CardHolder::query()->with('shop')->latest('id')->get(),
+            fn (CardHolder $cardHolder): ?Shop => $cardHolder->shop,
+        );
 
         if (! $cardHolder) {
             return null;
@@ -77,7 +84,10 @@ class DashboardController extends Controller
 
     protected function latestCardWorkspace(): ?array
     {
-        $card = Card::query()->latest('id')->first();
+        $card = $this->latestAccessibleRecord(
+            Card::query()->with('shop')->latest('id')->get(),
+            fn (Card $card): ?Shop => $card->shop,
+        );
 
         return $card ? $this->workspaceLink(
             label: sprintf('Open latest card review: %s (%s)', $card->number, $card->status),
@@ -114,5 +124,24 @@ class DashboardController extends Controller
             'label' => $label,
             'route' => route($routeName, $parameters),
         ];
+    }
+
+    protected function adminUser(): ?User
+    {
+        $user = request()->user();
+
+        return $user instanceof User ? $user : null;
+    }
+
+    protected function latestAccessibleRecord(iterable $records, callable $shopResolver): mixed
+    {
+        $adminUser = $this->adminUser();
+
+        if (! $adminUser instanceof User) {
+            return collect($records)->first();
+        }
+
+        return collect($records)
+            ->first(fn (mixed $record): bool => $adminUser->canAccessShop($shopResolver($record)));
     }
 }

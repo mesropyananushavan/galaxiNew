@@ -461,6 +461,91 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Open latest role review:');
     }
 
+    public function test_dashboard_latest_live_work_shortcuts_respect_shop_scope(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Dashboard Home Shop',
+            'code' => 'dashboard-home-shop',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Dashboard Other Shop',
+            'code' => 'dashboard-other-shop',
+            'is_active' => true,
+        ]);
+
+        $assignedHolder = CardHolder::create([
+            'shop_id' => $assignedShop->id,
+            'full_name' => 'Scoped Dashboard Holder',
+            'phone' => '+37495555555',
+            'email' => 'scoped-dashboard-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $otherHolder = CardHolder::create([
+            'shop_id' => $otherShop->id,
+            'full_name' => 'Other Dashboard Holder',
+            'phone' => '+37496666666',
+            'email' => 'other-dashboard-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Dashboard Scoped Tier',
+            'slug' => 'dashboard-scoped-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $assignedCard = Card::create([
+            'shop_id' => $assignedShop->id,
+            'card_holder_id' => $assignedHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DASH-001',
+            'status' => 'active',
+        ]);
+
+        Card::create([
+            'shop_id' => $otherShop->id,
+            'card_holder_id' => $otherHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DASH-002',
+            'status' => 'blocked',
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Dashboard Scoped Reviewer',
+            'slug' => 'dashboard-scoped-reviewer',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped dashboard shortcuts',
+            'slug' => 'review-scoped-dashboard-shortcuts',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Open latest shop review: Dashboard Home Shop (active)')
+            ->assertSee('/admin/shops?shop='.$assignedShop->id)
+            ->assertDontSee('Open latest shop review: Dashboard Other Shop (active)')
+            ->assertSee('Open latest cardholder review: Scoped Dashboard Holder (active)')
+            ->assertSee('/admin/cardholders?cardholder='.$assignedHolder->id)
+            ->assertDontSee('Open latest cardholder review: Other Dashboard Holder (active)')
+            ->assertSee('Open latest card review: GX-DASH-001 (active)')
+            ->assertSee('/admin/cards?card='.$assignedCard->id)
+            ->assertDontSee('Open latest card review: GX-DASH-002 (blocked)');
+    }
+
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void
     {
         $user = User::factory()->create();

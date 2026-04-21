@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Shop-scoped dashboard latest-work shortcuts checkpoint
+- Reused the new shop-aware access baseline inside `DashboardController`, so the resume-latest shortcuts for `shops`, `cardholders`, and `cards` now pick the latest record the current scoped admin can actually review.
+- Kept the step Phase 1 safe by limiting the change to dashboard shortcut selection only: bootstrap users still see the global latest items, while shop-scoped admins no longer get cross-branch quick links from the first admin screen.
+- Added focused dashboard coverage for scoped latest-shop, latest-holder, and latest-card shortcuts, then re-ran the dashboard slice, `4 passed`.
+
+### Next step after shop-scoped dashboard latest-work shortcuts checkpoint
+- Either extract the shared dashboard shop-aware filtering into a reusable helper alongside the resource controller pattern, or carry the same scoped posture into another live entry surface that still exposes global latest context.
+
 ### Shop-aware live workspace helper extraction checkpoint
 - Extracted the repeated shop-aware review boundary in `ResourceIndexController` into small shared helpers for current admin-user resolution, record filtering, and inaccessible-shop checks.
 - Rewired the live `shops`, `cardholders`, and `cards` workspaces to use the shared helper path without changing their current branch-scope behavior, which reduces drift as more Phase 1 scoped review surfaces arrive.
