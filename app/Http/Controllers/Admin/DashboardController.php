@@ -84,7 +84,7 @@ class DashboardController extends Controller
         );
 
         if (! $cardHolder) {
-            return $this->scopedSetupWorkspace(
+            return $this->scopedLatestSetupWorkspace(
                 relation: 'cardHolders',
                 label: 'Open first cardholder setup in assigned branch',
                 routeName: 'admin.cardholders.index',
@@ -111,7 +111,7 @@ class DashboardController extends Controller
             label: sprintf('Open latest card review: %s (%s)', $card->number, $card->status),
             routeName: 'admin.cards.index',
             parameters: ['card' => $card->id],
-        ) : $this->scopedSetupWorkspace(
+        ) : $this->scopedLatestSetupWorkspace(
             relation: 'cards',
             label: 'Open first card setup in assigned branch',
             routeName: 'admin.cards.index',
@@ -148,7 +148,7 @@ class DashboardController extends Controller
         ];
     }
 
-    protected function scopedSetupWorkspace(string $relation, string $label, string $routeName): ?array
+    protected function scopedLatestSetupWorkspace(string $relation, string $label, string $routeName): ?array
     {
         if (! $this->isShopScopedAdmin()) {
             return null;
