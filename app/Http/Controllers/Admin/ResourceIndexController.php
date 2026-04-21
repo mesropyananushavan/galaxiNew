@@ -1196,6 +1196,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Slug', 'value' => $selectedCardType->slug],
             ['label' => 'Points rate', 'value' => number_format((float) $selectedCardType->points_rate, 2).'x'],
             ['label' => 'Laravel status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
+            ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
             [
                 'label' => 'Status guidance',
                 'value' => $selectedCardType->is_active
@@ -1261,6 +1262,13 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => sprintf('This tier is currently marked as %s in Laravel and the management context card now mirrors that state.', $selectedCardType->is_active ? 'active' : 'draft'),
             ],
+            [
+                'title' => sprintf('%s review note reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $selectedCardType->review_note !== null && trim($selectedCardType->review_note) !== ''
+                    ? sprintf('The current Laravel tier review note says: %s', $selectedCardType->review_note)
+                    : 'No Laravel tier review note is saved yet, so parity-sensitive tier context still depends on the surrounding workspace cues.',
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
@@ -1268,6 +1276,7 @@ class ResourceIndexController extends Controller
         $page['dependencyStatus'] = [
             ['label' => 'Selected record', 'value' => $selectedCardType->name],
             ['label' => 'Edit flow state', 'value' => 'Shared live form is running in request-driven PATCH mode'],
+            ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
             ['label' => 'Current status posture', 'value' => $selectedCardType->is_active ? 'Active tiers should stay stable unless parity checks are complete' : 'Draft tiers are the safe place for parity-first validation and copy changes'],
             ['label' => 'Rule-import posture', 'value' => $selectedCardType->is_active ? 'Keep imports blocked until active-tier accrual parity is verified' : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet'],
             ['label' => 'Publish posture', 'value' => $selectedCardType->is_active ? 'Live tiers need parity confirmation before further publish-style changes' : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly'],
@@ -1293,6 +1302,7 @@ class ResourceIndexController extends Controller
             'slug' => $selectedCardType->slug,
             'points_rate' => (string) $selectedCardType->points_rate,
             'is_active' => $selectedCardType->is_active ? '1' : '0',
+            'review_note' => $selectedCardType->review_note ?? '',
         ];
 
         return $page;

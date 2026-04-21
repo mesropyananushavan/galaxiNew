@@ -14,7 +14,15 @@ class CardTypeStoreController extends Controller
 
     public function __invoke(StoreCardTypeRequest $request): RedirectResponse
     {
-        $cardType = CardType::create($request->validated());
+        $validated = $request->validated();
+
+        $cardType = CardType::create([
+            'name' => $validated['name'],
+            'slug' => $validated['slug'],
+            'points_rate' => $validated['points_rate'],
+            'is_active' => $request->boolean('is_active'),
+            'review_note' => $validated['review_note'] ?? null,
+        ]);
 
         return $this->redirectToSelectedCardType(
             $cardType,

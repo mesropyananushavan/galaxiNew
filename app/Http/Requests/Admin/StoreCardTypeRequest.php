@@ -22,6 +22,7 @@ class StoreCardTypeRequest extends FormRequest
             'slug' => ['required', 'string', 'max:255', 'alpha_dash', 'unique:card_types,slug'],
             'points_rate' => ['required', 'numeric', 'min:0'],
             'is_active' => ['required', 'boolean'],
+            'review_note' => ['nullable', 'string', 'max:1000'],
         ];
     }
 
@@ -41,6 +42,7 @@ class StoreCardTypeRequest extends FormRequest
             'slug' => 'card type slug',
             'points_rate' => 'points rate',
             'is_active' => 'status',
+            'review_note' => 'review note',
         ];
     }
 
@@ -49,6 +51,7 @@ class StoreCardTypeRequest extends FormRequest
         return [
             'slug.unique' => 'This card type slug is already in use.',
             'is_active.boolean' => 'The status field must be Active or Draft.',
+            'review_note.max' => 'Keep the review note under 1000 characters so the tier workspace stays operator-friendly.',
         ];
     }
 

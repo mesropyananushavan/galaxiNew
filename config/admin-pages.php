@@ -498,6 +498,7 @@ return [
                     ['label' => 'Active', 'value' => '1'],
                     ['label' => 'Draft', 'value' => '0'],
                 ]],
+                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep the tier aligned with the legacy accrual workflow before widening rule imports.', 'required' => false, 'placeholder' => 'Capture parity-sensitive tier notes for the current Laravel card type.', 'help' => 'Use this safe Phase 1 note to track tier parity context without opening rule-import writes.', 'attributes' => ['maxlength' => '1000']],
             ],
         ],
         'form' => [

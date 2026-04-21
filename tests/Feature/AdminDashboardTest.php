@@ -4276,6 +4276,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime',
             'points_rate' => '1.75',
             'is_active' => false,
+            'review_note' => 'Keep this tier in draft until legacy accrual parity is confirmed.',
         ]);
 
         $user = User::factory()->create();
@@ -4303,6 +4304,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1.75x')
             ->assertSee('Laravel status:')
             ->assertSee('draft')
+            ->assertSee('Review note:')
+            ->assertSee('Keep this tier in draft until legacy accrual parity is confirmed.')
             ->assertSee('Status guidance:')
             ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
             ->assertSee('Rule-import blocker:')
@@ -4317,10 +4320,14 @@ class AdminDashboardTest extends TestCase
             ->assertSee('The shared card-type form is now loading this saved tier directly from Laravel data instead of preview-only defaults.')
             ->assertSee('Galaxy Prime status reflected from model state')
             ->assertSee('This tier is currently marked as draft in Laravel and the management context card now mirrors that state.')
+            ->assertSee('Galaxy Prime review note reflected from model state')
+            ->assertSee('The current Laravel tier review note says: Keep this tier in draft until legacy accrual parity is confirmed.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Selected record:')
             ->assertSee('Edit flow state:')
             ->assertSee('Shared live form is running in request-driven PATCH mode')
+            ->assertSee('Review note:')
+            ->assertSee('Keep this tier in draft until legacy accrual parity is confirmed.')
             ->assertSee('Current status posture:')
             ->assertSee('Draft tiers are the safe place for parity-first validation and copy changes')
             ->assertSee('Rule-import posture:')
@@ -5182,10 +5189,13 @@ class AdminDashboardTest extends TestCase
             'slug' => 'Galaxy Prime Plus',
             'points_rate' => '2.50',
             'is_active' => 'true',
+            'review_note' => 'Keep this tier aligned with the legacy accrual workflow before widening imports.',
         ]);
 
+        $cardType = CardType::query()->where('slug', 'galaxy-prime-plus')->firstOrFail();
+
         $response
-            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime Plus" was created.');
 
         $this->assertDatabaseHas('card_types', [
@@ -5193,6 +5203,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime-plus',
             'points_rate' => '2.50',
             'is_active' => true,
+            'review_note' => 'Keep this tier aligned with the legacy accrual workflow before widening imports.',
         ]);
     }
 
@@ -5219,6 +5230,22 @@ class AdminDashboardTest extends TestCase
             ->assertSessionHasErrors([
                 'slug' => 'This card type slug is already in use.',
                 'is_active' => 'The status field must be Active or Draft.',
+            ]);
+
+        $longReviewNote = str_repeat('c', 1001);
+
+        $reviewNoteResponse = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => 'Galaxy Prime Review Copy',
+            'slug' => 'galaxy-prime-review-copy',
+            'points_rate' => '1.50',
+            'is_active' => '1',
+            'review_note' => $longReviewNote,
+        ]);
+
+        $reviewNoteResponse
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors([
+                'review_note' => 'Keep the review note under 1000 characters so the tier workspace stays operator-friendly.',
             ]);
     }
 
@@ -5253,6 +5280,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'Galaxy Prime Plus',
             'points_rate' => '2.25',
             'is_active' => 'false',
+            'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
         ]);
 
         $response
@@ -5265,6 +5293,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime-plus',
             'points_rate' => '2.25',
             'is_active' => false,
+            'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
         ]);
     }
 
@@ -5314,6 +5343,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime-plus-flash',
             'points_rate' => '2.25',
             'is_active' => false,
+            'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
         ]);
 
         $response = $this->actingAs($user)
@@ -5330,6 +5360,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card type "Galaxy Prime Plus" was updated.')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime Plus')
+            ->assertSee('Review note:')
+            ->assertSee('Document the first Laravel tier adjustments before widening rule imports.')
             ->assertSee('Edit card type in Laravel')
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }
@@ -5388,7 +5420,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#live-form')
             ->assertSessionHasErrors([
                 'slug' => 'This card type slug is already in use.',
                 'is_active' => 'The status field must be Active or Draft.',

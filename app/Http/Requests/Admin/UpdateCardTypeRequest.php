@@ -11,8 +11,7 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
     {
         $cardType = $this->route('cardType');
 
-        return [
-            'name' => ['required', 'string', 'max:255'],
+        return array_merge(parent::rules(), [
             'slug' => [
                 'required',
                 'string',
@@ -20,9 +19,7 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
                 'alpha_dash',
                 Rule::unique('card_types', 'slug')->ignore($cardType),
             ],
-            'points_rate' => ['required', 'numeric', 'min:0'],
-            'is_active' => ['required', 'boolean'],
-        ];
+        ]);
     }
 
     protected function getRedirectUrl(): string

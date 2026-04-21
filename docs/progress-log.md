@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Card-types persisted review-note slice checkpoint
+- Reused the new textarea-backed live form pattern on `card-types` by adding a thin persisted `review_note` slice, including a nullable column on `card_types`, request validation, explicit create/update persistence, and selected-tier rendering in summary, timeline, and dependency status.
+- Added operator-friendly max-length validation messaging for the new card-type review note and extended focused card-type feature coverage across create, update, selected edit context, and validation paths.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_type_live_admin_form_normalizes_slug_and_boolean_input_before_store|test_card_type_live_admin_form_returns_operator_friendly_validation_messages|test_card_type_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_card_type_from_live_admin_flow|test_card_type_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_card_types_page_shows_update_success_flash_message|test_card_type_update_returns_validation_errors_for_invalid_payload|test_card_type_update_returns_operator_friendly_validation_messages|test_card_type_update_validation_redirects_to_selected_index_without_referrer|test_card_type_update_validation_keeps_selected_edit_context_after_redirect|test_card_type_update_validation_keeps_operator_input_in_selected_edit_mode)'`, `12 passed`, after adding the card-type review-note slice.
+
+### Next step after card-types persisted review-note slice checkpoint
+- Surface the new card-type review note on index-level catalog cues, or reuse the same textarea-backed persisted metadata pattern on another Galaxy admin surface.
+
 ### Roles-permissions review-note validation hardening checkpoint
 - Hardened the new persisted `review_note` slice with an operator-friendly max-length validation message, so textarea-backed role notes fail with workspace-specific guidance instead of generic validation copy.
 - Added focused create and update validation coverage for overlong review notes, preserving the existing `#live-form` redirect behavior on both POST and PATCH flows.
