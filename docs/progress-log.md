@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Cardholders operational readiness cue checkpoint
+- Added an `Operational readiness` cue to the Laravel-backed selected-holder review context, so the cardholders surface now exposes a simple Galaxy-style profile posture instead of relying only on generic summary and dependency fields.
+- The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded holder status and linked-card counts, with states such as `inactive profile, review only` and `linked profile, operator-visible`.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cardholders_placeholder_page|test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_replaces_preview_rows_with_model_backed_holder_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query)'`, `5 passed`, after adding the cardholders readiness cue.
+
+### Next step after cardholders operational readiness cue checkpoint
+- Add one more Laravel-backed operator cue to shops, or move toward the next thin write-path foundation slice.
+
 ### Cards operational readiness cue checkpoint
 - Added an `Operational readiness` cue to the Laravel-backed selected-card review context, so the cards surface now exposes a simple Galaxy-style inventory posture instead of relying only on generic summary and dependency fields.
 - The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded card status and holder linkage, with states such as `blocked inventory, operator review only` and `issued inventory, parity-sensitive`.

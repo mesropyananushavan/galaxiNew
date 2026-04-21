@@ -1595,6 +1595,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review mode', 'value' => $selectedCardHolder->is_active
                 ? 'Live profile review, this holder already participates in the Laravel lookup surface and should stay parity-first.'
                 : 'Dormant-profile review, this inactive holder stays safer for parity checks before any reactivation path is trusted.'],
+            ['label' => 'Operational readiness', 'value' => $this->cardholdersOperationalReadiness($selectedCardHolder)],
             ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCardHolder->shop !== null
@@ -1609,6 +1610,15 @@ class ResourceIndexController extends Controller
                     : 'This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
             ],
         ];
+    }
+
+    private function cardholdersOperationalReadiness(CardHolder $selectedCardHolder): string
+    {
+        return match (true) {
+            ! $selectedCardHolder->is_active => 'inactive profile, review only',
+            $selectedCardHolder->cards_count > 0 => 'linked profile, operator-visible',
+            default => 'active profile, linkage build-out pending',
+        };
     }
 
     private function cardholdersSelectedHolderDependencyStatus(CardHolder $selectedCardHolder): array

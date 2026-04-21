@@ -2091,6 +2091,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected holder')
             ->assertSee('Review mode')
             ->assertSee('Dormant-profile review, this inactive holder stays safer for parity checks before any reactivation path is trusted.')
+            ->assertSee('Operational readiness')
+            ->assertSee('inactive profile, review only')
             ->assertSee('Phone')
             ->assertSee('Shop')
             ->assertSee('Shop guidance')
