@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch identity cue checkpoint
+- Extended the assigned-branch snapshot with `Branch code` and `Primary manager`, so the scoped dashboard now shows not only branch-local metrics and latest records but also the key identity cues operators used to orient themselves in the old Galaxy branch console.
+- Kept the step low-risk and read-only by reusing the already loaded assigned shop and ordering visible branch users for a stable primary-manager preview.
+- Extended the focused dashboard assertions for the new identity cues and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard branch identity cue checkpoint
+- Add one more small branch-specific operational cue to the scoped dashboard, or start converting one of these scoped dashboard cues into a stricter branch-aware boundary.
+
 ### Dashboard branch snapshot status cue checkpoint
 - Extended the assigned-branch snapshot with `Latest holder status` and `Latest card status`, so scoped admins now see the current operational posture of the most recent branch records before jumping into review.
 - Kept the step low-risk and read-only by deriving the new status cues directly from the same latest branch-local holder/card records already used by the snapshot and quick links.

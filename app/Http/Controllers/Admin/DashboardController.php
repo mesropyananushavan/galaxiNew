@@ -191,6 +191,7 @@ class DashboardController extends Controller
         }
 
         $shop->loadCount(['cardHolders', 'cards', 'users']);
+        $shop->loadMissing(['users' => fn ($query) => $query->orderBy('name')]);
 
         $latestHolder = CardHolder::query()
             ->where('shop_id', $shop->id)
@@ -225,6 +226,8 @@ class DashboardController extends Controller
             'label' => 'Assigned branch snapshot',
             'items' => [
                 ['label' => 'Branch', 'value' => $shop->name],
+                ['label' => 'Branch code', 'value' => $shop->code],
+                ['label' => 'Primary manager', 'value' => $shop->users->first()?->name ?? 'Unassigned'],
                 ['label' => 'Laravel status', 'value' => $shop->is_active ? 'active' : 'paused'],
                 ['label' => 'Visible cardholders', 'value' => (string) $shop->card_holders_count],
                 ['label' => 'Visible cards', 'value' => (string) $shop->cards_count],

@@ -515,6 +515,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $user = User::factory()->create([
+            'name' => 'Scoped Dashboard Manager',
             'shop_id' => $assignedShop->id,
         ]);
 
@@ -540,6 +541,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assigned branch snapshot')
             ->assertSee('Branch')
             ->assertSee('Dashboard Home Shop')
+            ->assertSee('Branch code')
+            ->assertSee('dashboard-home-shop')
+            ->assertSee('Primary manager')
+            ->assertSee('Scoped Dashboard Manager')
             ->assertSee('Laravel status')
             ->assertSee('Visible cardholders')
             ->assertSee('Visible cards')
@@ -587,6 +592,8 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Current review scope')
             ->assertDontSee('Shop-scoped admin mode is active.')
             ->assertDontSee('Assigned branch snapshot')
+            ->assertDontSee('Branch code')
+            ->assertDontSee('Primary manager')
             ->assertDontSee('Visible cardholders')
             ->assertDontSee('Visible cards')
             ->assertDontSee('Assigned staff')
