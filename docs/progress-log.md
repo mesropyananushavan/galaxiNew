@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard empty-branch posture test checkpoint
+- Added a focused scoped-dashboard scenario for an active branch with no holders or cards yet, so the new snapshot cues now prove their empty-branch posture instead of only the already-active branch path.
+- Kept the step low-risk by extending test coverage only: the snapshot is now explicitly checked for empty-state branch posture, unknown freshness, no latest-record quick links, and the first-live-record follow-up cue.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`, after covering the new empty-branch path.
+
+### Next step after dashboard empty-branch posture test checkpoint
+- Start turning one scoped dashboard cue into a stricter branch-aware entry boundary, or add a second focused paused-branch scenario so the new branch posture cues cover all three main states.
+
 ### Dashboard branch follow-up cue checkpoint
 - Extended the assigned-branch snapshot with `Suggested follow-up`, so scoped admins now get one compact next-step cue that matches paused, empty, or already-active branch posture.
 - Kept the step low-risk and read-only by deriving the cue from the same assigned-shop and latest branch-local record context already used by the snapshot.
