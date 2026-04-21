@@ -4424,6 +4424,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'gold',
             'points_rate' => '1.50',
             'is_active' => true,
+            'review_note' => 'Keep Gold aligned with the legacy auto-activation workflow.',
         ]);
 
         $partner = CardType::create([
@@ -4443,9 +4444,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('href="/admin/card-types?cardType='.$partner->id.'#live-form"', false)
             ->assertSee('<form method="POST" action="/admin/card-types/'.$gold->id.'/toggle-status"', false)
             ->assertSee('<form method="POST" action="/admin/card-types/'.$partner->id.'/toggle-status"', false)
+            ->assertSee('Keep Gold aligned with the legacy auto-activation workflow.')
+            ->assertSee('No review note saved yet')
             ->assertSee('Active in Laravel flow')
             ->assertSee('Draft in Laravel flow')
-            ->assertSee('Auto after issue')
             ->assertDontSee('>active<', false)
             ->assertDontSee('>draft<', false);
     }
@@ -4524,6 +4526,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'gold',
             'points_rate' => '1.50',
             'is_active' => true,
+            'review_note' => 'Keep Gold aligned with the legacy auto-activation workflow.',
         ]);
 
         CardType::create([
@@ -4548,9 +4551,11 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Active tiers')
             ->assertSee('Draft tiers')
+            ->assertSee('Reviewed tiers')
             ->assertSee('Saved types')
             ->assertDontSee('Imported rules')
             ->assertSee('>2<', false)
+            ->assertSee('>1<', false)
             ->assertSee('>1<', false)
             ->assertSee('>3<', false);
     }

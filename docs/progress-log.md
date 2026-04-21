@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Card-types review-note index visibility checkpoint
+- Surfaced the new persisted card-type `review_note` slice at the catalog level by adding a `Reviewed tiers` metric and a `Review note` table column, so parity-sensitive tier notes are visible before operators drill into selected-tier edit context.
+- Kept the step small and safe: it reuses saved note text on read-only index surfaces and does not widen publish logic, activation behavior, or rule-import writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_replaces_preview_rows_with_model_backed_edit_links|test_card_types_page_replaces_preview_metrics_with_model_backed_counts|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type)'`, `4 passed`, after exposing card-type review-note visibility on the index page.
+
+### Next step after card-types review-note index visibility checkpoint
+- Add one more narrow card-type review metadata cue, or reuse the same persisted metadata pattern on another Galaxy admin surface that already has a live Laravel form.
+
 ### Card-types persisted review-note slice checkpoint
 - Reused the new textarea-backed live form pattern on `card-types` by adding a thin persisted `review_note` slice, including a nullable column on `card_types`, request validation, explicit create/update persistence, and selected-tier rendering in summary, timeline, and dependency status.
 - Added operator-friendly max-length validation messaging for the new card-type review note and extended focused card-type feature coverage across create, update, selected edit context, and validation paths.

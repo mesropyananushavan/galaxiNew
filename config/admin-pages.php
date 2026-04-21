@@ -471,14 +471,15 @@ return [
         'metrics' => [
             ['label' => 'Active tiers', 'value' => '2'],
             ['label' => 'Draft tiers', 'value' => '1'],
+            ['label' => 'Reviewed tiers', 'value' => '1'],
             ['label' => 'Imported rules', 'value' => '0'],
         ],
         'table' => [
-            'columns' => ['Type', 'Slug', 'Points rate', 'Activation', 'Status'],
+            'columns' => ['Type', 'Slug', 'Points rate', 'Review note', 'Status'],
             'rows' => [
-                ['Gold', 'gold', '1.50x', 'Auto after issue', 'active'],
-                ['Silver', 'silver', '1.00x', 'Manual', 'active'],
-                ['Partner', 'partner', '1.20x', 'Manager approval', 'draft'],
+                ['Gold', 'gold', '1.50x', 'Keep Gold aligned with the legacy auto-activation workflow.', 'active'],
+                ['Silver', 'silver', '1.00x', 'No review note saved yet', 'active'],
+                ['Partner', 'partner', '1.20x', 'Draft note pending before rollout.', 'draft'],
             ],
             'filters' => ['Status', 'Activation mode', 'Points rate'],
         ],
