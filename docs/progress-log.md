@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard empty latest-work guidance checkpoint
+- Added a Galaxy-specific Phase 1 note to the empty `Resume latest live work` fallback so the zero-record state now points operators toward first-pass setup across shops, cardholders, cards, and access structure instead of stopping at a generic absence message.
+- Kept the step low-risk and visual-only by changing fallback framing without touching latest-work routing or branch-aware shortcut behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty latest-work guidance update.
+
+### Next step after dashboard empty latest-work guidance checkpoint
+- Add one more Galaxy-specific cue in the migration map itself, or return to a small branch-aware behavior step now that the empty, scoped, and live dashboard states all have stronger Galaxy framing.
+
 ### Dashboard assigned-branch snapshot guidance checkpoint
 - Added a Galaxy-specific operational note to the `Assigned branch snapshot` card so scoped admins get clearer framing around using the snapshot to spot setup gaps and fresh branch activity before opening review screens.
 - Kept the step low-risk and visual-only by changing only snapshot framing copy while preserving the existing branch posture fields and actions.

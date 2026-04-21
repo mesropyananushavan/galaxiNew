@@ -429,6 +429,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Resume latest live work')
             ->assertSee('No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.')
+            ->assertSee('In Phase 1, this usually means the branch is still moving through first-pass setup for shops, cardholders, cards, or access structure.')
             ->assertDontSee('Open latest shop review:')
             ->assertDontSee('Open latest cardholder review:')
             ->assertDontSee('Open latest card review:')
@@ -463,6 +464,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Open latest card type workspace: Partial Dashboard Tier (draft)')
             ->assertSee('/admin/card-types?cardType=1')
             ->assertDontSee('No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.')
+            ->assertDontSee('In Phase 1, this usually means the branch is still moving through first-pass setup for shops, cardholders, cards, or access structure.')
             ->assertDontSee('Open latest cardholder review:')
             ->assertDontSee('Open latest card review:')
             ->assertDontSee('Open latest role review:');

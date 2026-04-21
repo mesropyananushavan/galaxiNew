@@ -130,6 +130,9 @@
             <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;">
                 No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.
             </p>
+            <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+                In Phase 1, this usually means the branch is still moving through first-pass setup for shops, cardholders, cards, or access structure.
+            </p>
         @endif
     </section>
 
