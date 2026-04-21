@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch-specific latest-shop label checkpoint
+- Reused the shared latest-work review label helper for the scoped latest-shop shortcut, so live shop-scoped admins now see `Open latest branch review` while empty assigned branches still keep the setup-oriented `Open branch setup` label.
+- Kept the step low-risk by changing only scoped shortcut wording while preserving the same routes, record selection, and empty-branch setup fallback.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the branch-specific latest-shop label update.
+
+### Next step after dashboard branch-specific latest-shop label checkpoint
+- Decide whether the shared review-label helper should cover one more latest-work surface, or move to another small branch-aware behavior step now that scoped latest-work wording is more consistent across shops, cardholders, and cards.
+
 ### Dashboard latest-work review label helper cleanup checkpoint
 - Extracted the scoped-versus-global latest-work review wording into a shared helper so the branch-specific cardholder and card shortcut labels now read through one small path instead of duplicating the shop-scope check inline.
 - Kept the step low-risk and behavior-safe by preserving the current scoped labels, routes, and empty-branch setup behavior.

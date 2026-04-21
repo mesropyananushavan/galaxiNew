@@ -63,7 +63,10 @@ class DashboardController extends Controller
     {
         return $this->scopedLatestWorkspaceLabel(
             shop: $shop,
-            reviewLabel: 'Open latest shop review',
+            reviewLabel: $this->scopedLatestReviewWorkspaceLabel(
+                scopedLabel: 'Open latest branch review',
+                defaultLabel: 'Open latest shop review',
+            ),
             setupLabel: 'Open branch setup',
             emptyRelations: ['cardHolders', 'cards'],
         );
