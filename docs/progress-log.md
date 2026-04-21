@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch-scope cue checkpoint
+- Added an explicit branch-scope summary to the dashboard for shop-scoped admins, so the first Galaxy admin screen now states when review posture is intentionally anchored to the assigned branch instead of behaving like a neutral starter dashboard.
+- Kept the step low-risk and read-only: the cue appears only for scoped admins who already satisfy the active-shop-plus-permission baseline, while bootstrap users still see the broader setup dashboard without extra scope copy.
+- Added focused dashboard coverage for the new scoped summary and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard branch-scope cue checkpoint
+- Carry the same explicit branch-scope cue into another live entry surface, or start a similarly small authorization step around scoped live review entry points if it can stay Phase 1 safe.
+
 ### Shop-scoped dashboard latest-work shortcuts checkpoint
 - Reused the new shop-aware access baseline inside `DashboardController`, so the resume-latest shortcuts for `shops`, `cardholders`, and `cards` now pick the latest record the current scoped admin can actually review.
 - Kept the step Phase 1 safe by limiting the change to dashboard shortcut selection only: bootstrap users still see the global latest items, while shop-scoped admins no longer get cross-branch quick links from the first admin screen.

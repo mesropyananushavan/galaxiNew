@@ -30,6 +30,7 @@ class DashboardController extends Controller
             'activeCardCount' => Card::query()->where('status', 'active')->count(),
             'roleCount' => Role::query()->count(),
             'permissionCount' => Permission::query()->count(),
+            'dashboardScopeSummary' => $this->dashboardScopeSummary(),
             'liveReviewEntryPoints' => [
                 $this->workspaceLink('Review live shops', 'admin.shops.index'),
                 $this->workspaceLink('Review live cardholders', 'admin.cardholders.index'),
@@ -131,6 +132,22 @@ class DashboardController extends Controller
         $user = request()->user();
 
         return $user instanceof User ? $user : null;
+    }
+
+    protected function dashboardScopeSummary(): ?array
+    {
+        $user = $this->adminUser();
+
+        if (! $user instanceof User || ! $user->hasShopScopedAdminAccess()) {
+            return null;
+        }
+
+        $shopName = $user->shop?->name ?? 'assigned shop';
+
+        return [
+            'label' => 'Current review scope',
+            'value' => sprintf('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to %s while Phase 1 policies are still being mapped.', $shopName),
+        ];
     }
 
     protected function latestAccessibleRecord(iterable $records, callable $shopResolver): mixed

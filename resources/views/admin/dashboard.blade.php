@@ -9,6 +9,13 @@
             so the next vertical slices can attach to the sections we actually need to migrate.
         </p>
 
+        @if (is_array($dashboardScopeSummary ?? null))
+            <div style="margin-top: 16px; padding: 14px 16px; border: 1px solid rgba(158, 163, 184, 0.2); border-radius: 12px; background: rgba(99, 102, 241, 0.08);">
+                <strong style="display: block; margin-bottom: 6px;">{{ $dashboardScopeSummary['label'] }}</strong>
+                <span style="color: var(--text-muted); line-height: 1.6;">{{ $dashboardScopeSummary['value'] }}</span>
+            </div>
+        @endif
+
         <div class="placeholder-grid">
             <article class="metric">
                 <p class="metric-label">Route namespace</p>

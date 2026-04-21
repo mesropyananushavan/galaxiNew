@@ -535,6 +535,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Current review scope')
+            ->assertSee('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to Dashboard Home Shop while Phase 1 policies are still being mapped.')
             ->assertSee('Open latest shop review: Dashboard Home Shop (active)')
             ->assertSee('/admin/shops?shop='.$assignedShop->id)
             ->assertDontSee('Open latest shop review: Dashboard Other Shop (active)')
@@ -544,6 +546,18 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Open latest card review: GX-DASH-001 (active)')
             ->assertSee('/admin/cards?card='.$assignedCard->id)
             ->assertDontSee('Open latest card review: GX-DASH-002 (blocked)');
+    }
+
+    public function test_unscoped_dashboard_does_not_show_shop_scope_summary(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertDontSee('Current review scope')
+            ->assertDontSee('Shop-scoped admin mode is active.');
     }
 
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void
