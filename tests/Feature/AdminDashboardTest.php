@@ -705,7 +705,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Latest card status')
             ->assertSee('Latest card issued')
             ->assertSee('Latest activity source')
-            ->assertSee('No branch activity yet')
+            ->assertSee('Setup pending')
             ->assertSee('Activity freshness')
             ->assertSee('unknown')
             ->assertSee('Suggested follow-up')

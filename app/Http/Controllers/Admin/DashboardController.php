@@ -351,7 +351,7 @@ class DashboardController extends Controller
     protected function latestBranchActivitySummary(?CardHolder $latestHolder, ?Card $latestCard): string
     {
         if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
-            return 'No branch activity yet';
+            return 'Setup pending';
         }
 
         if (! $latestCard instanceof Card) {
