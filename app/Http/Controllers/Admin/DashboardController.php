@@ -350,47 +350,48 @@ class DashboardController extends Controller
 
     protected function scopedShopEntryLabel(?Shop $shop): string
     {
-        if (! $shop instanceof Shop || ! $shop->is_active) {
-            return 'Review live shops in assigned branch';
-        }
-
-        $shop->loadCount(['cardHolders', 'cards']);
-
-        if ($shop->card_holders_count === 0 && $shop->cards_count === 0) {
-            return 'Set up assigned branch';
-        }
-
-        return 'Review live shops in assigned branch';
+        return $this->scopedEntryLabel(
+            shop: $shop,
+            liveLabel: 'Review live shops in assigned branch',
+            setupLabel: 'Set up assigned branch',
+            countRelations: ['cardHolders', 'cards'],
+            isSetupConditionMet: fn (Shop $shop): bool => $shop->card_holders_count === 0 && $shop->cards_count === 0,
+        );
     }
 
     protected function scopedCardholderEntryLabel(?Shop $shop): string
     {
-        if (! $shop instanceof Shop || ! $shop->is_active) {
-            return 'Review live cardholders in assigned branch';
-        }
-
-        $shop->loadCount(['cardHolders']);
-
-        if ($shop->card_holders_count === 0) {
-            return 'Set up first cardholder in assigned branch';
-        }
-
-        return 'Review live cardholders in assigned branch';
+        return $this->scopedEntryLabel(
+            shop: $shop,
+            liveLabel: 'Review live cardholders in assigned branch',
+            setupLabel: 'Set up first cardholder in assigned branch',
+            countRelations: ['cardHolders'],
+            isSetupConditionMet: fn (Shop $shop): bool => $shop->card_holders_count === 0,
+        );
     }
 
     protected function scopedCardEntryLabel(?Shop $shop): string
     {
+        return $this->scopedEntryLabel(
+            shop: $shop,
+            liveLabel: 'Review live cards in assigned branch',
+            setupLabel: 'Set up first card in assigned branch',
+            countRelations: ['cards'],
+            isSetupConditionMet: fn (Shop $shop): bool => $shop->cards_count === 0,
+        );
+    }
+
+    protected function scopedEntryLabel(?Shop $shop, string $liveLabel, string $setupLabel, array $countRelations, callable $isSetupConditionMet): string
+    {
         if (! $shop instanceof Shop || ! $shop->is_active) {
-            return 'Review live cards in assigned branch';
+            return $liveLabel;
         }
 
-        $shop->loadCount(['cards']);
+        $shop->loadCount($countRelations);
 
-        if ($shop->cards_count === 0) {
-            return 'Set up first card in assigned branch';
-        }
-
-        return 'Review live cards in assigned branch';
+        return $isSetupConditionMet($shop)
+            ? $setupLabel
+            : $liveLabel;
     }
 
     protected function liveEntryScopeNote(): ?array

@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard scoped-entry label helper cleanup checkpoint
+- Extracted the growing empty-versus-live scoped entry-label branching into one shared helper, so the dashboard now derives shop, cardholder, and card setup labels through one consistent path instead of three nearly identical methods.
+- Kept the step low-risk and behavior-safe by preserving the same operator-facing labels and routes while only reducing controller duplication.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after the helper cleanup.
+
+### Next step after dashboard scoped-entry label helper cleanup checkpoint
+- Reuse the new helper for one more scoped entry rule, or start carrying the same empty-versus-live posture into one latest-work shortcut label.
+
 ### Dashboard empty-branch card-entry CTA checkpoint
 - Tightened the scoped card live-entry label so active branches with no card records now surface `Set up first card in assigned branch` instead of the generic review label.
 - Kept the step low-risk and read-only by changing only the operator-facing entry copy while preserving the same scoped card route and existing review label once branch cards exist.
