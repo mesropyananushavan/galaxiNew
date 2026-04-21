@@ -1195,6 +1195,142 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('selected for Laravel review');
     }
 
+    public function test_authenticated_user_can_create_role_from_minimal_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Branch Supervisor',
+            'slug' => 'Branch Supervisor',
+        ]);
+
+        $role = Role::query()->where('name', 'Branch Supervisor')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Role "Branch Supervisor" was created.');
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $role->id,
+            'name' => 'Branch Supervisor',
+            'slug' => 'branch-supervisor',
+        ]);
+    }
+
+    public function test_role_live_admin_form_returns_operator_friendly_validation_messages(): void
+    {
+        $user = User::factory()->create();
+
+        Role::create([
+            'name' => 'Shop Manager',
+            'slug' => 'shop-manager',
+        ]);
+
+        $response = $this->from(route('admin.roles-permissions.index'))->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Shop Manager Copy',
+            'slug' => 'shop-manager',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'This role slug is already in use.',
+            ]);
+    }
+
+    public function test_role_create_validation_redirects_to_index_without_referrer(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => '',
+            'slug' => 'invalid slug',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
+            ->assertSessionHasErrors(['name']);
+
+        $this->assertDatabaseCount('roles', 0);
+    }
+
+    public function test_authenticated_user_can_update_role_from_minimal_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+        $role = Role::create([
+            'name' => 'Branch Supervisor',
+            'slug' => 'branch-supervisor',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Operations Lead',
+            'slug' => 'Branch Operations Lead',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Role "Branch Operations Lead" was updated.');
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $role->id,
+            'name' => 'Branch Operations Lead',
+            'slug' => 'branch-operations-lead',
+        ]);
+    }
+
+    public function test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug(): void
+    {
+        $user = User::factory()->create();
+        $role = Role::create([
+            'name' => 'Branch Supervisor',
+            'slug' => 'branch-supervisor',
+        ]);
+        $otherRole = Role::create([
+            'name' => 'Cashier',
+            'slug' => 'cashier',
+        ]);
+
+        $okResponse = $this->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Supervisor Updated',
+            'slug' => 'branch-supervisor',
+        ]);
+
+        $okResponse
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Role "Branch Supervisor Updated" was updated.');
+
+        $errorResponse = $this->from(route('admin.roles-permissions.index'))->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Supervisor Updated Again',
+            'slug' => $otherRole->slug,
+        ]);
+
+        $errorResponse
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'This role slug is already in use.',
+            ]);
+    }
+
+    public function test_roles_permissions_page_shows_update_success_flash_message(): void
+    {
+        $user = User::factory()->create();
+        $role = Role::create([
+            'name' => 'Branch Operations Lead',
+            'slug' => 'branch-operations-lead-flash',
+        ]);
+
+        $response = $this->actingAs($user)
+            ->withSession(['status' => 'Role "Branch Operations Lead" was updated.'])
+            ->get(route('admin.roles-permissions.index', ['role' => $role]));
+
+        $response
+            ->assertOk()
+            ->assertSee('id="backend-flow-status"', false)
+            ->assertSee('Backend flow checkpoint')
+            ->assertSee('Role "Branch Operations Lead" was updated.')
+            ->assertSee('Reviewing: Branch Operations Lead');
+    }
+
     public function test_authenticated_user_can_access_cards_operational_index_shape(): void
     {
         $user = User::factory()->create();

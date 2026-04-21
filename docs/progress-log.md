@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Roles-permissions minimal write-path foundation checkpoint
+- Added the first thin Laravel-backed create/update flow for `roles-permissions`, including role store/update controllers, request validation, selected-role redirects, and backend status flashes.
+- Kept the slice intentionally narrow and safe for Phase 1 by supporting only minimal role identity persistence, `name` plus normalized unique `slug`, without opening permission-matrix editing or shop-assignment writes yet.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the minimal role write path.
+
+### Next step after roles-permissions minimal write-path foundation checkpoint
+- Hook the preview role form to the new minimal role write path, or add the next thin write slice around role status/scope scaffolding before permission matrix editing.
+
 ### Shops operational readiness cue checkpoint
 - Added an `Operational readiness` cue to the Laravel-backed selected-shop review context, so the shops surface now exposes a simple Galaxy-style branch posture instead of relying only on generic summary and dependency fields.
 - The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded shop status, manager linkage, and visible branch coverage, with states such as `active branch, operator-visible coverage live` and `paused branch, recovery review only`.
