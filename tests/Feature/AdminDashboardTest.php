@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Models\Card;
 use App\Models\CardHolder;
 use App\Models\CardType;
@@ -701,6 +702,34 @@ class AdminDashboardTest extends TestCase
             ->assertSee('/admin/shops?shop='.$assignedShop->id)
             ->assertDontSee('Open latest holder in branch')
             ->assertDontSee('Open latest card in branch');
+    }
+
+    public function test_dashboard_branch_helper_logic_covers_paused_branch_posture(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Paused Dashboard Shop',
+            'code' => 'paused-dashboard-shop',
+            'is_active' => false,
+        ]);
+
+        $controller = new class extends DashboardController
+        {
+            public function branchPostureForTest(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
+            {
+                return $this->branchOperationalPosture($shop, $latestHolder, $latestCard);
+            }
+
+            public function branchFollowUpForTest(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
+            {
+                return $this->branchSuggestedFollowUp($shop, $latestHolder, $latestCard);
+            }
+        };
+
+        $this->assertSame('paused branch', $controller->branchPostureForTest($assignedShop, null, null));
+        $this->assertSame(
+            'Confirm pause reason before reopening branch work.',
+            $controller->branchFollowUpForTest($assignedShop, null, null),
+        );
     }
 
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void

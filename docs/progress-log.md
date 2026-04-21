@@ -7,8 +7,13 @@
 - Kept the step low-risk by extending test coverage only: the snapshot is now explicitly checked for empty-state branch posture, unknown freshness, no latest-record quick links, and the first-live-record follow-up cue.
 - Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`, after covering the new empty-branch path.
 
-### Next step after dashboard empty-branch posture test checkpoint
-- Start turning one scoped dashboard cue into a stricter branch-aware entry boundary, or add a second focused paused-branch scenario so the new branch posture cues cover all three main states.
+### Dashboard paused-branch helper coverage checkpoint
+- Added focused coverage for the paused-branch posture and follow-up helper logic, so the third main branch state is now asserted without weakening the current admin access baseline that blocks paused shops before the dashboard renders.
+- Kept the step low-risk by covering the paused path directly in test code instead of widening real dashboard access just to reach a currently guarded state.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after covering the third posture state.
+
+### Next step after dashboard paused-branch helper coverage checkpoint
+- Start turning one scoped dashboard cue into a stricter branch-aware entry boundary, or add one small read-only branch boundary around dashboard CTA visibility if it can stay Phase 1 safe.
 
 ### Dashboard branch follow-up cue checkpoint
 - Extended the assigned-branch snapshot with `Suggested follow-up`, so scoped admins now get one compact next-step cue that matches paused, empty, or already-active branch posture.
