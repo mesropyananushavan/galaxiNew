@@ -1481,6 +1481,7 @@ class ResourceIndexController extends Controller
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
+            ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
             ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
             ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
@@ -1538,6 +1539,17 @@ class ResourceIndexController extends Controller
         return $scope->isNotEmpty()
             ? 'Shop scope is visible in Laravel review, but scope writes should stay parity-first until the next thin access slice is ready.'
             : 'Shop scope is still pending in Laravel review, which keeps this role safer for draft-first parity checks.';
+    }
+
+    private function rolesPermissionsScopeCoverageLabel(mixed $scope): string
+    {
+        $scopeCount = $scope->count();
+
+        return match (true) {
+            $scopeCount === 0 => 'No shop scope linked yet',
+            $scopeCount === 1 => '1 shop visible in Laravel review',
+            default => sprintf('%d shops visible in Laravel review', $scopeCount),
+        };
     }
 
     private function rolesPermissionsScopeRolloutTimelineDescription(mixed $scope): string
@@ -1600,6 +1612,7 @@ class ResourceIndexController extends Controller
                 ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
+            ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
             ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
                 ? 'Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.'
