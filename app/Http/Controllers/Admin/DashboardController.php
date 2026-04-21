@@ -466,9 +466,9 @@ class DashboardController extends Controller
 
     protected function assignedBranchPrimaryActionLabel(?CardHolder $latestHolder, ?Card $latestCard): string
     {
-        return $latestHolder instanceof CardHolder || $latestCard instanceof Card
-            ? 'Open assigned branch review'
-            : 'Open assigned branch setup';
+        return $this->branchSetupPending($latestHolder, $latestCard)
+            ? 'Open assigned branch setup'
+            : 'Open assigned branch review';
     }
 
     protected function scopedShopEntryLabel(?Shop $shop): string

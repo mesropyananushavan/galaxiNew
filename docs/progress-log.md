@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard empty-branch CTA helper cleanup checkpoint
+- Reused the shared `branchSetupPending` helper for the assigned-branch primary CTA so the setup-versus-review button choice now reads through the same setup-state predicate already used by the empty-branch activity, freshness, posture, and follow-up cues.
+- Kept the step low-risk and behavior-safe by preserving the current `Open assigned branch setup` versus `Open assigned branch review` behavior while removing one more inline condition.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty-branch CTA helper cleanup.
+
+### Next step after dashboard empty-branch CTA helper cleanup checkpoint
+- Apply the helper-driven setup-first pattern to one more branch-aware dashboard rule outside the assigned-branch snapshot, or move to the next small Phase 1 behavior step beyond dashboard posture cleanup.
+
 ### Dashboard empty-branch setup helper cleanup checkpoint
 - Extracted the repeated empty-branch setup-state check into a shared `branchSetupPending` helper so the setup-first snapshot cluster now reads through one condition across activity, freshness, posture, and follow-up cues.
 - Kept the step low-risk and behavior-safe by preserving the current setup-first wording, routes, authorization, and live/paused branch behavior.
