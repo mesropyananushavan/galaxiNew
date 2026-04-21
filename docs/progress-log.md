@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard empty-branch latest setup shortcuts checkpoint
+- Extended the scoped latest-work block so active branches with no holder or card records now surface `Open first cardholder setup in assigned branch` and `Open first card setup in assigned branch` instead of simply omitting those shortcuts.
+- Kept the step low-risk and read-only by only changing operator-facing shortcut composition, while preserving the existing latest-review links once real branch holder/card records exist.
+- Extended the empty-branch dashboard assertions for the new latest-work setup shortcuts and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard empty-branch latest setup shortcuts checkpoint
+- Extract the new scoped latest-work setup shortcut branching into a small shared helper, or carry the same setup-versus-review posture into one more latest-work label.
+
 ### Dashboard empty-branch latest-shop shortcut checkpoint
 - Tightened the scoped latest-shop shortcut so active branches with no holder or card records now surface `Open branch setup` instead of the more advanced latest-review label.
 - Kept the step low-risk and read-only by changing only the shortcut copy while preserving the same scoped shop route and existing latest-review behavior once branch activity exists.

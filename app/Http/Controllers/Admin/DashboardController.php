@@ -86,7 +86,11 @@ class DashboardController extends Controller
         );
 
         if (! $cardHolder) {
-            return null;
+            return $this->scopedSetupWorkspace(
+                relation: 'cardHolders',
+                label: 'Open first cardholder setup in assigned branch',
+                routeName: 'admin.cardholders.index',
+            );
         }
 
         $status = $cardHolder->status ?? ($cardHolder->is_active ? 'active' : 'inactive');
@@ -109,7 +113,11 @@ class DashboardController extends Controller
             label: sprintf('Open latest card review: %s (%s)', $card->number, $card->status),
             routeName: 'admin.cards.index',
             parameters: ['card' => $card->id],
-        ) : null;
+        ) : $this->scopedSetupWorkspace(
+            relation: 'cards',
+            label: 'Open first card setup in assigned branch',
+            routeName: 'admin.cards.index',
+        );
     }
 
     protected function latestCardTypeWorkspace(): ?array
@@ -140,6 +148,33 @@ class DashboardController extends Controller
             'label' => $label,
             'route' => route($routeName, $parameters),
         ];
+    }
+
+    protected function scopedSetupWorkspace(string $relation, string $label, string $routeName): ?array
+    {
+        if (! $this->isShopScopedAdmin()) {
+            return null;
+        }
+
+        $shop = $this->adminUser()?->shop;
+
+        if (! $shop instanceof Shop || ! $shop->is_active) {
+            return null;
+        }
+
+        $shop->loadCount([$relation]);
+
+        $countAttribute = match ($relation) {
+            'cardHolders' => 'card_holders_count',
+            'cards' => 'cards_count',
+            default => null,
+        };
+
+        if (! is_string($countAttribute) || ($shop->{$countAttribute} ?? 0) !== 0) {
+            return null;
+        }
+
+        return $this->workspaceLink($label, $routeName);
     }
 
     protected function liveReviewEntryPoints(): array

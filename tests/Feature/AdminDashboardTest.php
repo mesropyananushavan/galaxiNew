@@ -709,6 +709,12 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Review live cards in assigned branch</a>', false)
             ->assertSee('Open branch setup: Quiet Dashboard Shop (active)')
             ->assertDontSee('Open latest shop review: Quiet Dashboard Shop (active)')
+            ->assertSee('Open first cardholder setup in assigned branch')
+            ->assertSee('/admin/cardholders')
+            ->assertDontSee('Open latest cardholder review:')
+            ->assertSee('Open first card setup in assigned branch')
+            ->assertSee('/admin/cards')
+            ->assertDontSee('Open latest card review:')
             ->assertDontSee('Open latest holder in branch')
             ->assertDontSee('Open latest card in branch');
     }
