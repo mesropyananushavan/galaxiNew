@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch follow-up cue checkpoint
+- Extended the assigned-branch snapshot with `Suggested follow-up`, so scoped admins now get one compact next-step cue that matches paused, empty, or already-active branch posture.
+- Kept the step low-risk and read-only by deriving the cue from the same assigned-shop and latest branch-local record context already used by the snapshot.
+- Extended the focused dashboard assertions for the new follow-up cue and re-ran `php artisan test --filter=dashboard_latest_live_work_shortcuts_respect_shop_scope`, `1 passed`.
+
+### Next step after dashboard branch follow-up cue checkpoint
+- Start turning one scoped dashboard cue into a stricter branch-aware entry boundary, or add a focused empty-branch scenario test so the new posture cues cover more than the active branch path.
+
 ### Dashboard branch posture cue checkpoint
 - Extended the assigned-branch snapshot with `Branch posture`, so scoped admins now get one compact Galaxy-style read on whether their branch is paused, active with live activity, or active but still empty.
 - Kept the step low-risk and read-only by deriving the posture from the assigned shop status plus the same latest branch-local holder/card presence already shown in the snapshot.

@@ -225,6 +225,7 @@ class DashboardController extends Controller
         $latestActivity = $this->latestBranchActivitySummary($latestHolder, $latestCard);
         $activityFreshness = $this->latestBranchActivityFreshness($latestHolder, $latestCard);
         $branchPosture = $this->branchOperationalPosture($shop, $latestHolder, $latestCard);
+        $suggestedFollowUp = $this->branchSuggestedFollowUp($shop, $latestHolder, $latestCard);
 
         return [
             'label' => 'Assigned branch snapshot',
@@ -245,6 +246,7 @@ class DashboardController extends Controller
                 ['label' => 'Latest card issued', 'value' => $latestCard instanceof Card ? $latestCard->created_at?->toDateString() ?? 'unknown' : 'n/a'],
                 ['label' => 'Latest activity source', 'value' => $latestActivity],
                 ['label' => 'Activity freshness', 'value' => $activityFreshness],
+                ['label' => 'Suggested follow-up', 'value' => $suggestedFollowUp],
             ],
             'actions' => $actions,
         ];
@@ -314,6 +316,19 @@ class DashboardController extends Controller
         }
 
         return 'active branch, live activity visible';
+    }
+
+    protected function branchSuggestedFollowUp(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
+    {
+        if (! $shop->is_active) {
+            return 'Confirm pause reason before reopening branch work.';
+        }
+
+        if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
+            return 'Open assigned branch review and verify the first live records.';
+        }
+
+        return 'Resume the latest branch review flow from the scoped shortcuts.';
     }
 
     protected function liveEntryScopeNote(): ?array
