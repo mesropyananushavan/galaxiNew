@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Roles-permissions review-note index visibility checkpoint
+- Surfaced the new persisted role `review_note` slice at the index level by adding a `Reviewed roles` metric and a `Review note` table column, so saved parity notes are visible before operators drill into selected-role context.
+- Kept the step small and safe: it reuses the saved note text in read-only index surfaces and does not widen assignment, scope, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after exposing review-note visibility on the index page.
+
+### Next step after roles-permissions review-note index visibility checkpoint
+- Reuse the new textarea-backed persisted metadata pattern on another Galaxy admin surface, or add one more narrow persisted role review field without opening assignment and permission-matrix writes.
+
 ### Roles-permissions persisted review-note slice checkpoint
 - Added a thin persisted `review_note` slice to the shared `roles-permissions` live form, including textarea support in the shared resource form partial, a new nullable `review_note` column on `roles`, request validation, and create/update persistence.
 - Surfaced the saved note back into selected-role summary, timeline, and dependency status so Phase 1 operators can record parity-sensitive role context without opening assignment or permission-matrix writes.

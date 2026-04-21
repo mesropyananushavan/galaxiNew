@@ -870,14 +870,15 @@ return [
         'metrics' => [
             ['label' => 'Active roles', 'value' => '2'],
             ['label' => 'Draft roles', 'value' => '1'],
+            ['label' => 'Reviewed roles', 'value' => '2'],
             ['label' => 'Scoped shops', 'value' => '3'],
         ],
         'table' => [
-            'columns' => ['Role', 'Scope', 'Key permissions', 'Users', 'Status'],
+            'columns' => ['Role', 'Scope', 'Key permissions', 'Review note', 'Users', 'Status'],
             'rows' => [
-                ['Super Admin', 'All shops', 'Full access', '2', 'active'],
-                ['Shop Manager', 'Per shop', 'Cards, gifts, checks', '8', 'active'],
-                ['Cashier', 'Per shop', 'Checks, card lookup', '14', 'draft'],
+                ['Super Admin', 'All shops', 'Full access', 'Core access boundaries mirrored for parity review.', '2', 'active'],
+                ['Shop Manager', 'Per shop', 'Cards, gifts, checks', 'Keep manager workflow aligned with legacy branch operations.', '8', 'active'],
+                ['Cashier', 'Per shop', 'Checks, card lookup', 'Draft note pending before rollout.', '14', 'draft'],
             ],
             'filters' => ['Scope', 'Status', 'Permission set'],
         ],

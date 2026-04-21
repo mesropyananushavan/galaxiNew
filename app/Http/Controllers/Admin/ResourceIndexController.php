@@ -561,6 +561,7 @@ class ResourceIndexController extends Controller
         $page['metrics'] = [
             ['label' => 'Active roles', 'value' => (string) $roles->where('is_active', true)->count()],
             ['label' => 'Draft roles', 'value' => (string) $roles->where('is_active', false)->count()],
+            ['label' => 'Reviewed roles', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->review_note))->count()],
             ['label' => 'Scoped shops', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
         ];
 
@@ -572,6 +573,7 @@ class ResourceIndexController extends Controller
                 $this->linkedTableCell($role->name, 'admin.roles-permissions.index', ['role' => $role->id]),
                 $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice',
                 $permissionPreview !== '' ? $permissionPreview : 'No permissions linked yet',
+                filled($role->review_note) ? str($role->review_note)->limit(72)->toString() : 'No review note saved yet',
                 (string) $role->users_count,
                 $role->is_active ? 'active' : 'draft',
             ];
