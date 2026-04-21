@@ -16,6 +16,20 @@
             </div>
         @endif
 
+        @if (is_array($assignedBranchSnapshot ?? null) && is_array($assignedBranchSnapshot['items'] ?? null))
+            <div style="margin-top: 16px; padding: 14px 16px; border: 1px solid rgba(158, 163, 184, 0.2); border-radius: 12px; background: rgba(15, 23, 42, 0.24);">
+                <strong style="display: block; margin-bottom: 10px;">{{ $assignedBranchSnapshot['label'] }}</strong>
+                <div class="placeholder-grid" style="margin-top: 0;">
+                    @foreach ($assignedBranchSnapshot['items'] as $item)
+                        <article class="metric">
+                            <p class="metric-label">{{ $item['label'] }}</p>
+                            <p class="metric-value">{{ $item['value'] }}</p>
+                        </article>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+
         <div class="placeholder-grid">
             <article class="metric">
                 <p class="metric-label">Route namespace</p>

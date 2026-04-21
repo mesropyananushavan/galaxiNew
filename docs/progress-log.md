@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard assigned-branch snapshot checkpoint
+- Added an explicit assigned-branch snapshot for shop-scoped admins on the dashboard, so the first admin screen now surfaces the current branch name, status, visible holder/card counts, and assigned staff instead of only speaking about scope in abstract notes.
+- Kept the change Phase 1 safe and read-only: the snapshot appears only when the current user already qualifies for scoped admin review, while bootstrap users still keep the broader migration dashboard without branch-specific metrics.
+- Extended the focused dashboard assertions for the new assigned-branch snapshot and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard assigned-branch snapshot checkpoint
+- Carry this concrete scoped snapshot pattern into another shared admin surface, or start converting one of the dashboard scope cues into the next small enforced boundary beyond labels and notes.
+
 ### Dashboard scoped entry-label checkpoint
 - Tightened the live entry labels for shop-scoped admins so `shops`, `cardholders`, and `cards` now explicitly say `in assigned branch`, making the dashboard entry layer itself read less like a generic global starter menu.
 - Kept the step Phase 1 safe by only changing operator-facing labels while preserving the broader shared entry behavior and unscoped copy for bootstrap admins.

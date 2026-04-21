@@ -31,6 +31,7 @@ class DashboardController extends Controller
             'roleCount' => Role::query()->count(),
             'permissionCount' => Permission::query()->count(),
             'dashboardScopeSummary' => $this->dashboardScopeSummary(),
+            'assignedBranchSnapshot' => $this->assignedBranchSnapshot(),
             'liveEntryScopeNote' => $this->liveEntryScopeNote(),
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
@@ -172,6 +173,34 @@ class DashboardController extends Controller
         return [
             'label' => 'Current review scope',
             'value' => sprintf('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to %s while Phase 1 policies are still being mapped.', $shopName),
+        ];
+    }
+
+    protected function assignedBranchSnapshot(): ?array
+    {
+        $user = $this->adminUser();
+
+        if (! $this->isShopScopedAdmin() || ! $user?->relationLoaded('shop')) {
+            $user?->loadMissing('shop');
+        }
+
+        $shop = $user?->shop;
+
+        if (! $shop instanceof Shop) {
+            return null;
+        }
+
+        $shop->loadCount(['cardHolders', 'cards', 'users']);
+
+        return [
+            'label' => 'Assigned branch snapshot',
+            'items' => [
+                ['label' => 'Branch', 'value' => $shop->name],
+                ['label' => 'Laravel status', 'value' => $shop->is_active ? 'active' : 'paused'],
+                ['label' => 'Visible cardholders', 'value' => (string) $shop->card_holders_count],
+                ['label' => 'Visible cards', 'value' => (string) $shop->cards_count],
+                ['label' => 'Assigned staff', 'value' => (string) $shop->users_count],
+            ],
         ];
     }
 
