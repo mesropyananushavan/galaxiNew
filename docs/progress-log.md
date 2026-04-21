@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard note-style cleanup checkpoint
+- Extracted the repeated dashboard note styles in the Blade view into local variables so the growing set of Galaxy-specific guidance blocks now shares one small formatting baseline instead of repeating the same inline style strings.
+- Kept the step low-risk and behavior-safe by making only presentational structure cleanup changes, with no copy, route, or branch-aware logic changes.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the dashboard note-style cleanup.
+
+### Next step after dashboard note-style cleanup checkpoint
+- Return to a small branch-aware behavior step now that the dashboard copy structure is tidier, or make one more tiny view cleanup around the repeated section heading blocks before shifting back to behavior.
+
 ### Dashboard migration-map guidance checkpoint
 - Added a Galaxy-specific guidance note to the `Galaxy migration map` section so the grouped navigation list now reads as a visible parity target for upcoming Phase 1 slices instead of a plain section dump.
 - Kept the step low-risk and visual-only by changing migration-map framing without touching routes, navigation config, or branch-aware dashboard behavior.

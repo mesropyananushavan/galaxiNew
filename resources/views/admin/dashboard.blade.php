@@ -1,6 +1,11 @@
 @extends('admin.layouts.app')
 
 @section('content')
+    @php
+        $dashboardNoteStyle = 'margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;';
+        $dashboardWideNoteStyle = $dashboardNoteStyle.' max-width: 780px;';
+    @endphp
+
     <section class="card">
         <span class="eyebrow">Admin / Dashboard</span>
         <h2 style="margin: 16px 0 12px; font-size: 1.75rem;">Phase 1 admin information architecture baseline</h2>
@@ -93,11 +98,11 @@
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Live review entry points</h3>
-        <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+        <p style="{{ $dashboardWideNoteStyle }}">
             Use these Galaxy review surfaces to move from branch setup into live operational checks once records start landing.
         </p>
         @if (is_array($liveEntryScopeNote ?? null))
-            <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;">
+            <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $liveEntryScopeNote['label'] }}:</strong>
                 {{ $liveEntryScopeNote['value'] }}
             </p>
@@ -111,11 +116,11 @@
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Resume latest live work</h3>
-        <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+        <p style="{{ $dashboardWideNoteStyle }}">
             Jump back into the latest Galaxy workspace for the branch, cardholder, card, or access item that most recently changed.
         </p>
         @if (is_array($latestWorkspaceScopeNote ?? null))
-            <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;">
+            <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $latestWorkspaceScopeNote['label'] }}:</strong>
                 {{ $latestWorkspaceScopeNote['value'] }}
             </p>
@@ -127,10 +132,10 @@
                 @endforeach
             </ul>
         @else
-            <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;">
+            <p style="{{ $dashboardNoteStyle }}">
                 No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.
             </p>
-            <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+            <p style="{{ $dashboardWideNoteStyle }}">
                 In Phase 1, this usually means the branch is still moving through first-pass setup for shops, cardholders, cards, or access structure.
             </p>
         @endif
@@ -138,7 +143,7 @@
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Galaxy migration map</h3>
-        <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+        <p style="{{ $dashboardWideNoteStyle }}">
             These grouped sections mark the Galaxy admin surfaces that still need parity work, so each Phase 1 slice can land against a visible target map.
         </p>
         <ul class="list">
