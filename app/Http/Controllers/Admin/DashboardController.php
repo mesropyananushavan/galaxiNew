@@ -478,7 +478,7 @@ class DashboardController extends Controller
             liveLabel: 'Review live shops in assigned branch',
             setupLabel: 'Set up assigned branch',
             countRelations: ['cardHolders', 'cards'],
-            isSetupConditionMet: fn (Shop $shop): bool => $shop->card_holders_count === 0 && $shop->cards_count === 0,
+            isSetupConditionMet: fn (Shop $shop): bool => $this->shopHasNoRecords($shop, ['cardHolders', 'cards']),
         );
     }
 

@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard scoped shop-entry helper reuse checkpoint
+- Reused the shared `shopHasNoRecords` predicate for the scoped shop live-entry setup rule, so the `Set up assigned branch` versus `Review live shops in assigned branch` switch now reads through the same shop-level empty-state check already used elsewhere in the dashboard.
+- Kept the step low-risk and behavior-safe by preserving the current scoped shop entry behavior while removing one more inline count comparison.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the scoped shop-entry helper reuse.
+
+### Next step after dashboard scoped shop-entry helper reuse checkpoint
+- Reuse shared predicates in one more scoped entry/latest-work rule, or move to the next small Phase 1 behavior step beyond dashboard helper cleanup.
+
 ### Dashboard empty-branch CTA helper cleanup checkpoint
 - Reused the shared `branchSetupPending` helper for the assigned-branch primary CTA so the setup-versus-review button choice now reads through the same setup-state predicate already used by the empty-branch activity, freshness, posture, and follow-up cues.
 - Kept the step low-risk and behavior-safe by preserving the current `Open assigned branch setup` versus `Open assigned branch review` behavior while removing one more inline condition.
