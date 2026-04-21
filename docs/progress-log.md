@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard scoped entry predicate cleanup checkpoint
+- Reused the shared `shopHasNoRecords` predicate for the scoped cardholder and card live-entry setup rules, so all three scoped entry labels now read through the same empty-state predicate family instead of mixing helper calls with inline count checks.
+- Kept the step low-risk and behavior-safe by preserving the current scoped entry labels and routes while removing the remaining inline count comparisons in the entry-label trio.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the scoped entry predicate cleanup.
+
+### Next step after dashboard scoped entry predicate cleanup checkpoint
+- Reuse shared predicates in one more latest-work rule, or move to the next small Phase 1 behavior step now that the scoped entry-label cluster is cleaner.
+
 ### Dashboard scoped shop-entry helper reuse checkpoint
 - Reused the shared `shopHasNoRecords` predicate for the scoped shop live-entry setup rule, so the `Set up assigned branch` versus `Review live shops in assigned branch` switch now reads through the same shop-level empty-state check already used elsewhere in the dashboard.
 - Kept the step low-risk and behavior-safe by preserving the current scoped shop entry behavior while removing one more inline count comparison.

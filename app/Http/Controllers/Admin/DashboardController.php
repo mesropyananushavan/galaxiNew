@@ -489,7 +489,7 @@ class DashboardController extends Controller
             liveLabel: 'Review live cardholders in assigned branch',
             setupLabel: 'Set up first cardholder in assigned branch',
             countRelations: ['cardHolders'],
-            isSetupConditionMet: fn (Shop $shop): bool => $shop->card_holders_count === 0,
+            isSetupConditionMet: fn (Shop $shop): bool => $this->shopHasNoRecords($shop, ['cardHolders']),
         );
     }
 
@@ -500,7 +500,7 @@ class DashboardController extends Controller
             liveLabel: 'Review live cards in assigned branch',
             setupLabel: 'Set up first card in assigned branch',
             countRelations: ['cards'],
-            isSetupConditionMet: fn (Shop $shop): bool => $shop->cards_count === 0,
+            isSetupConditionMet: fn (Shop $shop): bool => $this->shopHasNoRecords($shop, ['cards']),
         );
     }
 
