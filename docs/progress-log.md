@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard assigned-branch snapshot guidance checkpoint
+- Added a Galaxy-specific operational note to the `Assigned branch snapshot` card so scoped admins get clearer framing around using the snapshot to spot setup gaps and fresh branch activity before opening review screens.
+- Kept the step low-risk and visual-only by changing only snapshot framing copy while preserving the existing branch posture fields and actions.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_latest_live_work_shortcuts_respect_shop_scope|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `4 passed`, after the assigned-branch snapshot guidance update.
+
+### Next step after dashboard assigned-branch snapshot guidance checkpoint
+- Add one more Galaxy-specific cue inside the migration map or empty latest-work fallback, or switch back to a small branch-aware behavior step now that the dashboard copy framing is stronger across the main surfaces.
+
 ### Dashboard workflow guidance copy checkpoint
 - Added Galaxy-specific guidance copy to the `Live review entry points` and `Resume latest live work` sections so the dashboard reads more like an operational branch console and less like a raw link list.
 - Kept the step low-risk and visual-only by changing section framing without touching routing or branch-aware shortcut behavior.

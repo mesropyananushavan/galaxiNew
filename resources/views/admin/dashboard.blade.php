@@ -19,6 +19,9 @@
         @if (is_array($assignedBranchSnapshot ?? null) && is_array($assignedBranchSnapshot['items'] ?? null))
             <div style="margin-top: 16px; padding: 14px 16px; border: 1px solid rgba(158, 163, 184, 0.2); border-radius: 12px; background: rgba(15, 23, 42, 0.24);">
                 <strong style="display: block; margin-bottom: 10px;">{{ $assignedBranchSnapshot['label'] }}</strong>
+                <p style="margin: 0 0 12px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+                    This branch snapshot keeps the assigned Galaxy location in view, so setup gaps and fresh activity are visible before you jump into review.
+                </p>
                 <div class="placeholder-grid" style="margin-top: 0;">
                     @foreach ($assignedBranchSnapshot['items'] as $item)
                         <article class="metric">
