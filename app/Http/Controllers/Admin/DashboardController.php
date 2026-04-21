@@ -203,29 +203,11 @@ class DashboardController extends Controller
             ->latest('id')
             ->first();
 
-        $actions = [[
-            'label' => 'Open assigned branch review',
-            'route' => route('admin.shops.index', ['shop' => $shop->id]),
-        ]];
-
-        if ($latestHolder instanceof CardHolder) {
-            $actions[] = [
-                'label' => 'Open latest holder in branch',
-                'route' => route('admin.cardholders.index', ['cardholder' => $latestHolder->id]),
-            ];
-        }
-
-        if ($latestCard instanceof Card) {
-            $actions[] = [
-                'label' => 'Open latest card in branch',
-                'route' => route('admin.cards.index', ['card' => $latestCard->id]),
-            ];
-        }
-
         $latestActivity = $this->latestBranchActivitySummary($latestHolder, $latestCard);
         $activityFreshness = $this->latestBranchActivityFreshness($latestHolder, $latestCard);
         $branchPosture = $this->branchOperationalPosture($shop, $latestHolder, $latestCard);
         $suggestedFollowUp = $this->branchSuggestedFollowUp($shop, $latestHolder, $latestCard);
+        $actions = $this->assignedBranchSnapshotActions($shop, $latestHolder, $latestCard);
 
         return [
             'label' => 'Assigned branch snapshot',
@@ -329,6 +311,34 @@ class DashboardController extends Controller
         }
 
         return 'Resume the latest branch review flow from the scoped shortcuts.';
+    }
+
+    protected function assignedBranchSnapshotActions(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): array
+    {
+        if (! $shop->is_active) {
+            return [];
+        }
+
+        $actions = [[
+            'label' => 'Open assigned branch review',
+            'route' => route('admin.shops.index', ['shop' => $shop->id]),
+        ]];
+
+        if ($latestHolder instanceof CardHolder) {
+            $actions[] = [
+                'label' => 'Open latest holder in branch',
+                'route' => route('admin.cardholders.index', ['cardholder' => $latestHolder->id]),
+            ];
+        }
+
+        if ($latestCard instanceof Card) {
+            $actions[] = [
+                'label' => 'Open latest card in branch',
+                'route' => route('admin.cards.index', ['card' => $latestCard->id]),
+            ];
+        }
+
+        return $actions;
     }
 
     protected function liveEntryScopeNote(): ?array

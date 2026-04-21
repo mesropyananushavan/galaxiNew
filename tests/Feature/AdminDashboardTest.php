@@ -723,6 +723,11 @@ class AdminDashboardTest extends TestCase
             {
                 return $this->branchSuggestedFollowUp($shop, $latestHolder, $latestCard);
             }
+
+            public function branchActionsForTest(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): array
+            {
+                return $this->assignedBranchSnapshotActions($shop, $latestHolder, $latestCard);
+            }
         };
 
         $this->assertSame('paused branch', $controller->branchPostureForTest($assignedShop, null, null));
@@ -730,6 +735,7 @@ class AdminDashboardTest extends TestCase
             'Confirm pause reason before reopening branch work.',
             $controller->branchFollowUpForTest($assignedShop, null, null),
         );
+        $this->assertSame([], $controller->branchActionsForTest($assignedShop, null, null));
     }
 
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void

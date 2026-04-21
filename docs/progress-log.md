@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard paused-branch action-boundary checkpoint
+- Extracted assigned-branch snapshot actions into dedicated helper logic and made that action list explicitly empty for paused branches, so the dashboard helper layer no longer suggests reopening review flows for a branch that is still paused.
+- Kept the step Phase 1 safe by tightening read-only CTA visibility only, without widening paused-shop dashboard access or changing active-branch review behavior.
+- Extended the paused-branch helper coverage to assert the new empty action list and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard paused-branch action-boundary checkpoint
+- Reuse the new action-boundary seam for one more small branch-aware CTA rule, or start tightening one of the shared dashboard live-entry links the same way.
+
 ### Dashboard empty-branch posture test checkpoint
 - Added a focused scoped-dashboard scenario for an active branch with no holders or cards yet, so the new snapshot cues now prove their empty-branch posture instead of only the already-active branch path.
 - Kept the step low-risk by extending test coverage only: the snapshot is now explicitly checked for empty-state branch posture, unknown freshness, no latest-record quick links, and the first-live-record follow-up cue.
