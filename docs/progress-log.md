@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch snapshot status cue checkpoint
+- Extended the assigned-branch snapshot with `Latest holder status` and `Latest card status`, so scoped admins now see the current operational posture of the most recent branch records before jumping into review.
+- Kept the step low-risk and read-only by deriving the new status cues directly from the same latest branch-local holder/card records already used by the snapshot and quick links.
+- Extended the focused dashboard assertions for the new status cues and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard branch snapshot status cue checkpoint
+- Add one more small branch-specific operational cue to the scoped dashboard, or convert one of these cues into a stricter branch-aware access boundary.
+
 ### Dashboard branch snapshot latest-record cue checkpoint
 - Extended the assigned-branch snapshot with visible `Latest holder` and `Latest card` values, so scoped admins can see which branch records the new quick links will open before leaving the dashboard.
 - Kept the step low-risk and read-only by reusing already loaded branch-local latest records and falling back to explicit empty-state copy when no holder or card exists yet.
