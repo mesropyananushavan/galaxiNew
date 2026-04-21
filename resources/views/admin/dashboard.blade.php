@@ -27,6 +27,11 @@
                         </article>
                     @endforeach
                 </div>
+                @if (is_array($assignedBranchSnapshot['action'] ?? null))
+                    <p style="margin: 12px 0 0;">
+                        <a href="{{ $assignedBranchSnapshot['action']['route'] }}">{{ $assignedBranchSnapshot['action']['label'] }}</a>
+                    </p>
+                @endif
             </div>
         @endif
 

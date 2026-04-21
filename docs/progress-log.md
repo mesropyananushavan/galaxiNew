@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard assigned-branch CTA checkpoint
+- Added a direct `Open assigned branch review` action to the new scoped branch snapshot, so the dashboard now gives shop-scoped admins one obvious way to jump straight into the current branch workspace instead of only showing passive scope metrics.
+- Kept the step low-risk and read-only by reusing the existing `shops` review route and only surfacing the CTA for already scoped admins.
+- Extended the focused dashboard assertions for the new branch CTA and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard assigned-branch CTA checkpoint
+- Add one more small branch-scoped CTA or parity cue from the snapshot into holder/card review, or start enforcing one of these dashboard cues as a real entry-point boundary.
+
 ### Dashboard assigned-branch snapshot checkpoint
 - Added an explicit assigned-branch snapshot for shop-scoped admins on the dashboard, so the first admin screen now surfaces the current branch name, status, visible holder/card counts, and assigned staff instead of only speaking about scope in abstract notes.
 - Kept the change Phase 1 safe and read-only: the snapshot appears only when the current user already qualifies for scoped admin review, while bootstrap users still keep the broader migration dashboard without branch-specific metrics.

@@ -201,6 +201,10 @@ class DashboardController extends Controller
                 ['label' => 'Visible cards', 'value' => (string) $shop->cards_count],
                 ['label' => 'Assigned staff', 'value' => (string) $shop->users_count],
             ],
+            'action' => [
+                'label' => 'Open assigned branch review',
+                'route' => route('admin.shops.index', ['shop' => $shop->id]),
+            ],
         ];
     }
 
