@@ -694,7 +694,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This branch snapshot keeps the assigned Galaxy location in view, so setup gaps and fresh activity are visible before you jump into review')
             ->assertSee('Quiet Dashboard Shop')
             ->assertSee('Branch posture')
-            ->assertSee('active branch, no live activity yet')
+            ->assertSee('active branch, setup pending')
             ->assertSee('Latest holder')
             ->assertSee('No holders in assigned branch yet')
             ->assertSee('Latest holder status')

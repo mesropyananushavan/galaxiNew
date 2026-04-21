@@ -412,7 +412,7 @@ class DashboardController extends Controller
         }
 
         if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
-            return 'active branch, no live activity yet';
+            return 'active branch, setup pending';
         }
 
         return 'active branch, live activity visible';

@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard empty-branch posture cue checkpoint
+- Tightened the empty active-branch `Branch posture` cue from `active branch, no live activity yet` to `active branch, setup pending`, so the snapshot posture now matches the setup-first language already used by the activity, freshness, follow-up, and CTA cues.
+- Kept the step low-risk by changing only the empty-branch posture wording while preserving the same routes, authorization, and live/paused branch behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty-branch posture cue update.
+
+### Next step after dashboard empty-branch posture cue checkpoint
+- Move to another small branch-aware behavior step outside the empty-branch snapshot, or extract a tiny helper for the setup-first empty-branch cue cluster now that several snapshot labels align around the same posture.
+
 ### Dashboard empty-branch freshness cue checkpoint
 - Tightened the empty active-branch snapshot cue for `Activity freshness` from a neutral `unknown` state to `setup stage`, so the branch summary now reinforces that the branch is still in first-pass setup rather than merely missing timestamp data.
 - Kept the step low-risk by changing only the empty-branch freshness wording while preserving the same routes, authorization, and live/paused branch behavior.
