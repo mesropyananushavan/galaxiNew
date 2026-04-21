@@ -238,7 +238,9 @@ class DashboardController extends Controller
 
     protected function liveReviewEntryPoints(): array
     {
-        if (! $this->isShopScopedAdmin()) {
+        $shop = $this->activeScopedShop();
+
+        if (! $shop instanceof Shop) {
             return [
                 $this->workspaceLink('Review live shops', 'admin.shops.index'),
                 $this->workspaceLink('Review live cardholders', 'admin.cardholders.index'),
@@ -249,7 +251,6 @@ class DashboardController extends Controller
             ];
         }
 
-        $shop = $this->adminUser()?->shop;
         $primaryScopedShopEntryLabel = $this->scopedShopEntryLabel($shop);
         $primaryScopedCardholderEntryLabel = $this->scopedCardholderEntryLabel($shop);
         $primaryScopedCardEntryLabel = $this->scopedCardEntryLabel($shop);

@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard live-entry scoped-shop helper reuse checkpoint
+- Reused the shared `activeScopedShop` helper in `liveReviewEntryPoints`, so the scoped live-entry path now resolves its assigned active branch through the same shared gate already used by the latest-work setup path.
+- Kept the step low-risk and behavior-safe by preserving the current scoped and unscoped entry labels while removing one more inline shop lookup.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the live-entry scoped-shop helper reuse.
+
+### Next step after dashboard live-entry scoped-shop helper reuse checkpoint
+- Reuse `activeScopedShop` in one more scoped dashboard rule, or move to the next small Phase 1 behavior step beyond dashboard helper cleanup.
+
 ### Dashboard active-scoped-shop helper cleanup checkpoint
 - Extracted the repeated scoped-and-active shop guard used by the latest-work setup path into an `activeScopedShop` helper, so the scoped latest-setup logic now reads through one shared gate before applying empty-state predicates.
 - Kept the step low-risk and behavior-safe by preserving the current latest-work setup/review behavior while removing one more inline scope check.
