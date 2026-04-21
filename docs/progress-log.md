@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Shop-scoped shops workspace boundary checkpoint
+- Reused the new shop-target access helper inside the live `shops` workspace, so scoped admins now only get review links and latest-shop shortcuts for branches they are actually allowed to review.
+- Kept the step Phase 1 safe by limiting the boundary to the `shops` read slice: inaccessible selected-shop queries now fall back cleanly to the index state instead of opening a cross-shop review context.
+- Added focused coverage for hidden cross-shop links and inaccessible selected-shop fallback, then re-ran the `shops` slice, `6 passed`.
+
+### Next step after shop-scoped shops workspace boundary checkpoint
+- Carry the same small shop-aware boundary into one adjacent live workspace, likely `cardholders` or `cards`, so real Laravel review surfaces stop implying cross-shop reach before policies fully arrive.
+
 ### Shop-target admin access helper checkpoint
 - Added an explicit `User::canAccessShop(?Shop $shop)` helper, so the emerging Phase 1 access baseline now expresses not only admin entry but also which shop a scoped admin can legitimately review.
 - Kept the rule intentionally small and safe: bootstrap users still retain setup reach, while scoped users must still satisfy the active-shop-plus-permission baseline and are limited to their assigned shop.

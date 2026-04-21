@@ -1343,6 +1343,91 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('selected for Laravel review');
     }
 
+    public function test_shops_page_hides_other_shop_review_links_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Home',
+            'code' => 'galaxy-scoped-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Other',
+            'code' => 'galaxy-scoped-other',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Shop Reviewer',
+            'slug' => 'scoped-shop-reviewer-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped shop workspace',
+            'slug' => 'review-scoped-shop-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('href="/admin/shops?shop='.$assignedShop->id.'"', false)
+            ->assertDontSee('href="/admin/shops?shop='.$otherShop->id.'"', false)
+            ->assertSee('Review latest saved shop')
+            ->assertSee('href="/admin/shops?shop='.$assignedShop->id.'"', false);
+    }
+
+    public function test_shops_page_ignores_inaccessible_selected_shop_query_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Review Home',
+            'code' => 'galaxy-scoped-review-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Review Other',
+            'code' => 'galaxy-scoped-review-other',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Shop Selector',
+            'slug' => 'scoped-shop-selector-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Select scoped shop workspace',
+            'slug' => 'select-scoped-shop-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$otherShop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Scoped Review Home')
+            ->assertSee('Galaxy Scoped Review Other')
+            ->assertDontSee('Back to all shops')
+            ->assertDontSee('Reviewing: Galaxy Scoped Review Other')
+            ->assertDontSee('Selected shop')
+            ->assertSee('Review latest saved shop')
+            ->assertSee('href="/admin/shops?shop='.$assignedShop->id.'"', false);
+    }
+
     public function test_cardholders_page_replaces_preview_rows_with_model_backed_index_data(): void
     {
         $shop = Shop::create([

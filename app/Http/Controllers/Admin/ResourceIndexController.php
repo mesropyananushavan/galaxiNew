@@ -8,6 +8,7 @@ use App\Models\CardHolder;
 use App\Models\CardType;
 use App\Models\Role;
 use App\Models\Shop;
+use App\Models\User;
 use App\Support\AdminResourcePageNormalizer;
 use BackedEnum;
 use Illuminate\Contracts\Routing\UrlRoutable;
@@ -823,6 +824,12 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
+        $user = request()->user();
+        $adminUser = $user instanceof User ? $user : null;
+        $accessibleShops = $adminUser instanceof User
+            ? $shops->filter(fn (Shop $shop): bool => $adminUser->canAccessShop($shop))->values()
+            : $shops;
+
         $page['metrics'] = [
             ['label' => 'Active shops', 'value' => (string) $shops->where('is_active', true)->count()],
             ['label' => 'Paused shops', 'value' => (string) $shops->where('is_active', false)->count()],
@@ -830,7 +837,9 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $shops->map(fn (Shop $shop): array => [
-            $this->linkedTableCell($shop->name, 'admin.shops.index', ['shop' => $shop->id]),
+            $adminUser instanceof User && ! $adminUser->canAccessShop($shop)
+                ? $shop->name
+                : $this->linkedTableCell($shop->name, 'admin.shops.index', ['shop' => $shop->id]),
             $shop->code,
             $shop->users->first()?->name ?? 'Unassigned',
             (string) $shop->card_holders_count,
@@ -838,7 +847,7 @@ class ResourceIndexController extends Controller
             $shop->is_active ? 'active' : 'paused',
         ])->all();
 
-        $latestShop = $shops->sortByDesc('id')->first();
+        $latestShop = $accessibleShops->sortByDesc('id')->first();
 
         if ($latestShop !== null) {
             $page = $this->appendPageAction($page, [
@@ -857,6 +866,10 @@ class ResourceIndexController extends Controller
         $selectedShop = $shops->firstWhere('id', $selectedShopId);
 
         if (! $selectedShop instanceof Shop) {
+            return $page;
+        }
+
+        if ($adminUser instanceof User && ! $adminUser->canAccessShop($selectedShop)) {
             return $page;
         }
 
