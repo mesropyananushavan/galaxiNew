@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard snapshot primary-action helper cleanup checkpoint
+- Extracted the assigned-branch primary CTA label into a dedicated helper, so the setup-versus-review branch logic now lives in one explicit place instead of inside the snapshot action array.
+- Kept the step low-risk and behavior-safe by preserving the current active, empty, and paused branch action behavior while reducing one more small pocket of controller branching.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after the helper cleanup.
+
+### Next step after dashboard snapshot primary-action helper cleanup checkpoint
+- Reuse the same helper-cleanup pattern for one more snapshot action rule, or start carrying the same branch-aware posture into a latest-work shortcut label.
+
 ### Dashboard scoped-entry label helper cleanup checkpoint
 - Extracted the growing empty-versus-live scoped entry-label branching into one shared helper, so the dashboard now derives shop, cardholder, and card setup labels through one consistent path instead of three nearly identical methods.
 - Kept the step low-risk and behavior-safe by preserving the same operator-facing labels and routes while only reducing controller duplication.

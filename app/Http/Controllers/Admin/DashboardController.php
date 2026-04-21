@@ -324,10 +324,8 @@ class DashboardController extends Controller
             return [];
         }
 
-        $hasLiveBranchRecords = $latestHolder instanceof CardHolder || $latestCard instanceof Card;
-
         $actions = [[
-            'label' => $hasLiveBranchRecords ? 'Open assigned branch review' : 'Open assigned branch setup',
+            'label' => $this->assignedBranchPrimaryActionLabel($latestHolder, $latestCard),
             'route' => route('admin.shops.index', ['shop' => $shop->id]),
         ]];
 
@@ -346,6 +344,13 @@ class DashboardController extends Controller
         }
 
         return $actions;
+    }
+
+    protected function assignedBranchPrimaryActionLabel(?CardHolder $latestHolder, ?Card $latestCard): string
+    {
+        return $latestHolder instanceof CardHolder || $latestCard instanceof Card
+            ? 'Open assigned branch review'
+            : 'Open assigned branch setup';
     }
 
     protected function scopedShopEntryLabel(?Shop $shop): string
