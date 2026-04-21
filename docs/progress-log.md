@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch snapshot quick-links checkpoint
+- Expanded the new assigned-branch snapshot with direct quick links to the latest holder and latest card inside the scoped branch, so the dashboard now acts more like a small Galaxy branch console instead of only a passive summary.
+- Kept the step low-risk and read-only by reusing the existing holder/card review routes and only surfacing the links when scoped branch data actually exists.
+- Extended the focused dashboard assertions for the new branch quick links and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard branch snapshot quick-links checkpoint
+- Add one more small branch-scoped quick path from the dashboard into real review work, or start turning one of these scoped dashboard affordances into a stricter access boundary.
+
 ### Dashboard assigned-branch CTA checkpoint
 - Added a direct `Open assigned branch review` action to the new scoped branch snapshot, so the dashboard now gives shop-scoped admins one obvious way to jump straight into the current branch workspace instead of only showing passive scope metrics.
 - Kept the step low-risk and read-only by reusing the existing `shops` review route and only surfacing the CTA for already scoped admins.

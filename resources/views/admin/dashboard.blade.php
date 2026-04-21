@@ -27,10 +27,12 @@
                         </article>
                     @endforeach
                 </div>
-                @if (is_array($assignedBranchSnapshot['action'] ?? null))
-                    <p style="margin: 12px 0 0;">
-                        <a href="{{ $assignedBranchSnapshot['action']['route'] }}">{{ $assignedBranchSnapshot['action']['label'] }}</a>
-                    </p>
+                @if (is_array($assignedBranchSnapshot['actions'] ?? null) && $assignedBranchSnapshot['actions'] !== [])
+                    <ul class="list" style="margin-top: 12px;">
+                        @foreach ($assignedBranchSnapshot['actions'] as $action)
+                            <li><a href="{{ $action['route'] }}">{{ $action['label'] }}</a></li>
+                        @endforeach
+                    </ul>
                 @endif
             </div>
         @endif

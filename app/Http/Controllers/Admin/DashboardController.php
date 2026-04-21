@@ -192,6 +192,35 @@ class DashboardController extends Controller
 
         $shop->loadCount(['cardHolders', 'cards', 'users']);
 
+        $latestHolder = CardHolder::query()
+            ->where('shop_id', $shop->id)
+            ->latest('id')
+            ->first();
+
+        $latestCard = Card::query()
+            ->where('shop_id', $shop->id)
+            ->latest('id')
+            ->first();
+
+        $actions = [[
+            'label' => 'Open assigned branch review',
+            'route' => route('admin.shops.index', ['shop' => $shop->id]),
+        ]];
+
+        if ($latestHolder instanceof CardHolder) {
+            $actions[] = [
+                'label' => 'Open latest holder in branch',
+                'route' => route('admin.cardholders.index', ['cardholder' => $latestHolder->id]),
+            ];
+        }
+
+        if ($latestCard instanceof Card) {
+            $actions[] = [
+                'label' => 'Open latest card in branch',
+                'route' => route('admin.cards.index', ['card' => $latestCard->id]),
+            ];
+        }
+
         return [
             'label' => 'Assigned branch snapshot',
             'items' => [
@@ -201,10 +230,7 @@ class DashboardController extends Controller
                 ['label' => 'Visible cards', 'value' => (string) $shop->cards_count],
                 ['label' => 'Assigned staff', 'value' => (string) $shop->users_count],
             ],
-            'action' => [
-                'label' => 'Open assigned branch review',
-                'route' => route('admin.shops.index', ['shop' => $shop->id]),
-            ],
+            'actions' => $actions,
         ];
     }
 
