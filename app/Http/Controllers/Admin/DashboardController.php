@@ -511,7 +511,7 @@ class DashboardController extends Controller
 
         return [
             'label' => 'Entry posture',
-            'value' => 'These entry points still open the shared Phase 1 workspaces, but shop-backed review inside shops, cardholders, and cards now narrows to the assigned branch once the workspace loads.',
+            'value' => 'These entry points still open the shared Phase 1 workspaces, but shop-backed review inside shops, cardholders, and cards now narrows to the assigned branch with branch-specific review wording once the workspace loads.',
         ];
     }
 

@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard entry-posture alignment checkpoint
+- Updated the scoped `Entry posture` note so it now explicitly matches the newer branch-specific review wording, clarifying that shop, cardholder, and card review narrows to the assigned branch with branch-specific phrasing once the shared workspace opens.
+- Kept the step low-risk by changing only explanatory scoped dashboard copy while preserving the same entry routes, workspace behavior, and branch-aware setup/review logic.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the entry-posture alignment update.
+
+### Next step after dashboard entry-posture alignment checkpoint
+- Align the remaining scoped scope-summary copy with the newer branch-specific wording, or move to another small branch-aware behavior step now that the dashboard notes and latest-work labels are closer to one voice.
+
 ### Dashboard latest-work scope-note alignment checkpoint
 - Updated the scoped `Phase 1 scope note` so it now explicitly matches the newer branch-specific latest-work wording, clarifying that shops, cardholders, and cards use both branch scope and branch-specific review language.
 - Kept the step low-risk by changing only explanatory scoped dashboard copy while preserving the same latest-work routes, record selection, and fallback behavior.

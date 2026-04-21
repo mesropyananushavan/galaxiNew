@@ -596,7 +596,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Open latest card in branch')
             ->assertSee('/admin/cards?card='.$assignedCard->id)
             ->assertSee('Entry posture')
-            ->assertSee('These entry points still open the shared Phase 1 workspaces, but shop-backed review inside shops, cardholders, and cards now narrows to the assigned branch once the workspace loads.')
+            ->assertSee('These entry points still open the shared Phase 1 workspaces, but shop-backed review inside shops, cardholders, and cards now narrows to the assigned branch with branch-specific review wording once the workspace loads.')
             ->assertSee('Review live shops in assigned branch')
             ->assertSee('Review live cardholders in assigned branch')
             ->assertSee('Review live cards in assigned branch')
