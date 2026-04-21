@@ -124,16 +124,25 @@ class DashboardController extends Controller
 
     protected function latestCardHolderWorkspaceLabel(): string
     {
-        return $this->isShopScopedAdmin()
-            ? 'Open latest branch cardholder review'
-            : 'Open latest cardholder review';
+        return $this->scopedLatestReviewWorkspaceLabel(
+            scopedLabel: 'Open latest branch cardholder review',
+            defaultLabel: 'Open latest cardholder review',
+        );
     }
 
     protected function latestCardWorkspaceLabel(): string
     {
+        return $this->scopedLatestReviewWorkspaceLabel(
+            scopedLabel: 'Open latest branch card review',
+            defaultLabel: 'Open latest card review',
+        );
+    }
+
+    protected function scopedLatestReviewWorkspaceLabel(string $scopedLabel, string $defaultLabel): string
+    {
         return $this->isShopScopedAdmin()
-            ? 'Open latest branch card review'
-            : 'Open latest card review';
+            ? $scopedLabel
+            : $defaultLabel;
     }
 
     protected function latestRoleWorkspace(): ?array
