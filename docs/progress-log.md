@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard workflow guidance copy checkpoint
+- Added Galaxy-specific guidance copy to the `Live review entry points` and `Resume latest live work` sections so the dashboard reads more like an operational branch console and less like a raw link list.
+- Kept the step low-risk and visual-only by changing section framing without touching routing or branch-aware shortcut behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `4 passed`, after the workflow guidance copy update.
+
+### Next step after dashboard workflow guidance copy checkpoint
+- Add one more Galaxy-specific dashboard cue inside the assigned-branch snapshot or migration map, or switch back to a small branch-aware behavior rule now that the top-level section framing is stronger.
+
 ### Dashboard Galaxy framing copy checkpoint
 - Updated the dashboard Blade copy so the core metrics block now reads as a `Galaxy live foundation snapshot` instead of a generic counter grid, with supporting text that frames Phase 1 around real branch setup and review work.
 - Renamed the migration summary section heading to `Galaxy migration map` so the page reads more like a Galaxy-specific admin shell and less like a starter scaffold.

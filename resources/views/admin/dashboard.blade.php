@@ -90,6 +90,9 @@
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Live review entry points</h3>
+        <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+            Use these Galaxy review surfaces to move from branch setup into live operational checks once records start landing.
+        </p>
         @if (is_array($liveEntryScopeNote ?? null))
             <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;">
                 <strong>{{ $liveEntryScopeNote['label'] }}:</strong>
@@ -105,6 +108,9 @@
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Resume latest live work</h3>
+        <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+            Jump back into the latest Galaxy workspace for the branch, cardholder, card, or access item that most recently changed.
+        </p>
         @if (is_array($latestWorkspaceScopeNote ?? null))
             <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;">
                 <strong>{{ $latestWorkspaceScopeNote['label'] }}:</strong>
