@@ -54,6 +54,7 @@ class StoreRoleRequest extends FormRequest
     {
         return [
             'slug.unique' => 'This role slug is already in use.',
+            'review_note.max' => 'Keep the review note under 1000 characters so the role workspace stays operator-friendly.',
         ];
     }
 

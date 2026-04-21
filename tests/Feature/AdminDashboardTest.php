@@ -1314,6 +1314,21 @@ class AdminDashboardTest extends TestCase
             ->assertSessionHasErrors([
                 'slug' => 'This role slug is already in use.',
             ]);
+
+        $longReviewNote = str_repeat('a', 1001);
+
+        $reviewNoteResponse = $this->from(route('admin.roles-permissions.index'))->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Shop Manager Review Copy',
+            'slug' => 'shop-manager-review-copy',
+            'is_active' => '0',
+            'review_note' => $longReviewNote,
+        ]);
+
+        $reviewNoteResponse
+            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
+            ->assertSessionHasErrors([
+                'review_note' => 'Keep the review note under 1000 characters so the role workspace stays operator-friendly.',
+            ]);
     }
 
     public function test_role_create_validation_redirects_to_index_without_referrer(): void
@@ -1390,6 +1405,21 @@ class AdminDashboardTest extends TestCase
             ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form')
             ->assertSessionHasErrors([
                 'slug' => 'This role slug is already in use.',
+            ]);
+
+        $longReviewNote = str_repeat('b', 1001);
+
+        $reviewNoteErrorResponse = $this->from(route('admin.roles-permissions.index', ['role' => $role], absolute: false))->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Supervisor Updated Again',
+            'slug' => 'branch-supervisor',
+            'is_active' => '1',
+            'review_note' => $longReviewNote,
+        ]);
+
+        $reviewNoteErrorResponse
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'review_note' => 'Keep the review note under 1000 characters so the role workspace stays operator-friendly.',
             ]);
     }
 
