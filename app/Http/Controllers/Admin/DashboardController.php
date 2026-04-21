@@ -61,19 +61,12 @@ class DashboardController extends Controller
 
     protected function latestShopWorkspaceLabel(Shop $shop): string
     {
-        if (! $this->isShopScopedAdmin()) {
-            return 'Open latest shop review';
-        }
-
-        if (! $shop->is_active) {
-            return 'Open latest shop review';
-        }
-
-        if ($this->shopHasNoRecords($shop, ['cardHolders', 'cards'])) {
-            return 'Open branch setup';
-        }
-
-        return 'Open latest shop review';
+        return $this->scopedLatestWorkspaceLabel(
+            shop: $shop,
+            reviewLabel: 'Open latest shop review',
+            setupLabel: 'Open branch setup',
+            emptyRelations: ['cardHolders', 'cards'],
+        );
     }
 
     protected function latestCardHolderWorkspace(): ?array
@@ -165,6 +158,17 @@ class DashboardController extends Controller
         }
 
         return $this->workspaceLink($label, $routeName);
+    }
+
+    protected function scopedLatestWorkspaceLabel(Shop $shop, string $reviewLabel, string $setupLabel, array $emptyRelations): string
+    {
+        if (! $this->isShopScopedAdmin() || ! $shop->is_active) {
+            return $reviewLabel;
+        }
+
+        return $this->shopHasNoRecords($shop, $emptyRelations)
+            ? $setupLabel
+            : $reviewLabel;
     }
 
     protected function shopHasNoRecords(Shop $shop, array $relations): bool

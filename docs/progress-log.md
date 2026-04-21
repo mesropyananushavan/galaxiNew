@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard latest-shop label helper cleanup checkpoint
+- Extracted the latest-shop setup-versus-review wording into a shared latest-work label helper, so the scoped latest-shop shortcut no longer carries its branch-aware posture logic inline.
+- Kept the step low-risk and behavior-safe by preserving the current shortcut labels while making the latest-work setup/review path easier to reuse for future dashboard shortcuts.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after the latest-shop label helper cleanup.
+
+### Next step after dashboard latest-shop label helper cleanup checkpoint
+- Reuse the new latest-work label helper for another scoped shortcut, or extract one more small shared helper around latest-work setup link composition.
+
 ### Dashboard latest-work setup helper naming cleanup checkpoint
 - Renamed the scoped latest-work setup helper to make its role explicit, so the cardholder/card fallback path now reads more clearly as latest-work setup composition instead of a generic setup helper.
 - Kept the step low-risk and behavior-safe by preserving the exact same empty-branch shortcut behavior while making the branch-aware latest-work flow easier to extend.
