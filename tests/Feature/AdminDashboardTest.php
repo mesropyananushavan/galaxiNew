@@ -701,6 +701,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Open assigned branch setup')
             ->assertSee('/admin/shops?shop='.$assignedShop->id)
             ->assertDontSee('Open assigned branch review</a>', false)
+            ->assertSee('Set up assigned branch')
+            ->assertDontSee('Review live shops in assigned branch</a>', false)
             ->assertDontSee('Open latest holder in branch')
             ->assertDontSee('Open latest card in branch');
     }

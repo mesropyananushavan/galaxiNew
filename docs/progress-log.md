@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard empty-branch live-entry CTA checkpoint
+- Tightened the first scoped live-entry link so active branches with no live holder or card records now surface `Set up assigned branch` instead of `Review live shops in assigned branch`.
+- Kept the step low-risk and read-only by changing only the operator-facing entry label while preserving the same scoped shops route and the existing live-branch review label when branch data already exists.
+- Extended the empty-branch dashboard assertions for the new shared-entry CTA and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard empty-branch live-entry CTA checkpoint
+- Carry the same empty-versus-live branching into one more scoped dashboard link, or tighten one more small label around cardholder/card branch setup posture.
+
 ### Dashboard empty-branch setup CTA checkpoint
 - Tightened the assigned-branch snapshot action copy so active branches with no live holder or card records now surface `Open assigned branch setup` instead of the more advanced `review` CTA.
 - Kept the step low-risk and read-only by changing only the branch-aware CTA label while preserving the same scoped branch route and existing live-branch review behavior.
