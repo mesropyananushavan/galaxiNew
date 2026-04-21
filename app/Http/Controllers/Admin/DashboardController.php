@@ -77,7 +77,7 @@ class DashboardController extends Controller
         );
 
         if (! $cardHolder) {
-            return $this->scopedLatestSetupWorkspace(
+            return $this->scopedLatestSetupWorkspaceLink(
                 relation: 'cardHolders',
                 label: 'Open first cardholder setup in assigned branch',
                 routeName: 'admin.cardholders.index',
@@ -104,7 +104,7 @@ class DashboardController extends Controller
             label: sprintf('Open latest card review: %s (%s)', $card->number, $card->status),
             routeName: 'admin.cards.index',
             parameters: ['card' => $card->id],
-        ) : $this->scopedLatestSetupWorkspace(
+        ) : $this->scopedLatestSetupWorkspaceLink(
             relation: 'cards',
             label: 'Open first card setup in assigned branch',
             routeName: 'admin.cards.index',
@@ -141,23 +141,28 @@ class DashboardController extends Controller
         ];
     }
 
-    protected function scopedLatestSetupWorkspace(string $relation, string $label, string $routeName): ?array
+    protected function scopedLatestSetupWorkspaceLink(string $relation, string $label, string $routeName): ?array
+    {
+        if (! $this->shouldShowScopedLatestSetupWorkspace($relation)) {
+            return null;
+        }
+
+        return $this->workspaceLink($label, $routeName);
+    }
+
+    protected function shouldShowScopedLatestSetupWorkspace(string $relation): bool
     {
         if (! $this->isShopScopedAdmin()) {
-            return null;
+            return false;
         }
 
         $shop = $this->adminUser()?->shop;
 
         if (! $shop instanceof Shop || ! $shop->is_active) {
-            return null;
+            return false;
         }
 
-        if (! $this->shopHasNoRecords($shop, [$relation])) {
-            return null;
-        }
-
-        return $this->workspaceLink($label, $routeName);
+        return $this->shopHasNoRecords($shop, [$relation]);
     }
 
     protected function scopedLatestWorkspaceLabel(Shop $shop, string $reviewLabel, string $setupLabel, array $emptyRelations): string
