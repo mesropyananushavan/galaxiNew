@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Lifecycle cue helper alignment checkpoint
+- Aligned the repeated lifecycle cue plumbing behind shared helper paths in `ResourceIndexController`, so `roles`, `card-types`, `cards`, `cardholders`, and `shops` now resolve shared `Lifecycle freshness` and `Last saved in Laravel` labels from one backend path while preserving each surface's existing review copy.
+- Kept the step intentionally small and safe: no new writes or review surfaces were added, but the Laravel-backed lifecycle metadata layer is now less likely to drift before the next persisted slice.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data)'`, `5 passed`, after aligning the lifecycle cue helpers.
+
+### Next step after lifecycle cue helper alignment checkpoint
+- Return to one more narrow persisted metadata slice on an already-live Laravel form surface, or align another repeated review cue family the same way before widening any write scope.
+
 ### Shops lifecycle timestamp cue checkpoint
 - Added read-only `Lifecycle freshness` and `Last saved in Laravel` cues to the selected shop context, including summary rows, timeline events, and dependency-status entries, so operators can review whether a saved branch is still in its first Laravel-backed state.
 - Kept the step Phase 1-safe: it reuses existing Laravel timestamps for branch review context only and does not widen branch writes, manager reassignment, or shop-scope mutation flows.

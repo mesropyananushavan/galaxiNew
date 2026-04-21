@@ -13,6 +13,7 @@ use App\Support\AdminResourcePageNormalizer;
 use BackedEnum;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 use Stringable;
 use UnitEnum;
 
@@ -1356,31 +1357,22 @@ class ResourceIndexController extends Controller
 
     private function cardTypesLifecycleFreshnessLabel(CardType $selectedCardType): string
     {
-        if ($selectedCardType->updated_at === null || $selectedCardType->created_at === null) {
-            return 'timestamp visibility pending';
-        }
-
-        return $selectedCardType->updated_at->equalTo($selectedCardType->created_at)
-            ? 'newly created in Laravel review'
-            : 'updated after initial Laravel creation';
+        return $this->lifecycleFreshnessLabel($selectedCardType);
     }
 
     private function cardTypesLifecycleFreshnessDescription(CardType $selectedCardType): string
     {
-        if ($selectedCardType->updated_at === null || $selectedCardType->created_at === null) {
-            return 'This tier does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.';
-        }
-
-        if ($selectedCardType->updated_at->equalTo($selectedCardType->created_at)) {
-            return sprintf('This tier was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved catalog shell.', $selectedCardType->created_at->format('Y-m-d H:i:s T'));
-        }
-
-        return sprintf('This tier was first created in Laravel on %s and last updated on %s, so operators are reviewing a catalog shell that has already changed after initial setup.', $selectedCardType->created_at->format('Y-m-d H:i:s T'), $selectedCardType->updated_at->format('Y-m-d H:i:s T'));
+        return $this->lifecycleFreshnessDescription(
+            $selectedCardType,
+            'This tier does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
+            'This tier was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved catalog shell.',
+            'This tier was first created in Laravel on %s and last updated on %s, so operators are reviewing a catalog shell that has already changed after initial setup.',
+        );
     }
 
     private function cardTypesLastSavedLabel(CardType $selectedCardType): string
     {
-        return $selectedCardType->updated_at?->format('Y-m-d H:i:s T') ?? 'Timestamp pending';
+        return $this->lastSavedLabel($selectedCardType);
     }
 
     private function liveFormActionParameters(mixed $parameters): array
@@ -1622,13 +1614,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsLifecycleFreshness(Role $selectedRole): string
     {
-        if ($selectedRole->updated_at === null || $selectedRole->created_at === null) {
-            return 'timestamp visibility pending';
-        }
-
-        return $selectedRole->updated_at->equalTo($selectedRole->created_at)
-            ? 'newly created in Laravel review'
-            : 'updated after initial Laravel creation';
+        return $this->lifecycleFreshnessLabel($selectedRole);
     }
 
     private function rolesPermissionsLifecycleFreshnessLabel(Role $selectedRole): string
@@ -1659,7 +1645,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsLastSavedLabel(Role $selectedRole): string
     {
-        return $selectedRole->updated_at?->format('Y-m-d H:i') ?? 'timestamp visibility pending';
+        return $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending');
     }
 
     private function rolesPermissionsLastSavedTimelineDescription(Role $selectedRole): string
@@ -1867,31 +1853,22 @@ class ResourceIndexController extends Controller
 
     private function cardsLifecycleFreshnessLabel(Card $selectedCard): string
     {
-        if ($selectedCard->updated_at === null || $selectedCard->created_at === null) {
-            return 'timestamp visibility pending';
-        }
-
-        return $selectedCard->updated_at->equalTo($selectedCard->created_at)
-            ? 'newly created in Laravel review'
-            : 'updated after initial Laravel creation';
+        return $this->lifecycleFreshnessLabel($selectedCard);
     }
 
     private function cardsLifecycleFreshnessDescription(Card $selectedCard): string
     {
-        if ($selectedCard->updated_at === null || $selectedCard->created_at === null) {
-            return 'This card does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.';
-        }
-
-        if ($selectedCard->updated_at->equalTo($selectedCard->created_at)) {
-            return sprintf('This card was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved inventory shell.', $selectedCard->created_at->format('Y-m-d H:i:s T'));
-        }
-
-        return sprintf('This card was first created in Laravel on %s and last updated on %s, so operators are reviewing inventory that has already changed after initial setup.', $selectedCard->created_at->format('Y-m-d H:i:s T'), $selectedCard->updated_at->format('Y-m-d H:i:s T'));
+        return $this->lifecycleFreshnessDescription(
+            $selectedCard,
+            'This card does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
+            'This card was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved inventory shell.',
+            'This card was first created in Laravel on %s and last updated on %s, so operators are reviewing inventory that has already changed after initial setup.',
+        );
     }
 
     private function cardsLastSavedLabel(Card $selectedCard): string
     {
-        return $selectedCard->updated_at?->format('Y-m-d H:i:s T') ?? 'Timestamp pending';
+        return $this->lastSavedLabel($selectedCard);
     }
 
     private function cardsSelectedCardDependencyStatus(Card $selectedCard): array
@@ -1953,31 +1930,22 @@ class ResourceIndexController extends Controller
 
     private function cardholdersLifecycleFreshnessLabel(CardHolder $selectedCardHolder): string
     {
-        if ($selectedCardHolder->updated_at === null || $selectedCardHolder->created_at === null) {
-            return 'timestamp visibility pending';
-        }
-
-        return $selectedCardHolder->updated_at->equalTo($selectedCardHolder->created_at)
-            ? 'newly created in Laravel review'
-            : 'updated after initial Laravel creation';
+        return $this->lifecycleFreshnessLabel($selectedCardHolder);
     }
 
     private function cardholdersLifecycleFreshnessDescription(CardHolder $selectedCardHolder): string
     {
-        if ($selectedCardHolder->updated_at === null || $selectedCardHolder->created_at === null) {
-            return 'This holder does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.';
-        }
-
-        if ($selectedCardHolder->updated_at->equalTo($selectedCardHolder->created_at)) {
-            return sprintf('This holder was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved profile shell.', $selectedCardHolder->created_at->format('Y-m-d H:i:s T'));
-        }
-
-        return sprintf('This holder was first created in Laravel on %s and last updated on %s, so operators are reviewing a profile shell that has already changed after initial setup.', $selectedCardHolder->created_at->format('Y-m-d H:i:s T'), $selectedCardHolder->updated_at->format('Y-m-d H:i:s T'));
+        return $this->lifecycleFreshnessDescription(
+            $selectedCardHolder,
+            'This holder does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
+            'This holder was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved profile shell.',
+            'This holder was first created in Laravel on %s and last updated on %s, so operators are reviewing a profile shell that has already changed after initial setup.',
+        );
     }
 
     private function cardholdersLastSavedLabel(CardHolder $selectedCardHolder): string
     {
-        return $selectedCardHolder->updated_at?->format('Y-m-d H:i:s T') ?? 'Timestamp pending';
+        return $this->lastSavedLabel($selectedCardHolder);
     }
 
     private function cardholdersSelectedHolderDependencyStatus(CardHolder $selectedCardHolder): array
@@ -2037,31 +2005,55 @@ class ResourceIndexController extends Controller
 
     private function shopsLifecycleFreshnessLabel(Shop $selectedShop): string
     {
-        if ($selectedShop->updated_at === null || $selectedShop->created_at === null) {
-            return 'timestamp visibility pending';
-        }
-
-        return $selectedShop->updated_at->equalTo($selectedShop->created_at)
-            ? 'newly created in Laravel review'
-            : 'updated after initial Laravel creation';
+        return $this->lifecycleFreshnessLabel($selectedShop);
     }
 
     private function shopsLifecycleFreshnessDescription(Shop $selectedShop): string
     {
-        if ($selectedShop->updated_at === null || $selectedShop->created_at === null) {
-            return 'This branch does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.';
-        }
-
-        if ($selectedShop->updated_at->equalTo($selectedShop->created_at)) {
-            return sprintf('This branch was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved branch shell.', $selectedShop->created_at->format('Y-m-d H:i:s T'));
-        }
-
-        return sprintf('This branch was first created in Laravel on %s and last updated on %s, so operators are reviewing a branch shell that has already changed after initial setup.', $selectedShop->created_at->format('Y-m-d H:i:s T'), $selectedShop->updated_at->format('Y-m-d H:i:s T'));
+        return $this->lifecycleFreshnessDescription(
+            $selectedShop,
+            'This branch does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
+            'This branch was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved branch shell.',
+            'This branch was first created in Laravel on %s and last updated on %s, so operators are reviewing a branch shell that has already changed after initial setup.',
+        );
     }
 
     private function shopsLastSavedLabel(Shop $selectedShop): string
     {
-        return $selectedShop->updated_at?->format('Y-m-d H:i:s T') ?? 'Timestamp pending';
+        return $this->lastSavedLabel($selectedShop);
+    }
+
+    private function lifecycleFreshnessLabel(Model $model): string
+    {
+        if ($model->updated_at === null || $model->created_at === null) {
+            return 'timestamp visibility pending';
+        }
+
+        return $model->updated_at->equalTo($model->created_at)
+            ? 'newly created in Laravel review'
+            : 'updated after initial Laravel creation';
+    }
+
+    private function lifecycleFreshnessDescription(Model $model, string $pendingDescription, string $createdDescription, string $updatedDescription): string
+    {
+        if ($model->updated_at === null || $model->created_at === null) {
+            return $pendingDescription;
+        }
+
+        if ($model->updated_at->equalTo($model->created_at)) {
+            return sprintf($createdDescription, $model->created_at->format('Y-m-d H:i:s T'));
+        }
+
+        return sprintf(
+            $updatedDescription,
+            $model->created_at->format('Y-m-d H:i:s T'),
+            $model->updated_at->format('Y-m-d H:i:s T'),
+        );
+    }
+
+    private function lastSavedLabel(Model $model, string $format = 'Y-m-d H:i:s T', string $fallback = 'Timestamp pending'): string
+    {
+        return $model->updated_at?->format($format) ?? $fallback;
     }
 
     private function shopsSelectedShopDependencyStatus(Shop $selectedShop): array
