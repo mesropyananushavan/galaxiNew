@@ -658,6 +658,12 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
+        $user = request()->user();
+        $adminUser = $user instanceof User ? $user : null;
+        $accessibleCards = $adminUser instanceof User
+            ? $cards->filter(fn (Card $card): bool => $adminUser->canAccessShop($card->shop))->values()
+            : $cards;
+
         $page['metrics'] = [
             ['label' => 'Active cards', 'value' => (string) $cards->where('status', 'active')->count()],
             ['label' => 'Draft cards', 'value' => (string) $cards->where('status', 'draft')->count()],
@@ -665,7 +671,9 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $cards->map(fn (Card $card): array => [
-            $this->linkedTableCell($card->number, 'admin.cards.index', ['card' => $card->id]),
+            $adminUser instanceof User && ! $adminUser->canAccessShop($card->shop)
+                ? $card->number
+                : $this->linkedTableCell($card->number, 'admin.cards.index', ['card' => $card->id]),
             $card->holder?->full_name ?? 'Unassigned',
             $card->type?->name ?? 'Unknown',
             $card->shop?->name ?? 'Unassigned',
@@ -673,7 +681,7 @@ class ResourceIndexController extends Controller
             $card->activated_at?->format('Y-m-d') ?? '—',
         ])->all();
 
-        $latestCard = $cards->sortByDesc('id')->first();
+        $latestCard = $accessibleCards->sortByDesc('id')->first();
 
         if ($latestCard !== null) {
             $page = $this->appendPageAction($page, [
@@ -692,6 +700,10 @@ class ResourceIndexController extends Controller
         $selectedCard = $cards->firstWhere('id', $selectedCardId);
 
         if (! $selectedCard instanceof Card) {
+            return $page;
+        }
+
+        if ($adminUser instanceof User && ! $adminUser->canAccessShop($selectedCard->shop)) {
             return $page;
         }
 

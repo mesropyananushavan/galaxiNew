@@ -1041,6 +1041,137 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('selected for Laravel review');
     }
 
+    public function test_cards_page_hides_other_shop_card_review_links_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Card Home',
+            'code' => 'galaxy-card-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Card Other',
+            'code' => 'galaxy-card-other',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Scoped Card Type',
+            'slug' => 'galaxy-scoped-card-type',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $assignedCard = Card::create([
+            'shop_id' => $assignedShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-940001',
+            'status' => 'active',
+        ]);
+
+        $otherCard = Card::create([
+            'shop_id' => $otherShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-940002',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Card Reviewer',
+            'slug' => 'scoped-card-reviewer-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped card workspace',
+            'slug' => 'review-scoped-card-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/cards');
+
+        $response
+            ->assertOk()
+            ->assertSee('href="/admin/cards?card='.$assignedCard->id.'"', false)
+            ->assertDontSee('href="/admin/cards?card='.$otherCard->id.'"', false)
+            ->assertSee('Review latest saved card')
+            ->assertSee('href="/admin/cards?card='.$assignedCard->id.'"', false);
+    }
+
+    public function test_cards_page_ignores_inaccessible_selected_card_query_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Card Review Home',
+            'code' => 'galaxy-card-review-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Card Review Other',
+            'code' => 'galaxy-card-review-other',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Scoped Review Card Type',
+            'slug' => 'galaxy-scoped-review-card-type',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $assignedShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-950001',
+            'status' => 'active',
+        ]);
+
+        $otherCard = Card::create([
+            'shop_id' => $otherShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-950002',
+            'status' => 'blocked',
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Card Selector',
+            'slug' => 'scoped-card-selector-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Select scoped card workspace',
+            'slug' => 'select-scoped-card-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$otherCard->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('GX-950001')
+            ->assertSee('GX-950002')
+            ->assertDontSee('Back to all cards')
+            ->assertDontSee('Reviewing: GX-950002')
+            ->assertDontSee('Selected card')
+            ->assertSee('Review latest saved card')
+            ->assertSee('href="/admin/cards?card=1"', false);
+    }
+
     public function test_authenticated_user_can_access_cardholders_operational_index_shape(): void
     {
         $user = User::factory()->create();
