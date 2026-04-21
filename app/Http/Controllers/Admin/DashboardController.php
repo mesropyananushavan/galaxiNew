@@ -69,9 +69,7 @@ class DashboardController extends Controller
             return 'Open latest shop review';
         }
 
-        $shop->loadCount(['cardHolders', 'cards']);
-
-        if ($shop->card_holders_count === 0 && $shop->cards_count === 0) {
+        if ($this->shopHasNoRecords($shop, ['cardHolders', 'cards'])) {
             return 'Open branch setup';
         }
 
@@ -162,19 +160,36 @@ class DashboardController extends Controller
             return null;
         }
 
-        $shop->loadCount([$relation]);
-
-        $countAttribute = match ($relation) {
-            'cardHolders' => 'card_holders_count',
-            'cards' => 'cards_count',
-            default => null,
-        };
-
-        if (! is_string($countAttribute) || ($shop->{$countAttribute} ?? 0) !== 0) {
+        if (! $this->shopHasNoRecords($shop, [$relation])) {
             return null;
         }
 
         return $this->workspaceLink($label, $routeName);
+    }
+
+    protected function shopHasNoRecords(Shop $shop, array $relations): bool
+    {
+        $shop->loadCount($relations);
+
+        foreach ($relations as $relation) {
+            $countAttribute = $this->shopRelationCountAttribute($relation);
+
+            if (! is_string($countAttribute) || ($shop->{$countAttribute} ?? 0) !== 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    protected function shopRelationCountAttribute(string $relation): ?string
+    {
+        return match ($relation) {
+            'cardHolders' => 'card_holders_count',
+            'cards' => 'cards_count',
+            'users' => 'users_count',
+            default => null,
+        };
     }
 
     protected function liveReviewEntryPoints(): array

@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard latest-work count-helper cleanup checkpoint
+- Extracted the shop relation-count lookup used by the new latest-work setup branching into shared helpers, so empty-branch shortcut checks now read through one consistent count path instead of repeating relation-to-count mapping inline.
+- Kept the step low-risk and behavior-safe by preserving the current empty-versus-live shortcut behavior while reducing controller duplication around branch-aware setup logic.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after the count-helper cleanup.
+
+### Next step after dashboard latest-work count-helper cleanup checkpoint
+- Reuse the new count helpers in one more branch-aware dashboard rule, or extract one more small latest-work label helper now that the setup branching is centralized.
+
 ### Dashboard empty-branch latest setup shortcuts checkpoint
 - Extended the scoped latest-work block so active branches with no holder or card records now surface `Open first cardholder setup in assigned branch` and `Open first card setup in assigned branch` instead of simply omitting those shortcuts.
 - Kept the step low-risk and read-only by only changing operator-facing shortcut composition, while preserving the existing latest-review links once real branch holder/card records exist.
