@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Shops operational readiness cue checkpoint
+- Added an `Operational readiness` cue to the Laravel-backed selected-shop review context, so the shops surface now exposes a simple Galaxy-style branch posture instead of relying only on generic summary and dependency fields.
+- The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded shop status, manager linkage, and visible branch coverage, with states such as `active branch, operator-visible coverage live` and `paused branch, recovery review only`.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_replaces_preview_rows_with_model_backed_shop_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query)'`, `4 passed`, after adding the shops readiness cue.
+
+### Next step after shops operational readiness cue checkpoint
+- Move from read-side operator cues toward the next thin write-path foundation slice, or add one more small Laravel-backed posture cue only if it unlocks a clearer Phase 1 workflow.
+
 ### Cardholders operational readiness cue checkpoint
 - Added an `Operational readiness` cue to the Laravel-backed selected-holder review context, so the cardholders surface now exposes a simple Galaxy-style profile posture instead of relying only on generic summary and dependency fields.
 - The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded holder status and linked-card counts, with states such as `inactive profile, review only` and `linked profile, operator-visible`.

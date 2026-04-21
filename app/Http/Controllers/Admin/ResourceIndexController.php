@@ -1644,6 +1644,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review mode', 'value' => $selectedShop->is_active
                 ? 'Live branch review, this Laravel shop already carries operational visibility and should stay parity-first.'
                 : 'Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.'],
+            ['label' => 'Operational readiness', 'value' => $this->shopsOperationalReadiness($selectedShop)],
             ['label' => 'Code', 'value' => $selectedShop->code],
             ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
             ['label' => 'Manager guidance', 'value' => $selectedShop->users_count > 0
@@ -1659,6 +1660,16 @@ class ResourceIndexController extends Controller
                     : 'This branch is still paused, which keeps it safe for parity checks before operators treat it as fully live.',
             ],
         ];
+    }
+
+    private function shopsOperationalReadiness(Shop $selectedShop): string
+    {
+        return match (true) {
+            ! $selectedShop->is_active => 'paused branch, recovery review only',
+            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'active branch, operator-visible coverage live',
+            $selectedShop->users_count > 0 => 'active branch, manager assigned and build-out pending',
+            default => 'active branch shell, ownership still forming',
+        };
     }
 
     private function shopsSelectedShopDependencyStatus(Shop $selectedShop): array

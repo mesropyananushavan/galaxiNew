@@ -1836,6 +1836,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected shop')
             ->assertSee('Review mode')
             ->assertSee('Live branch review, this Laravel shop already carries operational visibility and should stay parity-first.')
+            ->assertSee('Operational readiness')
+            ->assertSee('active branch, operator-visible coverage live')
             ->assertSee('Code')
             ->assertSee('Assigned manager')
             ->assertSee('Manager guidance')
