@@ -286,17 +286,15 @@ class DashboardController extends Controller
 
     protected function dashboardScopeSummary(): ?array
     {
-        $user = $this->adminUser();
+        $shop = $this->activeScopedShop();
 
-        if (! $this->isShopScopedAdmin()) {
+        if (! $shop instanceof Shop) {
             return null;
         }
 
-        $shopName = $user?->shop?->name ?? 'assigned shop';
-
         return [
             'label' => 'Current review scope',
-            'value' => sprintf('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to %s with branch-specific review wording while Phase 1 policies are still being mapped.', $shopName),
+            'value' => sprintf('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to %s with branch-specific review wording while Phase 1 policies are still being mapped.', $shop->name),
         ];
     }
 
