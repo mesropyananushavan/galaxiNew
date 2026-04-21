@@ -656,11 +656,15 @@ class ResourceIndexController extends Controller
             $permissionPreview,
         );
 
+        $page = $this->prependLatestBackendWriteTimelineItem($page);
+
         $page['dependencyStatus'] = $this->rolesPermissionsSelectedRoleDependencyStatus(
             $selectedRole,
             $scope,
             $permissionPreview,
         );
+
+        $page = $this->appendLatestBackendWriteDependencyStatus($page);
 
         return $page;
     }
@@ -1248,7 +1252,7 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        $page = $this->prependCardTypeLatestFlowTimelineItem($page);
+        $page = $this->prependLatestBackendWriteTimelineItem($page);
 
         $page['dependencyStatus'] = [
             ['label' => 'Selected record', 'value' => $selectedCardType->name],
@@ -1260,7 +1264,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Remaining backend gap', 'value' => 'Publish logic and rule-import parity still remain preview-only for this tier'],
         ];
 
-        $page = $this->appendCardTypeLatestFlowDependencyStatus($page);
+        $page = $this->appendLatestBackendWriteDependencyStatus($page);
 
         $page['liveForm']['title'] = 'Edit card type in Laravel';
         $page['liveForm']['description'] = 'Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.';
@@ -1706,7 +1710,7 @@ class ResourceIndexController extends Controller
         ];
     }
 
-    private function prependCardTypeLatestFlowTimelineItem(array $page): array
+    private function prependLatestBackendWriteTimelineItem(array $page): array
     {
         $status = session('status');
 
@@ -1725,7 +1729,7 @@ class ResourceIndexController extends Controller
         return $page;
     }
 
-    private function appendCardTypeLatestFlowDependencyStatus(array $page): array
+    private function appendLatestBackendWriteDependencyStatus(array $page): array
     {
         $status = session('status');
 

@@ -1336,7 +1336,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('id="backend-flow-status"', false)
             ->assertSee('Backend flow checkpoint')
             ->assertSee('Role "Branch Operations Lead" was updated.')
-            ->assertSee('Reviewing: Branch Operations Lead');
+            ->assertSee('Reviewing: Branch Operations Lead')
+            ->assertSee('Latest backend write result')
+            ->assertSee('Latest flow result:')
+            ->assertSee('Role "Branch Operations Lead" was updated.');
     }
 
     public function test_authenticated_user_can_access_cards_operational_index_shape(): void
