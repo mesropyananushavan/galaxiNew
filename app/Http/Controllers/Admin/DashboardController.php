@@ -249,9 +249,9 @@ class DashboardController extends Controller
             $this->workspaceLink($primaryScopedShopEntryLabel, 'admin.shops.index'),
             $this->workspaceLink($primaryScopedCardholderEntryLabel, 'admin.cardholders.index'),
             $this->workspaceLink($primaryScopedCardEntryLabel, 'admin.cards.index'),
-            $this->workspaceLink('Review live card types', 'admin.card-types.index'),
-            $this->workspaceLink('Review live access roles', 'admin.roles-permissions.index'),
-            $this->workspaceLink('Review live reporting sources', 'admin.reports.index'),
+            $this->workspaceLink('Review shared card types', 'admin.card-types.index'),
+            $this->workspaceLink('Review shared access roles', 'admin.roles-permissions.index'),
+            $this->workspaceLink('Review shared reporting sources', 'admin.reports.index'),
         ];
     }
 
