@@ -234,8 +234,10 @@ class DashboardController extends Controller
                 ['label' => 'Assigned staff', 'value' => (string) $shop->users_count],
                 ['label' => 'Latest holder', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->full_name : 'No holders in assigned branch yet'],
                 ['label' => 'Latest holder status', 'value' => $latestHolder instanceof CardHolder ? ($latestHolder->is_active ? 'active' : 'inactive') : 'n/a'],
+                ['label' => 'Latest holder added', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->created_at?->toDateString() ?? 'unknown' : 'n/a'],
                 ['label' => 'Latest card', 'value' => $latestCard instanceof Card ? $latestCard->number : 'No cards in assigned branch yet'],
                 ['label' => 'Latest card status', 'value' => $latestCard instanceof Card ? $latestCard->status : 'n/a'],
+                ['label' => 'Latest card issued', 'value' => $latestCard instanceof Card ? $latestCard->created_at?->toDateString() ?? 'unknown' : 'n/a'],
             ],
             'actions' => $actions,
         ];

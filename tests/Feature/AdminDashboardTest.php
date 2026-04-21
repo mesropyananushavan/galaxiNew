@@ -483,6 +483,11 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
         ]);
 
+        $assignedHolder->forceFill([
+            'created_at' => '2026-04-20 09:15:00',
+            'updated_at' => '2026-04-20 09:15:00',
+        ])->saveQuietly();
+
         $otherHolder = CardHolder::create([
             'shop_id' => $otherShop->id,
             'full_name' => 'Other Dashboard Holder',
@@ -505,6 +510,11 @@ class AdminDashboardTest extends TestCase
             'number' => 'GX-DASH-001',
             'status' => 'active',
         ]);
+
+        $assignedCard->forceFill([
+            'created_at' => '2026-04-20 12:45:00',
+            'updated_at' => '2026-04-20 12:45:00',
+        ])->saveQuietly();
 
         Card::create([
             'shop_id' => $otherShop->id,
@@ -552,9 +562,12 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Latest holder')
             ->assertSee('Scoped Dashboard Holder')
             ->assertSee('Latest holder status')
+            ->assertSee('Latest holder added')
+            ->assertSee('2026-04-20')
             ->assertSee('Latest card')
             ->assertSee('GX-DASH-001')
             ->assertSee('Latest card status')
+            ->assertSee('Latest card issued')
             ->assertSee('>1<', false)
             ->assertSee('Open assigned branch review')
             ->assertSee('/admin/shops?shop='.$assignedShop->id)
@@ -599,8 +612,10 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Assigned staff')
             ->assertDontSee('Latest holder')
             ->assertDontSee('Latest holder status')
+            ->assertDontSee('Latest holder added')
             ->assertDontSee('Latest card')
             ->assertDontSee('Latest card status')
+            ->assertDontSee('Latest card issued')
             ->assertDontSee('Open assigned branch review')
             ->assertDontSee('Open latest holder in branch')
             ->assertDontSee('Open latest card in branch')

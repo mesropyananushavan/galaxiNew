@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch activity-date cue checkpoint
+- Extended the assigned-branch snapshot with `Latest holder added` and `Latest card issued`, so scoped admins can immediately tell how fresh the branch's newest live records are instead of only seeing names and statuses.
+- Kept the step low-risk and read-only by deriving the new cues from the existing latest branch-local holder/card records already loaded for the snapshot.
+- Extended the focused dashboard assertions with stable created-at coverage for the new cues, then re-ran `php artisan test --filter=dashboard_latest_live_work_shortcuts_respect_shop_scope`, `1 passed`.
+
+### Next step after dashboard branch activity-date cue checkpoint
+- Add one more low-risk branch console cue around stale-vs-fresh activity posture, or start converting one of the scoped dashboard cues into a stricter branch-aware entry boundary.
+
 ### Dashboard branch identity cue checkpoint
 - Extended the assigned-branch snapshot with `Branch code` and `Primary manager`, so the scoped dashboard now shows not only branch-local metrics and latest records but also the key identity cues operators used to orient themselves in the old Galaxy branch console.
 - Kept the step low-risk and read-only by reusing the already loaded assigned shop and ordering visible branch users for a stable primary-manager preview.
