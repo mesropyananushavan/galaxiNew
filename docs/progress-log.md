@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard empty-branch setup helper cleanup checkpoint
+- Extracted the repeated empty-branch setup-state check into a shared `branchSetupPending` helper so the setup-first snapshot cluster now reads through one condition across activity, freshness, posture, and follow-up cues.
+- Kept the step low-risk and behavior-safe by preserving the current setup-first wording, routes, authorization, and live/paused branch behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty-branch setup helper cleanup.
+
+### Next step after dashboard empty-branch setup helper cleanup checkpoint
+- Reuse the helper-driven setup-first pattern in another branch-aware dashboard rule, or move to the next small Phase 1 behavior step outside the assigned-branch snapshot.
+
 ### Dashboard empty-branch posture cue checkpoint
 - Tightened the empty active-branch `Branch posture` cue from `active branch, no live activity yet` to `active branch, setup pending`, so the snapshot posture now matches the setup-first language already used by the activity, freshness, follow-up, and CTA cues.
 - Kept the step low-risk by changing only the empty-branch posture wording while preserving the same routes, authorization, and live/paused branch behavior.

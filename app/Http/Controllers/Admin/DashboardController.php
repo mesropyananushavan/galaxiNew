@@ -350,7 +350,7 @@ class DashboardController extends Controller
 
     protected function latestBranchActivitySummary(?CardHolder $latestHolder, ?Card $latestCard): string
     {
-        if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
+        if ($this->branchSetupPending($latestHolder, $latestCard)) {
             return 'Setup pending';
         }
 
@@ -384,7 +384,7 @@ class DashboardController extends Controller
 
     protected function latestBranchActivityFreshness(?CardHolder $latestHolder, ?Card $latestCard): string
     {
-        if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
+        if ($this->branchSetupPending($latestHolder, $latestCard)) {
             return 'setup stage';
         }
 
@@ -411,7 +411,7 @@ class DashboardController extends Controller
             return 'paused branch';
         }
 
-        if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
+        if ($this->branchSetupPending($latestHolder, $latestCard)) {
             return 'active branch, setup pending';
         }
 
@@ -424,11 +424,16 @@ class DashboardController extends Controller
             return 'Confirm pause reason before reopening branch work.';
         }
 
-        if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
+        if ($this->branchSetupPending($latestHolder, $latestCard)) {
             return 'Open assigned branch setup and create the first live records.';
         }
 
         return 'Resume the latest branch review flow from the scoped shortcuts.';
+    }
+
+    protected function branchSetupPending(?CardHolder $latestHolder, ?Card $latestCard): bool
+    {
+        return ! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card;
     }
 
     protected function assignedBranchSnapshotActions(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): array
