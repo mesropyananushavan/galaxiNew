@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard shared live-entry helper cleanup checkpoint
+- Extracted the scoped shared-surface `Live review entry points` links into a small helper so the new shared card type, access role, and reporting labels no longer repeat raw workspace-link composition inline.
+- Kept the step low-risk and behavior-safe by preserving the same scoped labels, routes, and unscoped baseline behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the shared live-entry helper cleanup.
+
+### Next step after dashboard shared live-entry helper cleanup checkpoint
+- Reuse the new helper pattern for another scoped dashboard surface, or move to the next small branch-aware behavior step now that `Live review entry points` is tidier.
+
 ### Dashboard scoped shared-surface labels checkpoint
 - Tightened the shop-scoped `Live review entry points` labels for card types, access roles, and reporting so those links now explicitly read as shared review surfaces while branch-scoped shop, cardholder, and card links keep their assigned-branch wording.
 - Kept the step low-risk by changing only scoped live-entry labels while preserving routes and the unscoped dashboard baseline.

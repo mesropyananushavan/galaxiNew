@@ -249,10 +249,15 @@ class DashboardController extends Controller
             $this->workspaceLink($primaryScopedShopEntryLabel, 'admin.shops.index'),
             $this->workspaceLink($primaryScopedCardholderEntryLabel, 'admin.cardholders.index'),
             $this->workspaceLink($primaryScopedCardEntryLabel, 'admin.cards.index'),
-            $this->workspaceLink('Review shared card types', 'admin.card-types.index'),
-            $this->workspaceLink('Review shared access roles', 'admin.roles-permissions.index'),
-            $this->workspaceLink('Review shared reporting sources', 'admin.reports.index'),
+            $this->scopedSharedLiveEntryPoint('Review shared card types', 'admin.card-types.index'),
+            $this->scopedSharedLiveEntryPoint('Review shared access roles', 'admin.roles-permissions.index'),
+            $this->scopedSharedLiveEntryPoint('Review shared reporting sources', 'admin.reports.index'),
         ];
+    }
+
+    protected function scopedSharedLiveEntryPoint(string $label, string $routeName): array
+    {
+        return $this->workspaceLink($label, $routeName);
     }
 
     protected function adminUser(): ?User
