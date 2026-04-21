@@ -523,7 +523,7 @@ class DashboardController extends Controller
 
         return [
             'label' => 'Phase 1 scope note',
-            'value' => 'Latest-work shortcuts for shops, cardholders, and cards now follow branch scope. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.',
+            'value' => 'Latest-work shortcuts for shops, cardholders, and cards now follow branch scope and branch-specific review wording. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.',
         ];
     }
 

@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard latest-work scope-note alignment checkpoint
+- Updated the scoped `Phase 1 scope note` so it now explicitly matches the newer branch-specific latest-work wording, clarifying that shops, cardholders, and cards use both branch scope and branch-specific review language.
+- Kept the step low-risk by changing only explanatory scoped dashboard copy while preserving the same latest-work routes, record selection, and fallback behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the latest-work scope-note alignment update.
+
+### Next step after dashboard latest-work scope-note alignment checkpoint
+- Align one more scoped dashboard note with the newer branch-specific wording, or switch to another small branch-aware behavior step now that latest-work copy and labels are back in sync.
+
 ### Dashboard branch-specific latest-shop label checkpoint
 - Reused the shared latest-work review label helper for the scoped latest-shop shortcut, so live shop-scoped admins now see `Open latest branch review` while empty assigned branches still keep the setup-oriented `Open branch setup` label.
 - Kept the step low-risk by changing only scoped shortcut wording while preserving the same routes, record selection, and empty-branch setup fallback.

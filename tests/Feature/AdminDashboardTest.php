@@ -602,7 +602,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review live cards in assigned branch')
             ->assertDontSee('Review live shops</a>', false)
             ->assertSee('Phase 1 scope note')
-            ->assertSee('Latest-work shortcuts for shops, cardholders, and cards now follow branch scope. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.')
+            ->assertSee('Latest-work shortcuts for shops, cardholders, and cards now follow branch scope and branch-specific review wording. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.')
             ->assertSee('Open latest branch review: Dashboard Home Shop (active)')
             ->assertSee('/admin/shops?shop='.$assignedShop->id)
             ->assertDontSee('Open latest branch review: Dashboard Other Shop (active)')
