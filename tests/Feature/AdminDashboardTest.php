@@ -1135,6 +1135,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This role is currently marked as active in Laravel and the management context now treats it as a live access shell.')
             ->assertSee('Shop Manager scope posture reflected from model state')
             ->assertSee('This role currently shows shop scope across Galaxy Central in Laravel review mode, so scope rollout stays visible while writes remain gated.')
+            ->assertSee('Shop Manager scope coverage reflected from model state')
+            ->assertSee('This role currently exposes shop scope across Galaxy Central in Laravel review, giving operators one visible branch to compare before any scope writes are enabled.')
             ->assertSee('Shop Manager permission bundle reflected from model state')
             ->assertSee('Shop Manager assignment scope reflected from model state')
             ->assertSee('This role is currently linked to 1 assigned users across Galaxy Central in Laravel review mode.')

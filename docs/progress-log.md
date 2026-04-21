@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Roles-permissions scope coverage timeline checkpoint
+- Added a selected-role timeline event for live scope coverage so the review workspace now records not just that shop scope exists, but how much branch coverage Laravel currently exposes for that role.
+- Kept the change Phase 1-safe: it reuses the existing scoped-shop read context and does not open any new scope mutation, assignment, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the scope coverage timeline cue.
+
+### Next step after roles-permissions scope coverage timeline checkpoint
+- Turn one safe scope-related cue or nearby review metadata cue into the next thin persisted slice, while keeping assignment and permission-matrix writes blocked.
+
 ### Roles-permissions scope coverage cue checkpoint
 - Added a live `Scope coverage` cue to the selected-role summary and dependency status so the review workspace now shows how many shops are currently visible through Laravel scope, not just whether scope posture is pending or visible.
 - Kept the step small and Phase 1-safe: it reuses the existing scoped-shop read context and does not open any new scope mutation or assignment writes.

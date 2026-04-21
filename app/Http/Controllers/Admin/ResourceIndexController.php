@@ -1559,6 +1559,17 @@ class ResourceIndexController extends Controller
             : 'This role currently has no linked shop scope in Laravel, so the review context keeps it in a safer scope-pending posture.';
     }
 
+    private function rolesPermissionsScopeCoverageTimelineDescription(mixed $scope): string
+    {
+        $scopeCount = $scope->count();
+
+        return match (true) {
+            $scopeCount === 0 => 'No shops are currently linked to this role in Laravel review, so scope coverage remains empty while rollout stays blocked.',
+            $scopeCount === 1 => sprintf('This role currently exposes shop scope across %s in Laravel review, giving operators one visible branch to compare before any scope writes are enabled.', $scope->join(', ')),
+            default => sprintf('This role currently exposes shop scope across %d shops in Laravel review, so operators can verify branch coverage before any scope writes are enabled.', $scopeCount),
+        };
+    }
+
     private function rolesPermissionsScopeRolloutDependencyPosture(mixed $scope): string
     {
         return $scope->isNotEmpty()
@@ -1585,6 +1596,11 @@ class ResourceIndexController extends Controller
                 'title' => sprintf('%s scope posture reflected from model state', $selectedRole->name),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsScopeRolloutTimelineDescription($scope),
+            ],
+            [
+                'title' => sprintf('%s scope coverage reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $this->rolesPermissionsScopeCoverageTimelineDescription($scope),
             ],
             [
                 'title' => sprintf('%s permission bundle reflected from model state', $selectedRole->name),
