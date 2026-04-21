@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Shop-aware live workspace helper extraction checkpoint
+- Extracted the repeated shop-aware review boundary in `ResourceIndexController` into small shared helpers for current admin-user resolution, record filtering, and inaccessible-shop checks.
+- Rewired the live `shops`, `cardholders`, and `cards` workspaces to use the shared helper path without changing their current branch-scope behavior, which reduces drift as more Phase 1 scoped review surfaces arrive.
+- Re-ran the combined focused live workspace slice across all three areas, `17 passed`, to confirm the helper extraction stayed behavior-safe.
+
+### Next step after shop-aware live workspace helper extraction checkpoint
+- Reuse the new shared helper in the next shop-aware live slice or add one more low-risk scoped cue where current read-only Galaxy review still leaks starter-style generic behavior.
+
 ### Shop-scoped cards workspace boundary checkpoint
 - Applied the same shop-target access boundary to the live `cards` workspace, so shop-scoped admins now only get card review links and latest-card shortcuts for inventory records inside their own branch.
 - Kept the step low-risk and read-only: inaccessible selected-card queries now fall back to the index state instead of opening cross-shop card context, while bootstrap access still preserves the broader setup view.

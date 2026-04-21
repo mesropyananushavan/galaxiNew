@@ -658,11 +658,11 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $user = request()->user();
-        $adminUser = $user instanceof User ? $user : null;
-        $accessibleCards = $adminUser instanceof User
-            ? $cards->filter(fn (Card $card): bool => $adminUser->canAccessShop($card->shop))->values()
-            : $cards;
+        $adminUser = $this->adminUser();
+        $accessibleCards = $this->filterShopScopedRecords(
+            $cards,
+            fn (Card $card): ?Shop => $card->shop,
+        );
 
         $page['metrics'] = [
             ['label' => 'Active cards', 'value' => (string) $cards->where('status', 'active')->count()],
@@ -671,7 +671,7 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $cards->map(fn (Card $card): array => [
-            $adminUser instanceof User && ! $adminUser->canAccessShop($card->shop)
+            $this->cannotAccessRecordShop($adminUser, $card->shop)
                 ? $card->number
                 : $this->linkedTableCell($card->number, 'admin.cards.index', ['card' => $card->id]),
             $card->holder?->full_name ?? 'Unassigned',
@@ -703,7 +703,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        if ($adminUser instanceof User && ! $adminUser->canAccessShop($selectedCard->shop)) {
+        if ($this->cannotAccessRecordShop($adminUser, $selectedCard->shop)) {
             return $page;
         }
 
@@ -753,11 +753,11 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $user = request()->user();
-        $adminUser = $user instanceof User ? $user : null;
-        $accessibleCardHolders = $adminUser instanceof User
-            ? $cardHolders->filter(fn (CardHolder $cardHolder): bool => $adminUser->canAccessShop($cardHolder->shop))->values()
-            : $cardHolders;
+        $adminUser = $this->adminUser();
+        $accessibleCardHolders = $this->filterShopScopedRecords(
+            $cardHolders,
+            fn (CardHolder $cardHolder): ?Shop => $cardHolder->shop,
+        );
 
         $page['metrics'] = [
             ['label' => 'Active holders', 'value' => (string) $cardHolders->where('is_active', true)->count()],
@@ -766,7 +766,7 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $cardHolders->map(fn (CardHolder $cardHolder): array => [
-            $adminUser instanceof User && ! $adminUser->canAccessShop($cardHolder->shop)
+            $this->cannotAccessRecordShop($adminUser, $cardHolder->shop)
                 ? $cardHolder->full_name
                 : $this->linkedTableCell($cardHolder->full_name, 'admin.cardholders.index', ['cardholder' => $cardHolder->id]),
             $cardHolder->phone ?? '—',
@@ -798,7 +798,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        if ($adminUser instanceof User && ! $adminUser->canAccessShop($selectedCardHolder->shop)) {
+        if ($this->cannotAccessRecordShop($adminUser, $selectedCardHolder->shop)) {
             return $page;
         }
 
@@ -848,11 +848,11 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $user = request()->user();
-        $adminUser = $user instanceof User ? $user : null;
-        $accessibleShops = $adminUser instanceof User
-            ? $shops->filter(fn (Shop $shop): bool => $adminUser->canAccessShop($shop))->values()
-            : $shops;
+        $adminUser = $this->adminUser();
+        $accessibleShops = $this->filterShopScopedRecords(
+            $shops,
+            fn (Shop $shop): ?Shop => $shop,
+        );
 
         $page['metrics'] = [
             ['label' => 'Active shops', 'value' => (string) $shops->where('is_active', true)->count()],
@@ -861,7 +861,7 @@ class ResourceIndexController extends Controller
         ];
 
         $page['table']['rows'] = $shops->map(fn (Shop $shop): array => [
-            $adminUser instanceof User && ! $adminUser->canAccessShop($shop)
+            $this->cannotAccessRecordShop($adminUser, $shop)
                 ? $shop->name
                 : $this->linkedTableCell($shop->name, 'admin.shops.index', ['shop' => $shop->id]),
             $shop->code,
@@ -893,7 +893,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        if ($adminUser instanceof User && ! $adminUser->canAccessShop($selectedShop)) {
+        if ($this->cannotAccessRecordShop($adminUser, $selectedShop)) {
             return $page;
         }
 
@@ -1688,6 +1688,36 @@ class ResourceIndexController extends Controller
             'label' => $label,
             'href' => route($routeName, $parameters, absolute: false),
         ];
+    }
+
+    private function adminUser(): ?User
+    {
+        $user = request()->user();
+
+        return $user instanceof User ? $user : null;
+    }
+
+    private function filterShopScopedRecords(iterable $records, callable $shopResolver)
+    {
+        $adminUser = $this->adminUser();
+        $records = collect($records);
+
+        if (! $adminUser instanceof User) {
+            return $records;
+        }
+
+        return $records
+            ->filter(fn (mixed $record): bool => ! $this->cannotAccessRecordShop($adminUser, $shopResolver($record)))
+            ->values();
+    }
+
+    private function cannotAccessRecordShop(?User $user, ?Shop $shop): bool
+    {
+        if (! $user instanceof User) {
+            return false;
+        }
+
+        return ! $user->canAccessShop($shop);
     }
 
     private function selectedRecordId(string $queryKey): int
