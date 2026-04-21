@@ -626,7 +626,7 @@ class ResourceIndexController extends Controller
                 'name' => $selectedRole->name,
                 'slug' => $selectedRole->slug,
                 'is_active' => $selectedRole->is_active ? '1' : '0',
-                'scope_rollout' => $scope->isNotEmpty() ? 'shop-scope-visible' : 'shop-scope-pending',
+                'scope_rollout' => $this->rolesPermissionsScopeRolloutValue($scope),
                 'publish_posture' => $this->rolesPermissionsPublishPostureValue($selectedRole),
             ];
         }
@@ -1481,9 +1481,7 @@ class ResourceIndexController extends Controller
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
-            ['label' => 'Scope rollout posture', 'value' => $scope->isNotEmpty()
-                ? 'Shop scope is visible in Laravel review, but scope writes should stay parity-first until the next thin access slice is ready.'
-                : 'Shop scope is still pending in Laravel review, which keeps this role safer for draft-first parity checks.'],
+            ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
             ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
             ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
                 ? 'This role already has visible shop scope in Laravel, so any scope change should be treated as a parity-sensitive access change.'
@@ -1530,6 +1528,32 @@ class ResourceIndexController extends Controller
         };
     }
 
+    private function rolesPermissionsScopeRolloutValue(mixed $scope): string
+    {
+        return $scope->isNotEmpty() ? 'shop-scope-visible' : 'shop-scope-pending';
+    }
+
+    private function rolesPermissionsScopeRolloutSummaryPosture(mixed $scope): string
+    {
+        return $scope->isNotEmpty()
+            ? 'Shop scope is visible in Laravel review, but scope writes should stay parity-first until the next thin access slice is ready.'
+            : 'Shop scope is still pending in Laravel review, which keeps this role safer for draft-first parity checks.';
+    }
+
+    private function rolesPermissionsScopeRolloutTimelineDescription(mixed $scope): string
+    {
+        return $scope->isNotEmpty()
+            ? sprintf('This role currently shows shop scope across %s in Laravel review mode, so scope rollout stays visible while writes remain gated.', $scope->join(', '))
+            : 'This role currently has no linked shop scope in Laravel, so the review context keeps it in a safer scope-pending posture.';
+    }
+
+    private function rolesPermissionsScopeRolloutDependencyPosture(mixed $scope): string
+    {
+        return $scope->isNotEmpty()
+            ? 'This role already shows shop scope in Laravel review, but scope mutation should stay blocked until a dedicated access slice is verified.'
+            : 'This role has no visible shop scope yet, so scope rollout should stay in review-only posture until a dedicated access slice is ready.';
+    }
+
     private function rolesPermissionsSelectedRoleTimeline(Role $selectedRole, mixed $scope, mixed $permissionPreview): array
     {
         return [
@@ -1548,9 +1572,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s scope posture reflected from model state', $selectedRole->name),
                 'time' => 'Current request',
-                'description' => $scope->isNotEmpty()
-                    ? sprintf('This role currently shows shop scope across %s in Laravel review mode, so scope rollout stays visible while writes remain gated.', $scope->join(', '))
-                    : 'This role currently has no linked shop scope in Laravel, so the review context keeps it in a safer scope-pending posture.',
+                'description' => $this->rolesPermissionsScopeRolloutTimelineDescription($scope),
             ],
             [
                 'title' => sprintf('%s permission bundle reflected from model state', $selectedRole->name),
@@ -1577,9 +1599,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Status posture', 'value' => $selectedRole->is_active
                 ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
-            ['label' => 'Scope rollout posture', 'value' => $scope->isNotEmpty()
-                ? 'This role already shows shop scope in Laravel review, but scope mutation should stay blocked until a dedicated access slice is verified.'
-                : 'This role has no visible shop scope yet, so scope rollout should stay in review-only posture until a dedicated access slice is ready.'],
+            ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
             ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
                 ? 'Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.'

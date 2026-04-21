@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Roles-permissions scope cue helper alignment checkpoint
+- Extracted shared role scope-rollout helpers in `ResourceIndexController` so the selected-role live form, summary, timeline, and dependency status all resolve scope posture from one backend source of truth.
+- Kept the step small and safe: no behavior was widened, but the new scope cues are now less likely to drift as the next thin access slice is added.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after aligning the role scope helpers.
+
+### Next step after roles-permissions scope cue helper alignment checkpoint
+- Turn one safe scope-related cue or adjacent review metadata cue into the next thin persisted slice, while keeping assignment and permission-matrix writes blocked.
+
 ### Roles-permissions scope posture context cue checkpoint
 - Surfaced shop-scope posture as its own selected-role summary row, timeline event, and dependency-status cue so the next safe access slice is visible in the review workspace without opening scope writes yet.
 - Kept the step narrow and Phase 1-safe: the workspace now explains whether scope rollout is visible or still pending from live Laravel data, but actual scope mutation remains blocked.
