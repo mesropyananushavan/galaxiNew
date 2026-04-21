@@ -319,8 +319,10 @@ class DashboardController extends Controller
             return [];
         }
 
+        $hasLiveBranchRecords = $latestHolder instanceof CardHolder || $latestCard instanceof Card;
+
         $actions = [[
-            'label' => 'Open assigned branch review',
+            'label' => $hasLiveBranchRecords ? 'Open assigned branch review' : 'Open assigned branch setup',
             'route' => route('admin.shops.index', ['shop' => $shop->id]),
         ]];
 

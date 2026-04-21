@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard empty-branch setup CTA checkpoint
+- Tightened the assigned-branch snapshot action copy so active branches with no live holder or card records now surface `Open assigned branch setup` instead of the more advanced `review` CTA.
+- Kept the step low-risk and read-only by changing only the branch-aware CTA label while preserving the same scoped branch route and existing live-branch review behavior.
+- Extended the empty-branch dashboard assertions for the new setup CTA and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard empty-branch setup CTA checkpoint
+- Reuse the same branch-aware CTA seam for one more shared dashboard entry, or tighten one more empty-versus-live action label inside the scoped branch console.
+
 ### Dashboard paused-branch action-boundary checkpoint
 - Extracted assigned-branch snapshot actions into dedicated helper logic and made that action list explicitly empty for paused branches, so the dashboard helper layer no longer suggests reopening review flows for a branch that is still paused.
 - Kept the step Phase 1 safe by tightening read-only CTA visibility only, without widening paused-shop dashboard access or changing active-branch review behavior.
