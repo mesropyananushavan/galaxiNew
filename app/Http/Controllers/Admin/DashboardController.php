@@ -384,6 +384,10 @@ class DashboardController extends Controller
 
     protected function latestBranchActivityFreshness(?CardHolder $latestHolder, ?Card $latestCard): string
     {
+        if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
+            return 'setup stage';
+        }
+
         $latestTimestamp = collect([
             $latestHolder?->created_at,
             $latestCard?->created_at,

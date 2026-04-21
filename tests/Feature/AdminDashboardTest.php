@@ -707,7 +707,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Latest activity source')
             ->assertSee('Setup pending')
             ->assertSee('Activity freshness')
-            ->assertSee('unknown')
+            ->assertSee('setup stage')
             ->assertSee('Suggested follow-up')
             ->assertSee('Open assigned branch setup and create the first live records.')
             ->assertSee('Open assigned branch setup')
