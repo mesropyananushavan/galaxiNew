@@ -767,6 +767,16 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => sprintf('This card is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedCard->status),
             ],
+            [
+                'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedCard->number),
+                'time' => 'Current request',
+                'description' => $this->cardsLifecycleFreshnessDescription($selectedCard),
+            ],
+            [
+                'title' => sprintf('%s last saved timestamp reflected from model state', $selectedCard->number),
+                'time' => 'Current request',
+                'description' => sprintf('The latest saved Laravel timestamp for this card is %s, giving operators a concrete checkpoint for the current inventory shell.', $this->cardsLastSavedLabel($selectedCard)),
+            ],
         ];
 
         $page['dependencyStatus'] = $this->cardsSelectedCardDependencyStatus($selectedCard);
@@ -1804,6 +1814,8 @@ class ResourceIndexController extends Controller
                 ? 'Draft-safe review, this inventory record is still safer for parity checks before operators treat it as issued stock.'
                 : 'Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.'],
             ['label' => 'Operational readiness', 'value' => $this->cardsOperationalReadiness($selectedCard)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
             ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
             ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
             ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
@@ -1833,11 +1845,42 @@ class ResourceIndexController extends Controller
         };
     }
 
+    private function cardsLifecycleFreshnessLabel(Card $selectedCard): string
+    {
+        if ($selectedCard->updated_at === null || $selectedCard->created_at === null) {
+            return 'timestamp visibility pending';
+        }
+
+        return $selectedCard->updated_at->equalTo($selectedCard->created_at)
+            ? 'newly created in Laravel review'
+            : 'updated after initial Laravel creation';
+    }
+
+    private function cardsLifecycleFreshnessDescription(Card $selectedCard): string
+    {
+        if ($selectedCard->updated_at === null || $selectedCard->created_at === null) {
+            return 'This card does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.';
+        }
+
+        if ($selectedCard->updated_at->equalTo($selectedCard->created_at)) {
+            return sprintf('This card was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved inventory shell.', $selectedCard->created_at->format('Y-m-d H:i:s T'));
+        }
+
+        return sprintf('This card was first created in Laravel on %s and last updated on %s, so operators are reviewing inventory that has already changed after initial setup.', $selectedCard->created_at->format('Y-m-d H:i:s T'), $selectedCard->updated_at->format('Y-m-d H:i:s T'));
+    }
+
+    private function cardsLastSavedLabel(Card $selectedCard): string
+    {
+        return $selectedCard->updated_at?->format('Y-m-d H:i:s T') ?? 'Timestamp pending';
+    }
+
     private function cardsSelectedCardDependencyStatus(Card $selectedCard): array
     {
         return [
             ['label' => 'Selected card', 'value' => $selectedCard->number],
             ['label' => 'Inventory posture', 'value' => 'Selected-card review is running in Laravel-backed read mode only'],
+            ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
             ['label' => 'Lifecycle posture', 'value' => match ($selectedCard->status) {
                 'active' => 'This active card should stay read-only until issue, block, and replacement parity are verified.',
                 'blocked' => 'This blocked card should stay under review-only handling until dispute and replacement semantics match the old Galaxy flow.',
