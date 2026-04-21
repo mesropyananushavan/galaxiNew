@@ -323,6 +323,7 @@ class DashboardController extends Controller
         $activityFreshness = $this->latestBranchActivityFreshness($latestHolder, $latestCard);
         $branchPosture = $this->branchOperationalPosture($shop, $latestHolder, $latestCard);
         $branchReadiness = $this->branchReadinessStatus($shop, $latestHolder, $latestCard);
+        $branchCoverage = $this->branchCoverageStatus($shop);
         $suggestedFollowUp = $this->branchSuggestedFollowUp($shop, $latestHolder, $latestCard);
         $actions = $this->assignedBranchSnapshotActions($shop, $latestHolder, $latestCard);
 
@@ -333,6 +334,7 @@ class DashboardController extends Controller
                 ['label' => 'Branch code', 'value' => $shop->code],
                 ['label' => 'Branch posture', 'value' => $branchPosture],
                 ['label' => 'Branch readiness', 'value' => $branchReadiness],
+                ['label' => 'Branch coverage', 'value' => $branchCoverage],
                 ['label' => 'Primary manager', 'value' => $shop->users->first()?->name ?? 'Unassigned'],
                 ['label' => 'Laravel status', 'value' => $shop->is_active ? 'active' : 'paused'],
                 ['label' => 'Visible cardholders', 'value' => (string) $shop->card_holders_count],
@@ -437,6 +439,19 @@ class DashboardController extends Controller
         }
 
         return 'review-ready';
+    }
+
+    protected function branchCoverageStatus(Shop $shop): string
+    {
+        $hasCardholders = $shop->card_holders_count > 0;
+        $hasCards = $shop->cards_count > 0;
+
+        return match (true) {
+            $hasCardholders && $hasCards => 'cardholders and cards live',
+            $hasCardholders => 'cardholders live, cards pending',
+            $hasCards => 'cards live, cardholders pending',
+            default => 'core branch records pending',
+        };
     }
 
     protected function branchSuggestedFollowUp(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string

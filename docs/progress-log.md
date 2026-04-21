@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch coverage cue checkpoint
+- Added a `Branch coverage` indicator to the assigned-branch snapshot so the dashboard now shows whether the branch already has both core Phase 1 record types live, only one side live, or no branch records yet.
+- Kept the cue intentionally simple and safe by deriving it from the existing scoped branch counts that were already being loaded for the snapshot.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture|test_unscoped_dashboard_does_not_show_shop_scope_summary)'`, `7 passed`, after adding the branch coverage cue.
+
+### Next step after dashboard branch coverage cue checkpoint
+- Add one more small operational cue, or move to the next Phase 1 surface outside the dashboard now that the dashboard reads more like a Galaxy branch console.
+
 ### Dashboard branch readiness cue checkpoint
 - Added a dedicated `Branch readiness` indicator to the assigned-branch snapshot so the dashboard reads a little more like a Galaxy operational console instead of just a generic Laravel summary block.
 - The readiness cue stays intentionally simple and safe in Phase 1: active branches now surface `setup pending`, `setup in progress`, or `review-ready`, while paused branches surface `paused`.
