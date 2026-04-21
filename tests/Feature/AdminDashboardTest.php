@@ -537,6 +537,8 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Current review scope')
             ->assertSee('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to Dashboard Home Shop while Phase 1 policies are still being mapped.')
+            ->assertSee('Phase 1 scope note')
+            ->assertSee('Latest-work shortcuts for shops, cardholders, and cards now follow branch scope. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.')
             ->assertSee('Open latest shop review: Dashboard Home Shop (active)')
             ->assertSee('/admin/shops?shop='.$assignedShop->id)
             ->assertDontSee('Open latest shop review: Dashboard Other Shop (active)')
@@ -557,7 +559,9 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertDontSee('Current review scope')
-            ->assertDontSee('Shop-scoped admin mode is active.');
+            ->assertDontSee('Shop-scoped admin mode is active.')
+            ->assertDontSee('Phase 1 scope note')
+            ->assertDontSee('Latest-work shortcuts for shops, cardholders, and cards now follow branch scope.');
     }
 
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void

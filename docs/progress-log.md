@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard scoped-latest note checkpoint
+- Added a second scoped dashboard cue under `Resume latest live work`, clarifying that latest shortcuts for `shops`, `cardholders`, and `cards` now follow branch scope while `card-types`, `roles`, and `reports` still remain shared Phase 1 review surfaces.
+- Kept the change strictly read-only and operator-facing, so the dashboard now communicates the current migration posture instead of leaving scoped and global latest surfaces implicit.
+- Extended the focused dashboard assertions for both the scoped note and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard scoped-latest note checkpoint
+- Start pushing the same explicit Phase 1 scope communication into another shared surface, or take a similarly small authorization step that begins separating shared global workspaces from shop-aware ones more intentionally.
+
 ### Dashboard branch-scope cue checkpoint
 - Added an explicit branch-scope summary to the dashboard for shop-scoped admins, so the first Galaxy admin screen now states when review posture is intentionally anchored to the assigned branch instead of behaving like a neutral starter dashboard.
 - Kept the step low-risk and read-only: the cue appears only for scoped admins who already satisfy the active-shop-plus-permission baseline, while bootstrap users still see the broader setup dashboard without extra scope copy.

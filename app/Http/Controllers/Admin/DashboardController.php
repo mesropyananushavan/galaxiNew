@@ -31,6 +31,7 @@ class DashboardController extends Controller
             'roleCount' => Role::query()->count(),
             'permissionCount' => Permission::query()->count(),
             'dashboardScopeSummary' => $this->dashboardScopeSummary(),
+            'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
             'liveReviewEntryPoints' => [
                 $this->workspaceLink('Review live shops', 'admin.shops.index'),
                 $this->workspaceLink('Review live cardholders', 'admin.cardholders.index'),
@@ -147,6 +148,20 @@ class DashboardController extends Controller
         return [
             'label' => 'Current review scope',
             'value' => sprintf('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to %s while Phase 1 policies are still being mapped.', $shopName),
+        ];
+    }
+
+    protected function latestWorkspaceScopeNote(): ?array
+    {
+        $user = $this->adminUser();
+
+        if (! $user instanceof User || ! $user->hasShopScopedAdminAccess()) {
+            return null;
+        }
+
+        return [
+            'label' => 'Phase 1 scope note',
+            'value' => 'Latest-work shortcuts for shops, cardholders, and cards now follow branch scope. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.',
         ];
     }
 

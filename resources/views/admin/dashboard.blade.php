@@ -71,6 +71,12 @@
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Resume latest live work</h3>
+        @if (is_array($latestWorkspaceScopeNote ?? null))
+            <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;">
+                <strong>{{ $latestWorkspaceScopeNote['label'] }}:</strong>
+                {{ $latestWorkspaceScopeNote['value'] }}
+            </p>
+        @endif
         @if ($latestWorkspaces !== [])
             <ul class="list">
                 @foreach ($latestWorkspaces as $workspace)
