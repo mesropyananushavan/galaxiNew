@@ -223,6 +223,7 @@ class DashboardController extends Controller
         }
 
         $latestActivity = $this->latestBranchActivitySummary($latestHolder, $latestCard);
+        $activityFreshness = $this->latestBranchActivityFreshness($latestHolder, $latestCard);
 
         return [
             'label' => 'Assigned branch snapshot',
@@ -241,6 +242,7 @@ class DashboardController extends Controller
                 ['label' => 'Latest card status', 'value' => $latestCard instanceof Card ? $latestCard->status : 'n/a'],
                 ['label' => 'Latest card issued', 'value' => $latestCard instanceof Card ? $latestCard->created_at?->toDateString() ?? 'unknown' : 'n/a'],
                 ['label' => 'Latest activity source', 'value' => $latestActivity],
+                ['label' => 'Activity freshness', 'value' => $activityFreshness],
             ],
             'actions' => $actions,
         ];
@@ -278,6 +280,25 @@ class DashboardController extends Controller
         return $cardCreatedAt->greaterThanOrEqualTo($holderCreatedAt)
             ? 'Card issued'
             : 'Cardholder added';
+    }
+
+    protected function latestBranchActivityFreshness(?CardHolder $latestHolder, ?Card $latestCard): string
+    {
+        $latestTimestamp = collect([
+            $latestHolder?->created_at,
+            $latestCard?->created_at,
+        ])
+            ->filter()
+            ->sortDesc()
+            ->first();
+
+        if ($latestTimestamp === null) {
+            return 'unknown';
+        }
+
+        return now()->diffInDays($latestTimestamp) <= 1
+            ? 'fresh activity'
+            : 'stale activity';
     }
 
     protected function liveEntryScopeNote(): ?array

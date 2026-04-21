@@ -10,6 +10,7 @@ use App\Models\Role;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
@@ -463,6 +464,8 @@ class AdminDashboardTest extends TestCase
 
     public function test_dashboard_latest_live_work_shortcuts_respect_shop_scope(): void
     {
+        Carbon::setTestNow('2026-04-21 15:00:00');
+
         $assignedShop = Shop::create([
             'name' => 'Dashboard Home Shop',
             'code' => 'dashboard-home-shop',
@@ -570,6 +573,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Latest card issued')
             ->assertSee('Latest activity source')
             ->assertSee('Card issued')
+            ->assertSee('Activity freshness')
+            ->assertSee('fresh activity')
             ->assertSee('>1<', false)
             ->assertSee('Open assigned branch review')
             ->assertSee('/admin/shops?shop='.$assignedShop->id)
@@ -594,6 +599,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Open latest card review: GX-DASH-001 (active)')
             ->assertSee('/admin/cards?card='.$assignedCard->id)
             ->assertDontSee('Open latest card review: GX-DASH-002 (blocked)');
+
+        Carbon::setTestNow();
     }
 
     public function test_unscoped_dashboard_does_not_show_shop_scope_summary(): void
@@ -619,6 +626,7 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Latest card status')
             ->assertDontSee('Latest card issued')
             ->assertDontSee('Latest activity source')
+            ->assertDontSee('Activity freshness')
             ->assertDontSee('Open assigned branch review')
             ->assertDontSee('Open latest holder in branch')
             ->assertDontSee('Open latest card in branch')

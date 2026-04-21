@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch activity-freshness cue checkpoint
+- Extended the assigned-branch snapshot with `Activity freshness`, so scoped admins can immediately see whether the newest visible branch movement still looks fresh or has already gone stale.
+- Kept the step low-risk and read-only by deriving the freshness cue from the same latest branch-local holder/card timestamps already exposed in the snapshot.
+- Extended the focused dashboard assertions for the new freshness cue and re-ran `php artisan test --filter=dashboard_latest_live_work_shortcuts_respect_shop_scope`, `1 passed`.
+
+### Next step after dashboard branch activity-freshness cue checkpoint
+- Add one more low-risk branch console cue around inactive branch posture, or start converting one of the scoped dashboard cues into a stricter branch-aware entry boundary.
+
 ### Dashboard branch activity-source cue checkpoint
 - Extended the assigned-branch snapshot with `Latest activity source`, so scoped admins can immediately see whether the newest visible branch movement was a card issuance or a cardholder addition.
 - Kept the step low-risk and read-only by deriving the cue from the same latest branch-local holder/card records already shown in the snapshot.
