@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Roles-permissions live form wiring checkpoint
+- Hooked the shared `roles-permissions` preview shell into the new minimal Laravel-backed role write path by adding a config-driven `liveForm` for create mode and switching it into selected-role edit mode inside the resource controller.
+- Kept the slice intentionally narrow and safe for Phase 1: the live form now handles only role identity, `name` plus normalized unique `slug`, while scope and permission-matrix surfaces remain review-only.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after wiring the roles live form.
+
+### Next step after roles-permissions live form wiring checkpoint
+- Add the next thin role write slice around status/scope scaffolding, or move to another minimal write path that can reuse the same live-form pattern.
+
 ### Roles-permissions minimal write-path foundation checkpoint
 - Added the first thin Laravel-backed create/update flow for `roles-permissions`, including role store/update controllers, request validation, selected-role redirects, and backend status flashes.
 - Kept the slice intentionally narrow and safe for Phase 1 by supporting only minimal role identity persistence, `name` plus normalized unique `slug`, without opening permission-matrix editing or shop-assignment writes yet.

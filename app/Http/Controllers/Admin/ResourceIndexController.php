@@ -610,6 +610,24 @@ class ResourceIndexController extends Controller
             $assignedUserPreview,
         );
 
+        if (is_array($page['liveForm'] ?? null)) {
+            $page['liveForm']['title'] = 'Edit role in Laravel';
+            $page['liveForm']['description'] = 'Update the selected Galaxy role identity through the shared live form while permission bundles and shop scope remain in review-only mode.';
+            $page['liveForm']['method'] = 'PATCH';
+            $page['liveForm']['actionRoute'] = 'admin.roles-permissions.update';
+            $page['liveForm']['actionRouteParameters'] = [
+                'role' => $selectedRole,
+            ];
+            $page['liveForm']['cancelRoute'] = 'admin.roles-permissions.index';
+            $page['liveForm']['cancelLabel'] = 'Create new role';
+            $page['liveForm']['cancelRouteParameters'] = [];
+            $page['liveForm']['submitLabel'] = 'Save role changes';
+            $page['liveForm']['valuesResolver'] = [
+                'name' => $selectedRole->name,
+                'slug' => $selectedRole->slug,
+            ];
+        }
+
         $page['actions'] = $this->selectedReadContextActions(
             'admin.roles-permissions.index',
             'Back to all roles',

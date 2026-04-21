@@ -863,8 +863,7 @@ return [
             [
                 'label' => 'New role',
                 'tone' => 'primary',
-                'disabled' => true,
-                'disabledReason' => 'Blocked until the first Laravel-backed role write flow exists for role identity, scope, and permission bundle parity.',
+                'href' => '#live-form',
             ],
             ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.'],
         ],
@@ -881,6 +880,19 @@ return [
                 ['Cashier', 'Per shop', 'Checks, card lookup', '14', 'draft'],
             ],
             'filters' => ['Scope', 'Status', 'Permission set'],
+        ],
+        'liveForm' => [
+            'title' => 'Create role in Laravel',
+            'description' => 'This is the first minimal Laravel-backed role write path. Keep it limited to role identity while permission bundles and shop scope remain parity-first review surfaces.',
+            'method' => 'POST',
+            'actionRoute' => 'admin.roles-permissions.store',
+            'cancelRoute' => 'admin.roles-permissions.index',
+            'cancelLabel' => 'Back to roles',
+            'submitLabel' => 'Create role',
+            'fields' => [
+                ['name' => 'name', 'label' => 'Role name', 'type' => 'text', 'value' => 'Shop Manager', 'required' => true, 'autofocus' => true, 'placeholder' => 'Branch Supervisor', 'help' => 'Use the operator-facing role name that should mirror the legacy Galaxy staff model.', 'attributes' => ['autocomplete' => 'organization-title']],
+                ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'shop-manager', 'required' => true, 'placeholder' => 'branch-supervisor', 'help' => 'Lowercase identifier for the minimal Laravel role record.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
+            ],
         ],
         'form' => [
             'title' => 'Create or edit role',
@@ -917,7 +929,7 @@ return [
             'title' => 'No shop-scoped roles configured yet',
             'description' => 'Create the first operational role set so shop managers and cashiers can map cleanly to the old Galaxy access model.',
             'actions' => [
-                ['label' => 'Create first role', 'tone' => 'primary'],
+                ['label' => 'Create first role', 'tone' => 'primary', 'href' => '#live-form'],
             ],
         ],
         'notice' => [
