@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Cards operational readiness cue checkpoint
+- Added an `Operational readiness` cue to the Laravel-backed selected-card review context, so the cards surface now exposes a simple Galaxy-style inventory posture instead of relying only on generic summary and dependency fields.
+- The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded card status and holder linkage, with states such as `blocked inventory, operator review only` and `issued inventory, parity-sensitive`.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query)'`, `5 passed`, after adding the cards readiness cue.
+
+### Next step after cards operational readiness cue checkpoint
+- Add one more Laravel-backed operator cue to cardholders or shops, or move toward the next thin write-path foundation slice.
+
 ### Roles-permissions operational readiness cue checkpoint
 - Moved beyond the dashboard and added an `Operational readiness` cue to the Laravel-backed selected-role review context in `roles-permissions`, so role review now surfaces a simple Galaxy-style operator posture instead of only generic summary fields.
 - The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded role assignments and permission counts, with states such as `assignment-sensitive live role` and `draft-safe role shell`.

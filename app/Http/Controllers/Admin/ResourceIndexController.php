@@ -1538,6 +1538,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review mode', 'value' => $selectedCard->status === 'draft'
                 ? 'Draft-safe review, this inventory record is still safer for parity checks before operators treat it as issued stock.'
                 : 'Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.'],
+            ['label' => 'Operational readiness', 'value' => $this->cardsOperationalReadiness($selectedCard)],
             ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
             ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
             ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
@@ -1555,6 +1556,16 @@ class ResourceIndexController extends Controller
                 },
             ],
         ];
+    }
+
+    private function cardsOperationalReadiness(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->status === 'blocked' => 'blocked inventory, operator review only',
+            $selectedCard->status === 'active' && $selectedCard->holder !== null => 'issued inventory, parity-sensitive',
+            $selectedCard->status === 'active' => 'active inventory, holder linkage incomplete',
+            default => 'draft inventory shell',
+        };
     }
 
     private function cardsSelectedCardDependencyStatus(Card $selectedCard): array

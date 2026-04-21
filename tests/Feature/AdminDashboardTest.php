@@ -1365,6 +1365,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected card')
             ->assertSee('Review mode')
             ->assertSee('Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.')
+            ->assertSee('Operational readiness')
+            ->assertSee('blocked inventory, operator review only')
             ->assertSee('Holder')
             ->assertSee('Card type')
             ->assertSee('Shop')
