@@ -37,6 +37,12 @@
             </div>
         @endif
 
+        <div style="margin-top: 20px;">
+            <h3 style="margin: 0 0 8px; font-size: 1.1rem;">Galaxy live foundation snapshot</h3>
+            <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+                These counters track the first live Galaxy surfaces already present in Phase 1,
+                so branch setup and review work can move through real operational entities instead of starter placeholders.
+            </p>
         <div class="placeholder-grid">
             <article class="metric">
                 <p class="metric-label">Route namespace</p>
@@ -79,6 +85,7 @@
                 <p class="metric-value">{{ $permissionCount }}</p>
             </article>
         </div>
+        </div>
     </section>
 
     <section class="card">
@@ -118,7 +125,7 @@
     </section>
 
     <section class="card">
-        <h3 style="margin: 0; font-size: 1.1rem;">Mapped sections for migration</h3>
+        <h3 style="margin: 0; font-size: 1.1rem;">Galaxy migration map</h3>
         <ul class="list">
             @foreach ($navigationGroups as $group)
                 <li>

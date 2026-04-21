@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard Galaxy framing copy checkpoint
+- Updated the dashboard Blade copy so the core metrics block now reads as a `Galaxy live foundation snapshot` instead of a generic counter grid, with supporting text that frames Phase 1 around real branch setup and review work.
+- Renamed the migration summary section heading to `Galaxy migration map` so the page reads more like a Galaxy-specific admin shell and less like a starter scaffold.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `4 passed`, after the dashboard copy update.
+
+### Next step after dashboard Galaxy framing copy checkpoint
+- Carry the same Galaxy-specific framing into one more dashboard section note or heading, or shift back to a small branch-aware controller/view rule beyond copy-only cleanup.
+
 ### Dashboard latest-work setup link helper cleanup checkpoint
 - Extracted the scoped latest-work setup link composition into a dedicated helper pair, so cardholder and card fallback shortcuts now share one explicit branch-aware gate and one explicit link builder.
 - Kept the step low-risk and behavior-safe by preserving the same empty-branch setup shortcuts while making future latest-work branching changes less repetitive.
