@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard branch readiness cue checkpoint
+- Added a dedicated `Branch readiness` indicator to the assigned-branch snapshot so the dashboard reads a little more like a Galaxy operational console instead of just a generic Laravel summary block.
+- The readiness cue stays intentionally simple and safe in Phase 1: active branches now surface `setup pending`, `setup in progress`, or `review-ready`, while paused branches surface `paused`.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture|test_unscoped_dashboard_does_not_show_shop_scope_summary)'`, `7 passed`, after adding the branch readiness cue.
+
+### Next step after dashboard branch readiness cue checkpoint
+- Add one more small branch-aware operational cue to the dashboard, or move to the next Phase 1 surface outside the dashboard now that the scoped shell is less starter-like.
+
 ### Dashboard snapshot scoped-shop helper reuse checkpoint
 - Reused the shared `activeScopedShop` helper in `assignedBranchSnapshot`, so the snapshot loader now resolves its assigned active branch through the same shared gate already used by the scoped summary, live-entry, and latest-work paths.
 - Kept the step low-risk and behavior-safe by preserving the current snapshot content and behavior while removing one more inline scoped shop lookup.

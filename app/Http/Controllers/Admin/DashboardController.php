@@ -322,6 +322,7 @@ class DashboardController extends Controller
         $latestActivity = $this->latestBranchActivitySummary($latestHolder, $latestCard);
         $activityFreshness = $this->latestBranchActivityFreshness($latestHolder, $latestCard);
         $branchPosture = $this->branchOperationalPosture($shop, $latestHolder, $latestCard);
+        $branchReadiness = $this->branchReadinessStatus($shop, $latestHolder, $latestCard);
         $suggestedFollowUp = $this->branchSuggestedFollowUp($shop, $latestHolder, $latestCard);
         $actions = $this->assignedBranchSnapshotActions($shop, $latestHolder, $latestCard);
 
@@ -331,6 +332,7 @@ class DashboardController extends Controller
                 ['label' => 'Branch', 'value' => $shop->name],
                 ['label' => 'Branch code', 'value' => $shop->code],
                 ['label' => 'Branch posture', 'value' => $branchPosture],
+                ['label' => 'Branch readiness', 'value' => $branchReadiness],
                 ['label' => 'Primary manager', 'value' => $shop->users->first()?->name ?? 'Unassigned'],
                 ['label' => 'Laravel status', 'value' => $shop->is_active ? 'active' : 'paused'],
                 ['label' => 'Visible cardholders', 'value' => (string) $shop->card_holders_count],
@@ -418,6 +420,23 @@ class DashboardController extends Controller
         }
 
         return 'active branch, live activity visible';
+    }
+
+    protected function branchReadinessStatus(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
+    {
+        if (! $shop->is_active) {
+            return 'paused';
+        }
+
+        if ($this->branchSetupPending($latestHolder, $latestCard)) {
+            return 'setup pending';
+        }
+
+        if (! $latestHolder instanceof CardHolder || ! $latestCard instanceof Card) {
+            return 'setup in progress';
+        }
+
+        return 'review-ready';
     }
 
     protected function branchSuggestedFollowUp(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
