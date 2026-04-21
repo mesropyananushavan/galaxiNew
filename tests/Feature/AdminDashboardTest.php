@@ -709,7 +709,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Activity freshness')
             ->assertSee('unknown')
             ->assertSee('Suggested follow-up')
-            ->assertSee('Open assigned branch review and verify the first live records.')
+            ->assertSee('Open assigned branch setup and create the first live records.')
             ->assertSee('Open assigned branch setup')
             ->assertSee('/admin/shops?shop='.$assignedShop->id)
             ->assertDontSee('Open assigned branch review</a>', false)

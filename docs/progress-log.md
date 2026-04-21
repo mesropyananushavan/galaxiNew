@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard empty-branch follow-up posture checkpoint
+- Tightened the empty active-branch `Suggested follow-up` copy so it now points operators to `Open assigned branch setup and create the first live records`, matching the existing setup-first CTA and empty-branch shortcut posture.
+- Kept the step low-risk by changing only branch snapshot guidance while preserving the same routes, authorization, and paused/live branch behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty-branch follow-up posture update.
+
+### Next step after dashboard empty-branch follow-up posture checkpoint
+- Consider aligning one more branch snapshot cue with the setup-first empty-branch posture, or move to another small branch-aware behavior step outside the snapshot follow-up copy.
+
 ### Dashboard shared live-entry helper cleanup checkpoint
 - Extracted the scoped shared-surface `Live review entry points` links into a small helper so the new shared card type, access role, and reporting labels no longer repeat raw workspace-link composition inline.
 - Kept the step low-risk and behavior-safe by preserving the same scoped labels, routes, and unscoped baseline behavior.

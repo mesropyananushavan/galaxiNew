@@ -421,7 +421,7 @@ class DashboardController extends Controller
         }
 
         if (! $latestHolder instanceof CardHolder && ! $latestCard instanceof Card) {
-            return 'Open assigned branch review and verify the first live records.';
+            return 'Open assigned branch setup and create the first live records.';
         }
 
         return 'Resume the latest branch review flow from the scoped shortcuts.';
