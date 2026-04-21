@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard live-entry scope note checkpoint
+- Added a matching scoped note under `Live review entry points`, clarifying that the entry links still open shared Phase 1 workspaces while the live `shops`, `cardholders`, and `cards` review state narrows to branch scope after the workspace loads.
+- Kept the change strictly operator-facing and read-only, so the dashboard now communicates both halves of the current migration posture instead of leaving live-entry scope behavior implicit.
+- Extended the focused dashboard assertions for the new scoped entry note and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard live-entry scope note checkpoint
+- Either carry the same explicit scope communication into another shared admin surface, or take the next small authorization step that starts turning these operator cues into enforced entry-point boundaries.
+
 ### Dashboard scoped-latest note checkpoint
 - Added a second scoped dashboard cue under `Resume latest live work`, clarifying that latest shortcuts for `shops`, `cardholders`, and `cards` now follow branch scope while `card-types`, `roles`, and `reports` still remain shared Phase 1 review surfaces.
 - Kept the change strictly read-only and operator-facing, so the dashboard now communicates the current migration posture instead of leaving scoped and global latest surfaces implicit.

@@ -537,6 +537,8 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Current review scope')
             ->assertSee('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to Dashboard Home Shop while Phase 1 policies are still being mapped.')
+            ->assertSee('Entry posture')
+            ->assertSee('These entry points still open the shared Phase 1 workspaces, but shop-backed review inside shops, cardholders, and cards now narrows to the assigned branch once the workspace loads.')
             ->assertSee('Phase 1 scope note')
             ->assertSee('Latest-work shortcuts for shops, cardholders, and cards now follow branch scope. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.')
             ->assertSee('Open latest shop review: Dashboard Home Shop (active)')
@@ -560,6 +562,8 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertDontSee('Current review scope')
             ->assertDontSee('Shop-scoped admin mode is active.')
+            ->assertDontSee('Entry posture')
+            ->assertDontSee('These entry points still open the shared Phase 1 workspaces')
             ->assertDontSee('Phase 1 scope note')
             ->assertDontSee('Latest-work shortcuts for shops, cardholders, and cards now follow branch scope.');
     }

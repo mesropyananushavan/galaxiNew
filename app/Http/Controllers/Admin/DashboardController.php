@@ -31,6 +31,7 @@ class DashboardController extends Controller
             'roleCount' => Role::query()->count(),
             'permissionCount' => Permission::query()->count(),
             'dashboardScopeSummary' => $this->dashboardScopeSummary(),
+            'liveEntryScopeNote' => $this->liveEntryScopeNote(),
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
             'liveReviewEntryPoints' => [
                 $this->workspaceLink('Review live shops', 'admin.shops.index'),
@@ -148,6 +149,20 @@ class DashboardController extends Controller
         return [
             'label' => 'Current review scope',
             'value' => sprintf('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to %s while Phase 1 policies are still being mapped.', $shopName),
+        ];
+    }
+
+    protected function liveEntryScopeNote(): ?array
+    {
+        $user = $this->adminUser();
+
+        if (! $user instanceof User || ! $user->hasShopScopedAdminAccess()) {
+            return null;
+        }
+
+        return [
+            'label' => 'Entry posture',
+            'value' => 'These entry points still open the shared Phase 1 workspaces, but shop-backed review inside shops, cardholders, and cards now narrows to the assigned branch once the workspace loads.',
         ];
     }
 

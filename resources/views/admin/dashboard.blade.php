@@ -62,6 +62,12 @@
 
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Live review entry points</h3>
+        @if (is_array($liveEntryScopeNote ?? null))
+            <p style="margin: 12px 0 0; color: var(--text-muted); line-height: 1.6;">
+                <strong>{{ $liveEntryScopeNote['label'] }}:</strong>
+                {{ $liveEntryScopeNote['value'] }}
+            </p>
+        @endif
         <ul class="list">
             @foreach ($liveReviewEntryPoints as $entryPoint)
                 <li><a href="{{ $entryPoint['route'] }}">{{ $entryPoint['label'] }}</a></li>
