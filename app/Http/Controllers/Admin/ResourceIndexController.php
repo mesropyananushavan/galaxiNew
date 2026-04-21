@@ -625,6 +625,8 @@ class ResourceIndexController extends Controller
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedRole->name,
                 'slug' => $selectedRole->slug,
+                'scope_rollout' => $scope->isNotEmpty() ? 'shop-scope-visible' : 'shop-scope-pending',
+                'publish_posture' => $this->rolesPermissionsPublishPostureValue($selectedRole),
             ];
         }
 
@@ -1503,6 +1505,15 @@ class ResourceIndexController extends Controller
             $selectedRole->permissions_count > 0 => 'permission bundle live, assignment rollout pending',
             $selectedRole->users_count > 0 => 'assignment linked, permission bundle still pending review',
             default => 'draft-safe role shell',
+        };
+    }
+
+    private function rolesPermissionsPublishPostureValue(Role $selectedRole): string
+    {
+        return match (true) {
+            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'assignment-sensitive',
+            $selectedRole->permissions_count > 0 => 'parity-sensitive',
+            default => 'draft-only',
         };
     }
 

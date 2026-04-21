@@ -892,6 +892,8 @@ return [
             'fields' => [
                 ['name' => 'name', 'label' => 'Role name', 'type' => 'text', 'value' => 'Shop Manager', 'required' => true, 'autofocus' => true, 'placeholder' => 'Branch Supervisor', 'help' => 'Use the operator-facing role name that should mirror the legacy Galaxy staff model.', 'attributes' => ['autocomplete' => 'organization-title']],
                 ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'shop-manager', 'required' => true, 'placeholder' => 'branch-supervisor', 'help' => 'Lowercase identifier for the minimal Laravel role record.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
+                ['name' => 'scope_rollout', 'label' => 'Scope rollout', 'type' => 'select', 'value' => 'shop-scope-pending', 'required' => false, 'help' => 'Phase 1 keeps shop scope review-only until the next thin write slice is ready.', 'attributes' => ['disabled' => true], 'options' => [['value' => 'shop-scope-pending', 'label' => 'Shop scope still pending'], ['value' => 'shop-scope-visible', 'label' => 'Shop scope visible in review'], ['value' => 'global-review', 'label' => 'Global review only']]],
+                ['name' => 'publish_posture', 'label' => 'Publish posture', 'type' => 'select', 'value' => 'draft-only', 'required' => false, 'help' => 'Publishing remains blocked even though role identity can already be saved in Laravel.', 'attributes' => ['disabled' => true], 'options' => [['value' => 'draft-only', 'label' => 'Draft-safe only'], ['value' => 'parity-sensitive', 'label' => 'Parity-sensitive live bundle'], ['value' => 'assignment-sensitive', 'label' => 'Assignment-sensitive live bundle']]],
             ],
         ],
         'form' => [
