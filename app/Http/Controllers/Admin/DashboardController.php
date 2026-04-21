@@ -281,7 +281,7 @@ class DashboardController extends Controller
 
         return [
             'label' => 'Current review scope',
-            'value' => sprintf('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to %s while Phase 1 policies are still being mapped.', $shopName),
+            'value' => sprintf('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to %s with branch-specific review wording while Phase 1 policies are still being mapped.', $shopName),
         ];
     }
 

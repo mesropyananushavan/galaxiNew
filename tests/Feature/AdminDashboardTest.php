@@ -559,7 +559,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Current review scope')
-            ->assertSee('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to Dashboard Home Shop while Phase 1 policies are still being mapped.')
+            ->assertSee('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to Dashboard Home Shop with branch-specific review wording while Phase 1 policies are still being mapped.')
             ->assertSee('Assigned branch snapshot')
             ->assertSee('Branch')
             ->assertSee('Dashboard Home Shop')
