@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard mirrored partial-branch follow-up checkpoint
+- Added focused coverage for the mirrored partial branch state where cards exist before cardholders, so the assigned-branch snapshot now explicitly protects the backfill guidance for that asymmetrical setup path too.
+- The dashboard continues to steer that branch state toward `Review assigned branch cards and backfill the first visible cardholder record.`, while exposing the latest card shortcut and withholding the missing holder shortcut.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture|test_unscoped_dashboard_does_not_show_shop_scope_summary)'`, `9 passed`, after adding the mirrored partial-branch coverage.
+
+### Next step after dashboard mirrored partial-branch follow-up checkpoint
+- Move to the next Phase 1 surface outside the dashboard, since the assigned-branch snapshot now covers empty, partial, live, and paused operating states more explicitly.
+
 ### Dashboard partial-branch follow-up cue checkpoint
 - Tightened the assigned-branch `Suggested follow-up` logic for partial setup so scoped branches with cardholders but no cards no longer fall straight through to the generic review guidance.
 - The dashboard now points that partial branch state toward the concrete next Phase 1 action, `Open assigned branch card setup and issue the first live card.`, which makes the snapshot more operational and less starter-like.

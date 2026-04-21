@@ -832,6 +832,70 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Open latest card in branch');
     }
 
+    public function test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Card First Dashboard Shop',
+            'code' => 'card-first-dashboard-shop',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Card First Dashboard Tier',
+            'slug' => 'card-first-dashboard-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $assignedShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-PARTIAL-001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create([
+            'name' => 'Card First Branch Manager',
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Card First Dashboard Reviewer',
+            'slug' => 'card-first-dashboard-reviewer',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review card first dashboard shortcuts',
+            'slug' => 'review-card-first-dashboard-shortcuts',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Assigned branch snapshot')
+            ->assertSee('Card First Dashboard Shop')
+            ->assertSee('Branch readiness')
+            ->assertSee('setup in progress')
+            ->assertSee('Branch coverage')
+            ->assertSee('cards live, cardholders pending')
+            ->assertSee('Latest holder')
+            ->assertSee('No holders in assigned branch yet')
+            ->assertSee('Latest card')
+            ->assertSee('GX-PARTIAL-001')
+            ->assertSee('Suggested follow-up')
+            ->assertSee('Review assigned branch cards and backfill the first visible cardholder record.')
+            ->assertSee('Open assigned branch review')
+            ->assertSee('/admin/shops?shop='.$assignedShop->id)
+            ->assertSee('Open latest card in branch')
+            ->assertSee('/admin/cards?card='.$card->id)
+            ->assertDontSee('Open latest holder in branch');
+    }
+
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void
     {
         $user = User::factory()->create();
