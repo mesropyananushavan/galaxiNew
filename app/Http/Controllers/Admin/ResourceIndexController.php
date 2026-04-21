@@ -1480,6 +1480,7 @@ class ResourceIndexController extends Controller
                 ? 'Live-impact review, linked staff or permissions already exist in Laravel'
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleFreshness($selectedRole)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
@@ -1527,6 +1528,28 @@ class ResourceIndexController extends Controller
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'assignment-sensitive',
             default => 'parity-sensitive',
         };
+    }
+
+    private function rolesPermissionsLifecycleFreshness(Role $selectedRole): string
+    {
+        if ($selectedRole->updated_at === null || $selectedRole->created_at === null) {
+            return 'timestamp visibility pending';
+        }
+
+        return $selectedRole->updated_at->equalTo($selectedRole->created_at)
+            ? 'newly created in Laravel review'
+            : 'updated after initial Laravel creation';
+    }
+
+    private function rolesPermissionsLifecycleTimelineDescription(Role $selectedRole): string
+    {
+        if ($selectedRole->updated_at === null || $selectedRole->created_at === null) {
+            return 'This role does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.';
+        }
+
+        return $selectedRole->updated_at->equalTo($selectedRole->created_at)
+            ? sprintf('This role was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved access shell.', $selectedRole->created_at->format('Y-m-d H:i'))
+            : sprintf('This role was last updated in Laravel on %s, so the review workspace now reflects post-creation access metadata.', $selectedRole->updated_at->format('Y-m-d H:i'));
     }
 
     private function rolesPermissionsScopeRolloutValue(mixed $scope): string
@@ -1603,6 +1626,11 @@ class ResourceIndexController extends Controller
                     : 'This role is currently marked as draft in Laravel, so the management context keeps it in a safer parity-review posture.',
             ],
             [
+                'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $this->rolesPermissionsLifecycleTimelineDescription($selectedRole),
+            ],
+            [
                 'title' => sprintf('%s scope posture reflected from model state', $selectedRole->name),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsScopeRolloutTimelineDescription($scope),
@@ -1637,6 +1665,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Status posture', 'value' => $selectedRole->is_active
                 ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
+            ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleFreshness($selectedRole)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageDependencyLabel($scope)],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
