@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Roles-permissions copy alignment checkpoint
+- Updated the `roles-permissions` workspace copy so it no longer describes the whole surface as preview-only now that the first minimal Laravel-backed role create/update flow is live.
+- Narrowed the remaining-gap language around publishing, assignment, and permission-matrix work so Phase 1 operators can see that role identity writes exist while broader authorization changes are still gated.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after aligning the copy.
+
+### Next step after roles-permissions copy alignment checkpoint
+- Add the next thin role write slice around status or scope scaffolding, while keeping permission-matrix editing blocked.
+
 ### Roles-permissions write feedback checkpoint
 - Threaded the latest backend write result into the selected-role timeline and dependency status, so successful role create/update flows now leave visible in-workspace evidence beyond the global flash banner.
 - Generalized the card-type-only write-feedback helpers into shared resource-page helpers so the same write-adjacent feedback pattern can be reused across minimal Laravel-backed Phase 1 forms.

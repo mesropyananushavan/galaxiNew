@@ -858,7 +858,7 @@ return [
         'pageTitle' => 'Roles & Permissions',
         'eyebrow' => 'Administration / Roles & Permissions',
         'summary' => 'Baseline management screen for admin roles, permission bundles, and future shop-scoped access rules.',
-        'nextStep' => 'Replace sample controls with real role assignment, permission matrix, and shop-aware policy flows.',
+        'nextStep' => 'Keep the new minimal role identity flow narrow, then layer role assignment, permission matrix, and shop-aware policy flows on top of it.',
         'actions' => [
             [
                 'label' => 'New role',
@@ -933,8 +933,8 @@ return [
             ],
         ],
         'notice' => [
-            'title' => 'Role publishing is still preview-only',
-            'description' => 'The access matrix and role editor are visible now, but permission persistence and assignment flows still need Laravel-side implementation.',
+            'title' => 'Role identity writes are live, publishing is still preview-only',
+            'description' => 'The first Laravel-backed role form now saves role identity, but permission persistence, publishing controls, and assignment flows still need implementation.',
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy staff and access matrix'],
@@ -948,15 +948,15 @@ return [
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Legacy role boundaries mapped'],
             ['status' => 'ready', 'label' => 'Permission bundle preview and parity notes added'],
-            ['status' => 'pending', 'label' => 'Assignment and persistence flows still need PHP-backed authorization work'],
+            ['status' => 'pending', 'label' => 'Assignment, publishing, and permission-matrix flows still need PHP-backed authorization work'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Role and Permission models plus migration skeletons exist'],
-            ['label' => 'Backend dependency', 'value' => 'Assignment UI, policy wiring, and persistence handlers are still pending'],
+            ['label' => 'Backend dependency', 'value' => 'Assignment UI, policy wiring, and permission-matrix handlers are still pending beyond the first role identity save flow'],
             ['label' => 'Operational dependency', 'value' => 'Shop-scoped access rules must be verified against legacy staff behavior before activation'],
         ],
         'operatorChecklist' => [
-            'summary' => 'Keep access changes tightly aligned with the old Galaxy staff model until real authorization flows are live.',
+            'summary' => 'Keep access changes tightly aligned with the old Galaxy staff model while only the first role identity save flow is live.',
             'items' => [
                 'Review shop scope before publishing a manager or cashier role change.',
                 'Compare permission bundles against the legacy staff matrix before drafting a new role.',
@@ -985,10 +985,10 @@ return [
             ],
         ],
         'implementationHandoff' => [
-            'summary' => 'Once PHP-backed flows are possible, start with a minimal role create/update path before exposing full assignment screens.',
+            'summary' => 'Build on the new minimal role create/update path before exposing full assignment screens.',
             'steps' => [
-                'Add a role form request for name, scope, and status validation.',
-                'Persist a minimal role record before tackling permission matrix editing.',
+                'Extend role validation from name and slug into scope and status fields when the next thin write slice is ready.',
+                'Keep role identity persistence stable before tackling permission matrix editing.',
                 'Layer shop assignments and policy checks in after the first save flow is stable.',
             ],
         ],
