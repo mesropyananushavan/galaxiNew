@@ -1552,6 +1552,16 @@ class ResourceIndexController extends Controller
         };
     }
 
+    private function rolesPermissionsScopeCoverageTimelineTitle(Role $selectedRole): string
+    {
+        return sprintf('%s scope coverage reflected from model state', $selectedRole->name);
+    }
+
+    private function rolesPermissionsScopeCoverageDependencyLabel(mixed $scope): string
+    {
+        return $this->rolesPermissionsScopeCoverageLabel($scope);
+    }
+
     private function rolesPermissionsScopeRolloutTimelineDescription(mixed $scope): string
     {
         return $scope->isNotEmpty()
@@ -1598,7 +1608,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->rolesPermissionsScopeRolloutTimelineDescription($scope),
             ],
             [
-                'title' => sprintf('%s scope coverage reflected from model state', $selectedRole->name),
+                'title' => $this->rolesPermissionsScopeCoverageTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsScopeCoverageTimelineDescription($scope),
             ],
@@ -1628,7 +1638,7 @@ class ResourceIndexController extends Controller
                 ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
-            ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
+            ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageDependencyLabel($scope)],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
             ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
                 ? 'Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.'
