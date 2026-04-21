@@ -2,6 +2,14 @@
 
 ## 2026-04-21
 
+### Dashboard partial-branch follow-up cue checkpoint
+- Tightened the assigned-branch `Suggested follow-up` logic for partial setup so scoped branches with cardholders but no cards no longer fall straight through to the generic review guidance.
+- The dashboard now points that partial branch state toward the concrete next Phase 1 action, `Open assigned branch card setup and issue the first live card.`, which makes the snapshot more operational and less starter-like.
+- Added a focused scoped dashboard test for the partial branch state and re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture|test_unscoped_dashboard_does_not_show_shop_scope_summary)'`, `8 passed`, after the follow-up cue update.
+
+### Next step after dashboard partial-branch follow-up cue checkpoint
+- Add the mirrored partial-branch cue for cards-without-cardholders, or move to the next Phase 1 surface outside the dashboard.
+
 ### Dashboard branch coverage cue checkpoint
 - Added a `Branch coverage` indicator to the assigned-branch snapshot so the dashboard now shows whether the branch already has both core Phase 1 record types live, only one side live, or no branch records yet.
 - Kept the cue intentionally simple and safe by deriving it from the existing scoped branch counts that were already being loaded for the snapshot.

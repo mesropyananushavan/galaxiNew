@@ -775,6 +775,63 @@ class AdminDashboardTest extends TestCase
         $this->assertSame([], $controller->branchActionsForTest($assignedShop, null, null));
     }
 
+    public function test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Partial Dashboard Shop',
+            'code' => 'partial-dashboard-shop',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $assignedShop->id,
+            'full_name' => 'Partial Dashboard Holder',
+            'phone' => '+37497777777',
+            'email' => 'partial-dashboard-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'name' => 'Partial Branch Manager',
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Partial Dashboard Reviewer',
+            'slug' => 'partial-dashboard-reviewer',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review partial dashboard shortcuts',
+            'slug' => 'review-partial-dashboard-shortcuts',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Assigned branch snapshot')
+            ->assertSee('Partial Dashboard Shop')
+            ->assertSee('Branch readiness')
+            ->assertSee('setup in progress')
+            ->assertSee('Branch coverage')
+            ->assertSee('cardholders live, cards pending')
+            ->assertSee('Latest holder')
+            ->assertSee('Partial Dashboard Holder')
+            ->assertSee('Latest card')
+            ->assertSee('No cards in assigned branch yet')
+            ->assertSee('Suggested follow-up')
+            ->assertSee('Open assigned branch card setup and issue the first live card.')
+            ->assertSee('Open assigned branch review')
+            ->assertSee('/admin/shops?shop='.$assignedShop->id)
+            ->assertSee('Open latest holder in branch')
+            ->assertSee('/admin/cardholders?cardholder='.$holder->id)
+            ->assertDontSee('Open latest card in branch');
+    }
+
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void
     {
         $user = User::factory()->create();

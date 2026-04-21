@@ -464,6 +464,14 @@ class DashboardController extends Controller
             return 'Open assigned branch setup and create the first live records.';
         }
 
+        if (! $latestHolder instanceof CardHolder) {
+            return 'Review assigned branch cards and backfill the first visible cardholder record.';
+        }
+
+        if (! $latestCard instanceof Card) {
+            return 'Open assigned branch card setup and issue the first live card.';
+        }
+
         return 'Resume the latest branch review flow from the scoped shortcuts.';
     }
 
