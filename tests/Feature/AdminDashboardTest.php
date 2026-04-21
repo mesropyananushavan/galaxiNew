@@ -1063,6 +1063,7 @@ class AdminDashboardTest extends TestCase
             'name' => 'Shop Manager',
             'slug' => 'shop-manager-selected-role',
             'is_active' => true,
+            'review_note' => 'Keep this role aligned with the legacy branch manager workflow during parity review.',
         ]);
 
         $permission = Permission::create([
@@ -1098,6 +1099,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('action="/admin/roles-permissions/'.$role->id.'"', false)
             ->assertSee('Laravel status')
             ->assertSee('selected>Active</option>', false)
+            ->assertSee('Review note')
+            ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
             ->assertSee('Scope rollout')
             ->assertSee('Shop scope visible in review')
             ->assertSee('Publish posture')
@@ -1109,6 +1112,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Lifecycle freshness')
             ->assertSee('newly created in Laravel review')
             ->assertSee('Last saved in Laravel')
+            ->assertSee('Review note')
+            ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
             ->assertSee('Scope')
             ->assertSee('Scope coverage')
             ->assertSee('1 shop visible in Laravel review')
@@ -1142,6 +1147,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop Manager last saved timestamp reflected from model state')
             ->assertSee('The latest saved Laravel timestamp for this role is')
             ->assertSee('giving operators a concrete checkpoint for the current access shell.')
+            ->assertSee('Shop Manager review note reflected from model state')
+            ->assertSee('The current Laravel review note says: Keep this role aligned with the legacy branch manager workflow during parity review.')
             ->assertSee('Shop Manager scope posture reflected from model state')
             ->assertSee('This role currently shows shop scope across Galaxy Central in Laravel review mode, so scope rollout stays visible while writes remain gated.')
             ->assertSee('Shop Manager scope coverage reflected from model state')
@@ -1159,6 +1166,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Lifecycle freshness:')
             ->assertSee('newly created in Laravel review')
             ->assertSee('Last saved in Laravel:')
+            ->assertSee('Review note:')
+            ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
             ->assertSee('Scope rollout posture:')
             ->assertSee('This role already shows shop scope in Laravel review, but scope mutation should stay blocked until a dedicated access slice is verified.')
             ->assertSee('Scope coverage:')
@@ -1263,6 +1272,7 @@ class AdminDashboardTest extends TestCase
             'name' => 'Branch Supervisor',
             'slug' => 'Branch Supervisor',
             'is_active' => '1',
+            'review_note' => 'Start with the branch manager shell and keep assignment changes blocked.',
         ]);
 
         $role = Role::query()->where('name', 'Branch Supervisor')->firstOrFail();
@@ -1276,6 +1286,7 @@ class AdminDashboardTest extends TestCase
             'name' => 'Branch Supervisor',
             'slug' => 'branch-supervisor',
             'is_active' => true,
+            'review_note' => 'Start with the branch manager shell and keep assignment changes blocked.',
         ]);
     }
 
@@ -1328,6 +1339,7 @@ class AdminDashboardTest extends TestCase
             'name' => 'Branch Operations Lead',
             'slug' => 'Branch Operations Lead',
             'is_active' => '1',
+            'review_note' => 'Document the first live Laravel role adjustments before widening scope.',
         ]);
 
         $response
@@ -1339,6 +1351,7 @@ class AdminDashboardTest extends TestCase
             'name' => 'Branch Operations Lead',
             'slug' => 'branch-operations-lead',
             'is_active' => true,
+            'review_note' => 'Document the first live Laravel role adjustments before widening scope.',
         ]);
     }
 

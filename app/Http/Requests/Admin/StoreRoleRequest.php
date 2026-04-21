@@ -21,6 +21,7 @@ class StoreRoleRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'slug' => ['required', 'string', 'max:255', 'alpha_dash', 'unique:roles,slug'],
             'is_active' => ['required', 'boolean'],
+            'review_note' => ['nullable', 'string', 'max:1000'],
         ];
     }
 
@@ -45,6 +46,7 @@ class StoreRoleRequest extends FormRequest
             'name' => 'role name',
             'slug' => 'role slug',
             'is_active' => 'role status',
+            'review_note' => 'review note',
         ];
     }
 

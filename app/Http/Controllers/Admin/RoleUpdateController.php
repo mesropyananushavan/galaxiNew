@@ -20,6 +20,7 @@ class RoleUpdateController extends Controller
             'name' => $validated['name'],
             'slug' => $validated['slug'],
             'is_active' => $request->boolean('is_active'),
+            'review_note' => $validated['review_note'] ?? null,
         ]);
 
         return $this->redirectToSelectedRole(

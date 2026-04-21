@@ -11,8 +11,7 @@ class UpdateRoleRequest extends StoreRoleRequest
     {
         $role = $this->route('role');
 
-        return [
-            'name' => ['required', 'string', 'max:255'],
+        return array_merge(parent::rules(), [
             'slug' => [
                 'required',
                 'string',
@@ -20,7 +19,7 @@ class UpdateRoleRequest extends StoreRoleRequest
                 'alpha_dash',
                 Rule::unique('roles', 'slug')->ignore($role),
             ],
-        ];
+        ]);
     }
 
     protected function getRedirectUrl(): string

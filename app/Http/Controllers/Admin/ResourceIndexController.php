@@ -626,6 +626,7 @@ class ResourceIndexController extends Controller
                 'name' => $selectedRole->name,
                 'slug' => $selectedRole->slug,
                 'is_active' => $selectedRole->is_active ? '1' : '0',
+                'review_note' => $selectedRole->review_note ?? '',
                 'scope_rollout' => $this->rolesPermissionsScopeRolloutValue($scope),
                 'publish_posture' => $this->rolesPermissionsPublishPostureValue($selectedRole),
             ];
@@ -1482,6 +1483,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
             ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleFreshnessLabel($selectedRole)],
             ['label' => 'Last saved in Laravel', 'value' => $this->rolesPermissionsLastSavedLabel($selectedRole)],
+            ['label' => 'Review note', 'value' => $selectedRole->review_note ?: 'No review note saved yet'],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
@@ -1580,6 +1582,18 @@ class ResourceIndexController extends Controller
             : 'This role does not expose a latest saved Laravel timestamp yet, so the current access shell should stay in review-only posture.';
     }
 
+    private function rolesPermissionsReviewNoteLabel(Role $selectedRole): string
+    {
+        return $selectedRole->review_note ?: 'No review note saved yet';
+    }
+
+    private function rolesPermissionsReviewNoteTimelineDescription(Role $selectedRole): string
+    {
+        return $selectedRole->review_note !== null && trim($selectedRole->review_note) !== ''
+            ? sprintf('The current Laravel review note says: %s', $selectedRole->review_note)
+            : 'No Laravel review note is saved yet, so parity-sensitive operator context still depends on the surrounding workspace cues.';
+    }
+
     private function rolesPermissionsScopeRolloutValue(mixed $scope): string
     {
         return $scope->isNotEmpty() ? 'shop-scope-visible' : 'shop-scope-pending';
@@ -1664,6 +1678,11 @@ class ResourceIndexController extends Controller
                 'description' => $this->rolesPermissionsLastSavedTimelineDescription($selectedRole),
             ],
             [
+                'title' => sprintf('%s review note reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $this->rolesPermissionsReviewNoteTimelineDescription($selectedRole),
+            ],
+            [
                 'title' => sprintf('%s scope posture reflected from model state', $selectedRole->name),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsScopeRolloutTimelineDescription($scope),
@@ -1700,6 +1719,7 @@ class ResourceIndexController extends Controller
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
             ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleDependencyLabel($selectedRole)],
             ['label' => 'Last saved in Laravel', 'value' => $this->rolesPermissionsLastSavedLabel($selectedRole)],
+            ['label' => 'Review note', 'value' => $this->rolesPermissionsReviewNoteLabel($selectedRole)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageDependencyLabel($scope)],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
