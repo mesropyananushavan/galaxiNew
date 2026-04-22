@@ -2769,6 +2769,59 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Holder search, profile writes, and recent-activity sourcing still remain preview-only for this workspace');
     }
 
+    public function test_cardholders_page_supports_selected_active_linked_holder_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Linked Holder Branch',
+            'code' => 'galaxy-linked-holder-branch',
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Mariam Linked Holder',
+            'phone' => '+37491100077',
+            'email' => 'mariam.linked.holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Linked Tier',
+            'slug' => 'galaxy-linked-tier-holder',
+            'points_rate' => '1.75',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-LINK-0001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$cardHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all holders')
+            ->assertSee('Reviewing: Mariam Linked Holder')
+            ->assertSee('Review recent activity')
+            ->assertSee('Blocked until linked-card activity is backed by a stable Laravel event source for active-holder lookup parity.')
+            ->assertSee('Selected holder')
+            ->assertSee('Mariam Linked Holder')
+            ->assertSee('Operational readiness')
+            ->assertSee('linked profile, operator-visible')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked profile with visible cards')
+            ->assertSee('Linked cards')
+            ->assertSee('1')
+            ->assertSee('Lookup guidance')
+            ->assertSee('This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.');
+    }
+
     public function test_cardholders_page_ignores_unknown_selected_holder_query(): void
     {
         $shop = Shop::create([
