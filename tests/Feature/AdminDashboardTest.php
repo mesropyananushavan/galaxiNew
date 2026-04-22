@@ -3503,6 +3503,41 @@ class AdminDashboardTest extends TestCase
             ->assertSee('North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.');
     }
 
+    public function test_services_rules_page_supports_selected_scoped_rule_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules?rule=partner-card-uplift');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all rules')
+            ->assertSee('/admin/services-rules')
+            ->assertSee('Reviewing: Partner card uplift')
+            ->assertSee('Review priorities')
+            ->assertSee('Blocked until scoped rule priority order is verified against broader loyalty overlaps in Laravel.')
+            ->assertSee('Publish rule')
+            ->assertSee('Blocked until this scoped rule clears CRUD, scope-parity, and publish-safety checks beyond the preview shell.')
+            ->assertSee('Selected rule preview')
+            ->assertSee('Partner card uplift')
+            ->assertSee('Scope')
+            ->assertSee('Central Shop')
+            ->assertSee('Condition posture')
+            ->assertSee('Partner-card checks should stay tied to visible card-type parity before any Laravel rule editor opens them up.')
+            ->assertSee('Priority posture')
+            ->assertSee('This scoped uplift should remain below birthday-wide behavior until legacy overlap order is rechecked.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep scoped uplift rules in compact on-screen review first, because operators need scope, condition, and priority visible together before escalating.')
+            ->assertSee('Effect guidance')
+            ->assertSee('Treat the partner uplift as review-only until scoped accrual behavior is backed by Laravel rule writes.')
+            ->assertSee('Partner card uplift selected for scope review')
+            ->assertSee('Scoped uplift handoff stays branch-aware')
+            ->assertSee('Scoped uplift handoff keeps branch evidence visible')
+            ->assertSee('Scope, condition, and priority should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.')
+            ->assertSee('Overlap with broader loyalty rules still needs parity verification before any publish path is safe.');
+    }
+
     public function test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog(): void
     {
         $user = User::factory()->create();
