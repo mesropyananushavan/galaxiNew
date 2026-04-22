@@ -273,6 +273,13 @@
 ### Next step after cardholders active-unlinked review checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Shops manager-linked coverage review checkpoint
+- Added focused selected-shop coverage for the active branch path where manager ownership and holder/card coverage are all visible, so the `shops` full-coverage blocker stays anchored to a real Galaxy branch-review context.
+- Kept the step Phase 1-safe: no shop workflow changed, but the feature test now protects the operator-visible branch scope language from drifting back toward generic starter copy.
+
+### Next step after shops manager-linked coverage review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

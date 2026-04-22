@@ -2618,6 +2618,64 @@ class AdminDashboardTest extends TestCase
             ->assertSee('No manager is assigned yet, so ownership expectations should stay parity-first until assignment rules are verified.');
     }
 
+    public function test_shops_page_supports_selected_manager_linked_coverage_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Full Coverage Branch',
+            'code' => 'galaxy-full-coverage-branch',
+            'is_active' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Narek Coverage Lead',
+            'shop_id' => $shop->id,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Tatev Coverage Holder',
+            'phone' => '+37410000231',
+            'email' => 'tatev.coverage@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Full Coverage Tier',
+            'slug' => 'galaxy-full-coverage-tier-shop',
+            'points_rate' => '1.55',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-SHOP-0001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$shop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all shops')
+            ->assertSee('Reviewing: Galaxy Full Coverage Branch')
+            ->assertSee('Review branch scope')
+            ->assertSee('Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.')
+            ->assertSee('Selected shop')
+            ->assertSee('Galaxy Full Coverage Branch')
+            ->assertSee('Operational readiness')
+            ->assertSee('active branch, operator-visible coverage live')
+            ->assertSee('Coverage signal')
+            ->assertSee('manager, holder, and card coverage visible')
+            ->assertSee('Assigned manager')
+            ->assertSee('Narek Coverage Lead')
+            ->assertSee('Manager guidance')
+            ->assertSee('Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.');
+    }
+
     public function test_shops_page_supports_selected_manager_only_branch_review_context(): void
     {
         $shop = Shop::create([
