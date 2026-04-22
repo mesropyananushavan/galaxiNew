@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Roles-permissions access-note index visibility checkpoint
+- Surfaced the new persisted role `access_note` slice at the index level by adding an `Access notes` metric and an `Access note` table column, so access handoff context is visible before operators drill into selected-role review.
+- Kept the step small and safe: it reuses saved access-note text on read-only index surfaces and does not widen assignment flows, shop-scope mutation, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query)'`, `6 passed`, after exposing role access-note visibility on the index page.
+
+### Next step after roles-permissions access-note index visibility checkpoint
+- Add one more narrow role metadata slice while keeping assignment and permission-matrix writes blocked, or return to another live form surface for a similarly safe persisted metadata increment.
+
 ### Roles-permissions access-note slice checkpoint
 - Added a thin persisted `access_note` slice to the shared `roles-permissions` live form, including a nullable `access_note` column on `roles`, request validation, explicit create/update persistence, and selected-role rendering in summary, timeline, and dependency status.
 - Kept the step Phase 1-safe: the new field captures operator-facing access handoff context without opening assignment flows, shop-scope mutation, or permission-matrix writes.

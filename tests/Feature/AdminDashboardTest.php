@@ -1007,6 +1007,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'shop-manager-live',
             'is_active' => true,
             'review_note' => 'Keep manager workflow aligned with the first live parity pass.',
+            'access_note' => 'Keep branch access handoff visible during parity review.',
         ]);
 
         $permissionA = Permission::create([
@@ -1043,14 +1044,15 @@ class AdminDashboardTest extends TestCase
             ->assertSee('href="/admin/roles-permissions?role=', false)
             ->assertSee('Galaxy Central')
             ->assertSee('Manage cards, Manage gifts')
-            ->assertSee('Keep manager workflow aligned with the first live parity pass.')
+            ->assertSee('Keep branch access handoff visible during parity review.')
             ->assertSee('Cashier Draft')
             ->assertSee('No permissions linked yet')
-            ->assertSee('No review note saved yet')
+            ->assertSee('No access note saved yet')
             ->assertSee('Review latest saved role')
             ->assertSee('Active roles')
             ->assertSee('Draft roles')
             ->assertSee('Reviewed roles')
+            ->assertSee('Access notes')
             ->assertSee('Scoped shops')
             ->assertSee('active')
             ->assertSee('draft');
