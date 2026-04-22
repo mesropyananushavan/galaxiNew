@@ -4044,6 +4044,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review')
             ->assertSee('Draft bundle signal')
             ->assertSee('1 draft access roles already carry visible permission bundles that still need activation review')
+            ->assertSee('Assigned bundle signal')
+            ->assertSee('assigned permission-bundle coverage is still pending')
             ->assertSee('Scoped bundle signal')
             ->assertSee('shop-linked permission-bundle coverage is still pending')
             ->assertSee('Bundle branch activity signal')
@@ -4062,6 +4064,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review')
             ->assertSee('Draft bundle signal:')
             ->assertSee('1 draft access roles already carry visible permission bundles that still need activation review')
+            ->assertSee('Assigned bundle signal:')
+            ->assertSee('assigned permission-bundle coverage is still pending')
             ->assertSee('Scoped bundle signal:')
             ->assertSee('shop-linked permission-bundle coverage is still pending')
             ->assertSee('Bundle branch activity signal:')
@@ -4161,9 +4165,13 @@ class AdminDashboardTest extends TestCase
             ->assertSee('2 roles are currently available for read-only access reporting review.')
             ->assertSee('Permission bundle signal')
             ->assertSee($permissionBundleSignal)
+            ->assertSee('Assigned bundle signal')
+            ->assertSee('1 permission-linked roles already carry visible staff assignments for parity review')
             ->assertSee('Implementation dependencies')
             ->assertSee('Permission bundle signal:')
-            ->assertSee($permissionBundleSignal);
+            ->assertSee($permissionBundleSignal)
+            ->assertSee('Assigned bundle signal:')
+            ->assertSee('1 permission-linked roles already carry visible staff assignments for parity review');
     }
 
     public function test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog(): void
