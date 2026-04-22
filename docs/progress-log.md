@@ -301,6 +301,13 @@
 ### Next step after roles assignment-sensitive no-scope review checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Reports role-access pending-readiness checkpoint
+- Added focused selected-source coverage for the `role-access` report when roles are visible but permission-linked active access posture is still missing, so the reporting shell keeps a Galaxy-specific pending-readiness state instead of generic source wording.
+- Kept the step Phase 1-safe: no reporting workflow changed, but the feature test now protects the pending access-readiness language from drifting as more Laravel-backed role data comes online.
+
+### Next step after reports role-access pending-readiness checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

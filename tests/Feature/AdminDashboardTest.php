@@ -3894,6 +3894,42 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop grouping should stay read-only until query shaping is verified against legacy report totals.');
     }
 
+    public function test_reports_page_supports_selected_role_access_pending_readiness_context(): void
+    {
+        Role::create([
+            'name' => 'Draft Access Observer',
+            'slug' => 'draft-access-observer',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to report catalog')
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Review export presets')
+            ->assertSee('Blocked until role-access preset periods are verified against scope and assignment reporting parity.')
+            ->assertSee('Export source snapshot')
+            ->assertSee('Blocked until role-access export snapshots are verified against scope summaries and file delivery.')
+            ->assertSee('Selected report source')
+            ->assertSee('Role access coverage')
+            ->assertSee('Source coverage')
+            ->assertSee('1 roles are currently available for read-only access reporting review.')
+            ->assertSee('Source signal')
+            ->assertSee('live role coverage visible')
+            ->assertSee('Access readiness')
+            ->assertSee('permission-linked active access posture is still pending')
+            ->assertSee('Default period posture')
+            ->assertSee('Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.')
+            ->assertSee('Access reporting parity stays review-only')
+            ->assertSee('Operators should hand off role-coverage findings in the live review context before trusting export files for access decisions.')
+            ->assertSee('Access readiness:')
+            ->assertSee('permission-linked active access posture is still pending');
+    }
+
     public function test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog(): void
     {
         $shop = Shop::create([
