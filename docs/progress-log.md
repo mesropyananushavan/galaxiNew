@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Roles-permissions coverage-signal cue checkpoint
+- Added a read-only `Coverage signal` cue to selected `roles-permissions` review so operators can see scope, staff, and permission coverage posture in one compact Laravel-backed cue without opening assignment, matrix, or shop-scope writes.
+- Surfaced the cue in both selected-role summaries and dependency-status panels through a small helper in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data)'`, `1 passed`, after adding the coverage-signal cue.
+
+### Next step after roles-permissions coverage-signal cue checkpoint
+- Mirror another narrow read-only operational cue on `reports`, or return to an already-live Laravel form for the next safe metadata increment.
+
 ### Shops coverage-signal cue checkpoint
 - Added a read-only `Coverage signal` cue to selected `shops` review so operators can see manager, holder, and card coverage posture in one compact Laravel-backed cue without opening branch writes or ownership mutation flows.
 - Surfaced the cue in both selected-shop summaries and dependency-status panels through a small helper in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.

@@ -1591,6 +1591,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review note', 'value' => $selectedRole->review_note ?: 'No review note saved yet'],
             ['label' => 'Access note', 'value' => $selectedRole->access_note ?: 'No access note saved yet'],
             ['label' => 'Assignment note', 'value' => $selectedRole->assignment_note ?: 'No assignment note saved yet'],
+            ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
@@ -1717,6 +1718,18 @@ class ResourceIndexController extends Controller
         return $selectedRole->assignment_note !== null && trim($selectedRole->assignment_note) !== ''
             ? sprintf('The current Laravel assignment note says: %s', $selectedRole->assignment_note)
             : 'No Laravel assignment note is saved yet, so assignment handoff guidance still depends on the surrounding workspace cues.';
+    }
+
+    private function rolesPermissionsCoverageSignal(Role $selectedRole, mixed $scope): string
+    {
+        return match (true) {
+            $scope->isNotEmpty() && $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'scope, staff, and permission coverage visible',
+            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'staff and permission coverage visible, scope pending',
+            $scope->isNotEmpty() && ($selectedRole->users_count > 0 || $selectedRole->permissions_count > 0) => 'scope visible, access coverage building out',
+            $scope->isNotEmpty() => 'scope visible, staff and permission coverage pending',
+            $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0 => 'partial access coverage visible, scope pending',
+            default => 'scope, staff, and permission coverage pending',
+        };
     }
 
     private function rolesPermissionsScopeRolloutValue(mixed $scope): string
@@ -1857,6 +1870,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review note', 'value' => $this->rolesPermissionsReviewNoteLabel($selectedRole)],
             ['label' => 'Access note', 'value' => $this->rolesPermissionsAccessNoteLabel($selectedRole)],
             ['label' => 'Assignment note', 'value' => $this->rolesPermissionsAssignmentNoteLabel($selectedRole)],
+            ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageDependencyLabel($scope)],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
