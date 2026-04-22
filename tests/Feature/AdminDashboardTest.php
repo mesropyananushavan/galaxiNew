@@ -1901,6 +1901,58 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows still remain preview-only for this workspace');
     }
 
+    public function test_cards_page_supports_selected_active_card_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Active Card Branch',
+            'code' => 'galaxy-active-card-branch',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Mariam Active Card',
+            'phone' => '+37491100222',
+            'email' => 'mariam.active.card@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Active Tier',
+            'slug' => 'galaxy-active-tier-card',
+            'points_rate' => '1.80',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-920001',
+            'status' => 'active',
+            'activated_at' => '2026-04-02 11:30:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all cards')
+            ->assertSee('Reviewing: GX-920001')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until blocked-card semantics are verified against this active Laravel inventory flow.')
+            ->assertSee('Selected card')
+            ->assertSee('GX-920001')
+            ->assertSee('Operational readiness')
+            ->assertSee('issued inventory, parity-sensitive')
+            ->assertSee('Linkage signal')
+            ->assertSee('holder and branch linkage visible')
+            ->assertSee('Inventory guidance')
+            ->assertSee('This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.');
+    }
+
     public function test_cards_page_ignores_unknown_selected_card_query(): void
     {
         $shop = Shop::create([
