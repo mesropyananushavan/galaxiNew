@@ -1342,6 +1342,48 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until this live permission bundle also has verified shop scope parity.');
     }
 
+    public function test_selected_assignment_sensitive_live_role_without_scope_surfaces_access_review_context(): void
+    {
+        $role = Role::create([
+            'name' => 'Shift Access Lead',
+            'slug' => 'shift-access-lead-no-scope',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Manage shifts',
+            'slug' => 'manage-shifts-no-scope',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Levon Shiftyan',
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Shift Access Lead')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until this assignment-sensitive Laravel permission bundle is verified against legacy staff access.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until this live permission bundle also has verified shop scope parity.')
+            ->assertSee('Coverage signal')
+            ->assertSee('staff and permission coverage visible, scope pending')
+            ->assertSee('Assigned staff preview')
+            ->assertSee('Levon Shiftyan')
+            ->assertSee('Scope guidance')
+            ->assertSee('No shop scope is linked yet, which keeps this role safer for draft review before scope parity is confirmed.')
+            ->assertSee('Assignment guidance')
+            ->assertSee('Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.');
+    }
+
     public function test_roles_permissions_page_ignores_unknown_selected_role_query(): void
     {
         $shop = Shop::create([
