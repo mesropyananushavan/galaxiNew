@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Card-types activation-note index visibility checkpoint
+- Surfaced the new persisted card-type `activation_note` slice at the catalog level by adding an `Activation notes` metric and an `Activation note` table column, so activation handoff context is visible before operators drill into selected-tier edit review.
+- Kept the step small and safe: it reuses saved activation-note text on read-only index surfaces and does not widen publish logic, activation behavior writes, or rule-import flows.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_replaces_preview_rows_with_model_backed_edit_links|test_card_types_page_replaces_preview_metrics_with_model_backed_counts|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type)'`, `4 passed`, after exposing card-type activation-note visibility on the index page.
+
+### Next step after card-types activation-note index visibility checkpoint
+- Add one more narrow persisted card-type metadata field, or return to `roles-permissions` for another safe metadata slice while keeping assignment and permission-matrix writes blocked.
+
 ### Card-types activation-note slice checkpoint
 - Added a thin persisted `activation_note` slice to the shared `card-types` live form, including a nullable `activation_note` column on `card_types`, request validation, explicit create/update persistence, and selected-tier rendering in summary, timeline, and dependency status.
 - Kept the step Phase 1-safe: the new field captures operator-facing activation handoff context without opening publish logic, activation behavior writes, or rule-import flows.
