@@ -1114,7 +1114,7 @@ class ResourceIndexController extends Controller
         $draftCardCount = Card::query()->where('status', 'draft')->count();
         $holderLinkedCardCount = Card::query()->whereNotNull('card_holder_id')->count();
         $unassignedCardCount = $cardCount - $holderLinkedCardCount;
-        $cardHolders = CardHolder::query()->withCount('cards')->with('shop:id,is_active')->get();
+        $cardHolders = CardHolder::query()->withCount('cards')->with(['shop:id,is_active', 'cards:id,card_holder_id,status'])->get();
         $cardHolderCount = $cardHolders->count();
         $activeCardHolderCount = $cardHolders->where('is_active', true)->count();
         $inactiveCardHolderCount = $cardHolders->where('is_active', false)->count();
@@ -1122,6 +1122,8 @@ class ResourceIndexController extends Controller
         $unlinkedCardHolderCount = $cardHolderCount - $linkedCardHolderCount;
         $activeShopCardHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => (bool) $cardHolder->shop?->is_active)->count();
         $pausedShopCardHolderCount = $cardHolderCount - $activeShopCardHolderCount;
+        $activeLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->where('status', 'active')->count());
+        $blockedLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->where('status', 'blocked')->count());
         $roles = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active')->get();
         $roleCount = $roles->count();
         $activeRoleCount = $roles->where('is_active', true)->count();
@@ -1254,6 +1256,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Card linkage signal', 'value' => $linkedCardHolderCount > 0 && $unlinkedCardHolderCount > 0
                         ? sprintf('%d linked holders are already visible beside %d unlinked profiles for parity review', $linkedCardHolderCount, $unlinkedCardHolderCount)
                         : 'unlinked holder coverage is still pending for parity review'],
+                    ['label' => 'Linked card state signal', 'value' => $activeLinkedCardCount > 0 && $blockedLinkedCardCount > 0
+                        ? sprintf('%d active linked cards are already visible beside %d blocked linked cards for parity review', $activeLinkedCardCount, $blockedLinkedCardCount)
+                        : 'blocked linked-card coverage is still pending for parity review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
                         ? sprintf('%d holder profiles are already visible in active branches beside %d profiles in paused shops for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],
@@ -1280,6 +1285,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Card linkage signal', 'value' => $linkedCardHolderCount > 0 && $unlinkedCardHolderCount > 0
                         ? sprintf('%d linked holders are already visible beside %d unlinked profiles for parity review', $linkedCardHolderCount, $unlinkedCardHolderCount)
                         : 'unlinked holder coverage is still pending for parity review'],
+                    ['label' => 'Linked card state signal', 'value' => $activeLinkedCardCount > 0 && $blockedLinkedCardCount > 0
+                        ? sprintf('%d active linked cards are already visible beside %d blocked linked cards for parity review', $activeLinkedCardCount, $blockedLinkedCardCount)
+                        : 'blocked linked-card coverage is still pending for parity review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
                         ? sprintf('%d holder profiles are already visible in active branches beside %d profiles in paused shops for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],

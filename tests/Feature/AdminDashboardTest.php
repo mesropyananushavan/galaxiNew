@@ -4226,6 +4226,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('inactive holder coverage is still pending for lifecycle review')
             ->assertSee('Card linkage signal')
             ->assertSee('unlinked holder coverage is still pending for parity review')
+            ->assertSee('Linked card state signal')
+            ->assertSee('blocked linked-card coverage is still pending for parity review')
             ->assertSee('Holder branch activity signal')
             ->assertSee('paused-branch holder coverage is still pending for parity review')
             ->assertSee('Cardholder status source selected for Laravel review')
@@ -4319,6 +4321,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee($lifecycleSignal)
             ->assertSee('Card linkage signal')
             ->assertSee('2 linked holders are already visible beside 1 unlinked profiles for parity review')
+            ->assertSee('Linked card state signal')
+            ->assertSee('1 active linked cards are already visible beside 1 blocked linked cards for parity review')
             ->assertSee('Holder branch activity signal')
             ->assertSee($holderBranchActivitySignal)
             ->assertSee('Implementation dependencies')
@@ -4326,6 +4330,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee($lifecycleSignal)
             ->assertSee('Card linkage signal:')
             ->assertSee('2 linked holders are already visible beside 1 unlinked profiles for parity review')
+            ->assertSee('Linked card state signal:')
+            ->assertSee('1 active linked cards are already visible beside 1 blocked linked cards for parity review')
             ->assertSee('Holder branch activity signal:')
             ->assertSee($holderBranchActivitySignal);
     }
