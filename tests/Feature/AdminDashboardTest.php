@@ -4334,6 +4334,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 active roles already carry permission-linked access posture for on-screen review')
             ->assertSee('Assignment signal')
             ->assertSee('1 staff assignments are already visible for access review')
+            ->assertSee('Assignment scope signal')
+            ->assertSee('unscoped access-assignment coverage is still pending')
             ->assertSee('Role state signal')
             ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Permission bundle signal')
@@ -4345,12 +4347,68 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 active roles already carry permission-linked access posture for on-screen review')
             ->assertSee('Assignment signal:')
             ->assertSee('1 staff assignments are already visible for access review')
+            ->assertSee('Assignment scope signal:')
+            ->assertSee('unscoped access-assignment coverage is still pending')
             ->assertSee('Role state signal:')
             ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Permission bundle signal:')
             ->assertSee('unbundled active-role coverage is still pending')
             ->assertSee('Access posture:')
             ->assertSee('Role coverage should stay read-only until access-report parity and scope shaping are verified.');
+    }
+
+    public function test_reports_page_supports_selected_mixed_assignment_scope_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Scoped Access Branch',
+            'code' => 'galaxy-scoped-access-branch',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Reporting Scoped Access Lead',
+            'slug' => 'reporting-scoped-access-lead',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped access reports',
+            'slug' => 'review-scoped-access-reports',
+        ]);
+
+        $role->permissions()->attach($permission);
+
+        $scopedUser = User::factory()->create([
+            'name' => 'Scoped Access Operator',
+            'shop_id' => $shop->id,
+        ]);
+
+        $unscopedUser = User::factory()->create([
+            'name' => 'Bootstrap Access Operator',
+            'shop_id' => null,
+        ]);
+
+        $scopedUser->roles()->attach($role->id);
+        $unscopedUser->roles()->attach($role->id);
+
+        $assignmentScopeSignal = '1 shop-linked staff assignments are already visible beside 1 unscoped access assignments for parity review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Source coverage')
+            ->assertSee('1 roles are currently available for read-only access reporting review.')
+            ->assertSee('Assignment signal')
+            ->assertSee('2 staff assignments are already visible for access review')
+            ->assertSee('Assignment scope signal')
+            ->assertSee($assignmentScopeSignal)
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Assignment scope signal:')
+            ->assertSee($assignmentScopeSignal);
     }
 
     public function test_reports_page_accepts_case_insensitive_selected_source_query(): void
