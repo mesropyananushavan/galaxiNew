@@ -5506,6 +5506,28 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until this live tier has visible card coverage and rollout parity review.');
     }
 
+    public function test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Seed Tier',
+            'slug' => 'galaxy-seed-tier-no-cards',
+            'points_rate' => '1.05',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/card-types?cardType='.$cardType->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Editing: Galaxy Seed Tier')
+            ->assertSee('Import rules')
+            ->assertSee('Blocked until draft parity review has visible card coverage to compare against.')
+            ->assertSee('Publish type')
+            ->assertSee('Blocked until this draft tier clears rule and rollout parity review before any publish-like move.');
+    }
+
     public function test_card_types_page_ignores_unknown_selected_card_type_query(): void
     {
         CardType::create([
