@@ -653,15 +653,13 @@ class ResourceIndexController extends Controller
                 'label' => 'Review matrix',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.',
+                'disabledReason' => $this->rolesPermissionsReviewMatrixDisabledReason($selectedRole),
             ],
             [
                 'label' => 'Publish role',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => $selectedRole->is_active
-                    ? 'Blocked until live role assignment parity is verified for this Laravel permission bundle.'
-                    : 'Blocked until this draft role has a verified permission bundle and shop scope parity.',
+                'disabledReason' => $this->rolesPermissionsPublishRoleDisabledReason($selectedRole, $scope),
             ],
             ],
         );
@@ -1771,6 +1769,30 @@ class ResourceIndexController extends Controller
             $scope->isNotEmpty() => 'scope visible, staff and permission coverage pending',
             $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0 => 'partial access coverage visible, scope pending',
             default => 'scope, staff, and permission coverage pending',
+        };
+    }
+
+    private function rolesPermissionsReviewMatrixDisabledReason(Role $selectedRole): string
+    {
+        $permissionCount = $selectedRole->permissions->count();
+
+        return match (true) {
+            $permissionCount > 0 => 'Blocked until the Laravel permission matrix can be verified against legacy staff access for this live bundle.',
+            $selectedRole->is_active => 'Blocked until this active role has a first verified Laravel permission bundle to compare against legacy staff access.',
+            default => 'Blocked until this draft role has a first verified Laravel permission bundle to compare against legacy staff access.',
+        };
+    }
+
+    private function rolesPermissionsPublishRoleDisabledReason(Role $selectedRole, mixed $scope): string
+    {
+        $permissionCount = $selectedRole->permissions->count();
+
+        return match (true) {
+            ! $selectedRole->is_active => 'Blocked until this draft role has a verified permission bundle and shop scope parity.',
+            $permissionCount === 0 && $scope->isEmpty() => 'Blocked until this active role has both a verified permission bundle and shop scope parity.',
+            $permissionCount === 0 => 'Blocked until this active role has a verified permission bundle to compare against legacy staff access.',
+            $scope->isEmpty() => 'Blocked until this live permission bundle also has verified shop scope parity.',
+            default => 'Blocked until live role assignment parity is verified for this Laravel permission bundle.',
         };
     }
 

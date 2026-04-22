@@ -1178,6 +1178,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop Manager assignment scope reflected from model state')
             ->assertSee('This role is currently linked to 1 assigned users across Galaxy Central in Laravel review mode.')
             ->assertSee('Manage cards')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until the Laravel permission matrix can be verified against legacy staff access for this live bundle.')
             ->assertSee('Publish role')
             ->assertSee('Blocked until live role assignment parity is verified for this Laravel permission bundle.')
             ->assertSee('Review posture:')
@@ -1211,6 +1213,27 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace');
+    }
+
+    public function test_selected_draft_role_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $role = Role::create([
+            'name' => 'Draft Branch Auditor',
+            'slug' => 'draft-branch-auditor',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Draft Branch Auditor')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until this draft role has a first verified Laravel permission bundle to compare against legacy staff access.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until this draft role has a verified permission bundle and shop scope parity.');
     }
 
     public function test_roles_permissions_page_ignores_unknown_selected_role_query(): void

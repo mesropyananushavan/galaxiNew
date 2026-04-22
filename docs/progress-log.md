@@ -26,6 +26,14 @@
 ### Next step after reports cards-by-shop branch-review-readiness cue checkpoint
 - Return to the next tiny persisted metadata slice on an already-live Laravel form, or reuse this compact readiness pattern on another Galaxy-specific selected review surface outside reports.
 
+### Roles action-readiness gating checkpoint
+- Tightened selected `roles-permissions` header action blockers so `Review matrix` and `Publish role` now react to the chosen Laravel role's actual permission-bundle and shop-scope readiness instead of showing one generic blocker state.
+- Kept the step Phase 1-safe: the actions remain disabled, but their gating copy now reflects whether the role is draft-only, active without a bundle, active without scope, or already carrying a live bundle.
+- Added focused feature coverage for both a live permission-linked role and a draft role with no bundle so this Galaxy-specific gating stays stable.
+
+### Next step after roles action-readiness gating checkpoint
+- Reuse readiness-driven action gating on another selected live workspace such as `card-types`, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
