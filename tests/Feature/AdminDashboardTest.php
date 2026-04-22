@@ -2997,6 +2997,39 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.');
     }
 
+    public function test_checks_points_page_supports_selected_branch_receipt_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=chk-90388');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all receipts')
+            ->assertSee('/admin/checks-points')
+            ->assertSee('Reviewing: CHK-90388')
+            ->assertSee('Find receipt')
+            ->assertSee('Blocked until branch-aware receipt lookup is backed by Laravel shop filters and transaction reads.')
+            ->assertSee('Review accrual gaps')
+            ->assertSee('Blocked until branch-aware accrual review is backed by Laravel transaction and rule data.')
+            ->assertSee('Selected receipt preview')
+            ->assertSee('CHK-90388')
+            ->assertSee('Shop context')
+            ->assertSee('North Shop')
+            ->assertSee('Accrual posture')
+            ->assertSee('North Shop accrual receipts should stay branch-aware, because cross-shop troubleshooting must preserve local receipt context.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep branch receipts in table-first review mode, because operators need the shop, amount, and points visible together before cross-shop comparisons begin.')
+            ->assertSee('Troubleshooting guidance')
+            ->assertSee('Treat this receipt as read-only review until Laravel transaction history and shop-aware filters exist.')
+            ->assertSee('CHK-90388 selected for branch receipt review')
+            ->assertSee('Branch-specific handoff stays receipt-first')
+            ->assertSee('Branch receipt handoff keeps local evidence visible')
+            ->assertSee('Shop, amount, and points should stay visible in the workspace before any cross-branch troubleshooting discussion begins.')
+            ->assertSee('Branch receipt lookup should stay read-only until Laravel shop filters and transaction history are verified against the old flow.')
+            ->assertSee('Positive branch accrual outcomes still need live transaction-domain parity before any adjustment path is safe.');
+    }
+
     public function test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog(): void
     {
         $user = User::factory()->create();

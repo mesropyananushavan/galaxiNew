@@ -154,6 +154,13 @@
 ### Next step after roles-permissions selected-action gating checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Checks-points branch-receipt coverage checkpoint
+- Added focused selected-receipt coverage for the North Shop branch receipt path so the branch-aware blocker copy introduced in `checks-points` stays locked to a real Galaxy troubleshooting context.
+- Kept the step Phase 1-safe: no workflow changed, but the feature test now protects the branch-specific receipt lookup and accrual-review posture from drifting back toward generic wording.
+
+### Next step after checks-points branch-receipt coverage checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
