@@ -308,6 +308,13 @@
 ### Next step after reports role-access pending-readiness checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Gifts paused finite-stock review checkpoint
+- Added a new Galaxy-specific paused finite-stock reward preview to the `gifts` workspace so the admin shell shows another realistic migration posture instead of relying on generic starter rows.
+- Added focused selected-state coverage for that reward, locking in the helper-driven combination where stock audit stays finite-stock scoped while publish remains paused-specific.
+
+### Next step after gifts paused finite-stock review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

@@ -512,6 +512,33 @@ class ResourceIndexController extends Controller
                     ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this paused reward preview.'],
                 ],
             ],
+            [
+                'key' => 'weekend-brunch-pass',
+                'label' => 'Weekend brunch pass',
+                'pointsCost' => '320',
+                'scope' => 'Riverside Shop',
+                'stock' => '6',
+                'status' => 'paused',
+                'summary' => [
+                    ['label' => 'Selected gift preview', 'value' => 'Weekend brunch pass'],
+                    ['label' => 'Points cost', 'value' => '320'],
+                    ['label' => 'Scope posture', 'value' => 'Paused branch rewards should stay locally reviewable, because reopening decisions still depend on shop-specific redemption habits.'],
+                    ['label' => 'Stock posture', 'value' => 'Finite paused stock should remain review-only until Laravel inventory updates and reopening flows can preserve remaining-quantity parity.'],
+                    ['label' => 'Format guidance', 'value' => 'Keep paused finite-stock rewards in compact on-screen review first, because operators need scope, stock, and reopening posture visible together before escalating.'],
+                    ['label' => 'Redemption guidance', 'value' => 'Treat this paused branch reward as review-only until stock-aware reopening and redemption parity are backed by Laravel flows.'],
+                ],
+                'timeline' => [
+                    ['title' => 'Weekend brunch pass selected for paused branch reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the paused finite-stock reward in a dedicated Galaxy review context instead of leaving it as a flat table row.'],
+                    ['title' => 'Paused branch reward handoff stays stock-aware', 'time' => 'Current request', 'description' => 'Operators should hand off Riverside Shop reopening assumptions here before any future publish or stock-update flow is allowed.'],
+                    ['title' => 'Paused branch reward keeps finite-stock evidence visible', 'time' => 'Current request', 'description' => 'Scope, remaining stock, and points cost should stay visible in the workspace before any reopening discussion begins.'],
+                ],
+                'dependencyStatus' => [
+                    ['label' => 'Selected gift', 'value' => 'Weekend brunch pass'],
+                    ['label' => 'Scope posture', 'value' => 'Paused branch reward behavior should stay preview-only until Laravel scope and reopening checks are verified.'],
+                    ['label' => 'Stock posture', 'value' => 'Finite paused stock still needs backend inventory wiring before operators can trust reopening decisions.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this paused branch reward preview.'],
+                ],
+            ],
         ];
 
         $page['table']['rows'] = collect($giftPreviews)->map(fn (array $gift): array => [
