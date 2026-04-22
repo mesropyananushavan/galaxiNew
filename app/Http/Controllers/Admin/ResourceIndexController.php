@@ -1034,6 +1034,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Source coverage', 'value' => sprintf('%d cards across %d tracked shops are currently available for read-only reporting review.', $cardCount, $shopCount)],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'card and branch inputs are ready for on-screen review' : 'card or branch inputs still need live Laravel coverage'],
+                    ['label' => 'Branch review readiness', 'value' => $cardCount > 0 && $shopCount > 0
+                        ? sprintf('ready for branch-total review across %d live shops', $shopCount)
+                        : 'wait for both live branch and card coverage before branch-total review'],
                     ['label' => 'Scope guidance', 'value' => $shopCount > 0
                         ? 'Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.'
                         : 'No tracked shops exist yet, so branch-level scope review should stay in planning mode only.'],
@@ -1052,6 +1055,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d cards and %d shops are currently visible to the reporting workspace.', $cardCount, $shopCount)],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'card and branch inputs are ready for on-screen review' : 'card or branch inputs still need live Laravel coverage'],
+                    ['label' => 'Branch review readiness', 'value' => $cardCount > 0 && $shopCount > 0
+                        ? sprintf('ready for branch-total review across %d live shops', $shopCount)
+                        : 'wait for both live branch and card coverage before branch-total review'],
                     ['label' => 'Scope posture', 'value' => 'Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.'],
                     ['label' => 'Grouping posture', 'value' => 'Shop grouping should stay read-only until query shaping is verified against legacy report totals.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, grouped query shaping, and export generation still remain preview-only for this source.'],
