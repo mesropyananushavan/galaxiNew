@@ -276,13 +276,13 @@ class ResourceIndexController extends Controller
                 'label' => 'Find receipt',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until receipt lookup is backed by Laravel transaction reads.',
+                'disabledReason' => $this->checksPointsSelectedFindReceiptDisabledReason($selectedReceiptPreview),
             ],
             [
                 'label' => 'Review accrual gaps',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until accrual-gap review is backed by Laravel transaction and rule data.',
+                'disabledReason' => $this->checksPointsSelectedReviewGapsDisabledReason($selectedReceiptPreview),
             ],
             ],
         );
@@ -1742,6 +1742,23 @@ class ResourceIndexController extends Controller
         return match (true) {
             $zeroAccrualCount > 0 && $shopCount > 1 => 'Blocked until zero-accrual and branch-aware troubleshooting are backed by Laravel transaction and rule data.',
             $zeroAccrualCount > 0 => 'Blocked until zero-accrual troubleshooting is backed by Laravel transaction and rule data.',
+            default => 'Blocked until accrual-gap review is backed by Laravel transaction and rule data.',
+        };
+    }
+
+    private function checksPointsSelectedFindReceiptDisabledReason(array $selectedReceiptPreview): string
+    {
+        return match ($selectedReceiptPreview['shop'] ?? null) {
+            'North Shop' => 'Blocked until branch-aware receipt lookup is backed by Laravel shop filters and transaction reads.',
+            default => 'Blocked until receipt lookup is backed by Laravel transaction reads and fiscal-search parity checks.',
+        };
+    }
+
+    private function checksPointsSelectedReviewGapsDisabledReason(array $selectedReceiptPreview): string
+    {
+        return match (true) {
+            ($selectedReceiptPreview['points'] ?? null) === '0' => 'Blocked until zero-accrual review is backed by Laravel transaction and rule data.',
+            ($selectedReceiptPreview['shop'] ?? null) === 'North Shop' => 'Blocked until branch-aware accrual review is backed by Laravel transaction and rule data.',
             default => 'Blocked until accrual-gap review is backed by Laravel transaction and rule data.',
         };
     }
