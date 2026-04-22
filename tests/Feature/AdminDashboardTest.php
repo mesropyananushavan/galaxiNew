@@ -4574,7 +4574,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Editing: Galaxy Prime')
             ->assertSee('Import rules')
             ->assertSee('aria-disabled="true"', false)
-            ->assertSee('Blocked until draft parity review is complete.')
+            ->assertSee('Blocked until draft rule parity is verified against visible card coverage.')
+            ->assertSee('Publish type')
+            ->assertSee('Blocked until this draft tier clears rule and rollout parity review against visible card coverage.')
             ->assertSee('Selected record summary')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
@@ -4657,6 +4659,28 @@ class AdminDashboardTest extends TestCase
             ->assertSee('value="1.75"', false)
             ->assertSee('<option value="0" selected>Draft</option>', false)
             ->assertSee('href="/admin/card-types"', false);
+    }
+
+    public function test_selected_live_card_type_without_card_coverage_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Platinum',
+            'slug' => 'galaxy-platinum',
+            'points_rate' => '2.25',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index', ['cardType' => $cardType->id]));
+
+        $response
+            ->assertOk()
+            ->assertSee('Editing: Galaxy Platinum')
+            ->assertSee('Import rules')
+            ->assertSee('Blocked until this live tier has visible card coverage for accrual parity review.')
+            ->assertSee('Publish type')
+            ->assertSee('Blocked until this live tier has visible card coverage and rollout parity review.');
     }
 
     public function test_card_types_page_ignores_unknown_selected_card_type_query(): void

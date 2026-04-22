@@ -1315,9 +1315,13 @@ class ResourceIndexController extends Controller
                 'label' => 'Import rules',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => $selectedCardType->is_active
-                    ? 'Blocked until live-tier accrual parity is verified.'
-                    : 'Blocked until draft parity review is complete.',
+                'disabledReason' => $this->cardTypesImportRulesDisabledReason($selectedCardType),
+            ],
+            [
+                'label' => 'Publish type',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->cardTypesPublishTypeDisabledReason($selectedCardType),
             ],
         ];
 
@@ -1434,6 +1438,30 @@ class ResourceIndexController extends Controller
             'This tier was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved catalog shell.',
             'This tier was first created in Laravel on %s and last updated on %s, so operators are reviewing a catalog shell that has already changed after initial setup.',
         );
+    }
+
+    private function cardTypesImportRulesDisabledReason(CardType $selectedCardType): string
+    {
+        $cardsCount = $selectedCardType->cards_count ?? 0;
+
+        return match (true) {
+            $selectedCardType->is_active && $cardsCount > 0 => 'Blocked until live-tier accrual parity is verified against visible card coverage.',
+            $selectedCardType->is_active => 'Blocked until this live tier has visible card coverage for accrual parity review.',
+            $cardsCount > 0 => 'Blocked until draft rule parity is verified against visible card coverage.',
+            default => 'Blocked until draft parity review has visible card coverage to compare against.',
+        };
+    }
+
+    private function cardTypesPublishTypeDisabledReason(CardType $selectedCardType): string
+    {
+        $cardsCount = $selectedCardType->cards_count ?? 0;
+
+        return match (true) {
+            $selectedCardType->is_active && $cardsCount > 0 => 'Blocked until live-tier rollout parity is verified across visible card coverage.',
+            $selectedCardType->is_active => 'Blocked until this live tier has visible card coverage and rollout parity review.',
+            $cardsCount > 0 => 'Blocked until this draft tier clears rule and rollout parity review against visible card coverage.',
+            default => 'Blocked until this draft tier clears rule and rollout parity review before any publish-like move.',
+        };
     }
 
     private function cardTypesLastSavedLabel(CardType $selectedCardType): string
