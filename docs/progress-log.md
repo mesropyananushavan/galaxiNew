@@ -50,6 +50,14 @@
 ### Next step after card-types catalog action-gating checkpoint
 - Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Roles catalog action-gating checkpoint
+- Tightened the default `roles-permissions` catalog header actions so saved roles now drive more specific blocker copy for `Review matrix` and `Publish role`, instead of leaving the workspace at generic preview-level gating once Laravel role records exist.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their reasons now reflect whether saved roles already carry permission bundles and visible shop scope in Laravel.
+- Added focused feature coverage for a saved live role with both permission and shop scope so the access-workspace gating stays stable.
+
+### Next step after roles catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

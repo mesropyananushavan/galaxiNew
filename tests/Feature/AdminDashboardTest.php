@@ -994,6 +994,46 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scoped to assigned shop');
     }
 
+    public function test_roles_permissions_catalog_actions_reflect_saved_role_readiness(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'roles-catalog-readiness',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Catalog Access Lead',
+            'slug' => 'catalog-access-lead',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review reporting access',
+            'slug' => 'review-reporting-access',
+        ]);
+
+        $role->permissions()->attach($permission);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Nare Access Catalog',
+            'shop_id' => $shop->id,
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until saved Laravel permission bundles are verified against legacy staff access.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until saved live access bundles clear assignment and shop-scope parity.');
+    }
+
     public function test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data(): void
     {
         $shop = Shop::create([

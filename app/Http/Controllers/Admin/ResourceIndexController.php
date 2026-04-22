@@ -568,6 +568,26 @@ class ResourceIndexController extends Controller
             ['label' => 'Scoped shops', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
         ];
 
+        $page['actions'] = [
+            [
+                'label' => 'New role',
+                'tone' => 'primary',
+                'href' => '#live-form',
+            ],
+            [
+                'label' => 'Review matrix',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->rolesPermissionsCatalogReviewMatrixDisabledReason($roles),
+            ],
+            [
+                'label' => 'Publish role',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->rolesPermissionsCatalogPublishRoleDisabledReason($roles),
+            ],
+        ];
+
         $page['table']['rows'] = $roles->map(function (Role $role): array {
             $scope = $role->users->pluck('shop.name')->filter()->unique();
             $permissionPreview = $role->permissions->pluck('name')->take(3)->implode(', ');
@@ -1841,6 +1861,32 @@ class ResourceIndexController extends Controller
             $scope->isNotEmpty() => 'scope visible, staff and permission coverage pending',
             $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0 => 'partial access coverage visible, scope pending',
             default => 'scope, staff, and permission coverage pending',
+        };
+    }
+
+    private function rolesPermissionsCatalogReviewMatrixDisabledReason(mixed $roles): string
+    {
+        $permissionLinkedCount = $roles->filter(fn (Role $role): bool => $role->permissions_count > 0)->count();
+        $activeCount = $roles->where('is_active', true)->count();
+
+        return match (true) {
+            $permissionLinkedCount > 0 => 'Blocked until saved Laravel permission bundles are verified against legacy staff access.',
+            $activeCount > 0 => 'Blocked until an active role has a first verified Laravel permission bundle to compare against legacy staff access.',
+            default => 'Blocked until a saved draft role has a first verified Laravel permission bundle to compare against legacy staff access.',
+        };
+    }
+
+    private function rolesPermissionsCatalogPublishRoleDisabledReason(mixed $roles): string
+    {
+        $permissionLinkedCount = $roles->filter(fn (Role $role): bool => $role->permissions_count > 0)->count();
+        $scopedCount = $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count();
+        $activeCount = $roles->where('is_active', true)->count();
+
+        return match (true) {
+            $permissionLinkedCount > 0 && $scopedCount > 0 => 'Blocked until saved live access bundles clear assignment and shop-scope parity.',
+            $permissionLinkedCount > 0 => 'Blocked until saved permission-linked roles also clear shop-scope parity.',
+            $activeCount > 0 => 'Blocked until an active role has verified permission-bundle and shop-scope parity.',
+            default => 'Blocked until a saved draft role has verified permission-bundle and shop-scope parity.',
         };
     }
 
