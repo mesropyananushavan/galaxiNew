@@ -315,6 +315,13 @@
 ### Next step after gifts paused finite-stock review checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Reports role-access assignment-signal checkpoint
+- Extended the selected `role-access` reporting source with a live assignment signal so access review now reflects whether staff-role linkage is already visible in Laravel, not just role and permission counts.
+- Kept the step Phase 1-safe: the reporting source remains read-only, but the selected-source summary and dependency state now expose another real Galaxy access-review cue.
+
+### Next step after reports role-access assignment-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
