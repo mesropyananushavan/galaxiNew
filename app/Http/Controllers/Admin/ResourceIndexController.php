@@ -1005,6 +1005,8 @@ class ResourceIndexController extends Controller
         $cardCount = Card::query()->count();
         $cardHolderCount = CardHolder::query()->count();
         $roleCount = Role::query()->count();
+        $activeRoleCount = Role::query()->where('is_active', true)->count();
+        $permissionLinkedRoleCount = Role::query()->has('permissions')->count();
 
         if ($shopCount === 0 && $cardCount === 0 && $cardHolderCount === 0 && $roleCount === 0) {
             return $page;
@@ -1104,6 +1106,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Source coverage', 'value' => sprintf('%d roles are currently available for read-only access reporting review.', $roleCount)],
                     ['label' => 'Source signal', 'value' => $roleCount > 0 ? 'live role coverage visible' : 'role coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $roleCount > 0 ? 'role inputs are ready for on-screen review' : 'role inputs still need live Laravel coverage'],
+                    ['label' => 'Access readiness', 'value' => $permissionLinkedRoleCount > 0 && $activeRoleCount > 0
+                        ? sprintf('%d active roles already carry permission-linked access posture for on-screen review', $permissionLinkedRoleCount)
+                        : 'permission-linked active access posture is still pending'],
                     ['label' => 'Scope guidance', 'value' => 'Keep this source centered on role coverage and scope visibility first, because old Galaxy access checks were driven by who could see which branch context.' ],
                     ['label' => 'Default period posture', 'value' => 'Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because access coverage checks need visible role and scope context before any export workflow is trusted.' ],
@@ -1120,6 +1125,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d roles are currently visible to the reporting workspace.', $roleCount)],
                     ['label' => 'Source signal', 'value' => $roleCount > 0 ? 'live role coverage visible' : 'role coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $roleCount > 0 ? 'role inputs are ready for on-screen review' : 'role inputs still need live Laravel coverage'],
+                    ['label' => 'Access readiness', 'value' => $permissionLinkedRoleCount > 0 && $activeRoleCount > 0
+                        ? sprintf('%d active roles already carry permission-linked access posture for on-screen review', $permissionLinkedRoleCount)
+                        : 'permission-linked active access posture is still pending'],
                     ['label' => 'Scope posture', 'value' => 'Scope visibility should stay read-only until access-report parity and branch-assignment shaping are verified.'],
                     ['label' => 'Access posture', 'value' => 'Role coverage should stay read-only until access-report parity and scope shaping are verified.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, report shaping, and export generation still remain preview-only for this source.'],

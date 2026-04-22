@@ -10,6 +10,14 @@
 ### Next step after reports cardholder-review-readiness cue checkpoint
 - Either mirror a similarly compact readiness cue on another live-backed selected report source, or return to the next tiny persisted metadata slice on an already-live Laravel form without widening risky workflows.
 
+### Reports role-access-readiness cue checkpoint
+- Added a compact read-only `Access readiness` cue to selected `role-access` review so operators can see when reporting already has permission-linked active-role posture in live Laravel data instead of only generic role counts.
+- Surfaced the cue in both selected-source summary and dependency-status panels for `role-access`, keeping the step parity-safe and avoiding any assignment, policy-matrix, or export writes.
+- Added focused selected-source coverage in `AdminDashboardTest` for the `role-access` review context.
+
+### Next step after reports role-access-readiness cue checkpoint
+- Mirror one more compact readiness cue on the remaining live-backed report source, or return to the next tiny persisted metadata slice on an already-live Laravel form without widening risky workflows.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

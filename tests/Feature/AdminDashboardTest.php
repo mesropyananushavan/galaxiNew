@@ -3095,6 +3095,48 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Status aggregation should stay read-only until holder lifecycle and activity parity are verified.');
     }
 
+    public function test_reports_page_supports_selected_role_access_review_context(): void
+    {
+        $role = Role::create([
+            'name' => 'Reporting Access Lead',
+            'slug' => 'reporting-access-lead',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review reports',
+            'slug' => 'review-reports',
+        ]);
+
+        $role->permissions()->attach($permission);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to report catalog')
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Selected report source')
+            ->assertSee('Role access coverage')
+            ->assertSee('Source coverage')
+            ->assertSee('1 roles are currently available for read-only access reporting review.')
+            ->assertSee('Source signal')
+            ->assertSee('live role coverage visible')
+            ->assertSee('Laravel input signal')
+            ->assertSee('role inputs are ready for on-screen review')
+            ->assertSee('Access readiness')
+            ->assertSee('1 active roles already carry permission-linked access posture for on-screen review')
+            ->assertSee('Role access source selected for Laravel review')
+            ->assertSee('This reporting view now reflects 1 tracked roles from the current Laravel foundation.')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Access readiness:')
+            ->assertSee('1 active roles already carry permission-linked access posture for on-screen review')
+            ->assertSee('Access posture:')
+            ->assertSee('Role coverage should stay read-only until access-report parity and scope shaping are verified.');
+    }
+
     public function test_reports_page_accepts_case_insensitive_selected_source_query(): void
     {
         $shop = Shop::create([
