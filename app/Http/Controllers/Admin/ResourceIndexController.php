@@ -1118,6 +1118,7 @@ class ResourceIndexController extends Controller
         $roleCount = $roles->count();
         $activeRoleCount = $roles->where('is_active', true)->count();
         $permissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->permissions_count > 0)->count();
+        $permissionlessActiveRoleCount = $activeRoleCount - $permissionLinkedRoleCount;
         $assignedStaffCount = (int) $roles->sum('users_count');
 
         $page['actions'] = [
@@ -1270,6 +1271,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],
+                    ['label' => 'Permission bundle signal', 'value' => $permissionLinkedRoleCount > 0 && $permissionlessActiveRoleCount > 0
+                        ? sprintf('%d permission-linked roles are already visible beside %d unbundled active roles for parity review', $permissionLinkedRoleCount, $permissionlessActiveRoleCount)
+                        : 'unbundled active-role coverage is still pending'],
                     ['label' => 'Scope guidance', 'value' => 'Keep this source centered on role coverage and scope visibility first, because old Galaxy access checks were driven by who could see which branch context.' ],
                     ['label' => 'Default period posture', 'value' => 'Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because access coverage checks need visible role and scope context before any export workflow is trusted.' ],
@@ -1295,6 +1299,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],
+                    ['label' => 'Permission bundle signal', 'value' => $permissionLinkedRoleCount > 0 && $permissionlessActiveRoleCount > 0
+                        ? sprintf('%d permission-linked roles are already visible beside %d unbundled active roles for parity review', $permissionLinkedRoleCount, $permissionlessActiveRoleCount)
+                        : 'unbundled active-role coverage is still pending'],
                     ['label' => 'Scope posture', 'value' => 'Scope visibility should stay read-only until access-report parity and branch-assignment shaping are verified.'],
                     ['label' => 'Access posture', 'value' => 'Role coverage should stay read-only until access-report parity and scope shaping are verified.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, report shaping, and export generation still remain preview-only for this source.'],

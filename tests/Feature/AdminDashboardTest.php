@@ -4009,6 +4009,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 staff assignments are already visible for access review')
             ->assertSee('Role state signal')
             ->assertSee('draft access-role coverage is still pending')
+            ->assertSee('Permission bundle signal')
+            ->assertSee('unbundled active-role coverage is still pending')
             ->assertSee('Default period posture')
             ->assertSee('Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.')
             ->assertSee('Access reporting parity stays review-only')
@@ -4057,9 +4059,58 @@ class AdminDashboardTest extends TestCase
             ->assertSee('2 roles are currently available for read-only access reporting review.')
             ->assertSee('Role state signal')
             ->assertSee($roleStateSignal)
+            ->assertSee('Permission bundle signal')
+            ->assertSee('unbundled active-role coverage is still pending')
             ->assertSee('Implementation dependencies')
             ->assertSee('Role state signal:')
-            ->assertSee($roleStateSignal);
+            ->assertSee($roleStateSignal)
+            ->assertSee('Permission bundle signal:')
+            ->assertSee('unbundled active-role coverage is still pending');
+    }
+
+    public function test_reports_page_supports_selected_mixed_permission_bundle_review_context(): void
+    {
+        $bundledRole = Role::create([
+            'name' => 'Reporting Bundled Access Lead',
+            'slug' => 'reporting-bundled-access-lead',
+            'is_active' => true,
+        ]);
+
+        Role::create([
+            'name' => 'Reporting Unbundled Access Lead',
+            'slug' => 'reporting-unbundled-access-lead',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review branch access audits',
+            'slug' => 'review-branch-access-audits',
+        ]);
+
+        $bundledRole->permissions()->attach($permission);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Levon Mixed Bundle Review',
+        ]);
+
+        $assignedUser->roles()->attach($bundledRole->id);
+
+        $permissionBundleSignal = '1 permission-linked roles are already visible beside 1 unbundled active roles for parity review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Source coverage')
+            ->assertSee('2 roles are currently available for read-only access reporting review.')
+            ->assertSee('Permission bundle signal')
+            ->assertSee($permissionBundleSignal)
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Permission bundle signal:')
+            ->assertSee($permissionBundleSignal);
     }
 
     public function test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog(): void
@@ -4246,6 +4297,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 staff assignments are already visible for access review')
             ->assertSee('Role state signal')
             ->assertSee('draft access-role coverage is still pending')
+            ->assertSee('Permission bundle signal')
+            ->assertSee('unbundled active-role coverage is still pending')
             ->assertSee('Role access source selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked roles from the current Laravel foundation.')
             ->assertSee('Implementation dependencies')
@@ -4255,6 +4308,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 staff assignments are already visible for access review')
             ->assertSee('Role state signal:')
             ->assertSee('draft access-role coverage is still pending')
+            ->assertSee('Permission bundle signal:')
+            ->assertSee('unbundled active-role coverage is still pending')
             ->assertSee('Access posture:')
             ->assertSee('Role coverage should stay read-only until access-report parity and scope shaping are verified.');
     }
