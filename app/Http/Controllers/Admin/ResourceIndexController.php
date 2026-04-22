@@ -1126,6 +1126,8 @@ class ResourceIndexController extends Controller
         $activeRoleCount = $roles->where('is_active', true)->count();
         $permissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->permissions_count > 0)->count();
         $permissionlessActiveRoleCount = $activeRoleCount - $permissionLinkedRoleCount;
+        $assignedActiveRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->users_count > 0)->count();
+        $unassignedActiveRoleCount = $activeRoleCount - $assignedActiveRoleCount;
         $assignedStaffCount = (int) $roles->sum('users_count');
         $shopScopedAssignedStaffCount = $roles->sum(fn (Role $role): int => $role->users->filter(fn ($user): bool => $user->shop_id !== null)->count());
         $unscopedAssignedStaffCount = $assignedStaffCount - $shopScopedAssignedStaffCount;
@@ -1303,6 +1305,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedStaffCount > 0 && $pausedShopAssignedStaffCount > 0
                         ? sprintf('%d shop-linked staff assignments are already visible in active branches beside %d assignments in paused shops for parity review', $activeShopAssignedStaffCount, $pausedShopAssignedStaffCount)
                         : 'paused-branch access-assignment coverage is still pending'],
+                    ['label' => 'Staff coverage signal', 'value' => $assignedActiveRoleCount > 0 && $unassignedActiveRoleCount > 0
+                        ? sprintf('%d active roles already carry visible staff coverage beside %d unassigned access roles for parity review', $assignedActiveRoleCount, $unassignedActiveRoleCount)
+                        : 'unassigned active-role staff coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],
@@ -1337,6 +1342,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedStaffCount > 0 && $pausedShopAssignedStaffCount > 0
                         ? sprintf('%d shop-linked staff assignments are already visible in active branches beside %d assignments in paused shops for parity review', $activeShopAssignedStaffCount, $pausedShopAssignedStaffCount)
                         : 'paused-branch access-assignment coverage is still pending'],
+                    ['label' => 'Staff coverage signal', 'value' => $assignedActiveRoleCount > 0 && $unassignedActiveRoleCount > 0
+                        ? sprintf('%d active roles already carry visible staff coverage beside %d unassigned access roles for parity review', $assignedActiveRoleCount, $unassignedActiveRoleCount)
+                        : 'unassigned active-role staff coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],
