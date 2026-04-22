@@ -4027,6 +4027,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('permission-linked active access posture is still pending')
             ->assertSee('Assignment signal')
             ->assertSee('1 staff assignments are already visible for access review')
+            ->assertSee('Draft staffing signal')
+            ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review')
             ->assertSee('Role state signal')
             ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Permission bundle signal')
@@ -4036,7 +4038,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Access reporting parity stays review-only')
             ->assertSee('Operators should hand off role-coverage findings in the live review context before trusting export files for access decisions.')
             ->assertSee('Access readiness:')
-            ->assertSee('permission-linked active access posture is still pending');
+            ->assertSee('permission-linked active access posture is still pending')
+            ->assertSee('Draft staffing signal:')
+            ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review');
     }
 
     public function test_reports_page_supports_selected_mixed_role_state_review_context(): void
