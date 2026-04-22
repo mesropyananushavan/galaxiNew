@@ -490,6 +490,13 @@
 ### Next step after reports paused-branch-assignment signal checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Reports active-branch-assignment signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with an active branch assignment signal so holder-linked inventory in active shops no longer reads like generic assignment linkage.
+- Kept the cue read-only and Laravel-backed with real branch activity plus `card_holder_id`, then updated focused branch-report coverage.
+
+### Next step after reports active-branch-assignment signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
