@@ -4198,6 +4198,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('inactive holder coverage is still pending for lifecycle review')
             ->assertSee('Card linkage signal')
             ->assertSee('unlinked holder coverage is still pending for parity review')
+            ->assertSee('Holder branch activity signal')
+            ->assertSee('paused-branch holder coverage is still pending for parity review')
             ->assertSee('Cardholder status source selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked cardholders from the current Laravel foundation.')
             ->assertSee('Support handoff should keep holder posture visible')
@@ -4210,10 +4212,16 @@ class AdminDashboardTest extends TestCase
 
     public function test_reports_page_supports_selected_mixed_cardholder_status_review_context(): void
     {
-        $shop = Shop::create([
+        $activeShop = Shop::create([
             'name' => 'Galaxy Mixed Holder Reporting',
             'code' => 'galaxy-mixed-holder-reporting',
             'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Mixed Holder Paused Branch',
+            'code' => 'galaxy-mixed-holder-paused-branch',
+            'is_active' => false,
         ]);
 
         $activeHolder = CardHolder::create([
@@ -4221,7 +4229,7 @@ class AdminDashboardTest extends TestCase
             'phone' => '+37499111230',
             'email' => 'mariam.holder.mixed.active@example.com',
             'is_active' => true,
-            'shop_id' => $shop->id,
+            'shop_id' => $activeShop->id,
         ]);
 
         $inactiveHolder = CardHolder::create([
@@ -4229,7 +4237,7 @@ class AdminDashboardTest extends TestCase
             'phone' => '+37499111231',
             'email' => 'mariam.holder.mixed.inactive@example.com',
             'is_active' => false,
-            'shop_id' => $shop->id,
+            'shop_id' => $pausedShop->id,
         ]);
 
         $cardType = CardType::create([
@@ -4244,7 +4252,7 @@ class AdminDashboardTest extends TestCase
             'status' => 'active',
             'card_holder_id' => $activeHolder->id,
             'card_type_id' => $cardType->id,
-            'shop_id' => $shop->id,
+            'shop_id' => $activeShop->id,
             'issued_at' => now(),
         ]);
 
@@ -4253,7 +4261,7 @@ class AdminDashboardTest extends TestCase
             'status' => 'blocked',
             'card_holder_id' => $inactiveHolder->id,
             'card_type_id' => $cardType->id,
-            'shop_id' => $shop->id,
+            'shop_id' => $pausedShop->id,
             'issued_at' => now(),
         ]);
 
@@ -4262,12 +4270,13 @@ class AdminDashboardTest extends TestCase
             'phone' => '+37499111232',
             'email' => 'mariam.holder.mixed.unlinked@example.com',
             'is_active' => true,
-            'shop_id' => $shop->id,
+            'shop_id' => $activeShop->id,
         ]);
 
         $inactiveHolderCount = CardHolder::query()->where('is_active', false)->count();
         $activeHolderCount = CardHolder::query()->where('is_active', true)->count();
         $lifecycleSignal = sprintf('%d inactive holders are already visible beside %d active profiles for lifecycle review', $inactiveHolderCount, $activeHolderCount);
+        $holderBranchActivitySignal = '2 holder profiles are already visible in active branches beside 1 profiles in paused shops for parity review';
 
         $user = User::factory()->create();
 
@@ -4282,11 +4291,15 @@ class AdminDashboardTest extends TestCase
             ->assertSee($lifecycleSignal)
             ->assertSee('Card linkage signal')
             ->assertSee('2 linked holders are already visible beside 1 unlinked profiles for parity review')
+            ->assertSee('Holder branch activity signal')
+            ->assertSee($holderBranchActivitySignal)
             ->assertSee('Implementation dependencies')
             ->assertSee('Lifecycle signal:')
             ->assertSee($lifecycleSignal)
             ->assertSee('Card linkage signal:')
-            ->assertSee('2 linked holders are already visible beside 1 unlinked profiles for parity review');
+            ->assertSee('2 linked holders are already visible beside 1 unlinked profiles for parity review')
+            ->assertSee('Holder branch activity signal:')
+            ->assertSee($holderBranchActivitySignal);
     }
 
     public function test_reports_page_supports_selected_role_access_review_context(): void
