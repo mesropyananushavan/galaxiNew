@@ -4429,6 +4429,19 @@ class AdminDashboardTest extends TestCase
             'rollout_note' => 'Keep rollout review-only until legacy tier behavior is verified branch by branch.',
         ]);
 
+        $shop = Shop::create([
+            'name' => 'Galaxy Coverage Branch',
+            'code' => 'galaxy-coverage-branch-card-type',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'number' => 'GX-CT-200001',
+            'status' => 'draft',
+            'card_type_id' => $cardType->id,
+        ]);
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get(route('admin.card-types.index', ['cardType' => $cardType->id]));
@@ -4463,6 +4476,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Only activate this tier after the legacy branch handoff is verified.')
             ->assertSee('Rollout note:')
             ->assertSee('Keep rollout review-only until legacy tier behavior is verified branch by branch.')
+            ->assertSee('Coverage signal:')
+            ->assertSee('draft tier with visible card coverage')
             ->assertSee('Status guidance:')
             ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
             ->assertSee('Rule-import blocker:')
@@ -4502,6 +4517,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Only activate this tier after the legacy branch handoff is verified.')
             ->assertSee('Rollout note:')
             ->assertSee('Keep rollout review-only until legacy tier behavior is verified branch by branch.')
+            ->assertSee('Coverage signal:')
+            ->assertSee('draft tier with visible card coverage')
             ->assertSee('Current status posture:')
             ->assertSee('Draft tiers are the safe place for parity-first validation and copy changes')
             ->assertSee('Rule-import posture:')

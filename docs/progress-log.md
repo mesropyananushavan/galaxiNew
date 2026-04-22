@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Card-types coverage-signal cue checkpoint
+- Added a read-only `Coverage signal` cue to selected `card-types` review so operators can see whether a tier is still draft-only, already live, and whether visible card coverage exists in Laravel.
+- Loaded selected card-type context with `cards_count` and surfaced the cue in both the selected summary and dependency-status panel, keeping the step Phase 1-safe and avoiding any publish, rollout, or rule-import writes.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_replaces_preview_metrics_with_model_backed_counts)'`, `3 passed`, after adding the coverage-signal cue.
+
+### Next step after card-types coverage-signal cue checkpoint
+- Either mirror this compact coverage posture on another selected live-backed surface, or return to the next tiny persisted metadata slice on an already-live Laravel form without opening risky workflows.
+
 ### Reports source-signal cue checkpoint
 - Added a read-only `Source signal` cue to selected `reports` live-source review so operators can see source coverage posture in one compact Laravel-backed cue without opening preset handling, query shaping, or export writes.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for the live-backed reporting sources in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.

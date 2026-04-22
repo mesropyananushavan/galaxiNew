@@ -1230,7 +1230,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $selectedCardType = CardType::query()->find($selectedCardTypeId);
+        $selectedCardType = CardType::query()->withCount('cards')->find($selectedCardTypeId);
 
         if ($selectedCardType === null || ! is_array($page['liveForm'] ?? null)) {
             return $page;
@@ -1246,6 +1246,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
             ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
+            ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             [
                 'label' => 'Status guidance',
                 'value' => $selectedCardType->is_active
@@ -1354,6 +1355,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
             ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
+            ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Current status posture', 'value' => $selectedCardType->is_active ? 'Active tiers should stay stable unless parity checks are complete' : 'Draft tiers are the safe place for parity-first validation and copy changes'],
             ['label' => 'Rule-import posture', 'value' => $selectedCardType->is_active ? 'Keep imports blocked until active-tier accrual parity is verified' : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet'],
             ['label' => 'Publish posture', 'value' => $selectedCardType->is_active ? 'Live tiers need parity confirmation before further publish-style changes' : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly'],
@@ -1390,6 +1392,18 @@ class ResourceIndexController extends Controller
     private function cardTypesLifecycleFreshnessLabel(CardType $selectedCardType): string
     {
         return $this->lifecycleFreshnessLabel($selectedCardType);
+    }
+
+    private function cardTypesCoverageSignal(CardType $selectedCardType): string
+    {
+        $cardsCount = $selectedCardType->cards_count ?? 0;
+
+        return match (true) {
+            $selectedCardType->is_active && $cardsCount > 0 => 'live tier with visible card coverage',
+            $selectedCardType->is_active => 'live tier, card coverage still building out',
+            $cardsCount > 0 => 'draft tier with visible card coverage',
+            default => 'draft tier, card coverage pending',
+        };
     }
 
     private function cardTypesLifecycleFreshnessDescription(CardType $selectedCardType): string
