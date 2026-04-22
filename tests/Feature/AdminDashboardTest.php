@@ -4621,6 +4621,41 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in Laravel.');
     }
 
+    public function test_gifts_page_supports_selected_scoped_gift_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=airport-transfer');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all gifts')
+            ->assertSee('/admin/gifts')
+            ->assertSee('Reviewing: Airport transfer')
+            ->assertSee('Stock audit')
+            ->assertSee('Blocked until finite-stock checks are backed by Laravel inventory data and scoped stock parity.')
+            ->assertSee('Publish gift')
+            ->assertSee('Blocked until this scoped reward clears CRUD, scope-parity, and redemption checks beyond the preview shell.')
+            ->assertSee('Selected gift preview')
+            ->assertSee('Airport transfer')
+            ->assertSee('Points cost')
+            ->assertSee('900')
+            ->assertSee('Scope posture')
+            ->assertSee('Kiosk-scoped rewards should stay branch-aware, because legacy redemption expectations depended on local availability.')
+            ->assertSee('Stock posture')
+            ->assertSee('Finite stock should remain review-only until Laravel inventory updates can preserve remaining-quantity parity.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep kiosk-scoped rewards in compact on-screen review first, because operators need cost, stock, and local scope visible together before escalating.')
+            ->assertSee('Redemption guidance')
+            ->assertSee('Treat this scoped reward as review-only until stock-aware redemption behavior is backed by Laravel flows.')
+            ->assertSee('Airport transfer selected for scoped reward review')
+            ->assertSee('Finite-stock handoff stays branch-specific')
+            ->assertSee('Finite-stock handoff keeps kiosk evidence visible')
+            ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('Shop-scoped reward behavior should stay preview-only until Laravel scope checks are verified against legacy kiosk rules.')
+            ->assertSee('Finite-stock handling still needs backend inventory wiring before a publish path is safe.');
+    }
+
     public function test_gifts_page_ignores_unknown_selected_gift_and_falls_back_to_catalog(): void
     {
         $user = User::factory()->create();
