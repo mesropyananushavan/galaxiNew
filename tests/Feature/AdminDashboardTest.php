@@ -1953,6 +1953,48 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.');
     }
 
+    public function test_cards_page_supports_selected_draft_card_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Draft Card Branch',
+            'code' => 'galaxy-draft-card-branch',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Draft Tier',
+            'slug' => 'galaxy-draft-tier-card',
+            'points_rate' => '1.10',
+            'is_active' => false,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-930001',
+            'status' => 'draft',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all cards')
+            ->assertSee('Reviewing: GX-930001')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until blocked-card semantics are verified against this draft Laravel inventory flow.')
+            ->assertSee('Selected card')
+            ->assertSee('GX-930001')
+            ->assertSee('Operational readiness')
+            ->assertSee('draft inventory shell')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked inventory, holder pending')
+            ->assertSee('Inventory guidance')
+            ->assertSee('This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.');
+    }
+
     public function test_cards_page_ignores_unknown_selected_card_query(): void
     {
         $shop = Shop::create([
