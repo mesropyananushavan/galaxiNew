@@ -2548,6 +2548,41 @@ class AdminDashboardTest extends TestCase
             ->assertSee('No manager is assigned yet, so ownership expectations should stay parity-first until assignment rules are verified.');
     }
 
+    public function test_shops_page_supports_selected_manager_only_branch_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Manager Only Branch',
+            'code' => 'galaxy-manager-only-branch',
+            'is_active' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Tigran Managerov',
+            'shop_id' => $shop->id,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$shop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all shops')
+            ->assertSee('Reviewing: Galaxy Manager Only Branch')
+            ->assertSee('Review branch scope')
+            ->assertSee('Blocked until manager-linked branch scope is verified against the legacy Galaxy multi-shop model.')
+            ->assertSee('Selected shop')
+            ->assertSee('Galaxy Manager Only Branch')
+            ->assertSee('Operational readiness')
+            ->assertSee('active branch, manager assigned and build-out pending')
+            ->assertSee('Coverage signal')
+            ->assertSee('manager coverage visible, branch records pending')
+            ->assertSee('Assigned manager')
+            ->assertSee('Tigran Managerov')
+            ->assertSee('Manager guidance')
+            ->assertSee('Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.');
+    }
+
     public function test_shops_page_ignores_unknown_selected_shop_query(): void
     {
         $shop = Shop::create([
