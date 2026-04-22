@@ -4691,6 +4691,41 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Finite-stock handling still needs backend inventory wiring before a publish path is safe.');
     }
 
+    public function test_gifts_page_supports_selected_all_shop_gift_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=coffee-voucher');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all gifts')
+            ->assertSee('/admin/gifts')
+            ->assertSee('Reviewing: Coffee voucher')
+            ->assertSee('Stock audit')
+            ->assertSee('Blocked until all-shop stock checks are backed by Laravel inventory data.')
+            ->assertSee('Publish gift')
+            ->assertSee('Blocked until this all-shop reward clears CRUD and redemption parity beyond the preview shell.')
+            ->assertSee('Selected gift preview')
+            ->assertSee('Coffee voucher')
+            ->assertSee('Points cost')
+            ->assertSee('150')
+            ->assertSee('Scope posture')
+            ->assertSee('All-shop rewards should stay parity-first, because wide-scope catalog changes affect the most operators and redemptions.')
+            ->assertSee('Stock posture')
+            ->assertSee('Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Laravel inventory writes exist.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep this reward in table-first review mode, because operators usually compare scope, stock policy, and points cost together before discussing publication.')
+            ->assertSee('Redemption guidance')
+            ->assertSee('Treat this reward as review-only until gift CRUD and redemption parity are backed by Laravel flows.')
+            ->assertSee('Coffee voucher selected for reward review')
+            ->assertSee('All-shop reward handoff stays stock-aware')
+            ->assertSee('All-shop reward handoff keeps catalog evidence visible')
+            ->assertSee('Points cost, stock policy, and shop scope should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('All-shop reward coverage should remain stable until Laravel scope handling is verified against the legacy catalog.')
+            ->assertSee('Unlimited-stock assumptions still need backend inventory wiring before operators can trust live publish behavior.');
+    }
+
     public function test_gifts_page_ignores_unknown_selected_gift_and_falls_back_to_catalog(): void
     {
         $user = User::factory()->create();

@@ -175,6 +175,13 @@
 ### Next step after services-rules scoped-rule coverage checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Gifts all-shop reward coverage checkpoint
+- Added focused selected-gift coverage for the all-shop unlimited-stock reward path so the `coffee-voucher` blocker copy introduced in `gifts` stays locked to a real Galaxy catalog context.
+- Kept the step Phase 1-safe: no reward workflow changed, but the feature test now protects the all-shop stock-audit and publish posture from drifting back toward generic wording.
+
+### Next step after gifts all-shop reward coverage checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
