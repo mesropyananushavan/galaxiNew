@@ -1115,6 +1115,7 @@ class ResourceIndexController extends Controller
         $activatedCardCount = Card::query()->whereNotNull('activated_at')->count();
         $holderLinkedCardCount = Card::query()->whereNotNull('card_holder_id')->count();
         $unassignedCardCount = $cardCount - $holderLinkedCardCount;
+        $activatedHolderLinkedCardCount = Card::query()->whereNotNull('activated_at')->whereNotNull('card_holder_id')->count();
         $cardHolders = CardHolder::query()->withCount('cards')->with(['shop:id,is_active', 'cards:id,card_holder_id,status'])->get();
         $cardHolderCount = $cardHolders->count();
         $activeCardHolderCount = $cardHolders->where('is_active', true)->count();
@@ -1208,6 +1209,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Assignment linkage signal', 'value' => $holderLinkedCardCount > 0 && $unassignedCardCount > 0
                         ? sprintf('%d holder-linked cards are already visible beside %d unassigned inventory records for parity review', $holderLinkedCardCount, $unassignedCardCount)
                         : 'unassigned inventory coverage is still pending for parity review'],
+                    ['label' => 'Activated assignment signal', 'value' => $activatedHolderLinkedCardCount > 0
+                        ? sprintf('%d activated holder-linked cards are already visible for live customer inventory review', $activatedHolderLinkedCardCount)
+                        : 'activated holder-linked inventory is still pending for parity review'],
                     ['label' => 'Draft inventory signal', 'value' => $draftCardCount > 0 && $cardCount > $draftCardCount
                         ? sprintf('%d draft cards are already visible beside %d issued inventory records for parity review', $draftCardCount, $cardCount - $draftCardCount)
                         : 'draft inventory coverage is still pending for parity review'],
@@ -1244,6 +1248,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Assignment linkage signal', 'value' => $holderLinkedCardCount > 0 && $unassignedCardCount > 0
                         ? sprintf('%d holder-linked cards are already visible beside %d unassigned inventory records for parity review', $holderLinkedCardCount, $unassignedCardCount)
                         : 'unassigned inventory coverage is still pending for parity review'],
+                    ['label' => 'Activated assignment signal', 'value' => $activatedHolderLinkedCardCount > 0
+                        ? sprintf('%d activated holder-linked cards are already visible for live customer inventory review', $activatedHolderLinkedCardCount)
+                        : 'activated holder-linked inventory is still pending for parity review'],
                     ['label' => 'Draft inventory signal', 'value' => $draftCardCount > 0 && $cardCount > $draftCardCount
                         ? sprintf('%d draft cards are already visible beside %d issued inventory records for parity review', $draftCardCount, $cardCount - $draftCardCount)
                         : 'draft inventory coverage is still pending for parity review'],
