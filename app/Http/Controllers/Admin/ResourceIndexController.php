@@ -226,6 +226,21 @@ class ResourceIndexController extends Controller
             ],
         ];
 
+        $page['actions'] = [
+            [
+                'label' => 'Find receipt',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => $this->checksPointsCatalogFindReceiptDisabledReason($receiptPreviews),
+            ],
+            [
+                'label' => 'Review accrual gaps',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->checksPointsCatalogReviewGapsDisabledReason($receiptPreviews),
+            ],
+        ];
+
         $page['table']['rows'] = collect($receiptPreviews)->map(fn (array $receipt): array => [
             $this->linkedTableCell($receipt['label'], 'admin.checks-points.index', ['receipt' => $receipt['key']]),
             $receipt['card'],
@@ -1704,6 +1719,30 @@ class ResourceIndexController extends Controller
             $liveSourceCount >= 3 && $inventoryCoverageReady => 'Blocked until multi-source export snapshots are verified against legacy file delivery and grouped totals.',
             $liveSourceCount > 0 => 'Blocked until live Laravel source snapshots are verified against legacy export totals and file delivery.',
             default => 'Blocked until the first live Laravel report source exists for export parity review.',
+        };
+    }
+
+    private function checksPointsCatalogFindReceiptDisabledReason(array $receiptPreviews): string
+    {
+        $shopCount = collect($receiptPreviews)->pluck('shop')->unique()->count();
+        $receiptCount = count($receiptPreviews);
+
+        return match (true) {
+            $receiptCount > 0 && $shopCount > 1 => 'Blocked until fiscal receipt lookup is verified against branch-aware transaction history and legacy search habits.',
+            $receiptCount > 0 => 'Blocked until fiscal receipt lookup is backed by Laravel transaction reads and receipt-history parity checks.',
+            default => 'Blocked until the first receipt-history slice exists for fiscal lookup parity review.',
+        };
+    }
+
+    private function checksPointsCatalogReviewGapsDisabledReason(array $receiptPreviews): string
+    {
+        $zeroAccrualCount = collect($receiptPreviews)->filter(fn (array $receipt): bool => $receipt['points'] === '0')->count();
+        $shopCount = collect($receiptPreviews)->pluck('shop')->unique()->count();
+
+        return match (true) {
+            $zeroAccrualCount > 0 && $shopCount > 1 => 'Blocked until zero-accrual and branch-aware troubleshooting are backed by Laravel transaction and rule data.',
+            $zeroAccrualCount > 0 => 'Blocked until zero-accrual troubleshooting is backed by Laravel transaction and rule data.',
+            default => 'Blocked until accrual-gap review is backed by Laravel transaction and rule data.',
         };
     }
 

@@ -90,6 +90,14 @@
 ### Next step after reports catalog export-gating checkpoint
 - Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Checks-points catalog action-gating checkpoint
+- Tightened the default `checks-points` catalog header actions so receipt lookup and accrual-gap review now expose more specific blocker copy tied to the previewed fiscal-search and zero-accrual troubleshooting posture instead of staying as neutral starter actions.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their reasons now reflect whether the current workspace already carries multi-branch receipt coverage and visible zero-accrual cases that need parity-sensitive handling.
+- Added focused feature coverage so the Galaxy-specific receipt and troubleshooting gating stays visible on the main catalog page.
+
+### Next step after checks-points catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
