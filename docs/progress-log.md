@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Cards and cardholders linkage-signal cue checkpoint
+- Added a shared read-only `Linkage signal` cue to selected `cards` and selected `cardholders` contexts so operator review can see branch/holder linkage posture more directly without opening any lifecycle, reassignment, or profile write paths.
+- Surfaced the cue in both selected-record summaries and dependency-status panels using small backend helpers in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data)'`, `2 passed`, after adding the linkage-signal cues.
+
+### Next step after cards and cardholders linkage-signal cue checkpoint
+- Mirror the same kind of narrow read-only operational cue on `shops` or `roles`, or add another safe metadata increment only where a live Laravel form already exists.
+
 ### Card-types rollout-note index visibility checkpoint
 - Surfaced the new persisted card-type `rollout_note` slice at the index level by adding a `Rollout notes` metric and a `Rollout note` table column, so rollout handoff context is visible before operators drill into selected-tier review.
 - Kept the step small and safe: it reuses saved rollout-note text on read-only index surfaces and does not widen publish logic, activation behavior writes, or rule-import flows.

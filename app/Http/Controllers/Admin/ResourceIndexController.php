@@ -1888,6 +1888,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
             ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
             ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
+            ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
             ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCard->shop !== null
                 ? 'Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.'
@@ -1935,6 +1936,16 @@ class ResourceIndexController extends Controller
         return $this->lastSavedLabel($selectedCard);
     }
 
+    private function cardsLinkageSignal(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->holder !== null && $selectedCard->shop !== null => 'holder and branch linkage visible',
+            $selectedCard->holder !== null => 'holder linked, branch visibility pending',
+            $selectedCard->shop !== null => 'branch-linked inventory, holder pending',
+            default => 'holder and branch linkage pending',
+        };
+    }
+
     private function cardsSelectedCardDependencyStatus(Card $selectedCard): array
     {
         return [
@@ -1942,6 +1953,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Inventory posture', 'value' => 'Selected-card review is running in Laravel-backed read mode only'],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
+            ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
             ['label' => 'Lifecycle posture', 'value' => match ($selectedCard->status) {
                 'active' => 'This active card should stay read-only until issue, block, and replacement parity are verified.',
                 'blocked' => 'This blocked card should stay under review-only handling until dispute and replacement semantics match the old Galaxy flow.',
@@ -1968,6 +1980,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
+            ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCardHolder->shop !== null
                 ? 'Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.'
@@ -2012,6 +2025,16 @@ class ResourceIndexController extends Controller
         return $this->lastSavedLabel($selectedCardHolder);
     }
 
+    private function cardholdersLinkageSignal(CardHolder $selectedCardHolder): string
+    {
+        return match (true) {
+            $selectedCardHolder->shop !== null && $selectedCardHolder->cards_count > 0 => 'branch-linked profile with visible cards',
+            $selectedCardHolder->shop !== null => 'branch-linked profile, card linkage pending',
+            $selectedCardHolder->cards_count > 0 => 'card-linked profile, branch visibility pending',
+            default => 'branch and card linkage pending',
+        };
+    }
+
     private function cardholdersSelectedHolderDependencyStatus(CardHolder $selectedCardHolder): array
     {
         return [
@@ -2019,6 +2042,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lookup posture', 'value' => 'Selected-holder review is running in Laravel-backed read mode only'],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
+            ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Status posture', 'value' => $selectedCardHolder->is_active
                 ? 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.'
                 : 'This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.'],
