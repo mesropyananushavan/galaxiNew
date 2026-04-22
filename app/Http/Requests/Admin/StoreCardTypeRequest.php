@@ -24,6 +24,7 @@ class StoreCardTypeRequest extends FormRequest
             'is_active' => ['required', 'boolean'],
             'review_note' => ['nullable', 'string', 'max:1000'],
             'activation_note' => ['nullable', 'string', 'max:1000'],
+            'rollout_note' => ['nullable', 'string', 'max:1000'],
         ];
     }
 
@@ -45,6 +46,7 @@ class StoreCardTypeRequest extends FormRequest
             'is_active' => 'status',
             'review_note' => 'review note',
             'activation_note' => 'activation note',
+            'rollout_note' => 'rollout note',
         ];
     }
 
@@ -55,6 +57,7 @@ class StoreCardTypeRequest extends FormRequest
             'is_active.boolean' => 'The status field must be Active or Draft.',
             'review_note.max' => 'Keep the review note under 1000 characters so the tier workspace stays operator-friendly.',
             'activation_note.max' => 'Keep the activation note under 1000 characters so the tier workspace stays operator-friendly.',
+            'rollout_note.max' => 'Keep the rollout note under 1000 characters so the tier workspace stays operator-friendly.',
         ];
     }
 

@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Card-types rollout-note slice checkpoint
+- Added a thin persisted `rollout_note` slice to the shared `card-types` live form, including a nullable `rollout_note` column on `card_types`, request validation, explicit create/update persistence, and selected-tier rendering in summary, timeline, and dependency status.
+- Kept the step Phase 1-safe: the new field captures rollout handoff context without opening publish logic, activation behavior writes, or rule-import flows.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_authenticated_user_can_store_card_type_from_live_admin_form|test_card_type_live_admin_form_returns_operator_friendly_validation_messages|test_authenticated_user_can_update_card_type_from_live_admin_flow|test_card_types_page_shows_update_success_flash_message)'`, `5 passed`, after adding the card-type rollout-note slice.
+
+### Next step after card-types rollout-note slice checkpoint
+- Surface the new rollout note on card-types index-level cues, or return to another already-live Laravel form for the next narrow metadata increment while keeping publish and rule-import writes blocked.
+
 ### Roles-permissions assignment-note index visibility checkpoint
 - Surfaced the new persisted role `assignment_note` slice at the index level by adding an `Assignment notes` metric and an `Assignment note` table column, so assignment handoff context is visible before operators drill into selected-role review.
 - Kept the step small and safe: it reuses saved assignment-note text on read-only index surfaces and does not widen role assignment flows, shop-scope mutation, or permission-matrix writes.

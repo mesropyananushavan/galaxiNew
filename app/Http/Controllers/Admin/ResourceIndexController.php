@@ -1238,6 +1238,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
             ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
+            ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             [
                 'label' => 'Status guidance',
                 'value' => $selectedCardType->is_active
@@ -1327,6 +1328,13 @@ class ResourceIndexController extends Controller
                     ? sprintf('The current Laravel activation note says: %s', $selectedCardType->activation_note)
                     : 'No Laravel activation note is saved yet, so activation handoff guidance still depends on the surrounding workspace cues.',
             ],
+            [
+                'title' => sprintf('%s rollout note reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $selectedCardType->rollout_note !== null && trim($selectedCardType->rollout_note) !== ''
+                    ? sprintf('The current Laravel rollout note says: %s', $selectedCardType->rollout_note)
+                    : 'No Laravel rollout note is saved yet, so rollout guidance still depends on the surrounding workspace cues.',
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
@@ -1338,6 +1346,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
             ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
+            ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             ['label' => 'Current status posture', 'value' => $selectedCardType->is_active ? 'Active tiers should stay stable unless parity checks are complete' : 'Draft tiers are the safe place for parity-first validation and copy changes'],
             ['label' => 'Rule-import posture', 'value' => $selectedCardType->is_active ? 'Keep imports blocked until active-tier accrual parity is verified' : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet'],
             ['label' => 'Publish posture', 'value' => $selectedCardType->is_active ? 'Live tiers need parity confirmation before further publish-style changes' : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly'],
@@ -1365,6 +1374,7 @@ class ResourceIndexController extends Controller
             'is_active' => $selectedCardType->is_active ? '1' : '0',
             'review_note' => $selectedCardType->review_note ?? '',
             'activation_note' => $selectedCardType->activation_note ?? '',
+            'rollout_note' => $selectedCardType->rollout_note ?? '',
         ];
 
         return $page;

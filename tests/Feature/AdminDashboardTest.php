@@ -4406,6 +4406,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => false,
             'review_note' => 'Keep this tier in draft until legacy accrual parity is confirmed.',
             'activation_note' => 'Only activate this tier after the legacy branch handoff is verified.',
+            'rollout_note' => 'Keep rollout review-only until legacy tier behavior is verified branch by branch.',
         ]);
 
         $user = User::factory()->create();
@@ -4440,6 +4441,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep this tier in draft until legacy accrual parity is confirmed.')
             ->assertSee('Activation note:')
             ->assertSee('Only activate this tier after the legacy branch handoff is verified.')
+            ->assertSee('Rollout note:')
+            ->assertSee('Keep rollout review-only until legacy tier behavior is verified branch by branch.')
             ->assertSee('Status guidance:')
             ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
             ->assertSee('Rule-import blocker:')
@@ -4464,6 +4467,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('The current Laravel tier review note says: Keep this tier in draft until legacy accrual parity is confirmed.')
             ->assertSee('Galaxy Prime activation note reflected from model state')
             ->assertSee('The current Laravel activation note says: Only activate this tier after the legacy branch handoff is verified.')
+            ->assertSee('Galaxy Prime rollout note reflected from model state')
+            ->assertSee('The current Laravel rollout note says: Keep rollout review-only until legacy tier behavior is verified branch by branch.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Selected record:')
             ->assertSee('Edit flow state:')
@@ -4475,6 +4480,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep this tier in draft until legacy accrual parity is confirmed.')
             ->assertSee('Activation note:')
             ->assertSee('Only activate this tier after the legacy branch handoff is verified.')
+            ->assertSee('Rollout note:')
+            ->assertSee('Keep rollout review-only until legacy tier behavior is verified branch by branch.')
             ->assertSee('Current status posture:')
             ->assertSee('Draft tiers are the safe place for parity-first validation and copy changes')
             ->assertSee('Rule-import posture:')
@@ -4719,6 +4726,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime',
             'points_rate' => '1.75',
             'is_active' => '1',
+            'rollout_note' => 'Keep rollout review-only until legacy tier behavior is verified branch by branch.',
         ]);
 
         $cardType = CardType::query()->where('slug', 'galaxy-prime')->firstOrFail();
@@ -4733,6 +4741,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime',
             'points_rate' => '1.75',
             'is_active' => true,
+            'rollout_note' => 'Keep rollout review-only until legacy tier behavior is verified branch by branch.',
         ]);
     }
 
@@ -5420,6 +5429,22 @@ class AdminDashboardTest extends TestCase
             ->assertSessionHasErrors([
                 'activation_note' => 'Keep the activation note under 1000 characters so the tier workspace stays operator-friendly.',
             ]);
+
+        $longRolloutNote = str_repeat('r', 1001);
+
+        $rolloutNoteResponse = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => 'Galaxy Prime Rollout Copy',
+            'slug' => 'galaxy-prime-rollout-copy',
+            'points_rate' => '1.50',
+            'is_active' => '1',
+            'rollout_note' => $longRolloutNote,
+        ]);
+
+        $rolloutNoteResponse
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors([
+                'rollout_note' => 'Keep the rollout note under 1000 characters so the tier workspace stays operator-friendly.',
+            ]);
     }
 
     public function test_card_type_create_validation_redirects_to_index_without_referrer(): void
@@ -5455,6 +5480,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => 'false',
             'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
             'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
+            'rollout_note' => 'Keep rollout review-only while this tier stays in draft review.',
         ]);
 
         $response
@@ -5469,6 +5495,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => false,
             'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
             'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
+            'rollout_note' => 'Keep rollout review-only while this tier stays in draft review.',
         ]);
     }
 
@@ -5520,6 +5547,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => false,
             'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
             'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
+            'rollout_note' => 'Keep rollout review-only while this tier stays in draft review.',
         ]);
 
         $response = $this->actingAs($user)
@@ -5540,6 +5568,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Document the first Laravel tier adjustments before widening rule imports.')
             ->assertSee('Activation note:')
             ->assertSee('Keep activation handoff visible while this tier stays in draft review.')
+            ->assertSee('Rollout note:')
+            ->assertSee('Keep rollout review-only while this tier stays in draft review.')
             ->assertSee('Edit card type in Laravel')
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }
