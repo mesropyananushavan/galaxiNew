@@ -2195,8 +2195,10 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsReviewMatrixDisabledReason(Role $selectedRole): string
     {
         $permissionCount = $selectedRole->permissions->count();
+        $assignedUserCount = $selectedRole->users_count ?? $selectedRole->users->count();
 
         return match (true) {
+            $permissionCount > 0 && $assignedUserCount > 0 => 'Blocked until this assignment-sensitive Laravel permission bundle is verified against legacy staff access.',
             $permissionCount > 0 => 'Blocked until the Laravel permission matrix can be verified against legacy staff access for this live bundle.',
             $selectedRole->is_active => 'Blocked until this active role has a first verified Laravel permission bundle to compare against legacy staff access.',
             default => 'Blocked until this draft role has a first verified Laravel permission bundle to compare against legacy staff access.',
@@ -2206,12 +2208,14 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsPublishRoleDisabledReason(Role $selectedRole, mixed $scope): string
     {
         $permissionCount = $selectedRole->permissions->count();
+        $assignedUserCount = $selectedRole->users_count ?? $selectedRole->users->count();
 
         return match (true) {
             ! $selectedRole->is_active => 'Blocked until this draft role has a verified permission bundle and shop scope parity.',
             $permissionCount === 0 && $scope->isEmpty() => 'Blocked until this active role has both a verified permission bundle and shop scope parity.',
             $permissionCount === 0 => 'Blocked until this active role has a verified permission bundle to compare against legacy staff access.',
             $scope->isEmpty() => 'Blocked until this live permission bundle also has verified shop scope parity.',
+            $assignedUserCount > 0 => 'Blocked until assignment-sensitive live role parity is verified for this Laravel permission bundle.',
             default => 'Blocked until live role assignment parity is verified for this Laravel permission bundle.',
         };
     }

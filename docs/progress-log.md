@@ -146,6 +146,14 @@
 ### Next step after gifts selected-action gating checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Roles-permissions selected-action gating checkpoint
+- Tightened selected `roles-permissions` actions so matrix review and role publishing now expose blocker copy tied to assignment-sensitive live role posture instead of stopping at more generic live-bundle wording.
+- Kept the step Phase 1-safe: both selected actions remain disabled, but their reasons now react to roles that already combine permission coverage with assigned staff and scoped shop visibility.
+- Added focused feature coverage so these Galaxy-specific access blockers stay visible in selected role review.
+
+### Next step after roles-permissions selected-action gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
