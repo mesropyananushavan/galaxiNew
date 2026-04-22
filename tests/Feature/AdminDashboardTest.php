@@ -3030,6 +3030,41 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Positive branch accrual outcomes still need live transaction-domain parity before any adjustment path is safe.');
     }
 
+    public function test_checks_points_page_supports_selected_positive_accrual_receipt_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=chk-90421');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all receipts')
+            ->assertSee('/admin/checks-points')
+            ->assertSee('Reviewing: CHK-90421')
+            ->assertSee('Find receipt')
+            ->assertSee('Blocked until receipt lookup is backed by Laravel transaction reads and fiscal-search parity checks.')
+            ->assertSee('Review accrual gaps')
+            ->assertSee('Blocked until accrual-gap review is backed by Laravel transaction and rule data.')
+            ->assertSee('Selected receipt preview')
+            ->assertSee('CHK-90421')
+            ->assertSee('Card')
+            ->assertSee('GX-100001')
+            ->assertSee('Shop context')
+            ->assertSee('Central Shop')
+            ->assertSee('Accrual posture')
+            ->assertSee('Positive accrual receipts should stay parity-first, because receipt math must match the old Galaxy ledger before any correction flow appears.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep this receipt in table-first review mode, because operators usually compare amount, points, and timestamp together before opening deeper investigation.')
+            ->assertSee('Troubleshooting guidance')
+            ->assertSee('Treat this receipt as read-only review until Laravel transaction history and adjustment flows exist.')
+            ->assertSee('CHK-90421 selected for receipt review')
+            ->assertSee('Receipt-first handoff stays visible')
+            ->assertSee('Positive-accrual handoff stays evidence-first')
+            ->assertSee('Amount, points, and timestamp should stay visible in the workspace before any future export or correction discussion begins.')
+            ->assertSee('Fiscal receipt review should remain read-only until Laravel transaction history is verified against the legacy ledger.')
+            ->assertSee('Positive point outcomes still need live transaction-domain parity before any adjustment path is safe.');
+    }
+
     public function test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog(): void
     {
         $user = User::factory()->create();
