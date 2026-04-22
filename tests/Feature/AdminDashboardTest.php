@@ -2195,6 +2195,57 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Airport Kiosk');
     }
 
+    public function test_shops_catalog_actions_reflect_saved_branch_readiness(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central Scope',
+            'code' => 'galaxy-central-scope',
+            'is_active' => false,
+        ]);
+
+        $manager = User::factory()->create([
+            'name' => 'Nare Scope Lead',
+            'shop_id' => $shop->id,
+        ]);
+
+        $shop->users()->save($manager);
+
+        $holder = CardHolder::create([
+            'full_name' => 'Scope Holder',
+            'phone' => '+37499110101',
+            'status' => 'active',
+            'is_active' => true,
+            'shop_id' => $shop->id,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Scope Gold',
+            'slug' => 'scope-gold',
+            'points_rate' => 1.50,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => 'GX-SHOP-SCOPE-1',
+            'status' => 'active',
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('New shop')
+            ->assertSee('Blocked until paused-branch recovery and manager assignment parity are verified.')
+            ->assertSee('Review branch scope')
+            ->assertSee('Blocked until saved branch ownership and scope coverage are verified against the legacy Galaxy multi-shop model.');
+    }
+
     public function test_shops_page_replaces_preview_rows_with_model_backed_index_data(): void
     {
         $shop = Shop::create([

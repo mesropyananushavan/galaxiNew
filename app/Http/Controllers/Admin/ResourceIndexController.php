@@ -950,6 +950,21 @@ class ResourceIndexController extends Controller
             ->orderBy('name')
             ->get();
 
+        $page['actions'] = [
+            [
+                'label' => 'New shop',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => $this->shopsCatalogNewShopDisabledReason($shops),
+            ],
+            [
+                'label' => 'Review branch scope',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->shopsCatalogReviewScopeDisabledReason($shops),
+            ],
+        ];
+
         if ($shops->isEmpty()) {
             return $page;
         }
@@ -1622,6 +1637,31 @@ class ResourceIndexController extends Controller
             $linkedCards > 0 => 'Blocked until linked-holder activity coverage is verified against legacy lookup history.',
             $activeCount > 0 => 'Blocked until active-holder coverage has a stable Laravel activity source for parity review.',
             default => 'Blocked until the first Laravel-backed cardholder slice exists for activity-history parity review.',
+        };
+    }
+
+    private function shopsCatalogNewShopDisabledReason(mixed $shops): string
+    {
+        $managerCount = $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count();
+        $pausedCount = $shops->where('is_active', false)->count();
+
+        return match (true) {
+            $pausedCount > 0 => 'Blocked until paused-branch recovery and manager assignment parity are verified.',
+            $managerCount > 0 => 'Blocked until saved branch ownership and manager assignment parity are verified.',
+            default => 'Blocked until the first Laravel-backed shops index and manager assignment parity checks are verified.',
+        };
+    }
+
+    private function shopsCatalogReviewScopeDisabledReason(mixed $shops): string
+    {
+        $managerCount = $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count();
+        $coverageCount = $shops->filter(fn (Shop $shop): bool => $shop->card_holders_count > 0 || $shop->cards_count > 0)->count();
+
+        return match (true) {
+            $managerCount > 0 && $coverageCount > 0 => 'Blocked until saved branch ownership and scope coverage are verified against the legacy Galaxy multi-shop model.',
+            $managerCount > 0 => 'Blocked until manager-linked branch scope is verified against the legacy Galaxy multi-shop model.',
+            $coverageCount > 0 => 'Blocked until visible branch coverage is verified against the legacy Galaxy multi-shop model.',
+            default => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
         };
     }
 

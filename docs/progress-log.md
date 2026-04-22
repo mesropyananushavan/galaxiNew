@@ -74,6 +74,14 @@
 ### Next step after cardholders catalog action-gating checkpoint
 - Reuse this catalog-level gating refinement on another Galaxy-specific workspace such as `shops`, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Shops catalog action-gating checkpoint
+- Tightened the default `shops` catalog header actions so branch operations now expose more specific blocker copy for `New shop` and `Review branch scope` once Laravel-backed branch records exist, instead of staying at generic preview wording.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their reasons now reflect whether saved branch coverage already includes paused branches, assigned managers, and visible holder/card scope context.
+- Added focused feature coverage for both the empty branch catalog and a saved branch state with paused plus scoped coverage so the Galaxy-specific gating stays stable.
+
+### Next step after shops catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
