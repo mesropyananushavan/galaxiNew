@@ -22,6 +22,7 @@ class CardTypeUpdateController extends Controller
             'points_rate' => $validated['points_rate'],
             'is_active' => $request->boolean('is_active'),
             'review_note' => $validated['review_note'] ?? null,
+            'activation_note' => $validated['activation_note'] ?? null,
         ]);
 
         return $this->redirectToSelectedCardType(

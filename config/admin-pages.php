@@ -500,6 +500,7 @@ return [
                     ['label' => 'Draft', 'value' => '0'],
                 ]],
                 ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep the tier aligned with the legacy accrual workflow before widening rule imports.', 'required' => false, 'placeholder' => 'Capture parity-sensitive tier notes for the current Laravel card type.', 'help' => 'Use this safe Phase 1 note to track tier parity context without opening rule-import writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'activation_note', 'label' => 'Activation note', 'type' => 'textarea', 'value' => 'Confirm the legacy activation handoff before operators treat this tier as fully live.', 'required' => false, 'placeholder' => 'Capture operator-facing activation handoff notes for this Laravel card type.', 'help' => 'Keep activation guidance visible here without opening publish or rule-import writes.', 'attributes' => ['maxlength' => '1000']],
             ],
         ],
         'form' => [

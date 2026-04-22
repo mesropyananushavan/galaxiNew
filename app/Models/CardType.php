@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-#[Fillable(['name', 'slug', 'points_rate', 'is_active', 'review_note'])]
+#[Fillable(['name', 'slug', 'points_rate', 'is_active', 'review_note', 'activation_note'])]
 class CardType extends Model
 {
     use HasFactory;

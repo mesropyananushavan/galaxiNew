@@ -4313,6 +4313,7 @@ class AdminDashboardTest extends TestCase
             'points_rate' => '1.75',
             'is_active' => false,
             'review_note' => 'Keep this tier in draft until legacy accrual parity is confirmed.',
+            'activation_note' => 'Only activate this tier after the legacy branch handoff is verified.',
         ]);
 
         $user = User::factory()->create();
@@ -4345,6 +4346,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Last saved in Laravel:')
             ->assertSee('Review note:')
             ->assertSee('Keep this tier in draft until legacy accrual parity is confirmed.')
+            ->assertSee('Activation note:')
+            ->assertSee('Only activate this tier after the legacy branch handoff is verified.')
             ->assertSee('Status guidance:')
             ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
             ->assertSee('Rule-import blocker:')
@@ -4367,6 +4370,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('giving operators a concrete checkpoint for the current catalog shell.')
             ->assertSee('Galaxy Prime review note reflected from model state')
             ->assertSee('The current Laravel tier review note says: Keep this tier in draft until legacy accrual parity is confirmed.')
+            ->assertSee('Galaxy Prime activation note reflected from model state')
+            ->assertSee('The current Laravel activation note says: Only activate this tier after the legacy branch handoff is verified.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Selected record:')
             ->assertSee('Edit flow state:')
@@ -4376,6 +4381,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Last saved in Laravel:')
             ->assertSee('Review note:')
             ->assertSee('Keep this tier in draft until legacy accrual parity is confirmed.')
+            ->assertSee('Activation note:')
+            ->assertSee('Only activate this tier after the legacy branch handoff is verified.')
             ->assertSee('Current status posture:')
             ->assertSee('Draft tiers are the safe place for parity-first validation and copy changes')
             ->assertSee('Rule-import posture:')
@@ -5243,6 +5250,7 @@ class AdminDashboardTest extends TestCase
             'points_rate' => '2.50',
             'is_active' => 'true',
             'review_note' => 'Keep this tier aligned with the legacy accrual workflow before widening imports.',
+            'activation_note' => 'Confirm branch activation handoff before operators rely on this live tier.',
         ]);
 
         $cardType = CardType::query()->where('slug', 'galaxy-prime-plus')->firstOrFail();
@@ -5257,6 +5265,7 @@ class AdminDashboardTest extends TestCase
             'points_rate' => '2.50',
             'is_active' => true,
             'review_note' => 'Keep this tier aligned with the legacy accrual workflow before widening imports.',
+            'activation_note' => 'Confirm branch activation handoff before operators rely on this live tier.',
         ]);
     }
 
@@ -5300,6 +5309,22 @@ class AdminDashboardTest extends TestCase
             ->assertSessionHasErrors([
                 'review_note' => 'Keep the review note under 1000 characters so the tier workspace stays operator-friendly.',
             ]);
+
+        $longActivationNote = str_repeat('a', 1001);
+
+        $activationNoteResponse = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => 'Galaxy Prime Activation Copy',
+            'slug' => 'galaxy-prime-activation-copy',
+            'points_rate' => '1.50',
+            'is_active' => '1',
+            'activation_note' => $longActivationNote,
+        ]);
+
+        $activationNoteResponse
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors([
+                'activation_note' => 'Keep the activation note under 1000 characters so the tier workspace stays operator-friendly.',
+            ]);
     }
 
     public function test_card_type_create_validation_redirects_to_index_without_referrer(): void
@@ -5334,6 +5359,7 @@ class AdminDashboardTest extends TestCase
             'points_rate' => '2.25',
             'is_active' => 'false',
             'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
+            'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
         ]);
 
         $response
@@ -5347,6 +5373,7 @@ class AdminDashboardTest extends TestCase
             'points_rate' => '2.25',
             'is_active' => false,
             'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
+            'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
         ]);
     }
 
@@ -5397,6 +5424,7 @@ class AdminDashboardTest extends TestCase
             'points_rate' => '2.25',
             'is_active' => false,
             'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
+            'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
         ]);
 
         $response = $this->actingAs($user)
@@ -5415,6 +5443,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy Prime Plus')
             ->assertSee('Review note:')
             ->assertSee('Document the first Laravel tier adjustments before widening rule imports.')
+            ->assertSee('Activation note:')
+            ->assertSee('Keep activation handoff visible while this tier stays in draft review.')
             ->assertSee('Edit card type in Laravel')
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }

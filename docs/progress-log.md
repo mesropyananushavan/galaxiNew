@@ -1,5 +1,15 @@
 # Progress Log
 
+## 2026-04-22
+
+### Card-types activation-note slice checkpoint
+- Added a thin persisted `activation_note` slice to the shared `card-types` live form, including a nullable `activation_note` column on `card_types`, request validation, explicit create/update persistence, and selected-tier rendering in summary, timeline, and dependency status.
+- Kept the step Phase 1-safe: the new field captures operator-facing activation handoff context without opening publish logic, activation behavior writes, or rule-import flows.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_type_live_admin_form_normalizes_slug_and_boolean_input_before_store|test_card_type_live_admin_form_returns_operator_friendly_validation_messages|test_authenticated_user_can_update_card_type_from_live_admin_flow|test_card_types_page_shows_update_success_flash_message)'`, `5 passed`, after adding the card-type activation-note slice.
+
+### Next step after card-types activation-note slice checkpoint
+- Surface the new activation note on card-type index-level cues, or add one more narrow persisted metadata field on `roles-permissions` while keeping assignment and permission-matrix writes blocked.
+
 ## 2026-04-21
 
 ### Lifecycle cue helper alignment checkpoint
