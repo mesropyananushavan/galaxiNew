@@ -1286,13 +1286,13 @@ class ResourceIndexController extends Controller
                 'label' => 'Review export presets',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until preset handling is backed by Laravel reporting flow validation.',
+                'disabledReason' => $this->reportsSelectedSourcePresetDisabledReason($selectedReportSource),
             ],
             [
                 'label' => 'Export source snapshot',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until reporting exports and file delivery are verified against legacy Galaxy output expectations.',
+                'disabledReason' => $this->reportsSelectedSourceExportDisabledReason($selectedReportSource),
             ],
         ];
         $page['activityTimeline'] = $selectedReportSource['timeline'];
@@ -1743,6 +1743,26 @@ class ResourceIndexController extends Controller
             $zeroAccrualCount > 0 && $shopCount > 1 => 'Blocked until zero-accrual and branch-aware troubleshooting are backed by Laravel transaction and rule data.',
             $zeroAccrualCount > 0 => 'Blocked until zero-accrual troubleshooting is backed by Laravel transaction and rule data.',
             default => 'Blocked until accrual-gap review is backed by Laravel transaction and rule data.',
+        };
+    }
+
+    private function reportsSelectedSourcePresetDisabledReason(array $selectedReportSource): string
+    {
+        return match ($selectedReportSource['key'] ?? null) {
+            'cards-by-shop' => 'Blocked until branch-total preset periods are verified against live shop grouping and legacy reporting habits.',
+            'cardholder-status' => 'Blocked until holder-status preset periods are verified against lifecycle and recency reporting parity.',
+            'role-access' => 'Blocked until role-access preset periods are verified against scope and assignment reporting parity.',
+            default => 'Blocked until preset handling is backed by Laravel reporting flow validation.',
+        };
+    }
+
+    private function reportsSelectedSourceExportDisabledReason(array $selectedReportSource): string
+    {
+        return match ($selectedReportSource['key'] ?? null) {
+            'cards-by-shop' => 'Blocked until branch-total export snapshots are verified against legacy grouped totals and file delivery.',
+            'cardholder-status' => 'Blocked until holder-status export snapshots are verified against lifecycle summaries and file delivery.',
+            'role-access' => 'Blocked until role-access export snapshots are verified against scope summaries and file delivery.',
+            default => 'Blocked until reporting exports and file delivery are verified against legacy Galaxy output expectations.',
         };
     }
 
