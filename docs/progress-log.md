@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Shops coverage-signal cue checkpoint
+- Added a read-only `Coverage signal` cue to selected `shops` review so operators can see manager, holder, and card coverage posture in one compact Laravel-backed cue without opening branch writes or ownership mutation flows.
+- Surfaced the cue in both selected-shop summaries and dependency-status panels through a small helper in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data)'`, `1 passed`, after adding the coverage-signal cue.
+
+### Next step after shops coverage-signal cue checkpoint
+- Mirror one more narrow read-only operational cue on `roles` or `reports`, or return to an already-live Laravel form for the next safe metadata increment.
+
 ### Cards and cardholders linkage-signal cue checkpoint
 - Added a shared read-only `Linkage signal` cue to selected `cards` and selected `cardholders` contexts so operator review can see branch/holder linkage posture more directly without opening any lifecycle, reassignment, or profile write paths.
 - Surfaced the cue in both selected-record summaries and dependency-status panels using small backend helpers in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.

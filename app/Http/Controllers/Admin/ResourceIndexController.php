@@ -2065,6 +2065,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Laravel', 'value' => $this->shopsLastSavedLabel($selectedShop)],
             ['label' => 'Code', 'value' => $selectedShop->code],
+            ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
             ['label' => 'Manager guidance', 'value' => $selectedShop->users_count > 0
                 ? 'Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.'
@@ -2111,6 +2112,17 @@ class ResourceIndexController extends Controller
         return $this->lastSavedLabel($selectedShop);
     }
 
+    private function shopsCoverageSignal(Shop $selectedShop): string
+    {
+        return match (true) {
+            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'manager, holder, and card coverage visible',
+            $selectedShop->users_count > 0 && ($selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0) => 'manager coverage visible, branch records building out',
+            $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'branch records visible, manager coverage pending',
+            $selectedShop->users_count > 0 => 'manager coverage visible, branch records pending',
+            default => 'manager and branch coverage pending',
+        };
+    }
+
     private function lifecycleFreshnessLabel(Model $model): string
     {
         if ($model->updated_at === null || $model->created_at === null) {
@@ -2151,6 +2163,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Branch posture', 'value' => 'Selected-shop review is running in Laravel-backed read mode only'],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Laravel', 'value' => $this->shopsLastSavedLabel($selectedShop)],
+            ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Status posture', 'value' => $selectedShop->is_active
                 ? 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'
                 : 'This paused branch should stay review-only until recovery and ownership parity are verified.'],
