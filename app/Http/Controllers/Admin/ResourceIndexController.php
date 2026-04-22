@@ -414,13 +414,13 @@ class ResourceIndexController extends Controller
                 'label' => 'Review priorities',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until rule priority resolution is verified in Laravel.',
+                'disabledReason' => $this->servicesRulesSelectedReviewPrioritiesDisabledReason($selectedRulePreview),
             ],
             [
                 'label' => 'Publish rule',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until rule CRUD and parity checks exist beyond the preview shell.',
+                'disabledReason' => $this->servicesRulesSelectedPublishRuleDisabledReason($selectedRulePreview),
             ],
             ],
         );
@@ -1780,6 +1780,24 @@ class ResourceIndexController extends Controller
             'cardholder-status' => 'Blocked until holder-status export snapshots are verified against lifecycle summaries and file delivery.',
             'role-access' => 'Blocked until role-access export snapshots are verified against scope summaries and file delivery.',
             default => 'Blocked until reporting exports and file delivery are verified against legacy Galaxy output expectations.',
+        };
+    }
+
+    private function servicesRulesSelectedReviewPrioritiesDisabledReason(array $selectedRulePreview): string
+    {
+        return match (true) {
+            ($selectedRulePreview['status'] ?? null) === 'draft' => 'Blocked until draft rule priority order is verified against legacy exclusion precedence in Laravel.',
+            ($selectedRulePreview['scope'] ?? null) !== 'All shops' => 'Blocked until scoped rule priority order is verified against broader loyalty overlaps in Laravel.',
+            default => 'Blocked until all-shop rule priority order is verified in Laravel.',
+        };
+    }
+
+    private function servicesRulesSelectedPublishRuleDisabledReason(array $selectedRulePreview): string
+    {
+        return match (true) {
+            ($selectedRulePreview['status'] ?? null) === 'draft' => 'Blocked until this draft rule clears CRUD, exclusion-parity, and publish-safety checks beyond the preview shell.',
+            ($selectedRulePreview['scope'] ?? null) !== 'All shops' => 'Blocked until this scoped rule clears CRUD, scope-parity, and publish-safety checks beyond the preview shell.',
+            default => 'Blocked until this all-shop rule clears CRUD and publish-safety parity beyond the preview shell.',
         };
     }
 
