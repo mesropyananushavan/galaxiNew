@@ -710,6 +710,21 @@ class ResourceIndexController extends Controller
             ->orderBy('number')
             ->get();
 
+        $page['actions'] = [
+            [
+                'label' => 'Issue card',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => $this->cardsCatalogIssueCardDisabledReason($cards),
+            ],
+            [
+                'label' => 'Review blocked cards',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->cardsCatalogReviewBlockedDisabledReason($cards),
+            ],
+        ];
+
         if ($cards->isEmpty()) {
             return $page;
         }
@@ -1545,6 +1560,30 @@ class ResourceIndexController extends Controller
                 && (is_string($value) || is_int($value)),
             ARRAY_FILTER_USE_BOTH,
         );
+    }
+
+    private function cardsCatalogIssueCardDisabledReason(mixed $cards): string
+    {
+        $draftCount = $cards->where('status', 'draft')->count();
+        $activeCount = $cards->where('status', 'active')->count();
+
+        return match (true) {
+            $draftCount > 0 => 'Blocked until saved draft inventory is verified against legacy issue-flow parity.',
+            $activeCount > 0 => 'Blocked until active inventory and issuance parity are verified against the old Galaxy card flow.',
+            default => 'Blocked until the first Laravel-backed card inventory slice exists for issue-flow parity review.',
+        };
+    }
+
+    private function cardsCatalogReviewBlockedDisabledReason(mixed $cards): string
+    {
+        $blockedCount = $cards->where('status', 'blocked')->count();
+        $activeCount = $cards->where('status', 'active')->count();
+
+        return match (true) {
+            $blockedCount > 0 => 'Blocked until saved blocked-card states are verified against legacy inventory semantics.',
+            $activeCount > 0 => 'Blocked until live inventory has verified blocked-card parity to compare against legacy behavior.',
+            default => 'Blocked until the first Laravel-backed inventory slice exists for blocked-card parity review.',
+        };
     }
 
     private function resolveLiveFormRouteParameterValue(mixed $value): mixed

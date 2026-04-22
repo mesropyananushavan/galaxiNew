@@ -1618,7 +1618,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('GX-100001')
             ->assertSee('Central Shop')
             ->assertSee('Issue card')
+            ->assertSee('Blocked until the first Laravel-backed card inventory slice exists for issue-flow parity review.')
             ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until the first Laravel-backed inventory slice exists for blocked-card parity review.')
             ->assertSee('Active cards')
             ->assertSee('Draft cards')
             ->assertSee('Blocked cards')
@@ -1658,6 +1660,47 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Retain clear visibility for unassigned, active, and blocked card states.')
             ->assertSee('Card type')
             ->assertSee('Activation period');
+    }
+
+    public function test_cards_catalog_actions_reflect_saved_inventory_readiness(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central Cards Catalog',
+            'code' => 'galaxy-central-cards-catalog',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Catalog Gold',
+            'slug' => 'catalog-gold',
+            'points_rate' => 1.50,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => 'GX-CATALOG-1001',
+            'status' => 'draft',
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => 'GX-CATALOG-1002',
+            'status' => 'blocked',
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards');
+
+        $response
+            ->assertOk()
+            ->assertSee('Issue card')
+            ->assertSee('Blocked until saved draft inventory is verified against legacy issue-flow parity.')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until saved blocked-card states are verified against legacy inventory semantics.');
     }
 
     public function test_cards_page_replaces_preview_rows_with_model_backed_inventory_data(): void
