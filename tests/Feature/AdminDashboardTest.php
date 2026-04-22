@@ -2093,7 +2093,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Anna Petrova')
             ->assertSee('Has cards')
             ->assertSee('New cardholder')
+            ->assertSee('Blocked until the first Laravel-backed cardholder slice exists for profile parity review.')
             ->assertSee('Review recent activity')
+            ->assertSee('Blocked until the first Laravel-backed cardholder slice exists for activity-history parity review.')
             ->assertSee('Active holders')
             ->assertSee('Inactive holders')
             ->assertSee('Linked cards')
@@ -2548,6 +2550,58 @@ class AdminDashboardTest extends TestCase
             ->assertSee('>1<', false)
             ->assertSee('active')
             ->assertSee('inactive');
+    }
+
+    public function test_cardholders_catalog_actions_reflect_saved_holder_readiness(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Catalog',
+            'code' => 'galaxy-holder-catalog',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'full_name' => 'Inactive Holder Catalog',
+            'phone' => '+37499110001',
+            'status' => 'inactive',
+            'is_active' => false,
+            'shop_id' => $shop->id,
+        ]);
+
+        $activeHolder = CardHolder::create([
+            'full_name' => 'Linked Holder Catalog',
+            'phone' => '+37499110002',
+            'status' => 'active',
+            'is_active' => true,
+            'shop_id' => $shop->id,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Holder Catalog Gold',
+            'slug' => 'holder-catalog-gold',
+            'points_rate' => 1.50,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => 'GX-HOLDER-CATALOG-1',
+            'status' => 'active',
+            'card_holder_id' => $activeHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders');
+
+        $response
+            ->assertOk()
+            ->assertSee('New cardholder')
+            ->assertSee('Blocked until saved inactive-holder states are verified against legacy profile and lifecycle parity.')
+            ->assertSee('Review recent activity')
+            ->assertSee('Blocked until linked-holder activity coverage is verified against legacy lookup history.');
     }
 
     public function test_cardholders_page_surfaces_selected_holder_context_from_laravel_data(): void

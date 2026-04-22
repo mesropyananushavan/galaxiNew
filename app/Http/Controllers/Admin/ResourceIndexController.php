@@ -830,6 +830,21 @@ class ResourceIndexController extends Controller
             ->orderBy('full_name')
             ->get();
 
+        $page['actions'] = [
+            [
+                'label' => 'New cardholder',
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => $this->cardholdersCatalogNewHolderDisabledReason($cardHolders),
+            ],
+            [
+                'label' => 'Review recent activity',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->cardholdersCatalogReviewActivityDisabledReason($cardHolders),
+            ],
+        ];
+
         if ($cardHolders->isEmpty()) {
             return $page;
         }
@@ -1583,6 +1598,30 @@ class ResourceIndexController extends Controller
             $blockedCount > 0 => 'Blocked until saved blocked-card states are verified against legacy inventory semantics.',
             $activeCount > 0 => 'Blocked until live inventory has verified blocked-card parity to compare against legacy behavior.',
             default => 'Blocked until the first Laravel-backed inventory slice exists for blocked-card parity review.',
+        };
+    }
+
+    private function cardholdersCatalogNewHolderDisabledReason(mixed $cardHolders): string
+    {
+        $inactiveCount = $cardHolders->where('is_active', false)->count();
+        $linkedCards = $cardHolders->sum('cards_count');
+
+        return match (true) {
+            $inactiveCount > 0 => 'Blocked until saved inactive-holder states are verified against legacy profile and lifecycle parity.',
+            $linkedCards > 0 => 'Blocked until linked-holder coverage is verified against the old Galaxy profile flow.',
+            default => 'Blocked until the first Laravel-backed cardholder slice exists for profile parity review.',
+        };
+    }
+
+    private function cardholdersCatalogReviewActivityDisabledReason(mixed $cardHolders): string
+    {
+        $linkedCards = $cardHolders->sum('cards_count');
+        $activeCount = $cardHolders->where('is_active', true)->count();
+
+        return match (true) {
+            $linkedCards > 0 => 'Blocked until linked-holder activity coverage is verified against legacy lookup history.',
+            $activeCount > 0 => 'Blocked until active-holder coverage has a stable Laravel activity source for parity review.',
+            default => 'Blocked until the first Laravel-backed cardholder slice exists for activity-history parity review.',
         };
     }
 

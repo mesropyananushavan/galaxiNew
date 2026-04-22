@@ -66,6 +66,14 @@
 ### Next step after cards catalog action-gating checkpoint
 - Reuse this catalog-level gating refinement on another Galaxy-specific workspace such as `shops` or `cardholders`, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Cardholders catalog action-gating checkpoint
+- Tightened the default `cardholders` catalog header actions so holder operations now expose more specific blocker copy for `New cardholder` and `Review recent activity` once Laravel-backed holder records exist, instead of staying at generic preview wording.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their reasons now reflect whether saved holder coverage already includes inactive lifecycle cases and linked-card activity context.
+- Added focused feature coverage for both the empty holder catalog and a saved holder state with inactive plus linked-card coverage so the Galaxy-specific gating stays stable.
+
+### Next step after cardholders catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace such as `shops`, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
