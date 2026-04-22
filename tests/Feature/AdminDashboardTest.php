@@ -1314,6 +1314,34 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until this active role has a verified permission bundle to compare against legacy staff access.');
     }
 
+    public function test_selected_live_permission_bundle_without_scope_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $role = Role::create([
+            'name' => 'Central Audit Lead',
+            'slug' => 'central-audit-lead-live-bundle',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Audit holders',
+            'slug' => 'audit-holders-live-bundle',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Central Audit Lead')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until the Laravel permission matrix can be verified against legacy staff access for this live bundle.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until this live permission bundle also has verified shop scope parity.');
+    }
+
     public function test_roles_permissions_page_ignores_unknown_selected_role_query(): void
     {
         $shop = Shop::create([
