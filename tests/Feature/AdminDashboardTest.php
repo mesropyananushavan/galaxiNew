@@ -2033,6 +2033,49 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
     }
 
+    public function test_cards_page_supports_selected_blocked_unassigned_card_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Blocked Unassigned Branch',
+            'code' => 'galaxy-blocked-unassigned-branch',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Blocked Unassigned Tier',
+            'slug' => 'galaxy-blocked-unassigned-tier-card',
+            'points_rate' => '1.45',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-920199',
+            'status' => 'blocked',
+            'activated_at' => '2026-04-05 09:10:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all cards')
+            ->assertSee('Reviewing: GX-920199')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until this blocked card clears dispute and replacement parity against the legacy Galaxy flow.')
+            ->assertSee('Selected card')
+            ->assertSee('GX-920199')
+            ->assertSee('Operational readiness')
+            ->assertSee('blocked inventory, operator review only')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked inventory, holder pending')
+            ->assertSee('Inventory guidance')
+            ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
+    }
+
     public function test_cards_page_supports_selected_draft_card_review_context(): void
     {
         $shop = Shop::create([
