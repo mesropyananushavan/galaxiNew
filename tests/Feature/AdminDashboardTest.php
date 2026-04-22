@@ -3880,6 +3880,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('unassigned inventory coverage is still pending for parity review')
             ->assertSee('Activated assignment signal')
             ->assertSee('1 activated holder-linked cards are already visible for live customer inventory review')
+            ->assertSee('Blocked assignment signal')
+            ->assertSee('blocked holder-linked inventory is still pending for parity review')
             ->assertSee('Draft inventory signal')
             ->assertSee('draft inventory coverage is still pending for parity review')
             ->assertSee('Activation signal')
@@ -3906,6 +3908,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('blocked inventory coverage is still pending for parity review')
             ->assertSee('Activated assignment signal:')
             ->assertSee('1 activated holder-linked cards are already visible for live customer inventory review')
+            ->assertSee('Blocked assignment signal:')
+            ->assertSee('blocked holder-linked inventory is still pending for parity review')
             ->assertSee('Scope posture')
             ->assertSee('Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.')
             ->assertSee('Grouping posture')
@@ -3953,7 +3957,7 @@ class AdminDashboardTest extends TestCase
         Card::create([
             'number' => '990011223350',
             'status' => 'blocked',
-            'card_holder_id' => null,
+            'card_holder_id' => $cardHolder->id,
             'card_type_id' => $cardType->id,
             'shop_id' => $pausedShop->id,
             'issued_at' => now(),
@@ -3983,9 +3987,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Inventory state signal')
             ->assertSee('1 active cards are already visible beside 1 blocked inventory records for parity review')
             ->assertSee('Assignment linkage signal')
-            ->assertSee('1 holder-linked cards are already visible beside 2 unassigned inventory records for parity review')
+            ->assertSee('2 holder-linked cards are already visible beside 1 unassigned inventory records for parity review')
             ->assertSee('Activated assignment signal')
             ->assertSee('1 activated holder-linked cards are already visible for live customer inventory review')
+            ->assertSee('Blocked assignment signal')
+            ->assertSee('1 blocked holder-linked cards are already visible for dispute and replacement review')
             ->assertSee('Draft inventory signal')
             ->assertSee('1 draft cards are already visible beside 2 issued inventory records for parity review')
             ->assertSee('Activation signal')
@@ -3996,9 +4002,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Inventory state signal:')
             ->assertSee('1 active cards are already visible beside 1 blocked inventory records for parity review')
             ->assertSee('Assignment linkage signal:')
-            ->assertSee('1 holder-linked cards are already visible beside 2 unassigned inventory records for parity review')
+            ->assertSee('2 holder-linked cards are already visible beside 1 unassigned inventory records for parity review')
             ->assertSee('Activated assignment signal:')
             ->assertSee('1 activated holder-linked cards are already visible for live customer inventory review')
+            ->assertSee('Blocked assignment signal:')
+            ->assertSee('1 blocked holder-linked cards are already visible for dispute and replacement review')
             ->assertSee('Draft inventory signal:')
             ->assertSee('1 draft cards are already visible beside 2 issued inventory records for parity review')
             ->assertSee('Activation signal:')
