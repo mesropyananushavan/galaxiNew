@@ -3999,12 +3999,59 @@ class AdminDashboardTest extends TestCase
             ->assertSee('permission-linked active access posture is still pending')
             ->assertSee('Assignment signal')
             ->assertSee('1 staff assignments are already visible for access review')
+            ->assertSee('Role state signal')
+            ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Default period posture')
             ->assertSee('Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.')
             ->assertSee('Access reporting parity stays review-only')
             ->assertSee('Operators should hand off role-coverage findings in the live review context before trusting export files for access decisions.')
             ->assertSee('Access readiness:')
             ->assertSee('permission-linked active access posture is still pending');
+    }
+
+    public function test_reports_page_supports_selected_mixed_role_state_review_context(): void
+    {
+        $activeRole = Role::create([
+            'name' => 'Reporting Active Access Lead',
+            'slug' => 'reporting-active-access-lead',
+            'is_active' => true,
+        ]);
+
+        Role::create([
+            'name' => 'Reporting Draft Access Observer',
+            'slug' => 'reporting-draft-access-observer',
+            'is_active' => false,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review access audits',
+            'slug' => 'review-access-audits',
+        ]);
+
+        $activeRole->permissions()->attach($permission);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Mariam Mixed Access Review',
+        ]);
+
+        $assignedUser->roles()->attach($activeRole->id);
+
+        $roleStateSignal = '1 active roles are already visible beside 1 draft access roles for parity review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Source coverage')
+            ->assertSee('2 roles are currently available for read-only access reporting review.')
+            ->assertSee('Role state signal')
+            ->assertSee($roleStateSignal)
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Role state signal:')
+            ->assertSee($roleStateSignal);
     }
 
     public function test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog(): void
@@ -4189,6 +4236,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 active roles already carry permission-linked access posture for on-screen review')
             ->assertSee('Assignment signal')
             ->assertSee('1 staff assignments are already visible for access review')
+            ->assertSee('Role state signal')
+            ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Role access source selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked roles from the current Laravel foundation.')
             ->assertSee('Implementation dependencies')
@@ -4196,6 +4245,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 active roles already carry permission-linked access posture for on-screen review')
             ->assertSee('Assignment signal:')
             ->assertSee('1 staff assignments are already visible for access review')
+            ->assertSee('Role state signal:')
+            ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Access posture:')
             ->assertSee('Role coverage should stay read-only until access-report parity and scope shaping are verified.');
     }

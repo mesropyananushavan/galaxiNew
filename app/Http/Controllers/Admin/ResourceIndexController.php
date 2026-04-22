@@ -1259,6 +1259,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Assignment signal', 'value' => $assignedStaffCount > 0
                         ? sprintf('%d staff assignments are already visible for access review', $assignedStaffCount)
                         : 'staff assignment coverage is still pending'],
+                    ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
+                        ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
+                        : 'draft access-role coverage is still pending'],
                     ['label' => 'Scope guidance', 'value' => 'Keep this source centered on role coverage and scope visibility first, because old Galaxy access checks were driven by who could see which branch context.' ],
                     ['label' => 'Default period posture', 'value' => 'Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because access coverage checks need visible role and scope context before any export workflow is trusted.' ],
@@ -1281,6 +1284,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Assignment signal', 'value' => $assignedStaffCount > 0
                         ? sprintf('%d staff assignments are already visible for access review', $assignedStaffCount)
                         : 'staff assignment coverage is still pending'],
+                    ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
+                        ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
+                        : 'draft access-role coverage is still pending'],
                     ['label' => 'Scope posture', 'value' => 'Scope visibility should stay read-only until access-report parity and branch-assignment shaping are verified.'],
                     ['label' => 'Access posture', 'value' => 'Role coverage should stay read-only until access-report parity and scope shaping are verified.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, report shaping, and export generation still remain preview-only for this source.'],
