@@ -548,13 +548,13 @@ class ResourceIndexController extends Controller
                 'label' => 'Stock audit',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until stock checks are backed by Laravel inventory data.',
+                'disabledReason' => $this->giftsSelectedStockAuditDisabledReason($selectedGiftPreview),
             ],
             [
                 'label' => 'Publish gift',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until gift CRUD and redemption parity exist beyond the preview shell.',
+                'disabledReason' => $this->giftsSelectedPublishGiftDisabledReason($selectedGiftPreview),
             ],
             ],
         );
@@ -1780,6 +1780,24 @@ class ResourceIndexController extends Controller
             'cardholder-status' => 'Blocked until holder-status export snapshots are verified against lifecycle summaries and file delivery.',
             'role-access' => 'Blocked until role-access export snapshots are verified against scope summaries and file delivery.',
             default => 'Blocked until reporting exports and file delivery are verified against legacy Galaxy output expectations.',
+        };
+    }
+
+    private function giftsSelectedStockAuditDisabledReason(array $selectedGiftPreview): string
+    {
+        return match (true) {
+            ($selectedGiftPreview['stock'] ?? null) === '0' => 'Blocked until zero-stock recovery checks are backed by Laravel inventory data and reopening parity.',
+            ($selectedGiftPreview['stock'] ?? null) !== 'Unlimited' => 'Blocked until finite-stock checks are backed by Laravel inventory data and scoped stock parity.',
+            default => 'Blocked until all-shop stock checks are backed by Laravel inventory data.',
+        };
+    }
+
+    private function giftsSelectedPublishGiftDisabledReason(array $selectedGiftPreview): string
+    {
+        return match (true) {
+            ($selectedGiftPreview['status'] ?? null) === 'paused' => 'Blocked until this paused reward clears CRUD, stock-recovery, and redemption parity beyond the preview shell.',
+            ($selectedGiftPreview['scope'] ?? null) !== 'All shops' => 'Blocked until this scoped reward clears CRUD, scope-parity, and redemption checks beyond the preview shell.',
+            default => 'Blocked until this all-shop reward clears CRUD and redemption parity beyond the preview shell.',
         };
     }
 
