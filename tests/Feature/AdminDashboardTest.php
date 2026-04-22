@@ -3051,6 +3051,50 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Selected report source');
     }
 
+    public function test_reports_page_supports_selected_cardholder_status_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Reporting',
+            'code' => 'galaxy-holder-reporting',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'full_name' => 'Mariam Holder Review',
+            'phone' => '+37499111227',
+            'email' => 'mariam.holder.review@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=cardholder-status');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to report catalog')
+            ->assertSee('Reviewing: Cardholder status overview')
+            ->assertSee('Selected report source')
+            ->assertSee('Cardholder status overview')
+            ->assertSee('Source coverage')
+            ->assertSee('1 cardholders are currently available for read-only status reporting review.')
+            ->assertSee('Source signal')
+            ->assertSee('live holder status coverage visible')
+            ->assertSee('Laravel input signal')
+            ->assertSee('holder status inputs are ready for on-screen review')
+            ->assertSee('Review readiness')
+            ->assertSee('ready for holder-status triage review')
+            ->assertSee('Cardholder status source selected for Laravel review')
+            ->assertSee('This reporting view now reflects 1 tracked cardholders from the current Laravel foundation.')
+            ->assertSee('Support handoff should keep holder posture visible')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Review readiness:')
+            ->assertSee('ready for holder-status triage review')
+            ->assertSee('Lifecycle posture:')
+            ->assertSee('Status aggregation should stay read-only until holder lifecycle and activity parity are verified.');
+    }
+
     public function test_reports_page_accepts_case_insensitive_selected_source_query(): void
     {
         $shop = Shop::create([

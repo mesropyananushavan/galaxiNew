@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Reports cardholder-review-readiness cue checkpoint
+- Added a compact read-only `Review readiness` cue to the selected `cardholder-status` report source so operators can see whether holder-status triage review is actually ready in the current Laravel-backed reporting shell.
+- Surfaced the cue in both selected-source summary and dependency-status panels for `cardholder-status`, keeping the step parity-safe and avoiding any preset, shaping, or export writes.
+- Added focused selected-source coverage in `AdminDashboardTest` for the `cardholder-status` review context and re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_replaces_preview_catalog_with_model_backed_reporting_sources|test_reports_page_accepts_case_insensitive_selected_source_query)'`, `4 passed`.
+
+### Next step after reports cardholder-review-readiness cue checkpoint
+- Either mirror a similarly compact readiness cue on another live-backed selected report source, or return to the next tiny persisted metadata slice on an already-live Laravel form without widening risky workflows.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
