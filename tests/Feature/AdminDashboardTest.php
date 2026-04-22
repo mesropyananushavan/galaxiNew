@@ -3032,6 +3032,59 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.');
     }
 
+    public function test_cardholders_page_supports_selected_inactive_linked_holder_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Dormant Linked Branch',
+            'code' => 'galaxy-dormant-linked-branch',
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Sona Dormant Holder',
+            'phone' => '+37491100088',
+            'email' => 'sona.dormant.holder@example.com',
+            'is_active' => false,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Dormant Tier',
+            'slug' => 'galaxy-dormant-tier-holder',
+            'points_rate' => '1.20',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DORM-0001',
+            'status' => 'blocked',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$cardHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all holders')
+            ->assertSee('Reviewing: Sona Dormant Holder')
+            ->assertSee('Review recent activity')
+            ->assertSee('Blocked until linked-card activity is backed by a stable Laravel event source for holder lookup parity.')
+            ->assertSee('Selected holder')
+            ->assertSee('Sona Dormant Holder')
+            ->assertSee('Operational readiness')
+            ->assertSee('inactive profile, review only')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked profile with visible cards')
+            ->assertSee('Lookup guidance')
+            ->assertSee('This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.')
+            ->assertSee('Card linkage posture:')
+            ->assertSee('Linked cards are visible in Laravel, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.');
+    }
+
     public function test_cardholders_page_ignores_unknown_selected_holder_query(): void
     {
         $shop = Shop::create([
