@@ -1118,6 +1118,7 @@ class ResourceIndexController extends Controller
         $activatedHolderLinkedCardCount = Card::query()->whereNotNull('activated_at')->whereNotNull('card_holder_id')->count();
         $blockedHolderLinkedCardCount = Card::query()->where('status', 'blocked')->whereNotNull('card_holder_id')->count();
         $draftHolderLinkedCardCount = Card::query()->where('status', 'draft')->whereNotNull('card_holder_id')->count();
+        $pausedShopHolderLinkedCardCount = Card::query()->whereNotNull('card_holder_id')->whereHas('shop', fn ($query) => $query->where('is_active', false))->count();
         $cardHolders = CardHolder::query()->withCount('cards')->with(['shop:id,is_active', 'cards:id,card_holder_id,status'])->get();
         $cardHolderCount = $cardHolders->count();
         $activeCardHolderCount = $cardHolders->where('is_active', true)->count();
@@ -1220,6 +1221,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Draft assignment signal', 'value' => $draftHolderLinkedCardCount > 0
                         ? sprintf('%d draft holder-linked cards are already visible for pre-issuance customer review', $draftHolderLinkedCardCount)
                         : 'draft holder-linked inventory is still pending for parity review'],
+                    ['label' => 'Paused branch assignment signal', 'value' => $pausedShopHolderLinkedCardCount > 0
+                        ? sprintf('%d holder-linked cards are already visible in paused branches for branch-recovery review', $pausedShopHolderLinkedCardCount)
+                        : 'paused-branch holder-linked inventory is still pending for parity review'],
                     ['label' => 'Draft inventory signal', 'value' => $draftCardCount > 0 && $cardCount > $draftCardCount
                         ? sprintf('%d draft cards are already visible beside %d issued inventory records for parity review', $draftCardCount, $cardCount - $draftCardCount)
                         : 'draft inventory coverage is still pending for parity review'],
@@ -1265,6 +1269,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Draft assignment signal', 'value' => $draftHolderLinkedCardCount > 0
                         ? sprintf('%d draft holder-linked cards are already visible for pre-issuance customer review', $draftHolderLinkedCardCount)
                         : 'draft holder-linked inventory is still pending for parity review'],
+                    ['label' => 'Paused branch assignment signal', 'value' => $pausedShopHolderLinkedCardCount > 0
+                        ? sprintf('%d holder-linked cards are already visible in paused branches for branch-recovery review', $pausedShopHolderLinkedCardCount)
+                        : 'paused-branch holder-linked inventory is still pending for parity review'],
                     ['label' => 'Draft inventory signal', 'value' => $draftCardCount > 0 && $cardCount > $draftCardCount
                         ? sprintf('%d draft cards are already visible beside %d issued inventory records for parity review', $draftCardCount, $cardCount - $draftCardCount)
                         : 'draft inventory coverage is still pending for parity review'],
