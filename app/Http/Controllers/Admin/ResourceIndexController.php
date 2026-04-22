@@ -564,6 +564,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Draft roles', 'value' => (string) $roles->where('is_active', false)->count()],
             ['label' => 'Reviewed roles', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->review_note))->count()],
             ['label' => 'Access notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->access_note))->count()],
+            ['label' => 'Assignment notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->assignment_note))->count()],
             ['label' => 'Scoped shops', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
         ];
 
@@ -575,7 +576,7 @@ class ResourceIndexController extends Controller
                 $this->linkedTableCell($role->name, 'admin.roles-permissions.index', ['role' => $role->id]),
                 $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice',
                 $permissionPreview !== '' ? $permissionPreview : 'No permissions linked yet',
-                filled($role->access_note) ? str($role->access_note)->limit(72)->toString() : 'No access note saved yet',
+                filled($role->assignment_note) ? str($role->assignment_note)->limit(72)->toString() : 'No assignment note saved yet',
                 (string) $role->users_count,
                 $role->is_active ? 'active' : 'draft',
             ];

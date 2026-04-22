@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Roles-permissions assignment-note index visibility checkpoint
+- Surfaced the new persisted role `assignment_note` slice at the index level by adding an `Assignment notes` metric and an `Assignment note` table column, so assignment handoff context is visible before operators drill into selected-role review.
+- Kept the step small and safe: it reuses saved assignment-note text on read-only index surfaces and does not widen role assignment flows, shop-scope mutation, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query)'`, `6 passed`, after exposing role assignment-note visibility on the index page.
+
+### Next step after roles-permissions assignment-note index visibility checkpoint
+- Add one more narrow role metadata slice only if it remains clearly read-only / parity-safe, or switch to another already-live surface for the next safe Laravel-backed metadata increment.
+
 ### Roles-permissions assignment-note slice checkpoint
 - Added a thin persisted `assignment_note` slice to the shared `roles-permissions` live form, including a nullable `assignment_note` column on `roles`, request validation, explicit create/update persistence, and selected-role rendering in summary, timeline, and dependency status.
 - Kept the step Phase 1-safe: the new field captures assignment handoff context without opening role assignment flows, shop-scope mutation, or permission-matrix writes.
