@@ -1187,6 +1187,7 @@ class ResourceIndexController extends Controller
                 ['label' => 'Draft tiers', 'value' => (string) $cardTypes->where('is_active', false)->count()],
                 ['label' => 'Reviewed tiers', 'value' => (string) $cardTypes->filter(fn (CardType $cardType): bool => filled($cardType->review_note))->count()],
                 ['label' => 'Activation notes', 'value' => (string) $cardTypes->filter(fn (CardType $cardType): bool => filled($cardType->activation_note))->count()],
+                ['label' => 'Rollout notes', 'value' => (string) $cardTypes->filter(fn (CardType $cardType): bool => filled($cardType->rollout_note))->count()],
                 ['label' => 'Saved types', 'value' => (string) $cardTypes->count()],
             ];
         }
@@ -1199,7 +1200,7 @@ class ResourceIndexController extends Controller
                 ],
                 $cardType->slug,
                 number_format((float) $cardType->points_rate, 2).'x',
-                filled($cardType->activation_note) ? str($cardType->activation_note)->limit(72)->toString() : 'No activation note saved yet',
+                filled($cardType->rollout_note) ? str($cardType->rollout_note)->limit(72)->toString() : 'No rollout note saved yet',
                 $cardType->is_active ? 'Active in Laravel flow' : 'Draft in Laravel flow',
                 [
                     'label' => $cardType->is_active ? 'Move to draft' : 'Activate type',

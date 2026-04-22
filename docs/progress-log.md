@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Card-types rollout-note index visibility checkpoint
+- Surfaced the new persisted card-type `rollout_note` slice at the index level by adding a `Rollout notes` metric and a `Rollout note` table column, so rollout handoff context is visible before operators drill into selected-tier review.
+- Kept the step small and safe: it reuses saved rollout-note text on read-only index surfaces and does not widen publish logic, activation behavior writes, or rule-import flows.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_replaces_preview_rows_with_model_backed_edit_links|test_card_types_page_replaces_preview_metrics_with_model_backed_counts|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type)'`, `4 passed`, after exposing card-type rollout-note visibility on the index page.
+
+### Next step after card-types rollout-note index visibility checkpoint
+- Add one more narrow card-type metadata slice only if it stays clearly read-only and parity-safe, or switch back to another already-live Laravel surface for the next safe metadata increment.
+
 ### Card-types rollout-note slice checkpoint
 - Added a thin persisted `rollout_note` slice to the shared `card-types` live form, including a nullable `rollout_note` column on `card_types`, request validation, explicit create/update persistence, and selected-tier rendering in summary, timeline, and dependency status.
 - Kept the step Phase 1-safe: the new field captures rollout handoff context without opening publish logic, activation behavior writes, or rule-import flows.

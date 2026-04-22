@@ -4580,6 +4580,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
             'review_note' => 'Keep Gold aligned with the legacy auto-activation workflow.',
             'activation_note' => 'Confirm the old branch activation handoff before rollout.',
+            'rollout_note' => 'Keep rollout review-only during Gold parity checks.',
         ]);
 
         $partner = CardType::create([
@@ -4599,8 +4600,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('href="/admin/card-types?cardType='.$partner->id.'#live-form"', false)
             ->assertSee('<form method="POST" action="/admin/card-types/'.$gold->id.'/toggle-status"', false)
             ->assertSee('<form method="POST" action="/admin/card-types/'.$partner->id.'/toggle-status"', false)
-            ->assertSee('Confirm the old branch activation handoff before rollout.')
-            ->assertSee('No activation note saved yet')
+            ->assertSee('Keep rollout review-only during Gold parity checks.')
+            ->assertSee('No rollout note saved yet')
             ->assertSee('Active in Laravel flow')
             ->assertSee('Draft in Laravel flow')
             ->assertDontSee('>active<', false)
@@ -4683,6 +4684,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
             'review_note' => 'Keep Gold aligned with the legacy auto-activation workflow.',
             'activation_note' => 'Confirm the old branch activation handoff before rollout.',
+            'rollout_note' => 'Keep rollout review-only during Gold parity checks.',
         ]);
 
         CardType::create([
@@ -4709,6 +4711,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft tiers')
             ->assertSee('Reviewed tiers')
             ->assertSee('Activation notes')
+            ->assertSee('Rollout notes')
             ->assertSee('Saved types')
             ->assertDontSee('Imported rules')
             ->assertSee('>2<', false)
