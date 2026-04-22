@@ -1121,7 +1121,7 @@ class ResourceIndexController extends Controller
         $unlinkedCardHolderCount = $cardHolderCount - $linkedCardHolderCount;
         $activeShopCardHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => (bool) $cardHolder->shop?->is_active)->count();
         $pausedShopCardHolderCount = $cardHolderCount - $activeShopCardHolderCount;
-        $roles = Role::query()->withCount(['permissions', 'users'])->with('users:id,shop_id')->get();
+        $roles = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active')->get();
         $roleCount = $roles->count();
         $activeRoleCount = $roles->where('is_active', true)->count();
         $permissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->permissions_count > 0)->count();
@@ -1129,6 +1129,8 @@ class ResourceIndexController extends Controller
         $assignedStaffCount = (int) $roles->sum('users_count');
         $shopScopedAssignedStaffCount = $roles->sum(fn (Role $role): int => $role->users->filter(fn ($user): bool => $user->shop_id !== null)->count());
         $unscopedAssignedStaffCount = $assignedStaffCount - $shopScopedAssignedStaffCount;
+        $activeShopAssignedStaffCount = $roles->sum(fn (Role $role): int => $role->users->filter(fn ($user): bool => $user->shop_id !== null && (bool) $user->shop?->is_active)->count());
+        $pausedShopAssignedStaffCount = $shopScopedAssignedStaffCount - $activeShopAssignedStaffCount;
 
         $page['actions'] = [
             [
@@ -1298,6 +1300,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Assignment scope signal', 'value' => $shopScopedAssignedStaffCount > 0 && $unscopedAssignedStaffCount > 0
                         ? sprintf('%d shop-linked staff assignments are already visible beside %d unscoped access assignments for parity review', $shopScopedAssignedStaffCount, $unscopedAssignedStaffCount)
                         : 'unscoped access-assignment coverage is still pending'],
+                    ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedStaffCount > 0 && $pausedShopAssignedStaffCount > 0
+                        ? sprintf('%d shop-linked staff assignments are already visible in active branches beside %d assignments in paused shops for parity review', $activeShopAssignedStaffCount, $pausedShopAssignedStaffCount)
+                        : 'paused-branch access-assignment coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],
@@ -1329,6 +1334,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Assignment scope signal', 'value' => $shopScopedAssignedStaffCount > 0 && $unscopedAssignedStaffCount > 0
                         ? sprintf('%d shop-linked staff assignments are already visible beside %d unscoped access assignments for parity review', $shopScopedAssignedStaffCount, $unscopedAssignedStaffCount)
                         : 'unscoped access-assignment coverage is still pending'],
+                    ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedStaffCount > 0 && $pausedShopAssignedStaffCount > 0
+                        ? sprintf('%d shop-linked staff assignments are already visible in active branches beside %d assignments in paused shops for parity review', $activeShopAssignedStaffCount, $pausedShopAssignedStaffCount)
+                        : 'paused-branch access-assignment coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],

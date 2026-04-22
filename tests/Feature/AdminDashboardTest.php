@@ -4355,6 +4355,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 staff assignments are already visible for access review')
             ->assertSee('Assignment scope signal')
             ->assertSee('unscoped access-assignment coverage is still pending')
+            ->assertSee('Assignment branch activity signal')
+            ->assertSee('paused-branch access-assignment coverage is still pending')
             ->assertSee('Role state signal')
             ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Permission bundle signal')
@@ -4368,6 +4370,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 staff assignments are already visible for access review')
             ->assertSee('Assignment scope signal:')
             ->assertSee('unscoped access-assignment coverage is still pending')
+            ->assertSee('Assignment branch activity signal:')
+            ->assertSee('paused-branch access-assignment coverage is still pending')
             ->assertSee('Role state signal:')
             ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Permission bundle signal:')
@@ -4428,6 +4432,64 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Implementation dependencies')
             ->assertSee('Assignment scope signal:')
             ->assertSee($assignmentScopeSignal);
+    }
+
+    public function test_reports_page_supports_selected_mixed_assignment_branch_activity_review_context(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Galaxy Active Access Branch',
+            'code' => 'galaxy-active-access-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Paused Access Branch',
+            'code' => 'galaxy-paused-access-branch',
+            'is_active' => false,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Reporting Branch Activity Access Lead',
+            'slug' => 'reporting-branch-activity-access-lead',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review branch activity access reports',
+            'slug' => 'review-branch-activity-access-reports',
+        ]);
+
+        $role->permissions()->attach($permission);
+
+        $activeScopedUser = User::factory()->create([
+            'name' => 'Active Branch Access Operator',
+            'shop_id' => $activeShop->id,
+        ]);
+
+        $pausedScopedUser = User::factory()->create([
+            'name' => 'Paused Branch Access Operator',
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        $activeScopedUser->roles()->attach($role->id);
+        $pausedScopedUser->roles()->attach($role->id);
+
+        $assignmentBranchActivitySignal = '1 shop-linked staff assignments are already visible in active branches beside 1 assignments in paused shops for parity review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Assignment signal')
+            ->assertSee('2 staff assignments are already visible for access review')
+            ->assertSee('Assignment branch activity signal')
+            ->assertSee($assignmentBranchActivitySignal)
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Assignment branch activity signal:')
+            ->assertSee($assignmentBranchActivitySignal);
     }
 
     public function test_reports_page_accepts_case_insensitive_selected_source_query(): void
