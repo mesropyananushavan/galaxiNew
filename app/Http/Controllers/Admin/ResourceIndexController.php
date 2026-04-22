@@ -1112,6 +1112,7 @@ class ResourceIndexController extends Controller
         $activeCardCount = Card::query()->where('status', 'active')->count();
         $blockedCardCount = Card::query()->where('status', 'blocked')->count();
         $draftCardCount = Card::query()->where('status', 'draft')->count();
+        $activatedCardCount = Card::query()->whereNotNull('activated_at')->count();
         $holderLinkedCardCount = Card::query()->whereNotNull('card_holder_id')->count();
         $unassignedCardCount = $cardCount - $holderLinkedCardCount;
         $cardHolders = CardHolder::query()->withCount('cards')->with(['shop:id,is_active', 'cards:id,card_holder_id,status'])->get();
@@ -1200,6 +1201,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Draft inventory signal', 'value' => $draftCardCount > 0 && $cardCount > $draftCardCount
                         ? sprintf('%d draft cards are already visible beside %d issued inventory records for parity review', $draftCardCount, $cardCount - $draftCardCount)
                         : 'draft inventory coverage is still pending for parity review'],
+                    ['label' => 'Activation signal', 'value' => $activatedCardCount > 0 && $cardCount > $activatedCardCount
+                        ? sprintf('%d activated cards are already visible beside %d not-yet-activated inventory records for parity review', $activatedCardCount, $cardCount - $activatedCardCount)
+                        : 'activation coverage is still pending for parity review'],
                     ['label' => 'Scope guidance', 'value' => $shopCount > 0
                         ? 'Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.'
                         : 'No tracked shops exist yet, so branch-level scope review should stay in planning mode only.'],
@@ -1233,6 +1237,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Draft inventory signal', 'value' => $draftCardCount > 0 && $cardCount > $draftCardCount
                         ? sprintf('%d draft cards are already visible beside %d issued inventory records for parity review', $draftCardCount, $cardCount - $draftCardCount)
                         : 'draft inventory coverage is still pending for parity review'],
+                    ['label' => 'Activation signal', 'value' => $activatedCardCount > 0 && $cardCount > $activatedCardCount
+                        ? sprintf('%d activated cards are already visible beside %d not-yet-activated inventory records for parity review', $activatedCardCount, $cardCount - $activatedCardCount)
+                        : 'activation coverage is still pending for parity review'],
                     ['label' => 'Scope posture', 'value' => 'Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.'],
                     ['label' => 'Grouping posture', 'value' => 'Shop grouping should stay read-only until query shaping is verified against legacy report totals.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, grouped query shaping, and export generation still remain preview-only for this source.'],

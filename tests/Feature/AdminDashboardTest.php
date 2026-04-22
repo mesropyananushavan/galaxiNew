@@ -3844,7 +3844,7 @@ class AdminDashboardTest extends TestCase
             'card_holder_id' => $cardHolder->id,
             'card_type_id' => $cardType->id,
             'shop_id' => $shop->id,
-            'issued_at' => now(),
+            'activated_at' => now(),
         ]);
 
         $user = User::factory()->create();
@@ -3880,6 +3880,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('unassigned inventory coverage is still pending for parity review')
             ->assertSee('Draft inventory signal')
             ->assertSee('draft inventory coverage is still pending for parity review')
+            ->assertSee('Activation signal')
+            ->assertSee('activation coverage is still pending for parity review')
             ->assertSee('Scope guidance')
             ->assertSee('Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.')
             ->assertSee('Default period posture')
@@ -3941,7 +3943,7 @@ class AdminDashboardTest extends TestCase
             'card_holder_id' => $cardHolder->id,
             'card_type_id' => $cardType->id,
             'shop_id' => $liveShop->id,
-            'issued_at' => now(),
+            'activated_at' => now(),
         ]);
 
         Card::create([
@@ -3980,6 +3982,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 holder-linked cards are already visible beside 2 unassigned inventory records for parity review')
             ->assertSee('Draft inventory signal')
             ->assertSee('1 draft cards are already visible beside 2 issued inventory records for parity review')
+            ->assertSee('Activation signal')
+            ->assertSee('1 activated cards are already visible beside 2 not-yet-activated inventory records for parity review')
             ->assertSee('Implementation dependencies')
             ->assertSee('Branch activity signal:')
             ->assertSee($branchActivitySignal)
@@ -3988,7 +3992,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assignment linkage signal:')
             ->assertSee('1 holder-linked cards are already visible beside 2 unassigned inventory records for parity review')
             ->assertSee('Draft inventory signal:')
-            ->assertSee('1 draft cards are already visible beside 2 issued inventory records for parity review');
+            ->assertSee('1 draft cards are already visible beside 2 issued inventory records for parity review')
+            ->assertSee('Activation signal:')
+            ->assertSee('1 activated cards are already visible beside 2 not-yet-activated inventory records for parity review');
     }
 
     public function test_reports_page_supports_selected_role_access_pending_readiness_context(): void
