@@ -266,6 +266,13 @@
 ### Next step after card-types draft-no-coverage gating checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Cardholders active-unlinked review checkpoint
+- Added focused selected-holder coverage for the active profile path before any linked cards exist so the `cardholders` review blocker stays tied to a real Galaxy lookup posture instead of generic placeholder wording.
+- Kept the step Phase 1-safe: no holder workflow changed, but the feature test now protects the active-unlinked review language from drifting as more Laravel-backed holder states come online.
+
+### Next step after cardholders active-unlinked review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

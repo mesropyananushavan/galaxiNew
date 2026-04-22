@@ -3032,6 +3032,44 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.');
     }
 
+    public function test_cardholders_page_supports_selected_active_unlinked_holder_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Active Unlinked Branch',
+            'code' => 'galaxy-active-unlinked-branch',
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Aram Unlinked Holder',
+            'phone' => '+37491100087',
+            'email' => 'aram.unlinked.holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$cardHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all holders')
+            ->assertSee('Reviewing: Aram Unlinked Holder')
+            ->assertSee('Review recent activity')
+            ->assertSee('Blocked until a stable Laravel activity source exists for holder lookup parity.')
+            ->assertSee('Selected holder')
+            ->assertSee('Aram Unlinked Holder')
+            ->assertSee('Operational readiness')
+            ->assertSee('active profile, linkage build-out pending')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked profile, card linkage pending')
+            ->assertSee('Lookup guidance')
+            ->assertSee('This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.')
+            ->assertSee('Card linkage posture:')
+            ->assertSee('No linked cards exist yet, which keeps this holder safer for identity review before card-link flows are enabled.');
+    }
+
     public function test_cardholders_page_supports_selected_inactive_linked_holder_review_context(): void
     {
         $shop = Shop::create([
