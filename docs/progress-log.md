@@ -42,6 +42,14 @@
 ### Next step after card-types action-readiness gating checkpoint
 - Reuse readiness-driven action gating on another selected live workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Card-types catalog action-gating checkpoint
+- Tightened the default `card-types` catalog header actions so even create-mode now explains why `Import rules` and `Publish type` are still staged, based on whether Laravel has no tiers yet, only draft tiers, or already-live saved tiers.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their blocker copy now makes the card-type workspace feel more like a staged Galaxy rollout surface than a generic starter form.
+- Added focused feature coverage for both the empty catalog and a saved live-tier catalog state so the readiness-driven copy stays stable.
+
+### Next step after card-types catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

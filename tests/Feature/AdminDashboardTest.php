@@ -4465,9 +4465,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft')
             ->assertSee('Create or edit card type')
             ->assertSee('Publish type')
+            ->assertSee('Blocked until the first Laravel-backed tier exists before any publish-style rollout.')
             ->assertSee('New type')
             ->assertSee('href="#live-form"', false)
             ->assertSee('Import rules')
+            ->assertSee('Blocked until the first Laravel-backed tier exists for rule parity review.')
             ->assertSee('Management snapshot')
             ->assertSee('Active tiers')
             ->assertSee('Imported rules')
@@ -4506,6 +4508,27 @@ class AdminDashboardTest extends TestCase
             ->assertSee('activation behavior')
             ->assertSee('Auto after issue')
             ->assertSee('1.50x');
+    }
+
+    public function test_card_types_catalog_actions_reflect_saved_tier_readiness(): void
+    {
+        CardType::create([
+            'name' => 'Gold',
+            'slug' => 'gold-catalog-readiness',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('Import rules')
+            ->assertSee('Blocked until saved tier accrual parity is verified before importing legacy rules.')
+            ->assertSee('Publish type')
+            ->assertSee('Blocked until saved live tiers clear rollout parity against the old Galaxy catalog.');
     }
 
     public function test_card_types_page_exposes_edit_link_for_latest_saved_type(): void

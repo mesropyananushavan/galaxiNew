@@ -1236,6 +1236,26 @@ class ResourceIndexController extends Controller
             ])->all();
         }
 
+        $page['actions'] = [
+            [
+                'label' => 'New type',
+                'tone' => 'primary',
+                'href' => '#live-form',
+            ],
+            [
+                'label' => 'Import rules',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->cardTypesCatalogImportRulesDisabledReason($cardTypes),
+            ],
+            [
+                'label' => 'Publish type',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->cardTypesCatalogPublishTypeDisabledReason($cardTypes),
+            ],
+        ];
+
         if ($latestCardType !== null) {
             $page = $this->appendPageAction($page, [
                 'label' => 'Edit latest saved type',
@@ -1438,6 +1458,30 @@ class ResourceIndexController extends Controller
             'This tier was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved catalog shell.',
             'This tier was first created in Laravel on %s and last updated on %s, so operators are reviewing a catalog shell that has already changed after initial setup.',
         );
+    }
+
+    private function cardTypesCatalogImportRulesDisabledReason(mixed $cardTypes): string
+    {
+        $savedCount = $cardTypes->count();
+        $activeCount = $cardTypes->where('is_active', true)->count();
+
+        return match (true) {
+            $savedCount === 0 => 'Blocked until the first Laravel-backed tier exists for rule parity review.',
+            $activeCount > 0 => 'Blocked until saved tier accrual parity is verified before importing legacy rules.',
+            default => 'Blocked until a saved draft tier is ready for parity-first rule review.',
+        };
+    }
+
+    private function cardTypesCatalogPublishTypeDisabledReason(mixed $cardTypes): string
+    {
+        $savedCount = $cardTypes->count();
+        $activeCount = $cardTypes->where('is_active', true)->count();
+
+        return match (true) {
+            $savedCount === 0 => 'Blocked until the first Laravel-backed tier exists before any publish-style rollout.',
+            $activeCount > 0 => 'Blocked until saved live tiers clear rollout parity against the old Galaxy catalog.',
+            default => 'Blocked until a saved draft tier clears rollout parity before any publish-like move.',
+        };
     }
 
     private function cardTypesImportRulesDisabledReason(CardType $selectedCardType): string
