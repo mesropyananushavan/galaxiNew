@@ -1072,6 +1072,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
             'review_note' => 'Keep this role aligned with the legacy branch manager workflow during parity review.',
             'access_note' => 'Confirm branch access handoff before operators rely on this live role shell.',
+            'assignment_note' => 'Keep assignment rollout review-only until branch staff mapping is verified.',
         ]);
 
         $permission = Permission::create([
@@ -1111,6 +1112,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
             ->assertSee('Access note')
             ->assertSee('Confirm branch access handoff before operators rely on this live role shell.')
+            ->assertSee('Assignment note')
+            ->assertSee('Keep assignment rollout review-only until branch staff mapping is verified.')
             ->assertSee('Scope rollout')
             ->assertSee('Shop scope visible in review')
             ->assertSee('Publish posture')
@@ -1161,6 +1164,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('The current Laravel review note says: Keep this role aligned with the legacy branch manager workflow during parity review.')
             ->assertSee('Shop Manager access note reflected from model state')
             ->assertSee('The current Laravel access note says: Confirm branch access handoff before operators rely on this live role shell.')
+            ->assertSee('Shop Manager assignment note reflected from model state')
+            ->assertSee('The current Laravel assignment note says: Keep assignment rollout review-only until branch staff mapping is verified.')
             ->assertSee('Shop Manager scope posture reflected from model state')
             ->assertSee('This role currently shows shop scope across Galaxy Central in Laravel review mode, so scope rollout stays visible while writes remain gated.')
             ->assertSee('Shop Manager scope coverage reflected from model state')
@@ -1182,6 +1187,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
             ->assertSee('Access note:')
             ->assertSee('Confirm branch access handoff before operators rely on this live role shell.')
+            ->assertSee('Assignment note:')
+            ->assertSee('Keep assignment rollout review-only until branch staff mapping is verified.')
             ->assertSee('Scope rollout posture:')
             ->assertSee('This role already shows shop scope in Laravel review, but scope mutation should stay blocked until a dedicated access slice is verified.')
             ->assertSee('Scope coverage:')
@@ -1288,6 +1295,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => '1',
             'review_note' => 'Start with the branch manager shell and keep assignment changes blocked.',
             'access_note' => 'Confirm staff access handoff before operators rely on this live role shell.',
+            'assignment_note' => 'Keep assignment rollout blocked until branch staff parity is reviewed.',
         ]);
 
         $role = Role::query()->where('name', 'Branch Supervisor')->firstOrFail();
@@ -1303,6 +1311,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
             'review_note' => 'Start with the branch manager shell and keep assignment changes blocked.',
             'access_note' => 'Confirm staff access handoff before operators rely on this live role shell.',
+            'assignment_note' => 'Keep assignment rollout blocked until branch staff parity is reviewed.',
         ]);
     }
 
@@ -1355,6 +1364,21 @@ class AdminDashboardTest extends TestCase
             ->assertSessionHasErrors([
                 'access_note' => 'Keep the access note under 1000 characters so the role workspace stays operator-friendly.',
             ]);
+
+        $longAssignmentNote = str_repeat('z', 1001);
+
+        $assignmentNoteResponse = $this->from(route('admin.roles-permissions.index'))->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Shop Manager Assignment Copy',
+            'slug' => 'shop-manager-assignment-copy',
+            'is_active' => '0',
+            'assignment_note' => $longAssignmentNote,
+        ]);
+
+        $assignmentNoteResponse
+            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
+            ->assertSessionHasErrors([
+                'assignment_note' => 'Keep the assignment note under 1000 characters so the role workspace stays operator-friendly.',
+            ]);
     }
 
     public function test_role_create_validation_redirects_to_index_without_referrer(): void
@@ -1387,6 +1411,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => '1',
             'review_note' => 'Document the first live Laravel role adjustments before widening scope.',
             'access_note' => 'Keep access handoff visible while this role remains under parity review.',
+            'assignment_note' => 'Keep assignment rollout review-only while this role remains under parity review.',
         ]);
 
         $response
@@ -1400,6 +1425,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
             'review_note' => 'Document the first live Laravel role adjustments before widening scope.',
             'access_note' => 'Keep access handoff visible while this role remains under parity review.',
+            'assignment_note' => 'Keep assignment rollout review-only while this role remains under parity review.',
         ]);
     }
 
@@ -1464,6 +1490,21 @@ class AdminDashboardTest extends TestCase
             ->assertSessionHasErrors([
                 'access_note' => 'Keep the access note under 1000 characters so the role workspace stays operator-friendly.',
             ]);
+
+        $longAssignmentNote = str_repeat('q', 1001);
+
+        $assignmentNoteErrorResponse = $this->from(route('admin.roles-permissions.index', ['role' => $role], absolute: false))->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Supervisor Updated Again',
+            'slug' => 'branch-supervisor',
+            'is_active' => '1',
+            'assignment_note' => $longAssignmentNote,
+        ]);
+
+        $assignmentNoteErrorResponse
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'assignment_note' => 'Keep the assignment note under 1000 characters so the role workspace stays operator-friendly.',
+            ]);
     }
 
     public function test_roles_permissions_page_shows_update_success_flash_message(): void
@@ -1473,6 +1514,7 @@ class AdminDashboardTest extends TestCase
             'name' => 'Branch Operations Lead',
             'slug' => 'branch-operations-lead-flash',
             'access_note' => 'Keep access handoff visible while this role remains under parity review.',
+            'assignment_note' => 'Keep assignment rollout review-only while this role remains under parity review.',
         ]);
 
         $response = $this->actingAs($user)
@@ -1489,6 +1531,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Latest flow result:')
             ->assertSee('Access note:')
             ->assertSee('Keep access handoff visible while this role remains under parity review.')
+            ->assertSee('Assignment note:')
+            ->assertSee('Keep assignment rollout review-only while this role remains under parity review.')
             ->assertSee('Role "Branch Operations Lead" was updated.');
     }
 

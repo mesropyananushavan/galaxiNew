@@ -23,6 +23,7 @@ class StoreRoleRequest extends FormRequest
             'is_active' => ['required', 'boolean'],
             'review_note' => ['nullable', 'string', 'max:1000'],
             'access_note' => ['nullable', 'string', 'max:1000'],
+            'assignment_note' => ['nullable', 'string', 'max:1000'],
         ];
     }
 
@@ -49,6 +50,7 @@ class StoreRoleRequest extends FormRequest
             'is_active' => 'role status',
             'review_note' => 'review note',
             'access_note' => 'access note',
+            'assignment_note' => 'assignment note',
         ];
     }
 
@@ -58,6 +60,7 @@ class StoreRoleRequest extends FormRequest
             'slug.unique' => 'This role slug is already in use.',
             'review_note.max' => 'Keep the review note under 1000 characters so the role workspace stays operator-friendly.',
             'access_note.max' => 'Keep the access note under 1000 characters so the role workspace stays operator-friendly.',
+            'assignment_note.max' => 'Keep the assignment note under 1000 characters so the role workspace stays operator-friendly.',
         ];
     }
 

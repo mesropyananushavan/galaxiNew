@@ -632,6 +632,7 @@ class ResourceIndexController extends Controller
                 'is_active' => $selectedRole->is_active ? '1' : '0',
                 'review_note' => $selectedRole->review_note ?? '',
                 'access_note' => $selectedRole->access_note ?? '',
+                'assignment_note' => $selectedRole->assignment_note ?? '',
                 'scope_rollout' => $this->rolesPermissionsScopeRolloutValue($scope),
                 'publish_posture' => $this->rolesPermissionsPublishPostureValue($selectedRole),
             ];
@@ -1577,6 +1578,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->rolesPermissionsLastSavedLabel($selectedRole)],
             ['label' => 'Review note', 'value' => $selectedRole->review_note ?: 'No review note saved yet'],
             ['label' => 'Access note', 'value' => $selectedRole->access_note ?: 'No access note saved yet'],
+            ['label' => 'Assignment note', 'value' => $selectedRole->assignment_note ?: 'No assignment note saved yet'],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
@@ -1693,6 +1695,18 @@ class ResourceIndexController extends Controller
             : 'No Laravel access note is saved yet, so access handoff guidance still depends on the surrounding workspace cues.';
     }
 
+    private function rolesPermissionsAssignmentNoteLabel(Role $selectedRole): string
+    {
+        return $selectedRole->assignment_note ?: 'No assignment note saved yet';
+    }
+
+    private function rolesPermissionsAssignmentNoteTimelineDescription(Role $selectedRole): string
+    {
+        return $selectedRole->assignment_note !== null && trim($selectedRole->assignment_note) !== ''
+            ? sprintf('The current Laravel assignment note says: %s', $selectedRole->assignment_note)
+            : 'No Laravel assignment note is saved yet, so assignment handoff guidance still depends on the surrounding workspace cues.';
+    }
+
     private function rolesPermissionsScopeRolloutValue(mixed $scope): string
     {
         return $scope->isNotEmpty() ? 'shop-scope-visible' : 'shop-scope-pending';
@@ -1787,6 +1801,11 @@ class ResourceIndexController extends Controller
                 'description' => $this->rolesPermissionsAccessNoteTimelineDescription($selectedRole),
             ],
             [
+                'title' => sprintf('%s assignment note reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => $this->rolesPermissionsAssignmentNoteTimelineDescription($selectedRole),
+            ],
+            [
                 'title' => sprintf('%s scope posture reflected from model state', $selectedRole->name),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsScopeRolloutTimelineDescription($scope),
@@ -1825,6 +1844,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->rolesPermissionsLastSavedLabel($selectedRole)],
             ['label' => 'Review note', 'value' => $this->rolesPermissionsReviewNoteLabel($selectedRole)],
             ['label' => 'Access note', 'value' => $this->rolesPermissionsAccessNoteLabel($selectedRole)],
+            ['label' => 'Assignment note', 'value' => $this->rolesPermissionsAssignmentNoteLabel($selectedRole)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageDependencyLabel($scope)],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],

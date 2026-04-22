@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Roles-permissions assignment-note slice checkpoint
+- Added a thin persisted `assignment_note` slice to the shared `roles-permissions` live form, including a nullable `assignment_note` column on `roles`, request validation, explicit create/update persistence, and selected-role rendering in summary, timeline, and dependency status.
+- Kept the step Phase 1-safe: the new field captures assignment handoff context without opening role assignment flows, shop-scope mutation, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `6 passed`, after adding the role assignment-note slice.
+
+### Next step after roles-permissions assignment-note slice checkpoint
+- Surface the new assignment note on roles-permissions index-level cues, or switch to another already-live Laravel form for the next narrow metadata slice while keeping assignment and matrix writes blocked.
+
 ### Roles-permissions access-note index visibility checkpoint
 - Surfaced the new persisted role `access_note` slice at the index level by adding an `Access notes` metric and an `Access note` table column, so access handoff context is visible before operators drill into selected-role review.
 - Kept the step small and safe: it reuses saved access-note text on read-only index surfaces and does not widen assignment flows, shop-scope mutation, or permission-matrix writes.
