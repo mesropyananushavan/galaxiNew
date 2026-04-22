@@ -1111,6 +1111,8 @@ class ResourceIndexController extends Controller
         $cardCount = Card::query()->count();
         $activeCardCount = Card::query()->where('status', 'active')->count();
         $blockedCardCount = Card::query()->where('status', 'blocked')->count();
+        $holderLinkedCardCount = Card::query()->whereNotNull('card_holder_id')->count();
+        $unassignedCardCount = $cardCount - $holderLinkedCardCount;
         $cardHolders = CardHolder::query()->withCount('cards')->with('shop:id,is_active')->get();
         $cardHolderCount = $cardHolders->count();
         $activeCardHolderCount = $cardHolders->where('is_active', true)->count();
@@ -1182,6 +1184,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Inventory state signal', 'value' => $activeCardCount > 0 && $blockedCardCount > 0
                         ? sprintf('%d active cards are already visible beside %d blocked inventory records for parity review', $activeCardCount, $blockedCardCount)
                         : 'blocked inventory coverage is still pending for parity review'],
+                    ['label' => 'Assignment linkage signal', 'value' => $holderLinkedCardCount > 0 && $unassignedCardCount > 0
+                        ? sprintf('%d holder-linked cards are already visible beside %d unassigned inventory records for parity review', $holderLinkedCardCount, $unassignedCardCount)
+                        : 'unassigned inventory coverage is still pending for parity review'],
                     ['label' => 'Scope guidance', 'value' => $shopCount > 0
                         ? 'Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.'
                         : 'No tracked shops exist yet, so branch-level scope review should stay in planning mode only.'],
@@ -1209,6 +1214,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Inventory state signal', 'value' => $activeCardCount > 0 && $blockedCardCount > 0
                         ? sprintf('%d active cards are already visible beside %d blocked inventory records for parity review', $activeCardCount, $blockedCardCount)
                         : 'blocked inventory coverage is still pending for parity review'],
+                    ['label' => 'Assignment linkage signal', 'value' => $holderLinkedCardCount > 0 && $unassignedCardCount > 0
+                        ? sprintf('%d holder-linked cards are already visible beside %d unassigned inventory records for parity review', $holderLinkedCardCount, $unassignedCardCount)
+                        : 'unassigned inventory coverage is still pending for parity review'],
                     ['label' => 'Scope posture', 'value' => 'Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.'],
                     ['label' => 'Grouping posture', 'value' => 'Shop grouping should stay read-only until query shaping is verified against legacy report totals.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, grouped query shaping, and export generation still remain preview-only for this source.'],

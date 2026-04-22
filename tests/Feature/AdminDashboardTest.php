@@ -3876,6 +3876,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('paused branch coverage is still pending for comparison review')
             ->assertSee('Inventory state signal')
             ->assertSee('blocked inventory coverage is still pending for parity review')
+            ->assertSee('Assignment linkage signal')
+            ->assertSee('unassigned inventory coverage is still pending for parity review')
             ->assertSee('Scope guidance')
             ->assertSee('Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.')
             ->assertSee('Default period posture')
@@ -3964,11 +3966,15 @@ class AdminDashboardTest extends TestCase
             ->assertSee($branchActivitySignal)
             ->assertSee('Inventory state signal')
             ->assertSee('1 active cards are already visible beside 1 blocked inventory records for parity review')
+            ->assertSee('Assignment linkage signal')
+            ->assertSee('1 holder-linked cards are already visible beside 1 unassigned inventory records for parity review')
             ->assertSee('Implementation dependencies')
             ->assertSee('Branch activity signal:')
             ->assertSee($branchActivitySignal)
             ->assertSee('Inventory state signal:')
-            ->assertSee('1 active cards are already visible beside 1 blocked inventory records for parity review');
+            ->assertSee('1 active cards are already visible beside 1 blocked inventory records for parity review')
+            ->assertSee('Assignment linkage signal:')
+            ->assertSee('1 holder-linked cards are already visible beside 1 unassigned inventory records for parity review');
     }
 
     public function test_reports_page_supports_selected_role_access_pending_readiness_context(): void
