@@ -1280,6 +1280,40 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until this draft role has a verified permission bundle and shop scope parity.');
     }
 
+    public function test_selected_active_role_without_permission_bundle_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Scope Branch',
+            'code' => 'galaxy-scope-branch-no-bundle',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Floor Lead',
+            'slug' => 'scoped-floor-lead-no-bundle',
+            'is_active' => true,
+        ]);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Ani Scopeyan',
+            'shop_id' => $shop->id,
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Scoped Floor Lead')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until this active role has a first verified Laravel permission bundle to compare against legacy staff access.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until this active role has a verified permission bundle to compare against legacy staff access.');
+    }
+
     public function test_roles_permissions_page_ignores_unknown_selected_role_query(): void
     {
         $shop = Shop::create([

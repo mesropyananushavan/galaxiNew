@@ -196,6 +196,13 @@
 ### Next step after checks-points positive-accrual receipt coverage checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Roles active-no-bundle gating checkpoint
+- Added focused selected-role coverage for the active-but-unbundled access path so the `roles-permissions` blocker copy for a live role without a verified permission bundle stays locked to a real Galaxy access-review posture.
+- Kept the step Phase 1-safe: no role workflow changed, but the feature test now protects the active-no-bundle matrix and publish gating reasons from drifting back toward generic wording.
+
+### Next step after roles active-no-bundle gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
