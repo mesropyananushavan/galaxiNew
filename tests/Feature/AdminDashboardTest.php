@@ -4003,6 +4003,13 @@ class AdminDashboardTest extends TestCase
             'name' => 'Ani Access Pending',
         ]);
 
+        $permission = Permission::create([
+            'name' => 'Review pending access parity',
+            'slug' => 'review-pending-access-parity',
+        ]);
+
+        $role->permissions()->attach($permission);
+
         $assignedUser->roles()->attach($role->id);
 
         $user = User::factory()->create();
@@ -4029,6 +4036,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 staff assignments are already visible for access review')
             ->assertSee('Draft staffing signal')
             ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review')
+            ->assertSee('Draft bundle signal')
+            ->assertSee('1 draft access roles already carry visible permission bundles that still need activation review')
             ->assertSee('Role state signal')
             ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Permission bundle signal')
@@ -4040,7 +4049,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Access readiness:')
             ->assertSee('permission-linked active access posture is still pending')
             ->assertSee('Draft staffing signal:')
-            ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review');
+            ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review')
+            ->assertSee('Draft bundle signal:')
+            ->assertSee('1 draft access roles already carry visible permission bundles that still need activation review');
     }
 
     public function test_reports_page_supports_selected_mixed_role_state_review_context(): void

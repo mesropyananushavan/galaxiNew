@@ -1130,6 +1130,7 @@ class ResourceIndexController extends Controller
         $activeRoleCount = $roles->where('is_active', true)->count();
         $permissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->permissions_count > 0)->count();
         $permissionlessActiveRoleCount = $activeRoleCount - $permissionLinkedRoleCount;
+        $draftPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => ! $role->is_active && $role->permissions_count > 0)->count();
         $assignedActiveRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->users_count > 0)->count();
         $unassignedActiveRoleCount = $activeRoleCount - $assignedActiveRoleCount;
         $draftAssignedRoleCount = $roles->filter(fn (Role $role): bool => ! $role->is_active && $role->users_count > 0)->count();
@@ -1334,6 +1335,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Draft staffing signal', 'value' => $draftAssignedRoleCount > 0
                         ? sprintf('%d draft access roles already carry visible staff assignments that still need activation review', $draftAssignedRoleCount)
                         : 'draft-role staff coverage is still pending'],
+                    ['label' => 'Draft bundle signal', 'value' => $draftPermissionLinkedRoleCount > 0
+                        ? sprintf('%d draft access roles already carry visible permission bundles that still need activation review', $draftPermissionLinkedRoleCount)
+                        : 'draft-role permission-bundle coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],
@@ -1374,6 +1378,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Draft staffing signal', 'value' => $draftAssignedRoleCount > 0
                         ? sprintf('%d draft access roles already carry visible staff assignments that still need activation review', $draftAssignedRoleCount)
                         : 'draft-role staff coverage is still pending'],
+                    ['label' => 'Draft bundle signal', 'value' => $draftPermissionLinkedRoleCount > 0
+                        ? sprintf('%d draft access roles already carry visible permission bundles that still need activation review', $draftPermissionLinkedRoleCount)
+                        : 'draft-role permission-bundle coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],

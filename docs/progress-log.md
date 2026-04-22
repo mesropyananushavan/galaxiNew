@@ -427,6 +427,13 @@
 ### Next step after reports linked-card-draft signal checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Reports draft-bundle signal checkpoint
+- Extended the selected `role-access` reporting source with a draft bundle signal so permission-linked draft roles no longer read like generic draft access coverage.
+- Kept the cue read-only and Laravel-backed by reusing loaded role permission counts, then updated focused pending-access coverage.
+
+### Next step after reports draft-bundle signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
