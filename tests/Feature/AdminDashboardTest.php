@@ -4046,6 +4046,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 draft access roles already carry visible permission bundles that still need activation review')
             ->assertSee('Scoped bundle signal')
             ->assertSee('shop-linked permission-bundle coverage is still pending')
+            ->assertSee('Bundle branch activity signal')
+            ->assertSee('paused-branch permission-bundle coverage is still pending')
             ->assertSee('Role state signal')
             ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Permission bundle signal')
@@ -4061,7 +4063,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft bundle signal:')
             ->assertSee('1 draft access roles already carry visible permission bundles that still need activation review')
             ->assertSee('Scoped bundle signal:')
-            ->assertSee('shop-linked permission-bundle coverage is still pending');
+            ->assertSee('shop-linked permission-bundle coverage is still pending')
+            ->assertSee('Bundle branch activity signal:')
+            ->assertSee('paused-branch permission-bundle coverage is still pending');
     }
 
     public function test_reports_page_supports_selected_mixed_role_state_review_context(): void
@@ -4513,11 +4517,15 @@ class AdminDashboardTest extends TestCase
             ->assertSee($assignmentScopeSignal)
             ->assertSee('Scoped bundle signal')
             ->assertSee('1 permission-linked roles already carry shop-linked access scope for parity review')
+            ->assertSee('Bundle branch activity signal')
+            ->assertSee('paused-branch permission-bundle coverage is still pending')
             ->assertSee('Implementation dependencies')
             ->assertSee('Assignment scope signal:')
             ->assertSee($assignmentScopeSignal)
             ->assertSee('Scoped bundle signal:')
-            ->assertSee('1 permission-linked roles already carry shop-linked access scope for parity review');
+            ->assertSee('1 permission-linked roles already carry shop-linked access scope for parity review')
+            ->assertSee('Bundle branch activity signal:')
+            ->assertSee('paused-branch permission-bundle coverage is still pending');
     }
 
     public function test_reports_page_supports_selected_mixed_assignment_branch_activity_review_context(): void
@@ -4573,9 +4581,13 @@ class AdminDashboardTest extends TestCase
             ->assertSee('2 staff assignments are already visible for access review')
             ->assertSee('Assignment branch activity signal')
             ->assertSee($assignmentBranchActivitySignal)
+            ->assertSee('Bundle branch activity signal')
+            ->assertSee('1 permission-linked roles are already visible in active branches beside 1 roles in paused shops for parity review')
             ->assertSee('Implementation dependencies')
             ->assertSee('Assignment branch activity signal:')
-            ->assertSee($assignmentBranchActivitySignal);
+            ->assertSee($assignmentBranchActivitySignal)
+            ->assertSee('Bundle branch activity signal:')
+            ->assertSee('1 permission-linked roles are already visible in active branches beside 1 roles in paused shops for parity review');
     }
 
     public function test_reports_page_accepts_case_insensitive_selected_source_query(): void

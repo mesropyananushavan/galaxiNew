@@ -1134,6 +1134,12 @@ class ResourceIndexController extends Controller
         $scopedPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active
             && $role->permissions_count > 0
             && $role->users->contains(fn ($user): bool => $user->shop_id !== null))->count();
+        $activeBranchPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active
+            && $role->permissions_count > 0
+            && $role->users->contains(fn ($user): bool => $user->shop_id !== null && (bool) $user->shop?->is_active))->count();
+        $pausedBranchPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active
+            && $role->permissions_count > 0
+            && $role->users->contains(fn ($user): bool => $user->shop_id !== null && ! (bool) $user->shop?->is_active))->count();
         $draftPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => ! $role->is_active && $role->permissions_count > 0)->count();
         $assignedActiveRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->users_count > 0)->count();
         $unassignedActiveRoleCount = $activeRoleCount - $assignedActiveRoleCount;
@@ -1351,6 +1357,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scoped bundle signal', 'value' => $scopedPermissionLinkedRoleCount > 0
                         ? sprintf('%d permission-linked roles already carry shop-linked access scope for parity review', $scopedPermissionLinkedRoleCount)
                         : 'shop-linked permission-bundle coverage is still pending'],
+                    ['label' => 'Bundle branch activity signal', 'value' => $activeBranchPermissionLinkedRoleCount > 0 && $pausedBranchPermissionLinkedRoleCount > 0
+                        ? sprintf('%d permission-linked roles are already visible in active branches beside %d roles in paused shops for parity review', $activeBranchPermissionLinkedRoleCount, $pausedBranchPermissionLinkedRoleCount)
+                        : 'paused-branch permission-bundle coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],
@@ -1397,6 +1406,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scoped bundle signal', 'value' => $scopedPermissionLinkedRoleCount > 0
                         ? sprintf('%d permission-linked roles already carry shop-linked access scope for parity review', $scopedPermissionLinkedRoleCount)
                         : 'shop-linked permission-bundle coverage is still pending'],
+                    ['label' => 'Bundle branch activity signal', 'value' => $activeBranchPermissionLinkedRoleCount > 0 && $pausedBranchPermissionLinkedRoleCount > 0
+                        ? sprintf('%d permission-linked roles are already visible in active branches beside %d roles in paused shops for parity review', $activeBranchPermissionLinkedRoleCount, $pausedBranchPermissionLinkedRoleCount)
+                        : 'paused-branch permission-bundle coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],
