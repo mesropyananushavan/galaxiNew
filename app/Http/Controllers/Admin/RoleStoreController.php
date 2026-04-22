@@ -21,6 +21,7 @@ class RoleStoreController extends Controller
             'slug' => $validated['slug'],
             'is_active' => $request->boolean('is_active'),
             'review_note' => $validated['review_note'] ?? null,
+            'access_note' => $validated['access_note'] ?? null,
         ]);
 
         return $this->redirectToSelectedRole(

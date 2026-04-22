@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Roles-permissions access-note slice checkpoint
+- Added a thin persisted `access_note` slice to the shared `roles-permissions` live form, including a nullable `access_note` column on `roles`, request validation, explicit create/update persistence, and selected-role rendering in summary, timeline, and dependency status.
+- Kept the step Phase 1-safe: the new field captures operator-facing access handoff context without opening assignment flows, shop-scope mutation, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `6 passed`, after adding the role access-note slice.
+
+### Next step after roles-permissions access-note slice checkpoint
+- Surface the new access note on roles-permissions index-level cues, or add one more narrow role metadata slice while keeping assignment and permission-matrix writes blocked.
+
 ### Card-types activation-note index visibility checkpoint
 - Surfaced the new persisted card-type `activation_note` slice at the catalog level by adding an `Activation notes` metric and an `Activation note` table column, so activation handoff context is visible before operators drill into selected-tier edit review.
 - Kept the step small and safe: it reuses saved activation-note text on read-only index surfaces and does not widen publish logic, activation behavior writes, or rule-import flows.
