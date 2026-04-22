@@ -1111,9 +1111,12 @@ class ResourceIndexController extends Controller
         $cardCount = Card::query()->count();
         $activeCardCount = Card::query()->where('status', 'active')->count();
         $blockedCardCount = Card::query()->where('status', 'blocked')->count();
-        $cardHolderCount = CardHolder::query()->count();
-        $activeCardHolderCount = CardHolder::query()->where('is_active', true)->count();
-        $inactiveCardHolderCount = CardHolder::query()->where('is_active', false)->count();
+        $cardHolders = CardHolder::query()->withCount('cards')->get();
+        $cardHolderCount = $cardHolders->count();
+        $activeCardHolderCount = $cardHolders->where('is_active', true)->count();
+        $inactiveCardHolderCount = $cardHolders->where('is_active', false)->count();
+        $linkedCardHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards_count > 0)->count();
+        $unlinkedCardHolderCount = $cardHolderCount - $linkedCardHolderCount;
         $roles = Role::query()->withCount(['permissions', 'users'])->get();
         $roleCount = $roles->count();
         $activeRoleCount = $roles->where('is_active', true)->count();
@@ -1224,6 +1227,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Lifecycle signal', 'value' => $inactiveCardHolderCount > 0 && $activeCardHolderCount > 0
                         ? sprintf('%d inactive holders are already visible beside %d active profiles for lifecycle review', $inactiveCardHolderCount, $activeCardHolderCount)
                         : 'inactive holder coverage is still pending for lifecycle review'],
+                    ['label' => 'Card linkage signal', 'value' => $linkedCardHolderCount > 0 && $unlinkedCardHolderCount > 0
+                        ? sprintf('%d linked holders are already visible beside %d unlinked profiles for parity review', $linkedCardHolderCount, $unlinkedCardHolderCount)
+                        : 'unlinked holder coverage is still pending for parity review'],
                     ['label' => 'Scope guidance', 'value' => 'Keep this source focused on active versus inactive holder posture first, because old Galaxy support flows used status review before deeper profile history.' ],
                     ['label' => 'Default period posture', 'value' => 'Use a current-status review first, then stage preset periods until lifecycle and recency parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer a compact on-screen table first, because holder-status review usually started as a fast support triage surface, not an export job.' ],
@@ -1244,6 +1250,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Lifecycle signal', 'value' => $inactiveCardHolderCount > 0 && $activeCardHolderCount > 0
                         ? sprintf('%d inactive holders are already visible beside %d active profiles for lifecycle review', $inactiveCardHolderCount, $activeCardHolderCount)
                         : 'inactive holder coverage is still pending for lifecycle review'],
+                    ['label' => 'Card linkage signal', 'value' => $linkedCardHolderCount > 0 && $unlinkedCardHolderCount > 0
+                        ? sprintf('%d linked holders are already visible beside %d unlinked profiles for parity review', $linkedCardHolderCount, $unlinkedCardHolderCount)
+                        : 'unlinked holder coverage is still pending for parity review'],
                     ['label' => 'Scope posture', 'value' => 'Status-first review should stay ahead of deeper segmentation until lifecycle parity and operator lookup habits are matched.'],
                     ['label' => 'Lifecycle posture', 'value' => 'Status aggregation should stay read-only until holder lifecycle and activity parity are verified.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, report shaping, and export generation still remain preview-only for this source.'],

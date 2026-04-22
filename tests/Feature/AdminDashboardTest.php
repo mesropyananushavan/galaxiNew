@@ -4196,6 +4196,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('ready for holder-status triage review')
             ->assertSee('Lifecycle signal')
             ->assertSee('inactive holder coverage is still pending for lifecycle review')
+            ->assertSee('Card linkage signal')
+            ->assertSee('unlinked holder coverage is still pending for parity review')
             ->assertSee('Cardholder status source selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked cardholders from the current Laravel foundation.')
             ->assertSee('Support handoff should keep holder posture visible')
@@ -4214,7 +4216,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
         ]);
 
-        CardHolder::create([
+        $activeHolder = CardHolder::create([
             'full_name' => 'Mariam Mixed Holder Active',
             'phone' => '+37499111230',
             'email' => 'mariam.holder.mixed.active@example.com',
@@ -4222,11 +4224,44 @@ class AdminDashboardTest extends TestCase
             'shop_id' => $shop->id,
         ]);
 
-        CardHolder::create([
+        $inactiveHolder = CardHolder::create([
             'full_name' => 'Mariam Mixed Holder Inactive',
             'phone' => '+37499111231',
             'email' => 'mariam.holder.mixed.inactive@example.com',
             'is_active' => false,
+            'shop_id' => $shop->id,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Mixed Holder Tier',
+            'slug' => 'reporting-mixed-holder-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => '990011223360',
+            'status' => 'active',
+            'card_holder_id' => $activeHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        Card::create([
+            'number' => '990011223361',
+            'status' => 'blocked',
+            'card_holder_id' => $inactiveHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        CardHolder::create([
+            'full_name' => 'Mariam Mixed Holder Unlinked',
+            'phone' => '+37499111232',
+            'email' => 'mariam.holder.mixed.unlinked@example.com',
+            'is_active' => true,
             'shop_id' => $shop->id,
         ]);
 
@@ -4242,12 +4277,16 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Reviewing: Cardholder status overview')
             ->assertSee('Source coverage')
-            ->assertSee('2 cardholders are currently available for read-only status reporting review.')
+            ->assertSee('3 cardholders are currently available for read-only status reporting review.')
             ->assertSee('Lifecycle signal')
             ->assertSee($lifecycleSignal)
+            ->assertSee('Card linkage signal')
+            ->assertSee('2 linked holders are already visible beside 1 unlinked profiles for parity review')
             ->assertSee('Implementation dependencies')
             ->assertSee('Lifecycle signal:')
-            ->assertSee($lifecycleSignal);
+            ->assertSee($lifecycleSignal)
+            ->assertSee('Card linkage signal:')
+            ->assertSee('2 linked holders are already visible beside 1 unlinked profiles for parity review');
     }
 
     public function test_reports_page_supports_selected_role_access_review_context(): void
