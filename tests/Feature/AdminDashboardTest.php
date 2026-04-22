@@ -3538,6 +3538,41 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Overlap with broader loyalty rules still needs parity verification before any publish path is safe.');
     }
 
+    public function test_services_rules_page_supports_selected_all_shop_rule_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules?rule=birthday-bonus');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all rules')
+            ->assertSee('/admin/services-rules')
+            ->assertSee('Reviewing: Birthday bonus')
+            ->assertSee('Review priorities')
+            ->assertSee('Blocked until all-shop rule priority order is verified in Laravel.')
+            ->assertSee('Publish rule')
+            ->assertSee('Blocked until this all-shop rule clears CRUD and publish-safety parity beyond the preview shell.')
+            ->assertSee('Selected rule preview')
+            ->assertSee('Birthday bonus')
+            ->assertSee('Scope')
+            ->assertSee('All shops')
+            ->assertSee('Condition posture')
+            ->assertSee('Birthday window logic should stay parity-first, because date-sensitive loyalty rules are easy to drift during migration.')
+            ->assertSee('Priority posture')
+            ->assertSee('Keep this rule near the top of the preview stack until Laravel priority resolution is verified against the old Galaxy order.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep this rule in table-first review mode, because operators usually compare scope, effect, and priority together before discussing publication.')
+            ->assertSee('Effect guidance')
+            ->assertSee('Treat the uplift as review-only until accrual calculations and birthday eligibility are backed by Laravel writes.')
+            ->assertSee('Birthday bonus selected for rule review')
+            ->assertSee('Birthday rule handoff stays parity-first')
+            ->assertSee('Birthday rule handoff keeps parity evidence visible')
+            ->assertSee('Scope, priority, and uplift effect should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.')
+            ->assertSee('Priority resolution remains preview-only until overlapping rule order is validated in Laravel.');
+    }
+
     public function test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog(): void
     {
         $user = User::factory()->create();
