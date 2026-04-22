@@ -5168,6 +5168,28 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until this live tier has visible card coverage and rollout parity review.');
     }
 
+    public function test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Amber',
+            'slug' => 'galaxy-amber-live-no-cards',
+            'points_rate' => '1.40',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/card-types?cardType='.$cardType->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Editing: Galaxy Amber')
+            ->assertSee('Import rules')
+            ->assertSee('Blocked until this live tier has visible card coverage for accrual parity review.')
+            ->assertSee('Publish type')
+            ->assertSee('Blocked until this live tier has visible card coverage and rollout parity review.');
+    }
+
     public function test_card_types_page_ignores_unknown_selected_card_type_query(): void
     {
         CardType::create([

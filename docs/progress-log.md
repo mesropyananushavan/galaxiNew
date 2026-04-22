@@ -203,6 +203,13 @@
 ### Next step after roles active-no-bundle gating checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Card-types live-no-coverage gating checkpoint
+- Added focused selected-tier coverage for the active-without-card-coverage path so the `card-types` blocker copy for live tiers missing visible cards stays locked to a real Galaxy catalog posture.
+- Kept the step Phase 1-safe: no card-type workflow changed, but the feature test now protects the live-no-coverage import and publish gating reasons from drifting back toward generic wording.
+
+### Next step after card-types live-no-coverage gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
