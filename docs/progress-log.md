@@ -343,6 +343,13 @@
 ### Next step after reports role state-signal checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Reports inventory state-signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with an inventory state signal so branch review now distinguishes active cards from blocked inventory records instead of showing only raw counts.
+- Added focused mixed-inventory coverage to keep this active-plus-blocked reporting posture visible inside the Laravel-backed report shell.
+
+### Next step after reports inventory state-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

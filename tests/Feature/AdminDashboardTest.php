@@ -3874,6 +3874,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('ready for branch-total review across 1 live shops')
             ->assertSee('Branch activity signal')
             ->assertSee('paused branch coverage is still pending for comparison review')
+            ->assertSee('Inventory state signal')
+            ->assertSee('blocked inventory coverage is still pending for parity review')
             ->assertSee('Scope guidance')
             ->assertSee('Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.')
             ->assertSee('Default period posture')
@@ -3892,6 +3894,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('ready for branch-total review across 1 live shops')
             ->assertSee('Branch activity signal:')
             ->assertSee('paused branch coverage is still pending for comparison review')
+            ->assertSee('Inventory state signal:')
+            ->assertSee('blocked inventory coverage is still pending for parity review')
             ->assertSee('Scope posture')
             ->assertSee('Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.')
             ->assertSee('Grouping posture')
@@ -3958,9 +3962,13 @@ class AdminDashboardTest extends TestCase
             ->assertSee('2 cards across 2 tracked shops are currently available for read-only reporting review.')
             ->assertSee('Branch activity signal')
             ->assertSee($branchActivitySignal)
+            ->assertSee('Inventory state signal')
+            ->assertSee('1 active cards are already visible beside 1 blocked inventory records for parity review')
             ->assertSee('Implementation dependencies')
             ->assertSee('Branch activity signal:')
-            ->assertSee($branchActivitySignal);
+            ->assertSee($branchActivitySignal)
+            ->assertSee('Inventory state signal:')
+            ->assertSee('1 active cards are already visible beside 1 blocked inventory records for parity review');
     }
 
     public function test_reports_page_supports_selected_role_access_pending_readiness_context(): void
