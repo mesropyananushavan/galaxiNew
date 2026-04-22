@@ -3872,6 +3872,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('card and branch inputs are ready for on-screen review')
             ->assertSee('Branch review readiness')
             ->assertSee('ready for branch-total review across 1 live shops')
+            ->assertSee('Branch activity signal')
+            ->assertSee('paused branch coverage is still pending for comparison review')
             ->assertSee('Scope guidance')
             ->assertSee('Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.')
             ->assertSee('Default period posture')
@@ -3888,10 +3890,77 @@ class AdminDashboardTest extends TestCase
             ->assertSee('card and branch inputs are ready for on-screen review')
             ->assertSee('Branch review readiness:')
             ->assertSee('ready for branch-total review across 1 live shops')
+            ->assertSee('Branch activity signal:')
+            ->assertSee('paused branch coverage is still pending for comparison review')
             ->assertSee('Scope posture')
             ->assertSee('Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.')
             ->assertSee('Grouping posture')
             ->assertSee('Shop grouping should stay read-only until query shaping is verified against legacy report totals.');
+    }
+
+    public function test_reports_page_supports_selected_mixed_branch_activity_review_context(): void
+    {
+        $liveShop = Shop::create([
+            'name' => 'Galaxy Mixed Live Branch',
+            'code' => 'galaxy-mixed-live-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Mixed Paused Branch',
+            'code' => 'galaxy-mixed-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Mixed Branch Tier',
+            'slug' => 'reporting-mixed-branch-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Mixed Branch Review',
+            'phone' => '+37499111229',
+            'email' => 'mariam.reports.mixed.branch@example.com',
+            'is_active' => true,
+            'shop_id' => $liveShop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223349',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $liveShop->id,
+            'issued_at' => now(),
+        ]);
+
+        Card::create([
+            'number' => '990011223350',
+            'status' => 'blocked',
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $pausedShop->id,
+            'issued_at' => now(),
+        ]);
+
+        $branchActivitySignal = '1 live shops are already visible beside 1 paused branches for comparison review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=cards-by-shop');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Cards by shop')
+            ->assertSee('Source coverage')
+            ->assertSee('2 cards across 2 tracked shops are currently available for read-only reporting review.')
+            ->assertSee('Branch activity signal')
+            ->assertSee($branchActivitySignal)
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Branch activity signal:')
+            ->assertSee($branchActivitySignal);
     }
 
     public function test_reports_page_supports_selected_role_access_pending_readiness_context(): void

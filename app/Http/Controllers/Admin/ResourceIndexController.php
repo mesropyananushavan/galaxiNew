@@ -1107,6 +1107,7 @@ class ResourceIndexController extends Controller
     private function enrichReportsPage(array $page): array
     {
         $shopCount = Shop::query()->count();
+        $activeShopCount = Shop::query()->where('is_active', true)->count();
         $cardCount = Card::query()->count();
         $cardHolderCount = CardHolder::query()->count();
         $activeCardHolderCount = CardHolder::query()->where('is_active', true)->count();
@@ -1165,6 +1166,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Branch review readiness', 'value' => $cardCount > 0 && $shopCount > 0
                         ? sprintf('ready for branch-total review across %d live shops', $shopCount)
                         : 'wait for both live branch and card coverage before branch-total review'],
+                    ['label' => 'Branch activity signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount
+                        ? sprintf('%d live shops are already visible beside %d paused branches for comparison review', $activeShopCount, $shopCount - $activeShopCount)
+                        : 'paused branch coverage is still pending for comparison review'],
                     ['label' => 'Scope guidance', 'value' => $shopCount > 0
                         ? 'Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.'
                         : 'No tracked shops exist yet, so branch-level scope review should stay in planning mode only.'],
@@ -1186,6 +1190,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Branch review readiness', 'value' => $cardCount > 0 && $shopCount > 0
                         ? sprintf('ready for branch-total review across %d live shops', $shopCount)
                         : 'wait for both live branch and card coverage before branch-total review'],
+                    ['label' => 'Branch activity signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount
+                        ? sprintf('%d live shops are already visible beside %d paused branches for comparison review', $activeShopCount, $shopCount - $activeShopCount)
+                        : 'paused branch coverage is still pending for comparison review'],
                     ['label' => 'Scope posture', 'value' => 'Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.'],
                     ['label' => 'Grouping posture', 'value' => 'Shop grouping should stay read-only until query shaping is verified against legacy report totals.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, grouped query shaping, and export generation still remain preview-only for this source.'],
