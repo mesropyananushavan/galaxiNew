@@ -1815,6 +1815,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Back to all cards')
             ->assertSee('href="/admin/cards"', false)
             ->assertSee('Reviewing: GX-910001')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until this blocked holder-linked card clears dispute and replacement parity against the legacy Galaxy flow.')
             ->assertSee('Selected card')
             ->assertSee('Review mode')
             ->assertSee('Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.')

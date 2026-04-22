@@ -804,7 +804,7 @@ class ResourceIndexController extends Controller
                 'label' => 'Review blocked cards',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until legacy blocked-card semantics are verified against the Laravel inventory flow.',
+                'disabledReason' => $this->cardsSelectedReviewBlockedDisabledReason($selectedCard),
             ],
             ],
         );
@@ -1780,6 +1780,16 @@ class ResourceIndexController extends Controller
             'cardholder-status' => 'Blocked until holder-status export snapshots are verified against lifecycle summaries and file delivery.',
             'role-access' => 'Blocked until role-access export snapshots are verified against scope summaries and file delivery.',
             default => 'Blocked until reporting exports and file delivery are verified against legacy Galaxy output expectations.',
+        };
+    }
+
+    private function cardsSelectedReviewBlockedDisabledReason(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->status === 'blocked' && $selectedCard->holder !== null => 'Blocked until this blocked holder-linked card clears dispute and replacement parity against the legacy Galaxy flow.',
+            $selectedCard->status === 'blocked' => 'Blocked until this blocked card clears dispute and replacement parity against the legacy Galaxy flow.',
+            $selectedCard->status === 'active' => 'Blocked until blocked-card semantics are verified against this active Laravel inventory flow.',
+            default => 'Blocked until blocked-card semantics are verified against this draft Laravel inventory flow.',
         };
     }
 

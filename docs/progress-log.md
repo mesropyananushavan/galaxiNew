@@ -122,6 +122,14 @@
 ### Next step after checks-points selected-receipt gating checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Cards selected-action gating checkpoint
+- Tightened selected `cards` actions so blocked-card review now exposes blocker copy tied to the current Laravel inventory state instead of repeating one generic blocked-card message in every selected-card context.
+- Kept the step Phase 1-safe: the selected action remains disabled, but its reason now reacts to blocked versus active or draft inventory posture and whether holder linkage is already visible.
+- Added focused feature coverage so this Galaxy-specific inventory blocker stays visible in selected-card review.
+
+### Next step after cards selected-action gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
