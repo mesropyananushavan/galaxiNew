@@ -2,6 +2,14 @@
 
 ## 2026-04-22
 
+### Reports source-signal cue checkpoint
+- Added a read-only `Source signal` cue to selected `reports` live-source review so operators can see source coverage posture in one compact Laravel-backed cue without opening preset handling, query shaping, or export writes.
+- Surfaced the cue in both selected-source summaries and dependency-status panels for the live-backed reporting sources in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_replaces_preview_catalog_with_model_backed_reporting_sources)'`, `2 passed`, after adding the source-signal cue.
+
+### Next step after reports source-signal cue checkpoint
+- Return to an already-live Laravel form for the next safe metadata increment, or keep tightening read-only operational cues where they make the admin shell feel more Galaxy-specific without widening writes.
+
 ### Roles-permissions coverage-signal cue checkpoint
 - Added a read-only `Coverage signal` cue to selected `roles-permissions` review so operators can see scope, staff, and permission coverage posture in one compact Laravel-backed cue without opening assignment, matrix, or shop-scope writes.
 - Surfaced the cue in both selected-role summaries and dependency-status panels through a small helper in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.
