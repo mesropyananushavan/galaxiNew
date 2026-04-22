@@ -2495,6 +2495,59 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows still remain preview-only for this workspace');
     }
 
+    public function test_shops_page_supports_selected_branch_coverage_without_manager_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Coverage Only Branch',
+            'code' => 'galaxy-coverage-only-branch',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Lusine Coverage',
+            'phone' => '+37410000221',
+            'email' => 'lusine.coverage@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Coverage Tier',
+            'slug' => 'galaxy-coverage-tier-shop',
+            'points_rate' => '1.35',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-SHOP-0001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$shop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all shops')
+            ->assertSee('Reviewing: Galaxy Coverage Only Branch')
+            ->assertSee('Review branch scope')
+            ->assertSee('Blocked until visible branch coverage is verified against the legacy Galaxy multi-shop model.')
+            ->assertSee('Selected shop')
+            ->assertSee('Galaxy Coverage Only Branch')
+            ->assertSee('Operational readiness')
+            ->assertSee('active branch shell, ownership still forming')
+            ->assertSee('Coverage signal')
+            ->assertSee('branch records visible, manager coverage pending')
+            ->assertSee('Assigned manager')
+            ->assertSee('Unassigned')
+            ->assertSee('Manager guidance')
+            ->assertSee('No manager is assigned yet, so ownership expectations should stay parity-first until assignment rules are verified.');
+    }
+
     public function test_shops_page_ignores_unknown_selected_shop_query(): void
     {
         $shop = Shop::create([
