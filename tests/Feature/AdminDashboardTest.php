@@ -1981,6 +1981,58 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.');
     }
 
+    public function test_cards_page_supports_selected_blocked_holder_linked_card_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Blocked Card Branch',
+            'code' => 'galaxy-blocked-card-branch',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Lilit Blocked Card',
+            'phone' => '+37491100223',
+            'email' => 'lilit.blocked.card@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Blocked Tier',
+            'slug' => 'galaxy-blocked-tier-card',
+            'points_rate' => '1.65',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-920099',
+            'status' => 'blocked',
+            'activated_at' => '2026-04-04 10:15:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all cards')
+            ->assertSee('Reviewing: GX-920099')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until this blocked holder-linked card clears dispute and replacement parity against the legacy Galaxy flow.')
+            ->assertSee('Selected card')
+            ->assertSee('GX-920099')
+            ->assertSee('Operational readiness')
+            ->assertSee('blocked inventory, operator review only')
+            ->assertSee('Linkage signal')
+            ->assertSee('holder and branch linkage visible')
+            ->assertSee('Inventory guidance')
+            ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
+    }
+
     public function test_cards_page_supports_selected_draft_card_review_context(): void
     {
         $shop = Shop::create([

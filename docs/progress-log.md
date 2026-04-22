@@ -280,6 +280,13 @@
 ### Next step after shops manager-linked coverage review checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Cards blocked-holder review checkpoint
+- Added focused selected-card coverage for the blocked holder-linked path so the `cards` dispute and replacement blocker stays anchored to a real Galaxy inventory-review posture.
+- Kept the step Phase 1-safe: no card workflow changed, but the feature test now protects the blocked holder-linked review language from drifting back toward generic starter copy.
+
+### Next step after cards blocked-holder review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
