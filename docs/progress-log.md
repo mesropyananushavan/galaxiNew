@@ -106,6 +106,14 @@
 ### Next step after reports selected-source export-gating checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Shops and cardholders selected-action gating checkpoint
+- Tightened selected `shops` and `cardholders` actions so branch-scope review and holder-activity review now expose blocker copy tied to real saved Laravel state instead of repeating one generic message in every selected-record context.
+- Kept the step Phase 1-safe: both actions remain disabled, but their reasons now react to manager plus holder/card coverage on branches and to inactive versus linked-card holder posture.
+- Added focused feature coverage so these selected-record Galaxy-specific blockers stay visible as more admin workspaces move away from starter phrasing.
+
+### Next step after shops and cardholders selected-action gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

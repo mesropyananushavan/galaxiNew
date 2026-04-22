@@ -924,7 +924,7 @@ class ResourceIndexController extends Controller
                 'label' => 'Review recent activity',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until a stable Laravel activity source exists for holder lookup parity.',
+                'disabledReason' => $this->cardholdersSelectedReviewActivityDisabledReason($selectedCardHolder),
             ],
             ],
         );
@@ -1044,7 +1044,7 @@ class ResourceIndexController extends Controller
                 'label' => 'Review branch scope',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
+                'disabledReason' => $this->shopsSelectedReviewScopeDisabledReason($selectedShop),
             ],
             ],
         );
@@ -1763,6 +1763,26 @@ class ResourceIndexController extends Controller
             'cardholder-status' => 'Blocked until holder-status export snapshots are verified against lifecycle summaries and file delivery.',
             'role-access' => 'Blocked until role-access export snapshots are verified against scope summaries and file delivery.',
             default => 'Blocked until reporting exports and file delivery are verified against legacy Galaxy output expectations.',
+        };
+    }
+
+    private function cardholdersSelectedReviewActivityDisabledReason(CardHolder $selectedCardHolder): string
+    {
+        return match (true) {
+            $selectedCardHolder->cards_count > 0 && $selectedCardHolder->is_active => 'Blocked until linked-card activity is backed by a stable Laravel event source for active-holder lookup parity.',
+            $selectedCardHolder->cards_count > 0 => 'Blocked until linked-card activity is backed by a stable Laravel event source for holder lookup parity.',
+            ! $selectedCardHolder->is_active => 'Blocked until inactive-holder activity history is backed by a stable Laravel event source for lifecycle parity.',
+            default => 'Blocked until a stable Laravel activity source exists for holder lookup parity.',
+        };
+    }
+
+    private function shopsSelectedReviewScopeDisabledReason(Shop $selectedShop): string
+    {
+        return match (true) {
+            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.',
+            $selectedShop->users_count > 0 => 'Blocked until manager-linked branch scope is verified against the legacy Galaxy multi-shop model.',
+            $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Blocked until visible branch coverage is verified against the legacy Galaxy multi-shop model.',
+            default => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
         };
     }
 
