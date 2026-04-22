@@ -82,6 +82,14 @@
 ### Next step after shops catalog action-gating checkpoint
 - Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Reports catalog export-gating checkpoint
+- Tightened the default `reports` catalog header actions so preset and export work now expose more specific blocker copy based on live Laravel source coverage instead of staying at one generic reporting-preview message.
+- Kept the step Phase 1-safe: `Review export presets` and the new disabled `Export source snapshot` action remain blocked, but their reasons now react to whether the reporting workspace has no live sources, early live sources, or broader multi-source coverage.
+- Added focused feature coverage for both the empty reporting catalog and a live multi-source reporting state so the Galaxy-specific gating stays stable.
+
+### Next step after reports catalog export-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

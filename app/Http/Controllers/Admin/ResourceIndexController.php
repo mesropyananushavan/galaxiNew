@@ -1071,6 +1071,25 @@ class ResourceIndexController extends Controller
         $activeRoleCount = Role::query()->where('is_active', true)->count();
         $permissionLinkedRoleCount = Role::query()->has('permissions')->count();
 
+        $page['actions'] = [
+            [
+                'label' => 'Open live report catalog',
+                'tone' => 'primary',
+            ],
+            [
+                'label' => 'Review export presets',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->reportsCatalogPresetDisabledReason($shopCount, $cardCount, $cardHolderCount, $roleCount),
+            ],
+            [
+                'label' => 'Export source snapshot',
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $this->reportsCatalogExportDisabledReason($shopCount, $cardCount, $cardHolderCount, $roleCount),
+            ],
+        ];
+
         if ($shopCount === 0 && $cardCount === 0 && $cardHolderCount === 0 && $roleCount === 0) {
             return $page;
         }
@@ -1662,6 +1681,29 @@ class ResourceIndexController extends Controller
             $managerCount > 0 => 'Blocked until manager-linked branch scope is verified against the legacy Galaxy multi-shop model.',
             $coverageCount > 0 => 'Blocked until visible branch coverage is verified against the legacy Galaxy multi-shop model.',
             default => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
+        };
+    }
+
+    private function reportsCatalogPresetDisabledReason(int $shopCount, int $cardCount, int $cardHolderCount, int $roleCount): string
+    {
+        $liveSourceCount = collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])->filter(fn (int $count): bool => $count > 0)->count();
+
+        return match (true) {
+            $liveSourceCount >= 3 => 'Blocked until preset handling is verified against multiple live Laravel reporting sources.',
+            $liveSourceCount > 0 => 'Blocked until preset handling is backed by Laravel reporting flow validation across the first live sources.',
+            default => 'Blocked until preset handling is backed by Laravel reporting flow validation.',
+        };
+    }
+
+    private function reportsCatalogExportDisabledReason(int $shopCount, int $cardCount, int $cardHolderCount, int $roleCount): string
+    {
+        $liveSourceCount = collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])->filter(fn (int $count): bool => $count > 0)->count();
+        $inventoryCoverageReady = $shopCount > 0 && $cardCount > 0;
+
+        return match (true) {
+            $liveSourceCount >= 3 && $inventoryCoverageReady => 'Blocked until multi-source export snapshots are verified against legacy file delivery and grouped totals.',
+            $liveSourceCount > 0 => 'Blocked until live Laravel source snapshots are verified against legacy export totals and file delivery.',
+            default => 'Blocked until the first live Laravel report source exists for export parity review.',
         };
     }
 
