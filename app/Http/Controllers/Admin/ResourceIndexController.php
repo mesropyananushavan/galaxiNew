@@ -1109,6 +1109,8 @@ class ResourceIndexController extends Controller
         $shopCount = Shop::query()->count();
         $cardCount = Card::query()->count();
         $cardHolderCount = CardHolder::query()->count();
+        $activeCardHolderCount = CardHolder::query()->where('is_active', true)->count();
+        $inactiveCardHolderCount = CardHolder::query()->where('is_active', false)->count();
         $roles = Role::query()->withCount(['permissions', 'users'])->get();
         $roleCount = $roles->count();
         $activeRoleCount = $roles->where('is_active', true)->count();
@@ -1203,6 +1205,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Source signal', 'value' => $cardHolderCount > 0 ? 'live holder status coverage visible' : 'holder status coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardHolderCount > 0 ? 'holder status inputs are ready for on-screen review' : 'holder status inputs still need live Laravel coverage'],
                     ['label' => 'Review readiness', 'value' => $cardHolderCount > 0 ? 'ready for holder-status triage review' : 'wait for live holder coverage before triage review'],
+                    ['label' => 'Lifecycle signal', 'value' => $inactiveCardHolderCount > 0 && $activeCardHolderCount > 0
+                        ? sprintf('%d inactive holders are already visible beside %d active profiles for lifecycle review', $inactiveCardHolderCount, $activeCardHolderCount)
+                        : 'inactive holder coverage is still pending for lifecycle review'],
                     ['label' => 'Scope guidance', 'value' => 'Keep this source focused on active versus inactive holder posture first, because old Galaxy support flows used status review before deeper profile history.' ],
                     ['label' => 'Default period posture', 'value' => 'Use a current-status review first, then stage preset periods until lifecycle and recency parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer a compact on-screen table first, because holder-status review usually started as a fast support triage surface, not an export job.' ],
@@ -1220,6 +1225,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Source signal', 'value' => $cardHolderCount > 0 ? 'live holder status coverage visible' : 'holder status coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardHolderCount > 0 ? 'holder status inputs are ready for on-screen review' : 'holder status inputs still need live Laravel coverage'],
                     ['label' => 'Review readiness', 'value' => $cardHolderCount > 0 ? 'ready for holder-status triage review' : 'wait for live holder coverage before triage review'],
+                    ['label' => 'Lifecycle signal', 'value' => $inactiveCardHolderCount > 0 && $activeCardHolderCount > 0
+                        ? sprintf('%d inactive holders are already visible beside %d active profiles for lifecycle review', $inactiveCardHolderCount, $activeCardHolderCount)
+                        : 'inactive holder coverage is still pending for lifecycle review'],
                     ['label' => 'Scope posture', 'value' => 'Status-first review should stay ahead of deeper segmentation until lifecycle parity and operator lookup habits are matched.'],
                     ['label' => 'Lifecycle posture', 'value' => 'Status aggregation should stay read-only until holder lifecycle and activity parity are verified.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, report shaping, and export generation still remain preview-only for this source.'],

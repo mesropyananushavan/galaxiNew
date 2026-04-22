@@ -4019,6 +4019,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('holder status inputs are ready for on-screen review')
             ->assertSee('Review readiness')
             ->assertSee('ready for holder-status triage review')
+            ->assertSee('Lifecycle signal')
+            ->assertSee('inactive holder coverage is still pending for lifecycle review')
             ->assertSee('Cardholder status source selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked cardholders from the current Laravel foundation.')
             ->assertSee('Support handoff should keep holder posture visible')
@@ -4027,6 +4029,50 @@ class AdminDashboardTest extends TestCase
             ->assertSee('ready for holder-status triage review')
             ->assertSee('Lifecycle posture:')
             ->assertSee('Status aggregation should stay read-only until holder lifecycle and activity parity are verified.');
+    }
+
+    public function test_reports_page_supports_selected_mixed_cardholder_status_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Mixed Holder Reporting',
+            'code' => 'galaxy-mixed-holder-reporting',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'full_name' => 'Mariam Mixed Holder Active',
+            'phone' => '+37499111230',
+            'email' => 'mariam.holder.mixed.active@example.com',
+            'is_active' => true,
+            'shop_id' => $shop->id,
+        ]);
+
+        CardHolder::create([
+            'full_name' => 'Mariam Mixed Holder Inactive',
+            'phone' => '+37499111231',
+            'email' => 'mariam.holder.mixed.inactive@example.com',
+            'is_active' => false,
+            'shop_id' => $shop->id,
+        ]);
+
+        $inactiveHolderCount = CardHolder::query()->where('is_active', false)->count();
+        $activeHolderCount = CardHolder::query()->where('is_active', true)->count();
+        $lifecycleSignal = sprintf('%d inactive holders are already visible beside %d active profiles for lifecycle review', $inactiveHolderCount, $activeHolderCount);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=cardholder-status');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Cardholder status overview')
+            ->assertSee('Source coverage')
+            ->assertSee('2 cardholders are currently available for read-only status reporting review.')
+            ->assertSee('Lifecycle signal')
+            ->assertSee($lifecycleSignal)
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Lifecycle signal:')
+            ->assertSee($lifecycleSignal);
     }
 
     public function test_reports_page_supports_selected_role_access_review_context(): void
