@@ -1140,6 +1140,7 @@ class ResourceIndexController extends Controller
         $blockedLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->status === 'blocked'))->count();
         $draftLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->status === 'draft'))->count();
         $activeLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->status === 'active'))->count();
+        $activatedLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->activated_at !== null))->count();
         $roles = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active')->get();
         $roleCount = $roles->count();
         $activeRoleCount = $roles->where('is_active', true)->count();
@@ -1361,6 +1362,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Active holder signal', 'value' => $activeLinkedHolderCount > 0
                         ? sprintf('%d holder profiles already carry active linked-card posture for lifecycle review', $activeLinkedHolderCount)
                         : 'active-holder coverage is still pending for lifecycle review'],
+                    ['label' => 'Activated holder signal', 'value' => $activatedLinkedHolderCount > 0
+                        ? sprintf('%d holder profiles already carry activated linked-card posture for lifecycle review', $activatedLinkedHolderCount)
+                        : 'activated-holder coverage is still pending for lifecycle review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
                         ? sprintf('%d holder profiles are already visible in active branches beside %d profiles in paused shops for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],
@@ -1405,6 +1409,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Active holder signal', 'value' => $activeLinkedHolderCount > 0
                         ? sprintf('%d holder profiles already carry active linked-card posture for lifecycle review', $activeLinkedHolderCount)
                         : 'active-holder coverage is still pending for lifecycle review'],
+                    ['label' => 'Activated holder signal', 'value' => $activatedLinkedHolderCount > 0
+                        ? sprintf('%d holder profiles already carry activated linked-card posture for lifecycle review', $activatedLinkedHolderCount)
+                        : 'activated-holder coverage is still pending for lifecycle review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
                         ? sprintf('%d holder profiles are already visible in active branches beside %d profiles in paused shops for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],
