@@ -4390,6 +4390,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('blocked-holder coverage is still pending for support review')
             ->assertSee('Draft holder signal')
             ->assertSee('1 holder profiles already carry draft linked-card posture for pre-issuance review')
+            ->assertSee('Active holder signal')
+            ->assertSee('1 holder profiles already carry active linked-card posture for lifecycle review')
             ->assertSee('Holder branch activity signal')
             ->assertSee('paused-branch holder coverage is still pending for parity review')
             ->assertSee('Cardholder status source selected for Laravel review')
@@ -4501,6 +4503,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 holder profiles already carry blocked linked-card posture for support review')
             ->assertSee('Draft holder signal')
             ->assertSee('1 holder profiles already carry draft linked-card posture for pre-issuance review')
+            ->assertSee('Active holder signal')
+            ->assertSee('1 holder profiles already carry active linked-card posture for lifecycle review')
             ->assertSee('Holder branch activity signal')
             ->assertSee($holderBranchActivitySignal)
             ->assertSee('Implementation dependencies')
@@ -4518,6 +4522,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 holder profiles already carry blocked linked-card posture for support review')
             ->assertSee('Draft holder signal:')
             ->assertSee('1 holder profiles already carry draft linked-card posture for pre-issuance review')
+            ->assertSee('Active holder signal:')
+            ->assertSee('1 holder profiles already carry active linked-card posture for lifecycle review')
             ->assertSee('Holder branch activity signal:')
             ->assertSee($holderBranchActivitySignal);
     }

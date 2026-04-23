@@ -546,6 +546,13 @@
 ### Next step after reports draft-holder signal checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Reports active-holder signal checkpoint
+- Extended the selected `cardholder-status` reporting source with an active holder signal so holder profiles carrying active linked-card posture read as a Galaxy-specific lifecycle cue instead of generic linked-card coverage.
+- Kept the cue read-only and Laravel-backed from the already loaded linked-card relation, then updated focused holder-report coverage.
+
+### Next step after reports active-holder signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
