@@ -2826,6 +2826,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Review mode', 'value' => $selectedCardHolder->is_active
                 ? 'Live profile review, this holder already participates in the Laravel lookup surface and should stay parity-first.'
                 : 'Dormant-profile review, this inactive holder stays safer for parity checks before any reactivation path is trusted.'],
+            ['label' => 'Holder status signal', 'value' => $selectedCardHolder->is_active
+                ? 'Active holder is already visible for live profile parity review.'
+                : 'Inactive holder remains safer for parity review before reactivation discussion.'],
             ['label' => 'Operational readiness', 'value' => $this->cardholdersOperationalReadiness($selectedCardHolder)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
@@ -2890,6 +2893,9 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected holder', 'value' => $selectedCardHolder->full_name],
             ['label' => 'Lookup posture', 'value' => 'Selected-holder review is running in Laravel-backed read mode only'],
+            ['label' => 'Holder status signal', 'value' => $selectedCardHolder->is_active
+                ? 'Active holder is already visible for live profile parity review.'
+                : 'Inactive holder remains safer for parity review before reactivation discussion.'],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
