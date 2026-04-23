@@ -581,6 +581,13 @@
 ### Next step after roles scoped-permission signal checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
 
+### Services-rules status-signal checkpoint
+- Extended selected `services-rules` review previews with an explicit rule status signal so active uplifts and draft exclusions read as Galaxy-specific rollout posture instead of only generic scope/priority notes.
+- Kept the cue read-only and preview-backed, then updated focused selected-rule coverage across draft, scoped active, and all-shop active variants.
+
+### Next step after services-rules status-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

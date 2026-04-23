@@ -304,6 +304,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected rule preview', 'value' => 'Birthday bonus'],
                     ['label' => 'Scope', 'value' => 'All shops'],
+                    ['label' => 'Rule status signal', 'value' => 'Active loyalty uplift is already visible for live parity review.'],
                     ['label' => 'Condition posture', 'value' => 'Birthday window logic should stay parity-first, because date-sensitive loyalty rules are easy to drift during migration.'],
                     ['label' => 'Priority posture', 'value' => 'Keep this rule near the top of the preview stack until Laravel priority resolution is verified against the old Galaxy order.'],
                     ['label' => 'Format guidance', 'value' => 'Keep this rule in table-first review mode, because operators usually compare scope, effect, and priority together before discussing publication.' ],
@@ -316,6 +317,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected rule', 'value' => 'Birthday bonus'],
+                    ['label' => 'Rule status signal', 'value' => 'Active loyalty uplift is already visible for live parity review.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.'],
                     ['label' => 'Priority posture', 'value' => 'Priority resolution remains preview-only until overlapping rule order is validated in Laravel.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Rule persistence, condition editing, and publish flow still remain blocked for this rule preview.'],
@@ -332,6 +334,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected rule preview', 'value' => 'Partner card uplift'],
                     ['label' => 'Scope', 'value' => 'Central Shop'],
+                    ['label' => 'Rule status signal', 'value' => 'Active scoped uplift is already visible for branch-aware parity review.'],
                     ['label' => 'Condition posture', 'value' => 'Partner-card checks should stay tied to visible card-type parity before any Laravel rule editor opens them up.'],
                     ['label' => 'Priority posture', 'value' => 'This scoped uplift should remain below birthday-wide behavior until legacy overlap order is rechecked.'],
                     ['label' => 'Format guidance', 'value' => 'Keep scoped uplift rules in compact on-screen review first, because operators need scope, condition, and priority visible together before escalating.' ],
@@ -344,6 +347,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected rule', 'value' => 'Partner card uplift'],
+                    ['label' => 'Rule status signal', 'value' => 'Active scoped uplift is already visible for branch-aware parity review.'],
                     ['label' => 'Scope posture', 'value' => 'Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.'],
                     ['label' => 'Priority posture', 'value' => 'Overlap with broader loyalty rules still needs parity verification before any publish path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Rule persistence, scoped validation, and publish flow still remain blocked for this rule preview.'],
@@ -360,6 +364,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected rule preview', 'value' => 'Night service block'],
                     ['label' => 'Scope', 'value' => 'North Shop'],
+                    ['label' => 'Rule status signal', 'value' => 'Draft exclusion rule remains safer for parity review before any live publish discussion.' ],
                     ['label' => 'Condition posture', 'value' => 'Bar-service exclusions should remain draft-only until legacy exception behavior is rechecked in Laravel.'],
                     ['label' => 'Priority posture', 'value' => 'Keep this blocking rule below confirmed accrual logic until exclusion order is verified.'],
                     ['label' => 'Format guidance', 'value' => 'Keep draft exclusion rules in compact on-screen review first, because operators need scope, condition, and effect visible together before discussing publication.' ],
@@ -372,6 +377,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected rule', 'value' => 'Night service block'],
+                    ['label' => 'Rule status signal', 'value' => 'Draft exclusion rule remains safer for parity review before any live publish discussion.'],
                     ['label' => 'Scope posture', 'value' => 'North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.'],
                     ['label' => 'Priority posture', 'value' => 'Blocking-rule order is still preview-only until exclusion precedence is validated in Laravel.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Rule persistence, exclusion validation, and publish flow still remain blocked for this draft rule preview.'],
