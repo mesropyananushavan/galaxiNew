@@ -1138,6 +1138,7 @@ class ResourceIndexController extends Controller
         $draftLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->where('status', 'draft')->count());
         $activatedLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->filter(fn ($card): bool => $card->activated_at !== null)->count());
         $blockedLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->status === 'blocked'))->count();
+        $draftLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->status === 'draft'))->count();
         $roles = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active')->get();
         $roleCount = $roles->count();
         $activeRoleCount = $roles->where('is_active', true)->count();
@@ -1353,6 +1354,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Blocked holder signal', 'value' => $blockedLinkedHolderCount > 0
                         ? sprintf('%d holder profiles already carry blocked linked-card posture for support review', $blockedLinkedHolderCount)
                         : 'blocked-holder coverage is still pending for support review'],
+                    ['label' => 'Draft holder signal', 'value' => $draftLinkedHolderCount > 0
+                        ? sprintf('%d holder profiles already carry draft linked-card posture for pre-issuance review', $draftLinkedHolderCount)
+                        : 'draft-holder coverage is still pending for pre-issuance review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
                         ? sprintf('%d holder profiles are already visible in active branches beside %d profiles in paused shops for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],
@@ -1391,6 +1395,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Blocked holder signal', 'value' => $blockedLinkedHolderCount > 0
                         ? sprintf('%d holder profiles already carry blocked linked-card posture for support review', $blockedLinkedHolderCount)
                         : 'blocked-holder coverage is still pending for support review'],
+                    ['label' => 'Draft holder signal', 'value' => $draftLinkedHolderCount > 0
+                        ? sprintf('%d holder profiles already carry draft linked-card posture for pre-issuance review', $draftLinkedHolderCount)
+                        : 'draft-holder coverage is still pending for pre-issuance review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
                         ? sprintf('%d holder profiles are already visible in active branches beside %d profiles in paused shops for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],
