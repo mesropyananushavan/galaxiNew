@@ -525,6 +525,13 @@
 ### Next step after reports draft-unassigned signal checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
 
+### Reports linked-card-activation signal checkpoint
+- Extended the selected `cardholder-status` reporting source with a linked card activation signal so activated linked cards no longer read like generic linked-card state or generic holder coverage.
+- Kept the cue read-only and Laravel-backed with real `cards.activated_at` on the already selected linked-card relation, then updated focused holder-report coverage.
+
+### Next step after reports linked-card-activation signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.

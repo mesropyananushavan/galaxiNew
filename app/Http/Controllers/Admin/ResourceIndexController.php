@@ -1125,7 +1125,7 @@ class ResourceIndexController extends Controller
         $activatedUnassignedCardCount = Card::query()->whereNotNull('activated_at')->whereNull('card_holder_id')->count();
         $blockedUnassignedCardCount = Card::query()->where('status', 'blocked')->whereNull('card_holder_id')->count();
         $draftUnassignedCardCount = Card::query()->where('status', 'draft')->whereNull('card_holder_id')->count();
-        $cardHolders = CardHolder::query()->withCount('cards')->with(['shop:id,is_active', 'cards:id,card_holder_id,status'])->get();
+        $cardHolders = CardHolder::query()->withCount('cards')->with(['shop:id,is_active', 'cards:id,card_holder_id,status,activated_at'])->get();
         $cardHolderCount = $cardHolders->count();
         $activeCardHolderCount = $cardHolders->where('is_active', true)->count();
         $inactiveCardHolderCount = $cardHolders->where('is_active', false)->count();
@@ -1136,6 +1136,7 @@ class ResourceIndexController extends Controller
         $activeLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->where('status', 'active')->count());
         $blockedLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->where('status', 'blocked')->count());
         $draftLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->where('status', 'draft')->count());
+        $activatedLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->filter(fn ($card): bool => $card->activated_at !== null)->count());
         $roles = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active')->get();
         $roleCount = $roles->count();
         $activeRoleCount = $roles->where('is_active', true)->count();
@@ -1345,6 +1346,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Linked card draft signal', 'value' => $draftLinkedCardCount > 0
                         ? sprintf('%d draft linked cards are already visible for pre-issuance parity review', $draftLinkedCardCount)
                         : 'draft linked-card coverage is still pending for parity review'],
+                    ['label' => 'Linked card activation signal', 'value' => $activatedLinkedCardCount > 0
+                        ? sprintf('%d activated linked cards are already visible for holder-lifecycle parity review', $activatedLinkedCardCount)
+                        : 'activated linked-card coverage is still pending for parity review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
                         ? sprintf('%d holder profiles are already visible in active branches beside %d profiles in paused shops for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],
@@ -1377,6 +1381,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Linked card draft signal', 'value' => $draftLinkedCardCount > 0
                         ? sprintf('%d draft linked cards are already visible for pre-issuance parity review', $draftLinkedCardCount)
                         : 'draft linked-card coverage is still pending for parity review'],
+                    ['label' => 'Linked card activation signal', 'value' => $activatedLinkedCardCount > 0
+                        ? sprintf('%d activated linked cards are already visible for holder-lifecycle parity review', $activatedLinkedCardCount)
+                        : 'activated linked-card coverage is still pending for parity review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
                         ? sprintf('%d holder profiles are already visible in active branches beside %d profiles in paused shops for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],

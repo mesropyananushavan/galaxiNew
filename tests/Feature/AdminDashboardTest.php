@@ -4345,6 +4345,15 @@ class AdminDashboardTest extends TestCase
             'shop_id' => $shop->id,
         ]);
 
+        Card::create([
+            'number' => '990011223358',
+            'status' => 'active',
+            'card_holder_id' => CardHolder::query()->first()->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'activated_at' => now(),
+        ]);
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get('/admin/reports?source=cardholder-status');
@@ -4375,6 +4384,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('blocked linked-card coverage is still pending for parity review')
             ->assertSee('Linked card draft signal')
             ->assertSee('1 draft linked cards are already visible for pre-issuance parity review')
+            ->assertSee('Linked card activation signal')
+            ->assertSee('1 activated linked cards are already visible for holder-lifecycle parity review')
             ->assertSee('Holder branch activity signal')
             ->assertSee('paused-branch holder coverage is still pending for parity review')
             ->assertSee('Cardholder status source selected for Laravel review')
@@ -4430,7 +4441,7 @@ class AdminDashboardTest extends TestCase
             'card_holder_id' => $activeHolder->id,
             'card_type_id' => $cardType->id,
             'shop_id' => $activeShop->id,
-            'issued_at' => now(),
+            'activated_at' => now(),
         ]);
 
         Card::create([
@@ -4480,6 +4491,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 active linked cards are already visible beside 1 blocked linked cards for parity review')
             ->assertSee('Linked card draft signal')
             ->assertSee('1 draft linked cards are already visible for pre-issuance parity review')
+            ->assertSee('Linked card activation signal')
+            ->assertSee('1 activated linked cards are already visible for holder-lifecycle parity review')
             ->assertSee('Holder branch activity signal')
             ->assertSee($holderBranchActivitySignal)
             ->assertSee('Implementation dependencies')
@@ -4491,6 +4504,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 active linked cards are already visible beside 1 blocked linked cards for parity review')
             ->assertSee('Linked card draft signal:')
             ->assertSee('1 draft linked cards are already visible for pre-issuance parity review')
+            ->assertSee('Linked card activation signal:')
+            ->assertSee('1 activated linked cards are already visible for holder-lifecycle parity review')
             ->assertSee('Holder branch activity signal:')
             ->assertSee($holderBranchActivitySignal);
     }
