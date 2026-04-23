@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Reports handoff-signal checkpoint
+- Added a compact read-only `Handoff signal` to selected `reports` review so the reporting shell keeps operator handoff expectations visible inside the live workspace instead of implying export-first behavior.
+- Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the Phase 1 direction firmly read-only and parity-first.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
+
+### Next step after reports handoff-signal checkpoint
+- Add one more tiny read-only Galaxy-specific cue on another selected review surface, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Reports source-status signal checkpoint
 - Added a compact read-only `Source status signal` to selected `reports` review so each live reporting source now reads more like a Galaxy operational surface instead of relying only on broader source and readiness cues.
 - Surfaced the signal in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, while keeping presets, shaping, and exports explicitly gated.

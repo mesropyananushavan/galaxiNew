@@ -1287,6 +1287,7 @@ class ResourceIndexController extends Controller
                         : 'No tracked shops exist yet, so branch-level scope review should stay in planning mode only.'],
                     ['label' => 'Default period posture', 'value' => 'Use current snapshot review first, then keep preset periods staged until branch-total parity is verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because branch inventory checks should stay visible on screen before anyone expects export files.'],
+                    ['label' => 'Handoff signal', 'value' => 'Keep branch comparison findings in the live workspace before asking for export-driven handoff.'],
                     ['label' => 'Preset posture', 'value' => 'Keep period presets preview-only until shop-level totals and export parity are verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until file export formatting and delivery are validated.'],
                 ],
@@ -1353,6 +1354,7 @@ class ResourceIndexController extends Controller
                         : 'activation coverage is still pending for parity review'],
                     ['label' => 'Scope posture', 'value' => 'Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.'],
                     ['label' => 'Grouping posture', 'value' => 'Shop grouping should stay read-only until query shaping is verified against legacy report totals.'],
+                    ['label' => 'Handoff signal', 'value' => 'Keep branch comparison findings in the live workspace before asking for export-driven handoff.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, grouped query shaping, and export generation still remain preview-only for this source.'],
                 ],
             ],
@@ -1409,6 +1411,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope guidance', 'value' => 'Keep this source focused on active versus inactive holder posture first, because old Galaxy support flows used status review before deeper profile history.' ],
                     ['label' => 'Default period posture', 'value' => 'Use a current-status review first, then stage preset periods until lifecycle and recency parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer a compact on-screen table first, because holder-status review usually started as a fast support triage surface, not an export job.' ],
+                    ['label' => 'Handoff signal', 'value' => 'Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.'],
                     ['label' => 'Preset posture', 'value' => 'Keep status-period presets preview-only until holder lifecycle parity is verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until summary exports and lifecycle report expectations are validated.'],
                 ],
@@ -1461,6 +1464,7 @@ class ResourceIndexController extends Controller
                         : 'paused-branch holder coverage is still pending for parity review'],
                     ['label' => 'Scope posture', 'value' => 'Status-first review should stay ahead of deeper segmentation until lifecycle parity and operator lookup habits are matched.'],
                     ['label' => 'Lifecycle posture', 'value' => 'Status aggregation should stay read-only until holder lifecycle and activity parity are verified.'],
+                    ['label' => 'Handoff signal', 'value' => 'Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Preset handling, report shaping, and export generation still remain preview-only for this source.'],
                 ],
             ],
@@ -1522,6 +1526,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope guidance', 'value' => 'Keep this source centered on role coverage and scope visibility first, because old Galaxy access checks were driven by who could see which branch context.' ],
                     ['label' => 'Default period posture', 'value' => 'Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because access coverage checks need visible role and scope context before any export workflow is trusted.' ],
+                    ['label' => 'Handoff signal', 'value' => 'Keep access coverage findings in the live workspace before asking for export-driven handoff.'],
                     ['label' => 'Preset posture', 'value' => 'Keep access-report presets preview-only until role and scope parity are verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until access export expectations and file delivery are validated.'],
                 ],
@@ -2773,10 +2778,11 @@ class ResourceIndexController extends Controller
             ['label' => 'Publish posture', 'value' => $selectedRole->is_active
                 ? 'This live permission bundle still needs assignment parity checks before publish-style role changes are safe.'
                 : 'This draft role should stay unpublished until permission bundle and shop-scope parity are mapped more explicitly.'],
-            ['label' => 'Scope posture', 'value' => $scope->isNotEmpty()
-                ? 'Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.'
-                : 'No shop scope is linked yet, which keeps this role safe for draft access review.'],
-            ['label' => 'Remaining backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace'],
+                    ['label' => 'Scope posture', 'value' => $scope->isNotEmpty()
+                        ? 'Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.'
+                        : 'No shop scope is linked yet, which keeps this role safe for draft access review.'],
+                    ['label' => 'Handoff signal', 'value' => 'Keep access coverage findings in the live workspace before asking for export-driven handoff.'],
+                    ['label' => 'Remaining backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace'],
         ];
     }
 

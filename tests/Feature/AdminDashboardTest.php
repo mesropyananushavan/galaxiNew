@@ -4055,6 +4055,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Use current snapshot review first, then keep preset periods staged until branch-total parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Prefer table-first review here, because branch inventory checks should stay visible on screen before anyone expects export files.')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep branch comparison findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Cards by shop source selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked cards across 1 shops from the current Laravel foundation.')
             ->assertSee('Branch inventory handoff stays on-screen first')
@@ -4094,7 +4096,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope posture')
             ->assertSee('Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.')
             ->assertSee('Grouping posture')
-            ->assertSee('Shop grouping should stay read-only until query shaping is verified against legacy report totals.');
+            ->assertSee('Shop grouping should stay read-only until query shaping is verified against legacy report totals.')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep branch comparison findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_mixed_branch_activity_review_context(): void
@@ -4559,6 +4563,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 holder profiles already carry active linked-card posture for lifecycle review')
             ->assertSee('Activated holder signal')
             ->assertSee('1 holder profiles already carry activated linked-card posture for lifecycle review')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Holder branch activity signal')
             ->assertSee('paused-branch holder coverage is still pending for parity review')
             ->assertSee('Cardholder status source selected for Laravel review')
@@ -4570,7 +4576,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review readiness:')
             ->assertSee('ready for holder-status triage review')
             ->assertSee('Lifecycle posture:')
-            ->assertSee('Status aggregation should stay read-only until holder lifecycle and activity parity are verified.');
+            ->assertSee('Status aggregation should stay read-only until holder lifecycle and activity parity are verified.')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_mixed_cardholder_status_review_context(): void
@@ -4762,6 +4770,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('unassigned active-role staff coverage is still pending')
             ->assertSee('Role state signal')
             ->assertSee('draft access-role coverage is still pending')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep access coverage findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Permission bundle signal')
             ->assertSee('unbundled active-role coverage is still pending')
             ->assertSee('Role access source selected for Laravel review')
@@ -4786,7 +4796,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Permission bundle signal:')
             ->assertSee('unbundled active-role coverage is still pending')
             ->assertSee('Access posture:')
-            ->assertSee('Role coverage should stay read-only until access-report parity and scope shaping are verified.');
+            ->assertSee('Role coverage should stay read-only until access-report parity and scope shaping are verified.')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep access coverage findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_mixed_assignment_scope_review_context(): void
