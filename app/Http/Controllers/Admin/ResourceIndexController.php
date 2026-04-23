@@ -2308,6 +2308,9 @@ class ResourceIndexController extends Controller
         $permissionBranchActivitySignal = $selectedRole->permissions_count > 0 && $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
             ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
             : 'paused-branch permission-linked staff coverage is still pending for parity review';
+        $scopedPermissionSignal = $selectedRole->permissions_count > 0 && $scope->isNotEmpty()
+            ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $scope->count())
+            : 'scoped permission coverage is still pending for parity review';
 
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
@@ -2341,6 +2344,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Permission coverage', 'value' => $selectedRole->permissions_count > 0
                 ? 'Live bundle present, review changes as parity-sensitive access coverage.'
                 : 'No bundle linked yet, this role remains safer for draft parity review.'],
+            ['label' => 'Scoped permission signal', 'value' => $scopedPermissionSignal],
             ['label' => 'Permission branch activity signal', 'value' => $permissionBranchActivitySignal],
             ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
             ['label' => 'Laravel status', 'value' => $selectedRole->is_active ? 'active' : 'draft'],
@@ -2652,6 +2656,9 @@ class ResourceIndexController extends Controller
         $permissionBranchActivitySignal = $selectedRole->permissions_count > 0 && $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
             ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
             : 'paused-branch permission-linked staff coverage is still pending for parity review';
+        $scopedPermissionSignal = $selectedRole->permissions_count > 0 && $scope->isNotEmpty()
+            ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $scope->count())
+            : 'scoped permission coverage is still pending for parity review';
 
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
@@ -2677,6 +2684,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Permission posture', 'value' => $permissionPreview->isNotEmpty()
                 ? 'The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.'
                 : 'No permissions are linked yet, so this role remains a safer draft shell for parity-first access review.'],
+            ['label' => 'Scoped permission signal', 'value' => $scopedPermissionSignal],
             ['label' => 'Permission branch activity signal', 'value' => $permissionBranchActivitySignal],
             ['label' => 'Publish posture', 'value' => $selectedRole->is_active
                 ? 'This live permission bundle still needs assignment parity checks before publish-style role changes are safe.'
