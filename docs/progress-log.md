@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Reports source-status signal checkpoint
+- Added a compact read-only `Source status signal` to selected `reports` review so each live reporting source now reads more like a Galaxy operational surface instead of relying only on broader source and readiness cues.
+- Surfaced the signal in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, while keeping presets, shaping, and exports explicitly gated.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
+
+### Next step after reports source-status signal checkpoint
+- Reuse this compact reporting-cue pattern on another selected report context, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Card-types status-signal checkpoint
 - Added a compact read-only `Tier status signal` to selected `card-types` review so tier posture now reads more like a Galaxy rollout workspace instead of depending only on broader status and readiness copy.
 - Surfaced the signal in both selected-tier summary and dependency-status panels, with copy that distinguishes active tiers with saved card coverage, active tiers still waiting on visible coverage, draft tiers with visible saved-card context, and draft tiers still waiting on first coverage.

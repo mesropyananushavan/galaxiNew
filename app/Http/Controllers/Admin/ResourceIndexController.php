@@ -1229,6 +1229,9 @@ class ResourceIndexController extends Controller
                         ? 'Live-source review, card inventory already exists in Laravel for shop-level reporting checks.'
                         : 'Draft-safe review, no cards are tracked yet so this source remains a catalog-only planning stub.'],
                     ['label' => 'Source coverage', 'value' => sprintf('%d cards across %d tracked shops are currently available for read-only reporting review.', $cardCount, $shopCount)],
+                    ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
+                        ? 'Cards-by-shop source is already visible with live branch inventory for parity review.'
+                        : 'Cards-by-shop source remains safer as planning-only review until live branch inventory appears.'],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'card and branch inputs are ready for on-screen review' : 'card or branch inputs still need live Laravel coverage'],
                     ['label' => 'Comparison signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount && $activeCardCount > 0 && $blockedCardCount > 0 && $holderLinkedCardCount > 0 && $unassignedCardCount > 0
@@ -1295,6 +1298,9 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Cards by shop'],
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d cards and %d shops are currently visible to the reporting workspace.', $cardCount, $shopCount)],
+                    ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
+                        ? 'Cards-by-shop source is already visible with live branch inventory for parity review.'
+                        : 'Cards-by-shop source remains safer as planning-only review until live branch inventory appears.'],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'card and branch inputs are ready for on-screen review' : 'card or branch inputs still need live Laravel coverage'],
                     ['label' => 'Comparison signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount && $activeCardCount > 0 && $blockedCardCount > 0 && $holderLinkedCardCount > 0 && $unassignedCardCount > 0
@@ -1361,6 +1367,9 @@ class ResourceIndexController extends Controller
                         ? 'Live-source review, holder status records already exist in Laravel for read-only reporting checks.'
                         : 'Draft-safe review, no cardholders are tracked yet so this source remains a planning-only catalog entry.'],
                     ['label' => 'Source coverage', 'value' => sprintf('%d cardholders are currently available for read-only status reporting review.', $cardHolderCount)],
+                    ['label' => 'Source status signal', 'value' => $cardHolderCount > 0
+                        ? 'Cardholder-status source is already visible with live lifecycle coverage for parity review.'
+                        : 'Cardholder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
                     ['label' => 'Source signal', 'value' => $cardHolderCount > 0 ? 'live holder status coverage visible' : 'holder status coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardHolderCount > 0 ? 'holder status inputs are ready for on-screen review' : 'holder status inputs still need live Laravel coverage'],
                     ['label' => 'Comparison signal', 'value' => $inactiveCardHolderCount > 0 && $activeCardHolderCount > 0 && $linkedCardHolderCount > 0 && $unlinkedCardHolderCount > 0 && $activeLinkedCardCount > 0 && $blockedLinkedCardCount > 0
@@ -1411,6 +1420,9 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Cardholder status overview'],
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d cardholders are currently visible to the reporting workspace.', $cardHolderCount)],
+                    ['label' => 'Source status signal', 'value' => $cardHolderCount > 0
+                        ? 'Cardholder-status source is already visible with live lifecycle coverage for parity review.'
+                        : 'Cardholder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
                     ['label' => 'Source signal', 'value' => $cardHolderCount > 0 ? 'live holder status coverage visible' : 'holder status coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardHolderCount > 0 ? 'holder status inputs are ready for on-screen review' : 'holder status inputs still need live Laravel coverage'],
                     ['label' => 'Comparison signal', 'value' => $inactiveCardHolderCount > 0 && $activeCardHolderCount > 0 && $linkedCardHolderCount > 0 && $unlinkedCardHolderCount > 0 && $activeLinkedCardCount > 0 && $blockedLinkedCardCount > 0
@@ -1463,6 +1475,9 @@ class ResourceIndexController extends Controller
                         ? 'Live-source review, access roles already exist in Laravel for read-only reporting checks.'
                         : 'Draft-safe review, no roles are tracked yet so this source remains a catalog-only planning stub.'],
                     ['label' => 'Source coverage', 'value' => sprintf('%d roles are currently available for read-only access reporting review.', $roleCount)],
+                    ['label' => 'Source status signal', 'value' => $roleCount > 0
+                        ? 'Role-access source is already visible with live access coverage for parity review.'
+                        : 'Role-access source remains safer as planning-only review until live access coverage appears.'],
                     ['label' => 'Source signal', 'value' => $roleCount > 0 ? 'live role coverage visible' : 'role coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $roleCount > 0 ? 'role inputs are ready for on-screen review' : 'role inputs still need live Laravel coverage'],
                     ['label' => 'Access mix signal', 'value' => $permissionLinkedRoleCount > 0 && $assignedStaffCount > 0 && $activeRoleCount > 0
@@ -1518,6 +1533,9 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Role access coverage'],
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d roles are currently visible to the reporting workspace.', $roleCount)],
+                    ['label' => 'Source status signal', 'value' => $roleCount > 0
+                        ? 'Role-access source is already visible with live access coverage for parity review.'
+                        : 'Role-access source remains safer as planning-only review until live access coverage appears.'],
                     ['label' => 'Source signal', 'value' => $roleCount > 0 ? 'live role coverage visible' : 'role coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $roleCount > 0 ? 'role inputs are ready for on-screen review' : 'role inputs still need live Laravel coverage'],
                     ['label' => 'Access mix signal', 'value' => $permissionLinkedRoleCount > 0 && $assignedStaffCount > 0 && $activeRoleCount > 0
