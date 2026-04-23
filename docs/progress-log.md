@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Card-types status-signal checkpoint
+- Added a compact read-only `Tier status signal` to selected `card-types` review so tier posture now reads more like a Galaxy rollout workspace instead of depending only on broader status and readiness copy.
+- Surfaced the signal in both selected-tier summary and dependency-status panels, with copy that distinguishes active tiers with saved card coverage, active tiers still waiting on visible coverage, draft tiers with visible saved-card context, and draft tiers still waiting on first coverage.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Next step after card-types status-signal checkpoint
+- Reuse this compact status-signal pattern on another selected live workspace that still lacks one, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Roles-permissions status-signal checkpoint
 - Added a compact read-only `Role status signal` to selected `roles-permissions` review so active versus draft access posture now reads more like a Galaxy access workspace instead of depending only on broader coverage and guidance fields.
 - Surfaced the signal in both selected-role summary and dependency-status panels, with copy that distinguishes draft-safe roles, fully scoped assignment-sensitive live roles, bundle-plus-staff roles still waiting on scope, permission-only live roles, and staffing-only live roles.

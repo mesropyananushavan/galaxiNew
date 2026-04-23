@@ -1714,6 +1714,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
+            ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
             [
                 'label' => 'Status guidance',
                 'value' => $selectedCardType->is_active
@@ -1827,6 +1828,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
+            ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
             ['label' => 'Current status posture', 'value' => $selectedCardType->is_active ? 'Active tiers should stay stable unless parity checks are complete' : 'Draft tiers are the safe place for parity-first validation and copy changes'],
             ['label' => 'Rule-import posture', 'value' => $selectedCardType->is_active ? 'Keep imports blocked until active-tier accrual parity is verified' : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet'],
             ['label' => 'Publish posture', 'value' => $selectedCardType->is_active ? 'Live tiers need parity confirmation before further publish-style changes' : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly'],
@@ -1874,6 +1876,18 @@ class ResourceIndexController extends Controller
             $selectedCardType->is_active => 'live tier, card coverage still building out',
             $cardsCount > 0 => 'draft tier with visible card coverage',
             default => 'draft tier, card coverage pending',
+        };
+    }
+
+    private function cardTypesStatusSignal(CardType $selectedCardType): string
+    {
+        $cardsCount = $selectedCardType->cards_count ?? 0;
+
+        return match (true) {
+            $selectedCardType->is_active && $cardsCount > 0 => 'Active tier is already visible with saved card coverage for live catalog parity review.',
+            $selectedCardType->is_active => 'Active tier is already visible, but card coverage still needs parity review before rollout discussion.',
+            $cardsCount > 0 => 'Draft tier remains safer for parity review while saved card coverage is already visible.',
+            default => 'Draft tier remains safer for parity review before visible card coverage lands.',
         };
     }
 
