@@ -447,6 +447,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected gift preview', 'value' => 'Coffee voucher'],
                     ['label' => 'Points cost', 'value' => '150'],
+                    ['label' => 'Gift status signal', 'value' => 'Active all-shop reward is already visible for live catalog parity review.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop rewards should stay parity-first, because wide-scope catalog changes affect the most operators and redemptions.'],
                     ['label' => 'Stock posture', 'value' => 'Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Laravel inventory writes exist.'],
                     ['label' => 'Format guidance', 'value' => 'Keep this reward in table-first review mode, because operators usually compare scope, stock policy, and points cost together before discussing publication.'],
@@ -459,6 +460,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Coffee voucher'],
+                    ['label' => 'Gift status signal', 'value' => 'Active all-shop reward is already visible for live catalog parity review.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop reward coverage should remain stable until Laravel scope handling is verified against the legacy catalog.'],
                     ['label' => 'Stock posture', 'value' => 'Unlimited-stock assumptions still need backend inventory wiring before operators can trust live publish behavior.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this reward preview.'],
@@ -474,6 +476,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected gift preview', 'value' => 'Airport transfer'],
                     ['label' => 'Points cost', 'value' => '900'],
+                    ['label' => 'Gift status signal', 'value' => 'Active scoped reward is already visible for branch-aware catalog parity review.'],
                     ['label' => 'Scope posture', 'value' => 'Kiosk-scoped rewards should stay branch-aware, because legacy redemption expectations depended on local availability.'],
                     ['label' => 'Stock posture', 'value' => 'Finite stock should remain review-only until Laravel inventory updates can preserve remaining-quantity parity.'],
                     ['label' => 'Format guidance', 'value' => 'Keep kiosk-scoped rewards in compact on-screen review first, because operators need cost, stock, and local scope visible together before escalating.'],
@@ -486,6 +489,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Airport transfer'],
+                    ['label' => 'Gift status signal', 'value' => 'Active scoped reward is already visible for branch-aware catalog parity review.'],
                     ['label' => 'Scope posture', 'value' => 'Shop-scoped reward behavior should stay preview-only until Laravel scope checks are verified against legacy kiosk rules.'],
                     ['label' => 'Stock posture', 'value' => 'Finite-stock handling still needs backend inventory wiring before a publish path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this reward preview.'],
@@ -501,6 +505,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected gift preview', 'value' => 'Premium dessert set'],
                     ['label' => 'Points cost', 'value' => '450'],
+                    ['label' => 'Gift status signal', 'value' => 'Paused zero-stock reward remains safer for parity review before reopening discussion.'],
                     ['label' => 'Scope posture', 'value' => 'Central Shop reward availability should stay parity-first until paused reward behavior matches the legacy catalog.'],
                     ['label' => 'Stock posture', 'value' => 'Zero-stock rewards should remain paused in review mode until Laravel inventory and reopening flows can reproduce the old behavior safely.'],
                     ['label' => 'Format guidance', 'value' => 'Keep paused zero-stock rewards in compact on-screen review first, because operators need scope, stock, and cost visible together before discussing reopening.'],
@@ -513,6 +518,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Premium dessert set'],
+                    ['label' => 'Gift status signal', 'value' => 'Paused zero-stock reward remains safer for parity review before reopening discussion.'],
                     ['label' => 'Scope posture', 'value' => 'Paused shop-scoped reward behavior should stay preview-only until Laravel scope and reopening checks are verified.'],
                     ['label' => 'Stock posture', 'value' => 'Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in Laravel.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this paused reward preview.'],
@@ -528,6 +534,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected gift preview', 'value' => 'Weekend brunch pass'],
                     ['label' => 'Points cost', 'value' => '320'],
+                    ['label' => 'Gift status signal', 'value' => 'Paused finite-stock reward remains safer for parity review before reopening discussion.'],
                     ['label' => 'Scope posture', 'value' => 'Paused branch rewards should stay locally reviewable, because reopening decisions still depend on shop-specific redemption habits.'],
                     ['label' => 'Stock posture', 'value' => 'Finite paused stock should remain review-only until Laravel inventory updates and reopening flows can preserve remaining-quantity parity.'],
                     ['label' => 'Format guidance', 'value' => 'Keep paused finite-stock rewards in compact on-screen review first, because operators need scope, stock, and reopening posture visible together before escalating.'],
@@ -540,6 +547,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Weekend brunch pass'],
+                    ['label' => 'Gift status signal', 'value' => 'Paused finite-stock reward remains safer for parity review before reopening discussion.'],
                     ['label' => 'Scope posture', 'value' => 'Paused branch reward behavior should stay preview-only until Laravel scope and reopening checks are verified.'],
                     ['label' => 'Stock posture', 'value' => 'Finite paused stock still needs backend inventory wiring before operators can trust reopening decisions.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this paused branch reward preview.'],

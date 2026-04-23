@@ -588,6 +588,13 @@
 ### Next step after services-rules status-signal checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
 
+### Gifts status-signal checkpoint
+- Extended selected `gifts` review previews with an explicit gift status signal so active rewards and paused stock-bound rewards read as Galaxy-specific rollout posture instead of only stock and scope notes.
+- Kept the cue read-only and preview-backed, then updated focused selected-gift coverage across paused, scoped active, and all-shop active variants.
+
+### Next step after gifts status-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
