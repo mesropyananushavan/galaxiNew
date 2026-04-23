@@ -1122,6 +1122,7 @@ class ResourceIndexController extends Controller
         $pausedShopHolderLinkedCardCount = Card::query()->whereNotNull('card_holder_id')->whereHas('shop', fn ($query) => $query->where('is_active', false))->count();
         $activeShopUnassignedCardCount = Card::query()->whereNull('card_holder_id')->whereHas('shop', fn ($query) => $query->where('is_active', true))->count();
         $pausedShopUnassignedCardCount = Card::query()->whereNull('card_holder_id')->whereHas('shop', fn ($query) => $query->where('is_active', false))->count();
+        $activatedUnassignedCardCount = Card::query()->whereNotNull('activated_at')->whereNull('card_holder_id')->count();
         $cardHolders = CardHolder::query()->withCount('cards')->with(['shop:id,is_active', 'cards:id,card_holder_id,status'])->get();
         $cardHolderCount = $cardHolders->count();
         $activeCardHolderCount = $cardHolders->where('is_active', true)->count();
@@ -1233,6 +1234,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Unassigned branch activity signal', 'value' => $activeShopUnassignedCardCount > 0 && $pausedShopUnassignedCardCount > 0
                         ? sprintf('%d unassigned cards are already visible in active branches beside %d unassigned cards in paused shops for parity review', $activeShopUnassignedCardCount, $pausedShopUnassignedCardCount)
                         : 'mixed unassigned branch coverage is still pending for parity review'],
+                    ['label' => 'Activated unassigned signal', 'value' => $activatedUnassignedCardCount > 0
+                        ? sprintf('%d activated unassigned cards are already visible for inventory recovery review', $activatedUnassignedCardCount)
+                        : 'activated unassigned inventory is still pending for parity review'],
                     ['label' => 'Draft inventory signal', 'value' => $draftCardCount > 0 && $cardCount > $draftCardCount
                         ? sprintf('%d draft cards are already visible beside %d issued inventory records for parity review', $draftCardCount, $cardCount - $draftCardCount)
                         : 'draft inventory coverage is still pending for parity review'],
@@ -1287,6 +1291,9 @@ class ResourceIndexController extends Controller
                     ['label' => 'Unassigned branch activity signal', 'value' => $activeShopUnassignedCardCount > 0 && $pausedShopUnassignedCardCount > 0
                         ? sprintf('%d unassigned cards are already visible in active branches beside %d unassigned cards in paused shops for parity review', $activeShopUnassignedCardCount, $pausedShopUnassignedCardCount)
                         : 'mixed unassigned branch coverage is still pending for parity review'],
+                    ['label' => 'Activated unassigned signal', 'value' => $activatedUnassignedCardCount > 0
+                        ? sprintf('%d activated unassigned cards are already visible for inventory recovery review', $activatedUnassignedCardCount)
+                        : 'activated unassigned inventory is still pending for parity review'],
                     ['label' => 'Draft inventory signal', 'value' => $draftCardCount > 0 && $cardCount > $draftCardCount
                         ? sprintf('%d draft cards are already visible beside %d issued inventory records for parity review', $draftCardCount, $cardCount - $draftCardCount)
                         : 'draft inventory coverage is still pending for parity review'],
