@@ -2303,6 +2303,9 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsSelectedRoleSummary(Role $selectedRole, mixed $scope, mixed $permissionPreview, mixed $assignedUserPreview): array
     {
+        $activeShopAssignedUserCount = $selectedRole->users->filter(fn ($user): bool => (bool) $user->shop?->is_active)->count();
+        $pausedShopAssignedUserCount = $selectedRole->users->filter(fn ($user): bool => $user->shop !== null && ! $user->shop->is_active)->count();
+
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Role slug', 'value' => $selectedRole->slug],
@@ -2325,6 +2328,9 @@ class ResourceIndexController extends Controller
                 : 'No shop scope is linked yet, which keeps this role safer for draft review before scope parity is confirmed.'],
             ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
             ['label' => 'Assigned staff preview', 'value' => $assignedUserPreview->isNotEmpty() ? $assignedUserPreview->join(', ') : 'No staff linked yet'],
+            ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
+                ? sprintf('%d assigned staff are already visible in active branches beside %d assigned staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
+                : 'paused-branch assignment coverage is still pending for parity review'],
             ['label' => 'Assignment guidance', 'value' => $selectedRole->users_count > 0
                 ? 'Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.'
                 : 'No staff are linked yet, which keeps this role safer for draft access review before assignment parity is confirmed.'],
@@ -2637,6 +2643,9 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsSelectedRoleDependencyStatus(Role $selectedRole, mixed $scope, mixed $permissionPreview): array
     {
+        $activeShopAssignedUserCount = $selectedRole->users->filter(fn ($user): bool => (bool) $user->shop?->is_active)->count();
+        $pausedShopAssignedUserCount = $selectedRole->users->filter(fn ($user): bool => $user->shop !== null && ! $user->shop->is_active)->count();
+
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Review posture', 'value' => 'Selected-role review is running in Laravel-backed read mode only'],
@@ -2655,6 +2664,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
                 ? 'Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.'
                 : 'No linked staff are affected yet, which keeps this role safer for draft review before assignment parity is confirmed.'],
+            ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
+                ? sprintf('%d assigned staff are already visible in active branches beside %d assigned staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
+                : 'paused-branch assignment coverage is still pending for parity review'],
             ['label' => 'Permission posture', 'value' => $permissionPreview->isNotEmpty()
                 ? 'The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.'
                 : 'No permissions are linked yet, so this role remains a safer draft shell for parity-first access review.'],
