@@ -2749,6 +2749,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Code')
             ->assertSee('Coverage signal')
             ->assertSee('manager, holder, and card coverage visible')
+            ->assertSee('Shop status signal')
+            ->assertSee('Active branch is already visible with manager and customer coverage for live parity review.')
             ->assertSee('Assigned manager')
             ->assertSee('Manager guidance')
             ->assertSee('Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.')
@@ -2774,6 +2776,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Last saved in Laravel:')
             ->assertSee('Coverage signal:')
             ->assertSee('manager, holder, and card coverage visible')
+            ->assertSee('Shop status signal:')
+            ->assertSee('Active branch is already visible with manager and customer coverage for live parity review.')
             ->assertSee('Status posture:')
             ->assertSee('This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.')
             ->assertSee('Manager posture:')
@@ -2831,6 +2835,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('active branch shell, ownership still forming')
             ->assertSee('Coverage signal')
             ->assertSee('branch records visible, manager coverage pending')
+            ->assertSee('Shop status signal')
+            ->assertSee('Active branch is already visible with customer coverage while manager ownership is still pending.')
             ->assertSee('Assigned manager')
             ->assertSee('Unassigned')
             ->assertSee('Manager guidance')
@@ -2889,6 +2895,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('active branch, operator-visible coverage live')
             ->assertSee('Coverage signal')
             ->assertSee('manager, holder, and card coverage visible')
+            ->assertSee('Shop status signal')
+            ->assertSee('Active branch is already visible with manager and customer coverage for live parity review.')
             ->assertSee('Assigned manager')
             ->assertSee('Narek Coverage Lead')
             ->assertSee('Manager guidance')
@@ -2924,10 +2932,45 @@ class AdminDashboardTest extends TestCase
             ->assertSee('active branch, manager assigned and build-out pending')
             ->assertSee('Coverage signal')
             ->assertSee('manager coverage visible, branch records pending')
+            ->assertSee('Shop status signal')
+            ->assertSee('Active branch is already visible with manager ownership for rollout review.')
             ->assertSee('Assigned manager')
             ->assertSee('Tigran Managerov')
             ->assertSee('Manager guidance')
             ->assertSee('Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.');
+    }
+
+    public function test_shops_page_supports_selected_paused_branch_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Paused Branch',
+            'code' => 'galaxy-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$shop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all shops')
+            ->assertSee('Reviewing: Galaxy Paused Branch')
+            ->assertSee('Selected shop')
+            ->assertSee('Review mode')
+            ->assertSee('Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.')
+            ->assertSee('Operational readiness')
+            ->assertSee('paused branch, recovery review only')
+            ->assertSee('Coverage signal')
+            ->assertSee('manager and branch coverage pending')
+            ->assertSee('Shop status signal')
+            ->assertSee('Paused branch remains safer for parity review before reopening discussion.')
+            ->assertSee('Laravel status')
+            ->assertSee('paused')
+            ->assertSee('Shop status signal:')
+            ->assertSee('Paused branch remains safer for parity review before reopening discussion.')
+            ->assertSee('Status posture:')
+            ->assertSee('This paused branch should stay review-only until recovery and ownership parity are verified.');
     }
 
     public function test_shops_page_ignores_unknown_selected_shop_query(): void

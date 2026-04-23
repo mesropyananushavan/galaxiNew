@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Shops status-signal checkpoint
+- Added a compact read-only `Shop status signal` to selected `shops` review so branch posture now reads more like Galaxy operations instead of relying only on generic readiness and coverage lines.
+- Surfaced the signal in both selected-shop summary and dependency-status panels, with copy that distinguishes paused branches, active branches with full manager-plus-customer coverage, manager-only rollout posture, and customer-coverage-without-manager posture.
+- Added focused paused-branch review coverage in `AdminDashboardTest` and re-ran `php artisan test --filter='(test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context)'`, `4 passed`.
+
+### Next step after shops status-signal checkpoint
+- Reuse this compact status-signal pattern on another selected live workspace that still lacks a posture-specific cue, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports comparison-signal cue checkpoint
 - Added compact read-only aggregate comparison cues to the live-backed selected `reports` sources so operators can tell when the current review surface already exposes enough mixed Galaxy state for a useful parity walkthrough instead of reading each lower-level cue in isolation.
 - Surfaced a new `Comparison signal` on `cards-by-shop` and `cardholder-status`, plus an `Access mix signal` on `role-access`, in both selected-source summaries and dependency-status panels while keeping presets, shaping, and exports blocked.
