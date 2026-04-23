@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Roles-permissions status-signal checkpoint
+- Added a compact read-only `Role status signal` to selected `roles-permissions` review so active versus draft access posture now reads more like a Galaxy access workspace instead of depending only on broader coverage and guidance fields.
+- Surfaced the signal in both selected-role summary and dependency-status panels, with copy that distinguishes draft-safe roles, fully scoped assignment-sensitive live roles, bundle-plus-staff roles still waiting on scope, permission-only live roles, and staffing-only live roles.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Next step after roles-permissions status-signal checkpoint
+- Reuse this compact status-signal pattern on another selected live workspace that still lacks one, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Shops status-signal checkpoint
 - Added a compact read-only `Shop status signal` to selected `shops` review so branch posture now reads more like Galaxy operations instead of relying only on generic readiness and coverage lines.
 - Surfaced the signal in both selected-shop summary and dependency-status panels, with copy that distinguishes paused branches, active branches with full manager-plus-customer coverage, manager-only rollout posture, and customer-coverage-without-manager posture.

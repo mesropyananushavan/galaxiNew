@@ -2363,6 +2363,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Access note', 'value' => $selectedRole->access_note ?: 'No access note saved yet'],
             ['label' => 'Assignment note', 'value' => $selectedRole->assignment_note ?: 'No assignment note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
+            ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
@@ -2505,6 +2506,18 @@ class ResourceIndexController extends Controller
             $scope->isNotEmpty() => 'scope visible, staff and permission coverage pending',
             $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0 => 'partial access coverage visible, scope pending',
             default => 'scope, staff, and permission coverage pending',
+        };
+    }
+
+    private function rolesPermissionsStatusSignal(Role $selectedRole, mixed $scope): string
+    {
+        return match (true) {
+            ! $selectedRole->is_active => 'Draft role remains safer for parity review before live access rollout discussion.',
+            $scope->isNotEmpty() && $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Active role is already visible with scope, staffing, and permission coverage for live access parity review.',
+            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Active role is already visible with staffing and permission coverage while scope rollout is still pending.',
+            $selectedRole->permissions_count > 0 => 'Active role is already visible with a live permission bundle for matrix parity review.',
+            $selectedRole->users_count > 0 => 'Active role is already visible with staffing coverage while permission rollout is still pending.',
+            default => 'Active role shell is visible, but staffing and permission coverage are still pending.',
         };
     }
 
@@ -2710,6 +2723,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Access note', 'value' => $this->rolesPermissionsAccessNoteLabel($selectedRole)],
             ['label' => 'Assignment note', 'value' => $this->rolesPermissionsAssignmentNoteLabel($selectedRole)],
             ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
+            ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageDependencyLabel($scope)],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],

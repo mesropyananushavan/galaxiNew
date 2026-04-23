@@ -1247,6 +1247,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep assignment rollout review-only until branch staff mapping is verified.')
             ->assertSee('Coverage signal:')
             ->assertSee('scope, staff, and permission coverage visible')
+            ->assertSee('Role status signal')
+            ->assertSee('Active role is already visible with scope, staffing, and permission coverage for live access parity review.')
             ->assertSee('Scope rollout posture:')
             ->assertSee('This role already shows shop scope in Laravel review, but scope mutation should stay blocked until a dedicated access slice is verified.')
             ->assertSee('Scope coverage:')
@@ -1351,7 +1353,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review matrix')
             ->assertSee('Blocked until this draft role has a first verified Laravel permission bundle to compare against legacy staff access.')
             ->assertSee('Publish role')
-            ->assertSee('Blocked until this draft role has a verified permission bundle and shop scope parity.');
+            ->assertSee('Blocked until this draft role has a verified permission bundle and shop scope parity.')
+            ->assertSee('Role status signal')
+            ->assertSee('Draft role remains safer for parity review before live access rollout discussion.')
+            ->assertSee('Role status signal:')
+            ->assertSee('Draft role remains safer for parity review before live access rollout discussion.');
     }
 
     public function test_selected_active_role_without_permission_bundle_shows_readiness_driven_action_gating_reasons(): void
