@@ -1194,6 +1194,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Permission count')
             ->assertSee('Permission coverage')
             ->assertSee('Live bundle present, review changes as parity-sensitive access coverage.')
+            ->assertSee('Permission branch activity signal')
+            ->assertSee('paused-branch permission-linked staff coverage is still pending for parity review')
             ->assertSee('Permission bundle')
             ->assertSee('Manage cards')
             ->assertSee('Laravel status')
@@ -1255,12 +1257,72 @@ class AdminDashboardTest extends TestCase
             ->assertSee('paused-branch assignment coverage is still pending for parity review')
             ->assertSee('Permission posture:')
             ->assertSee('The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.')
+            ->assertSee('Permission branch activity signal:')
+            ->assertSee('paused-branch permission-linked staff coverage is still pending for parity review')
             ->assertSee('Publish posture:')
             ->assertSee('This live permission bundle still needs assignment parity checks before publish-style role changes are safe.')
             ->assertSee('Scope posture:')
             ->assertSee('Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace');
+    }
+
+    public function test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Galaxy Access Active Branch',
+            'code' => 'galaxy-access-active-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Access Paused Branch',
+            'code' => 'galaxy-access-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Branch Access Supervisor',
+            'slug' => 'branch-access-supervisor',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review branch access',
+            'slug' => 'review-branch-access',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $activeAssignedUser = User::factory()->create([
+            'name' => 'Anna Activebranch',
+            'shop_id' => $activeShop->id,
+        ]);
+
+        $pausedAssignedUser = User::factory()->create([
+            'name' => 'Paul Pausedbranch',
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        $activeAssignedUser->roles()->attach($role->id);
+        $pausedAssignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Branch Access Supervisor')
+            ->assertSee('Assignment branch activity signal')
+            ->assertSee('1 assigned staff are already visible in active branches beside 1 assigned staff in paused shops for parity review')
+            ->assertSee('Permission branch activity signal')
+            ->assertSee('1 permission-linked staff are already visible in active branches beside 1 permission-linked staff in paused shops for parity review')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Assignment branch activity signal:')
+            ->assertSee('1 assigned staff are already visible in active branches beside 1 assigned staff in paused shops for parity review')
+            ->assertSee('Permission branch activity signal:')
+            ->assertSee('1 permission-linked staff are already visible in active branches beside 1 permission-linked staff in paused shops for parity review');
     }
 
     public function test_selected_draft_role_shows_readiness_driven_action_gating_reasons(): void
