@@ -1735,6 +1735,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
             ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
+            ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
@@ -1849,6 +1850,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
             ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
+            ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
@@ -1975,6 +1977,16 @@ class ResourceIndexController extends Controller
     private function cardTypesLastSavedLabel(CardType $selectedCardType): string
     {
         return $this->lastSavedLabel($selectedCardType);
+    }
+
+    private function cardTypesActivationFreshness(CardType $selectedCardType): string
+    {
+        return match (true) {
+            filled($selectedCardType->activation_note) && $selectedCardType->is_active => 'Activation note is already saved on this live Laravel tier shell.',
+            filled($selectedCardType->activation_note) => 'Activation note is already staged on this draft Laravel tier shell.',
+            $selectedCardType->is_active => 'Live tier still needs a saved activation note before rollout handoff can feel grounded.',
+            default => 'Draft tier can stay safe while activation guidance is still being written.',
+        };
     }
 
     private function liveFormActionParameters(mixed $parameters): array

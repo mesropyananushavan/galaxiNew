@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Card-types activation-freshness checkpoint
+- Added a compact read-only `Activation freshness` cue to selected `card-types` review so operators can tell whether activation guidance is already staged on the current Laravel tier shell.
+- Surfaced the cue in both selected-tier summary and dependency-status panels, distinguishing staged draft activation guidance from missing live activation context while keeping import and publish flows gated.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Next step after card-types activation-freshness checkpoint
+- Reuse this tiny persisted-guidance cue pattern on another already-live Laravel form, or add one more compact Galaxy-specific read-only signal on a selected review surface.
+
 ### Roles review-freshness checkpoint
 - Added a compact read-only `Review freshness` cue to selected `roles-permissions` review so operators can immediately tell whether the current Laravel access shell already carries saved review context.
 - Surfaced the cue in both selected-role summary and dependency-status panels, distinguishing first-saved review notes from missing review context while keeping matrix, scope, and publish flows gated.
