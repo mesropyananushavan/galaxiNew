@@ -152,6 +152,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Selected receipt preview', 'value' => 'CHK-90421'],
                     ['label' => 'Card', 'value' => 'GX-100001'],
                     ['label' => 'Shop context', 'value' => 'Central Shop'],
+                    ['label' => 'Receipt status signal', 'value' => 'Positive accrual receipt is already visible for live ledger parity review.'],
                     ['label' => 'Accrual posture', 'value' => 'Positive accrual receipts should stay parity-first, because receipt math must match the old Galaxy ledger before any correction flow appears.'],
                     ['label' => 'Format guidance', 'value' => 'Keep this receipt in table-first review mode, because operators usually compare amount, points, and timestamp together before opening deeper investigation.'],
                     ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and adjustment flows exist.'],
@@ -163,6 +164,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected receipt', 'value' => 'CHK-90421'],
+                    ['label' => 'Receipt status signal', 'value' => 'Positive accrual receipt is already visible for live ledger parity review.'],
                     ['label' => 'Receipt posture', 'value' => 'Fiscal receipt review should remain read-only until Laravel transaction history is verified against the legacy ledger.'],
                     ['label' => 'Accrual posture', 'value' => 'Positive point outcomes still need live transaction-domain parity before any adjustment path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Transaction tables, receipt reads, and adjustment handlers still remain blocked for this receipt preview.'],
@@ -180,6 +182,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Selected receipt preview', 'value' => 'CHK-90407'],
                     ['label' => 'Card', 'value' => 'GX-100003'],
                     ['label' => 'Shop context', 'value' => 'Central Shop'],
+                    ['label' => 'Receipt status signal', 'value' => 'Zero-accrual receipt remains highly visible for parity troubleshooting review.'],
                     ['label' => 'Accrual posture', 'value' => 'Zero-accrual receipts should stay highly visible, because they drive the most parity-sensitive troubleshooting in the old Galaxy flow.'],
                     ['label' => 'Format guidance', 'value' => 'Keep zero-accrual receipts in compact on-screen review first, because operators need amount, points, and rule context together before escalating.'],
                     ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and rule-backed explanations exist.'],
@@ -191,6 +194,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected receipt', 'value' => 'CHK-90407'],
+                    ['label' => 'Receipt status signal', 'value' => 'Zero-accrual receipt remains highly visible for parity troubleshooting review.'],
                     ['label' => 'Receipt posture', 'value' => 'Receipt lookup should stay read-only until Laravel transaction history is verified against legacy fiscal search behavior.'],
                     ['label' => 'Accrual posture', 'value' => 'Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Transaction tables, receipt reads, and adjustment handlers still remain blocked for this receipt preview.'],
@@ -208,6 +212,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Selected receipt preview', 'value' => 'CHK-90388'],
                     ['label' => 'Card', 'value' => 'GX-100002'],
                     ['label' => 'Shop context', 'value' => 'North Shop'],
+                    ['label' => 'Receipt status signal', 'value' => 'Branch receipt is already visible for shop-aware ledger parity review.'],
                     ['label' => 'Accrual posture', 'value' => 'North Shop accrual receipts should stay branch-aware, because cross-shop troubleshooting must preserve local receipt context.'],
                     ['label' => 'Format guidance', 'value' => 'Keep branch receipts in table-first review mode, because operators need the shop, amount, and points visible together before cross-shop comparisons begin.'],
                     ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and shop-aware filters exist.'],
@@ -219,6 +224,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected receipt', 'value' => 'CHK-90388'],
+                    ['label' => 'Receipt status signal', 'value' => 'Branch receipt is already visible for shop-aware ledger parity review.'],
                     ['label' => 'Receipt posture', 'value' => 'Branch receipt lookup should stay read-only until Laravel shop filters and transaction history are verified against the old flow.'],
                     ['label' => 'Accrual posture', 'value' => 'Positive branch accrual outcomes still need live transaction-domain parity before any adjustment path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => 'Transaction tables, receipt reads, and adjustment handlers still remain blocked for this receipt preview.'],

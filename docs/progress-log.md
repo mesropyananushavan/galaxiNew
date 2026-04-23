@@ -595,6 +595,13 @@
 ### Next step after gifts status-signal checkpoint
 - Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
 
+### Checks-points status-signal checkpoint
+- Extended selected `checks-points` receipt previews with an explicit receipt status signal so positive, zero-accrual, and branch-specific receipts read as Galaxy-specific review posture instead of only receipt and accrual notes.
+- Kept the cue read-only and preview-backed, then updated focused selected-receipt coverage across zero-accrual, branch-aware, and positive-accrual variants.
+
+### Next step after checks-points status-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
 ### Reports Laravel-input-signal cue checkpoint
 - Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
