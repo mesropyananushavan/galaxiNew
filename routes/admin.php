@@ -4,6 +4,8 @@ use App\Http\Controllers\Admin\CardTypeStoreController;
 use App\Http\Controllers\Admin\CardTypeToggleStatusController;
 use App\Http\Controllers\Admin\CardTypeUpdateController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RoleStoreController;
+use App\Http\Controllers\Admin\RoleUpdateController;
 use App\Http\Controllers\Admin\ResourceIndexController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,5 +25,7 @@ Route::prefix('admin')
         Route::get('/services-rules', ResourceIndexController::class)->defaults('resource', 'services-rules')->name('services-rules.index');
         Route::get('/gifts', ResourceIndexController::class)->defaults('resource', 'gifts')->name('gifts.index');
         Route::get('/roles-permissions', ResourceIndexController::class)->defaults('resource', 'roles-permissions')->name('roles-permissions.index');
+        Route::post('/roles-permissions', RoleStoreController::class)->name('roles-permissions.store');
+        Route::patch('/roles-permissions/{role}', RoleUpdateController::class)->name('roles-permissions.update');
         Route::get('/reports', ResourceIndexController::class)->defaults('resource', 'reports')->name('reports.index');
     });

@@ -5,11 +5,11 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 
-class UpdateCardTypeRequest extends StoreCardTypeRequest
+class UpdateRoleRequest extends StoreRoleRequest
 {
     public function rules(): array
     {
-        $cardType = $this->route('cardType');
+        $role = $this->route('role');
 
         return array_merge(parent::rules(), [
             'slug' => [
@@ -17,7 +17,7 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
                 'string',
                 'max:255',
                 'alpha_dash',
-                Rule::unique('card_types', 'slug')->ignore($cardType),
+                Rule::unique('roles', 'slug')->ignore($role),
             ],
         ]);
     }
@@ -26,10 +26,10 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
     {
         /** @var UrlGenerator $url */
         $url = $this->redirector->getUrlGenerator();
-        $cardType = $this->route('cardType');
+        $role = $this->route('role');
 
-        if ($cardType !== null) {
-            return $url->route('admin.card-types.index', ['cardType' => $cardType], absolute: false).'#live-form';
+        if ($role !== null) {
+            return $url->route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form';
         }
 
         return parent::getRedirectUrl();

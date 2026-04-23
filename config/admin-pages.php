@@ -471,14 +471,17 @@ return [
         'metrics' => [
             ['label' => 'Active tiers', 'value' => '2'],
             ['label' => 'Draft tiers', 'value' => '1'],
+            ['label' => 'Reviewed tiers', 'value' => '1'],
+            ['label' => 'Activation notes', 'value' => '1'],
+            ['label' => 'Rollout notes', 'value' => '1'],
             ['label' => 'Imported rules', 'value' => '0'],
         ],
         'table' => [
-            'columns' => ['Type', 'Slug', 'Points rate', 'Activation', 'Status'],
+            'columns' => ['Type', 'Slug', 'Points rate', 'Rollout note', 'Status'],
             'rows' => [
-                ['Gold', 'gold', '1.50x', 'Auto after issue', 'active'],
-                ['Silver', 'silver', '1.00x', 'Manual', 'active'],
-                ['Partner', 'partner', '1.20x', 'Manager approval', 'draft'],
+                ['Gold', 'gold', '1.50x', 'Keep rollout review-only until legacy Gold behavior is verified branch by branch.', 'active'],
+                ['Silver', 'silver', '1.00x', 'No rollout note saved yet', 'active'],
+                ['Partner', 'partner', '1.20x', 'Draft rollout handoff pending.', 'draft'],
             ],
             'filters' => ['Status', 'Activation mode', 'Points rate'],
         ],
@@ -498,6 +501,9 @@ return [
                     ['label' => 'Active', 'value' => '1'],
                     ['label' => 'Draft', 'value' => '0'],
                 ]],
+                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep the tier aligned with the legacy accrual workflow before widening rule imports.', 'required' => false, 'placeholder' => 'Capture parity-sensitive tier notes for the current Laravel card type.', 'help' => 'Use this safe Phase 1 note to track tier parity context without opening rule-import writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'activation_note', 'label' => 'Activation note', 'type' => 'textarea', 'value' => 'Confirm the legacy activation handoff before operators treat this tier as fully live.', 'required' => false, 'placeholder' => 'Capture operator-facing activation handoff notes for this Laravel card type.', 'help' => 'Keep activation guidance visible here without opening publish or rule-import writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'rollout_note', 'label' => 'Rollout note', 'type' => 'textarea', 'value' => 'Keep rollout review-only until legacy tier behavior is verified branch by branch.', 'required' => false, 'placeholder' => 'Capture rollout handoff notes without opening publish or import writes.', 'help' => 'Use this safe Phase 1 note to document rollout context while publish and import flows stay blocked.', 'attributes' => ['maxlength' => '1000']],
             ],
         ],
         'form' => [
@@ -858,29 +864,50 @@ return [
         'pageTitle' => 'Roles & Permissions',
         'eyebrow' => 'Administration / Roles & Permissions',
         'summary' => 'Baseline management screen for admin roles, permission bundles, and future shop-scoped access rules.',
-        'nextStep' => 'Replace sample controls with real role assignment, permission matrix, and shop-aware policy flows.',
+        'nextStep' => 'Keep the new minimal role identity flow narrow, then layer role assignment, permission matrix, and shop-aware policy flows on top of it.',
         'actions' => [
             [
                 'label' => 'New role',
                 'tone' => 'primary',
-                'disabled' => true,
-                'disabledReason' => 'Blocked until the first Laravel-backed role write flow exists for role identity, scope, and permission bundle parity.',
+                'href' => '#live-form',
             ],
             ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.'],
         ],
         'metrics' => [
             ['label' => 'Active roles', 'value' => '2'],
             ['label' => 'Draft roles', 'value' => '1'],
+            ['label' => 'Reviewed roles', 'value' => '2'],
+            ['label' => 'Access notes', 'value' => '1'],
+            ['label' => 'Assignment notes', 'value' => '1'],
             ['label' => 'Scoped shops', 'value' => '3'],
         ],
         'table' => [
-            'columns' => ['Role', 'Scope', 'Key permissions', 'Users', 'Status'],
+            'columns' => ['Role', 'Scope', 'Key permissions', 'Assignment note', 'Users', 'Status'],
             'rows' => [
-                ['Super Admin', 'All shops', 'Full access', '2', 'active'],
-                ['Shop Manager', 'Per shop', 'Cards, gifts, checks', '8', 'active'],
-                ['Cashier', 'Per shop', 'Checks, card lookup', '14', 'draft'],
+                ['Super Admin', 'All shops', 'Full access', 'Keep assignment rollout review-only until legacy global staff mapping is confirmed.', '2', 'active'],
+                ['Shop Manager', 'Per shop', 'Cards, gifts, checks', 'Keep branch staff rollout review-only until parity checks are complete.', '8', 'active'],
+                ['Cashier', 'Per shop', 'Checks, card lookup', 'No assignment note saved yet', '14', 'draft'],
             ],
             'filters' => ['Scope', 'Status', 'Permission set'],
+        ],
+        'liveForm' => [
+            'title' => 'Create role in Laravel',
+            'description' => 'This is the first minimal Laravel-backed role write path. Keep it limited to role identity while permission bundles and shop scope remain parity-first review surfaces.',
+            'method' => 'POST',
+            'actionRoute' => 'admin.roles-permissions.store',
+            'cancelRoute' => 'admin.roles-permissions.index',
+            'cancelLabel' => 'Back to roles',
+            'submitLabel' => 'Create role',
+            'fields' => [
+                ['name' => 'name', 'label' => 'Role name', 'type' => 'text', 'value' => 'Shop Manager', 'required' => true, 'autofocus' => true, 'placeholder' => 'Branch Supervisor', 'help' => 'Use the operator-facing role name that should mirror the legacy Galaxy staff model.', 'attributes' => ['autocomplete' => 'organization-title']],
+                ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'shop-manager', 'required' => true, 'placeholder' => 'branch-supervisor', 'help' => 'Lowercase identifier for the minimal Laravel role record.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
+                ['name' => 'is_active', 'label' => 'Laravel status', 'type' => 'select', 'value' => '0', 'required' => true, 'help' => 'Draft roles stay safer for parity review. Active status is now persistable, but publish-style access changes should still stay parity-first.', 'options' => [['value' => '0', 'label' => 'Draft'], ['value' => '1', 'label' => 'Active']]],
+                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Mirror the legacy manager workflow first, then widen access only after parity review.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Laravel role shell.', 'help' => 'Use this safe Phase 1 note to record review context without opening assignment or permission-matrix writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'access_note', 'label' => 'Access note', 'type' => 'textarea', 'value' => 'Confirm the branch access handoff before operators rely on this live role shell.', 'required' => false, 'placeholder' => 'Capture operator-facing access handoff notes for this Laravel role shell.', 'help' => 'Keep access guidance visible here without opening assignment or permission-matrix writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'assignment_note', 'label' => 'Assignment note', 'type' => 'textarea', 'value' => 'Keep assignment rollout review-only until legacy staff mapping is verified.', 'required' => false, 'placeholder' => 'Capture assignment handoff notes without opening staff assignment writes.', 'help' => 'Use this safe Phase 1 note to document assignment review context while assignment flows stay blocked.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'scope_rollout', 'label' => 'Scope rollout', 'type' => 'select', 'value' => 'shop-scope-pending', 'required' => false, 'help' => 'Phase 1 keeps shop scope review-only until the next thin write slice is ready.', 'attributes' => ['disabled' => true], 'options' => [['value' => 'shop-scope-pending', 'label' => 'Shop scope still pending'], ['value' => 'shop-scope-visible', 'label' => 'Shop scope visible in review'], ['value' => 'global-review', 'label' => 'Global review only']]],
+                ['name' => 'publish_posture', 'label' => 'Publish posture', 'type' => 'select', 'value' => 'draft-only', 'required' => false, 'help' => 'Publishing remains blocked even though role identity and status can already be saved in Laravel.', 'attributes' => ['disabled' => true], 'options' => [['value' => 'draft-only', 'label' => 'Draft-safe only'], ['value' => 'parity-sensitive', 'label' => 'Parity-sensitive live bundle'], ['value' => 'assignment-sensitive', 'label' => 'Assignment-sensitive live bundle']]],
+            ],
         ],
         'form' => [
             'title' => 'Create or edit role',
@@ -917,12 +944,12 @@ return [
             'title' => 'No shop-scoped roles configured yet',
             'description' => 'Create the first operational role set so shop managers and cashiers can map cleanly to the old Galaxy access model.',
             'actions' => [
-                ['label' => 'Create first role', 'tone' => 'primary'],
+                ['label' => 'Create first role', 'tone' => 'primary', 'href' => '#live-form'],
             ],
         ],
         'notice' => [
-            'title' => 'Role publishing is still preview-only',
-            'description' => 'The access matrix and role editor are visible now, but permission persistence and assignment flows still need Laravel-side implementation.',
+            'title' => 'Role identity writes are live, publishing is still preview-only',
+            'description' => 'The first Laravel-backed role form now saves role identity, but permission persistence, publishing controls, and assignment flows still need implementation.',
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy staff and access matrix'],
@@ -936,15 +963,15 @@ return [
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Legacy role boundaries mapped'],
             ['status' => 'ready', 'label' => 'Permission bundle preview and parity notes added'],
-            ['status' => 'pending', 'label' => 'Assignment and persistence flows still need PHP-backed authorization work'],
+            ['status' => 'pending', 'label' => 'Assignment, publishing, and permission-matrix flows still need PHP-backed authorization work'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Role and Permission models plus migration skeletons exist'],
-            ['label' => 'Backend dependency', 'value' => 'Assignment UI, policy wiring, and persistence handlers are still pending'],
+            ['label' => 'Backend dependency', 'value' => 'Assignment UI, policy wiring, and permission-matrix handlers are still pending beyond the first role identity save flow'],
             ['label' => 'Operational dependency', 'value' => 'Shop-scoped access rules must be verified against legacy staff behavior before activation'],
         ],
         'operatorChecklist' => [
-            'summary' => 'Keep access changes tightly aligned with the old Galaxy staff model until real authorization flows are live.',
+            'summary' => 'Keep access changes tightly aligned with the old Galaxy staff model while only the first role identity save flow is live.',
             'items' => [
                 'Review shop scope before publishing a manager or cashier role change.',
                 'Compare permission bundles against the legacy staff matrix before drafting a new role.',
@@ -973,10 +1000,10 @@ return [
             ],
         ],
         'implementationHandoff' => [
-            'summary' => 'Once PHP-backed flows are possible, start with a minimal role create/update path before exposing full assignment screens.',
+            'summary' => 'Build on the new minimal role create/update path before exposing full assignment screens.',
             'steps' => [
-                'Add a role form request for name, scope, and status validation.',
-                'Persist a minimal role record before tackling permission matrix editing.',
+                'Extend role validation from name and slug into scope and status fields when the next thin write slice is ready.',
+                'Keep role identity persistence stable before tackling permission matrix editing.',
                 'Layer shop assignments and policy checks in after the first save flow is stable.',
             ],
         ],
@@ -987,8 +1014,8 @@ return [
         'summary' => 'Operational placeholder for analytics, histories, and export-oriented admin reporting.',
         'nextStep' => 'Add report catalog, date-range presets, and export entry points.',
         'actions' => [
-            ['label' => 'Open report catalog', 'tone' => 'primary'],
-            ['label' => 'Review export presets', 'tone' => 'secondary'],
+            ['label' => 'Open live report catalog', 'tone' => 'primary'],
+            ['label' => 'Review export presets', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until preset handling is backed by Laravel reporting flow validation.'],
         ],
         'metrics' => [
             ['label' => 'Planned reports', 'value' => '3'],

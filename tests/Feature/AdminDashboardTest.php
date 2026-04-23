@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\Admin\DashboardController;
 use App\Models\Card;
 use App\Models\CardHolder;
 use App\Models\CardType;
@@ -10,6 +11,7 @@ use App\Models\Role;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
@@ -124,6 +126,48 @@ class AdminDashboardTest extends TestCase
 
     public function test_authenticated_user_can_access_admin_dashboard(): void
     {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-dashboard',
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Dashboard',
+            'phone' => '+37499111000',
+            'email' => 'mariam.dashboard@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Dashboard Tier',
+            'slug' => 'dashboard-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => '550011223344',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        $role = Role::create([
+            'name' => 'Dashboard Lead',
+            'slug' => 'dashboard-lead',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Manage dashboard',
+            'slug' => 'manage-dashboard',
+        ]);
+
+        $role->permissions()->attach($permission);
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get('/admin');
@@ -135,9 +179,721 @@ class AdminDashboardTest extends TestCase
             ->assertSee('/admin')
             ->assertSee('Operations')
             ->assertSee('Cardholders')
-            ->assertSee('Roles &amp; Permissions')
+            ->assertSee('Roles & Permissions')
             ->assertSee('Planned sections')
-            ->assertSee('9');
+            ->assertSee('9')
+            ->assertSee('Galaxy live foundation snapshot')
+            ->assertSee('branch setup and review work can move through real operational entities instead of starter placeholders')
+            ->assertSee('Live shops')
+            ->assertSee('Active shops')
+            ->assertSee('Live cardholders')
+            ->assertSee('Active cardholders')
+            ->assertSee('Live cards')
+            ->assertSee('Active cards')
+            ->assertSee('Live roles')
+            ->assertSee('Live permissions')
+            ->assertSee('Live review entry points')
+            ->assertSee('Use these Galaxy review surfaces to move from branch setup into live operational checks once records start landing')
+            ->assertSee('Review live shops')
+            ->assertSee('/admin/shops')
+            ->assertSee('Review live cardholders')
+            ->assertSee('/admin/cardholders')
+            ->assertSee('Review live cards')
+            ->assertSee('/admin/cards')
+            ->assertSee('Review live card types')
+            ->assertSee('/admin/card-types')
+            ->assertSee('Review live access roles')
+            ->assertSee('/admin/roles-permissions')
+            ->assertSee('Review live reporting sources')
+            ->assertSee('/admin/reports')
+            ->assertSee('Galaxy migration map')
+            ->assertSee('These grouped sections mark the Galaxy admin surfaces that still need parity work, so each Phase 1 slice can land against a visible target map')
+            ->assertSee('Resume latest live work')
+            ->assertSee('Jump back into the latest Galaxy workspace for the branch, cardholder, card, or access item that most recently changed')
+            ->assertSee('Open latest shop review: Galaxy Central (active)')
+            ->assertSee('/admin/shops?shop=1')
+            ->assertSee('Open latest cardholder review: Mariam Dashboard (active)')
+            ->assertSee('/admin/cardholders?cardholder=1')
+            ->assertSee('Open latest card review: 550011223344 (active)')
+            ->assertSee('/admin/cards?card=1')
+            ->assertSee('Open latest card type workspace: Dashboard Tier (active)')
+            ->assertSee('/admin/card-types?cardType=1')
+            ->assertSee('Open latest role review: Dashboard Lead (1 permissions)')
+            ->assertSee('/admin/roles-permissions?role=1')
+            ->assertSee('1');
+    }
+
+    public function test_user_assigned_to_active_shop_can_access_admin_dashboard(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-admin-access',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Supervisor',
+            'slug' => 'shop-supervisor-admin-access',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Access admin dashboard',
+            'slug' => 'access-admin-dashboard',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $user->roles()->attach($role->id);
+
+        $this->actingAs($user)
+            ->get('/admin')
+            ->assertOk()
+            ->assertSee('Galaxi Admin');
+
+        $this->assertFalse($user->hasBootstrapAdminAccess());
+        $this->assertTrue($user->belongsToActiveShop());
+        $this->assertTrue($user->hasPermissionBearingRole());
+        $this->assertTrue($user->hasShopScopedAdminAccess());
+        $this->assertTrue($user->canAccessAdminPanel());
+    }
+
+    public function test_user_assigned_to_active_shop_without_role_cannot_access_admin_dashboard(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy North',
+            'code' => 'galaxy-north-admin-access',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $this->actingAs($user)
+            ->get('/admin')
+            ->assertForbidden();
+
+        $this->assertFalse($user->hasBootstrapAdminAccess());
+        $this->assertTrue($user->belongsToActiveShop());
+        $this->assertFalse($user->hasPermissionBearingRole());
+        $this->assertFalse($user->hasShopScopedAdminAccess());
+        $this->assertFalse($user->canAccessAdminPanel());
+    }
+
+    public function test_user_assigned_to_active_shop_with_role_but_without_permissions_cannot_access_admin_dashboard(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy East',
+            'code' => 'galaxy-east-admin-access',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Trainee',
+            'slug' => 'shop-trainee-admin-access',
+        ]);
+
+        $user->roles()->attach($role->id);
+
+        $this->actingAs($user)
+            ->get('/admin')
+            ->assertForbidden();
+
+        $this->assertFalse($user->hasBootstrapAdminAccess());
+        $this->assertTrue($user->belongsToActiveShop());
+        $this->assertFalse($user->hasPermissionBearingRole());
+        $this->assertFalse($user->hasShopScopedAdminAccess());
+        $this->assertFalse($user->canAccessAdminPanel());
+    }
+
+    public function test_user_assigned_to_paused_shop_cannot_access_admin_dashboard(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Airport',
+            'code' => 'galaxy-airport-admin-access',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $this->actingAs($user)
+            ->get('/admin')
+            ->assertForbidden();
+
+        $this->assertFalse($user->hasBootstrapAdminAccess());
+        $this->assertFalse($user->belongsToActiveShop());
+        $this->assertFalse($user->hasShopScopedAdminAccess());
+        $this->assertFalse($user->canAccessAdminPanel());
+    }
+
+    public function test_unscoped_user_keeps_bootstrap_admin_access_helpers(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Bootstrap Review Shop',
+            'code' => 'bootstrap-review-shop',
+            'is_active' => true,
+        ]);
+
+        $this->assertTrue($user->hasBootstrapAdminAccess());
+        $this->assertFalse($user->belongsToActiveShop());
+        $this->assertFalse($user->hasPermissionBearingRole());
+        $this->assertFalse($user->hasShopScopedAdminAccess());
+        $this->assertTrue($user->canAccessAdminPanel());
+        $this->assertTrue($user->canAccessShop($shop));
+        $this->assertFalse($user->canAccessShop(null));
+    }
+
+    public function test_shop_scoped_admin_access_helper_allows_only_the_users_assigned_shop(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Assigned Shop',
+            'code' => 'galaxy-assigned-shop-access',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Other Shop',
+            'code' => 'galaxy-other-shop-access',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Manager',
+            'slug' => 'scoped-manager-shop-access',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Access scoped shop admin',
+            'slug' => 'access-scoped-shop-admin',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $this->assertTrue($user->hasShopScopedAdminAccess());
+        $this->assertTrue($user->canAccessShop($assignedShop));
+        $this->assertFalse($user->canAccessShop($otherShop));
+        $this->assertFalse($user->canAccessShop(null));
+    }
+
+    public function test_shop_scoped_admin_access_helper_denies_paused_shop_users_even_for_their_assigned_shop(): void
+    {
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Paused Scoped Shop',
+            'code' => 'galaxy-paused-scoped-shop-access',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Paused Scoped Manager',
+            'slug' => 'paused-scoped-manager-shop-access',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Access paused scoped shop admin',
+            'slug' => 'access-paused-scoped-shop-admin',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $this->assertFalse($user->hasShopScopedAdminAccess());
+        $this->assertFalse($user->canAccessShop($pausedShop));
+    }
+
+    public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Resume latest live work')
+            ->assertSee('No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.')
+            ->assertSee('In Phase 1, this usually means the branch is still moving through first-pass setup for shops, cardholders, cards, or access structure.')
+            ->assertDontSee('Open latest shop review:')
+            ->assertDontSee('Open latest cardholder review:')
+            ->assertDontSee('Open latest card review:')
+            ->assertDontSee('Open latest card type workspace:')
+            ->assertDontSee('Open latest role review:');
+    }
+
+    public function test_dashboard_shows_only_available_latest_workspace_links(): void
+    {
+        Shop::create([
+            'name' => 'Partial Dashboard Shop',
+            'code' => 'partial-dashboard-shop',
+            'is_active' => false,
+        ]);
+
+        CardType::create([
+            'name' => 'Partial Dashboard Tier',
+            'slug' => 'partial-dashboard-tier',
+            'points_rate' => 1.00,
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Resume latest live work')
+            ->assertSee('Open latest shop review: Partial Dashboard Shop (inactive)')
+            ->assertSee('/admin/shops?shop=1')
+            ->assertSee('Open latest card type workspace: Partial Dashboard Tier (draft)')
+            ->assertSee('/admin/card-types?cardType=1')
+            ->assertDontSee('No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.')
+            ->assertDontSee('In Phase 1, this usually means the branch is still moving through first-pass setup for shops, cardholders, cards, or access structure.')
+            ->assertDontSee('Open latest cardholder review:')
+            ->assertDontSee('Open latest card review:')
+            ->assertDontSee('Open latest role review:');
+    }
+
+    public function test_dashboard_latest_live_work_shortcuts_respect_shop_scope(): void
+    {
+        Carbon::setTestNow('2026-04-21 15:00:00');
+
+        $assignedShop = Shop::create([
+            'name' => 'Dashboard Home Shop',
+            'code' => 'dashboard-home-shop',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Dashboard Other Shop',
+            'code' => 'dashboard-other-shop',
+            'is_active' => true,
+        ]);
+
+        $assignedHolder = CardHolder::create([
+            'shop_id' => $assignedShop->id,
+            'full_name' => 'Scoped Dashboard Holder',
+            'phone' => '+37495555555',
+            'email' => 'scoped-dashboard-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $assignedHolder->forceFill([
+            'created_at' => '2026-04-20 09:15:00',
+            'updated_at' => '2026-04-20 09:15:00',
+        ])->saveQuietly();
+
+        $otherHolder = CardHolder::create([
+            'shop_id' => $otherShop->id,
+            'full_name' => 'Other Dashboard Holder',
+            'phone' => '+37496666666',
+            'email' => 'other-dashboard-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Dashboard Scoped Tier',
+            'slug' => 'dashboard-scoped-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $assignedCard = Card::create([
+            'shop_id' => $assignedShop->id,
+            'card_holder_id' => $assignedHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DASH-001',
+            'status' => 'active',
+        ]);
+
+        $assignedCard->forceFill([
+            'created_at' => '2026-04-20 12:45:00',
+            'updated_at' => '2026-04-20 12:45:00',
+        ])->saveQuietly();
+
+        Card::create([
+            'shop_id' => $otherShop->id,
+            'card_holder_id' => $otherHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DASH-002',
+            'status' => 'blocked',
+        ]);
+
+        $user = User::factory()->create([
+            'name' => 'Scoped Dashboard Manager',
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Dashboard Scoped Reviewer',
+            'slug' => 'dashboard-scoped-reviewer',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped dashboard shortcuts',
+            'slug' => 'review-scoped-dashboard-shortcuts',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Current review scope')
+            ->assertSee('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to Dashboard Home Shop with branch-specific review wording while Phase 1 policies are still being mapped.')
+            ->assertSee('Assigned branch snapshot')
+            ->assertSee('Branch')
+            ->assertSee('Dashboard Home Shop')
+            ->assertSee('Branch code')
+            ->assertSee('dashboard-home-shop')
+            ->assertSee('Branch posture')
+            ->assertSee('active branch, live activity visible')
+            ->assertSee('Branch readiness')
+            ->assertSee('review-ready')
+            ->assertSee('Branch coverage')
+            ->assertSee('cardholders and cards live')
+            ->assertSee('Primary manager')
+            ->assertSee('Scoped Dashboard Manager')
+            ->assertSee('Laravel status')
+            ->assertSee('Visible cardholders')
+            ->assertSee('Visible cards')
+            ->assertSee('Assigned staff')
+            ->assertSee('Latest holder')
+            ->assertSee('Scoped Dashboard Holder')
+            ->assertSee('Latest holder status')
+            ->assertSee('Latest holder added')
+            ->assertSee('2026-04-20')
+            ->assertSee('Latest card')
+            ->assertSee('GX-DASH-001')
+            ->assertSee('Latest card status')
+            ->assertSee('Latest card issued')
+            ->assertSee('Latest activity source')
+            ->assertSee('Card issued')
+            ->assertSee('Activity freshness')
+            ->assertSee('fresh activity')
+            ->assertSee('Suggested follow-up')
+            ->assertSee('Resume the latest branch review flow from the scoped shortcuts.')
+            ->assertSee('>1<', false)
+            ->assertSee('Open assigned branch review')
+            ->assertSee('/admin/shops?shop='.$assignedShop->id)
+            ->assertSee('Open latest holder in branch')
+            ->assertSee('/admin/cardholders?cardholder='.$assignedHolder->id)
+            ->assertSee('Open latest card in branch')
+            ->assertSee('/admin/cards?card='.$assignedCard->id)
+            ->assertSee('Entry posture')
+            ->assertSee('These entry points still open the shared Phase 1 workspaces, but shop-backed review inside shops, cardholders, and cards now narrows to the assigned branch with branch-specific review wording once the workspace loads.')
+            ->assertSee('Review live shops in assigned branch')
+            ->assertSee('Review live cardholders in assigned branch')
+            ->assertSee('Review live cards in assigned branch')
+            ->assertSee('Review shared card types')
+            ->assertSee('Review shared access roles')
+            ->assertSee('Review shared reporting sources')
+            ->assertDontSee('Review live shops</a>', false)
+            ->assertSee('Phase 1 scope note')
+            ->assertSee('Latest-work shortcuts for shops, cardholders, and cards now follow branch scope and branch-specific review wording. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.')
+            ->assertSee('Open latest branch review: Dashboard Home Shop (active)')
+            ->assertSee('/admin/shops?shop='.$assignedShop->id)
+            ->assertDontSee('Open latest branch review: Dashboard Other Shop (active)')
+            ->assertSee('Open latest branch cardholder review: Scoped Dashboard Holder (active)')
+            ->assertSee('/admin/cardholders?cardholder='.$assignedHolder->id)
+            ->assertDontSee('Open latest branch cardholder review: Other Dashboard Holder (active)')
+            ->assertSee('Open latest branch card review: GX-DASH-001 (active)')
+            ->assertSee('/admin/cards?card='.$assignedCard->id)
+            ->assertDontSee('Open latest branch card review: GX-DASH-002 (blocked)');
+
+        Carbon::setTestNow();
+    }
+
+    public function test_unscoped_dashboard_does_not_show_shop_scope_summary(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertDontSee('Current review scope')
+            ->assertDontSee('Shop-scoped admin mode is active.')
+            ->assertDontSee('Assigned branch snapshot')
+            ->assertDontSee('Branch code')
+            ->assertDontSee('Branch posture')
+            ->assertDontSee('Branch readiness')
+            ->assertDontSee('Branch coverage')
+            ->assertDontSee('Primary manager')
+            ->assertDontSee('Visible cardholders')
+            ->assertDontSee('Visible cards')
+            ->assertDontSee('Assigned staff')
+            ->assertDontSee('Latest holder')
+            ->assertDontSee('Latest holder status')
+            ->assertDontSee('Latest holder added')
+            ->assertDontSee('Latest card')
+            ->assertDontSee('Latest card status')
+            ->assertDontSee('Latest card issued')
+            ->assertDontSee('Latest activity source')
+            ->assertDontSee('Activity freshness')
+            ->assertDontSee('Suggested follow-up')
+            ->assertDontSee('Open assigned branch review')
+            ->assertDontSee('Open latest holder in branch')
+            ->assertDontSee('Open latest card in branch')
+            ->assertDontSee('Entry posture')
+            ->assertDontSee('These entry points still open the shared Phase 1 workspaces')
+            ->assertDontSee('Review live shops in assigned branch')
+            ->assertDontSee('Review live cardholders in assigned branch')
+            ->assertDontSee('Review live cards in assigned branch')
+            ->assertSee('Review live shops')
+            ->assertSee('Review live cardholders')
+            ->assertSee('Review live cards')
+            ->assertDontSee('Phase 1 scope note')
+            ->assertDontSee('Latest-work shortcuts for shops, cardholders, and cards now follow branch scope.');
+    }
+
+    public function test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Quiet Dashboard Shop',
+            'code' => 'quiet-dashboard-shop',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'name' => 'Quiet Branch Manager',
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Quiet Dashboard Reviewer',
+            'slug' => 'quiet-dashboard-reviewer',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review quiet dashboard shortcuts',
+            'slug' => 'review-quiet-dashboard-shortcuts',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Assigned branch snapshot')
+            ->assertSee('This branch snapshot keeps the assigned Galaxy location in view, so setup gaps and fresh activity are visible before you jump into review')
+            ->assertSee('Quiet Dashboard Shop')
+            ->assertSee('Branch posture')
+            ->assertSee('active branch, setup pending')
+            ->assertSee('Branch readiness')
+            ->assertSee('setup pending')
+            ->assertSee('Branch coverage')
+            ->assertSee('core branch records pending')
+            ->assertSee('Latest holder')
+            ->assertSee('No holders in assigned branch yet')
+            ->assertSee('Latest holder status')
+            ->assertSee('n/a')
+            ->assertSee('Latest holder added')
+            ->assertSee('Latest card')
+            ->assertSee('No cards in assigned branch yet')
+            ->assertSee('Latest card status')
+            ->assertSee('Latest card issued')
+            ->assertSee('Latest activity source')
+            ->assertSee('Setup pending')
+            ->assertSee('Activity freshness')
+            ->assertSee('setup stage')
+            ->assertSee('Suggested follow-up')
+            ->assertSee('Open assigned branch setup and create the first live records.')
+            ->assertSee('Open assigned branch setup')
+            ->assertSee('/admin/shops?shop='.$assignedShop->id)
+            ->assertDontSee('Open assigned branch review</a>', false)
+            ->assertSee('Set up assigned branch')
+            ->assertDontSee('Review live shops in assigned branch</a>', false)
+            ->assertSee('Set up first cardholder in assigned branch')
+            ->assertDontSee('Review live cardholders in assigned branch</a>', false)
+            ->assertSee('Set up first card in assigned branch')
+            ->assertDontSee('Review live cards in assigned branch</a>', false)
+            ->assertSee('Open branch setup: Quiet Dashboard Shop (active)')
+            ->assertDontSee('Open latest shop review: Quiet Dashboard Shop (active)')
+            ->assertSee('Open first cardholder setup in assigned branch')
+            ->assertSee('/admin/cardholders')
+            ->assertDontSee('Open latest cardholder review:')
+            ->assertSee('Open first card setup in assigned branch')
+            ->assertSee('/admin/cards')
+            ->assertDontSee('Open latest card review:')
+            ->assertDontSee('Open latest holder in branch')
+            ->assertDontSee('Open latest card in branch');
+    }
+
+    public function test_dashboard_branch_helper_logic_covers_paused_branch_posture(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Paused Dashboard Shop',
+            'code' => 'paused-dashboard-shop',
+            'is_active' => false,
+        ]);
+
+        $controller = new class extends DashboardController
+        {
+            public function branchPostureForTest(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
+            {
+                return $this->branchOperationalPosture($shop, $latestHolder, $latestCard);
+            }
+
+            public function branchFollowUpForTest(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
+            {
+                return $this->branchSuggestedFollowUp($shop, $latestHolder, $latestCard);
+            }
+
+            public function branchActionsForTest(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): array
+            {
+                return $this->assignedBranchSnapshotActions($shop, $latestHolder, $latestCard);
+            }
+        };
+
+        $this->assertSame('paused branch', $controller->branchPostureForTest($assignedShop, null, null));
+        $this->assertSame(
+            'Confirm pause reason before reopening branch work.',
+            $controller->branchFollowUpForTest($assignedShop, null, null),
+        );
+        $this->assertSame([], $controller->branchActionsForTest($assignedShop, null, null));
+    }
+
+    public function test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Partial Dashboard Shop',
+            'code' => 'partial-dashboard-shop',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $assignedShop->id,
+            'full_name' => 'Partial Dashboard Holder',
+            'phone' => '+37497777777',
+            'email' => 'partial-dashboard-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'name' => 'Partial Branch Manager',
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Partial Dashboard Reviewer',
+            'slug' => 'partial-dashboard-reviewer',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review partial dashboard shortcuts',
+            'slug' => 'review-partial-dashboard-shortcuts',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Assigned branch snapshot')
+            ->assertSee('Partial Dashboard Shop')
+            ->assertSee('Branch readiness')
+            ->assertSee('setup in progress')
+            ->assertSee('Branch coverage')
+            ->assertSee('cardholders live, cards pending')
+            ->assertSee('Latest holder')
+            ->assertSee('Partial Dashboard Holder')
+            ->assertSee('Latest card')
+            ->assertSee('No cards in assigned branch yet')
+            ->assertSee('Suggested follow-up')
+            ->assertSee('Open assigned branch card setup and issue the first live card.')
+            ->assertSee('Open assigned branch review')
+            ->assertSee('/admin/shops?shop='.$assignedShop->id)
+            ->assertSee('Open latest holder in branch')
+            ->assertSee('/admin/cardholders?cardholder='.$holder->id)
+            ->assertDontSee('Open latest card in branch');
+    }
+
+    public function test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Card First Dashboard Shop',
+            'code' => 'card-first-dashboard-shop',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Card First Dashboard Tier',
+            'slug' => 'card-first-dashboard-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $assignedShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-PARTIAL-001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create([
+            'name' => 'Card First Branch Manager',
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Card First Dashboard Reviewer',
+            'slug' => 'card-first-dashboard-reviewer',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review card first dashboard shortcuts',
+            'slug' => 'review-card-first-dashboard-shortcuts',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin');
+
+        $response
+            ->assertOk()
+            ->assertSee('Assigned branch snapshot')
+            ->assertSee('Card First Dashboard Shop')
+            ->assertSee('Branch readiness')
+            ->assertSee('setup in progress')
+            ->assertSee('Branch coverage')
+            ->assertSee('cards live, cardholders pending')
+            ->assertSee('Latest holder')
+            ->assertSee('No holders in assigned branch yet')
+            ->assertSee('Latest card')
+            ->assertSee('GX-PARTIAL-001')
+            ->assertSee('Suggested follow-up')
+            ->assertSee('Review assigned branch cards and backfill the first visible cardholder record.')
+            ->assertSee('Open assigned branch review')
+            ->assertSee('/admin/shops?shop='.$assignedShop->id)
+            ->assertSee('Open latest card in branch')
+            ->assertSee('/admin/cards?card='.$card->id)
+            ->assertDontSee('Open latest holder in branch');
     }
 
     public function test_authenticated_user_can_access_cardholders_placeholder_page(): void
@@ -161,7 +917,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Roles &amp; Permissions placeholder')
+            ->assertSeeText('Administration / Roles & Permissions')
             ->assertSee('roles-permissions')
             ->assertSee('shop-scoped access rules');
     }
@@ -174,20 +930,37 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Create role in Laravel')
+            ->assertSee('Create role')
+            ->assertSee('Role name')
+            ->assertSee('Slug')
+            ->assertSee('Laravel status')
+            ->assertSee('Draft')
+            ->assertSee('Active')
+            ->assertSee('Draft roles stay safer for parity review. Active status is now persistable, but publish-style access changes should still stay parity-first.')
+            ->assertSee('Scope rollout')
+            ->assertSee('Shop scope still pending')
+            ->assertSee('Phase 1 keeps shop scope review-only until the next thin write slice is ready.')
+            ->assertSee('Publish posture')
+            ->assertSee('Draft-safe only')
+            ->assertSee('Publishing remains blocked even though role identity and status can already be saved in Laravel.')
             ->assertSee('Create or edit role')
             ->assertSee('Publish role')
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('aria-disabled="true"', false)
             ->assertSee('New role')
-            ->assertSee('Blocked until the first Laravel-backed role write flow exists for role identity, scope, and permission bundle parity.')
+            ->assertSee('href="#live-form"', false)
             ->assertSee('Review matrix')
             ->assertSee('Blocked until the Laravel permission matrix can be verified against legacy staff access.')
             ->assertSee('Management snapshot')
             ->assertSee('Active roles')
+            ->assertSee('Reviewed roles')
             ->assertSee('Scoped shops')
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Create first role')
-            ->assertSee('Role publishing is still preview-only')
+            ->assertSee('Keep the new minimal role identity flow narrow, then layer role assignment, permission matrix, and shop-aware policy flows on top of it.')
+            ->assertSee('Role identity writes are live, publishing is still preview-only')
+            ->assertSee('The first Laravel-backed role form now saves role identity, but permission persistence, publishing controls, and assignment flows still need implementation.')
             ->assertSee('Role identity')
             ->assertSee('Access policy')
             ->assertSee('Compare staff roles')
@@ -207,18 +980,58 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Open issues to carry')
             ->assertSee('Cashier assignment rules remain unverified against legacy shop-scoped behavior.')
             ->assertSee('First Laravel wiring step')
-            ->assertSee('Once PHP-backed flows are possible, start with a minimal role create/update path before exposing full assignment screens.')
-            ->assertSee('Persist a minimal role record before tackling permission matrix editing.')
+            ->assertSee('Build on the new minimal role create/update path before exposing full assignment screens.')
+            ->assertSee('Keep role identity persistence stable before tackling permission matrix editing.')
             ->assertSee('Role and Permission models plus migration skeletons exist')
-            ->assertSee('Assignment UI, policy wiring, and persistence handlers are still pending')
+            ->assertSee('Assignment UI, policy wiring, and permission-matrix handlers are still pending beyond the first role identity save flow')
             ->assertSee('Legacy role boundaries mapped')
-            ->assertSee('Assignment and persistence flows still need PHP-backed authorization work')
+            ->assertSee('Assignment, publishing, and permission-matrix flows still need PHP-backed authorization work')
             ->assertSee('Shop Manager bundle reviewed')
             ->assertSee('Cashier draft held back')
             ->assertSee('Old Galaxy staff and access matrix')
             ->assertSee('cashier/manager split')
             ->assertSee('Shop Manager')
             ->assertSee('Scoped to assigned shop');
+    }
+
+    public function test_roles_permissions_catalog_actions_reflect_saved_role_readiness(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'roles-catalog-readiness',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Catalog Access Lead',
+            'slug' => 'catalog-access-lead',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review reporting access',
+            'slug' => 'review-reporting-access',
+        ]);
+
+        $role->permissions()->attach($permission);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Nare Access Catalog',
+            'shop_id' => $shop->id,
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until saved Laravel permission bundles are verified against legacy staff access.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until saved live access bundles clear assignment and shop-scope parity.');
     }
 
     public function test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data(): void
@@ -232,6 +1045,10 @@ class AdminDashboardTest extends TestCase
         $role = Role::create([
             'name' => 'Shop Manager',
             'slug' => 'shop-manager-live',
+            'is_active' => true,
+            'review_note' => 'Keep manager workflow aligned with the first live parity pass.',
+            'access_note' => 'Keep branch access handoff visible during parity review.',
+            'assignment_note' => 'Keep branch staff rollout review-only until parity checks are complete.',
         ]);
 
         $permissionA = Permission::create([
@@ -255,6 +1072,7 @@ class AdminDashboardTest extends TestCase
         $draftRole = Role::create([
             'name' => 'Cashier Draft',
             'slug' => 'cashier-draft-live',
+            'is_active' => false,
         ]);
 
         $user = User::factory()->create();
@@ -267,11 +1085,16 @@ class AdminDashboardTest extends TestCase
             ->assertSee('href="/admin/roles-permissions?role=', false)
             ->assertSee('Galaxy Central')
             ->assertSee('Manage cards, Manage gifts')
+            ->assertSee('Keep branch staff rollout review-only until parity checks are complete.')
             ->assertSee('Cashier Draft')
             ->assertSee('No permissions linked yet')
+            ->assertSee('No assignment note saved yet')
             ->assertSee('Review latest saved role')
             ->assertSee('Active roles')
             ->assertSee('Draft roles')
+            ->assertSee('Reviewed roles')
+            ->assertSee('Access notes')
+            ->assertSee('Assignment notes')
             ->assertSee('Scoped shops')
             ->assertSee('active')
             ->assertSee('draft');
@@ -288,6 +1111,10 @@ class AdminDashboardTest extends TestCase
         $role = Role::create([
             'name' => 'Shop Manager',
             'slug' => 'shop-manager-selected-role',
+            'is_active' => true,
+            'review_note' => 'Keep this role aligned with the legacy branch manager workflow during parity review.',
+            'access_note' => 'Confirm branch access handoff before operators rely on this live role shell.',
+            'assignment_note' => 'Keep assignment rollout review-only until branch staff mapping is verified.',
         ]);
 
         $permission = Permission::create([
@@ -298,6 +1125,7 @@ class AdminDashboardTest extends TestCase
         $role->permissions()->attach($permission->id);
 
         $assignedUser = User::factory()->create([
+            'name' => 'Nare Gevorgyan',
             'shop_id' => $shop->id,
         ]);
 
@@ -312,18 +1140,328 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Back to all roles')
             ->assertSee('href="/admin/roles-permissions"', false)
             ->assertSee('Reviewing: Shop Manager')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until this assignment-sensitive Laravel permission bundle is verified against legacy staff access.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until assignment-sensitive live role parity is verified for this Laravel permission bundle.')
             ->assertSee('Selected role')
+            ->assertSee('Role slug')
+            ->assertSee('shop-manager-selected-role')
+            ->assertSee('Edit role in Laravel')
+            ->assertSee('Save role changes')
+            ->assertSee('Create new role')
+            ->assertSee('href="/admin/roles-permissions#live-form"', false)
+            ->assertSee('action="/admin/roles-permissions/'.$role->id.'"', false)
+            ->assertSee('Laravel status')
+            ->assertSee('selected>Active</option>', false)
+            ->assertSee('Review note')
+            ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
+            ->assertSee('Access note')
+            ->assertSee('Confirm branch access handoff before operators rely on this live role shell.')
+            ->assertSee('Assignment note')
+            ->assertSee('Keep assignment rollout review-only until branch staff mapping is verified.')
+            ->assertSee('Coverage signal')
+            ->assertSee('scope, staff, and permission coverage visible')
+            ->assertSee('Scope rollout')
+            ->assertSee('Shop scope visible in review')
+            ->assertSee('Publish posture')
+            ->assertSee('Assignment-sensitive live bundle')
+            ->assertSee('Review mode')
+            ->assertSee('Live-impact review, linked staff or permissions already exist in Laravel')
+            ->assertSee('Operational readiness')
+            ->assertSee('assignment-sensitive live role')
+            ->assertSee('Lifecycle freshness')
+            ->assertSee('newly created in Laravel review')
+            ->assertSee('Last saved in Laravel')
+            ->assertSee('Review note')
+            ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
             ->assertSee('Scope')
+            ->assertSee('Scope coverage')
+            ->assertSee('1 shop visible in Laravel review')
+            ->assertSee('Scope rollout posture')
+            ->assertSee('Shop scope is visible in Laravel review, but scope writes should stay parity-first until the next thin access slice is ready.')
+            ->assertSee('Shop scope preview')
+            ->assertSee('Galaxy Central')
+            ->assertSee('Scope guidance')
+            ->assertSee('This role already has visible shop scope in Laravel, so any scope change should be treated as a parity-sensitive access change.')
             ->assertSee('Assigned users')
+            ->assertSee('Assigned staff preview')
+            ->assertSee('Nare Gevorgyan')
+            ->assertSee('Assignment branch activity signal')
+            ->assertSee('paused-branch assignment coverage is still pending for parity review')
+            ->assertSee('Assignment guidance')
+            ->assertSee('Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.')
             ->assertSee('Permission count')
+            ->assertSee('Permission coverage')
+            ->assertSee('Live bundle present, review changes as parity-sensitive access coverage.')
+            ->assertSee('Scoped permission signal')
+            ->assertSee('1 scoped shops are already visible for this permission-linked role in parity review')
+            ->assertSee('Permission branch activity signal')
+            ->assertSee('paused-branch permission-linked staff coverage is still pending for parity review')
+            ->assertSee('Permission bundle')
+            ->assertSee('Manage cards')
             ->assertSee('Laravel status')
             ->assertSee('Access guidance')
             ->assertSee('This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.')
             ->assertSee('Shop Manager selected for Laravel review')
             ->assertSee('Current request')
             ->assertSee('The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.')
+            ->assertSee('Shop Manager status reflected from model state')
+            ->assertSee('This role is currently marked as active in Laravel and the management context now treats it as a live access shell.')
+            ->assertSee('Shop Manager lifecycle freshness reflected from model state')
+            ->assertSee('This role was created in Laravel on')
+            ->assertSee('and has not been updated since, so operators are still reviewing the first saved access shell.')
+            ->assertSee('Shop Manager last saved timestamp reflected from model state')
+            ->assertSee('The latest saved Laravel timestamp for this role is')
+            ->assertSee('giving operators a concrete checkpoint for the current access shell.')
+            ->assertSee('Shop Manager review note reflected from model state')
+            ->assertSee('The current Laravel review note says: Keep this role aligned with the legacy branch manager workflow during parity review.')
+            ->assertSee('Shop Manager access note reflected from model state')
+            ->assertSee('The current Laravel access note says: Confirm branch access handoff before operators rely on this live role shell.')
+            ->assertSee('Shop Manager assignment note reflected from model state')
+            ->assertSee('The current Laravel assignment note says: Keep assignment rollout review-only until branch staff mapping is verified.')
+            ->assertSee('Shop Manager scope posture reflected from model state')
+            ->assertSee('This role currently shows shop scope across Galaxy Central in Laravel review mode, so scope rollout stays visible while writes remain gated.')
+            ->assertSee('Shop Manager scope coverage reflected from model state')
+            ->assertSee('This role currently exposes shop scope across Galaxy Central in Laravel review, giving operators one visible branch to compare before any scope writes are enabled.')
             ->assertSee('Shop Manager permission bundle reflected from model state')
-            ->assertSee('Manage cards');
+            ->assertSee('Shop Manager assignment scope reflected from model state')
+            ->assertSee('This role is currently linked to 1 assigned users across Galaxy Central in Laravel review mode.')
+            ->assertSee('Manage cards')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until this assignment-sensitive Laravel permission bundle is verified against legacy staff access.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until assignment-sensitive live role parity is verified for this Laravel permission bundle.')
+            ->assertSee('Review posture:')
+            ->assertSee('Selected-role review is running in Laravel-backed read mode only')
+            ->assertSee('Status posture:')
+            ->assertSee('This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.')
+            ->assertSee('Lifecycle freshness:')
+            ->assertSee('newly created in Laravel review')
+            ->assertSee('Last saved in Laravel:')
+            ->assertSee('Review note:')
+            ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
+            ->assertSee('Access note:')
+            ->assertSee('Confirm branch access handoff before operators rely on this live role shell.')
+            ->assertSee('Assignment note:')
+            ->assertSee('Keep assignment rollout review-only until branch staff mapping is verified.')
+            ->assertSee('Coverage signal:')
+            ->assertSee('scope, staff, and permission coverage visible')
+            ->assertSee('Role status signal')
+            ->assertSee('Active role is already visible with scope, staffing, and permission coverage for live access parity review.')
+            ->assertSee('Scope rollout posture:')
+            ->assertSee('This role already shows shop scope in Laravel review, but scope mutation should stay blocked until a dedicated access slice is verified.')
+            ->assertSee('Scope coverage:')
+            ->assertSee('1 shop visible in Laravel review')
+            ->assertSee('Matrix posture:')
+            ->assertSee('Keep matrix editing blocked until legacy staff-access parity is verified in Laravel')
+            ->assertSee('Assigned staff posture:')
+            ->assertSee('Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.')
+            ->assertSee('Assignment branch activity signal:')
+            ->assertSee('paused-branch assignment coverage is still pending for parity review')
+            ->assertSee('Permission posture:')
+            ->assertSee('The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.')
+            ->assertSee('Scoped permission signal:')
+            ->assertSee('1 scoped shops are already visible for this permission-linked role in parity review')
+            ->assertSee('Permission branch activity signal:')
+            ->assertSee('paused-branch permission-linked staff coverage is still pending for parity review')
+            ->assertSee('Publish posture:')
+            ->assertSee('This live permission bundle still needs assignment parity checks before publish-style role changes are safe.')
+            ->assertSee('Scope posture:')
+            ->assertSee('Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace');
+    }
+
+    public function test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Galaxy Access Active Branch',
+            'code' => 'galaxy-access-active-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Access Paused Branch',
+            'code' => 'galaxy-access-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Branch Access Supervisor',
+            'slug' => 'branch-access-supervisor',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review branch access',
+            'slug' => 'review-branch-access',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $activeAssignedUser = User::factory()->create([
+            'name' => 'Anna Activebranch',
+            'shop_id' => $activeShop->id,
+        ]);
+
+        $pausedAssignedUser = User::factory()->create([
+            'name' => 'Paul Pausedbranch',
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        $activeAssignedUser->roles()->attach($role->id);
+        $pausedAssignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Branch Access Supervisor')
+            ->assertSee('Assignment branch activity signal')
+            ->assertSee('1 assigned staff are already visible in active branches beside 1 assigned staff in paused shops for parity review')
+            ->assertSee('Scoped permission signal')
+            ->assertSee('2 scoped shops are already visible for this permission-linked role in parity review')
+            ->assertSee('Permission branch activity signal')
+            ->assertSee('1 permission-linked staff are already visible in active branches beside 1 permission-linked staff in paused shops for parity review')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Assignment branch activity signal:')
+            ->assertSee('1 assigned staff are already visible in active branches beside 1 assigned staff in paused shops for parity review')
+            ->assertSee('Scoped permission signal:')
+            ->assertSee('2 scoped shops are already visible for this permission-linked role in parity review')
+            ->assertSee('Permission branch activity signal:')
+            ->assertSee('1 permission-linked staff are already visible in active branches beside 1 permission-linked staff in paused shops for parity review');
+    }
+
+    public function test_selected_draft_role_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $role = Role::create([
+            'name' => 'Draft Branch Auditor',
+            'slug' => 'draft-branch-auditor',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Draft Branch Auditor')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until this draft role has a first verified Laravel permission bundle to compare against legacy staff access.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until this draft role has a verified permission bundle and shop scope parity.')
+            ->assertSee('Role status signal')
+            ->assertSee('Draft role remains safer for parity review before live access rollout discussion.')
+            ->assertSee('Role status signal:')
+            ->assertSee('Draft role remains safer for parity review before live access rollout discussion.');
+    }
+
+    public function test_selected_active_role_without_permission_bundle_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Scope Branch',
+            'code' => 'galaxy-scope-branch-no-bundle',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Floor Lead',
+            'slug' => 'scoped-floor-lead-no-bundle',
+            'is_active' => true,
+        ]);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Ani Scopeyan',
+            'shop_id' => $shop->id,
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Scoped Floor Lead')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until this active role has a first verified Laravel permission bundle to compare against legacy staff access.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until this active role has a verified permission bundle to compare against legacy staff access.');
+    }
+
+    public function test_selected_live_permission_bundle_without_scope_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $role = Role::create([
+            'name' => 'Central Audit Lead',
+            'slug' => 'central-audit-lead-live-bundle',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Audit holders',
+            'slug' => 'audit-holders-live-bundle',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Central Audit Lead')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until the Laravel permission matrix can be verified against legacy staff access for this live bundle.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until this live permission bundle also has verified shop scope parity.');
+    }
+
+    public function test_selected_assignment_sensitive_live_role_without_scope_surfaces_access_review_context(): void
+    {
+        $role = Role::create([
+            'name' => 'Shift Access Lead',
+            'slug' => 'shift-access-lead-no-scope',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Manage shifts',
+            'slug' => 'manage-shifts-no-scope',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Levon Shiftyan',
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Shift Access Lead')
+            ->assertSee('Review matrix')
+            ->assertSee('Blocked until this assignment-sensitive Laravel permission bundle is verified against legacy staff access.')
+            ->assertSee('Publish role')
+            ->assertSee('Blocked until this live permission bundle also has verified shop scope parity.')
+            ->assertSee('Coverage signal')
+            ->assertSee('staff and permission coverage visible, scope pending')
+            ->assertSee('Assigned staff preview')
+            ->assertSee('Levon Shiftyan')
+            ->assertSee('Scope guidance')
+            ->assertSee('No shop scope is linked yet, which keeps this role safer for draft review before scope parity is confirmed.')
+            ->assertSee('Assignment guidance')
+            ->assertSee('Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.');
     }
 
     public function test_roles_permissions_page_ignores_unknown_selected_role_query(): void
@@ -365,6 +1503,296 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('selected for Laravel review');
     }
 
+    public function test_roles_permissions_page_ignores_malformed_selected_role_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-malformed-role',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Manager',
+            'slug' => 'shop-manager-malformed-role',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Manage cards',
+            'slug' => 'manage-cards-malformed-role',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $assignedUser = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role=not-a-number');
+
+        $response
+            ->assertOk()
+            ->assertSee('Shop Manager')
+            ->assertSee('Review latest saved role')
+            ->assertDontSee('Back to all roles')
+            ->assertDontSee('Selected role')
+            ->assertDontSee('selected for Laravel review');
+    }
+
+    public function test_authenticated_user_can_create_role_from_minimal_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Branch Supervisor',
+            'slug' => 'Branch Supervisor',
+            'is_active' => '1',
+            'review_note' => 'Start with the branch manager shell and keep assignment changes blocked.',
+            'access_note' => 'Confirm staff access handoff before operators rely on this live role shell.',
+            'assignment_note' => 'Keep assignment rollout blocked until branch staff parity is reviewed.',
+        ]);
+
+        $role = Role::query()->where('name', 'Branch Supervisor')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Role "Branch Supervisor" was created.');
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $role->id,
+            'name' => 'Branch Supervisor',
+            'slug' => 'branch-supervisor',
+            'is_active' => true,
+            'review_note' => 'Start with the branch manager shell and keep assignment changes blocked.',
+            'access_note' => 'Confirm staff access handoff before operators rely on this live role shell.',
+            'assignment_note' => 'Keep assignment rollout blocked until branch staff parity is reviewed.',
+        ]);
+    }
+
+    public function test_role_live_admin_form_returns_operator_friendly_validation_messages(): void
+    {
+        $user = User::factory()->create();
+
+        Role::create([
+            'name' => 'Shop Manager',
+            'slug' => 'shop-manager',
+        ]);
+
+        $response = $this->from(route('admin.roles-permissions.index'))->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Shop Manager Copy',
+            'slug' => 'shop-manager',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'This role slug is already in use.',
+            ]);
+
+        $longReviewNote = str_repeat('a', 1001);
+
+        $reviewNoteResponse = $this->from(route('admin.roles-permissions.index'))->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Shop Manager Review Copy',
+            'slug' => 'shop-manager-review-copy',
+            'is_active' => '0',
+            'review_note' => $longReviewNote,
+        ]);
+
+        $reviewNoteResponse
+            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
+            ->assertSessionHasErrors([
+                'review_note' => 'Keep the review note under 1000 characters so the role workspace stays operator-friendly.',
+            ]);
+
+        $longAccessNote = str_repeat('x', 1001);
+
+        $accessNoteResponse = $this->from(route('admin.roles-permissions.index'))->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Shop Manager Access Copy',
+            'slug' => 'shop-manager-access-copy',
+            'is_active' => '0',
+            'access_note' => $longAccessNote,
+        ]);
+
+        $accessNoteResponse
+            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
+            ->assertSessionHasErrors([
+                'access_note' => 'Keep the access note under 1000 characters so the role workspace stays operator-friendly.',
+            ]);
+
+        $longAssignmentNote = str_repeat('z', 1001);
+
+        $assignmentNoteResponse = $this->from(route('admin.roles-permissions.index'))->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Shop Manager Assignment Copy',
+            'slug' => 'shop-manager-assignment-copy',
+            'is_active' => '0',
+            'assignment_note' => $longAssignmentNote,
+        ]);
+
+        $assignmentNoteResponse
+            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
+            ->assertSessionHasErrors([
+                'assignment_note' => 'Keep the assignment note under 1000 characters so the role workspace stays operator-friendly.',
+            ]);
+    }
+
+    public function test_role_create_validation_redirects_to_index_without_referrer(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => '',
+            'slug' => 'invalid slug',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
+            ->assertSessionHasErrors(['name']);
+
+        $this->assertDatabaseCount('roles', 0);
+    }
+
+    public function test_authenticated_user_can_update_role_from_minimal_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+        $role = Role::create([
+            'name' => 'Branch Supervisor',
+            'slug' => 'branch-supervisor',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Operations Lead',
+            'slug' => 'Branch Operations Lead',
+            'is_active' => '1',
+            'review_note' => 'Document the first live Laravel role adjustments before widening scope.',
+            'access_note' => 'Keep access handoff visible while this role remains under parity review.',
+            'assignment_note' => 'Keep assignment rollout review-only while this role remains under parity review.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Role "Branch Operations Lead" was updated.');
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $role->id,
+            'name' => 'Branch Operations Lead',
+            'slug' => 'branch-operations-lead',
+            'is_active' => true,
+            'review_note' => 'Document the first live Laravel role adjustments before widening scope.',
+            'access_note' => 'Keep access handoff visible while this role remains under parity review.',
+            'assignment_note' => 'Keep assignment rollout review-only while this role remains under parity review.',
+        ]);
+    }
+
+    public function test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug(): void
+    {
+        $user = User::factory()->create();
+        $role = Role::create([
+            'name' => 'Branch Supervisor',
+            'slug' => 'branch-supervisor',
+        ]);
+        $otherRole = Role::create([
+            'name' => 'Cashier',
+            'slug' => 'cashier',
+        ]);
+
+        $okResponse = $this->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Supervisor Updated',
+            'slug' => 'branch-supervisor',
+        ]);
+
+        $okResponse
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Role "Branch Supervisor Updated" was updated.');
+
+        $errorResponse = $this->from(route('admin.roles-permissions.index'))->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Supervisor Updated Again',
+            'slug' => $otherRole->slug,
+        ]);
+
+        $errorResponse
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'This role slug is already in use.',
+            ]);
+
+        $longReviewNote = str_repeat('b', 1001);
+
+        $reviewNoteErrorResponse = $this->from(route('admin.roles-permissions.index', ['role' => $role], absolute: false))->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Supervisor Updated Again',
+            'slug' => 'branch-supervisor',
+            'is_active' => '1',
+            'review_note' => $longReviewNote,
+        ]);
+
+        $reviewNoteErrorResponse
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'review_note' => 'Keep the review note under 1000 characters so the role workspace stays operator-friendly.',
+            ]);
+
+        $longAccessNote = str_repeat('y', 1001);
+
+        $accessNoteErrorResponse = $this->from(route('admin.roles-permissions.index', ['role' => $role], absolute: false))->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Supervisor Updated Again',
+            'slug' => 'branch-supervisor',
+            'is_active' => '1',
+            'access_note' => $longAccessNote,
+        ]);
+
+        $accessNoteErrorResponse
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'access_note' => 'Keep the access note under 1000 characters so the role workspace stays operator-friendly.',
+            ]);
+
+        $longAssignmentNote = str_repeat('q', 1001);
+
+        $assignmentNoteErrorResponse = $this->from(route('admin.roles-permissions.index', ['role' => $role], absolute: false))->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Branch Supervisor Updated Again',
+            'slug' => 'branch-supervisor',
+            'is_active' => '1',
+            'assignment_note' => $longAssignmentNote,
+        ]);
+
+        $assignmentNoteErrorResponse
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'assignment_note' => 'Keep the assignment note under 1000 characters so the role workspace stays operator-friendly.',
+            ]);
+    }
+
+    public function test_roles_permissions_page_shows_update_success_flash_message(): void
+    {
+        $user = User::factory()->create();
+        $role = Role::create([
+            'name' => 'Branch Operations Lead',
+            'slug' => 'branch-operations-lead-flash',
+            'access_note' => 'Keep access handoff visible while this role remains under parity review.',
+            'assignment_note' => 'Keep assignment rollout review-only while this role remains under parity review.',
+        ]);
+
+        $response = $this->actingAs($user)
+            ->withSession(['status' => 'Role "Branch Operations Lead" was updated.'])
+            ->get(route('admin.roles-permissions.index', ['role' => $role]));
+
+        $response
+            ->assertOk()
+            ->assertSee('id="backend-flow-status"', false)
+            ->assertSee('Backend flow checkpoint')
+            ->assertSee('Role "Branch Operations Lead" was updated.')
+            ->assertSee('Reviewing: Branch Operations Lead')
+            ->assertSee('Latest backend write result')
+            ->assertSee('Latest flow result:')
+            ->assertSee('Access note:')
+            ->assertSee('Keep access handoff visible while this role remains under parity review.')
+            ->assertSee('Assignment note:')
+            ->assertSee('Keep assignment rollout review-only while this role remains under parity review.')
+            ->assertSee('Role "Branch Operations Lead" was updated.');
+    }
+
     public function test_authenticated_user_can_access_cards_operational_index_shape(): void
     {
         $user = User::factory()->create();
@@ -378,7 +1806,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('GX-100001')
             ->assertSee('Central Shop')
             ->assertSee('Issue card')
+            ->assertSee('Blocked until the first Laravel-backed card inventory slice exists for issue-flow parity review.')
             ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until the first Laravel-backed inventory slice exists for blocked-card parity review.')
             ->assertSee('Active cards')
             ->assertSee('Draft cards')
             ->assertSee('Blocked cards')
@@ -418,6 +1848,47 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Retain clear visibility for unassigned, active, and blocked card states.')
             ->assertSee('Card type')
             ->assertSee('Activation period');
+    }
+
+    public function test_cards_catalog_actions_reflect_saved_inventory_readiness(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central Cards Catalog',
+            'code' => 'galaxy-central-cards-catalog',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Catalog Gold',
+            'slug' => 'catalog-gold',
+            'points_rate' => 1.50,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => 'GX-CATALOG-1001',
+            'status' => 'draft',
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => 'GX-CATALOG-1002',
+            'status' => 'blocked',
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards');
+
+        $response
+            ->assertOk()
+            ->assertSee('Issue card')
+            ->assertSee('Blocked until saved draft inventory is verified against legacy issue-flow parity.')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until saved blocked-card states are verified against legacy inventory semantics.');
     }
 
     public function test_cards_page_replaces_preview_rows_with_model_backed_inventory_data(): void
@@ -532,10 +2003,23 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Back to all cards')
             ->assertSee('href="/admin/cards"', false)
             ->assertSee('Reviewing: GX-910001')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until this blocked holder-linked card clears dispute and replacement parity against the legacy Galaxy flow.')
             ->assertSee('Selected card')
+            ->assertSee('Review mode')
+            ->assertSee('Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.')
+            ->assertSee('Operational readiness')
+            ->assertSee('blocked inventory, operator review only')
+            ->assertSee('Lifecycle freshness')
+            ->assertSee('newly created in Laravel review')
+            ->assertSee('Last saved in Laravel')
             ->assertSee('Holder')
             ->assertSee('Card type')
+            ->assertSee('Linkage signal')
+            ->assertSee('holder and branch linkage visible')
             ->assertSee('Shop')
+            ->assertSee('Shop guidance')
+            ->assertSee('Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.')
             ->assertSee('Laravel status')
             ->assertSee('Activated')
             ->assertSee('Inventory guidance')
@@ -543,7 +2027,444 @@ class AdminDashboardTest extends TestCase
             ->assertSee('GX-910001 selected for Laravel review')
             ->assertSee('Current request')
             ->assertSee('The shared cards workspace is now loading this saved inventory record from Laravel data instead of only static preview rows.')
-            ->assertSee('GX-910001 status reflected from model state');
+            ->assertSee('GX-910001 status reflected from model state')
+            ->assertSee('GX-910001 lifecycle freshness reflected from model state')
+            ->assertSee('This card was created in Laravel on')
+            ->assertSee('and has not been updated since, so operators are still reviewing the first saved inventory shell.')
+            ->assertSee('GX-910001 last saved timestamp reflected from model state')
+            ->assertSee('The latest saved Laravel timestamp for this card is')
+            ->assertSee('giving operators a concrete checkpoint for the current inventory shell.')
+            ->assertSee('Inventory posture:')
+            ->assertSee('Selected-card review is running in Laravel-backed read mode only')
+            ->assertSee('Lifecycle freshness:')
+            ->assertSee('newly created in Laravel review')
+            ->assertSee('Last saved in Laravel:')
+            ->assertSee('Linkage signal:')
+            ->assertSee('holder and branch linkage visible')
+            ->assertSee('Lifecycle posture:')
+            ->assertSee('This blocked card should stay under review-only handling until dispute and replacement semantics match the old Galaxy flow.')
+            ->assertSee('Assignment posture:')
+            ->assertSee('Holder linkage is visible now, but reassignment and replacement actions should stay blocked until inventory parity is verified.')
+            ->assertSee('Shop posture:')
+            ->assertSee('Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows still remain preview-only for this workspace');
+    }
+
+    public function test_cards_page_supports_selected_active_card_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Active Card Branch',
+            'code' => 'galaxy-active-card-branch',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Mariam Active Card',
+            'phone' => '+37491100222',
+            'email' => 'mariam.active.card@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Active Tier',
+            'slug' => 'galaxy-active-tier-card',
+            'points_rate' => '1.80',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-920001',
+            'status' => 'active',
+            'activated_at' => '2026-04-02 11:30:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all cards')
+            ->assertSee('Reviewing: GX-920001')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until blocked-card semantics are verified against this active Laravel inventory flow.')
+            ->assertSee('Selected card')
+            ->assertSee('GX-920001')
+            ->assertSee('Card status signal')
+            ->assertSee('Active card is already visible for live inventory parity review.')
+            ->assertSee('Operational readiness')
+            ->assertSee('issued inventory, parity-sensitive')
+            ->assertSee('Linkage signal')
+            ->assertSee('holder and branch linkage visible')
+            ->assertSee('Inventory guidance')
+            ->assertSee('This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.');
+    }
+
+    public function test_cards_page_supports_selected_blocked_holder_linked_card_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Blocked Card Branch',
+            'code' => 'galaxy-blocked-card-branch',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Lilit Blocked Card',
+            'phone' => '+37491100223',
+            'email' => 'lilit.blocked.card@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Blocked Tier',
+            'slug' => 'galaxy-blocked-tier-card',
+            'points_rate' => '1.65',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-920099',
+            'status' => 'blocked',
+            'activated_at' => '2026-04-04 10:15:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all cards')
+            ->assertSee('Reviewing: GX-920099')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until this blocked holder-linked card clears dispute and replacement parity against the legacy Galaxy flow.')
+            ->assertSee('Selected card')
+            ->assertSee('GX-920099')
+            ->assertSee('Card status signal')
+            ->assertSee('Blocked card remains in operator review posture until dispute parity is verified.')
+            ->assertSee('Operational readiness')
+            ->assertSee('blocked inventory, operator review only')
+            ->assertSee('Linkage signal')
+            ->assertSee('holder and branch linkage visible')
+            ->assertSee('Inventory guidance')
+            ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
+    }
+
+    public function test_cards_page_supports_selected_blocked_unassigned_card_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Blocked Unassigned Branch',
+            'code' => 'galaxy-blocked-unassigned-branch',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Blocked Unassigned Tier',
+            'slug' => 'galaxy-blocked-unassigned-tier-card',
+            'points_rate' => '1.45',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-920199',
+            'status' => 'blocked',
+            'activated_at' => '2026-04-05 09:10:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all cards')
+            ->assertSee('Reviewing: GX-920199')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until this blocked card clears dispute and replacement parity against the legacy Galaxy flow.')
+            ->assertSee('Selected card')
+            ->assertSee('GX-920199')
+            ->assertSee('Card status signal')
+            ->assertSee('Blocked card remains in operator review posture until dispute parity is verified.')
+            ->assertSee('Operational readiness')
+            ->assertSee('blocked inventory, operator review only')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked inventory, holder pending')
+            ->assertSee('Inventory guidance')
+            ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
+    }
+
+    public function test_cards_page_supports_selected_draft_card_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Draft Card Branch',
+            'code' => 'galaxy-draft-card-branch',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Draft Tier',
+            'slug' => 'galaxy-draft-tier-card',
+            'points_rate' => '1.10',
+            'is_active' => false,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-930001',
+            'status' => 'draft',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all cards')
+            ->assertSee('Reviewing: GX-930001')
+            ->assertSee('Review blocked cards')
+            ->assertSee('Blocked until blocked-card semantics are verified against this draft Laravel inventory flow.')
+            ->assertSee('Selected card')
+            ->assertSee('GX-930001')
+            ->assertSee('Card status signal')
+            ->assertSee('Draft card remains safer for parity review before issuance discussion.')
+            ->assertSee('Operational readiness')
+            ->assertSee('draft inventory shell')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked inventory, holder pending')
+            ->assertSee('Inventory guidance')
+            ->assertSee('This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.');
+    }
+
+    public function test_cards_page_ignores_unknown_selected_card_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-unknown-card',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-unknown-card@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Gold',
+            'slug' => 'galaxy-gold-unknown-card',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-920001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('GX-920001')
+            ->assertSee('Review latest saved card')
+            ->assertDontSee('Back to all cards')
+            ->assertDontSee('Selected card')
+            ->assertDontSee('selected for Laravel review');
+    }
+
+    public function test_cards_page_ignores_malformed_selected_card_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-malformed-card',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-malformed-card@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Gold',
+            'slug' => 'galaxy-gold-malformed-card',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-930001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card=not-a-number');
+
+        $response
+            ->assertOk()
+            ->assertSee('GX-930001')
+            ->assertSee('Review latest saved card')
+            ->assertDontSee('Back to all cards')
+            ->assertDontSee('Selected card')
+            ->assertDontSee('selected for Laravel review');
+    }
+
+    public function test_cards_page_hides_other_shop_card_review_links_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Card Home',
+            'code' => 'galaxy-card-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Card Other',
+            'code' => 'galaxy-card-other',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Scoped Card Type',
+            'slug' => 'galaxy-scoped-card-type',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $assignedCard = Card::create([
+            'shop_id' => $assignedShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-940001',
+            'status' => 'active',
+        ]);
+
+        $otherCard = Card::create([
+            'shop_id' => $otherShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-940002',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Card Reviewer',
+            'slug' => 'scoped-card-reviewer-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped card workspace',
+            'slug' => 'review-scoped-card-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/cards');
+
+        $response
+            ->assertOk()
+            ->assertSee('href="/admin/cards?card='.$assignedCard->id.'"', false)
+            ->assertDontSee('href="/admin/cards?card='.$otherCard->id.'"', false)
+            ->assertSee('Review latest saved card')
+            ->assertSee('href="/admin/cards?card='.$assignedCard->id.'"', false);
+    }
+
+    public function test_cards_page_ignores_inaccessible_selected_card_query_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Card Review Home',
+            'code' => 'galaxy-card-review-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Card Review Other',
+            'code' => 'galaxy-card-review-other',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Scoped Review Card Type',
+            'slug' => 'galaxy-scoped-review-card-type',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $assignedShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-950001',
+            'status' => 'active',
+        ]);
+
+        $otherCard = Card::create([
+            'shop_id' => $otherShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-950002',
+            'status' => 'blocked',
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Card Selector',
+            'slug' => 'scoped-card-selector-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Select scoped card workspace',
+            'slug' => 'select-scoped-card-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$otherCard->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('GX-950001')
+            ->assertSee('GX-950002')
+            ->assertDontSee('Back to all cards')
+            ->assertDontSee('Reviewing: GX-950002')
+            ->assertDontSee('Selected card')
+            ->assertSee('Review latest saved card')
+            ->assertSee('href="/admin/cards?card=1"', false);
     }
 
     public function test_authenticated_user_can_access_cardholders_operational_index_shape(): void
@@ -559,7 +2480,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Anna Petrova')
             ->assertSee('Has cards')
             ->assertSee('New cardholder')
+            ->assertSee('Blocked until the first Laravel-backed cardholder slice exists for profile parity review.')
             ->assertSee('Review recent activity')
+            ->assertSee('Blocked until the first Laravel-backed cardholder slice exists for activity-history parity review.')
             ->assertSee('Active holders')
             ->assertSee('Inactive holders')
             ->assertSee('Linked cards')
@@ -657,6 +2580,57 @@ class AdminDashboardTest extends TestCase
             ->assertSee('branch ownership model')
             ->assertSee('Manager assigned')
             ->assertSee('Airport Kiosk');
+    }
+
+    public function test_shops_catalog_actions_reflect_saved_branch_readiness(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central Scope',
+            'code' => 'galaxy-central-scope',
+            'is_active' => false,
+        ]);
+
+        $manager = User::factory()->create([
+            'name' => 'Nare Scope Lead',
+            'shop_id' => $shop->id,
+        ]);
+
+        $shop->users()->save($manager);
+
+        $holder = CardHolder::create([
+            'full_name' => 'Scope Holder',
+            'phone' => '+37499110101',
+            'status' => 'active',
+            'is_active' => true,
+            'shop_id' => $shop->id,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Scope Gold',
+            'slug' => 'scope-gold',
+            'points_rate' => 1.50,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => 'GX-SHOP-SCOPE-1',
+            'status' => 'active',
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('New shop')
+            ->assertSee('Blocked until paused-branch recovery and manager assignment parity are verified.')
+            ->assertSee('Review branch scope')
+            ->assertSee('Blocked until saved branch ownership and scope coverage are verified against the legacy Galaxy multi-shop model.');
     }
 
     public function test_shops_page_replaces_preview_rows_with_model_backed_index_data(): void
@@ -768,9 +2742,24 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Back to all shops')
             ->assertSee('href="/admin/shops"', false)
             ->assertSee('Reviewing: Galaxy Central')
+            ->assertSee('Review branch scope')
+            ->assertSee('Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.')
             ->assertSee('Selected shop')
+            ->assertSee('Review mode')
+            ->assertSee('Live branch review, this Laravel shop already carries operational visibility and should stay parity-first.')
+            ->assertSee('Operational readiness')
+            ->assertSee('active branch, operator-visible coverage live')
+            ->assertSee('Lifecycle freshness')
+            ->assertSee('newly created in Laravel review')
+            ->assertSee('Last saved in Laravel')
             ->assertSee('Code')
+            ->assertSee('Coverage signal')
+            ->assertSee('manager, holder, and card coverage visible')
+            ->assertSee('Shop status signal')
+            ->assertSee('Active branch is already visible with manager and customer coverage for live parity review.')
             ->assertSee('Assigned manager')
+            ->assertSee('Manager guidance')
+            ->assertSee('Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.')
             ->assertSee('Cardholders')
             ->assertSee('Cards')
             ->assertSee('Laravel status')
@@ -779,7 +2768,352 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy Central selected for Laravel review')
             ->assertSee('Current request')
             ->assertSee('The shared shops workspace is now loading this saved branch from Laravel data instead of only static preview rows.')
-            ->assertSee('Galaxy Central status reflected from model state');
+            ->assertSee('Galaxy Central status reflected from model state')
+            ->assertSee('Galaxy Central lifecycle freshness reflected from model state')
+            ->assertSee('This branch was created in Laravel on')
+            ->assertSee('and has not been updated since, so operators are still reviewing the first saved branch shell.')
+            ->assertSee('Galaxy Central last saved timestamp reflected from model state')
+            ->assertSee('The latest saved Laravel timestamp for this branch is')
+            ->assertSee('giving operators a concrete checkpoint for the current branch shell.')
+            ->assertSee('Branch posture:')
+            ->assertSee('Selected-shop review is running in Laravel-backed read mode only')
+            ->assertSee('Lifecycle freshness:')
+            ->assertSee('newly created in Laravel review')
+            ->assertSee('Last saved in Laravel:')
+            ->assertSee('Coverage signal:')
+            ->assertSee('manager, holder, and card coverage visible')
+            ->assertSee('Shop status signal:')
+            ->assertSee('Active branch is already visible with manager and customer coverage for live parity review.')
+            ->assertSee('Status posture:')
+            ->assertSee('This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.')
+            ->assertSee('Manager posture:')
+            ->assertSee('Assigned managers are visible in Laravel, but reassignment should stay blocked until branch ownership parity is confirmed.')
+            ->assertSee('Coverage posture:')
+            ->assertSee('This branch currently exposes 1 cardholders and 1 cards for read-only Laravel review.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows still remain preview-only for this workspace');
+    }
+
+    public function test_shops_page_supports_selected_branch_coverage_without_manager_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Coverage Only Branch',
+            'code' => 'galaxy-coverage-only-branch',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Lusine Coverage',
+            'phone' => '+37410000221',
+            'email' => 'lusine.coverage@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Coverage Tier',
+            'slug' => 'galaxy-coverage-tier-shop',
+            'points_rate' => '1.35',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-SHOP-0001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$shop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all shops')
+            ->assertSee('Reviewing: Galaxy Coverage Only Branch')
+            ->assertSee('Review branch scope')
+            ->assertSee('Blocked until visible branch coverage is verified against the legacy Galaxy multi-shop model.')
+            ->assertSee('Selected shop')
+            ->assertSee('Galaxy Coverage Only Branch')
+            ->assertSee('Operational readiness')
+            ->assertSee('active branch shell, ownership still forming')
+            ->assertSee('Coverage signal')
+            ->assertSee('branch records visible, manager coverage pending')
+            ->assertSee('Shop status signal')
+            ->assertSee('Active branch is already visible with customer coverage while manager ownership is still pending.')
+            ->assertSee('Assigned manager')
+            ->assertSee('Unassigned')
+            ->assertSee('Manager guidance')
+            ->assertSee('No manager is assigned yet, so ownership expectations should stay parity-first until assignment rules are verified.');
+    }
+
+    public function test_shops_page_supports_selected_manager_linked_coverage_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Full Coverage Branch',
+            'code' => 'galaxy-full-coverage-branch',
+            'is_active' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Narek Coverage Lead',
+            'shop_id' => $shop->id,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Tatev Coverage Holder',
+            'phone' => '+37410000231',
+            'email' => 'tatev.coverage@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Full Coverage Tier',
+            'slug' => 'galaxy-full-coverage-tier-shop',
+            'points_rate' => '1.55',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-SHOP-0001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$shop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all shops')
+            ->assertSee('Reviewing: Galaxy Full Coverage Branch')
+            ->assertSee('Review branch scope')
+            ->assertSee('Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.')
+            ->assertSee('Selected shop')
+            ->assertSee('Galaxy Full Coverage Branch')
+            ->assertSee('Operational readiness')
+            ->assertSee('active branch, operator-visible coverage live')
+            ->assertSee('Coverage signal')
+            ->assertSee('manager, holder, and card coverage visible')
+            ->assertSee('Shop status signal')
+            ->assertSee('Active branch is already visible with manager and customer coverage for live parity review.')
+            ->assertSee('Assigned manager')
+            ->assertSee('Narek Coverage Lead')
+            ->assertSee('Manager guidance')
+            ->assertSee('Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.');
+    }
+
+    public function test_shops_page_supports_selected_manager_only_branch_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Manager Only Branch',
+            'code' => 'galaxy-manager-only-branch',
+            'is_active' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Tigran Managerov',
+            'shop_id' => $shop->id,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$shop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all shops')
+            ->assertSee('Reviewing: Galaxy Manager Only Branch')
+            ->assertSee('Review branch scope')
+            ->assertSee('Blocked until manager-linked branch scope is verified against the legacy Galaxy multi-shop model.')
+            ->assertSee('Selected shop')
+            ->assertSee('Galaxy Manager Only Branch')
+            ->assertSee('Operational readiness')
+            ->assertSee('active branch, manager assigned and build-out pending')
+            ->assertSee('Coverage signal')
+            ->assertSee('manager coverage visible, branch records pending')
+            ->assertSee('Shop status signal')
+            ->assertSee('Active branch is already visible with manager ownership for rollout review.')
+            ->assertSee('Assigned manager')
+            ->assertSee('Tigran Managerov')
+            ->assertSee('Manager guidance')
+            ->assertSee('Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.');
+    }
+
+    public function test_shops_page_supports_selected_paused_branch_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Paused Branch',
+            'code' => 'galaxy-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$shop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all shops')
+            ->assertSee('Reviewing: Galaxy Paused Branch')
+            ->assertSee('Selected shop')
+            ->assertSee('Review mode')
+            ->assertSee('Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.')
+            ->assertSee('Operational readiness')
+            ->assertSee('paused branch, recovery review only')
+            ->assertSee('Coverage signal')
+            ->assertSee('manager and branch coverage pending')
+            ->assertSee('Shop status signal')
+            ->assertSee('Paused branch remains safer for parity review before reopening discussion.')
+            ->assertSee('Laravel status')
+            ->assertSee('paused')
+            ->assertSee('Shop status signal:')
+            ->assertSee('Paused branch remains safer for parity review before reopening discussion.')
+            ->assertSee('Status posture:')
+            ->assertSee('This paused branch should stay review-only until recovery and ownership parity are verified.');
+    }
+
+    public function test_shops_page_ignores_unknown_selected_shop_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-unknown-shop',
+            'is_active' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Nare Gevorgyan',
+            'shop_id' => $shop->id,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Central')
+            ->assertSee('Review latest saved shop')
+            ->assertDontSee('Back to all shops')
+            ->assertDontSee('Selected shop')
+            ->assertDontSee('selected for Laravel review');
+    }
+
+    public function test_shops_page_ignores_malformed_selected_shop_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-malformed-shop',
+            'is_active' => true,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Nare Gevorgyan',
+            'shop_id' => $shop->id,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop=not-a-number');
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Central')
+            ->assertSee('Review latest saved shop')
+            ->assertDontSee('Back to all shops')
+            ->assertDontSee('Selected shop')
+            ->assertDontSee('selected for Laravel review');
+    }
+
+    public function test_shops_page_hides_other_shop_review_links_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Home',
+            'code' => 'galaxy-scoped-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Other',
+            'code' => 'galaxy-scoped-other',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Shop Reviewer',
+            'slug' => 'scoped-shop-reviewer-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped shop workspace',
+            'slug' => 'review-scoped-shop-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/shops');
+
+        $response
+            ->assertOk()
+            ->assertSee('href="/admin/shops?shop='.$assignedShop->id.'"', false)
+            ->assertDontSee('href="/admin/shops?shop='.$otherShop->id.'"', false)
+            ->assertSee('Review latest saved shop')
+            ->assertSee('href="/admin/shops?shop='.$assignedShop->id.'"', false);
+    }
+
+    public function test_shops_page_ignores_inaccessible_selected_shop_query_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Review Home',
+            'code' => 'galaxy-scoped-review-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Review Other',
+            'code' => 'galaxy-scoped-review-other',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Shop Selector',
+            'slug' => 'scoped-shop-selector-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Select scoped shop workspace',
+            'slug' => 'select-scoped-shop-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/shops?shop='.$otherShop->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Scoped Review Home')
+            ->assertSee('Galaxy Scoped Review Other')
+            ->assertDontSee('Back to all shops')
+            ->assertDontSee('Reviewing: Galaxy Scoped Review Other')
+            ->assertDontSee('Selected shop')
+            ->assertSee('Review latest saved shop')
+            ->assertSee('href="/admin/shops?shop='.$assignedShop->id.'"', false);
     }
 
     public function test_cardholders_page_replaces_preview_rows_with_model_backed_index_data(): void
@@ -847,6 +3181,58 @@ class AdminDashboardTest extends TestCase
             ->assertSee('inactive');
     }
 
+    public function test_cardholders_catalog_actions_reflect_saved_holder_readiness(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Catalog',
+            'code' => 'galaxy-holder-catalog',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'full_name' => 'Inactive Holder Catalog',
+            'phone' => '+37499110001',
+            'status' => 'inactive',
+            'is_active' => false,
+            'shop_id' => $shop->id,
+        ]);
+
+        $activeHolder = CardHolder::create([
+            'full_name' => 'Linked Holder Catalog',
+            'phone' => '+37499110002',
+            'status' => 'active',
+            'is_active' => true,
+            'shop_id' => $shop->id,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Holder Catalog Gold',
+            'slug' => 'holder-catalog-gold',
+            'points_rate' => 1.50,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => 'GX-HOLDER-CATALOG-1',
+            'status' => 'active',
+            'card_holder_id' => $activeHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders');
+
+        $response
+            ->assertOk()
+            ->assertSee('New cardholder')
+            ->assertSee('Blocked until saved inactive-holder states are verified against legacy profile and lifecycle parity.')
+            ->assertSee('Review recent activity')
+            ->assertSee('Blocked until linked-holder activity coverage is verified against legacy lookup history.');
+    }
+
     public function test_cardholders_page_surfaces_selected_holder_context_from_laravel_data(): void
     {
         $shop = Shop::create([
@@ -872,9 +3258,24 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Back to all holders')
             ->assertSee('href="/admin/cardholders"', false)
             ->assertSee('Reviewing: Anna Petrova')
+            ->assertSee('Review recent activity')
+            ->assertSee('Blocked until inactive-holder activity history is backed by a stable Laravel event source for lifecycle parity.')
             ->assertSee('Selected holder')
+            ->assertSee('Holder status signal')
+            ->assertSee('Inactive holder remains safer for parity review before reactivation discussion.')
+            ->assertSee('Review mode')
+            ->assertSee('Dormant-profile review, this inactive holder stays safer for parity checks before any reactivation path is trusted.')
+            ->assertSee('Operational readiness')
+            ->assertSee('inactive profile, review only')
+            ->assertSee('Lifecycle freshness')
+            ->assertSee('newly created in Laravel review')
+            ->assertSee('Last saved in Laravel')
             ->assertSee('Phone')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked profile, card linkage pending')
             ->assertSee('Shop')
+            ->assertSee('Shop guidance')
+            ->assertSee('Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.')
             ->assertSee('Linked cards')
             ->assertSee('Laravel status')
             ->assertSee('Lookup guidance')
@@ -882,7 +3283,352 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Anna Petrova selected for Laravel review')
             ->assertSee('Current request')
             ->assertSee('The shared cardholders workspace is now loading this saved holder from Laravel data instead of only static preview rows.')
-            ->assertSee('Anna Petrova status reflected from model state');
+            ->assertSee('Anna Petrova status reflected from model state')
+            ->assertSee('Anna Petrova lifecycle freshness reflected from model state')
+            ->assertSee('This holder was created in Laravel on')
+            ->assertSee('and has not been updated since, so operators are still reviewing the first saved profile shell.')
+            ->assertSee('Anna Petrova last saved timestamp reflected from model state')
+            ->assertSee('The latest saved Laravel timestamp for this holder is')
+            ->assertSee('giving operators a concrete checkpoint for the current profile shell.')
+            ->assertSee('Lookup posture:')
+            ->assertSee('Selected-holder review is running in Laravel-backed read mode only')
+            ->assertSee('Lifecycle freshness:')
+            ->assertSee('newly created in Laravel review')
+            ->assertSee('Last saved in Laravel:')
+            ->assertSee('Linkage signal:')
+            ->assertSee('branch-linked profile, card linkage pending')
+            ->assertSee('Status posture:')
+            ->assertSee('This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.')
+            ->assertSee('Card linkage posture:')
+            ->assertSee('No linked cards exist yet, which keeps this holder safer for identity review before card-link flows are enabled.')
+            ->assertSee('Activity posture:')
+            ->assertSee('Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Holder search, profile writes, and recent-activity sourcing still remain preview-only for this workspace');
+    }
+
+    public function test_cardholders_page_supports_selected_active_linked_holder_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Linked Holder Branch',
+            'code' => 'galaxy-linked-holder-branch',
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Mariam Linked Holder',
+            'phone' => '+37491100077',
+            'email' => 'mariam.linked.holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Linked Tier',
+            'slug' => 'galaxy-linked-tier-holder',
+            'points_rate' => '1.75',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-LINK-0001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$cardHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all holders')
+            ->assertSee('Reviewing: Mariam Linked Holder')
+            ->assertSee('Review recent activity')
+            ->assertSee('Blocked until linked-card activity is backed by a stable Laravel event source for active-holder lookup parity.')
+            ->assertSee('Selected holder')
+            ->assertSee('Mariam Linked Holder')
+            ->assertSee('Holder status signal')
+            ->assertSee('Active holder is already visible for live profile parity review.')
+            ->assertSee('Operational readiness')
+            ->assertSee('linked profile, operator-visible')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked profile with visible cards')
+            ->assertSee('Linked cards')
+            ->assertSee('1')
+            ->assertSee('Lookup guidance')
+            ->assertSee('This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.');
+    }
+
+    public function test_cardholders_page_supports_selected_active_unlinked_holder_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Active Unlinked Branch',
+            'code' => 'galaxy-active-unlinked-branch',
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Aram Unlinked Holder',
+            'phone' => '+37491100087',
+            'email' => 'aram.unlinked.holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$cardHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all holders')
+            ->assertSee('Reviewing: Aram Unlinked Holder')
+            ->assertSee('Review recent activity')
+            ->assertSee('Blocked until a stable Laravel activity source exists for holder lookup parity.')
+            ->assertSee('Selected holder')
+            ->assertSee('Aram Unlinked Holder')
+            ->assertSee('Holder status signal')
+            ->assertSee('Active holder is already visible for live profile parity review.')
+            ->assertSee('Operational readiness')
+            ->assertSee('active profile, linkage build-out pending')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked profile, card linkage pending')
+            ->assertSee('Lookup guidance')
+            ->assertSee('This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.')
+            ->assertSee('Card linkage posture:')
+            ->assertSee('No linked cards exist yet, which keeps this holder safer for identity review before card-link flows are enabled.');
+    }
+
+    public function test_cardholders_page_supports_selected_inactive_linked_holder_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Dormant Linked Branch',
+            'code' => 'galaxy-dormant-linked-branch',
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Sona Dormant Holder',
+            'phone' => '+37491100088',
+            'email' => 'sona.dormant.holder@example.com',
+            'is_active' => false,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Dormant Tier',
+            'slug' => 'galaxy-dormant-tier-holder',
+            'points_rate' => '1.20',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DORM-0001',
+            'status' => 'blocked',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$cardHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all holders')
+            ->assertSee('Reviewing: Sona Dormant Holder')
+            ->assertSee('Review recent activity')
+            ->assertSee('Blocked until linked-card activity is backed by a stable Laravel event source for holder lookup parity.')
+            ->assertSee('Selected holder')
+            ->assertSee('Sona Dormant Holder')
+            ->assertSee('Holder status signal')
+            ->assertSee('Inactive holder remains safer for parity review before reactivation discussion.')
+            ->assertSee('Operational readiness')
+            ->assertSee('inactive profile, review only')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked profile with visible cards')
+            ->assertSee('Lookup guidance')
+            ->assertSee('This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.')
+            ->assertSee('Card linkage posture:')
+            ->assertSee('Linked cards are visible in Laravel, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.');
+    }
+
+    public function test_cardholders_page_ignores_unknown_selected_holder_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-unknown-holder',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-unknown-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('Anna Petrova')
+            ->assertSee('Review latest saved holder')
+            ->assertDontSee('Back to all holders')
+            ->assertDontSee('Selected holder')
+            ->assertDontSee('selected for Laravel review');
+    }
+
+    public function test_cardholders_page_ignores_malformed_selected_holder_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-malformed-holder',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Anna Petrova',
+            'phone' => '+37491100001',
+            'email' => 'anna-malformed-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder=not-a-number');
+
+        $response
+            ->assertOk()
+            ->assertSee('Anna Petrova')
+            ->assertSee('Review latest saved holder')
+            ->assertDontSee('Back to all holders')
+            ->assertDontSee('Selected holder')
+            ->assertDontSee('selected for Laravel review');
+    }
+
+    public function test_cardholders_page_hides_other_shop_holder_review_links_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Holder Home',
+            'code' => 'galaxy-holder-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Holder Other',
+            'code' => 'galaxy-holder-other',
+            'is_active' => true,
+        ]);
+
+        $assignedHolder = CardHolder::create([
+            'shop_id' => $assignedShop->id,
+            'full_name' => 'Assigned Holder',
+            'phone' => '+37491111111',
+            'email' => 'assigned-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $otherHolder = CardHolder::create([
+            'shop_id' => $otherShop->id,
+            'full_name' => 'Other Holder',
+            'phone' => '+37492222222',
+            'email' => 'other-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Holder Reviewer',
+            'slug' => 'scoped-holder-reviewer-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped holder workspace',
+            'slug' => 'review-scoped-holder-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/cardholders');
+
+        $response
+            ->assertOk()
+            ->assertSee('href="/admin/cardholders?cardholder='.$assignedHolder->id.'"', false)
+            ->assertDontSee('href="/admin/cardholders?cardholder='.$otherHolder->id.'"', false)
+            ->assertSee('Review latest saved holder')
+            ->assertSee('href="/admin/cardholders?cardholder='.$assignedHolder->id.'"', false);
+    }
+
+    public function test_cardholders_page_ignores_inaccessible_selected_holder_query_for_shop_scoped_admins(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Holder Review Home',
+            'code' => 'galaxy-holder-review-home',
+            'is_active' => true,
+        ]);
+
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Holder Review Other',
+            'code' => 'galaxy-holder-review-other',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'shop_id' => $assignedShop->id,
+            'full_name' => 'Assigned Holder Review',
+            'phone' => '+37493333333',
+            'email' => 'assigned-holder-review@example.com',
+            'is_active' => true,
+        ]);
+
+        $otherHolder = CardHolder::create([
+            'shop_id' => $otherShop->id,
+            'full_name' => 'Other Holder Review',
+            'phone' => '+37494444444',
+            'email' => 'other-holder-review@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Holder Selector',
+            'slug' => 'scoped-holder-selector-index',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Select scoped holder workspace',
+            'slug' => 'select-scoped-holder-workspace',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$otherHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Assigned Holder Review')
+            ->assertSee('Other Holder Review')
+            ->assertDontSee('Back to all holders')
+            ->assertDontSee('Reviewing: Other Holder Review')
+            ->assertDontSee('Selected holder')
+            ->assertSee('Review latest saved holder');
     }
 
     public function test_authenticated_user_can_access_checks_points_operational_index_shape(): void
@@ -893,11 +3639,15 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Checks &amp; Points placeholder')
+            ->assertSeeText('Operations / Checks & Points')
             ->assertSee('CHK-90421')
+            ->assertSee('/admin/checks-points?receipt=chk-90421')
             ->assertSee('Fiscal receipt')
             ->assertSee('Find receipt')
+            ->assertSee('Blocked until fiscal receipt lookup is verified against branch-aware transaction history and legacy search habits.')
             ->assertSee('Review accrual gaps')
+            ->assertSee('Blocked until zero-accrual and branch-aware troubleshooting are backed by Laravel transaction and rule data.')
+            ->assertSee('Review chk-90421 receipt')
             ->assertSee('Receipts listed')
             ->assertSee('Positive accruals')
             ->assertSee('Zero accruals')
@@ -939,6 +3689,136 @@ class AdminDashboardTest extends TestCase
             ->assertSee('GX-100001');
     }
 
+    public function test_checks_points_page_supports_selected_receipt_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=chk-90407');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all receipts')
+            ->assertSee('/admin/checks-points')
+            ->assertSee('Reviewing: CHK-90407')
+            ->assertSee('Find receipt')
+            ->assertSee('Blocked until receipt lookup is backed by Laravel transaction reads and fiscal-search parity checks.')
+            ->assertSee('Review accrual gaps')
+            ->assertSee('Blocked until zero-accrual review is backed by Laravel transaction and rule data.')
+            ->assertSee('Selected receipt preview')
+            ->assertSee('CHK-90407')
+            ->assertSee('Receipt status signal')
+            ->assertSee('Zero-accrual receipt remains highly visible for parity troubleshooting review.')
+            ->assertSee('Accrual posture')
+            ->assertSee('Zero-accrual receipts should stay highly visible, because they drive the most parity-sensitive troubleshooting in the old Galaxy flow.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep zero-accrual receipts in compact on-screen review first, because operators need amount, points, and rule context together before escalating.')
+            ->assertSee('Troubleshooting guidance')
+            ->assertSee('Treat this receipt as read-only review until Laravel transaction history and rule-backed explanations exist.')
+            ->assertSee('CHK-90407 selected for zero-accrual review')
+            ->assertSee('Zero-accrual handoff stays cautious')
+            ->assertSee('Zero-accrual handoff stays evidence-first')
+            ->assertSee('Receipt, amount, and zero-point outcome should stay visible in the workspace before any rule-gap discussion moves forward.')
+            ->assertSee('Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.');
+    }
+
+    public function test_checks_points_page_supports_selected_branch_receipt_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=chk-90388');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all receipts')
+            ->assertSee('/admin/checks-points')
+            ->assertSee('Reviewing: CHK-90388')
+            ->assertSee('Find receipt')
+            ->assertSee('Blocked until branch-aware receipt lookup is backed by Laravel shop filters and transaction reads.')
+            ->assertSee('Review accrual gaps')
+            ->assertSee('Blocked until branch-aware accrual review is backed by Laravel transaction and rule data.')
+            ->assertSee('Selected receipt preview')
+            ->assertSee('CHK-90388')
+            ->assertSee('Shop context')
+            ->assertSee('North Shop')
+            ->assertSee('Receipt status signal')
+            ->assertSee('Branch receipt is already visible for shop-aware ledger parity review.')
+            ->assertSee('Accrual posture')
+            ->assertSee('North Shop accrual receipts should stay branch-aware, because cross-shop troubleshooting must preserve local receipt context.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep branch receipts in table-first review mode, because operators need the shop, amount, and points visible together before cross-shop comparisons begin.')
+            ->assertSee('Troubleshooting guidance')
+            ->assertSee('Treat this receipt as read-only review until Laravel transaction history and shop-aware filters exist.')
+            ->assertSee('CHK-90388 selected for branch receipt review')
+            ->assertSee('Branch-specific handoff stays receipt-first')
+            ->assertSee('Branch receipt handoff keeps local evidence visible')
+            ->assertSee('Shop, amount, and points should stay visible in the workspace before any cross-branch troubleshooting discussion begins.')
+            ->assertSee('Branch receipt lookup should stay read-only until Laravel shop filters and transaction history are verified against the old flow.')
+            ->assertSee('Positive branch accrual outcomes still need live transaction-domain parity before any adjustment path is safe.');
+    }
+
+    public function test_checks_points_page_supports_selected_positive_accrual_receipt_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=chk-90421');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all receipts')
+            ->assertSee('/admin/checks-points')
+            ->assertSee('Reviewing: CHK-90421')
+            ->assertSee('Find receipt')
+            ->assertSee('Blocked until receipt lookup is backed by Laravel transaction reads and fiscal-search parity checks.')
+            ->assertSee('Review accrual gaps')
+            ->assertSee('Blocked until accrual-gap review is backed by Laravel transaction and rule data.')
+            ->assertSee('Selected receipt preview')
+            ->assertSee('CHK-90421')
+            ->assertSee('Card')
+            ->assertSee('GX-100001')
+            ->assertSee('Shop context')
+            ->assertSee('Central Shop')
+            ->assertSee('Receipt status signal')
+            ->assertSee('Positive accrual receipt is already visible for live ledger parity review.')
+            ->assertSee('Accrual posture')
+            ->assertSee('Positive accrual receipts should stay parity-first, because receipt math must match the old Galaxy ledger before any correction flow appears.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep this receipt in table-first review mode, because operators usually compare amount, points, and timestamp together before opening deeper investigation.')
+            ->assertSee('Troubleshooting guidance')
+            ->assertSee('Treat this receipt as read-only review until Laravel transaction history and adjustment flows exist.')
+            ->assertSee('CHK-90421 selected for receipt review')
+            ->assertSee('Receipt-first handoff stays visible')
+            ->assertSee('Positive-accrual handoff stays evidence-first')
+            ->assertSee('Amount, points, and timestamp should stay visible in the workspace before any future export or correction discussion begins.')
+            ->assertSee('Fiscal receipt review should remain read-only until Laravel transaction history is verified against the legacy ledger.')
+            ->assertSee('Positive point outcomes still need live transaction-domain parity before any adjustment path is safe.');
+    }
+
+    public function test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=unknown-receipt');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review chk-90421 receipt')
+            ->assertDontSee('Back to all receipts')
+            ->assertDontSee('Selected receipt preview');
+    }
+
+    public function test_checks_points_page_accepts_case_insensitive_selected_receipt_query(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=CHK-90407');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all receipts')
+            ->assertSee('Reviewing: CHK-90407')
+            ->assertSee('Selected receipt preview');
+    }
+
     public function test_authenticated_user_can_access_reports_operational_index_shape(): void
     {
         $user = User::factory()->create();
@@ -950,8 +3830,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reports placeholder')
             ->assertSee('Points accrual summary')
             ->assertSee('Report type')
-            ->assertSee('Open report catalog')
+            ->assertSee('Open live report catalog')
             ->assertSee('Review export presets')
+            ->assertSee('Blocked until preset handling is backed by Laravel reporting flow validation.')
+            ->assertSee('Export source snapshot')
+            ->assertSee('Blocked until the first live Laravel report source exists for export parity review.')
             ->assertSee('Planned reports')
             ->assertSee('Export formats')
             ->assertSee('Preset periods')
@@ -993,6 +3876,1098 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gift redemption report');
     }
 
+    public function test_reports_page_replaces_preview_catalog_with_model_backed_reporting_sources(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-reports',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Tier',
+            'slug' => 'reporting-tier-reports',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Sargsyan',
+            'phone' => '+37499111223',
+            'email' => 'mariam.reports@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223344',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        Role::create([
+            'name' => 'Reporting Lead',
+            'slug' => 'reporting-lead-reports',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports');
+
+        $response
+            ->assertOk()
+            ->assertSee('Live sources')
+            ->assertSee('Tracked shops')
+            ->assertSee('Tracked cards')
+            ->assertSee('Tracked cardholders')
+            ->assertSee('Tracked roles')
+            ->assertSee('1')
+            ->assertSee('Cards by shop')
+            ->assertSee('/admin/reports?source=cards-by-shop')
+            ->assertSee('1 shops')
+            ->assertSee('Cardholder status overview')
+            ->assertSee('/admin/reports?source=cardholder-status')
+            ->assertSee('1 holders')
+            ->assertSee('Role access coverage')
+            ->assertSee('/admin/reports?source=role-access')
+            ->assertSee('1 roles')
+            ->assertSee('Review cards by shop source')
+            ->assertSee('Open live report catalog')
+            ->assertSee('Review export presets')
+            ->assertSee('Blocked until preset handling is verified against multiple live Laravel reporting sources.')
+            ->assertSee('Export source snapshot')
+            ->assertSee('Blocked until multi-source export snapshots are verified against legacy file delivery and grouped totals.')
+            ->assertSee('Reporting workspace is now partially Laravel-backed')
+            ->assertSee('Catalog metrics and report entry rows now reflect live Galaxy source counts from Laravel models, while presets and exports remain preview-only.')
+            ->assertSee('Live reporting sources reflected from Laravel models')
+            ->assertSee('The reporting workspace now sees 1 shops, 1 cards, 1 cardholders, and 1 roles through the current Laravel foundation.')
+            ->assertSee('Export catalog remains parity-first')
+            ->assertSee('Metrics and entry rows are live-backed now, but preset handling and export generation still stay blocked until the reporting pipeline is verified.')
+            ->assertSee('Report catalog is still lightweight, but source counts now come from live Laravel models')
+            ->assertSee('Reporting posture')
+            ->assertSee('This workspace is now live-backed for read-only source review, but preset and export flows should stay parity-first until the reporting pipeline is verified.')
+            ->assertSee('Readiness signal')
+            ->assertSee('Partially ready: live source review works now, while preset handling and exports stay blocked behind later reporting-pipeline verification.')
+            ->assertSee('Preset posture')
+            ->assertSee('Preset periods are still preview-only, so operators should treat the live source layer as reviewable while preset-driven report flows remain gated.')
+            ->assertSee('Export posture')
+            ->assertSee('Export generation is still blocked, so the live reporting layer should stay review-only until file delivery and parity checks are verified.')
+            ->assertSee('Source coverage')
+            ->assertSee('Laravel reporting inputs currently cover 1 shops, 1 cards, 1 cardholders, and 1 roles for read-only review.')
+            ->assertSee('Preset handling, query shaping, and export pipeline are still pending');
+    }
+
+    public function test_reports_page_supports_selected_live_source_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-reports-selected',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Tier Selected',
+            'slug' => 'reporting-tier-selected',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Reporting Selected',
+            'phone' => '+37499111224',
+            'email' => 'mariam.reports.selected@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223345',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'activated_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=cards-by-shop');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to report catalog')
+            ->assertSee('/admin/reports')
+            ->assertSee('Reviewing: Cards by shop')
+            ->assertSee('Review export presets')
+            ->assertSee('Blocked until branch-total preset periods are verified against live shop grouping and legacy reporting habits.')
+            ->assertSee('Export source snapshot')
+            ->assertSee('Blocked until branch-total export snapshots are verified against legacy grouped totals and file delivery.')
+            ->assertSee('Selected report source')
+            ->assertSee('Cards by shop')
+            ->assertSee('Review mode')
+            ->assertSee('Live-source review, card inventory already exists in Laravel for shop-level reporting checks.')
+            ->assertSee('Source coverage')
+            ->assertSee('1 cards across 1 tracked shops are currently available for read-only reporting review.')
+            ->assertSee('Source status signal')
+            ->assertSee('Cards-by-shop source is already visible with live branch inventory for parity review.')
+            ->assertSee('Source signal')
+            ->assertSee('live cards and branch coverage visible')
+            ->assertSee('Laravel input signal')
+            ->assertSee('card and branch inputs are ready for on-screen review')
+            ->assertSee('Comparison signal')
+            ->assertSee('full branch, inventory, and assignment comparison coverage is still pending')
+            ->assertSee('Branch review readiness')
+            ->assertSee('ready for branch-total review across 1 live shops')
+            ->assertSee('Branch activity signal')
+            ->assertSee('paused branch coverage is still pending for comparison review')
+            ->assertSee('Inventory state signal')
+            ->assertSee('blocked inventory coverage is still pending for parity review')
+            ->assertSee('Assignment linkage signal')
+            ->assertSee('unassigned inventory coverage is still pending for parity review')
+            ->assertSee('Activated assignment signal')
+            ->assertSee('1 activated holder-linked cards are already visible for live customer inventory review')
+            ->assertSee('Blocked assignment signal')
+            ->assertSee('blocked holder-linked inventory is still pending for parity review')
+            ->assertSee('Draft assignment signal')
+            ->assertSee('draft holder-linked inventory is still pending for parity review')
+            ->assertSee('Active branch assignment signal')
+            ->assertSee('1 holder-linked cards are already visible in active branches for live branch review')
+            ->assertSee('Paused branch assignment signal')
+            ->assertSee('paused-branch holder-linked inventory is still pending for parity review')
+            ->assertSee('Unassigned branch activity signal')
+            ->assertSee('mixed unassigned branch coverage is still pending for parity review')
+            ->assertSee('Activated unassigned signal')
+            ->assertSee('activated unassigned inventory is still pending for parity review')
+            ->assertSee('Blocked unassigned signal')
+            ->assertSee('blocked unassigned inventory is still pending for parity review')
+            ->assertSee('Draft unassigned signal')
+            ->assertSee('draft unassigned inventory is still pending for parity review')
+            ->assertSee('Draft inventory signal')
+            ->assertSee('draft inventory coverage is still pending for parity review')
+            ->assertSee('Activation signal')
+            ->assertSee('activation coverage is still pending for parity review')
+            ->assertSee('Scope guidance')
+            ->assertSee('Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.')
+            ->assertSee('Default period posture')
+            ->assertSee('Use current snapshot review first, then keep preset periods staged until branch-total parity is verified.')
+            ->assertSee('Format guidance')
+            ->assertSee('Prefer table-first review here, because branch inventory checks should stay visible on screen before anyone expects export files.')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep branch comparison findings in the live workspace before asking for export-driven handoff.')
+            ->assertSee('Cards by shop source selected for Laravel review')
+            ->assertSee('This reporting view now reflects 1 tracked cards across 1 shops from the current Laravel foundation.')
+            ->assertSee('Branch inventory handoff stays on-screen first')
+            ->assertSee('Operators should hand off branch comparison findings in the live workspace before relying on exported files for this source.')
+            ->assertSee('Source status signal:')
+            ->assertSee('Cards-by-shop source is already visible with live branch inventory for parity review.')
+            ->assertSee('Source signal')
+            ->assertSee('live cards and branch coverage visible')
+            ->assertSee('Laravel input signal')
+            ->assertSee('card and branch inputs are ready for on-screen review')
+            ->assertSee('Comparison signal:')
+            ->assertSee('full branch, inventory, and assignment comparison coverage is still pending')
+            ->assertSee('Branch review readiness:')
+            ->assertSee('ready for branch-total review across 1 live shops')
+            ->assertSee('Branch activity signal:')
+            ->assertSee('paused branch coverage is still pending for comparison review')
+            ->assertSee('Inventory state signal:')
+            ->assertSee('blocked inventory coverage is still pending for parity review')
+            ->assertSee('Activated assignment signal:')
+            ->assertSee('1 activated holder-linked cards are already visible for live customer inventory review')
+            ->assertSee('Blocked assignment signal:')
+            ->assertSee('blocked holder-linked inventory is still pending for parity review')
+            ->assertSee('Draft assignment signal:')
+            ->assertSee('draft holder-linked inventory is still pending for parity review')
+            ->assertSee('Active branch assignment signal:')
+            ->assertSee('1 holder-linked cards are already visible in active branches for live branch review')
+            ->assertSee('Paused branch assignment signal:')
+            ->assertSee('paused-branch holder-linked inventory is still pending for parity review')
+            ->assertSee('Unassigned branch activity signal:')
+            ->assertSee('mixed unassigned branch coverage is still pending for parity review')
+            ->assertSee('Activated unassigned signal:')
+            ->assertSee('activated unassigned inventory is still pending for parity review')
+            ->assertSee('Blocked unassigned signal:')
+            ->assertSee('blocked unassigned inventory is still pending for parity review')
+            ->assertSee('Draft unassigned signal:')
+            ->assertSee('draft unassigned inventory is still pending for parity review')
+            ->assertSee('Scope posture')
+            ->assertSee('Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.')
+            ->assertSee('Grouping posture')
+            ->assertSee('Shop grouping should stay read-only until query shaping is verified against legacy report totals.')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep branch comparison findings in the live workspace before asking for export-driven handoff.');
+    }
+
+    public function test_reports_page_supports_selected_mixed_branch_activity_review_context(): void
+    {
+        $liveShop = Shop::create([
+            'name' => 'Galaxy Mixed Live Branch',
+            'code' => 'galaxy-mixed-live-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Mixed Paused Branch',
+            'code' => 'galaxy-mixed-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Mixed Branch Tier',
+            'slug' => 'reporting-mixed-branch-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Mixed Branch Review',
+            'phone' => '+37499111229',
+            'email' => 'mariam.reports.mixed.branch@example.com',
+            'is_active' => true,
+            'shop_id' => $liveShop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223349',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $liveShop->id,
+            'activated_at' => now(),
+        ]);
+
+        Card::create([
+            'number' => '990011223350',
+            'status' => 'blocked',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $pausedShop->id,
+            'issued_at' => now(),
+        ]);
+
+        Card::create([
+            'number' => '990011223351',
+            'status' => 'draft',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223352',
+            'status' => 'blocked',
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223353',
+            'status' => 'active',
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $liveShop->id,
+            'activated_at' => now(),
+        ]);
+
+        Card::create([
+            'number' => '990011223354',
+            'status' => 'draft',
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        $branchActivitySignal = '1 live shops are already visible beside 1 paused branches for comparison review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=cards-by-shop');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Cards by shop')
+            ->assertSee('Source coverage')
+            ->assertSee('6 cards across 2 tracked shops are currently available for read-only reporting review.')
+            ->assertSee('Comparison signal')
+            ->assertSee('branch, inventory, and assignment comparison cues are all visible for parity walkthrough')
+            ->assertSee('Branch activity signal')
+            ->assertSee($branchActivitySignal)
+            ->assertSee('Inventory state signal')
+            ->assertSee('2 active cards are already visible beside 2 blocked inventory records for parity review')
+            ->assertSee('Assignment linkage signal')
+            ->assertSee('3 holder-linked cards are already visible beside 3 unassigned inventory records for parity review')
+            ->assertSee('Activated assignment signal')
+            ->assertSee('1 activated holder-linked cards are already visible for live customer inventory review')
+            ->assertSee('Blocked assignment signal')
+            ->assertSee('1 blocked holder-linked cards are already visible for dispute and replacement review')
+            ->assertSee('Draft assignment signal')
+            ->assertSee('1 draft holder-linked cards are already visible for pre-issuance customer review')
+            ->assertSee('Active branch assignment signal')
+            ->assertSee('1 holder-linked cards are already visible in active branches for live branch review')
+            ->assertSee('Paused branch assignment signal')
+            ->assertSee('2 holder-linked cards are already visible in paused branches for branch-recovery review')
+            ->assertSee('Unassigned branch activity signal')
+            ->assertSee('1 unassigned cards are already visible in active branches beside 2 unassigned cards in paused shops for parity review')
+            ->assertSee('Activated unassigned signal')
+            ->assertSee('1 activated unassigned cards are already visible for inventory recovery review')
+            ->assertSee('Blocked unassigned signal')
+            ->assertSee('1 blocked unassigned cards are already visible for replacement inventory review')
+            ->assertSee('Draft unassigned signal')
+            ->assertSee('1 draft unassigned cards are already visible for pre-issuance inventory review')
+            ->assertSee('Draft inventory signal')
+            ->assertSee('2 draft cards are already visible beside 4 issued inventory records for parity review')
+            ->assertSee('Activation signal')
+            ->assertSee('2 activated cards are already visible beside 4 not-yet-activated inventory records for parity review')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Comparison signal:')
+            ->assertSee('branch, inventory, and assignment comparison cues are all visible for parity walkthrough')
+            ->assertSee('Branch activity signal:')
+            ->assertSee($branchActivitySignal)
+            ->assertSee('Inventory state signal:')
+            ->assertSee('2 active cards are already visible beside 2 blocked inventory records for parity review')
+            ->assertSee('Assignment linkage signal:')
+            ->assertSee('3 holder-linked cards are already visible beside 3 unassigned inventory records for parity review')
+            ->assertSee('Activated assignment signal:')
+            ->assertSee('1 activated holder-linked cards are already visible for live customer inventory review')
+            ->assertSee('Blocked assignment signal:')
+            ->assertSee('1 blocked holder-linked cards are already visible for dispute and replacement review')
+            ->assertSee('Draft assignment signal:')
+            ->assertSee('1 draft holder-linked cards are already visible for pre-issuance customer review')
+            ->assertSee('Active branch assignment signal:')
+            ->assertSee('1 holder-linked cards are already visible in active branches for live branch review')
+            ->assertSee('Paused branch assignment signal:')
+            ->assertSee('2 holder-linked cards are already visible in paused branches for branch-recovery review')
+            ->assertSee('Unassigned branch activity signal:')
+            ->assertSee('1 unassigned cards are already visible in active branches beside 2 unassigned cards in paused shops for parity review')
+            ->assertSee('Activated unassigned signal:')
+            ->assertSee('1 activated unassigned cards are already visible for inventory recovery review')
+            ->assertSee('Blocked unassigned signal:')
+            ->assertSee('1 blocked unassigned cards are already visible for replacement inventory review')
+            ->assertSee('Draft unassigned signal:')
+            ->assertSee('1 draft unassigned cards are already visible for pre-issuance inventory review')
+            ->assertSee('Draft inventory signal:')
+            ->assertSee('2 draft cards are already visible beside 4 issued inventory records for parity review')
+            ->assertSee('Activation signal:')
+            ->assertSee('2 activated cards are already visible beside 4 not-yet-activated inventory records for parity review');
+    }
+
+    public function test_reports_page_supports_selected_role_access_pending_readiness_context(): void
+    {
+        $role = Role::create([
+            'name' => 'Draft Access Observer',
+            'slug' => 'draft-access-observer',
+            'is_active' => false,
+        ]);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Ani Access Pending',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review pending access parity',
+            'slug' => 'review-pending-access-parity',
+        ]);
+
+        $role->permissions()->attach($permission);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to report catalog')
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Review export presets')
+            ->assertSee('Blocked until role-access preset periods are verified against scope and assignment reporting parity.')
+            ->assertSee('Export source snapshot')
+            ->assertSee('Blocked until role-access export snapshots are verified against scope summaries and file delivery.')
+            ->assertSee('Selected report source')
+            ->assertSee('Role access coverage')
+            ->assertSee('Source coverage')
+            ->assertSee('1 roles are currently available for read-only access reporting review.')
+            ->assertSee('Source signal')
+            ->assertSee('live role coverage visible')
+            ->assertSee('Access mix signal')
+            ->assertSee('combined role, bundle, and staffing coverage is still pending')
+            ->assertSee('Access readiness')
+            ->assertSee('permission-linked active access posture is still pending')
+            ->assertSee('Assignment signal')
+            ->assertSee('1 staff assignments are already visible for access review')
+            ->assertSee('Draft staffing signal')
+            ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review')
+            ->assertSee('Draft bundle signal')
+            ->assertSee('1 draft access roles already carry visible permission bundles that still need activation review')
+            ->assertSee('Assigned bundle signal')
+            ->assertSee('assigned permission-bundle coverage is still pending')
+            ->assertSee('Scoped bundle signal')
+            ->assertSee('shop-linked permission-bundle coverage is still pending')
+            ->assertSee('Bundle branch activity signal')
+            ->assertSee('paused-branch permission-bundle coverage is still pending')
+            ->assertSee('Role state signal')
+            ->assertSee('draft access-role coverage is still pending')
+            ->assertSee('Permission bundle signal')
+            ->assertSee('unbundled active-role coverage is still pending')
+            ->assertSee('Default period posture')
+            ->assertSee('Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.')
+            ->assertSee('Access reporting parity stays review-only')
+            ->assertSee('Operators should hand off role-coverage findings in the live review context before trusting export files for access decisions.')
+            ->assertSee('Access mix signal:')
+            ->assertSee('combined role, bundle, and staffing coverage is still pending')
+            ->assertSee('Access readiness:')
+            ->assertSee('permission-linked active access posture is still pending')
+            ->assertSee('Draft staffing signal:')
+            ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review')
+            ->assertSee('Draft bundle signal:')
+            ->assertSee('1 draft access roles already carry visible permission bundles that still need activation review')
+            ->assertSee('Assigned bundle signal:')
+            ->assertSee('assigned permission-bundle coverage is still pending')
+            ->assertSee('Scoped bundle signal:')
+            ->assertSee('shop-linked permission-bundle coverage is still pending')
+            ->assertSee('Bundle branch activity signal:')
+            ->assertSee('paused-branch permission-bundle coverage is still pending');
+    }
+
+    public function test_reports_page_supports_selected_mixed_role_state_review_context(): void
+    {
+        $activeRole = Role::create([
+            'name' => 'Reporting Active Access Lead',
+            'slug' => 'reporting-active-access-lead',
+            'is_active' => true,
+        ]);
+
+        Role::create([
+            'name' => 'Reporting Draft Access Observer',
+            'slug' => 'reporting-draft-access-observer',
+            'is_active' => false,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review access audits',
+            'slug' => 'review-access-audits',
+        ]);
+
+        $activeRole->permissions()->attach($permission);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Mariam Mixed Access Review',
+        ]);
+
+        $assignedUser->roles()->attach($activeRole->id);
+
+        $roleStateSignal = '1 active roles are already visible beside 1 draft access roles for parity review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Source coverage')
+            ->assertSee('2 roles are currently available for read-only access reporting review.')
+            ->assertSee('Role state signal')
+            ->assertSee($roleStateSignal)
+            ->assertSee('Staff coverage signal')
+            ->assertSee('unassigned active-role staff coverage is still pending')
+            ->assertSee('Permission bundle signal')
+            ->assertSee('unbundled active-role coverage is still pending')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Role state signal:')
+            ->assertSee($roleStateSignal)
+            ->assertSee('Staff coverage signal:')
+            ->assertSee('unassigned active-role staff coverage is still pending')
+            ->assertSee('Permission bundle signal:')
+            ->assertSee('unbundled active-role coverage is still pending');
+    }
+
+    public function test_reports_page_supports_selected_mixed_permission_bundle_review_context(): void
+    {
+        $bundledRole = Role::create([
+            'name' => 'Reporting Bundled Access Lead',
+            'slug' => 'reporting-bundled-access-lead',
+            'is_active' => true,
+        ]);
+
+        Role::create([
+            'name' => 'Reporting Unbundled Access Lead',
+            'slug' => 'reporting-unbundled-access-lead',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review branch access audits',
+            'slug' => 'review-branch-access-audits',
+        ]);
+
+        $bundledRole->permissions()->attach($permission);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Levon Mixed Bundle Review',
+        ]);
+
+        $assignedUser->roles()->attach($bundledRole->id);
+
+        $permissionBundleSignal = '1 permission-linked roles are already visible beside 1 unbundled active roles for parity review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Source coverage')
+            ->assertSee('2 roles are currently available for read-only access reporting review.')
+            ->assertSee('Permission bundle signal')
+            ->assertSee($permissionBundleSignal)
+            ->assertSee('Assigned bundle signal')
+            ->assertSee('1 permission-linked roles already carry visible staff assignments for parity review')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Permission bundle signal:')
+            ->assertSee($permissionBundleSignal)
+            ->assertSee('Assigned bundle signal:')
+            ->assertSee('1 permission-linked roles already carry visible staff assignments for parity review');
+    }
+
+    public function test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-reports-fallback',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Tier Fallback',
+            'slug' => 'reporting-tier-fallback',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Reporting Fallback',
+            'phone' => '+37499111225',
+            'email' => 'mariam.reports.fallback@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223346',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=unknown-source');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review cards by shop source')
+            ->assertDontSee('Back to report catalog')
+            ->assertDontSee('Selected report source');
+    }
+
+    public function test_reports_page_supports_selected_cardholder_status_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Reporting',
+            'code' => 'galaxy-holder-reporting',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'full_name' => 'Mariam Holder Review',
+            'phone' => '+37499111227',
+            'email' => 'mariam.holder.review@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Holder Tier',
+            'slug' => 'reporting-holder-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => '990011223359',
+            'status' => 'draft',
+            'card_holder_id' => CardHolder::query()->first()->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223358',
+            'status' => 'active',
+            'card_holder_id' => CardHolder::query()->first()->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'activated_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=cardholder-status');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to report catalog')
+            ->assertSee('Reviewing: Cardholder status overview')
+            ->assertSee('Review export presets')
+            ->assertSee('Blocked until holder-status preset periods are verified against lifecycle and recency reporting parity.')
+            ->assertSee('Export source snapshot')
+            ->assertSee('Blocked until holder-status export snapshots are verified against lifecycle summaries and file delivery.')
+            ->assertSee('Selected report source')
+            ->assertSee('Cardholder status overview')
+            ->assertSee('Source coverage')
+            ->assertSee('1 cardholders are currently available for read-only status reporting review.')
+            ->assertSee('Source status signal')
+            ->assertSee('Cardholder-status source is already visible with live lifecycle coverage for parity review.')
+            ->assertSee('Source signal')
+            ->assertSee('live holder status coverage visible')
+            ->assertSee('Laravel input signal')
+            ->assertSee('holder status inputs are ready for on-screen review')
+            ->assertSee('Comparison signal')
+            ->assertSee('full lifecycle, linkage, and linked-card comparison coverage is still pending')
+            ->assertSee('Review readiness')
+            ->assertSee('ready for holder-status triage review')
+            ->assertSee('Lifecycle signal')
+            ->assertSee('inactive holder coverage is still pending for lifecycle review')
+            ->assertSee('Card linkage signal')
+            ->assertSee('unlinked holder coverage is still pending for parity review')
+            ->assertSee('Linked card state signal')
+            ->assertSee('blocked linked-card coverage is still pending for parity review')
+            ->assertSee('Linked card draft signal')
+            ->assertSee('1 draft linked cards are already visible for pre-issuance parity review')
+            ->assertSee('Linked card activation signal')
+            ->assertSee('1 activated linked cards are already visible for holder-lifecycle parity review')
+            ->assertSee('Blocked holder signal')
+            ->assertSee('blocked-holder coverage is still pending for support review')
+            ->assertSee('Draft holder signal')
+            ->assertSee('1 holder profiles already carry draft linked-card posture for pre-issuance review')
+            ->assertSee('Active holder signal')
+            ->assertSee('1 holder profiles already carry active linked-card posture for lifecycle review')
+            ->assertSee('Activated holder signal')
+            ->assertSee('1 holder profiles already carry activated linked-card posture for lifecycle review')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.')
+            ->assertSee('Holder branch activity signal')
+            ->assertSee('paused-branch holder coverage is still pending for parity review')
+            ->assertSee('Cardholder status source selected for Laravel review')
+            ->assertSee('This reporting view now reflects 1 tracked cardholders from the current Laravel foundation.')
+            ->assertSee('Support handoff should keep holder posture visible')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Source status signal:')
+            ->assertSee('Cardholder-status source is already visible with live lifecycle coverage for parity review.')
+            ->assertSee('Review readiness:')
+            ->assertSee('ready for holder-status triage review')
+            ->assertSee('Lifecycle posture:')
+            ->assertSee('Status aggregation should stay read-only until holder lifecycle and activity parity are verified.')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.');
+    }
+
+    public function test_reports_page_supports_selected_mixed_cardholder_status_review_context(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Galaxy Mixed Holder Reporting',
+            'code' => 'galaxy-mixed-holder-reporting',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Mixed Holder Paused Branch',
+            'code' => 'galaxy-mixed-holder-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $activeHolder = CardHolder::create([
+            'full_name' => 'Mariam Mixed Holder Active',
+            'phone' => '+37499111230',
+            'email' => 'mariam.holder.mixed.active@example.com',
+            'is_active' => true,
+            'shop_id' => $activeShop->id,
+        ]);
+
+        $inactiveHolder = CardHolder::create([
+            'full_name' => 'Mariam Mixed Holder Inactive',
+            'phone' => '+37499111231',
+            'email' => 'mariam.holder.mixed.inactive@example.com',
+            'is_active' => false,
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Mixed Holder Tier',
+            'slug' => 'reporting-mixed-holder-tier',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'number' => '990011223360',
+            'status' => 'active',
+            'card_holder_id' => $activeHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $activeShop->id,
+            'activated_at' => now(),
+        ]);
+
+        Card::create([
+            'number' => '990011223361',
+            'status' => 'blocked',
+            'card_holder_id' => $inactiveHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $pausedShop->id,
+            'issued_at' => now(),
+        ]);
+
+        Card::create([
+            'number' => '990011223362',
+            'status' => 'draft',
+            'card_holder_id' => $activeHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $activeShop->id,
+        ]);
+
+        CardHolder::create([
+            'full_name' => 'Mariam Mixed Holder Unlinked',
+            'phone' => '+37499111232',
+            'email' => 'mariam.holder.mixed.unlinked@example.com',
+            'is_active' => true,
+            'shop_id' => $activeShop->id,
+        ]);
+
+        $inactiveHolderCount = CardHolder::query()->where('is_active', false)->count();
+        $activeHolderCount = CardHolder::query()->where('is_active', true)->count();
+        $lifecycleSignal = sprintf('%d inactive holders are already visible beside %d active profiles for lifecycle review', $inactiveHolderCount, $activeHolderCount);
+        $holderBranchActivitySignal = '2 holder profiles are already visible in active branches beside 1 profiles in paused shops for parity review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=cardholder-status');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Cardholder status overview')
+            ->assertSee('Source coverage')
+            ->assertSee('3 cardholders are currently available for read-only status reporting review.')
+            ->assertSee('Comparison signal')
+            ->assertSee('lifecycle, linkage, and linked-card comparison cues are all visible for parity walkthrough')
+            ->assertSee('Lifecycle signal')
+            ->assertSee($lifecycleSignal)
+            ->assertSee('Card linkage signal')
+            ->assertSee('2 linked holders are already visible beside 1 unlinked profiles for parity review')
+            ->assertSee('Linked card state signal')
+            ->assertSee('1 active linked cards are already visible beside 1 blocked linked cards for parity review')
+            ->assertSee('Linked card draft signal')
+            ->assertSee('1 draft linked cards are already visible for pre-issuance parity review')
+            ->assertSee('Linked card activation signal')
+            ->assertSee('1 activated linked cards are already visible for holder-lifecycle parity review')
+            ->assertSee('Blocked holder signal')
+            ->assertSee('1 holder profiles already carry blocked linked-card posture for support review')
+            ->assertSee('Draft holder signal')
+            ->assertSee('1 holder profiles already carry draft linked-card posture for pre-issuance review')
+            ->assertSee('Active holder signal')
+            ->assertSee('1 holder profiles already carry active linked-card posture for lifecycle review')
+            ->assertSee('Activated holder signal')
+            ->assertSee('1 holder profiles already carry activated linked-card posture for lifecycle review')
+            ->assertSee('Holder branch activity signal')
+            ->assertSee($holderBranchActivitySignal)
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Comparison signal:')
+            ->assertSee('lifecycle, linkage, and linked-card comparison cues are all visible for parity walkthrough')
+            ->assertSee('Lifecycle signal:')
+            ->assertSee($lifecycleSignal)
+            ->assertSee('Card linkage signal:')
+            ->assertSee('2 linked holders are already visible beside 1 unlinked profiles for parity review')
+            ->assertSee('Linked card state signal:')
+            ->assertSee('1 active linked cards are already visible beside 1 blocked linked cards for parity review')
+            ->assertSee('Linked card draft signal:')
+            ->assertSee('1 draft linked cards are already visible for pre-issuance parity review')
+            ->assertSee('Linked card activation signal:')
+            ->assertSee('1 activated linked cards are already visible for holder-lifecycle parity review')
+            ->assertSee('Blocked holder signal:')
+            ->assertSee('1 holder profiles already carry blocked linked-card posture for support review')
+            ->assertSee('Draft holder signal:')
+            ->assertSee('1 holder profiles already carry draft linked-card posture for pre-issuance review')
+            ->assertSee('Active holder signal:')
+            ->assertSee('1 holder profiles already carry active linked-card posture for lifecycle review')
+            ->assertSee('Activated holder signal:')
+            ->assertSee('1 holder profiles already carry activated linked-card posture for lifecycle review')
+            ->assertSee('Holder branch activity signal:')
+            ->assertSee($holderBranchActivitySignal);
+    }
+
+    public function test_reports_page_supports_selected_role_access_review_context(): void
+    {
+        $role = Role::create([
+            'name' => 'Reporting Access Lead',
+            'slug' => 'reporting-access-lead',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review reports',
+            'slug' => 'review-reports',
+        ]);
+
+        $role->permissions()->attach($permission);
+
+        $assignedUser = User::factory()->create([
+            'name' => 'Levon Access Review',
+        ]);
+
+        $assignedUser->roles()->attach($role->id);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to report catalog')
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Review export presets')
+            ->assertSee('Blocked until role-access preset periods are verified against scope and assignment reporting parity.')
+            ->assertSee('Export source snapshot')
+            ->assertSee('Blocked until role-access export snapshots are verified against scope summaries and file delivery.')
+            ->assertSee('Selected report source')
+            ->assertSee('Role access coverage')
+            ->assertSee('Source coverage')
+            ->assertSee('1 roles are currently available for read-only access reporting review.')
+            ->assertSee('Source status signal')
+            ->assertSee('Role-access source is already visible with live access coverage for parity review.')
+            ->assertSee('Source signal')
+            ->assertSee('live role coverage visible')
+            ->assertSee('Laravel input signal')
+            ->assertSee('role inputs are ready for on-screen review')
+            ->assertSee('Access mix signal')
+            ->assertSee('role, bundle, and staffing inputs are jointly visible for access parity walkthrough')
+            ->assertSee('Access readiness')
+            ->assertSee('1 active roles already carry permission-linked access posture for on-screen review')
+            ->assertSee('Assignment signal')
+            ->assertSee('1 staff assignments are already visible for access review')
+            ->assertSee('Assignment scope signal')
+            ->assertSee('unscoped access-assignment coverage is still pending')
+            ->assertSee('Assignment branch activity signal')
+            ->assertSee('paused-branch access-assignment coverage is still pending')
+            ->assertSee('Staff coverage signal')
+            ->assertSee('unassigned active-role staff coverage is still pending')
+            ->assertSee('Role state signal')
+            ->assertSee('draft access-role coverage is still pending')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep access coverage findings in the live workspace before asking for export-driven handoff.')
+            ->assertSee('Permission bundle signal')
+            ->assertSee('unbundled active-role coverage is still pending')
+            ->assertSee('Role access source selected for Laravel review')
+            ->assertSee('This reporting view now reflects 1 tracked roles from the current Laravel foundation.')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Source status signal:')
+            ->assertSee('Role-access source is already visible with live access coverage for parity review.')
+            ->assertSee('Access mix signal:')
+            ->assertSee('role, bundle, and staffing inputs are jointly visible for access parity walkthrough')
+            ->assertSee('Access readiness:')
+            ->assertSee('1 active roles already carry permission-linked access posture for on-screen review')
+            ->assertSee('Assignment signal:')
+            ->assertSee('1 staff assignments are already visible for access review')
+            ->assertSee('Assignment scope signal:')
+            ->assertSee('unscoped access-assignment coverage is still pending')
+            ->assertSee('Assignment branch activity signal:')
+            ->assertSee('paused-branch access-assignment coverage is still pending')
+            ->assertSee('Staff coverage signal:')
+            ->assertSee('unassigned active-role staff coverage is still pending')
+            ->assertSee('Role state signal:')
+            ->assertSee('draft access-role coverage is still pending')
+            ->assertSee('Permission bundle signal:')
+            ->assertSee('unbundled active-role coverage is still pending')
+            ->assertSee('Access posture:')
+            ->assertSee('Role coverage should stay read-only until access-report parity and scope shaping are verified.')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep access coverage findings in the live workspace before asking for export-driven handoff.');
+    }
+
+    public function test_reports_page_supports_selected_mixed_assignment_scope_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Scoped Access Branch',
+            'code' => 'galaxy-scoped-access-branch',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Reporting Scoped Access Lead',
+            'slug' => 'reporting-scoped-access-lead',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped access reports',
+            'slug' => 'review-scoped-access-reports',
+        ]);
+
+        $role->permissions()->attach($permission);
+
+        $scopedUser = User::factory()->create([
+            'name' => 'Scoped Access Operator',
+            'shop_id' => $shop->id,
+        ]);
+
+        $unscopedUser = User::factory()->create([
+            'name' => 'Bootstrap Access Operator',
+            'shop_id' => null,
+        ]);
+
+        $scopedUser->roles()->attach($role->id);
+        $unscopedUser->roles()->attach($role->id);
+
+        $assignmentScopeSignal = '1 shop-linked staff assignments are already visible beside 1 unscoped access assignments for parity review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Source coverage')
+            ->assertSee('1 roles are currently available for read-only access reporting review.')
+            ->assertSee('Assignment signal')
+            ->assertSee('2 staff assignments are already visible for access review')
+            ->assertSee('Assignment scope signal')
+            ->assertSee($assignmentScopeSignal)
+            ->assertSee('Scoped bundle signal')
+            ->assertSee('1 permission-linked roles already carry shop-linked access scope for parity review')
+            ->assertSee('Bundle branch activity signal')
+            ->assertSee('paused-branch permission-bundle coverage is still pending')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Assignment scope signal:')
+            ->assertSee($assignmentScopeSignal)
+            ->assertSee('Scoped bundle signal:')
+            ->assertSee('1 permission-linked roles already carry shop-linked access scope for parity review')
+            ->assertSee('Bundle branch activity signal:')
+            ->assertSee('paused-branch permission-bundle coverage is still pending');
+    }
+
+    public function test_reports_page_supports_selected_mixed_assignment_branch_activity_review_context(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Galaxy Active Access Branch',
+            'code' => 'galaxy-active-access-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Paused Access Branch',
+            'code' => 'galaxy-paused-access-branch',
+            'is_active' => false,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Reporting Branch Activity Access Lead',
+            'slug' => 'reporting-branch-activity-access-lead',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review branch activity access reports',
+            'slug' => 'review-branch-activity-access-reports',
+        ]);
+
+        $role->permissions()->attach($permission);
+
+        $activeScopedUser = User::factory()->create([
+            'name' => 'Active Branch Access Operator',
+            'shop_id' => $activeShop->id,
+        ]);
+
+        $pausedScopedUser = User::factory()->create([
+            'name' => 'Paused Branch Access Operator',
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        $activeScopedUser->roles()->attach($role->id);
+        $pausedScopedUser->roles()->attach($role->id);
+
+        $assignmentBranchActivitySignal = '1 shop-linked staff assignments are already visible in active branches beside 1 assignments in paused shops for parity review';
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=role-access');
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Assignment signal')
+            ->assertSee('2 staff assignments are already visible for access review')
+            ->assertSee('Assignment branch activity signal')
+            ->assertSee($assignmentBranchActivitySignal)
+            ->assertSee('Bundle branch activity signal')
+            ->assertSee('1 permission-linked roles are already visible in active branches beside 1 roles in paused shops for parity review')
+            ->assertSee('Implementation dependencies')
+            ->assertSee('Assignment branch activity signal:')
+            ->assertSee($assignmentBranchActivitySignal)
+            ->assertSee('Bundle branch activity signal:')
+            ->assertSee('1 permission-linked roles are already visible in active branches beside 1 roles in paused shops for parity review');
+    }
+
+    public function test_reports_page_accepts_case_insensitive_selected_source_query(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Central',
+            'code' => 'galaxy-central-reports-case-insensitive',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reporting Tier Case Insensitive',
+            'slug' => 'reporting-tier-case-insensitive',
+            'points_rate' => 1.00,
+            'is_active' => true,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'full_name' => 'Mariam Reporting Case Insensitive',
+            'phone' => '+37499111226',
+            'email' => 'mariam.reports.case@example.com',
+            'status' => 'active',
+            'shop_id' => $shop->id,
+        ]);
+
+        Card::create([
+            'number' => '990011223347',
+            'status' => 'active',
+            'card_holder_id' => $cardHolder->id,
+            'card_type_id' => $cardType->id,
+            'shop_id' => $shop->id,
+            'issued_at' => now(),
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports?source=CARDS-BY-SHOP');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to report catalog')
+            ->assertSee('Reviewing: Cards by shop')
+            ->assertSee('Selected report source');
+    }
+
     public function test_authenticated_user_can_access_services_rules_operational_index_shape(): void
     {
         $user = User::factory()->create();
@@ -1001,10 +4976,145 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Services &amp; Rules placeholder')
+            ->assertSeeText('Catalog / Services & Rules')
             ->assertSee('Birthday bonus')
+            ->assertSee('/admin/services-rules?rule=birthday-bonus')
             ->assertSee('Rule type')
-            ->assertSee('Partner card uplift');
+            ->assertSee('Partner card uplift')
+            ->assertSee('/admin/services-rules?rule=partner-card-uplift')
+            ->assertSee('Review birthday bonus rule');
+    }
+
+    public function test_services_rules_page_supports_selected_rule_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules?rule=night-service-block');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all rules')
+            ->assertSee('/admin/services-rules')
+            ->assertSee('Reviewing: Night service block')
+            ->assertSee('Review priorities')
+            ->assertSee('Blocked until draft rule priority order is verified against legacy exclusion precedence in Laravel.')
+            ->assertSee('Publish rule')
+            ->assertSee('Blocked until this draft rule clears CRUD, exclusion-parity, and publish-safety checks beyond the preview shell.')
+            ->assertSee('Selected rule preview')
+            ->assertSee('Night service block')
+            ->assertSee('Rule status signal')
+            ->assertSee('Draft exclusion rule remains safer for parity review before any live publish discussion.')
+            ->assertSee('Condition posture')
+            ->assertSee('Bar-service exclusions should remain draft-only until legacy exception behavior is rechecked in Laravel.')
+            ->assertSee('Priority posture')
+            ->assertSee('Keep this blocking rule below confirmed accrual logic until exclusion order is verified.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep draft exclusion rules in compact on-screen review first, because operators need scope, condition, and effect visible together before discussing publication.')
+            ->assertSee('Night service block selected for exception review')
+            ->assertSee('Draft exclusion handoff stays cautious')
+            ->assertSee('Draft exclusion handoff keeps parity evidence visible')
+            ->assertSee('Scope, blocking condition, and no-accrual effect should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.');
+    }
+
+    public function test_services_rules_page_supports_selected_scoped_rule_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules?rule=partner-card-uplift');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all rules')
+            ->assertSee('/admin/services-rules')
+            ->assertSee('Reviewing: Partner card uplift')
+            ->assertSee('Review priorities')
+            ->assertSee('Blocked until scoped rule priority order is verified against broader loyalty overlaps in Laravel.')
+            ->assertSee('Publish rule')
+            ->assertSee('Blocked until this scoped rule clears CRUD, scope-parity, and publish-safety checks beyond the preview shell.')
+            ->assertSee('Selected rule preview')
+            ->assertSee('Partner card uplift')
+            ->assertSee('Scope')
+            ->assertSee('Central Shop')
+            ->assertSee('Rule status signal')
+            ->assertSee('Active scoped uplift is already visible for branch-aware parity review.')
+            ->assertSee('Condition posture')
+            ->assertSee('Partner-card checks should stay tied to visible card-type parity before any Laravel rule editor opens them up.')
+            ->assertSee('Priority posture')
+            ->assertSee('This scoped uplift should remain below birthday-wide behavior until legacy overlap order is rechecked.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep scoped uplift rules in compact on-screen review first, because operators need scope, condition, and priority visible together before escalating.')
+            ->assertSee('Effect guidance')
+            ->assertSee('Treat the partner uplift as review-only until scoped accrual behavior is backed by Laravel rule writes.')
+            ->assertSee('Partner card uplift selected for scope review')
+            ->assertSee('Scoped uplift handoff stays branch-aware')
+            ->assertSee('Scoped uplift handoff keeps branch evidence visible')
+            ->assertSee('Scope, condition, and priority should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.')
+            ->assertSee('Overlap with broader loyalty rules still needs parity verification before any publish path is safe.');
+    }
+
+    public function test_services_rules_page_supports_selected_all_shop_rule_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules?rule=birthday-bonus');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all rules')
+            ->assertSee('/admin/services-rules')
+            ->assertSee('Reviewing: Birthday bonus')
+            ->assertSee('Review priorities')
+            ->assertSee('Blocked until all-shop rule priority order is verified in Laravel.')
+            ->assertSee('Publish rule')
+            ->assertSee('Blocked until this all-shop rule clears CRUD and publish-safety parity beyond the preview shell.')
+            ->assertSee('Selected rule preview')
+            ->assertSee('Birthday bonus')
+            ->assertSee('Scope')
+            ->assertSee('All shops')
+            ->assertSee('Rule status signal')
+            ->assertSee('Active loyalty uplift is already visible for live parity review.')
+            ->assertSee('Condition posture')
+            ->assertSee('Birthday window logic should stay parity-first, because date-sensitive loyalty rules are easy to drift during migration.')
+            ->assertSee('Priority posture')
+            ->assertSee('Keep this rule near the top of the preview stack until Laravel priority resolution is verified against the old Galaxy order.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep this rule in table-first review mode, because operators usually compare scope, effect, and priority together before discussing publication.')
+            ->assertSee('Effect guidance')
+            ->assertSee('Treat the uplift as review-only until accrual calculations and birthday eligibility are backed by Laravel writes.')
+            ->assertSee('Birthday bonus selected for rule review')
+            ->assertSee('Birthday rule handoff stays parity-first')
+            ->assertSee('Birthday rule handoff keeps parity evidence visible')
+            ->assertSee('Scope, priority, and uplift effect should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.')
+            ->assertSee('Priority resolution remains preview-only until overlapping rule order is validated in Laravel.');
+    }
+
+    public function test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules?rule=unknown-rule');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review birthday bonus rule')
+            ->assertDontSee('Back to all rules')
+            ->assertDontSee('Selected rule preview');
+    }
+
+    public function test_services_rules_page_accepts_case_insensitive_selected_rule_query(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/services-rules?rule=NIGHT-SERVICE-BLOCK');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all rules')
+            ->assertSee('Reviewing: Night service block')
+            ->assertSee('Selected rule preview');
     }
 
     public function test_resource_page_shell_keeps_shared_header_and_rationale_visible(): void
@@ -2062,8 +6172,180 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Gifts placeholder')
             ->assertSee('Coffee voucher')
+            ->assertSee('/admin/gifts?gift=coffee-voucher')
             ->assertSee('Points range')
-            ->assertSee('Premium dessert set');
+            ->assertSee('Premium dessert set')
+            ->assertSee('/admin/gifts?gift=premium-dessert-set')
+            ->assertSee('Review coffee voucher gift');
+    }
+
+    public function test_gifts_page_supports_selected_gift_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=premium-dessert-set');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all gifts')
+            ->assertSee('/admin/gifts')
+            ->assertSee('Reviewing: Premium dessert set')
+            ->assertSee('Stock audit')
+            ->assertSee('Blocked until zero-stock recovery checks are backed by Laravel inventory data and reopening parity.')
+            ->assertSee('Publish gift')
+            ->assertSee('Blocked until this paused reward clears CRUD, stock-recovery, and redemption parity beyond the preview shell.')
+            ->assertSee('Selected gift preview')
+            ->assertSee('Premium dessert set')
+            ->assertSee('Gift status signal')
+            ->assertSee('Paused zero-stock reward remains safer for parity review before reopening discussion.')
+            ->assertSee('Stock posture')
+            ->assertSee('Zero-stock rewards should remain paused in review mode until Laravel inventory and reopening flows can reproduce the old behavior safely.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep paused zero-stock rewards in compact on-screen review first, because operators need scope, stock, and cost visible together before discussing reopening.')
+            ->assertSee('Redemption guidance')
+            ->assertSee('Treat this paused reward as review-only until stock recovery and redemption parity are backed by Laravel flows.')
+            ->assertSee('Premium dessert set selected for paused reward review')
+            ->assertSee('Paused reward handoff stays cautious')
+            ->assertSee('Paused reward handoff keeps stock evidence visible')
+            ->assertSee('Scope, zero-stock state, and points cost should stay visible in the workspace before any reopening discussion begins.')
+            ->assertSee('Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in Laravel.');
+    }
+
+    public function test_gifts_page_supports_selected_scoped_gift_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=airport-transfer');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all gifts')
+            ->assertSee('/admin/gifts')
+            ->assertSee('Reviewing: Airport transfer')
+            ->assertSee('Stock audit')
+            ->assertSee('Blocked until finite-stock checks are backed by Laravel inventory data and scoped stock parity.')
+            ->assertSee('Publish gift')
+            ->assertSee('Blocked until this scoped reward clears CRUD, scope-parity, and redemption checks beyond the preview shell.')
+            ->assertSee('Selected gift preview')
+            ->assertSee('Airport transfer')
+            ->assertSee('Points cost')
+            ->assertSee('900')
+            ->assertSee('Gift status signal')
+            ->assertSee('Active scoped reward is already visible for branch-aware catalog parity review.')
+            ->assertSee('Scope posture')
+            ->assertSee('Kiosk-scoped rewards should stay branch-aware, because legacy redemption expectations depended on local availability.')
+            ->assertSee('Stock posture')
+            ->assertSee('Finite stock should remain review-only until Laravel inventory updates can preserve remaining-quantity parity.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep kiosk-scoped rewards in compact on-screen review first, because operators need cost, stock, and local scope visible together before escalating.')
+            ->assertSee('Redemption guidance')
+            ->assertSee('Treat this scoped reward as review-only until stock-aware redemption behavior is backed by Laravel flows.')
+            ->assertSee('Airport transfer selected for scoped reward review')
+            ->assertSee('Finite-stock handoff stays branch-specific')
+            ->assertSee('Finite-stock handoff keeps kiosk evidence visible')
+            ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('Shop-scoped reward behavior should stay preview-only until Laravel scope checks are verified against legacy kiosk rules.')
+            ->assertSee('Finite-stock handling still needs backend inventory wiring before a publish path is safe.');
+    }
+
+    public function test_gifts_page_supports_selected_all_shop_gift_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=coffee-voucher');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all gifts')
+            ->assertSee('/admin/gifts')
+            ->assertSee('Reviewing: Coffee voucher')
+            ->assertSee('Stock audit')
+            ->assertSee('Blocked until all-shop stock checks are backed by Laravel inventory data.')
+            ->assertSee('Publish gift')
+            ->assertSee('Blocked until this all-shop reward clears CRUD and redemption parity beyond the preview shell.')
+            ->assertSee('Selected gift preview')
+            ->assertSee('Coffee voucher')
+            ->assertSee('Points cost')
+            ->assertSee('150')
+            ->assertSee('Gift status signal')
+            ->assertSee('Active all-shop reward is already visible for live catalog parity review.')
+            ->assertSee('Scope posture')
+            ->assertSee('All-shop rewards should stay parity-first, because wide-scope catalog changes affect the most operators and redemptions.')
+            ->assertSee('Stock posture')
+            ->assertSee('Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Laravel inventory writes exist.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep this reward in table-first review mode, because operators usually compare scope, stock policy, and points cost together before discussing publication.')
+            ->assertSee('Redemption guidance')
+            ->assertSee('Treat this reward as review-only until gift CRUD and redemption parity are backed by Laravel flows.')
+            ->assertSee('Coffee voucher selected for reward review')
+            ->assertSee('All-shop reward handoff stays stock-aware')
+            ->assertSee('All-shop reward handoff keeps catalog evidence visible')
+            ->assertSee('Points cost, stock policy, and shop scope should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('All-shop reward coverage should remain stable until Laravel scope handling is verified against the legacy catalog.')
+            ->assertSee('Unlimited-stock assumptions still need backend inventory wiring before operators can trust live publish behavior.');
+    }
+
+    public function test_gifts_page_supports_selected_paused_finite_stock_gift_review_context(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=weekend-brunch-pass');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all gifts')
+            ->assertSee('/admin/gifts')
+            ->assertSee('Reviewing: Weekend brunch pass')
+            ->assertSee('Stock audit')
+            ->assertSee('Blocked until finite-stock checks are backed by Laravel inventory data and scoped stock parity.')
+            ->assertSee('Publish gift')
+            ->assertSee('Blocked until this paused reward clears CRUD, stock-recovery, and redemption parity beyond the preview shell.')
+            ->assertSee('Selected gift preview')
+            ->assertSee('Weekend brunch pass')
+            ->assertSee('Points cost')
+            ->assertSee('320')
+            ->assertSee('Gift status signal')
+            ->assertSee('Paused finite-stock reward remains safer for parity review before reopening discussion.')
+            ->assertSee('Scope posture')
+            ->assertSee('Paused branch rewards should stay locally reviewable, because reopening decisions still depend on shop-specific redemption habits.')
+            ->assertSee('Stock posture')
+            ->assertSee('Finite paused stock should remain review-only until Laravel inventory updates and reopening flows can preserve remaining-quantity parity.')
+            ->assertSee('Format guidance')
+            ->assertSee('Keep paused finite-stock rewards in compact on-screen review first, because operators need scope, stock, and reopening posture visible together before escalating.')
+            ->assertSee('Redemption guidance')
+            ->assertSee('Treat this paused branch reward as review-only until stock-aware reopening and redemption parity are backed by Laravel flows.')
+            ->assertSee('Weekend brunch pass selected for paused branch reward review')
+            ->assertSee('Paused branch reward handoff stays stock-aware')
+            ->assertSee('Paused branch reward keeps finite-stock evidence visible')
+            ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any reopening discussion begins.')
+            ->assertSee('Paused branch reward behavior should stay preview-only until Laravel scope and reopening checks are verified.')
+            ->assertSee('Finite paused stock still needs backend inventory wiring before operators can trust reopening decisions.');
+    }
+
+    public function test_gifts_page_ignores_unknown_selected_gift_and_falls_back_to_catalog(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=unknown-gift');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review coffee voucher gift')
+            ->assertDontSee('Back to all gifts')
+            ->assertDontSee('Selected gift preview');
+    }
+
+    public function test_gifts_page_accepts_case_insensitive_selected_gift_query(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/gifts?gift=PREMIUM-DESSERT-SET');
+
+        $response
+            ->assertOk()
+            ->assertSee('Back to all gifts')
+            ->assertSee('Reviewing: Premium dessert set')
+            ->assertSee('Selected gift preview');
     }
 
     public function test_authenticated_user_can_access_gifts_management_preview(): void
@@ -2137,9 +6419,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft')
             ->assertSee('Create or edit card type')
             ->assertSee('Publish type')
+            ->assertSee('Blocked until the first Laravel-backed tier exists before any publish-style rollout.')
             ->assertSee('New type')
             ->assertSee('href="#live-form"', false)
             ->assertSee('Import rules')
+            ->assertSee('Blocked until the first Laravel-backed tier exists for rule parity review.')
             ->assertSee('Management snapshot')
             ->assertSee('Active tiers')
             ->assertSee('Imported rules')
@@ -2180,6 +6464,27 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1.50x');
     }
 
+    public function test_card_types_catalog_actions_reflect_saved_tier_readiness(): void
+    {
+        CardType::create([
+            'name' => 'Gold',
+            'slug' => 'gold-catalog-readiness',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('Import rules')
+            ->assertSee('Blocked until saved tier accrual parity is verified before importing legacy rules.')
+            ->assertSee('Publish type')
+            ->assertSee('Blocked until saved live tiers clear rollout parity against the old Galaxy catalog.');
+    }
+
     public function test_card_types_page_exposes_edit_link_for_latest_saved_type(): void
     {
         CardType::create([
@@ -2213,6 +6518,22 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime',
             'points_rate' => '1.75',
             'is_active' => false,
+            'review_note' => 'Keep this tier in draft until legacy accrual parity is confirmed.',
+            'activation_note' => 'Only activate this tier after the legacy branch handoff is verified.',
+            'rollout_note' => 'Keep rollout review-only until legacy tier behavior is verified branch by branch.',
+        ]);
+
+        $shop = Shop::create([
+            'name' => 'Galaxy Coverage Branch',
+            'code' => 'galaxy-coverage-branch-card-type',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'number' => 'GX-CT-200001',
+            'status' => 'draft',
+            'card_type_id' => $cardType->id,
         ]);
 
         $user = User::factory()->create();
@@ -2230,7 +6551,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Editing: Galaxy Prime')
             ->assertSee('Import rules')
             ->assertSee('aria-disabled="true"', false)
-            ->assertSee('Blocked until draft parity review is complete.')
+            ->assertSee('Blocked until draft rule parity is verified against visible card coverage.')
+            ->assertSee('Publish type')
+            ->assertSee('Blocked until this draft tier clears rule and rollout parity review against visible card coverage.')
             ->assertSee('Selected record summary')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
@@ -2240,6 +6563,19 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1.75x')
             ->assertSee('Laravel status:')
             ->assertSee('draft')
+            ->assertSee('Lifecycle freshness:')
+            ->assertSee('newly created in Laravel review')
+            ->assertSee('Last saved in Laravel:')
+            ->assertSee('Review note:')
+            ->assertSee('Keep this tier in draft until legacy accrual parity is confirmed.')
+            ->assertSee('Activation note:')
+            ->assertSee('Only activate this tier after the legacy branch handoff is verified.')
+            ->assertSee('Rollout note:')
+            ->assertSee('Keep rollout review-only until legacy tier behavior is verified branch by branch.')
+            ->assertSee('Coverage signal:')
+            ->assertSee('draft tier with visible card coverage')
+            ->assertSee('Tier status signal:')
+            ->assertSee('Draft tier remains safer for parity review while saved card coverage is already visible.')
             ->assertSee('Status guidance:')
             ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
             ->assertSee('Rule-import blocker:')
@@ -2254,10 +6590,35 @@ class AdminDashboardTest extends TestCase
             ->assertSee('The shared card-type form is now loading this saved tier directly from Laravel data instead of preview-only defaults.')
             ->assertSee('Galaxy Prime status reflected from model state')
             ->assertSee('This tier is currently marked as draft in Laravel and the management context card now mirrors that state.')
+            ->assertSee('Galaxy Prime lifecycle freshness reflected from model state')
+            ->assertSee('This tier was created in Laravel on')
+            ->assertSee('and has not been updated since, so operators are still reviewing the first saved catalog shell.')
+            ->assertSee('Galaxy Prime last saved timestamp reflected from model state')
+            ->assertSee('The latest saved Laravel timestamp for this tier is')
+            ->assertSee('giving operators a concrete checkpoint for the current catalog shell.')
+            ->assertSee('Galaxy Prime review note reflected from model state')
+            ->assertSee('The current Laravel tier review note says: Keep this tier in draft until legacy accrual parity is confirmed.')
+            ->assertSee('Galaxy Prime activation note reflected from model state')
+            ->assertSee('The current Laravel activation note says: Only activate this tier after the legacy branch handoff is verified.')
+            ->assertSee('Galaxy Prime rollout note reflected from model state')
+            ->assertSee('The current Laravel rollout note says: Keep rollout review-only until legacy tier behavior is verified branch by branch.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Selected record:')
             ->assertSee('Edit flow state:')
             ->assertSee('Shared live form is running in request-driven PATCH mode')
+            ->assertSee('Lifecycle freshness:')
+            ->assertSee('newly created in Laravel review')
+            ->assertSee('Last saved in Laravel:')
+            ->assertSee('Review note:')
+            ->assertSee('Keep this tier in draft until legacy accrual parity is confirmed.')
+            ->assertSee('Activation note:')
+            ->assertSee('Only activate this tier after the legacy branch handoff is verified.')
+            ->assertSee('Rollout note:')
+            ->assertSee('Keep rollout review-only until legacy tier behavior is verified branch by branch.')
+            ->assertSee('Coverage signal:')
+            ->assertSee('draft tier with visible card coverage')
+            ->assertSee('Tier status signal:')
+            ->assertSee('Draft tier remains safer for parity review while saved card coverage is already visible.')
             ->assertSee('Current status posture:')
             ->assertSee('Draft tiers are the safe place for parity-first validation and copy changes')
             ->assertSee('Rule-import posture:')
@@ -2279,6 +6640,118 @@ class AdminDashboardTest extends TestCase
             ->assertSee('value="1.75"', false)
             ->assertSee('<option value="0" selected>Draft</option>', false)
             ->assertSee('href="/admin/card-types"', false);
+    }
+
+    public function test_selected_live_card_type_without_card_coverage_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Platinum',
+            'slug' => 'galaxy-platinum',
+            'points_rate' => '2.25',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index', ['cardType' => $cardType->id]));
+
+        $response
+            ->assertOk()
+            ->assertSee('Editing: Galaxy Platinum')
+            ->assertSee('Import rules')
+            ->assertSee('Blocked until this live tier has visible card coverage for accrual parity review.')
+            ->assertSee('Publish type')
+            ->assertSee('Blocked until this live tier has visible card coverage and rollout parity review.');
+    }
+
+    public function test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Amber',
+            'slug' => 'galaxy-amber-live-no-cards',
+            'points_rate' => '1.40',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/card-types?cardType='.$cardType->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Editing: Galaxy Amber')
+            ->assertSee('Tier status signal:')
+            ->assertSee('Active tier is already visible, but card coverage still needs parity review before rollout discussion.')
+            ->assertSee('Import rules')
+            ->assertSee('Blocked until this live tier has visible card coverage for accrual parity review.')
+            ->assertSee('Publish type')
+            ->assertSee('Blocked until this live tier has visible card coverage and rollout parity review.');
+    }
+
+    public function test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Seed Tier',
+            'slug' => 'galaxy-seed-tier-no-cards',
+            'points_rate' => '1.05',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/card-types?cardType='.$cardType->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Editing: Galaxy Seed Tier')
+            ->assertSee('Import rules')
+            ->assertSee('Blocked until draft parity review has visible card coverage to compare against.')
+            ->assertSee('Publish type')
+            ->assertSee('Blocked until this draft tier clears rule and rollout parity review before any publish-like move.');
+    }
+
+    public function test_card_types_page_ignores_unknown_selected_card_type_query(): void
+    {
+        CardType::create([
+            'name' => 'Galaxy Silver',
+            'slug' => 'galaxy-silver-unknown-selected',
+            'points_rate' => '1.25',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/card-types?cardType=999999');
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Silver')
+            ->assertSee('Edit latest saved type')
+            ->assertDontSee('Edit card type in Laravel')
+            ->assertDontSee('Selected tier')
+            ->assertDontSee('selected for Laravel edit flow');
+    }
+
+    public function test_card_types_page_ignores_malformed_selected_card_type_query(): void
+    {
+        CardType::create([
+            'name' => 'Galaxy Silver',
+            'slug' => 'galaxy-silver-malformed-selected',
+            'points_rate' => '1.25',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/card-types?cardType=not-a-number');
+
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy Silver')
+            ->assertSee('Edit latest saved type')
+            ->assertDontSee('Edit card type in Laravel')
+            ->assertDontSee('Selected tier')
+            ->assertDontSee('selected for Laravel edit flow');
     }
 
     public function test_authenticated_user_can_toggle_card_type_status_from_header_action(): void
@@ -2310,6 +6783,9 @@ class AdminDashboardTest extends TestCase
             'slug' => 'gold',
             'points_rate' => '1.50',
             'is_active' => true,
+            'review_note' => 'Keep Gold aligned with the legacy auto-activation workflow.',
+            'activation_note' => 'Confirm the old branch activation handoff before rollout.',
+            'rollout_note' => 'Keep rollout review-only during Gold parity checks.',
         ]);
 
         $partner = CardType::create([
@@ -2329,9 +6805,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('href="/admin/card-types?cardType='.$partner->id.'#live-form"', false)
             ->assertSee('<form method="POST" action="/admin/card-types/'.$gold->id.'/toggle-status"', false)
             ->assertSee('<form method="POST" action="/admin/card-types/'.$partner->id.'/toggle-status"', false)
+            ->assertSee('Keep rollout review-only during Gold parity checks.')
+            ->assertSee('No rollout note saved yet')
             ->assertSee('Active in Laravel flow')
             ->assertSee('Draft in Laravel flow')
-            ->assertSee('Auto after issue')
             ->assertDontSee('>active<', false)
             ->assertDontSee('>draft<', false);
     }
@@ -2378,6 +6855,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected record summary')
             ->assertSee('Latest flow result:')
             ->assertSee('Card type "Galaxy Prime" is now draft.')
+            ->assertSee('Recent activity preview')
+            ->assertSee('Latest backend write result')
+            ->assertSee('Card type "Galaxy Prime" is now draft.')
             ->assertSee('Import rules')
             ->assertSee('Blocked until draft parity review is complete.')
             ->assertSee('Status guidance:')
@@ -2395,7 +6875,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Publish posture:')
             ->assertSee('Draft tiers should stay unpublished until legacy behavior is mapped more explicitly')
             ->assertSee('Action gating:')
-            ->assertSee('Allow draft-safe edits and validation only, keep live-facing actions gated');
+            ->assertSee('Allow draft-safe edits and validation only, keep live-facing actions gated')
+            ->assertSee('Latest flow result:')
+            ->assertSee('Card type "Galaxy Prime" is now draft.');
     }
 
     public function test_card_types_page_replaces_preview_metrics_with_model_backed_counts(): void
@@ -2405,6 +6887,9 @@ class AdminDashboardTest extends TestCase
             'slug' => 'gold',
             'points_rate' => '1.50',
             'is_active' => true,
+            'review_note' => 'Keep Gold aligned with the legacy auto-activation workflow.',
+            'activation_note' => 'Confirm the old branch activation handoff before rollout.',
+            'rollout_note' => 'Keep rollout review-only during Gold parity checks.',
         ]);
 
         CardType::create([
@@ -2429,9 +6914,13 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Active tiers')
             ->assertSee('Draft tiers')
+            ->assertSee('Reviewed tiers')
+            ->assertSee('Activation notes')
+            ->assertSee('Rollout notes')
             ->assertSee('Saved types')
             ->assertDontSee('Imported rules')
             ->assertSee('>2<', false)
+            ->assertSee('>1<', false)
             ->assertSee('>1<', false)
             ->assertSee('>3<', false);
     }
@@ -2445,27 +6934,38 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime',
             'points_rate' => '1.75',
             'is_active' => '1',
+            'rollout_note' => 'Keep rollout review-only until legacy tier behavior is verified branch by branch.',
         ]);
 
+        $cardType = CardType::query()->where('slug', 'galaxy-prime')->firstOrFail();
+
         $response
-            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime" was created.');
 
         $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
             'name' => 'Galaxy Prime',
             'slug' => 'galaxy-prime',
             'points_rate' => '1.75',
             'is_active' => true,
+            'rollout_note' => 'Keep rollout review-only until legacy tier behavior is verified branch by branch.',
         ]);
     }
 
     public function test_card_types_page_shows_live_flow_success_flash_message(): void
     {
         $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-created-flash',
+            'points_rate' => '1.75',
+            'is_active' => true,
+        ]);
 
         $response = $this->actingAs($user)
             ->withSession(['status' => 'Card type "Galaxy Prime" was created.'])
-            ->get(route('admin.card-types.index'));
+            ->get(route('admin.card-types.index', ['cardType' => $cardType]));
 
         $response
             ->assertOk()
@@ -2475,7 +6975,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('aria-live="polite"', false)
             ->assertSee('Backend flow checkpoint')
             ->assertSee('Card type "Galaxy Prime" was created.')
-            ->assertSee('id="live-form"', false);
+            ->assertSee('Selected tier:')
+            ->assertSee('Galaxy Prime')
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }
 
     public function test_card_types_page_resolves_live_form_action_from_route_name(): void
@@ -3058,10 +7561,14 @@ class AdminDashboardTest extends TestCase
             'slug' => 'Galaxy Prime Plus',
             'points_rate' => '2.50',
             'is_active' => 'true',
+            'review_note' => 'Keep this tier aligned with the legacy accrual workflow before widening imports.',
+            'activation_note' => 'Confirm branch activation handoff before operators rely on this live tier.',
         ]);
 
+        $cardType = CardType::query()->where('slug', 'galaxy-prime-plus')->firstOrFail();
+
         $response
-            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime Plus" was created.');
 
         $this->assertDatabaseHas('card_types', [
@@ -3069,6 +7576,8 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime-plus',
             'points_rate' => '2.50',
             'is_active' => true,
+            'review_note' => 'Keep this tier aligned with the legacy accrual workflow before widening imports.',
+            'activation_note' => 'Confirm branch activation handoff before operators rely on this live tier.',
         ]);
     }
 
@@ -3095,6 +7604,54 @@ class AdminDashboardTest extends TestCase
             ->assertSessionHasErrors([
                 'slug' => 'This card type slug is already in use.',
                 'is_active' => 'The status field must be Active or Draft.',
+            ]);
+
+        $longReviewNote = str_repeat('c', 1001);
+
+        $reviewNoteResponse = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => 'Galaxy Prime Review Copy',
+            'slug' => 'galaxy-prime-review-copy',
+            'points_rate' => '1.50',
+            'is_active' => '1',
+            'review_note' => $longReviewNote,
+        ]);
+
+        $reviewNoteResponse
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors([
+                'review_note' => 'Keep the review note under 1000 characters so the tier workspace stays operator-friendly.',
+            ]);
+
+        $longActivationNote = str_repeat('a', 1001);
+
+        $activationNoteResponse = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => 'Galaxy Prime Activation Copy',
+            'slug' => 'galaxy-prime-activation-copy',
+            'points_rate' => '1.50',
+            'is_active' => '1',
+            'activation_note' => $longActivationNote,
+        ]);
+
+        $activationNoteResponse
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors([
+                'activation_note' => 'Keep the activation note under 1000 characters so the tier workspace stays operator-friendly.',
+            ]);
+
+        $longRolloutNote = str_repeat('r', 1001);
+
+        $rolloutNoteResponse = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => 'Galaxy Prime Rollout Copy',
+            'slug' => 'galaxy-prime-rollout-copy',
+            'points_rate' => '1.50',
+            'is_active' => '1',
+            'rollout_note' => $longRolloutNote,
+        ]);
+
+        $rolloutNoteResponse
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors([
+                'rollout_note' => 'Keep the rollout note under 1000 characters so the tier workspace stays operator-friendly.',
             ]);
     }
 
@@ -3129,10 +7686,13 @@ class AdminDashboardTest extends TestCase
             'slug' => 'Galaxy Prime Plus',
             'points_rate' => '2.25',
             'is_active' => 'false',
+            'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
+            'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
+            'rollout_note' => 'Keep rollout review-only while this tier stays in draft review.',
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime Plus" was updated.');
 
         $this->assertDatabaseHas('card_types', [
@@ -3141,6 +7701,9 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime-plus',
             'points_rate' => '2.25',
             'is_active' => false,
+            'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
+            'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
+            'rollout_note' => 'Keep rollout review-only while this tier stays in draft review.',
         ]);
     }
 
@@ -3168,7 +7731,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $okResponse
-            ->assertRedirect(route('admin.card-types.index').'#backend-flow-status')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
             ->assertSessionHas('status', 'Card type "Galaxy Prime Updated" was updated.');
 
         $errorResponse = $this->from(route('admin.card-types.index'))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
@@ -3178,20 +7741,26 @@ class AdminDashboardTest extends TestCase
             'is_active' => '1',
         ]);
 
-        $errorResponse
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
-            ->assertSessionHasErrors([
-                'slug' => 'This card type slug is already in use.',
-            ]);
+        $this->assertSame(302, $errorResponse->getStatusCode());
+        $this->assertSame(route('admin.card-types.index', ['cardType' => $cardType]).'#live-form', $errorResponse->headers->get('Location'));
     }
 
     public function test_card_types_page_shows_update_success_flash_message(): void
     {
         $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime Plus',
+            'slug' => 'galaxy-prime-plus-flash',
+            'points_rate' => '2.25',
+            'is_active' => false,
+            'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
+            'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
+            'rollout_note' => 'Keep rollout review-only while this tier stays in draft review.',
+        ]);
 
         $response = $this->actingAs($user)
             ->withSession(['status' => 'Card type "Galaxy Prime Plus" was updated.'])
-            ->get(route('admin.card-types.index'));
+            ->get(route('admin.card-types.index', ['cardType' => $cardType]));
 
         $response
             ->assertOk()
@@ -3200,7 +7769,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('role="status"', false)
             ->assertSee('aria-live="polite"', false)
             ->assertSee('Backend flow checkpoint')
-            ->assertSee('Card type "Galaxy Prime Plus" was updated.');
+            ->assertSee('Card type "Galaxy Prime Plus" was updated.')
+            ->assertSee('Selected tier:')
+            ->assertSee('Galaxy Prime Plus')
+            ->assertSee('Review note:')
+            ->assertSee('Document the first Laravel tier adjustments before widening rule imports.')
+            ->assertSee('Activation note:')
+            ->assertSee('Keep activation handoff visible while this tier stays in draft review.')
+            ->assertSee('Rollout note:')
+            ->assertSee('Keep rollout review-only while this tier stays in draft review.')
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }
 
     public function test_card_type_update_returns_validation_errors_for_invalid_payload(): void
@@ -3213,7 +7792,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
         ]);
 
-        $response = $this->from(route('admin.card-types.index'))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType]))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
             'name' => '',
             'slug' => 'invalid slug',
             'points_rate' => '-1',
@@ -3221,7 +7800,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#live-form')
             ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
 
         $this->assertDatabaseHas('card_types', [
@@ -3257,14 +7836,14 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#live-form')
             ->assertSessionHasErrors([
                 'slug' => 'This card type slug is already in use.',
                 'is_active' => 'The status field must be Active or Draft.',
             ]);
     }
 
-    public function test_card_type_update_validation_redirects_to_index_without_referrer(): void
+    public function test_card_type_update_validation_redirects_to_selected_index_without_referrer(): void
     {
         $user = User::factory()->create();
         $cardType = CardType::create([
@@ -3282,8 +7861,141 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#live-form')
             ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
+    }
+
+    public function test_card_type_update_validation_keeps_selected_edit_context_after_redirect(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-context',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType], absolute: false))
+            ->actingAs($user)
+            ->followingRedirects()
+            ->patch(route('admin.card-types.update', $cardType), [
+                'name' => '',
+                'slug' => 'invalid slug',
+                'points_rate' => '-1',
+                'is_active' => 'not-a-boolean',
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Save card type changes')
+            ->assertSee('Selected tier:')
+            ->assertSee('Galaxy Prime')
+            ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false)
+            ->assertSee('The card type name field is required.')
+            ->assertSee('The points rate field must be at least 0.')
+            ->assertSee('The status field must be Active or Draft.');
+    }
+
+    public function test_card_type_update_validation_keeps_operator_input_in_selected_edit_mode(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-old-values',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        CardType::create([
+            'name' => 'Galaxy Silver',
+            'slug' => 'galaxy-silver-duplicate-target',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType], absolute: false))
+            ->actingAs($user)
+            ->followingRedirects()
+            ->patch(route('admin.card-types.update', $cardType), [
+                'name' => 'Galaxy Prime Attempt',
+                'slug' => 'galaxy-silver-duplicate-target',
+                'points_rate' => '2.75',
+                'is_active' => '0',
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('value="Galaxy Prime Attempt"', false)
+            ->assertSee('value="galaxy-silver-duplicate-target"', false)
+            ->assertSee('value="2.75"', false)
+            ->assertSee('<option value="0" selected>Draft</option>', false)
+            ->assertDontSee('value="Galaxy Prime"', false)
+            ->assertDontSee('value="1.50"', false)
+            ->assertSee('This card type slug is already in use.');
+    }
+
+    public function test_card_type_update_validation_preserves_error_summary_links_in_selected_edit_mode(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-error-links',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType], absolute: false))
+            ->actingAs($user)
+            ->followingRedirects()
+            ->patch(route('admin.card-types.update', $cardType), [
+                'name' => '',
+                'slug' => 'invalid slug',
+                'points_rate' => '-1',
+                'is_active' => 'not-a-boolean',
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Selected tier:')
+            ->assertSee('Galaxy Prime')
+            ->assertSee('id="live-form-validation-title"', false)
+            ->assertSee('aria-labelledby="live-form-validation-title"', false)
+            ->assertSee('href="#live-form-name"', false)
+            ->assertSee('href="#live-form-points_rate"', false)
+            ->assertSee('href="#live-form-is_active"', false)
+            ->assertSee('aria-errormessage="live-form-name-error"', false)
+            ->assertSee('aria-errormessage="live-form-points_rate-error"', false)
+            ->assertSee('aria-errormessage="live-form-is_active-error"', false);
+    }
+
+    public function test_card_type_update_validation_keeps_safe_cancel_action_in_selected_edit_mode(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-cancel-action',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType], absolute: false))
+            ->actingAs($user)
+            ->followingRedirects()
+            ->patch(route('admin.card-types.update', $cardType), [
+                'name' => '',
+                'slug' => 'invalid slug',
+                'points_rate' => '-1',
+                'is_active' => 'not-a-boolean',
+            ]);
+
+        $response
+            ->assertOk()
+            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Create new type')
+            ->assertSee('href="/admin/card-types"', false)
+            ->assertDontSee('href="/admin/card-types?cardType='.$cardType->id.'"', false);
     }
 
     private function registerAdminPreviewRoute(string $uri, callable $action, string $name): void
