@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Roles review-freshness checkpoint
+- Added a compact read-only `Review freshness` cue to selected `roles-permissions` review so operators can immediately tell whether the current Laravel access shell already carries saved review context.
+- Surfaced the cue in both selected-role summary and dependency-status panels, distinguishing first-saved review notes from missing review context while keeping matrix, scope, and publish flows gated.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Next step after roles review-freshness checkpoint
+- Reuse this small persisted-review cue pattern on another already-live Laravel form, or add one more compact Galaxy-specific read-only signal on a selected review surface.
+
 ### Reports handoff-signal checkpoint
 - Added a compact read-only `Handoff signal` to selected `reports` review so the reporting shell keeps operator handoff expectations visible inside the live workspace instead of implying export-first behavior.
 - Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the Phase 1 direction firmly read-only and parity-first.

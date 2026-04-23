@@ -1175,6 +1175,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Last saved in Laravel')
             ->assertSee('Review note')
             ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
+            ->assertSee('Review freshness')
+            ->assertSee('First review note is already saved on the initial Laravel access shell.')
             ->assertSee('Scope')
             ->assertSee('Scope coverage')
             ->assertSee('1 shop visible in Laravel review')
@@ -1241,6 +1243,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Last saved in Laravel:')
             ->assertSee('Review note:')
             ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
+            ->assertSee('Review freshness:')
+            ->assertSee('First review note is already saved on the initial Laravel access shell.')
             ->assertSee('Access note:')
             ->assertSee('Confirm branch access handoff before operators rely on this live role shell.')
             ->assertSee('Assignment note:')
@@ -1356,8 +1360,12 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until this draft role has a verified permission bundle and shop scope parity.')
             ->assertSee('Role status signal')
             ->assertSee('Draft role remains safer for parity review before live access rollout discussion.')
+            ->assertSee('Review freshness')
+            ->assertSee('Draft role still needs a saved review note before parity handoff can feel grounded.')
             ->assertSee('Role status signal:')
-            ->assertSee('Draft role remains safer for parity review before live access rollout discussion.');
+            ->assertSee('Draft role remains safer for parity review before live access rollout discussion.')
+            ->assertSee('Review freshness:')
+            ->assertSee('Draft role still needs a saved review note before parity handoff can feel grounded.');
     }
 
     public function test_selected_active_role_without_permission_bundle_shows_readiness_driven_action_gating_reasons(): void

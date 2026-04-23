@@ -2397,6 +2397,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleFreshnessLabel($selectedRole)],
             ['label' => 'Last saved in Laravel', 'value' => $this->rolesPermissionsLastSavedLabel($selectedRole)],
             ['label' => 'Review note', 'value' => $selectedRole->review_note ?: 'No review note saved yet'],
+            ['label' => 'Review freshness', 'value' => $this->rolesPermissionsReviewFreshness($selectedRole)],
             ['label' => 'Access note', 'value' => $selectedRole->access_note ?: 'No access note saved yet'],
             ['label' => 'Assignment note', 'value' => $selectedRole->assignment_note ?: 'No assignment note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
@@ -2496,6 +2497,16 @@ class ResourceIndexController extends Controller
         return $selectedRole->updated_at !== null
             ? sprintf('The latest saved Laravel timestamp for this role is %s, giving operators a concrete checkpoint for the current access shell.', $selectedRole->updated_at->format('Y-m-d H:i'))
             : 'This role does not expose a latest saved Laravel timestamp yet, so the current access shell should stay in review-only posture.';
+    }
+
+    private function rolesPermissionsReviewFreshness(Role $selectedRole): string
+    {
+        return match (true) {
+            filled($selectedRole->review_note) && $selectedRole->updated_at !== null && $selectedRole->created_at !== null && $selectedRole->updated_at->equalTo($selectedRole->created_at) => 'First review note is already saved on the initial Laravel access shell.',
+            filled($selectedRole->review_note) => 'Review note is already saved on the current Laravel access shell.',
+            $selectedRole->is_active => 'Live role still needs a saved review note before access handoff can feel grounded.',
+            default => 'Draft role still needs a saved review note before parity handoff can feel grounded.',
+        };
     }
 
     private function rolesPermissionsReviewNoteLabel(Role $selectedRole): string
@@ -2757,6 +2768,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleDependencyLabel($selectedRole)],
             ['label' => 'Last saved in Laravel', 'value' => $this->rolesPermissionsLastSavedLabel($selectedRole)],
             ['label' => 'Review note', 'value' => $this->rolesPermissionsReviewNoteLabel($selectedRole)],
+            ['label' => 'Review freshness', 'value' => $this->rolesPermissionsReviewFreshness($selectedRole)],
             ['label' => 'Access note', 'value' => $this->rolesPermissionsAccessNoteLabel($selectedRole)],
             ['label' => 'Assignment note', 'value' => $this->rolesPermissionsAssignmentNoteLabel($selectedRole)],
             ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
