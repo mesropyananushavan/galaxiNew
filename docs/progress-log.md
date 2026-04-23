@@ -1,5 +1,15 @@
 # Progress Log
 
+## 2026-04-23
+
+### Reports comparison-signal cue checkpoint
+- Added compact read-only aggregate comparison cues to the live-backed selected `reports` sources so operators can tell when the current review surface already exposes enough mixed Galaxy state for a useful parity walkthrough instead of reading each lower-level cue in isolation.
+- Surfaced a new `Comparison signal` on `cards-by-shop` and `cardholder-status`, plus an `Access mix signal` on `role-access`, in both selected-source summaries and dependency-status panels while keeping presets, shaping, and exports blocked.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_mixed_branch_activity_review_context|test_reports_page_supports_selected_role_access_pending_readiness_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `6 passed`.
+
+### Next step after reports comparison-signal cue checkpoint
+- Reuse this compact aggregate-cue pattern on another live-backed review surface, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ## 2026-04-22
 
 ### Reports cardholder-review-readiness cue checkpoint
