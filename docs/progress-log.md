@@ -7,8 +7,13 @@
 - Kept the step low-risk and Laravel-backed by enriching only the existing selected tier summary without changing any live form write path or rule-import gating.
 - Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
 
+### Card-types tier-posture checkpoint
+- Added a compact read-only `Tier posture` cue to selected `card-types` summaries so the safe operating stance now appears directly beside the new focus line in the selected tier block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected tier summary without changing any live form write path or rule-import gating.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
 ### Next step after card-types tier-focus checkpoint
-- Reuse this compact focus cue on another Laravel-backed selected preview that still reads too much like a static signal list, or add the matching posture/evidence cue if this tier summary still feels uneven.
+- Reuse this compact focus/posture cue pair on another Laravel-backed selected preview that still reads too much like a static signal list, or add the matching evidence cue if this tier summary still feels uneven.
 
 ### Roles-permissions access-focus checkpoint
 - Added a compact read-only `Access focus` cue to selected `roles-permissions` summaries so access review context now names the first parity angle directly in the summary block.

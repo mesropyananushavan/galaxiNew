@@ -6920,6 +6920,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft tier remains safer for parity review while saved card coverage is already visible.')
             ->assertSee('Tier focus:')
             ->assertSee('Start with saved card coverage, draft-versus-live status, and rollout note clarity before discussing any later rule import step.')
+            ->assertSee('Tier posture:')
+            ->assertSee('Keep tier review in the live workspace first, then leave rule import and publish-style moves gated until parity is proven.')
             ->assertSee('Handoff signal:')
             ->assertSee('Draft tier already carries visible card coverage for a useful parity handoff review.')
             ->assertSee('Status guidance:')

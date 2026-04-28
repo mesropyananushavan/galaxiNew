@@ -1786,6 +1786,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
             ['label' => 'Tier focus', 'value' => 'Start with saved card coverage, draft-versus-live status, and rollout note clarity before discussing any later rule import step.'],
+            ['label' => 'Tier posture', 'value' => 'Keep tier review in the live workspace first, then leave rule import and publish-style moves gated until parity is proven.'],
             ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
             [
                 'label' => 'Status guidance',
