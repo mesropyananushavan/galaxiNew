@@ -24,6 +24,7 @@ class DashboardController extends Controller
             'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),
             'liveDomainCoverage' => $this->liveDomainCoverage(),
             'foundationFocus' => $this->foundationFocus(),
+            'foundationPosture' => $this->foundationPosture(),
             'foundationReadinessSignal' => $this->foundationReadinessSignal(),
             'activeFoundationCoverage' => $this->activeFoundationCoverage(),
             'branchPauseCoverage' => $this->branchPauseCoverage(),
@@ -193,6 +194,24 @@ class DashboardController extends Controller
         }
 
         return 'all first-pass foundation surfaces are visible';
+    }
+
+    protected function foundationPosture(): string
+    {
+        $visibleFoundationCount = collect([
+            Shop::query()->count(),
+            CardHolder::query()->count(),
+            Card::query()->count(),
+            CardType::query()->count(),
+            Role::query()->count(),
+            Permission::query()->count(),
+        ])->filter(fn (int $count): bool => $count > 0)->count();
+
+        return match (true) {
+            $visibleFoundationCount === 0 => 'setup-first foundation baseline',
+            $visibleFoundationCount < 6 => 'partial foundation baseline',
+            default => 'fully visible foundation baseline',
+        };
     }
 
     protected function liveDomainCoverage(): string

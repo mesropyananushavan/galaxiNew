@@ -79,6 +79,10 @@
             <strong>Foundation focus:</strong>
             {{ $foundationFocus }}.
         </p>
+        <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+            <strong>Foundation posture:</strong>
+            {{ $foundationPosture }}.
+        </p>
         <div class="placeholder-grid">
             <article class="metric">
                 <p class="metric-label">Route namespace</p>
