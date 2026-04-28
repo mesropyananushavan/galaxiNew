@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard migration-map description checkpoint
+- Expanded the dashboard `Galaxy migration map` to show each admin surface with its config-backed Galaxy description, so the Phase 1 target map now reads like an operational migration plan instead of a bare label list.
+- Kept the step low-risk and read-only by reusing `config/admin-navigation.php` descriptions already maintained for the shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map description checkpoint
+- Reuse this tiny config-backed detail pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard migration-map handoff signal checkpoint
 - Added a compact read-only `Migration-map handoff signal` to the dashboard target-map section so Phase 1 planning now states whether the current Laravel shell is still map-first, partially live, or broad enough for grounded parity handoff discussion.
 - Kept the step low-risk and read-only, reusing existing navigation and live-domain counts instead of adding any new workflow behavior.

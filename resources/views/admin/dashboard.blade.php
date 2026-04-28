@@ -174,7 +174,7 @@
             @foreach ($navigationGroups as $group)
                 <li>
                     <strong>{{ $group['group'] }}:</strong>
-                    {{ collect($group['items'])->pluck('label')->join(', ') }}.
+                    {{ collect($group['items'])->map(fn ($item) => sprintf('%s (%s)', $item['label'], $item['description']))->join(', ') }}.
                 </li>
             @endforeach
         </ul>
