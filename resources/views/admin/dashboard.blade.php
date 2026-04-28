@@ -178,7 +178,9 @@
             @foreach ($navigationGroups as $group)
                 <li>
                     <strong>{{ $group['group'] }} ({{ count($group['items']) }} surfaces):</strong>
-                    {{ collect($group['items'])->map(fn ($item) => sprintf('%s (%s)', $item['label'], $item['description']))->join(', ') }}.
+                    @foreach ($group['items'] as $item)
+                        <a href="{{ route($item['route']) }}">{{ $item['label'] }}</a> ({{ $item['description'] }})@if (! $loop->last), @else.@endif
+                    @endforeach
                 </li>
             @endforeach
         </ul>

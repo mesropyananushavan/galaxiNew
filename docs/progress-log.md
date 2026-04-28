@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard migration-map link checkpoint
+- Turned the dashboard `Galaxy migration map` into a linkable target map so operators can jump directly from the Phase 1 planning surface into the mapped Laravel admin pages.
+- Kept the step low-risk and config-backed by reusing the existing route names from `config/admin-navigation.php` instead of introducing any new navigation logic.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map link checkpoint
+- Reuse this tiny config-backed navigation-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard migration-map total-count checkpoint
 - Added a compact read-only `Mapped surfaces` line to the dashboard migration map so the Phase 1 target section now states the total number of planned admin surfaces already staged in the Laravel shell.
 - Kept the step low-risk and config-backed by reusing the existing `plannedSectionCount` instead of introducing any new workflow logic.
