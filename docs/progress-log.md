@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Checks-points evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `checks-points` receipt previews so each receipt review now names which evidence bundle should stay visible first during parity review.
+- Kept the step low-risk and read-only by enriching the existing positive-accrual, zero-accrual, and branch-aware receipt summaries without opening any new transaction workflow.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points evidence-priority checkpoint
+- Reuse this evidence-priority cue on another selected resource preview that still lacks a clear first review bundle, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Checks-points receipt-posture checkpoint
 - Added a compact read-only `Receipt posture` cue to selected `checks-points` receipt previews so the summary block now surfaces the same caution about read-only receipt review before operators reach the dependency section.
 - Kept the step low-risk and read-only by enriching the existing positive-accrual, zero-accrual, and branch-aware receipt summaries with already-established posture wording.
