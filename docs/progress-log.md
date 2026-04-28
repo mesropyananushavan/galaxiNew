@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Checks-points receipt-handoff checkpoint
+- Added a compact read-only `Receipt handoff signal` to selected `checks-points` receipt previews so receipt review context now surfaces the handoff cue directly in the summary block instead of relying only on the later timeline and dependency notes.
+- Kept the step low-risk and read-only by enriching the existing positive-accrual, zero-accrual, and branch-aware preview summaries.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points receipt-handoff checkpoint
+- Reuse this summary-level handoff cue on another selected resource preview that still hides its next review context too low in the page, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Checks-points receipt-focus checkpoint
 - Added a compact read-only `Receipt focus` cue to the selected `checks-points` receipt previews so each receipt review now names the first parity angle to inspect instead of relying on status and posture lines alone.
 - Kept the step low-risk and read-only by enriching the existing preview summaries for positive-accrual, zero-accrual, and branch-specific receipt review contexts.
