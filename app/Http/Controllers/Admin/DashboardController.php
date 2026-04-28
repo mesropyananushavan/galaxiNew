@@ -47,6 +47,7 @@ class DashboardController extends Controller
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
             'migrationMapHandoffSummary' => $this->migrationMapHandoffSummary($navigation),
             'migrationMapFocus' => $this->migrationMapFocus($navigation),
+            'migrationMapPosture' => $this->migrationMapPosture(),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'liveEntryPointCoverage' => $this->liveEntryPointCoverage(),
             'liveEntryPointFocus' => $this->liveEntryPointFocus(),
@@ -154,6 +155,23 @@ class DashboardController extends Controller
         }
 
         return sprintf('start with %s', mb_strtolower((string) $firstItem['label']));
+    }
+
+    protected function migrationMapPosture(): string
+    {
+        $liveDomainCount = collect([
+            Shop::query()->count(),
+            CardHolder::query()->count(),
+            Card::query()->count(),
+            Role::query()->count(),
+            Permission::query()->count(),
+        ])->filter(fn (int $count): bool => $count > 0)->count();
+
+        return match (true) {
+            $liveDomainCount === 0 => 'map-first parity planning',
+            $liveDomainCount < 5 => 'parity staging in progress',
+            default => 'grounded parity planning',
+        };
     }
 
     protected function liveDomainCoverage(): string

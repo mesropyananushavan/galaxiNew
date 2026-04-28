@@ -254,6 +254,10 @@
             <strong>Migration-map focus:</strong>
             {{ $migrationMapFocus }}.
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Migration-map posture:</strong>
+            {{ $migrationMapPosture }}.
+        </p>
         @if (is_array($migrationMapHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $migrationMapHandoffSummary['label'] }}:</strong>
