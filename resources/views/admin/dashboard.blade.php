@@ -157,7 +157,7 @@
         @endif
         <ul class="list">
             @foreach ($liveReviewEntryPoints as $entryPoint)
-                <li><a href="{{ $entryPoint['route'] }}">{{ $entryPoint['label'] }}</a></li>
+                <li><a href="{{ $entryPoint['route'] }}">{{ $entryPoint['label'] }}</a> (Route: {{ parse_url($entryPoint['route'], PHP_URL_PATH) ?? $entryPoint['route'] }})</li>
             @endforeach
         </ul>
     </section>

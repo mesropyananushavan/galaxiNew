@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard entry-route visibility checkpoint
+- Added route-path display beside each dashboard `Live review entry points` link so the Phase 1 review section reads more like an operational Galaxy console than a generic starter shortcut list.
+- Kept the step low-risk and read-only by reusing the existing staged entry routes already exposed by the dashboard.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard entry-route visibility checkpoint
+- Reuse this tiny route-visibility pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard latest-work coverage checkpoint
 - Added a compact read-only `Latest-work coverage` line to the resume-latest-live-work section so Phase 1 now states how many jump-back shortcuts are currently available from the Laravel shell.
 - Kept the step low-risk and read-only by deriving the count from the existing latest-work workspace list.
