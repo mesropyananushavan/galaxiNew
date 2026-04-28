@@ -457,6 +457,7 @@ class DashboardController extends Controller
             'label' => 'Assigned branch snapshot',
             'actionCoverage' => $this->assignedBranchActionCoverage($actions),
             'actionPosture' => $this->assignedBranchActionPosture($shop, $latestHolder, $latestCard),
+            'actionFocus' => $this->assignedBranchActionFocus($shop, $latestHolder, $latestCard),
             'items' => [
                 ['label' => 'Branch', 'value' => $shop->name],
                 ['label' => 'Branch code', 'value' => $shop->code],
@@ -503,6 +504,27 @@ class DashboardController extends Controller
         }
 
         return 'review-ready scoped shortcuts';
+    }
+
+    protected function assignedBranchActionFocus(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
+    {
+        if (! $shop->is_active) {
+            return 'recovery review only';
+        }
+
+        if ($this->branchSetupPending($latestHolder, $latestCard)) {
+            return 'branch setup first';
+        }
+
+        if (! $latestHolder instanceof CardHolder) {
+            return 'cardholder backfill next';
+        }
+
+        if (! $latestCard instanceof Card) {
+            return 'card issuance next';
+        }
+
+        return 'latest branch review ready';
     }
 
     protected function latestBranchActivitySummary(?CardHolder $latestHolder, ?Card $latestCard): string

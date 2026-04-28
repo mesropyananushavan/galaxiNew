@@ -39,6 +39,12 @@
                         {{ $assignedBranchSnapshot['actionPosture'] }}.
                     </p>
                 @endif
+                @if (is_string($assignedBranchSnapshot['actionFocus'] ?? null))
+                    <p style="{{ $dashboardNoteStyle }}">
+                        <strong>Scoped action focus:</strong>
+                        {{ $assignedBranchSnapshot['actionFocus'] }}.
+                    </p>
+                @endif
                 <div class="placeholder-grid" style="margin-top: 0;">
                     @foreach ($assignedBranchSnapshot['items'] as $item)
                         <article class="metric">

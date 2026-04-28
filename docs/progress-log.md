@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard branch-action focus checkpoint
+- Added a compact read-only `Scoped action focus` line to the assigned-branch snapshot so the dashboard now names the next branch-review target, like setup first, card issuance next, cardholder backfill next, or latest branch review ready.
+- Kept the step low-risk and read-only by deriving the focus from the existing branch activity and scoped action state.
+- Re-ran `php artisan test --filter='(test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up)'`, `4 passed`.
+
+### Next step after dashboard branch-action focus checkpoint
+- Reuse this tiny scoped-next-step pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard branch-action posture checkpoint
 - Added a compact read-only `Scoped action posture` line to the assigned-branch snapshot so the dashboard now signals whether scoped branch actions are still setup-first or already review-ready.
 - Kept the step low-risk and read-only by deriving the posture from the existing branch activity and scoped action state.
