@@ -1268,6 +1268,7 @@ class ResourceIndexController extends Controller
                         : 'Cards-by-shop source remains safer as planning-only review until live branch inventory appears.'],
                     ['label' => 'Source focus', 'value' => 'Start with branch totals and assignment mix before discussing any later export snapshot.'],
                     ['label' => 'Source posture', 'value' => 'Keep branch inventory review on-screen first, then leave grouped export expectations in preview mode until parity is proven.'],
+                    ['label' => 'Evidence priority', 'value' => 'Keep branch totals, paused-shop counts, and assigned-versus-unassigned inventory visible together before trusting any export view.'],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'card and branch inputs are ready for on-screen review' : 'card or branch inputs still need live Laravel coverage'],
                     ['label' => 'Comparison signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount && $activeCardCount > 0 && $blockedCardCount > 0 && $holderLinkedCardCount > 0 && $unassignedCardCount > 0
@@ -1410,6 +1411,7 @@ class ResourceIndexController extends Controller
                         : 'Cardholder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
                     ['label' => 'Source focus', 'value' => 'Start with active-versus-inactive holder posture before expanding into deeper linkage comparisons.'],
                     ['label' => 'Source posture', 'value' => 'Keep support-style status triage visible first, then leave export-style lifecycle summaries in preview mode until parity is proven.'],
+                    ['label' => 'Evidence priority', 'value' => 'Keep holder status counts, linked-versus-unlinked profiles, and blocked-card posture visible together before trusting any export view.'],
                     ['label' => 'Source signal', 'value' => $cardHolderCount > 0 ? 'live holder status coverage visible' : 'holder status coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardHolderCount > 0 ? 'holder status inputs are ready for on-screen review' : 'holder status inputs still need live Laravel coverage'],
                     ['label' => 'Comparison signal', 'value' => $inactiveCardHolderCount > 0 && $activeCardHolderCount > 0 && $linkedCardHolderCount > 0 && $unlinkedCardHolderCount > 0 && $activeLinkedCardCount > 0 && $blockedLinkedCardCount > 0
@@ -1522,6 +1524,7 @@ class ResourceIndexController extends Controller
                         : 'Role-access source remains safer as planning-only review until live access coverage appears.'],
                     ['label' => 'Source focus', 'value' => 'Start with role coverage and branch scope visibility before comparing any later export expectations.'],
                     ['label' => 'Source posture', 'value' => 'Keep access scope review in the live workspace first, then leave export-style access summaries in preview mode until parity is proven.'],
+                    ['label' => 'Evidence priority', 'value' => 'Keep active roles, permission-linked coverage, and assigned staff scope visible together before trusting any export view.'],
                     ['label' => 'Source signal', 'value' => $roleCount > 0 ? 'live role coverage visible' : 'role coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $roleCount > 0 ? 'role inputs are ready for on-screen review' : 'role inputs still need live Laravel coverage'],
                     ['label' => 'Access mix signal', 'value' => $permissionLinkedRoleCount > 0 && $assignedStaffCount > 0 && $activeRoleCount > 0
