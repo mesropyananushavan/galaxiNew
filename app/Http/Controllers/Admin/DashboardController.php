@@ -49,6 +49,7 @@ class DashboardController extends Controller
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'liveEntryPointCoverage' => $this->liveEntryPointCoverage(),
             'liveEntryPointFocus' => $this->liveEntryPointFocus(),
+            'liveEntryPointPosture' => $this->liveEntryPointPosture(),
             'latestWorkspaceCoverage' => $this->latestWorkspaceCoverage(),
             'latestWorkspaceFocus' => $this->latestWorkspaceFocus(),
             'latestWorkspacePosture' => $this->latestWorkspacePosture(),
@@ -76,6 +77,21 @@ class DashboardController extends Controller
         }
 
         return sprintf('start with %s', mb_strtolower((string) $entryPoint['label']));
+    }
+
+    protected function liveEntryPointPosture(): string
+    {
+        $liveEntryDomainCount = collect([
+            Shop::query()->count(),
+            CardHolder::query()->count(),
+            Card::query()->count(),
+        ])->filter(fn (int $count): bool => $count > 0)->count();
+
+        return match (true) {
+            $liveEntryDomainCount === 0 => 'setup-first staged entry surfaces',
+            $liveEntryDomainCount < 3 => 'partial staged entry coverage',
+            default => 'review-ready staged entry surfaces',
+        };
     }
 
     protected function latestWorkspaceCoverage(): string

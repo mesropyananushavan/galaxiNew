@@ -165,6 +165,10 @@
             <strong>Entry focus:</strong>
             {{ $liveEntryPointFocus }}.
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Entry posture:</strong>
+            {{ $liveEntryPointPosture }}.
+        </p>
         @if (is_array($liveEntryHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $liveEntryHandoffSummary['label'] }}:</strong>
