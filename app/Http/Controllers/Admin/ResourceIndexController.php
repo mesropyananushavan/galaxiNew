@@ -3024,6 +3024,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Holder focus', 'value' => 'Start with active-versus-inactive status, branch linkage, and linked-card visibility before discussing any later reactivation or profile merge flow.'],
+            ['label' => 'Holder posture', 'value' => 'Keep holder review in the live workspace first, then leave reactivation, merge, and profile-write flows gated until parity is proven.'],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCardHolder->shop !== null
