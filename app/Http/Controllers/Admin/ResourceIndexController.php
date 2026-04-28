@@ -1740,6 +1740,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
+            ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
             [
                 'label' => 'Status guidance',
                 'value' => $selectedCardType->is_active
@@ -1855,6 +1856,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
+            ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
             ['label' => 'Current status posture', 'value' => $selectedCardType->is_active ? 'Active tiers should stay stable unless parity checks are complete' : 'Draft tiers are the safe place for parity-first validation and copy changes'],
             ['label' => 'Rule-import posture', 'value' => $selectedCardType->is_active ? 'Keep imports blocked until active-tier accrual parity is verified' : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet'],
             ['label' => 'Publish posture', 'value' => $selectedCardType->is_active ? 'Live tiers need parity confirmation before further publish-style changes' : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly'],
@@ -1978,6 +1980,16 @@ class ResourceIndexController extends Controller
     private function cardTypesLastSavedLabel(CardType $selectedCardType): string
     {
         return $this->lastSavedLabel($selectedCardType);
+    }
+
+    private function cardTypesHandoffSignal(CardType $selectedCardType): string
+    {
+        return match (true) {
+            $selectedCardType->is_active && $selectedCardType->cards()->exists() => 'Live tier already carries visible card coverage for a useful rollout handoff review.',
+            $selectedCardType->is_active => 'Live tier should stay in handoff-only posture until visible card coverage and rollout parity are explicit.',
+            $selectedCardType->cards()->exists() => 'Draft tier already carries visible card coverage for a useful parity handoff review.',
+            default => 'Draft tier should stay in handoff-only posture until visible card coverage grounds rollout review.',
+        };
     }
 
     private function cardTypesActivationFreshness(CardType $selectedCardType): string

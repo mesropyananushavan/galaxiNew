@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Card-types handoff-signal parity checkpoint
+- Added a compact read-only `Handoff signal` to selected `card-types` review so the tier workspace now shows whether the current Laravel tier already carries enough visible card coverage for a useful rollout handoff.
+- Surfaced the cue in both selected-tier summaries and dependency-status panels, with copy that distinguishes live tiers with coverage, live tiers still missing coverage, draft tiers with visible saved-card context, and draft tiers still waiting on first visible coverage.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Next step after card-types handoff-signal parity checkpoint
+- Reuse this compact handoff cue pattern on another selected live workspace that still lacks it, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Roles handoff-signal summary parity checkpoint
 - Added a compact read-only `Handoff signal` to selected `roles-permissions` summaries so the live access workspace now shows the same access-handoff readiness cue already present in dependency-status context.
 - Surfaced the cue with copy that distinguishes draft roles from live roles that already combine scope, staffing, and permission coverage, keeping the step read-only and parity-first.
