@@ -24,6 +24,7 @@ class DashboardController extends Controller
             'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),
             'liveDomainCoverage' => $this->liveDomainCoverage(),
             'foundationReadinessSignal' => $this->foundationReadinessSignal(),
+            'activeFoundationCoverage' => $this->activeFoundationCoverage(),
             'shopCount' => Shop::query()->count(),
             'activeShopCount' => Shop::query()->where('is_active', true)->count(),
             'cardHolderCount' => CardHolder::query()->count(),
@@ -79,6 +80,24 @@ class DashboardController extends Controller
             $liveDomainCount > 0 => 'foundation coverage in progress',
             default => 'starter setup stage',
         };
+    }
+
+    protected function activeFoundationCoverage(): string
+    {
+        $shopCount = Shop::query()->count();
+        $activeShopCount = Shop::query()->where('is_active', true)->count();
+        $cardHolderCount = CardHolder::query()->count();
+        $activeCardHolderCount = CardHolder::query()->where('status', 'active')->count();
+        $cardCount = Card::query()->count();
+        $activeCardCount = Card::query()->where('status', 'active')->count();
+
+        $coverageParts = [
+            sprintf('shops %d/%d active', $activeShopCount, $shopCount),
+            sprintf('cardholders %d/%d active', $activeCardHolderCount, $cardHolderCount),
+            sprintf('cards %d/%d active', $activeCardCount, $cardCount),
+        ];
+
+        return implode(', ', $coverageParts);
     }
 
     protected function latestShopWorkspace(): ?array

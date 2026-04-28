@@ -75,6 +75,10 @@
                 <p class="metric-value">{{ $foundationReadinessSignal }}</p>
             </article>
             <article class="metric">
+                <p class="metric-label">Active foundation coverage</p>
+                <p class="metric-value">{{ $activeFoundationCoverage }}</p>
+            </article>
+            <article class="metric">
                 <p class="metric-label">Live shops</p>
                 <p class="metric-value">{{ $shopCount }}</p>
             </article>

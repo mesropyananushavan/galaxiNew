@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard active-foundation coverage checkpoint
+- Added a compact read-only `Active foundation coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how much of the visible shop, cardholder, and card layer is active, not just present.
+- Kept the step low-risk and operational by deriving the ratios directly from existing live and active counters.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard active-foundation coverage checkpoint
+- Reuse this tiny activity-coverage pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard foundation-readiness signal checkpoint
 - Added a compact read-only `Foundation readiness` metric to the dashboard foundation snapshot so the Phase 1 shell now translates raw live-domain coverage into a simple starter, in-progress, or review-ready posture.
 - Kept the step low-risk and operational by deriving the signal from existing live entity counts instead of opening any new write or routing behavior.
