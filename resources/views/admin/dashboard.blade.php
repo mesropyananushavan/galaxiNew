@@ -193,6 +193,10 @@
             <strong>Latest-work focus:</strong>
             {{ $latestWorkspaceFocus }}.
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Latest-work posture:</strong>
+            {{ $latestWorkspacePosture }}.
+        </p>
         @if (is_array($latestWorkspaceHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $latestWorkspaceHandoffSummary['label'] }}:</strong>

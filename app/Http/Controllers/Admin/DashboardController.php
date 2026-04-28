@@ -50,6 +50,7 @@ class DashboardController extends Controller
             'liveEntryPointCoverage' => $this->liveEntryPointCoverage(),
             'latestWorkspaceCoverage' => $this->latestWorkspaceCoverage(),
             'latestWorkspaceFocus' => $this->latestWorkspaceFocus(),
+            'latestWorkspacePosture' => $this->latestWorkspacePosture(),
             'latestWorkspaces' => array_values(array_filter([
                 $this->latestShopWorkspace(),
                 $this->latestCardHolderWorkspace(),
@@ -93,6 +94,23 @@ class DashboardController extends Controller
         }
 
         return sprintf('start with %s', mb_strtolower((string) $latestWorkspace['label']));
+    }
+
+    protected function latestWorkspacePosture(): string
+    {
+        $latestWorkspaceCount = count(array_values(array_filter([
+            $this->latestShopWorkspace(),
+            $this->latestCardHolderWorkspace(),
+            $this->latestCardWorkspace(),
+            $this->latestCardTypeWorkspace(),
+            $this->latestRoleWorkspace(),
+        ])));
+
+        return match (true) {
+            $latestWorkspaceCount === 0 => 'setup-first jump-back pending',
+            $latestWorkspaceCount < 3 => 'partial jump-back coverage',
+            default => 'review-ready jump-back coverage',
+        };
     }
 
     protected function liveDomainCoverage(): string

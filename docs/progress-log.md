@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard latest-work posture checkpoint
+- Added a compact read-only `Latest-work posture` line to the resume-latest-live-work section so the dashboard now distinguishes setup-first, partial, and review-ready jump-back coverage.
+- Kept the step low-risk and read-only by deriving the posture from the existing latest-work workspace list.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard latest-work posture checkpoint
+- Reuse this tiny jump-back posture pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard latest-work focus checkpoint
 - Added a compact read-only `Latest-work focus` line to the resume-latest-live-work section so the dashboard now names the first jump-back target instead of only counting available shortcuts.
 - Kept the step low-risk and read-only by deriving the focus from the existing latest-work workspace list.
