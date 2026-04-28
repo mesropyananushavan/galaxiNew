@@ -186,7 +186,7 @@
         @if ($latestWorkspaces !== [])
             <ul class="list">
                 @foreach ($latestWorkspaces as $workspace)
-                    <li><a href="{{ $workspace['route'] }}">{{ $workspace['label'] }}</a></li>
+                    <li><a href="{{ $workspace['route'] }}">{{ $workspace['label'] }}</a> (Route: {{ parse_url($workspace['route'], PHP_URL_PATH) ?? $workspace['route'] }})</li>
                 @endforeach
             </ul>
         @else
