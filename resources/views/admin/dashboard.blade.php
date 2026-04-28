@@ -173,7 +173,7 @@
         <ul class="list">
             @foreach ($navigationGroups as $group)
                 <li>
-                    <strong>{{ $group['group'] }}:</strong>
+                    <strong>{{ $group['group'] }} ({{ count($group['items']) }} surfaces):</strong>
                     {{ collect($group['items'])->map(fn ($item) => sprintf('%s (%s)', $item['label'], $item['description']))->join(', ') }}.
                 </li>
             @endforeach
