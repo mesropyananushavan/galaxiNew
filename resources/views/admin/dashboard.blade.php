@@ -192,6 +192,10 @@
             <strong>Mapped groups:</strong>
             {{ count($navigationGroups) }} top-level admin groups are currently staged in the Phase 1 target map.
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Mapped routes:</strong>
+            {{ $plannedSectionCount }} Laravel route targets are currently linked from the Phase 1 target map.
+        </p>
         @if (is_array($migrationMapHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $migrationMapHandoffSummary['label'] }}:</strong>

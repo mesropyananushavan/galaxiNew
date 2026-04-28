@@ -226,6 +226,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('10 planned admin surfaces are currently staged in the Phase 1 target map.')
             ->assertSee('Mapped groups:')
             ->assertSee('3 top-level admin groups are currently staged in the Phase 1 target map.')
+            ->assertSee('Mapped routes:')
+            ->assertSee('10 Laravel route targets are currently linked from the Phase 1 target map.')
             ->assertSee('Migration-map handoff signal')
             ->assertSee('The migration map already spans 3 grouped sections with live coverage in 5 core Galaxy domains, so parity handoff planning can stay grounded in the current Laravel shell.')
             ->assertSee('Operations (4 surfaces):')

@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard migration-map route-total checkpoint
+- Added a compact read-only `Mapped routes` line to the dashboard migration map so the Phase 1 planning section now states how many Laravel route targets are already linked from the staged admin shell.
+- Kept the step low-risk and config-backed by reusing the existing planned-surface count that powers the route map.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map route-total checkpoint
+- Reuse this tiny config-backed planning-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard migration-map group-total checkpoint
 - Added a compact read-only `Mapped groups` line to the dashboard migration map so the Phase 1 planning section now states how many top-level admin groups are already staged in the Laravel shell.
 - Kept the step low-risk and config-backed by deriving the count directly from the existing navigation map.
