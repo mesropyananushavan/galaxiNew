@@ -33,6 +33,8 @@ class DashboardController extends Controller
             'activeCardHolderCount' => CardHolder::query()->where('status', 'active')->count(),
             'cardCount' => Card::query()->count(),
             'activeCardCount' => Card::query()->where('status', 'active')->count(),
+            'cardTypeCount' => CardType::query()->count(),
+            'activeCardTypeCount' => CardType::query()->where('is_active', true)->count(),
             'roleCount' => Role::query()->count(),
             'permissionCount' => Permission::query()->count(),
             'foundationHandoffSummary' => $this->foundationHandoffSummary(),

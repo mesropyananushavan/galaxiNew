@@ -202,6 +202,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active cardholders')
             ->assertSee('Live cards')
             ->assertSee('Active cards')
+            ->assertSee('Live card types')
+            ->assertSee('Active card types')
             ->assertSee('Live roles')
             ->assertSee('Live permissions')
             ->assertSee('Live review entry points')
@@ -470,6 +472,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Live card types')
+            ->assertSee('Active card types')
             ->assertSee('Live domain coverage')
             ->assertSee('0/5 core Galaxy domains live')
             ->assertSee('Foundation readiness')
@@ -519,6 +523,10 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Live card types')
+            ->assertSee('1')
+            ->assertSee('Active card types')
+            ->assertSee('0')
             ->assertSee('Live domain coverage')
             ->assertSee('1/5 core Galaxy domains live')
             ->assertSee('Foundation readiness')

@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard card-type visibility checkpoint
+- Added `Live card types` and `Active card types` metrics to the dashboard foundation snapshot so the Phase 1 shell now keeps the tier layer visible beside shops, cardholders, cards, and access baseline coverage.
+- Kept the step low-risk and read-only by reusing existing `CardType` counts already present in the Laravel foundation.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard card-type visibility checkpoint
+- Reuse this tiny entity-visibility pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard migration-map route-total checkpoint
 - Added a compact read-only `Mapped routes` line to the dashboard migration map so the Phase 1 planning section now states how many Laravel route targets are already linked from the staged admin shell.
 - Kept the step low-risk and config-backed by reusing the existing planned-surface count that powers the route map.

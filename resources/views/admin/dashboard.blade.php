@@ -111,6 +111,14 @@
                 <p class="metric-value">{{ $activeCardCount }}</p>
             </article>
             <article class="metric">
+                <p class="metric-label">Live card types</p>
+                <p class="metric-value">{{ $cardTypeCount }}</p>
+            </article>
+            <article class="metric">
+                <p class="metric-label">Active card types</p>
+                <p class="metric-value">{{ $activeCardTypeCount }}</p>
+            </article>
+            <article class="metric">
                 <p class="metric-label">Live roles</p>
                 <p class="metric-value">{{ $roleCount }}</p>
             </article>
