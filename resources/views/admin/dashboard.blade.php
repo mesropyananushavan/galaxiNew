@@ -27,6 +27,12 @@
                 <p style="margin: 0 0 12px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
                     This branch snapshot keeps the assigned Galaxy location in view, so setup gaps and fresh activity are visible before you jump into review.
                 </p>
+                @if (is_string($assignedBranchSnapshot['actionCoverage'] ?? null))
+                    <p style="{{ $dashboardNoteStyle }}">
+                        <strong>Scoped action coverage:</strong>
+                        {{ $assignedBranchSnapshot['actionCoverage'] }}.
+                    </p>
+                @endif
                 <div class="placeholder-grid" style="margin-top: 0;">
                     @foreach ($assignedBranchSnapshot['items'] as $item)
                         <article class="metric">

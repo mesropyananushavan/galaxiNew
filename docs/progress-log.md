@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard branch-action coverage checkpoint
+- Added a compact read-only `Scoped action coverage` line to the assigned-branch snapshot so Phase 1 now states how many scoped setup or review actions are ready inside the dashboard branch console.
+- Kept the step low-risk and read-only by deriving the count from the existing assigned-branch action list.
+- Re-ran `php artisan test --filter='(test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`.
+
+### Next step after dashboard branch-action coverage checkpoint
+- Reuse this tiny scoped-action coverage pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard scoped latest-work route-alignment checkpoint
 - Extended the route-path dashboard pass to the scoped latest-work and branch-setup assertions so branch-specific jump-back actions now stay aligned with the new operational route display.
 - Kept the step low-risk by tightening only rendered dashboard expectations around already-existing scoped review/setup links.

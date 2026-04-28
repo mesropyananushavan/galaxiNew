@@ -455,6 +455,7 @@ class DashboardController extends Controller
 
         return [
             'label' => 'Assigned branch snapshot',
+            'actionCoverage' => $this->assignedBranchActionCoverage($actions),
             'items' => [
                 ['label' => 'Branch', 'value' => $shop->name],
                 ['label' => 'Branch code', 'value' => $shop->code],
@@ -479,6 +480,11 @@ class DashboardController extends Controller
             ],
             'actions' => $actions,
         ];
+    }
+
+    protected function assignedBranchActionCoverage(array $actions): string
+    {
+        return sprintf('%d scoped branch actions ready', count($actions));
     }
 
     protected function latestBranchActivitySummary(?CardHolder $latestHolder, ?Card $latestCard): string
