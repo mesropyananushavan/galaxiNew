@@ -107,6 +107,12 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             Use these Galaxy review surfaces to move from branch setup into live operational checks once records start landing.
         </p>
+        @if (is_array($liveEntryHandoffSummary ?? null))
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $liveEntryHandoffSummary['label'] }}:</strong>
+                {{ $liveEntryHandoffSummary['value'] }}
+            </p>
+        @endif
         @if (is_array($liveEntryScopeNote ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $liveEntryScopeNote['label'] }}:</strong>

@@ -33,6 +33,7 @@ class DashboardController extends Controller
             'foundationHandoffSummary' => $this->foundationHandoffSummary(),
             'dashboardScopeSummary' => $this->dashboardScopeSummary(),
             'assignedBranchSnapshot' => $this->assignedBranchSnapshot(),
+            'liveEntryHandoffSummary' => $this->liveEntryHandoffSummary(),
             'liveEntryScopeNote' => $this->liveEntryScopeNote(),
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
@@ -615,6 +616,28 @@ class DashboardController extends Controller
         return [
             'label' => 'Entry posture',
             'value' => 'These entry points still open the shared Phase 1 workspaces, but shop-backed review inside shops, cardholders, and cards now narrows to the assigned branch with branch-specific review wording once the workspace loads.',
+        ];
+    }
+
+    protected function liveEntryHandoffSummary(): array
+    {
+        $shop = $this->activeScopedShop();
+        $shopCount = Shop::query()->count();
+        $cardHolderCount = CardHolder::query()->count();
+        $cardCount = Card::query()->count();
+
+        return [
+            'label' => 'Entry handoff signal',
+            'value' => match (true) {
+                $shop instanceof Shop && $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0
+                    => 'Assigned-branch entry points already have enough live shop, holder, and card coverage to support a useful scoped handoff review.',
+                $shop instanceof Shop
+                    => 'Assigned-branch entry points should stay setup-aware until the branch shows live shop, holder, and card coverage together.',
+                $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0
+                    => 'Shared entry points already have enough live branch, holder, and card coverage to support a useful foundation handoff review.',
+                default
+                    => 'Entry points should stay setup-first until live branch, holder, and card coverage is visible across the Laravel foundation.',
+            },
         ];
     }
 
