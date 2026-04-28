@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard entry-coverage checkpoint
+- Added a compact read-only `Entry coverage` line to the dashboard live review entry section so Phase 1 now states how many review entry points are already staged in the Laravel shell.
+- Kept the step low-risk and config-driven by deriving the count from the existing live entry-point list.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard entry-coverage checkpoint
+- Reuse this tiny config-backed coverage pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard tier-baseline coverage checkpoint
 - Added a compact read-only `Tier baseline coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how much of the visible card-type layer is active, not just present.
 - Kept the step low-risk and operational by deriving the ratio directly from existing `CardType` counts.

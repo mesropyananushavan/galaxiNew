@@ -47,6 +47,7 @@ class DashboardController extends Controller
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
             'migrationMapHandoffSummary' => $this->migrationMapHandoffSummary($navigation),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
+            'liveEntryPointCoverage' => $this->liveEntryPointCoverage(),
             'latestWorkspaces' => array_values(array_filter([
                 $this->latestShopWorkspace(),
                 $this->latestCardHolderWorkspace(),
@@ -55,6 +56,11 @@ class DashboardController extends Controller
                 $this->latestRoleWorkspace(),
             ])),
         ]);
+    }
+
+    protected function liveEntryPointCoverage(): string
+    {
+        return sprintf('%d live review entry points staged', count($this->liveReviewEntryPoints()));
     }
 
     protected function liveDomainCoverage(): string
