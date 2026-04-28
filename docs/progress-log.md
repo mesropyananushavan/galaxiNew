@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Services-rules rule-focus checkpoint
+- Added a compact read-only `Rule focus` cue to selected `services-rules` previews so each rule review now names the first parity angle to inspect instead of relying only on status and posture lines.
+- Kept the step low-risk and read-only by enriching the existing all-shop, scoped, and draft rule previews without opening any new publish or editing flow.
+- Re-ran `php artisan test --filter='(test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context)'`, `3 passed`.
+
+### Next step after services-rules rule-focus checkpoint
+- Reuse this compact focus cue on another selected resource preview that still reads too much like a static placeholder, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Checks-points evidence-priority checkpoint
 - Added a compact read-only `Evidence priority` cue to selected `checks-points` receipt previews so each receipt review now names which evidence bundle should stay visible first during parity review.
 - Kept the step low-risk and read-only by enriching the existing positive-accrual, zero-accrual, and branch-aware receipt summaries without opening any new transaction workflow.
