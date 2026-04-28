@@ -2025,6 +2025,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card type')
             ->assertSee('Linkage signal')
             ->assertSee('holder and branch linkage visible')
+            ->assertSee('Inventory handoff signal')
+            ->assertSee('Blocked holder-linked inventory already carries enough dispute context for a useful handoff review.')
             ->assertSee('Shop')
             ->assertSee('Shop guidance')
             ->assertSee('Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.')
@@ -2049,6 +2051,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Last saved in Laravel:')
             ->assertSee('Linkage signal:')
             ->assertSee('holder and branch linkage visible')
+            ->assertSee('Inventory handoff signal:')
+            ->assertSee('Blocked holder-linked inventory already carries enough dispute context for a useful handoff review.')
             ->assertSee('Lifecycle posture:')
             ->assertSee('This blocked card should stay under review-only handling until dispute and replacement semantics match the old Galaxy flow.')
             ->assertSee('Assignment posture:')
@@ -2109,6 +2113,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('issued inventory, parity-sensitive')
             ->assertSee('Linkage signal')
             ->assertSee('holder and branch linkage visible')
+            ->assertSee('Inventory handoff signal')
+            ->assertSee('Active issued inventory already carries enough linkage context for a useful handoff review.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.');
     }
@@ -2163,6 +2169,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('blocked inventory, operator review only')
             ->assertSee('Linkage signal')
             ->assertSee('holder and branch linkage visible')
+            ->assertSee('Inventory handoff signal')
+            ->assertSee('Blocked holder-linked inventory already carries enough dispute context for a useful handoff review.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
     }
@@ -2208,6 +2216,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('blocked inventory, operator review only')
             ->assertSee('Linkage signal')
             ->assertSee('branch-linked inventory, holder pending')
+            ->assertSee('Inventory handoff signal')
+            ->assertSee('Blocked inventory should stay in handoff-only posture until dispute and replacement parity are explicit.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
     }
@@ -2252,6 +2262,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('draft inventory shell')
             ->assertSee('Linkage signal')
             ->assertSee('branch-linked inventory, holder pending')
+            ->assertSee('Inventory handoff signal')
+            ->assertSee('Draft inventory should stay in handoff-only posture until issuance parity is explicit.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.');
     }

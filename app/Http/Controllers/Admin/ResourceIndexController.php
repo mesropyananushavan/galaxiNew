@@ -2828,6 +2828,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
             ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
+            ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
             ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCard->shop !== null
                 ? 'Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.'
@@ -2885,6 +2886,17 @@ class ResourceIndexController extends Controller
         };
     }
 
+    private function cardsInventoryHandoffSignal(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->status === 'blocked' && $selectedCard->holder !== null => 'Blocked holder-linked inventory already carries enough dispute context for a useful handoff review.',
+            $selectedCard->status === 'blocked' => 'Blocked inventory should stay in handoff-only posture until dispute and replacement parity are explicit.',
+            $selectedCard->status === 'active' && $selectedCard->holder !== null => 'Active issued inventory already carries enough linkage context for a useful handoff review.',
+            $selectedCard->status === 'active' => 'Active inventory is visible, but holder linkage context is still thin for handoff review.',
+            default => 'Draft inventory should stay in handoff-only posture until issuance parity is explicit.',
+        };
+    }
+
     private function cardsSelectedCardDependencyStatus(Card $selectedCard): array
     {
         return [
@@ -2898,6 +2910,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
+            ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
             ['label' => 'Lifecycle posture', 'value' => match ($selectedCard->status) {
                 'active' => 'This active card should stay read-only until issue, block, and replacement parity are verified.',
                 'blocked' => 'This blocked card should stay under review-only handling until dispute and replacement semantics match the old Galaxy flow.',
