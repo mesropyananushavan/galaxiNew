@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Cardholders activity-handoff signal checkpoint
+- Added a compact read-only `Activity handoff signal` to selected `cardholders` review so holder lookup now shows whether the current Laravel profile already carries enough linked-card lifecycle context for a useful operator handoff.
+- Surfaced the cue in both selected-holder summaries and dependency-status panels, with copy that distinguishes dormant linked holders, dormant unlinked holders, active linked holders, and active holders still waiting on visible card activity context.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
+
+### Next step after cardholders activity-handoff signal checkpoint
+- Reuse this compact handoff cue pattern on another selected live workspace that still lacks one, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Shops scope-handoff signal checkpoint
 - Added a compact read-only `Scope handoff signal` to selected `shops` review so branch scope review now shows whether ownership plus customer coverage is actually handoff-ready instead of relying only on broader readiness and coverage lines.
 - Surfaced the cue in both selected-shop summaries and dependency-status panels, with copy that distinguishes paused branches, manager-and-customer-covered branches, manager-only rollout posture, and customer-coverage-without-ownership posture.

@@ -2928,6 +2928,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
+            ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCardHolder->shop !== null
                 ? 'Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.'
@@ -2982,6 +2983,16 @@ class ResourceIndexController extends Controller
         };
     }
 
+    private function cardholdersActivityHandoffSignal(CardHolder $selectedCardHolder): string
+    {
+        return match (true) {
+            ! $selectedCardHolder->is_active && $selectedCardHolder->cards_count > 0 => 'Dormant holder already carries linked-card evidence for a useful lifecycle handoff review.',
+            ! $selectedCardHolder->is_active => 'Dormant holder should stay in handoff-only posture until reactivation parity is explicit.',
+            $selectedCardHolder->cards_count > 0 => 'Active holder already carries linked-card context for a useful activity handoff review.',
+            default => 'Active holder exists, but linked-card activity context is still thin for handoff review.',
+        };
+    }
+
     private function cardholdersSelectedHolderDependencyStatus(CardHolder $selectedCardHolder): array
     {
         return [
@@ -2993,6 +3004,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
+            ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
             ['label' => 'Status posture', 'value' => $selectedCardHolder->is_active
                 ? 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.'
                 : 'This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.'],
