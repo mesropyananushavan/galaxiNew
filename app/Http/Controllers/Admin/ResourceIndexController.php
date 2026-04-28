@@ -2476,6 +2476,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Access posture', 'value' => 'Keep access review in the live workspace first, then leave matrix edits and scope writes gated until parity is proven.'],
             ['label' => 'Evidence priority', 'value' => 'Keep shop scope, assigned staff, and visible permission bundle entries together before trusting any later matrix view.'],
             ['label' => 'Handoff signal', 'value' => $this->rolesPermissionsHandoffSignal($selectedRole, $scope)],
+            ['label' => 'Backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.'],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
