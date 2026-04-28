@@ -3948,6 +3948,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Start with the zero-point outcome before expanding into broader rule-gap discussion.')
             ->assertSee('Receipt handoff signal')
             ->assertSee('Carry receipt evidence and zero-point context forward before escalating any rule-gap discussion.')
+            ->assertSee('Receipt posture')
+            ->assertSee('Receipt lookup should stay read-only until Laravel transaction history is verified against legacy fiscal search behavior.')
             ->assertSee('Accrual posture')
             ->assertSee('Zero-accrual receipts should stay highly visible, because they drive the most parity-sensitive troubleshooting in the old Galaxy flow.')
             ->assertSee('Format guidance')
@@ -3986,6 +3988,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Start with local shop evidence before comparing this receipt against cross-branch behavior.')
             ->assertSee('Receipt handoff signal')
             ->assertSee('Carry branch receipt and shop context forward before any cross-branch troubleshooting expands.')
+            ->assertSee('Receipt posture')
+            ->assertSee('Branch receipt lookup should stay read-only until Laravel shop filters and transaction history are verified against the old flow.')
             ->assertSee('Accrual posture')
             ->assertSee('North Shop accrual receipts should stay branch-aware, because cross-shop troubleshooting must preserve local receipt context.')
             ->assertSee('Format guidance')
@@ -4027,6 +4031,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Start with amount-to-points parity before discussing any later correction path.')
             ->assertSee('Receipt handoff signal')
             ->assertSee('Carry receipt, card, and amount context forward before any later correction discussion begins.')
+            ->assertSee('Receipt posture')
+            ->assertSee('Fiscal receipt review should remain read-only until Laravel transaction history is verified against the legacy ledger.')
             ->assertSee('Accrual posture')
             ->assertSee('Positive accrual receipts should stay parity-first, because receipt math must match the old Galaxy ledger before any correction flow appears.')
             ->assertSee('Format guidance')
@@ -4037,7 +4043,6 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Receipt-first handoff stays visible')
             ->assertSee('Positive-accrual handoff stays evidence-first')
             ->assertSee('Amount, points, and timestamp should stay visible in the workspace before any future export or correction discussion begins.')
-            ->assertSee('Fiscal receipt review should remain read-only until Laravel transaction history is verified against the legacy ledger.')
             ->assertSee('Positive point outcomes still need live transaction-domain parity before any adjustment path is safe.');
     }
 
