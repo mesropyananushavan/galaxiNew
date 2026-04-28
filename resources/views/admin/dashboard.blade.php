@@ -33,6 +33,12 @@
                         {{ $assignedBranchSnapshot['actionCoverage'] }}.
                     </p>
                 @endif
+                @if (is_string($assignedBranchSnapshot['actionPosture'] ?? null))
+                    <p style="{{ $dashboardNoteStyle }}">
+                        <strong>Scoped action posture:</strong>
+                        {{ $assignedBranchSnapshot['actionPosture'] }}.
+                    </p>
+                @endif
                 <div class="placeholder-grid" style="margin-top: 0;">
                     @foreach ($assignedBranchSnapshot['items'] as $item)
                         <article class="metric">

@@ -456,6 +456,7 @@ class DashboardController extends Controller
         return [
             'label' => 'Assigned branch snapshot',
             'actionCoverage' => $this->assignedBranchActionCoverage($actions),
+            'actionPosture' => $this->assignedBranchActionPosture($shop, $latestHolder, $latestCard),
             'items' => [
                 ['label' => 'Branch', 'value' => $shop->name],
                 ['label' => 'Branch code', 'value' => $shop->code],
@@ -485,6 +486,23 @@ class DashboardController extends Controller
     protected function assignedBranchActionCoverage(array $actions): string
     {
         return sprintf('%d scoped branch actions ready', count($actions));
+    }
+
+    protected function assignedBranchActionPosture(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
+    {
+        if (! $shop->is_active) {
+            return 'paused branch actions only';
+        }
+
+        if ($this->branchSetupPending($latestHolder, $latestCard)) {
+            return 'setup-first shortcuts only';
+        }
+
+        if (! $latestHolder instanceof CardHolder || ! $latestCard instanceof Card) {
+            return 'mixed setup and review shortcuts';
+        }
+
+        return 'review-ready scoped shortcuts';
     }
 
     protected function latestBranchActivitySummary(?CardHolder $latestHolder, ?Card $latestCard): string

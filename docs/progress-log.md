@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard branch-action posture checkpoint
+- Added a compact read-only `Scoped action posture` line to the assigned-branch snapshot so the dashboard now signals whether scoped branch actions are still setup-first or already review-ready.
+- Kept the step low-risk and read-only by deriving the posture from the existing branch activity and scoped action state.
+- Re-ran `php artisan test --filter='(test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`.
+
+### Next step after dashboard branch-action posture checkpoint
+- Reuse this tiny scoped-posture pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard branch-action coverage checkpoint
 - Added a compact read-only `Scoped action coverage` line to the assigned-branch snapshot so Phase 1 now states how many scoped setup or review actions are ready inside the dashboard branch console.
 - Kept the step low-risk and read-only by deriving the count from the existing assigned-branch action list.
