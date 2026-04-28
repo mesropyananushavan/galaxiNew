@@ -27,6 +27,7 @@ class DashboardController extends Controller
             'activeFoundationCoverage' => $this->activeFoundationCoverage(),
             'branchPauseCoverage' => $this->branchPauseCoverage(),
             'accessBaselineCoverage' => $this->accessBaselineCoverage(),
+            'tierBaselineCoverage' => $this->tierBaselineCoverage(),
             'shopCount' => Shop::query()->count(),
             'activeShopCount' => Shop::query()->where('is_active', true)->count(),
             'cardHolderCount' => CardHolder::query()->count(),
@@ -118,6 +119,14 @@ class DashboardController extends Controller
         $permissionCount = Permission::query()->count();
 
         return sprintf('%d roles, %d permissions visible', $roleCount, $permissionCount);
+    }
+
+    protected function tierBaselineCoverage(): string
+    {
+        $cardTypeCount = CardType::query()->count();
+        $activeCardTypeCount = CardType::query()->where('is_active', true)->count();
+
+        return sprintf('%d/%d card types active', $activeCardTypeCount, $cardTypeCount);
     }
 
     protected function latestShopWorkspace(): ?array

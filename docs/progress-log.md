@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard tier-baseline coverage checkpoint
+- Added a compact read-only `Tier baseline coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how much of the visible card-type layer is active, not just present.
+- Kept the step low-risk and operational by deriving the ratio directly from existing `CardType` counts.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard tier-baseline coverage checkpoint
+- Reuse this tiny tier-coverage pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard card-type visibility checkpoint
 - Added `Live card types` and `Active card types` metrics to the dashboard foundation snapshot so the Phase 1 shell now keeps the tier layer visible beside shops, cardholders, cards, and access baseline coverage.
 - Kept the step low-risk and read-only by reusing existing `CardType` counts already present in the Laravel foundation.
