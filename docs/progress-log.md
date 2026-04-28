@@ -17,8 +17,13 @@
 - Kept the step summary-first and low-risk by enriching only the existing cards-by-shop, cardholder-status, and role-access selected summaries, without opening any new export or write path.
 - Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
 
+### Reports backend-gap checkpoint
+- Added a compact read-only `Backend gap` cue to the same selected `reports` sources so each reporting preview now surfaces the still-blocked Laravel work directly in the summary block instead of only in later dependency notes.
+- Kept the step summary-first and low-risk by enriching only the existing cards-by-shop, cardholder-status, and role-access selected summaries, without opening any new export or write path.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
+
 ### Next step after reports source-focus checkpoint
-- Reuse this compact focus/posture/evidence cue set on another selected reporting source or resource preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+- Reuse this compact focus/posture/evidence/backend-gap cue set on another selected reporting source or resource preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
 
 ### Gifts evidence-priority checkpoint
 - Added a compact read-only `Evidence priority` cue to selected `gifts` previews so each reward review now names which evidence bundle should stay visible first during parity review.
