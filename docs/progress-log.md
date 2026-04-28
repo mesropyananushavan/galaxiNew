@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Roles handoff-signal summary parity checkpoint
+- Added a compact read-only `Handoff signal` to selected `roles-permissions` summaries so the live access workspace now shows the same access-handoff readiness cue already present in dependency-status context.
+- Surfaced the cue with copy that distinguishes draft roles from live roles that already combine scope, staffing, and permission coverage, keeping the step read-only and parity-first.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Next step after roles handoff-signal summary parity checkpoint
+- Reuse this compact handoff cue pattern on another selected live workspace that still lacks summary/dependency parity, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Cards inventory-handoff signal checkpoint
 - Added a compact read-only `Inventory handoff signal` to selected `cards` review so the inventory workspace now shows whether the current Laravel record already carries enough dispute or linkage context for a useful operator handoff.
 - Surfaced the cue in both selected-card summaries and dependency-status panels, with copy that distinguishes blocked holder-linked cards, blocked unassigned cards, active issued cards, and draft inventory still waiting on issuance parity.

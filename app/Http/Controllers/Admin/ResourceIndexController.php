@@ -14,6 +14,7 @@ use BackedEnum;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 use Stringable;
 use UnitEnum;
 
@@ -2414,6 +2415,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Assignment note', 'value' => $selectedRole->assignment_note ?: 'No assignment note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
             ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
+            ['label' => 'Handoff signal', 'value' => $this->rolesPermissionsHandoffSignal($selectedRole, $scope)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
@@ -2465,6 +2467,17 @@ class ResourceIndexController extends Controller
             ! $selectedRole->is_active => 'draft-only',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'assignment-sensitive',
             default => 'parity-sensitive',
+        };
+    }
+
+    private function rolesPermissionsHandoffSignal(Role $selectedRole, Collection $scope): string
+    {
+        return match (true) {
+            ! $selectedRole->is_active => 'Draft role should stay in handoff-only posture until review note, bundle, and scope parity are explicit.',
+            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Live role already carries scope, staffing, and permission coverage for a useful access handoff review.',
+            $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Permission bundle and scope are visible, but staffing impact still needs to catch up before full handoff review.',
+            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Staffing and permission coverage are visible, but shop scope still needs to catch up before full handoff review.',
+            default => 'Access shell is visible, but handoff context is still thin until more live coverage lands.',
         };
     }
 
