@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Services-rules scope-posture checkpoint
+- Added a compact read-only `Scope posture` cue to selected `services-rules` previews so scope caution now appears directly in the summary block before operators reach the dependency section.
+- Kept the step low-risk and read-only by reusing the existing all-shop, scoped, and draft rule posture wording instead of opening any new publish or editing workflow.
+- Re-ran `php artisan test --filter='(test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context)'`, `3 passed`.
+
+### Next step after services-rules scope-posture checkpoint
+- Reuse this summary-level posture cue on another selected resource preview that still hides its scope or review caution too low in the page, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Services-rules rule-handoff checkpoint
 - Added a compact read-only `Rule handoff signal` to selected `services-rules` previews so rule review context now surfaces the handoff cue directly in the summary block instead of relying only on the later timeline notes.
 - Kept the step low-risk and read-only by enriching the existing all-shop, scoped, and draft rule previews without opening any publish or editing workflow.

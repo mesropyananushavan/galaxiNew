@@ -5267,6 +5267,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Start with the blocking condition and local scope before discussing any later publish decision.')
             ->assertSee('Rule handoff signal')
             ->assertSee('Carry blocking condition and local scope context forward before any later publish decision expands.')
+            ->assertSee('Scope posture')
+            ->assertSee('North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.')
             ->assertSee('Condition posture')
             ->assertSee('Bar-service exclusions should remain draft-only until legacy exception behavior is rechecked in Laravel.')
             ->assertSee('Priority posture')
@@ -5305,6 +5307,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Start with scoped card-type conditions before comparing this uplift against broader loyalty overlaps.')
             ->assertSee('Rule handoff signal')
             ->assertSee('Carry scoped card-type conditions and branch context forward before any broader publish discussion begins.')
+            ->assertSee('Scope posture')
+            ->assertSee('Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.')
             ->assertSee('Condition posture')
             ->assertSee('Partner-card checks should stay tied to visible card-type parity before any Laravel rule editor opens them up.')
             ->assertSee('Priority posture')
@@ -5346,6 +5350,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Start with birthday eligibility and priority order before discussing any later publish path.')
             ->assertSee('Rule handoff signal')
             ->assertSee('Carry birthday eligibility, scope, and uplift context forward before any later publish discussion begins.')
+            ->assertSee('Scope posture')
+            ->assertSee('All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.')
             ->assertSee('Condition posture')
             ->assertSee('Birthday window logic should stay parity-first, because date-sensitive loyalty rules are easy to drift during migration.')
             ->assertSee('Priority posture')
@@ -5358,7 +5364,6 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Birthday rule handoff stays parity-first')
             ->assertSee('Birthday rule handoff keeps parity evidence visible')
             ->assertSee('Scope, priority, and uplift effect should stay visible in the workspace before any publish discussion begins.')
-            ->assertSee('All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.')
             ->assertSee('Priority resolution remains preview-only until overlapping rule order is validated in Laravel.');
     }
 
