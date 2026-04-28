@@ -184,6 +184,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('9')
             ->assertSee('Galaxy live foundation snapshot')
             ->assertSee('branch setup and review work can move through real operational entities instead of starter placeholders')
+            ->assertSee('Foundation handoff signal')
+            ->assertSee('The dashboard already shows enough live Galaxy entities to support a useful foundation handoff review.')
             ->assertSee('Live shops')
             ->assertSee('Active shops')
             ->assertSee('Live cardholders')
@@ -428,6 +430,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Foundation handoff signal')
+            ->assertSee('Phase 1 is still in starter-to-Galaxy setup mode, so the dashboard should keep first live entities visible before any handoff review feels grounded.')
             ->assertSee('Resume latest live work')
             ->assertSee('No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.')
             ->assertSee('In Phase 1, this usually means the branch is still moving through first-pass setup for shops, cardholders, cards, or access structure.')
@@ -459,6 +463,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Foundation handoff signal')
+            ->assertSee('Some live Galaxy entities are visible, but the dashboard still needs broader Laravel coverage before foundation handoff review feels complete.')
             ->assertSee('Resume latest live work')
             ->assertSee('Open latest shop review: Partial Dashboard Shop (inactive)')
             ->assertSee('/admin/shops?shop=1')

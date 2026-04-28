@@ -30,6 +30,7 @@ class DashboardController extends Controller
             'activeCardCount' => Card::query()->where('status', 'active')->count(),
             'roleCount' => Role::query()->count(),
             'permissionCount' => Permission::query()->count(),
+            'foundationHandoffSummary' => $this->foundationHandoffSummary(),
             'dashboardScopeSummary' => $this->dashboardScopeSummary(),
             'assignedBranchSnapshot' => $this->assignedBranchSnapshot(),
             'liveEntryScopeNote' => $this->liveEntryScopeNote(),
@@ -295,6 +296,27 @@ class DashboardController extends Controller
         return [
             'label' => 'Current review scope',
             'value' => sprintf('Shop-scoped admin mode is active. Latest-work shortcuts and live review links should stay anchored to %s with branch-specific review wording while Phase 1 policies are still being mapped.', $shop->name),
+        ];
+    }
+
+    protected function foundationHandoffSummary(): array
+    {
+        $shopCount = Shop::query()->count();
+        $cardHolderCount = CardHolder::query()->count();
+        $cardCount = Card::query()->count();
+        $roleCount = Role::query()->count();
+        $permissionCount = Permission::query()->count();
+
+        return [
+            'label' => 'Foundation handoff signal',
+            'value' => match (true) {
+                $shopCount === 0 && $cardHolderCount === 0 && $cardCount === 0 && $roleCount === 0 && $permissionCount === 0
+                    => 'Phase 1 is still in starter-to-Galaxy setup mode, so the dashboard should keep first live entities visible before any handoff review feels grounded.',
+                $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0 && $roleCount > 0 && $permissionCount > 0
+                    => 'The dashboard already shows enough live Galaxy entities to support a useful foundation handoff review.',
+                default
+                    => 'Some live Galaxy entities are visible, but the dashboard still needs broader Laravel coverage before foundation handoff review feels complete.',
+            },
         ];
     }
 
