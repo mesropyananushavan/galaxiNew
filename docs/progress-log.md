@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Reports source-focus checkpoint
+- Added a compact read-only `Source focus` cue to selected `reports` sources so reporting previews now name the first parity angle to inspect instead of relying only on status and signal lists.
+- Kept the step low-risk and read-only by enriching the existing cards-by-shop, cardholder-status, and role-access source summaries without opening any export or query-writing workflow.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
+
+### Next step after reports source-focus checkpoint
+- Reuse this compact focus cue on another selected reporting source or resource preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Gifts evidence-priority checkpoint
 - Added a compact read-only `Evidence priority` cue to selected `gifts` previews so each reward review now names which evidence bundle should stay visible first during parity review.
 - Kept the step low-risk and read-only by enriching the existing all-shop, scoped, paused zero-stock, and paused finite-stock reward previews without opening any publish or redemption workflow.
