@@ -167,6 +167,10 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             Jump back into the latest Galaxy workspace for the branch, cardholder, card, or access item that most recently changed.
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Latest-work coverage:</strong>
+            {{ $latestWorkspaceCoverage }}.
+        </p>
         @if (is_array($latestWorkspaceHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $latestWorkspaceHandoffSummary['label'] }}:</strong>

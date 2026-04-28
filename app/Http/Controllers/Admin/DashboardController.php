@@ -48,6 +48,7 @@ class DashboardController extends Controller
             'migrationMapHandoffSummary' => $this->migrationMapHandoffSummary($navigation),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'liveEntryPointCoverage' => $this->liveEntryPointCoverage(),
+            'latestWorkspaceCoverage' => $this->latestWorkspaceCoverage(),
             'latestWorkspaces' => array_values(array_filter([
                 $this->latestShopWorkspace(),
                 $this->latestCardHolderWorkspace(),
@@ -61,6 +62,19 @@ class DashboardController extends Controller
     protected function liveEntryPointCoverage(): string
     {
         return sprintf('%d live review entry points staged', count($this->liveReviewEntryPoints()));
+    }
+
+    protected function latestWorkspaceCoverage(): string
+    {
+        $latestWorkspaceCount = count(array_values(array_filter([
+            $this->latestShopWorkspace(),
+            $this->latestCardHolderWorkspace(),
+            $this->latestCardWorkspace(),
+            $this->latestCardTypeWorkspace(),
+            $this->latestRoleWorkspace(),
+        ])));
+
+        return sprintf('%d latest-work shortcuts currently available', $latestWorkspaceCount);
     }
 
     protected function liveDomainCoverage(): string
