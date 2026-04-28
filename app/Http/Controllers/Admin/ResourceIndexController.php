@@ -3027,6 +3027,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Holder posture', 'value' => 'Keep holder review in the live workspace first, then leave reactivation, merge, and profile-write flows gated until parity is proven.'],
             ['label' => 'Evidence priority', 'value' => 'Keep holder status, branch linkage, and linked-card visibility together before trusting any later reactivation or merge discussion.'],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
+            ['label' => 'Backend gap', 'value' => 'Holder search, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.'],
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCardHolder->shop !== null
                 ? 'Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.'
