@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard access-baseline coverage checkpoint
+- Added a compact read-only `Access baseline coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how much of the live roles and permissions layer is already visible in Laravel.
+- Kept the step low-risk and operational by deriving the metric directly from existing role and permission counts.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard access-baseline coverage checkpoint
+- Reuse this tiny access-coverage pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard branch-pause coverage checkpoint
 - Added a compact read-only `Branch pause coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how much visible shop coverage is paused instead of active.
 - Kept the step low-risk and operational by deriving the ratio directly from existing shop status counts.

@@ -83,6 +83,10 @@
                 <p class="metric-value">{{ $branchPauseCoverage }}</p>
             </article>
             <article class="metric">
+                <p class="metric-label">Access baseline coverage</p>
+                <p class="metric-value">{{ $accessBaselineCoverage }}</p>
+            </article>
+            <article class="metric">
                 <p class="metric-label">Live shops</p>
                 <p class="metric-value">{{ $shopCount }}</p>
             </article>

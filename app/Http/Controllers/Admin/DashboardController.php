@@ -26,6 +26,7 @@ class DashboardController extends Controller
             'foundationReadinessSignal' => $this->foundationReadinessSignal(),
             'activeFoundationCoverage' => $this->activeFoundationCoverage(),
             'branchPauseCoverage' => $this->branchPauseCoverage(),
+            'accessBaselineCoverage' => $this->accessBaselineCoverage(),
             'shopCount' => Shop::query()->count(),
             'activeShopCount' => Shop::query()->where('is_active', true)->count(),
             'cardHolderCount' => CardHolder::query()->count(),
@@ -107,6 +108,14 @@ class DashboardController extends Controller
         $pausedShopCount = Shop::query()->where('is_active', false)->count();
 
         return sprintf('%d/%d branches paused', $pausedShopCount, $shopCount);
+    }
+
+    protected function accessBaselineCoverage(): string
+    {
+        $roleCount = Role::query()->count();
+        $permissionCount = Permission::query()->count();
+
+        return sprintf('%d roles, %d permissions visible', $roleCount, $permissionCount);
     }
 
     protected function latestShopWorkspace(): ?array
