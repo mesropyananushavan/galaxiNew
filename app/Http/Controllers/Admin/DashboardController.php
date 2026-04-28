@@ -46,6 +46,7 @@ class DashboardController extends Controller
             'latestWorkspaceHandoffSummary' => $this->latestWorkspaceHandoffSummary(),
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
             'migrationMapHandoffSummary' => $this->migrationMapHandoffSummary($navigation),
+            'migrationMapFocus' => $this->migrationMapFocus($navigation),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'liveEntryPointCoverage' => $this->liveEntryPointCoverage(),
             'liveEntryPointFocus' => $this->liveEntryPointFocus(),
@@ -139,6 +140,20 @@ class DashboardController extends Controller
             $latestWorkspaceCount < 3 => 'partial jump-back coverage',
             default => 'review-ready jump-back coverage',
         };
+    }
+
+    protected function migrationMapFocus(array $navigation): string
+    {
+        $firstItem = collect($navigation)
+            ->pluck('items')
+            ->flatten(1)
+            ->first();
+
+        if (! is_array($firstItem) || ! isset($firstItem['label'])) {
+            return 'first parity target still needs to be mapped';
+        }
+
+        return sprintf('start with %s', mb_strtolower((string) $firstItem['label']));
     }
 
     protected function liveDomainCoverage(): string

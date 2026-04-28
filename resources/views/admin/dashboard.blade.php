@@ -250,6 +250,10 @@
             <strong>Mapped routes:</strong>
             {{ $plannedSectionCount }} Laravel route targets are currently linked from the Phase 1 target map.
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Migration-map focus:</strong>
+            {{ $migrationMapFocus }}.
+        </p>
         @if (is_array($migrationMapHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $migrationMapHandoffSummary['label'] }}:</strong>
