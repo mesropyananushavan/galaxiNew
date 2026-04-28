@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard migration-map handoff signal checkpoint
+- Added a compact read-only `Migration-map handoff signal` to the dashboard target-map section so Phase 1 planning now states whether the current Laravel shell is still map-first, partially live, or broad enough for grounded parity handoff discussion.
+- Kept the step low-risk and read-only, reusing existing navigation and live-domain counts instead of adding any new workflow behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard migration-map handoff signal checkpoint
+- Reuse this compact handoff cue pattern on another dashboard summary that still reads too generically, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard latest-work handoff signal checkpoint
 - Added a compact read-only `Latest-work handoff signal` to the dashboard jump-back section so the console now states whether resume shortcuts already carry enough live workspace coverage for a meaningful handoff review.
 - Kept the step low-risk and read-only, distinguishing empty foundations, thin partial coverage, broad shared coverage, and branch-scoped shortcut coverage without changing any routing behavior.

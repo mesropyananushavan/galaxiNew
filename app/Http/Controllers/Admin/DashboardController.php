@@ -37,6 +37,7 @@ class DashboardController extends Controller
             'liveEntryScopeNote' => $this->liveEntryScopeNote(),
             'latestWorkspaceHandoffSummary' => $this->latestWorkspaceHandoffSummary(),
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
+            'migrationMapHandoffSummary' => $this->migrationMapHandoffSummary($navigation),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'latestWorkspaces' => array_values(array_filter([
                 $this->latestShopWorkspace(),
@@ -676,6 +677,31 @@ class DashboardController extends Controller
                     => 'Latest-work shortcuts already carry enough live Galaxy coverage for a useful handoff review jump-back.',
                 default
                     => 'Latest-work shortcuts should stay setup-first until more live Galaxy workspaces are available to resume.',
+            },
+        ];
+    }
+
+    protected function migrationMapHandoffSummary(array $navigation): array
+    {
+        $plannedSectionCount = collect($navigation)->sum(fn (array $group): int => count($group['items']));
+        $mappedGroupCount = count($navigation);
+        $liveDomainCount = collect([
+            Shop::query()->count(),
+            CardHolder::query()->count(),
+            Card::query()->count(),
+            Role::query()->count(),
+            Permission::query()->count(),
+        ])->filter(fn (int $count): bool => $count > 0)->count();
+
+        return [
+            'label' => 'Migration-map handoff signal',
+            'value' => match (true) {
+                $liveDomainCount >= 5
+                    => sprintf('The migration map already spans %d grouped sections with live coverage in %d core Galaxy domains, so parity handoff planning can stay grounded in the current Laravel shell.', $mappedGroupCount, $liveDomainCount),
+                $liveDomainCount > 0
+                    => sprintf('The migration map already spans %d grouped sections, but only %d core Galaxy domains have live Laravel coverage so far.', $mappedGroupCount, $liveDomainCount),
+                default
+                    => sprintf('The migration map already spans %d grouped sections and %d planned surfaces, but handoff planning should stay map-first until live Galaxy domains start landing in Laravel.', $mappedGroupCount, $plannedSectionCount),
             },
         ];
     }

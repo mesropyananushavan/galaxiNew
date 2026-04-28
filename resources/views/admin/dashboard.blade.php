@@ -164,6 +164,12 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             These grouped sections mark the Galaxy admin surfaces that still need parity work, so each Phase 1 slice can land against a visible target map.
         </p>
+        @if (is_array($migrationMapHandoffSummary ?? null))
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $migrationMapHandoffSummary['label'] }}:</strong>
+                {{ $migrationMapHandoffSummary['value'] }}
+            </p>
+        @endif
         <ul class="list">
             @foreach ($navigationGroups as $group)
                 <li>
