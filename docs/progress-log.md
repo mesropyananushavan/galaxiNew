@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard branch-action route visibility checkpoint
+- Added route-path display beside assigned-branch snapshot actions so scoped setup and review shortcuts now read more like operational Galaxy console actions than generic starter links.
+- Kept the step low-risk and read-only by reusing the existing scoped action routes already exposed by the dashboard.
+- Re-ran `php artisan test --filter='(test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`.
+
+### Next step after dashboard branch-action route visibility checkpoint
+- Reuse this tiny route-visibility pattern on another scoped dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard latest-work route visibility checkpoint
 - Added route-path display beside each dashboard `Resume latest live work` shortcut so the jump-back section now reads more like a real Galaxy review console than a generic starter link list.
 - Kept the step low-risk and read-only by reusing the existing latest-work routes already exposed by the dashboard.

@@ -38,7 +38,7 @@
                 @if (is_array($assignedBranchSnapshot['actions'] ?? null) && $assignedBranchSnapshot['actions'] !== [])
                     <ul class="list" style="margin-top: 12px;">
                         @foreach ($assignedBranchSnapshot['actions'] as $action)
-                            <li><a href="{{ $action['route'] }}">{{ $action['label'] }}</a></li>
+                            <li><a href="{{ $action['route'] }}">{{ $action['label'] }}</a> (Route: {{ parse_url($action['route'], PHP_URL_PATH) ?? $action['route'] }})</li>
                         @endforeach
                     </ul>
                 @endif
