@@ -1789,6 +1789,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Tier posture', 'value' => 'Keep tier review in the live workspace first, then leave rule import and publish-style moves gated until parity is proven.'],
             ['label' => 'Evidence priority', 'value' => 'Keep visible card coverage, activation note, and rollout note together before trusting any later rule import discussion.'],
             ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
+            ['label' => 'Backend gap', 'value' => 'Publish logic and rule-import parity should stay preview-only until tier parity is verified.'],
             [
                 'label' => 'Status guidance',
                 'value' => $selectedCardType->is_active

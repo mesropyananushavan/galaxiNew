@@ -6926,6 +6926,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep visible card coverage, activation note, and rollout note together before trusting any later rule import discussion.')
             ->assertSee('Handoff signal:')
             ->assertSee('Draft tier already carries visible card coverage for a useful parity handoff review.')
+            ->assertSee('Backend gap:')
+            ->assertSee('Publish logic and rule-import parity should stay preview-only until tier parity is verified.')
             ->assertSee('Status guidance:')
             ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
             ->assertSee('Rule-import blocker:')

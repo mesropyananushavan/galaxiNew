@@ -17,8 +17,13 @@
 - Kept the step low-risk and Laravel-backed by enriching only the existing selected tier summary without changing any live form write path or rule-import gating.
 - Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
 
+### Card-types backend-gap checkpoint
+- Added a compact read-only `Backend gap` cue to selected `card-types` summaries so the still-blocked publish and rule-import slice now appears directly in the selected tier block instead of only in later dependency notes.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected tier summary without changing any live form write path or rule-import gating.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
 ### Next step after card-types tier-focus checkpoint
-- Reuse this compact focus/posture/evidence cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or add the matching backend-gap cue if this tier summary still feels uneven.
+- Reuse this compact focus/posture/evidence/backend-gap cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
 
 ### Roles-permissions access-focus checkpoint
 - Added a compact read-only `Access focus` cue to selected `roles-permissions` summaries so access review context now names the first parity angle directly in the summary block.
