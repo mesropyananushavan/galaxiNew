@@ -67,6 +67,10 @@
                 <p class="metric-value">{{ $plannedSectionCount }}</p>
             </article>
             <article class="metric">
+                <p class="metric-label">Live domain coverage</p>
+                <p class="metric-value">{{ $liveDomainCoverage }}</p>
+            </article>
+            <article class="metric">
                 <p class="metric-label">Live shops</p>
                 <p class="metric-value">{{ $shopCount }}</p>
             </article>

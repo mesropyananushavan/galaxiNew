@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard live-domain coverage checkpoint
+- Added a compact read-only `Live domain coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how many of the five core Galaxy domains already have live Laravel presence.
+- Kept the step low-risk and operational by deriving the count directly from existing live entity totals instead of opening any new workflow behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard live-domain coverage checkpoint
+- Reuse this tiny coverage metric pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard migration-map route-path checkpoint
 - Expanded the dashboard `Galaxy migration map` again so each mapped surface now shows its current Laravel route path beside the Galaxy-specific description.
 - Kept the step low-risk and config-backed by deriving the paths from the existing route names already stored in `config/admin-navigation.php`.

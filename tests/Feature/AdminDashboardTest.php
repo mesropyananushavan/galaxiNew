@@ -182,6 +182,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Roles & Permissions')
             ->assertSee('Planned sections')
             ->assertSee('9')
+            ->assertSee('Live domain coverage')
+            ->assertSee('5/5 core Galaxy domains live')
             ->assertSee('Galaxy live foundation snapshot')
             ->assertSee('branch setup and review work can move through real operational entities instead of starter placeholders')
             ->assertSee('Foundation handoff signal')
@@ -456,6 +458,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Live domain coverage')
+            ->assertSee('0/5 core Galaxy domains live')
             ->assertSee('Foundation handoff signal')
             ->assertSee('Phase 1 is still in starter-to-Galaxy setup mode, so the dashboard should keep first live entities visible before any handoff review feels grounded.')
             ->assertSee('Entry handoff signal')
@@ -495,6 +499,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Live domain coverage')
+            ->assertSee('1/5 core Galaxy domains live')
             ->assertSee('Foundation handoff signal')
             ->assertSee('Some live Galaxy entities are visible, but the dashboard still needs broader Laravel coverage before foundation handoff review feels complete.')
             ->assertSee('Entry handoff signal')

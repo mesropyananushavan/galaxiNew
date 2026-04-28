@@ -22,6 +22,7 @@ class DashboardController extends Controller
             'pageTitle' => 'Dashboard',
             'navigationGroups' => $navigation,
             'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),
+            'liveDomainCoverage' => $this->liveDomainCoverage(),
             'shopCount' => Shop::query()->count(),
             'activeShopCount' => Shop::query()->where('is_active', true)->count(),
             'cardHolderCount' => CardHolder::query()->count(),
@@ -47,6 +48,19 @@ class DashboardController extends Controller
                 $this->latestRoleWorkspace(),
             ])),
         ]);
+    }
+
+    protected function liveDomainCoverage(): string
+    {
+        $liveDomainCount = collect([
+            Shop::query()->count(),
+            CardHolder::query()->count(),
+            Card::query()->count(),
+            Role::query()->count(),
+            Permission::query()->count(),
+        ])->filter(fn (int $count): bool => $count > 0)->count();
+
+        return sprintf('%d/5 core Galaxy domains live', $liveDomainCount);
     }
 
     protected function latestShopWorkspace(): ?array
