@@ -1785,6 +1785,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
+            ['label' => 'Tier focus', 'value' => 'Start with saved card coverage, draft-versus-live status, and rollout note clarity before discussing any later rule import step.'],
             ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
             [
                 'label' => 'Status guidance',
