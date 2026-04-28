@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard migration-map group-total checkpoint
+- Added a compact read-only `Mapped groups` line to the dashboard migration map so the Phase 1 planning section now states how many top-level admin groups are already staged in the Laravel shell.
+- Kept the step low-risk and config-backed by deriving the count directly from the existing navigation map.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map group-total checkpoint
+- Reuse this tiny config-backed planning-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard access-baseline coverage checkpoint
 - Added a compact read-only `Access baseline coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how much of the live roles and permissions layer is already visible in Laravel.
 - Kept the step low-risk and operational by deriving the metric directly from existing role and permission counts.

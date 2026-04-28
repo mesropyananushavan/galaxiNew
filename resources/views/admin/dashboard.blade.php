@@ -188,6 +188,10 @@
             <strong>Mapped surfaces:</strong>
             {{ $plannedSectionCount }} planned admin surfaces are currently staged in the Phase 1 target map.
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Mapped groups:</strong>
+            {{ count($navigationGroups) }} top-level admin groups are currently staged in the Phase 1 target map.
+        </p>
         @if (is_array($migrationMapHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $migrationMapHandoffSummary['label'] }}:</strong>
