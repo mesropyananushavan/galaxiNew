@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard scoped latest-work route-alignment checkpoint
+- Extended the route-path dashboard pass to the scoped latest-work and branch-setup assertions so branch-specific jump-back actions now stay aligned with the new operational route display.
+- Kept the step low-risk by tightening only rendered dashboard expectations around already-existing scoped review/setup links.
+- Re-ran `php artisan test --filter='(test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`.
+
+### Next step after dashboard scoped latest-work route-alignment checkpoint
+- Reuse this tiny operational-copy alignment pattern on another scoped dashboard surface that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard branch-action route visibility checkpoint
 - Added route-path display beside assigned-branch snapshot actions so scoped setup and review shortcuts now read more like operational Galaxy console actions than generic starter links.
 - Kept the step low-risk and read-only by reusing the existing scoped action routes already exposed by the dashboard.
