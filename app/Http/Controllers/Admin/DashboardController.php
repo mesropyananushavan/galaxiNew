@@ -49,6 +49,7 @@ class DashboardController extends Controller
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'liveEntryPointCoverage' => $this->liveEntryPointCoverage(),
             'latestWorkspaceCoverage' => $this->latestWorkspaceCoverage(),
+            'latestWorkspaceFocus' => $this->latestWorkspaceFocus(),
             'latestWorkspaces' => array_values(array_filter([
                 $this->latestShopWorkspace(),
                 $this->latestCardHolderWorkspace(),
@@ -75,6 +76,23 @@ class DashboardController extends Controller
         ])));
 
         return sprintf('%d latest-work shortcuts currently available', $latestWorkspaceCount);
+    }
+
+    protected function latestWorkspaceFocus(): string
+    {
+        $latestWorkspace = array_values(array_filter([
+            $this->latestShopWorkspace(),
+            $this->latestCardHolderWorkspace(),
+            $this->latestCardWorkspace(),
+            $this->latestCardTypeWorkspace(),
+            $this->latestRoleWorkspace(),
+        ]))[0] ?? null;
+
+        if (! is_array($latestWorkspace) || ! isset($latestWorkspace['label'])) {
+            return 'first live workspace still needs to be created';
+        }
+
+        return sprintf('start with %s', mb_strtolower((string) $latestWorkspace['label']));
     }
 
     protected function liveDomainCoverage(): string

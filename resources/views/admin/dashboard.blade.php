@@ -189,6 +189,10 @@
             <strong>Latest-work coverage:</strong>
             {{ $latestWorkspaceCoverage }}.
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Latest-work focus:</strong>
+            {{ $latestWorkspaceFocus }}.
+        </p>
         @if (is_array($latestWorkspaceHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $latestWorkspaceHandoffSummary['label'] }}:</strong>
