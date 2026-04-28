@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard branch-handoff snapshot checkpoint
+- Added a compact read-only `Handoff signal` to the shop-scoped dashboard branch snapshot so scoped admins can immediately tell whether the assigned branch already has enough live coverage for a meaningful handoff review.
+- Kept the step low-risk and read-only, with copy that distinguishes setup-pending branches, card-only coverage, holder-only coverage, and fully covered live branches.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up)'`, `4 passed`.
+
+### Next step after dashboard branch-handoff snapshot checkpoint
+- Reuse this compact handoff cue pattern on another scoped dashboard or selected review surface that still lacks it, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Card-types handoff-signal parity checkpoint
 - Added a compact read-only `Handoff signal` to selected `card-types` review so the tier workspace now shows whether the current Laravel tier already carries enough visible card coverage for a useful rollout handoff.
 - Surfaced the cue in both selected-tier summaries and dependency-status panels, with copy that distinguishes live tiers with coverage, live tiers still missing coverage, draft tiers with visible saved-card context, and draft tiers still waiting on first visible coverage.

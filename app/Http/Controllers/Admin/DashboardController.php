@@ -324,6 +324,7 @@ class DashboardController extends Controller
         $branchPosture = $this->branchOperationalPosture($shop, $latestHolder, $latestCard);
         $branchReadiness = $this->branchReadinessStatus($shop, $latestHolder, $latestCard);
         $branchCoverage = $this->branchCoverageStatus($shop);
+        $branchHandoffSignal = $this->branchHandoffSignal($shop, $latestHolder, $latestCard);
         $suggestedFollowUp = $this->branchSuggestedFollowUp($shop, $latestHolder, $latestCard);
         $actions = $this->assignedBranchSnapshotActions($shop, $latestHolder, $latestCard);
 
@@ -335,6 +336,7 @@ class DashboardController extends Controller
                 ['label' => 'Branch posture', 'value' => $branchPosture],
                 ['label' => 'Branch readiness', 'value' => $branchReadiness],
                 ['label' => 'Branch coverage', 'value' => $branchCoverage],
+                ['label' => 'Handoff signal', 'value' => $branchHandoffSignal],
                 ['label' => 'Primary manager', 'value' => $shop->users->first()?->name ?? 'Unassigned'],
                 ['label' => 'Laravel status', 'value' => $shop->is_active ? 'active' : 'paused'],
                 ['label' => 'Visible cardholders', 'value' => (string) $shop->card_holders_count],
@@ -452,6 +454,27 @@ class DashboardController extends Controller
             $hasCards => 'cards live, cardholders pending',
             default => 'core branch records pending',
         };
+    }
+
+    protected function branchHandoffSignal(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
+    {
+        if (! $shop->is_active) {
+            return 'Paused branch should stay in handoff-only posture until reopen intent is explicit.';
+        }
+
+        if ($this->branchSetupPending($latestHolder, $latestCard)) {
+            return 'Assigned branch still needs first live records before handoff review can feel grounded.';
+        }
+
+        if (! $latestHolder instanceof CardHolder) {
+            return 'Card activity is visible, but holder coverage still needs to catch up before full branch handoff review.';
+        }
+
+        if (! $latestCard instanceof Card) {
+            return 'Holder activity is visible, but card coverage still needs to catch up before full branch handoff review.';
+        }
+
+        return 'Assigned branch already carries enough live coverage for a useful scoped handoff review.';
     }
 
     protected function branchSuggestedFollowUp(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
