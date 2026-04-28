@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard migration-map total-count checkpoint
+- Added a compact read-only `Mapped surfaces` line to the dashboard migration map so the Phase 1 target section now states the total number of planned admin surfaces already staged in the Laravel shell.
+- Kept the step low-risk and config-backed by reusing the existing `plannedSectionCount` instead of introducing any new workflow logic.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map total-count checkpoint
+- Reuse this tiny planning-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard migration-map group-count checkpoint
 - Expanded the dashboard `Galaxy migration map` again so each top-level group now shows how many mapped admin surfaces it contains, making the Phase 1 target map read more like a scoped migration plan than a plain label list.
 - Kept the step low-risk and read-only by deriving counts directly from the existing config-backed navigation map.

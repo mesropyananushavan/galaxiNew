@@ -212,6 +212,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('/admin/reports')
             ->assertSee('Galaxy migration map')
             ->assertSee('These grouped sections mark the Galaxy admin surfaces that still need parity work, so each Phase 1 slice can land against a visible target map')
+            ->assertSee('Mapped surfaces:')
+            ->assertSee('10 planned admin surfaces are currently staged in the Phase 1 target map.')
             ->assertSee('Migration-map handoff signal')
             ->assertSee('The migration map already spans 3 grouped sections with live coverage in 5 core Galaxy domains, so parity handoff planning can stay grounded in the current Laravel shell.')
             ->assertSee('Operations (4 surfaces):')
