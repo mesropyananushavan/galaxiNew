@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Shops scope-handoff signal checkpoint
+- Added a compact read-only `Scope handoff signal` to selected `shops` review so branch scope review now shows whether ownership plus customer coverage is actually handoff-ready instead of relying only on broader readiness and coverage lines.
+- Surfaced the cue in both selected-shop summaries and dependency-status panels, with copy that distinguishes paused branches, manager-and-customer-covered branches, manager-only rollout posture, and customer-coverage-without-ownership posture.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context)'`, `5 passed`.
+
+### Next step after shops scope-handoff signal checkpoint
+- Reuse this compact handoff cue pattern on another selected live workspace that still lacks one, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Card-types activation-freshness checkpoint
 - Added a compact read-only `Activation freshness` cue to selected `card-types` review so operators can tell whether activation guidance is already staged on the current Laravel tier shell.
 - Surfaced the cue in both selected-tier summary and dependency-status panels, distinguishing staged draft activation guidance from missing live activation context while keeping import and publish flows gated.
