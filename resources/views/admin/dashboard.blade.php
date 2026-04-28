@@ -131,6 +131,12 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             Jump back into the latest Galaxy workspace for the branch, cardholder, card, or access item that most recently changed.
         </p>
+        @if (is_array($latestWorkspaceHandoffSummary ?? null))
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $latestWorkspaceHandoffSummary['label'] }}:</strong>
+                {{ $latestWorkspaceHandoffSummary['value'] }}
+            </p>
+        @endif
         @if (is_array($latestWorkspaceScopeNote ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $latestWorkspaceScopeNote['label'] }}:</strong>

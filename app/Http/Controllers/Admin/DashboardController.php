@@ -35,6 +35,7 @@ class DashboardController extends Controller
             'assignedBranchSnapshot' => $this->assignedBranchSnapshot(),
             'liveEntryHandoffSummary' => $this->liveEntryHandoffSummary(),
             'liveEntryScopeNote' => $this->liveEntryScopeNote(),
+            'latestWorkspaceHandoffSummary' => $this->latestWorkspaceHandoffSummary(),
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'latestWorkspaces' => array_values(array_filter([
@@ -650,6 +651,32 @@ class DashboardController extends Controller
         return [
             'label' => 'Phase 1 scope note',
             'value' => 'Latest-work shortcuts for shops, cardholders, and cards now follow branch scope and branch-specific review wording. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.',
+        ];
+    }
+
+    protected function latestWorkspaceHandoffSummary(): array
+    {
+        $shop = $this->activeScopedShop();
+        $latestWorkspaceCount = count(array_values(array_filter([
+            $this->latestShopWorkspace(),
+            $this->latestCardHolderWorkspace(),
+            $this->latestCardWorkspace(),
+            $this->latestCardTypeWorkspace(),
+            $this->latestRoleWorkspace(),
+        ])));
+
+        return [
+            'label' => 'Latest-work handoff signal',
+            'value' => match (true) {
+                $shop instanceof Shop && $latestWorkspaceCount >= 3
+                    => 'Scoped latest-work shortcuts already carry enough branch-backed coverage for a useful handoff review jump-back.',
+                $shop instanceof Shop
+                    => 'Scoped latest-work shortcuts should stay setup-aware until more branch-backed workspaces are populated.',
+                $latestWorkspaceCount >= 3
+                    => 'Latest-work shortcuts already carry enough live Galaxy coverage for a useful handoff review jump-back.',
+                default
+                    => 'Latest-work shortcuts should stay setup-first until more live Galaxy workspaces are available to resume.',
+            },
         ];
     }
 
