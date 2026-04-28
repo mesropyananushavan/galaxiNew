@@ -2474,6 +2474,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
             ['label' => 'Access focus', 'value' => 'Start with visible scope, assigned staff, and permission bundle overlap before discussing any later matrix editing flow.'],
             ['label' => 'Access posture', 'value' => 'Keep access review in the live workspace first, then leave matrix edits and scope writes gated until parity is proven.'],
+            ['label' => 'Evidence priority', 'value' => 'Keep shop scope, assigned staff, and visible permission bundle entries together before trusting any later matrix view.'],
             ['label' => 'Handoff signal', 'value' => $this->rolesPermissionsHandoffSignal($selectedRole, $scope)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],

@@ -12,8 +12,13 @@
 - Kept the step low-risk and read-only by enriching the existing selected-role summary without opening any matrix editing, assignment, or scope-writing workflow.
 - Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context)'`, `2 passed`.
 
+### Roles-permissions evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `roles-permissions` summaries so access review now highlights the first live evidence bundle to keep visible during parity review.
+- Kept the step low-risk and read-only by enriching the existing selected-role summary without opening any matrix editing, assignment, or scope-writing workflow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context)'`, `2 passed`.
+
 ### Next step after roles-permissions access-focus checkpoint
-- Reuse this compact focus/posture cue pair on another selected Laravel-backed preview that still reads too much like a static signal list, or add the matching evidence cue if this access summary still feels uneven.
+- Reuse this compact focus/posture/evidence cue set on another selected Laravel-backed preview that still reads too much like a static signal list, or add the matching backend-gap cue if this access summary still feels uneven.
 
 ### Reports source-focus checkpoint
 - Added a compact read-only `Source focus` cue to selected `reports` sources so reporting previews now name the first parity angle to inspect instead of relying only on status and signal lists.
