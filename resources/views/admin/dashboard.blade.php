@@ -161,6 +161,10 @@
             <strong>Entry coverage:</strong>
             {{ $liveEntryPointCoverage }}.
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Entry focus:</strong>
+            {{ $liveEntryPointFocus }}.
+        </p>
         @if (is_array($liveEntryHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $liveEntryHandoffSummary['label'] }}:</strong>

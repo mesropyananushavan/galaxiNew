@@ -48,6 +48,7 @@ class DashboardController extends Controller
             'migrationMapHandoffSummary' => $this->migrationMapHandoffSummary($navigation),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'liveEntryPointCoverage' => $this->liveEntryPointCoverage(),
+            'liveEntryPointFocus' => $this->liveEntryPointFocus(),
             'latestWorkspaceCoverage' => $this->latestWorkspaceCoverage(),
             'latestWorkspaceFocus' => $this->latestWorkspaceFocus(),
             'latestWorkspacePosture' => $this->latestWorkspacePosture(),
@@ -64,6 +65,17 @@ class DashboardController extends Controller
     protected function liveEntryPointCoverage(): string
     {
         return sprintf('%d live review entry points staged', count($this->liveReviewEntryPoints()));
+    }
+
+    protected function liveEntryPointFocus(): string
+    {
+        $entryPoint = $this->liveReviewEntryPoints()[0] ?? null;
+
+        if (! is_array($entryPoint) || ! isset($entryPoint['label'])) {
+            return 'first live review surface still needs to be staged';
+        }
+
+        return sprintf('start with %s', mb_strtolower((string) $entryPoint['label']));
     }
 
     protected function latestWorkspaceCoverage(): string
