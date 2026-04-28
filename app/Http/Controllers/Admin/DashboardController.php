@@ -23,6 +23,7 @@ class DashboardController extends Controller
             'navigationGroups' => $navigation,
             'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),
             'liveDomainCoverage' => $this->liveDomainCoverage(),
+            'foundationReadinessSignal' => $this->foundationReadinessSignal(),
             'shopCount' => Shop::query()->count(),
             'activeShopCount' => Shop::query()->where('is_active', true)->count(),
             'cardHolderCount' => CardHolder::query()->count(),
@@ -61,6 +62,23 @@ class DashboardController extends Controller
         ])->filter(fn (int $count): bool => $count > 0)->count();
 
         return sprintf('%d/5 core Galaxy domains live', $liveDomainCount);
+    }
+
+    protected function foundationReadinessSignal(): string
+    {
+        $liveDomainCount = collect([
+            Shop::query()->count(),
+            CardHolder::query()->count(),
+            Card::query()->count(),
+            Role::query()->count(),
+            Permission::query()->count(),
+        ])->filter(fn (int $count): bool => $count > 0)->count();
+
+        return match (true) {
+            $liveDomainCount === 5 => 'review-ready foundation',
+            $liveDomainCount > 0 => 'foundation coverage in progress',
+            default => 'starter setup stage',
+        };
     }
 
     protected function latestShopWorkspace(): ?array

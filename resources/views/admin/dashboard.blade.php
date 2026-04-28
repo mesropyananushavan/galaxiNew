@@ -71,6 +71,10 @@
                 <p class="metric-value">{{ $liveDomainCoverage }}</p>
             </article>
             <article class="metric">
+                <p class="metric-label">Foundation readiness</p>
+                <p class="metric-value">{{ $foundationReadinessSignal }}</p>
+            </article>
+            <article class="metric">
                 <p class="metric-label">Live shops</p>
                 <p class="metric-value">{{ $shopCount }}</p>
             </article>
