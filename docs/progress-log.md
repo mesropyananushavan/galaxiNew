@@ -12,8 +12,13 @@
 - Kept the step low-risk and Laravel-backed by enriching only the existing selected card summary without changing any inventory write, replacement, or reassignment flow.
 - Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context)'`, `2 passed`.
 
+### Cards evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `cards` summaries so inventory review now highlights the first live evidence bundle to keep visible during parity review.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected card summary without changing any inventory write, replacement, or reassignment flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context)'`, `2 passed`.
+
 ### Next step after cards inventory-focus checkpoint
-- Reuse this compact focus/posture cue pair on another Laravel-backed selected preview that still reads too much like a static signal list, or add the matching evidence cue if this inventory summary still feels uneven.
+- Reuse this compact focus/posture/evidence cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or add the matching backend-gap cue if this inventory summary still feels uneven.
 
 ### Card-types tier-focus checkpoint
 - Added a compact read-only `Tier focus` cue to selected `card-types` summaries so saved tier review now names the first parity angle directly in the selected record block.

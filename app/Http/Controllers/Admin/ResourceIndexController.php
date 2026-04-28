@@ -2908,6 +2908,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
             ['label' => 'Inventory focus', 'value' => 'Start with card status, holder linkage, and branch ownership before discussing any later replacement or reassignment flow.'],
             ['label' => 'Inventory posture', 'value' => 'Keep inventory review in the live workspace first, then leave replacement, reassignment, and cross-branch moves gated until parity is proven.'],
+            ['label' => 'Evidence priority', 'value' => 'Keep card status, holder linkage, and branch ownership visible together before trusting any later replacement or reassignment discussion.'],
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
             ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCard->shop !== null
