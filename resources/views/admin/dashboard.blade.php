@@ -79,6 +79,10 @@
                 <p class="metric-value">{{ $activeFoundationCoverage }}</p>
             </article>
             <article class="metric">
+                <p class="metric-label">Branch pause coverage</p>
+                <p class="metric-value">{{ $branchPauseCoverage }}</p>
+            </article>
+            <article class="metric">
                 <p class="metric-label">Live shops</p>
                 <p class="metric-value">{{ $shopCount }}</p>
             </article>

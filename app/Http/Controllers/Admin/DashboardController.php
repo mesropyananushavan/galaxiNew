@@ -25,6 +25,7 @@ class DashboardController extends Controller
             'liveDomainCoverage' => $this->liveDomainCoverage(),
             'foundationReadinessSignal' => $this->foundationReadinessSignal(),
             'activeFoundationCoverage' => $this->activeFoundationCoverage(),
+            'branchPauseCoverage' => $this->branchPauseCoverage(),
             'shopCount' => Shop::query()->count(),
             'activeShopCount' => Shop::query()->where('is_active', true)->count(),
             'cardHolderCount' => CardHolder::query()->count(),
@@ -98,6 +99,14 @@ class DashboardController extends Controller
         ];
 
         return implode(', ', $coverageParts);
+    }
+
+    protected function branchPauseCoverage(): string
+    {
+        $shopCount = Shop::query()->count();
+        $pausedShopCount = Shop::query()->where('is_active', false)->count();
+
+        return sprintf('%d/%d branches paused', $pausedShopCount, $shopCount);
     }
 
     protected function latestShopWorkspace(): ?array
