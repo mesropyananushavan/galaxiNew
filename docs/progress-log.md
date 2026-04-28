@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Dashboard migration-map route-path checkpoint
+- Expanded the dashboard `Galaxy migration map` again so each mapped surface now shows its current Laravel route path beside the Galaxy-specific description.
+- Kept the step low-risk and config-backed by deriving the paths from the existing route names already stored in `config/admin-navigation.php`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map route-path checkpoint
+- Reuse this tiny config-backed planning-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard migration-map link checkpoint
 - Turned the dashboard `Galaxy migration map` into a linkable target map so operators can jump directly from the Phase 1 planning surface into the mapped Laravel admin pages.
 - Kept the step low-risk and config-backed by reusing the existing route names from `config/admin-navigation.php` instead of introducing any new navigation logic.

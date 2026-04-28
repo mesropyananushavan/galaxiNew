@@ -179,7 +179,7 @@
                 <li>
                     <strong>{{ $group['group'] }} ({{ count($group['items']) }} surfaces):</strong>
                     @foreach ($group['items'] as $item)
-                        <a href="{{ route($item['route']) }}">{{ $item['label'] }}</a> ({{ $item['description'] }})@if (! $loop->last), @else.@endif
+                        <a href="{{ route($item['route']) }}">{{ $item['label'] }}</a> ({{ $item['description'] }} Route: {{ route($item['route']) }})@if (! $loop->last), @else.@endif
                     @endforeach
                 </li>
             @endforeach
