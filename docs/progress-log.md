@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Cards inventory-focus checkpoint
+- Added a compact read-only `Inventory focus` cue to selected `cards` summaries so saved inventory review now names the first parity angle directly in the selected card block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected card summary without changing any inventory write, replacement, or reassignment flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context)'`, `2 passed`.
+
+### Next step after cards inventory-focus checkpoint
+- Reuse this compact focus cue on another Laravel-backed selected preview that still reads too much like a static signal list, or add the matching posture/evidence cue if this inventory summary still feels uneven.
+
 ### Card-types tier-focus checkpoint
 - Added a compact read-only `Tier focus` cue to selected `card-types` summaries so saved tier review now names the first parity angle directly in the selected record block.
 - Kept the step low-risk and Laravel-backed by enriching only the existing selected tier summary without changing any live form write path or rule-import gating.

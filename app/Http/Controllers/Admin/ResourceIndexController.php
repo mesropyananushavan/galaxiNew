@@ -2906,6 +2906,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
             ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
+            ['label' => 'Inventory focus', 'value' => 'Start with card status, holder linkage, and branch ownership before discussing any later replacement or reassignment flow.'],
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
             ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCard->shop !== null
