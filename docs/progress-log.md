@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Cardholders holder-focus checkpoint
+- Added a compact read-only `Holder focus` cue to selected `cardholders` summaries so saved profile review now names the first parity angle directly in the selected holder block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected holder summary without changing any holder search, reactivation, or profile write flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context)'`, `2 passed`.
+
+### Next step after cardholders holder-focus checkpoint
+- Reuse this compact focus cue on another Laravel-backed selected preview that still reads too much like a static signal list, or add the matching posture/evidence cue if this holder summary still feels uneven.
+
 ### Cards inventory-focus checkpoint
 - Added a compact read-only `Inventory focus` cue to selected `cards` summaries so saved inventory review now names the first parity angle directly in the selected card block.
 - Kept the step low-risk and Laravel-backed by enriching only the existing selected card summary without changing any inventory write, replacement, or reassignment flow.
