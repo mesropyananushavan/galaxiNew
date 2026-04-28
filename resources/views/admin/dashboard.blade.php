@@ -70,11 +70,15 @@
                 so branch setup and review work can move through real operational entities instead of starter placeholders.
             </p>
             @if (is_array($foundationHandoffSummary ?? null))
-                <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
-                    <strong>{{ $foundationHandoffSummary['label'] }}:</strong>
-                    {{ $foundationHandoffSummary['value'] }}
-                </p>
+            <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+                <strong>{{ $foundationHandoffSummary['label'] }}:</strong>
+                {{ $foundationHandoffSummary['value'] }}
+            </p>
             @endif
+        <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
+            <strong>Foundation focus:</strong>
+            {{ $foundationFocus }}.
+        </p>
         <div class="placeholder-grid">
             <article class="metric">
                 <p class="metric-label">Route namespace</p>

@@ -23,6 +23,7 @@ class DashboardController extends Controller
             'navigationGroups' => $navigation,
             'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),
             'liveDomainCoverage' => $this->liveDomainCoverage(),
+            'foundationFocus' => $this->foundationFocus(),
             'foundationReadinessSignal' => $this->foundationReadinessSignal(),
             'activeFoundationCoverage' => $this->activeFoundationCoverage(),
             'branchPauseCoverage' => $this->branchPauseCoverage(),
@@ -172,6 +173,26 @@ class DashboardController extends Controller
             $liveDomainCount < 5 => 'parity staging in progress',
             default => 'grounded parity planning',
         };
+    }
+
+    protected function foundationFocus(): string
+    {
+        $foundationTargets = [
+            ['count' => Shop::query()->count(), 'label' => 'live shops'],
+            ['count' => CardHolder::query()->count(), 'label' => 'live cardholders'],
+            ['count' => Card::query()->count(), 'label' => 'live cards'],
+            ['count' => CardType::query()->count(), 'label' => 'live card types'],
+            ['count' => Role::query()->count(), 'label' => 'live roles'],
+            ['count' => Permission::query()->count(), 'label' => 'live permissions'],
+        ];
+
+        $firstMissingTarget = collect($foundationTargets)->first(fn (array $target): bool => $target['count'] === 0);
+
+        if (is_array($firstMissingTarget) && isset($firstMissingTarget['label'])) {
+            return sprintf('stabilize %s next', $firstMissingTarget['label']);
+        }
+
+        return 'all first-pass foundation surfaces are visible';
     }
 
     protected function liveDomainCoverage(): string
