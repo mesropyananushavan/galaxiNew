@@ -2241,6 +2241,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep card status, holder linkage, and branch ownership visible together before trusting any later replacement or reassignment discussion.')
             ->assertSee('Inventory handoff signal')
             ->assertSee('Blocked holder-linked inventory already carries enough dispute context for a useful handoff review.')
+            ->assertSee('Backend gap')
+            ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows should stay preview-only until inventory parity is verified.')
             ->assertSee('Shop')
             ->assertSee('Shop guidance')
             ->assertSee('Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.')
@@ -2335,6 +2337,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep card status, holder linkage, and branch ownership visible together before trusting any later replacement or reassignment discussion.')
             ->assertSee('Inventory handoff signal')
             ->assertSee('Active issued inventory already carries enough linkage context for a useful handoff review.')
+            ->assertSee('Backend gap')
+            ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows should stay preview-only until inventory parity is verified.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.');
     }

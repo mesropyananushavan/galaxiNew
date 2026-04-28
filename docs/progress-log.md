@@ -17,7 +17,13 @@
 - Kept the step low-risk and Laravel-backed by enriching only the existing selected card summary without changing any inventory write, replacement, or reassignment flow.
 - Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context)'`, `2 passed`.
 
+### Cards backend-gap checkpoint
+- Added a compact read-only `Backend gap` cue to selected `cards` summaries so the still-blocked inventory slice now appears directly in the selected card block instead of only in later dependency notes.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected card summary without changing any inventory write, replacement, or reassignment flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context)'`, `2 passed`.
+
 ### Next step after cards inventory-focus checkpoint
+- Reuse this compact focus/posture/evidence/backend-gap cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
 - Reuse this compact focus/posture/evidence cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or add the matching backend-gap cue if this inventory summary still feels uneven.
 
 ### Card-types tier-focus checkpoint
