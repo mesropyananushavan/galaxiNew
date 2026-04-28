@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Gifts evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `gifts` previews so each reward review now names which evidence bundle should stay visible first during parity review.
+- Kept the step low-risk and read-only by enriching the existing all-shop, scoped, paused zero-stock, and paused finite-stock reward previews without opening any publish or redemption workflow.
+- Re-ran `php artisan test --filter='(test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context)'`, `4 passed`.
+
+### Next step after gifts evidence-priority checkpoint
+- Reuse this evidence-priority cue on another selected resource preview that still lacks a clear first review bundle, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Gifts gift-handoff checkpoint
 - Added a compact read-only `Gift handoff signal` to selected `gifts` previews so reward review context now surfaces the handoff cue directly in the summary block instead of relying only on later timeline notes.
 - Kept the step low-risk and read-only by enriching the existing all-shop, scoped, paused zero-stock, and paused finite-stock reward previews without opening any publish or redemption workflow.
