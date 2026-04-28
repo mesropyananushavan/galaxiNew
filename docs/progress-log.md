@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Checks-points receipt-focus checkpoint
+- Added a compact read-only `Receipt focus` cue to the selected `checks-points` receipt previews so each receipt review now names the first parity angle to inspect instead of relying on status and posture lines alone.
+- Kept the step low-risk and read-only by enriching the existing preview summaries for positive-accrual, zero-accrual, and branch-specific receipt review contexts.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points receipt-focus checkpoint
+- Reuse this compact focus cue on another selected resource preview that still reads like a static starter placeholder, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Dashboard foundation-posture checkpoint
 - Added a compact read-only `Foundation posture` line to the live foundation snapshot so the dashboard now distinguishes setup-first, partial, and fully visible foundation baseline states.
 - Kept the step low-risk and read-only by deriving the posture from the current visibility of the core Phase 1 foundation surfaces.
