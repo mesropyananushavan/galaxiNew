@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Services rules draft backend-gap refinement checkpoint
+- Tightened the selected `services-rules` draft exclusion backend gap so the visible blocker now names bar-service-exclusion parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-rule copy and updating the focused draft-exclusion backend-gap assertions without changing any rule persistence, condition editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after services rules draft backend-gap refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Gifts zero-stock status-signal refinement checkpoint
 - Tightened the selected `gifts` paused zero-stock reward status signal so the visible blocker now names zero-stock-recovery parity review as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused zero-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
