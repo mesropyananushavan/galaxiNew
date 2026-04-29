@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Draft card-type coverage status-signal checkpoint
+- Tightened the selected `card-types` draft no-coverage status signal so seed tiers now name visible-card-coverage parity review directly instead of broader parity-review-before-coverage wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and extending the focused draft no-coverage card-type assertion without changing any tier writes, activation flow, import behavior, or publish behavior.
+- Re-ran `php artisan test --filter='test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `1 passed`.
+
+### Next step after draft card-type coverage status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Paused branch gift status-signal checkpoint
 - Tightened the selected `gifts` paused finite-stock status signal so `weekend-brunch-pass` now names paused branch reopening parity review directly instead of broader parity-review-before-reopening wording.
 - Kept the step low-risk and preview-only by refining only visible selected-reward copy and extending the focused paused finite-stock gift assertion without changing any gift CRUD, stock recovery flow, or redemption behavior.
