@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Cards assignment posture refinement checkpoint
+- Tightened the selected `cards` unassigned-holder assignment posture so blocked inventory without a linked holder now names assignment-flow parity directly instead of broader parity-review-before-assignment wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and extending the focused blocked-unassigned card assertion without changing any card writes, assignment flow, reassignment flow, or dispute handling behavior.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `1 passed`.
+
+### Next step after cards assignment posture refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Shops ownership guidance refinement checkpoint
 - Tightened the selected `shops` unassigned-manager guidance so ownership gaps now name ownership-assignment parity directly instead of broader assignment-rules wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused no-manager shop assertion without changing any branch writes, reassignment flow, or scope mutation behavior.
