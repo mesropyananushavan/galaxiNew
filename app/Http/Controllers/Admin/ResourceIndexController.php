@@ -556,7 +556,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected gift preview', 'value' => 'Premium dessert set'],
                     ['label' => 'Points cost', 'value' => '450'],
-                    ['label' => 'Gift status signal', 'value' => 'Paused zero-stock reward remains safer for zero-stock recovery parity review before reopening discussion.'],
+                    ['label' => 'Gift status signal', 'value' => 'Paused zero-stock reward remains safer for zero-stock-recovery parity review before reopening discussion.'],
                     ['label' => 'Gift focus', 'value' => 'Start with zero-stock state and reopening risk before discussing any later publish decision.'],
                     ['label' => 'Gift handoff signal', 'value' => 'Carry zero-stock and reopening context forward before any later publish decision expands.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep zero-stock state, shop scope, and points cost visible together before reopening discussion expands.'],
@@ -573,7 +573,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Premium dessert set'],
-                    ['label' => 'Gift status signal', 'value' => 'Paused zero-stock reward remains safer for zero-stock recovery parity review before reopening discussion.'],
+                    ['label' => 'Gift status signal', 'value' => 'Paused zero-stock reward remains safer for zero-stock-recovery parity review before reopening discussion.'],
                     ['label' => 'Scope posture', 'value' => 'Paused shop-scoped reward behavior should stay preview-only until Laravel scope and reopening checks are verified.'],
                     ['label' => 'Stock posture', 'value' => 'Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in Laravel.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('premium-dessert-set')],

@@ -6657,7 +6657,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected gift preview')
             ->assertSee('Premium dessert set')
             ->assertSee('Gift status signal')
-            ->assertSee('Paused zero-stock reward remains safer for zero-stock recovery parity review before reopening discussion.')
+            ->assertSee('Paused zero-stock reward remains safer for zero-stock-recovery parity review before reopening discussion.')
             ->assertSee('Gift focus')
             ->assertSee('Start with zero-stock state and reopening risk before discussing any later publish decision.')
             ->assertSee('Gift handoff signal')
