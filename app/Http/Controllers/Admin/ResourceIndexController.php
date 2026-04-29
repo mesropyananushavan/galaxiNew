@@ -1519,7 +1519,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope posture', 'value' => 'Status-first review should stay ahead of deeper segmentation until lifecycle parity and operator lookup habits are matched.'],
                     ['label' => 'Lifecycle posture', 'value' => 'Status aggregation should stay read-only until holder lifecycle and activity parity are verified.'],
                     ['label' => 'Handoff signal', 'value' => 'Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Preset handling, report shaping, and export generation still remain preview-only for this source.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->reportsCardholderStatusBackendGap($cardHolderCount, $linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                 ],
             ],
             [

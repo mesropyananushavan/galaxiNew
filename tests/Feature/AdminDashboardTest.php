@@ -4986,6 +4986,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('ready for holder-status triage review')
             ->assertSee('Lifecycle posture:')
             ->assertSee('Status aggregation should stay read-only until holder lifecycle and activity parity are verified.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Preset handling, inactive-holder shaping, and export generation should stay preview-only until linked-profile lifecycle parity is verified.')
             ->assertSee('Handoff signal:')
             ->assertSee('Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.');
     }
