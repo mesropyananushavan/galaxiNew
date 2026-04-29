@@ -5434,7 +5434,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected rule preview')
             ->assertSee('Night service block')
             ->assertSee('Rule status signal')
-            ->assertSee('Draft exclusion rule remains safer for bar-service-exclusion parity review before any live-publish discussion.')
+            ->assertSee('Draft exclusion rule remains safer for bar-service-exclusion parity review before any live-publish-flow discussion.')
             ->assertSee('Rule focus')
             ->assertSee('Start with the blocking condition and local scope before discussing any later publish decision.')
             ->assertSee('Rule handoff signal')
