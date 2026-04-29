@@ -1564,6 +1564,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until this draft role has a verified permission bundle and shop scope parity.')
             ->assertSee('Role status signal')
             ->assertSee('Draft role remains safer for parity review before live access rollout discussion.')
+            ->assertSee('Access focus')
+            ->assertSee('Start with draft status, visible scope gaps, and permission bundle gaps before discussing any later matrix editing flow.')
             ->assertSee('Handoff signal')
             ->assertSee('Draft role should stay in handoff-only posture until review note, bundle, and scope parity are explicit.')
             ->assertSee('Review freshness')

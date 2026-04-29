@@ -2476,7 +2476,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Assignment note', 'value' => $selectedRole->assignment_note ?: 'No assignment note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
             ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
-            ['label' => 'Access focus', 'value' => 'Start with visible scope, assigned staff, and permission bundle overlap before discussing any later matrix editing flow.'],
+            ['label' => 'Access focus', 'value' => $this->rolesPermissionsAccessFocus($selectedRole)],
             ['label' => 'Access posture', 'value' => 'Keep access review in the live workspace first, then leave matrix edits and scope writes gated until parity is proven.'],
             ['label' => 'Evidence priority', 'value' => 'Keep shop scope, assigned staff, and visible permission bundle entries together before trusting any later matrix view.'],
             ['label' => 'Handoff signal', 'value' => $this->rolesPermissionsHandoffSignal($selectedRole, $scope)],
@@ -2524,6 +2524,13 @@ class ResourceIndexController extends Controller
             $selectedRole->users_count > 0 => 'assignment linked, permission bundle still pending review',
             default => 'active role shell, permission bundle still pending review',
         };
+    }
+
+    private function rolesPermissionsAccessFocus(Role $selectedRole): string
+    {
+        return $selectedRole->is_active
+            ? 'Start with visible scope, assigned staff, and permission bundle overlap before discussing any later matrix editing flow.'
+            : 'Start with draft status, visible scope gaps, and permission bundle gaps before discussing any later matrix editing flow.';
     }
 
     private function rolesPermissionsPublishPostureValue(Role $selectedRole): string
