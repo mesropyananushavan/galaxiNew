@@ -7047,7 +7047,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Editing: Galaxy Prime')
             ->assertSee('Import rules')
             ->assertSee('aria-disabled="true"', false)
-            ->assertSee('Blocked until draft rule parity is verified against visible card coverage.')
+            ->assertSee('Blocked until draft tier accrual parity is verified against visible card coverage.')
             ->assertSee('Publish type')
             ->assertSee('Blocked until this draft tier clears rule and rollout parity review against visible card coverage.')
             ->assertSee('Selected record summary')

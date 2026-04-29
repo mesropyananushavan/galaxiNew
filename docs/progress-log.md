@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Card-types import blocker refinement checkpoint
+- Tightened the selected `card-types` import blocker copy so draft tiers with visible card coverage now name draft tier accrual parity directly instead of broader draft rule parity wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and extending the focused selected card-type assertion without changing any tier writes, activation flow, rule import behavior, or publish behavior.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
+### Next step after card-types import blocker refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Scoped kiosk gift status-signal refinement checkpoint
 - Tightened the selected `gifts` scoped status signal so `airport-transfer` now names kiosk reward parity review directly instead of broader branch-aware catalog parity review wording.
 - Kept the step low-risk and preview-only by refining only visible selected reward copy and extending the focused scoped gift assertion without changing any gift CRUD, stock updates, or redemption behavior.
