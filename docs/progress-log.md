@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Paused branch shop status-signal checkpoint
+- Tightened the selected `shops` paused status signal so inactive branches now name reopening parity review directly instead of broader parity-review-before-reopening wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused paused-branch assertions without changing any branch writes, reassignment flow, or reopening behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after paused branch shop status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Live card-type rollout status-signal checkpoint
 - Tightened the selected `card-types` live no-coverage status signal so active tiers now name rollout parity review directly instead of broader parity-review-before-rollout wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and extending the focused live no-coverage card-type assertion without changing any tier writes, activation flow, import behavior, or publish behavior.
