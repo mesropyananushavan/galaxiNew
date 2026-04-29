@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Cardholders inactive status wording checkpoint
+- Tightened the selected `cardholders` inactive-holder status signal so the visible blocker now treats `reactivation-flow discussion` as a single Galaxy-specific discussion boundary instead of broader revival wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused inactive-holder assertions without changing any profile writes, merge behavior, reactivation flow, or activity sourcing.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`, `1 passed`.
+
+### Next step after cardholders inactive status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Gifts paused-branch backend wording checkpoint
 - Tightened the selected `gifts` paused finite-stock reward backend-gap copy so the visible blocker now names paused-branch-reopening parity as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only selected-gift backend-gap copy and updating the focused paused finite-stock assertions without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
