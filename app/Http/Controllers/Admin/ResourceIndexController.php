@@ -341,6 +341,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope posture', 'value' => 'All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.'],
                     ['label' => 'Condition posture', 'value' => 'Birthday window logic should stay parity-first, because date-sensitive loyalty rules are easy to drift during migration.'],
                     ['label' => 'Priority posture', 'value' => 'Keep this rule near the top of the preview stack until Laravel priority resolution is verified against the old Galaxy order.'],
+                    ['label' => 'Backend gap', 'value' => $this->servicesRulesBackendGap('birthday-bonus')],
                     ['label' => 'Format guidance', 'value' => 'Keep this rule in table-first review mode, because operators usually compare scope, effect, and priority together before discussing publication.' ],
                     ['label' => 'Effect guidance', 'value' => 'Treat the uplift as review-only until accrual calculations and birthday eligibility are backed by Laravel writes.'],
                 ],
@@ -354,7 +355,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Rule status signal', 'value' => 'Active loyalty uplift is already visible for live parity review.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.'],
                     ['label' => 'Priority posture', 'value' => 'Priority resolution remains preview-only until overlapping rule order is validated in Laravel.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Rule persistence, condition editing, and publish flow still remain blocked for this rule preview.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->servicesRulesBackendGap('birthday-bonus')],
                 ],
             ],
             [
@@ -374,6 +375,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope posture', 'value' => 'Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.'],
                     ['label' => 'Condition posture', 'value' => 'Partner-card checks should stay tied to visible card-type parity before any Laravel rule editor opens them up.'],
                     ['label' => 'Priority posture', 'value' => 'This scoped uplift should remain below birthday-wide behavior until legacy overlap order is rechecked.'],
+                    ['label' => 'Backend gap', 'value' => $this->servicesRulesBackendGap('partner-card-uplift')],
                     ['label' => 'Format guidance', 'value' => 'Keep scoped uplift rules in compact on-screen review first, because operators need scope, condition, and priority visible together before escalating.' ],
                     ['label' => 'Effect guidance', 'value' => 'Treat the partner uplift as review-only until scoped accrual behavior is backed by Laravel rule writes.'],
                 ],
@@ -387,7 +389,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Rule status signal', 'value' => 'Active scoped uplift is already visible for branch-aware parity review.'],
                     ['label' => 'Scope posture', 'value' => 'Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.'],
                     ['label' => 'Priority posture', 'value' => 'Overlap with broader loyalty rules still needs parity verification before any publish path is safe.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Rule persistence, scoped validation, and publish flow still remain blocked for this rule preview.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->servicesRulesBackendGap('partner-card-uplift')],
                 ],
             ],
             [
@@ -407,6 +409,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope posture', 'value' => 'North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.' ],
                     ['label' => 'Condition posture', 'value' => 'Bar-service exclusions should remain draft-only until legacy exception behavior is rechecked in Laravel.'],
                     ['label' => 'Priority posture', 'value' => 'Keep this blocking rule below confirmed accrual logic until exclusion order is verified.'],
+                    ['label' => 'Backend gap', 'value' => $this->servicesRulesBackendGap('night-service-block')],
                     ['label' => 'Format guidance', 'value' => 'Keep draft exclusion rules in compact on-screen review first, because operators need scope, condition, and effect visible together before discussing publication.' ],
                     ['label' => 'Effect guidance', 'value' => 'Treat the no-accrual effect as a review-only exception until Laravel can safely reproduce the old block semantics.'],
                 ],
@@ -420,7 +423,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Rule status signal', 'value' => 'Draft exclusion rule remains safer for parity review before any live publish discussion.'],
                     ['label' => 'Scope posture', 'value' => 'North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.'],
                     ['label' => 'Priority posture', 'value' => 'Blocking-rule order is still preview-only until exclusion precedence is validated in Laravel.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Rule persistence, exclusion validation, and publish flow still remain blocked for this draft rule preview.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->servicesRulesBackendGap('night-service-block')],
                 ],
             ],
         ];
@@ -2549,6 +2552,16 @@ class ResourceIndexController extends Controller
             'premium-dessert-set' => 'Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused reward parity is verified.',
             'weekend-brunch-pass' => 'Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until branch reward parity is verified.',
             default => 'Gift CRUD, stock updates, and redemption persistence should stay preview-only until reward parity is verified.',
+        };
+    }
+
+    private function servicesRulesBackendGap(string $ruleKey): string
+    {
+        return match ($ruleKey) {
+            'birthday-bonus' => 'Rule persistence, birthday-window editing, and publish flow should stay preview-only until all-shop loyalty parity is verified.',
+            'partner-card-uplift' => 'Rule persistence, scoped condition editing, and publish flow should stay preview-only until branch uplift parity is verified.',
+            'night-service-block' => 'Rule persistence, exclusion validation, and publish flow should stay preview-only until draft exception parity is verified.',
+            default => 'Rule persistence, condition editing, and publish flow should stay preview-only until rule parity is verified.',
         };
     }
 

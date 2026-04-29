@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Services-rules backend-gap alignment checkpoint
+- Added a small state-aware `services-rules` backend-gap helper and reused it across selected rule summary and dependency blocks, so all-shop, scoped, and draft rule previews now call out parity-specific rule blockers instead of repeating one generic rule gap line.
+- Kept the step low-risk and preview-only by refining only selected rule review copy and extending the focused draft rule assertion without changing any rule persistence, scope validation, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after services-rules backend-gap alignment checkpoint
+- Reuse this state-aware backend-gap pattern on another preview-only Galaxy page that still repeats one generic blocker across multiple selected scenarios, or return to the next persisted metadata slice on an already-live form.
+
 ### Gifts backend-gap alignment checkpoint
 - Added a small state-aware `gifts` backend-gap helper and reused it across selected reward summary and dependency blocks, so paused and active reward previews now call out scope-aware stock and redemption blockers instead of repeating one generic gift gap line.
 - Kept the step low-risk and preview-only by refining only selected reward review copy and extending the focused paused reward assertion without changing any gift CRUD, stock update, or redemption behavior.
