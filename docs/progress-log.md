@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Gifts paused-branch status-signal refinement checkpoint
+- Tightened the selected `gifts` paused finite-stock reward status signal so the visible blocker now names paused-branch-reopening parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused finite-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after gifts paused-branch status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Gifts all-shop backend-gap refinement checkpoint
 - Tightened the selected `gifts` all-shop reward backend gap so the visible blocker now names all-shop-reward parity as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused all-shop reward assertions without changing any gift CRUD behavior, stock handling, scope logic, or redemption flow.
