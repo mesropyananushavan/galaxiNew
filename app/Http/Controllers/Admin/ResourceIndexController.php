@@ -3061,7 +3061,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Holder focus', 'value' => $this->cardholdersHolderFocus($selectedCardHolder)],
             ['label' => 'Holder posture', 'value' => $this->cardholdersHolderPosture($selectedCardHolder)],
-            ['label' => 'Evidence priority', 'value' => 'Keep holder status, branch linkage, and linked-card visibility together before trusting any later reactivation or merge discussion.'],
+            ['label' => 'Evidence priority', 'value' => $this->cardholdersEvidencePriority($selectedCardHolder)],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
             ['label' => 'Backend gap', 'value' => 'Holder search, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.'],
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
@@ -3100,6 +3100,13 @@ class ResourceIndexController extends Controller
         return $selectedCardHolder->is_active
             ? 'Keep live holder review in the workspace first, then leave profile-write, merge, and lifecycle-change flows gated until parity is proven.'
             : 'Keep inactive holder review in the workspace first, then leave reactivation, merge, and profile-write flows gated until parity is proven.';
+    }
+
+    private function cardholdersEvidencePriority(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->is_active
+            ? 'Keep active status, branch linkage, and linked-card visibility together before trusting any later profile merge or lifecycle-change discussion.'
+            : 'Keep inactive status, branch linkage, and linked-card visibility together before trusting any later reactivation or merge discussion.';
     }
 
     private function cardholdersLifecycleFreshnessLabel(CardHolder $selectedCardHolder): string
