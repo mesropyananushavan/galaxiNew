@@ -7264,7 +7264,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Editing: Galaxy Seed Tier')
             ->assertSee('Tier status signal:')
-            ->assertSee('Draft tier remains safer for visible-card-coverage parity review before any rollout discussion lands.')
+            ->assertSee('Draft tier remains safer for visible-card-coverage parity-review before any rollout discussion lands.')
             ->assertSee('Handoff signal:')
             ->assertSee('Draft tier should stay in handoff-only posture until visible card coverage grounds rollout review.')
             ->assertSee('Backend gap:')
