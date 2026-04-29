@@ -1,5 +1,15 @@
 # Progress Log
 
+## 2026-04-29
+
+### Shops state-aware summary parity checkpoint
+- Made selected `shops` `Branch posture`, `Evidence priority`, and `Backend gap` context-aware so paused, manager-only, coverage-only, and fully covered branches now surface different review guidance instead of reusing one generic branch summary block.
+- Kept the step low-risk and Laravel-backed by refining only the selected shop summary copy and extending focused selected-branch assertions without changing any branch write, reassignment, recovery, or scope-mutation flow.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context)'`, `4 passed`.
+
+### Next step after shops state-aware summary parity checkpoint
+- Continue the same state-aware selected-summary pass on another Laravel-backed workspace that still reuses one generic posture/evidence/backend-gap block, or switch to the next tiny persisted metadata slice on an already-live Galaxy form.
+
 ## 2026-04-23
 
 ### Roles permissions access-focus state checkpoint

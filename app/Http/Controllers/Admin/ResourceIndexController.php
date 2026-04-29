@@ -3214,10 +3214,10 @@ class ResourceIndexController extends Controller
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Branch focus', 'value' => $this->shopsBranchFocus($selectedShop)],
-            ['label' => 'Branch posture', 'value' => 'Keep branch review in the live workspace first, then leave reassignment, reopen, and scope-mutation flows gated until parity is proven.'],
-            ['label' => 'Evidence priority', 'value' => 'Keep manager ownership, holder coverage, and card coverage together before trusting any later reassignment or branch-scope mutation discussion.'],
+            ['label' => 'Branch posture', 'value' => $this->shopsBranchPosture($selectedShop)],
+            ['label' => 'Evidence priority', 'value' => $this->shopsEvidencePriority($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
-            ['label' => 'Backend gap', 'value' => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay preview-only until branch parity is verified.'],
+            ['label' => 'Backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
             ['label' => 'Manager guidance', 'value' => $selectedShop->users_count > 0
                 ? 'Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.'
@@ -3249,6 +3249,36 @@ class ResourceIndexController extends Controller
         return $selectedShop->is_active
             ? 'Start with manager ownership, holder coverage, and card coverage before discussing any later reassignment or scope-mutation flow.'
             : 'Start with paused status, ownership gaps, and branch coverage before discussing any later reopening or reassignment flow.';
+    }
+
+    private function shopsBranchPosture(Shop $selectedShop): string
+    {
+        return match (true) {
+            ! $selectedShop->is_active => 'Keep paused-branch review in the live workspace first, then leave reopening, reassignment, and scope-mutation flows gated until recovery parity is proven.',
+            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Keep branch review in the live workspace first, then leave reassignment and scope-mutation flows gated until full branch parity is proven.',
+            $selectedShop->users_count > 0 => 'Keep manager-owned branch review in the live workspace first, then leave coverage build-out, reassignment, and scope-mutation flows gated until parity is proven.',
+            default => 'Keep branch coverage review in the live workspace first, then leave ownership assignment, reassignment, and scope-mutation flows gated until parity is proven.',
+        };
+    }
+
+    private function shopsEvidencePriority(Shop $selectedShop): string
+    {
+        return match (true) {
+            ! $selectedShop->is_active => 'Keep paused status, ownership gaps, and any visible holder or card coverage together before trusting any reopening or reassignment discussion.',
+            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Keep manager ownership, holder coverage, and card coverage together before trusting any later reassignment or branch-scope mutation discussion.',
+            $selectedShop->users_count > 0 => 'Keep manager ownership, branch readiness gaps, and missing holder or card coverage together before trusting any rollout discussion.',
+            default => 'Keep holder coverage, card coverage, and ownership gaps together before trusting any later branch-scope mutation discussion.',
+        };
+    }
+
+    private function shopsBackendGap(Shop $selectedShop): string
+    {
+        return match (true) {
+            ! $selectedShop->is_active => 'Branch recovery writes, manager reassignment, and shop-scope mutation flows should stay preview-only until paused-branch parity is verified.',
+            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay preview-only until branch parity is verified.',
+            $selectedShop->users_count > 0 => 'Coverage backfill writes, manager reassignment, and shop-scope mutation flows should stay preview-only until manager-led branch parity is verified.',
+            default => 'Ownership assignment, branch writes, and shop-scope mutation flows should stay preview-only until branch coverage parity is verified.',
+        };
     }
 
     private function shopsLifecycleFreshnessLabel(Shop $selectedShop): string
