@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Cards dependency-gap alignment checkpoint
+- Aligned selected `cards` dependency status with the same state-aware `Backend gap` helper already used in the card summary, so blocked inventory review now repeats dispute-sensitive lifecycle blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected card dependency copy and extending the focused selected-card assertion without changing any lifecycle write, dispute, or replacement behavior.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `1 passed`.
+
+### Next step after cards dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
 ### Roles-permissions dependency-gap alignment checkpoint
 - Aligned selected `roles-permissions` dependency status with the same state-aware `Backend gap` helper already used in the role summary, so the live access review now repeats assignment-sensitive authorization blockers consistently across both visible review blocks.
 - Kept the step low-risk and Laravel-backed by refining only the selected role dependency copy and extending the focused selected-role assertion without changing any matrix editing, assignment, or scope write behavior.

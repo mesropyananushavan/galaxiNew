@@ -3127,7 +3127,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Shop posture', 'value' => $selectedCard->shop !== null
                 ? 'Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.'
                 : 'No shop is assigned yet, so branch-level inventory handling should stay in review mode only.'],
-            ['label' => 'Remaining backend gap', 'value' => 'Card lifecycle writes, blocked-card handling, and replacement flows still remain preview-only for this workspace'],
+            ['label' => 'Remaining backend gap', 'value' => $this->cardsBackendGap($selectedCard)],
         ];
     }
 

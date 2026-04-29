@@ -2284,7 +2284,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop posture:')
             ->assertSee('Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows still remain preview-only for this workspace');
+            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.');
     }
 
     public function test_cards_page_supports_selected_active_card_review_context(): void
