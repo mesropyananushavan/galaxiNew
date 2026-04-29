@@ -5442,7 +5442,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Priority posture')
             ->assertSee('Keep this blocking rule below confirmed accrual logic until exclusion order is verified.')
             ->assertSee('Backend gap')
-            ->assertSee('Rule persistence, exclusion validation, and publish flow should stay preview-only until draft exception parity is verified.')
+            ->assertSee('Rule persistence, exclusion validation, and publish flow should stay preview-only until bar-service exclusion parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep draft exclusion rules in compact on-screen review first, because operators need scope, condition, and effect visible together before discussing publication.')
             ->assertSee('Night service block selected for exception review')
@@ -5450,7 +5450,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft exclusion handoff keeps parity evidence visible')
             ->assertSee('Scope, blocking condition, and no-accrual effect should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Rule persistence, exclusion validation, and publish flow should stay preview-only until draft exception parity is verified.')
+            ->assertSee('Rule persistence, exclusion validation, and publish flow should stay preview-only until bar-service exclusion parity is verified.')
             ->assertSee('North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.');
     }
 

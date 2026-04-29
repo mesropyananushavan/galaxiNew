@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Draft exclusion rule backend-gap refinement checkpoint
+- Tightened the selected `services-rules` draft exclusion backend-gap copy so `night-service-block` now names bar-service exclusion parity directly instead of broader draft exception parity wording.
+- Kept the step low-risk and preview-only by refining only the selected rule copy and extending the focused draft exclusion rule assertion without changing any rule persistence, exclusion validation, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after draft exclusion rule backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Paused zero-stock gift backend-gap refinement checkpoint
 - Tightened the selected `gifts` paused zero-stock backend-gap copy so `premium-dessert-set` now names paused zero-stock recovery parity directly instead of broader paused reward parity wording.
 - Kept the step low-risk and preview-only by refining only the selected reward copy and extending the focused paused zero-stock gift assertion without changing any gift CRUD, stock update, or redemption behavior.
