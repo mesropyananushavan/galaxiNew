@@ -7234,7 +7234,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Editing: Galaxy Amber')
             ->assertSee('Tier status signal:')
-            ->assertSee('Active tier is already visible, but card coverage still needs rollout parity review before any rollout discussion.')
+            ->assertSee('Active tier is already visible, but card coverage still needs rollout-parity review before any rollout discussion.')
             ->assertSee('Activation freshness:')
             ->assertSee('Live tier still needs a saved activation note before rollout handoff can feel grounded.')
             ->assertSee('Handoff signal:')

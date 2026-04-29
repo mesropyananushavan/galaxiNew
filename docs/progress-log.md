@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Card types live status-signal refinement checkpoint
+- Tightened the selected `card-types` active-tier status signal so the visible blocker now names rollout-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and updating the focused live-tier assertion without changing any publish logic, rollout behavior, import behavior, or rule wiring.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal'`, `1 passed`.
+
+### Next step after card types live status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Roles live status-signal refinement checkpoint
 - Tightened the selected `roles-permissions` active-role status signal so the visible blocker now names live-access parity as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and updating the focused active-role assertion without changing any matrix writes, scope writes, assignment wiring, or publish behavior.
