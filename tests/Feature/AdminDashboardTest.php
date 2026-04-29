@@ -5486,7 +5486,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Priority posture')
             ->assertSee('This scoped uplift should remain below birthday-wide behavior until legacy overlap order is rechecked.')
             ->assertSee('Backend gap')
-            ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay preview-only until scoped uplift parity is verified.')
+            ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay preview-only until partner-card uplift parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep scoped uplift rules in compact on-screen review first, because operators need scope, condition, and priority visible together before escalating.')
             ->assertSee('Effect guidance')
@@ -5496,7 +5496,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scoped uplift handoff keeps branch evidence visible')
             ->assertSee('Scope, condition, and priority should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay preview-only until scoped uplift parity is verified.')
+            ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay preview-only until partner-card uplift parity is verified.')
             ->assertSee('Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.')
             ->assertSee('Overlap with broader loyalty rules still needs parity verification before any publish path is safe.');
     }
