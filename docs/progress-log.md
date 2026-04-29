@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Shops dependency-gap alignment checkpoint
+- Aligned selected `shops` dependency status with the same state-aware `Backend gap` helper already used in the branch summary, so live branch review now repeats manager-and-scope mutation blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected branch dependency copy and extending the focused selected-shop assertion without changing any branch write, reassignment, or scope-mutation behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
 ### Cardholders dependency-gap alignment checkpoint
 - Aligned selected `cardholders` dependency status with the same state-aware `Backend gap` helper already used in the holder summary, so inactive profile review now repeats reactivation-sensitive lifecycle blockers consistently across both visible review blocks.
 - Kept the step low-risk and Laravel-backed by refining only the selected holder dependency copy and extending the focused selected-holder assertion without changing any search, profile write, or recent-activity behavior.

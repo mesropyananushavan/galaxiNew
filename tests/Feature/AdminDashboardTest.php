@@ -3079,7 +3079,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Coverage posture:')
             ->assertSee('This branch currently exposes 1 cardholders and 1 cards for read-only Laravel review.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows still remain preview-only for this workspace');
+            ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows should stay preview-only until branch parity is verified.');
     }
 
     public function test_shops_page_supports_selected_branch_coverage_without_manager_review_context(): void

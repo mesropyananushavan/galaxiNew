@@ -3450,7 +3450,7 @@ class ResourceIndexController extends Controller
                 ? 'Assigned managers are visible in Laravel, but reassignment should stay blocked until branch ownership parity is confirmed.'
                 : 'No manager is assigned yet, which keeps this branch safer for parity review before ownership flows are enabled.'],
             ['label' => 'Coverage posture', 'value' => sprintf('This branch currently exposes %d cardholders and %d cards for read-only Laravel review.', $selectedShop->card_holders_count, $selectedShop->cards_count)],
-            ['label' => 'Remaining backend gap', 'value' => 'Branch writes, manager reassignment, and shop-scope mutation flows still remain preview-only for this workspace'],
+            ['label' => 'Remaining backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
         ];
     }
 
