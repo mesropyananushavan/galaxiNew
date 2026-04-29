@@ -3063,7 +3063,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Holder posture', 'value' => $this->cardholdersHolderPosture($selectedCardHolder)],
             ['label' => 'Evidence priority', 'value' => $this->cardholdersEvidencePriority($selectedCardHolder)],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
-            ['label' => 'Backend gap', 'value' => 'Holder search, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.'],
+            ['label' => 'Backend gap', 'value' => $this->cardholdersBackendGap($selectedCardHolder)],
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCardHolder->shop !== null
                 ? 'Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.'
@@ -3107,6 +3107,13 @@ class ResourceIndexController extends Controller
         return $selectedCardHolder->is_active
             ? 'Keep active status, branch linkage, and linked-card visibility together before trusting any later profile merge or lifecycle-change discussion.'
             : 'Keep inactive status, branch linkage, and linked-card visibility together before trusting any later reactivation or merge discussion.';
+    }
+
+    private function cardholdersBackendGap(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->is_active
+            ? 'Profile writes, merge handling, and recent-activity sourcing should stay preview-only until holder parity is verified.'
+            : 'Reactivation handling, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.';
     }
 
     private function cardholdersLifecycleFreshnessLabel(CardHolder $selectedCardHolder): string
