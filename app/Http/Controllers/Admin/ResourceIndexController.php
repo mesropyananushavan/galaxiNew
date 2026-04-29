@@ -173,7 +173,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Receipt status signal', 'value' => 'Positive accrual receipt is already visible for live ledger parity review.'],
                     ['label' => 'Receipt posture', 'value' => 'Fiscal receipt review should remain read-only until Laravel transaction history is verified against the legacy ledger.'],
                     ['label' => 'Accrual posture', 'value' => 'Positive point outcomes still need live transaction-domain parity before any adjustment path is safe.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Transaction tables, receipt reads, and adjustment handlers still remain blocked for this receipt preview.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->checksPointsBackendGap('chk-90421')],
                 ],
             ],
             [
@@ -208,7 +208,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Receipt status signal', 'value' => 'Zero-accrual receipt remains highly visible for parity troubleshooting review.'],
                     ['label' => 'Receipt posture', 'value' => 'Receipt lookup should stay read-only until Laravel transaction history is verified against legacy fiscal search behavior.'],
                     ['label' => 'Accrual posture', 'value' => 'Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Transaction tables, receipt reads, and adjustment handlers still remain blocked for this receipt preview.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->checksPointsBackendGap('chk-90407')],
                 ],
             ],
             [
@@ -243,7 +243,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Receipt status signal', 'value' => 'Branch receipt is already visible for shop-aware ledger parity review.'],
                     ['label' => 'Receipt posture', 'value' => 'Branch receipt lookup should stay read-only until Laravel shop filters and transaction history are verified against the old flow.'],
                     ['label' => 'Accrual posture', 'value' => 'Positive branch accrual outcomes still need live transaction-domain parity before any adjustment path is safe.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Transaction tables, receipt reads, and adjustment handlers still remain blocked for this receipt preview.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->checksPointsBackendGap('chk-90388')],
                 ],
             ],
         ];

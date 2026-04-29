@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Checks-points dependency-gap alignment checkpoint
+- Aligned selected `checks-points` dependency status with the same state-aware `Backend gap` helper already used in the receipt summaries, so all three live receipt previews now repeat receipt-specific Laravel blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only selected receipt dependency copy and extending the focused receipt review assertions without changing any transaction reads, rule tracing, or adjustment flow behavior.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
 ### Reports cardholder-status dependency-gap alignment checkpoint
 - Aligned selected `reports` `cardholder-status` dependency status with the same state-aware `Backend gap` helper already used in the summary, so the holder lifecycle report now repeats inactive-holder shaping blockers consistently across both visible review blocks.
 - Kept the step low-risk and Laravel-backed by refining only the selected report-source dependency copy and extending the focused holder-status reporting assertion without changing any preset handling, shaping logic, or export flow.

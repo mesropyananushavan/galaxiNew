@@ -4090,7 +4090,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Zero-accrual handoff stays cautious')
             ->assertSee('Zero-accrual handoff stays evidence-first')
             ->assertSee('Receipt, amount, and zero-point outcome should stay visible in the workspace before any rule-gap discussion moves forward.')
-            ->assertSee('Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.');
+            ->assertSee('Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.')
+            ->assertSee('Remaining backend gap')
+            ->assertSee('Receipt reads, zero-accrual rule traces, and adjustment handlers should stay preview-only until fiscal-search parity is verified.');
     }
 
     public function test_checks_points_page_supports_selected_branch_receipt_review_context(): void
@@ -4135,7 +4137,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Branch receipt handoff keeps local evidence visible')
             ->assertSee('Shop, amount, and points should stay visible in the workspace before any cross-branch troubleshooting discussion begins.')
             ->assertSee('Branch receipt lookup should stay read-only until Laravel shop filters and transaction history are verified against the old flow.')
-            ->assertSee('Positive branch accrual outcomes still need live transaction-domain parity before any adjustment path is safe.');
+            ->assertSee('Positive branch accrual outcomes still need live transaction-domain parity before any adjustment path is safe.')
+            ->assertSee('Remaining backend gap')
+            ->assertSee('Branch-aware receipt reads, shop-filter parity, and adjustment handlers should stay preview-only until cross-branch ledger parity is verified.');
     }
 
     public function test_checks_points_page_supports_selected_positive_accrual_receipt_review_context(): void
@@ -4181,7 +4185,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Receipt-first handoff stays visible')
             ->assertSee('Positive-accrual handoff stays evidence-first')
             ->assertSee('Amount, points, and timestamp should stay visible in the workspace before any future export or correction discussion begins.')
-            ->assertSee('Positive point outcomes still need live transaction-domain parity before any adjustment path is safe.');
+            ->assertSee('Positive point outcomes still need live transaction-domain parity before any adjustment path is safe.')
+            ->assertSee('Remaining backend gap')
+            ->assertSee('Receipt reads, transaction tables, and adjustment handlers should stay preview-only until accrual parity is verified.');
     }
 
     public function test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog(): void
