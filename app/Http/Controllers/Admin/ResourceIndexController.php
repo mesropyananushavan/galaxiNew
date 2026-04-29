@@ -2550,7 +2550,7 @@ class ResourceIndexController extends Controller
             'coffee-voucher' => 'Gift CRUD, all-shop stock assumptions, and redemption persistence should stay preview-only until all-shop reward parity is verified.',
             'airport-transfer' => 'Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until local reward parity is verified.',
             'premium-dessert-set' => 'Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused reward parity is verified.',
-            'weekend-brunch-pass' => 'Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until branch reward parity is verified.',
+            'weekend-brunch-pass' => 'Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until paused branch reopening parity is verified.',
             default => 'Gift CRUD, stock updates, and redemption persistence should stay preview-only until reward parity is verified.',
         };
     }
