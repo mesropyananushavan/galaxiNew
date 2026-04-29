@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Cards inventory-focus state checkpoint
+- Made selected `cards` `Inventory focus` context-aware so blocked inventory now surfaces dispute-first review wording and draft inventory now surfaces issuance-gap wording instead of reusing one generic focus line.
+- Kept the step low-risk and Laravel-backed by refining only the selected card summary copy and extending focused selected-card assertions without changing any inventory write, replacement, dispute, or issuance flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context)'`, `5 passed`.
+
+### Next step after cards inventory-focus state checkpoint
+- Reuse this conditional summary-focus pattern on another Laravel-backed selected preview that mixes live and blocked states, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Shops paused-branch focus checkpoint
 - Made selected `shops` `Branch focus` context-aware so paused branches now surface a recovery-first review cue instead of reusing the active-branch ownership wording.
 - Kept the step low-risk and Laravel-backed by refining only the selected shop summary copy and extending paused selected-branch assertions without changing any branch write, reassignment, or recovery flow.

@@ -2906,7 +2906,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
             ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
-            ['label' => 'Inventory focus', 'value' => 'Start with card status, holder linkage, and branch ownership before discussing any later replacement or reassignment flow.'],
+            ['label' => 'Inventory focus', 'value' => $this->cardsInventoryFocus($selectedCard)],
             ['label' => 'Inventory posture', 'value' => 'Keep inventory review in the live workspace first, then leave replacement, reassignment, and cross-branch moves gated until parity is proven.'],
             ['label' => 'Evidence priority', 'value' => 'Keep card status, holder linkage, and branch ownership visible together before trusting any later replacement or reassignment discussion.'],
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
@@ -2935,6 +2935,15 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'active' && $selectedCard->holder !== null => 'issued inventory, parity-sensitive',
             $selectedCard->status === 'active' => 'active inventory, holder linkage incomplete',
             default => 'draft inventory shell',
+        };
+    }
+
+    private function cardsInventoryFocus(Card $selectedCard): string
+    {
+        return match ($selectedCard->status) {
+            'blocked' => 'Start with blocked status, holder linkage, and dispute context before discussing any later replacement or reassignment flow.',
+            'active' => 'Start with card status, holder linkage, and branch ownership before discussing any later replacement or reassignment flow.',
+            default => 'Start with draft status, holder linkage gaps, and branch ownership before discussing any later issuance or reassignment flow.',
         };
     }
 
