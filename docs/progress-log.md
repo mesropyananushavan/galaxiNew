@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Gifts backend-gap alignment checkpoint
+- Added a small state-aware `gifts` backend-gap helper and reused it across selected reward summary and dependency blocks, so paused and active reward previews now call out scope-aware stock and redemption blockers instead of repeating one generic gift gap line.
+- Kept the step low-risk and preview-only by refining only selected reward review copy and extending the focused paused reward assertion without changing any gift CRUD, stock update, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts backend-gap alignment checkpoint
+- Reuse this state-aware backend-gap pattern on another preview-only Galaxy page that still repeats one generic blocker across multiple selected scenarios, or return to the next persisted metadata slice on an already-live form.
+
 ### Shops dependency-gap alignment checkpoint
 - Aligned selected `shops` dependency status with the same state-aware `Backend gap` helper already used in the branch summary, so live branch review now repeats manager-and-scope mutation blockers consistently across both visible review blocks.
 - Kept the step low-risk and Laravel-backed by refining only the selected branch dependency copy and extending the focused selected-shop assertion without changing any branch write, reassignment, or scope-mutation behavior.

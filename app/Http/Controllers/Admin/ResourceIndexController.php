@@ -493,6 +493,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Evidence priority', 'value' => 'Keep points cost, stock policy, and shop scope visible together before comparing this reward against any later publish narrative.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop rewards should stay parity-first, because wide-scope catalog changes affect the most operators and redemptions.'],
                     ['label' => 'Stock posture', 'value' => 'Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Laravel inventory writes exist.'],
+                    ['label' => 'Backend gap', 'value' => $this->giftsBackendGap('coffee-voucher')],
                     ['label' => 'Format guidance', 'value' => 'Keep this reward in table-first review mode, because operators usually compare scope, stock policy, and points cost together before discussing publication.'],
                     ['label' => 'Redemption guidance', 'value' => 'Treat this reward as review-only until gift CRUD and redemption parity are backed by Laravel flows.'],
                 ],
@@ -506,7 +507,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Gift status signal', 'value' => 'Active all-shop reward is already visible for live catalog parity review.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop reward coverage should remain stable until Laravel scope handling is verified against the legacy catalog.'],
                     ['label' => 'Stock posture', 'value' => 'Unlimited-stock assumptions still need backend inventory wiring before operators can trust live publish behavior.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this reward preview.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('coffee-voucher')],
                 ],
             ],
             [
@@ -525,6 +526,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Evidence priority', 'value' => 'Keep stock, scope, and points cost visible together before comparing this reward against broader catalog behavior.'],
                     ['label' => 'Scope posture', 'value' => 'Kiosk-scoped rewards should stay branch-aware, because legacy redemption expectations depended on local availability.'],
                     ['label' => 'Stock posture', 'value' => 'Finite stock should remain review-only until Laravel inventory updates can preserve remaining-quantity parity.'],
+                    ['label' => 'Backend gap', 'value' => $this->giftsBackendGap('airport-transfer')],
                     ['label' => 'Format guidance', 'value' => 'Keep kiosk-scoped rewards in compact on-screen review first, because operators need cost, stock, and local scope visible together before escalating.'],
                     ['label' => 'Redemption guidance', 'value' => 'Treat this scoped reward as review-only until stock-aware redemption behavior is backed by Laravel flows.'],
                 ],
@@ -538,7 +540,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Gift status signal', 'value' => 'Active scoped reward is already visible for branch-aware catalog parity review.'],
                     ['label' => 'Scope posture', 'value' => 'Shop-scoped reward behavior should stay preview-only until Laravel scope checks are verified against legacy kiosk rules.'],
                     ['label' => 'Stock posture', 'value' => 'Finite-stock handling still needs backend inventory wiring before a publish path is safe.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this reward preview.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('airport-transfer')],
                 ],
             ],
             [
@@ -557,6 +559,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Evidence priority', 'value' => 'Keep zero-stock state, shop scope, and points cost visible together before reopening discussion expands.'],
                     ['label' => 'Scope posture', 'value' => 'Central Shop reward availability should stay parity-first until paused reward behavior matches the legacy catalog.'],
                     ['label' => 'Stock posture', 'value' => 'Zero-stock rewards should remain paused in review mode until Laravel inventory and reopening flows can reproduce the old behavior safely.'],
+                    ['label' => 'Backend gap', 'value' => $this->giftsBackendGap('premium-dessert-set')],
                     ['label' => 'Format guidance', 'value' => 'Keep paused zero-stock rewards in compact on-screen review first, because operators need scope, stock, and cost visible together before discussing reopening.'],
                     ['label' => 'Redemption guidance', 'value' => 'Treat this paused reward as review-only until stock recovery and redemption parity are backed by Laravel flows.'],
                 ],
@@ -570,7 +573,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Gift status signal', 'value' => 'Paused zero-stock reward remains safer for parity review before reopening discussion.'],
                     ['label' => 'Scope posture', 'value' => 'Paused shop-scoped reward behavior should stay preview-only until Laravel scope and reopening checks are verified.'],
                     ['label' => 'Stock posture', 'value' => 'Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in Laravel.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this paused reward preview.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('premium-dessert-set')],
                 ],
             ],
             [
@@ -589,6 +592,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Evidence priority', 'value' => 'Keep remaining stock, local scope, and points cost visible together before comparing this reward against wider catalog behavior.'],
                     ['label' => 'Scope posture', 'value' => 'Paused branch rewards should stay locally reviewable, because reopening decisions still depend on shop-specific redemption habits.'],
                     ['label' => 'Stock posture', 'value' => 'Finite paused stock should remain review-only until Laravel inventory updates and reopening flows can preserve remaining-quantity parity.'],
+                    ['label' => 'Backend gap', 'value' => $this->giftsBackendGap('weekend-brunch-pass')],
                     ['label' => 'Format guidance', 'value' => 'Keep paused finite-stock rewards in compact on-screen review first, because operators need scope, stock, and reopening posture visible together before escalating.'],
                     ['label' => 'Redemption guidance', 'value' => 'Treat this paused branch reward as review-only until stock-aware reopening and redemption parity are backed by Laravel flows.'],
                 ],
@@ -602,7 +606,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Gift status signal', 'value' => 'Paused finite-stock reward remains safer for parity review before reopening discussion.'],
                     ['label' => 'Scope posture', 'value' => 'Paused branch reward behavior should stay preview-only until Laravel scope and reopening checks are verified.'],
                     ['label' => 'Stock posture', 'value' => 'Finite paused stock still needs backend inventory wiring before operators can trust reopening decisions.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Gift CRUD, stock updates, and redemption persistence still remain blocked for this paused branch reward preview.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('weekend-brunch-pass')],
                 ],
             ],
         ];
@@ -2535,6 +2539,17 @@ class ResourceIndexController extends Controller
                 },
             ],
         ];
+    }
+
+    private function giftsBackendGap(string $giftKey): string
+    {
+        return match ($giftKey) {
+            'coffee-voucher' => 'Gift CRUD, all-shop stock assumptions, and redemption persistence should stay preview-only until catalog parity is verified.',
+            'airport-transfer' => 'Gift CRUD, scoped stock updates, and redemption persistence should stay preview-only until kiosk reward parity is verified.',
+            'premium-dessert-set' => 'Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused reward parity is verified.',
+            'weekend-brunch-pass' => 'Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until branch reward parity is verified.',
+            default => 'Gift CRUD, stock updates, and redemption persistence should stay preview-only until reward parity is verified.',
+        };
     }
 
     private function reportsCardsByShopBackendGap(int $cardCount, int $shopCount, int $holderLinkedCardCount, int $unassignedCardCount): string
