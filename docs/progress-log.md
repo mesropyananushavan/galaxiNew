@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Cardholders linkage posture refinement checkpoint
+- Tightened the selected `cardholders` no-linked-cards posture so the visible blocker now names card-link parity review directly instead of broader identity-review wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused unlinked-holder assertions without changing any profile writes, card-link behavior, merge handling, or activity sourcing.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_unlinked_holder_review_context'`, `2 passed`.
+
+### Next step after cardholders linkage posture refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Cards draft status-signal refinement checkpoint
 - Tightened the selected `cards` draft-card status signal so the visible blocker now names issuance-parity review as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and updating the focused draft-card assertion without changing any issuance behavior, reassignment flow, lifecycle writes, or blocked-card handling.
