@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Gifts zero-stock backend-gap refinement checkpoint
+- Tightened the selected `gifts` paused zero-stock reward backend gap so the visible blocker now names paused-zero-stock-recovery parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused zero-stock assertions without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts zero-stock backend-gap refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Cards assignment posture refinement checkpoint
 - Tightened the selected `cards` unassigned-holder assignment posture so the visible blocker now names assignment-flow-parity review as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and updating the focused blocked-unassigned card assertion without changing any assignment flow, reassignment behavior, lifecycle writes, or blocked-card handling.
