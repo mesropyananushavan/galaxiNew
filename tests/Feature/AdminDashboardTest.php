@@ -2469,7 +2469,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Inventory guidance')
             ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.')
             ->assertSee('Assignment posture:')
-            ->assertSee('No holder is linked yet, which keeps this inventory record safer for assignment-flow parity review before assignment flows are enabled.');
+            ->assertSee('No holder is linked yet, which keeps this inventory record safer for assignment-flow-parity review before assignment flows are enabled.');
     }
 
     public function test_cards_page_supports_selected_draft_card_review_context(): void

@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Cards assignment posture refinement checkpoint
+- Tightened the selected `cards` unassigned-holder assignment posture so the visible blocker now names assignment-flow-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and updating the focused blocked-unassigned card assertion without changing any assignment flow, reassignment behavior, lifecycle writes, or blocked-card handling.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `1 passed`.
+
+### Next step after cards assignment posture refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Cardholders reactivation status-signal refinement checkpoint
 - Tightened the selected `cardholders` inactive-holder status signal so the visible blocker now names reactivation-flow-parity review as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused inactive-holder assertions without changing any profile writes, reactivation behavior, merge handling, or activity sourcing.
