@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Reports cardholder-status backend-gap checkpoint
+- Made selected `reports` `cardholder-status` `Backend gap` context-aware so live holder lifecycle coverage now names inactive-holder shaping blockers instead of reusing one generic lifecycle-export gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected report-source summary copy and extending the focused holder-status reporting assertion without changing any preset handling, report shaping, or export flow.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context'`, `1 passed`.
+
+### Next step after reports cardholder-status backend-gap checkpoint
+- Continue the same tiny source-specific backend-gap pass on the remaining Laravel-backed report source that still reuses a generic export blocker, or return to the next persisted metadata slice on an already-live Galaxy form.
+
 ### Reports cards-by-shop backend-gap checkpoint
 - Made selected `reports` `cards-by-shop` `Backend gap` context-aware so live branch inventory coverage now names assignment-aware grouping blockers instead of reusing one generic grouped-export gap line.
 - Kept the step low-risk and Laravel-backed by refining only the selected report-source summary copy and extending the focused cards-by-shop reporting assertion without changing any preset handling, query shaping, or export flow.

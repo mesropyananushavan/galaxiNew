@@ -1453,7 +1453,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Default period posture', 'value' => 'Use a current-status review first, then stage preset periods until lifecycle and recency parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer a compact on-screen table first, because holder-status review usually started as a fast support triage surface, not an export job.' ],
                     ['label' => 'Handoff signal', 'value' => 'Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.'],
-                    ['label' => 'Backend gap', 'value' => 'Preset handling, report shaping, and export generation should stay preview-only until lifecycle parity is verified.'],
+                    ['label' => 'Backend gap', 'value' => $this->reportsCardholderStatusBackendGap($cardHolderCount, $linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                     ['label' => 'Preset posture', 'value' => 'Keep status-period presets preview-only until holder lifecycle parity is verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until summary exports and lifecycle report expectations are validated.'],
                 ],
@@ -2533,6 +2533,17 @@ class ResourceIndexController extends Controller
             $holderLinkedCardCount > 0 => 'Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.',
             $unassignedCardCount > 0 => 'Preset handling, holder-linkage shaping, and export generation should stay preview-only until branch-total customer-linkage parity is verified.',
             default => 'Preset handling, grouped query shaping, and export generation should stay preview-only until report parity is verified.',
+        };
+    }
+
+    private function reportsCardholderStatusBackendGap(int $cardHolderCount, int $linkedCardHolderCount, int $inactiveCardHolderCount, int $blockedLinkedCardCount): string
+    {
+        return match (true) {
+            $cardHolderCount === 0 => 'Report-source seeding, status shaping, and export generation should stay preview-only until holder lifecycle inputs exist in Laravel.',
+            $linkedCardHolderCount > 0 && $inactiveCardHolderCount > 0 => 'Preset handling, lifecycle-segmentation shaping, and export generation should stay preview-only until inactive-holder parity is verified.',
+            $linkedCardHolderCount > 0 => 'Preset handling, inactive-holder shaping, and export generation should stay preview-only until linked-profile lifecycle parity is verified.',
+            $blockedLinkedCardCount > 0 => 'Preset handling, blocked-card shaping, and export generation should stay preview-only until support-style lifecycle parity is verified.',
+            default => 'Preset handling, report shaping, and export generation should stay preview-only until lifecycle parity is verified.',
         };
     }
 

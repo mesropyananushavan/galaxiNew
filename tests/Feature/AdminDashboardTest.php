@@ -4965,7 +4965,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Handoff signal')
             ->assertSee('Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Backend gap')
-            ->assertSee('Preset handling, report shaping, and export generation should stay preview-only until lifecycle parity is verified.')
+            ->assertSee('Preset handling, inactive-holder shaping, and export generation should stay preview-only until linked-profile lifecycle parity is verified.')
             ->assertSee('Holder branch activity signal')
             ->assertSee('paused-branch holder coverage is still pending for parity review')
             ->assertSee('Cardholder status source selected for Laravel review')
