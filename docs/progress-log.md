@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Services rules draft status wording checkpoint
+- Tightened the selected `services-rules` draft exclusion status signal so the visible blocker now treats `live-publish` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-rule copy and updating the focused draft-exclusion assertion without changing any rule persistence, condition editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after services rules draft status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Cardholders linkage posture wording checkpoint
 - Tightened the selected `cardholders` no-linked-cards posture so the visible blocker now names card-link-parity review as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused unlinked-holder assertions without changing any card-link flow, profile writes, merge handling, or activity sourcing.

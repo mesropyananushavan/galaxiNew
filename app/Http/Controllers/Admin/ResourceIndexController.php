@@ -403,7 +403,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected rule preview', 'value' => 'Night service block'],
                     ['label' => 'Scope', 'value' => 'North Shop'],
-                    ['label' => 'Rule status signal', 'value' => 'Draft exclusion rule remains safer for bar-service-exclusion parity review before any live publish discussion.' ],
+                    ['label' => 'Rule status signal', 'value' => 'Draft exclusion rule remains safer for bar-service-exclusion parity review before any live-publish discussion.' ],
                     ['label' => 'Rule focus', 'value' => 'Start with the blocking condition and local scope before discussing any later publish decision.' ],
                     ['label' => 'Rule handoff signal', 'value' => 'Carry blocking condition and local scope context forward before any later publish decision expands.' ],
                     ['label' => 'Scope posture', 'value' => 'North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.' ],
@@ -420,7 +420,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected rule', 'value' => 'Night service block'],
-                    ['label' => 'Rule status signal', 'value' => 'Draft exclusion rule remains safer for bar-service-exclusion parity review before any live publish discussion.'],
+                    ['label' => 'Rule status signal', 'value' => 'Draft exclusion rule remains safer for bar-service-exclusion parity review before any live-publish discussion.'],
                     ['label' => 'Scope posture', 'value' => 'North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.'],
                     ['label' => 'Priority posture', 'value' => 'Blocking-rule order is still preview-only until exclusion precedence is validated in Laravel.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->servicesRulesBackendGap('night-service-block')],
