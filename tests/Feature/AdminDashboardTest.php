@@ -5521,7 +5521,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope')
             ->assertSee('All shops')
             ->assertSee('Rule status signal')
-            ->assertSee('Active loyalty uplift is already visible for live parity review.')
+            ->assertSee('Active loyalty uplift is already visible for birthday uplift parity review.')
             ->assertSee('Rule focus')
             ->assertSee('Start with birthday eligibility and priority order before discussing any later publish path.')
             ->assertSee('Rule handoff signal')

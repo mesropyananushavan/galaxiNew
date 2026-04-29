@@ -335,7 +335,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected rule preview', 'value' => 'Birthday bonus'],
                     ['label' => 'Scope', 'value' => 'All shops'],
-                    ['label' => 'Rule status signal', 'value' => 'Active loyalty uplift is already visible for live parity review.'],
+                    ['label' => 'Rule status signal', 'value' => 'Active loyalty uplift is already visible for birthday uplift parity review.'],
                     ['label' => 'Rule focus', 'value' => 'Start with birthday eligibility and priority order before discussing any later publish path.'],
                     ['label' => 'Rule handoff signal', 'value' => 'Carry birthday eligibility, scope, and uplift context forward before any later publish discussion begins.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.'],
@@ -352,7 +352,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected rule', 'value' => 'Birthday bonus'],
-                    ['label' => 'Rule status signal', 'value' => 'Active loyalty uplift is already visible for live parity review.'],
+                    ['label' => 'Rule status signal', 'value' => 'Active loyalty uplift is already visible for birthday uplift parity review.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.'],
                     ['label' => 'Priority posture', 'value' => 'Priority resolution remains preview-only until overlapping rule order is validated in Laravel.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->servicesRulesBackendGap('birthday-bonus')],

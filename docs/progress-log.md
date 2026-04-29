@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### All-shop birthday rule status-signal checkpoint
+- Tightened the selected `services-rules` all-shop status signal so `birthday-bonus` now names birthday uplift parity review directly instead of broader live parity review wording.
+- Kept the step low-risk and preview-only by refining only visible selected-rule copy and extending the focused all-shop rule assertion without changing any rule persistence, birthday-window editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_all_shop_rule_review_context'`, `1 passed`.
+
+### Next step after all-shop birthday rule status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Scoped uplift rule status-signal checkpoint
 - Tightened the selected `services-rules` scoped status signal so `partner-card-uplift` now names partner-card uplift parity review directly instead of broader branch-aware parity review wording.
 - Kept the step low-risk and preview-only by refining only visible selected-rule copy and extending the focused scoped rule assertion without changing any rule persistence, condition editing, or publish behavior.
