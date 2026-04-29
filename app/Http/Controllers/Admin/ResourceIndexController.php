@@ -2016,7 +2016,7 @@ class ResourceIndexController extends Controller
 
         return match (true) {
             $savedCount === 0 => 'Blocked until the first Laravel-backed tier exists before any publish-style rollout.',
-            $activeCount > 0 => 'Blocked until saved live tiers clear rollout parity against the old Galaxy catalog.',
+            $activeCount > 0 => 'Blocked until saved live tiers clear Galaxy tier rollout parity before any broader catalog move.',
             default => 'Blocked until a saved draft tier clears rollout parity before any publish-like move.',
         };
     }

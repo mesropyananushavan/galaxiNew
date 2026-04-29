@@ -6978,7 +6978,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Import rules')
             ->assertSee('Blocked until saved tier accrual parity is verified before importing legacy rules.')
             ->assertSee('Publish type')
-            ->assertSee('Blocked until saved live tiers clear rollout parity against the old Galaxy catalog.');
+            ->assertSee('Blocked until saved live tiers clear Galaxy tier rollout parity before any broader catalog move.');
     }
 
     public function test_card_types_page_exposes_edit_link_for_latest_saved_type(): void

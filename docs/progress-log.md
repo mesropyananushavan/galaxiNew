@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Card-types catalog publish blocker refinement checkpoint
+- Tightened the catalog-level `card-types` publish blocker copy so saved live tiers now name Galaxy tier rollout parity directly instead of broader old-catalog rollout wording.
+- Kept the step low-risk and Laravel-backed by refining only visible catalog action copy and extending the focused card-types readiness assertion without changing any tier writes, activation flow, import behavior, or publish behavior.
+- Re-ran `php artisan test --filter='test_card_types_catalog_actions_reflect_saved_tier_readiness'`, `1 passed`.
+
+### Next step after card-types catalog publish blocker refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Card-types import blocker refinement checkpoint
 - Tightened the selected `card-types` import blocker copy so draft tiers with visible card coverage now name draft tier accrual parity directly instead of broader draft rule parity wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and extending the focused selected card-type assertion without changing any tier writes, activation flow, rule import behavior, or publish behavior.
