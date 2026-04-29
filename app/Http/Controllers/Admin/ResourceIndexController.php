@@ -3128,6 +3128,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Code', 'value' => $selectedShop->code],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
+            ['label' => 'Branch focus', 'value' => 'Start with manager ownership, holder coverage, and card coverage before discussing any later reassignment or scope-mutation flow.'],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
             ['label' => 'Manager guidance', 'value' => $selectedShop->users_count > 0
