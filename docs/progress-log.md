@@ -7,8 +7,13 @@
 - Kept the step low-risk and Laravel-backed by refining only the selected role summary copy and extending focused selected-role assertions without changing any role assignment, matrix editing, scope write, or publish flow.
 - Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
 
+### Roles permissions access-posture state checkpoint
+- Made selected `roles-permissions` `Access posture` context-aware so draft roles now surface draft-review gating with activation blocked while live roles keep the existing access-review posture.
+- Kept the step low-risk and Laravel-backed by refining only the selected role summary copy and extending focused selected-role assertions without changing any role assignment, matrix editing, scope write, activation, or publish flow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
 ### Next step after roles permissions access-focus state checkpoint
-- Continue the same state-aware pass on `roles-permissions` posture/evidence/backend-gap for draft-versus-live review, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+- Continue the same state-aware pass on `roles-permissions` evidence/backend-gap for draft-versus-live review, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
 
 ### Cardholders holder-focus state checkpoint
 - Made selected `cardholders` `Holder focus` context-aware so active holder review now surfaces live-profile wording while inactive holder review keeps reactivation-first wording instead of reusing one generic focus line.

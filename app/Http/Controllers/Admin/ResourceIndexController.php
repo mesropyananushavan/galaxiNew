@@ -2477,7 +2477,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
             ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
             ['label' => 'Access focus', 'value' => $this->rolesPermissionsAccessFocus($selectedRole)],
-            ['label' => 'Access posture', 'value' => 'Keep access review in the live workspace first, then leave matrix edits and scope writes gated until parity is proven.'],
+            ['label' => 'Access posture', 'value' => $this->rolesPermissionsAccessPosture($selectedRole)],
             ['label' => 'Evidence priority', 'value' => 'Keep shop scope, assigned staff, and visible permission bundle entries together before trusting any later matrix view.'],
             ['label' => 'Handoff signal', 'value' => $this->rolesPermissionsHandoffSignal($selectedRole, $scope)],
             ['label' => 'Backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.'],
@@ -2531,6 +2531,13 @@ class ResourceIndexController extends Controller
         return $selectedRole->is_active
             ? 'Start with visible scope, assigned staff, and permission bundle overlap before discussing any later matrix editing flow.'
             : 'Start with draft status, visible scope gaps, and permission bundle gaps before discussing any later matrix editing flow.';
+    }
+
+    private function rolesPermissionsAccessPosture(Role $selectedRole): string
+    {
+        return $selectedRole->is_active
+            ? 'Keep access review in the live workspace first, then leave matrix edits and scope writes gated until parity is proven.'
+            : 'Keep draft role review in the workspace first, then leave matrix edits, scope writes, and activation flows gated until parity is proven.';
     }
 
     private function rolesPermissionsPublishPostureValue(Role $selectedRole): string
