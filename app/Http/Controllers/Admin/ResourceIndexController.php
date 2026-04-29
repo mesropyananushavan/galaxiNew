@@ -2041,7 +2041,7 @@ class ResourceIndexController extends Controller
             $selectedCardType->is_active && $cardsCount > 0 => 'Blocked until live-tier rollout parity is verified across visible card coverage.',
             $selectedCardType->is_active => 'Blocked until this live tier has visible card coverage and Galaxy tier rollout parity review.',
             $cardsCount > 0 => 'Blocked until this draft tier clears rule and rollout parity review against visible card coverage.',
-            default => 'Blocked until this draft tier clears rule and rollout parity review before any publish-like move.',
+            default => 'Blocked until this draft tier clears rule-and-rollout parity review before any publish-like move.',
         };
     }
 

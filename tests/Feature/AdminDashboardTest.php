@@ -7272,7 +7272,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Import rules')
             ->assertSee('Blocked until draft parity review has visible card coverage to compare against.')
             ->assertSee('Publish type')
-            ->assertSee('Blocked until this draft tier clears rule and rollout parity review before any publish-like move.');
+            ->assertSee('Blocked until this draft tier clears rule-and-rollout parity review before any publish-like move.');
     }
 
     public function test_card_types_page_ignores_unknown_selected_card_type_query(): void

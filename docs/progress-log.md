@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Card types draft publish-blocker refinement checkpoint
+- Tightened the selected `card-types` draft-tier publish blocker so the visible blocker now names rule-and-rollout parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and updating the focused draft-tier publish assertion without changing any publish logic, rollout behavior, import behavior, or rule wiring.
+- Re-ran `php artisan test --filter='test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `1 passed`.
+
+### Next step after card types draft publish-blocker refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Cardholders linkage posture refinement checkpoint
 - Tightened the selected `cardholders` no-linked-cards posture so the visible blocker now names card-link parity review directly instead of broader identity-review wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused unlinked-holder assertions without changing any profile writes, card-link behavior, merge handling, or activity sourcing.
