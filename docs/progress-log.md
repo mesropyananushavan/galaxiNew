@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Cards draft status wording checkpoint
+- Tightened the selected `cards` draft-card status signal so the visible blocker now treats `issuance-flow discussion` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and updating the focused draft-card assertion without changing any issuance writes, activation flow, reassignment behavior, or inventory mutations.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_draft_card_review_context'`, `1 passed`.
+
+### Next step after cards draft status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Shops paused status wording checkpoint
 - Tightened the selected `shops` paused-branch status signal so the visible blocker now treats `reopening-flow discussion` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and updating the focused paused-branch assertions without changing any branch writes, reopening behavior, reassignment flow, or scope mutation logic.
