@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Cards issuance status-signal checkpoint
+- Tightened the selected `cards` draft status signal so draft inventory now names issuance parity review directly instead of broader parity-review-before-issuance wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and extending the focused draft-card assertion without changing any card writes, issuance flow, reassignment flow, or dispute handling behavior.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `1 passed`.
+
+### Next step after cards issuance status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Roles access rollout status-signal checkpoint
 - Tightened the selected `roles-permissions` draft status signal so inactive roles now name access rollout parity review directly instead of broader parity-review-before-live-access wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and extending the focused draft-role assertions without changing any role writes, scope assignment, permission matrix behavior, or publish behavior.

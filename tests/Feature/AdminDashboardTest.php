@@ -2505,7 +2505,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected card')
             ->assertSee('GX-930001')
             ->assertSee('Card status signal')
-            ->assertSee('Draft card remains safer for parity review before issuance discussion.')
+            ->assertSee('Draft card remains safer for issuance parity review before any issuance discussion.')
             ->assertSee('Operational readiness')
             ->assertSee('draft inventory shell')
             ->assertSee('Linkage signal')
