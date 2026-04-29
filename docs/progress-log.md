@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Shops paused status wording checkpoint
+- Tightened the selected `shops` paused-branch status signal so the visible blocker now treats `reopening-flow discussion` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and updating the focused paused-branch assertions without changing any branch writes, reopening behavior, reassignment flow, or scope mutation logic.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_paused_branch_review_context'`, `1 passed`.
+
+### Next step after shops paused status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Roles draft status wording checkpoint
 - Tightened the selected `roles-permissions` draft-role status signal so the visible blocker now treats `live-access` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and updating the focused draft-role assertions without changing any matrix writes, scope writes, assignment wiring, or publish behavior.
