@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Card-types dependency-gap alignment checkpoint
+- Aligned selected `card-types` dependency status with the same state-aware `Backend gap` helper already used in the tier summary, so the live edit review now repeats draft-versus-live rollout blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected tier dependency copy and extending the focused selected-tier assertion without changing any update flow, publish logic, or rule-import behavior.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
+### Next step after card-types dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
 ### Checks-points dependency-gap alignment checkpoint
 - Aligned selected `checks-points` dependency status with the same state-aware `Backend gap` helper already used in the receipt summaries, so all three live receipt previews now repeat receipt-specific Laravel blockers consistently across both visible review blocks.
 - Kept the step low-risk and Laravel-backed by refining only selected receipt dependency copy and extending the focused receipt review assertions without changing any transaction reads, rule tracing, or adjustment flow behavior.

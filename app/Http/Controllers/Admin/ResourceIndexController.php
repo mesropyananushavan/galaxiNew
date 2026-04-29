@@ -1922,7 +1922,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Rule-import posture', 'value' => $selectedCardType->is_active ? 'Keep imports blocked until active-tier accrual parity is verified' : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet'],
             ['label' => 'Publish posture', 'value' => $selectedCardType->is_active ? 'Live tiers need parity confirmation before further publish-style changes' : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly'],
             ['label' => 'Action gating', 'value' => $selectedCardType->is_active ? 'Allow small state corrections only, keep publish-like and import actions gated' : 'Allow draft-safe edits and validation only, keep live-facing actions gated'],
-            ['label' => 'Remaining backend gap', 'value' => 'Publish logic and rule-import parity still remain preview-only for this tier'],
+            ['label' => 'Remaining backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
         ];
 
         $page = $this->appendLatestBackendWriteDependencyStatus($page);

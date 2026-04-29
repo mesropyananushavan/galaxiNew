@@ -7112,7 +7112,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Action gating:')
             ->assertSee('Allow draft-safe edits and validation only, keep live-facing actions gated')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Publish logic and rule-import parity still remain preview-only for this tier')
+            ->assertSee('Draft activation, publish logic, and rule-import parity should stay preview-only until draft tier parity is verified.')
             ->assertSee('Edit card type in Laravel')
             ->assertSee('Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.')
             ->assertSee('>Save card type changes<', false)
