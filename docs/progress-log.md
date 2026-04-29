@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Services rules draft status-signal refinement checkpoint
+- Tightened the selected `services-rules` draft exclusion status signal so the visible blocker now names bar-service-exclusion parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-rule copy and updating the focused draft-exclusion assertion without changing any rule persistence, condition editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after services rules draft status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Card types draft publish-blocker refinement checkpoint
 - Tightened the selected `card-types` draft-tier publish blocker so the visible blocker now names rule-and-rollout parity review as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and updating the focused draft-tier publish assertion without changing any publish logic, rollout behavior, import behavior, or rule wiring.
