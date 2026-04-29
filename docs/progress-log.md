@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Shops branch coverage status-signal checkpoint
+- Tightened the selected `shops` active status signal so fully covered branches now name branch coverage parity review directly instead of broader live parity review wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused selected-shop assertions without changing any branch writes, reassignment flow, or scope mutation behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops branch coverage status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### All-shop birthday rule status-signal checkpoint
 - Tightened the selected `services-rules` all-shop status signal so `birthday-bonus` now names birthday uplift parity review directly instead of broader live parity review wording.
 - Kept the step low-risk and preview-only by refining only visible selected-rule copy and extending the focused all-shop rule assertion without changing any rule persistence, birthday-window editing, or publish behavior.

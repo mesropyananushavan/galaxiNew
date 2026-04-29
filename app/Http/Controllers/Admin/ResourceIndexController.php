@@ -3410,7 +3410,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Paused branch remains safer for parity review before reopening discussion.',
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Active branch is already visible with manager and customer coverage for live parity review.',
+            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Active branch is already visible with manager and customer coverage for branch coverage parity review.',
             $selectedShop->users_count > 0 => 'Active branch is already visible with manager ownership for rollout review.',
             $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Active branch is already visible with customer coverage while manager ownership is still pending.',
             default => 'Active branch shell is visible, but manager and customer coverage are still pending.',
