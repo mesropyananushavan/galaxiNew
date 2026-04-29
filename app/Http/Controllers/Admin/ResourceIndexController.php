@@ -589,7 +589,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected gift preview', 'value' => 'Weekend brunch pass'],
                     ['label' => 'Points cost', 'value' => '320'],
-                    ['label' => 'Gift status signal', 'value' => 'Paused finite-stock reward remains safer for parity review before reopening discussion.'],
+                    ['label' => 'Gift status signal', 'value' => 'Paused finite-stock reward remains safer for paused branch reopening parity review before reopening discussion.'],
                     ['label' => 'Gift focus', 'value' => 'Start with remaining stock and local reopening assumptions before comparing this reward against wider catalog behavior.'],
                     ['label' => 'Gift handoff signal', 'value' => 'Carry remaining stock and local reopening context forward before any wider catalog discussion begins.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep remaining stock, local scope, and points cost visible together before comparing this reward against wider catalog behavior.'],
@@ -606,7 +606,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Weekend brunch pass'],
-                    ['label' => 'Gift status signal', 'value' => 'Paused finite-stock reward remains safer for parity review before reopening discussion.'],
+                    ['label' => 'Gift status signal', 'value' => 'Paused finite-stock reward remains safer for paused branch reopening parity review before reopening discussion.'],
                     ['label' => 'Scope posture', 'value' => 'Paused branch reward behavior should stay preview-only until Laravel scope and reopening checks are verified.'],
                     ['label' => 'Stock posture', 'value' => 'Finite paused stock still needs backend inventory wiring before operators can trust reopening decisions.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('weekend-brunch-pass')],
