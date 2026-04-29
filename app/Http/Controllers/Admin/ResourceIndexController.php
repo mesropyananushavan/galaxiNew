@@ -3262,7 +3262,7 @@ class ResourceIndexController extends Controller
                 ? 'Linked cards are visible in Laravel, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.'
                 : 'No linked cards exist yet, which keeps this holder safer for identity review before card-link flows are enabled.'],
             ['label' => 'Activity posture', 'value' => 'Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.'],
-            ['label' => 'Remaining backend gap', 'value' => 'Holder search, profile writes, and recent-activity sourcing still remain preview-only for this workspace'],
+            ['label' => 'Remaining backend gap', 'value' => $this->cardholdersBackendGap($selectedCardHolder)],
         ];
     }
 

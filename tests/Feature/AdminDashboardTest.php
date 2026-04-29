@@ -3636,7 +3636,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Activity posture:')
             ->assertSee('Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Holder search, profile writes, and recent-activity sourcing still remain preview-only for this workspace');
+            ->assertSee('Reactivation handling, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.');
     }
 
     public function test_cardholders_page_supports_selected_active_linked_holder_review_context(): void

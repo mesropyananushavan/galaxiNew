@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Cardholders dependency-gap alignment checkpoint
+- Aligned selected `cardholders` dependency status with the same state-aware `Backend gap` helper already used in the holder summary, so inactive profile review now repeats reactivation-sensitive lifecycle blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected holder dependency copy and extending the focused selected-holder assertion without changing any search, profile write, or recent-activity behavior.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`, `1 passed`.
+
+### Next step after cardholders dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
 ### Cards dependency-gap alignment checkpoint
 - Aligned selected `cards` dependency status with the same state-aware `Backend gap` helper already used in the card summary, so blocked inventory review now repeats dispute-sensitive lifecycle blockers consistently across both visible review blocks.
 - Kept the step low-risk and Laravel-backed by refining only the selected card dependency copy and extending the focused selected-card assertion without changing any lifecycle write, dispute, or replacement behavior.
