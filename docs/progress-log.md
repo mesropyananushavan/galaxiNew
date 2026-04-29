@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Paused zero-stock gift backend-gap refinement checkpoint
+- Tightened the selected `gifts` paused zero-stock backend-gap copy so `premium-dessert-set` now names paused zero-stock recovery parity directly instead of broader paused reward parity wording.
+- Kept the step low-risk and preview-only by refining only the selected reward copy and extending the focused paused zero-stock gift assertion without changing any gift CRUD, stock update, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after paused zero-stock gift backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Paused branch gift backend-gap refinement checkpoint
 - Tightened the selected `gifts` paused finite-stock backend-gap copy so `weekend-brunch-pass` now names paused branch reopening parity directly instead of broader branch reward parity wording.
 - Kept the step low-risk and preview-only by refining only the selected reward copy and extending the focused paused finite-stock gift assertion without changing any gift CRUD, stock update, or redemption behavior.

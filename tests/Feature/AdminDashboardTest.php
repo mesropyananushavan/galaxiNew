@@ -6663,7 +6663,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Stock posture')
             ->assertSee('Zero-stock rewards should remain paused in review mode until Laravel inventory and reopening flows can reproduce the old behavior safely.')
             ->assertSee('Backend gap')
-            ->assertSee('Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused reward parity is verified.')
+            ->assertSee('Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused zero-stock recovery parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep paused zero-stock rewards in compact on-screen review first, because operators need scope, stock, and cost visible together before discussing reopening.')
             ->assertSee('Redemption guidance')
@@ -6673,7 +6673,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Paused reward handoff keeps stock evidence visible')
             ->assertSee('Scope, zero-stock state, and points cost should stay visible in the workspace before any reopening discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused reward parity is verified.')
+            ->assertSee('Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused zero-stock recovery parity is verified.')
             ->assertSee('Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in Laravel.');
     }
 
