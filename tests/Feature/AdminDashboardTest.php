@@ -1444,7 +1444,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Coverage signal:')
             ->assertSee('scope, staff, and permission coverage visible')
             ->assertSee('Role status signal')
-            ->assertSee('Active role is already visible with scope, staffing, and permission coverage for live access parity review.')
+            ->assertSee('Active role is already visible with scope, staffing, and permission coverage for live-access parity review.')
             ->assertSee('Handoff signal:')
             ->assertSee('Live role already carries scope, staffing, and permission coverage for a useful access handoff review.')
             ->assertSee('Scope rollout posture:')

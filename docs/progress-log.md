@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Roles live status-signal refinement checkpoint
+- Tightened the selected `roles-permissions` active-role status signal so the visible blocker now names live-access parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and updating the focused active-role assertion without changing any matrix writes, scope writes, assignment wiring, or publish behavior.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`, `1 passed`.
+
+### Next step after roles live status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Roles draft status-signal refinement checkpoint
 - Tightened the selected `roles-permissions` draft-role status signal so the visible blocker now names access-rollout parity directly instead of the broader spaced `access rollout parity` wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and updating the focused draft-role assertions without changing any matrix writes, scope writes, assignment wiring, or publish behavior.
