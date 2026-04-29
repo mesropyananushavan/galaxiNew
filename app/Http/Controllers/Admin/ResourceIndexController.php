@@ -1405,7 +1405,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope posture', 'value' => 'Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.'],
                     ['label' => 'Grouping posture', 'value' => 'Shop grouping should stay read-only until query shaping is verified against legacy report totals.'],
                     ['label' => 'Handoff signal', 'value' => 'Keep branch comparison findings in the live workspace before asking for export-driven handoff.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Preset handling, grouped query shaping, and export generation still remain preview-only for this source.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->reportsCardsByShopBackendGap($cardCount, $shopCount, $holderLinkedCardCount, $unassignedCardCount)],
                 ],
             ],
             [

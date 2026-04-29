@@ -4496,6 +4496,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.')
             ->assertSee('Grouping posture')
             ->assertSee('Shop grouping should stay read-only until query shaping is verified against legacy report totals.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.')
             ->assertSee('Handoff signal:')
             ->assertSee('Keep branch comparison findings in the live workspace before asking for export-driven handoff.');
     }

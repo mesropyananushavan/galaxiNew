@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Reports cards-by-shop dependency-gap alignment checkpoint
+- Aligned selected `reports` `cards-by-shop` dependency status with the same state-aware `Backend gap` helper already used in the summary, so the branch inventory report now repeats assignment-aware grouping blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected report-source dependency copy and extending the focused cards-by-shop reporting assertion without changing any preset handling, grouping logic, or export flow.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context'`, `1 passed`.
+
+### Next step after reports cards-by-shop dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live report source that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live Galaxy form.
+
 ### Reports role-access dependency-gap alignment checkpoint
 - Aligned selected `reports` `role-access` dependency status with the same state-aware `Backend gap` helper already used in the summary, so the access report now repeats grouped access-shaping blockers consistently across both visible review blocks.
 - Kept the step low-risk and Laravel-backed by refining only the selected report-source dependency copy and extending the focused role-access reporting assertion without changing any preset handling, shaping logic, or export flow.
