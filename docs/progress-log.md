@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Shops paused-branch focus checkpoint
+- Made selected `shops` `Branch focus` context-aware so paused branches now surface a recovery-first review cue instead of reusing the active-branch ownership wording.
+- Kept the step low-risk and Laravel-backed by refining only the selected shop summary copy and extending paused selected-branch assertions without changing any branch write, reassignment, or recovery flow.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_paused_branch_review_context)'`, `3 passed`.
+
+### Next step after shops paused-branch focus checkpoint
+- Reuse this conditional summary-focus pattern on another Laravel-backed selected preview that mixes active and paused states, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
 ### Shops branch-focus checkpoint
 - Added a compact read-only `Branch focus` cue to selected `shops` summaries so branch review now names the first ownership-and-coverage parity angle directly in the selected shop block.
 - Kept the step low-risk and Laravel-backed by enriching only the existing selected shop summary without changing any branch write, reassignment, or scope-mutation flow.

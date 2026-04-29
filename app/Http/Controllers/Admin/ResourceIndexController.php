@@ -3128,7 +3128,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Code', 'value' => $selectedShop->code],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
-            ['label' => 'Branch focus', 'value' => 'Start with manager ownership, holder coverage, and card coverage before discussing any later reassignment or scope-mutation flow.'],
+            ['label' => 'Branch focus', 'value' => $this->shopsBranchFocus($selectedShop)],
             ['label' => 'Branch posture', 'value' => 'Keep branch review in the live workspace first, then leave reassignment, reopen, and scope-mutation flows gated until parity is proven.'],
             ['label' => 'Evidence priority', 'value' => 'Keep manager ownership, holder coverage, and card coverage together before trusting any later reassignment or branch-scope mutation discussion.'],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
@@ -3157,6 +3157,13 @@ class ResourceIndexController extends Controller
             $selectedShop->users_count > 0 => 'active branch, manager assigned and build-out pending',
             default => 'active branch shell, ownership still forming',
         };
+    }
+
+    private function shopsBranchFocus(Shop $selectedShop): string
+    {
+        return $selectedShop->is_active
+            ? 'Start with manager ownership, holder coverage, and card coverage before discussing any later reassignment or scope-mutation flow.'
+            : 'Start with paused status, ownership gaps, and branch coverage before discussing any later reopening or reassignment flow.';
     }
 
     private function shopsLifecycleFreshnessLabel(Shop $selectedShop): string
