@@ -5474,7 +5474,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope')
             ->assertSee('Central Shop')
             ->assertSee('Rule status signal')
-            ->assertSee('Active scoped uplift is already visible for branch-aware parity review.')
+            ->assertSee('Active scoped uplift is already visible for partner-card uplift parity review.')
             ->assertSee('Rule focus')
             ->assertSee('Start with scoped card-type conditions before comparing this uplift against broader loyalty overlaps.')
             ->assertSee('Rule handoff signal')

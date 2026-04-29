@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Scoped uplift rule status-signal checkpoint
+- Tightened the selected `services-rules` scoped status signal so `partner-card-uplift` now names partner-card uplift parity review directly instead of broader branch-aware parity review wording.
+- Kept the step low-risk and preview-only by refining only visible selected-rule copy and extending the focused scoped rule assertion without changing any rule persistence, condition editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_scoped_rule_review_context'`, `1 passed`.
+
+### Next step after scoped uplift rule status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Card-types live coverage status-signal checkpoint
 - Tightened the selected `card-types` live coverage status signal so active tiers with saved card coverage now name live tier parity review directly instead of broader live catalog parity review wording.
 - Added a focused selected live tier coverage test to lock the Galaxy-specific status signal and handoff copy in place for a real Laravel-backed card-type scenario.

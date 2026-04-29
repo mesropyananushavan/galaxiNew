@@ -369,7 +369,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected rule preview', 'value' => 'Partner card uplift'],
                     ['label' => 'Scope', 'value' => 'Central Shop'],
-                    ['label' => 'Rule status signal', 'value' => 'Active scoped uplift is already visible for branch-aware parity review.'],
+                    ['label' => 'Rule status signal', 'value' => 'Active scoped uplift is already visible for partner-card uplift parity review.'],
                     ['label' => 'Rule focus', 'value' => 'Start with scoped card-type conditions before comparing this uplift against broader loyalty overlaps.'],
                     ['label' => 'Rule handoff signal', 'value' => 'Carry scoped card-type conditions and branch context forward before any broader publish discussion begins.'],
                     ['label' => 'Scope posture', 'value' => 'Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.'],
@@ -386,7 +386,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected rule', 'value' => 'Partner card uplift'],
-                    ['label' => 'Rule status signal', 'value' => 'Active scoped uplift is already visible for branch-aware parity review.'],
+                    ['label' => 'Rule status signal', 'value' => 'Active scoped uplift is already visible for partner-card uplift parity review.'],
                     ['label' => 'Scope posture', 'value' => 'Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.'],
                     ['label' => 'Priority posture', 'value' => 'Overlap with broader loyalty rules still needs parity verification before any publish path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->servicesRulesBackendGap('partner-card-uplift')],
