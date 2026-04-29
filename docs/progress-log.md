@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Cardholders reactivation signal refinement checkpoint
+- Tightened the selected `cardholders` inactive-holder status signal in both summary and dependency blocks so dormant profiles now name reactivation-flow parity directly instead of broader reactivation parity wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused inactive-holder assertions without changing any profile writes, reactivation flow, merge behavior, or activity sourcing.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, `2 passed`.
+
+### Next step after cardholders reactivation signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Shops manager posture refinement checkpoint
 - Tightened the selected `shops` unassigned-manager posture so dependency-side ownership gaps now name ownership-flow parity directly instead of broader parity-review-before-ownership wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused no-manager shop assertion without changing any branch writes, reassignment flow, or scope mutation behavior.
