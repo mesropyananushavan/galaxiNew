@@ -5212,6 +5212,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('unbundled active-role coverage is still pending')
             ->assertSee('Access posture:')
             ->assertSee('Role coverage should stay read-only until access-report parity and scope shaping are verified.')
+            ->assertSee('Remaining backend gap:')
+            ->assertSee('Preset handling, grouped access shaping, and export generation should stay preview-only until scope and staffing parity are verified.')
             ->assertSee('Handoff signal:')
             ->assertSee('Keep access coverage findings in the live workspace before asking for export-driven handoff.');
     }

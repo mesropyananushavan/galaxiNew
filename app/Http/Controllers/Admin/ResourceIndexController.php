@@ -1642,7 +1642,7 @@ class ResourceIndexController extends Controller
                         : 'unbundled active-role coverage is still pending'],
                     ['label' => 'Scope posture', 'value' => 'Scope visibility should stay read-only until access-report parity and branch-assignment shaping are verified.'],
                     ['label' => 'Access posture', 'value' => 'Role coverage should stay read-only until access-report parity and scope shaping are verified.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Preset handling, report shaping, and export generation still remain preview-only for this source.'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->reportsRoleAccessBackendGap($roleCount, $permissionLinkedRoleCount, $assignedStaffCount)],
                 ],
             ],
         ];
