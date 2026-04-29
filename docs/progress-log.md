@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Gifts zero-stock status wording checkpoint
+- Tightened the selected `gifts` paused zero-stock reward status signal so the visible blocker now treats `reopening-flow discussion` as a single Galaxy-specific discussion boundary instead of broader reopening wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused zero-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts zero-stock status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Shops rollout evidence wording checkpoint
 - Tightened the selected `shops` manager-owned branch evidence-priority line so the visible blocker now treats `rollout-flow discussion` as a single Galaxy-specific discussion boundary instead of broader rollout wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and updating the focused selected-shop assertion without changing any branch writes, manager assignment flow, scope mutation, or coverage behavior.
