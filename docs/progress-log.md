@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Shops manager posture refinement checkpoint
+- Tightened the selected `shops` unassigned-manager posture so dependency-side ownership gaps now name ownership-flow parity directly instead of broader parity-review-before-ownership wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused no-manager shop assertion without changing any branch writes, reassignment flow, or scope mutation behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops manager posture refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Cards assignment posture refinement checkpoint
 - Tightened the selected `cards` unassigned-holder assignment posture so blocked inventory without a linked holder now names assignment-flow parity directly instead of broader parity-review-before-assignment wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and extending the focused blocked-unassigned card assertion without changing any card writes, assignment flow, reassignment flow, or dispute handling behavior.
