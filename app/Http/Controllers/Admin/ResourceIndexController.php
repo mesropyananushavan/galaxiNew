@@ -3059,7 +3059,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
-            ['label' => 'Holder focus', 'value' => 'Start with active-versus-inactive status, branch linkage, and linked-card visibility before discussing any later reactivation or profile merge flow.'],
+            ['label' => 'Holder focus', 'value' => $this->cardholdersHolderFocus($selectedCardHolder)],
             ['label' => 'Holder posture', 'value' => 'Keep holder review in the live workspace first, then leave reactivation, merge, and profile-write flows gated until parity is proven.'],
             ['label' => 'Evidence priority', 'value' => 'Keep holder status, branch linkage, and linked-card visibility together before trusting any later reactivation or merge discussion.'],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
@@ -3086,6 +3086,13 @@ class ResourceIndexController extends Controller
             $selectedCardHolder->cards_count > 0 => 'linked profile, operator-visible',
             default => 'active profile, linkage build-out pending',
         };
+    }
+
+    private function cardholdersHolderFocus(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->is_active
+            ? 'Start with active status, branch linkage, and linked-card visibility before discussing any later profile merge or reactivation edge case.'
+            : 'Start with inactive status, branch linkage, and linked-card visibility before discussing any later reactivation or profile merge flow.';
     }
 
     private function cardholdersLifecycleFreshnessLabel(CardHolder $selectedCardHolder): string

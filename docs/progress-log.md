@@ -2,6 +2,14 @@
 
 ## 2026-04-23
 
+### Cardholders holder-focus state checkpoint
+- Made selected `cardholders` `Holder focus` context-aware so active holder review now surfaces live-profile wording while inactive holder review keeps reactivation-first wording instead of reusing one generic focus line.
+- Kept the step low-risk and Laravel-backed by refining only the selected holder summary copy and extending focused selected-holder assertions without changing any holder search, profile write, merge, or reactivation flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
+
+### Next step after cardholders holder-focus state checkpoint
+- Reuse this conditional summary-focus pattern on another Laravel-backed selected preview that mixes live and inactive states, or continue the same state-aware pass on `cardholders` posture/evidence/backend-gap if the holder summary still reads too uniform.
+
 ### Cards inventory-focus state checkpoint
 - Made selected `cards` `Inventory focus` context-aware so blocked inventory now surfaces dispute-first review wording and draft inventory now surfaces issuance-gap wording instead of reusing one generic focus line.
 - Kept the step low-risk and Laravel-backed by refining only the selected card summary copy and extending focused selected-card assertions without changing any inventory write, replacement, dispute, or issuance flow.
