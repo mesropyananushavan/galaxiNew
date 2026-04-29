@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Roles draft status-signal refinement checkpoint
+- Tightened the selected `roles-permissions` draft-role status signal so the visible blocker now names access-rollout parity directly instead of the broader spaced `access rollout parity` wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and updating the focused draft-role assertions without changing any matrix writes, scope writes, assignment wiring, or publish behavior.
+- Re-ran `php artisan test --filter='test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, `1 passed`.
+
+### Next step after roles draft status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Cardholders reactivation signal refinement checkpoint
 - Tightened the selected `cardholders` inactive-holder status signal in both summary and dependency blocks so dormant profiles now name reactivation-flow parity directly instead of broader reactivation parity wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused inactive-holder assertions without changing any profile writes, reactivation flow, merge behavior, or activity sourcing.
