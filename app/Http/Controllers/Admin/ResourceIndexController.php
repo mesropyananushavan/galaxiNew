@@ -3132,6 +3132,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Branch posture', 'value' => 'Keep branch review in the live workspace first, then leave reassignment, reopen, and scope-mutation flows gated until parity is proven.'],
             ['label' => 'Evidence priority', 'value' => 'Keep manager ownership, holder coverage, and card coverage together before trusting any later reassignment or branch-scope mutation discussion.'],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
+            ['label' => 'Backend gap', 'value' => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay preview-only until branch parity is verified.'],
             ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
             ['label' => 'Manager guidance', 'value' => $selectedShop->users_count > 0
                 ? 'Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.'

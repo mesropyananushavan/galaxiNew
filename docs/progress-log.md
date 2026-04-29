@@ -17,8 +17,13 @@
 - Kept the step low-risk and Laravel-backed by enriching only the existing selected shop summary without changing any branch write, reassignment, or scope-mutation flow.
 - Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context)'`, `2 passed`.
 
+### Shops backend-gap checkpoint
+- Added a compact read-only `Backend gap` cue to selected `shops` summaries so the still-blocked branch mutation slice now appears directly in the selected shop block instead of only in later dependency notes.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected shop summary without changing any branch write, reassignment, or scope-mutation flow.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context)'`, `2 passed`.
+
 ### Next step after shops branch-focus checkpoint
-- Add the matching backend-gap cue to selected `shops`, or move to another Laravel-backed selected preview that still reads too much like a static signal list.
+- Reuse this compact focus/posture/evidence/backend-gap cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
 
 ### Cardholders holder-focus checkpoint
 - Added a compact read-only `Holder focus` cue to selected `cardholders` summaries so saved profile review now names the first parity angle directly in the selected holder block.
