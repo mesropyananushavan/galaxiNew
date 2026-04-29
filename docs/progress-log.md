@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Shops rollout evidence wording checkpoint
+- Tightened the selected `shops` manager-owned branch evidence-priority line so the visible blocker now treats `rollout-flow discussion` as a single Galaxy-specific discussion boundary instead of broader rollout wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and updating the focused selected-shop assertion without changing any branch writes, manager assignment flow, scope mutation, or coverage behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops rollout evidence wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Services rules draft status wording checkpoint
 - Tightened the selected `services-rules` draft exclusion status signal so the visible blocker now treats `live-publish-flow discussion` as a single Galaxy-specific discussion boundary instead of broader live-publish wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-rule copy and updating the focused draft exclusion assertion without changing any rule writes, condition editing, publish flow, or scope behavior.

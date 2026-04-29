@@ -3360,7 +3360,7 @@ class ResourceIndexController extends Controller
         return match (true) {
             ! $selectedShop->is_active => 'Keep paused status, ownership gaps, and any visible holder or card coverage together before trusting any reopening or reassignment discussion.',
             $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Keep manager ownership, holder coverage, and card coverage together before trusting any later reassignment or branch-scope mutation discussion.',
-            $selectedShop->users_count > 0 => 'Keep manager ownership, branch readiness gaps, and missing holder or card coverage together before trusting any rollout discussion.',
+            $selectedShop->users_count > 0 => 'Keep manager ownership, branch readiness gaps, and missing holder or card coverage together before trusting any rollout-flow discussion.',
             default => 'Keep holder coverage, card coverage, and ownership gaps together before trusting any later branch-scope mutation discussion.',
         };
     }

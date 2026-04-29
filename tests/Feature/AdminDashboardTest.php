@@ -3247,7 +3247,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Branch posture')
             ->assertSee('Keep manager-owned branch review in the live workspace first, then leave coverage build-out, reassignment, and scope-mutation flows gated until parity is proven.')
             ->assertSee('Evidence priority')
-            ->assertSee('Keep manager ownership, branch readiness gaps, and missing holder or card coverage together before trusting any rollout discussion.')
+            ->assertSee('Keep manager ownership, branch readiness gaps, and missing holder or card coverage together before trusting any rollout-flow discussion.')
             ->assertSee('Scope handoff signal')
             ->assertSee('Manager ownership is visible, but customer coverage still needs to catch up before full scope handoff review.')
             ->assertSee('Backend gap')
