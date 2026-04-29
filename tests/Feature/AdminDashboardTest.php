@@ -6697,7 +6697,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Points cost')
             ->assertSee('900')
             ->assertSee('Gift status signal')
-            ->assertSee('Active scoped reward is already visible for branch-aware catalog parity review.')
+            ->assertSee('Active scoped reward is already visible for kiosk reward parity review.')
             ->assertSee('Gift focus')
             ->assertSee('Start with local stock and scope before comparing this reward against broader catalog behavior.')
             ->assertSee('Gift handoff signal')

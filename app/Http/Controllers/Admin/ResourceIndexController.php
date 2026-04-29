@@ -523,7 +523,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected gift preview', 'value' => 'Airport transfer'],
                     ['label' => 'Points cost', 'value' => '900'],
-                    ['label' => 'Gift status signal', 'value' => 'Active scoped reward is already visible for branch-aware catalog parity review.'],
+                    ['label' => 'Gift status signal', 'value' => 'Active scoped reward is already visible for kiosk reward parity review.'],
                     ['label' => 'Gift focus', 'value' => 'Start with local stock and scope before comparing this reward against broader catalog behavior.'],
                     ['label' => 'Gift handoff signal', 'value' => 'Carry local stock and scope context forward before any broader publish discussion begins.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep stock, scope, and points cost visible together before comparing this reward against broader catalog behavior.'],
@@ -540,7 +540,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Airport transfer'],
-                    ['label' => 'Gift status signal', 'value' => 'Active scoped reward is already visible for branch-aware catalog parity review.'],
+                    ['label' => 'Gift status signal', 'value' => 'Active scoped reward is already visible for kiosk reward parity review.'],
                     ['label' => 'Scope posture', 'value' => 'Shop-scoped reward behavior should stay preview-only until Laravel scope checks are verified against legacy kiosk rules.'],
                     ['label' => 'Stock posture', 'value' => 'Finite-stock handling still needs backend inventory wiring before a publish path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('airport-transfer')],
