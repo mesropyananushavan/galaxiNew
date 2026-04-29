@@ -3060,7 +3060,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Holder focus', 'value' => $this->cardholdersHolderFocus($selectedCardHolder)],
-            ['label' => 'Holder posture', 'value' => 'Keep holder review in the live workspace first, then leave reactivation, merge, and profile-write flows gated until parity is proven.'],
+            ['label' => 'Holder posture', 'value' => $this->cardholdersHolderPosture($selectedCardHolder)],
             ['label' => 'Evidence priority', 'value' => 'Keep holder status, branch linkage, and linked-card visibility together before trusting any later reactivation or merge discussion.'],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
             ['label' => 'Backend gap', 'value' => 'Holder search, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.'],
@@ -3093,6 +3093,13 @@ class ResourceIndexController extends Controller
         return $selectedCardHolder->is_active
             ? 'Start with active status, branch linkage, and linked-card visibility before discussing any later profile merge or reactivation edge case.'
             : 'Start with inactive status, branch linkage, and linked-card visibility before discussing any later reactivation or profile merge flow.';
+    }
+
+    private function cardholdersHolderPosture(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->is_active
+            ? 'Keep live holder review in the workspace first, then leave profile-write, merge, and lifecycle-change flows gated until parity is proven.'
+            : 'Keep inactive holder review in the workspace first, then leave reactivation, merge, and profile-write flows gated until parity is proven.';
     }
 
     private function cardholdersLifecycleFreshnessLabel(CardHolder $selectedCardHolder): string

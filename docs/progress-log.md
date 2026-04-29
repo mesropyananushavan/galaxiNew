@@ -7,8 +7,13 @@
 - Kept the step low-risk and Laravel-backed by refining only the selected holder summary copy and extending focused selected-holder assertions without changing any holder search, profile write, merge, or reactivation flow.
 - Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
 
+### Cardholders holder-posture state checkpoint
+- Made selected `cardholders` `Holder posture` context-aware so active holder review now surfaces live-profile gating while inactive holder review keeps reactivation-first gating instead of reusing one generic posture line.
+- Kept the step low-risk and Laravel-backed by refining only the selected holder summary copy and extending focused selected-holder assertions without changing any holder search, profile write, merge, lifecycle-change, or reactivation flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
+
 ### Next step after cardholders holder-focus state checkpoint
-- Reuse this conditional summary-focus pattern on another Laravel-backed selected preview that mixes live and inactive states, or continue the same state-aware pass on `cardholders` posture/evidence/backend-gap if the holder summary still reads too uniform.
+- Continue the same state-aware pass on `cardholders` evidence/backend-gap if the holder summary still reads too uniform, or reuse this conditional summary pattern on another Laravel-backed selected preview that mixes live and inactive states.
 
 ### Cards inventory-focus state checkpoint
 - Made selected `cards` `Inventory focus` context-aware so blocked inventory now surfaces dispute-first review wording and draft inventory now surfaces issuance-gap wording instead of reusing one generic focus line.
