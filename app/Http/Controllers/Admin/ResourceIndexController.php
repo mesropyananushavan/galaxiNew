@@ -1572,7 +1572,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Default period posture', 'value' => 'Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because access coverage checks need visible role and scope context before any export workflow is trusted.' ],
                     ['label' => 'Handoff signal', 'value' => 'Keep access coverage findings in the live workspace before asking for export-driven handoff.'],
-                    ['label' => 'Backend gap', 'value' => 'Preset handling, report shaping, and export generation should stay preview-only until access parity is verified.'],
+                    ['label' => 'Backend gap', 'value' => $this->reportsRoleAccessBackendGap($roleCount, $permissionLinkedRoleCount, $assignedStaffCount)],
                     ['label' => 'Preset posture', 'value' => 'Keep access-report presets preview-only until role and scope parity are verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until access export expectations and file delivery are validated.'],
                 ],
@@ -2523,6 +2523,17 @@ class ResourceIndexController extends Controller
                 },
             ],
         ];
+    }
+
+    private function reportsRoleAccessBackendGap(int $roleCount, int $permissionLinkedRoleCount, int $assignedStaffCount): string
+    {
+        return match (true) {
+            $roleCount === 0 => 'Role-source seeding, preset handling, and export generation should stay preview-only until access-report inputs exist in Laravel.',
+            $permissionLinkedRoleCount > 0 && $assignedStaffCount > 0 => 'Preset handling, grouped access shaping, and export generation should stay preview-only until scope and staffing parity are verified.',
+            $permissionLinkedRoleCount > 0 => 'Preset handling, assignment-aware shaping, and export generation should stay preview-only until access-report staffing parity is verified.',
+            $assignedStaffCount > 0 => 'Preset handling, permission-bundle shaping, and export generation should stay preview-only until access-report bundle parity is verified.',
+            default => 'Preset handling, report shaping, and export generation should stay preview-only until access parity is verified.',
+        };
     }
 
     private function rolesPermissionsOperationalReadiness(Role $selectedRole): string

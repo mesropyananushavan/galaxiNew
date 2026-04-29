@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Reports role-access backend-gap checkpoint
+- Made selected `reports` `role-access` `Backend gap` context-aware so live access coverage with visible staff and permission bundles now names grouped access-shaping blockers instead of reusing one generic report-export gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected report-source summary copy and extending the focused role-access reporting assertion without changing any preset handling, query shaping, or export flow.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_review_context'`, `1 passed`.
+
+### Next step after reports role-access backend-gap checkpoint
+- Continue the same tiny source-specific backend-gap pass on another Laravel-backed report source that still reuses a generic export blocker, or return to the next persisted metadata slice on an already-live Galaxy form.
+
 ### Card-types backend-gap state checkpoint
 - Made selected `card-types` `Backend gap` context-aware so live tiers now call out rollout-coverage blockers, while draft tiers now call out activation-first blockers instead of reusing one generic rule-import gap line.
 - Kept the step low-risk and Laravel-backed by refining only the selected tier summary copy and extending focused selected-tier assertions without changing any live form write, activation toggle, publish, or rule-import flow.

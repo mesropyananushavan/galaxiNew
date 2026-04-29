@@ -5180,7 +5180,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Handoff signal')
             ->assertSee('Keep access coverage findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Backend gap')
-            ->assertSee('Preset handling, report shaping, and export generation should stay preview-only until access parity is verified.')
+            ->assertSee('Preset handling, grouped access shaping, and export generation should stay preview-only until scope and staffing parity are verified.')
             ->assertSee('Permission bundle signal')
             ->assertSee('unbundled active-role coverage is still pending')
             ->assertSee('Role access source selected for Laravel review')
