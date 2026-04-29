@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Gifts paused-branch backend wording checkpoint
+- Tightened the selected `gifts` paused finite-stock reward backend-gap copy so the visible blocker now names paused-branch-reopening parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only selected-gift backend-gap copy and updating the focused paused finite-stock assertions without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after gifts paused-branch backend wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Cards draft status wording checkpoint
 - Tightened the selected `cards` draft-card status signal so the visible blocker now treats `issuance-flow discussion` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and updating the focused draft-card assertion without changing any issuance writes, activation flow, reassignment behavior, or inventory mutations.
