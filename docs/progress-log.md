@@ -7,8 +7,13 @@
 - Kept the step low-risk and Laravel-backed by enriching only the existing selected shop summary without changing any branch write, reassignment, or scope-mutation flow.
 - Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context)'`, `2 passed`.
 
+### Shops branch-posture checkpoint
+- Added a compact read-only `Branch posture` cue to selected `shops` summaries so the safe operating stance now appears directly beside the new focus line in the selected shop block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected shop summary without changing any branch write, reassignment, or scope-mutation flow.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context)'`, `2 passed`.
+
 ### Next step after shops branch-focus checkpoint
-- Add the matching posture/evidence/backend-gap cue pattern to selected `shops`, or move to another Laravel-backed selected preview that still reads too much like a static signal list.
+- Add the matching evidence/backend-gap cue pattern to selected `shops`, or move to another Laravel-backed selected preview that still reads too much like a static signal list.
 
 ### Cardholders holder-focus checkpoint
 - Added a compact read-only `Holder focus` cue to selected `cardholders` summaries so saved profile review now names the first parity angle directly in the selected holder block.
