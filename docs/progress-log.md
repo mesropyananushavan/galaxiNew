@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Checks-points backend-gap cue checkpoint
+- Added a compact read-only `Backend gap` cue to selected `checks-points` receipt previews so positive, zero-accrual, and branch-aware receipt review now surfaces the still-blocked Laravel receipt and adjustment slice directly in the summary block.
+- Kept the step low-risk and read-only by enriching only the selected receipt summary copy and extending the focused receipt assertions without changing any lookup, ledger read, or adjustment flow.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points backend-gap cue checkpoint
+- Reuse this compact summary-level backend-gap cue on another selected preview that still hides its blocked Laravel slice too low in the page, or return to the next persisted metadata slice on an already-live Galaxy form.
+
 ### Reports cardholder-status backend-gap checkpoint
 - Made selected `reports` `cardholder-status` `Backend gap` context-aware so live holder lifecycle coverage now names inactive-holder shaping blockers instead of reusing one generic lifecycle-export gap line.
 - Kept the step low-risk and Laravel-backed by refining only the selected report-source summary copy and extending the focused holder-status reporting assertion without changing any preset handling, report shaping, or export flow.

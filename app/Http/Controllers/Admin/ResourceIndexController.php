@@ -159,6 +159,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Receipt posture', 'value' => 'Fiscal receipt review should remain read-only until Laravel transaction history is verified against the legacy ledger.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep amount, points, and timestamp visible together before comparing this receipt against any later correction narrative.'],
                     ['label' => 'Accrual posture', 'value' => 'Positive accrual receipts should stay parity-first, because receipt math must match the old Galaxy ledger before any correction flow appears.'],
+                    ['label' => 'Backend gap', 'value' => $this->checksPointsBackendGap('chk-90421')],
                     ['label' => 'Format guidance', 'value' => 'Keep this receipt in table-first review mode, because operators usually compare amount, points, and timestamp together before opening deeper investigation.'],
                     ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and adjustment flows exist.'],
                 ],
@@ -193,6 +194,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Receipt posture', 'value' => 'Receipt lookup should stay read-only until Laravel transaction history is verified against legacy fiscal search behavior.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep receipt, amount, and zero-point outcome visible together before expanding into broader rule troubleshooting.'],
                     ['label' => 'Accrual posture', 'value' => 'Zero-accrual receipts should stay highly visible, because they drive the most parity-sensitive troubleshooting in the old Galaxy flow.'],
+                    ['label' => 'Backend gap', 'value' => $this->checksPointsBackendGap('chk-90407')],
                     ['label' => 'Format guidance', 'value' => 'Keep zero-accrual receipts in compact on-screen review first, because operators need amount, points, and rule context together before escalating.'],
                     ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and rule-backed explanations exist.'],
                 ],
@@ -227,6 +229,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Receipt posture', 'value' => 'Branch receipt lookup should stay read-only until Laravel shop filters and transaction history are verified against the old flow.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep shop, amount, and points visible together before comparing this branch receipt against other locations.'],
                     ['label' => 'Accrual posture', 'value' => 'North Shop accrual receipts should stay branch-aware, because cross-shop troubleshooting must preserve local receipt context.'],
+                    ['label' => 'Backend gap', 'value' => $this->checksPointsBackendGap('chk-90388')],
                     ['label' => 'Format guidance', 'value' => 'Keep branch receipts in table-first review mode, because operators need the shop, amount, and points visible together before cross-shop comparisons begin.'],
                     ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and shop-aware filters exist.'],
                 ],
@@ -307,6 +310,15 @@ class ResourceIndexController extends Controller
         );
 
         return $page;
+    }
+
+    private function checksPointsBackendGap(string $receiptKey): string
+    {
+        return match ($receiptKey) {
+            'chk-90407' => 'Receipt reads, zero-accrual rule traces, and adjustment handlers should stay preview-only until fiscal-search parity is verified.',
+            'chk-90388' => 'Branch-aware receipt reads, shop-filter parity, and adjustment handlers should stay preview-only until cross-branch ledger parity is verified.',
+            default => 'Receipt reads, transaction tables, and adjustment handlers should stay preview-only until accrual parity is verified.',
+        };
     }
 
     private function enrichServicesRulesPage(array $page): array
