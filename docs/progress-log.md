@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Card-types live coverage status-signal checkpoint
+- Tightened the selected `card-types` live coverage status signal so active tiers with saved card coverage now name live tier parity review directly instead of broader live catalog parity review wording.
+- Added a focused selected live tier coverage test to lock the Galaxy-specific status signal and handoff copy in place for a real Laravel-backed card-type scenario.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal'`, `1 passed`.
+
+### Next step after card-types live coverage status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Card-types live publish blocker refinement checkpoint
 - Tightened the selected `card-types` live publish blocker copy so active tiers without visible card coverage now name Galaxy tier rollout parity directly instead of broader rollout parity wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-tier gating copy and extending two focused card-types assertions without changing any tier writes, activation flow, import behavior, or publish behavior.

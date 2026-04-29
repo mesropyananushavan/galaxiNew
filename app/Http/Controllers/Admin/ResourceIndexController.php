@@ -1980,7 +1980,7 @@ class ResourceIndexController extends Controller
         $cardsCount = $selectedCardType->cards_count ?? 0;
 
         return match (true) {
-            $selectedCardType->is_active && $cardsCount > 0 => 'Active tier is already visible with saved card coverage for live catalog parity review.',
+            $selectedCardType->is_active && $cardsCount > 0 => 'Active tier is already visible with saved card coverage for live tier parity review.',
             $selectedCardType->is_active => 'Active tier is already visible, but card coverage still needs parity review before rollout discussion.',
             $cardsCount > 0 => 'Draft tier remains safer for parity review while saved card coverage is already visible.',
             default => 'Draft tier remains safer for parity review before visible card coverage lands.',

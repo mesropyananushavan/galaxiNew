@@ -7176,6 +7176,43 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until this live tier has visible card coverage and Galaxy tier rollout parity review.');
     }
 
+    public function test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal(): void
+    {
+        $cardType = CardType::create([
+            'name' => 'Galaxy Onyx',
+            'slug' => 'galaxy-onyx',
+            'points_rate' => '2.60',
+            'is_active' => true,
+        ]);
+
+        $shop = Shop::create([
+            'name' => 'Galaxy Tier Coverage Branch',
+            'code' => 'galaxy-tier-coverage-branch',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'number' => 'GX-CT-300001',
+            'status' => 'active',
+            'card_type_id' => $cardType->id,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index', ['cardType' => $cardType->id]));
+
+        $response
+            ->assertOk()
+            ->assertSee('Editing: Galaxy Onyx')
+            ->assertSee('Coverage signal:')
+            ->assertSee('live tier with visible card coverage')
+            ->assertSee('Tier status signal:')
+            ->assertSee('Active tier is already visible with saved card coverage for live tier parity review.')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Live tier already carries visible card coverage for a useful rollout handoff review.');
+    }
+
     public function test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons(): void
     {
         $cardType = CardType::create([
