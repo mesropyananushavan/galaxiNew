@@ -7173,7 +7173,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Import rules')
             ->assertSee('Blocked until this live tier has visible card coverage for accrual parity review.')
             ->assertSee('Publish type')
-            ->assertSee('Blocked until this live tier has visible card coverage and rollout parity review.');
+            ->assertSee('Blocked until this live tier has visible card coverage and Galaxy tier rollout parity review.');
     }
 
     public function test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons(): void
@@ -7203,7 +7203,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Import rules')
             ->assertSee('Blocked until this live tier has visible card coverage for accrual parity review.')
             ->assertSee('Publish type')
-            ->assertSee('Blocked until this live tier has visible card coverage and rollout parity review.');
+            ->assertSee('Blocked until this live tier has visible card coverage and Galaxy tier rollout parity review.');
     }
 
     public function test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons(): void

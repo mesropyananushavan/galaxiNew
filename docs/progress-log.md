@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Card-types live publish blocker refinement checkpoint
+- Tightened the selected `card-types` live publish blocker copy so active tiers without visible card coverage now name Galaxy tier rollout parity directly instead of broader rollout parity wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier gating copy and extending two focused card-types assertions without changing any tier writes, activation flow, import behavior, or publish behavior.
+- Re-ran `php artisan test --filter='(test_card_types_page_exposes_edit_link_for_latest_saved_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Next step after card-types live publish blocker refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Card-types catalog publish blocker refinement checkpoint
 - Tightened the catalog-level `card-types` publish blocker copy so saved live tiers now name Galaxy tier rollout parity directly instead of broader old-catalog rollout wording.
 - Kept the step low-risk and Laravel-backed by refining only visible catalog action copy and extending the focused card-types readiness assertion without changing any tier writes, activation flow, import behavior, or publish behavior.
