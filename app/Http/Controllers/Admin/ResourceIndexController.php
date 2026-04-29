@@ -2908,7 +2908,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
             ['label' => 'Inventory focus', 'value' => $this->cardsInventoryFocus($selectedCard)],
             ['label' => 'Inventory posture', 'value' => $this->cardsInventoryPosture($selectedCard)],
-            ['label' => 'Evidence priority', 'value' => 'Keep card status, holder linkage, and branch ownership visible together before trusting any later replacement or reassignment discussion.'],
+            ['label' => 'Evidence priority', 'value' => $this->cardsEvidencePriority($selectedCard)],
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
             ['label' => 'Backend gap', 'value' => 'Card lifecycle writes, blocked-card handling, and replacement flows should stay preview-only until inventory parity is verified.'],
             ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
@@ -2953,6 +2953,15 @@ class ResourceIndexController extends Controller
             'blocked' => 'Keep blocked inventory in dispute-first review, then leave replacement, reassignment, and cross-branch moves gated until parity is proven.',
             'active' => 'Keep inventory review in the live workspace first, then leave replacement, reassignment, and cross-branch moves gated until parity is proven.',
             default => 'Keep draft inventory in issuance-readiness review first, then leave activation, reassignment, and cross-branch moves gated until parity is proven.',
+        };
+    }
+
+    private function cardsEvidencePriority(Card $selectedCard): string
+    {
+        return match ($selectedCard->status) {
+            'blocked' => 'Keep blocked status, holder linkage, and dispute context visible together before trusting any later replacement or reassignment discussion.',
+            'active' => 'Keep card status, holder linkage, and branch ownership visible together before trusting any later replacement or reassignment discussion.',
+            default => 'Keep draft status, holder linkage gaps, and branch ownership visible together before trusting any later issuance or reassignment discussion.',
         };
     }
 

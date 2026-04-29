@@ -12,8 +12,13 @@
 - Kept the step low-risk and Laravel-backed by refining only the selected card summary copy and extending focused selected-card assertions without changing any inventory write, replacement, dispute, or issuance flow.
 - Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context)'`, `5 passed`.
 
+### Cards evidence-priority state checkpoint
+- Made selected `cards` `Evidence priority` context-aware so blocked inventory now highlights dispute-first evidence and draft inventory now highlights issuance-gap evidence instead of reusing the active-card evidence line.
+- Kept the step low-risk and Laravel-backed by refining only the selected card summary copy and extending focused selected-card assertions without changing any inventory write, replacement, dispute, or issuance flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context)'`, `5 passed`.
+
 ### Next step after cards inventory-focus state checkpoint
-- Reuse this conditional summary-focus/posture pattern on another Laravel-backed selected preview that mixes live and blocked states, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+- Reuse this conditional summary-focus/posture/evidence pattern on another Laravel-backed selected preview that mixes live and blocked states, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
 
 ### Shops paused-branch focus checkpoint
 - Made selected `shops` `Branch focus` context-aware so paused branches now surface a recovery-first review cue instead of reusing the active-branch ownership wording.
