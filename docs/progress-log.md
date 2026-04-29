@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Roles draft status wording checkpoint
+- Tightened the selected `roles-permissions` draft-role status signal so the visible blocker now treats `live-access` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and updating the focused draft-role assertions without changing any matrix writes, scope writes, assignment wiring, or publish behavior.
+- Re-ran `php artisan test --filter='test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, `1 passed`.
+
+### Next step after roles draft status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Gifts paused-branch status wording checkpoint
 - Tightened the selected `gifts` paused finite-stock reward status signal so the visible blocker now names paused-branch-reopening-parity review as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused finite-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
