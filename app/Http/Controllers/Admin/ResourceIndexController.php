@@ -1789,7 +1789,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Tier posture', 'value' => 'Keep tier review in the live workspace first, then leave rule import and publish-style moves gated until parity is proven.'],
             ['label' => 'Evidence priority', 'value' => 'Keep visible card coverage, activation note, and rollout note together before trusting any later rule import discussion.'],
             ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
-            ['label' => 'Backend gap', 'value' => 'Publish logic and rule-import parity should stay preview-only until tier parity is verified.'],
+            ['label' => 'Backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
             [
                 'label' => 'Status guidance',
                 'value' => $selectedCardType->is_active
@@ -2038,6 +2038,16 @@ class ResourceIndexController extends Controller
             $selectedCardType->is_active => 'Live tier should stay in handoff-only posture until visible card coverage and rollout parity are explicit.',
             $selectedCardType->cards()->exists() => 'Draft tier already carries visible card coverage for a useful parity handoff review.',
             default => 'Draft tier should stay in handoff-only posture until visible card coverage grounds rollout review.',
+        };
+    }
+
+    private function cardTypesBackendGap(CardType $selectedCardType): string
+    {
+        return match (true) {
+            $selectedCardType->is_active && $selectedCardType->cards()->exists() => 'Publish logic and rule-import parity should stay preview-only until live tier parity is verified.',
+            $selectedCardType->is_active => 'Rollout confirmation, publish logic, and rule-import parity should stay preview-only until live tier coverage is verified.',
+            $selectedCardType->cards()->exists() => 'Draft activation, publish logic, and rule-import parity should stay preview-only until draft tier parity is verified.',
+            default => 'Draft activation, publish logic, and rule-import parity should stay preview-only until visible tier coverage is verified.',
         };
     }
 

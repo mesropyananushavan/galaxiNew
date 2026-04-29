@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Card-types backend-gap state checkpoint
+- Made selected `card-types` `Backend gap` context-aware so live tiers now call out rollout-coverage blockers, while draft tiers now call out activation-first blockers instead of reusing one generic rule-import gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected tier summary copy and extending focused selected-tier assertions without changing any live form write, activation toggle, publish, or rule-import flow.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Next step after card-types backend-gap state checkpoint
+- Reuse this completed state-aware focus/posture/evidence/backend-gap pass on another Laravel-backed selected preview that still reuses one generic gap line, or switch to the next tiny persisted metadata slice on an already-live Galaxy form.
+
 ### Roles permissions backend-gap state checkpoint
 - Made selected `roles-permissions` `Backend gap` context-aware so draft roles now call out activation and first bundle wiring blockers, while live roles keep assignment-sensitive access-write blocking instead of reusing one generic gap line.
 - Kept the step low-risk and Laravel-backed by refining only the selected role summary copy and extending focused selected-role assertions without changing any role assignment, matrix editing, scope write, activation, or publish flow.
