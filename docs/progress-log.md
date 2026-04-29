@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### All-shop gift status-signal refinement checkpoint
+- Tightened the selected `gifts` all-shop status signal so `coffee-voucher` now names live all-shop reward parity review directly instead of broader catalog parity review wording.
+- Kept the step low-risk and preview-only by refining only visible selected reward copy and extending the focused all-shop gift assertion without changing any gift CRUD, stock updates, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_all_shop_gift_review_context'`, `1 passed`.
+
+### Next step after all-shop gift status-signal refinement checkpoint
+- Continue tightening preview-only selected copy on another Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Scoped kiosk gift backend-gap refinement checkpoint
 - Tightened the selected `gifts` scoped backend-gap copy so `airport-transfer` now names kiosk reward parity directly instead of broader local reward parity wording.
 - Kept the step low-risk and preview-only by refining only the selected reward copy and extending the focused scoped gift assertion without changing any gift CRUD, stock updates, or redemption behavior.

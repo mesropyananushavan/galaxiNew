@@ -6744,7 +6744,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Points cost')
             ->assertSee('150')
             ->assertSee('Gift status signal')
-            ->assertSee('Active all-shop reward is already visible for live catalog parity review.')
+            ->assertSee('Active all-shop reward is already visible for live all-shop reward parity review.')
             ->assertSee('Gift focus')
             ->assertSee('Start with points cost and stock policy before discussing any later publish path.')
             ->assertSee('Gift handoff signal')

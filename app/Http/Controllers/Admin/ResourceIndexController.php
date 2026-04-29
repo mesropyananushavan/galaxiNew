@@ -490,7 +490,7 @@ class ResourceIndexController extends Controller
                 'summary' => [
                     ['label' => 'Selected gift preview', 'value' => 'Coffee voucher'],
                     ['label' => 'Points cost', 'value' => '150'],
-                    ['label' => 'Gift status signal', 'value' => 'Active all-shop reward is already visible for live catalog parity review.'],
+                    ['label' => 'Gift status signal', 'value' => 'Active all-shop reward is already visible for live all-shop reward parity review.'],
                     ['label' => 'Gift focus', 'value' => 'Start with points cost and stock policy before discussing any later publish path.'],
                     ['label' => 'Gift handoff signal', 'value' => 'Carry points cost, stock policy, and scope context forward before any later publish discussion begins.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep points cost, stock policy, and shop scope visible together before comparing this reward against any later publish narrative.'],
@@ -507,7 +507,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Coffee voucher'],
-                    ['label' => 'Gift status signal', 'value' => 'Active all-shop reward is already visible for live catalog parity review.'],
+                    ['label' => 'Gift status signal', 'value' => 'Active all-shop reward is already visible for live all-shop reward parity review.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop reward coverage should remain stable until Laravel scope handling is verified against the legacy catalog.'],
                     ['label' => 'Stock posture', 'value' => 'Unlimited-stock assumptions still need backend inventory wiring before operators can trust live publish behavior.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('coffee-voucher')],
