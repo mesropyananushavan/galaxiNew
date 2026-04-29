@@ -6795,7 +6795,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Points cost')
             ->assertSee('320')
             ->assertSee('Gift status signal')
-            ->assertSee('Paused finite-stock reward remains safer for paused-branch-reopening parity review before reopening discussion.')
+            ->assertSee('Paused finite-stock reward remains safer for paused-branch-reopening-parity review before reopening discussion.')
             ->assertSee('Gift focus')
             ->assertSee('Start with remaining stock and local reopening assumptions before comparing this reward against wider catalog behavior.')
             ->assertSee('Gift handoff signal')
