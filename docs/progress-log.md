@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Cards draft status-signal refinement checkpoint
+- Tightened the selected `cards` draft-card status signal so the visible blocker now names issuance-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and updating the focused draft-card assertion without changing any issuance behavior, reassignment flow, lifecycle writes, or blocked-card handling.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_draft_card_review_context'`, `1 passed`.
+
+### Next step after cards draft status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Card types draft status-signal refinement checkpoint
 - Tightened the selected `card-types` draft-tier status signal so the visible blocker now names visible-card-coverage parity-review as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and updating the focused draft-tier assertion without changing any publish logic, rollout behavior, import behavior, or rule wiring.

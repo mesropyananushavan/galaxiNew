@@ -3013,7 +3013,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Card status signal', 'value' => match ($selectedCard->status) {
                 'active' => 'Active card is already visible for live inventory parity review.',
                 'blocked' => 'Blocked card remains in operator review posture until dispute parity is verified.',
-                default => 'Draft card remains safer for issuance parity review before any issuance discussion.',
+                default => 'Draft card remains safer for issuance-parity review before any issuance discussion.',
             }],
             ['label' => 'Operational readiness', 'value' => $this->cardsOperationalReadiness($selectedCard)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
@@ -3138,7 +3138,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Card status signal', 'value' => match ($selectedCard->status) {
                 'active' => 'Active card is already visible for live inventory parity review.',
                 'blocked' => 'Blocked card remains in operator review posture until dispute parity is verified.',
-                default => 'Draft card remains safer for issuance parity review before any issuance discussion.',
+                default => 'Draft card remains safer for issuance-parity review before any issuance discussion.',
             }],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
