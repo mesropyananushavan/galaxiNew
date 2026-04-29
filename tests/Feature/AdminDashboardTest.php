@@ -3636,7 +3636,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Status posture:')
             ->assertSee('This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.')
             ->assertSee('Card linkage posture:')
-            ->assertSee('No linked cards exist yet, which keeps this holder safer for card-link parity review before card-link flows are enabled.')
+            ->assertSee('No linked cards exist yet, which keeps this holder safer for card-link-parity review before card-link flows are enabled.')
             ->assertSee('Activity posture:')
             ->assertSee('Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.')
             ->assertSee('Remaining backend gap:')
@@ -3755,7 +3755,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Lookup guidance')
             ->assertSee('This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.')
             ->assertSee('Card linkage posture:')
-            ->assertSee('No linked cards exist yet, which keeps this holder safer for card-link parity review before card-link flows are enabled.');
+            ->assertSee('No linked cards exist yet, which keeps this holder safer for card-link-parity review before card-link flows are enabled.');
     }
 
     public function test_cardholders_page_supports_selected_inactive_linked_holder_review_context(): void

@@ -3288,7 +3288,7 @@ class ResourceIndexController extends Controller
                 : 'This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.'],
             ['label' => 'Card linkage posture', 'value' => $selectedCardHolder->cards_count > 0
                 ? 'Linked cards are visible in Laravel, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.'
-                : 'No linked cards exist yet, which keeps this holder safer for card-link parity review before card-link flows are enabled.'],
+                : 'No linked cards exist yet, which keeps this holder safer for card-link-parity review before card-link flows are enabled.'],
             ['label' => 'Activity posture', 'value' => 'Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.'],
             ['label' => 'Remaining backend gap', 'value' => $this->cardholdersBackendGap($selectedCardHolder)],
         ];
