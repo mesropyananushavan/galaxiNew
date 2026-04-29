@@ -2558,7 +2558,7 @@ class ResourceIndexController extends Controller
     private function servicesRulesBackendGap(string $ruleKey): string
     {
         return match ($ruleKey) {
-            'birthday-bonus' => 'Rule persistence, birthday-window editing, and publish flow should stay preview-only until all-shop loyalty parity is verified.',
+            'birthday-bonus' => 'Rule persistence, birthday-window editing, and publish flow should stay preview-only until birthday accrual parity is verified.',
             'partner-card-uplift' => 'Rule persistence, scoped condition editing, and publish flow should stay preview-only until branch uplift parity is verified.',
             'night-service-block' => 'Rule persistence, exclusion validation, and publish flow should stay preview-only until draft exception parity is verified.',
             default => 'Rule persistence, condition editing, and publish flow should stay preview-only until rule parity is verified.',

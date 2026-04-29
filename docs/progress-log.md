@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Services-rules birthday backend-gap refinement checkpoint
+- Tightened the selected `services-rules` `birthday-bonus` backend-gap copy so the all-shop uplift preview now names birthday-window and accrual parity directly instead of falling back to a broader all-shop loyalty parity phrase.
+- Kept the step low-risk and preview-only by refining only the selected rule copy and extending the focused all-shop rule assertion without changing any rule persistence, scope handling, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_all_shop_rule_review_context'`, `1 passed`.
+
+### Next step after services-rules birthday backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Services-rules backend-gap alignment checkpoint
 - Added a small state-aware `services-rules` backend-gap helper and reused it across selected rule summary and dependency blocks, so all-shop, scoped, and draft rule previews now call out parity-specific rule blockers instead of repeating one generic rule gap line.
 - Kept the step low-risk and preview-only by refining only selected rule review copy and extending the focused draft rule assertion without changing any rule persistence, scope validation, or publish behavior.

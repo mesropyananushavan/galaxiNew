@@ -5528,6 +5528,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Birthday window logic should stay parity-first, because date-sensitive loyalty rules are easy to drift during migration.')
             ->assertSee('Priority posture')
             ->assertSee('Keep this rule near the top of the preview stack until Laravel priority resolution is verified against the old Galaxy order.')
+            ->assertSee('Backend gap')
+            ->assertSee('Rule persistence, birthday-window editing, and publish flow should stay preview-only until birthday accrual parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep this rule in table-first review mode, because operators usually compare scope, effect, and priority together before discussing publication.')
             ->assertSee('Effect guidance')
@@ -5536,6 +5538,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Birthday rule handoff stays parity-first')
             ->assertSee('Birthday rule handoff keeps parity evidence visible')
             ->assertSee('Scope, priority, and uplift effect should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('Remaining backend gap')
+            ->assertSee('Rule persistence, birthday-window editing, and publish flow should stay preview-only until birthday accrual parity is verified.')
             ->assertSee('Priority resolution remains preview-only until overlapping rule order is validated in Laravel.');
     }
 
