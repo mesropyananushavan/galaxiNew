@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Gifts scoped backend-gap refinement checkpoint
+- Tightened the selected `gifts` scoped reward backend gap so the visible blocker now names kiosk-reward parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused scoped reward assertions without changing any gift CRUD behavior, stock handling, scope logic, or redemption flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_scoped_gift_review_context'`, `1 passed`.
+
+### Next step after gifts scoped backend-gap refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Services rules draft status-signal refinement checkpoint
 - Tightened the selected `services-rules` draft exclusion status signal so the visible blocker now names bar-service-exclusion parity review as a single Galaxy-specific concept instead of broader spaced wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-rule copy and updating the focused draft-exclusion assertion without changing any rule persistence, condition editing, or publish behavior.

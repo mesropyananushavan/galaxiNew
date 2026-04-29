@@ -6713,7 +6713,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Stock posture')
             ->assertSee('Finite stock should remain review-only until Laravel inventory updates can preserve remaining-quantity parity.')
             ->assertSee('Backend gap')
-            ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until kiosk reward parity is verified.')
+            ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until kiosk-reward parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep kiosk-scoped rewards in compact on-screen review first, because operators need cost, stock, and local scope visible together before escalating.')
             ->assertSee('Redemption guidance')
@@ -6723,7 +6723,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Finite-stock handoff keeps kiosk evidence visible')
             ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until kiosk reward parity is verified.')
+            ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until kiosk-reward parity is verified.')
             ->assertSee('Shop-scoped reward behavior should stay preview-only until Laravel scope checks are verified against legacy kiosk rules.')
             ->assertSee('Finite-stock handling still needs backend inventory wiring before a publish path is safe.');
     }
