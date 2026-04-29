@@ -1572,6 +1572,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep draft status, scope gaps, and permission bundle gaps together before trusting any later matrix or publish discussion.')
             ->assertSee('Handoff signal')
             ->assertSee('Draft role should stay in handoff-only posture until review note, bundle, and scope parity are explicit.')
+            ->assertSee('Backend gap')
+            ->assertSee('Draft activation, first permission-bundle wiring, and shop-scoped authorization writes should stay preview-only until access parity is verified.')
             ->assertSee('Review freshness')
             ->assertSee('Draft role still needs a saved review note before parity handoff can feel grounded.')
             ->assertSee('Role status signal:')

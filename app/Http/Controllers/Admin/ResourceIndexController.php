@@ -2480,7 +2480,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Access posture', 'value' => $this->rolesPermissionsAccessPosture($selectedRole)],
             ['label' => 'Evidence priority', 'value' => $this->rolesPermissionsEvidencePriority($selectedRole)],
             ['label' => 'Handoff signal', 'value' => $this->rolesPermissionsHandoffSignal($selectedRole, $scope)],
-            ['label' => 'Backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.'],
+            ['label' => 'Backend gap', 'value' => $this->rolesPermissionsBackendGap($selectedRole)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
@@ -2545,6 +2545,17 @@ class ResourceIndexController extends Controller
         return $selectedRole->is_active
             ? 'Keep shop scope, assigned staff, and visible permission bundle entries together before trusting any later matrix view.'
             : 'Keep draft status, scope gaps, and permission bundle gaps together before trusting any later matrix or publish discussion.';
+    }
+
+    private function rolesPermissionsBackendGap(Role $selectedRole): string
+    {
+        return match (true) {
+            ! $selectedRole->is_active => 'Draft activation, first permission-bundle wiring, and shop-scoped authorization writes should stay preview-only until access parity is verified.',
+            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.',
+            $selectedRole->permissions_count > 0 => 'Assignment linking, matrix editing, and shop-scoped authorization writes should stay preview-only until bundle-led access parity is verified.',
+            $selectedRole->users_count > 0 => 'Permission-bundle wiring, matrix editing, and shop-scoped authorization writes should stay preview-only until staff-led access parity is verified.',
+            default => 'Role assignment, permission-bundle wiring, and shop-scoped authorization writes should stay preview-only until access parity is verified.',
+        };
     }
 
     private function rolesPermissionsPublishPostureValue(Role $selectedRole): string

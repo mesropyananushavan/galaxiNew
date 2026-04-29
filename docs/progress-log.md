@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Roles permissions backend-gap state checkpoint
+- Made selected `roles-permissions` `Backend gap` context-aware so draft roles now call out activation and first bundle wiring blockers, while live roles keep assignment-sensitive access-write blocking instead of reusing one generic gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected role summary copy and extending focused selected-role assertions without changing any role assignment, matrix editing, scope write, activation, or publish flow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Next step after roles permissions backend-gap state checkpoint
+- Reuse this completed state-aware focus/posture/evidence/backend-gap pass on another Laravel-backed selected preview that still reuses one generic gap line, or switch to the next tiny persisted metadata slice on an already-live Galaxy form.
+
 ### Shops state-aware summary parity checkpoint
 - Made selected `shops` `Branch posture`, `Evidence priority`, and `Backend gap` context-aware so paused, manager-only, coverage-only, and fully covered branches now surface different review guidance instead of reusing one generic branch summary block.
 - Kept the step low-risk and Laravel-backed by refining only the selected shop summary copy and extending focused selected-branch assertions without changing any branch write, reassignment, recovery, or scope-mutation flow.
