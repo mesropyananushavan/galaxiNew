@@ -2,6 +2,15 @@
 
 ## 2026-04-29
 
+### Scoped rule and gift backend-gap refinement checkpoint
+- Tightened the selected `services-rules` scoped uplift backend-gap copy so `partner-card-uplift` now names partner-card condition editing and scoped uplift parity directly instead of broader branch wording.
+- Tightened the selected `gifts` scoped reward backend-gap copy so `airport-transfer` now names kiosk-scoped stock updates and local reward parity directly instead of broader scoped stock wording.
+- Kept the step low-risk and preview-only by refining only selected preview copy and extending the focused scoped rule and scoped gift assertions without changing any rule writes, gift CRUD, stock updates, or redemption behavior.
+- Re-ran `php artisan test --filter='(test_services_rules_page_supports_selected_scoped_rule_review_context|test_gifts_page_supports_selected_scoped_gift_review_context)'`, `2 passed`.
+
+### Next step after scoped rule and gift backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Services-rules birthday backend-gap refinement checkpoint
 - Tightened the selected `services-rules` `birthday-bonus` backend-gap copy so the all-shop uplift preview now names birthday-window and accrual parity directly instead of falling back to a broader all-shop loyalty parity phrase.
 - Kept the step low-risk and preview-only by refining only the selected rule copy and extending the focused all-shop rule assertion without changing any rule persistence, scope handling, or publish behavior.

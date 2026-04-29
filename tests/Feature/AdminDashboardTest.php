@@ -5485,6 +5485,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Partner-card checks should stay tied to visible card-type parity before any Laravel rule editor opens them up.')
             ->assertSee('Priority posture')
             ->assertSee('This scoped uplift should remain below birthday-wide behavior until legacy overlap order is rechecked.')
+            ->assertSee('Backend gap')
+            ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay preview-only until scoped uplift parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep scoped uplift rules in compact on-screen review first, because operators need scope, condition, and priority visible together before escalating.')
             ->assertSee('Effect guidance')
@@ -5493,6 +5495,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scoped uplift handoff stays branch-aware')
             ->assertSee('Scoped uplift handoff keeps branch evidence visible')
             ->assertSee('Scope, condition, and priority should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('Remaining backend gap')
+            ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay preview-only until scoped uplift parity is verified.')
             ->assertSee('Shop-scoped behavior should stay preview-only until Laravel scope checks are verified against legacy branch rules.')
             ->assertSee('Overlap with broader loyalty rules still needs parity verification before any publish path is safe.');
     }
@@ -6704,6 +6708,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Kiosk-scoped rewards should stay branch-aware, because legacy redemption expectations depended on local availability.')
             ->assertSee('Stock posture')
             ->assertSee('Finite stock should remain review-only until Laravel inventory updates can preserve remaining-quantity parity.')
+            ->assertSee('Backend gap')
+            ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until local reward parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep kiosk-scoped rewards in compact on-screen review first, because operators need cost, stock, and local scope visible together before escalating.')
             ->assertSee('Redemption guidance')
@@ -6712,6 +6718,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Finite-stock handoff stays branch-specific')
             ->assertSee('Finite-stock handoff keeps kiosk evidence visible')
             ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any publish discussion begins.')
+            ->assertSee('Remaining backend gap')
+            ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until local reward parity is verified.')
             ->assertSee('Shop-scoped reward behavior should stay preview-only until Laravel scope checks are verified against legacy kiosk rules.')
             ->assertSee('Finite-stock handling still needs backend inventory wiring before a publish path is safe.');
     }

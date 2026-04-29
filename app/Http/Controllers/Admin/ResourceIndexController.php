@@ -2548,7 +2548,7 @@ class ResourceIndexController extends Controller
     {
         return match ($giftKey) {
             'coffee-voucher' => 'Gift CRUD, all-shop stock assumptions, and redemption persistence should stay preview-only until catalog parity is verified.',
-            'airport-transfer' => 'Gift CRUD, scoped stock updates, and redemption persistence should stay preview-only until kiosk reward parity is verified.',
+            'airport-transfer' => 'Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until local reward parity is verified.',
             'premium-dessert-set' => 'Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused reward parity is verified.',
             'weekend-brunch-pass' => 'Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until branch reward parity is verified.',
             default => 'Gift CRUD, stock updates, and redemption persistence should stay preview-only until reward parity is verified.',
@@ -2559,7 +2559,7 @@ class ResourceIndexController extends Controller
     {
         return match ($ruleKey) {
             'birthday-bonus' => 'Rule persistence, birthday-window editing, and publish flow should stay preview-only until birthday accrual parity is verified.',
-            'partner-card-uplift' => 'Rule persistence, scoped condition editing, and publish flow should stay preview-only until branch uplift parity is verified.',
+            'partner-card-uplift' => 'Rule persistence, partner-card condition editing, and publish flow should stay preview-only until scoped uplift parity is verified.',
             'night-service-block' => 'Rule persistence, exclusion validation, and publish flow should stay preview-only until draft exception parity is verified.',
             default => 'Rule persistence, condition editing, and publish flow should stay preview-only until rule parity is verified.',
         };
