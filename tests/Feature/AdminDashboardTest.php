@@ -1468,7 +1468,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope posture:')
             ->assertSee('Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace');
+            ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.');
     }
 
     public function test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context(): void

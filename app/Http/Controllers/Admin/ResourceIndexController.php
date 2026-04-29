@@ -2971,7 +2971,7 @@ class ResourceIndexController extends Controller
                         ? 'Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.'
                         : 'No shop scope is linked yet, which keeps this role safe for draft access review.'],
                     ['label' => 'Handoff signal', 'value' => 'Keep access coverage findings in the live workspace before asking for export-driven handoff.'],
-                    ['label' => 'Remaining backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes still remain preview-only for this workspace'],
+                    ['label' => 'Remaining backend gap', 'value' => $this->rolesPermissionsBackendGap($selectedRole)],
         ];
     }
 

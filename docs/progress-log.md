@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Roles-permissions dependency-gap alignment checkpoint
+- Aligned selected `roles-permissions` dependency status with the same state-aware `Backend gap` helper already used in the role summary, so the live access review now repeats assignment-sensitive authorization blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected role dependency copy and extending the focused selected-role assertion without changing any matrix editing, assignment, or scope write behavior.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`, `1 passed`.
+
+### Next step after roles-permissions dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
 ### Card-types dependency-gap alignment checkpoint
 - Aligned selected `card-types` dependency status with the same state-aware `Backend gap` helper already used in the tier summary, so the live edit review now repeats draft-versus-live rollout blockers consistently across both visible review blocks.
 - Kept the step low-risk and Laravel-backed by refining only the selected tier dependency copy and extending the focused selected-tier assertion without changing any update flow, publish logic, or rule-import behavior.
