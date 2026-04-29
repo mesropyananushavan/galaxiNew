@@ -2547,7 +2547,7 @@ class ResourceIndexController extends Controller
     private function giftsBackendGap(string $giftKey): string
     {
         return match ($giftKey) {
-            'coffee-voucher' => 'Gift CRUD, all-shop stock assumptions, and redemption persistence should stay preview-only until all-shop reward parity is verified.',
+            'coffee-voucher' => 'Gift CRUD, all-shop stock assumptions, and redemption persistence should stay preview-only until all-shop-reward parity is verified.',
             'airport-transfer' => 'Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until kiosk-reward parity is verified.',
             'premium-dessert-set' => 'Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused zero-stock recovery parity is verified.',
             'weekend-brunch-pass' => 'Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until paused branch reopening parity is verified.',
