@@ -3315,7 +3315,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
             ['label' => 'Manager guidance', 'value' => $selectedShop->users_count > 0
                 ? 'Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.'
-                : 'No manager is assigned yet, so ownership expectations should stay parity-first until assignment rules are verified.'],
+                : 'No manager is assigned yet, so ownership expectations should stay parity-first until ownership-assignment parity is verified.'],
             ['label' => 'Cardholders', 'value' => (string) $selectedShop->card_holders_count],
             ['label' => 'Cards', 'value' => (string) $selectedShop->cards_count],
             ['label' => 'Laravel status', 'value' => $selectedShop->is_active ? 'active' : 'paused'],

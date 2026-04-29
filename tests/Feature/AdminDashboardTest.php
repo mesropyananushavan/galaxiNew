@@ -3144,7 +3144,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assigned manager')
             ->assertSee('Unassigned')
             ->assertSee('Manager guidance')
-            ->assertSee('No manager is assigned yet, so ownership expectations should stay parity-first until assignment rules are verified.');
+            ->assertSee('No manager is assigned yet, so ownership expectations should stay parity-first until ownership-assignment parity is verified.');
     }
 
     public function test_shops_page_supports_selected_manager_linked_coverage_review_context(): void

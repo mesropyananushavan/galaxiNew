@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Shops ownership guidance refinement checkpoint
+- Tightened the selected `shops` unassigned-manager guidance so ownership gaps now name ownership-assignment parity directly instead of broader assignment-rules wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused no-manager shop assertion without changing any branch writes, reassignment flow, or scope mutation behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops ownership guidance refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Paused branch shop status-signal checkpoint
 - Tightened the selected `shops` paused status signal so inactive branches now name reopening parity review directly instead of broader parity-review-before-reopening wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused paused-branch assertions without changing any branch writes, reassignment flow, or reopening behavior.
