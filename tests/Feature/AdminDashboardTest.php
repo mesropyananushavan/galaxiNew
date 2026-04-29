@@ -3148,7 +3148,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Manager guidance')
             ->assertSee('No manager is assigned yet, so ownership expectations should stay parity-first until ownership-assignment parity is verified.')
             ->assertSee('Manager posture:')
-            ->assertSee('No manager is assigned yet, which keeps this branch safer for ownership-flow parity review before ownership flows are enabled.');
+            ->assertSee('No manager is assigned yet, which keeps this branch safer for ownership-flow-parity review before ownership flows are enabled.');
     }
 
     public function test_shops_page_supports_selected_manager_linked_coverage_review_context(): void

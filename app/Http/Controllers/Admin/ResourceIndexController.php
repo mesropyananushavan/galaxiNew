@@ -3476,7 +3476,7 @@ class ResourceIndexController extends Controller
                 : 'This paused branch should stay review-only until recovery and ownership parity are verified.'],
             ['label' => 'Manager posture', 'value' => $selectedShop->users_count > 0
                 ? 'Assigned managers are visible in Laravel, but reassignment should stay blocked until branch ownership parity is confirmed.'
-                : 'No manager is assigned yet, which keeps this branch safer for ownership-flow parity review before ownership flows are enabled.'],
+                : 'No manager is assigned yet, which keeps this branch safer for ownership-flow-parity review before ownership flows are enabled.'],
             ['label' => 'Coverage posture', 'value' => sprintf('This branch currently exposes %d cardholders and %d cards for read-only Laravel review.', $selectedShop->card_holders_count, $selectedShop->cards_count)],
             ['label' => 'Remaining backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
         ];
