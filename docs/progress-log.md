@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### All-shop gift backend-gap refinement checkpoint
+- Tightened the selected `gifts` all-shop backend-gap copy so `coffee-voucher` now names all-shop reward parity directly instead of falling back to broader catalog parity wording.
+- Kept the step low-risk and preview-only by refining only the selected reward copy and extending the focused all-shop gift assertion without changing any gift CRUD, stock update, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_all_shop_gift_review_context'`, `1 passed`.
+
+### Next step after all-shop gift backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Scoped rule and gift backend-gap refinement checkpoint
 - Tightened the selected `services-rules` scoped uplift backend-gap copy so `partner-card-uplift` now names partner-card condition editing and scoped uplift parity directly instead of broader branch wording.
 - Tightened the selected `gifts` scoped reward backend-gap copy so `airport-transfer` now names kiosk-scoped stock updates and local reward parity directly instead of broader scoped stock wording.
