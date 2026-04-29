@@ -1325,7 +1325,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Default period posture', 'value' => 'Use current snapshot review first, then keep preset periods staged until branch-total parity is verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because branch inventory checks should stay visible on screen before anyone expects export files.'],
                     ['label' => 'Handoff signal', 'value' => 'Keep branch comparison findings in the live workspace before asking for export-driven handoff.'],
-                    ['label' => 'Backend gap', 'value' => 'Preset handling, grouped query shaping, and export generation should stay preview-only until report parity is verified.'],
+                    ['label' => 'Backend gap', 'value' => $this->reportsCardsByShopBackendGap($cardCount, $shopCount, $holderLinkedCardCount, $unassignedCardCount)],
                     ['label' => 'Preset posture', 'value' => 'Keep period presets preview-only until shop-level totals and export parity are verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until file export formatting and delivery are validated.'],
                 ],
@@ -2523,6 +2523,17 @@ class ResourceIndexController extends Controller
                 },
             ],
         ];
+    }
+
+    private function reportsCardsByShopBackendGap(int $cardCount, int $shopCount, int $holderLinkedCardCount, int $unassignedCardCount): string
+    {
+        return match (true) {
+            $cardCount === 0 || $shopCount === 0 => 'Report-source seeding, grouped query shaping, and export generation should stay preview-only until branch inventory inputs exist in Laravel.',
+            $holderLinkedCardCount > 0 && $unassignedCardCount > 0 => 'Preset handling, assignment-aware grouping, and export generation should stay preview-only until branch-total and inventory-assignment parity are verified.',
+            $holderLinkedCardCount > 0 => 'Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.',
+            $unassignedCardCount > 0 => 'Preset handling, holder-linkage shaping, and export generation should stay preview-only until branch-total customer-linkage parity is verified.',
+            default => 'Preset handling, grouped query shaping, and export generation should stay preview-only until report parity is verified.',
+        };
     }
 
     private function reportsRoleAccessBackendGap(int $roleCount, int $permissionLinkedRoleCount, int $assignedStaffCount): string

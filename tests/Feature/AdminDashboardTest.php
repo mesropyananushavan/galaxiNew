@@ -4449,7 +4449,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Handoff signal')
             ->assertSee('Keep branch comparison findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Backend gap')
-            ->assertSee('Preset handling, grouped query shaping, and export generation should stay preview-only until report parity is verified.')
+            ->assertSee('Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.')
             ->assertSee('Cards by shop source selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked cards across 1 shops from the current Laravel foundation.')
             ->assertSee('Branch inventory handoff stays on-screen first')
