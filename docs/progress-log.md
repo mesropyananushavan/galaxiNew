@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Scoped kiosk gift backend-gap refinement checkpoint
+- Tightened the selected `gifts` scoped backend-gap copy so `airport-transfer` now names kiosk reward parity directly instead of broader local reward parity wording.
+- Kept the step low-risk and preview-only by refining only the selected reward copy and extending the focused scoped gift assertion without changing any gift CRUD, stock updates, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_scoped_gift_review_context'`, `1 passed`.
+
+### Next step after scoped kiosk gift backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Scoped uplift rule backend-gap refinement checkpoint
 - Tightened the selected `services-rules` scoped uplift backend-gap copy so `partner-card-uplift` now names partner-card uplift parity directly instead of broader scoped uplift parity wording.
 - Kept the step low-risk and preview-only by refining only the selected rule copy and extending the focused scoped uplift rule assertion without changing any rule persistence, condition editing, or publish behavior.
