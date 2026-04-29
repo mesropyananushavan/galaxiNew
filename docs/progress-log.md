@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Paused zero-stock gift status-signal checkpoint
+- Tightened the selected `gifts` paused zero-stock status signal so `premium-dessert-set` now names zero-stock recovery parity review directly instead of broader parity-review-before-reopening wording.
+- Kept the step low-risk and preview-only by refining only visible selected-reward copy and extending the focused paused zero-stock gift assertion without changing any gift CRUD, stock recovery flow, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after paused zero-stock gift status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Draft exclusion rule status-signal checkpoint
 - Tightened the selected `services-rules` draft exclusion status signal so `night-service-block` now names bar-service exclusion parity review directly instead of broader parity-review-before-publish wording.
 - Kept the step low-risk and preview-only by refining only visible selected-rule copy and extending the focused draft exclusion rule assertion without changing any rule persistence, exclusion validation, or publish behavior.
