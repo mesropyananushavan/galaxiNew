@@ -2478,7 +2478,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
             ['label' => 'Access focus', 'value' => $this->rolesPermissionsAccessFocus($selectedRole)],
             ['label' => 'Access posture', 'value' => $this->rolesPermissionsAccessPosture($selectedRole)],
-            ['label' => 'Evidence priority', 'value' => 'Keep shop scope, assigned staff, and visible permission bundle entries together before trusting any later matrix view.'],
+            ['label' => 'Evidence priority', 'value' => $this->rolesPermissionsEvidencePriority($selectedRole)],
             ['label' => 'Handoff signal', 'value' => $this->rolesPermissionsHandoffSignal($selectedRole, $scope)],
             ['label' => 'Backend gap', 'value' => 'Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.'],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
@@ -2538,6 +2538,13 @@ class ResourceIndexController extends Controller
         return $selectedRole->is_active
             ? 'Keep access review in the live workspace first, then leave matrix edits and scope writes gated until parity is proven.'
             : 'Keep draft role review in the workspace first, then leave matrix edits, scope writes, and activation flows gated until parity is proven.';
+    }
+
+    private function rolesPermissionsEvidencePriority(Role $selectedRole): string
+    {
+        return $selectedRole->is_active
+            ? 'Keep shop scope, assigned staff, and visible permission bundle entries together before trusting any later matrix view.'
+            : 'Keep draft status, scope gaps, and permission bundle gaps together before trusting any later matrix or publish discussion.';
     }
 
     private function rolesPermissionsPublishPostureValue(Role $selectedRole): string

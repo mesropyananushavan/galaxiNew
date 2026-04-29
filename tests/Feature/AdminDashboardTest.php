@@ -1568,6 +1568,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Start with draft status, visible scope gaps, and permission bundle gaps before discussing any later matrix editing flow.')
             ->assertSee('Access posture')
             ->assertSee('Keep draft role review in the workspace first, then leave matrix edits, scope writes, and activation flows gated until parity is proven.')
+            ->assertSee('Evidence priority')
+            ->assertSee('Keep draft status, scope gaps, and permission bundle gaps together before trusting any later matrix or publish discussion.')
             ->assertSee('Handoff signal')
             ->assertSee('Draft role should stay in handoff-only posture until review note, bundle, and scope parity are explicit.')
             ->assertSee('Review freshness')
