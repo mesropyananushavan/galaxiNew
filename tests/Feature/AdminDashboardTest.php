@@ -2242,7 +2242,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Inventory handoff signal')
             ->assertSee('Blocked holder-linked inventory already carries enough dispute context for a useful handoff review.')
             ->assertSee('Backend gap')
-            ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows should stay preview-only until inventory parity is verified.')
+            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.')
             ->assertSee('Shop')
             ->assertSee('Shop guidance')
             ->assertSee('Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.')
@@ -2401,6 +2401,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep blocked status, holder linkage, and dispute context visible together before trusting any later replacement or reassignment discussion.')
             ->assertSee('Inventory handoff signal')
             ->assertSee('Blocked holder-linked inventory already carries enough dispute context for a useful handoff review.')
+            ->assertSee('Backend gap')
+            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
     }
@@ -2454,6 +2456,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep blocked status, holder linkage, and dispute context visible together before trusting any later replacement or reassignment discussion.')
             ->assertSee('Inventory handoff signal')
             ->assertSee('Blocked inventory should stay in handoff-only posture until dispute and replacement parity are explicit.')
+            ->assertSee('Backend gap')
+            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
     }
@@ -2506,6 +2510,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep draft status, holder linkage gaps, and branch ownership visible together before trusting any later issuance or reassignment discussion.')
             ->assertSee('Inventory handoff signal')
             ->assertSee('Draft inventory should stay in handoff-only posture until issuance parity is explicit.')
+            ->assertSee('Backend gap')
+            ->assertSee('Card issuance, activation, and lifecycle writes should stay preview-only until inventory parity is verified.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.');
     }

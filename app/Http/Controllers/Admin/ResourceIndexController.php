@@ -2910,7 +2910,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Inventory posture', 'value' => $this->cardsInventoryPosture($selectedCard)],
             ['label' => 'Evidence priority', 'value' => $this->cardsEvidencePriority($selectedCard)],
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
-            ['label' => 'Backend gap', 'value' => 'Card lifecycle writes, blocked-card handling, and replacement flows should stay preview-only until inventory parity is verified.'],
+            ['label' => 'Backend gap', 'value' => $this->cardsBackendGap($selectedCard)],
             ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $selectedCard->shop !== null
                 ? 'Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.'
@@ -2962,6 +2962,15 @@ class ResourceIndexController extends Controller
             'blocked' => 'Keep blocked status, holder linkage, and dispute context visible together before trusting any later replacement or reassignment discussion.',
             'active' => 'Keep card status, holder linkage, and branch ownership visible together before trusting any later replacement or reassignment discussion.',
             default => 'Keep draft status, holder linkage gaps, and branch ownership visible together before trusting any later issuance or reassignment discussion.',
+        };
+    }
+
+    private function cardsBackendGap(Card $selectedCard): string
+    {
+        return match ($selectedCard->status) {
+            'blocked' => 'Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.',
+            'active' => 'Card lifecycle writes, blocked-card handling, and replacement flows should stay preview-only until inventory parity is verified.',
+            default => 'Card issuance, activation, and lifecycle writes should stay preview-only until inventory parity is verified.',
         };
     }
 
