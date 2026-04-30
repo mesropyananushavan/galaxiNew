@@ -6801,7 +6801,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gift handoff signal')
             ->assertSee('Carry remaining stock and local reopening context forward before any wider catalog-review discussion begins.')
             ->assertSee('Evidence priority')
-            ->assertSee('Keep remaining stock, local scope, and points cost visible together before comparing this reward against wider catalog behavior.')
+            ->assertSee('Keep remaining stock, local scope, and points cost visible together before any wider catalog-review discussion begins.')
             ->assertSee('Scope posture')
             ->assertSee('Paused branch rewards should stay locally reviewable, because reopening decisions still depend on shop-specific redemption habits.')
             ->assertSee('Stock posture')
