@@ -591,7 +591,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Points cost', 'value' => '320'],
                     ['label' => 'Gift status signal', 'value' => 'Paused finite-stock reward remains safer for paused-branch-reopening-parity review before any reopening-flow discussion.'],
                     ['label' => 'Gift focus', 'value' => 'Start with remaining stock and local reopening assumptions before comparing this reward against wider catalog behavior.'],
-                    ['label' => 'Gift handoff signal', 'value' => 'Carry remaining stock and local reopening context forward before any wider catalog discussion begins.'],
+                    ['label' => 'Gift handoff signal', 'value' => 'Carry remaining stock and local reopening context forward before any wider catalog-review discussion begins.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep remaining stock, local scope, and points cost visible together before comparing this reward against wider catalog behavior.'],
                     ['label' => 'Scope posture', 'value' => 'Paused branch rewards should stay locally reviewable, because reopening decisions still depend on shop-specific redemption habits.'],
                     ['label' => 'Stock posture', 'value' => 'Finite paused stock should remain review-only until Laravel inventory updates and reopening flows can preserve remaining-quantity parity.'],

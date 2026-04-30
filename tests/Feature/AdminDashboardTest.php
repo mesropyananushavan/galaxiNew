@@ -6799,7 +6799,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gift focus')
             ->assertSee('Start with remaining stock and local reopening assumptions before comparing this reward against wider catalog behavior.')
             ->assertSee('Gift handoff signal')
-            ->assertSee('Carry remaining stock and local reopening context forward before any wider catalog discussion begins.')
+            ->assertSee('Carry remaining stock and local reopening context forward before any wider catalog-review discussion begins.')
             ->assertSee('Evidence priority')
             ->assertSee('Keep remaining stock, local scope, and points cost visible together before comparing this reward against wider catalog behavior.')
             ->assertSee('Scope posture')
