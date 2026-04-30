@@ -6815,7 +6815,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Weekend brunch pass selected for paused branch reward review')
             ->assertSee('Paused branch reward handoff stays stock-aware')
             ->assertSee('Paused branch reward keeps finite-stock evidence visible')
-            ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any reopening discussion begins.')
+            ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any reopening-flow discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until paused-branch-reopening parity is verified.')
             ->assertSee('Paused branch reward behavior should stay preview-only until Laravel scope and reopening checks are verified.')

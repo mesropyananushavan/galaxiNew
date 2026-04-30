@@ -602,7 +602,7 @@ class ResourceIndexController extends Controller
                 'timeline' => [
                     ['title' => 'Weekend brunch pass selected for paused branch reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the paused finite-stock reward in a dedicated Galaxy review context instead of leaving it as a flat table row.'],
                     ['title' => 'Paused branch reward handoff stays stock-aware', 'time' => 'Current request', 'description' => 'Operators should hand off Riverside Shop reopening assumptions here before any future publish or stock-update flow is allowed.'],
-                    ['title' => 'Paused branch reward keeps finite-stock evidence visible', 'time' => 'Current request', 'description' => 'Scope, remaining stock, and points cost should stay visible in the workspace before any reopening discussion begins.'],
+                    ['title' => 'Paused branch reward keeps finite-stock evidence visible', 'time' => 'Current request', 'description' => 'Scope, remaining stock, and points cost should stay visible in the workspace before any reopening-flow discussion begins.'],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Weekend brunch pass'],
