@@ -6675,7 +6675,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Premium dessert set selected for paused reward review')
             ->assertSee('Paused reward handoff stays cautious')
             ->assertSee('Paused reward handoff keeps stock evidence visible')
-            ->assertSee('Scope, zero-stock state, and points cost should stay visible in the workspace before any reopening discussion begins.')
+            ->assertSee('Scope, zero-stock state, and points cost should stay visible in the workspace before any reopening-flow discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused-zero-stock-recovery parity is verified.')
             ->assertSee('Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in Laravel.');
