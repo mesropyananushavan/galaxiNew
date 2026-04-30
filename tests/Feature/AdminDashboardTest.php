@@ -6663,7 +6663,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gift handoff signal')
             ->assertSee('Carry zero-stock and reopening context forward before any later publish decision expands.')
             ->assertSee('Evidence priority')
-            ->assertSee('Keep zero-stock state, shop scope, and points cost visible together before reopening discussion expands.')
+            ->assertSee('Keep zero-stock state, shop scope, and points cost visible together before any reopening-flow discussion expands.')
             ->assertSee('Stock posture')
             ->assertSee('Zero-stock rewards should remain paused in review mode until Laravel inventory and reopening flows can reproduce the old behavior safely.')
             ->assertSee('Backend gap')
