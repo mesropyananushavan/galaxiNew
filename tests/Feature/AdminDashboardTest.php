@@ -6661,7 +6661,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gift focus')
             ->assertSee('Start with zero-stock state and reopening risk before discussing any later publish decision.')
             ->assertSee('Gift handoff signal')
-            ->assertSee('Carry zero-stock and reopening context forward before any later publish decision expands.')
+            ->assertSee('Carry zero-stock and reopening context forward before any later publish-review discussion expands.')
             ->assertSee('Evidence priority')
             ->assertSee('Keep zero-stock state, shop scope, and points cost visible together before any reopening-flow discussion expands.')
             ->assertSee('Stock posture')

@@ -2,6 +2,14 @@
 
 ## 2026-04-29
 
+### Gifts zero-stock handoff wording checkpoint
+- Tightened the selected `gifts` paused zero-stock reward handoff line so the visible blocker now treats `publish-review discussion` as a single Galaxy-specific discussion boundary instead of broader publish-decision wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift handoff copy and updating the focused paused zero-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts zero-stock handoff wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
 ### Gifts paused-branch handoff wording checkpoint
 - Tightened the selected `gifts` paused finite-stock reward handoff line so the visible blocker now treats `catalog-review discussion` as a single Galaxy-specific discussion boundary instead of broader catalog wording.
 - Kept the step low-risk and Laravel-backed by refining only visible selected-gift handoff copy and updating the focused paused finite-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.

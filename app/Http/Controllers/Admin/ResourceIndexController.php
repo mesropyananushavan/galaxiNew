@@ -558,7 +558,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Points cost', 'value' => '450'],
                     ['label' => 'Gift status signal', 'value' => 'Paused zero-stock reward remains safer for zero-stock-recovery-parity review before any reopening-flow discussion.'],
                     ['label' => 'Gift focus', 'value' => 'Start with zero-stock state and reopening risk before discussing any later publish decision.'],
-                    ['label' => 'Gift handoff signal', 'value' => 'Carry zero-stock and reopening context forward before any later publish decision expands.'],
+                    ['label' => 'Gift handoff signal', 'value' => 'Carry zero-stock and reopening context forward before any later publish-review discussion expands.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep zero-stock state, shop scope, and points cost visible together before any reopening-flow discussion expands.'],
                     ['label' => 'Scope posture', 'value' => 'Central Shop reward availability should stay parity-first until paused reward behavior matches the legacy catalog.'],
                     ['label' => 'Stock posture', 'value' => 'Zero-stock rewards should remain paused in review mode until Laravel inventory and reopening flows can reproduce the old behavior safely.'],
