@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Roles-permissions selected-record handoff timeline checkpoint
+- Added a state-aware selected-role timeline handoff entry so access scope, staffing, and permission-bundle guidance stays visible in the activity timeline, not only in summary and dependency blocks.
+- Extended focused role review coverage to assert the new timeline wording for fully scoped live access, mixed branch permission coverage, assignment-sensitive live access without scope, and draft-role readiness cases without changing access writes or matrix behavior.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_assignment_sensitive_live_role_without_scope_surfaces_access_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `4 passed`.
+
+### Next step after roles-permissions selected-record handoff timeline checkpoint
+- Continue propagating state-aware handoff guidance across selected-record admin surfaces, or switch back to the next persisted Phase 1 foundation slice.
+
 ### Shops selected-record handoff timeline checkpoint
 - Added a state-aware selected-shop timeline handoff entry so branch ownership and coverage guidance stays visible in the activity timeline, not only in summary and dependency blocks.
 - Extended focused shop review coverage to assert the new timeline wording for full-coverage, customer-coverage-only, manager-only, and paused branch cases without changing writes or scope logic.

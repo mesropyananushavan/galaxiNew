@@ -3026,7 +3026,23 @@ class ResourceIndexController extends Controller
                     ? sprintf('This role is currently linked to %d assigned users across %s in Laravel review mode.', $selectedRole->users_count, $scope->join(', '))
                     : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.',
             ],
+            [
+                'title' => 'Access handoff stays visible in the workspace',
+                'time' => 'Current request',
+                'description' => $this->rolesPermissionsTimelineHandoffDescription($selectedRole, $scope),
+            ],
         ];
+    }
+
+    private function rolesPermissionsTimelineHandoffDescription(Role $selectedRole, mixed $scope): string
+    {
+        return match (true) {
+            ! $selectedRole->is_active => 'Operators should carry draft status, scope gaps, and permission-bundle gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
+            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Operators should carry visible shop scope, assigned staff, and permission-bundle coverage in the live workspace before trusting any publish or matrix-edit follow-up.',
+            $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Operators should carry visible shop scope, permission-bundle coverage, and staffing gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
+            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Operators should carry assigned staff, permission-bundle coverage, and scope gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
+            default => 'Operators should carry draft access coverage, scope gaps, and staffing gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
+        };
     }
 
     private function rolesPermissionsSelectedRoleDependencyStatus(Role $selectedRole, mixed $scope, mixed $permissionPreview): array
