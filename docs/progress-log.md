@@ -48,6 +48,11 @@
 - Kept the scope narrow and identity-focused, improving contact cleanliness without opening duplicate-profile, linkage, or lifecycle writes.
 - Re-ran `php artisan test --filter='(test_cardholder_live_flow_normalizes_contact_identity_fields|test_cardholder_live_flow_normalizes_blank_contact_fields_to_null)'`, `2 passed`.
 
+### Tier blank note normalization checkpoint
+- Added explicit feature coverage for the already-narrow `card-types` note normalization so whitespace-only tier notes now stay protected as `null` values in the Laravel-backed Galaxy catalog shell.
+- Kept the scope metadata-only and verification-focused, without widening tier rules, rollout publishing, or activation flows.
+- Re-ran `php artisan test --filter='(test_card_type_live_flow_trims_tier_identity_name|test_card_type_live_flow_normalizes_blank_notes_to_null)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

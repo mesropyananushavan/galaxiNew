@@ -8895,6 +8895,34 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_type_live_flow_normalizes_blank_notes_to_null(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => 'Galaxy Bronze',
+            'slug' => 'Galaxy Bronze',
+            'points_rate' => '0.75',
+            'is_active' => '0',
+            'review_note' => '   ',
+            'activation_note' => '   ',
+            'rollout_note' => '   ',
+        ]);
+
+        $cardType = CardType::query()->where('slug', 'galaxy-bronze')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card type "Galaxy Bronze" was created.');
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'review_note' => null,
+            'activation_note' => null,
+            'rollout_note' => null,
+        ]);
+    }
+
     public function test_card_live_flow_normalizes_blank_review_note_to_null(): void
     {
         $user = User::factory()->create();
