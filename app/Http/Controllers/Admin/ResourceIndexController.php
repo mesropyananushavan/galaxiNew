@@ -1343,7 +1343,7 @@ class ResourceIndexController extends Controller
                         : 'No tracked shops exist yet, so branch-level scope review should stay in planning mode only.'],
                     ['label' => 'Default period posture', 'value' => 'Use current snapshot review first, then keep preset periods staged until branch-total parity is verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because branch inventory checks should stay visible on screen before anyone expects export files.'],
-                    ['label' => 'Handoff signal', 'value' => 'Keep branch comparison findings in the live workspace before asking for export-driven handoff.'],
+                    ['label' => 'Handoff signal', 'value' => $this->reportsCardsByShopHandoffSignal($holderLinkedCardCount, $unassignedCardCount)],
                     ['label' => 'Backend gap', 'value' => $this->reportsCardsByShopBackendGap($cardCount, $shopCount, $holderLinkedCardCount, $unassignedCardCount)],
                     ['label' => 'Preset posture', 'value' => 'Keep period presets preview-only until shop-level totals and export parity are verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until file export formatting and delivery are validated.'],
@@ -1411,7 +1411,7 @@ class ResourceIndexController extends Controller
                         : 'activation coverage is still pending for parity review'],
                     ['label' => 'Scope posture', 'value' => 'Branch-level comparison is the first parity target, so cross-shop shaping should stay conservative until legacy report totals are matched.'],
                     ['label' => 'Grouping posture', 'value' => 'Shop grouping should stay read-only until query shaping is verified against legacy report totals.'],
-                    ['label' => 'Handoff signal', 'value' => 'Keep branch comparison findings in the live workspace before asking for export-driven handoff.'],
+                    ['label' => 'Handoff signal', 'value' => $this->reportsCardsByShopHandoffSignal($holderLinkedCardCount, $unassignedCardCount)],
                     ['label' => 'Remaining backend gap', 'value' => $this->reportsCardsByShopBackendGap($cardCount, $shopCount, $holderLinkedCardCount, $unassignedCardCount)],
                 ],
             ],
@@ -2573,6 +2573,16 @@ class ResourceIndexController extends Controller
             $holderLinkedCardCount > 0 => 'Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.',
             $unassignedCardCount > 0 => 'Preset handling, holder-linkage shaping, and export generation should stay preview-only until branch-total customer-linkage parity is verified.',
             default => 'Preset handling, grouped query shaping, and export generation should stay preview-only until report parity is verified.',
+        };
+    }
+
+    private function reportsCardsByShopHandoffSignal(int $holderLinkedCardCount, int $unassignedCardCount): string
+    {
+        return match (true) {
+            $holderLinkedCardCount > 0 && $unassignedCardCount > 0 => 'Keep branch-total and assignment-split findings in the live workspace before asking for export-driven handoff.',
+            $holderLinkedCardCount > 0 => 'Keep branch-total and linked-holder inventory findings in the live workspace before asking for export-driven handoff.',
+            $unassignedCardCount > 0 => 'Keep branch-total and unassigned inventory findings in the live workspace before asking for export-driven handoff.',
+            default => 'Keep branch comparison findings in the live workspace before asking for export-driven handoff.',
         };
     }
 

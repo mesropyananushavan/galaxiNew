@@ -1,5 +1,15 @@
 # Progress Log
 
+## 2026-05-05
+
+### Reports cards-by-shop handoff state refinement checkpoint
+- Made the selected `reports` `cards-by-shop` handoff signal state-aware so branch inventory review now names linked-holder versus assignment-split handoff context instead of reusing one generic export-handoff line.
+- Kept the step low-risk and Laravel-backed by refining only read-only reporting copy and extending the focused cards-by-shop assertions without changing any report shaping, export flow, or grouped query behavior.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_mixed_branch_activity_review_context)'`, `2 passed`.
+
+### Next step after reports cards-by-shop handoff state refinement checkpoint
+- Continue the same tiny state-aware handoff pass on another Laravel-backed report source that still reuses broader export-handoff wording, or return to the next persisted metadata slice on an already-live Galaxy form.
+
 ## 2026-04-29
 
 ### Gifts paused-branch focus wording checkpoint

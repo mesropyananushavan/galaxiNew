@@ -4463,7 +4463,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Format guidance')
             ->assertSee('Prefer table-first review here, because branch inventory checks should stay visible on screen before anyone expects export files.')
             ->assertSee('Handoff signal')
-            ->assertSee('Keep branch comparison findings in the live workspace before asking for export-driven handoff.')
+            ->assertSee('Keep branch-total and linked-holder inventory findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Backend gap')
             ->assertSee('Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.')
             ->assertSee('Cards by shop source selected for Laravel review')
@@ -4509,7 +4509,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Remaining backend gap:')
             ->assertSee('Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.')
             ->assertSee('Handoff signal:')
-            ->assertSee('Keep branch comparison findings in the live workspace before asking for export-driven handoff.');
+            ->assertSee('Keep branch-total and linked-holder inventory findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_mixed_branch_activity_review_context(): void
@@ -4633,6 +4633,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('2 draft cards are already visible beside 4 issued inventory records for parity review')
             ->assertSee('Activation signal')
             ->assertSee('2 activated cards are already visible beside 4 not-yet-activated inventory records for parity review')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep branch-total and assignment-split findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Comparison signal:')
             ->assertSee('branch, inventory, and assignment comparison cues are all visible for parity walkthrough')
@@ -4663,7 +4665,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft inventory signal:')
             ->assertSee('2 draft cards are already visible beside 4 issued inventory records for parity review')
             ->assertSee('Activation signal:')
-            ->assertSee('2 activated cards are already visible beside 4 not-yet-activated inventory records for parity review');
+            ->assertSee('2 activated cards are already visible beside 4 not-yet-activated inventory records for parity review')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep branch-total and assignment-split findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_role_access_pending_readiness_context(): void
