@@ -2196,6 +2196,31 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_role_live_flow_keeps_status_boolean_canonical(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => '  Galaxy Boolean Access Create  ',
+            'slug' => ' Galaxy Boolean Access Create ',
+            'is_active' => 'no',
+            'review_note' => 'Keep role status canonical while the first live access shell stays narrow.',
+        ]);
+
+        $role = Role::query()->where('slug', 'galaxy-boolean-access-create')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Role "Galaxy Boolean Access Create" was created.');
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $role->id,
+            'name' => 'Galaxy Boolean Access Create',
+            'slug' => 'galaxy-boolean-access-create',
+            'is_active' => false,
+        ]);
+    }
+
     public function test_roles_permissions_page_shows_update_success_flash_message(): void
     {
         $user = User::factory()->create();

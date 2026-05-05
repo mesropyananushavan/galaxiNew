@@ -5345,3 +5345,8 @@
 
 ### Next step after gifts action-gating checkpoint
 - Reuse disabled action-gating on `roles-permissions`, or start turning one of the blocked preview actions into a more explicit readiness-driven state model tied to parity cues.
+
+### Role create canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `roles-permissions` create flow so string status inputs like `no` still persist as canonical boolean access-shell state on first save.
+- Kept the step access-shell-only and normalization-focused, without widening permission matrix edits, assignment writes, or scope mutation.
+- Re-ran `php artisan test --filter='(test_role_live_flow_keeps_status_boolean_canonical|test_role_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
