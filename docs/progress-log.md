@@ -5355,3 +5355,8 @@
 - Added explicit feature coverage for the writable `card-types` create flow so string status inputs like `no` still persist as canonical boolean tier-shell state on first save.
 - Kept the step tier-shell-only and normalization-focused, without widening rollout imports, activation workflows, or rule publication.
 - Re-ran `php artisan test --filter='(test_card_type_live_flow_keeps_status_boolean_canonical|test_card_type_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Shop create canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `shops` create flow so string status inputs like `no` still persist as canonical boolean branch-shell state on first save.
+- Kept the step branch-shell-only and normalization-focused, without widening ownership assignment, reassignment, or scope mutation.
+- Re-ran `php artisan test --filter='(test_shop_live_flow_keeps_status_boolean_canonical|test_shop_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.

@@ -3710,6 +3710,31 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_shop_live_flow_keeps_status_boolean_canonical(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.shops.store'), [
+            'name' => '  Galaxy Boolean Branch Create  ',
+            'code' => ' Galaxy Boolean Branch Create ',
+            'is_active' => 'no',
+            'review_note' => 'Keep branch status canonical while the first live branch shell stays narrow.',
+        ]);
+
+        $shop = Shop::query()->where('code', 'galaxy-boolean-branch-create')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.shops.index', ['shop' => $shop], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Shop "Galaxy Boolean Branch Create" was created.');
+
+        $this->assertDatabaseHas('shops', [
+            'id' => $shop->id,
+            'name' => 'Galaxy Boolean Branch Create',
+            'code' => 'galaxy-boolean-branch-create',
+            'is_active' => false,
+        ]);
+    }
+
     public function test_shops_page_supports_selected_branch_coverage_without_manager_review_context(): void
     {
         $shop = Shop::create([
