@@ -4997,6 +4997,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Cardholder status source selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked cardholders from the current Laravel foundation.')
             ->assertSee('Support handoff should keep holder posture visible')
+            ->assertSee('Operators should pass along holder lifecycle and linked-profile findings in the live review flow before expecting export-driven follow-up.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Source status signal:')
             ->assertSee('Cardholder-status source is already visible with live lifecycle coverage for parity review.')

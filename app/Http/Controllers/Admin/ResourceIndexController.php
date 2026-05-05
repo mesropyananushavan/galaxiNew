@@ -1479,7 +1479,7 @@ class ResourceIndexController extends Controller
                 'timeline' => [
                     ['title' => 'Cardholder status source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked cardholders from the current Laravel foundation.', $cardHolderCount)],
                     ['title' => 'Lifecycle reporting parity stays review-only', 'time' => 'Current request', 'description' => 'Source counts are live-backed now, but period presets and export behavior should stay blocked until reporting parity is verified.'],
-                    ['title' => 'Support handoff should keep holder posture visible', 'time' => 'Current request', 'description' => 'Operators should pass along active versus inactive holder findings in the live review flow before expecting export-driven follow-up.'],
+                    ['title' => 'Support handoff should keep holder posture visible', 'time' => 'Current request', 'description' => $this->reportsCardholderStatusTimelineHandoffDescription($linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Cardholder status overview'],
@@ -2615,6 +2615,16 @@ class ResourceIndexController extends Controller
             $blockedLinkedCardCount > 0 => 'Keep holder lifecycle and blocked-card findings in the live workspace before asking for export-driven handoff.',
             $linkedCardHolderCount > 0 => 'Keep holder lifecycle and linked-profile findings in the live workspace before asking for export-driven handoff.',
             default => 'Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.',
+        };
+    }
+
+    private function reportsCardholderStatusTimelineHandoffDescription(int $linkedCardHolderCount, int $inactiveCardHolderCount, int $blockedLinkedCardCount): string
+    {
+        return match (true) {
+            $linkedCardHolderCount > 0 && $inactiveCardHolderCount > 0 => 'Operators should pass along holder lifecycle and linkage findings in the live review flow before expecting export-driven follow-up.',
+            $blockedLinkedCardCount > 0 => 'Operators should pass along holder lifecycle and blocked-card findings in the live review flow before expecting export-driven follow-up.',
+            $linkedCardHolderCount > 0 => 'Operators should pass along holder lifecycle and linked-profile findings in the live review flow before expecting export-driven follow-up.',
+            default => 'Operators should pass along holder lifecycle findings in the live review flow before expecting export-driven follow-up.',
         };
     }
 
