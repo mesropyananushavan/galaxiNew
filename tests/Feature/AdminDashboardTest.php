@@ -9040,6 +9040,42 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_type_update_live_flow_normalizes_blank_notes_to_null(): void
+    {
+        $user = User::factory()->create();
+        $cardType = CardType::create([
+            'name' => 'Galaxy Bronze Plus',
+            'slug' => 'galaxy-bronze-plus',
+            'points_rate' => '0.90',
+            'is_active' => true,
+            'review_note' => 'Clear this tier note while keeping the shell live.',
+            'activation_note' => 'Clear this activation note after parity review.',
+            'rollout_note' => 'Clear this rollout note after draft verification.',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+            'name' => 'Galaxy Bronze Plus',
+            'slug' => 'Galaxy Bronze Plus',
+            'points_rate' => '0.90',
+            'is_active' => '1',
+            'review_note' => '   ',
+            'activation_note' => '   ',
+            'rollout_note' => '   ',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card type "Galaxy Bronze Plus" was updated.');
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'slug' => 'galaxy-bronze-plus',
+            'review_note' => null,
+            'activation_note' => null,
+            'rollout_note' => null,
+        ]);
+    }
+
     public function test_card_live_flow_normalizes_blank_review_note_to_null(): void
     {
         $user = User::factory()->create();

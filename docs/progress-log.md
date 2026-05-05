@@ -78,6 +78,11 @@
 - Kept the step holder-shell-only and verification-focused, without widening duplicate-profile, linkage, or lifecycle writes.
 - Re-ran `php artisan test --filter='(test_cardholder_live_flow_normalizes_blank_review_note_to_null|test_cardholder_update_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
 
+### Card type update blank note normalization checkpoint
+- Added explicit feature coverage for the writable `card-types` update flow so clearing tier review, activation, and rollout notes with whitespace-only input stays protected as real `null` values, not leftover empty strings.
+- Kept the step tier-shell-only and verification-focused, without widening rule-import, publish, or activation workflows.
+- Re-ran `php artisan test --filter='(test_card_type_live_flow_normalizes_blank_notes_to_null|test_card_type_update_live_flow_normalizes_blank_notes_to_null)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 
