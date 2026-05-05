@@ -4985,7 +4985,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Activated holder signal')
             ->assertSee('1 holder profiles already carry activated linked-card posture for lifecycle review')
             ->assertSee('Handoff signal')
-            ->assertSee('Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.')
+            ->assertSee('Keep holder lifecycle and linked-profile findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Backend gap')
             ->assertSee('Preset handling, inactive-holder shaping, and export generation should stay preview-only until linked-profile lifecycle parity is verified.')
             ->assertSee('Holder branch activity signal')
@@ -5003,7 +5003,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Remaining backend gap:')
             ->assertSee('Preset handling, inactive-holder shaping, and export generation should stay preview-only until linked-profile lifecycle parity is verified.')
             ->assertSee('Handoff signal:')
-            ->assertSee('Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.');
+            ->assertSee('Keep holder lifecycle and linked-profile findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_mixed_cardholder_status_review_context(): void
@@ -5113,6 +5113,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 holder profiles already carry activated linked-card posture for lifecycle review')
             ->assertSee('Holder branch activity signal')
             ->assertSee($holderBranchActivitySignal)
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep holder lifecycle and linkage findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Comparison signal:')
             ->assertSee('lifecycle, linkage, and linked-card comparison cues are all visible for parity walkthrough')
@@ -5135,7 +5137,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Activated holder signal:')
             ->assertSee('1 holder profiles already carry activated linked-card posture for lifecycle review')
             ->assertSee('Holder branch activity signal:')
-            ->assertSee($holderBranchActivitySignal);
+            ->assertSee($holderBranchActivitySignal)
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep holder lifecycle and linkage findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_role_access_review_context(): void

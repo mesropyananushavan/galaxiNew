@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Reports cardholder-status handoff state refinement checkpoint
+- Made the selected `reports` `cardholder-status` handoff signal state-aware so holder review now distinguishes linked-profile versus lifecycle-and-linkage handoff context instead of reusing one generic export-handoff line.
+- Kept the step low-risk and Laravel-backed by refining only read-only reporting copy and extending the focused cardholder-status assertions without changing any status shaping, export flow, or lifecycle query behavior.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context)'`, `2 passed`.
+
+### Next step after reports cardholder-status handoff state refinement checkpoint
+- Continue the same tiny state-aware handoff pass on `role-access`, or return to the next persisted metadata slice on an already-live Galaxy form.
+
 ### Reports cards-by-shop handoff state refinement checkpoint
 - Made the selected `reports` `cards-by-shop` handoff signal state-aware so branch inventory review now names linked-holder versus assignment-split handoff context instead of reusing one generic export-handoff line.
 - Kept the step low-risk and Laravel-backed by refining only read-only reporting copy and extending the focused cards-by-shop assertions without changing any report shaping, export flow, or grouped query behavior.

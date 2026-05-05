@@ -1471,7 +1471,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope guidance', 'value' => 'Keep this source focused on active versus inactive holder posture first, because old Galaxy support flows used status review before deeper profile history.' ],
                     ['label' => 'Default period posture', 'value' => 'Use a current-status review first, then stage preset periods until lifecycle and recency parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer a compact on-screen table first, because holder-status review usually started as a fast support triage surface, not an export job.' ],
-                    ['label' => 'Handoff signal', 'value' => 'Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.'],
+                    ['label' => 'Handoff signal', 'value' => $this->reportsCardholderStatusHandoffSignal($linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                     ['label' => 'Backend gap', 'value' => $this->reportsCardholderStatusBackendGap($cardHolderCount, $linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                     ['label' => 'Preset posture', 'value' => 'Keep status-period presets preview-only until holder lifecycle parity is verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until summary exports and lifecycle report expectations are validated.'],
@@ -1525,7 +1525,7 @@ class ResourceIndexController extends Controller
                         : 'paused-branch holder coverage is still pending for parity review'],
                     ['label' => 'Scope posture', 'value' => 'Status-first review should stay ahead of deeper segmentation until lifecycle parity and operator lookup habits are matched.'],
                     ['label' => 'Lifecycle posture', 'value' => 'Status aggregation should stay read-only until holder lifecycle and activity parity are verified.'],
-                    ['label' => 'Handoff signal', 'value' => 'Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.'],
+                    ['label' => 'Handoff signal', 'value' => $this->reportsCardholderStatusHandoffSignal($linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                     ['label' => 'Remaining backend gap', 'value' => $this->reportsCardholderStatusBackendGap($cardHolderCount, $linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                 ],
             ],
@@ -2594,6 +2594,16 @@ class ResourceIndexController extends Controller
             $linkedCardHolderCount > 0 => 'Preset handling, inactive-holder shaping, and export generation should stay preview-only until linked-profile lifecycle parity is verified.',
             $blockedLinkedCardCount > 0 => 'Preset handling, blocked-card shaping, and export generation should stay preview-only until support-style lifecycle parity is verified.',
             default => 'Preset handling, report shaping, and export generation should stay preview-only until lifecycle parity is verified.',
+        };
+    }
+
+    private function reportsCardholderStatusHandoffSignal(int $linkedCardHolderCount, int $inactiveCardHolderCount, int $blockedLinkedCardCount): string
+    {
+        return match (true) {
+            $linkedCardHolderCount > 0 && $inactiveCardHolderCount > 0 => 'Keep holder lifecycle and linkage findings in the live workspace before asking for export-driven handoff.',
+            $blockedLinkedCardCount > 0 => 'Keep holder lifecycle and blocked-card findings in the live workspace before asking for export-driven handoff.',
+            $linkedCardHolderCount > 0 => 'Keep holder lifecycle and linked-profile findings in the live workspace before asking for export-driven handoff.',
+            default => 'Keep holder lifecycle findings in the live workspace before asking for export-driven handoff.',
         };
     }
 
