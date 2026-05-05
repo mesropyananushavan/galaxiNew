@@ -3598,6 +3598,35 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_shop_update_live_flow_keeps_branch_code_canonical(): void
+    {
+        $user = User::factory()->create();
+
+        $shop = Shop::create([
+            'name' => 'Galaxy Draft Branch',
+            'code' => 'galaxy-draft-branch',
+            'is_active' => false,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.shops.update', $shop), [
+            'name' => '  Galaxy Draft Branch Prime  ',
+            'code' => ' Galaxy Draft Branch Prime ',
+            'is_active' => 'true',
+            'review_note' => 'Keep branch code canonical while the live branch shell stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.shops.index', ['shop' => $shop], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Shop "Galaxy Draft Branch Prime" was updated.');
+
+        $this->assertDatabaseHas('shops', [
+            'id' => $shop->id,
+            'name' => 'Galaxy Draft Branch Prime',
+            'code' => 'galaxy-draft-branch-prime',
+            'is_active' => true,
+        ]);
+    }
+
     public function test_shops_page_supports_selected_branch_coverage_without_manager_review_context(): void
     {
         $shop = Shop::create([
