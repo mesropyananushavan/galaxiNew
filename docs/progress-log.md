@@ -2,6 +2,15 @@
 
 ## 2026-05-05
 
+### Cards live note-edit flow checkpoint
+- Reused the new narrow Laravel-backed note-edit pattern on `cards`, turning the previously read-only inventory note surface into a real create/update workflow.
+- Added `cards.store` and `cards.update` handlers plus request validation for branch anchoring, card type, number, status, activation timing, and `review_note`, while keeping holder assignment, dispute handling, and replacement flows safely out of scope.
+- Reused the shared live form pattern so the cards workspace now supports both create and selected-record edit flows with backend redirect-to-context behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_card_from_live_admin_flow|test_authenticated_user_can_update_card_from_live_admin_flow|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data)'`, `4 passed`.
+
+### Next step after cards live note-edit flow checkpoint
+- Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
+
 ### Cardholders live note-edit flow checkpoint
 - Reused the new narrow Laravel-backed note-edit pattern on `cardholders`, turning a previously read-only holder surface into a real create/update workflow.
 - Added `cardholders.store` and `cardholders.update` handlers plus request validation for holder identity, branch anchoring, contact fields, status, and `review_note`, while keeping card linkage and activity-history writes safely out of scope.

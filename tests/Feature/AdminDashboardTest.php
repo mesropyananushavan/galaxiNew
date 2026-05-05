@@ -2202,6 +2202,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Unassigned')
             ->assertSee('Galaxy Gold')
             ->assertSee('Galaxy Central')
+            ->assertSee('Create card in Laravel')
+            ->assertSee('Create card')
+            ->assertSee('action="/admin/cards"', false)
             ->assertSee('Review latest saved card')
             ->assertSee('Active cards')
             ->assertSee('Draft cards')
@@ -2255,6 +2258,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Back to all cards')
             ->assertSee('href="/admin/cards"', false)
             ->assertSee('Reviewing: GX-910001')
+            ->assertSee('Edit card in Laravel')
+            ->assertSee('Save card changes')
+            ->assertSee('action="/admin/cards/'.$card->id.'"', false)
             ->assertSee('Review blocked cards')
             ->assertSee('Blocked until this blocked holder-linked card clears dispute and replacement parity against the legacy Galaxy flow.')
             ->assertSee('Selected card')
@@ -2321,6 +2327,89 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.');
+    }
+
+    public function test_authenticated_user_can_create_card_from_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Inventory Live Branch',
+            'code' => 'galaxy-inventory-live-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Live Gold',
+            'slug' => 'galaxy-live-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => 'GX-LIVE-1001',
+            'status' => 'active',
+            'activated_at' => '2026-05-05 12:40:00',
+            'review_note' => 'Keep first-pass inventory parity visible before widening replacement handling.',
+        ]);
+
+        $card = Card::query()->where('number', 'GX-LIVE-1001')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card "GX-LIVE-1001" was created.');
+
+        $this->assertDatabaseHas('cards', [
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-LIVE-1001',
+            'status' => 'active',
+            'review_note' => 'Keep first-pass inventory parity visible before widening replacement handling.',
+        ]);
+    }
+
+    public function test_authenticated_user_can_update_card_from_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Inventory Update Branch',
+            'code' => 'galaxy-inventory-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Update Gold',
+            'slug' => 'galaxy-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-LIVE-2001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => 'GX-LIVE-2001A',
+            'status' => 'blocked',
+            'activated_at' => '2026-05-05 12:41:00',
+            'review_note' => 'Keep blocked inventory under parity review before trusting dispute or replacement follow-up.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card "GX-LIVE-2001A" was updated.');
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-LIVE-2001A',
+            'status' => 'blocked',
+            'review_note' => 'Keep blocked inventory under parity review before trusting dispute or replacement follow-up.',
+        ]);
     }
 
     public function test_cards_page_supports_selected_active_card_review_context(): void

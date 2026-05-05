@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\CardTypeToggleStatusController;
 use App\Http\Controllers\Admin\CardTypeUpdateController;
 use App\Http\Controllers\Admin\CardHolderStoreController;
 use App\Http\Controllers\Admin\CardHolderUpdateController;
+use App\Http\Controllers\Admin\CardStoreController;
+use App\Http\Controllers\Admin\CardUpdateController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleStoreController;
 use App\Http\Controllers\Admin\RoleUpdateController;
@@ -25,6 +27,8 @@ Route::prefix('admin')
         Route::post('/cardholders', CardHolderStoreController::class)->name('cardholders.store');
         Route::patch('/cardholders/{cardholder}', CardHolderUpdateController::class)->name('cardholders.update');
         Route::get('/cards', ResourceIndexController::class)->defaults('resource', 'cards')->name('cards.index');
+        Route::post('/cards', CardStoreController::class)->name('cards.store');
+        Route::patch('/cards/{card}', CardUpdateController::class)->name('cards.update');
         Route::get('/checks-points', ResourceIndexController::class)->defaults('resource', 'checks-points')->name('checks-points.index');
         Route::get('/card-types', ResourceIndexController::class)->defaults('resource', 'card-types')->name('card-types.index');
         Route::post('/card-types', CardTypeStoreController::class)->name('card-types.store');

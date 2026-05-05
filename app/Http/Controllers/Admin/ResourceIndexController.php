@@ -829,13 +829,42 @@ class ResourceIndexController extends Controller
             ->with(['shop', 'holder', 'type'])
             ->orderBy('number')
             ->get();
+        $shopOptions = Shop::query()
+            ->orderBy('name')
+            ->get(['id', 'name'])
+            ->map(fn (Shop $shop): array => ['value' => (string) $shop->id, 'label' => $shop->name])
+            ->values()
+            ->all();
+        $cardTypeOptions = CardType::query()
+            ->orderBy('name')
+            ->get(['id', 'name'])
+            ->map(fn (CardType $cardType): array => ['value' => (string) $cardType->id, 'label' => $cardType->name])
+            ->values()
+            ->all();
+
+        if (is_array($page['liveForm'] ?? null)) {
+            $page['liveForm']['fields'] = collect($page['liveForm']['fields'] ?? [])
+                ->map(function (array $field) use ($shopOptions, $cardTypeOptions): array {
+                    if (($field['name'] ?? null) === 'shop_id') {
+                        $field['options'] = $shopOptions;
+                        $field['value'] = $field['value'] !== '' ? $field['value'] : ($shopOptions[0]['value'] ?? '');
+                    }
+
+                    if (($field['name'] ?? null) === 'card_type_id') {
+                        $field['options'] = $cardTypeOptions;
+                        $field['value'] = $field['value'] !== '' ? $field['value'] : ($cardTypeOptions[0]['value'] ?? '');
+                    }
+
+                    return $field;
+                })
+                ->all();
+        }
 
         $page['actions'] = [
             [
                 'label' => 'Issue card',
                 'tone' => 'primary',
-                'disabled' => true,
-                'disabledReason' => $this->cardsCatalogIssueCardDisabledReason($cards),
+                'href' => '#live-form',
             ],
             [
                 'label' => 'Review blocked cards',
@@ -901,6 +930,28 @@ class ResourceIndexController extends Controller
         }
 
         $page['selectedRecordSummary'] = $this->cardsSelectedCardSummary($selectedCard);
+
+        if (is_array($page['liveForm'] ?? null)) {
+            $page['liveForm']['title'] = 'Edit card in Laravel';
+            $page['liveForm']['description'] = 'Update the selected Galaxy card through the shared live form while holder assignment, dispute handling, and replacement flows remain review-only.';
+            $page['liveForm']['method'] = 'PATCH';
+            $page['liveForm']['actionRoute'] = 'admin.cards.update';
+            $page['liveForm']['actionRouteParameters'] = [
+                'card' => $selectedCard,
+            ];
+            $page['liveForm']['cancelRoute'] = 'admin.cards.index';
+            $page['liveForm']['cancelLabel'] = 'Create new card';
+            $page['liveForm']['cancelRouteParameters'] = [];
+            $page['liveForm']['submitLabel'] = 'Save card changes';
+            $page['liveForm']['valuesResolver'] = [
+                'shop_id' => $selectedCard->shop_id !== null ? (string) $selectedCard->shop_id : '',
+                'card_type_id' => $selectedCard->card_type_id !== null ? (string) $selectedCard->card_type_id : '',
+                'number' => $selectedCard->number,
+                'status' => $selectedCard->status,
+                'activated_at' => $selectedCard->activated_at?->format('Y-m-d H:i:s') ?? '',
+                'review_note' => $selectedCard->review_note ?? '',
+            ];
+        }
 
         $page['actions'] = $this->selectedReadContextActions(
             'admin.cards.index',
