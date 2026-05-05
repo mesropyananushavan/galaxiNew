@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Reports role-access mixed-state handoff coverage checkpoint
+- Extended the mixed `role-access` report scenarios so the role-state and permission-bundle review tests now explicitly assert the staffing-sensitive handoff wording in both the timeline and dependency layers.
+- Kept the step low-risk and Laravel-backed by hardening focused test coverage around already-shipped Phase 1 reporting copy without changing access shaping, export flow, or report queries.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_mixed_role_state_review_context|test_reports_page_supports_selected_mixed_permission_bundle_review_context)'`, `2 passed`.
+
+### Next step after reports role-access mixed-state handoff coverage checkpoint
+- Continue adding targeted guardrails where state-aware Galaxy wording recently landed, or switch back to the next persisted Phase 1 foundation slice.
+
 ### Reports role-access branch-activity handoff coverage checkpoint
 - Extended the mixed branch-activity `role-access` scenario so it now explicitly asserts both the state-aware timeline handoff wording and the mirrored dependency-side handoff signal for the live staffing-sensitive access case.
 - Kept the step low-risk and Laravel-backed by hardening focused test coverage around already-shipped Phase 1 reporting copy without changing access shaping, export flow, or report queries.

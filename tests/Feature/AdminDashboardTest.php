@@ -4799,13 +4799,19 @@ class AdminDashboardTest extends TestCase
             ->assertSee('unassigned active-role staff coverage is still pending')
             ->assertSee('Permission bundle signal')
             ->assertSee('unbundled active-role coverage is still pending')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.')
+            ->assertSee('Access-review handoff should stay visible in the workspace')
+            ->assertSee('Operators should hand off role-coverage and staffing findings in the live review context before trusting export files for access decisions.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Role state signal:')
             ->assertSee($roleStateSignal)
             ->assertSee('Staff coverage signal:')
             ->assertSee('unassigned active-role staff coverage is still pending')
             ->assertSee('Permission bundle signal:')
-            ->assertSee('unbundled active-role coverage is still pending');
+            ->assertSee('unbundled active-role coverage is still pending')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_mixed_permission_bundle_review_context(): void
@@ -4850,11 +4856,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee($permissionBundleSignal)
             ->assertSee('Assigned bundle signal')
             ->assertSee('1 permission-linked roles already carry visible staff assignments for parity review')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.')
+            ->assertSee('Access-review handoff should stay visible in the workspace')
+            ->assertSee('Operators should hand off role-coverage and staffing findings in the live review context before trusting export files for access decisions.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Permission bundle signal:')
             ->assertSee($permissionBundleSignal)
             ->assertSee('Assigned bundle signal:')
-            ->assertSee('1 permission-linked roles already carry visible staff assignments for parity review');
+            ->assertSee('1 permission-linked roles already carry visible staff assignments for parity review')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog(): void
