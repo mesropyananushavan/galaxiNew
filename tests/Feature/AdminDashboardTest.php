@@ -1112,8 +1112,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Create role in Laravel')
-            ->assertSee('Create role')
+            ->assertSee('Create Galaxy role in Laravel')
+            ->assertSee('Create access shell')
             ->assertSee('Role name')
             ->assertSee('Slug')
             ->assertSee('Laravel status')
@@ -1334,9 +1334,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected role')
             ->assertSee('Role slug')
             ->assertSee('shop-manager-selected-role')
-            ->assertSee('Edit role in Laravel')
-            ->assertSee('Save role changes')
-            ->assertSee('Create new role')
+            ->assertSee('Edit Galaxy role in Laravel')
+            ->assertSee('Save access changes')
+            ->assertSee('Create new access shell')
             ->assertSee('href="/admin/roles-permissions#live-form"', false)
             ->assertSee('action="/admin/roles-permissions/'.$role->id.'"', false)
             ->assertSee('Laravel status')
@@ -7353,8 +7353,8 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Card Types placeholder')
-            ->assertSee('Create card type in Laravel')
-            ->assertSee('Create card type')
+            ->assertSee('Create Galaxy tier in Laravel')
+            ->assertSee('Create tier shell')
             ->assertSee('Status')
             ->assertSee('Active')
             ->assertSee('Draft')
@@ -7483,7 +7483,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Create new type')
+            ->assertSee('Create new tier shell')
             ->assertSee('href="/admin/card-types#live-form"', false)
             ->assertSee('Activate type')
             ->assertSee('<form method="POST" action="/admin/card-types/'.$cardType->id.'/toggle-status"', false)
@@ -7586,9 +7586,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Allow draft-safe edits and validation only, keep live-facing actions gated')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Draft activation, publish logic, and rule-import parity should stay preview-only until draft tier parity is verified.')
-            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Edit Galaxy tier in Laravel')
             ->assertSee('Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.')
-            ->assertSee('>Save card type changes<', false)
+            ->assertSee('>Save tier changes<', false)
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false)
             ->assertSee('name="_method"', false)
             ->assertSee('value="PATCH"', false)
@@ -8163,7 +8163,7 @@ class AdminDashboardTest extends TestCase
     {
         Config::set('admin-pages.card-types.liveForm.valuesResolver', function (string $resource, array $page, array $liveForm): array {
             $this->assertSame('card-types', $resource);
-            $this->assertSame('Create card type in Laravel', $liveForm['title']);
+            $this->assertSame('Create Galaxy tier in Laravel', $liveForm['title']);
             $this->assertSame('Card Types', $page['pageTitle']);
 
             return [
@@ -8198,7 +8198,7 @@ class AdminDashboardTest extends TestCase
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', function (string $resource, array $page, array $liveForm): array {
             $this->assertSame('card-types', $resource);
             $this->assertSame('Card Types', $page['pageTitle']);
-            $this->assertSame('Create card type in Laravel', $liveForm['title']);
+            $this->assertSame('Create Galaxy tier in Laravel', $liveForm['title']);
 
             return [
                 'cardType' => new AdminCardTypePreviewRoutable('gold'),

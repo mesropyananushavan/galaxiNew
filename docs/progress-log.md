@@ -23,6 +23,11 @@
 - Kept the scope copy-only, but made the writable admin shell read more like an actual Galaxy foundation than a starter admin scaffold.
 - Re-ran `php artisan test --filter='(test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_replaces_preview_rows_with_model_backed_index_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_cardholders_page_replaces_preview_rows_with_model_backed_index_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data)'`, `6 passed`.
 
+### Tier and access live form copy checkpoint
+- Extended the same Galaxy-domain copy pass to the writable `card-types` and `roles-permissions` flows so tiers and access shells no longer read like generic Laravel create/edit forms.
+- Kept the scope copy-only, but aligned the Phase 1 writable access and tier surfaces with the same branch/holder/inventory-shell language already used elsewhere in the admin workspace.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_resolves_live_form_values_from_config_callback|test_card_types_page_resolves_route_parameters_from_config_callback)'`, `6 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

@@ -756,7 +756,7 @@ class ResourceIndexController extends Controller
         );
 
         if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm']['title'] = 'Edit role in Laravel';
+            $page['liveForm']['title'] = 'Edit Galaxy role in Laravel';
             $page['liveForm']['description'] = 'Update the selected Galaxy role identity through the shared live form while permission bundles and shop scope remain in review-only mode.';
             $page['liveForm']['method'] = 'PATCH';
             $page['liveForm']['actionRoute'] = 'admin.roles-permissions.update';
@@ -764,9 +764,9 @@ class ResourceIndexController extends Controller
                 'role' => $selectedRole,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.roles-permissions.index';
-            $page['liveForm']['cancelLabel'] = 'Create new role';
+            $page['liveForm']['cancelLabel'] = 'Create new access shell';
             $page['liveForm']['cancelRouteParameters'] = [];
-            $page['liveForm']['submitLabel'] = 'Save role changes';
+            $page['liveForm']['submitLabel'] = 'Save access changes';
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedRole->name,
                 'slug' => $selectedRole->slug,
@@ -2092,7 +2092,7 @@ class ResourceIndexController extends Controller
 
         $page = $this->appendLatestBackendWriteDependencyStatus($page);
 
-        $page['liveForm']['title'] = 'Edit card type in Laravel';
+        $page['liveForm']['title'] = 'Edit Galaxy tier in Laravel';
         $page['liveForm']['description'] = 'Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.';
         $page['liveForm']['method'] = 'PATCH';
         $page['liveForm']['actionRoute'] = 'admin.card-types.update';
@@ -2100,9 +2100,9 @@ class ResourceIndexController extends Controller
             'cardType' => $selectedCardType,
         ];
         $page['liveForm']['cancelRoute'] = 'admin.card-types.index';
-        $page['liveForm']['cancelLabel'] = 'Create new type';
+        $page['liveForm']['cancelLabel'] = 'Create new tier shell';
         $page['liveForm']['cancelRouteParameters'] = [];
-        $page['liveForm']['submitLabel'] = 'Save card type changes';
+        $page['liveForm']['submitLabel'] = 'Save tier changes';
         $page['liveForm']['valuesResolver'] = [
             'name' => $selectedCardType->name,
             'slug' => $selectedCardType->slug,

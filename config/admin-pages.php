@@ -537,13 +537,13 @@ return [
             'filters' => ['Status', 'Activation mode', 'Points rate'],
         ],
         'liveForm' => [
-            'title' => 'Create card type in Laravel',
+            'title' => 'Create Galaxy tier in Laravel',
             'description' => 'This is the first real write-oriented Phase 1 form path. Keep it minimal and parity-first while preview controls still cover the richer future workflow.',
             'method' => 'POST',
             'actionRoute' => 'admin.card-types.store',
             'cancelRoute' => 'admin.card-types.index',
             'cancelLabel' => 'Back to catalog',
-            'submitLabel' => 'Create card type',
+            'submitLabel' => 'Create tier shell',
             'fields' => [
                 ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold', 'required' => true, 'autofocus' => true, 'placeholder' => 'Galaxy Prime', 'help' => 'Use the operator-facing tier name from the Galaxy catalog.', 'attributes' => ['autocomplete' => 'organization-title']],
                 ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'gold', 'required' => true, 'placeholder' => 'galaxy-prime', 'help' => 'Lowercase identifier used in imports and rule mapping.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
@@ -943,13 +943,13 @@ return [
             'filters' => ['Scope', 'Status', 'Permission set'],
         ],
         'liveForm' => [
-            'title' => 'Create role in Laravel',
+            'title' => 'Create Galaxy role in Laravel',
             'description' => 'This is the first minimal Laravel-backed role write path. Keep it limited to role identity while permission bundles and shop scope remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.roles-permissions.store',
             'cancelRoute' => 'admin.roles-permissions.index',
             'cancelLabel' => 'Back to roles',
-            'submitLabel' => 'Create role',
+            'submitLabel' => 'Create access shell',
             'fields' => [
                 ['name' => 'name', 'label' => 'Role name', 'type' => 'text', 'value' => 'Shop Manager', 'required' => true, 'autofocus' => true, 'placeholder' => 'Branch Supervisor', 'help' => 'Use the operator-facing role name that should mirror the legacy Galaxy staff model.', 'attributes' => ['autocomplete' => 'organization-title']],
                 ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'shop-manager', 'required' => true, 'placeholder' => 'branch-supervisor', 'help' => 'Lowercase identifier for the minimal Laravel role record.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
