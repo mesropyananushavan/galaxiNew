@@ -144,7 +144,7 @@ return [
         'summary' => 'Baseline operational index for workers, clients, holder history, and future lifecycle actions.',
         'nextStep' => 'Replace sample rows with real holder search, profile links, and status actions.',
         'actions' => [
-            ['label' => 'New cardholder', 'tone' => 'primary'],
+            ['label' => 'New cardholder', 'tone' => 'primary', 'href' => '#live-form'],
             ['label' => 'Review recent activity', 'tone' => 'secondary'],
         ],
         'metrics' => [
@@ -248,6 +248,23 @@ return [
                 'Potential duplicate-holder cases stay open until identity is confirmed.',
                 'Missing-card complaints remain open until linkage and inventory paths agree.',
                 'Stale activity timelines remain open until an event-source explanation exists.',
+            ],
+        ],
+        'liveForm' => [
+            'title' => 'Create cardholder in Laravel',
+            'description' => 'This is the first minimal Laravel-backed cardholder write path. Keep it limited to profile identity, status, and review notes while card linkage and activity history remain parity-first review surfaces.',
+            'method' => 'POST',
+            'actionRoute' => 'admin.cardholders.store',
+            'cancelRoute' => 'admin.cardholders.index',
+            'cancelLabel' => 'Back to cardholders',
+            'submitLabel' => 'Create cardholder',
+            'fields' => [
+                ['name' => 'shop_id', 'label' => 'Shop', 'type' => 'select', 'value' => '', 'required' => true, 'help' => 'Keep the holder anchored to a branch, because Galaxy lookup and lifecycle review were branch-aware.', 'options' => []],
+                ['name' => 'full_name', 'label' => 'Cardholder name', 'type' => 'text', 'value' => 'Anna Petrova', 'required' => true, 'autofocus' => true, 'placeholder' => 'Mariam Sargsyan', 'help' => 'Use the operator-facing name that should match the legacy holder lookup flow.', 'attributes' => ['autocomplete' => 'name']],
+                ['name' => 'phone', 'label' => 'Phone', 'type' => 'text', 'value' => '+37491100001', 'required' => false, 'placeholder' => '+37491100002', 'help' => 'Keep the first holder slice simple, name and contact identity only.', 'attributes' => ['autocomplete' => 'tel']],
+                ['name' => 'email', 'label' => 'Email', 'type' => 'email', 'value' => 'anna@example.com', 'required' => false, 'placeholder' => 'mariam@example.com', 'help' => 'Optional contact detail for parity-first holder lookup context.', 'attributes' => ['autocomplete' => 'email']],
+                ['name' => 'is_active', 'label' => 'Laravel status', 'type' => 'select', 'value' => '1', 'required' => true, 'help' => 'Inactive holders stay safer for lifecycle review. Active status is persistable, but card linkage and activity flows should still stay parity-first.', 'options' => [['value' => '0', 'label' => 'Inactive'], ['value' => '1', 'label' => 'Active']]],
+                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep duplicate-holder parity visible before widening lifecycle changes.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Laravel holder shell.', 'help' => 'Use this safe Phase 1 note to record holder review context without opening card-linkage or activity-history writes.', 'attributes' => ['maxlength' => '1000']],
             ],
         ],
     ],

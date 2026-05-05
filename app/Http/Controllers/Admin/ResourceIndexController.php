@@ -963,13 +963,31 @@ class ResourceIndexController extends Controller
             ->withCount('cards')
             ->orderBy('full_name')
             ->get();
+        $shopOptions = Shop::query()
+            ->orderBy('name')
+            ->get(['id', 'name'])
+            ->map(fn (Shop $shop): array => ['value' => (string) $shop->id, 'label' => $shop->name])
+            ->values()
+            ->all();
+
+        if (is_array($page['liveForm'] ?? null)) {
+            $page['liveForm']['fields'] = collect($page['liveForm']['fields'] ?? [])
+                ->map(function (array $field) use ($shopOptions): array {
+                    if (($field['name'] ?? null) === 'shop_id') {
+                        $field['options'] = $shopOptions;
+                        $field['value'] = $field['value'] !== '' ? $field['value'] : ($shopOptions[0]['value'] ?? '');
+                    }
+
+                    return $field;
+                })
+                ->all();
+        }
 
         $page['actions'] = [
             [
                 'label' => 'New cardholder',
                 'tone' => 'primary',
-                'disabled' => true,
-                'disabledReason' => $this->cardholdersCatalogNewHolderDisabledReason($cardHolders),
+                'href' => '#live-form',
             ],
             [
                 'label' => 'Review recent activity',
@@ -1035,6 +1053,28 @@ class ResourceIndexController extends Controller
         }
 
         $page['selectedRecordSummary'] = $this->cardholdersSelectedHolderSummary($selectedCardHolder);
+
+        if (is_array($page['liveForm'] ?? null)) {
+            $page['liveForm']['title'] = 'Edit cardholder in Laravel';
+            $page['liveForm']['description'] = 'Update the selected Galaxy cardholder through the shared live form while card linkage and activity history remain review-only.';
+            $page['liveForm']['method'] = 'PATCH';
+            $page['liveForm']['actionRoute'] = 'admin.cardholders.update';
+            $page['liveForm']['actionRouteParameters'] = [
+                'cardholder' => $selectedCardHolder,
+            ];
+            $page['liveForm']['cancelRoute'] = 'admin.cardholders.index';
+            $page['liveForm']['cancelLabel'] = 'Create new cardholder';
+            $page['liveForm']['cancelRouteParameters'] = [];
+            $page['liveForm']['submitLabel'] = 'Save cardholder changes';
+            $page['liveForm']['valuesResolver'] = [
+                'shop_id' => $selectedCardHolder->shop_id !== null ? (string) $selectedCardHolder->shop_id : '',
+                'full_name' => $selectedCardHolder->full_name,
+                'phone' => $selectedCardHolder->phone ?? '',
+                'email' => $selectedCardHolder->email ?? '',
+                'is_active' => $selectedCardHolder->is_active ? '1' : '0',
+                'review_note' => $selectedCardHolder->review_note ?? '',
+            ];
+        }
 
         $page['actions'] = $this->selectedReadContextActions(
             'admin.cardholders.index',

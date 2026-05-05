@@ -2,6 +2,15 @@
 
 ## 2026-05-05
 
+### Cardholders live note-edit flow checkpoint
+- Reused the new narrow Laravel-backed note-edit pattern on `cardholders`, turning a previously read-only holder surface into a real create/update workflow.
+- Added `cardholders.store` and `cardholders.update` handlers plus request validation for holder identity, branch anchoring, contact fields, status, and `review_note`, while keeping card linkage and activity-history writes safely out of scope.
+- Reused the shared live form pattern so the cardholders workspace now supports both create and selected-record edit flows with backend redirect-to-context behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_cardholder_from_live_admin_flow|test_authenticated_user_can_update_cardholder_from_live_admin_flow|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_replaces_preview_rows_with_model_backed_index_data)'`, `4 passed`.
+
+### Next step after cardholders live note-edit flow checkpoint
+- Reuse this narrow Laravel-backed note-edit pattern on `cards`, where review notes are still visible but the inventory surface remains read-only.
+
 ### Shops live note-edit flow checkpoint
 - Turned `shops` into the first narrow Laravel-backed edit flow among the previously read-only note surfaces.
 - Added `shops.store` and `shops.update` handlers plus request validation for branch identity, status, and `review_note`, keeping manager reassignment and scope writes safely out of scope.

@@ -3622,12 +3622,89 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy North')
             ->assertSee('Keep duplicate-holder parity visible before profile merges are trusted.')
             ->assertSee('No review note saved yet')
+            ->assertSee('Create cardholder in Laravel')
+            ->assertSee('Create cardholder')
+            ->assertSee('action="/admin/cardholders"', false)
             ->assertSee('Review latest saved holder')
             ->assertSee('Reviewed holders')
             ->assertSee('Linked cards')
             ->assertSee('>1<', false)
             ->assertSee('active')
             ->assertSee('inactive');
+    }
+
+    public function test_authenticated_user_can_create_cardholder_from_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Live Branch',
+            'code' => 'galaxy-holder-live-branch',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->post(route('admin.cardholders.store'), [
+            'shop_id' => (string) $shop->id,
+            'full_name' => 'Mariam Sargsyan',
+            'phone' => '+37491100022',
+            'email' => 'mariam.live.cardholder@example.com',
+            'is_active' => 'true',
+            'review_note' => 'Document duplicate-profile parity before widening lifecycle changes.',
+        ]);
+
+        $cardHolder = CardHolder::query()->where('email', 'mariam.live.cardholder@example.com')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Cardholder "Mariam Sargsyan" was created.');
+
+        $this->assertDatabaseHas('card_holders', [
+            'shop_id' => $shop->id,
+            'full_name' => 'Mariam Sargsyan',
+            'phone' => '+37491100022',
+            'email' => 'mariam.live.cardholder@example.com',
+            'is_active' => true,
+            'review_note' => 'Document duplicate-profile parity before widening lifecycle changes.',
+        ]);
+    }
+
+    public function test_authenticated_user_can_update_cardholder_from_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Update Branch',
+            'code' => 'galaxy-holder-update-branch',
+            'is_active' => true,
+        ]);
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Mariam Sargsyan',
+            'phone' => '+37491100022',
+            'email' => 'mariam.live.cardholder@example.com',
+            'is_active' => false,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cardholders.update', $cardHolder), [
+            'shop_id' => (string) $shop->id,
+            'full_name' => 'Mariam Sargsyan Prime',
+            'phone' => '+37491100033',
+            'email' => 'mariam.prime.cardholder@example.com',
+            'is_active' => 'true',
+            'review_note' => 'Keep lifecycle parity visible while this holder returns to active review.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Cardholder "Mariam Sargsyan Prime" was updated.');
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'shop_id' => $shop->id,
+            'full_name' => 'Mariam Sargsyan Prime',
+            'phone' => '+37491100033',
+            'email' => 'mariam.prime.cardholder@example.com',
+            'is_active' => true,
+            'review_note' => 'Keep lifecycle parity visible while this holder returns to active review.',
+        ]);
     }
 
     public function test_cardholders_catalog_actions_reflect_saved_holder_readiness(): void
@@ -3708,6 +3785,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Back to all holders')
             ->assertSee('href="/admin/cardholders"', false)
             ->assertSee('Reviewing: Anna Petrova')
+            ->assertSee('Edit cardholder in Laravel')
+            ->assertSee('Save cardholder changes')
+            ->assertSee('action="/admin/cardholders/'.$cardHolder->id.'"', false)
             ->assertSee('Review recent activity')
             ->assertSee('Blocked until inactive-holder activity history is backed by a stable Laravel event source for lifecycle parity.')
             ->assertSee('Selected holder')
