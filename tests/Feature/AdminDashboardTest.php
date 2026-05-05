@@ -4735,10 +4735,12 @@ class AdminDashboardTest extends TestCase
             ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Permission bundle signal')
             ->assertSee('unbundled active-role coverage is still pending')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep role-coverage and staff-assignment findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Default period posture')
             ->assertSee('Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.')
             ->assertSee('Access reporting parity stays review-only')
-            ->assertSee('Operators should hand off role-coverage and staffing findings in the live review context before trusting export files for access decisions.')
+            ->assertSee('Operators should hand off role-coverage and staff-assignment findings in the live review context before trusting export files for access decisions.')
             ->assertSee('Access mix signal:')
             ->assertSee('combined role, bundle, and staffing coverage is still pending')
             ->assertSee('Access readiness:')
@@ -4752,7 +4754,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scoped bundle signal:')
             ->assertSee('shop-linked permission-bundle coverage is still pending')
             ->assertSee('Bundle branch activity signal:')
-            ->assertSee('paused-branch permission-bundle coverage is still pending');
+            ->assertSee('paused-branch permission-bundle coverage is still pending')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep role-coverage and staff-assignment findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_mixed_role_state_review_context(): void
