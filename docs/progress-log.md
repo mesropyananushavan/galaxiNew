@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Card review-note foundation checkpoint
+- Added a persisted `review_note` column for `cards`, extending the Phase 1 entity skeleton with lightweight Galaxy-specific inventory review metadata instead of only shell copy.
+- Surfaced saved card review notes in the selected card read context across summary, timeline, and dependency layers so blocked inventory review can carry real Laravel-backed dispute guidance.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `1 passed`.
+
+### Next step after card review-note foundation checkpoint
+- Continue adding tiny persisted review metadata slices for the remaining core entities, or start wiring the first editable Laravel-backed note flow into one selected admin surface.
+
 ### Shop and cardholder review-note foundation checkpoint
 - Added a persisted `review_note` column for `shops` and `card_holders`, extending the Phase 1 entity skeleton with lightweight Galaxy-specific review metadata instead of only shell copy.
 - Surfaced those saved notes in selected shop and selected cardholder read contexts across summary, timeline, and dependency layers so Laravel-backed admin review can carry branch/profile guidance from real data.

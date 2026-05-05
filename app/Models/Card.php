@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['shop_id', 'card_holder_id', 'card_type_id', 'number', 'status', 'activated_at'])]
+#[Fillable(['shop_id', 'card_holder_id', 'card_type_id', 'number', 'status', 'review_note', 'activated_at'])]
 class Card extends Model
 {
     use HasFactory;

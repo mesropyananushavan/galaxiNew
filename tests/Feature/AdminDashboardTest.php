@@ -2227,6 +2227,7 @@ class AdminDashboardTest extends TestCase
             'card_type_id' => $cardType->id,
             'number' => 'GX-910001',
             'status' => 'blocked',
+            'review_note' => 'Keep blocked-card dispute parity visible before any replacement follow-up is trusted.',
             'activated_at' => '2026-03-28 09:15:00',
         ]);
 
@@ -2249,6 +2250,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Lifecycle freshness')
             ->assertSee('newly created in Laravel review')
             ->assertSee('Last saved in Laravel')
+            ->assertSee('Review note')
+            ->assertSee('Keep blocked-card dispute parity visible before any replacement follow-up is trusted.')
             ->assertSee('Holder')
             ->assertSee('Card type')
             ->assertSee('Linkage signal')
@@ -2280,6 +2283,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('GX-910001 last saved timestamp reflected from model state')
             ->assertSee('The latest saved Laravel timestamp for this card is')
             ->assertSee('giving operators a concrete checkpoint for the current inventory shell.')
+            ->assertSee('GX-910001 review note reflected from model state')
+            ->assertSee('The current Laravel card review note says: Keep blocked-card dispute parity visible before any replacement follow-up is trusted.')
             ->assertSee('Inventory handoff stays visible in the workspace')
             ->assertSee('Operators should carry blocked status, holder linkage, and dispute context in the live workspace before trusting any replacement or reassignment follow-up.')
             ->assertSee('Inventory posture:')
@@ -2287,6 +2292,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Lifecycle freshness:')
             ->assertSee('newly created in Laravel review')
             ->assertSee('Last saved in Laravel:')
+            ->assertSee('Review note:')
+            ->assertSee('Keep blocked-card dispute parity visible before any replacement follow-up is trusted.')
             ->assertSee('Linkage signal:')
             ->assertSee('holder and branch linkage visible')
             ->assertSee('Inventory handoff signal:')

@@ -931,6 +931,13 @@ class ResourceIndexController extends Controller
                 'description' => sprintf('The latest saved Laravel timestamp for this card is %s, giving operators a concrete checkpoint for the current inventory shell.', $this->cardsLastSavedLabel($selectedCard)),
             ],
             [
+                'title' => sprintf('%s review note reflected from model state', $selectedCard->number),
+                'time' => 'Current request',
+                'description' => $selectedCard->review_note !== null && trim($selectedCard->review_note) !== ''
+                    ? sprintf('The current Laravel card review note says: %s', $selectedCard->review_note)
+                    : 'No Laravel card review note is saved yet, so inventory handoff context still depends on the surrounding workspace cues.',
+            ],
+            [
                 'title' => 'Inventory handoff stays visible in the workspace',
                 'time' => 'Current request',
                 'description' => $this->cardsInventoryTimelineHandoffDescription($selectedCard),
@@ -3124,6 +3131,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Operational readiness', 'value' => $this->cardsOperationalReadiness($selectedCard)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
+            ['label' => 'Review note', 'value' => $selectedCard->review_note ?: 'No review note saved yet'],
             ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
             ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
@@ -3259,6 +3267,7 @@ class ResourceIndexController extends Controller
             }],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
+            ['label' => 'Review note', 'value' => $selectedCard->review_note ?: 'No review note saved yet'],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
             ['label' => 'Lifecycle posture', 'value' => match ($selectedCard->status) {
