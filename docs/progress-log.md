@@ -168,6 +168,11 @@
 - Kept the step holder-shell-only and identity-focused, without widening duplicate-profile, linkage, or lifecycle writes.
 - Re-ran `php artisan test --filter='(test_cardholder_update_live_flow_keeps_contact_identity_canonical|test_cardholder_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
 
+### Card create blank activation normalization checkpoint
+- Added explicit feature coverage for the writable `cards` create flow so whitespace-only `activated_at` input stays protected as a real `null` value instead of entering the inventory shell as a fake timestamp.
+- Kept the step inventory-shell-only and verification-focused, without widening holder assignment, dispute, or replacement writes.
+- Re-ran `php artisan test --filter='(test_card_live_flow_normalizes_blank_activation_timestamp_to_null|test_card_update_live_flow_normalizes_blank_activation_timestamp_to_null)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

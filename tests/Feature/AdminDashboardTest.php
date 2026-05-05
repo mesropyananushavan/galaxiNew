@@ -9649,6 +9649,43 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_live_flow_normalizes_blank_activation_timestamp_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Activation Null Branch',
+            'code' => 'galaxy-activation-null-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Activation Null Gold',
+            'slug' => 'galaxy-activation-null-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-act-null-1001 ',
+            'status' => 'active',
+            'activated_at' => '   ',
+            'review_note' => 'Keep inventory activation cleanup narrow while the first shell stays live.',
+        ]);
+
+        $card = Card::query()->where('number', 'GX-ACT-NULL-1001')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card "GX-ACT-NULL-1001" was created.');
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'number' => 'GX-ACT-NULL-1001',
+            'activated_at' => null,
+        ]);
+    }
+
     public function test_card_update_live_flow_keeps_inventory_identifier_canonical(): void
     {
         $user = User::factory()->create();
