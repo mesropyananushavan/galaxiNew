@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Cards selected-record handoff timeline checkpoint
+- Added a state-aware selected-card timeline handoff entry so blocked and active inventory reviews keep the same Galaxy-specific evidence-first guidance visible in the activity timeline, not only in summary and dependency blocks.
+- Extended focused card review coverage to assert the new timeline wording for blocked holder-linked and blocked unassigned inventory cases without changing write flows or card queries.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context)'`, `3 passed`.
+
+### Next step after cards selected-record handoff timeline checkpoint
+- Continue propagating state-aware handoff guidance across selected-record admin surfaces, or switch back to the next persisted Phase 1 foundation slice.
+
 ### Reports role-access pending-readiness handoff coverage checkpoint
 - Extended the pending-readiness `role-access` report scenario so it now explicitly asserts the staff-assignment-sensitive dependency-side handoff signal alongside the already-covered timeline handoff wording.
 - Kept the step low-risk and Laravel-backed by hardening focused test coverage around already-shipped Phase 1 reporting copy without changing access shaping, export flow, or report queries.

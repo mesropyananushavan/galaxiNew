@@ -930,6 +930,11 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => sprintf('The latest saved Laravel timestamp for this card is %s, giving operators a concrete checkpoint for the current inventory shell.', $this->cardsLastSavedLabel($selectedCard)),
             ],
+            [
+                'title' => 'Inventory handoff stays visible in the workspace',
+                'time' => 'Current request',
+                'description' => $this->cardsInventoryTimelineHandoffDescription($selectedCard),
+            ],
         ];
 
         $page['dependencyStatus'] = $this->cardsSelectedCardDependencyStatus($selectedCard);
@@ -3188,6 +3193,17 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'active' && $selectedCard->holder !== null => 'Active issued inventory already carries enough linkage context for a useful handoff review.',
             $selectedCard->status === 'active' => 'Active inventory is visible, but holder linkage context is still thin for handoff review.',
             default => 'Draft inventory should stay in handoff-only posture until issuance parity is explicit.',
+        };
+    }
+
+    private function cardsInventoryTimelineHandoffDescription(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->status === 'blocked' && $selectedCard->holder !== null => 'Operators should carry blocked status, holder linkage, and dispute context in the live workspace before trusting any replacement or reassignment follow-up.',
+            $selectedCard->status === 'blocked' => 'Operators should carry blocked status, branch ownership, and holder-linkage gaps in the live workspace before trusting any replacement or reassignment follow-up.',
+            $selectedCard->status === 'active' && $selectedCard->holder !== null => 'Operators should carry active status, holder linkage, and branch ownership in the live workspace before trusting any replacement or reassignment follow-up.',
+            $selectedCard->status === 'active' => 'Operators should carry active status, branch ownership, and holder-linkage gaps in the live workspace before trusting any replacement or reassignment follow-up.',
+            default => 'Operators should carry draft status, holder-linkage gaps, and branch ownership in the live workspace before trusting any issuance or reassignment follow-up.',
         };
     }
 
