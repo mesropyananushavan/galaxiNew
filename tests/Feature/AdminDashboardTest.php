@@ -9222,6 +9222,48 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_update_live_flow_normalizes_blank_activation_timestamp_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Activation Cleanup Branch',
+            'code' => 'galaxy-activation-cleanup-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Activation Cleanup Gold',
+            'slug' => 'galaxy-activation-cleanup-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-ACT-UPD-1001',
+            'status' => 'active',
+            'activated_at' => '2026-05-05 11:30:00',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-act-upd-1001 ',
+            'status' => 'active',
+            'activated_at' => '   ',
+            'review_note' => 'Keep inventory cleanup narrow while activation timing is reset.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card "GX-ACT-UPD-1001" was updated.');
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'number' => 'GX-ACT-UPD-1001',
+            'activated_at' => null,
+        ]);
+    }
+
     public function test_card_types_page_shows_update_success_flash_message(): void
     {
         $user = User::factory()->create();
