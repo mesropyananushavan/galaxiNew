@@ -3940,6 +3940,36 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_cardholder_live_flow_normalizes_blank_contact_fields_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Null Contact Branch',
+            'code' => 'galaxy-holder-null-contact-branch',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->post(route('admin.cardholders.store'), [
+            'shop_id' => (string) $shop->id,
+            'full_name' => '  Arpi Sargsyan  ',
+            'phone' => '   ',
+            'email' => '   ',
+            'is_active' => 'true',
+            'review_note' => 'Normalize empty contact values before widening holder lifecycle work.',
+        ]);
+
+        $cardHolder = CardHolder::query()->where('full_name', 'Arpi Sargsyan')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#backend-flow-status');
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'phone' => null,
+            'email' => null,
+        ]);
+    }
+
     public function test_cardholders_catalog_actions_reflect_saved_holder_readiness(): void
     {
         $shop = Shop::create([
