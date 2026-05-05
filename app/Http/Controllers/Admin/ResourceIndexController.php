@@ -1590,7 +1590,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope guidance', 'value' => 'Keep this source centered on role coverage and scope visibility first, because old Galaxy access checks were driven by who could see which branch context.' ],
                     ['label' => 'Default period posture', 'value' => 'Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.'],
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because access coverage checks need visible role and scope context before any export workflow is trusted.' ],
-                    ['label' => 'Handoff signal', 'value' => 'Keep access coverage findings in the live workspace before asking for export-driven handoff.'],
+                    ['label' => 'Handoff signal', 'value' => $this->reportsRoleAccessHandoffSignal($permissionLinkedRoleCount, $assignedStaffCount)],
                     ['label' => 'Backend gap', 'value' => $this->reportsRoleAccessBackendGap($roleCount, $permissionLinkedRoleCount, $assignedStaffCount)],
                     ['label' => 'Preset posture', 'value' => 'Keep access-report presets preview-only until role and scope parity are verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until access export expectations and file delivery are validated.'],
@@ -1649,6 +1649,7 @@ class ResourceIndexController extends Controller
                         : 'unbundled active-role coverage is still pending'],
                     ['label' => 'Scope posture', 'value' => 'Scope visibility should stay read-only until access-report parity and branch-assignment shaping are verified.'],
                     ['label' => 'Access posture', 'value' => 'Role coverage should stay read-only until access-report parity and scope shaping are verified.'],
+                    ['label' => 'Handoff signal', 'value' => $this->reportsRoleAccessHandoffSignal($permissionLinkedRoleCount, $assignedStaffCount)],
                     ['label' => 'Remaining backend gap', 'value' => $this->reportsRoleAccessBackendGap($roleCount, $permissionLinkedRoleCount, $assignedStaffCount)],
                 ],
             ],
@@ -2615,6 +2616,16 @@ class ResourceIndexController extends Controller
             $permissionLinkedRoleCount > 0 => 'Preset handling, assignment-aware shaping, and export generation should stay preview-only until access-report staffing parity is verified.',
             $assignedStaffCount > 0 => 'Preset handling, permission-bundle shaping, and export generation should stay preview-only until access-report bundle parity is verified.',
             default => 'Preset handling, report shaping, and export generation should stay preview-only until access parity is verified.',
+        };
+    }
+
+    private function reportsRoleAccessHandoffSignal(int $permissionLinkedRoleCount, int $assignedStaffCount): string
+    {
+        return match (true) {
+            $permissionLinkedRoleCount > 0 && $assignedStaffCount > 0 => 'Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.',
+            $permissionLinkedRoleCount > 0 => 'Keep role-coverage and permission-bundle findings in the live workspace before asking for export-driven handoff.',
+            $assignedStaffCount > 0 => 'Keep role-coverage and staff-assignment findings in the live workspace before asking for export-driven handoff.',
+            default => 'Keep access coverage findings in the live workspace before asking for export-driven handoff.',
         };
     }
 

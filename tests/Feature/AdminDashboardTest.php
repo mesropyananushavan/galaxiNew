@@ -5206,7 +5206,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Role state signal')
             ->assertSee('draft access-role coverage is still pending')
             ->assertSee('Handoff signal')
-            ->assertSee('Keep access coverage findings in the live workspace before asking for export-driven handoff.')
+            ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Backend gap')
             ->assertSee('Preset handling, grouped access shaping, and export generation should stay preview-only until scope and staffing parity are verified.')
             ->assertSee('Permission bundle signal')
@@ -5237,7 +5237,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Remaining backend gap:')
             ->assertSee('Preset handling, grouped access shaping, and export generation should stay preview-only until scope and staffing parity are verified.')
             ->assertSee('Handoff signal:')
-            ->assertSee('Keep access coverage findings in the live workspace before asking for export-driven handoff.');
+            ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_mixed_assignment_scope_review_context(): void
@@ -5293,13 +5293,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 permission-linked roles already carry shop-linked access scope for parity review')
             ->assertSee('Bundle branch activity signal')
             ->assertSee('paused-branch permission-bundle coverage is still pending')
+            ->assertSee('Handoff signal')
+            ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Assignment scope signal:')
             ->assertSee($assignmentScopeSignal)
             ->assertSee('Scoped bundle signal:')
             ->assertSee('1 permission-linked roles already carry shop-linked access scope for parity review')
             ->assertSee('Bundle branch activity signal:')
-            ->assertSee('paused-branch permission-bundle coverage is still pending');
+            ->assertSee('paused-branch permission-bundle coverage is still pending')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_supports_selected_mixed_assignment_branch_activity_review_context(): void
