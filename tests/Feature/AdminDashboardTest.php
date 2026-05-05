@@ -4473,7 +4473,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Cards by shop source selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked cards across 1 shops from the current Laravel foundation.')
             ->assertSee('Branch inventory handoff stays on-screen first')
-            ->assertSee('Operators should hand off branch comparison findings in the live workspace before relying on exported files for this source.')
+            ->assertSee('Operators should hand off branch-total and linked-holder inventory findings in the live workspace before relying on exported files for this source.')
             ->assertSee('Source status signal:')
             ->assertSee('Cards-by-shop source is already visible with live branch inventory for parity review.')
             ->assertSee('Source signal')

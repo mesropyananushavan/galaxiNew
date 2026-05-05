@@ -1351,7 +1351,7 @@ class ResourceIndexController extends Controller
                 'timeline' => [
                     ['title' => 'Cards by shop source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked cards across %d shops from the current Laravel foundation.', $cardCount, $shopCount)],
                     ['title' => 'Shop-level inventory parity stays review-only', 'time' => 'Current request', 'description' => 'Counts are live-backed now, but grouped report shaping and export output should stay parity-first until reporting pipeline checks exist.'],
-                    ['title' => 'Branch inventory handoff stays on-screen first', 'time' => 'Current request', 'description' => 'Operators should hand off branch comparison findings in the live workspace before relying on exported files for this source.'],
+                    ['title' => 'Branch inventory handoff stays on-screen first', 'time' => 'Current request', 'description' => $this->reportsCardsByShopTimelineHandoffDescription($holderLinkedCardCount, $unassignedCardCount)],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Cards by shop'],
@@ -2584,6 +2584,16 @@ class ResourceIndexController extends Controller
             $holderLinkedCardCount > 0 => 'Keep branch-total and linked-holder inventory findings in the live workspace before asking for export-driven handoff.',
             $unassignedCardCount > 0 => 'Keep branch-total and unassigned inventory findings in the live workspace before asking for export-driven handoff.',
             default => 'Keep branch comparison findings in the live workspace before asking for export-driven handoff.',
+        };
+    }
+
+    private function reportsCardsByShopTimelineHandoffDescription(int $holderLinkedCardCount, int $unassignedCardCount): string
+    {
+        return match (true) {
+            $holderLinkedCardCount > 0 && $unassignedCardCount > 0 => 'Operators should hand off branch-total and assignment-split findings in the live workspace before relying on exported files for this source.',
+            $holderLinkedCardCount > 0 => 'Operators should hand off branch-total and linked-holder inventory findings in the live workspace before relying on exported files for this source.',
+            $unassignedCardCount > 0 => 'Operators should hand off branch-total and unassigned inventory findings in the live workspace before relying on exported files for this source.',
+            default => 'Operators should hand off branch comparison findings in the live workspace before relying on exported files for this source.',
         };
     }
 
