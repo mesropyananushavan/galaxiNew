@@ -5372,11 +5372,15 @@ class AdminDashboardTest extends TestCase
             ->assertSee($assignmentBranchActivitySignal)
             ->assertSee('Bundle branch activity signal')
             ->assertSee('1 permission-linked roles are already visible in active branches beside 1 roles in paused shops for parity review')
+            ->assertSee('Access-review handoff should stay visible in the workspace')
+            ->assertSee('Operators should hand off role-coverage and staffing findings in the live review context before trusting export files for access decisions.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Assignment branch activity signal:')
             ->assertSee($assignmentBranchActivitySignal)
             ->assertSee('Bundle branch activity signal:')
-            ->assertSee('1 permission-linked roles are already visible in active branches beside 1 roles in paused shops for parity review');
+            ->assertSee('1 permission-linked roles are already visible in active branches beside 1 roles in paused shops for parity review')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.');
     }
 
     public function test_reports_page_accepts_case_insensitive_selected_source_query(): void
