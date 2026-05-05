@@ -9768,6 +9768,43 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_live_flow_keeps_status_canonical(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Create Status Branch',
+            'code' => 'galaxy-create-status-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Create Status Gold',
+            'slug' => 'galaxy-create-status-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-create-status-1001 ',
+            'status' => ' BLOCKED ',
+            'activated_at' => '',
+            'review_note' => 'Keep the inventory status canonical while the first live shell stays narrow.',
+        ]);
+
+        $card = Card::query()->where('number', 'GX-CREATE-STATUS-1001')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card "GX-CREATE-STATUS-1001" was created.');
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'number' => 'GX-CREATE-STATUS-1001',
+            'status' => 'blocked',
+        ]);
+    }
+
     public function test_card_update_live_flow_rejects_duplicate_inventory_identifier_after_normalization(): void
     {
         $user = User::factory()->create();

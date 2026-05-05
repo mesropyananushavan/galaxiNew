@@ -173,6 +173,11 @@
 - Kept the step inventory-shell-only and verification-focused, without widening holder assignment, dispute, or replacement writes.
 - Re-ran `php artisan test --filter='(test_card_live_flow_normalizes_blank_activation_timestamp_to_null|test_card_update_live_flow_normalizes_blank_activation_timestamp_to_null)'`, `2 passed`.
 
+### Card create canonical status checkpoint
+- Added explicit feature coverage for the writable `cards` create flow so mixed-case or whitespace-padded status input still persists as canonical lowercase inventory state on first save.
+- Kept the step inventory-shell-only and normalization-focused, without widening assignment, dispute, or replacement writes.
+- Re-ran `php artisan test --filter='(test_card_live_flow_keeps_status_canonical|test_card_update_live_flow_keeps_status_canonical)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 
