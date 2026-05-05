@@ -2999,6 +2999,7 @@ class AdminDashboardTest extends TestCase
             'name' => 'Galaxy Central',
             'code' => 'galaxy-central',
             'is_active' => true,
+            'review_note' => 'Keep branch ownership parity visible before any live scope mutation is trusted.',
         ]);
 
         User::factory()->create([
@@ -3048,6 +3049,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Lifecycle freshness')
             ->assertSee('newly created in Laravel review')
             ->assertSee('Last saved in Laravel')
+            ->assertSee('Review note')
+            ->assertSee('Keep branch ownership parity visible before any live scope mutation is trusted.')
             ->assertSee('Code')
             ->assertSee('Coverage signal')
             ->assertSee('manager, holder, and card coverage visible')
@@ -3081,6 +3084,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy Central last saved timestamp reflected from model state')
             ->assertSee('The latest saved Laravel timestamp for this branch is')
             ->assertSee('giving operators a concrete checkpoint for the current branch shell.')
+            ->assertSee('Galaxy Central review note reflected from model state')
+            ->assertSee('The current Laravel branch review note says: Keep branch ownership parity visible before any live scope mutation is trusted.')
             ->assertSee('Branch scope handoff stays visible in the workspace')
             ->assertSee('Operators should carry manager ownership, holder coverage, and card coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.')
             ->assertSee('Branch posture:')
@@ -3088,6 +3093,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Lifecycle freshness:')
             ->assertSee('newly created in Laravel review')
             ->assertSee('Last saved in Laravel:')
+            ->assertSee('Review note:')
+            ->assertSee('Keep branch ownership parity visible before any live scope mutation is trusted.')
             ->assertSee('Coverage signal:')
             ->assertSee('manager, holder, and card coverage visible')
             ->assertSee('Shop status signal:')
@@ -3599,6 +3606,7 @@ class AdminDashboardTest extends TestCase
             'phone' => '+37491100001',
             'email' => 'anna-selected-holder@example.com',
             'is_active' => false,
+            'review_note' => 'Keep dormant-holder lookup parity anchored to the branch before any reactivation follow-up.',
         ]);
 
         $user = User::factory()->create();
@@ -3622,6 +3630,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Lifecycle freshness')
             ->assertSee('newly created in Laravel review')
             ->assertSee('Last saved in Laravel')
+            ->assertSee('Review note')
+            ->assertSee('Keep dormant-holder lookup parity anchored to the branch before any reactivation follow-up.')
             ->assertSee('Phone')
             ->assertSee('Linkage signal')
             ->assertSee('branch-linked profile, card linkage pending')
@@ -3652,6 +3662,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Anna Petrova last saved timestamp reflected from model state')
             ->assertSee('The latest saved Laravel timestamp for this holder is')
             ->assertSee('giving operators a concrete checkpoint for the current profile shell.')
+            ->assertSee('Anna Petrova review note reflected from model state')
+            ->assertSee('The current Laravel holder review note says: Keep dormant-holder lookup parity anchored to the branch before any reactivation follow-up.')
             ->assertSee('Holder activity handoff stays visible in the workspace')
             ->assertSee('Operators should carry inactive status, branch context, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.')
             ->assertSee('Lookup posture:')
@@ -3659,6 +3671,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Lifecycle freshness:')
             ->assertSee('newly created in Laravel review')
             ->assertSee('Last saved in Laravel:')
+            ->assertSee('Review note:')
+            ->assertSee('Keep dormant-holder lookup parity anchored to the branch before any reactivation follow-up.')
             ->assertSee('Linkage signal:')
             ->assertSee('branch-linked profile, card linkage pending')
             ->assertSee('Activity handoff signal:')

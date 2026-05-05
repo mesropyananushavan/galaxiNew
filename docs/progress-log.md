@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Shop and cardholder review-note foundation checkpoint
+- Added a persisted `review_note` column for `shops` and `card_holders`, extending the Phase 1 entity skeleton with lightweight Galaxy-specific review metadata instead of only shell copy.
+- Surfaced those saved notes in selected shop and selected cardholder read contexts across summary, timeline, and dependency layers so Laravel-backed admin review can carry branch/profile guidance from real data.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data)'`, `2 passed`.
+
+### Next step after shop and cardholder review-note foundation checkpoint
+- Continue adding tiny persisted review metadata slices for other core entities, or start wiring the first editable Laravel-backed note flow into one selected admin surface.
+
 ### Roles-permissions selected-record handoff timeline checkpoint
 - Added a state-aware selected-role timeline handoff entry so access scope, staffing, and permission-bundle guidance stays visible in the activity timeline, not only in summary and dependency blocks.
 - Extended focused role review coverage to assert the new timeline wording for fully scoped live access, mixed branch permission coverage, assignment-sensitive live access without scope, and draft-role readiness cases without changing access writes or matrix behavior.

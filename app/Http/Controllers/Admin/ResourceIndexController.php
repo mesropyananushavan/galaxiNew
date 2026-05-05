@@ -1056,6 +1056,13 @@ class ResourceIndexController extends Controller
                 'description' => sprintf('The latest saved Laravel timestamp for this holder is %s, giving operators a concrete checkpoint for the current profile shell.', $this->cardholdersLastSavedLabel($selectedCardHolder)),
             ],
             [
+                'title' => sprintf('%s review note reflected from model state', $selectedCardHolder->full_name),
+                'time' => 'Current request',
+                'description' => $selectedCardHolder->review_note !== null && trim($selectedCardHolder->review_note) !== ''
+                    ? sprintf('The current Laravel holder review note says: %s', $selectedCardHolder->review_note)
+                    : 'No Laravel holder review note is saved yet, so lifecycle handoff context still depends on the surrounding workspace cues.',
+            ],
+            [
                 'title' => 'Holder activity handoff stays visible in the workspace',
                 'time' => 'Current request',
                 'description' => $this->cardholdersActivityTimelineHandoffDescription($selectedCardHolder),
@@ -1179,6 +1186,13 @@ class ResourceIndexController extends Controller
                 'title' => sprintf('%s last saved timestamp reflected from model state', $selectedShop->name),
                 'time' => 'Current request',
                 'description' => sprintf('The latest saved Laravel timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.', $this->shopsLastSavedLabel($selectedShop)),
+            ],
+            [
+                'title' => sprintf('%s review note reflected from model state', $selectedShop->name),
+                'time' => 'Current request',
+                'description' => $selectedShop->review_note !== null && trim($selectedShop->review_note) !== ''
+                    ? sprintf('The current Laravel branch review note says: %s', $selectedShop->review_note)
+                    : 'No Laravel branch review note is saved yet, so scope handoff context still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => 'Branch scope handoff stays visible in the workspace',
@@ -3275,6 +3289,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Operational readiness', 'value' => $this->cardholdersOperationalReadiness($selectedCardHolder)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
+            ['label' => 'Review note', 'value' => $selectedCardHolder->review_note ?: 'No review note saved yet'],
             ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Holder focus', 'value' => $this->cardholdersHolderFocus($selectedCardHolder)],
@@ -3394,6 +3409,7 @@ class ResourceIndexController extends Controller
                 : 'Inactive holder remains safer for reactivation-flow-parity review before any reactivation-flow discussion.'],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
+            ['label' => 'Review note', 'value' => $selectedCardHolder->review_note ?: 'No review note saved yet'],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
             ['label' => 'Status posture', 'value' => $selectedCardHolder->is_active
@@ -3417,6 +3433,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Operational readiness', 'value' => $this->shopsOperationalReadiness($selectedShop)],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Laravel', 'value' => $this->shopsLastSavedLabel($selectedShop)],
+            ['label' => 'Review note', 'value' => $selectedShop->review_note ?: 'No review note saved yet'],
             ['label' => 'Code', 'value' => $selectedShop->code],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
@@ -3592,6 +3609,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Branch posture', 'value' => 'Selected-shop review is running in Laravel-backed read mode only'],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Laravel', 'value' => $this->shopsLastSavedLabel($selectedShop)],
+            ['label' => 'Review note', 'value' => $selectedShop->review_note ?: 'No review note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
