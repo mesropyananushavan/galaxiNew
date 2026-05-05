@@ -53,6 +53,11 @@
 - Kept the scope metadata-only and verification-focused, without widening tier rules, rollout publishing, or activation flows.
 - Re-ran `php artisan test --filter='(test_card_type_live_flow_trims_tier_identity_name|test_card_type_live_flow_normalizes_blank_notes_to_null)'`, `2 passed`.
 
+### Shop blank note normalization checkpoint
+- Added explicit feature coverage for the writable `shops` note normalization so whitespace-only branch review notes stay protected as `null` values in the Laravel-backed Galaxy branch shell.
+- Kept the step metadata-only and verification-focused, without widening ownership, scope-mutation, or reassignment writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_shop_from_live_admin_flow|test_shop_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

@@ -3400,6 +3400,29 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_shop_live_flow_normalizes_blank_review_note_to_null(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.shops.store'), [
+            'name' => 'Galaxy Empty Note Branch',
+            'code' => 'Galaxy Empty Note Branch',
+            'is_active' => 'true',
+            'review_note' => '   ',
+        ]);
+
+        $shop = Shop::query()->where('code', 'galaxy-empty-note-branch')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.shops.index', ['shop' => $shop], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Shop "Galaxy Empty Note Branch" was created.');
+
+        $this->assertDatabaseHas('shops', [
+            'id' => $shop->id,
+            'review_note' => null,
+        ]);
+    }
+
     public function test_shops_page_supports_selected_branch_coverage_without_manager_review_context(): void
     {
         $shop = Shop::create([
