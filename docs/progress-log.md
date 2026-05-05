@@ -83,6 +83,11 @@
 - Kept the step tier-shell-only and verification-focused, without widening rule-import, publish, or activation workflows.
 - Re-ran `php artisan test --filter='(test_card_type_live_flow_normalizes_blank_notes_to_null|test_card_type_update_live_flow_normalizes_blank_notes_to_null)'`, `2 passed`.
 
+### Role update blank note normalization checkpoint
+- Added explicit feature coverage for the writable `roles-permissions` update flow so clearing review, access, and assignment notes with whitespace-only input stays protected as real `null` values, not leftover empty strings.
+- Kept the step access-shell-only and verification-focused, without widening permission-matrix, staffing, or scope writes.
+- Re-ran `php artisan test --filter='(test_role_live_flow_normalizes_blank_notes_to_null|test_role_update_live_flow_normalizes_blank_notes_to_null)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

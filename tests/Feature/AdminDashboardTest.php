@@ -1984,6 +1984,40 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_role_update_live_flow_normalizes_blank_notes_to_null(): void
+    {
+        $user = User::factory()->create();
+        $role = Role::create([
+            'name' => 'Parity Access Lead',
+            'slug' => 'parity-access-lead',
+            'is_active' => true,
+            'review_note' => 'Clear this review note while keeping the access shell live.',
+            'access_note' => 'Clear this access note after parity review.',
+            'assignment_note' => 'Clear this assignment note after staffing review.',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => 'Parity Access Lead',
+            'slug' => 'Parity Access Lead',
+            'is_active' => '1',
+            'review_note' => '   ',
+            'access_note' => '   ',
+            'assignment_note' => '   ',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Role "Parity Access Lead" was updated.');
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $role->id,
+            'slug' => 'parity-access-lead',
+            'review_note' => null,
+            'access_note' => null,
+            'assignment_note' => null,
+        ]);
+    }
+
     public function test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug(): void
     {
         $user = User::factory()->create();
