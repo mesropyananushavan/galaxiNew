@@ -2138,6 +2138,35 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_role_update_live_flow_keeps_role_slug_canonical(): void
+    {
+        $user = User::factory()->create();
+
+        $role = Role::create([
+            'name' => 'Galaxy Draft Access',
+            'slug' => 'galaxy-draft-access',
+            'is_active' => false,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
+            'name' => '  Galaxy Draft Access Prime  ',
+            'slug' => ' Galaxy Draft Access Prime ',
+            'is_active' => '1',
+            'review_note' => 'Keep role slug canonical while the live access shell stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Role "Galaxy Draft Access Prime" was updated.');
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $role->id,
+            'name' => 'Galaxy Draft Access Prime',
+            'slug' => 'galaxy-draft-access-prime',
+            'is_active' => true,
+        ]);
+    }
+
     public function test_roles_permissions_page_shows_update_success_flash_message(): void
     {
         $user = User::factory()->create();
