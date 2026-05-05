@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Reports mixed timeline handoff coverage checkpoint
+- Extended focused mixed-state report coverage so `cards-by-shop`, `cardholder-status`, and `role-access` now explicitly assert their state-aware timeline handoff wording, not just summary and dependency blocks.
+- Kept the step low-risk and Laravel-backed by hardening test coverage around already-shipped Phase 1 reporting copy without changing data flow, export logic, or query behavior.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_mixed_branch_activity_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context|test_reports_page_supports_selected_mixed_assignment_scope_review_context)'`, `3 passed`.
+
+### Next step after reports mixed timeline handoff coverage checkpoint
+- Continue adding targeted guardrails where state-aware Galaxy wording recently landed, or switch back to the next persisted Phase 1 foundation slice.
+
 ### Reports cardholder-status timeline handoff refinement checkpoint
 - Made the selected `reports` `cardholder-status` timeline handoff line state-aware so the visible operator handoff now mirrors the same linked-profile lifecycle context already shown in the selected summary and dependency status.
 - Kept the step low-risk and Laravel-backed by refining only read-only reporting timeline copy and extending the focused cardholder-status assertion without changing any lifecycle shaping, export flow, or report queries.
