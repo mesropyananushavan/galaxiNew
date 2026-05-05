@@ -5350,3 +5350,8 @@
 - Added explicit feature coverage for the writable `roles-permissions` create flow so string status inputs like `no` still persist as canonical boolean access-shell state on first save.
 - Kept the step access-shell-only and normalization-focused, without widening permission matrix edits, assignment writes, or scope mutation.
 - Re-ran `php artisan test --filter='(test_role_live_flow_keeps_status_boolean_canonical|test_role_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Card type create canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `card-types` create flow so string status inputs like `no` still persist as canonical boolean tier-shell state on first save.
+- Kept the step tier-shell-only and normalization-focused, without widening rollout imports, activation workflows, or rule publication.
+- Re-ran `php artisan test --filter='(test_card_type_live_flow_keeps_status_boolean_canonical|test_card_type_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.

@@ -9556,6 +9556,33 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_type_live_flow_keeps_status_boolean_canonical(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => '  Galaxy Boolean Tier Create  ',
+            'slug' => ' Galaxy Boolean Tier Create ',
+            'points_rate' => '0.85',
+            'is_active' => 'no',
+            'review_note' => 'Keep tier status canonical while the first live catalog shell stays narrow.',
+        ]);
+
+        $cardType = CardType::query()->where('slug', 'galaxy-boolean-tier-create')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card type "Galaxy Boolean Tier Create" was created.');
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'name' => 'Galaxy Boolean Tier Create',
+            'slug' => 'galaxy-boolean-tier-create',
+            'points_rate' => '0.85',
+            'is_active' => false,
+        ]);
+    }
+
     public function test_card_live_flow_normalizes_blank_review_note_to_null(): void
     {
         $user = User::factory()->create();
