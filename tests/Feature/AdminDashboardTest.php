@@ -4051,6 +4051,42 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_cardholder_update_live_flow_normalizes_blank_review_note_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Note Cleanup Branch',
+            'code' => 'galaxy-holder-note-cleanup-branch',
+            'is_active' => true,
+        ]);
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Marine Cleanup',
+            'phone' => '+37499118822',
+            'email' => 'marine.cleanup@example.com',
+            'is_active' => true,
+            'review_note' => 'Clear this note while keeping the holder shell live.',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cardholders.update', $cardHolder), [
+            'shop_id' => (string) $shop->id,
+            'full_name' => 'Marine Cleanup',
+            'phone' => '+37499118822',
+            'email' => 'marine.cleanup@example.com',
+            'is_active' => 'true',
+            'review_note' => '   ',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Cardholder "Marine Cleanup" was updated.');
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'review_note' => null,
+        ]);
+    }
+
     public function test_cardholders_catalog_actions_reflect_saved_holder_readiness(): void
     {
         $shop = Shop::create([
