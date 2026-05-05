@@ -1055,6 +1055,11 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => sprintf('The latest saved Laravel timestamp for this holder is %s, giving operators a concrete checkpoint for the current profile shell.', $this->cardholdersLastSavedLabel($selectedCardHolder)),
             ],
+            [
+                'title' => 'Holder activity handoff stays visible in the workspace',
+                'time' => 'Current request',
+                'description' => $this->cardholdersActivityTimelineHandoffDescription($selectedCardHolder),
+            ],
         ];
 
         $page['dependencyStatus'] = $this->cardholdersSelectedHolderDependencyStatus($selectedCardHolder);
@@ -3345,6 +3350,16 @@ class ResourceIndexController extends Controller
             ! $selectedCardHolder->is_active => 'Dormant holder should stay in handoff-only posture until reactivation parity is explicit.',
             $selectedCardHolder->cards_count > 0 => 'Active holder already carries linked-card context for a useful activity handoff review.',
             default => 'Active holder exists, but linked-card activity context is still thin for handoff review.',
+        };
+    }
+
+    private function cardholdersActivityTimelineHandoffDescription(CardHolder $selectedCardHolder): string
+    {
+        return match (true) {
+            ! $selectedCardHolder->is_active && $selectedCardHolder->cards_count > 0 => 'Operators should carry inactive status, linked-card evidence, and branch context in the live workspace before trusting any reactivation or merge follow-up.',
+            ! $selectedCardHolder->is_active => 'Operators should carry inactive status, branch context, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.',
+            $selectedCardHolder->cards_count > 0 => 'Operators should carry active status, linked-card evidence, and branch context in the live workspace before trusting any lifecycle-change or merge follow-up.',
+            default => 'Operators should carry active status, branch context, and card-linkage gaps in the live workspace before trusting any lifecycle-change or merge follow-up.',
         };
     }
 

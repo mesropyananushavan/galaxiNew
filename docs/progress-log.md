@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Cardholders selected-record handoff timeline checkpoint
+- Added a state-aware selected-holder timeline handoff entry so active and inactive profile reviews keep the same Galaxy-specific activity guidance visible in the activity timeline, not only in summary and dependency blocks.
+- Extended focused holder review coverage to assert the new timeline wording for inactive-unlinked, active-linked, active-unlinked, and inactive-linked cases without changing profile writes or activity sourcing behavior.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
+
+### Next step after cardholders selected-record handoff timeline checkpoint
+- Continue propagating state-aware handoff guidance across selected-record admin surfaces, or switch back to the next persisted Phase 1 foundation slice.
+
 ### Cards selected-record handoff timeline checkpoint
 - Added a state-aware selected-card timeline handoff entry so blocked and active inventory reviews keep the same Galaxy-specific evidence-first guidance visible in the activity timeline, not only in summary and dependency blocks.
 - Extended focused card review coverage to assert the new timeline wording for blocked holder-linked and blocked unassigned inventory cases without changing write flows or card queries.
