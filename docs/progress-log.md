@@ -138,6 +138,11 @@
 - Kept the step branch-shell-only and identity-focused, without widening ownership, reassignment, or scope-mutation writes.
 - Re-ran `php artisan test --filter='(test_shop_update_live_flow_rejects_duplicate_normalized_code|test_shop_update_live_flow_keeps_branch_code_canonical)'`, `2 passed`.
 
+### Cardholder update canonical contact checkpoint
+- Added explicit feature coverage for the writable `cardholders` update flow so whitespace-padded phone values and mixed-case email values still persist as canonical holder contact identity during a normal live edit path.
+- Kept the step holder-shell-only and identity-focused, without widening duplicate-profile, linkage, or lifecycle writes.
+- Re-ran `php artisan test --filter='(test_cardholder_update_live_flow_normalizes_blank_contact_fields_to_null|test_cardholder_update_live_flow_keeps_contact_identity_canonical)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

@@ -4299,6 +4299,44 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_cardholder_update_live_flow_keeps_contact_identity_canonical(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Canonical Contact Branch',
+            'code' => 'galaxy-holder-canonical-contact-branch',
+            'is_active' => true,
+        ]);
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Canonical Contact Holder',
+            'phone' => '+37499116655',
+            'email' => 'canonical.contact@example.com',
+            'is_active' => false,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cardholders.update', $cardHolder), [
+            'shop_id' => (string) $shop->id,
+            'full_name' => '  Canonical Contact Holder Prime  ',
+            'phone' => '  +37499116677  ',
+            'email' => '  CANONICAL.CONTACT.PRIME@EXAMPLE.COM  ',
+            'is_active' => 'true',
+            'review_note' => 'Keep holder contact identity canonical while the live shell stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Cardholder "Canonical Contact Holder Prime" was updated.');
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'full_name' => 'Canonical Contact Holder Prime',
+            'phone' => '+37499116677',
+            'email' => 'canonical.contact.prime@example.com',
+            'is_active' => true,
+        ]);
+    }
+
     public function test_cardholders_catalog_actions_reflect_saved_holder_readiness(): void
     {
         $shop = Shop::create([
