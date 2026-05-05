@@ -63,6 +63,11 @@
 - Kept the step metadata-only and verification-focused, without widening duplicate-profile, linkage, or lifecycle writes.
 - Re-ran `php artisan test --filter='(test_cardholder_live_flow_normalizes_blank_contact_fields_to_null|test_cardholder_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
 
+### Card update blank note normalization checkpoint
+- Added explicit feature coverage for the writable `cards` update flow so clearing an inventory review note with whitespace-only input stays protected as a real `null` value, not a leftover empty string.
+- Kept the step inventory-shell-only and verification-focused, without widening holder assignment, replacement, or dispute writes.
+- Re-ran `php artisan test --filter='(test_card_live_flow_normalizes_blank_review_note_to_null|test_card_update_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

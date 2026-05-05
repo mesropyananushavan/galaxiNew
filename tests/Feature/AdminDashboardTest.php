@@ -9010,6 +9010,48 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_update_live_flow_normalizes_blank_review_note_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Null Note Update Branch',
+            'code' => 'galaxy-null-note-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Null Note Update Gold',
+            'slug' => 'galaxy-null-note-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-NULL-UPD-1001',
+            'status' => 'active',
+            'review_note' => 'Clear this note while keeping the inventory shell live.',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-null-upd-1001 ',
+            'status' => 'active',
+            'activated_at' => '',
+            'review_note' => '   ',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card "GX-NULL-UPD-1001" was updated.');
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'number' => 'GX-NULL-UPD-1001',
+            'review_note' => null,
+        ]);
+    }
+
     public function test_card_types_page_shows_update_success_flash_message(): void
     {
         $user = User::factory()->create();
