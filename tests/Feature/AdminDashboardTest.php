@@ -9275,6 +9275,38 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_type_update_live_flow_keeps_tier_slug_canonical(): void
+    {
+        $user = User::factory()->create();
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Draft Tier',
+            'slug' => 'galaxy-draft-tier',
+            'points_rate' => '0.85',
+            'is_active' => false,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+            'name' => '  Galaxy Draft Tier Prime  ',
+            'slug' => ' Galaxy Draft Tier Prime ',
+            'points_rate' => '1.05',
+            'is_active' => '1',
+            'review_note' => 'Keep tier slug canonical while the live catalog shell stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card type "Galaxy Draft Tier Prime" was updated.');
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'name' => 'Galaxy Draft Tier Prime',
+            'slug' => 'galaxy-draft-tier-prime',
+            'points_rate' => '1.05',
+            'is_active' => true,
+        ]);
+    }
+
     public function test_card_live_flow_normalizes_blank_review_note_to_null(): void
     {
         $user = User::factory()->create();

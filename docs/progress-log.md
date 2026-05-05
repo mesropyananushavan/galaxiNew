@@ -123,6 +123,11 @@
 - Kept the step tier-shell-only and validation-focused, without widening rule-import, publish, or activation workflows.
 - Re-ran `php artisan test --filter='(test_card_type_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_card_type_update_live_flow_rejects_duplicate_normalized_slug)'`, `2 passed`.
 
+### Card type update canonical slug checkpoint
+- Added explicit feature coverage for the writable `card-types` update flow so mixed-case, whitespace-padded tier slugs still persist as canonical catalog slugs during a normal live edit path.
+- Kept the step tier-shell-only and identity-focused, without widening rule-import, publish, or activation workflows.
+- Re-ran `php artisan test --filter='(test_card_type_update_live_flow_rejects_duplicate_normalized_slug|test_card_type_update_live_flow_keeps_tier_slug_canonical)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 
