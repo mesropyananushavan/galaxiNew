@@ -1467,6 +1467,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This live permission bundle still needs assignment parity checks before publish-style role changes are safe.')
             ->assertSee('Scope posture:')
             ->assertSee('Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Live role already carries scope, staffing, and permission coverage for a useful access handoff review.')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.');
     }
@@ -1540,7 +1542,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scoped permission signal:')
             ->assertSee('2 scoped shops are already visible for this permission-linked role in parity review')
             ->assertSee('Permission branch activity signal:')
-            ->assertSee('1 permission-linked staff are already visible in active branches beside 1 permission-linked staff in paused shops for parity review');
+            ->assertSee('1 permission-linked staff are already visible in active branches beside 1 permission-linked staff in paused shops for parity review')
+            ->assertSee('Handoff signal:')
+            ->assertSee('Live role already carries scope, staffing, and permission coverage for a useful access handoff review.');
     }
 
     public function test_selected_draft_role_shows_readiness_driven_action_gating_reasons(): void

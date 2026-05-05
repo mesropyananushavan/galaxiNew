@@ -3029,7 +3029,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Scope posture', 'value' => $scope->isNotEmpty()
                         ? 'Assigned shops are visible for review, but scope writes should stay parity-first until staff assignment rules are confirmed.'
                         : 'No shop scope is linked yet, which keeps this role safe for draft access review.'],
-                    ['label' => 'Handoff signal', 'value' => 'Keep access coverage findings in the live workspace before asking for export-driven handoff.'],
+                    ['label' => 'Handoff signal', 'value' => $this->rolesPermissionsHandoffSignal($selectedRole, $scope)],
                     ['label' => 'Remaining backend gap', 'value' => $this->rolesPermissionsBackendGap($selectedRole)],
         ];
     }

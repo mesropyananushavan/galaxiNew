@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Roles-permissions dependency handoff parity checkpoint
+- Wired the selected `roles-permissions` dependency-side `Handoff signal` through the existing role readiness helper so the lower implementation-status block now mirrors the same Galaxy-specific access handoff state as the selected summary.
+- Kept the step low-risk and Laravel-backed by refining only read-only admin review copy and extending the focused selected-role assertions without changing any role writes, scope mutation logic, or permission assignment behavior.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context)'`, `2 passed`.
+
+### Next step after roles-permissions dependency handoff parity checkpoint
+- Continue aligning dependency-side state labels with the already-selected summary on another live admin surface, or switch back to the next persisted Phase 1 foundation slice.
+
 ### Reports role-access handoff state refinement checkpoint
 - Made the selected `reports` `role-access` handoff signal state-aware so access review now distinguishes role-and-staffing handoff context instead of reusing one generic export-handoff line.
 - Kept the step low-risk and Laravel-backed by refining only read-only reporting copy and extending the focused role-access assertions without changing any access shaping, export flow, or scope query behavior.
