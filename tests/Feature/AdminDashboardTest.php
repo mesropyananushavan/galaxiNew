@@ -2029,6 +2029,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('id="backend-flow-status"', false)
             ->assertSee('Backend flow checkpoint')
+            ->assertSee('Access-shell changes are now visible in the Laravel-backed Galaxy workspace.')
             ->assertSee('Role "Branch Operations Lead" was updated.')
             ->assertSee('Reviewing: Branch Operations Lead')
             ->assertSee('Latest backend write result')
@@ -7979,11 +7980,47 @@ class AdminDashboardTest extends TestCase
             ->assertSee('role="status"', false)
             ->assertSee('aria-live="polite"', false)
             ->assertSee('Backend flow checkpoint')
+            ->assertSee('Tier changes are now visible in the Laravel-backed Galaxy workspace.')
             ->assertSee('Card type "Galaxy Prime" was created.')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
             ->assertSee('Edit card type in Laravel')
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
+    }
+
+    public function test_cards_page_shows_resource_specific_live_flow_success_flash_message(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Flash Branch',
+            'code' => 'galaxy-flash-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Flash Gold',
+            'slug' => 'galaxy-flash-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-FLASH-1001',
+            'status' => 'active',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)
+            ->withSession(['status' => 'Card "GX-FLASH-1001" was updated.'])
+            ->get(route('admin.cards.index', ['card' => $card]));
+
+        $response
+            ->assertOk()
+            ->assertSee('id="backend-flow-status"', false)
+            ->assertSee('Backend flow checkpoint')
+            ->assertSee('Inventory changes are now visible in the Laravel-backed Galaxy workspace.')
+            ->assertSee('Card "GX-FLASH-1001" was updated.')
+            ->assertSee('Reviewing: GX-FLASH-1001');
     }
 
     public function test_card_types_page_resolves_live_form_action_from_route_name(): void

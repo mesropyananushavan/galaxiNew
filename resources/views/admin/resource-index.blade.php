@@ -2,8 +2,19 @@
 
 @section('content')
     @if (session('status'))
+        @php
+            $backendFlowSummary = match ($resourceKey ?? null) {
+                'shops' => 'Branch changes are now visible in the Laravel-backed Galaxy workspace.',
+                'cardholders' => 'Holder changes are now visible in the Laravel-backed Galaxy workspace.',
+                'cards' => 'Inventory changes are now visible in the Laravel-backed Galaxy workspace.',
+                'card-types' => 'Tier changes are now visible in the Laravel-backed Galaxy workspace.',
+                'roles-permissions' => 'Access-shell changes are now visible in the Laravel-backed Galaxy workspace.',
+                default => 'Latest Laravel-backed admin changes are now visible in the Galaxy workspace.',
+            };
+        @endphp
         <section class="card" id="backend-flow-status" tabindex="-1" role="status" aria-live="polite" style="border-color: rgba(34, 197, 94, 0.35); background: rgba(34, 197, 94, 0.08);">
             <strong style="display: block; margin-bottom: 6px;">Backend flow checkpoint</strong>
+            <p style="margin: 0 0 6px; color: var(--text-muted); line-height: 1.5;">{{ $backendFlowSummary }}</p>
             <span>{{ session('status') }}</span>
         </section>
     @endif

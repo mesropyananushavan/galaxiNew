@@ -13,6 +13,11 @@
 - Added a card-specific duplicate-number validation message so operators get a clearer inventory collision cue when a normalized identifier is already present.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_create_card_from_live_admin_flow|test_authenticated_user_can_update_card_from_live_admin_flow|test_card_live_flow_normalizes_number_and_rejects_duplicate_inventory_identifier)'`, `3 passed`.
 
+### Backend flow checkpoint resource-awareness checkpoint
+- Hardened the shared success banner so live admin writes now show a resource-aware Galaxy-specific summary instead of only a generic backend checkpoint label.
+- The current branch, holder, inventory, tier, and access-shell flows now all have room to confirm what kind of Laravel-backed change just became visible in the admin workspace.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_shows_update_success_flash_message|test_card_types_page_shows_live_flow_success_flash_message|test_cards_page_shows_resource_specific_live_flow_success_flash_message)'`, `3 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 
