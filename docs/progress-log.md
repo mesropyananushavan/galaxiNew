@@ -5383,3 +5383,8 @@
 - Kept the change config- and controller-driven so the catalog and live Laravel-backed branch view stay aligned.
 - Also corrected two stale shops page assertions that still expected the primary action to be blocked even though the live branch create path is already available.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_access_shops_operational_index_shape|test_shops_catalog_actions_reflect_saved_branch_readiness)'`, `2 passed`.
+
+### Roles header action copy checkpoint
+- Replaced the remaining generic `New role` page action label with `New Galaxy role` so the writable access workspace reads more like a Galaxy-specific shell and less like a starter admin list.
+- Kept the change config- and controller-driven so the catalog and live Laravel-backed role view stay aligned.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data'`, `1 passed`.

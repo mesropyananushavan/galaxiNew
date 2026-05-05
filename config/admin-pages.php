@@ -918,7 +918,7 @@ return [
         'nextStep' => 'Keep the new minimal role identity flow narrow, then layer role assignment, permission matrix, and shop-aware policy flows on top of it.',
         'actions' => [
             [
-                'label' => 'New role',
+                'label' => 'New Galaxy role',
                 'tone' => 'primary',
                 'href' => '#live-form',
             ],
