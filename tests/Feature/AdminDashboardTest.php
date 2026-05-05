@@ -2167,6 +2167,7 @@ class AdminDashboardTest extends TestCase
             'card_type_id' => $cardType->id,
             'number' => 'GX-900001',
             'status' => 'active',
+            'review_note' => 'Keep active-card parity visible before widening replacement actions.',
             'activated_at' => '2026-04-10 10:00:00',
         ]);
 
@@ -2205,6 +2206,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active cards')
             ->assertSee('Draft cards')
             ->assertSee('Blocked cards')
+            ->assertSee('Reviewed cards')
+            ->assertSee('Keep active-card parity visible before widening replacement actions.')
+            ->assertSee('No review note saved yet')
             ->assertSee('2026-04-10')
             ->assertSee('2026-03-28');
     }

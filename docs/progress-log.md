@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Cards overview review-note visibility checkpoint
+- Extended the main `cards` overview so saved card review notes are visible before an operator drills into a selected inventory record.
+- Added a `Reviewed cards` metric and a `Review note` table column, turning the saved card metadata into page-level inventory context instead of leaving it only inside selected-card detail.
+- Re-ran `php artisan test --filter='test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `1 passed`.
+
+### Next step after cards overview review-note visibility checkpoint
+- Reuse this overview-level note visibility pattern on another Phase 1 inventory surface, or wire the first narrow Laravel-backed edit flow into `cards`, `shops`, or `cardholders` where notes are still read-only.
+
 ### Roles overview permission-note visibility checkpoint
 - Extended the main `roles-permissions` overview so linked permission review notes are visible before an operator drills into a selected role.
 - Added a `Permission review notes` metric and a `Permission review note` table column, turning the new permission metadata into page-level Galaxy-specific access context instead of leaving it buried in selected-record detail only.

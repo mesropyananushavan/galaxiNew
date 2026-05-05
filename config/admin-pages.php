@@ -248,13 +248,14 @@ return [
             ['label' => 'Active cards', 'value' => '1'],
             ['label' => 'Draft cards', 'value' => '1'],
             ['label' => 'Blocked cards', 'value' => '1'],
+            ['label' => 'Reviewed cards', 'value' => '1'],
         ],
         'table' => [
-            'columns' => ['Number', 'Holder', 'Type', 'Shop', 'Status', 'Activated'],
+            'columns' => ['Number', 'Holder', 'Type', 'Review note', 'Shop', 'Status', 'Activated'],
             'rows' => [
-                ['GX-100001', 'Anna Petrova', 'Gold', 'Central Shop', 'active', '2026-04-10'],
-                ['GX-100002', 'Unassigned', 'Silver', 'North Shop', 'draft', '—'],
-                ['GX-100003', 'Mariam Sargsyan', 'Partner', 'Central Shop', 'blocked', '2026-03-28'],
+                ['GX-100001', 'Anna Petrova', 'Gold', 'Keep active-card parity visible before widening replacement actions.', 'Central Shop', 'active', '2026-04-10'],
+                ['GX-100002', 'Unassigned', 'Silver', 'No review note saved yet', 'North Shop', 'draft', '—'],
+                ['GX-100003', 'Mariam Sargsyan', 'Partner', 'Keep blocked-card dispute context visible before trusting replacement follow-up.', 'Central Shop', 'blocked', '2026-03-28'],
             ],
             'filters' => ['Shop', 'Status', 'Card type', 'Activation period'],
         ],

@@ -859,6 +859,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Active cards', 'value' => (string) $cards->where('status', 'active')->count()],
             ['label' => 'Draft cards', 'value' => (string) $cards->where('status', 'draft')->count()],
             ['label' => 'Blocked cards', 'value' => (string) $cards->where('status', 'blocked')->count()],
+            ['label' => 'Reviewed cards', 'value' => (string) $cards->filter(fn (Card $card): bool => filled($card->review_note))->count()],
         ];
 
         $page['table']['rows'] = $cards->map(fn (Card $card): array => [
@@ -867,6 +868,7 @@ class ResourceIndexController extends Controller
                 : $this->linkedTableCell($card->number, 'admin.cards.index', ['card' => $card->id]),
             $card->holder?->full_name ?? 'Unassigned',
             $card->type?->name ?? 'Unknown',
+            filled($card->review_note) ? str($card->review_note)->limit(72)->toString() : 'No review note saved yet',
             $card->shop?->name ?? 'Unassigned',
             $card->status,
             $card->activated_at?->format('Y-m-d') ?? '—',
