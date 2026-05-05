@@ -3010,6 +3010,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep branch ownership parity visible before scope writes are trusted.')
             ->assertSee('No review note saved yet')
             ->assertSee('Unassigned')
+            ->assertSee('Create shop in Laravel')
+            ->assertSee('Create shop')
+            ->assertSee('action="/admin/shops"', false)
             ->assertSee('Review latest saved shop')
             ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
             ->assertSee('Reviewed shops')
@@ -3065,6 +3068,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Back to all shops')
             ->assertSee('href="/admin/shops"', false)
             ->assertSee('Reviewing: Galaxy Central')
+            ->assertSee('Edit shop in Laravel')
+            ->assertSee('Save shop changes')
+            ->assertSee('action="/admin/shops/'.$shop->id.'"', false)
             ->assertSee('Review branch scope')
             ->assertSee('Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.')
             ->assertSee('Selected shop')
@@ -3135,6 +3141,60 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This branch currently exposes 1 cardholders and 1 cards for read-only Laravel review.')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows should stay preview-only until branch parity is verified.');
+    }
+
+    public function test_authenticated_user_can_create_shop_from_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.shops.store'), [
+            'name' => 'Galaxy South',
+            'code' => 'Galaxy South',
+            'is_active' => 'true',
+            'review_note' => 'Document branch parity before widening scope changes.',
+        ]);
+
+        $shop = Shop::query()->where('code', 'galaxy-south')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.shops.index', ['shop' => $shop], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Shop "Galaxy South" was created.');
+
+        $this->assertDatabaseHas('shops', [
+            'name' => 'Galaxy South',
+            'code' => 'galaxy-south',
+            'is_active' => true,
+            'review_note' => 'Document branch parity before widening scope changes.',
+        ]);
+    }
+
+    public function test_authenticated_user_can_update_shop_from_live_admin_flow(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy South',
+            'code' => 'galaxy-south',
+            'is_active' => false,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.shops.update', $shop), [
+            'name' => 'Galaxy South Prime',
+            'code' => 'Galaxy South Prime',
+            'is_active' => 'true',
+            'review_note' => 'Keep manager ownership parity visible while this branch becomes active.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.shops.index', ['shop' => $shop], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Shop "Galaxy South Prime" was updated.');
+
+        $this->assertDatabaseHas('shops', [
+            'id' => $shop->id,
+            'name' => 'Galaxy South Prime',
+            'code' => 'galaxy-south-prime',
+            'is_active' => true,
+            'review_note' => 'Keep manager ownership parity visible while this branch becomes active.',
+        ]);
     }
 
     public function test_shops_page_supports_selected_branch_coverage_without_manager_review_context(): void

@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RoleStoreController;
 use App\Http\Controllers\Admin\RoleUpdateController;
 use App\Http\Controllers\Admin\ResourceIndexController;
+use App\Http\Controllers\Admin\ShopStoreController;
+use App\Http\Controllers\Admin\ShopUpdateController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
@@ -15,6 +17,8 @@ Route::prefix('admin')
     ->group(function (): void {
         Route::get('/', DashboardController::class)->name('dashboard');
         Route::get('/shops', ResourceIndexController::class)->defaults('resource', 'shops')->name('shops.index');
+        Route::post('/shops', ShopStoreController::class)->name('shops.store');
+        Route::patch('/shops/{shop}', ShopUpdateController::class)->name('shops.update');
         Route::get('/cardholders', ResourceIndexController::class)->defaults('resource', 'cardholders')->name('cardholders.index');
         Route::get('/cards', ResourceIndexController::class)->defaults('resource', 'cards')->name('cards.index');
         Route::get('/checks-points', ResourceIndexController::class)->defaults('resource', 'checks-points')->name('checks-points.index');

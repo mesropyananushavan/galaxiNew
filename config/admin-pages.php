@@ -10,8 +10,7 @@ return [
             [
                 'label' => 'New shop',
                 'tone' => 'primary',
-                'disabled' => true,
-                'disabledReason' => 'Blocked until the first Laravel-backed shops index and manager assignment parity checks are verified.',
+                'href' => '#live-form',
             ],
             [
                 'label' => 'Review branch scope',
@@ -121,6 +120,21 @@ return [
                 'Airport Kiosk remains paused pending recovery approval.',
                 'Any unassigned manager state should stay visible until ownership is confirmed.',
                 'Cross-shop visibility disagreements must remain open until scope is verified.',
+            ],
+        ],
+        'liveForm' => [
+            'title' => 'Create shop in Laravel',
+            'description' => 'This is the first minimal Laravel-backed shop write path. Keep it limited to branch identity and review notes while manager reassignment and scope changes remain parity-first review surfaces.',
+            'method' => 'POST',
+            'actionRoute' => 'admin.shops.store',
+            'cancelRoute' => 'admin.shops.index',
+            'cancelLabel' => 'Back to shops',
+            'submitLabel' => 'Create shop',
+            'fields' => [
+                ['name' => 'name', 'label' => 'Shop name', 'type' => 'text', 'value' => 'Central Shop', 'required' => true, 'autofocus' => true, 'placeholder' => 'Galaxy South', 'help' => 'Use the operator-facing branch name that should mirror the old Galaxy ownership map.', 'attributes' => ['autocomplete' => 'organization']],
+                ['name' => 'code', 'label' => 'Code', 'type' => 'text', 'value' => 'central-shop', 'required' => true, 'placeholder' => 'galaxy-south', 'help' => 'Lowercase identifier for the minimal Laravel branch record.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
+                ['name' => 'is_active', 'label' => 'Laravel status', 'type' => 'select', 'value' => '0', 'required' => true, 'help' => 'Paused shops stay safer for parity review. Active status is persistable, but scope and manager changes should still stay parity-first.', 'options' => [['value' => '0', 'label' => 'Paused'], ['value' => '1', 'label' => 'Active']]],
+                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep branch ownership parity visible before widening scope changes.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Laravel branch shell.', 'help' => 'Use this safe Phase 1 note to record branch review context without opening manager or scope writes.', 'attributes' => ['maxlength' => '1000']],
             ],
         ],
     ],

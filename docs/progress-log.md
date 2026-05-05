@@ -2,6 +2,15 @@
 
 ## 2026-05-05
 
+### Shops live note-edit flow checkpoint
+- Turned `shops` into the first narrow Laravel-backed edit flow among the previously read-only note surfaces.
+- Added `shops.store` and `shops.update` handlers plus request validation for branch identity, status, and `review_note`, keeping manager reassignment and scope writes safely out of scope.
+- Reused the shared live form pattern so the shops workspace now supports both create and selected-record edit flows with backend redirect-to-context behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_shop_from_live_admin_flow|test_authenticated_user_can_update_shop_from_live_admin_flow|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_replaces_preview_rows_with_model_backed_index_data)'`, `4 passed`.
+
+### Next step after shops live note-edit flow checkpoint
+- Reuse this narrow Laravel-backed note-edit pattern on `cardholders` or `cards`, where review notes are still visible but read-only.
+
 ### Shops overview review-note visibility checkpoint
 - Extended the main `shops` overview so saved branch review notes are visible before an operator drills into a selected branch.
 - Added a `Reviewed shops` metric and a `Review note` table column, turning saved branch metadata into page-level scope context instead of leaving it only inside selected-shop detail.

@@ -1102,8 +1102,7 @@ class ResourceIndexController extends Controller
             [
                 'label' => 'New shop',
                 'tone' => 'primary',
-                'disabled' => true,
-                'disabledReason' => $this->shopsCatalogNewShopDisabledReason($shops),
+                'href' => '#live-form',
             ],
             [
                 'label' => 'Review branch scope',
@@ -1169,6 +1168,26 @@ class ResourceIndexController extends Controller
         }
 
         $page['selectedRecordSummary'] = $this->shopsSelectedShopSummary($selectedShop);
+
+        if (is_array($page['liveForm'] ?? null)) {
+            $page['liveForm']['title'] = 'Edit shop in Laravel';
+            $page['liveForm']['description'] = 'Update the selected Galaxy branch through the shared live form while manager reassignment and scope changes remain review-only.';
+            $page['liveForm']['method'] = 'PATCH';
+            $page['liveForm']['actionRoute'] = 'admin.shops.update';
+            $page['liveForm']['actionRouteParameters'] = [
+                'shop' => $selectedShop,
+            ];
+            $page['liveForm']['cancelRoute'] = 'admin.shops.index';
+            $page['liveForm']['cancelLabel'] = 'Create new shop';
+            $page['liveForm']['cancelRouteParameters'] = [];
+            $page['liveForm']['submitLabel'] = 'Save shop changes';
+            $page['liveForm']['valuesResolver'] = [
+                'name' => $selectedShop->name,
+                'code' => $selectedShop->code,
+                'is_active' => $selectedShop->is_active ? '1' : '0',
+                'review_note' => $selectedShop->review_note ?? '',
+            ];
+        }
 
         $page['actions'] = $this->selectedReadContextActions(
             'admin.shops.index',
