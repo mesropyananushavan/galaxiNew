@@ -5365,3 +5365,9 @@
 - Added explicit feature coverage for the writable `cardholders` create flow so string status inputs like `no` still persist as canonical boolean holder-shell state on first save.
 - Kept the step holder-shell-only and normalization-focused, without widening duplicate-profile, linkage, or lifecycle writes.
 - Re-ran `php artisan test --filter='(test_cardholder_live_flow_keeps_status_boolean_canonical|test_cardholder_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Cardholder header action copy checkpoint
+- Replaced the remaining generic `New cardholder` page action label with `New Galaxy holder` so the writable holder workspace reads more like a Galaxy-specific shell and less like a starter admin list.
+- Kept the change config- and controller-driven so the catalog and live Laravel-backed holder view stay aligned.
+- Also corrected two stale holder page assertions that still expected the primary action to be blocked even though the live holder create path is already available.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_catalog_actions_reflect_saved_holder_readiness)'`, `2 passed`.

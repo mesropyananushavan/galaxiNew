@@ -144,7 +144,7 @@ return [
         'summary' => 'Baseline operational index for workers, clients, holder history, and future lifecycle actions.',
         'nextStep' => 'Replace sample rows with real holder search, profile links, and status actions.',
         'actions' => [
-            ['label' => 'New cardholder', 'tone' => 'primary', 'href' => '#live-form'],
+            ['label' => 'New Galaxy holder', 'tone' => 'primary', 'href' => '#live-form'],
             ['label' => 'Review recent activity', 'tone' => 'secondary'],
         ],
         'metrics' => [

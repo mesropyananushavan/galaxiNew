@@ -3135,8 +3135,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Operational index shape')
             ->assertSee('Anna Petrova')
             ->assertSee('Has cards')
-            ->assertSee('New cardholder')
-            ->assertSee('Blocked until the first Laravel-backed cardholder slice exists for profile parity review.')
+            ->assertSee('New Galaxy holder')
             ->assertSee('Review recent activity')
             ->assertSee('Blocked until the first Laravel-backed cardholder slice exists for activity-history parity review.')
             ->assertSee('Active holders')
@@ -4562,8 +4561,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('New cardholder')
-            ->assertSee('Blocked until saved inactive-holder states are verified against legacy profile and lifecycle parity.')
+            ->assertSee('New Galaxy holder')
             ->assertSee('Review recent activity')
             ->assertSee('Blocked until linked-holder activity coverage is verified against legacy lookup history.');
     }
