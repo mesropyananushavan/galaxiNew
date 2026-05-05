@@ -153,6 +153,11 @@
 - Kept the step access-shell-only and identity-focused, without widening permission-matrix, staffing, or scope writes.
 - Re-ran `php artisan test --filter='(test_role_update_live_flow_keeps_role_slug_canonical|test_role_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
 
+### Shop update canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `shops` update flow so string status inputs like `no` still persist as canonical boolean branch-shell state during a normal live edit path.
+- Kept the step branch-shell-only and identity-focused, without widening ownership, reassignment, or scope-mutation writes.
+- Re-ran `php artisan test --filter='(test_shop_update_live_flow_keeps_branch_code_canonical|test_shop_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 
