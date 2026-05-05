@@ -9264,6 +9264,47 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_update_live_flow_keeps_inventory_identifier_canonical(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Canonical Inventory Branch',
+            'code' => 'galaxy-canonical-inventory-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Canonical Gold',
+            'slug' => 'galaxy-canonical-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-CANON-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-canon-1001a ',
+            'status' => 'blocked',
+            'activated_at' => '',
+            'review_note' => 'Keep the inventory identifier canonical while blocked review stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card "GX-CANON-1001A" was updated.');
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'number' => 'GX-CANON-1001A',
+            'status' => 'blocked',
+        ]);
+    }
+
     public function test_card_types_page_shows_update_success_flash_message(): void
     {
         $user = User::factory()->create();
