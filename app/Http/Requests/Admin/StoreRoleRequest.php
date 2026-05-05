@@ -32,6 +32,7 @@ class StoreRoleRequest extends FormRequest
         $status = $this->input('is_active');
 
         $this->merge([
+            'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
             'slug' => is_string($this->input('slug')) ? Str::slug($this->input('slug')) : $this->input('slug'),
             'is_active' => match (true) {
                 is_bool($status) => $status,

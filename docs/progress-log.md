@@ -28,6 +28,11 @@
 - Kept the scope copy-only, but aligned the Phase 1 writable access and tier surfaces with the same branch/holder/inventory-shell language already used elsewhere in the admin workspace.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_resolves_live_form_values_from_config_callback|test_card_types_page_resolves_route_parameters_from_config_callback)'`, `6 passed`.
 
+### Role identity normalization checkpoint
+- Hardened the writable `roles-permissions` flow so role names are trimmed before validation and persistence, keeping the first live access shell cleaner without widening permission, assignment, or scope writes.
+- Reused the same narrow identity-hardening pattern already applied to branches, holders, and cards so the Laravel-backed Galaxy access shell drifts less toward starter-style free-form input.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_live_flow_trims_role_identity_name)'`, `3 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

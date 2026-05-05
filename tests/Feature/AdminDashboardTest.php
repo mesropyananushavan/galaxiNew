@@ -1794,7 +1794,7 @@ class AdminDashboardTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post(route('admin.roles-permissions.store'), [
-            'name' => 'Branch Supervisor',
+            'name' => '  Branch Supervisor  ',
             'slug' => 'Branch Supervisor',
             'is_active' => '1',
             'review_note' => 'Start with the branch manager shell and keep assignment changes blocked.',
@@ -1910,7 +1910,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->patch(route('admin.roles-permissions.update', $role), [
-            'name' => 'Branch Operations Lead',
+            'name' => '  Branch Operations Lead  ',
             'slug' => 'Branch Operations Lead',
             'is_active' => '1',
             'review_note' => 'Document the first live Laravel role adjustments before widening scope.',
@@ -1930,6 +1930,31 @@ class AdminDashboardTest extends TestCase
             'review_note' => 'Document the first live Laravel role adjustments before widening scope.',
             'access_note' => 'Keep access handoff visible while this role remains under parity review.',
             'assignment_note' => 'Keep assignment rollout review-only while this role remains under parity review.',
+        ]);
+    }
+
+    public function test_role_live_flow_trims_role_identity_name(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => '  Shift Access Reviewer  ',
+            'slug' => 'Shift Access Reviewer',
+            'is_active' => '0',
+            'review_note' => 'Trim the first live role shell before widening scope or matrix writes.',
+        ]);
+
+        $role = Role::query()->where('slug', 'shift-access-reviewer')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Role "Shift Access Reviewer" was created.');
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $role->id,
+            'name' => 'Shift Access Reviewer',
+            'slug' => 'shift-access-reviewer',
+            'is_active' => false,
         ]);
     }
 
