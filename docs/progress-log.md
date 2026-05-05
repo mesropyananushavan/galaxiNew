@@ -143,6 +143,11 @@
 - Kept the step holder-shell-only and identity-focused, without widening duplicate-profile, linkage, or lifecycle writes.
 - Re-ran `php artisan test --filter='(test_cardholder_update_live_flow_normalizes_blank_contact_fields_to_null|test_cardholder_update_live_flow_keeps_contact_identity_canonical)'`, `2 passed`.
 
+### Card update canonical status checkpoint
+- Added explicit feature coverage for the writable `cards` update flow so mixed-case, whitespace-padded status values still persist as canonical lowercase inventory status during a normal live edit path.
+- Kept the step inventory-shell-only and identity-focused, without widening holder assignment, dispute, or replacement writes.
+- Re-ran `php artisan test --filter='(test_card_update_live_flow_keeps_inventory_identifier_canonical|test_card_update_live_flow_keeps_status_canonical)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

@@ -9562,6 +9562,47 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_update_live_flow_keeps_status_canonical(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Canonical Status Branch',
+            'code' => 'galaxy-canonical-status-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Canonical Status Gold',
+            'slug' => 'galaxy-canonical-status-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-STATUS-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-status-1001 ',
+            'status' => ' BLOCKED ',
+            'activated_at' => '',
+            'review_note' => 'Keep the inventory status canonical while the live shell stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card "GX-STATUS-1001" was updated.');
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'number' => 'GX-STATUS-1001',
+            'status' => 'blocked',
+        ]);
+    }
+
     public function test_card_update_live_flow_rejects_duplicate_inventory_identifier_after_normalization(): void
     {
         $user = User::factory()->create();
