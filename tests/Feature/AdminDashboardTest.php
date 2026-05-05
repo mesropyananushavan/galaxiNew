@@ -3275,7 +3275,7 @@ class AdminDashboardTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post(route('admin.shops.store'), [
-            'name' => 'Galaxy South',
+            'name' => '  Galaxy South  ',
             'code' => 'Galaxy South',
             'is_active' => 'true',
             'review_note' => 'Document branch parity before widening scope changes.',
@@ -3305,7 +3305,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $response = $this->actingAs($user)->patch(route('admin.shops.update', $shop), [
-            'name' => 'Galaxy South Prime',
+            'name' => '  Galaxy South Prime  ',
             'code' => 'Galaxy South Prime',
             'is_active' => 'true',
             'review_note' => 'Keep manager ownership parity visible while this branch becomes active.',
@@ -3322,6 +3322,30 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
             'review_note' => 'Keep manager ownership parity visible while this branch becomes active.',
         ]);
+    }
+
+    public function test_shop_live_flow_trims_name_and_rejects_duplicate_normalized_code(): void
+    {
+        $user = User::factory()->create();
+
+        Shop::create([
+            'name' => 'Galaxy Existing Branch',
+            'code' => 'galaxy-existing-branch',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from('/admin/shops')->actingAs($user)->post(route('admin.shops.store'), [
+            'name' => '  Galaxy Existing Branch Copy  ',
+            'code' => ' Galaxy Existing Branch ',
+            'is_active' => 'true',
+            'review_note' => 'Duplicate normalized code should stay blocked in the Laravel branch shell.',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/shops#live-form')
+            ->assertSessionHasErrors([
+                'code' => 'This shop code is already in use.',
+            ]);
     }
 
     public function test_shops_page_supports_selected_branch_coverage_without_manager_review_context(): void

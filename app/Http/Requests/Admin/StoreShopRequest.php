@@ -30,6 +30,7 @@ class StoreShopRequest extends FormRequest
         $status = $this->input('is_active');
 
         $this->merge([
+            'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
             'code' => is_string($this->input('code')) ? Str::slug($this->input('code')) : $this->input('code'),
             'is_active' => match (true) {
                 is_bool($status) => $status,

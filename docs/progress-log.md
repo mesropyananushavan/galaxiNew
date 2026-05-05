@@ -36,6 +36,11 @@
 - Reused the shared live form pattern so the shops workspace now supports both create and selected-record edit flows with backend redirect-to-context behavior.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_create_shop_from_live_admin_flow|test_authenticated_user_can_update_shop_from_live_admin_flow|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_replaces_preview_rows_with_model_backed_index_data)'`, `4 passed`.
 
+### Shops branch-identity normalization checkpoint
+- Hardened the `shops` live flow so branch names are trimmed before validation and persistence, keeping the first writable branch shell cleaner without widening scope or manager writes.
+- Added coverage that duplicate shop codes are still rejected after slug normalization, so Galaxy-style branch identifiers stay canonical instead of drifting into starter-like free-form input.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_shop_from_live_admin_flow|test_authenticated_user_can_update_shop_from_live_admin_flow|test_shop_live_flow_trims_name_and_rejects_duplicate_normalized_code)'`, `3 passed`.
+
 ### Next step after shops live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on `cardholders` or `cards`, where review notes are still visible but read-only.
 
