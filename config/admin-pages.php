@@ -8,7 +8,7 @@ return [
         'nextStep' => 'Replace sample rows with real shop records, manager info, and scoped access actions.',
         'actions' => [
             [
-                'label' => 'New shop',
+                'label' => 'New Galaxy branch',
                 'tone' => 'primary',
                 'href' => '#live-form',
             ],

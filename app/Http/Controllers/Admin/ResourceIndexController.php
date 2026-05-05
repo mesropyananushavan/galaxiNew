@@ -1191,7 +1191,7 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = [
             [
-                'label' => 'New shop',
+                'label' => 'New Galaxy branch',
                 'tone' => 'primary',
                 'href' => '#live-form',
             ],

@@ -3189,8 +3189,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Operational index shape')
             ->assertSee('Central Shop')
             ->assertSee('Volume tier')
-            ->assertSee('New shop')
-            ->assertSee('Blocked until the first Laravel-backed shops index and manager assignment parity checks are verified.')
+            ->assertSee('New Galaxy branch')
             ->assertSee('Review branch scope')
             ->assertSee('Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.')
             ->assertSee('aria-disabled="true"', false)
@@ -3280,8 +3279,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('New shop')
-            ->assertSee('Blocked until paused-branch recovery and manager assignment parity are verified.')
+            ->assertSee('New Galaxy branch')
             ->assertSee('Review branch scope')
             ->assertSee('Blocked until saved branch ownership and scope coverage are verified against the legacy Galaxy multi-shop model.');
     }
@@ -7086,7 +7084,7 @@ class AdminDashboardTest extends TestCase
         $user = User::factory()->create();
 
         Config::set('admin-pages.shops.actions', [
-            ['label' => 'New shop', 'tone' => 'primary'],
+            ['label' => 'New Galaxy branch', 'tone' => 'primary'],
             'invalid-action-entry',
             ['tone' => 'secondary'],
             ['label' => 'Review branch scope', 'tone' => ['invalid-tone']],
@@ -7097,7 +7095,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('New shop')
+            ->assertSee('New Galaxy branch')
             ->assertSee('Review branch scope')
             ->assertDontSee('invalid-action-entry')
             ->assertDontSee('Array');

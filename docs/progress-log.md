@@ -5377,3 +5377,9 @@
 - Kept the change config- and controller-driven so the catalog and live Laravel-backed inventory view stay aligned.
 - Also corrected two stale cards page assertions that still expected the primary action to be blocked even though the live inventory create path is already available.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cards_operational_index_shape|test_cards_catalog_actions_reflect_saved_inventory_readiness)'`, `2 passed`.
+
+### Shops header action copy checkpoint
+- Replaced the remaining generic `New shop` page action label with `New Galaxy branch` so the writable branch workspace reads more like a Galaxy-specific shell and less like a starter admin list.
+- Kept the change config- and controller-driven so the catalog and live Laravel-backed branch view stay aligned.
+- Also corrected two stale shops page assertions that still expected the primary action to be blocked even though the live branch create path is already available.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_shops_operational_index_shape|test_shops_catalog_actions_reflect_saved_branch_readiness)'`, `2 passed`.
