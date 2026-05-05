@@ -18,6 +18,11 @@
 - The current branch, holder, inventory, tier, and access-shell flows now all have room to confirm what kind of Laravel-backed change just became visible in the admin workspace.
 - Re-ran `php artisan test --filter='(test_roles_permissions_page_shows_update_success_flash_message|test_card_types_page_shows_live_flow_success_flash_message|test_cards_page_shows_resource_specific_live_flow_success_flash_message)'`, `3 passed`.
 
+### Live form copy Galaxy-domain checkpoint
+- Hardened the live-form copy for the Phase 1 `shops`, `cardholders`, and `cards` write slices so create and edit labels now talk about Galaxy branches, holders, and inventory shells instead of generic CRUD nouns.
+- Kept the scope copy-only, but made the writable admin shell read more like an actual Galaxy foundation than a starter admin scaffold.
+- Re-ran `php artisan test --filter='(test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_replaces_preview_rows_with_model_backed_index_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_cardholders_page_replaces_preview_rows_with_model_backed_index_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data)'`, `6 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

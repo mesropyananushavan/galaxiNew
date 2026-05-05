@@ -932,7 +932,7 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = $this->cardsSelectedCardSummary($selectedCard);
 
         if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm']['title'] = 'Edit card in Laravel';
+            $page['liveForm']['title'] = 'Edit Galaxy card in Laravel';
             $page['liveForm']['description'] = 'Update the selected Galaxy card through the shared live form while holder assignment, dispute handling, and replacement flows remain review-only.';
             $page['liveForm']['method'] = 'PATCH';
             $page['liveForm']['actionRoute'] = 'admin.cards.update';
@@ -940,9 +940,9 @@ class ResourceIndexController extends Controller
                 'card' => $selectedCard,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.cards.index';
-            $page['liveForm']['cancelLabel'] = 'Create new card';
+            $page['liveForm']['cancelLabel'] = 'Create new inventory shell';
             $page['liveForm']['cancelRouteParameters'] = [];
-            $page['liveForm']['submitLabel'] = 'Save card changes';
+            $page['liveForm']['submitLabel'] = 'Save inventory changes';
             $page['liveForm']['valuesResolver'] = [
                 'shop_id' => $selectedCard->shop_id !== null ? (string) $selectedCard->shop_id : '',
                 'card_type_id' => $selectedCard->card_type_id !== null ? (string) $selectedCard->card_type_id : '',
@@ -1106,7 +1106,7 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = $this->cardholdersSelectedHolderSummary($selectedCardHolder);
 
         if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm']['title'] = 'Edit cardholder in Laravel';
+            $page['liveForm']['title'] = 'Edit Galaxy holder in Laravel';
             $page['liveForm']['description'] = 'Update the selected Galaxy cardholder through the shared live form while card linkage and activity history remain review-only.';
             $page['liveForm']['method'] = 'PATCH';
             $page['liveForm']['actionRoute'] = 'admin.cardholders.update';
@@ -1114,9 +1114,9 @@ class ResourceIndexController extends Controller
                 'cardholder' => $selectedCardHolder,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.cardholders.index';
-            $page['liveForm']['cancelLabel'] = 'Create new cardholder';
+            $page['liveForm']['cancelLabel'] = 'Create new holder shell';
             $page['liveForm']['cancelRouteParameters'] = [];
-            $page['liveForm']['submitLabel'] = 'Save cardholder changes';
+            $page['liveForm']['submitLabel'] = 'Save holder changes';
             $page['liveForm']['valuesResolver'] = [
                 'shop_id' => $selectedCardHolder->shop_id !== null ? (string) $selectedCardHolder->shop_id : '',
                 'full_name' => $selectedCardHolder->full_name,
@@ -1261,7 +1261,7 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = $this->shopsSelectedShopSummary($selectedShop);
 
         if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm']['title'] = 'Edit shop in Laravel';
+            $page['liveForm']['title'] = 'Edit Galaxy branch in Laravel';
             $page['liveForm']['description'] = 'Update the selected Galaxy branch through the shared live form while manager reassignment and scope changes remain review-only.';
             $page['liveForm']['method'] = 'PATCH';
             $page['liveForm']['actionRoute'] = 'admin.shops.update';
@@ -1269,9 +1269,9 @@ class ResourceIndexController extends Controller
                 'shop' => $selectedShop,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.shops.index';
-            $page['liveForm']['cancelLabel'] = 'Create new shop';
+            $page['liveForm']['cancelLabel'] = 'Create new branch shell';
             $page['liveForm']['cancelRouteParameters'] = [];
-            $page['liveForm']['submitLabel'] = 'Save shop changes';
+            $page['liveForm']['submitLabel'] = 'Save branch changes';
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedShop->name,
                 'code' => $selectedShop->code,

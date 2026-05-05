@@ -123,13 +123,13 @@ return [
             ],
         ],
         'liveForm' => [
-            'title' => 'Create shop in Laravel',
+            'title' => 'Create Galaxy branch in Laravel',
             'description' => 'This is the first minimal Laravel-backed shop write path. Keep it limited to branch identity and review notes while manager reassignment and scope changes remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.shops.store',
             'cancelRoute' => 'admin.shops.index',
             'cancelLabel' => 'Back to shops',
-            'submitLabel' => 'Create shop',
+            'submitLabel' => 'Create branch shell',
             'fields' => [
                 ['name' => 'name', 'label' => 'Shop name', 'type' => 'text', 'value' => 'Central Shop', 'required' => true, 'autofocus' => true, 'placeholder' => 'Galaxy South', 'help' => 'Use the operator-facing branch name that should mirror the old Galaxy ownership map.', 'attributes' => ['autocomplete' => 'organization']],
                 ['name' => 'code', 'label' => 'Code', 'type' => 'text', 'value' => 'central-shop', 'required' => true, 'placeholder' => 'galaxy-south', 'help' => 'Lowercase identifier for the minimal Laravel branch record.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
@@ -251,13 +251,13 @@ return [
             ],
         ],
         'liveForm' => [
-            'title' => 'Create cardholder in Laravel',
+            'title' => 'Create Galaxy holder in Laravel',
             'description' => 'This is the first minimal Laravel-backed cardholder write path. Keep it limited to profile identity, status, and review notes while card linkage and activity history remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.cardholders.store',
             'cancelRoute' => 'admin.cardholders.index',
             'cancelLabel' => 'Back to cardholders',
-            'submitLabel' => 'Create cardholder',
+            'submitLabel' => 'Create holder shell',
             'fields' => [
                 ['name' => 'shop_id', 'label' => 'Shop', 'type' => 'select', 'value' => '', 'required' => true, 'help' => 'Keep the holder anchored to a branch, because Galaxy lookup and lifecycle review were branch-aware.', 'options' => []],
                 ['name' => 'full_name', 'label' => 'Cardholder name', 'type' => 'text', 'value' => 'Anna Petrova', 'required' => true, 'autofocus' => true, 'placeholder' => 'Mariam Sargsyan', 'help' => 'Use the operator-facing name that should match the legacy holder lookup flow.', 'attributes' => ['autocomplete' => 'name']],
@@ -381,13 +381,13 @@ return [
             ],
         ],
         'liveForm' => [
-            'title' => 'Create card in Laravel',
+            'title' => 'Create Galaxy card in Laravel',
             'description' => 'This is the first minimal Laravel-backed card write path. Keep it limited to branch anchoring, type, inventory status, activation timing, and review notes while holder assignment and replacement handling remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.cards.store',
             'cancelRoute' => 'admin.cards.index',
             'cancelLabel' => 'Back to cards',
-            'submitLabel' => 'Create card',
+            'submitLabel' => 'Create inventory shell',
             'fields' => [
                 ['name' => 'shop_id', 'label' => 'Shop', 'type' => 'select', 'value' => '', 'required' => true, 'help' => 'Keep the card anchored to its branch because stock review and blocked-card parity were branch-sensitive in Galaxy.', 'options' => []],
                 ['name' => 'card_type_id', 'label' => 'Card type', 'type' => 'select', 'value' => '', 'required' => true, 'help' => 'Use the saved Laravel tier that matches the old Galaxy accrual and activation behavior.', 'options' => []],
