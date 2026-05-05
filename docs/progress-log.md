@@ -118,6 +118,11 @@
 - Kept the step access-shell-only and validation-focused, without widening permission-matrix, staffing, or scope writes.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_live_flow_rejects_duplicate_normalized_slug)'`, `2 passed`.
 
+### Card type update duplicate-slug normalization checkpoint
+- Added explicit feature coverage for the writable `card-types` update flow so a whitespace-padded tier slug still collides correctly with an existing canonical catalog slug after normalization.
+- Kept the step tier-shell-only and validation-focused, without widening rule-import, publish, or activation workflows.
+- Re-ran `php artisan test --filter='(test_card_type_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_card_type_update_live_flow_rejects_duplicate_normalized_slug)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

@@ -9230,6 +9230,51 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_type_update_live_flow_rejects_duplicate_normalized_slug(): void
+    {
+        $user = User::factory()->create();
+
+        $existingCardType = CardType::create([
+            'name' => 'Existing Tier Reviewer',
+            'slug' => 'existing-tier-reviewer',
+            'points_rate' => '1.25',
+            'is_active' => true,
+        ]);
+
+        $cardTypeToUpdate = CardType::create([
+            'name' => 'Target Tier Reviewer',
+            'slug' => 'target-tier-reviewer',
+            'points_rate' => '0.95',
+            'is_active' => false,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardTypeToUpdate], absolute: false))
+            ->actingAs($user)
+            ->patch(route('admin.card-types.update', $cardTypeToUpdate), [
+                'name' => '  Target Tier Reviewer  ',
+                'slug' => ' Existing Tier Reviewer ',
+                'points_rate' => '1.05',
+                'is_active' => '1',
+                'review_note' => 'Duplicate normalized tier slug should stay blocked during live edit work.',
+            ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardTypeToUpdate], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'This card type slug is already in use.',
+            ]);
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $existingCardType->id,
+            'slug' => 'existing-tier-reviewer',
+        ]);
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardTypeToUpdate->id,
+            'slug' => 'target-tier-reviewer',
+        ]);
+    }
+
     public function test_card_live_flow_normalizes_blank_review_note_to_null(): void
     {
         $user = User::factory()->create();
