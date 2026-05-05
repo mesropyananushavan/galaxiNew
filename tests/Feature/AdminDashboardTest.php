@@ -4483,6 +4483,39 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_cardholder_live_flow_keeps_status_boolean_canonical(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Boolean Create Branch',
+            'code' => 'galaxy-holder-boolean-create-branch',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->post(route('admin.cardholders.store'), [
+            'shop_id' => (string) $shop->id,
+            'full_name' => '  Boolean Holder Create  ',
+            'phone' => '  +37499115511  ',
+            'email' => '  BOOLEAN.HOLDER.CREATE@EXAMPLE.COM  ',
+            'is_active' => 'no',
+            'review_note' => 'Keep holder status canonical while the first live shell stays narrow.',
+        ]);
+
+        $cardHolder = CardHolder::query()->where('email', 'boolean.holder.create@example.com')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Cardholder "Boolean Holder Create" was created.');
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'full_name' => 'Boolean Holder Create',
+            'phone' => '+37499115511',
+            'email' => 'boolean.holder.create@example.com',
+            'is_active' => false,
+        ]);
+    }
+
     public function test_cardholders_catalog_actions_reflect_saved_holder_readiness(): void
     {
         $shop = Shop::create([
