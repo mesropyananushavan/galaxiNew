@@ -3423,6 +3423,34 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_shop_update_live_flow_normalizes_blank_review_note_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Branch Note Cleanup',
+            'code' => 'galaxy-branch-note-cleanup',
+            'is_active' => false,
+            'review_note' => 'Keep this note visible until the next branch review pass.',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.shops.update', $shop), [
+            'name' => 'Galaxy Branch Note Cleanup',
+            'code' => 'Galaxy Branch Note Cleanup',
+            'is_active' => 'false',
+            'review_note' => '   ',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.shops.index', ['shop' => $shop], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Shop "Galaxy Branch Note Cleanup" was updated.');
+
+        $this->assertDatabaseHas('shops', [
+            'id' => $shop->id,
+            'code' => 'galaxy-branch-note-cleanup',
+            'review_note' => null,
+        ]);
+    }
+
     public function test_shops_page_supports_selected_branch_coverage_without_manager_review_context(): void
     {
         $shop = Shop::create([
