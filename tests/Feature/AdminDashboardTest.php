@@ -4121,6 +4121,42 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_cardholder_update_live_flow_normalizes_blank_contact_fields_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Contact Cleanup Branch',
+            'code' => 'galaxy-holder-contact-cleanup-branch',
+            'is_active' => true,
+        ]);
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Contact Cleanup Holder',
+            'phone' => '+37499119933',
+            'email' => 'contact.cleanup@example.com',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cardholders.update', $cardHolder), [
+            'shop_id' => (string) $shop->id,
+            'full_name' => 'Contact Cleanup Holder',
+            'phone' => '   ',
+            'email' => '   ',
+            'is_active' => 'true',
+            'review_note' => 'Keep the holder shell live while contact cleanup stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Cardholder "Contact Cleanup Holder" was updated.');
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'phone' => null,
+            'email' => null,
+        ]);
+    }
+
     public function test_cardholders_catalog_actions_reflect_saved_holder_readiness(): void
     {
         $shop = Shop::create([
