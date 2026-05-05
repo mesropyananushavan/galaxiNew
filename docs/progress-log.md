@@ -22,6 +22,11 @@
 - Reused the shared live form pattern so the cardholders workspace now supports both create and selected-record edit flows with backend redirect-to-context behavior.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_create_cardholder_from_live_admin_flow|test_authenticated_user_can_update_cardholder_from_live_admin_flow|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_replaces_preview_rows_with_model_backed_index_data)'`, `4 passed`.
 
+### Cardholders contact-identity normalization checkpoint
+- Hardened the new `cardholders` live flow so holder name and phone are trimmed and email is trimmed plus lowercased before validation and persistence.
+- Kept this scope intentionally metadata-only, improving the Galaxy-specific contact shell without imposing new duplicate-profile rules or opening card-linkage writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_cardholder_from_live_admin_flow|test_authenticated_user_can_update_cardholder_from_live_admin_flow|test_cardholder_live_flow_normalizes_contact_identity_fields)'`, `3 passed`.
+
 ### Next step after cardholders live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on `cards`, where review notes are still visible but the inventory surface remains read-only.
 

@@ -3771,9 +3771,9 @@ class AdminDashboardTest extends TestCase
 
         $response = $this->actingAs($user)->post(route('admin.cardholders.store'), [
             'shop_id' => (string) $shop->id,
-            'full_name' => 'Mariam Sargsyan',
-            'phone' => '+37491100022',
-            'email' => 'mariam.live.cardholder@example.com',
+            'full_name' => '  Mariam Sargsyan  ',
+            'phone' => '  +37491100022  ',
+            'email' => '  MARIAM.LIVE.CARDHOLDER@EXAMPLE.COM  ',
             'is_active' => 'true',
             'review_note' => 'Document duplicate-profile parity before widening lifecycle changes.',
         ]);
@@ -3812,9 +3812,9 @@ class AdminDashboardTest extends TestCase
 
         $response = $this->actingAs($user)->patch(route('admin.cardholders.update', $cardHolder), [
             'shop_id' => (string) $shop->id,
-            'full_name' => 'Mariam Sargsyan Prime',
-            'phone' => '+37491100033',
-            'email' => 'mariam.prime.cardholder@example.com',
+            'full_name' => '  Mariam Sargsyan Prime  ',
+            'phone' => '  +37491100033  ',
+            'email' => '  MARIAM.PRIME.CARDHOLDER@EXAMPLE.COM  ',
             'is_active' => 'true',
             'review_note' => 'Keep lifecycle parity visible while this holder returns to active review.',
         ]);
@@ -3831,6 +3831,36 @@ class AdminDashboardTest extends TestCase
             'email' => 'mariam.prime.cardholder@example.com',
             'is_active' => true,
             'review_note' => 'Keep lifecycle parity visible while this holder returns to active review.',
+        ]);
+    }
+
+    public function test_cardholder_live_flow_normalizes_contact_identity_fields(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Normalize Branch',
+            'code' => 'galaxy-holder-normalize-branch',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->post(route('admin.cardholders.store'), [
+            'shop_id' => (string) $shop->id,
+            'full_name' => '  Anna Petrosyan  ',
+            'phone' => '  +37499111222  ',
+            'email' => '  ANNA.PETROSYAN@EXAMPLE.COM  ',
+            'is_active' => 'true',
+            'review_note' => 'Normalize holder identity before widening duplicate-profile handling.',
+        ]);
+
+        $cardHolder = CardHolder::query()->where('email', 'anna.petrosyan@example.com')->firstOrFail();
+
+        $response->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#backend-flow-status');
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'full_name' => 'Anna Petrosyan',
+            'phone' => '+37499111222',
+            'email' => 'anna.petrosyan@example.com',
         ]);
     }
 

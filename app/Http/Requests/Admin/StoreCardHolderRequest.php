@@ -31,6 +31,9 @@ class StoreCardHolderRequest extends FormRequest
         $status = $this->input('is_active');
 
         $this->merge([
+            'full_name' => is_string($this->input('full_name')) ? trim($this->input('full_name')) : $this->input('full_name'),
+            'phone' => is_string($this->input('phone')) ? trim($this->input('phone')) : $this->input('phone'),
+            'email' => is_string($this->input('email')) ? strtolower(trim($this->input('email'))) : $this->input('email'),
             'is_active' => match (true) {
                 is_bool($status) => $status,
                 is_string($status) => in_array(strtolower($status), ['1', 'true', 'on', 'yes'], true),
