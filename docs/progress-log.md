@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Cardholders overview review-note visibility checkpoint
+- Extended the main `cardholders` overview so saved holder review notes are visible before an operator drills into a selected profile.
+- Added a `Reviewed holders` metric and a `Review note` table column, turning saved holder metadata into page-level lifecycle context instead of leaving it only inside selected-holder detail.
+- Re-ran `php artisan test --filter='test_cardholders_page_replaces_preview_rows_with_model_backed_index_data'`, `1 passed`.
+
+### Next step after cardholders overview review-note visibility checkpoint
+- Reuse this overview-level note visibility pattern on `shops`, or start wiring the first narrow Laravel-backed edit flow into one of the still read-only note surfaces.
+
 ### Cards overview review-note visibility checkpoint
 - Extended the main `cards` overview so saved card review notes are visible before an operator drills into a selected inventory record.
 - Added a `Reviewed cards` metric and a `Review note` table column, turning the saved card metadata into page-level inventory context instead of leaving it only inside selected-card detail.

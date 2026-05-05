@@ -3516,6 +3516,7 @@ class AdminDashboardTest extends TestCase
             'full_name' => 'Anna Petrova',
             'phone' => '+37491100001',
             'email' => 'anna@example.com',
+            'review_note' => 'Keep duplicate-holder parity visible before profile merges are trusted.',
             'is_active' => true,
         ]);
 
@@ -3555,7 +3556,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Arman Hakobyan')
             ->assertSee('+37491100003')
             ->assertSee('Galaxy North')
+            ->assertSee('Keep duplicate-holder parity visible before profile merges are trusted.')
+            ->assertSee('No review note saved yet')
             ->assertSee('Review latest saved holder')
+            ->assertSee('Reviewed holders')
             ->assertSee('Linked cards')
             ->assertSee('>1<', false)
             ->assertSee('active')

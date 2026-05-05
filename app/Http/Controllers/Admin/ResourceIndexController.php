@@ -992,6 +992,7 @@ class ResourceIndexController extends Controller
         $page['metrics'] = [
             ['label' => 'Active holders', 'value' => (string) $cardHolders->where('is_active', true)->count()],
             ['label' => 'Inactive holders', 'value' => (string) $cardHolders->where('is_active', false)->count()],
+            ['label' => 'Reviewed holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => filled($cardHolder->review_note))->count()],
             ['label' => 'Linked cards', 'value' => (string) $cardHolders->sum('cards_count')],
         ];
 
@@ -1000,6 +1001,7 @@ class ResourceIndexController extends Controller
                 ? $cardHolder->full_name
                 : $this->linkedTableCell($cardHolder->full_name, 'admin.cardholders.index', ['cardholder' => $cardHolder->id]),
             $cardHolder->phone ?? '—',
+            filled($cardHolder->review_note) ? str($cardHolder->review_note)->limit(72)->toString() : 'No review note saved yet',
             $cardHolder->shop?->name ?? 'Unassigned',
             (string) $cardHolder->cards_count,
             $cardHolder->is_active ? 'active' : 'inactive',

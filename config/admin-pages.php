@@ -135,14 +135,15 @@ return [
         'metrics' => [
             ['label' => 'Active holders', 'value' => '2'],
             ['label' => 'Inactive holders', 'value' => '1'],
+            ['label' => 'Reviewed holders', 'value' => '2'],
             ['label' => 'Linked cards', 'value' => '3'],
         ],
         'table' => [
-            'columns' => ['Name', 'Phone', 'Shop', 'Cards', 'Status', 'Last activity'],
+            'columns' => ['Name', 'Phone', 'Review note', 'Shop', 'Cards', 'Status', 'Last activity'],
             'rows' => [
-                ['Anna Petrova', '+374 91 100001', 'Central Shop', '2', 'active', '2026-04-13'],
-                ['Mariam Sargsyan', '+374 91 100002', 'Central Shop', '1', 'active', '2026-04-12'],
-                ['Arman Hakobyan', '+374 91 100003', 'North Shop', '0', 'inactive', '2026-03-30'],
+                ['Anna Petrova', '+374 91 100001', 'Keep duplicate-holder parity visible before profile merges are trusted.', 'Central Shop', '2', 'active', '2026-04-13'],
+                ['Mariam Sargsyan', '+374 91 100002', 'Keep recent holder activity visible before lifecycle follow-up is widened.', 'Central Shop', '1', 'active', '2026-04-12'],
+                ['Arman Hakobyan', '+374 91 100003', 'No review note saved yet', 'North Shop', '0', 'inactive', '2026-03-30'],
             ],
             'filters' => ['Shop', 'Status', 'Has cards', 'Activity period'],
         ],
