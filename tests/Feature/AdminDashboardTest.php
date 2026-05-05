@@ -7961,7 +7961,7 @@ class AdminDashboardTest extends TestCase
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->post(route('admin.card-types.store'), [
-            'name' => 'Galaxy Prime',
+            'name' => '  Galaxy Prime  ',
             'slug' => 'galaxy-prime',
             'points_rate' => '1.75',
             'is_active' => '1',
@@ -8791,7 +8791,7 @@ class AdminDashboardTest extends TestCase
         ]);
 
         $okResponse = $this->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
-            'name' => 'Galaxy Prime Updated',
+            'name' => '  Galaxy Prime Updated  ',
             'slug' => 'galaxy-prime',
             'points_rate' => '1.75',
             'is_active' => '1',
@@ -8810,6 +8810,33 @@ class AdminDashboardTest extends TestCase
 
         $this->assertSame(302, $errorResponse->getStatusCode());
         $this->assertSame(route('admin.card-types.index', ['cardType' => $cardType]).'#live-form', $errorResponse->headers->get('Location'));
+    }
+
+    public function test_card_type_live_flow_trims_tier_identity_name(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => '  Galaxy Silver  ',
+            'slug' => 'Galaxy Silver',
+            'points_rate' => '1.25',
+            'is_active' => '0',
+            'review_note' => 'Trim the first live tier shell before widening rule import work.',
+        ]);
+
+        $cardType = CardType::query()->where('slug', 'galaxy-silver')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card type "Galaxy Silver" was created.');
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'name' => 'Galaxy Silver',
+            'slug' => 'galaxy-silver',
+            'points_rate' => '1.25',
+            'is_active' => false,
+        ]);
     }
 
     public function test_card_types_page_shows_update_success_flash_message(): void

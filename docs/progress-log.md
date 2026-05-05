@@ -33,6 +33,11 @@
 - Reused the same narrow identity-hardening pattern already applied to branches, holders, and cards so the Laravel-backed Galaxy access shell drifts less toward starter-style free-form input.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_live_flow_trims_role_identity_name)'`, `3 passed`.
 
+### Tier identity normalization checkpoint
+- Hardened the writable `card-types` flow so tier names are trimmed before validation and persistence, keeping the first live catalog shell cleaner without widening rule-import or publish-style writes.
+- Reused the same narrow identity-hardening pattern already applied to branches, holders, cards, and roles so the Laravel-backed Galaxy tier shell drifts less toward starter-style free-form input.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_store_card_type_from_live_admin_form|test_card_type_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_card_type_live_flow_trims_tier_identity_name)'`, `3 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

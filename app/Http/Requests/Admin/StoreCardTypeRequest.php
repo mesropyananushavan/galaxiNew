@@ -31,6 +31,7 @@ class StoreCardTypeRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
+            'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
             'slug' => is_string($this->input('slug')) ? Str::slug($this->input('slug')) : $this->input('slug'),
             'is_active' => filter_var($this->input('is_active'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)
                 ?? $this->input('is_active'),
