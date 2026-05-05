@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Roles overview permission-note visibility checkpoint
+- Extended the main `roles-permissions` overview so linked permission review notes are visible before an operator drills into a selected role.
+- Added a `Permission review notes` metric and a `Permission review note` table column, turning the new permission metadata into page-level Galaxy-specific access context instead of leaving it buried in selected-record detail only.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data'`, `1 passed`.
+
+### Next step after roles overview permission-note visibility checkpoint
+- Reuse this page-level metadata visibility pattern on another Phase 1 index surface, or wire the first editable Laravel-backed note flow into an entity that still only exposes read-mode note context.
+
 ### Permission review-note foundation checkpoint
 - Added a persisted `review_note` column for `permissions`, closing another generic-starter gap in the Phase 1 access entity skeleton.
 - Surfaced linked permission review guidance inside the selected role Laravel read context across summary, timeline, and dependency layers so permission-bundle review can carry saved Galaxy-specific parity notes.

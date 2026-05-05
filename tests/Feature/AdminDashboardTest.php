@@ -1236,6 +1236,7 @@ class AdminDashboardTest extends TestCase
         $permissionA = Permission::create([
             'name' => 'Manage cards',
             'slug' => 'manage-cards-live',
+            'review_note' => 'Keep card access parity visible before widening matrix edits.',
         ]);
 
         $permissionB = Permission::create([
@@ -1267,9 +1268,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('href="/admin/roles-permissions?role=', false)
             ->assertSee('Galaxy Central')
             ->assertSee('Manage cards, Manage gifts')
+            ->assertSee('Keep card access parity visible before widening matrix edits.')
             ->assertSee('Keep branch staff rollout review-only until parity checks are complete.')
             ->assertSee('Cashier Draft')
             ->assertSee('No permissions linked yet')
+            ->assertSee('No permission review note saved yet')
             ->assertSee('No assignment note saved yet')
             ->assertSee('Review latest saved role')
             ->assertSee('Active roles')
@@ -1277,6 +1280,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewed roles')
             ->assertSee('Access notes')
             ->assertSee('Assignment notes')
+            ->assertSee('Permission review notes')
             ->assertSee('Scoped shops')
             ->assertSee('active')
             ->assertSee('draft');

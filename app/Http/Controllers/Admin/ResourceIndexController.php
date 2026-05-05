@@ -680,6 +680,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Reviewed roles', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->review_note))->count()],
             ['label' => 'Access notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->access_note))->count()],
             ['label' => 'Assignment notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->assignment_note))->count()],
+            ['label' => 'Permission review notes', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->permissions->pluck('review_note'))->filter(fn (mixed $note): bool => filled($note))->count()],
             ['label' => 'Scoped shops', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
         ];
 
@@ -706,11 +707,15 @@ class ResourceIndexController extends Controller
         $page['table']['rows'] = $roles->map(function (Role $role): array {
             $scope = $role->users->pluck('shop.name')->filter()->unique();
             $permissionPreview = $role->permissions->pluck('name')->take(3)->implode(', ');
+            $permissionReviewNote = $role->permissions
+                ->pluck('review_note')
+                ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '');
 
             return [
                 $this->linkedTableCell($role->name, 'admin.roles-permissions.index', ['role' => $role->id]),
                 $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice',
                 $permissionPreview !== '' ? $permissionPreview : 'No permissions linked yet',
+                $permissionReviewNote !== null ? str($permissionReviewNote)->limit(72)->toString() : 'No permission review note saved yet',
                 filled($role->assignment_note) ? str($role->assignment_note)->limit(72)->toString() : 'No assignment note saved yet',
                 (string) $role->users_count,
                 $role->is_active ? 'active' : 'draft',
