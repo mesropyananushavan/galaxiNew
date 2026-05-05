@@ -34,6 +34,9 @@ class StoreRoleRequest extends FormRequest
         $this->merge([
             'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
             'slug' => is_string($this->input('slug')) ? Str::slug($this->input('slug')) : $this->input('slug'),
+            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
+            'access_note' => is_string($this->input('access_note')) ? (trim($this->input('access_note')) !== '' ? trim($this->input('access_note')) : null) : $this->input('access_note'),
+            'assignment_note' => is_string($this->input('assignment_note')) ? (trim($this->input('assignment_note')) !== '' ? trim($this->input('assignment_note')) : null) : $this->input('assignment_note'),
             'is_active' => match (true) {
                 is_bool($status) => $status,
                 is_string($status) => in_array(strtolower($status), ['1', 'true', 'on', 'yes'], true),

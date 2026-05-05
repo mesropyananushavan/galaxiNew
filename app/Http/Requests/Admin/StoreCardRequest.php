@@ -33,6 +33,7 @@ class StoreCardRequest extends FormRequest
             'number' => is_string($this->input('number')) ? strtoupper(trim($this->input('number'))) : $this->input('number'),
             'status' => is_string($this->input('status')) ? strtolower(trim($this->input('status'))) : $this->input('status'),
             'activated_at' => blank($this->input('activated_at')) ? null : $this->input('activated_at'),
+            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
         ]);
     }
 

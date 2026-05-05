@@ -38,6 +38,11 @@
 - Reused the same narrow identity-hardening pattern already applied to branches, holders, cards, and roles so the Laravel-backed Galaxy tier shell drifts less toward starter-style free-form input.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_store_card_type_from_live_admin_form|test_card_type_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_card_type_live_flow_trims_tier_identity_name)'`, `3 passed`.
 
+### Writable note normalization checkpoint
+- Hardened the writable Phase 1 request flows so whitespace-only note inputs now collapse to `null` instead of being saved as meaningless blank strings in the Laravel-backed Galaxy shell.
+- Applied this to branch, holder, card, role, and tier note fields without widening any relationship, publish, assignment, or scope writes.
+- Re-ran `php artisan test --filter='(test_role_live_flow_normalizes_blank_notes_to_null|test_card_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

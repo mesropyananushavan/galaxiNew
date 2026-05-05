@@ -33,6 +33,9 @@ class StoreCardTypeRequest extends FormRequest
         $this->merge([
             'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
             'slug' => is_string($this->input('slug')) ? Str::slug($this->input('slug')) : $this->input('slug'),
+            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
+            'activation_note' => is_string($this->input('activation_note')) ? (trim($this->input('activation_note')) !== '' ? trim($this->input('activation_note')) : null) : $this->input('activation_note'),
+            'rollout_note' => is_string($this->input('rollout_note')) ? (trim($this->input('rollout_note')) !== '' ? trim($this->input('rollout_note')) : null) : $this->input('rollout_note'),
             'is_active' => filter_var($this->input('is_active'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)
                 ?? $this->input('is_active'),
         ]);

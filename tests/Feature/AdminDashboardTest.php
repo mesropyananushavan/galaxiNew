@@ -1958,6 +1958,32 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_role_live_flow_normalizes_blank_notes_to_null(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Parity Access Reviewer',
+            'slug' => 'Parity Access Reviewer',
+            'is_active' => '0',
+            'review_note' => '   ',
+            'access_note' => '   ',
+            'assignment_note' => '   ',
+        ]);
+
+        $role = Role::query()->where('slug', 'parity-access-reviewer')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#backend-flow-status');
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $role->id,
+            'review_note' => null,
+            'access_note' => null,
+            'assignment_note' => null,
+        ]);
+    }
+
     public function test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug(): void
     {
         $user = User::factory()->create();
@@ -8836,6 +8862,40 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-silver',
             'points_rate' => '1.25',
             'is_active' => false,
+        ]);
+    }
+
+    public function test_card_live_flow_normalizes_blank_review_note_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Null Note Branch',
+            'code' => 'galaxy-null-note-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Null Note Gold',
+            'slug' => 'galaxy-null-note-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => 'GX-NULL-1001',
+            'status' => 'draft',
+            'review_note' => '   ',
+        ]);
+
+        $card = Card::query()->where('number', 'GX-NULL-1001')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status');
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'review_note' => null,
         ]);
     }
 
