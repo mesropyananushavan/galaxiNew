@@ -103,6 +103,11 @@
 - Kept the step inventory-shell-only and verification-focused, without widening holder assignment, dispute, or replacement writes.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_update_card_from_live_admin_flow|test_card_update_live_flow_keeps_inventory_identifier_canonical)'`, `2 passed`.
 
+### Card update duplicate-identifier normalization checkpoint
+- Added explicit feature coverage for the writable `cards` update flow so a mixed-case, whitespace-padded inventory identifier still collides correctly with an existing canonical card number after normalization.
+- Kept the step inventory-shell-only and validation-focused, without widening holder assignment, dispute, or replacement writes.
+- Re-ran `php artisan test --filter='(test_card_update_live_flow_keeps_inventory_identifier_canonical|test_card_update_live_flow_rejects_duplicate_inventory_identifier_after_normalization)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

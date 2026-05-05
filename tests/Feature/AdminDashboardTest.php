@@ -9305,6 +9305,63 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_update_live_flow_rejects_duplicate_inventory_identifier_after_normalization(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Duplicate Update Branch',
+            'code' => 'galaxy-duplicate-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Duplicate Update Gold',
+            'slug' => 'galaxy-duplicate-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $existingCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DUP-UPD-1001',
+            'status' => 'active',
+        ]);
+
+        $cardToUpdate = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DUP-UPD-2002',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->from(route('admin.cards.index', ['card' => $cardToUpdate], absolute: false))
+            ->actingAs($user)
+            ->patch(route('admin.cards.update', $cardToUpdate), [
+                'shop_id' => (string) $shop->id,
+                'card_type_id' => (string) $cardType->id,
+                'number' => ' gx-dup-upd-1001 ',
+                'status' => 'blocked',
+                'activated_at' => '',
+                'review_note' => 'This duplicate should stay blocked after identifier normalization.',
+            ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $cardToUpdate], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'number' => 'This card number is already in use in the Laravel inventory shell.',
+            ]);
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $existingCard->id,
+            'number' => 'GX-DUP-UPD-1001',
+        ]);
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $cardToUpdate->id,
+            'number' => 'GX-DUP-UPD-2002',
+        ]);
+    }
+
     public function test_card_types_page_shows_update_success_flash_message(): void
     {
         $user = User::factory()->create();
