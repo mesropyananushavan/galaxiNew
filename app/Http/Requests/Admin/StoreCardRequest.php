@@ -30,7 +30,7 @@ class StoreCardRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'number' => is_string($this->input('number')) ? trim($this->input('number')) : $this->input('number'),
+            'number' => is_string($this->input('number')) ? strtoupper(trim($this->input('number'))) : $this->input('number'),
             'status' => is_string($this->input('status')) ? strtolower(trim($this->input('status'))) : $this->input('status'),
             'activated_at' => blank($this->input('activated_at')) ? null : $this->input('activated_at'),
         ]);
@@ -51,6 +51,7 @@ class StoreCardRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'number.unique' => 'This card number is already in use in the Laravel inventory shell.',
             'review_note.max' => 'Keep the review note under 1000 characters so the inventory workspace stays operator-friendly.',
         ];
     }

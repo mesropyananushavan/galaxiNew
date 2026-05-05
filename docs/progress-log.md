@@ -8,6 +8,11 @@
 - Reused the shared live form pattern so the cards workspace now supports both create and selected-record edit flows with backend redirect-to-context behavior.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_create_card_from_live_admin_flow|test_authenticated_user_can_update_card_from_live_admin_flow|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data)'`, `4 passed`.
 
+### Cards inventory-identifier normalization checkpoint
+- Hardened the new `cards` live flow so inventory numbers are normalized to uppercase before validation and persistence, matching the Galaxy-style identifier shape instead of leaving generic free-form casing in the Laravel shell.
+- Added a card-specific duplicate-number validation message so operators get a clearer inventory collision cue when a normalized identifier is already present.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_card_from_live_admin_flow|test_authenticated_user_can_update_card_from_live_admin_flow|test_card_live_flow_normalizes_number_and_rejects_duplicate_inventory_identifier)'`, `3 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 

@@ -2347,7 +2347,7 @@ class AdminDashboardTest extends TestCase
         $response = $this->actingAs($user)->post(route('admin.cards.store'), [
             'shop_id' => (string) $shop->id,
             'card_type_id' => (string) $cardType->id,
-            'number' => 'GX-LIVE-1001',
+            'number' => ' gx-live-1001 ',
             'status' => 'active',
             'activated_at' => '2026-05-05 12:40:00',
             'review_note' => 'Keep first-pass inventory parity visible before widening replacement handling.',
@@ -2392,7 +2392,7 @@ class AdminDashboardTest extends TestCase
         $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
             'shop_id' => (string) $shop->id,
             'card_type_id' => (string) $cardType->id,
-            'number' => 'GX-LIVE-2001A',
+            'number' => ' gx-live-2001a ',
             'status' => 'blocked',
             'activated_at' => '2026-05-05 12:41:00',
             'review_note' => 'Keep blocked inventory under parity review before trusting dispute or replacement follow-up.',
@@ -2410,6 +2410,44 @@ class AdminDashboardTest extends TestCase
             'status' => 'blocked',
             'review_note' => 'Keep blocked inventory under parity review before trusting dispute or replacement follow-up.',
         ]);
+    }
+
+    public function test_card_live_flow_normalizes_number_and_rejects_duplicate_inventory_identifier(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Duplicate Inventory Branch',
+            'code' => 'galaxy-duplicate-inventory-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Duplicate Gold',
+            'slug' => 'galaxy-duplicate-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DUP-1001',
+            'status' => 'draft',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->from('/admin/cards')->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-dup-1001 ',
+            'status' => 'active',
+            'activated_at' => '2026-05-05 12:42:00',
+            'review_note' => 'This duplicate should be blocked by the normalized inventory identifier.',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cards#live-form')
+            ->assertSessionHasErrors([
+                'number' => 'This card number is already in use in the Laravel inventory shell.',
+            ]);
     }
 
     public function test_cards_page_supports_selected_active_card_review_context(): void
