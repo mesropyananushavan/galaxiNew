@@ -1598,7 +1598,7 @@ class ResourceIndexController extends Controller
                 'timeline' => [
                     ['title' => 'Role access source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked roles from the current Laravel foundation.', $roleCount)],
                     ['title' => 'Access reporting parity stays review-only', 'time' => 'Current request', 'description' => 'Source counts are live-backed now, but grouped role exports and access analytics should stay blocked until reporting parity is verified.'],
-                    ['title' => 'Access-review handoff should stay visible in the workspace', 'time' => 'Current request', 'description' => 'Operators should hand off role-coverage findings in the live review context before trusting export files for access decisions.'],
+                    ['title' => 'Access-review handoff should stay visible in the workspace', 'time' => 'Current request', 'description' => $this->reportsRoleAccessTimelineHandoffDescription($permissionLinkedRoleCount, $assignedStaffCount)],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Role access coverage'],
@@ -2626,6 +2626,16 @@ class ResourceIndexController extends Controller
             $permissionLinkedRoleCount > 0 => 'Keep role-coverage and permission-bundle findings in the live workspace before asking for export-driven handoff.',
             $assignedStaffCount > 0 => 'Keep role-coverage and staff-assignment findings in the live workspace before asking for export-driven handoff.',
             default => 'Keep access coverage findings in the live workspace before asking for export-driven handoff.',
+        };
+    }
+
+    private function reportsRoleAccessTimelineHandoffDescription(int $permissionLinkedRoleCount, int $assignedStaffCount): string
+    {
+        return match (true) {
+            $permissionLinkedRoleCount > 0 && $assignedStaffCount > 0 => 'Operators should hand off role-coverage and staffing findings in the live review context before trusting export files for access decisions.',
+            $permissionLinkedRoleCount > 0 => 'Operators should hand off role-coverage and permission-bundle findings in the live review context before trusting export files for access decisions.',
+            $assignedStaffCount > 0 => 'Operators should hand off role-coverage and staff-assignment findings in the live review context before trusting export files for access decisions.',
+            default => 'Operators should hand off access-coverage findings in the live review context before trusting export files for access decisions.',
         };
     }
 

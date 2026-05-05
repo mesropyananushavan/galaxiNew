@@ -4736,7 +4736,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Default period posture')
             ->assertSee('Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.')
             ->assertSee('Access reporting parity stays review-only')
-            ->assertSee('Operators should hand off role-coverage findings in the live review context before trusting export files for access decisions.')
+            ->assertSee('Operators should hand off role-coverage and staffing findings in the live review context before trusting export files for access decisions.')
             ->assertSee('Access mix signal:')
             ->assertSee('combined role, bundle, and staffing coverage is still pending')
             ->assertSee('Access readiness:')
