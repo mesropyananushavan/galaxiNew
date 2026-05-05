@@ -274,7 +274,7 @@ return [
         'summary' => 'Baseline operational index for card inventory, assignments, statuses, and activation tracking.',
         'nextStep' => 'Replace sample rows with real query-backed inventory and status filters.',
         'actions' => [
-            ['label' => 'Issue card', 'tone' => 'primary'],
+            ['label' => 'New Galaxy card', 'tone' => 'primary'],
             ['label' => 'Review blocked cards', 'tone' => 'secondary'],
         ],
         'metrics' => [

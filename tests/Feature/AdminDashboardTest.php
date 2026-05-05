@@ -2263,8 +2263,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Operational index shape')
             ->assertSee('GX-100001')
             ->assertSee('Central Shop')
-            ->assertSee('Issue card')
-            ->assertSee('Blocked until the first Laravel-backed card inventory slice exists for issue-flow parity review.')
+            ->assertSee('New Galaxy card')
             ->assertSee('Review blocked cards')
             ->assertSee('Blocked until the first Laravel-backed inventory slice exists for blocked-card parity review.')
             ->assertSee('Active cards')
@@ -2343,8 +2342,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Issue card')
-            ->assertSee('Blocked until saved draft inventory is verified against legacy issue-flow parity.')
+            ->assertSee('New Galaxy card')
             ->assertSee('Review blocked cards')
             ->assertSee('Blocked until saved blocked-card states are verified against legacy inventory semantics.');
     }

@@ -5371,3 +5371,9 @@
 - Kept the change config- and controller-driven so the catalog and live Laravel-backed holder view stay aligned.
 - Also corrected two stale holder page assertions that still expected the primary action to be blocked even though the live holder create path is already available.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_catalog_actions_reflect_saved_holder_readiness)'`, `2 passed`.
+
+### Cards header action copy checkpoint
+- Replaced the remaining generic `Issue card` page action label with `New Galaxy card` so the writable inventory workspace reads more like a Galaxy-specific shell and less like a starter admin list.
+- Kept the change config- and controller-driven so the catalog and live Laravel-backed inventory view stay aligned.
+- Also corrected two stale cards page assertions that still expected the primary action to be blocked even though the live inventory create path is already available.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cards_operational_index_shape|test_cards_catalog_actions_reflect_saved_inventory_readiness)'`, `2 passed`.

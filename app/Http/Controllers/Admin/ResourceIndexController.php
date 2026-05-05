@@ -862,7 +862,7 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = [
             [
-                'label' => 'Issue card',
+                'label' => 'New Galaxy card',
                 'tone' => 'primary',
                 'href' => '#live-form',
             ],
