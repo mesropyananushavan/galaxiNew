@@ -4395,6 +4395,44 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_cardholder_update_live_flow_keeps_status_boolean_canonical(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Boolean Branch',
+            'code' => 'galaxy-holder-boolean-branch',
+            'is_active' => true,
+        ]);
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Boolean Holder',
+            'phone' => '+37499115544',
+            'email' => 'boolean.holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cardholders.update', $cardHolder), [
+            'shop_id' => (string) $shop->id,
+            'full_name' => '  Boolean Holder Draft  ',
+            'phone' => '  +37499115599  ',
+            'email' => '  BOOLEAN.HOLDER.DRAFT@EXAMPLE.COM  ',
+            'is_active' => 'no',
+            'review_note' => 'Keep holder status canonical while the live shell stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Cardholder "Boolean Holder Draft" was updated.');
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'full_name' => 'Boolean Holder Draft',
+            'phone' => '+37499115599',
+            'email' => 'boolean.holder.draft@example.com',
+            'is_active' => false,
+        ]);
+    }
+
     public function test_cardholders_catalog_actions_reflect_saved_holder_readiness(): void
     {
         $shop = Shop::create([
