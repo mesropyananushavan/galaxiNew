@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Permission review-note foundation checkpoint
+- Added a persisted `review_note` column for `permissions`, closing another generic-starter gap in the Phase 1 access entity skeleton.
+- Surfaced linked permission review guidance inside the selected role Laravel read context across summary, timeline, and dependency layers so permission-bundle review can carry saved Galaxy-specific parity notes.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`, `1 passed`.
+
+### Next step after permission review-note foundation checkpoint
+- Continue extending tiny persisted review metadata to any remaining thin entities, or start wiring the first editable Laravel-backed note flow into a selected admin surface.
+
 ### Card review-note foundation checkpoint
 - Added a persisted `review_note` column for `cards`, extending the Phase 1 entity skeleton with lightweight Galaxy-specific inventory review metadata instead of only shell copy.
 - Surfaced saved card review notes in the selected card read context across summary, timeline, and dependency layers so blocked inventory review can carry real Laravel-backed dispute guidance.

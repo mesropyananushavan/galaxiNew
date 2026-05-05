@@ -2526,6 +2526,9 @@ class ResourceIndexController extends Controller
         $scopedPermissionSignal = $selectedRole->permissions_count > 0 && $scope->isNotEmpty()
             ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $scope->count())
             : 'scoped permission coverage is still pending for parity review';
+        $permissionReviewNote = $selectedRole->permissions
+            ->pluck('review_note')
+            ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '');
 
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
@@ -2569,6 +2572,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Scoped permission signal', 'value' => $scopedPermissionSignal],
             ['label' => 'Permission branch activity signal', 'value' => $permissionBranchActivitySignal],
             ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
+            ['label' => 'Permission review note', 'value' => $permissionReviewNote ?: 'No linked permission review note saved yet'],
             ['label' => 'Laravel status', 'value' => $selectedRole->is_active ? 'active' : 'draft'],
             [
                 'label' => 'Access guidance',
@@ -3041,6 +3045,15 @@ class ResourceIndexController extends Controller
                     : 'This role currently has no linked permissions in Laravel, so it remains a safe draft for parity-first access review.',
             ],
             [
+                'title' => sprintf('%s permission review note reflected from model state', $selectedRole->name),
+                'time' => 'Current request',
+                'description' => ($permissionReviewNote = $selectedRole->permissions
+                    ->pluck('review_note')
+                    ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '')) !== null
+                    ? sprintf('The current Laravel permission guidance says: %s', $permissionReviewNote)
+                    : 'No linked permission review note is saved yet, so permission-bundle guidance still depends on the surrounding workspace cues.',
+            ],
+            [
                 'title' => sprintf('%s assignment scope reflected from model state', $selectedRole->name),
                 'time' => 'Current request',
                 'description' => $scope->isNotEmpty()
@@ -3076,6 +3089,9 @@ class ResourceIndexController extends Controller
         $scopedPermissionSignal = $selectedRole->permissions_count > 0 && $scope->isNotEmpty()
             ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $scope->count())
             : 'scoped permission coverage is still pending for parity review';
+        $permissionReviewNote = $selectedRole->permissions
+            ->pluck('review_note')
+            ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '');
 
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
@@ -3103,6 +3119,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Permission posture', 'value' => $permissionPreview->isNotEmpty()
                 ? 'The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.'
                 : 'No permissions are linked yet, so this role remains a safer draft shell for parity-first access review.'],
+            ['label' => 'Permission review note', 'value' => $permissionReviewNote ?: 'No linked permission review note saved yet'],
             ['label' => 'Scoped permission signal', 'value' => $scopedPermissionSignal],
             ['label' => 'Permission branch activity signal', 'value' => $permissionBranchActivitySignal],
             ['label' => 'Publish posture', 'value' => $selectedRole->is_active

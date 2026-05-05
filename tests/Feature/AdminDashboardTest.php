@@ -1302,6 +1302,7 @@ class AdminDashboardTest extends TestCase
         $permission = Permission::create([
             'name' => 'Manage cards',
             'slug' => 'manage-cards-selected-role',
+            'review_note' => 'Keep card-access scope parity visible before any matrix rewrite is trusted.',
         ]);
 
         $role->permissions()->attach($permission->id);
@@ -1394,6 +1395,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('paused-branch permission-linked staff coverage is still pending for parity review')
             ->assertSee('Permission bundle')
             ->assertSee('Manage cards')
+            ->assertSee('Permission review note')
+            ->assertSee('Keep card-access scope parity visible before any matrix rewrite is trusted.')
             ->assertSee('Laravel status')
             ->assertSee('Access guidance')
             ->assertSee('This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.')
@@ -1419,6 +1422,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop Manager scope coverage reflected from model state')
             ->assertSee('This role currently exposes shop scope across Galaxy Central in Laravel review, giving operators one visible branch to compare before any scope writes are enabled.')
             ->assertSee('Shop Manager permission bundle reflected from model state')
+            ->assertSee('Shop Manager permission review note reflected from model state')
+            ->assertSee('The current Laravel permission guidance says: Keep card-access scope parity visible before any matrix rewrite is trusted.')
             ->assertSee('Shop Manager assignment scope reflected from model state')
             ->assertSee('This role is currently linked to 1 assigned users across Galaxy Central in Laravel review mode.')
             ->assertSee('Access handoff stays visible in the workspace')
@@ -1461,6 +1466,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('paused-branch assignment coverage is still pending for parity review')
             ->assertSee('Permission posture:')
             ->assertSee('The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.')
+            ->assertSee('Permission review note:')
+            ->assertSee('Keep card-access scope parity visible before any matrix rewrite is trusted.')
             ->assertSee('Scoped permission signal:')
             ->assertSee('1 scoped shops are already visible for this permission-linked role in parity review')
             ->assertSee('Permission branch activity signal:')
