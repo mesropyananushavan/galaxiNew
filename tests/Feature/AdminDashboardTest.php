@@ -9461,6 +9461,38 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_type_update_live_flow_keeps_status_boolean_canonical(): void
+    {
+        $user = User::factory()->create();
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Boolean Tier',
+            'slug' => 'galaxy-boolean-tier',
+            'points_rate' => '0.95',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+            'name' => '  Galaxy Boolean Tier Draft  ',
+            'slug' => ' Galaxy Boolean Tier Draft ',
+            'points_rate' => '0.85',
+            'is_active' => 'no',
+            'review_note' => 'Keep tier status canonical while the live catalog shell stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType]).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card type "Galaxy Boolean Tier Draft" was updated.');
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'name' => 'Galaxy Boolean Tier Draft',
+            'slug' => 'galaxy-boolean-tier-draft',
+            'points_rate' => '0.85',
+            'is_active' => false,
+        ]);
+    }
+
     public function test_card_live_flow_normalizes_blank_review_note_to_null(): void
     {
         $user = User::factory()->create();
