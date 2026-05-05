@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Shops selected-record handoff timeline checkpoint
+- Added a state-aware selected-shop timeline handoff entry so branch ownership and coverage guidance stays visible in the activity timeline, not only in summary and dependency blocks.
+- Extended focused shop review coverage to assert the new timeline wording for full-coverage, customer-coverage-only, manager-only, and paused branch cases without changing writes or scope logic.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context)'`, `5 passed`.
+
+### Next step after shops selected-record handoff timeline checkpoint
+- Continue propagating state-aware handoff guidance across selected-record admin surfaces, or switch back to the next persisted Phase 1 foundation slice.
+
 ### Cardholders selected-record handoff timeline checkpoint
 - Added a state-aware selected-holder timeline handoff entry so active and inactive profile reviews keep the same Galaxy-specific activity guidance visible in the activity timeline, not only in summary and dependency blocks.
 - Extended focused holder review coverage to assert the new timeline wording for inactive-unlinked, active-linked, active-unlinked, and inactive-linked cases without changing profile writes or activity sourcing behavior.

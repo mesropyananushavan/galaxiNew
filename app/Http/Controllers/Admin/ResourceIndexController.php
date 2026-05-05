@@ -1180,6 +1180,11 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => sprintf('The latest saved Laravel timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.', $this->shopsLastSavedLabel($selectedShop)),
             ],
+            [
+                'title' => 'Branch scope handoff stays visible in the workspace',
+                'time' => 'Current request',
+                'description' => $this->shopsScopeTimelineHandoffDescription($selectedShop),
+            ],
         ];
 
         $page['dependencyStatus'] = $this->shopsSelectedShopDependencyStatus($selectedShop);
@@ -3517,6 +3522,17 @@ class ResourceIndexController extends Controller
             $selectedShop->users_count > 0 => 'Manager ownership is visible, but customer coverage still needs to catch up before full scope handoff review.',
             $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Customer coverage is visible, but ownership handoff is still incomplete for branch-scope review.',
             default => 'Branch shell exists, but ownership and customer handoff context are still thin.',
+        };
+    }
+
+    private function shopsScopeTimelineHandoffDescription(Shop $selectedShop): string
+    {
+        return match (true) {
+            ! $selectedShop->is_active => 'Operators should carry paused status, ownership gaps, and branch coverage in the live workspace before trusting any recovery or reassignment follow-up.',
+            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Operators should carry manager ownership, holder coverage, and card coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
+            $selectedShop->users_count > 0 => 'Operators should carry manager ownership, branch readiness gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
+            $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Operators should carry customer coverage, ownership gaps, and branch readiness in the live workspace before trusting any scope-mutation or reassignment follow-up.',
+            default => 'Operators should carry branch readiness, ownership gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or recovery follow-up.',
         };
     }
 
