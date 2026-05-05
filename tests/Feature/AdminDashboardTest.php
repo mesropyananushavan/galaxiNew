@@ -3485,6 +3485,48 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_shop_update_live_flow_rejects_duplicate_normalized_code(): void
+    {
+        $user = User::factory()->create();
+
+        $existingShop = Shop::create([
+            'name' => 'Galaxy Existing Update Branch',
+            'code' => 'galaxy-existing-update-branch',
+            'is_active' => true,
+        ]);
+
+        $shopToUpdate = Shop::create([
+            'name' => 'Galaxy Target Update Branch',
+            'code' => 'galaxy-target-update-branch',
+            'is_active' => false,
+        ]);
+
+        $response = $this->from(route('admin.shops.index', ['shop' => $shopToUpdate], absolute: false))
+            ->actingAs($user)
+            ->patch(route('admin.shops.update', $shopToUpdate), [
+                'name' => '  Galaxy Target Update Branch  ',
+                'code' => ' Galaxy Existing Update Branch ',
+                'is_active' => 'true',
+                'review_note' => 'Duplicate normalized branch code should stay blocked during live edit work.',
+            ]);
+
+        $response
+            ->assertRedirect(route('admin.shops.index', ['shop' => $shopToUpdate], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'code' => 'This shop code is already in use.',
+            ]);
+
+        $this->assertDatabaseHas('shops', [
+            'id' => $existingShop->id,
+            'code' => 'galaxy-existing-update-branch',
+        ]);
+
+        $this->assertDatabaseHas('shops', [
+            'id' => $shopToUpdate->id,
+            'code' => 'galaxy-target-update-branch',
+        ]);
+    }
+
     public function test_shops_page_supports_selected_branch_coverage_without_manager_review_context(): void
     {
         $shop = Shop::create([
