@@ -2096,6 +2096,48 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_role_update_live_flow_rejects_duplicate_normalized_slug(): void
+    {
+        $user = User::factory()->create();
+
+        $existingRole = Role::create([
+            'name' => 'Existing Access Reviewer',
+            'slug' => 'existing-access-reviewer',
+            'is_active' => true,
+        ]);
+
+        $roleToUpdate = Role::create([
+            'name' => 'Target Access Reviewer',
+            'slug' => 'target-access-reviewer',
+            'is_active' => false,
+        ]);
+
+        $response = $this->from(route('admin.roles-permissions.index', ['role' => $roleToUpdate], absolute: false))
+            ->actingAs($user)
+            ->patch(route('admin.roles-permissions.update', $roleToUpdate), [
+                'name' => '  Target Access Reviewer  ',
+                'slug' => ' Existing Access Reviewer ',
+                'is_active' => '1',
+                'review_note' => 'Duplicate normalized role slug should stay blocked during live edit work.',
+            ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $roleToUpdate], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'This role slug is already in use.',
+            ]);
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $existingRole->id,
+            'slug' => 'existing-access-reviewer',
+        ]);
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $roleToUpdate->id,
+            'slug' => 'target-access-reviewer',
+        ]);
+    }
+
     public function test_roles_permissions_page_shows_update_success_flash_message(): void
     {
         $user = User::factory()->create();
