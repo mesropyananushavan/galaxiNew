@@ -2957,6 +2957,7 @@ class AdminDashboardTest extends TestCase
             'name' => 'Galaxy Central',
             'code' => 'galaxy-central',
             'is_active' => true,
+            'review_note' => 'Keep branch ownership parity visible before scope writes are trusted.',
         ]);
 
         $pausedShop = Shop::create([
@@ -3006,9 +3007,12 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy Airport')
             ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
             ->assertSee('galaxy-airport')
+            ->assertSee('Keep branch ownership parity visible before scope writes are trusted.')
+            ->assertSee('No review note saved yet')
             ->assertSee('Unassigned')
             ->assertSee('Review latest saved shop')
             ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
+            ->assertSee('Reviewed shops')
             ->assertSee('Assigned managers')
             ->assertSee('>1<', false)
             ->assertSee('active')

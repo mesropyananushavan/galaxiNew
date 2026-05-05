@@ -1126,6 +1126,7 @@ class ResourceIndexController extends Controller
         $page['metrics'] = [
             ['label' => 'Active shops', 'value' => (string) $shops->where('is_active', true)->count()],
             ['label' => 'Paused shops', 'value' => (string) $shops->where('is_active', false)->count()],
+            ['label' => 'Reviewed shops', 'value' => (string) $shops->filter(fn (Shop $shop): bool => filled($shop->review_note))->count()],
             ['label' => 'Assigned managers', 'value' => (string) $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count()],
         ];
 
@@ -1134,6 +1135,7 @@ class ResourceIndexController extends Controller
                 ? $shop->name
                 : $this->linkedTableCell($shop->name, 'admin.shops.index', ['shop' => $shop->id]),
             $shop->code,
+            filled($shop->review_note) ? str($shop->review_note)->limit(72)->toString() : 'No review note saved yet',
             $shop->users->first()?->name ?? 'Unassigned',
             (string) $shop->card_holders_count,
             (string) $shop->cards_count,

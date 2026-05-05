@@ -2,6 +2,14 @@
 
 ## 2026-05-05
 
+### Shops overview review-note visibility checkpoint
+- Extended the main `shops` overview so saved branch review notes are visible before an operator drills into a selected branch.
+- Added a `Reviewed shops` metric and a `Review note` table column, turning saved branch metadata into page-level scope context instead of leaving it only inside selected-shop detail.
+- Re-ran `php artisan test --filter='test_shops_page_replaces_preview_rows_with_model_backed_index_data'`, `1 passed`.
+
+### Next step after shops overview review-note visibility checkpoint
+- With notes now visible across the main Phase 1 index surfaces, the next logical tiny slice is the first narrow Laravel-backed edit flow for a still read-only note surface.
+
 ### Cardholders overview review-note visibility checkpoint
 - Extended the main `cardholders` overview so saved holder review notes are visible before an operator drills into a selected profile.
 - Added a `Reviewed holders` metric and a `Review note` table column, turning saved holder metadata into page-level lifecycle context instead of leaving it only inside selected-holder detail.

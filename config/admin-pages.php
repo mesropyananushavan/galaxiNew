@@ -23,14 +23,15 @@ return [
         'metrics' => [
             ['label' => 'Active shops', 'value' => '2'],
             ['label' => 'Paused shops', 'value' => '1'],
+            ['label' => 'Reviewed shops', 'value' => '2'],
             ['label' => 'Assigned managers', 'value' => '2'],
         ],
         'table' => [
-            'columns' => ['Shop', 'Code', 'Manager', 'Cardholders', 'Cards', 'Status'],
+            'columns' => ['Shop', 'Code', 'Review note', 'Manager', 'Cardholders', 'Cards', 'Status'],
             'rows' => [
-                ['Central Shop', 'central', 'Nare Gevorgyan', '248', '912', 'active'],
-                ['North Shop', 'north', 'Arman Stepanyan', '121', '403', 'active'],
-                ['Airport Kiosk', 'airport', 'Unassigned', '37', '84', 'paused'],
+                ['Central Shop', 'central', 'Keep branch ownership parity visible before scope writes are trusted.', 'Nare Gevorgyan', '248', '912', 'active'],
+                ['North Shop', 'north', 'Keep manager handoff visible before multi-branch rollout is widened.', 'Arman Stepanyan', '121', '403', 'active'],
+                ['Airport Kiosk', 'airport', 'No review note saved yet', 'Unassigned', '37', '84', 'paused'],
             ],
             'filters' => ['Status', 'Manager assigned', 'Volume tier'],
         ],
