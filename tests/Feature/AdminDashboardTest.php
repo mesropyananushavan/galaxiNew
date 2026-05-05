@@ -3993,6 +3993,36 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_cardholder_live_flow_normalizes_blank_review_note_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Empty Note Branch',
+            'code' => 'galaxy-holder-empty-note-branch',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->post(route('admin.cardholders.store'), [
+            'shop_id' => (string) $shop->id,
+            'full_name' => 'Marine Hovhannisyan',
+            'phone' => '+37499117711',
+            'email' => 'marine.hovhannisyan@example.com',
+            'is_active' => 'true',
+            'review_note' => '   ',
+        ]);
+
+        $cardHolder = CardHolder::query()->where('email', 'marine.hovhannisyan@example.com')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Cardholder "Marine Hovhannisyan" was created.');
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'review_note' => null,
+        ]);
+    }
+
     public function test_cardholders_catalog_actions_reflect_saved_holder_readiness(): void
     {
         $shop = Shop::create([

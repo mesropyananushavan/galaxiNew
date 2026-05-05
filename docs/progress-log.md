@@ -58,6 +58,11 @@
 - Kept the step metadata-only and verification-focused, without widening ownership, scope-mutation, or reassignment writes.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_create_shop_from_live_admin_flow|test_shop_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
 
+### Cardholder blank note normalization checkpoint
+- Added explicit feature coverage for the writable `cardholders` note normalization so whitespace-only holder review notes stay protected as `null` values in the Laravel-backed Galaxy holder shell.
+- Kept the step metadata-only and verification-focused, without widening duplicate-profile, linkage, or lifecycle writes.
+- Re-ran `php artisan test --filter='(test_cardholder_live_flow_normalizes_blank_contact_fields_to_null|test_cardholder_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
+
 ### Next step after cards live note-edit flow checkpoint
 - Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
 
