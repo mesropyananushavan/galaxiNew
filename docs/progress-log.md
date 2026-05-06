@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Card issued-at foundation checkpoint
+- Added a real nullable `issued_at` column to the Phase 1 `cards` table so the Galaxy inventory foundation can carry a first-class issuance lifecycle timestamp instead of only the more generic activation marker.
+- Promoted `issued_at` into the `Card` model fillable and cast map, then extended focused unit coverage so inventory lifecycle data is ready for later parity-safe reads without widening any assignment or replacement flows yet.
+- Re-ran `php artisan test --filter=FoundationModelCastsTest`, `3 passed`.
+
 ### Foundation boolean casts checkpoint
 - Added explicit Eloquent boolean casts for `shops.is_active` and `card_holders.is_active`, tightening the Phase 1 Galaxy foundation around the real branch and holder entity shape instead of leaving these flags starter-loose at the model layer.
 - Added focused unit coverage in `FoundationModelCastsTest` so branch and holder activity state stays predictable as more Laravel-backed admin flows rely on those booleans.
