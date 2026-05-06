@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards draft review assignment summary checkpoint
+- Extended the broader draft selected-card review test so `Holder linkage summary`, `Assignment readiness summary`, and `Assignment posture` are now asserted in a full draft review scenario, not only in the narrower lifecycle-focused checks.
+- Kept the step narrow by reusing the existing full draft review test plus the draft lifecycle test for a targeted regression pass.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_draft_card_review_context|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `2 passed`.
+
 ### Cards blocked pre-activation assignment readiness checkpoint
 - Extended the blocked pre-activation selected-card test so `Assignment readiness summary` is now explicitly covered on issued-but-blocked inventory that still lacks holder linkage.
 - Kept the step narrow by reusing the existing blocked pre-activation and issued-inventory tests instead of widening cards behavior again.
