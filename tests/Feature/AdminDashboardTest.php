@@ -2668,6 +2668,44 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_update_live_flow_returns_operator_friendly_issue_timestamp_validation_message(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Invalid Issue Update Branch',
+            'code' => 'galaxy-invalid-issue-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Invalid Issue Update Gold',
+            'slug' => 'galaxy-invalid-issue-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-INVALID-ISS-UPD-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-invalid-iss-upd-1001 ',
+            'status' => 'active',
+            'issued_at' => 'not-a-real-timestamp',
+            'activated_at' => '',
+            'review_note' => 'Keep invalid issue timestamps obvious while selected inventory edits stay narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'issued_at' => 'Use a real issue timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
+            ]);
+    }
+
     public function test_card_live_flow_normalizes_number_and_rejects_duplicate_inventory_identifier(): void
     {
         $shop = Shop::create([
