@@ -5809,7 +5809,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Activity posture:')
             ->assertSee('Recent activity remains blocked until a stable Laravel event source preserves paused-branch lookup and recovery parity.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Recovery handling, profile writes, merge handling, and recent-activity sourcing should stay preview-only until paused-branch holder parity is verified.');
+            ->assertSee('Recovery handling, profile writes, merge handling, and recent-activity sourcing should stay preview-only until paused-branch holder parity is verified.')
+            ->assertSee('Lookup guidance:')
+            ->assertSee('This holder is active in Laravel but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.');
     }
 
     public function test_cardholders_page_ignores_unknown_selected_holder_query(): void

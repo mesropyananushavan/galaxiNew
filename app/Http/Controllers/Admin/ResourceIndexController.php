@@ -3644,9 +3644,11 @@ class ResourceIndexController extends Controller
             ['label' => 'Laravel status', 'value' => $selectedCardHolder->is_active ? 'active' : 'inactive'],
             [
                 'label' => 'Lookup guidance',
-                'value' => $selectedCardHolder->is_active
-                    ? 'This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.'
-                    : 'This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
+                'value' => match (true) {
+                    (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'This holder is active in Laravel but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.',
+                    $selectedCardHolder->is_active => 'This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.',
+                    default => 'This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
+                },
             ],
         ];
     }

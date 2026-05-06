@@ -5865,3 +5865,8 @@
 - Refined `cardholdersBackendGap()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit recovery-oriented backend-gap wording instead of the generic live-holder gap copy.
 - Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Remaining backend gap` text renders in the detailed review stack.
 - Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch lookup-guidance checkpoint
+- Refined the selected-holder `Lookup guidance` branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit recovery-aware lookup wording instead of the generic active-holder guidance.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Lookup guidance` text renders in the detailed review stack.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
