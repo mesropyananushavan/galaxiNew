@@ -5688,7 +5688,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Holder posture')
             ->assertSee('Keep paused-branch holder review in the workspace first, then leave recovery, merge, and lifecycle-change flows gated until branch parity is proven.')
             ->assertSee('Evidence priority')
-            ->assertSee('Keep active status, branch linkage, and linked-card visibility together before trusting any later profile merge or lifecycle-change discussion.')
+            ->assertSee('Keep paused-branch status, branch linkage, and linked-card visibility together before trusting any later recovery, merge, or lifecycle-change discussion.')
             ->assertSee('Activity handoff signal')
             ->assertSee('Active holder exists, but linked-card activity context is still thin for handoff review.')
             ->assertSee('Holder activity handoff stays visible in the workspace')

@@ -3678,9 +3678,11 @@ class ResourceIndexController extends Controller
 
     private function cardholdersEvidencePriority(CardHolder $selectedCardHolder): string
     {
-        return $selectedCardHolder->is_active
-            ? 'Keep active status, branch linkage, and linked-card visibility together before trusting any later profile merge or lifecycle-change discussion.'
-            : 'Keep inactive status, branch linkage, and linked-card visibility together before trusting any later reactivation or merge discussion.';
+        return match (true) {
+            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'Keep paused-branch status, branch linkage, and linked-card visibility together before trusting any later recovery, merge, or lifecycle-change discussion.',
+            $selectedCardHolder->is_active => 'Keep active status, branch linkage, and linked-card visibility together before trusting any later profile merge or lifecycle-change discussion.',
+            default => 'Keep inactive status, branch linkage, and linked-card visibility together before trusting any later reactivation or merge discussion.',
+        };
     }
 
     private function cardholdersBackendGap(CardHolder $selectedCardHolder): string
