@@ -5398,3 +5398,8 @@
 - Replaced the remaining generic preview copy `Create or edit card type` with `Create or edit Galaxy tier`, and `Create first type` with `Create first Galaxy tier`, so the tier workspace reads less like a starter catalog stub.
 - Kept the change config-driven and limited to the already writable `card-types` shell without widening publish or rule-import behavior.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'`, `1 passed`.
+
+### Roles preview copy checkpoint
+- Replaced the remaining generic preview copy `Create or edit role` with `Create or edit Galaxy role`, and `Create first role` with `Create first Galaxy role`, so the access workspace reads less like a starter authorization stub.
+- Kept the change config-driven and limited to the already writable `roles-permissions` shell without widening permission persistence, publishing, or assignment behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_management_preview|test_empty_state_ignores_malformed_entries)'`, `2 passed`.

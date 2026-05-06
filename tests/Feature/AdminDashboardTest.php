@@ -1126,7 +1126,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Publish posture')
             ->assertSee('Draft-safe only')
             ->assertSee('Publishing remains blocked even though role identity and status can already be saved in Laravel.')
-            ->assertSee('Create or edit role')
+            ->assertSee('Create or edit Galaxy role')
             ->assertSee('Publish role')
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('aria-disabled="true"', false)
@@ -1139,7 +1139,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewed roles')
             ->assertSee('Scoped shops')
             ->assertSee('No shop-scoped roles configured yet')
-            ->assertSee('Create first role')
+            ->assertSee('Create first Galaxy role')
             ->assertSee('Keep the new minimal role identity flow narrow, then layer role assignment, permission matrix, and shop-aware policy flows on top of it.')
             ->assertSee('Role identity writes are live, publishing is still preview-only')
             ->assertSee('The first Laravel-backed role form now saves role identity, but permission persistence, publishing controls, and assignment flows still need implementation.')
@@ -7443,7 +7443,7 @@ class AdminDashboardTest extends TestCase
             'title' => 'No shop-scoped roles configured yet',
             'description' => 'Seed the first role profile from the old Galaxy cashier and manager matrix before wiring persistence.',
             'actions' => [
-                ['label' => 'Create first role', 'tone' => 'primary'],
+                ['label' => 'Create first Galaxy role', 'tone' => 'primary'],
                 ['tone' => 'secondary'],
                 'invalid-action-entry',
                 ['label' => 'Review matrix', 'tone' => ['invalid-tone']],
@@ -7456,7 +7456,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Seed the first role profile from the old Galaxy cashier and manager matrix before wiring persistence.')
-            ->assertSee('Create first role')
+            ->assertSee('Create first Galaxy role')
             ->assertDontSee('invalid-action-entry')
             ->assertDontSee('Array');
     }
@@ -7500,7 +7500,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Create or edit role')
+            ->assertSee('Create or edit Galaxy role')
             ->assertSee('Publish role')
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('Role identity')

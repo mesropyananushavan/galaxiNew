@@ -962,7 +962,7 @@ return [
             ],
         ],
         'form' => [
-            'title' => 'Create or edit role',
+            'title' => 'Create or edit Galaxy role',
             'sections' => [
                 [
                     'title' => 'Role identity',
@@ -996,7 +996,7 @@ return [
             'title' => 'No shop-scoped roles configured yet',
             'description' => 'Create the first operational role set so shop managers and cashiers can map cleanly to the old Galaxy access model.',
             'actions' => [
-                ['label' => 'Create first role', 'tone' => 'primary', 'href' => '#live-form'],
+                ['label' => 'Create first Galaxy role', 'tone' => 'primary', 'href' => '#live-form'],
             ],
         ],
         'notice' => [
