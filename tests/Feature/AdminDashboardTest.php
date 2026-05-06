@@ -2899,6 +2899,76 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_live_flow_requires_activation_timestamp_for_active_status(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Missing Activation Branch',
+            'code' => 'galaxy-missing-activation-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Missing Activation Gold',
+            'slug' => 'galaxy-missing-activation-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from('/admin/cards')->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-missing-activation-1001 ',
+            'status' => 'active',
+            'issued_at' => '2026-05-05 09:20:00',
+            'activated_at' => '',
+            'review_note' => 'Keep missing activation timestamps obvious before active inventory is trusted.',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cards#live-form')
+            ->assertSessionHasErrors([
+                'activated_at' => 'Add an activation timestamp before marking this card active so the Galaxy lifecycle timeline stays operator-friendly.',
+            ]);
+    }
+
+    public function test_card_update_live_flow_requires_activation_timestamp_for_active_status(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Missing Activation Update Branch',
+            'code' => 'galaxy-missing-activation-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Missing Activation Update Gold',
+            'slug' => 'galaxy-missing-activation-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-MISSING-ACT-UPD-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-missing-act-upd-1001 ',
+            'status' => 'active',
+            'issued_at' => '2026-05-05 09:20:00',
+            'activated_at' => '',
+            'review_note' => 'Keep missing activation timestamps obvious before selected inventory is marked active.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'activated_at' => 'Add an activation timestamp before marking this card active so the Galaxy lifecycle timeline stays operator-friendly.',
+            ]);
+    }
+
     public function test_card_update_live_flow_requires_issue_timestamp_when_activation_is_present(): void
     {
         $user = User::factory()->create();

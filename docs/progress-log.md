@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards active-status activation guardrail checkpoint
+- Added the next narrow lifecycle rule so cards cannot be marked `active` in the live Laravel flow without an `activated_at` timestamp, keeping active inventory from drifting away from the Galaxy dual-lifecycle model.
+- Added create and update feature coverage plus operator-friendly validation copy, making the active-without-activation gap visible in both first-pass card creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_requires_activation_timestamp_for_active_status|test_card_update_live_flow_requires_activation_timestamp_for_active_status|test_card_live_flow_requires_issue_timestamp_when_activation_is_present|test_card_update_live_flow_requires_issue_timestamp_when_activation_is_present'`, `4 passed`.
+
 ### Cards activation-requires-issuance checkpoint
 - Added the next narrow lifecycle guardrail so the live cards flow now requires `issued_at` whenever `activated_at` is present, preventing partially activated inventory records from slipping into the new Galaxy dual-timestamp shell.
 - Added create and update feature coverage plus operator-friendly validation copy, keeping the issued-before-activation expectation explicit in both first-pass card creation and selected-card edits.

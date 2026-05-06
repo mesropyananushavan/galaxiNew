@@ -23,7 +23,7 @@ class StoreCardRequest extends FormRequest
             'number' => ['required', 'string', 'max:255', Rule::unique('cards', 'number')],
             'status' => ['required', 'string', Rule::in(['draft', 'active', 'blocked'])],
             'issued_at' => ['nullable', 'date', 'required_with:activated_at'],
-            'activated_at' => ['nullable', 'date', 'after_or_equal:issued_at'],
+            'activated_at' => ['nullable', 'date', 'required_if:status,active', 'after_or_equal:issued_at'],
             'review_note' => ['nullable', 'string', 'max:1000'],
         ];
     }
@@ -59,6 +59,7 @@ class StoreCardRequest extends FormRequest
             'issued_at.date' => 'Use a real issue timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
             'issued_at.required_with' => 'Add an issue timestamp before activation so the Galaxy lifecycle timeline stays operator-friendly.',
             'activated_at.date' => 'Use a real activation timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
+            'activated_at.required_if' => 'Add an activation timestamp before marking this card active so the Galaxy lifecycle timeline stays operator-friendly.',
             'activated_at.after_or_equal' => 'Keep activation on or after issuance so the Galaxy lifecycle timeline stays operator-friendly.',
             'review_note.max' => 'Keep the review note under 1000 characters so the inventory workspace stays operator-friendly.',
         ];
