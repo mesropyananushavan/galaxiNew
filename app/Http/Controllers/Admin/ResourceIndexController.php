@@ -1114,7 +1114,7 @@ class ResourceIndexController extends Controller
                 'cardholder' => $selectedCardHolder,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.cardholders.index';
-            $page['liveForm']['cancelLabel'] = 'Create new holder shell';
+            $page['liveForm']['cancelLabel'] = 'Create new Galaxy holder shell';
             $page['liveForm']['cancelRouteParameters'] = [];
             $page['liveForm']['submitLabel'] = 'Save holder changes';
             $page['liveForm']['valuesResolver'] = [

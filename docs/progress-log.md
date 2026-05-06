@@ -5448,3 +5448,8 @@
 - Replaced the selected-card edit reset label `Create new inventory shell` with `Create new Galaxy card shell` so the writable inventory workspace reads less like a generic starter helper action.
 - Kept the change controller-driven and copy-only, without widening holder assignment, dispute handling, or replacement behavior.
 - Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `1 passed`.
+
+### Cardholders selected action copy checkpoint
+- Replaced the selected-holder edit reset label `Create new holder shell` with `Create new Galaxy holder shell` so the writable holder workspace reads less like a generic starter helper action.
+- Kept the change controller-driven and copy-only, without widening card linkage, activity history, or lifecycle writes.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`, `1 passed`.

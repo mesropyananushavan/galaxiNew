@@ -4591,6 +4591,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: Anna Petrova')
             ->assertSee('Edit Galaxy holder in Laravel')
             ->assertSee('Save holder changes')
+            ->assertSee('Create new Galaxy holder shell')
             ->assertSee('action="/admin/cardholders/'.$cardHolder->id.'"', false)
             ->assertSee('Review recent activity')
             ->assertSee('Blocked until inactive-holder activity history is backed by a stable Laravel event source for lifecycle parity.')
