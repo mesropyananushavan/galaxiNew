@@ -888,6 +888,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Active cards', 'value' => (string) $cards->where('status', 'active')->count()],
             ['label' => 'Draft cards', 'value' => (string) $cards->where('status', 'draft')->count()],
             ['label' => 'Blocked cards', 'value' => (string) $cards->where('status', 'blocked')->count()],
+            ['label' => 'Issued cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->issued_at !== null)->count()],
             ['label' => 'Reviewed cards', 'value' => (string) $cards->filter(fn (Card $card): bool => filled($card->review_note))->count()],
         ];
 

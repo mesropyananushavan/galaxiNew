@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards issued-count overview checkpoint
+- Extended the Laravel-backed `cards` overview metrics with an `Issued cards` count so the new Galaxy issuance lifecycle signal is visible at page level instead of only inside individual inventory records.
+- Kept the step read-only and parity-safe, giving the Phase 1 inventory shell one more Galaxy-specific posture cue without widening assignment, replacement, or dispute flows.
+- Re-ran `php artisan test --filter=test_cards_page_replaces_preview_rows_with_model_backed_inventory_data`, `1 passed`.
+
 ### Card issued-at blank-normalization checkpoint
 - Added focused feature coverage so whitespace-only `issued_at` input now stays protected as a real `null` value in both the create and update card live flows, matching the same safe lifecycle cleanup already used for `activated_at`.
 - Kept the step inventory-shell-only and verification-focused, without widening holder assignment, replacement, or dispute writes.
