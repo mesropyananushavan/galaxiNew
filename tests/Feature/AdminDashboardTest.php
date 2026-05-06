@@ -2645,7 +2645,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Dispute posture')
             ->assertSee('Treat this as blocked inventory triage before any active-card recovery assumptions are made.')
             ->assertSee('Activation readiness')
-            ->assertSee('Issued inventory is still waiting for activation review in Laravel.');
+            ->assertSee('Issued inventory is still waiting for activation review in Laravel.')
+            ->assertSee('Pre-activation unassigned signal:')
+            ->assertSee('Pre-activation inventory is still unassigned, so holder recovery should stay explicit before activation parity widens into live usage.');
     }
 
     public function test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card(): void

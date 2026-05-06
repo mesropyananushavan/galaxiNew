@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards pre-activation unassigned closing checkpoint
+- Extended the new unassigned pre-activation selected-card coverage so `Pre-activation unassigned signal` is now asserted in the rendered review stack as well as the primary field list.
+- Kept the regression pass narrow by pairing the blocked pre-activation scenario with the newer holder-linked pre-activation scenario.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card'`, `2 passed`.
+
 ### Cards pre-activation unassigned review checkpoint
 - Added a `Pre-activation unassigned signal` to selected-card review so issued-but-not-yet-activated inventory now explicitly shows when holder linkage is still missing before activation parity expands into live usage.
 - Extended the blocked pre-activation selected-card test to assert the new unassigned slice while keeping the regression pass paired with the newer holder-linked pre-activation scenario.
