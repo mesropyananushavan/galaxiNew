@@ -3764,9 +3764,17 @@ class ResourceIndexController extends Controller
             ['label' => 'Card linkage posture', 'value' => $selectedCardHolder->cards_count > 0
                 ? 'Linked cards are visible in Laravel, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.'
                 : 'No linked cards exist yet, which keeps this holder safer for card-link-parity review before card-link flows are enabled.'],
-            ['label' => 'Activity posture', 'value' => 'Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.'],
+            ['label' => 'Activity posture', 'value' => $this->cardholdersActivityPosture($selectedCardHolder)],
             ['label' => 'Remaining backend gap', 'value' => $this->cardholdersBackendGap($selectedCardHolder)],
         ];
+    }
+
+    private function cardholdersActivityPosture(CardHolder $selectedCardHolder): string
+    {
+        return match (true) {
+            (bool) $selectedCardHolder->shop?->is_active === false => 'Recent activity remains blocked until a stable Laravel event source preserves paused-branch lookup and recovery parity.',
+            default => 'Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.',
+        };
     }
 
     private function shopsSelectedShopSummary(Shop $selectedShop): array

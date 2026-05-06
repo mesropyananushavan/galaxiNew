@@ -5820,3 +5820,8 @@
 - Refined `cardholdersActivityHandoffSignal()` and `cardholdersActivityTimelineHandoffDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch holders now carry explicit branch-recovery wording through the selected-holder handoff stack instead of reusing the generic active-branch activity copy.
 - Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new handoff signal and timeline wording render in both the summary and dependency/closing context.
 - Kept the change read-only and parity-first, without widening holder writes, reactivation flows, or card-link mutations.
+
+### Cardholders paused-branch activity posture checkpoint
+- Added `cardholdersActivityPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder dependency stack now gives paused-branch holders their own activity-blocking copy instead of the generic holder lookup wording.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Activity posture` text renders in the closing/dependency context.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.

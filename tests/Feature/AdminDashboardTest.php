@@ -5797,7 +5797,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop activity signal:')
             ->assertSee('Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.')
             ->assertSee('Activity handoff signal:')
-            ->assertSee('Paused-branch holder should carry branch-recovery context forward until lookup and reactivation parity are explicit.');
+            ->assertSee('Paused-branch holder should carry branch-recovery context forward until lookup and reactivation parity are explicit.')
+            ->assertSee('Activity posture:')
+            ->assertSee('Recent activity remains blocked until a stable Laravel event source preserves paused-branch lookup and recovery parity.');
     }
 
     public function test_cardholders_page_ignores_unknown_selected_holder_query(): void
