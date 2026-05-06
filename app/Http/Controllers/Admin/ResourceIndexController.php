@@ -3296,6 +3296,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Blocked pre-activation signal', 'value' => $this->cardsBlockedPreActivationSignal($selectedCard)],
             ['label' => 'Blocked activated signal', 'value' => $this->cardsBlockedActivatedSignal($selectedCard)],
+            ['label' => 'Blocked holder-linked signal', 'value' => $this->cardsBlockedHolderLinkedSignal($selectedCard)],
             ['label' => 'Blocked unassigned signal', 'value' => $this->cardsBlockedUnassignedSignal($selectedCard)],
             ['label' => 'Dispute posture', 'value' => $this->cardsDisputePosture($selectedCard)],
             ['label' => 'Activation readiness', 'value' => $this->cardsActivationReadiness($selectedCard)],
@@ -3354,6 +3355,15 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'blocked' && $selectedCard->activated_at !== null => 'Blocked inventory had already reached activation before dispute review in Laravel.',
             $selectedCard->status === 'blocked' => 'Blocked activated review is not the active slice for this card right now.',
             default => 'Blocked activated review is out of scope for this card right now.',
+        };
+    }
+
+    private function cardsBlockedHolderLinkedSignal(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->status === 'blocked' && $selectedCard->holder !== null => 'Blocked inventory already carries holder linkage, so dispute and replacement review can stay anchored to the current member record.',
+            $selectedCard->status === 'blocked' => 'Blocked holder-linked review is not the active slice for this card right now.',
+            default => 'Blocked holder-linked review is out of scope for this card right now.',
         };
     }
 
