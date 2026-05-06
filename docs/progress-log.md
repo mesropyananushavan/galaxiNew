@@ -5855,3 +5855,8 @@
 - Refined `cardholdersEvidencePriority()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit branch-recovery wording in the selected-holder summary evidence stack instead of the generic active-holder priority copy.
 - Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Evidence priority` text renders in the summary context.
 - Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch focus checkpoint
+- Refined `cardholdersHolderFocus()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit branch-recovery wording in the selected-holder summary focus stack instead of the generic active-holder focus copy.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Holder focus` text renders in the summary context.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
