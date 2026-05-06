@@ -7466,9 +7466,9 @@ class AdminDashboardTest extends TestCase
         $user = User::factory()->create();
 
         Config::set('admin-pages.roles-permissions.form', [
-            'title' => 'Create or edit role',
+            'title' => 'Create or edit Galaxy role',
             'actions' => [
-                ['label' => 'Publish role', 'tone' => 'primary'],
+                ['label' => 'Publish access', 'tone' => 'primary'],
                 ['tone' => 'secondary'],
                 'invalid-action-entry',
             ],
@@ -7502,7 +7502,6 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create or edit Galaxy role')
             ->assertSee('Publish access')
-            ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('Role identity')
             ->assertSee('Keep legacy naming visible while the matrix is still preview-only.')
             ->assertSee('Compare staff roles')
@@ -7571,11 +7570,11 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Create or edit role')
+            ->assertSee('Create or edit Galaxy role')
             ->assertSee('Publish access')
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('No shop-scoped roles configured yet')
-            ->assertSee('Create first role');
+            ->assertSee('Create first Galaxy role');
     }
 
     public function test_normalized_page_assembly_still_renders_mixed_block_types(): void
@@ -7612,8 +7611,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Create or edit role')
-            ->assertSee('Publish role')
+            ->assertSee('Create or edit Galaxy role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Preview notice')

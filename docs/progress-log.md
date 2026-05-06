@@ -5438,3 +5438,8 @@
 - Replaced remaining generic role-action copy with access-shell wording: `Publish role` became `Publish access` in both preview and selected-role contexts, and the selected-role reset action now reuses `Create new access shell` instead of the generic `Create new role`.
 - Kept the change copy-only and parity-first, without opening permission persistence, assignment writes, or broader publish behavior.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data)'`, `2 passed`.
+
+### Roles preview normalization test cleanup checkpoint
+- Removed stale generic role wording from role preview normalization coverage so helper/normalizer tests now match the Galaxy-specific access-shell copy already rendered by the product.
+- Narrowed one malformed-form assertion to the actual normalization behavior under test instead of expecting a disabled-reason string from an intentionally overridden fixture action.
+- Re-ran `php artisan test --filter='(test_form_preview_ignores_malformed_entries|test_primary_page_blocks_still_render_after_grouped_controller_lookup|test_resource_page_still_renders_after_normalizer_is_extracted)'`, `3 passed`.
