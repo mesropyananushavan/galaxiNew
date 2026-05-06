@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Card issued-at blank-normalization checkpoint
+- Added focused feature coverage so whitespace-only `issued_at` input now stays protected as a real `null` value in both the create and update card live flows, matching the same safe lifecycle cleanup already used for `activated_at`.
+- Kept the step inventory-shell-only and verification-focused, without widening holder assignment, replacement, or dispute writes.
+- Re-ran `php artisan test --filter='(test_card_live_flow_normalizes_blank_issue_timestamp_to_null|test_card_update_live_flow_normalizes_blank_issue_timestamp_to_null)'`, `2 passed`.
+
 ### Card issued-at live flow checkpoint
 - Extended the narrow Laravel-backed `cards` write flow so `issued_at` now persists through create and update, turning the new Galaxy issuance timestamp into a real Phase 1 inventory lifecycle field instead of a read-only shell detail.
 - Updated card request validation, live-form defaults, and selected-card form hydration while keeping holder assignment, replacement, and dispute semantics safely out of scope.

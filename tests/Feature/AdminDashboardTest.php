@@ -9764,6 +9764,49 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_card_update_live_flow_normalizes_blank_issue_timestamp_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Issue Cleanup Branch',
+            'code' => 'galaxy-issue-cleanup-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Issue Cleanup Gold',
+            'slug' => 'galaxy-issue-cleanup-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-ISS-UPD-1001',
+            'status' => 'active',
+            'issued_at' => '2026-05-05 09:30:00',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-iss-upd-1001 ',
+            'status' => 'active',
+            'issued_at' => '   ',
+            'activated_at' => '',
+            'review_note' => 'Keep inventory cleanup narrow while issue timing is reset.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card "GX-ISS-UPD-1001" was updated.');
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'number' => 'GX-ISS-UPD-1001',
+            'issued_at' => null,
+        ]);
+    }
+
     public function test_card_live_flow_normalizes_blank_activation_timestamp_to_null(): void
     {
         $user = User::factory()->create();
@@ -9798,6 +9841,44 @@ class AdminDashboardTest extends TestCase
             'id' => $card->id,
             'number' => 'GX-ACT-NULL-1001',
             'activated_at' => null,
+        ]);
+    }
+
+    public function test_card_live_flow_normalizes_blank_issue_timestamp_to_null(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Issue Null Branch',
+            'code' => 'galaxy-issue-null-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Issue Null Gold',
+            'slug' => 'galaxy-issue-null-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-iss-null-1001 ',
+            'status' => 'active',
+            'issued_at' => '   ',
+            'activated_at' => '',
+            'review_note' => 'Keep inventory issue cleanup narrow while the first shell stays live.',
+        ]);
+
+        $card = Card::query()->where('number', 'GX-ISS-NULL-1001')->firstOrFail();
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#backend-flow-status')
+            ->assertSessionHas('status', 'Card "GX-ISS-NULL-1001" was created.');
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'number' => 'GX-ISS-NULL-1001',
+            'issued_at' => null,
         ]);
     }
 
