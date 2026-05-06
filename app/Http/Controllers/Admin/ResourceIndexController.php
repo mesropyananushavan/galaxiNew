@@ -949,6 +949,7 @@ class ResourceIndexController extends Controller
                 'card_type_id' => $selectedCard->card_type_id !== null ? (string) $selectedCard->card_type_id : '',
                 'number' => $selectedCard->number,
                 'status' => $selectedCard->status,
+                'issued_at' => $selectedCard->issued_at?->format('Y-m-d H:i:s') ?? '',
                 'activated_at' => $selectedCard->activated_at?->format('Y-m-d H:i:s') ?? '',
                 'review_note' => $selectedCard->review_note ?? '',
             ];

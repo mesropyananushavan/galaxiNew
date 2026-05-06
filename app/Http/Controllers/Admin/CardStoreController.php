@@ -21,6 +21,7 @@ class CardStoreController extends Controller
             'card_type_id' => $validated['card_type_id'],
             'number' => $validated['number'],
             'status' => $validated['status'],
+            'issued_at' => $validated['issued_at'] ?? null,
             'activated_at' => $validated['activated_at'] ?? null,
             'review_note' => $validated['review_note'] ?? null,
         ]);

@@ -2564,6 +2564,7 @@ class AdminDashboardTest extends TestCase
             'card_type_id' => (string) $cardType->id,
             'number' => ' gx-live-1001 ',
             'status' => 'active',
+            'issued_at' => '2026-05-05 09:20:00',
             'activated_at' => '2026-05-05 12:40:00',
             'review_note' => 'Keep first-pass inventory parity visible before widening replacement handling.',
         ]);
@@ -2579,6 +2580,7 @@ class AdminDashboardTest extends TestCase
             'card_type_id' => $cardType->id,
             'number' => 'GX-LIVE-1001',
             'status' => 'active',
+            'issued_at' => '2026-05-05 09:20:00',
             'review_note' => 'Keep first-pass inventory parity visible before widening replacement handling.',
         ]);
     }
@@ -2609,6 +2611,7 @@ class AdminDashboardTest extends TestCase
             'card_type_id' => (string) $cardType->id,
             'number' => ' gx-live-2001a ',
             'status' => 'blocked',
+            'issued_at' => '2026-05-05 08:10:00',
             'activated_at' => '2026-05-05 12:41:00',
             'review_note' => 'Keep blocked inventory under parity review before trusting dispute or replacement follow-up.',
         ]);
@@ -2623,6 +2626,7 @@ class AdminDashboardTest extends TestCase
             'card_type_id' => $cardType->id,
             'number' => 'GX-LIVE-2001A',
             'status' => 'blocked',
+            'issued_at' => '2026-05-05 08:10:00',
             'review_note' => 'Keep blocked inventory under parity review before trusting dispute or replacement follow-up.',
         ]);
     }

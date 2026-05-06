@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Card issued-at live flow checkpoint
+- Extended the narrow Laravel-backed `cards` write flow so `issued_at` now persists through create and update, turning the new Galaxy issuance timestamp into a real Phase 1 inventory lifecycle field instead of a read-only shell detail.
+- Updated card request validation, live-form defaults, and selected-card form hydration while keeping holder assignment, replacement, and dispute semantics safely out of scope.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_card_from_live_admin_flow|test_authenticated_user_can_update_card_from_live_admin_flow)'`, `2 passed`.
+
 ### Card issued-at review visibility checkpoint
 - Surfaced the new Galaxy `issued_at` lifecycle timestamp across the Laravel-backed `cards` review shell so issued inventory is visible in both the index table and selected-card context instead of staying a schema-only foundation detail.
 - Updated the card-page glossary and focused feature coverage so Phase 1 inventory review now distinguishes issuance timing from later activation timing without widening any live write flow yet.
