@@ -5393,3 +5393,8 @@
 - Replaced the remaining generic `New type` page action label with `New Galaxy tier` so the writable tier workspace reads more like a Galaxy-specific shell and less like a starter admin list.
 - Kept the change config- and controller-driven so the catalog and live Laravel-backed tier view stay aligned.
 - Re-ran `php artisan test --filter='test_card_types_catalog_actions_reflect_saved_tier_readiness'`, `1 passed`.
+
+### Card types preview copy checkpoint
+- Replaced the remaining generic preview copy `Create or edit card type` with `Create or edit Galaxy tier`, and `Create first type` with `Create first Galaxy tier`, so the tier workspace reads less like a starter catalog stub.
+- Kept the change config-driven and limited to the already writable `card-types` shell without widening publish or rule-import behavior.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'`, `1 passed`.

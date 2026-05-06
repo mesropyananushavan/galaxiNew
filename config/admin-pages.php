@@ -558,7 +558,7 @@ return [
             ],
         ],
         'form' => [
-            'title' => 'Create or edit card type',
+            'title' => 'Create or edit Galaxy tier',
             'sections' => [
                 [
                     'title' => 'Identity',
@@ -592,7 +592,7 @@ return [
             'title' => 'No custom card types configured yet',
             'description' => 'Start by creating the first Galaxy-specific card tier, then import or rebuild rules from the old operational setup.',
             'actions' => [
-                ['label' => 'Create first type', 'tone' => 'primary', 'href' => '#live-form'],
+                ['label' => 'Create first Galaxy tier', 'tone' => 'primary', 'href' => '#live-form'],
             ],
         ],
         'notice' => [
