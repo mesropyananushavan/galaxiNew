@@ -893,6 +893,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Holder-linked cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->card_holder_id !== null)->count()],
             ['label' => 'Assignment-ready cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->card_holder_id !== null)->count()],
             ['label' => 'Assignment-pending cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->card_holder_id === null)->count()],
+            ['label' => 'Issued unassigned cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->issued_at !== null && $card->card_holder_id === null)->count()],
             ['label' => 'Unassigned cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->card_holder_id === null)->count()],
             ['label' => 'Active holder-linked cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->status === 'active' && $card->card_holder_id !== null)->count()],
             ['label' => 'Active unassigned cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->status === 'active' && $card->card_holder_id === null)->count()],
