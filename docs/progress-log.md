@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards assignment-ready metric checkpoint
+- Added an `Assignment-ready cards` metric to the Laravel-backed cards index so the overview now calls out inventory that already has holder linkage and is ready for parity-first assignment review.
+- Synced the config-driven placeholder metrics and cards index assertions so the new aggregate readiness slice shows up alongside the broader holder-linked and unassigned counters.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
 ### Cards draft full review assignment readiness checkpoint
 - Extended the broader draft selected-card review test so `Assignment readiness summary` is now asserted in the rendered closing/context stack, not only in the primary field list.
 - Kept the step narrow by pairing the full draft review test with the existing draft lifecycle test for a targeted regression pass.

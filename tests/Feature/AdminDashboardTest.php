@@ -2432,6 +2432,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Issued cards')
             ->assertSee('Pre-activation cards')
             ->assertSee('Holder-linked cards')
+            ->assertSee('Assignment-ready cards')
             ->assertSee('Unassigned cards')
             ->assertSee('Active holder-linked cards')
             ->assertSee('Active unassigned cards')
