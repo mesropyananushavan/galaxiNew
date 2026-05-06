@@ -3439,6 +3439,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active card is already visible for live inventory parity review.')
             ->assertSee('Operational readiness')
             ->assertSee('issued inventory, parity-sensitive')
+            ->assertSee('Active holder-linked signal')
+            ->assertSee('Active inventory already carries holder linkage, so parity review can stay anchored to the current member record before later replacement flows are widened.')
             ->assertSee('Active unassigned signal')
             ->assertSee('Active inventory already carries holder linkage in Laravel for parity-first review.')
             ->assertSee('Linkage signal')
@@ -3488,6 +3490,8 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Reviewing: GX-920055')
+            ->assertSee('Active holder-linked signal')
+            ->assertSee('Active holder-linked review is not the active slice for this card right now.')
             ->assertSee('Active unassigned signal')
             ->assertSee('Active inventory is still unassigned, so holder-linkage recovery should stay visible before operators assume a stable member attachment.')
             ->assertSee('Linkage signal')
