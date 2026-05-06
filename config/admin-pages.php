@@ -304,8 +304,8 @@ return [
         'operationalNextSlice' => [
             'summary' => 'The first real cards slice should be a query-backed inventory table that mirrors the current preview layout.',
             'steps' => [
-                'Load cards with holder, type, status, and activation timestamp fields.',
-                'Keep the first filter set to shop, status, and card type.',
+                'Load cards with holder, type, status, issue timing, and activation timing fields.',
+                'Keep the first filter set to shop, status, and card type',
                 'Delay mutation actions until the read path is verified against live data.',
             ],
         ],
@@ -335,7 +335,7 @@ return [
         'implementationHandoff' => [
             'summary' => 'When PHP is available, start with a read-only inventory table before exposing issue, block, or assignment flows.',
             'steps' => [
-                'Load cards with holder, type, status, and activation timestamp columns.',
+                'Load cards with holder, type, status, issue timing, and activation timing columns.',
                 'Add shop, status, and card-type filters before any mutations.',
                 'Delay issue and block actions until the read path is verified against live card states.',
             ],

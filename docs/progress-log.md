@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards lifecycle copy parity checkpoint
+- Cleaned up the cards operational-index copy so the Phase 1 inventory shell now talks about both issue timing and activation timing instead of leaving stale activation-only wording from the earlier starter-shaped placeholder.
+- Kept the step read-only and parity-safe, but aligned the first cards implementation handoff text with the newer Galaxy lifecycle field shape already present in the Laravel foundation.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_cards_operational_index_shape`, `1 passed`.
+
 ### Card activation update-validation checkpoint
 - Added focused feature coverage for the selected-card update path so invalid `activated_at` input now stays pinned to the same operator-friendly Galaxy lifecycle message after redirecting back into edit mode.
 - Kept the step validation-only and parity-safe, tightening the Phase 1 inventory edit shell without widening holder assignment, replacement, or dispute writes.

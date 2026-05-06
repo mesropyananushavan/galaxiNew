@@ -2279,7 +2279,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Inventory reads, assignment flows, and status mutations are still pending')
             ->assertSee('First Laravel wiring step')
             ->assertSee('When PHP is available, start with a read-only inventory table before exposing issue, block, or assignment flows.')
-            ->assertSee('Load cards with holder, type, status, and activation timestamp columns.')
+            ->assertSee('Load cards with holder, type, status, issue timing, and activation timing columns.')
             ->assertSee('Recent activity preview')
             ->assertSee('Blocked card state kept visible')
             ->assertSee('Draft card review deferred')
