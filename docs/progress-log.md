@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards lifecycle-filter copy checkpoint
+- Cleaned up the remaining cards placeholder filter and parity-focus copy so the Phase 1 inventory shell now talks about issue plus activation visibility, not only the older activation-only framing.
+- Kept the step copy-only and parity-safe, but aligned the inventory filter language with the dual-lifecycle foundation already visible in the Laravel-backed card workspace.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_cards_operational_index_shape`, `1 passed`.
+
 ### Cards activation-glossary parity checkpoint
 - Tightened the cards glossary and live-form help text so `Activated` now reads as a post-issuance lifecycle step instead of a standalone generic timestamp, matching the newer Galaxy `issued_at` plus `activated_at` foundation shape.
 - Kept the step copy-only and parity-safe, but made the inventory shell's lifecycle language more internally consistent for operators reading the Phase 1 card workspace.

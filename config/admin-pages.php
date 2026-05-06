@@ -290,7 +290,7 @@ return [
                 ['GX-100002', 'Unassigned', 'Silver', 'No review note saved yet', 'North Shop', 'draft', '—'],
                 ['GX-100003', 'Mariam Sargsyan', 'Partner', 'Keep blocked-card dispute context visible before trusting replacement follow-up.', 'Central Shop', 'blocked', '2026-03-28'],
             ],
-            'filters' => ['Shop', 'Status', 'Card type', 'Activation period'],
+            'filters' => ['Shop', 'Status', 'Card type', 'Issue/activation period'],
         ],
         'operationalGlossary' => [
             ['term' => 'Card type', 'meaning' => 'The tier or segment definition that controls accrual and activation behavior.'],
@@ -346,7 +346,7 @@ return [
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy card inventory screen'],
-            ['label' => 'Parity focus', 'value' => 'Card states, holder linkage, activation visibility'],
+            ['label' => 'Parity focus', 'value' => 'Card states, holder linkage, issue and activation visibility'],
             ['label' => 'Migration note', 'value' => 'Preserve blocked and draft semantics before exposing mutation actions'],
         ],
         'operatorChecklist' => [

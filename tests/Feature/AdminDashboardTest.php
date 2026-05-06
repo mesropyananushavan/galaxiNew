@@ -2286,7 +2286,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft card review deferred')
             ->assertSee('Legacy parity mapping')
             ->assertSee('Old Galaxy card inventory screen')
-            ->assertSee('Card states, holder linkage, activation visibility')
+            ->assertSee('Card states, holder linkage, issue and activation visibility')
             ->assertSee('Operator checklist')
             ->assertSee('Review blocked cards before issuing new replacements.')
             ->assertSee('Escalation guide')
@@ -2305,7 +2305,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('query-backed inventory table')
             ->assertSee('Retain clear visibility for unassigned, active, and blocked card states.')
             ->assertSee('Card type')
-            ->assertSee('Activation period');
+            ->assertSee('Issue/activation period');
     }
 
     public function test_cards_catalog_actions_reflect_saved_inventory_readiness(): void
