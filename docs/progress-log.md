@@ -5845,3 +5845,8 @@
 - Added `Active-branch linked holders` and `Paused-branch unlinked holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php`, so the holder workspace now exposes a narrower branch-plus-linkage split instead of only broad status/linkage totals.
 - Extended the model-backed cardholders index test in `tests/Feature/AdminDashboardTest.php` to assert both new metric labels render in the live workspace.
 - Kept the change read-only and parity-first, without widening holder writes, branch moves, or card-link mutations.
+
+### Cardholders paused-branch summary posture checkpoint
+- Refined `cardholdersHolderPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit branch-recovery wording in the selected-holder summary stack instead of the generic live-holder posture copy.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Holder posture` text renders in the summary context.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.

@@ -5686,7 +5686,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Holder focus')
             ->assertSee('Start with active status, branch linkage, and linked-card visibility before discussing any later profile merge or reactivation edge case.')
             ->assertSee('Holder posture')
-            ->assertSee('Keep live holder review in the workspace first, then leave profile-write, merge, and lifecycle-change flows gated until parity is proven.')
+            ->assertSee('Keep paused-branch holder review in the workspace first, then leave recovery, merge, and lifecycle-change flows gated until branch parity is proven.')
             ->assertSee('Evidence priority')
             ->assertSee('Keep active status, branch linkage, and linked-card visibility together before trusting any later profile merge or lifecycle-change discussion.')
             ->assertSee('Activity handoff signal')
