@@ -713,7 +713,7 @@ return [
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
-                ['label' => 'Publish rule', 'tone' => 'primary', 'disabled' => true, 'disabledReason' => 'Blocked until rule CRUD and parity checks exist beyond the preview shell.'],
+                ['label' => 'Publish Galaxy rule', 'tone' => 'primary', 'disabled' => true, 'disabledReason' => 'Blocked until rule CRUD and parity checks exist beyond the preview shell.'],
             ],
         ],
         'emptyState' => [

@@ -466,7 +466,7 @@ class ResourceIndexController extends Controller
                 'disabledReason' => $this->servicesRulesSelectedReviewPrioritiesDisabledReason($selectedRulePreview),
             ],
             [
-                'label' => 'Publish rule',
+                'label' => 'Publish Galaxy rule',
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => $this->servicesRulesSelectedPublishRuleDisabledReason($selectedRulePreview),
