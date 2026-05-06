@@ -3271,9 +3271,9 @@ class ResourceIndexController extends Controller
                 default => 'Draft card remains safer for issuance-parity review before any issuance-flow discussion.',
             }],
             ['label' => 'Operational readiness', 'value' => $this->cardsOperationalReadiness($selectedCard)],
+            ['label' => 'Lifecycle stage', 'value' => $this->cardsLifecycleStage($selectedCard)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
-            ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Review note', 'value' => $selectedCard->review_note ?: 'No review note saved yet'],
             ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
             ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
@@ -3309,6 +3309,15 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'active' && $selectedCard->holder !== null => 'issued inventory, parity-sensitive',
             $selectedCard->status === 'active' => 'active inventory, holder linkage incomplete',
             default => 'draft inventory shell',
+        };
+    }
+
+    private function cardsLifecycleStage(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->issued_at === null => 'Draft inventory shell, not yet issued in Laravel.',
+            $selectedCard->activated_at === null => 'Issued inventory shell, still waiting for activation parity review.',
+            default => 'Issued and activated inventory already visible in Laravel.',
         };
     }
 

@@ -2496,6 +2496,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.')
             ->assertSee('Operational readiness')
             ->assertSee('blocked inventory, operator review only')
+            ->assertSee('Lifecycle stage')
+            ->assertSee('Issued and activated inventory already visible in Laravel.')
             ->assertSee('Lifecycle freshness')
             ->assertSee('newly created in Laravel review')
             ->assertSee('Last saved in Laravel')
@@ -2598,6 +2600,46 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Issued inventory is still waiting for activation review in Laravel.')
             ->assertSee('Issued')
             ->assertSee('2026-04-09')
+            ->assertSee('Activated')
+            ->assertSee('—');
+    }
+
+    public function test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy South',
+            'code' => 'galaxy-south-draft-card',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Bronze',
+            'slug' => 'galaxy-bronze-draft-card',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-910003',
+            'status' => 'draft',
+            'review_note' => 'Keep unissued stock in safe review before any activation discussion starts.',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: GX-910003')
+            ->assertSee('Lifecycle stage')
+            ->assertSee('Draft inventory shell, not yet issued in Laravel.')
+            ->assertSee('Activation readiness')
+            ->assertSee('This card has not been issued yet, so activation should remain out of scope during parity review.')
+            ->assertSee('Issued')
             ->assertSee('Activated')
             ->assertSee('—');
     }
