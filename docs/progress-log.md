@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Card issued-at edit-hydration checkpoint
+- Added focused selected-card coverage so the shared Laravel edit form now stays explicitly anchored to the saved `issued_at` and `activated_at` lifecycle timestamps, not just the summary and table read views.
+- Kept the step verification-only and parity-safe, tightening confidence that the new Galaxy inventory lifecycle field is truly part of the live review shell.
+- Re-ran `php artisan test --filter=test_cards_page_surfaces_selected_card_context_from_laravel_data`, `1 passed`.
+
 ### Cards issued-count overview checkpoint
 - Extended the Laravel-backed `cards` overview metrics with an `Issued cards` count so the new Galaxy issuance lifecycle signal is visible at page level instead of only inside individual inventory records.
 - Kept the step read-only and parity-safe, giving the Phase 1 inventory shell one more Galaxy-specific posture cue without widening assignment, replacement, or dispute flows.
