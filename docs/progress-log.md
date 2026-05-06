@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards activation-requires-issuance checkpoint
+- Added the next narrow lifecycle guardrail so the live cards flow now requires `issued_at` whenever `activated_at` is present, preventing partially activated inventory records from slipping into the new Galaxy dual-timestamp shell.
+- Added create and update feature coverage plus operator-friendly validation copy, keeping the issued-before-activation expectation explicit in both first-pass card creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_requires_issue_timestamp_when_activation_is_present|test_card_update_live_flow_requires_issue_timestamp_when_activation_is_present|test_card_live_flow_rejects_activation_before_issue_timestamp|test_card_update_live_flow_rejects_activation_before_issue_timestamp'`, `4 passed`.
+
 ### Cards lifecycle-order validation checkpoint
 - Added a narrow lifecycle guardrail to the live cards flow so `activated_at` can no longer be saved earlier than `issued_at`, keeping the new Galaxy dual-timestamp foundation from accepting backward lifecycle timelines.
 - Added create and update feature coverage plus operator-friendly validation copy, keeping the timeline rule visible in both first-pass inventory creation and selected-card edits.

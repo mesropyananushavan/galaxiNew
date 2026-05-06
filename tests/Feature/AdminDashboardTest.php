@@ -2867,6 +2867,76 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_live_flow_requires_issue_timestamp_when_activation_is_present(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Missing Issue Branch',
+            'code' => 'galaxy-missing-issue-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Missing Issue Gold',
+            'slug' => 'galaxy-missing-issue-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from('/admin/cards')->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-missing-issue-1001 ',
+            'status' => 'active',
+            'issued_at' => '',
+            'activated_at' => '2026-05-05 12:40:00',
+            'review_note' => 'Keep missing issue timestamps obvious when activation is already present.',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cards#live-form')
+            ->assertSessionHasErrors([
+                'issued_at' => 'Add an issue timestamp before activation so the Galaxy lifecycle timeline stays operator-friendly.',
+            ]);
+    }
+
+    public function test_card_update_live_flow_requires_issue_timestamp_when_activation_is_present(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Missing Issue Update Branch',
+            'code' => 'galaxy-missing-issue-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Missing Issue Update Gold',
+            'slug' => 'galaxy-missing-issue-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-MISSING-ISS-UPD-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-missing-iss-upd-1001 ',
+            'status' => 'active',
+            'issued_at' => '',
+            'activated_at' => '2026-05-05 12:40:00',
+            'review_note' => 'Keep missing issue timestamps obvious when selected inventory edits include activation.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'issued_at' => 'Add an issue timestamp before activation so the Galaxy lifecycle timeline stays operator-friendly.',
+            ]);
+    }
+
     public function test_card_update_live_flow_rejects_activation_before_issue_timestamp(): void
     {
         $user = User::factory()->create();
