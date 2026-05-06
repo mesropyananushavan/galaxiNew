@@ -3305,6 +3305,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Active holder-linked signal', 'value' => $this->cardsActiveHolderLinkedSignal($selectedCard)],
             ['label' => 'Active unassigned signal', 'value' => $this->cardsActiveUnassignedSignal($selectedCard)],
             ['label' => 'Holder linkage summary', 'value' => $this->cardsHolderLinkageSummary($selectedCard)],
+            ['label' => 'Assignment readiness summary', 'value' => $this->cardsAssignmentReadinessSummary($selectedCard)],
             ['label' => 'Assignment posture', 'value' => $this->cardsAssignmentPosture($selectedCard)],
             ['label' => 'Dispute posture', 'value' => $this->cardsDisputePosture($selectedCard)],
             ['label' => 'Activation readiness', 'value' => $this->cardsActivationReadiness($selectedCard)],
@@ -3409,6 +3410,16 @@ class ResourceIndexController extends Controller
             $selectedCard->holder !== null => 'Holder linkage is already present in Laravel for this card review.',
             $selectedCard->issued_at !== null => 'Holder linkage is still missing from this issued card, so assignment recovery remains visible.',
             default => 'Holder linkage is still intentionally absent while this card stays in draft inventory review.',
+        };
+    }
+
+    private function cardsAssignmentReadinessSummary(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->holder !== null && $selectedCard->status === 'blocked' => 'Holder linkage is present, but assignment changes stay dispute-gated while blocked parity is still under review.',
+            $selectedCard->holder !== null => 'Holder linkage is present, so assignment state is ready for parity-first review in Laravel.',
+            $selectedCard->issued_at !== null => 'Assignment state is still pending because this issued card has not been linked to a holder yet.',
+            default => 'Assignment state is still intentionally pending while this card remains a draft inventory shell.',
         };
     }
 

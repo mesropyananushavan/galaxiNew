@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards assignment readiness summary checkpoint
+- Added an `Assignment readiness summary` field to selected-card review so cards now get one compact operator line describing whether holder assignment is ready for parity-first review, still pending, or dispute-gated.
+- Covered the new summary in the existing active and blocked selected-card tests across both holder-linked and unassigned review paths.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `4 passed`.
+
 ### Cards blocked pre-activation linkage summary checkpoint
 - Extended the blocked pre-activation selected-card test so `Holder linkage summary` and `Assignment posture` are now explicitly covered on blocked inventory that was issued but never activated.
 - Kept the step narrow by reusing the existing blocked pre-activation and issued-inventory tests instead of widening cards behavior again.
