@@ -285,6 +285,7 @@ return [
             ['label' => 'Pre-activation cards', 'value' => '1'],
             ['label' => 'Blocked pre-activation cards', 'value' => '0'],
             ['label' => 'Blocked activated cards', 'value' => '1'],
+            ['label' => 'Blocked cards with holders', 'value' => '1'],
             ['label' => 'Reviewed cards', 'value' => '1'],
         ],
         'table' => [
