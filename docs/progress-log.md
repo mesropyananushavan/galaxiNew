@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked assignment posture checkpoint
+- Refined `Assignment posture` copy for blocked selected-card review so holder-linked blocked inventory now calls out member-linked dispute review with parity-gated replacement, while blocked unassigned inventory keeps holder-recovery assumptions explicitly off-limits.
+- Extended the blocked selected-card assertions to cover the new summary posture on both holder-linked and unassigned blocked cards, plus the broader Laravel-backed selected-card context test.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `3 passed`.
+
 ### Cards assignment posture selected-review checkpoint
 - Added an `Assignment posture` field to selected-card review so active cards now get one operator-friendly summary line describing whether parity review is member-linked or still blocked on holder assignment recovery.
 - Kept the step narrow by reusing the two active selected-card review tests and extending them with the new summary posture assertions.
