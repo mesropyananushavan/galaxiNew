@@ -5815,3 +5815,8 @@
 - Added `Active unlinked holders` and `Inactive unlinked holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php`, so the holder workspace now exposes the opposite side of the linkage split instead of only linked-holder slices.
 - Extended the model-backed cardholders index fixture in `tests/Feature/AdminDashboardTest.php` with an active unlinked holder and asserted both new metric labels render in the live workspace.
 - Kept the change read-only and parity-first, without widening holder writes, reassignment flows, or card-link mutations.
+
+### Cardholders paused-branch handoff checkpoint
+- Refined `cardholdersActivityHandoffSignal()` and `cardholdersActivityTimelineHandoffDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch holders now carry explicit branch-recovery wording through the selected-holder handoff stack instead of reusing the generic active-branch activity copy.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new handoff signal and timeline wording render in both the summary and dependency/closing context.
+- Kept the change read-only and parity-first, without widening holder writes, reactivation flows, or card-link mutations.

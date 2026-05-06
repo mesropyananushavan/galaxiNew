@@ -5790,8 +5790,14 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: Lilit Paused Branch Holder')
             ->assertSee('Shop activity signal')
             ->assertSee('Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.')
+            ->assertSee('Activity handoff signal')
+            ->assertSee('Paused-branch holder should carry branch-recovery context forward until lookup and reactivation parity are explicit.')
+            ->assertSee('Holder activity handoff stays visible in the workspace')
+            ->assertSee('Operators should carry paused-branch context, holder status, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.')
             ->assertSee('Shop activity signal:')
-            ->assertSee('Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.');
+            ->assertSee('Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.')
+            ->assertSee('Activity handoff signal:')
+            ->assertSee('Paused-branch holder should carry branch-recovery context forward until lookup and reactivation parity are explicit.');
     }
 
     public function test_cardholders_page_ignores_unknown_selected_holder_query(): void
