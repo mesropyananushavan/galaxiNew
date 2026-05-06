@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards pre-activation metric checkpoint
+- Added a small but real dual-lifecycle inventory metric, `Pre-activation cards`, to the Laravel-backed cards page so Phase 1 now distinguishes issued-but-not-yet-activated stock instead of collapsing everything into generic draft or active counts.
+- Brought the static cards placeholder metrics back into sync with the live shell by restoring `Issued cards` there too, keeping the preview configuration closer to the actual Galaxy inventory foundation.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
 ### Cards preview-row lifecycle parity checkpoint
 - Aligned the static cards placeholder rows with the newer dual-lifecycle table shape so preview inventory now carries both issued and activated timestamps instead of leaving the sample grid one column short.
 - Kept the step preview-only and parity-safe, but removed another starter-like mismatch between the configured cards shell structure and the visible Phase 1 inventory examples.

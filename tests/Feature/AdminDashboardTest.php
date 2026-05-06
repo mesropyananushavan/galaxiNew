@@ -2269,6 +2269,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active cards')
             ->assertSee('Draft cards')
             ->assertSee('Blocked cards')
+            ->assertSee('Issued cards')
+            ->assertSee('Pre-activation cards')
             ->assertSee('Card operations are still preview-only')
             ->assertSee('Inventory actions, status metrics, and filters are laid out for Galaxy parity, but they are not connected to Laravel handlers yet.')
             ->assertSee('Migration readiness checklist')
@@ -2392,6 +2394,7 @@ class AdminDashboardTest extends TestCase
             'card_type_id' => $cardType->id,
             'number' => 'GX-900002',
             'status' => 'draft',
+            'issued_at' => '2026-04-09 09:00:00',
         ]);
 
         Card::create([
@@ -2425,10 +2428,12 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft cards')
             ->assertSee('Blocked cards')
             ->assertSee('Issued cards')
+            ->assertSee('Pre-activation cards')
             ->assertSee('Reviewed cards')
             ->assertSee('Keep active-card parity visible before widening replacement actions.')
             ->assertSee('No review note saved yet')
             ->assertSee('2026-04-08')
+            ->assertSee('2026-04-09')
             ->assertSee('2026-04-10')
             ->assertSee('2026-03-28');
     }
