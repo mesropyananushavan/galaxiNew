@@ -5835,3 +5835,8 @@
 - Refined `cardholdersSelectedReviewActivityDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch holders now surface branch-recovery-specific disabled copy directly on the `Review recent activity` action instead of reusing the generic holder activity wording.
 - Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new disabled-reason copy renders in the selected-holder action state.
 - Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch catalog action checkpoint
+- Refined `cardholdersCatalogReviewActivityDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholders index now surfaces paused-branch recovery wording on the catalog-level `Review recent activity` action when paused branch coverage is already visible.
+- Extended the model-backed cardholders index test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch disabled-reason copy renders in the live index workspace.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.

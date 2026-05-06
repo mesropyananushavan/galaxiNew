@@ -2328,8 +2328,11 @@ class ResourceIndexController extends Controller
     {
         $linkedCards = $cardHolders->sum('cards_count');
         $activeCount = $cardHolders->where('is_active', true)->count();
+        $pausedBranchCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->shop !== null && ! (bool) $cardHolder->shop->is_active)->count();
 
         return match (true) {
+            $pausedBranchCount > 0 && $linkedCards > 0 => 'Blocked until paused-branch linked-holder activity is verified against legacy lookup recovery history.',
+            $pausedBranchCount > 0 => 'Blocked until paused-branch holder activity is verified against legacy lookup recovery history.',
             $linkedCards > 0 => 'Blocked until linked-holder activity coverage is verified against legacy lookup history.',
             $activeCount > 0 => 'Blocked until active-holder coverage has a stable Laravel activity source for parity review.',
             default => 'Blocked until the first Laravel-backed cardholder slice exists for activity-history parity review.',

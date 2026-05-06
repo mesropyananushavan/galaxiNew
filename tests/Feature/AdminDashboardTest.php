@@ -5067,6 +5067,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create holder shell')
             ->assertSee('action="/admin/cardholders"', false)
             ->assertSee('Review latest saved holder')
+            ->assertSee('Blocked until paused-branch linked-holder activity is verified against legacy lookup recovery history.')
             ->assertSee('Active-branch holders')
             ->assertSee('Paused-branch holders')
             ->assertSee('Active linked holders')
