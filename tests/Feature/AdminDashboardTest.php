@@ -2527,6 +2527,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.')
             ->assertSee('Laravel status')
             ->assertSee('Activated')
+            ->assertSee('Blocked pre-activation signal')
+            ->assertSee('Blocked inventory already carries activation context in Laravel for dispute-first review.')
             ->assertSee('Activation readiness')
             ->assertSee('Activation is already recorded in Laravel for this issued card.')
             ->assertSee('Inventory guidance')
@@ -2564,6 +2566,45 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.');
+    }
+
+    public function test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Blocked Pre-activation Branch',
+            'code' => 'galaxy-blocked-pre-activation-branch',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Blocked Silver',
+            'slug' => 'galaxy-blocked-silver-pre-activation-card',
+            'points_rate' => '1.20',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-910004',
+            'status' => 'blocked',
+            'issued_at' => '2026-04-11 09:00:00',
+            'review_note' => 'Keep blocked pre-activation stock visible before dispute handling is widened.',
+            'activated_at' => null,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: GX-910004')
+            ->assertSee('Blocked pre-activation signal')
+            ->assertSee('Blocked inventory was issued but never activated, so dispute review should stay separate from active-card recovery handling.')
+            ->assertSee('Activation readiness')
+            ->assertSee('Issued inventory is still waiting for activation review in Laravel.');
     }
 
     public function test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory(): void

@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked pre-activation selected-review checkpoint
+- Added a `Blocked pre-activation signal` to selected-card review so the Laravel-backed cards workspace now distinguishes blocked stock that was issued but never activated from blocked cards that already carry activation context.
+- Added feature coverage for a blocked selected card with `issued_at` present and `activated_at` still null, keeping the new blocked pre-activation slice visible beyond the aggregate metrics layer.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `3 passed`.
+
 ### Cards blocked pre-activation metric checkpoint
 - Added a small live inventory metric, `Blocked pre-activation cards`, so the Laravel-backed cards page now separates blocked stock that was issued but never activated from the broader blocked-card pool.
 - Updated the placeholder metrics and live-backed cards test fixture to reflect the new blocked pre-activation slice without widening the Phase 1 write surface.
