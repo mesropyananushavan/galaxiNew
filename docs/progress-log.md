@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked activated selected-review checkpoint
+- Added a `Blocked activated signal` to selected-card review so blocked cards now explicitly show when activation had already happened before the dispute/review posture began.
+- Kept the step narrow and read-only, but extended the newer blocked-state split from aggregate metrics into detailed record review.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card'`, `2 passed`.
+
 ### Cards blocked activated metric checkpoint
 - Added a small live inventory metric, `Blocked activated cards`, so the Laravel-backed cards page now splits blocked stock between pre-activation records and cards that had already reached activation before entering dispute posture.
 - Updated the placeholder metrics and live-backed cards assertions so the cards shell keeps reflecting the newer blocked-state slices without widening the write path.

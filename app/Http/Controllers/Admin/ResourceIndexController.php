@@ -3293,6 +3293,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Blocked pre-activation signal', 'value' => $this->cardsBlockedPreActivationSignal($selectedCard)],
+            ['label' => 'Blocked activated signal', 'value' => $this->cardsBlockedActivatedSignal($selectedCard)],
             ['label' => 'Dispute posture', 'value' => $this->cardsDisputePosture($selectedCard)],
             ['label' => 'Activation readiness', 'value' => $this->cardsActivationReadiness($selectedCard)],
             [
@@ -3341,6 +3342,15 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'blocked' && $selectedCard->issued_at !== null && $selectedCard->activated_at === null => 'Blocked inventory was issued but never activated, so dispute review should stay separate from active-card recovery handling.',
             $selectedCard->status === 'blocked' => 'Blocked inventory already carries activation context in Laravel for dispute-first review.',
             default => 'Blocked pre-activation review is out of scope for this card right now.',
+        };
+    }
+
+    private function cardsBlockedActivatedSignal(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->status === 'blocked' && $selectedCard->activated_at !== null => 'Blocked inventory had already reached activation before dispute review in Laravel.',
+            $selectedCard->status === 'blocked' => 'Blocked activated review is not the active slice for this card right now.',
+            default => 'Blocked activated review is out of scope for this card right now.',
         };
     }
 
