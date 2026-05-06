@@ -7918,9 +7918,9 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Create or edit gift')
+            ->assertSee('Create or edit Galaxy reward')
             ->assertSee('Publish gift')
-            ->assertSee('New gift')
+            ->assertSee('New Galaxy reward')
             ->assertSee('Blocked until the first Laravel-backed gift write flow exists for catalog, scope, cost, and stock state.')
             ->assertSee('Stock audit')
             ->assertSee('Blocked until stock checks are backed by Laravel inventory data.')
@@ -7930,7 +7930,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active gifts')
             ->assertSee('Low stock items')
             ->assertSee('No gift campaigns configured yet')
-            ->assertSee('Create first gift')
+            ->assertSee('Create first Galaxy reward')
             ->assertSee('Gift redemption controls are still preview-only')
             ->assertSee('Catalog identity')
             ->assertSee('Availability')

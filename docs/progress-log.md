@@ -5408,3 +5408,8 @@
 - Replaced remaining generic rule-shell copy with Galaxy-specific wording: `New rule` became `New Galaxy rule`, `Create or edit service rule` became `Create or edit Galaxy rule`, and `Create first rule` became `Create first Galaxy rule`.
 - Kept the change preview-only and config-driven so the rules workspace feels less like a starter CRUD stub without opening rule persistence or publish behavior.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview'`, `1 passed`.
+
+### Gifts preview copy checkpoint
+- Replaced remaining generic gift-shell copy with Galaxy-specific wording: `New gift` became `New Galaxy reward`, `Create or edit gift` became `Create or edit Galaxy reward`, and `Create first gift` became `Create first Galaxy reward`.
+- Kept the change preview-only and config-driven so the rewards workspace feels less like a starter catalog stub without opening gift CRUD, stock, or publish behavior.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'`, `1 passed`.

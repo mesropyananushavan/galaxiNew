@@ -791,7 +791,7 @@ return [
         'nextStep' => 'Replace sample controls with real gift CRUD, stock tracking, and redemption flows.',
         'actions' => [
             [
-                'label' => 'New gift',
+                'label' => 'New Galaxy reward',
                 'tone' => 'primary',
                 'disabled' => true,
                 'disabledReason' => 'Blocked until the first Laravel-backed gift write flow exists for catalog, scope, cost, and stock state.',
@@ -813,7 +813,7 @@ return [
             'filters' => ['Shop scope', 'Availability', 'Points range'],
         ],
         'form' => [
-            'title' => 'Create or edit gift',
+            'title' => 'Create or edit Galaxy reward',
             'sections' => [
                 [
                     'title' => 'Catalog identity',
@@ -847,7 +847,7 @@ return [
             'title' => 'No gift campaigns configured yet',
             'description' => 'Use the management flow to add the first redeemable reward, then align stock and shop scope with the old Galaxy catalog.',
             'actions' => [
-                ['label' => 'Create first gift', 'tone' => 'primary'],
+                ['label' => 'Create first Galaxy reward', 'tone' => 'primary'],
             ],
         ],
         'notice' => [
