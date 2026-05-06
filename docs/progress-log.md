@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-05-06
+
+### Dashboard cardholder activity metric fix checkpoint
+- Corrected the Phase 1 dashboard foundation snapshot so active cardholder coverage now reads from the real Galaxy boolean flag `is_active` instead of a starter-style `status` field that cardholders do not use.
+- This keeps the dashboard's branch, holder, and card coverage summary aligned with the actual Phase 1 entity shape, making the Galaxy foundation less misleading during parity review.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_admin_dashboard`, `1 passed`.
+
 ## 2026-05-05
 
 ### Cards live note-edit flow checkpoint

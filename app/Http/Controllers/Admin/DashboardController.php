@@ -33,7 +33,7 @@ class DashboardController extends Controller
             'shopCount' => Shop::query()->count(),
             'activeShopCount' => Shop::query()->where('is_active', true)->count(),
             'cardHolderCount' => CardHolder::query()->count(),
-            'activeCardHolderCount' => CardHolder::query()->where('status', 'active')->count(),
+            'activeCardHolderCount' => CardHolder::query()->where('is_active', true)->count(),
             'cardCount' => Card::query()->count(),
             'activeCardCount' => Card::query()->where('status', 'active')->count(),
             'cardTypeCount' => CardType::query()->count(),
@@ -249,7 +249,7 @@ class DashboardController extends Controller
         $shopCount = Shop::query()->count();
         $activeShopCount = Shop::query()->where('is_active', true)->count();
         $cardHolderCount = CardHolder::query()->count();
-        $activeCardHolderCount = CardHolder::query()->where('status', 'active')->count();
+        $activeCardHolderCount = CardHolder::query()->where('is_active', true)->count();
         $cardCount = Card::query()->count();
         $activeCardCount = Card::query()->where('status', 'active')->count();
 

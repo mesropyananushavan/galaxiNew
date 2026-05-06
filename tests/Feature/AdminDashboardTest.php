@@ -187,7 +187,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Foundation readiness')
             ->assertSee('review-ready foundation')
             ->assertSee('Active foundation coverage')
-            ->assertSee('shops 1/1 active, cardholders 0/1 active, cards 1/1 active')
+            ->assertSee('shops 1/1 active, cardholders 1/1 active, cards 1/1 active')
             ->assertSee('Branch pause coverage')
             ->assertSee('0/1 branches paused')
             ->assertSee('Access baseline coverage')
