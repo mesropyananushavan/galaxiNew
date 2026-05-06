@@ -5388,3 +5388,8 @@
 - Replaced the remaining generic `New role` page action label with `New Galaxy role` so the writable access workspace reads more like a Galaxy-specific shell and less like a starter admin list.
 - Kept the change config- and controller-driven so the catalog and live Laravel-backed role view stay aligned.
 - Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data'`, `1 passed`.
+
+### Card types header action copy checkpoint
+- Replaced the remaining generic `New type` page action label with `New Galaxy tier` so the writable tier workspace reads more like a Galaxy-specific shell and less like a starter admin list.
+- Kept the change config- and controller-driven so the catalog and live Laravel-backed tier view stay aligned.
+- Re-ran `php artisan test --filter='test_card_types_catalog_actions_reflect_saved_tier_readiness'`, `1 passed`.

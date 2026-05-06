@@ -516,7 +516,7 @@ return [
         'summary' => 'Baseline management screen for Galaxy card tiers, points rules, and activation settings.',
         'nextStep' => 'Replace sample controls with real CRUD handlers and validation.',
         'actions' => [
-            ['label' => 'New type', 'tone' => 'primary', 'href' => '#live-form'],
+            ['label' => 'New Galaxy tier', 'tone' => 'primary', 'href' => '#live-form'],
             ['label' => 'Import rules', 'tone' => 'secondary'],
         ],
         'metrics' => [

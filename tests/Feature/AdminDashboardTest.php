@@ -7982,7 +7982,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create or edit card type')
             ->assertSee('Publish type')
             ->assertSee('Blocked until the first Laravel-backed tier exists before any publish-style rollout.')
-            ->assertSee('New type')
+            ->assertSee('New Galaxy tier')
             ->assertSee('href="#live-form"', false)
             ->assertSee('Import rules')
             ->assertSee('Blocked until the first Laravel-backed tier exists for rule parity review.')
