@@ -5458,3 +5458,8 @@
 - Replaced the selected-branch edit reset label `Create new branch shell` with `Create new Galaxy branch shell` so the writable branch workspace reads less like a generic starter helper action.
 - Kept the change controller-driven and copy-only, without widening manager reassignment or scope-mutation behavior.
 - Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Card types selected reset copy checkpoint
+- Replaced the selected-tier reset label `Create new tier shell` with `Create new Galaxy tier shell` so the writable tier workspace stays aligned with the newer Galaxy-specific reset wording used on other writable surfaces.
+- Kept the change controller-driven and copy-only, without widening tier publish logic or rule-import behavior.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.

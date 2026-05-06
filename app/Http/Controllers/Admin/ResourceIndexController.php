@@ -1997,7 +1997,7 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = [
             [
-                'label' => 'Create new tier shell',
+                'label' => 'Create new Galaxy tier shell',
                 'tone' => 'primary',
                 'href' => route('admin.card-types.index', absolute: false).'#live-form',
             ],
@@ -2100,7 +2100,7 @@ class ResourceIndexController extends Controller
             'cardType' => $selectedCardType,
         ];
         $page['liveForm']['cancelRoute'] = 'admin.card-types.index';
-        $page['liveForm']['cancelLabel'] = 'Create new tier shell';
+        $page['liveForm']['cancelLabel'] = 'Create new Galaxy tier shell';
         $page['liveForm']['cancelRouteParameters'] = [];
         $page['liveForm']['submitLabel'] = 'Save tier changes';
         $page['liveForm']['valuesResolver'] = [

@@ -8106,7 +8106,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Create new tier shell')
+            ->assertSee('Create new Galaxy tier shell')
             ->assertSee('href="/admin/card-types#live-form"', false)
             ->assertSee('Activate tier')
             ->assertSee('<form method="POST" action="/admin/card-types/'.$cardType->id.'/toggle-status"', false)
@@ -10216,7 +10216,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Edit card type in Laravel')
-            ->assertSee('Create new tier shell')
+            ->assertSee('Create new Galaxy tier shell')
             ->assertSee('href="/admin/card-types"', false)
             ->assertDontSee('href="/admin/card-types?cardType='.$cardType->id.'"', false);
     }
