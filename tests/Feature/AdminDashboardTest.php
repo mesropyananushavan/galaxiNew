@@ -5024,6 +5024,14 @@ class AdminDashboardTest extends TestCase
             'is_active' => false,
         ]);
 
+        $activeUnlinkedHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Meri Unlinked Holder',
+            'phone' => '+37491100004',
+            'email' => 'meri@example.com',
+            'is_active' => true,
+        ]);
+
         $cardType = CardType::create([
             'name' => 'Galaxy Prime',
             'slug' => 'galaxy-prime-cardholders',
@@ -5052,6 +5060,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Arman Hakobyan')
             ->assertSee('+37491100003')
             ->assertSee('Galaxy North')
+            ->assertSee('Meri Unlinked Holder')
             ->assertSee('Keep duplicate-holder parity visible before profile merges are trusted.')
             ->assertSee('No review note saved yet')
             ->assertSee('Create Galaxy holder in Laravel')
@@ -5062,6 +5071,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Paused-branch holders')
             ->assertSee('Active linked holders')
             ->assertSee('Inactive linked holders')
+            ->assertSee('Active unlinked holders')
+            ->assertSee('Inactive unlinked holders')
             ->assertSee('Reviewed holders')
             ->assertSee('Linked cards')
             ->assertSee('>1<', false)

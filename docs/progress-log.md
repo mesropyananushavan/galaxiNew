@@ -5810,3 +5810,8 @@
 - Added `Active linked holders` and `Inactive linked holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php`, giving the holder workspace a compact lifecycle-aware split across holders that already carry card linkage.
 - Extended `tests/Feature/AdminDashboardTest.php` by asserting the new metric labels in the model-backed cardholders index fixture, reusing the existing active-linked and inactive-linked holder coverage already present in the data setup.
 - Kept the change read-only and parity-first, without widening holder writes, branch assignment flows, or card-link mutations.
+
+### Cardholders unlinked-status split checkpoint
+- Added `Active unlinked holders` and `Inactive unlinked holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php`, so the holder workspace now exposes the opposite side of the linkage split instead of only linked-holder slices.
+- Extended the model-backed cardholders index fixture in `tests/Feature/AdminDashboardTest.php` with an active unlinked holder and asserted both new metric labels render in the live workspace.
+- Kept the change read-only and parity-first, without widening holder writes, reassignment flows, or card-link mutations.

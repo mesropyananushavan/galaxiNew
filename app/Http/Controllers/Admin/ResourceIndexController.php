@@ -1083,6 +1083,8 @@ class ResourceIndexController extends Controller
             ['label' => 'Paused-branch holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->shop !== null && ! (bool) $cardHolder->shop->is_active)->count()],
             ['label' => 'Active linked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->is_active && $cardHolder->cards_count > 0)->count()],
             ['label' => 'Inactive linked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => ! $cardHolder->is_active && $cardHolder->cards_count > 0)->count()],
+            ['label' => 'Active unlinked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->is_active && $cardHolder->cards_count === 0)->count()],
+            ['label' => 'Inactive unlinked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => ! $cardHolder->is_active && $cardHolder->cards_count === 0)->count()],
             ['label' => 'Reviewed holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => filled($cardHolder->review_note))->count()],
             ['label' => 'Linked cards', 'value' => (string) $cardHolders->sum('cards_count')],
         ];
