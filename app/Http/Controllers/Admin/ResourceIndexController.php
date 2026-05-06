@@ -651,7 +651,7 @@ class ResourceIndexController extends Controller
                 'disabledReason' => $this->giftsSelectedStockAuditDisabledReason($selectedGiftPreview),
             ],
             [
-                'label' => 'Publish gift',
+                'label' => 'Publish reward',
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => $this->giftsSelectedPublishGiftDisabledReason($selectedGiftPreview),

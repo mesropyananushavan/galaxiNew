@@ -840,7 +840,7 @@ return [
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
-                ['label' => 'Publish gift', 'tone' => 'primary', 'disabled' => true, 'disabledReason' => 'Blocked until gift CRUD and redemption parity exist beyond the preview shell.'],
+                ['label' => 'Publish reward', 'tone' => 'primary', 'disabled' => true, 'disabledReason' => 'Blocked until gift CRUD and redemption parity exist beyond the preview shell.'],
             ],
         ],
         'emptyState' => [

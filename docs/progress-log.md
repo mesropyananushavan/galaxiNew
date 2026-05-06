@@ -5413,3 +5413,8 @@
 - Replaced remaining generic gift-shell copy with Galaxy-specific wording: `New gift` became `New Galaxy reward`, `Create or edit gift` became `Create or edit Galaxy reward`, and `Create first gift` became `Create first Galaxy reward`.
 - Kept the change preview-only and config-driven so the rewards workspace feels less like a starter catalog stub without opening gift CRUD, stock, or publish behavior.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'`, `1 passed`.
+
+### Gifts publish action copy checkpoint
+- Replaced the remaining generic reward publish label `Publish gift` with `Publish reward` in both the preview shell and selected reward review context so the gifts workspace reads less like a starter CRUD screen.
+- Kept the change copy-only and parity-first, without opening gift CRUD, stock recovery, or redemption writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_gifts_management_preview|test_gifts_page_supports_selected_all_shop_gift_review_context)'`, `2 passed`.
