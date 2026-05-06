@@ -5805,3 +5805,8 @@
 - Added `Active-branch holders` and `Paused-branch holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php` so the holder workspace now exposes branch-state coverage directly instead of only total active/inactive holder counts.
 - Tightened the model-backed cardholders index test in `tests/Feature/AdminDashboardTest.php` by making the second fixture branch actually paused and asserting the new metric labels render in the live workspace.
 - Kept the change read-only and parity-first, without widening holder writes, branch reassignment, or card-link mutations.
+
+### Cardholders linked-status split checkpoint
+- Added `Active linked holders` and `Inactive linked holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php`, giving the holder workspace a compact lifecycle-aware split across holders that already carry card linkage.
+- Extended `tests/Feature/AdminDashboardTest.php` by asserting the new metric labels in the model-backed cardholders index fixture, reusing the existing active-linked and inactive-linked holder coverage already present in the data setup.
+- Kept the change read-only and parity-first, without widening holder writes, branch assignment flows, or card-link mutations.
