@@ -3404,6 +3404,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: Galaxy Central')
             ->assertSee('Edit Galaxy branch in Laravel')
             ->assertSee('Save branch changes')
+            ->assertSee('Create new Galaxy branch shell')
             ->assertSee('action="/admin/shops/'.$shop->id.'"', false)
             ->assertSee('Review branch scope')
             ->assertSee('Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.')

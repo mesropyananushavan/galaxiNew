@@ -1269,7 +1269,7 @@ class ResourceIndexController extends Controller
                 'shop' => $selectedShop,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.shops.index';
-            $page['liveForm']['cancelLabel'] = 'Create new branch shell';
+            $page['liveForm']['cancelLabel'] = 'Create new Galaxy branch shell';
             $page['liveForm']['cancelRouteParameters'] = [];
             $page['liveForm']['submitLabel'] = 'Save branch changes';
             $page['liveForm']['valuesResolver'] = [

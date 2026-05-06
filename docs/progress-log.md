@@ -5453,3 +5453,8 @@
 - Replaced the selected-holder edit reset label `Create new holder shell` with `Create new Galaxy holder shell` so the writable holder workspace reads less like a generic starter helper action.
 - Kept the change controller-driven and copy-only, without widening card linkage, activity history, or lifecycle writes.
 - Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`, `1 passed`.
+
+### Shops selected action copy checkpoint
+- Replaced the selected-branch edit reset label `Create new branch shell` with `Create new Galaxy branch shell` so the writable branch workspace reads less like a generic starter helper action.
+- Kept the change controller-driven and copy-only, without widening manager reassignment or scope-mutation behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
