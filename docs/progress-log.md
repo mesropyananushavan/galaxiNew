@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Card issued-at validation-message checkpoint
+- Added an operator-friendly validation message for invalid `issued_at` input so the new Galaxy inventory lifecycle field does not fall back to generic starter-style date errors in the first live card flow.
+- Added focused feature coverage for the invalid issue-timestamp path while keeping the step validation-only and safely out of holder-assignment, replacement, or dispute logic.
+- Re-ran `php artisan test --filter=test_card_live_flow_returns_operator_friendly_issue_timestamp_validation_message`, `1 passed`.
+
 ### Card issued-at edit-hydration checkpoint
 - Added focused selected-card coverage so the shared Laravel edit form now stays explicitly anchored to the saved `issued_at` and `activated_at` lifecycle timestamps, not just the summary and table read views.
 - Kept the step verification-only and parity-safe, tightening confidence that the new Galaxy inventory lifecycle field is truly part of the live review shell.
