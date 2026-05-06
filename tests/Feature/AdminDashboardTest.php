@@ -2403,7 +2403,9 @@ class AdminDashboardTest extends TestCase
             'card_type_id' => $cardType->id,
             'number' => 'GX-900003',
             'status' => 'blocked',
-            'activated_at' => '2026-03-28 09:15:00',
+            'issued_at' => '2026-03-20 14:45:00',
+            'activated_at' => null,
+            'review_note' => 'Keep blocked-card dispute parity visible before any replacement follow-up is trusted.',
         ]);
 
         $user = User::factory()->create();
@@ -2429,13 +2431,14 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked cards')
             ->assertSee('Issued cards')
             ->assertSee('Pre-activation cards')
+            ->assertSee('Blocked pre-activation cards')
             ->assertSee('Reviewed cards')
             ->assertSee('Keep active-card parity visible before widening replacement actions.')
             ->assertSee('No review note saved yet')
             ->assertSee('2026-04-08')
             ->assertSee('2026-04-09')
             ->assertSee('2026-04-10')
-            ->assertSee('2026-03-28');
+            ->assertSee('2026-03-20');
     }
 
     public function test_cards_page_surfaces_selected_card_context_from_laravel_data(): void

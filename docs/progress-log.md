@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked pre-activation metric checkpoint
+- Added a small live inventory metric, `Blocked pre-activation cards`, so the Laravel-backed cards page now separates blocked stock that was issued but never activated from the broader blocked-card pool.
+- Updated the placeholder metrics and live-backed cards test fixture to reflect the new blocked pre-activation slice without widening the Phase 1 write surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
 ### Cards blocked-status review-note guardrail checkpoint
 - Added another narrow blocked-card rule so the live Laravel flow now requires a `review_note` before a card can be saved as `blocked`, keeping dispute or replacement posture from becoming opaque in the Galaxy inventory shell.
 - Added create and update feature coverage plus operator-friendly validation copy, making the blocked-without-context mismatch visible in both first-pass card creation and selected-card edits.
