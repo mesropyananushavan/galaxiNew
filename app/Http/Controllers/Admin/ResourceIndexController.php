@@ -1902,7 +1902,7 @@ class ResourceIndexController extends Controller
                 filled($cardType->rollout_note) ? str($cardType->rollout_note)->limit(72)->toString() : 'No rollout note saved yet',
                 $cardType->is_active ? 'Active in Laravel flow' : 'Draft in Laravel flow',
                 [
-                    'label' => $cardType->is_active ? 'Move to draft' : 'Activate type',
+                    'label' => $cardType->is_active ? 'Move to draft' : 'Activate tier',
                     'href' => route('admin.card-types.toggle-status', $cardType, absolute: false),
                     'method' => 'PATCH',
                 ],
@@ -1931,7 +1931,7 @@ class ResourceIndexController extends Controller
 
         if ($latestCardType !== null) {
             $page = $this->appendPageAction($page, [
-                'label' => 'Edit latest saved type',
+                'label' => 'Edit latest saved tier',
                 'tone' => 'secondary',
                 'href' => route('admin.card-types.index', ['cardType' => $latestCardType->id], absolute: false).'#live-form',
             ]);
@@ -1997,12 +1997,12 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = [
             [
-                'label' => 'Create new type',
+                'label' => 'Create new tier shell',
                 'tone' => 'primary',
                 'href' => route('admin.card-types.index', absolute: false).'#live-form',
             ],
             [
-                'label' => $selectedCardType->is_active ? 'Move to draft' : 'Activate type',
+                'label' => $selectedCardType->is_active ? 'Move to draft' : 'Activate tier',
                 'tone' => 'secondary',
                 'href' => route('admin.card-types.toggle-status', $selectedCardType, absolute: false),
                 'method' => 'PATCH',

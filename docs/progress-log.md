@@ -5428,3 +5428,8 @@
 - Replaced the remaining generic rules publish label `Publish rule` with `Publish Galaxy rule` in both the preview shell and selected rule review context so the rules workspace reads less like a starter CRUD screen.
 - Kept the change copy-only and parity-first, without opening rule persistence or publish behavior.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_access_services_rules_management_preview|test_services_rules_page_supports_selected_all_shop_rule_review_context)'`, `2 passed`.
+
+### Card types selected action copy checkpoint
+- Replaced remaining generic selected-tier action labels with tier-specific wording: `Edit latest saved type` became `Edit latest saved tier`, `Create new type` became `Create new tier shell`, and `Activate type` became `Activate tier`.
+- Kept the change controller-driven and copy-only so the writable tier workspace reads less like a generic starter while preserving the existing status-toggle and edit-flow behavior.
+- Re-ran `php artisan test --filter='(test_card_types_page_exposes_edit_link_for_latest_saved_type|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type)'`, `2 passed`.

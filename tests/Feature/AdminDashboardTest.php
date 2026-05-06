@@ -8069,7 +8069,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Edit latest saved type')
+            ->assertSee('Edit latest saved tier')
             ->assertSee('href="/admin/card-types?cardType='.$latestCardType->id.'#live-form"', false);
     }
 
@@ -8106,7 +8106,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Create new tier shell')
             ->assertSee('href="/admin/card-types#live-form"', false)
-            ->assertSee('Activate type')
+            ->assertSee('Activate tier')
             ->assertSee('<form method="POST" action="/admin/card-types/'.$cardType->id.'/toggle-status"', false)
             ->assertSee('name="_method"', false)
             ->assertSee('value="PATCH"', false)
@@ -8353,7 +8353,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Galaxy Silver')
-            ->assertSee('Edit latest saved type')
+            ->assertSee('Edit latest saved tier')
             ->assertDontSee('Edit card type in Laravel')
             ->assertDontSee('Selected tier')
             ->assertDontSee('selected for Laravel edit flow');
@@ -8375,7 +8375,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Galaxy Silver')
-            ->assertSee('Edit latest saved type')
+            ->assertSee('Edit latest saved tier')
             ->assertDontSee('Edit card type in Laravel')
             ->assertDontSee('Selected tier')
             ->assertDontSee('selected for Laravel edit flow');
@@ -10214,7 +10214,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Edit card type in Laravel')
-            ->assertSee('Create new type')
+            ->assertSee('Create new tier shell')
             ->assertSee('href="/admin/card-types"', false)
             ->assertDontSee('href="/admin/card-types?cardType='.$cardType->id.'"', false);
     }
