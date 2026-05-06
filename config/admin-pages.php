@@ -989,7 +989,7 @@ return [
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
-                ['label' => 'Publish role', 'tone' => 'primary', 'disabled' => true, 'disabledReason' => 'Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.'],
+                ['label' => 'Publish access', 'tone' => 'primary', 'disabled' => true, 'disabledReason' => 'Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.'],
             ],
         ],
         'emptyState' => [

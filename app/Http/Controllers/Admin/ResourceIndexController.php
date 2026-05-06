@@ -697,7 +697,7 @@ class ResourceIndexController extends Controller
                 'disabledReason' => $this->rolesPermissionsCatalogReviewMatrixDisabledReason($roles),
             ],
             [
-                'label' => 'Publish role',
+                'label' => 'Publish access',
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => $this->rolesPermissionsCatalogPublishRoleDisabledReason($roles),
@@ -785,7 +785,7 @@ class ResourceIndexController extends Controller
             $selectedRole->name,
             [
             [
-                'label' => 'Create new role',
+                'label' => 'Create new access shell',
                 'tone' => 'secondary',
                 'href' => route('admin.roles-permissions.index', absolute: false).'#live-form',
             ],
@@ -796,7 +796,7 @@ class ResourceIndexController extends Controller
                 'disabledReason' => $this->rolesPermissionsReviewMatrixDisabledReason($selectedRole),
             ],
             [
-                'label' => 'Publish role',
+                'label' => 'Publish access',
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => $this->rolesPermissionsPublishRoleDisabledReason($selectedRole, $scope),

@@ -5433,3 +5433,8 @@
 - Replaced remaining generic selected-tier action labels with tier-specific wording: `Edit latest saved type` became `Edit latest saved tier`, `Create new type` became `Create new tier shell`, and `Activate type` became `Activate tier`.
 - Kept the change controller-driven and copy-only so the writable tier workspace reads less like a generic starter while preserving the existing status-toggle and edit-flow behavior.
 - Re-ran `php artisan test --filter='(test_card_types_page_exposes_edit_link_for_latest_saved_type|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type)'`, `2 passed`.
+
+### Roles access action copy checkpoint
+- Replaced remaining generic role-action copy with access-shell wording: `Publish role` became `Publish access` in both preview and selected-role contexts, and the selected-role reset action now reuses `Create new access shell` instead of the generic `Create new role`.
+- Kept the change copy-only and parity-first, without opening permission persistence, assignment writes, or broader publish behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data)'`, `2 passed`.

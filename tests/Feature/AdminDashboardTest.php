@@ -1127,7 +1127,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft-safe only')
             ->assertSee('Publishing remains blocked even though role identity and status can already be saved in Laravel.')
             ->assertSee('Create or edit Galaxy role')
-            ->assertSee('Publish role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('aria-disabled="true"', false)
             ->assertSee('New Galaxy role')
@@ -1212,7 +1212,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Review matrix')
             ->assertSee('Blocked until saved Laravel permission bundles are verified against legacy staff access.')
-            ->assertSee('Publish role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until saved live access bundles clear assignment and shop-scope parity.');
     }
 
@@ -1329,7 +1329,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: Shop Manager')
             ->assertSee('Review matrix')
             ->assertSee('Blocked until this assignment-sensitive Laravel permission bundle is verified against legacy staff access.')
-            ->assertSee('Publish role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until assignment-sensitive live role parity is verified for this Laravel permission bundle.')
             ->assertSee('Selected role')
             ->assertSee('Role slug')
@@ -1435,7 +1435,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Manage cards')
             ->assertSee('Review matrix')
             ->assertSee('Blocked until this assignment-sensitive Laravel permission bundle is verified against legacy staff access.')
-            ->assertSee('Publish role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until assignment-sensitive live role parity is verified for this Laravel permission bundle.')
             ->assertSee('Review posture:')
             ->assertSee('Selected-role review is running in Laravel-backed read mode only')
@@ -1579,7 +1579,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: Draft Branch Auditor')
             ->assertSee('Review matrix')
             ->assertSee('Blocked until this draft role has a first verified Laravel permission bundle to compare against legacy staff access.')
-            ->assertSee('Publish role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until this draft role has a verified permission bundle and shop scope parity.')
             ->assertSee('Role status signal')
             ->assertSee('Draft role remains safer for access-rollout parity review before any live-access discussion.')
@@ -1635,7 +1635,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: Scoped Floor Lead')
             ->assertSee('Review matrix')
             ->assertSee('Blocked until this active role has a first verified Laravel permission bundle to compare against legacy staff access.')
-            ->assertSee('Publish role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until this active role has a verified permission bundle to compare against legacy staff access.');
     }
 
@@ -1663,7 +1663,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: Central Audit Lead')
             ->assertSee('Review matrix')
             ->assertSee('Blocked until the Laravel permission matrix can be verified against legacy staff access for this live bundle.')
-            ->assertSee('Publish role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until this live permission bundle also has verified shop scope parity.');
     }
 
@@ -1697,7 +1697,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: Shift Access Lead')
             ->assertSee('Review matrix')
             ->assertSee('Blocked until this assignment-sensitive Laravel permission bundle is verified against legacy staff access.')
-            ->assertSee('Publish role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until this live permission bundle also has verified shop scope parity.')
             ->assertSee('Coverage signal')
             ->assertSee('staff and permission coverage visible, scope pending')
@@ -7501,7 +7501,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Create or edit Galaxy role')
-            ->assertSee('Publish role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('Role identity')
             ->assertSee('Keep legacy naming visible while the matrix is still preview-only.')
@@ -7572,7 +7572,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Create or edit role')
-            ->assertSee('Publish role')
+            ->assertSee('Publish access')
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Create first role');
