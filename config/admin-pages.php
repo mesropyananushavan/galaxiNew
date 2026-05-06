@@ -283,6 +283,7 @@ return [
             ['label' => 'Blocked cards', 'value' => '1'],
             ['label' => 'Issued cards', 'value' => '2'],
             ['label' => 'Pre-activation cards', 'value' => '1'],
+            ['label' => 'Active unassigned cards', 'value' => '0'],
             ['label' => 'Blocked pre-activation cards', 'value' => '0'],
             ['label' => 'Blocked activated cards', 'value' => '1'],
             ['label' => 'Blocked cards with holders', 'value' => '1'],

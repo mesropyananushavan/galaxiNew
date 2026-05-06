@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards active unassigned metric checkpoint
+- Added a small live inventory metric, `Active unassigned cards`, so the Laravel-backed cards page now separates active stock that still lacks holder linkage from fully linked active inventory.
+- Updated the placeholder metrics and live-backed cards assertions so the cards shell keeps surfacing holder-linkage gaps alongside the newer blocked-state slices.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
 ### Cards blocked holder-linked selected-review checkpoint
 - Added a `Blocked holder-linked signal` to selected-card review so blocked cards now explicitly surface when dispute and replacement review can stay anchored to an already linked holder record.
 - Kept the step narrow and read-only, but made the holder-linked side of the newer blocked-state split as explicit in record review as the unassigned side.
