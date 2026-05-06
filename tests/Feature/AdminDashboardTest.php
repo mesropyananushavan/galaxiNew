@@ -2529,6 +2529,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Activated')
             ->assertSee('Blocked pre-activation signal')
             ->assertSee('Blocked inventory already carries activation context in Laravel for dispute-first review.')
+            ->assertSee('Dispute posture')
+            ->assertSee('Treat this as a dispute-first blocked card with prior activation context still visible in Laravel.')
             ->assertSee('Activation readiness')
             ->assertSee('Activation is already recorded in Laravel for this issued card.')
             ->assertSee('Inventory guidance')
@@ -2603,6 +2605,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: GX-910004')
             ->assertSee('Blocked pre-activation signal')
             ->assertSee('Blocked inventory was issued but never activated, so dispute review should stay separate from active-card recovery handling.')
+            ->assertSee('Dispute posture')
+            ->assertSee('Treat this as blocked inventory triage before any active-card recovery assumptions are made.')
             ->assertSee('Activation readiness')
             ->assertSee('Issued inventory is still waiting for activation review in Laravel.');
     }

@@ -3292,6 +3292,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Blocked pre-activation signal', 'value' => $this->cardsBlockedPreActivationSignal($selectedCard)],
+            ['label' => 'Dispute posture', 'value' => $this->cardsDisputePosture($selectedCard)],
             ['label' => 'Activation readiness', 'value' => $this->cardsActivationReadiness($selectedCard)],
             [
                 'label' => 'Inventory guidance',
@@ -3339,6 +3340,15 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'blocked' && $selectedCard->issued_at !== null && $selectedCard->activated_at === null => 'Blocked inventory was issued but never activated, so dispute review should stay separate from active-card recovery handling.',
             $selectedCard->status === 'blocked' => 'Blocked inventory already carries activation context in Laravel for dispute-first review.',
             default => 'Blocked pre-activation review is out of scope for this card right now.',
+        };
+    }
+
+    private function cardsDisputePosture(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->status === 'blocked' && $selectedCard->activated_at === null => 'Treat this as blocked inventory triage before any active-card recovery assumptions are made.',
+            $selectedCard->status === 'blocked' => 'Treat this as a dispute-first blocked card with prior activation context still visible in Laravel.',
+            default => 'Dispute handling is not the primary posture for this card right now.',
         };
     }
 

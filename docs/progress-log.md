@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked dispute-posture checkpoint
+- Added a `Dispute posture` signal to selected-card review so blocked cards now distinguish pre-activation triage from blocked cards that already carry prior activation context in Laravel.
+- Kept the step narrow and read-only, but made blocked-card review semantics more explicit at the record level alongside the newer blocked pre-activation signal.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card'`, `2 passed`.
+
 ### Cards blocked pre-activation selected-review checkpoint
 - Added a `Blocked pre-activation signal` to selected-card review so the Laravel-backed cards workspace now distinguishes blocked stock that was issued but never activated from blocked cards that already carry activation context.
 - Added feature coverage for a blocked selected card with `issued_at` present and `activated_at` still null, keeping the new blocked pre-activation slice visible beyond the aggregate metrics layer.
