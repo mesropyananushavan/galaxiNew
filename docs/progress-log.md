@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards preview-row lifecycle parity checkpoint
+- Aligned the static cards placeholder rows with the newer dual-lifecycle table shape so preview inventory now carries both issued and activated timestamps instead of leaving the sample grid one column short.
+- Kept the step preview-only and parity-safe, but removed another starter-like mismatch between the configured cards shell structure and the visible Phase 1 inventory examples.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_cards_operational_index_shape`, `1 passed`.
+
 ### Cards lifecycle-filter copy checkpoint
 - Cleaned up the remaining cards placeholder filter and parity-focus copy so the Phase 1 inventory shell now talks about issue plus activation visibility, not only the older activation-only framing.
 - Kept the step copy-only and parity-safe, but aligned the inventory filter language with the dual-lifecycle foundation already visible in the Laravel-backed card workspace.

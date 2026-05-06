@@ -2304,6 +2304,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card records joined with holders, card types, and shops')
             ->assertSee('query-backed inventory table')
             ->assertSee('Retain clear visibility for unassigned, active, and blocked card states.')
+            ->assertSee('2026-04-08')
+            ->assertSee('2026-04-10')
+            ->assertSee('2026-03-20')
+            ->assertSee('2026-03-28')
             ->assertSee('Card type')
             ->assertSee('Issue/activation period');
     }
