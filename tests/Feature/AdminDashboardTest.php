@@ -3439,6 +3439,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active card is already visible for live inventory parity review.')
             ->assertSee('Operational readiness')
             ->assertSee('issued inventory, parity-sensitive')
+            ->assertSee('Active unassigned signal')
+            ->assertSee('Active inventory already carries holder linkage in Laravel for parity-first review.')
             ->assertSee('Linkage signal')
             ->assertSee('holder and branch linkage visible')
             ->assertSee('Inventory focus')
@@ -3453,6 +3455,43 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows should stay preview-only until inventory parity is verified.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.');
+    }
+
+    public function test_cards_page_supports_selected_active_unassigned_card_review_context(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Active Unassigned Branch',
+            'code' => 'galaxy-active-unassigned-branch',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Active Unassigned Tier',
+            'slug' => 'galaxy-active-unassigned-tier-card',
+            'points_rate' => '1.40',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-920055',
+            'status' => 'active',
+            'issued_at' => '2026-04-03 08:00:00',
+            'activated_at' => '2026-04-03 10:15:00',
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: GX-920055')
+            ->assertSee('Active unassigned signal')
+            ->assertSee('Active inventory is still unassigned, so holder-linkage recovery should stay visible before operators assume a stable member attachment.')
+            ->assertSee('Linkage signal')
+            ->assertSee('branch-linked inventory, holder pending');
     }
 
     public function test_cards_page_supports_selected_blocked_holder_linked_card_review_context(): void

@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards active unassigned selected-review checkpoint
+- Added an `Active unassigned signal` to selected-card review so active cards now explicitly surface when holder linkage is still missing, complementing the newer aggregate `Active unassigned cards` metric.
+- Added feature coverage for an active selected card with branch context but no holder assignment yet, keeping holder-linkage recovery visible at the record-review layer.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context'`, `2 passed`.
+
 ### Cards active unassigned metric checkpoint
 - Added a small live inventory metric, `Active unassigned cards`, so the Laravel-backed cards page now separates active stock that still lacks holder linkage from fully linked active inventory.
 - Updated the placeholder metrics and live-backed cards assertions so the cards shell keeps surfacing holder-linkage gaps alongside the newer blocked-state slices.

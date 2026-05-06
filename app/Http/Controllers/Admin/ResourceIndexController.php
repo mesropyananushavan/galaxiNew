@@ -3299,6 +3299,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Blocked activated signal', 'value' => $this->cardsBlockedActivatedSignal($selectedCard)],
             ['label' => 'Blocked holder-linked signal', 'value' => $this->cardsBlockedHolderLinkedSignal($selectedCard)],
             ['label' => 'Blocked unassigned signal', 'value' => $this->cardsBlockedUnassignedSignal($selectedCard)],
+            ['label' => 'Active unassigned signal', 'value' => $this->cardsActiveUnassignedSignal($selectedCard)],
             ['label' => 'Dispute posture', 'value' => $this->cardsDisputePosture($selectedCard)],
             ['label' => 'Activation readiness', 'value' => $this->cardsActivationReadiness($selectedCard)],
             [
@@ -3374,6 +3375,15 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'blocked' && $selectedCard->holder === null => 'Blocked inventory is still unassigned, so replacement and reassignment review should stay explicit before any holder recovery assumptions are made.',
             $selectedCard->status === 'blocked' => 'Blocked inventory already carries holder linkage in Laravel for dispute-first review.',
             default => 'Blocked unassigned review is out of scope for this card right now.',
+        };
+    }
+
+    private function cardsActiveUnassignedSignal(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->status === 'active' && $selectedCard->holder === null => 'Active inventory is still unassigned, so holder-linkage recovery should stay visible before operators assume a stable member attachment.',
+            $selectedCard->status === 'active' => 'Active inventory already carries holder linkage in Laravel for parity-first review.',
+            default => 'Active unassigned review is out of scope for this card right now.',
         };
     }
 
