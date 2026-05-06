@@ -19,7 +19,7 @@ class UpdateCardRequest extends StoreCardRequest
             'status' => ['required', 'string', Rule::in(['draft', 'active', 'blocked'])],
             'issued_at' => ['nullable', 'date', 'required_with:activated_at', 'required_if:status,blocked'],
             'activated_at' => ['nullable', 'date', 'required_if:status,active', 'prohibited_if:status,draft', 'after_or_equal:issued_at'],
-            'review_note' => ['nullable', 'string', 'max:1000'],
+            'review_note' => ['nullable', 'string', 'required_if:status,blocked', 'max:1000'],
         ];
     }
 

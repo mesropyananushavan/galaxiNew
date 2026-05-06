@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked-status review-note guardrail checkpoint
+- Added another narrow blocked-card rule so the live Laravel flow now requires a `review_note` before a card can be saved as `blocked`, keeping dispute or replacement posture from becoming opaque in the Galaxy inventory shell.
+- Added create and update feature coverage plus operator-friendly validation copy, making the blocked-without-context mismatch visible in both first-pass card creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_requires_review_note_for_blocked_status|test_card_update_live_flow_requires_review_note_for_blocked_status|test_card_live_flow_requires_issue_timestamp_for_blocked_status|test_card_update_live_flow_requires_issue_timestamp_for_blocked_status'`, `4 passed`.
+
 ### Cards blocked-status issuance guardrail checkpoint
 - Added another narrow lifecycle rule so blocked cards in the live Laravel flow now require `issued_at`, preventing blocked inventory from looking like an untouched draft shell in the Galaxy cards workspace.
 - Added create and update feature coverage plus operator-friendly validation copy, making the blocked-without-issuance mismatch visible in both first-pass card creation and selected-card edits.

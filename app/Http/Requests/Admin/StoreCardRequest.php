@@ -24,7 +24,7 @@ class StoreCardRequest extends FormRequest
             'status' => ['required', 'string', Rule::in(['draft', 'active', 'blocked'])],
             'issued_at' => ['nullable', 'date', 'required_with:activated_at', 'required_if:status,blocked'],
             'activated_at' => ['nullable', 'date', 'required_if:status,active', 'prohibited_if:status,draft', 'after_or_equal:issued_at'],
-            'review_note' => ['nullable', 'string', 'max:1000'],
+            'review_note' => ['nullable', 'string', 'required_if:status,blocked', 'max:1000'],
         ];
     }
 
@@ -63,6 +63,7 @@ class StoreCardRequest extends FormRequest
             'activated_at.required_if' => 'Add an activation timestamp before marking this card active so the Galaxy lifecycle timeline stays operator-friendly.',
             'activated_at.prohibited_if' => 'Leave activation blank while this card stays draft so the Galaxy lifecycle timeline stays operator-friendly.',
             'activated_at.after_or_equal' => 'Keep activation on or after issuance so the Galaxy lifecycle timeline stays operator-friendly.',
+            'review_note.required_if' => 'Add a review note before blocking this card so the Galaxy inventory workspace stays operator-friendly.',
             'review_note.max' => 'Keep the review note under 1000 characters so the inventory workspace stays operator-friendly.',
         ];
     }

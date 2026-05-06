@@ -2995,6 +2995,76 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_live_flow_requires_review_note_for_blocked_status(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Missing Blocked Note Branch',
+            'code' => 'galaxy-missing-blocked-note-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Missing Blocked Note Gold',
+            'slug' => 'galaxy-missing-blocked-note-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from('/admin/cards')->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-missing-blocked-note-1001 ',
+            'status' => 'blocked',
+            'issued_at' => '2026-05-05 09:20:00',
+            'activated_at' => '',
+            'review_note' => '   ',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cards#live-form')
+            ->assertSessionHasErrors([
+                'review_note' => 'Add a review note before blocking this card so the Galaxy inventory workspace stays operator-friendly.',
+            ]);
+    }
+
+    public function test_card_update_live_flow_requires_review_note_for_blocked_status(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Missing Blocked Note Update Branch',
+            'code' => 'galaxy-missing-blocked-note-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Missing Blocked Note Update Gold',
+            'slug' => 'galaxy-missing-blocked-note-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-MISSING-BLOCKED-NOTE-UPD-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-missing-blocked-note-upd-1001 ',
+            'status' => 'blocked',
+            'issued_at' => '2026-05-05 09:20:00',
+            'activated_at' => '',
+            'review_note' => '   ',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'review_note' => 'Add a review note before blocking this card so the Galaxy inventory workspace stays operator-friendly.',
+            ]);
+    }
+
     public function test_card_update_live_flow_requires_issue_timestamp_for_blocked_status(): void
     {
         $user = User::factory()->create();
