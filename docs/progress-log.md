@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards issued holder-linked metric checkpoint
+- Added an `Issued holder-linked cards` metric to the Laravel-backed cards index so issued inventory now shows both sides of the holder-linkage split at the overview level.
+- Synced the config-driven placeholder metrics and cards index assertions so the issued inventory readiness split stays explicit next to the newer issued-unassigned slice.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
 ### Cards issued unassigned metric checkpoint
 - Added an `Issued unassigned cards` metric to the Laravel-backed cards index so the overview now isolates inventory that has already been issued but still lacks holder linkage.
 - Synced the config-driven placeholder metrics and cards index assertions so assignment-readiness gaps stay visible at the aggregate level before operators drill into record review.
