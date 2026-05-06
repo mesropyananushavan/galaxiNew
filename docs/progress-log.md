@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked unassigned selected-review checkpoint
+- Added a `Blocked unassigned signal` to selected-card review so blocked cards now explicitly surface when no holder linkage exists yet, complementing the newer blocked holder-linked and blocked unassigned metrics.
+- Kept the step narrow and read-only, but extended the blocked-state split from aggregate inventory counts into detailed record review semantics.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `2 passed`.
+
 ### Cards blocked unassigned metric checkpoint
 - Added a small live inventory metric, `Blocked unassigned cards`, so the Laravel-backed cards page now shows the complementary blocked stock slice that has no holder linkage yet.
 - Updated the placeholder metrics and live-backed cards assertions so blocked holder-linked and blocked unassigned inventory now surface as an intentional pair in the cards shell.
