@@ -3734,6 +3734,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft inventory should stay in handoff-only posture until issuance parity is explicit.')
             ->assertSee('Backend gap')
             ->assertSee('Card issuance, activation, and lifecycle writes should stay preview-only until inventory parity is verified.')
+            ->assertSee('Assignment readiness summary:')
+            ->assertSee('Assignment state is still intentionally pending while this card remains a draft inventory shell.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.');
     }

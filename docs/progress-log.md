@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards draft full review assignment readiness checkpoint
+- Extended the broader draft selected-card review test so `Assignment readiness summary` is now asserted in the rendered closing/context stack, not only in the primary field list.
+- Kept the step narrow by pairing the full draft review test with the existing draft lifecycle test for a targeted regression pass.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_draft_card_review_context|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `2 passed`.
+
 ### Cards full review assignment readiness checkpoint
 - Extended the broader Laravel-backed selected-card context test so `Assignment readiness summary` is now asserted in the main full blocked review scenario, not only in the narrower active/blocked focused tests.
 - Kept the step narrow by pairing the full-context blocked review test with the existing blocked holder-linked review test for a targeted regression pass.
