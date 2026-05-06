@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards holder-linked metric checkpoint
+- Added a `Holder-linked cards` metric so the cards index now surfaces overall assignment readiness, not only the narrower active and blocked holder-linkage slices.
+- Synced the config-driven placeholder metrics and Laravel-backed cards index assertions so aggregate holder linkage is visible alongside the newer lifecycle-specific counters.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
 ### Cards draft and issued assignment posture checkpoint
 - Refined `Assignment posture` for non-active selected-card review so issued-but-unassigned inventory now explicitly stays recovery-first while draft inventory stays in shell-review mode before issuance begins.
 - Extended the existing pre-activation and draft lifecycle tests to cover the new summary posture copy, keeping assignment review visible across the earlier lifecycle states too.
