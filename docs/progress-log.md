@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards unassigned metric checkpoint
+- Added an `Unassigned cards` metric so the cards index now shows the other half of overall assignment readiness, complementing the newer `Holder-linked cards` counter.
+- Synced the config-driven placeholder metrics and Laravel-backed cards index assertions so the aggregate assignment split is visible before operators drill into lifecycle-specific slices.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
 ### Cards holder-linked metric checkpoint
 - Added a `Holder-linked cards` metric so the cards index now surfaces overall assignment readiness, not only the narrower active and blocked holder-linkage slices.
 - Synced the config-driven placeholder metrics and Laravel-backed cards index assertions so aggregate holder linkage is visible alongside the newer lifecycle-specific counters.
