@@ -3308,6 +3308,7 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'blocked' => 'blocked inventory, operator review only',
             $selectedCard->status === 'active' && $selectedCard->holder !== null => 'issued inventory, parity-sensitive',
             $selectedCard->status === 'active' => 'active inventory, holder linkage incomplete',
+            $selectedCard->issued_at !== null && $selectedCard->activated_at === null => 'issued inventory, activation pending',
             default => 'draft inventory shell',
         };
     }

@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards pre-activation readiness-state checkpoint
+- Tightened selected-card `Operational readiness` so issued-but-not-yet-activated inventory no longer falls back to the generic draft shell label and instead shows a dedicated `issued inventory, activation pending` state.
+- Kept the step narrow and parity-safe, but removed a real contradiction between the new lifecycle signals and the older readiness wording in the Laravel-backed cards review shell.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory|test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `3 passed`.
+
 ### Cards lifecycle-stage checkpoint
 - Replaced a duplicate `Issued` slot in selected-card review with a dedicated `Lifecycle stage` signal, so detailed card review now distinguishes unissued draft shells, issued pre-activation inventory, and already activated cards more cleanly.
 - Added feature coverage for an unissued draft card to keep the new stage wording and activation-out-of-scope guardrail visible in the Laravel-backed cards workspace.

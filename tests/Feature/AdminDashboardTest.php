@@ -2596,6 +2596,8 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Reviewing: GX-910002')
+            ->assertSee('Operational readiness')
+            ->assertSee('issued inventory, activation pending')
             ->assertSee('Activation readiness')
             ->assertSee('Issued inventory is still waiting for activation review in Laravel.')
             ->assertSee('Issued')
