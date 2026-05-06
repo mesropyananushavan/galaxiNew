@@ -7642,9 +7642,9 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Create or edit service rule')
+            ->assertSee('Create or edit Galaxy rule')
             ->assertSee('Publish rule')
-            ->assertSee('New rule')
+            ->assertSee('New Galaxy rule')
             ->assertSee('Blocked until the first Laravel-backed service-rule write flow exists for group, scope, effect, and priority.')
             ->assertSee('Review priorities')
             ->assertSee('Blocked until rule priority resolution is verified in Laravel.')
@@ -7654,7 +7654,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active rules')
             ->assertSee('Shop scopes')
             ->assertSee('No service rules configured yet')
-            ->assertSee('Create first rule')
+            ->assertSee('Create first Galaxy rule')
             ->assertSee('Rule editing is still preview-only')
             ->assertSee('Rule identity')
             ->assertSee('Effect and priority')

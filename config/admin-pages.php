@@ -664,7 +664,7 @@ return [
         'nextStep' => 'Replace sample controls with real rule CRUD, priority ordering, and condition editing.',
         'actions' => [
             [
-                'label' => 'New rule',
+                'label' => 'New Galaxy rule',
                 'tone' => 'primary',
                 'disabled' => true,
                 'disabledReason' => 'Blocked until the first Laravel-backed service-rule write flow exists for group, scope, effect, and priority.',
@@ -686,7 +686,7 @@ return [
             'filters' => ['Shop scope', 'Status', 'Rule type'],
         ],
         'form' => [
-            'title' => 'Create or edit service rule',
+            'title' => 'Create or edit Galaxy rule',
             'sections' => [
                 [
                     'title' => 'Rule identity',
@@ -720,7 +720,7 @@ return [
             'title' => 'No service rules configured yet',
             'description' => 'Start by recreating the highest-impact legacy rule groups, then expand the rule catalog once parity is stable.',
             'actions' => [
-                ['label' => 'Create first rule', 'tone' => 'primary'],
+                ['label' => 'Create first Galaxy rule', 'tone' => 'primary'],
             ],
         ],
         'notice' => [

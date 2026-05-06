@@ -5403,3 +5403,8 @@
 - Replaced the remaining generic preview copy `Create or edit role` with `Create or edit Galaxy role`, and `Create first role` with `Create first Galaxy role`, so the access workspace reads less like a starter authorization stub.
 - Kept the change config-driven and limited to the already writable `roles-permissions` shell without widening permission persistence, publishing, or assignment behavior.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_management_preview|test_empty_state_ignores_malformed_entries)'`, `2 passed`.
+
+### Services rules preview copy checkpoint
+- Replaced remaining generic rule-shell copy with Galaxy-specific wording: `New rule` became `New Galaxy rule`, `Create or edit service rule` became `Create or edit Galaxy rule`, and `Create first rule` became `Create first Galaxy rule`.
+- Kept the change preview-only and config-driven so the rules workspace feels less like a starter CRUD stub without opening rule persistence or publish behavior.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview'`, `1 passed`.
