@@ -2376,6 +2376,7 @@ class AdminDashboardTest extends TestCase
             'card_type_id' => $cardType->id,
             'number' => 'GX-900001',
             'status' => 'active',
+            'issued_at' => '2026-04-08 08:30:00',
             'review_note' => 'Keep active-card parity visible before widening replacement actions.',
             'activated_at' => '2026-04-10 10:00:00',
         ]);
@@ -2421,6 +2422,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewed cards')
             ->assertSee('Keep active-card parity visible before widening replacement actions.')
             ->assertSee('No review note saved yet')
+            ->assertSee('2026-04-08')
             ->assertSee('2026-04-10')
             ->assertSee('2026-03-28');
     }
@@ -2454,6 +2456,7 @@ class AdminDashboardTest extends TestCase
             'card_type_id' => $cardType->id,
             'number' => 'GX-910001',
             'status' => 'blocked',
+            'issued_at' => '2026-03-20 14:45:00',
             'review_note' => 'Keep blocked-card dispute parity visible before any replacement follow-up is trusted.',
             'activated_at' => '2026-03-28 09:15:00',
         ]);
@@ -2481,6 +2484,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Lifecycle freshness')
             ->assertSee('newly created in Laravel review')
             ->assertSee('Last saved in Laravel')
+            ->assertSee('Issued')
+            ->assertSee('2026-03-20')
             ->assertSee('Review note')
             ->assertSee('Keep blocked-card dispute parity visible before any replacement follow-up is trusted.')
             ->assertSee('Holder')

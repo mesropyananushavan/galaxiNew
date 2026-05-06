@@ -284,7 +284,7 @@ return [
             ['label' => 'Reviewed cards', 'value' => '1'],
         ],
         'table' => [
-            'columns' => ['Number', 'Holder', 'Type', 'Review note', 'Shop', 'Status', 'Activated'],
+            'columns' => ['Number', 'Holder', 'Type', 'Review note', 'Shop', 'Status', 'Issued', 'Activated'],
             'rows' => [
                 ['GX-100001', 'Anna Petrova', 'Gold', 'Keep active-card parity visible before widening replacement actions.', 'Central Shop', 'active', '2026-04-10'],
                 ['GX-100002', 'Unassigned', 'Silver', 'No review note saved yet', 'North Shop', 'draft', '—'],
@@ -294,6 +294,7 @@ return [
         ],
         'operationalGlossary' => [
             ['term' => 'Card type', 'meaning' => 'The tier or segment definition that controls accrual and activation behavior.'],
+            ['term' => 'Issued', 'meaning' => 'The timestamp when inventory first became an issued Galaxy card shell, before or alongside later activation state changes.'],
             ['term' => 'Activated', 'meaning' => 'The timestamp when a physical or virtual card became usable in the loyalty flow.'],
         ],
         'legacyParityNotes' => [

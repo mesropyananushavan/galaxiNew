@@ -900,6 +900,7 @@ class ResourceIndexController extends Controller
             filled($card->review_note) ? str($card->review_note)->limit(72)->toString() : 'No review note saved yet',
             $card->shop?->name ?? 'Unassigned',
             $card->status,
+            $card->issued_at?->format('Y-m-d') ?? '—',
             $card->activated_at?->format('Y-m-d') ?? '—',
         ])->all();
 
@@ -3269,6 +3270,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Operational readiness', 'value' => $this->cardsOperationalReadiness($selectedCard)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
+            ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Review note', 'value' => $selectedCard->review_note ?: 'No review note saved yet'],
             ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
             ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
@@ -3283,6 +3285,7 @@ class ResourceIndexController extends Controller
                 ? 'Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.'
                 : 'No branch is linked yet, so shop-level handling should stay in parity review before operators rely on this card record operationally.'],
             ['label' => 'Laravel status', 'value' => $selectedCard->status],
+            ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
             [
                 'label' => 'Inventory guidance',
@@ -3405,6 +3408,7 @@ class ResourceIndexController extends Controller
             }],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
+            ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Review note', 'value' => $selectedCard->review_note ?: 'No review note saved yet'],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],

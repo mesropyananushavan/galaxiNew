@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Card issued-at review visibility checkpoint
+- Surfaced the new Galaxy `issued_at` lifecycle timestamp across the Laravel-backed `cards` review shell so issued inventory is visible in both the index table and selected-card context instead of staying a schema-only foundation detail.
+- Updated the card-page glossary and focused feature coverage so Phase 1 inventory review now distinguishes issuance timing from later activation timing without widening any live write flow yet.
+- Re-ran `php artisan test --filter='(test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cards_page_surfaces_selected_card_context_from_laravel_data)'`, `2 passed`.
+
 ### Card issued-at foundation checkpoint
 - Added a real nullable `issued_at` column to the Phase 1 `cards` table so the Galaxy inventory foundation can carry a first-class issuance lifecycle timestamp instead of only the more generic activation marker.
 - Promoted `issued_at` into the `Card` model fillable and cast map, then extended focused unit coverage so inventory lifecycle data is ready for later parity-safe reads without widening any assignment or replacement flows yet.
