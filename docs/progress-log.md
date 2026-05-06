@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards lifecycle handoff-copy checkpoint
+- Cleaned up the remaining cards handoff copy so both the legacy parity note and the first live-form description now reflect issue timing plus activation timing, instead of leaving one-sided activation-only wording behind.
+- Kept the step read-only and parity-safe, but made the first inventory write slice read more like the actual Galaxy lifecycle shell already forming in Phase 1.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_cards_operational_index_shape`, `1 passed`.
+
 ### Cards lifecycle copy parity checkpoint
 - Cleaned up the cards operational-index copy so the Phase 1 inventory shell now talks about both issue timing and activation timing instead of leaving stale activation-only wording from the earlier starter-shaped placeholder.
 - Kept the step read-only and parity-safe, but aligned the first cards implementation handoff text with the newer Galaxy lifecycle field shape already present in the Laravel foundation.

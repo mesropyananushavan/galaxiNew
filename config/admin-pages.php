@@ -299,7 +299,7 @@ return [
         ],
         'legacyParityNotes' => [
             'Retain clear visibility for unassigned, active, and blocked card states.',
-            'Keep activation timing visible without opening a separate detail screen.',
+            'Keep issue timing and activation timing visible without opening a separate detail screen.',
         ],
         'operationalNextSlice' => [
             'summary' => 'The first real cards slice should be a query-backed inventory table that mirrors the current preview layout.',
@@ -383,7 +383,7 @@ return [
         ],
         'liveForm' => [
             'title' => 'Create Galaxy card in Laravel',
-            'description' => 'This is the first minimal Laravel-backed card write path. Keep it limited to branch anchoring, type, inventory status, activation timing, and review notes while holder assignment and replacement handling remain parity-first review surfaces.',
+            'description' => 'This is the first minimal Laravel-backed card write path. Keep it limited to branch anchoring, type, inventory status, issue timing, activation timing, and review notes while holder assignment and replacement handling remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.cards.store',
             'cancelRoute' => 'admin.cards.index',
