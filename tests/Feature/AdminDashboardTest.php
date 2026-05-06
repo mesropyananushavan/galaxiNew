@@ -2738,6 +2738,44 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_update_live_flow_returns_operator_friendly_activation_timestamp_validation_message(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Invalid Activation Update Branch',
+            'code' => 'galaxy-invalid-activation-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Invalid Activation Update Gold',
+            'slug' => 'galaxy-invalid-activation-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-INVALID-ACT-UPD-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-invalid-act-upd-1001 ',
+            'status' => 'active',
+            'issued_at' => '',
+            'activated_at' => 'not-a-real-timestamp',
+            'review_note' => 'Keep invalid activation timestamps obvious while selected inventory edits stay narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'activated_at' => 'Use a real activation timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
+            ]);
+    }
+
     public function test_card_live_flow_normalizes_number_and_rejects_duplicate_inventory_identifier(): void
     {
         $shop = Shop::create([

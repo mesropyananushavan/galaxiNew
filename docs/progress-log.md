@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Card activation update-validation checkpoint
+- Added focused feature coverage for the selected-card update path so invalid `activated_at` input now stays pinned to the same operator-friendly Galaxy lifecycle message after redirecting back into edit mode.
+- Kept the step validation-only and parity-safe, tightening the Phase 1 inventory edit shell without widening holder assignment, replacement, or dispute writes.
+- Re-ran `php artisan test --filter=test_card_update_live_flow_returns_operator_friendly_activation_timestamp_validation_message`, `1 passed`.
+
 ### Card activation validation-message checkpoint
 - Added an operator-friendly validation message for invalid `activated_at` input so the first live Galaxy inventory lifecycle flow now treats activation timing with the same non-generic UX already applied to issue timing.
 - Added focused feature coverage for the invalid activation-timestamp create path while keeping the step validation-only and safely out of holder-assignment, replacement, or dispute logic.
