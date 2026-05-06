@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards activation-readiness checkpoint
+- Added an `Activation readiness` signal to selected-card review so the Laravel-backed cards workspace now distinguishes draft inventory, issued-but-not-yet-activated stock, and already activated cards at the record level, not only in summary metrics.
+- Added feature coverage for a selected card with `issued_at` set and `activated_at` still null, keeping the newer dual-lifecycle Galaxy shell visible during detailed operator review.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `2 passed`.
+
 ### Cards pre-activation metric checkpoint
 - Added a small but real dual-lifecycle inventory metric, `Pre-activation cards`, to the Laravel-backed cards page so Phase 1 now distinguishes issued-but-not-yet-activated stock instead of collapsing everything into generic draft or active counts.
 - Brought the static cards placeholder metrics back into sync with the live shell by restoring `Issued cards` there too, keeping the preview configuration closer to the actual Galaxy inventory foundation.

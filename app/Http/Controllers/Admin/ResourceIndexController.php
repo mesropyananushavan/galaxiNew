@@ -3290,6 +3290,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Laravel status', 'value' => $selectedCard->status],
             ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
+            ['label' => 'Activation readiness', 'value' => $this->cardsActivationReadiness($selectedCard)],
             [
                 'label' => 'Inventory guidance',
                 'value' => match ($selectedCard->status) {
@@ -3308,6 +3309,15 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'active' && $selectedCard->holder !== null => 'issued inventory, parity-sensitive',
             $selectedCard->status === 'active' => 'active inventory, holder linkage incomplete',
             default => 'draft inventory shell',
+        };
+    }
+
+    private function cardsActivationReadiness(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->issued_at !== null && $selectedCard->activated_at === null => 'Issued inventory is still waiting for activation review in Laravel.',
+            $selectedCard->activated_at !== null => 'Activation is already recorded in Laravel for this issued card.',
+            default => 'This card has not been issued yet, so activation should remain out of scope during parity review.',
         };
     }
 

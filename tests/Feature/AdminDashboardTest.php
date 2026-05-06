@@ -2522,6 +2522,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.')
             ->assertSee('Laravel status')
             ->assertSee('Activated')
+            ->assertSee('Activation readiness')
+            ->assertSee('Activation is already recorded in Laravel for this issued card.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.')
             ->assertSee('GX-910001 selected for Laravel review')
@@ -2557,6 +2559,47 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.');
+    }
+
+    public function test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy North',
+            'code' => 'galaxy-north-pre-activation-card',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Silver',
+            'slug' => 'galaxy-silver-pre-activation-card',
+            'points_rate' => '1.20',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-910002',
+            'status' => 'draft',
+            'issued_at' => '2026-04-09 09:00:00',
+            'review_note' => 'Keep issued stock visible before activation parity is widened.',
+            'activated_at' => null,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: GX-910002')
+            ->assertSee('Activation readiness')
+            ->assertSee('Issued inventory is still waiting for activation review in Laravel.')
+            ->assertSee('Issued')
+            ->assertSee('2026-04-09')
+            ->assertSee('Activated')
+            ->assertSee('—');
     }
 
     public function test_authenticated_user_can_create_card_from_live_admin_flow(): void
