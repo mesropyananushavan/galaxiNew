@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked activated metric checkpoint
+- Added a small live inventory metric, `Blocked activated cards`, so the Laravel-backed cards page now splits blocked stock between pre-activation records and cards that had already reached activation before entering dispute posture.
+- Updated the placeholder metrics and live-backed cards assertions so the cards shell keeps reflecting the newer blocked-state slices without widening the write path.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
 ### Cards blocked dispute-posture checkpoint
 - Added a `Dispute posture` signal to selected-card review so blocked cards now distinguish pre-activation triage from blocked cards that already carry prior activation context in Laravel.
 - Kept the step narrow and read-only, but made blocked-card review semantics more explicit at the record level alongside the newer blocked pre-activation signal.
