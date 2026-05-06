@@ -2646,6 +2646,54 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Issued inventory is still waiting for activation review in Laravel.');
     }
 
+    public function test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Linked Pre-activation Branch',
+            'code' => 'galaxy-linked-pre-activation-branch',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Arman Pre-activation',
+            'phone' => '+37491100231',
+            'email' => 'arman.pre.activation@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Linked Silver',
+            'slug' => 'galaxy-linked-silver-pre-activation-card',
+            'points_rate' => '1.25',
+            'is_active' => true,
+        ]);
+
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-910006',
+            'status' => 'draft',
+            'issued_at' => '2026-04-12 10:30:00',
+            'activated_at' => null,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cards?card='.$card->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: GX-910006')
+            ->assertSee('Pre-activation holder-linked signal')
+            ->assertSee('Pre-activation inventory already carries holder linkage, so activation parity can stay anchored to the current member record before live usage expands.')
+            ->assertSee('Holder linkage summary')
+            ->assertSee('Holder linkage is already present in Laravel for this card review.')
+            ->assertSee('Assignment readiness summary')
+            ->assertSee('Holder linkage is present, so assignment state is ready for parity-first review in Laravel.');
+    }
+
     public function test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory(): void
     {
         $shop = Shop::create([

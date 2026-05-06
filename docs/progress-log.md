@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards pre-activation holder-linked review checkpoint
+- Added a `Pre-activation holder-linked signal` to selected-card review so issued-but-not-yet-activated inventory now explicitly surfaces when holder linkage is already present before activation parity is widened.
+- Added focused feature coverage for a holder-linked pre-activation selected card and re-used the existing issued pre-activation test for a narrow regression pass.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `2 passed`.
+
 ### Cards pre-activation holder-linked metric checkpoint
 - Added a `Pre-activation holder-linked cards` metric to the Laravel-backed cards index so pre-activation inventory now shows both sides of the holder-linkage split at the overview level.
 - Synced the config-driven placeholder metrics and cards index assertions so the pre-activation readiness split stays explicit next to the newer unassigned slice.
