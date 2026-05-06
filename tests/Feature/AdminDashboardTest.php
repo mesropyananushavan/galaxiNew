@@ -5788,6 +5788,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Reviewing: Lilit Paused Branch Holder')
+            ->assertSee('Blocked until paused-branch activity history is backed by a stable Laravel event source for recovery-parity review.')
             ->assertSee('Shop activity signal')
             ->assertSee('Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.')
             ->assertSee('Activity handoff signal')

@@ -5830,3 +5830,8 @@
 - Added `cardholdersStatusPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit branch-recovery wording in the selected-holder dependency stack instead of the generic active-holder posture copy.
 - Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Status posture` text renders in the closing/dependency context.
 - Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch action-state checkpoint
+- Refined `cardholdersSelectedReviewActivityDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch holders now surface branch-recovery-specific disabled copy directly on the `Review recent activity` action instead of reusing the generic holder activity wording.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new disabled-reason copy renders in the selected-holder action state.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
