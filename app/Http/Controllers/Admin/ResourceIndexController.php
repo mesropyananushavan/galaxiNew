@@ -3309,6 +3309,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Blocked holder-linked signal', 'value' => $this->cardsBlockedHolderLinkedSignal($selectedCard)],
             ['label' => 'Blocked unassigned signal', 'value' => $this->cardsBlockedUnassignedSignal($selectedCard)],
             ['label' => 'Pre-activation holder-linked signal', 'value' => $this->cardsPreActivationHolderLinkedSignal($selectedCard)],
+            ['label' => 'Pre-activation unassigned signal', 'value' => $this->cardsPreActivationUnassignedSignal($selectedCard)],
             ['label' => 'Active holder-linked signal', 'value' => $this->cardsActiveHolderLinkedSignal($selectedCard)],
             ['label' => 'Active unassigned signal', 'value' => $this->cardsActiveUnassignedSignal($selectedCard)],
             ['label' => 'Holder linkage summary', 'value' => $this->cardsHolderLinkageSummary($selectedCard)],
@@ -3398,6 +3399,15 @@ class ResourceIndexController extends Controller
             $selectedCard->issued_at !== null && $selectedCard->activated_at === null && $selectedCard->holder !== null => 'Pre-activation inventory already carries holder linkage, so activation parity can stay anchored to the current member record before live usage expands.',
             $selectedCard->issued_at !== null && $selectedCard->activated_at === null => 'Pre-activation holder-linked review is not the active slice for this card right now.',
             default => 'Pre-activation holder-linked review is out of scope for this card right now.',
+        };
+    }
+
+    private function cardsPreActivationUnassignedSignal(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->issued_at !== null && $selectedCard->activated_at === null && $selectedCard->holder === null => 'Pre-activation inventory is still unassigned, so holder recovery should stay explicit before activation parity widens into live usage.',
+            $selectedCard->issued_at !== null && $selectedCard->activated_at === null => 'Pre-activation unassigned review is not the active slice for this card right now.',
+            default => 'Pre-activation unassigned review is out of scope for this card right now.',
         };
     }
 

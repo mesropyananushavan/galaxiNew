@@ -2634,6 +2634,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked inventory was issued but never activated, so dispute review should stay separate from active-card recovery handling.')
             ->assertSee('Blocked activated signal')
             ->assertSee('Blocked activated review is not the active slice for this card right now.')
+            ->assertSee('Pre-activation unassigned signal')
+            ->assertSee('Pre-activation inventory is still unassigned, so holder recovery should stay explicit before activation parity widens into live usage.')
             ->assertSee('Holder linkage summary')
             ->assertSee('Holder linkage is still missing from this issued card, so assignment recovery remains visible.')
             ->assertSee('Assignment readiness summary')
