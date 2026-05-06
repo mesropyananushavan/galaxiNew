@@ -12,6 +12,13 @@ class Shop extends Model
 {
     use HasFactory;
 
+    protected function casts(): array
+    {
+        return [
+            'is_active' => 'boolean',
+        ];
+    }
+
     public function users(): HasMany
     {
         return $this->hasMany(User::class);

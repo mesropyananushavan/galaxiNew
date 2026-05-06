@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Foundation boolean casts checkpoint
+- Added explicit Eloquent boolean casts for `shops.is_active` and `card_holders.is_active`, tightening the Phase 1 Galaxy foundation around the real branch and holder entity shape instead of leaving these flags starter-loose at the model layer.
+- Added focused unit coverage in `FoundationModelCastsTest` so branch and holder activity state stays predictable as more Laravel-backed admin flows rely on those booleans.
+- Re-ran `php artisan test --filter=FoundationModelCastsTest`, `2 passed`.
+
 ### Dashboard cardholder activity metric fix checkpoint
 - Corrected the Phase 1 dashboard foundation snapshot so active cardholder coverage now reads from the real Galaxy boolean flag `is_active` instead of a starter-style `status` field that cardholders do not use.
 - This keeps the dashboard's branch, holder, and card coverage summary aligned with the actual Phase 1 entity shape, making the Galaxy foundation less misleading during parity review.

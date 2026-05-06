@@ -13,6 +13,13 @@ class CardHolder extends Model
 {
     use HasFactory;
 
+    protected function casts(): array
+    {
+        return [
+            'is_active' => 'boolean',
+        ];
+    }
+
     public function shop(): BelongsTo
     {
         return $this->belongsTo(Shop::class);
