@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards draft-status activation guardrail checkpoint
+- Added another narrow lifecycle rule so draft cards in the live Laravel flow now reject `activated_at`, keeping pre-activation inventory review distinct from already activated stock in the Galaxy cards shell.
+- Added create and update feature coverage plus operator-friendly validation copy, making the draft-with-activation mismatch visible in both first-pass card creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_rejects_activation_timestamp_for_draft_status|test_card_update_live_flow_rejects_activation_timestamp_for_draft_status|test_card_live_flow_requires_activation_timestamp_for_active_status|test_card_update_live_flow_requires_activation_timestamp_for_active_status'`, `4 passed`.
+
 ### Cards active-status activation guardrail checkpoint
 - Added the next narrow lifecycle rule so cards cannot be marked `active` in the live Laravel flow without an `activated_at` timestamp, keeping active inventory from drifting away from the Galaxy dual-lifecycle model.
 - Added create and update feature coverage plus operator-friendly validation copy, making the active-without-activation gap visible in both first-pass card creation and selected-card edits.

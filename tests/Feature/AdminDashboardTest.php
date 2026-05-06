@@ -2931,6 +2931,76 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_live_flow_rejects_activation_timestamp_for_draft_status(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Draft Activation Branch',
+            'code' => 'galaxy-draft-activation-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Draft Activation Gold',
+            'slug' => 'galaxy-draft-activation-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from('/admin/cards')->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-draft-activation-1001 ',
+            'status' => 'draft',
+            'issued_at' => '2026-05-05 09:20:00',
+            'activated_at' => '2026-05-05 12:40:00',
+            'review_note' => 'Keep draft inventory from looking activated before parity is widened.',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cards#live-form')
+            ->assertSessionHasErrors([
+                'activated_at' => 'Leave activation blank while this card stays draft so the Galaxy lifecycle timeline stays operator-friendly.',
+            ]);
+    }
+
+    public function test_card_update_live_flow_rejects_activation_timestamp_for_draft_status(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Draft Activation Update Branch',
+            'code' => 'galaxy-draft-activation-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Draft Activation Update Gold',
+            'slug' => 'galaxy-draft-activation-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DRAFT-ACT-UPD-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-draft-act-upd-1001 ',
+            'status' => 'draft',
+            'issued_at' => '2026-05-05 09:20:00',
+            'activated_at' => '2026-05-05 12:40:00',
+            'review_note' => 'Keep selected draft inventory from looking activated before parity is widened.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'activated_at' => 'Leave activation blank while this card stays draft so the Galaxy lifecycle timeline stays operator-friendly.',
+            ]);
+    }
+
     public function test_card_update_live_flow_requires_activation_timestamp_for_active_status(): void
     {
         $user = User::factory()->create();

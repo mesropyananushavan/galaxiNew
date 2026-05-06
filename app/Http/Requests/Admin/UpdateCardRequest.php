@@ -18,7 +18,7 @@ class UpdateCardRequest extends StoreCardRequest
             'number' => ['required', 'string', 'max:255', Rule::unique('cards', 'number')->ignore($cardId)],
             'status' => ['required', 'string', Rule::in(['draft', 'active', 'blocked'])],
             'issued_at' => ['nullable', 'date', 'required_with:activated_at'],
-            'activated_at' => ['nullable', 'date', 'required_if:status,active', 'after_or_equal:issued_at'],
+            'activated_at' => ['nullable', 'date', 'required_if:status,active', 'prohibited_if:status,draft', 'after_or_equal:issued_at'],
             'review_note' => ['nullable', 'string', 'max:1000'],
         ];
     }
