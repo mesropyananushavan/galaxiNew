@@ -940,7 +940,7 @@ class ResourceIndexController extends Controller
                 'card' => $selectedCard,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.cards.index';
-            $page['liveForm']['cancelLabel'] = 'Create new inventory shell';
+            $page['liveForm']['cancelLabel'] = 'Create new Galaxy card shell';
             $page['liveForm']['cancelRouteParameters'] = [];
             $page['liveForm']['submitLabel'] = 'Save inventory changes';
             $page['liveForm']['valuesResolver'] = [

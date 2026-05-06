@@ -2469,6 +2469,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Reviewing: GX-910001')
             ->assertSee('Edit Galaxy card in Laravel')
             ->assertSee('Save inventory changes')
+            ->assertSee('Create new Galaxy card shell')
             ->assertSee('action="/admin/cards/'.$card->id.'"', false)
             ->assertSee('Review blocked cards')
             ->assertSee('Blocked until this blocked holder-linked card clears dispute and replacement parity against the legacy Galaxy flow.')

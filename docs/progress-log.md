@@ -5443,3 +5443,8 @@
 - Removed stale generic role wording from role preview normalization coverage so helper/normalizer tests now match the Galaxy-specific access-shell copy already rendered by the product.
 - Narrowed one malformed-form assertion to the actual normalization behavior under test instead of expecting a disabled-reason string from an intentionally overridden fixture action.
 - Re-ran `php artisan test --filter='(test_form_preview_ignores_malformed_entries|test_primary_page_blocks_still_render_after_grouped_controller_lookup|test_resource_page_still_renders_after_normalizer_is_extracted)'`, `3 passed`.
+
+### Cards selected action copy checkpoint
+- Replaced the selected-card edit reset label `Create new inventory shell` with `Create new Galaxy card shell` so the writable inventory workspace reads less like a generic starter helper action.
+- Kept the change controller-driven and copy-only, without widening holder assignment, dispute handling, or replacement behavior.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `1 passed`.
