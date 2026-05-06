@@ -57,6 +57,7 @@ class StoreCardRequest extends FormRequest
         return [
             'number.unique' => 'This card number is already in use in the Laravel inventory shell.',
             'issued_at.date' => 'Use a real issue timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
+            'activated_at.date' => 'Use a real activation timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
             'review_note.max' => 'Keep the review note under 1000 characters so the inventory workspace stays operator-friendly.',
         ];
     }

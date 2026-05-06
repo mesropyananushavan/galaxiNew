@@ -2706,6 +2706,38 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_live_flow_returns_operator_friendly_activation_timestamp_validation_message(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Invalid Activation Branch',
+            'code' => 'galaxy-invalid-activation-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Invalid Activation Gold',
+            'slug' => 'galaxy-invalid-activation-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from('/admin/cards')->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-invalid-activation-1001 ',
+            'status' => 'active',
+            'issued_at' => '',
+            'activated_at' => 'not-a-real-timestamp',
+            'review_note' => 'Keep invalid activation timestamps obvious while the first live inventory shell stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cards#live-form')
+            ->assertSessionHasErrors([
+                'activated_at' => 'Use a real activation timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
+            ]);
+    }
+
     public function test_card_live_flow_normalizes_number_and_rejects_duplicate_inventory_identifier(): void
     {
         $shop = Shop::create([
