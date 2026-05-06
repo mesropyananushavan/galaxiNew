@@ -7980,7 +7980,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active')
             ->assertSee('Draft')
             ->assertSee('Create or edit Galaxy tier')
-            ->assertSee('Publish type')
+            ->assertSee('Publish tier')
             ->assertSee('Blocked until the first Laravel-backed tier exists before any publish-style rollout.')
             ->assertSee('New Galaxy tier')
             ->assertSee('href="#live-form"', false)
@@ -8043,7 +8043,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Import rules')
             ->assertSee('Blocked until saved tier accrual parity is verified before importing legacy rules.')
-            ->assertSee('Publish type')
+            ->assertSee('Publish tier')
             ->assertSee('Blocked until saved live tiers clear Galaxy tier rollout parity before any broader catalog move.');
     }
 
@@ -8114,7 +8114,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Import rules')
             ->assertSee('aria-disabled="true"', false)
             ->assertSee('Blocked until draft tier accrual parity is verified against visible card coverage.')
-            ->assertSee('Publish type')
+            ->assertSee('Publish tier')
             ->assertSee('Blocked until this draft tier clears rule and rollout parity review against visible card coverage.')
             ->assertSee('Selected record summary')
             ->assertSee('Selected tier:')
@@ -8238,7 +8238,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Editing: Galaxy Platinum')
             ->assertSee('Import rules')
             ->assertSee('Blocked until this live tier has visible card coverage for accrual parity review.')
-            ->assertSee('Publish type')
+            ->assertSee('Publish tier')
             ->assertSee('Blocked until this live tier has visible card coverage and Galaxy tier rollout parity review.');
     }
 
@@ -8305,7 +8305,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Rollout confirmation, publish logic, and rule-import parity should stay preview-only until live tier coverage is verified.')
             ->assertSee('Import rules')
             ->assertSee('Blocked until this live tier has visible card coverage for accrual parity review.')
-            ->assertSee('Publish type')
+            ->assertSee('Publish tier')
             ->assertSee('Blocked until this live tier has visible card coverage and Galaxy tier rollout parity review.');
     }
 
@@ -8333,7 +8333,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft activation, publish logic, and rule-import parity should stay preview-only until visible tier coverage is verified.')
             ->assertSee('Import rules')
             ->assertSee('Blocked until draft parity review has visible card coverage to compare against.')
-            ->assertSee('Publish type')
+            ->assertSee('Publish tier')
             ->assertSee('Blocked until this draft tier clears rule-and-rollout parity review before any publish-like move.');
     }
 

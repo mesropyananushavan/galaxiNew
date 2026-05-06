@@ -585,7 +585,7 @@ return [
             ],
             'actions' => [
                 ['label' => 'Save draft', 'tone' => 'secondary'],
-                ['label' => 'Publish type', 'tone' => 'primary'],
+                ['label' => 'Publish tier', 'tone' => 'primary'],
             ],
         ],
         'emptyState' => [

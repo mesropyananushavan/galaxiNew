@@ -1922,7 +1922,7 @@ class ResourceIndexController extends Controller
                 'disabledReason' => $this->cardTypesCatalogImportRulesDisabledReason($cardTypes),
             ],
             [
-                'label' => 'Publish type',
+                'label' => 'Publish tier',
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => $this->cardTypesCatalogPublishTypeDisabledReason($cardTypes),
@@ -2018,7 +2018,7 @@ class ResourceIndexController extends Controller
                 'disabledReason' => $this->cardTypesImportRulesDisabledReason($selectedCardType),
             ],
             [
-                'label' => 'Publish type',
+                'label' => 'Publish tier',
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => $this->cardTypesPublishTypeDisabledReason($selectedCardType),

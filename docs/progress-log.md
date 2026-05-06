@@ -5418,3 +5418,8 @@
 - Replaced the remaining generic reward publish label `Publish gift` with `Publish reward` in both the preview shell and selected reward review context so the gifts workspace reads less like a starter CRUD screen.
 - Kept the change copy-only and parity-first, without opening gift CRUD, stock recovery, or redemption writes.
 - Re-ran `php artisan test --filter='(test_authenticated_user_can_access_gifts_management_preview|test_gifts_page_supports_selected_all_shop_gift_review_context)'`, `2 passed`.
+
+### Card types publish action copy checkpoint
+- Replaced the remaining generic tier publish label `Publish type` with `Publish tier` in both the preview shell and selected tier review context so the card-types workspace reads less like a starter CRUD screen.
+- Kept the change copy-only and parity-first, without opening publish logic or rule-import behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_card_types_management_preview|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
