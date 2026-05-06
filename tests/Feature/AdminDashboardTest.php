@@ -2626,6 +2626,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked activated review is not the active slice for this card right now.')
             ->assertSee('Holder linkage summary')
             ->assertSee('Holder linkage is still missing from this issued card, so assignment recovery remains visible.')
+            ->assertSee('Assignment readiness summary')
+            ->assertSee('Assignment state is still pending because this issued card has not been linked to a holder yet.')
             ->assertSee('Assignment posture')
             ->assertSee('Blocked inventory is still unassigned, so reassignment and replacement review should stay explicit before any holder recovery assumptions are trusted.')
             ->assertSee('Dispute posture')

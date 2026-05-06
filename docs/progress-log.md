@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked pre-activation assignment readiness checkpoint
+- Extended the blocked pre-activation selected-card test so `Assignment readiness summary` is now explicitly covered on issued-but-blocked inventory that still lacks holder linkage.
+- Kept the step narrow by reusing the existing blocked pre-activation and issued-inventory tests instead of widening cards behavior again.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `2 passed`.
+
 ### Cards early-lifecycle assignment readiness checkpoint
 - Extended `Assignment readiness summary` coverage into the issued-but-unassigned and still-draft selected-card lifecycle branches, so the compact assignment-state summary is now asserted beyond active and blocked review.
 - Kept the step narrow by reusing the existing pre-activation and draft lifecycle tests instead of widening cards behavior again.
