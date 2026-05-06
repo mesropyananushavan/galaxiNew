@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked pre-activation linkage summary checkpoint
+- Extended the blocked pre-activation selected-card test so `Holder linkage summary` and `Assignment posture` are now explicitly covered on blocked inventory that was issued but never activated.
+- Kept the step narrow by reusing the existing blocked pre-activation and issued-inventory tests instead of widening cards behavior again.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `2 passed`.
+
 ### Cards early-lifecycle holder linkage summary checkpoint
 - Extended `Holder linkage summary` coverage into the earlier selected-card lifecycle branches, so issued-but-unassigned and still-draft cards now assert the compact linkage summary alongside their assignment posture.
 - Kept the step narrow by reusing the existing pre-activation and draft selected-card tests instead of widening the cards shell further.
