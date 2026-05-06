@@ -3304,6 +3304,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Blocked unassigned signal', 'value' => $this->cardsBlockedUnassignedSignal($selectedCard)],
             ['label' => 'Active holder-linked signal', 'value' => $this->cardsActiveHolderLinkedSignal($selectedCard)],
             ['label' => 'Active unassigned signal', 'value' => $this->cardsActiveUnassignedSignal($selectedCard)],
+            ['label' => 'Holder linkage summary', 'value' => $this->cardsHolderLinkageSummary($selectedCard)],
             ['label' => 'Assignment posture', 'value' => $this->cardsAssignmentPosture($selectedCard)],
             ['label' => 'Dispute posture', 'value' => $this->cardsDisputePosture($selectedCard)],
             ['label' => 'Activation readiness', 'value' => $this->cardsActivationReadiness($selectedCard)],
@@ -3398,6 +3399,16 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'active' && $selectedCard->holder === null => 'Active inventory is still unassigned, so holder-linkage recovery should stay visible before operators assume a stable member attachment.',
             $selectedCard->status === 'active' => 'Active inventory already carries holder linkage in Laravel for parity-first review.',
             default => 'Active unassigned review is out of scope for this card right now.',
+        };
+    }
+
+    private function cardsHolderLinkageSummary(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->holder !== null && $selectedCard->status === 'blocked' => 'Holder linkage is present, but this card stays in blocked dispute review until replacement parity is proven.',
+            $selectedCard->holder !== null => 'Holder linkage is already present in Laravel for this card review.',
+            $selectedCard->issued_at !== null => 'Holder linkage is still missing from this issued card, so assignment recovery remains visible.',
+            default => 'Holder linkage is still intentionally absent while this card stays in draft inventory review.',
         };
     }
 

@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards holder linkage summary checkpoint
+- Added a `Holder linkage summary` field to selected-card review so record-level card context now has one compact linkage summary line alongside the more specific active and blocked linkage signals.
+- Extended the existing active and blocked selected-card tests to cover the new summary field across holder-linked and unassigned review paths.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `4 passed`.
+
 ### Cards unassigned metric checkpoint
 - Added an `Unassigned cards` metric so the cards index now shows the other half of overall assignment readiness, complementing the newer `Holder-linked cards` counter.
 - Synced the config-driven placeholder metrics and Laravel-backed cards index assertions so the aggregate assignment split is visible before operators drill into lifecycle-specific slices.
