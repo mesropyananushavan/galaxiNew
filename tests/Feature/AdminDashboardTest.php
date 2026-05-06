@@ -2835,6 +2835,76 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_live_flow_rejects_activation_before_issue_timestamp(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Invalid Lifecycle Order Branch',
+            'code' => 'galaxy-invalid-lifecycle-order-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Invalid Lifecycle Order Gold',
+            'slug' => 'galaxy-invalid-lifecycle-order-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from('/admin/cards')->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-invalid-order-1001 ',
+            'status' => 'active',
+            'issued_at' => '2026-05-05 12:40:00',
+            'activated_at' => '2026-05-05 09:20:00',
+            'review_note' => 'Keep invalid lifecycle ordering obvious while the first live inventory shell stays narrow.',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cards#live-form')
+            ->assertSessionHasErrors([
+                'activated_at' => 'Keep activation on or after issuance so the Galaxy lifecycle timeline stays operator-friendly.',
+            ]);
+    }
+
+    public function test_card_update_live_flow_rejects_activation_before_issue_timestamp(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Invalid Lifecycle Order Update Branch',
+            'code' => 'galaxy-invalid-lifecycle-order-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Invalid Lifecycle Order Update Gold',
+            'slug' => 'galaxy-invalid-lifecycle-order-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-INVALID-ORDER-UPD-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-invalid-order-upd-1001 ',
+            'status' => 'active',
+            'issued_at' => '2026-05-05 12:40:00',
+            'activated_at' => '2026-05-05 09:20:00',
+            'review_note' => 'Keep invalid lifecycle ordering obvious while selected inventory edits stay narrow.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'activated_at' => 'Keep activation on or after issuance so the Galaxy lifecycle timeline stays operator-friendly.',
+            ]);
+    }
+
     public function test_card_update_live_flow_returns_operator_friendly_activation_timestamp_validation_message(): void
     {
         $user = User::factory()->create();

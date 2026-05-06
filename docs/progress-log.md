@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards lifecycle-order validation checkpoint
+- Added a narrow lifecycle guardrail to the live cards flow so `activated_at` can no longer be saved earlier than `issued_at`, keeping the new Galaxy dual-timestamp foundation from accepting backward lifecycle timelines.
+- Added create and update feature coverage plus operator-friendly validation copy, keeping the timeline rule visible in both first-pass inventory creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_rejects_activation_before_issue_timestamp|test_card_update_live_flow_rejects_activation_before_issue_timestamp|test_card_live_flow_returns_operator_friendly_activation_timestamp_validation_message|test_card_update_live_flow_returns_operator_friendly_activation_timestamp_validation_message'`, `4 passed`.
+
 ### Cards pre-activation readiness-state checkpoint
 - Tightened selected-card `Operational readiness` so issued-but-not-yet-activated inventory no longer falls back to the generic draft shell label and instead shows a dedicated `issued inventory, activation pending` state.
 - Kept the step narrow and parity-safe, but removed a real contradiction between the new lifecycle signals and the older readiness wording in the Laravel-backed cards review shell.
