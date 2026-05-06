@@ -2963,6 +2963,76 @@ class AdminDashboardTest extends TestCase
             ]);
     }
 
+    public function test_card_live_flow_requires_issue_timestamp_for_blocked_status(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Missing Blocked Issue Branch',
+            'code' => 'galaxy-missing-blocked-issue-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Missing Blocked Issue Gold',
+            'slug' => 'galaxy-missing-blocked-issue-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from('/admin/cards')->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-missing-blocked-issue-1001 ',
+            'status' => 'blocked',
+            'issued_at' => '',
+            'activated_at' => '',
+            'review_note' => 'Keep blocked inventory from looking unissued before parity is widened.',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cards#live-form')
+            ->assertSessionHasErrors([
+                'issued_at' => 'Add an issue timestamp before blocking this card so the Galaxy lifecycle timeline stays operator-friendly.',
+            ]);
+    }
+
+    public function test_card_update_live_flow_requires_issue_timestamp_for_blocked_status(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Missing Blocked Issue Update Branch',
+            'code' => 'galaxy-missing-blocked-issue-update-branch',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Missing Blocked Issue Update Gold',
+            'slug' => 'galaxy-missing-blocked-issue-update-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-MISSING-BLOCKED-ISS-UPD-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => ' gx-missing-blocked-iss-upd-1001 ',
+            'status' => 'blocked',
+            'issued_at' => '',
+            'activated_at' => '',
+            'review_note' => 'Keep selected blocked inventory from looking unissued before parity is widened.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'issued_at' => 'Add an issue timestamp before blocking this card so the Galaxy lifecycle timeline stays operator-friendly.',
+            ]);
+    }
+
     public function test_card_update_live_flow_rejects_activation_timestamp_for_draft_status(): void
     {
         $user = User::factory()->create();

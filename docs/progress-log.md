@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards blocked-status issuance guardrail checkpoint
+- Added another narrow lifecycle rule so blocked cards in the live Laravel flow now require `issued_at`, preventing blocked inventory from looking like an untouched draft shell in the Galaxy cards workspace.
+- Added create and update feature coverage plus operator-friendly validation copy, making the blocked-without-issuance mismatch visible in both first-pass card creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_requires_issue_timestamp_for_blocked_status|test_card_update_live_flow_requires_issue_timestamp_for_blocked_status|test_card_live_flow_rejects_activation_timestamp_for_draft_status|test_card_update_live_flow_rejects_activation_timestamp_for_draft_status'`, `4 passed`.
+
 ### Cards draft-status activation guardrail checkpoint
 - Added another narrow lifecycle rule so draft cards in the live Laravel flow now reject `activated_at`, keeping pre-activation inventory review distinct from already activated stock in the Galaxy cards shell.
 - Added create and update feature coverage plus operator-friendly validation copy, making the draft-with-activation mismatch visible in both first-pass card creation and selected-card edits.

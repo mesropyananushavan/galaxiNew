@@ -22,7 +22,7 @@ class StoreCardRequest extends FormRequest
             'card_type_id' => ['required', 'integer', 'exists:card_types,id'],
             'number' => ['required', 'string', 'max:255', Rule::unique('cards', 'number')],
             'status' => ['required', 'string', Rule::in(['draft', 'active', 'blocked'])],
-            'issued_at' => ['nullable', 'date', 'required_with:activated_at'],
+            'issued_at' => ['nullable', 'date', 'required_with:activated_at', 'required_if:status,blocked'],
             'activated_at' => ['nullable', 'date', 'required_if:status,active', 'prohibited_if:status,draft', 'after_or_equal:issued_at'],
             'review_note' => ['nullable', 'string', 'max:1000'],
         ];
@@ -58,6 +58,7 @@ class StoreCardRequest extends FormRequest
             'number.unique' => 'This card number is already in use in the Laravel inventory shell.',
             'issued_at.date' => 'Use a real issue timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
             'issued_at.required_with' => 'Add an issue timestamp before activation so the Galaxy lifecycle timeline stays operator-friendly.',
+            'issued_at.required_if' => 'Add an issue timestamp before blocking this card so the Galaxy lifecycle timeline stays operator-friendly.',
             'activated_at.date' => 'Use a real activation timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
             'activated_at.required_if' => 'Add an activation timestamp before marking this card active so the Galaxy lifecycle timeline stays operator-friendly.',
             'activated_at.prohibited_if' => 'Leave activation blank while this card stays draft so the Galaxy lifecycle timeline stays operator-friendly.',
