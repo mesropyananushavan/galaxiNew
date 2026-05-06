@@ -5798,6 +5798,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.')
             ->assertSee('Activity handoff signal:')
             ->assertSee('Paused-branch holder should carry branch-recovery context forward until lookup and reactivation parity are explicit.')
+            ->assertSee('Status posture:')
+            ->assertSee('This holder is visible in a paused branch, so lifecycle changes should stay blocked until branch-recovery and lookup parity are verified.')
             ->assertSee('Activity posture:')
             ->assertSee('Recent activity remains blocked until a stable Laravel event source preserves paused-branch lookup and recovery parity.');
     }

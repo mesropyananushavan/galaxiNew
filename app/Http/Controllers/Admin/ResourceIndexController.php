@@ -3758,15 +3758,22 @@ class ResourceIndexController extends Controller
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Shop activity signal', 'value' => $this->cardholdersShopActivitySignal($selectedCardHolder)],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
-            ['label' => 'Status posture', 'value' => $selectedCardHolder->is_active
-                ? 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.'
-                : 'This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.'],
+            ['label' => 'Status posture', 'value' => $this->cardholdersStatusPosture($selectedCardHolder)],
             ['label' => 'Card linkage posture', 'value' => $selectedCardHolder->cards_count > 0
                 ? 'Linked cards are visible in Laravel, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.'
                 : 'No linked cards exist yet, which keeps this holder safer for card-link-parity review before card-link flows are enabled.'],
             ['label' => 'Activity posture', 'value' => $this->cardholdersActivityPosture($selectedCardHolder)],
             ['label' => 'Remaining backend gap', 'value' => $this->cardholdersBackendGap($selectedCardHolder)],
         ];
+    }
+
+    private function cardholdersStatusPosture(CardHolder $selectedCardHolder): string
+    {
+        return match (true) {
+            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'This holder is visible in a paused branch, so lifecycle changes should stay blocked until branch-recovery and lookup parity are verified.',
+            $selectedCardHolder->is_active => 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.',
+            default => 'This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.',
+        };
     }
 
     private function cardholdersActivityPosture(CardHolder $selectedCardHolder): string

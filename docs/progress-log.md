@@ -5825,3 +5825,8 @@
 - Added `cardholdersActivityPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder dependency stack now gives paused-branch holders their own activity-blocking copy instead of the generic holder lookup wording.
 - Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Activity posture` text renders in the closing/dependency context.
 - Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch status posture checkpoint
+- Added `cardholdersStatusPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit branch-recovery wording in the selected-holder dependency stack instead of the generic active-holder posture copy.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Status posture` text renders in the closing/dependency context.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
