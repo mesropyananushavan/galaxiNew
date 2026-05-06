@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards draft and issued assignment posture checkpoint
+- Refined `Assignment posture` for non-active selected-card review so issued-but-unassigned inventory now explicitly stays recovery-first while draft inventory stays in shell-review mode before issuance begins.
+- Extended the existing pre-activation and draft lifecycle tests to cover the new summary posture copy, keeping assignment review visible across the earlier lifecycle states too.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `2 passed`.
+
 ### Cards blocked assignment posture checkpoint
 - Refined `Assignment posture` copy for blocked selected-card review so holder-linked blocked inventory now calls out member-linked dispute review with parity-gated replacement, while blocked unassigned inventory keeps holder-recovery assumptions explicitly off-limits.
 - Extended the blocked selected-card assertions to cover the new summary posture on both holder-linked and unassigned blocked cards, plus the broader Laravel-backed selected-card context test.

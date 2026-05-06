@@ -3406,7 +3406,8 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'active' => 'Active inventory still lacks holder linkage, so assignment recovery should stay visible before operators trust this as stable member stock.',
             $selectedCard->status === 'blocked' && $selectedCard->holder !== null => 'Blocked inventory already carries holder linkage, so dispute review can stay member-linked while replacement and reassignment remain parity-gated.',
             $selectedCard->status === 'blocked' => 'Blocked inventory is still unassigned, so reassignment and replacement review should stay explicit before any holder recovery assumptions are trusted.',
-            default => 'Assignment posture stays lightweight until this card leaves draft inventory review.',
+            $selectedCard->issued_at !== null => 'Issued inventory is still unassigned, so assignment work should stay recovery-first until holder linkage catches up with activation review.',
+            default => 'Draft inventory is still unassigned, which keeps assignment work safely in shell-review mode before issuance begins.',
         };
     }
 
