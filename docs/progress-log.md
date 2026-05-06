@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards active holder-linked metric checkpoint
+- Added an `Active holder-linked cards` metric so the cards index now cleanly splits active inventory between linked member records and active-but-unassigned stock.
+- Updated the config-driven placeholder metrics and Laravel-backed cards index assertions to keep the active holder-linkage split visible at the aggregate level.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
 ### Cards active holder-linked selected-review checkpoint
 - Added an `Active holder-linked signal` to selected-card review so active cards now explicitly surface when parity review can stay anchored to an already linked holder record.
 - Kept the step narrow by extending the same active selected-card tests added in the last checkpoint, making the linked and unassigned sides of active holder linkage equally visible in record review.
