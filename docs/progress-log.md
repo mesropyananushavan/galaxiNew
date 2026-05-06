@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Card types rollout freshness checkpoint
+- Added a `Rollout freshness` signal to selected-tier review so card-type edit mode now makes rollout-note readiness explicit alongside the existing activation-note freshness signal.
+- Extended focused selected-tier coverage for both a draft tier with saved rollout guidance and a live tier still missing rollout guidance.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
 ### Cards pre-activation unassigned closing checkpoint
 - Extended the new unassigned pre-activation selected-card coverage so `Pre-activation unassigned signal` is now asserted in the rendered review stack as well as the primary field list.
 - Kept the regression pass narrow by pairing the blocked pre-activation scenario with the newer holder-linked pre-activation scenario.

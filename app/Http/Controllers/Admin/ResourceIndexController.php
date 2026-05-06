@@ -1978,6 +1978,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
             ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
+            ['label' => 'Rollout freshness', 'value' => $this->cardTypesRolloutFreshness($selectedCardType)],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
             ['label' => 'Tier focus', 'value' => 'Start with saved card coverage, draft-versus-live status, and rollout note clarity before discussing any later rule import step.'],
@@ -2098,6 +2099,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
             ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
+            ['label' => 'Rollout freshness', 'value' => $this->cardTypesRolloutFreshness($selectedCardType)],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
             ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
@@ -2253,6 +2255,16 @@ class ResourceIndexController extends Controller
             filled($selectedCardType->activation_note) => 'Activation note is already staged on this draft Laravel tier shell.',
             $selectedCardType->is_active => 'Live tier still needs a saved activation note before rollout handoff can feel grounded.',
             default => 'Draft tier can stay safe while activation guidance is still being written.',
+        };
+    }
+
+    private function cardTypesRolloutFreshness(CardType $selectedCardType): string
+    {
+        return match (true) {
+            filled($selectedCardType->rollout_note) && $selectedCardType->is_active => 'Rollout note is already saved on this live Laravel tier shell.',
+            filled($selectedCardType->rollout_note) => 'Rollout note is already staged on this draft Laravel tier shell.',
+            $selectedCardType->is_active => 'Live tier still needs a saved rollout note before rollout handoff can feel grounded.',
+            default => 'Draft tier can stay safe while rollout guidance is still being written.',
         };
     }
 
