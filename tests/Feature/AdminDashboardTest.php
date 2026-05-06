@@ -5004,7 +5004,7 @@ class AdminDashboardTest extends TestCase
         $inactiveShop = Shop::create([
             'name' => 'Galaxy North',
             'code' => 'galaxy-north',
-            'is_active' => true,
+            'is_active' => false,
         ]);
 
         $activeHolder = CardHolder::create([
@@ -5058,6 +5058,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create holder shell')
             ->assertSee('action="/admin/cardholders"', false)
             ->assertSee('Review latest saved holder')
+            ->assertSee('Active-branch holders')
+            ->assertSee('Paused-branch holders')
             ->assertSee('Reviewed holders')
             ->assertSee('Linked cards')
             ->assertSee('>1<', false)

@@ -5800,3 +5800,8 @@
 - Added a selected-holder `Shop activity signal` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholder review stack now distinguishes active-branch lookup context from paused-branch recovery context instead of treating all branch-linked holders the same.
 - Extended selected-holder feature coverage in `tests/Feature/AdminDashboardTest.php` for the normal active-branch path and added a focused paused-branch holder case.
 - Kept the change read-only and parity-first, without widening holder writes, reactivation flows, or card-link mutations.
+
+### Cardholders branch-split metrics checkpoint
+- Added `Active-branch holders` and `Paused-branch holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php` so the holder workspace now exposes branch-state coverage directly instead of only total active/inactive holder counts.
+- Tightened the model-backed cardholders index test in `tests/Feature/AdminDashboardTest.php` by making the second fixture branch actually paused and asserting the new metric labels render in the live workspace.
+- Kept the change read-only and parity-first, without widening holder writes, branch reassignment, or card-link mutations.
