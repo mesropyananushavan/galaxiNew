@@ -295,7 +295,7 @@ return [
         'operationalGlossary' => [
             ['term' => 'Card type', 'meaning' => 'The tier or segment definition that controls accrual and activation behavior.'],
             ['term' => 'Issued', 'meaning' => 'The timestamp when inventory first became an issued Galaxy card shell, before or alongside later activation state changes.'],
-            ['term' => 'Activated', 'meaning' => 'The timestamp when a physical or virtual card became usable in the loyalty flow.'],
+            ['term' => 'Activated', 'meaning' => 'The timestamp when an already issued physical or virtual card became usable in the loyalty flow.'],
         ],
         'legacyParityNotes' => [
             'Retain clear visibility for unassigned, active, and blocked card states.',
@@ -395,7 +395,7 @@ return [
                 ['name' => 'number', 'label' => 'Card number', 'type' => 'text', 'value' => 'GX-100004', 'required' => true, 'autofocus' => true, 'placeholder' => 'GX-910004', 'help' => 'Persist only the operator-facing inventory identifier in this first write slice.', 'attributes' => ['autocomplete' => 'off']],
                 ['name' => 'status', 'label' => 'Laravel status', 'type' => 'select', 'value' => 'draft', 'required' => true, 'help' => 'Draft and blocked states remain safer while replacement and holder assignment flows are still review-only.', 'options' => [['value' => 'draft', 'label' => 'Draft'], ['value' => 'active', 'label' => 'Active'], ['value' => 'blocked', 'label' => 'Blocked']]],
                 ['name' => 'issued_at', 'label' => 'Issued at', 'type' => 'text', 'value' => '', 'required' => false, 'placeholder' => '2026-05-05 09:00:00', 'help' => 'Optional first-pass issue timestamp for Galaxy inventory lifecycle parity before or alongside activation timing.', 'attributes' => ['autocomplete' => 'off']],
-                ['name' => 'activated_at', 'label' => 'Activated at', 'type' => 'text', 'value' => '', 'required' => false, 'placeholder' => '2026-05-05 12:00:00', 'help' => 'Optional first-pass activation timestamp for inventory parity. Leave blank for draft stock.', 'attributes' => ['autocomplete' => 'off']],
+                ['name' => 'activated_at', 'label' => 'Activated at', 'type' => 'text', 'value' => '', 'required' => false, 'placeholder' => '2026-05-05 12:00:00', 'help' => 'Optional first-pass activation timestamp for an already issued card shell. Leave blank for draft stock or pre-activation inventory.', 'attributes' => ['autocomplete' => 'off']],
                 ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep blocked-card and draft-stock parity visible before widening replacement actions.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Laravel card shell.', 'help' => 'Use this safe Phase 1 note to record inventory review context without opening holder reassignment or replacement writes.', 'attributes' => ['maxlength' => '1000']],
             ],
         ],

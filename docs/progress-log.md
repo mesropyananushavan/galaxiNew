@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards activation-glossary parity checkpoint
+- Tightened the cards glossary and live-form help text so `Activated` now reads as a post-issuance lifecycle step instead of a standalone generic timestamp, matching the newer Galaxy `issued_at` plus `activated_at` foundation shape.
+- Kept the step copy-only and parity-safe, but made the inventory shell's lifecycle language more internally consistent for operators reading the Phase 1 card workspace.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_cards_operational_index_shape`, `1 passed`.
+
 ### Cards lifecycle handoff-copy checkpoint
 - Cleaned up the remaining cards handoff copy so both the legacy parity note and the first live-form description now reflect issue timing plus activation timing, instead of leaving one-sided activation-only wording behind.
 - Kept the step read-only and parity-safe, but made the first inventory write slice read more like the actual Galaxy lifecycle shell already forming in Phase 1.

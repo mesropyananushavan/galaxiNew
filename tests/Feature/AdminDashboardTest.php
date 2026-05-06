@@ -2280,6 +2280,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('First Laravel wiring step')
             ->assertSee('When PHP is available, start with a read-only inventory table before exposing issue, block, or assignment flows.')
             ->assertSee('Load cards with holder, type, status, issue timing, and activation timing columns.')
+            ->assertSee('The timestamp when an already issued physical or virtual card became usable in the loyalty flow.')
             ->assertSee('Recent activity preview')
             ->assertSee('Blocked card state kept visible')
             ->assertSee('Draft card review deferred')
