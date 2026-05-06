@@ -5795,3 +5795,8 @@
 - Replaced the selected-role reset label `Create new access shell` with `Create new Galaxy access shell` so the writable access workspace stays aligned with the newer Galaxy-specific reset wording used on other writable surfaces.
 - Kept the change controller-driven and copy-only, without widening permission persistence, assignment writes, or publish behavior.
 - Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data'`, `1 passed`.
+
+### Cardholders paused-branch activity signal checkpoint
+- Added a selected-holder `Shop activity signal` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholder review stack now distinguishes active-branch lookup context from paused-branch recovery context instead of treating all branch-linked holders the same.
+- Extended selected-holder feature coverage in `tests/Feature/AdminDashboardTest.php` for the normal active-branch path and added a focused paused-branch holder case.
+- Kept the change read-only and parity-first, without widening holder writes, reactivation flows, or card-link mutations.

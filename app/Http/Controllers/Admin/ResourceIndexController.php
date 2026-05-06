@@ -3617,6 +3617,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review note', 'value' => $selectedCardHolder->review_note ?: 'No review note saved yet'],
             ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
+            ['label' => 'Shop activity signal', 'value' => $this->cardholdersShopActivitySignal($selectedCardHolder)],
             ['label' => 'Holder focus', 'value' => $this->cardholdersHolderFocus($selectedCardHolder)],
             ['label' => 'Holder posture', 'value' => $this->cardholdersHolderPosture($selectedCardHolder)],
             ['label' => 'Evidence priority', 'value' => $this->cardholdersEvidencePriority($selectedCardHolder)],
@@ -3704,6 +3705,15 @@ class ResourceIndexController extends Controller
         };
     }
 
+    private function cardholdersShopActivitySignal(CardHolder $selectedCardHolder): string
+    {
+        return match (true) {
+            $selectedCardHolder->shop === null => 'Branch assignment is still missing, so branch-aware lookup parity remains incomplete.',
+            (bool) $selectedCardHolder->shop->is_active => 'Holder is anchored to an active branch for live lookup review.',
+            default => 'Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.',
+        };
+    }
+
     private function cardholdersActivityHandoffSignal(CardHolder $selectedCardHolder): string
     {
         return match (true) {
@@ -3736,6 +3746,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Review note', 'value' => $selectedCardHolder->review_note ?: 'No review note saved yet'],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
+            ['label' => 'Shop activity signal', 'value' => $this->cardholdersShopActivitySignal($selectedCardHolder)],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
             ['label' => 'Status posture', 'value' => $selectedCardHolder->is_active
                 ? 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.'

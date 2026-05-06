@@ -5508,6 +5508,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Phone')
             ->assertSee('Linkage signal')
             ->assertSee('branch-linked profile, card linkage pending')
+            ->assertSee('Shop activity signal')
+            ->assertSee('Holder is anchored to an active branch for live lookup review.')
             ->assertSee('Holder focus')
             ->assertSee('Start with inactive status, branch linkage, and linked-card visibility before discussing any later reactivation or profile merge flow.')
             ->assertSee('Holder posture')
@@ -5548,6 +5550,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep dormant-holder lookup parity anchored to the branch before any reactivation follow-up.')
             ->assertSee('Linkage signal:')
             ->assertSee('branch-linked profile, card linkage pending')
+            ->assertSee('Shop activity signal:')
+            ->assertSee('Holder is anchored to an active branch for live lookup review.')
             ->assertSee('Activity handoff signal:')
             ->assertSee('Dormant holder should stay in handoff-only posture until reactivation parity is explicit.')
             ->assertSee('Status posture:')
@@ -5744,6 +5748,35 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.')
             ->assertSee('Card linkage posture:')
             ->assertSee('Linked cards are visible in Laravel, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.');
+    }
+
+    public function test_cardholders_page_surfaces_paused_branch_signal_for_selected_holder(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Galaxy Paused Holder Branch',
+            'code' => 'galaxy-paused-holder-branch',
+            'is_active' => false,
+        ]);
+
+        $cardHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Lilit Paused Branch Holder',
+            'phone' => '+37491100089',
+            'email' => 'lilit.paused.branch.holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/cardholders?cardholder='.$cardHolder->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Reviewing: Lilit Paused Branch Holder')
+            ->assertSee('Shop activity signal')
+            ->assertSee('Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.')
+            ->assertSee('Shop activity signal:')
+            ->assertSee('Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.');
     }
 
     public function test_cardholders_page_ignores_unknown_selected_holder_query(): void
