@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards assignment posture selected-review checkpoint
+- Added an `Assignment posture` field to selected-card review so active cards now get one operator-friendly summary line describing whether parity review is member-linked or still blocked on holder assignment recovery.
+- Kept the step narrow by reusing the two active selected-card review tests and extending them with the new summary posture assertions.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context'`, `2 passed`.
+
 ### Cards active holder-linked metric checkpoint
 - Added an `Active holder-linked cards` metric so the cards index now cleanly splits active inventory between linked member records and active-but-unassigned stock.
 - Updated the config-driven placeholder metrics and Laravel-backed cards index assertions to keep the active holder-linkage split visible at the aggregate level.

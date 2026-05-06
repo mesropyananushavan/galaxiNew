@@ -3302,6 +3302,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Blocked unassigned signal', 'value' => $this->cardsBlockedUnassignedSignal($selectedCard)],
             ['label' => 'Active holder-linked signal', 'value' => $this->cardsActiveHolderLinkedSignal($selectedCard)],
             ['label' => 'Active unassigned signal', 'value' => $this->cardsActiveUnassignedSignal($selectedCard)],
+            ['label' => 'Assignment posture', 'value' => $this->cardsAssignmentPosture($selectedCard)],
             ['label' => 'Dispute posture', 'value' => $this->cardsDisputePosture($selectedCard)],
             ['label' => 'Activation readiness', 'value' => $this->cardsActivationReadiness($selectedCard)],
             [
@@ -3395,6 +3396,17 @@ class ResourceIndexController extends Controller
             $selectedCard->status === 'active' && $selectedCard->holder === null => 'Active inventory is still unassigned, so holder-linkage recovery should stay visible before operators assume a stable member attachment.',
             $selectedCard->status === 'active' => 'Active inventory already carries holder linkage in Laravel for parity-first review.',
             default => 'Active unassigned review is out of scope for this card right now.',
+        };
+    }
+
+    private function cardsAssignmentPosture(Card $selectedCard): string
+    {
+        return match (true) {
+            $selectedCard->status === 'active' && $selectedCard->holder !== null => 'Active inventory is already anchored to a holder record, so parity review can stay member-linked before wider replacement work opens up.',
+            $selectedCard->status === 'active' => 'Active inventory still lacks holder linkage, so assignment recovery should stay visible before operators trust this as stable member stock.',
+            $selectedCard->status === 'blocked' && $selectedCard->holder !== null => 'Blocked inventory already carries holder linkage, so dispute review can stay tied to the current member record.',
+            $selectedCard->status === 'blocked' => 'Blocked inventory is still unassigned, so reassignment and replacement review should stay explicit.',
+            default => 'Assignment posture stays lightweight until this card leaves draft inventory review.',
         };
     }
 

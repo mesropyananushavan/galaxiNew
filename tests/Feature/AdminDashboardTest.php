@@ -3443,6 +3443,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active holder-linked signal')
             ->assertSee('Active inventory already carries holder linkage, so parity review can stay anchored to the current member record before later replacement flows are widened.')
             ->assertSee('Active unassigned signal')
+            ->assertSee('Assignment posture')
+            ->assertSee('Active inventory is already anchored to a holder record, so parity review can stay member-linked before wider replacement work opens up.')
             ->assertSee('Active inventory already carries holder linkage in Laravel for parity-first review.')
             ->assertSee('Linkage signal')
             ->assertSee('holder and branch linkage visible')
@@ -3495,6 +3497,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active holder-linked review is not the active slice for this card right now.')
             ->assertSee('Active unassigned signal')
             ->assertSee('Active inventory is still unassigned, so holder-linkage recovery should stay visible before operators assume a stable member attachment.')
+            ->assertSee('Assignment posture')
+            ->assertSee('Active inventory still lacks holder linkage, so assignment recovery should stay visible before operators trust this as stable member stock.')
             ->assertSee('Linkage signal')
             ->assertSee('branch-linked inventory, holder pending');
     }
