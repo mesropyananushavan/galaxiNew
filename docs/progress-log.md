@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards early-lifecycle holder linkage summary checkpoint
+- Extended `Holder linkage summary` coverage into the earlier selected-card lifecycle branches, so issued-but-unassigned and still-draft cards now assert the compact linkage summary alongside their assignment posture.
+- Kept the step narrow by reusing the existing pre-activation and draft selected-card tests instead of widening the cards shell further.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `2 passed`.
+
 ### Cards holder linkage summary checkpoint
 - Added a `Holder linkage summary` field to selected-card review so record-level card context now has one compact linkage summary line alongside the more specific active and blocked linkage signals.
 - Extended the existing active and blocked selected-card tests to cover the new summary field across holder-linked and unassigned review paths.
