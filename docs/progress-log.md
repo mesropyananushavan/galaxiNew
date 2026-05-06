@@ -5840,3 +5840,8 @@
 - Refined `cardholdersCatalogReviewActivityDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholders index now surfaces paused-branch recovery wording on the catalog-level `Review recent activity` action when paused branch coverage is already visible.
 - Extended the model-backed cardholders index test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch disabled-reason copy renders in the live index workspace.
 - Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders branch-linkage cross-split checkpoint
+- Added `Active-branch linked holders` and `Paused-branch unlinked holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php`, so the holder workspace now exposes a narrower branch-plus-linkage split instead of only broad status/linkage totals.
+- Extended the model-backed cardholders index test in `tests/Feature/AdminDashboardTest.php` to assert both new metric labels render in the live workspace.
+- Kept the change read-only and parity-first, without widening holder writes, branch moves, or card-link mutations.
