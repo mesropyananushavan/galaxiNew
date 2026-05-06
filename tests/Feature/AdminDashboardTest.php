@@ -2691,7 +2691,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Holder linkage summary')
             ->assertSee('Holder linkage is already present in Laravel for this card review.')
             ->assertSee('Assignment readiness summary')
-            ->assertSee('Holder linkage is present, so assignment state is ready for parity-first review in Laravel.');
+            ->assertSee('Holder linkage is present, so assignment state is ready for parity-first review in Laravel.')
+            ->assertSee('Pre-activation holder-linked signal:')
+            ->assertSee('Pre-activation inventory already carries holder linkage, so activation parity can stay anchored to the current member record before live usage expands.');
     }
 
     public function test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory(): void
