@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards assignment-pending metric checkpoint
+- Added an `Assignment-pending cards` metric to the Laravel-backed cards index so the overview now shows the other half of aggregate assignment readiness next to `Assignment-ready cards`.
+- Synced the config-driven placeholder metrics and cards index assertions so the readiness split is explicit before operators drill into the more specific active and blocked slices.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
 ### Cards assignment-ready metric checkpoint
 - Added an `Assignment-ready cards` metric to the Laravel-backed cards index so the overview now calls out inventory that already has holder linkage and is ready for parity-first assignment review.
 - Synced the config-driven placeholder metrics and cards index assertions so the new aggregate readiness slice shows up alongside the broader holder-linked and unassigned counters.

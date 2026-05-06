@@ -285,6 +285,7 @@ return [
             ['label' => 'Pre-activation cards', 'value' => '1'],
             ['label' => 'Holder-linked cards', 'value' => '2'],
             ['label' => 'Assignment-ready cards', 'value' => '2'],
+            ['label' => 'Assignment-pending cards', 'value' => '1'],
             ['label' => 'Unassigned cards', 'value' => '1'],
             ['label' => 'Active holder-linked cards', 'value' => '1'],
             ['label' => 'Active unassigned cards', 'value' => '0'],
