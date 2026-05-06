@@ -764,7 +764,7 @@ class ResourceIndexController extends Controller
                 'role' => $selectedRole,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.roles-permissions.index';
-            $page['liveForm']['cancelLabel'] = 'Create new access shell';
+            $page['liveForm']['cancelLabel'] = 'Create new Galaxy access shell';
             $page['liveForm']['cancelRouteParameters'] = [];
             $page['liveForm']['submitLabel'] = 'Save access changes';
             $page['liveForm']['valuesResolver'] = [
@@ -785,7 +785,7 @@ class ResourceIndexController extends Controller
             $selectedRole->name,
             [
             [
-                'label' => 'Create new access shell',
+                'label' => 'Create new Galaxy access shell',
                 'tone' => 'secondary',
                 'href' => route('admin.roles-permissions.index', absolute: false).'#live-form',
             ],

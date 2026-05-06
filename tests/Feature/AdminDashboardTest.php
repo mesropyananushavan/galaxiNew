@@ -1336,7 +1336,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('shop-manager-selected-role')
             ->assertSee('Edit Galaxy role in Laravel')
             ->assertSee('Save access changes')
-            ->assertSee('Create new access shell')
+            ->assertSee('Create new Galaxy access shell')
             ->assertSee('href="/admin/roles-permissions#live-form"', false)
             ->assertSee('action="/admin/roles-permissions/'.$role->id.'"', false)
             ->assertSee('Laravel status')

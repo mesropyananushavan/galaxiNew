@@ -5463,3 +5463,8 @@
 - Replaced the selected-tier reset label `Create new tier shell` with `Create new Galaxy tier shell` so the writable tier workspace stays aligned with the newer Galaxy-specific reset wording used on other writable surfaces.
 - Kept the change controller-driven and copy-only, without widening tier publish logic or rule-import behavior.
 - Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
+### Roles selected reset copy checkpoint
+- Replaced the selected-role reset label `Create new access shell` with `Create new Galaxy access shell` so the writable access workspace stays aligned with the newer Galaxy-specific reset wording used on other writable surfaces.
+- Kept the change controller-driven and copy-only, without widening permission persistence, assignment writes, or publish behavior.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data'`, `1 passed`.
