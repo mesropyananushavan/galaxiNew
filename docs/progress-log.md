@@ -2,6 +2,11 @@
 
 ## 2026-05-06
 
+### Cards early-lifecycle assignment readiness checkpoint
+- Extended `Assignment readiness summary` coverage into the issued-but-unassigned and still-draft selected-card lifecycle branches, so the compact assignment-state summary is now asserted beyond active and blocked review.
+- Kept the step narrow by reusing the existing pre-activation and draft lifecycle tests instead of widening cards behavior again.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `2 passed`.
+
 ### Cards assignment readiness summary checkpoint
 - Added an `Assignment readiness summary` field to selected-card review so cards now get one compact operator line describing whether holder assignment is ready for parity-first review, still pending, or dispute-gated.
 - Covered the new summary in the existing active and blocked selected-card tests across both holder-linked and unassigned review paths.
