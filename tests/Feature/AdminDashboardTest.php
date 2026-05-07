@@ -4835,7 +4835,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop status signal')
             ->assertSee('Paused branch remains safer for reopening-parity review before any reopening-flow discussion.')
             ->assertSee('Branch focus')
-            ->assertSee('Start with paused status, ownership gaps, and branch coverage before discussing any later reopening or reassignment flow.')
+            ->assertSee('Start with paused status, recovery ownership gaps, and branch coverage before discussing any later reopening, reassignment, or scope-recovery flow.')
             ->assertSee('Branch posture')
             ->assertSee('Keep paused-branch review in the live workspace first, then leave reopening, reassignment, and scope-mutation flows gated until recovery parity is proven.')
             ->assertSee('Evidence priority')

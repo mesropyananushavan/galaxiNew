@@ -5895,3 +5895,8 @@
 - Refined `Manager guidance` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now get recovery-aware ownership guidance in the selected-shop summary, with separate paused-branch copy for assigned-manager and unassigned-manager states.
 - Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Manager guidance` text renders in the selected-shop review context.
 - Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch focus checkpoint
+- Refined `shopsBranchFocus()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery ownership gaps and scope-recovery context in the selected-shop summary instead of using a broader paused-branch focus note.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Branch focus` text renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.

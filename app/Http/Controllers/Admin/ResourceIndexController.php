@@ -3853,7 +3853,7 @@ class ResourceIndexController extends Controller
     {
         return $selectedShop->is_active
             ? 'Start with manager ownership, holder coverage, and card coverage before discussing any later reassignment or scope-mutation flow.'
-            : 'Start with paused status, ownership gaps, and branch coverage before discussing any later reopening or reassignment flow.';
+            : 'Start with paused status, recovery ownership gaps, and branch coverage before discussing any later reopening, reassignment, or scope-recovery flow.';
     }
 
     private function shopsBranchPosture(Shop $selectedShop): string
