@@ -2116,6 +2116,11 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $this->cardTypesStatusSignal($selectedCardType),
             ],
+            [
+                'title' => sprintf('%s handoff signal reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $this->cardTypesHandoffSignal($selectedCardType),
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
