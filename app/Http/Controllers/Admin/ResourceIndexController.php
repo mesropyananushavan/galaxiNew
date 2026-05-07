@@ -2111,6 +2111,11 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $this->cardTypesCoverageFreshness($selectedCardType),
             ],
+            [
+                'title' => sprintf('%s tier status signal reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $this->cardTypesStatusSignal($selectedCardType),
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
