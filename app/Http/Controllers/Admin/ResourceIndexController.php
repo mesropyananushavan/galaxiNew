@@ -1988,6 +1988,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             ['label' => 'Rollout freshness', 'value' => $this->cardTypesRolloutFreshness($selectedCardType)],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
+            ['label' => 'Coverage freshness', 'value' => $this->cardTypesCoverageFreshness($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
             ['label' => 'Tier focus', 'value' => $selectedCardType->is_active
                 ? 'Start with saved card coverage, live status, and rollout note clarity before discussing any later publish reversal or rule import step.'
@@ -2115,6 +2116,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
             ['label' => 'Rollout freshness', 'value' => $this->cardTypesRolloutFreshness($selectedCardType)],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
+            ['label' => 'Coverage freshness', 'value' => $this->cardTypesCoverageFreshness($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
             ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
             ['label' => 'Current status posture', 'value' => $selectedCardType->is_active ? 'Active tiers should stay stable unless parity checks are complete' : 'Draft tiers are the safe place for parity-first validation and copy changes'],
@@ -2176,6 +2178,18 @@ class ResourceIndexController extends Controller
             $selectedCardType->is_active => 'Active tier is already visible, but card coverage still needs rollout-parity review before any rollout discussion.',
             $cardsCount > 0 => 'Draft tier remains safer for parity review while saved card coverage is already visible.',
             default => 'Draft tier remains safer for visible-card-coverage parity-review before any rollout discussion lands.',
+        };
+    }
+
+    private function cardTypesCoverageFreshness(CardType $selectedCardType): string
+    {
+        $cardsCount = $selectedCardType->cards_count ?? 0;
+
+        return match (true) {
+            $selectedCardType->is_active && $cardsCount > 0 => 'Live tier already has saved card coverage anchored in Laravel for rollout review.',
+            $selectedCardType->is_active => 'Live tier still needs its first saved card coverage before rollout review can feel grounded.',
+            $cardsCount > 0 => 'Draft tier already has saved card coverage anchored in Laravel for parity review.',
+            default => 'Draft tier is still waiting on its first saved card coverage before parity review can feel grounded.',
         };
     }
 
