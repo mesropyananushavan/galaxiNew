@@ -2245,7 +2245,7 @@ class ResourceIndexController extends Controller
     private function cardTypesHandoffSignal(CardType $selectedCardType): string
     {
         return match (true) {
-            $selectedCardType->is_active && $selectedCardType->cards()->exists() => 'Live tier already carries visible card coverage for a useful rollout handoff review.',
+            $selectedCardType->is_active && $selectedCardType->cards()->exists() => 'Live tier already carries visible card coverage for a useful rollout-parity handoff review.',
             $selectedCardType->is_active => 'Live tier should stay in handoff-only posture until visible card coverage and rollout parity are explicit.',
             $selectedCardType->cards()->exists() => 'Draft tier already carries visible card coverage for a useful parity handoff review.',
             default => 'Draft tier should stay in handoff-only posture until visible card coverage grounds rollout review.',

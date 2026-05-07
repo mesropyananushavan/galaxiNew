@@ -9255,7 +9255,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Tier status signal:')
             ->assertSee('Active tier is already visible with saved card coverage for live tier parity review.')
             ->assertSee('Handoff signal:')
-            ->assertSee('Live tier already carries visible card coverage for a useful rollout handoff review.');
+            ->assertSee('Live tier already carries visible card coverage for a useful rollout-parity handoff review.');
     }
 
     public function test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons(): void

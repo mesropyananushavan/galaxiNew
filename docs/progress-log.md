@@ -5943,3 +5943,8 @@
 ### Card types draft-readiness coverage checkpoint
 - Extended the focused draft card-type readiness test in `tests/Feature/AdminDashboardTest.php` to assert the draft-no-coverage branches for `Tier focus`, `Tier posture`, and `Evidence priority`, so the newer draft-tier summary wording is covered on both visible-coverage and no-coverage paths.
 - Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types live handoff checkpoint
+- Refined `cardTypesHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so live tiers with visible card coverage now call out rollout parity explicitly instead of using a broader rollout handoff note.
+- Extended the focused live card-type coverage test in `tests/Feature/AdminDashboardTest.php` to assert the updated live-tier `Handoff signal` text renders in the selected-tier review context.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
