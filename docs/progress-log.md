@@ -5875,3 +5875,8 @@
 - Refined the selected-shop `Branch guidance` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery, ownership, and scope review explicitly instead of using a more generic paused-branch note.
 - Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated `Branch guidance` text renders in the selected-shop review context.
 - Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch coverage checkpoint
+- Refined the selected-shop `Coverage posture` branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now describe cardholder/card counts as recovery review context instead of generic read-only coverage.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Coverage posture` text renders in the detailed review stack.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.

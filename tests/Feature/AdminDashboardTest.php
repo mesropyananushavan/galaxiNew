@@ -4855,7 +4855,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope handoff signal:')
             ->assertSee('Paused branch should stay in handoff-only posture until recovery approval is explicit.')
             ->assertSee('Status posture:')
-            ->assertSee('This paused branch should stay review-only until recovery and ownership parity are verified.');
+            ->assertSee('This paused branch should stay review-only until recovery and ownership parity are verified.')
+            ->assertSee('Coverage posture:')
+            ->assertSee('This paused branch currently exposes 0 cardholders and 0 cards for read-only Laravel recovery review.');
     }
 
     public function test_shops_page_ignores_unknown_selected_shop_query(): void
