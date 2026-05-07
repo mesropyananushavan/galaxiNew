@@ -4839,7 +4839,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Branch posture')
             ->assertSee('Keep paused-branch review in the live workspace first, then leave reopening, reassignment, and scope-mutation flows gated until recovery parity is proven.')
             ->assertSee('Evidence priority')
-            ->assertSee('Keep paused status, ownership gaps, and any visible holder or card coverage together before trusting any reopening or reassignment discussion.')
+            ->assertSee('Keep paused status, recovery ownership gaps, and any visible holder or card coverage together before trusting any reopening, reassignment, or scope-recovery discussion.')
             ->assertSee('Scope handoff signal')
             ->assertSee('Paused branch should stay in handoff-only posture until recovery approval is explicit.')
             ->assertSee('Branch scope handoff stays visible in the workspace')

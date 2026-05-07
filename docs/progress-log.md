@@ -5900,3 +5900,8 @@
 - Refined `shopsBranchFocus()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery ownership gaps and scope-recovery context in the selected-shop summary instead of using a broader paused-branch focus note.
 - Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Branch focus` text renders in the selected-shop review context.
 - Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch evidence checkpoint
+- Refined `shopsEvidencePriority()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery ownership gaps and scope-recovery context in the selected-shop summary evidence cue instead of using broader paused-branch wording.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Evidence priority` text renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
