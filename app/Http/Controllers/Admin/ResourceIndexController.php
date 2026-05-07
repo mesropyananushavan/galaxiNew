@@ -3942,7 +3942,7 @@ class ResourceIndexController extends Controller
     private function shopsScopeTimelineHandoffDescription(Shop $selectedShop): string
     {
         return match (true) {
-            ! $selectedShop->is_active => 'Operators should carry paused status, ownership gaps, and branch coverage in the live workspace before trusting any recovery or reassignment follow-up.',
+            ! $selectedShop->is_active => 'Operators should carry paused status, recovery ownership gaps, branch coverage, and scope approval context in the live workspace before trusting any recovery or reassignment follow-up.',
             $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Operators should carry manager ownership, holder coverage, and card coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
             $selectedShop->users_count > 0 => 'Operators should carry manager ownership, branch readiness gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
             $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Operators should carry customer coverage, ownership gaps, and branch readiness in the live workspace before trusting any scope-mutation or reassignment follow-up.',

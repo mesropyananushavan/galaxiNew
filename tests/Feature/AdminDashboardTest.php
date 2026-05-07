@@ -4843,7 +4843,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope handoff signal')
             ->assertSee('Paused branch should stay in recovery handoff-only posture until ownership and scope approval are explicit.')
             ->assertSee('Branch scope handoff stays visible in the workspace')
-            ->assertSee('Operators should carry paused status, ownership gaps, and branch coverage in the live workspace before trusting any recovery or reassignment follow-up.')
+            ->assertSee('Operators should carry paused status, recovery ownership gaps, branch coverage, and scope approval context in the live workspace before trusting any recovery or reassignment follow-up.')
             ->assertSee('Backend gap')
             ->assertSee('Branch recovery writes, manager reassignment, and shop-scope mutation flows should stay preview-only until paused-branch parity is verified.')
             ->assertSee('Manager guidance')
