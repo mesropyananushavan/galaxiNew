@@ -5890,3 +5890,8 @@
 - Refined the paused-branch `Status posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so detailed selected-shop review now calls out scope parity alongside recovery and ownership parity.
 - Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Status posture` text renders in the detailed review stack.
 - Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch manager-guidance checkpoint
+- Refined `Manager guidance` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now get recovery-aware ownership guidance in the selected-shop summary, with separate paused-branch copy for assigned-manager and unassigned-manager states.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Manager guidance` text renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.

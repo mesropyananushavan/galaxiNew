@@ -3821,9 +3821,12 @@ class ResourceIndexController extends Controller
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
             ['label' => 'Backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
-            ['label' => 'Manager guidance', 'value' => $selectedShop->users_count > 0
-                ? 'Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.'
-                : 'No manager is assigned yet, so ownership expectations should stay parity-first until ownership-assignment parity is verified.'],
+            ['label' => 'Manager guidance', 'value' => match (true) {
+                ! $selectedShop->is_active && $selectedShop->users_count > 0 => 'Keep current paused-branch manager ownership visible during review, because Galaxy recovery workflows depended on clear branch responsibility.',
+                ! $selectedShop->is_active => 'No manager is assigned yet, so recovery ownership expectations should stay parity-first until paused-branch ownership-assignment parity is verified.',
+                $selectedShop->users_count > 0 => 'Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.',
+                default => 'No manager is assigned yet, so ownership expectations should stay parity-first until ownership-assignment parity is verified.',
+            }],
             ['label' => 'Cardholders', 'value' => (string) $selectedShop->card_holders_count],
             ['label' => 'Cards', 'value' => (string) $selectedShop->cards_count],
             ['label' => 'Laravel status', 'value' => $selectedShop->is_active ? 'active' : 'paused'],
