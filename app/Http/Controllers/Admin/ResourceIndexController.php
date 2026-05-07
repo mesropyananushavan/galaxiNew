@@ -1993,7 +1993,9 @@ class ResourceIndexController extends Controller
                 ? 'Start with saved card coverage, live status, and rollout note clarity before discussing any later publish reversal or rule import step.'
                 : 'Start with saved card coverage, draft status, activation readiness, and rollout note clarity before discussing any later rule import step.'],
             ['label' => 'Tier posture', 'value' => 'Keep tier review in the live workspace first, then leave rule import and publish-style moves gated until parity is proven.'],
-            ['label' => 'Evidence priority', 'value' => 'Keep visible card coverage, activation note, and rollout note together before trusting any later rule import discussion.'],
+            ['label' => 'Evidence priority', 'value' => $selectedCardType->is_active
+                ? 'Keep visible card coverage, live status, activation note, and rollout note together before trusting any later publish reversal or rule import discussion.'
+                : 'Keep visible card coverage, activation readiness, and rollout note together before trusting any later rule import discussion.'],
             ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
             ['label' => 'Backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
             [

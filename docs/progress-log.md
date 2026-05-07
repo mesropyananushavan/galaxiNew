@@ -5925,3 +5925,8 @@
 - Refined the selected-tier `Tier focus` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft tiers now call out activation readiness alongside saved card coverage and rollout-note clarity instead of using broader draft-versus-live wording.
 - Extended the focused selected card-type test in `tests/Feature/AdminDashboardTest.php` to assert the updated draft-tier `Tier focus` text renders in the selected-tier review context.
 - Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types evidence checkpoint
+- Refined the selected-tier `Evidence priority` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft tiers now call out activation readiness alongside visible card coverage and rollout-note context instead of using the broader activation-note wording.
+- Extended the focused selected card-type test in `tests/Feature/AdminDashboardTest.php` to assert the updated draft-tier `Evidence priority` text renders in the selected-tier review context.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.

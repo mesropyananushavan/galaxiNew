@@ -9122,7 +9122,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Tier posture:')
             ->assertSee('Keep tier review in the live workspace first, then leave rule import and publish-style moves gated until parity is proven.')
             ->assertSee('Evidence priority:')
-            ->assertSee('Keep visible card coverage, activation note, and rollout note together before trusting any later rule import discussion.')
+            ->assertSee('Keep visible card coverage, activation readiness, and rollout note together before trusting any later rule import discussion.')
             ->assertSee('Handoff signal:')
             ->assertSee('Draft tier already carries visible card coverage for a useful parity handoff review.')
             ->assertSee('Backend gap:')
