@@ -5915,3 +5915,8 @@
 - Refined `shopsScopeTimelineHandoffDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now carry recovery ownership gaps and scope approval context through the live-workspace handoff description instead of using broader paused-branch carry-forward wording.
 - Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch handoff timeline description renders in the selected-shop review context.
 - Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch backend-gap checkpoint
+- Refined `shopsBackendGap()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out ownership repair alongside recovery writes, reassignment, and scope mutation in the detailed review guardrail copy.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Backend gap` text renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
