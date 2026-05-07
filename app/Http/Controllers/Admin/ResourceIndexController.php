@@ -3993,7 +3993,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
             ['label' => 'Status posture', 'value' => $selectedShop->is_active
                 ? 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'
-                : 'This paused branch should stay review-only until recovery and ownership parity are verified.'],
+                : 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'],
             ['label' => 'Manager posture', 'value' => match (true) {
                 ! $selectedShop->is_active && $selectedShop->users_count > 0 => 'Assigned managers are visible in this paused branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
                 ! $selectedShop->is_active => 'No manager is assigned yet, which keeps this paused branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',

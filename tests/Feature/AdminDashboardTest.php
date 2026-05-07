@@ -4855,7 +4855,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope handoff signal:')
             ->assertSee('Paused branch should stay in handoff-only posture until recovery approval is explicit.')
             ->assertSee('Status posture:')
-            ->assertSee('This paused branch should stay review-only until recovery and ownership parity are verified.')
+            ->assertSee('This paused branch should stay review-only until recovery, ownership, and scope parity are verified.')
             ->assertSee('Manager posture:')
             ->assertSee('No manager is assigned yet, which keeps this paused branch safer for recovery and ownership-flow parity review before ownership flows are enabled.')
             ->assertSee('Coverage posture:')
