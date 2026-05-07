@@ -2101,6 +2101,11 @@ class ResourceIndexController extends Controller
                     ? sprintf('The current Laravel rollout note says: %s', $selectedCardType->rollout_note)
                     : 'No Laravel rollout note is saved yet, so rollout guidance still depends on the surrounding workspace cues.',
             ],
+            [
+                'title' => sprintf('%s card coverage freshness reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $this->cardTypesCoverageFreshness($selectedCardType),
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);

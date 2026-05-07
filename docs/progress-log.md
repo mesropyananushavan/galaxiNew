@@ -2,6 +2,11 @@
 
 ## 2026-05-07
 
+### Card types coverage freshness timeline checkpoint
+- Added a dedicated recent-activity timeline item for card-type `Coverage freshness`, so selected-tier review now carries the new coverage-readiness cue through the workflow stack, not only summary and dependency cards.
+- Extended focused selected-tier coverage to assert the new timeline item for a draft tier with visible card coverage and a live tier with saved card coverage.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal'`, `2 passed`.
+
 ### Card types coverage freshness checkpoint
 - Added a `Coverage freshness` signal to selected-tier review so card-type edit mode now distinguishes tiers with saved Laravel card coverage from tiers still waiting on their first visible coverage anchor.
 - Extended focused selected-tier coverage for draft and live tiers with and without visible card coverage, keeping the new readiness cue explicit next to activation and rollout freshness.
