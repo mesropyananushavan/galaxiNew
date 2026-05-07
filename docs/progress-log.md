@@ -5934,3 +5934,8 @@
 ### Card types live-tier summary checkpoint
 - Extended the focused live card-type readiness test in `tests/Feature/AdminDashboardTest.php` to assert the new live-tier branches for `Tier focus` and `Evidence priority`, so the active-tier wording added in `app/Http/Controllers/Admin/ResourceIndexController.php` is covered as well as the draft-tier branch.
 - Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types tier-posture checkpoint
+- Refined the selected-tier `Tier posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so live and draft tiers now get distinct posture wording instead of sharing one generic review-gating sentence.
+- Extended the focused selected card-type tests in `tests/Feature/AdminDashboardTest.php` to assert both the updated draft-tier and live-tier `Tier posture` branches.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
