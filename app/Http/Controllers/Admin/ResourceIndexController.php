@@ -2133,6 +2133,13 @@ class ResourceIndexController extends Controller
                     ? 'Keep imports blocked until active-tier accrual parity is verified'
                     : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet',
             ],
+            [
+                'title' => sprintf('%s publish posture reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $selectedCardType->is_active
+                    ? 'Live tiers need parity confirmation before further publish-style changes'
+                    : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly',
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
