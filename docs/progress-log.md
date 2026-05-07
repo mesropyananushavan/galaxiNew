@@ -2,6 +2,11 @@
 
 ## 2026-05-07
 
+### Card types coverage freshness empty-coverage timeline checkpoint
+- Extended the new `Coverage freshness` timeline coverage into the selected live and draft no-card branches, so the workflow stack now stays explicitly covered even when a tier is still waiting on its first visible Laravel card coverage.
+- Kept the step narrow by asserting the timeline item only in the already-focused readiness-gating tests for `Galaxy Amber` and `Galaxy Seed Tier`.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
 ### Card types coverage freshness timeline checkpoint
 - Added a dedicated recent-activity timeline item for card-type `Coverage freshness`, so selected-tier review now carries the new coverage-readiness cue through the workflow stack, not only summary and dependency cards.
 - Extended focused selected-tier coverage to assert the new timeline item for a draft tier with visible card coverage and a live tier with saved card coverage.
