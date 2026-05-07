@@ -5905,3 +5905,8 @@
 - Refined `shopsEvidencePriority()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery ownership gaps and scope-recovery context in the selected-shop summary evidence cue instead of using broader paused-branch wording.
 - Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Evidence priority` text renders in the selected-shop review context.
 - Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch scope-handoff checkpoint
+- Refined `shopsScopeHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery handoff plus ownership and scope approval explicitly instead of using broader paused-branch handoff wording.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Scope handoff signal` text renders in both selected-shop summary and detailed review contexts.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.

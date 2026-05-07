@@ -3931,7 +3931,7 @@ class ResourceIndexController extends Controller
     private function shopsScopeHandoffSignal(Shop $selectedShop): string
     {
         return match (true) {
-            ! $selectedShop->is_active => 'Paused branch should stay in handoff-only posture until recovery approval is explicit.',
+            ! $selectedShop->is_active => 'Paused branch should stay in recovery handoff-only posture until ownership and scope approval are explicit.',
             $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Branch already shows enough ownership and customer coverage for a useful scope handoff review.',
             $selectedShop->users_count > 0 => 'Manager ownership is visible, but customer coverage still needs to catch up before full scope handoff review.',
             $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Customer coverage is visible, but ownership handoff is still incomplete for branch-scope review.',
