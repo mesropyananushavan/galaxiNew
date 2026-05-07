@@ -2126,6 +2126,13 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $this->cardTypesBackendGap($selectedCardType),
             ],
+            [
+                'title' => sprintf('%s rule-import posture reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $selectedCardType->is_active
+                    ? 'Keep imports blocked until active-tier accrual parity is verified'
+                    : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet',
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
