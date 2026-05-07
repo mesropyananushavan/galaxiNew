@@ -2102,6 +2102,11 @@ class ResourceIndexController extends Controller
                     : 'No Laravel rollout note is saved yet, so rollout guidance still depends on the surrounding workspace cues.',
             ],
             [
+                'title' => sprintf('%s card coverage signal reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => sprintf('The current Laravel tier is showing %s in the workspace review shell.', $this->cardTypesCoverageSignal($selectedCardType)),
+            ],
+            [
                 'title' => sprintf('%s card coverage freshness reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
                 'description' => $this->cardTypesCoverageFreshness($selectedCardType),

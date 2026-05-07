@@ -2,6 +2,11 @@
 
 ## 2026-05-07
 
+### Card types coverage signal timeline checkpoint
+- Added a dedicated recent-activity timeline item for the selected tier's current `Coverage signal`, so card-type workflow review now states the visible Laravel coverage posture itself, not only the follow-up freshness cue.
+- Extended focused selected-tier coverage for a draft tier with visible card coverage and a draft tier still waiting on first coverage, keeping the workflow stack explicit across both sides of the draft branch.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
 ### Card types coverage freshness empty-coverage timeline checkpoint
 - Extended the new `Coverage freshness` timeline coverage into the selected live and draft no-card branches, so the workflow stack now stays explicitly covered even when a tier is still waiting on its first visible Laravel card coverage.
 - Kept the step narrow by asserting the timeline item only in the already-focused readiness-gating tests for `Galaxy Amber` and `Galaxy Seed Tier`.
