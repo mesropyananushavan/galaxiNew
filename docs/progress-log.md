@@ -2,6 +2,11 @@
 
 ## 2026-05-07
 
+### Card types action-gating timeline checkpoint
+- Added a dedicated recent-activity timeline item for the selected tier's `Action gating`, so card-type workflow review now keeps the effective allow-vs-gated posture visible in the timeline instead of leaving it only in the dependency stack.
+- Extended focused selected-tier coverage for a draft tier with visible card coverage and a live tier still missing coverage, keeping the action-gating cue explicit across both readiness branches.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
 ### Card types publish posture timeline checkpoint
 - Added a dedicated recent-activity timeline item for the selected tier's `Publish posture`, so card-type workflow review now keeps the current publish gating stance visible in the timeline instead of leaving it only in the dependency stack.
 - Extended focused selected-tier coverage for a draft tier with visible card coverage and a live tier still missing coverage, keeping the publish-posture cue explicit across both readiness branches.

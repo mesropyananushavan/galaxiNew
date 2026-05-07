@@ -2140,6 +2140,13 @@ class ResourceIndexController extends Controller
                     ? 'Live tiers need parity confirmation before further publish-style changes'
                     : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly',
             ],
+            [
+                'title' => sprintf('%s action gating reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $selectedCardType->is_active
+                    ? 'Allow small state corrections only, keep publish-like and import actions gated'
+                    : 'Allow draft-safe edits and validation only, keep live-facing actions gated',
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
