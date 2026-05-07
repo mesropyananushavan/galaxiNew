@@ -1989,7 +1989,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Rollout freshness', 'value' => $this->cardTypesRolloutFreshness($selectedCardType)],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
-            ['label' => 'Tier focus', 'value' => 'Start with saved card coverage, draft-versus-live status, and rollout note clarity before discussing any later rule import step.'],
+            ['label' => 'Tier focus', 'value' => $selectedCardType->is_active
+                ? 'Start with saved card coverage, live status, and rollout note clarity before discussing any later publish reversal or rule import step.'
+                : 'Start with saved card coverage, draft status, activation readiness, and rollout note clarity before discussing any later rule import step.'],
             ['label' => 'Tier posture', 'value' => 'Keep tier review in the live workspace first, then leave rule import and publish-style moves gated until parity is proven.'],
             ['label' => 'Evidence priority', 'value' => 'Keep visible card coverage, activation note, and rollout note together before trusting any later rule import discussion.'],
             ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
