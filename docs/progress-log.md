@@ -5939,3 +5939,7 @@
 - Refined the selected-tier `Tier posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so live and draft tiers now get distinct posture wording instead of sharing one generic review-gating sentence.
 - Extended the focused selected card-type tests in `tests/Feature/AdminDashboardTest.php` to assert both the updated draft-tier and live-tier `Tier posture` branches.
 - Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types draft-readiness coverage checkpoint
+- Extended the focused draft card-type readiness test in `tests/Feature/AdminDashboardTest.php` to assert the draft-no-coverage branches for `Tier focus`, `Tier posture`, and `Evidence priority`, so the newer draft-tier summary wording is covered on both visible-coverage and no-coverage paths.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
