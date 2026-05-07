@@ -2121,6 +2121,11 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $this->cardTypesHandoffSignal($selectedCardType),
             ],
+            [
+                'title' => sprintf('%s backend gap reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $this->cardTypesBackendGap($selectedCardType),
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
