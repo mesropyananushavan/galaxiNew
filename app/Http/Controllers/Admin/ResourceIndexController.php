@@ -3831,7 +3831,7 @@ class ResourceIndexController extends Controller
                 'label' => 'Branch guidance',
                 'value' => $selectedShop->is_active
                     ? 'This branch is already active in Laravel, so scope and manager changes should stay parity-first until branch ownership rules are verified.'
-                    : 'This branch is still paused, which keeps it safe for parity checks before operators treat it as fully live.',
+                    : 'This branch is still paused, so recovery, ownership, and scope review should stay parity-first before operators treat it as fully live.',
             ],
         ];
     }

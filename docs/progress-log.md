@@ -5870,3 +5870,8 @@
 - Refined the selected-holder `Lookup guidance` branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit recovery-aware lookup wording instead of the generic active-holder guidance.
 - Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Lookup guidance` text renders in the detailed review stack.
 - Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Shops paused-branch guidance checkpoint
+- Refined the selected-shop `Branch guidance` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery, ownership, and scope review explicitly instead of using a more generic paused-branch note.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated `Branch guidance` text renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.

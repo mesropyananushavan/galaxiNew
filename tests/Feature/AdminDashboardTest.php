@@ -4848,6 +4848,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Branch recovery writes, manager reassignment, and shop-scope mutation flows should stay preview-only until paused-branch parity is verified.')
             ->assertSee('Laravel status')
             ->assertSee('paused')
+            ->assertSee('Branch guidance')
+            ->assertSee('This branch is still paused, so recovery, ownership, and scope review should stay parity-first before operators treat it as fully live.')
             ->assertSee('Shop status signal:')
             ->assertSee('Paused branch remains safer for reopening-parity review before any reopening-flow discussion.')
             ->assertSee('Scope handoff signal:')
