@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types action-label helper checkpoint
+- Extracted selected-tier action-bar labels for create-shell, toggle-status, editing-state, import, and publish into dedicated helpers instead of leaving that Galaxy-specific shell copy inline in the actions array.
+- Re-used the same create-shell label helper for the live-form cancel action, keeping the card-types edit shell more consistent as Phase 1 keeps tightening the Galaxy-specific admin surface.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
 ### Card types live-form copy helper checkpoint
 - Extracted selected-tier live-form title, description, cancel label, and submit label into dedicated helpers instead of leaving that Galaxy-specific edit-shell copy inline in the controller block.
 - Kept the step narrow and read-only, but made the card-types edit shell more helper-driven and easier to evolve as the Phase 1 Laravel form keeps replacing starter defaults.

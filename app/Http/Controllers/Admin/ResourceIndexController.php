@@ -2017,28 +2017,28 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = [
             [
-                'label' => 'Create new Galaxy tier shell',
+                'label' => $this->cardTypesCreateShellActionLabel(),
                 'tone' => 'primary',
                 'href' => route('admin.card-types.index', absolute: false).'#live-form',
             ],
             [
-                'label' => $selectedCardType->is_active ? 'Move to draft' : 'Activate tier',
+                'label' => $this->cardTypesToggleStatusActionLabel($selectedCardType),
                 'tone' => 'secondary',
                 'href' => route('admin.card-types.toggle-status', $selectedCardType, absolute: false),
                 'method' => 'PATCH',
             ],
             [
-                'label' => sprintf('Editing: %s', $selectedCardType->name),
+                'label' => $this->cardTypesEditingActionLabel($selectedCardType),
                 'tone' => 'secondary',
             ],
             [
-                'label' => 'Import rules',
+                'label' => $this->cardTypesImportRulesActionLabel(),
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
             ],
             [
-                'label' => 'Publish tier',
+                'label' => $this->cardTypesPublishActionLabel(),
                 'tone' => 'secondary',
                 'disabled' => true,
                 'disabledReason' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
@@ -2192,6 +2192,31 @@ class ResourceIndexController extends Controller
         return $page;
     }
 
+    private function cardTypesCreateShellActionLabel(): string
+    {
+        return 'Create new Galaxy tier shell';
+    }
+
+    private function cardTypesToggleStatusActionLabel(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active ? 'Move to draft' : 'Activate tier';
+    }
+
+    private function cardTypesEditingActionLabel(CardType $selectedCardType): string
+    {
+        return sprintf('Editing: %s', $selectedCardType->name);
+    }
+
+    private function cardTypesImportRulesActionLabel(): string
+    {
+        return 'Import rules';
+    }
+
+    private function cardTypesPublishActionLabel(): string
+    {
+        return 'Publish tier';
+    }
+
     private function cardTypesLiveFormTitle(): string
     {
         return 'Edit Galaxy tier in Laravel';
@@ -2204,7 +2229,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesLiveFormCancelLabel(): string
     {
-        return 'Create new Galaxy tier shell';
+        return $this->cardTypesCreateShellActionLabel();
     }
 
     private function cardTypesLiveFormSubmitLabel(): string
