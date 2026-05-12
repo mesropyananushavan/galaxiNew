@@ -2047,9 +2047,9 @@ class ResourceIndexController extends Controller
 
         $page['activityTimeline'] = [
             [
-                'title' => sprintf('%s selected for Laravel edit flow', $selectedCardType->name),
+                'title' => $this->cardTypesSelectedForEditFlowTitle($selectedCardType),
                 'time' => 'Current request',
-                'description' => 'The shared card-type form is now loading this saved tier directly from Laravel data instead of preview-only defaults.',
+                'description' => $this->cardTypesSelectedForEditFlowDescription(),
             ],
             [
                 'title' => sprintf('%s status reflected from model state', $selectedCardType->name),
@@ -2062,9 +2062,9 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesLifecycleFreshnessDescription($selectedCardType),
             ],
             [
-                'title' => sprintf('%s last saved timestamp reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesLastSavedTimelineTitle($selectedCardType),
                 'time' => 'Current request',
-                'description' => sprintf('The latest saved Laravel timestamp for this tier is %s, giving operators a concrete checkpoint for the current catalog shell.', $this->cardTypesLastSavedLabel($selectedCardType)),
+                'description' => $this->cardTypesLastSavedTimelineDescription($selectedCardType),
             ],
             [
                 'title' => sprintf('%s review note reflected from model state', $selectedCardType->name),
@@ -2215,6 +2215,26 @@ class ResourceIndexController extends Controller
     private function cardTypesPublishActionLabel(): string
     {
         return 'Publish tier';
+    }
+
+    private function cardTypesSelectedForEditFlowTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s selected for Laravel edit flow', $selectedCardType->name);
+    }
+
+    private function cardTypesSelectedForEditFlowDescription(): string
+    {
+        return 'The shared card-type form is now loading this saved tier directly from Laravel data instead of preview-only defaults.';
+    }
+
+    private function cardTypesLastSavedTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s last saved timestamp reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesLastSavedTimelineDescription(CardType $selectedCardType): string
+    {
+        return sprintf('The latest saved Laravel timestamp for this tier is %s, giving operators a concrete checkpoint for the current catalog shell.', $this->cardTypesLastSavedLabel($selectedCardType));
     }
 
     private function cardTypesLiveFormTitle(): string

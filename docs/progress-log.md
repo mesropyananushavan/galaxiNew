@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types edit-flow timeline helper checkpoint
+- Extracted selected-tier timeline copy for `selected for Laravel edit flow` and `last saved timestamp reflected from model state` into dedicated helpers instead of leaving that Galaxy-specific timeline wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types timeline layer more uniform as the Phase 1 review shell continues moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_ignores_unknown_selected_card_type_query'`, `2 passed`.
+
 ### Card types action-label helper checkpoint
 - Extracted selected-tier action-bar labels for create-shell, toggle-status, editing-state, import, and publish into dedicated helpers instead of leaving that Galaxy-specific shell copy inline in the actions array.
 - Re-used the same create-shell label helper for the live-form cancel action, keeping the card-types edit shell more consistent as Phase 1 keeps tightening the Galaxy-specific admin surface.
