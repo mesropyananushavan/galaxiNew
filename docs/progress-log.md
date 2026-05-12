@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Roles-permissions permission-review-note timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `permission review note reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
 ### Roles-permissions permission-bundle timeline title checkpoint
 - Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `permission bundle reflected from model state` into a dedicated helper.
 - Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.

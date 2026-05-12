@@ -3303,6 +3303,11 @@ class ResourceIndexController extends Controller
         return sprintf('%s permission bundle reflected from model state', $selectedRole->name);
     }
 
+    private function rolesPermissionsPermissionReviewNoteTimelineTitle(Role $selectedRole): string
+    {
+        return sprintf('%s permission review note reflected from model state', $selectedRole->name);
+    }
+
     private function rolesPermissionsLifecycleDependencyLabel(Role $selectedRole): string
     {
         return $this->rolesPermissionsLifecycleFreshness($selectedRole);
@@ -3571,7 +3576,7 @@ class ResourceIndexController extends Controller
                     : 'This role currently has no linked permissions in Laravel, so it remains a safe draft for parity-first access review.',
             ],
             [
-                'title' => sprintf('%s permission review note reflected from model state', $selectedRole->name),
+                'title' => $this->rolesPermissionsPermissionReviewNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => ($permissionReviewNote = $selectedRole->permissions
                     ->pluck('review_note')
