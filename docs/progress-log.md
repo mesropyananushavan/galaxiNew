@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types selected-action disabled-reason alignment checkpoint
+- Renamed the selected-tier import and publish disabled-reason helpers so the card-types controller now distinguishes selected-tier action gating copy from the broader catalog-level disabled reasoning.
+- Kept the step narrow and read-only, but made the Galaxy-specific selected-tier action copy easier to extend without confusing it with the top-level catalog gating helpers.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
 ### Card types action-copy helper alignment checkpoint
 - Extracted selected-tier `Rule-import posture`, `Publish posture`, and `Action gating` strings behind dedicated controller helpers instead of leaving the same Galaxy-specific review copy duplicated across dependency and timeline layers.
 - Re-used the new helpers in both layers, keeping the card-types workflow shell easier to extend without drifting back toward generic starter wording.

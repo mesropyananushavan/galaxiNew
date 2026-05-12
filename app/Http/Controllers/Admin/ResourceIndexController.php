@@ -2043,13 +2043,13 @@ class ResourceIndexController extends Controller
                 'label' => 'Import rules',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => $this->cardTypesImportRulesDisabledReason($selectedCardType),
+                'disabledReason' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
             ],
             [
                 'label' => 'Publish tier',
                 'tone' => 'secondary',
                 'disabled' => true,
-                'disabledReason' => $this->cardTypesPublishTypeDisabledReason($selectedCardType),
+                'disabledReason' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
             ],
         ];
 
@@ -2330,7 +2330,7 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function cardTypesImportRulesDisabledReason(CardType $selectedCardType): string
+    private function cardTypesSelectedImportRulesDisabledReason(CardType $selectedCardType): string
     {
         $cardsCount = $selectedCardType->cards_count ?? 0;
 
@@ -2342,7 +2342,7 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function cardTypesPublishTypeDisabledReason(CardType $selectedCardType): string
+    private function cardTypesSelectedPublishTypeDisabledReason(CardType $selectedCardType): string
     {
         $cardsCount = $selectedCardType->cards_count ?? 0;
 
