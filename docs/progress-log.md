@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Roles-permissions access-note helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role access-note timeline wording behind a dedicated summary helper instead of keeping the conditional string block directly inside the timeline-description method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role timeline is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
 ### Roles-permissions review-note helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role review-note timeline wording behind a dedicated summary helper instead of keeping the conditional string block directly inside the timeline-description method.
 - Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role timeline is easier to extend without drifting back toward starter-style controller glue.

@@ -3420,6 +3420,11 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsAccessNoteTimelineDescription(Role $selectedRole): string
     {
+        return $this->rolesPermissionsAccessNoteSummary($selectedRole);
+    }
+
+    private function rolesPermissionsAccessNoteSummary(Role $selectedRole): string
+    {
         return $selectedRole->access_note !== null && trim($selectedRole->access_note) !== ''
             ? sprintf('The current Laravel access note says: %s', $selectedRole->access_note)
             : 'No Laravel access note is saved yet, so access handoff guidance still depends on the surrounding workspace cues.';
