@@ -2067,7 +2067,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesLastSavedTimelineDescription($selectedCardType),
             ],
             [
-                'title' => sprintf('%s review note reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesReviewNoteTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesReviewNoteReflection($selectedCardType),
             ],
@@ -2250,6 +2250,11 @@ class ResourceIndexController extends Controller
     private function cardTypesLastSavedTimelineDescription(CardType $selectedCardType): string
     {
         return sprintf('The latest saved Laravel timestamp for this tier is %s, giving operators a concrete checkpoint for the current catalog shell.', $this->cardTypesLastSavedLabel($selectedCardType));
+    }
+
+    private function cardTypesReviewNoteTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s review note reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineTitle(CardType $selectedCardType): string
