@@ -2122,7 +2122,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesHandoffSignal($selectedCardType),
             ],
             [
-                'title' => sprintf('%s backend gap reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesBackendGapTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesBackendGap($selectedCardType),
             ],
@@ -2305,6 +2305,11 @@ class ResourceIndexController extends Controller
     private function cardTypesHandoffSignalTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s handoff signal reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesBackendGapTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s backend gap reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
