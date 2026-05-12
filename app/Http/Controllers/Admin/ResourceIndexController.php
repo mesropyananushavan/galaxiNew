@@ -3293,6 +3293,11 @@ class ResourceIndexController extends Controller
         return sprintf('%s assignment note reflected from model state', $selectedRole->name);
     }
 
+    private function rolesPermissionsScopePostureTimelineTitle(Role $selectedRole): string
+    {
+        return sprintf('%s scope posture reflected from model state', $selectedRole->name);
+    }
+
     private function rolesPermissionsLifecycleDependencyLabel(Role $selectedRole): string
     {
         return $this->rolesPermissionsLifecycleFreshness($selectedRole);
@@ -3544,7 +3549,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->rolesPermissionsAssignmentNoteTimelineDescription($selectedRole),
             ],
             [
-                'title' => sprintf('%s scope posture reflected from model state', $selectedRole->name),
+                'title' => $this->rolesPermissionsScopePostureTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsScopeRolloutTimelineDescription($scope),
             ],
