@@ -3585,6 +3585,11 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsScopeCoverageDependencyLabel(mixed $scope): string
     {
+        return $this->rolesPermissionsScopeCoverageDependencySummary($scope);
+    }
+
+    private function rolesPermissionsScopeCoverageDependencySummary(mixed $scope): string
+    {
         return $this->rolesPermissionsScopeCoverageLabel($scope);
     }
 
