@@ -3376,6 +3376,11 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsLastSavedTimelineDescription(Role $selectedRole): string
     {
+        return $this->rolesPermissionsLastSavedSummary($selectedRole);
+    }
+
+    private function rolesPermissionsLastSavedSummary(Role $selectedRole): string
+    {
         return $selectedRole->updated_at !== null
             ? sprintf('The latest saved Laravel timestamp for this role is %s, giving operators a concrete checkpoint for the current access shell.', $selectedRole->updated_at->format('Y-m-d H:i'))
             : 'This role does not expose a latest saved Laravel timestamp yet, so the current access shell should stay in review-only posture.';
