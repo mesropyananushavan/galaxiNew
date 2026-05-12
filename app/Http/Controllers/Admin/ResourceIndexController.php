@@ -2084,16 +2084,12 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s activation note reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
-                'description' => $selectedCardType->activation_note !== null && trim($selectedCardType->activation_note) !== ''
-                    ? sprintf('The current Laravel activation note says: %s', $selectedCardType->activation_note)
-                    : 'No Laravel activation note is saved yet, so activation handoff guidance still depends on the surrounding workspace cues.',
+                'description' => $this->cardTypesActivationNoteReflection($selectedCardType),
             ],
             [
                 'title' => sprintf('%s rollout note reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
-                'description' => $selectedCardType->rollout_note !== null && trim($selectedCardType->rollout_note) !== ''
-                    ? sprintf('The current Laravel rollout note says: %s', $selectedCardType->rollout_note)
-                    : 'No Laravel rollout note is saved yet, so rollout guidance still depends on the surrounding workspace cues.',
+                'description' => $this->cardTypesRolloutNoteReflection($selectedCardType),
             ],
             [
                 'title' => sprintf('%s card coverage signal reflected from model state', $selectedCardType->name),
@@ -2352,6 +2348,20 @@ class ResourceIndexController extends Controller
             $cardsCount > 0 => 'Blocked until this draft tier clears rule and rollout parity review against visible card coverage.',
             default => 'Blocked until this draft tier clears rule-and-rollout parity review before any publish-like move.',
         };
+    }
+
+    private function cardTypesActivationNoteReflection(CardType $selectedCardType): string
+    {
+        return $selectedCardType->activation_note !== null && trim($selectedCardType->activation_note) !== ''
+            ? sprintf('The current Laravel activation note says: %s', $selectedCardType->activation_note)
+            : 'No Laravel activation note is saved yet, so activation handoff guidance still depends on the surrounding workspace cues.';
+    }
+
+    private function cardTypesRolloutNoteReflection(CardType $selectedCardType): string
+    {
+        return $selectedCardType->rollout_note !== null && trim($selectedCardType->rollout_note) !== ''
+            ? sprintf('The current Laravel rollout note says: %s', $selectedCardType->rollout_note)
+            : 'No Laravel rollout note is saved yet, so rollout guidance still depends on the surrounding workspace cues.';
     }
 
     private function cardTypesHasVisibleCoverage(CardType $selectedCardType): bool

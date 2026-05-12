@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types note-reflection helper checkpoint
+- Extracted selected-tier timeline copy for `Activation note` and `Rollout note` into dedicated helpers instead of leaving the same Galaxy-specific reflection wording inline in the card-types controller.
+- Kept the step narrow and read-only, but made the card-types review shell easier to extend as more saved-note context moves through the workflow stack.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
 ### Card types visible-coverage helper checkpoint
 - Added a compact `cardTypesHasVisibleCoverage()` helper and re-used it in selected-tier `Handoff signal` and `Backend gap`, so the Galaxy card-type review shell now relies on one visible-coverage decision point instead of mixing in extra `cards()->exists()` queries.
 - Kept the step read-only and parity-first, but made the card-types workflow stack more consistent and a bit cleaner for the next Phase 1 review-shell refinements.
