@@ -3618,6 +3618,11 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsScopeRolloutDependencyPosture(mixed $scope): string
     {
+        return $this->rolesPermissionsScopeRolloutDependencySummary($scope);
+    }
+
+    private function rolesPermissionsScopeRolloutDependencySummary(mixed $scope): string
+    {
         return $scope->isNotEmpty()
             ? 'This role already shows shop scope in Laravel review, but scope mutation should stay blocked until a dedicated access slice is verified.'
             : 'This role has no visible shop scope yet, so scope rollout should stay in review-only posture until a dedicated access slice is ready.';
