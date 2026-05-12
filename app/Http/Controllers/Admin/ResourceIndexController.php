@@ -3339,6 +3339,11 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsPermissionReviewNoteTimelineTitle(Role $selectedRole): string
     {
+        return $this->rolesPermissionsPermissionReviewNoteTimelineTitleSummary($selectedRole);
+    }
+
+    private function rolesPermissionsPermissionReviewNoteTimelineTitleSummary(Role $selectedRole): string
+    {
         return sprintf('%s permission review note reflected from model state', $selectedRole->name);
     }
 
