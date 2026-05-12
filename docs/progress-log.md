@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types live-form copy helper checkpoint
+- Extracted selected-tier live-form title, description, cancel label, and submit label into dedicated helpers instead of leaving that Galaxy-specific edit-shell copy inline in the controller block.
+- Kept the step narrow and read-only, but made the card-types edit shell more helper-driven and easier to evolve as the Phase 1 Laravel form keeps replacing starter defaults.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_resolves_live_form_mode_copy_from_config_callbacks'`, `2 passed`.
+
 ### Card types summary-guidance helper checkpoint
 - Extracted selected-tier summary copy for `Status guidance`, `Rule-import blocker`, `Publish guidance`, and `Readiness signal` into dedicated helpers instead of leaving that Galaxy-specific review wording inline in the summary block.
 - Kept the step narrow and read-only, but made the card-types shell easier to extend without drifting back toward a dense starter-style controller array.

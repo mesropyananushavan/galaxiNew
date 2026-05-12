@@ -2168,17 +2168,17 @@ class ResourceIndexController extends Controller
 
         $page = $this->appendLatestBackendWriteDependencyStatus($page);
 
-        $page['liveForm']['title'] = 'Edit Galaxy tier in Laravel';
-        $page['liveForm']['description'] = 'Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.';
+        $page['liveForm']['title'] = $this->cardTypesLiveFormTitle();
+        $page['liveForm']['description'] = $this->cardTypesLiveFormDescription();
         $page['liveForm']['method'] = 'PATCH';
         $page['liveForm']['actionRoute'] = 'admin.card-types.update';
         $page['liveForm']['actionRouteParameters'] = [
             'cardType' => $selectedCardType,
         ];
         $page['liveForm']['cancelRoute'] = 'admin.card-types.index';
-        $page['liveForm']['cancelLabel'] = 'Create new Galaxy tier shell';
+        $page['liveForm']['cancelLabel'] = $this->cardTypesLiveFormCancelLabel();
         $page['liveForm']['cancelRouteParameters'] = [];
-        $page['liveForm']['submitLabel'] = 'Save tier changes';
+        $page['liveForm']['submitLabel'] = $this->cardTypesLiveFormSubmitLabel();
         $page['liveForm']['valuesResolver'] = [
             'name' => $selectedCardType->name,
             'slug' => $selectedCardType->slug,
@@ -2190,6 +2190,26 @@ class ResourceIndexController extends Controller
         ];
 
         return $page;
+    }
+
+    private function cardTypesLiveFormTitle(): string
+    {
+        return 'Edit Galaxy tier in Laravel';
+    }
+
+    private function cardTypesLiveFormDescription(): string
+    {
+        return 'Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.';
+    }
+
+    private function cardTypesLiveFormCancelLabel(): string
+    {
+        return 'Create new Galaxy tier shell';
+    }
+
+    private function cardTypesLiveFormSubmitLabel(): string
+    {
+        return 'Save tier changes';
     }
 
     private function cardTypesLifecycleFreshnessLabel(CardType $selectedCardType): string
