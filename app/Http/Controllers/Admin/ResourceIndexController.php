@@ -3538,7 +3538,7 @@ class ResourceIndexController extends Controller
         return $this->rolesPermissionsScopeCoverageLabel($scope);
     }
 
-    private function rolesPermissionsScopeRolloutTimelineDescription(mixed $scope): string
+    private function rolesPermissionsScopePostureTimelineDescription(mixed $scope): string
     {
         return $scope->isNotEmpty()
             ? sprintf('This role currently shows shop scope across %s in Laravel review mode, so scope rollout stays visible while writes remain gated.', $scope->join(', '))
@@ -3604,7 +3604,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsScopePostureTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $this->rolesPermissionsScopeRolloutTimelineDescription($scope),
+                'description' => $this->rolesPermissionsScopePostureTimelineDescription($scope),
             ],
             [
                 'title' => $this->rolesPermissionsScopeCoverageTimelineTitle($selectedRole),
