@@ -3263,6 +3263,11 @@ class ResourceIndexController extends Controller
         return $this->rolesPermissionsLifecycleFreshness($selectedRole);
     }
 
+    private function rolesPermissionsSelectedForReviewTimelineTitle(Role $selectedRole): string
+    {
+        return sprintf('%s selected for Laravel review', $selectedRole->name);
+    }
+
     private function rolesPermissionsStatusTimelineTitle(Role $selectedRole): string
     {
         return sprintf('%s status reflected from model state', $selectedRole->name);
@@ -3527,7 +3532,7 @@ class ResourceIndexController extends Controller
     {
         return [
             [
-                'title' => sprintf('%s selected for Laravel review', $selectedRole->name),
+                'title' => $this->rolesPermissionsSelectedForReviewTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => 'The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.',
             ],
