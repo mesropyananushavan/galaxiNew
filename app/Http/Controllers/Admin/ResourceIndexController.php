@@ -2112,7 +2112,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesEvidencePriority($selectedCardType),
             ],
             [
-                'title' => sprintf('%s current status posture reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesCurrentStatusPostureTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesCurrentStatusPosture($selectedCardType),
             ],
@@ -2295,6 +2295,11 @@ class ResourceIndexController extends Controller
     private function cardTypesEvidencePriorityTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s evidence priority reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesCurrentStatusPostureTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s current status posture reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
