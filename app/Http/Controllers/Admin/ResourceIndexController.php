@@ -3320,6 +3320,13 @@ class ResourceIndexController extends Controller
         return sprintf('%s permission bundle reflected from model state', $selectedRole->name);
     }
 
+    private function rolesPermissionsPermissionBundleTimelineDescription(mixed $permissionPreview): string
+    {
+        return $permissionPreview->isNotEmpty()
+            ? sprintf('This role currently exposes %s in Laravel and the review context now mirrors that access bundle.', $permissionPreview->take(3)->implode(', '))
+            : 'This role currently has no linked permissions in Laravel, so it remains a safe draft for parity-first access review.';
+    }
+
     private function rolesPermissionsPermissionReviewNoteTimelineTitle(Role $selectedRole): string
     {
         return sprintf('%s permission review note reflected from model state', $selectedRole->name);
@@ -3591,9 +3598,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsPermissionBundleTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $permissionPreview->isNotEmpty()
-                    ? sprintf('This role currently exposes %s in Laravel and the review context now mirrors that access bundle.', $permissionPreview->take(3)->implode(', '))
-                    : 'This role currently has no linked permissions in Laravel, so it remains a safe draft for parity-first access review.',
+                'description' => $this->rolesPermissionsPermissionBundleTimelineDescription($permissionPreview),
             ],
             [
                 'title' => $this->rolesPermissionsPermissionReviewNoteTimelineTitle($selectedRole),
