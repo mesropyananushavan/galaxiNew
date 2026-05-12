@@ -3597,11 +3597,16 @@ class ResourceIndexController extends Controller
                     : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.',
             ],
             [
-                'title' => 'Access handoff stays visible in the workspace',
+                'title' => $this->rolesPermissionsTimelineHandoffTitle(),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsTimelineHandoffDescription($selectedRole, $scope),
             ],
         ];
+    }
+
+    private function rolesPermissionsTimelineHandoffTitle(): string
+    {
+        return 'Access handoff stays visible in the workspace';
     }
 
     private function rolesPermissionsTimelineHandoffDescription(Role $selectedRole, mixed $scope): string
