@@ -3486,6 +3486,11 @@ class ResourceIndexController extends Controller
         $permissionLinkedCount = $roles->filter(fn (Role $role): bool => $role->permissions_count > 0)->count();
         $activeCount = $roles->where('is_active', true)->count();
 
+        return $this->rolesPermissionsCatalogReviewMatrixDisabledReasonSummary($permissionLinkedCount, $activeCount);
+    }
+
+    private function rolesPermissionsCatalogReviewMatrixDisabledReasonSummary(int $permissionLinkedCount, int $activeCount): string
+    {
         return match (true) {
             $permissionLinkedCount > 0 => 'Blocked until saved Laravel permission bundles are verified against legacy staff access.',
             $activeCount > 0 => 'Blocked until an active role has a first verified Laravel permission bundle to compare against legacy staff access.',
