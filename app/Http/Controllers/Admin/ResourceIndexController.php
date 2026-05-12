@@ -2127,7 +2127,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesBackendGap($selectedCardType),
             ],
             [
-                'title' => sprintf('%s rule-import posture reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesRuleImportPostureTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesRuleImportPosture($selectedCardType),
             ],
@@ -2310,6 +2310,11 @@ class ResourceIndexController extends Controller
     private function cardTypesBackendGapTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s backend gap reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesRuleImportPostureTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s rule-import posture reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
