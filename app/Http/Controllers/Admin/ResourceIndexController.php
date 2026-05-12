@@ -3512,6 +3512,11 @@ class ResourceIndexController extends Controller
         $permissionCount = $selectedRole->permissions->count();
         $assignedUserCount = $selectedRole->users_count ?? $selectedRole->users->count();
 
+        return $this->rolesPermissionsReviewMatrixDisabledReasonSummary($selectedRole, $permissionCount, $assignedUserCount);
+    }
+
+    private function rolesPermissionsReviewMatrixDisabledReasonSummary(Role $selectedRole, int $permissionCount, int $assignedUserCount): string
+    {
         return match (true) {
             $permissionCount > 0 && $assignedUserCount > 0 => 'Blocked until this assignment-sensitive Laravel permission bundle is verified against legacy staff access.',
             $permissionCount > 0 => 'Blocked until the Laravel permission matrix can be verified against legacy staff access for this live bundle.',
