@@ -1997,27 +1997,19 @@ class ResourceIndexController extends Controller
             ['label' => 'Backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
             [
                 'label' => 'Status guidance',
-                'value' => $selectedCardType->is_active
-                    ? 'This tier is live in the current Laravel foundation, so operators should move it back to draft before parity-sensitive rule changes.'
-                    : 'This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.',
+                'value' => $this->cardTypesStatusGuidance($selectedCardType),
             ],
             [
                 'label' => 'Rule-import blocker',
-                'value' => $selectedCardType->is_active
-                    ? 'Rule import should stay blocked for this live tier until legacy accrual parity is verified against the active behavior.'
-                    : 'Rule import is still blocked, but draft state keeps this tier safe for parity-first catalog and accrual checks.',
+                'value' => $this->cardTypesRuleImportBlocker($selectedCardType),
             ],
             [
                 'label' => 'Publish guidance',
-                'value' => $selectedCardType->is_active
-                    ? 'Treat this tier as already live in Laravel, so publish-like changes should wait for rule parity and operator confirmation.'
-                    : 'Keep this tier in draft until rule import expectations and old Galaxy behavior are mapped clearly enough to publish safely.',
+                'value' => $this->cardTypesPublishGuidance($selectedCardType),
             ],
             [
                 'label' => 'Readiness signal',
-                'value' => $selectedCardType->is_active
-                    ? 'Partially ready: the tier is live in Laravel, but parity-sensitive follow-up actions should stay gated.'
-                    : 'Not ready to publish: draft mode is still the holding state for parity validation and rule-import review.',
+                'value' => $this->cardTypesReadinessSignal($selectedCardType),
             ],
         ];
 
@@ -2276,6 +2268,34 @@ class ResourceIndexController extends Controller
         return $selectedCardType->is_active
             ? 'Allow small state corrections only, keep publish-like and import actions gated'
             : 'Allow draft-safe edits and validation only, keep live-facing actions gated';
+    }
+
+    private function cardTypesStatusGuidance(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active
+            ? 'This tier is live in the current Laravel foundation, so operators should move it back to draft before parity-sensitive rule changes.'
+            : 'This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.';
+    }
+
+    private function cardTypesRuleImportBlocker(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active
+            ? 'Rule import should stay blocked for this live tier until legacy accrual parity is verified against the active behavior.'
+            : 'Rule import is still blocked, but draft state keeps this tier safe for parity-first catalog and accrual checks.';
+    }
+
+    private function cardTypesPublishGuidance(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active
+            ? 'Treat this tier as already live in Laravel, so publish-like changes should wait for rule parity and operator confirmation.'
+            : 'Keep this tier in draft until rule import expectations and old Galaxy behavior are mapped clearly enough to publish safely.';
+    }
+
+    private function cardTypesReadinessSignal(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active
+            ? 'Partially ready: the tier is live in Laravel, but parity-sensitive follow-up actions should stay gated.'
+            : 'Not ready to publish: draft mode is still the holding state for parity validation and rule-import review.';
     }
 
     private function cardTypesCoverageFreshness(CardType $selectedCardType): string

@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types summary-guidance helper checkpoint
+- Extracted selected-tier summary copy for `Status guidance`, `Rule-import blocker`, `Publish guidance`, and `Readiness signal` into dedicated helpers instead of leaving that Galaxy-specific review wording inline in the summary block.
+- Kept the step narrow and read-only, but made the card-types shell easier to extend without drifting back toward a dense starter-style controller array.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
 ### Card types review-note reflection helper checkpoint
 - Extracted selected-tier timeline copy for `Review note` into a dedicated helper, so the saved-note reflection block for card types now follows the same helper-driven pattern as activation and rollout notes.
 - Kept the step narrow and read-only, but made the card-types review shell more uniform as Galaxy-specific note context continues to move out of inline controller arrays.
