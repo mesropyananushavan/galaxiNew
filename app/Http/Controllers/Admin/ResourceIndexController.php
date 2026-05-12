@@ -2072,7 +2072,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesReviewNoteReflection($selectedCardType),
             ],
             [
-                'title' => sprintf('%s activation note reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesActivationNoteTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesActivationNoteReflection($selectedCardType),
             ],
@@ -2255,6 +2255,11 @@ class ResourceIndexController extends Controller
     private function cardTypesReviewNoteTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s review note reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesActivationNoteTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s activation note reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineTitle(CardType $selectedCardType): string
