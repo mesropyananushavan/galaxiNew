@@ -3263,6 +3263,11 @@ class ResourceIndexController extends Controller
         return $this->rolesPermissionsLifecycleFreshness($selectedRole);
     }
 
+    private function rolesPermissionsStatusTimelineTitle(Role $selectedRole): string
+    {
+        return sprintf('%s status reflected from model state', $selectedRole->name);
+    }
+
     private function rolesPermissionsLifecycleTimelineTitle(Role $selectedRole): string
     {
         return sprintf('%s lifecycle freshness reflected from model state', $selectedRole->name);
@@ -3487,7 +3492,7 @@ class ResourceIndexController extends Controller
                 'description' => 'The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.',
             ],
             [
-                'title' => sprintf('%s status reflected from model state', $selectedRole->name),
+                'title' => $this->rolesPermissionsStatusTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $selectedRole->is_active
                     ? 'This role is currently marked as active in Laravel and the management context now treats it as a live access shell.'

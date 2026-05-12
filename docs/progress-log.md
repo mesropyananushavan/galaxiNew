@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Roles-permissions status timeline title checkpoint
+- Shifted the same Phase 1 helper-cleanup pattern into the `roles-permissions` workspace by extracting the selected-role timeline title for `status reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but started making a second Galaxy-specific admin surface less starter-like by reducing inline timeline copy inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
 ### Card types action-gating timeline title checkpoint
 - Extracted the selected-tier timeline title for `action gating reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific workflow wording inline in the controller array.
 - Kept the step narrow and read-only, but finished making the card-types workflow/action timeline tail helper-driven as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
