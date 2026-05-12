@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types visible-coverage helper checkpoint
+- Added a compact `cardTypesHasVisibleCoverage()` helper and re-used it in selected-tier `Handoff signal` and `Backend gap`, so the Galaxy card-type review shell now relies on one visible-coverage decision point instead of mixing in extra `cards()->exists()` queries.
+- Kept the step read-only and parity-first, but made the card-types workflow stack more consistent and a bit cleaner for the next Phase 1 review-shell refinements.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
 ### Card types selected-action disabled-reason alignment checkpoint
 - Renamed the selected-tier import and publish disabled-reason helpers so the card-types controller now distinguishes selected-tier action gating copy from the broader catalog-level disabled reasoning.
 - Kept the step narrow and read-only, but made the Galaxy-specific selected-tier action copy easier to extend without confusing it with the top-level catalog gating helpers.

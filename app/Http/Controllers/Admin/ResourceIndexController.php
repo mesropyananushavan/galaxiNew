@@ -2354,6 +2354,11 @@ class ResourceIndexController extends Controller
         };
     }
 
+    private function cardTypesHasVisibleCoverage(CardType $selectedCardType): bool
+    {
+        return ($selectedCardType->cards_count ?? 0) > 0;
+    }
+
     private function cardTypesLastSavedLabel(CardType $selectedCardType): string
     {
         return $this->lastSavedLabel($selectedCardType);
@@ -2361,20 +2366,24 @@ class ResourceIndexController extends Controller
 
     private function cardTypesHandoffSignal(CardType $selectedCardType): string
     {
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
         return match (true) {
-            $selectedCardType->is_active && $selectedCardType->cards()->exists() => 'Live tier already carries visible card coverage for a useful rollout-parity handoff review.',
+            $selectedCardType->is_active && $hasVisibleCoverage => 'Live tier already carries visible card coverage for a useful rollout-parity handoff review.',
             $selectedCardType->is_active => 'Live tier should stay in handoff-only posture until visible card coverage and rollout parity are explicit.',
-            $selectedCardType->cards()->exists() => 'Draft tier already carries visible card coverage for a useful parity handoff review.',
+            $hasVisibleCoverage => 'Draft tier already carries visible card coverage for a useful parity handoff review.',
             default => 'Draft tier should stay in handoff-only posture until visible card coverage grounds rollout review.',
         };
     }
 
     private function cardTypesBackendGap(CardType $selectedCardType): string
     {
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
         return match (true) {
-            $selectedCardType->is_active && $selectedCardType->cards()->exists() => 'Publish logic and rule-import parity should stay preview-only until live tier parity is verified.',
+            $selectedCardType->is_active && $hasVisibleCoverage => 'Publish logic and rule-import parity should stay preview-only until live tier parity is verified.',
             $selectedCardType->is_active => 'Rollout confirmation, publish logic, and rule-import parity should stay preview-only until live tier coverage is verified.',
-            $selectedCardType->cards()->exists() => 'Draft activation, publish logic, and rule-import parity should stay preview-only until draft tier parity is verified.',
+            $hasVisibleCoverage => 'Draft activation, publish logic, and rule-import parity should stay preview-only until draft tier parity is verified.',
             default => 'Draft activation, publish logic, and rule-import parity should stay preview-only until visible tier coverage is verified.',
         };
     }
