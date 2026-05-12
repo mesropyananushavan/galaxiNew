@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types publish-posture timeline title checkpoint
+- Extracted the selected-tier timeline title for `publish posture reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific workflow wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types workflow/action timeline cues more uniform as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
 ### Card types rule-import-posture timeline title checkpoint
 - Extracted the selected-tier timeline title for `rule-import posture reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific workflow wording inline in the controller array.
 - Kept the step narrow and read-only, but made the card-types workflow/action timeline cues more uniform as the Phase 1 shell keeps moving away from starter-style inline copy blocks.

@@ -2132,7 +2132,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesRuleImportPosture($selectedCardType),
             ],
             [
-                'title' => sprintf('%s publish posture reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesPublishPostureTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesPublishPosture($selectedCardType),
             ],
@@ -2315,6 +2315,11 @@ class ResourceIndexController extends Controller
     private function cardTypesRuleImportPostureTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s rule-import posture reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesPublishPostureTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s publish posture reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
