@@ -2137,7 +2137,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesPublishPosture($selectedCardType),
             ],
             [
-                'title' => sprintf('%s action gating reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesActionGatingTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesActionGating($selectedCardType),
             ],
@@ -2320,6 +2320,11 @@ class ResourceIndexController extends Controller
     private function cardTypesPublishPostureTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s publish posture reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesActionGatingTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s action gating reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
