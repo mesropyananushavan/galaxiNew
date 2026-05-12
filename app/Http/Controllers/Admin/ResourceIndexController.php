@@ -2102,7 +2102,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesFocus($selectedCardType),
             ],
             [
-                'title' => sprintf('%s tier posture reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesPostureTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesPosture($selectedCardType),
             ],
@@ -2285,6 +2285,11 @@ class ResourceIndexController extends Controller
     private function cardTypesFocusTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s tier focus reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesPostureTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s tier posture reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
