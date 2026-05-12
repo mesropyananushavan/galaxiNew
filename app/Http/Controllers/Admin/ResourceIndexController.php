@@ -2092,7 +2092,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesCoverageFreshness($selectedCardType),
             ],
             [
-                'title' => sprintf('%s tier status signal reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesStatusSignalTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesStatusSignal($selectedCardType),
             ],
@@ -2275,6 +2275,11 @@ class ResourceIndexController extends Controller
     private function cardTypesCoverageFreshnessTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s card coverage freshness reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesStatusSignalTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s tier status signal reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
