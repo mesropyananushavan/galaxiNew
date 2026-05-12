@@ -2077,9 +2077,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s review note reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
-                'description' => $selectedCardType->review_note !== null && trim($selectedCardType->review_note) !== ''
-                    ? sprintf('The current Laravel tier review note says: %s', $selectedCardType->review_note)
-                    : 'No Laravel tier review note is saved yet, so parity-sensitive tier context still depends on the surrounding workspace cues.',
+                'description' => $this->cardTypesReviewNoteReflection($selectedCardType),
             ],
             [
                 'title' => sprintf('%s activation note reflected from model state', $selectedCardType->name),
@@ -2348,6 +2346,13 @@ class ResourceIndexController extends Controller
             $cardsCount > 0 => 'Blocked until this draft tier clears rule and rollout parity review against visible card coverage.',
             default => 'Blocked until this draft tier clears rule-and-rollout parity review before any publish-like move.',
         };
+    }
+
+    private function cardTypesReviewNoteReflection(CardType $selectedCardType): string
+    {
+        return $selectedCardType->review_note !== null && trim($selectedCardType->review_note) !== ''
+            ? sprintf('The current Laravel tier review note says: %s', $selectedCardType->review_note)
+            : 'No Laravel tier review note is saved yet, so parity-sensitive tier context still depends on the surrounding workspace cues.';
     }
 
     private function cardTypesActivationNoteReflection(CardType $selectedCardType): string
