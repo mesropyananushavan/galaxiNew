@@ -3283,6 +3283,11 @@ class ResourceIndexController extends Controller
         return sprintf('%s review note reflected from model state', $selectedRole->name);
     }
 
+    private function rolesPermissionsAccessNoteTimelineTitle(Role $selectedRole): string
+    {
+        return sprintf('%s access note reflected from model state', $selectedRole->name);
+    }
+
     private function rolesPermissionsLifecycleDependencyLabel(Role $selectedRole): string
     {
         return $this->rolesPermissionsLifecycleFreshness($selectedRole);
@@ -3524,7 +3529,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->rolesPermissionsReviewNoteTimelineDescription($selectedRole),
             ],
             [
-                'title' => sprintf('%s access note reflected from model state', $selectedRole->name),
+                'title' => $this->rolesPermissionsAccessNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsAccessNoteTimelineDescription($selectedRole),
             ],
