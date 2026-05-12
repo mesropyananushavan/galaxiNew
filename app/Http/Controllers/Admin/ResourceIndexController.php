@@ -2117,7 +2117,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesCurrentStatusPosture($selectedCardType),
             ],
             [
-                'title' => sprintf('%s handoff signal reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesHandoffSignalTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesHandoffSignal($selectedCardType),
             ],
@@ -2300,6 +2300,11 @@ class ResourceIndexController extends Controller
     private function cardTypesCurrentStatusPostureTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s current status posture reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesHandoffSignalTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s handoff signal reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
