@@ -2057,7 +2057,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesStatusTimelineDescription($selectedCardType),
             ],
             [
-                'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesLifecycleFreshnessTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesLifecycleFreshnessDescription($selectedCardType),
             ],
@@ -2225,6 +2225,11 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedForEditFlowDescription(): string
     {
         return 'The shared card-type form is now loading this saved tier directly from Laravel data instead of preview-only defaults.';
+    }
+
+    private function cardTypesLifecycleFreshnessTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s lifecycle freshness reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesStatusTimelineTitle(CardType $selectedCardType): string

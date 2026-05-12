@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types lifecycle-freshness timeline helper checkpoint
+- Extracted the selected-tier timeline title for `lifecycle freshness reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific lifecycle wording inline in the controller array.
+- Kept the step narrow and read-only, but continued making the card-types timeline layer more uniform as the Phase 1 review shell moves away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_ignores_unknown_selected_card_type_query'`, `2 passed`.
+
 ### Card types coverage-signal timeline helper checkpoint
 - Extracted selected-tier timeline copy for `card coverage signal reflected from model state` into dedicated helpers instead of leaving that Galaxy-specific coverage wording inline in the controller array.
 - Kept the step narrow and read-only, but made the card-types timeline layer more uniform as the Phase 1 review shell keeps moving away from starter-style inline copy blocks.
