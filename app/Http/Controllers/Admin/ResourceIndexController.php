@@ -2052,9 +2052,9 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesSelectedForEditFlowDescription(),
             ],
             [
-                'title' => sprintf('%s status reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesStatusTimelineTitle($selectedCardType),
                 'time' => 'Current request',
-                'description' => sprintf('This tier is currently marked as %s in Laravel and the management context card now mirrors that state.', $selectedCardType->is_active ? 'active' : 'draft'),
+                'description' => $this->cardTypesStatusTimelineDescription($selectedCardType),
             ],
             [
                 'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedCardType->name),
@@ -2225,6 +2225,16 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedForEditFlowDescription(): string
     {
         return 'The shared card-type form is now loading this saved tier directly from Laravel data instead of preview-only defaults.';
+    }
+
+    private function cardTypesStatusTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s status reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesStatusTimelineDescription(CardType $selectedCardType): string
+    {
+        return sprintf('This tier is currently marked as %s in Laravel and the management context card now mirrors that state.', $selectedCardType->is_active ? 'active' : 'draft');
     }
 
     private function cardTypesLastSavedTimelineTitle(CardType $selectedCardType): string
