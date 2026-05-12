@@ -2082,9 +2082,9 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesRolloutNoteReflection($selectedCardType),
             ],
             [
-                'title' => sprintf('%s card coverage signal reflected from model state', $selectedCardType->name),
+                'title' => $this->cardTypesCoverageSignalTimelineTitle($selectedCardType),
                 'time' => 'Current request',
-                'description' => sprintf('The current Laravel tier is showing %s in the workspace review shell.', $this->cardTypesCoverageSignal($selectedCardType)),
+                'description' => $this->cardTypesCoverageSignalTimelineDescription($selectedCardType),
             ],
             [
                 'title' => sprintf('%s card coverage freshness reflected from model state', $selectedCardType->name),
@@ -2245,6 +2245,16 @@ class ResourceIndexController extends Controller
     private function cardTypesLastSavedTimelineDescription(CardType $selectedCardType): string
     {
         return sprintf('The latest saved Laravel timestamp for this tier is %s, giving operators a concrete checkpoint for the current catalog shell.', $this->cardTypesLastSavedLabel($selectedCardType));
+    }
+
+    private function cardTypesCoverageSignalTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s card coverage signal reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
+    {
+        return sprintf('The current Laravel tier is showing %s in the workspace review shell.', $this->cardTypesCoverageSignal($selectedCardType));
     }
 
     private function cardTypesLiveFormTitle(): string
