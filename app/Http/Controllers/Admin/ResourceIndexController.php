@@ -3273,6 +3273,11 @@ class ResourceIndexController extends Controller
         return sprintf('%s lifecycle freshness reflected from model state', $selectedRole->name);
     }
 
+    private function rolesPermissionsLastSavedTimelineTitle(Role $selectedRole): string
+    {
+        return sprintf('%s last saved timestamp reflected from model state', $selectedRole->name);
+    }
+
     private function rolesPermissionsLifecycleDependencyLabel(Role $selectedRole): string
     {
         return $this->rolesPermissionsLifecycleFreshness($selectedRole);
@@ -3504,7 +3509,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->rolesPermissionsLifecycleTimelineDescription($selectedRole),
             ],
             [
-                'title' => sprintf('%s last saved timestamp reflected from model state', $selectedRole->name),
+                'title' => $this->rolesPermissionsLastSavedTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $this->rolesPermissionsLastSavedTimelineDescription($selectedRole),
             ],
