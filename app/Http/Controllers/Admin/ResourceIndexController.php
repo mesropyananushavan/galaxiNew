@@ -3312,6 +3312,11 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsScopePostureTimelineTitle(Role $selectedRole): string
     {
+        return $this->rolesPermissionsScopePostureTimelineTitleSummary($selectedRole);
+    }
+
+    private function rolesPermissionsScopePostureTimelineTitleSummary(Role $selectedRole): string
+    {
         return sprintf('%s scope posture reflected from model state', $selectedRole->name);
     }
 
