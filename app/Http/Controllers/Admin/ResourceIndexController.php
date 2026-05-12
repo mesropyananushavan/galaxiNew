@@ -3504,6 +3504,11 @@ class ResourceIndexController extends Controller
         $scopedCount = $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count();
         $activeCount = $roles->where('is_active', true)->count();
 
+        return $this->rolesPermissionsCatalogPublishRoleDisabledReasonSummary($permissionLinkedCount, $scopedCount, $activeCount);
+    }
+
+    private function rolesPermissionsCatalogPublishRoleDisabledReasonSummary(int $permissionLinkedCount, int $scopedCount, int $activeCount): string
+    {
         return match (true) {
             $permissionLinkedCount > 0 && $scopedCount > 0 => 'Blocked until saved live access bundles clear assignment and shop-scope parity.',
             $permissionLinkedCount > 0 => 'Blocked until saved permission-linked roles also clear shop-scope parity.',
