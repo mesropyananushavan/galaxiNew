@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types tier-focus timeline checkpoint
+- Added a dedicated recent-activity timeline item for selected-tier `Tier focus`, so the first parity-review angle now stays visible in the workflow stack instead of living only in summary fields.
+- Re-used the new `cardTypesFocus()` helper in the timeline layer, keeping the Galaxy-specific card-type shell more consistent as the review copy gets less starter-like.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
 ### Card types tier-posture timeline checkpoint
 - Added a dedicated recent-activity timeline item for selected-tier `Tier posture`, so the current live-vs-draft review stance now stays visible in the workflow stack instead of living only in summary fields.
 - Refactored the selected-tier `Tier focus`, `Tier posture`, and `Evidence priority` strings behind small controller helpers, keeping the Phase 1 card-type review shell more consistent as Galaxy-specific copy keeps expanding.

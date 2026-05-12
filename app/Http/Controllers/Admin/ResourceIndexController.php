@@ -2111,6 +2111,11 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesStatusSignal($selectedCardType),
             ],
             [
+                'title' => sprintf('%s tier focus reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $this->cardTypesFocus($selectedCardType),
+            ],
+            [
                 'title' => sprintf('%s tier posture reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
                 'description' => $this->cardTypesPosture($selectedCardType),
