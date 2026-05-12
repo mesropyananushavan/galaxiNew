@@ -3557,6 +3557,11 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsScopeRolloutValue(mixed $scope): string
     {
+        return $this->rolesPermissionsScopeRolloutValueSummary($scope);
+    }
+
+    private function rolesPermissionsScopeRolloutValueSummary(mixed $scope): string
+    {
         return $scope->isNotEmpty() ? 'shop-scope-visible' : 'shop-scope-pending';
     }
 
