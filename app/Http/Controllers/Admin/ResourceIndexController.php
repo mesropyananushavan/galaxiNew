@@ -1990,15 +1990,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Coverage freshness', 'value' => $this->cardTypesCoverageFreshness($selectedCardType)],
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
-            ['label' => 'Tier focus', 'value' => $selectedCardType->is_active
-                ? 'Start with saved card coverage, live status, and rollout note clarity before discussing any later publish reversal or rule import step.'
-                : 'Start with saved card coverage, draft status, activation readiness, and rollout note clarity before discussing any later rule import step.'],
-            ['label' => 'Tier posture', 'value' => $selectedCardType->is_active
-                ? 'Keep live tier review in the workspace first, then leave publish reversal, rule import, and rollout-sensitive moves gated until parity is proven.'
-                : 'Keep draft tier review in the workspace first, then leave rule import and publish-style moves gated until parity is proven.'],
-            ['label' => 'Evidence priority', 'value' => $selectedCardType->is_active
-                ? 'Keep visible card coverage, live status, activation note, and rollout note together before trusting any later publish reversal or rule import discussion.'
-                : 'Keep visible card coverage, activation readiness, and rollout note together before trusting any later rule import discussion.'],
+            ['label' => 'Tier focus', 'value' => $this->cardTypesFocus($selectedCardType)],
+            ['label' => 'Tier posture', 'value' => $this->cardTypesPosture($selectedCardType)],
+            ['label' => 'Evidence priority', 'value' => $this->cardTypesEvidencePriority($selectedCardType)],
             ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
             ['label' => 'Backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
             [
@@ -2117,6 +2111,11 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesStatusSignal($selectedCardType),
             ],
             [
+                'title' => sprintf('%s tier posture reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $this->cardTypesPosture($selectedCardType),
+            ],
+            [
                 'title' => sprintf('%s handoff signal reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
                 'description' => $this->cardTypesHandoffSignal($selectedCardType),
@@ -2225,6 +2224,27 @@ class ResourceIndexController extends Controller
             $cardsCount > 0 => 'Draft tier remains safer for parity review while saved card coverage is already visible.',
             default => 'Draft tier remains safer for visible-card-coverage parity-review before any rollout discussion lands.',
         };
+    }
+
+    private function cardTypesFocus(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active
+            ? 'Start with saved card coverage, live status, and rollout note clarity before discussing any later publish reversal or rule import step.'
+            : 'Start with saved card coverage, draft status, activation readiness, and rollout note clarity before discussing any later rule import step.';
+    }
+
+    private function cardTypesPosture(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active
+            ? 'Keep live tier review in the workspace first, then leave publish reversal, rule import, and rollout-sensitive moves gated until parity is proven.'
+            : 'Keep draft tier review in the workspace first, then leave rule import and publish-style moves gated until parity is proven.';
+    }
+
+    private function cardTypesEvidencePriority(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active
+            ? 'Keep visible card coverage, live status, activation note, and rollout note together before trusting any later publish reversal or rule import discussion.'
+            : 'Keep visible card coverage, activation readiness, and rollout note together before trusting any later rule import discussion.';
     }
 
     private function cardTypesCoverageFreshness(CardType $selectedCardType): string

@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-05-12
+
+### Card types tier-posture timeline checkpoint
+- Added a dedicated recent-activity timeline item for selected-tier `Tier posture`, so the current live-vs-draft review stance now stays visible in the workflow stack instead of living only in summary fields.
+- Refactored the selected-tier `Tier focus`, `Tier posture`, and `Evidence priority` strings behind small controller helpers, keeping the Phase 1 card-type review shell more consistent as Galaxy-specific copy keeps expanding.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
 ## 2026-05-07
 
 ### Card types action-gating timeline checkpoint
