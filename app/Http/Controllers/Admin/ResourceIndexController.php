@@ -2143,23 +2143,17 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s rule-import posture reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
-                'description' => $selectedCardType->is_active
-                    ? 'Keep imports blocked until active-tier accrual parity is verified'
-                    : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet',
+                'description' => $this->cardTypesRuleImportPosture($selectedCardType),
             ],
             [
                 'title' => sprintf('%s publish posture reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
-                'description' => $selectedCardType->is_active
-                    ? 'Live tiers need parity confirmation before further publish-style changes'
-                    : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly',
+                'description' => $this->cardTypesPublishPosture($selectedCardType),
             ],
             [
                 'title' => sprintf('%s action gating reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
-                'description' => $selectedCardType->is_active
-                    ? 'Allow small state corrections only, keep publish-like and import actions gated'
-                    : 'Allow draft-safe edits and validation only, keep live-facing actions gated',
+                'description' => $this->cardTypesActionGating($selectedCardType),
             ],
         ];
 
@@ -2180,9 +2174,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
             ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
             ['label' => 'Current status posture', 'value' => $this->cardTypesCurrentStatusPosture($selectedCardType)],
-            ['label' => 'Rule-import posture', 'value' => $selectedCardType->is_active ? 'Keep imports blocked until active-tier accrual parity is verified' : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet'],
-            ['label' => 'Publish posture', 'value' => $selectedCardType->is_active ? 'Live tiers need parity confirmation before further publish-style changes' : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly'],
-            ['label' => 'Action gating', 'value' => $selectedCardType->is_active ? 'Allow small state corrections only, keep publish-like and import actions gated' : 'Allow draft-safe edits and validation only, keep live-facing actions gated'],
+            ['label' => 'Rule-import posture', 'value' => $this->cardTypesRuleImportPosture($selectedCardType)],
+            ['label' => 'Publish posture', 'value' => $this->cardTypesPublishPosture($selectedCardType)],
+            ['label' => 'Action gating', 'value' => $this->cardTypesActionGating($selectedCardType)],
             ['label' => 'Remaining backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
         ];
 
@@ -2267,6 +2261,27 @@ class ResourceIndexController extends Controller
         return $selectedCardType->is_active
             ? 'Active tiers should stay stable unless parity checks are complete'
             : 'Draft tiers are the safe place for parity-first validation and copy changes';
+    }
+
+    private function cardTypesRuleImportPosture(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active
+            ? 'Keep imports blocked until active-tier accrual parity is verified'
+            : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet';
+    }
+
+    private function cardTypesPublishPosture(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active
+            ? 'Live tiers need parity confirmation before further publish-style changes'
+            : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly';
+    }
+
+    private function cardTypesActionGating(CardType $selectedCardType): string
+    {
+        return $selectedCardType->is_active
+            ? 'Allow small state corrections only, keep publish-like and import actions gated'
+            : 'Allow draft-safe edits and validation only, keep live-facing actions gated';
     }
 
     private function cardTypesCoverageFreshness(CardType $selectedCardType): string

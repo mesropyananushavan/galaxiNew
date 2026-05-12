@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types action-copy helper alignment checkpoint
+- Extracted selected-tier `Rule-import posture`, `Publish posture`, and `Action gating` strings behind dedicated controller helpers instead of leaving the same Galaxy-specific review copy duplicated across dependency and timeline layers.
+- Re-used the new helpers in both layers, keeping the card-types workflow shell easier to extend without drifting back toward generic starter wording.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
 ### Card types current-status-posture timeline checkpoint
 - Added a dedicated recent-activity timeline item for selected-tier `Current status posture`, so the live-vs-draft stance now stays visible in the workflow stack instead of living only in dependency fields.
 - Extracted the `Current status posture` text behind `cardTypesCurrentStatusPosture()`, then re-used it in both the dependency stack and recent-activity timeline to keep Galaxy-specific review wording aligned.
