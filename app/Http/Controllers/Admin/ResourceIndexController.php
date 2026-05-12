@@ -2121,6 +2121,11 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesPosture($selectedCardType),
             ],
             [
+                'title' => sprintf('%s evidence priority reflected from model state', $selectedCardType->name),
+                'time' => 'Current request',
+                'description' => $this->cardTypesEvidencePriority($selectedCardType),
+            ],
+            [
                 'title' => sprintf('%s handoff signal reflected from model state', $selectedCardType->name),
                 'time' => 'Current request',
                 'description' => $this->cardTypesHandoffSignal($selectedCardType),

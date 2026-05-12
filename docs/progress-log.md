@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types evidence-priority timeline checkpoint
+- Added a dedicated recent-activity timeline item for selected-tier `Evidence priority`, so the key parity evidence bundle now stays visible in the workflow stack instead of living only in summary fields.
+- Re-used the extracted `cardTypesEvidencePriority()` helper in the timeline layer, keeping the Galaxy-specific card-type review shell more consistent as Phase 1 copy expands.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
 ### Card types tier-focus timeline checkpoint
 - Added a dedicated recent-activity timeline item for selected-tier `Tier focus`, so the first parity-review angle now stays visible in the workflow stack instead of living only in summary fields.
 - Re-used the new `cardTypesFocus()` helper in the timeline layer, keeping the Galaxy-specific card-type shell more consistent as the review copy gets less starter-like.
