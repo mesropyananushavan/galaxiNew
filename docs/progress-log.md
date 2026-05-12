@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Card types current-status-posture timeline checkpoint
+- Added a dedicated recent-activity timeline item for selected-tier `Current status posture`, so the live-vs-draft stance now stays visible in the workflow stack instead of living only in dependency fields.
+- Extracted the `Current status posture` text behind `cardTypesCurrentStatusPosture()`, then re-used it in both the dependency stack and recent-activity timeline to keep Galaxy-specific review wording aligned.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
 ### Card types evidence-priority timeline checkpoint
 - Added a dedicated recent-activity timeline item for selected-tier `Evidence priority`, so the key parity evidence bundle now stays visible in the workflow stack instead of living only in summary fields.
 - Re-used the extracted `cardTypesEvidencePriority()` helper in the timeline layer, keeping the Galaxy-specific card-type review shell more consistent as Phase 1 copy expands.
