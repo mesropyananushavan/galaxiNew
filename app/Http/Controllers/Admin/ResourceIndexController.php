@@ -3308,6 +3308,11 @@ class ResourceIndexController extends Controller
         return sprintf('%s permission review note reflected from model state', $selectedRole->name);
     }
 
+    private function rolesPermissionsAssignmentScopeTimelineTitle(Role $selectedRole): string
+    {
+        return sprintf('%s assignment scope reflected from model state', $selectedRole->name);
+    }
+
     private function rolesPermissionsLifecycleDependencyLabel(Role $selectedRole): string
     {
         return $this->rolesPermissionsLifecycleFreshness($selectedRole);
@@ -3585,7 +3590,7 @@ class ResourceIndexController extends Controller
                     : 'No linked permission review note is saved yet, so permission-bundle guidance still depends on the surrounding workspace cues.',
             ],
             [
-                'title' => sprintf('%s assignment scope reflected from model state', $selectedRole->name),
+                'title' => $this->rolesPermissionsAssignmentScopeTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $scope->isNotEmpty()
                     ? sprintf('This role is currently linked to %d assigned users across %s in Laravel review mode.', $selectedRole->users_count, $scope->join(', '))
