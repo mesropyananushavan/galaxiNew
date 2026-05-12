@@ -3298,6 +3298,11 @@ class ResourceIndexController extends Controller
         return sprintf('%s scope posture reflected from model state', $selectedRole->name);
     }
 
+    private function rolesPermissionsPermissionBundleTimelineTitle(Role $selectedRole): string
+    {
+        return sprintf('%s permission bundle reflected from model state', $selectedRole->name);
+    }
+
     private function rolesPermissionsLifecycleDependencyLabel(Role $selectedRole): string
     {
         return $this->rolesPermissionsLifecycleFreshness($selectedRole);
@@ -3559,7 +3564,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->rolesPermissionsScopeCoverageTimelineDescription($scope),
             ],
             [
-                'title' => sprintf('%s permission bundle reflected from model state', $selectedRole->name),
+                'title' => $this->rolesPermissionsPermissionBundleTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $permissionPreview->isNotEmpty()
                     ? sprintf('This role currently exposes %s in Laravel and the review context now mirrors that access bundle.', $permissionPreview->take(3)->implode(', '))
