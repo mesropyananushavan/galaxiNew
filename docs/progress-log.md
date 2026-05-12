@@ -2,6 +2,11 @@
 
 ## 2026-05-12
 
+### Roles-permissions scope-rollout summary helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the scope-rollout summary posture wording behind a dedicated summary helper instead of keeping the conditional string block directly inside the summary-posture method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the scope-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
 ### Roles-permissions scope-rollout value helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the scope-rollout value wording behind a dedicated summary helper instead of keeping the visibility-state string directly inside the value method.
 - Kept the step narrow and read-only, but made the helper layer a little more intentional so the scope-review surface is easier to extend without drifting back toward starter-style controller glue.
