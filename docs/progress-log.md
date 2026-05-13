@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cards blocked-review disabled-reason helper split checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `cards` surface by splitting the selected blocked-review disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
 ### Reports preset disabled-reason helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `reports` surface by splitting the selected preset disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
 - Kept the step narrow and behavior-preserving, but made the selected-report action gating helpers more consistent so this Galaxy-specific admin page stays easier to extend without drifting back toward starter-style controller glue.
