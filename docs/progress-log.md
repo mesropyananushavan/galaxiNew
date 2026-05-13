@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cards inventory-dependency helper signature cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `cards` surface by trimming the now-unused `Card` argument from the dedicated inventory-dependency posture helper and updating its call site.
+- Kept the step behavior-preserving, but reduced a little generic-starter-style glue by making the selected-card dependency helper match its actual read-only responsibility more cleanly.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
 ### Cardholders card-linkage posture helper checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the dependency-panel `Card linkage posture` wording behind a dedicated helper instead of keeping the linked-versus-unlinked copy inline.
 - Kept the step narrow and behavior-preserving, while making the holder review shell a bit more consistent with the layered Galaxy-specific admin pattern already used elsewhere in the selected-holder experience.

@@ -4247,7 +4247,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected card', 'value' => $this->cardsSelectedCardLabel($selectedCard)],
-            ['label' => 'Inventory posture', 'value' => $this->cardsInventoryDependencyPosture($selectedCard)],
+            ['label' => 'Inventory posture', 'value' => $this->cardsInventoryDependencyPosture()],
             ['label' => 'Card status signal', 'value' => $this->cardsStatusSignal($selectedCard)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
@@ -4262,7 +4262,7 @@ class ResourceIndexController extends Controller
         ];
     }
 
-    private function cardsInventoryDependencyPosture(Card $selectedCard): string
+    private function cardsInventoryDependencyPosture(): string
     {
         return 'Selected-card review is running in Laravel-backed read mode only';
     }
