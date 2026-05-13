@@ -5,19 +5,19 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 
-class UpdateCardTypeRequest extends StoreCardTypeRequest
+class UpdateShopRequest extends StoreShopRequest
 {
     public function rules(): array
     {
-        $cardType = $this->route('cardType');
+        $shop = $this->route('shop');
 
         return array_merge(parent::rules(), [
-            'slug' => [
+            'code' => [
                 'required',
                 'string',
                 'max:255',
                 'alpha_dash',
-                Rule::unique('card_types', 'slug')->ignore($cardType),
+                Rule::unique('shops', 'code')->ignore($shop),
             ],
         ]);
     }
@@ -26,10 +26,10 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
     {
         /** @var UrlGenerator $url */
         $url = $this->redirector->getUrlGenerator();
-        $cardType = $this->route('cardType');
+        $shop = $this->route('shop');
 
-        if ($cardType !== null) {
-            return $url->route('admin.card-types.index', ['cardType' => $cardType], absolute: false).'#live-form';
+        if ($shop !== null) {
+            return $url->route('admin.shops.index', ['shop' => $shop], absolute: false).'#live-form';
         }
 
         return parent::getRedirectUrl();

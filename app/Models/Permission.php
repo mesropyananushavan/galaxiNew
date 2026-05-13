@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-#[Fillable(['name', 'slug'])]
+#[Fillable(['name', 'slug', 'review_note'])]
 class Permission extends Model
 {
     use HasFactory;

@@ -6,9 +6,9 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Str;
 
-class StoreCardTypeRequest extends FormRequest
+class StoreRoleRequest extends FormRequest
 {
-    protected $redirectRoute = 'admin.card-types.index';
+    protected $redirectRoute = 'admin.roles-permissions.index';
 
     public function authorize(): bool
     {
@@ -19,49 +19,52 @@ class StoreCardTypeRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'slug' => ['required', 'string', 'max:255', 'alpha_dash', 'unique:card_types,slug'],
-            'points_rate' => ['required', 'numeric', 'min:0'],
+            'slug' => ['required', 'string', 'max:255', 'alpha_dash', 'unique:roles,slug'],
             'is_active' => ['required', 'boolean'],
             'review_note' => ['nullable', 'string', 'max:1000'],
-            'activation_note' => ['nullable', 'string', 'max:1000'],
-            'rollout_note' => ['nullable', 'string', 'max:1000'],
+            'access_note' => ['nullable', 'string', 'max:1000'],
+            'assignment_note' => ['nullable', 'string', 'max:1000'],
         ];
     }
 
     protected function prepareForValidation(): void
     {
+        $status = $this->input('is_active');
+
         $this->merge([
             'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
             'slug' => is_string($this->input('slug')) ? Str::slug($this->input('slug')) : $this->input('slug'),
             'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
-            'activation_note' => is_string($this->input('activation_note')) ? (trim($this->input('activation_note')) !== '' ? trim($this->input('activation_note')) : null) : $this->input('activation_note'),
-            'rollout_note' => is_string($this->input('rollout_note')) ? (trim($this->input('rollout_note')) !== '' ? trim($this->input('rollout_note')) : null) : $this->input('rollout_note'),
-            'is_active' => filter_var($this->input('is_active'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)
-                ?? $this->input('is_active'),
+            'access_note' => is_string($this->input('access_note')) ? (trim($this->input('access_note')) !== '' ? trim($this->input('access_note')) : null) : $this->input('access_note'),
+            'assignment_note' => is_string($this->input('assignment_note')) ? (trim($this->input('assignment_note')) !== '' ? trim($this->input('assignment_note')) : null) : $this->input('assignment_note'),
+            'is_active' => match (true) {
+                is_bool($status) => $status,
+                is_string($status) => in_array(strtolower($status), ['1', 'true', 'on', 'yes'], true),
+                is_int($status) => $status === 1,
+                default => false,
+            },
         ]);
     }
 
     public function attributes(): array
     {
         return [
-            'name' => 'card type name',
-            'slug' => 'card type slug',
-            'points_rate' => 'points rate',
-            'is_active' => 'status',
+            'name' => 'role name',
+            'slug' => 'role slug',
+            'is_active' => 'role status',
             'review_note' => 'review note',
-            'activation_note' => 'activation note',
-            'rollout_note' => 'rollout note',
+            'access_note' => 'access note',
+            'assignment_note' => 'assignment note',
         ];
     }
 
     public function messages(): array
     {
         return [
-            'slug.unique' => 'This card type slug is already in use.',
-            'is_active.boolean' => 'The status field must be Active or Draft.',
-            'review_note.max' => 'Keep the review note under 1000 characters so the tier workspace stays operator-friendly.',
-            'activation_note.max' => 'Keep the activation note under 1000 characters so the tier workspace stays operator-friendly.',
-            'rollout_note.max' => 'Keep the rollout note under 1000 characters so the tier workspace stays operator-friendly.',
+            'slug.unique' => 'This role slug is already in use.',
+            'review_note.max' => 'Keep the review note under 1000 characters so the role workspace stays operator-friendly.',
+            'access_note.max' => 'Keep the access note under 1000 characters so the role workspace stays operator-friendly.',
+            'assignment_note.max' => 'Keep the assignment note under 1000 characters so the role workspace stays operator-friendly.',
         ];
     }
 

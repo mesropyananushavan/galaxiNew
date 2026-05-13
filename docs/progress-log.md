@@ -1,5 +1,4273 @@
 # Progress Log
 
+## 2026-05-13
+
+### Cards assignment-dependency posture helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card assignment-posture wording behind a dedicated helper instead of keeping that Galaxy-specific holder-linkage branch inline inside the dependency-status payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards lifecycle-posture helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card lifecycle-posture wording behind a dedicated helper instead of keeping that Galaxy-specific status match inline inside the dependency-status payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards status-signal helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the repeated selected-card status-signal wording behind a dedicated helper instead of keeping the same Galaxy-specific match block inline in both the summary and dependency-status payloads.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more consistent so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Card-types selected summary helper checkpoint
+- Continued the same Phase 1 shell-structure cleanup on the `card-types` surface by moving the selected-tier summary payload behind a dedicated helper instead of assembling that Galaxy-specific review block inline inside the page builder.
+- Kept the step narrow and behavior-preserving, but made another high-value management surface a little more layered so the admin shell keeps reading less like generic starter wiring.
+- Re-ran `php artisan test --filter='test_card_types_page_loads_selected_card_type_into_live_form|test_card_types_page_shows_selected_active_card_type_context|test_card_types_page_shows_selected_draft_card_type_context|test_card_types_page_ignores_unknown_selected_card_type_query'`, and the matching selected-tier slice passed (`1 passed`; in the current suite only the unknown-selected-card-type test matched that exact filter string).
+
+### Cardholders shop-guidance and lookup-guidance helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder shop-guidance and lookup-guidance wording behind dedicated helpers instead of leaving those Galaxy-specific review strings inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more helper-driven so this Phase 1 foundation keeps drifting away from generic starter wiring.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cards shop-guidance and inventory-guidance helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card shop-guidance and inventory-guidance wording behind dedicated helpers instead of leaving those Galaxy-specific review strings inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more helper-driven so this Phase 1 foundation keeps drifting away from generic starter wiring.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Checks-points find-receipt helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `checks-points` surface by splitting the selected find-receipt disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made the selected-receipt action gating helpers more consistent so this Galaxy-specific admin page stays easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context'`, and the targeted selected-receipt slice passed (`3 passed`).
+
+### Checks-points review-gaps helper split checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `checks-points` surface by splitting the selected review-gaps disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context'`, and the targeted selected-receipt slice passed (`3 passed`).
+
+### Shops scope disabled-reason helper split checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `shops` surface by splitting the selected scope disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context'`, and the targeted selected-shop slice passed (`4 passed`).
+
+### Cardholders activity helper split and stale expectation fix checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `cardholders` surface by splitting the selected activity disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- While re-running the focused selected-holder slice, found a stale expectation in `test_cardholders_page_supports_selected_active_unlinked_holder_review_context`: the fixture creates an active shop, but the test was still expecting paused-branch posture/evidence copy. Updated the test to match the current Galaxy-specific active-shop review semantics.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cards blocked-review disabled-reason helper split checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `cards` surface by splitting the selected blocked-review disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Reports preset disabled-reason helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `reports` surface by splitting the selected preset disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made the selected-report action gating helpers more consistent so this Galaxy-specific admin page stays easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_mixed_branch_activity_review_context|test_reports_page_supports_selected_role_access_pending_readiness_context|test_reports_page_supports_selected_mixed_role_state_review_context|test_reports_page_supports_selected_mixed_permission_bundle_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_mixed_assignment_scope_review_context|test_reports_page_supports_selected_mixed_assignment_branch_activity_review_context|test_reports_page_accepts_case_insensitive_selected_source_query'`, and the targeted selected-source slice passed (`12 passed`).
+
+### Reports export disabled-reason helper split checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `reports` surface by splitting the selected export disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_report_source_context|test_reports_page_supports_cards_by_shop_export_context|test_reports_page_supports_cardholder_status_export_context|test_reports_page_supports_role_access_export_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'`, and the matching targeted slice passed (`2 passed`; in the current suite only the unknown-source and case-insensitive selected-source tests matched that exact filter string).
+
+### Services-rules review-priorities disabled-reason helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `services-rules` surface by splitting the selected review-priorities disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made the selected-rule action gating helpers more consistent so this Galaxy-specific admin page stays easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context|test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog|test_services_rules_page_accepts_case_insensitive_selected_rule_query'`, and the targeted selected-rule slice passed (`5 passed`).
+
+### Services-rules publish disabled-reason helper split checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `services-rules` surface by splitting the selected publish disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made another high-value Galaxy-specific admin page a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context|test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog|test_services_rules_page_accepts_case_insensitive_selected_rule_query'`, and the targeted selected-rule slice passed (`5 passed`).
+
+### Gifts stock-audit disabled-reason helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `gifts` surface by splitting the selected stock-audit disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made the selected-gift action gating helpers more consistent so this Galaxy-specific admin page stays easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, and the targeted selected-gift slice passed (`4 passed`).
+
+### Gifts publish disabled-reason helper split checkpoint
+- Shifted this Phase 1 helper-cleanup pattern onto the `gifts` surface by splitting the selected publish disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but spread the Galaxy-specific shell cleanup beyond `roles-permissions` so another high-value admin page stays less starter-like as Phase 1 polish continues.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, and the targeted selected-gift slice passed (`4 passed`).
+
+### Roles-permissions last-saved title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the last-saved timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role freshness surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions lifecycle title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the lifecycle timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role lifecycle surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions status title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the status timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role status surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions selected-review title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-review timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions assignment-note title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the assignment-note timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+## 2026-05-12
+
+### Roles-permissions access-note title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the access-note timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions review-note title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the review-note timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions assignment-scope title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the assignment-scope timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions permission-review title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the permission-review timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions permission-bundle title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the permission-bundle timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-posture title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the scope-posture timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the scope-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-coverage title helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the scope-coverage timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the scope-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-rollout summary helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the scope-rollout summary posture wording behind a dedicated summary helper instead of keeping the conditional string block directly inside the summary-posture method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the scope-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-rollout value helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the scope-rollout value wording behind a dedicated summary helper instead of keeping the visibility-state string directly inside the value method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the scope-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-coverage label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the scope-coverage label wording behind a dedicated summary helper instead of keeping the match block directly inside the label method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the scope-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-coverage dependency helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the scope-coverage dependency wording behind a dedicated summary helper instead of routing the dependency label directly through the base coverage-label method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the scope-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-rollout dependency helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the scope-rollout dependency posture wording behind a dedicated summary helper instead of keeping the conditional string block directly inside the dependency method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the scope-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-posture helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role scope-posture timeline wording behind a dedicated summary helper instead of keeping the conditional string block directly inside the timeline-description method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the scope-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions catalog publish helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the catalog-level publish-role disabled-reason wording behind a dedicated summary helper instead of keeping the full match block directly inside the disabled-reason method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions catalog review-matrix helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the catalog-level review-matrix disabled-reason wording behind a dedicated summary helper instead of keeping the full match block directly inside the disabled-reason method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions publish-role disabled-reason helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role publish-role disabled-reason wording behind a dedicated summary helper instead of keeping the full match block directly inside the disabled-reason method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions review-matrix disabled-reason helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role review-matrix disabled-reason wording behind a dedicated summary helper instead of keeping the full match block directly inside the disabled-reason method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions coverage-signal helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role coverage-signal wording behind a dedicated summary helper instead of keeping the full match block directly inside the signal method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions status-signal helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role status-signal wording behind a dedicated summary helper instead of keeping the full match block directly inside the signal method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role access-review surface is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions assignment-note helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role assignment-note timeline wording behind a dedicated summary helper instead of keeping the conditional string block directly inside the timeline-description method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role timeline is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions access-note helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role access-note timeline wording behind a dedicated summary helper instead of keeping the conditional string block directly inside the timeline-description method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role timeline is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions review-note helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role review-note timeline wording behind a dedicated summary helper instead of keeping the conditional string block directly inside the timeline-description method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role timeline is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions last-saved helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role last-saved timeline wording behind a dedicated summary helper instead of keeping the conditional string block directly inside the timeline-description method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role timeline is easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-coverage helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the selected-role scope-coverage timeline wording behind a dedicated summary helper instead of keeping the full match block directly inside the timeline-description method.
+- Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role timeline is easier to extend without sliding back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-posture description naming checkpoint
+- Tightened helper naming in the `roles-permissions` workspace by renaming the selected-role scope-posture timeline description method from a rollout-oriented name to `rolesPermissionsScopePostureTimelineDescription()`.
+- Kept the step narrow and read-only, but made the helper layer more internally consistent so the selected-role timeline reads less like leftover starter wiring and more like intentional Galaxy-specific structure.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions assignment-scope timeline description checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline description for `assignment scope reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline access-scope string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions permission-review timeline description checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline description for `permission review note reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline permission-guidance string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions permission-bundle timeline description checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline description for `permission bundle reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline access-bundle string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions status timeline description checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline description for `status reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline review-state string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions selected-for-review timeline description checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline description for the `selected for Laravel review` item into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline workspace string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions selected-for-review timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `selected for Laravel review` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions handoff timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role handoff timeline title into a dedicated helper instead of leaving that workspace wording inline in the timeline array.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another hard-coded timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions assignment-scope timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `assignment scope reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions permission-review-note timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `permission review note reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions permission-bundle timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `permission bundle reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions scope-posture timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `scope posture reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions assignment-note timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `assignment note reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions access-note timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `access note reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions review-note timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `review note reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions last-saved timeline title checkpoint
+- Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by extracting the selected-role timeline title for `last saved timestamp reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but made this second Galaxy-specific admin surface a little less starter-like by reducing another inline timeline string inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Roles-permissions status timeline title checkpoint
+- Shifted the same Phase 1 helper-cleanup pattern into the `roles-permissions` workspace by extracting the selected-role timeline title for `status reflected from model state` into a dedicated helper.
+- Kept the step narrow and read-only, but started making a second Galaxy-specific admin surface less starter-like by reducing inline timeline copy inside `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_loads_selected_role_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query'`, and the matching targeted slice passed (`1 passed`; only the unknown-selected-role test matched that exact filter in the current suite).
+
+### Card types action-gating timeline title checkpoint
+- Extracted the selected-tier timeline title for `action gating reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific workflow wording inline in the controller array.
+- Kept the step narrow and read-only, but finished making the card-types workflow/action timeline tail helper-driven as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types publish-posture timeline title checkpoint
+- Extracted the selected-tier timeline title for `publish posture reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific workflow wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types workflow/action timeline cues more uniform as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types rule-import-posture timeline title checkpoint
+- Extracted the selected-tier timeline title for `rule-import posture reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific workflow wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types workflow/action timeline cues more uniform as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types backend-gap timeline title checkpoint
+- Extracted the selected-tier timeline title for `backend gap reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific workflow-gap wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types workflow timeline cues more uniform as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types handoff-signal timeline title checkpoint
+- Extracted the selected-tier timeline title for `handoff signal reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific workflow wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types workflow timeline cues more uniform as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types current-status-posture timeline title checkpoint
+- Extracted the selected-tier timeline title for `current status posture reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific review-posture wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types review-summary timeline cues more uniform as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types evidence-priority timeline title checkpoint
+- Extracted the selected-tier timeline title for `evidence priority reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific review-evidence wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types review-summary timeline cues more uniform as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types posture timeline title checkpoint
+- Extracted the selected-tier timeline title for `tier posture reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific review-posture wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types review-summary timeline cues more uniform as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types focus timeline title checkpoint
+- Extracted the selected-tier timeline title for `tier focus reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific review-focus wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types review-summary timeline cues more uniform as the Phase 1 shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types status-signal timeline title checkpoint
+- Extracted the selected-tier timeline title for `tier status signal reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific status wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types status-related timeline pair more uniform as the Phase 1 review shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types coverage-freshness timeline title checkpoint
+- Extracted the selected-tier timeline title for `card coverage freshness reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific coverage wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types coverage timeline pair more uniform as the Phase 1 review shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal'`, `2 passed`.
+
+### Card types rollout-note timeline title checkpoint
+- Extracted the selected-tier timeline title for `rollout note reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific saved-note wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types note-reflection timeline block more uniform as the Phase 1 review shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_ignores_unknown_selected_card_type_query'`, `2 passed`.
+
+### Card types activation-note timeline title checkpoint
+- Extracted the selected-tier timeline title for `activation note reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific saved-note wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types note-reflection timeline block more uniform as the Phase 1 review shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_ignores_unknown_selected_card_type_query'`, `2 passed`.
+
+### Card types review-note timeline title checkpoint
+- Extracted the selected-tier timeline title for `review note reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific saved-note wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types saved-note timeline block more uniform as the Phase 1 review shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_ignores_unknown_selected_card_type_query'`, `2 passed`.
+
+### Card types lifecycle-freshness timeline helper checkpoint
+- Extracted the selected-tier timeline title for `lifecycle freshness reflected from model state` into a dedicated helper instead of leaving that Galaxy-specific lifecycle wording inline in the controller array.
+- Kept the step narrow and read-only, but continued making the card-types timeline layer more uniform as the Phase 1 review shell moves away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_ignores_unknown_selected_card_type_query'`, `2 passed`.
+
+### Card types coverage-signal timeline helper checkpoint
+- Extracted selected-tier timeline copy for `card coverage signal reflected from model state` into dedicated helpers instead of leaving that Galaxy-specific coverage wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types timeline layer more uniform as the Phase 1 review shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types status-timeline helper checkpoint
+- Extracted selected-tier timeline copy for `status reflected from model state` into dedicated helpers instead of leaving that Galaxy-specific state wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types timeline layer more uniform as the Phase 1 review shell keeps moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_ignores_unknown_selected_card_type_query'`, `2 passed`.
+
+### Card types edit-flow timeline helper checkpoint
+- Extracted selected-tier timeline copy for `selected for Laravel edit flow` and `last saved timestamp reflected from model state` into dedicated helpers instead of leaving that Galaxy-specific timeline wording inline in the controller array.
+- Kept the step narrow and read-only, but made the card-types timeline layer more uniform as the Phase 1 review shell continues moving away from starter-style inline copy blocks.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_ignores_unknown_selected_card_type_query'`, `2 passed`.
+
+### Card types action-label helper checkpoint
+- Extracted selected-tier action-bar labels for create-shell, toggle-status, editing-state, import, and publish into dedicated helpers instead of leaving that Galaxy-specific shell copy inline in the actions array.
+- Re-used the same create-shell label helper for the live-form cancel action, keeping the card-types edit shell more consistent as Phase 1 keeps tightening the Galaxy-specific admin surface.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types live-form copy helper checkpoint
+- Extracted selected-tier live-form title, description, cancel label, and submit label into dedicated helpers instead of leaving that Galaxy-specific edit-shell copy inline in the controller block.
+- Kept the step narrow and read-only, but made the card-types edit shell more helper-driven and easier to evolve as the Phase 1 Laravel form keeps replacing starter defaults.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_resolves_live_form_mode_copy_from_config_callbacks'`, `2 passed`.
+
+### Card types summary-guidance helper checkpoint
+- Extracted selected-tier summary copy for `Status guidance`, `Rule-import blocker`, `Publish guidance`, and `Readiness signal` into dedicated helpers instead of leaving that Galaxy-specific review wording inline in the summary block.
+- Kept the step narrow and read-only, but made the card-types shell easier to extend without drifting back toward a dense starter-style controller array.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types review-note reflection helper checkpoint
+- Extracted selected-tier timeline copy for `Review note` into a dedicated helper, so the saved-note reflection block for card types now follows the same helper-driven pattern as activation and rollout notes.
+- Kept the step narrow and read-only, but made the card-types review shell more uniform as Galaxy-specific note context continues to move out of inline controller arrays.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types note-reflection helper checkpoint
+- Extracted selected-tier timeline copy for `Activation note` and `Rollout note` into dedicated helpers instead of leaving the same Galaxy-specific reflection wording inline in the card-types controller.
+- Kept the step narrow and read-only, but made the card-types review shell easier to extend as more saved-note context moves through the workflow stack.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types visible-coverage helper checkpoint
+- Added a compact `cardTypesHasVisibleCoverage()` helper and re-used it in selected-tier `Handoff signal` and `Backend gap`, so the Galaxy card-type review shell now relies on one visible-coverage decision point instead of mixing in extra `cards()->exists()` queries.
+- Kept the step read-only and parity-first, but made the card-types workflow stack more consistent and a bit cleaner for the next Phase 1 review-shell refinements.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `3 passed`.
+
+### Card types selected-action disabled-reason alignment checkpoint
+- Renamed the selected-tier import and publish disabled-reason helpers so the card-types controller now distinguishes selected-tier action gating copy from the broader catalog-level disabled reasoning.
+- Kept the step narrow and read-only, but made the Galaxy-specific selected-tier action copy easier to extend without confusing it with the top-level catalog gating helpers.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types action-copy helper alignment checkpoint
+- Extracted selected-tier `Rule-import posture`, `Publish posture`, and `Action gating` strings behind dedicated controller helpers instead of leaving the same Galaxy-specific review copy duplicated across dependency and timeline layers.
+- Re-used the new helpers in both layers, keeping the card-types workflow shell easier to extend without drifting back toward generic starter wording.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types current-status-posture timeline checkpoint
+- Added a dedicated recent-activity timeline item for selected-tier `Current status posture`, so the live-vs-draft stance now stays visible in the workflow stack instead of living only in dependency fields.
+- Extracted the `Current status posture` text behind `cardTypesCurrentStatusPosture()`, then re-used it in both the dependency stack and recent-activity timeline to keep Galaxy-specific review wording aligned.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types evidence-priority timeline checkpoint
+- Added a dedicated recent-activity timeline item for selected-tier `Evidence priority`, so the key parity evidence bundle now stays visible in the workflow stack instead of living only in summary fields.
+- Re-used the extracted `cardTypesEvidencePriority()` helper in the timeline layer, keeping the Galaxy-specific card-type review shell more consistent as Phase 1 copy expands.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types tier-focus timeline checkpoint
+- Added a dedicated recent-activity timeline item for selected-tier `Tier focus`, so the first parity-review angle now stays visible in the workflow stack instead of living only in summary fields.
+- Re-used the new `cardTypesFocus()` helper in the timeline layer, keeping the Galaxy-specific card-type shell more consistent as the review copy gets less starter-like.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types tier-posture timeline checkpoint
+- Added a dedicated recent-activity timeline item for selected-tier `Tier posture`, so the current live-vs-draft review stance now stays visible in the workflow stack instead of living only in summary fields.
+- Refactored the selected-tier `Tier focus`, `Tier posture`, and `Evidence priority` strings behind small controller helpers, keeping the Phase 1 card-type review shell more consistent as Galaxy-specific copy keeps expanding.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+## 2026-05-07
+
+### Card types action-gating timeline checkpoint
+- Added a dedicated recent-activity timeline item for the selected tier's `Action gating`, so card-type workflow review now keeps the effective allow-vs-gated posture visible in the timeline instead of leaving it only in the dependency stack.
+- Extended focused selected-tier coverage for a draft tier with visible card coverage and a live tier still missing coverage, keeping the action-gating cue explicit across both readiness branches.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types publish posture timeline checkpoint
+- Added a dedicated recent-activity timeline item for the selected tier's `Publish posture`, so card-type workflow review now keeps the current publish gating stance visible in the timeline instead of leaving it only in the dependency stack.
+- Extended focused selected-tier coverage for a draft tier with visible card coverage and a live tier still missing coverage, keeping the publish-posture cue explicit across both readiness branches.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types rule-import posture timeline checkpoint
+- Added a dedicated recent-activity timeline item for the selected tier's `Rule-import posture`, so card-type workflow review now keeps the current import gating stance visible in the timeline instead of leaving it only in the dependency stack.
+- Extended focused selected-tier coverage for a draft tier with visible card coverage and a live tier still missing coverage, keeping the import-posture cue explicit across both readiness branches.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types backend gap timeline checkpoint
+- Added a dedicated recent-activity timeline item for the selected tier's `Backend gap`, so card-type workflow review now keeps the remaining preview-only parity gap visible in the timeline instead of leaving it only in the static dependency stack.
+- Extended focused selected-tier coverage for a draft tier with visible card coverage and a live tier still missing coverage, keeping the backend-gap cue explicit across both readiness branches.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types handoff signal timeline checkpoint
+- Added a dedicated recent-activity timeline item for the selected tier's `Handoff signal`, so card-type workflow review now carries the branch-specific handoff posture through the timeline instead of leaving it only in summary and dependency cards.
+- Extended focused selected-tier coverage for a draft tier with visible card coverage and a live tier still missing coverage, keeping the handoff timeline cue explicit across both main readiness branches.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types status signal timeline checkpoint
+- Added a dedicated recent-activity timeline item for the selected tier's `Tier status signal`, so card-type workflow review now carries the branch-specific status posture through the timeline instead of leaving it only in summary and dependency cards.
+- Extended focused selected-tier coverage for a draft tier with visible card coverage and a live tier still missing coverage, keeping the new status-timeline cue explicit across both main readiness branches.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types coverage signal timeline checkpoint
+- Added a dedicated recent-activity timeline item for the selected tier's current `Coverage signal`, so card-type workflow review now states the visible Laravel coverage posture itself, not only the follow-up freshness cue.
+- Extended focused selected-tier coverage for a draft tier with visible card coverage and a draft tier still waiting on first coverage, keeping the workflow stack explicit across both sides of the draft branch.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types coverage freshness empty-coverage timeline checkpoint
+- Extended the new `Coverage freshness` timeline coverage into the selected live and draft no-card branches, so the workflow stack now stays explicitly covered even when a tier is still waiting on its first visible Laravel card coverage.
+- Kept the step narrow by asserting the timeline item only in the already-focused readiness-gating tests for `Galaxy Amber` and `Galaxy Seed Tier`.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Card types coverage freshness timeline checkpoint
+- Added a dedicated recent-activity timeline item for card-type `Coverage freshness`, so selected-tier review now carries the new coverage-readiness cue through the workflow stack, not only summary and dependency cards.
+- Extended focused selected-tier coverage to assert the new timeline item for a draft tier with visible card coverage and a live tier with saved card coverage.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal'`, `2 passed`.
+
+### Card types coverage freshness checkpoint
+- Added a `Coverage freshness` signal to selected-tier review so card-type edit mode now distinguishes tiers with saved Laravel card coverage from tiers still waiting on their first visible coverage anchor.
+- Extended focused selected-tier coverage for draft and live tiers with and without visible card coverage, keeping the new readiness cue explicit next to activation and rollout freshness.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `4 passed`.
+
+## 2026-05-06
+
+### Card types rollout freshness checkpoint
+- Added a `Rollout freshness` signal to selected-tier review so card-type edit mode now makes rollout-note readiness explicit alongside the existing activation-note freshness signal.
+- Extended focused selected-tier coverage for both a draft tier with saved rollout guidance and a live tier still missing rollout guidance.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `2 passed`.
+
+### Cards pre-activation unassigned closing checkpoint
+- Extended the new unassigned pre-activation selected-card coverage so `Pre-activation unassigned signal` is now asserted in the rendered review stack as well as the primary field list.
+- Kept the regression pass narrow by pairing the blocked pre-activation scenario with the newer holder-linked pre-activation scenario.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card'`, `2 passed`.
+
+### Cards pre-activation unassigned review checkpoint
+- Added a `Pre-activation unassigned signal` to selected-card review so issued-but-not-yet-activated inventory now explicitly shows when holder linkage is still missing before activation parity expands into live usage.
+- Extended the blocked pre-activation selected-card test to assert the new unassigned slice while keeping the regression pass paired with the newer holder-linked pre-activation scenario.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card'`, `2 passed`.
+
+### Cards pre-activation holder-linked closing checkpoint
+- Extended the new holder-linked pre-activation selected-card test so `Pre-activation holder-linked signal` is now asserted in the rendered review stack as well as the primary field list.
+- Kept the step narrow by pairing the focused holder-linked pre-activation scenario with the existing issued pre-activation regression test.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `2 passed`.
+
+### Cards pre-activation holder-linked review checkpoint
+- Added a `Pre-activation holder-linked signal` to selected-card review so issued-but-not-yet-activated inventory now explicitly surfaces when holder linkage is already present before activation parity is widened.
+- Added focused feature coverage for a holder-linked pre-activation selected card and re-used the existing issued pre-activation test for a narrow regression pass.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `2 passed`.
+
+### Cards pre-activation holder-linked metric checkpoint
+- Added a `Pre-activation holder-linked cards` metric to the Laravel-backed cards index so pre-activation inventory now shows both sides of the holder-linkage split at the overview level.
+- Synced the config-driven placeholder metrics and cards index assertions so the pre-activation readiness split stays explicit next to the newer unassigned slice.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards pre-activation unassigned metric checkpoint
+- Added a `Pre-activation unassigned cards` metric to the Laravel-backed cards index so inventory that was issued but still lacks both activation and holder linkage is now isolated at the overview level.
+- Synced the config-driven placeholder metrics and cards index assertions so pre-activation assignment gaps stay visible alongside the broader issued and assignment-readiness slices.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards issued holder-linked metric checkpoint
+- Added an `Issued holder-linked cards` metric to the Laravel-backed cards index so issued inventory now shows both sides of the holder-linkage split at the overview level.
+- Synced the config-driven placeholder metrics and cards index assertions so the issued inventory readiness split stays explicit next to the newer issued-unassigned slice.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards issued unassigned metric checkpoint
+- Added an `Issued unassigned cards` metric to the Laravel-backed cards index so the overview now isolates inventory that has already been issued but still lacks holder linkage.
+- Synced the config-driven placeholder metrics and cards index assertions so assignment-readiness gaps stay visible at the aggregate level before operators drill into record review.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards assignment-pending metric checkpoint
+- Added an `Assignment-pending cards` metric to the Laravel-backed cards index so the overview now shows the other half of aggregate assignment readiness next to `Assignment-ready cards`.
+- Synced the config-driven placeholder metrics and cards index assertions so the readiness split is explicit before operators drill into the more specific active and blocked slices.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards assignment-ready metric checkpoint
+- Added an `Assignment-ready cards` metric to the Laravel-backed cards index so the overview now calls out inventory that already has holder linkage and is ready for parity-first assignment review.
+- Synced the config-driven placeholder metrics and cards index assertions so the new aggregate readiness slice shows up alongside the broader holder-linked and unassigned counters.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards draft full review assignment readiness checkpoint
+- Extended the broader draft selected-card review test so `Assignment readiness summary` is now asserted in the rendered closing/context stack, not only in the primary field list.
+- Kept the step narrow by pairing the full draft review test with the existing draft lifecycle test for a targeted regression pass.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_draft_card_review_context|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `2 passed`.
+
+### Cards full review assignment readiness checkpoint
+- Extended the broader Laravel-backed selected-card context test so `Assignment readiness summary` is now asserted in the main full blocked review scenario, not only in the narrower active/blocked focused tests.
+- Kept the step narrow by pairing the full-context blocked review test with the existing blocked holder-linked review test for a targeted regression pass.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_blocked_holder_linked_card_review_context'`, `2 passed`.
+
+### Cards draft review assignment summary checkpoint
+- Extended the broader draft selected-card review test so `Holder linkage summary`, `Assignment readiness summary`, and `Assignment posture` are now asserted in a full draft review scenario, not only in the narrower lifecycle-focused checks.
+- Kept the step narrow by reusing the existing full draft review test plus the draft lifecycle test for a targeted regression pass.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_draft_card_review_context|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `2 passed`.
+
+### Cards blocked pre-activation assignment readiness checkpoint
+- Extended the blocked pre-activation selected-card test so `Assignment readiness summary` is now explicitly covered on issued-but-blocked inventory that still lacks holder linkage.
+- Kept the step narrow by reusing the existing blocked pre-activation and issued-inventory tests instead of widening cards behavior again.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `2 passed`.
+
+### Cards early-lifecycle assignment readiness checkpoint
+- Extended `Assignment readiness summary` coverage into the issued-but-unassigned and still-draft selected-card lifecycle branches, so the compact assignment-state summary is now asserted beyond active and blocked review.
+- Kept the step narrow by reusing the existing pre-activation and draft lifecycle tests instead of widening cards behavior again.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `2 passed`.
+
+### Cards assignment readiness summary checkpoint
+- Added an `Assignment readiness summary` field to selected-card review so cards now get one compact operator line describing whether holder assignment is ready for parity-first review, still pending, or dispute-gated.
+- Covered the new summary in the existing active and blocked selected-card tests across both holder-linked and unassigned review paths.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `4 passed`.
+
+### Cards blocked pre-activation linkage summary checkpoint
+- Extended the blocked pre-activation selected-card test so `Holder linkage summary` and `Assignment posture` are now explicitly covered on blocked inventory that was issued but never activated.
+- Kept the step narrow by reusing the existing blocked pre-activation and issued-inventory tests instead of widening cards behavior again.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `2 passed`.
+
+### Cards early-lifecycle holder linkage summary checkpoint
+- Extended `Holder linkage summary` coverage into the earlier selected-card lifecycle branches, so issued-but-unassigned and still-draft cards now assert the compact linkage summary alongside their assignment posture.
+- Kept the step narrow by reusing the existing pre-activation and draft selected-card tests instead of widening the cards shell further.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `2 passed`.
+
+### Cards holder linkage summary checkpoint
+- Added a `Holder linkage summary` field to selected-card review so record-level card context now has one compact linkage summary line alongside the more specific active and blocked linkage signals.
+- Extended the existing active and blocked selected-card tests to cover the new summary field across holder-linked and unassigned review paths.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `4 passed`.
+
+### Cards unassigned metric checkpoint
+- Added an `Unassigned cards` metric so the cards index now shows the other half of overall assignment readiness, complementing the newer `Holder-linked cards` counter.
+- Synced the config-driven placeholder metrics and Laravel-backed cards index assertions so the aggregate assignment split is visible before operators drill into lifecycle-specific slices.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards holder-linked metric checkpoint
+- Added a `Holder-linked cards` metric so the cards index now surfaces overall assignment readiness, not only the narrower active and blocked holder-linkage slices.
+- Synced the config-driven placeholder metrics and Laravel-backed cards index assertions so aggregate holder linkage is visible alongside the newer lifecycle-specific counters.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards draft and issued assignment posture checkpoint
+- Refined `Assignment posture` for non-active selected-card review so issued-but-unassigned inventory now explicitly stays recovery-first while draft inventory stays in shell-review mode before issuance begins.
+- Extended the existing pre-activation and draft lifecycle tests to cover the new summary posture copy, keeping assignment review visible across the earlier lifecycle states too.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `2 passed`.
+
+### Cards blocked assignment posture checkpoint
+- Refined `Assignment posture` copy for blocked selected-card review so holder-linked blocked inventory now calls out member-linked dispute review with parity-gated replacement, while blocked unassigned inventory keeps holder-recovery assumptions explicitly off-limits.
+- Extended the blocked selected-card assertions to cover the new summary posture on both holder-linked and unassigned blocked cards, plus the broader Laravel-backed selected-card context test.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `3 passed`.
+
+### Cards assignment posture selected-review checkpoint
+- Added an `Assignment posture` field to selected-card review so active cards now get one operator-friendly summary line describing whether parity review is member-linked or still blocked on holder assignment recovery.
+- Kept the step narrow by reusing the two active selected-card review tests and extending them with the new summary posture assertions.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context'`, `2 passed`.
+
+### Cards active holder-linked metric checkpoint
+- Added an `Active holder-linked cards` metric so the cards index now cleanly splits active inventory between linked member records and active-but-unassigned stock.
+- Updated the config-driven placeholder metrics and Laravel-backed cards index assertions to keep the active holder-linkage split visible at the aggregate level.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards active holder-linked selected-review checkpoint
+- Added an `Active holder-linked signal` to selected-card review so active cards now explicitly surface when parity review can stay anchored to an already linked holder record.
+- Kept the step narrow by extending the same active selected-card tests added in the last checkpoint, making the linked and unassigned sides of active holder linkage equally visible in record review.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context'`, `2 passed`.
+
+### Cards active unassigned selected-review checkpoint
+- Added an `Active unassigned signal` to selected-card review so active cards now explicitly surface when holder linkage is still missing, complementing the newer aggregate `Active unassigned cards` metric.
+- Added feature coverage for an active selected card with branch context but no holder assignment yet, keeping holder-linkage recovery visible at the record-review layer.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context'`, `2 passed`.
+
+### Cards active unassigned metric checkpoint
+- Added a small live inventory metric, `Active unassigned cards`, so the Laravel-backed cards page now separates active stock that still lacks holder linkage from fully linked active inventory.
+- Updated the placeholder metrics and live-backed cards assertions so the cards shell keeps surfacing holder-linkage gaps alongside the newer blocked-state slices.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards blocked holder-linked selected-review checkpoint
+- Added a `Blocked holder-linked signal` to selected-card review so blocked cards now explicitly surface when dispute and replacement review can stay anchored to an already linked holder record.
+- Kept the step narrow and read-only, but made the holder-linked side of the newer blocked-state split as explicit in record review as the unassigned side.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `2 passed`.
+
+### Cards blocked unassigned selected-review checkpoint
+- Added a `Blocked unassigned signal` to selected-card review so blocked cards now explicitly surface when no holder linkage exists yet, complementing the newer blocked holder-linked and blocked unassigned metrics.
+- Kept the step narrow and read-only, but extended the blocked-state split from aggregate inventory counts into detailed record review semantics.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `2 passed`.
+
+### Cards blocked unassigned metric checkpoint
+- Added a small live inventory metric, `Blocked unassigned cards`, so the Laravel-backed cards page now shows the complementary blocked stock slice that has no holder linkage yet.
+- Updated the placeholder metrics and live-backed cards assertions so blocked holder-linked and blocked unassigned inventory now surface as an intentional pair in the cards shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards blocked holder-linked metric checkpoint
+- Added a small live inventory metric, `Blocked cards with holders`, so the Laravel-backed cards page now separates blocked stock that already carries holder linkage from unassigned blocked inventory.
+- Updated the placeholder metrics and live-backed cards assertions so the newer blocked-state slices keep surfacing dispute-heavy holder-linked records without widening the write flow.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards blocked activated selected-review checkpoint
+- Added a `Blocked activated signal` to selected-card review so blocked cards now explicitly show when activation had already happened before the dispute/review posture began.
+- Kept the step narrow and read-only, but extended the newer blocked-state split from aggregate metrics into detailed record review.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card'`, `2 passed`.
+
+### Cards blocked activated metric checkpoint
+- Added a small live inventory metric, `Blocked activated cards`, so the Laravel-backed cards page now splits blocked stock between pre-activation records and cards that had already reached activation before entering dispute posture.
+- Updated the placeholder metrics and live-backed cards assertions so the cards shell keeps reflecting the newer blocked-state slices without widening the write path.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards blocked dispute-posture checkpoint
+- Added a `Dispute posture` signal to selected-card review so blocked cards now distinguish pre-activation triage from blocked cards that already carry prior activation context in Laravel.
+- Kept the step narrow and read-only, but made blocked-card review semantics more explicit at the record level alongside the newer blocked pre-activation signal.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card'`, `2 passed`.
+
+### Cards blocked pre-activation selected-review checkpoint
+- Added a `Blocked pre-activation signal` to selected-card review so the Laravel-backed cards workspace now distinguishes blocked stock that was issued but never activated from blocked cards that already carry activation context.
+- Added feature coverage for a blocked selected card with `issued_at` present and `activated_at` still null, keeping the new blocked pre-activation slice visible beyond the aggregate metrics layer.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `3 passed`.
+
+### Cards blocked pre-activation metric checkpoint
+- Added a small live inventory metric, `Blocked pre-activation cards`, so the Laravel-backed cards page now separates blocked stock that was issued but never activated from the broader blocked-card pool.
+- Updated the placeholder metrics and live-backed cards test fixture to reflect the new blocked pre-activation slice without widening the Phase 1 write surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards blocked-status review-note guardrail checkpoint
+- Added another narrow blocked-card rule so the live Laravel flow now requires a `review_note` before a card can be saved as `blocked`, keeping dispute or replacement posture from becoming opaque in the Galaxy inventory shell.
+- Added create and update feature coverage plus operator-friendly validation copy, making the blocked-without-context mismatch visible in both first-pass card creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_requires_review_note_for_blocked_status|test_card_update_live_flow_requires_review_note_for_blocked_status|test_card_live_flow_requires_issue_timestamp_for_blocked_status|test_card_update_live_flow_requires_issue_timestamp_for_blocked_status'`, `4 passed`.
+
+### Cards blocked-status issuance guardrail checkpoint
+- Added another narrow lifecycle rule so blocked cards in the live Laravel flow now require `issued_at`, preventing blocked inventory from looking like an untouched draft shell in the Galaxy cards workspace.
+- Added create and update feature coverage plus operator-friendly validation copy, making the blocked-without-issuance mismatch visible in both first-pass card creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_requires_issue_timestamp_for_blocked_status|test_card_update_live_flow_requires_issue_timestamp_for_blocked_status|test_card_live_flow_rejects_activation_timestamp_for_draft_status|test_card_update_live_flow_rejects_activation_timestamp_for_draft_status'`, `4 passed`.
+
+### Cards draft-status activation guardrail checkpoint
+- Added another narrow lifecycle rule so draft cards in the live Laravel flow now reject `activated_at`, keeping pre-activation inventory review distinct from already activated stock in the Galaxy cards shell.
+- Added create and update feature coverage plus operator-friendly validation copy, making the draft-with-activation mismatch visible in both first-pass card creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_rejects_activation_timestamp_for_draft_status|test_card_update_live_flow_rejects_activation_timestamp_for_draft_status|test_card_live_flow_requires_activation_timestamp_for_active_status|test_card_update_live_flow_requires_activation_timestamp_for_active_status'`, `4 passed`.
+
+### Cards active-status activation guardrail checkpoint
+- Added the next narrow lifecycle rule so cards cannot be marked `active` in the live Laravel flow without an `activated_at` timestamp, keeping active inventory from drifting away from the Galaxy dual-lifecycle model.
+- Added create and update feature coverage plus operator-friendly validation copy, making the active-without-activation gap visible in both first-pass card creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_requires_activation_timestamp_for_active_status|test_card_update_live_flow_requires_activation_timestamp_for_active_status|test_card_live_flow_requires_issue_timestamp_when_activation_is_present|test_card_update_live_flow_requires_issue_timestamp_when_activation_is_present'`, `4 passed`.
+
+### Cards activation-requires-issuance checkpoint
+- Added the next narrow lifecycle guardrail so the live cards flow now requires `issued_at` whenever `activated_at` is present, preventing partially activated inventory records from slipping into the new Galaxy dual-timestamp shell.
+- Added create and update feature coverage plus operator-friendly validation copy, keeping the issued-before-activation expectation explicit in both first-pass card creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_requires_issue_timestamp_when_activation_is_present|test_card_update_live_flow_requires_issue_timestamp_when_activation_is_present|test_card_live_flow_rejects_activation_before_issue_timestamp|test_card_update_live_flow_rejects_activation_before_issue_timestamp'`, `4 passed`.
+
+### Cards lifecycle-order validation checkpoint
+- Added a narrow lifecycle guardrail to the live cards flow so `activated_at` can no longer be saved earlier than `issued_at`, keeping the new Galaxy dual-timestamp foundation from accepting backward lifecycle timelines.
+- Added create and update feature coverage plus operator-friendly validation copy, keeping the timeline rule visible in both first-pass inventory creation and selected-card edits.
+- Re-ran `php artisan test --filter='test_card_live_flow_rejects_activation_before_issue_timestamp|test_card_update_live_flow_rejects_activation_before_issue_timestamp|test_card_live_flow_returns_operator_friendly_activation_timestamp_validation_message|test_card_update_live_flow_returns_operator_friendly_activation_timestamp_validation_message'`, `4 passed`.
+
+### Cards pre-activation readiness-state checkpoint
+- Tightened selected-card `Operational readiness` so issued-but-not-yet-activated inventory no longer falls back to the generic draft shell label and instead shows a dedicated `issued inventory, activation pending` state.
+- Kept the step narrow and parity-safe, but removed a real contradiction between the new lifecycle signals and the older readiness wording in the Laravel-backed cards review shell.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory|test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `3 passed`.
+
+### Cards lifecycle-stage checkpoint
+- Replaced a duplicate `Issued` slot in selected-card review with a dedicated `Lifecycle stage` signal, so detailed card review now distinguishes unissued draft shells, issued pre-activation inventory, and already activated cards more cleanly.
+- Added feature coverage for an unissued draft card to keep the new stage wording and activation-out-of-scope guardrail visible in the Laravel-backed cards workspace.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`, `3 passed`.
+
+### Cards activation-readiness checkpoint
+- Added an `Activation readiness` signal to selected-card review so the Laravel-backed cards workspace now distinguishes draft inventory, issued-but-not-yet-activated stock, and already activated cards at the record level, not only in summary metrics.
+- Added feature coverage for a selected card with `issued_at` set and `activated_at` still null, keeping the newer dual-lifecycle Galaxy shell visible during detailed operator review.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory'`, `2 passed`.
+
+### Cards pre-activation metric checkpoint
+- Added a small but real dual-lifecycle inventory metric, `Pre-activation cards`, to the Laravel-backed cards page so Phase 1 now distinguishes issued-but-not-yet-activated stock instead of collapsing everything into generic draft or active counts.
+- Brought the static cards placeholder metrics back into sync with the live shell by restoring `Issued cards` there too, keeping the preview configuration closer to the actual Galaxy inventory foundation.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `2 passed`.
+
+### Cards preview-row lifecycle parity checkpoint
+- Aligned the static cards placeholder rows with the newer dual-lifecycle table shape so preview inventory now carries both issued and activated timestamps instead of leaving the sample grid one column short.
+- Kept the step preview-only and parity-safe, but removed another starter-like mismatch between the configured cards shell structure and the visible Phase 1 inventory examples.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_cards_operational_index_shape`, `1 passed`.
+
+### Cards lifecycle-filter copy checkpoint
+- Cleaned up the remaining cards placeholder filter and parity-focus copy so the Phase 1 inventory shell now talks about issue plus activation visibility, not only the older activation-only framing.
+- Kept the step copy-only and parity-safe, but aligned the inventory filter language with the dual-lifecycle foundation already visible in the Laravel-backed card workspace.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_cards_operational_index_shape`, `1 passed`.
+
+### Cards activation-glossary parity checkpoint
+- Tightened the cards glossary and live-form help text so `Activated` now reads as a post-issuance lifecycle step instead of a standalone generic timestamp, matching the newer Galaxy `issued_at` plus `activated_at` foundation shape.
+- Kept the step copy-only and parity-safe, but made the inventory shell's lifecycle language more internally consistent for operators reading the Phase 1 card workspace.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_cards_operational_index_shape`, `1 passed`.
+
+### Cards lifecycle handoff-copy checkpoint
+- Cleaned up the remaining cards handoff copy so both the legacy parity note and the first live-form description now reflect issue timing plus activation timing, instead of leaving one-sided activation-only wording behind.
+- Kept the step read-only and parity-safe, but made the first inventory write slice read more like the actual Galaxy lifecycle shell already forming in Phase 1.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_cards_operational_index_shape`, `1 passed`.
+
+### Cards lifecycle copy parity checkpoint
+- Cleaned up the cards operational-index copy so the Phase 1 inventory shell now talks about both issue timing and activation timing instead of leaving stale activation-only wording from the earlier starter-shaped placeholder.
+- Kept the step read-only and parity-safe, but aligned the first cards implementation handoff text with the newer Galaxy lifecycle field shape already present in the Laravel foundation.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_cards_operational_index_shape`, `1 passed`.
+
+### Card activation update-validation checkpoint
+- Added focused feature coverage for the selected-card update path so invalid `activated_at` input now stays pinned to the same operator-friendly Galaxy lifecycle message after redirecting back into edit mode.
+- Kept the step validation-only and parity-safe, tightening the Phase 1 inventory edit shell without widening holder assignment, replacement, or dispute writes.
+- Re-ran `php artisan test --filter=test_card_update_live_flow_returns_operator_friendly_activation_timestamp_validation_message`, `1 passed`.
+
+### Card activation validation-message checkpoint
+- Added an operator-friendly validation message for invalid `activated_at` input so the first live Galaxy inventory lifecycle flow now treats activation timing with the same non-generic UX already applied to issue timing.
+- Added focused feature coverage for the invalid activation-timestamp create path while keeping the step validation-only and safely out of holder-assignment, replacement, or dispute logic.
+- Re-ran `php artisan test --filter=test_card_live_flow_returns_operator_friendly_activation_timestamp_validation_message`, `1 passed`.
+
+### Card issued-at update-validation checkpoint
+- Added focused feature coverage for the selected-card update path so invalid `issued_at` input now stays pinned to the same operator-friendly Galaxy lifecycle message after redirecting back into edit mode.
+- Kept the step validation-only and parity-safe, tightening the Phase 1 inventory edit shell without widening holder assignment, replacement, or dispute writes.
+- Re-ran `php artisan test --filter=test_card_update_live_flow_returns_operator_friendly_issue_timestamp_validation_message`, `1 passed`.
+
+### Card issued-at validation-message checkpoint
+- Added an operator-friendly validation message for invalid `issued_at` input so the new Galaxy inventory lifecycle field does not fall back to generic starter-style date errors in the first live card flow.
+- Added focused feature coverage for the invalid issue-timestamp path while keeping the step validation-only and safely out of holder-assignment, replacement, or dispute logic.
+- Re-ran `php artisan test --filter=test_card_live_flow_returns_operator_friendly_issue_timestamp_validation_message`, `1 passed`.
+
+### Card issued-at edit-hydration checkpoint
+- Added focused selected-card coverage so the shared Laravel edit form now stays explicitly anchored to the saved `issued_at` and `activated_at` lifecycle timestamps, not just the summary and table read views.
+- Kept the step verification-only and parity-safe, tightening confidence that the new Galaxy inventory lifecycle field is truly part of the live review shell.
+- Re-ran `php artisan test --filter=test_cards_page_surfaces_selected_card_context_from_laravel_data`, `1 passed`.
+
+### Cards issued-count overview checkpoint
+- Extended the Laravel-backed `cards` overview metrics with an `Issued cards` count so the new Galaxy issuance lifecycle signal is visible at page level instead of only inside individual inventory records.
+- Kept the step read-only and parity-safe, giving the Phase 1 inventory shell one more Galaxy-specific posture cue without widening assignment, replacement, or dispute flows.
+- Re-ran `php artisan test --filter=test_cards_page_replaces_preview_rows_with_model_backed_inventory_data`, `1 passed`.
+
+### Card issued-at blank-normalization checkpoint
+- Added focused feature coverage so whitespace-only `issued_at` input now stays protected as a real `null` value in both the create and update card live flows, matching the same safe lifecycle cleanup already used for `activated_at`.
+- Kept the step inventory-shell-only and verification-focused, without widening holder assignment, replacement, or dispute writes.
+- Re-ran `php artisan test --filter='(test_card_live_flow_normalizes_blank_issue_timestamp_to_null|test_card_update_live_flow_normalizes_blank_issue_timestamp_to_null)'`, `2 passed`.
+
+### Card issued-at live flow checkpoint
+- Extended the narrow Laravel-backed `cards` write flow so `issued_at` now persists through create and update, turning the new Galaxy issuance timestamp into a real Phase 1 inventory lifecycle field instead of a read-only shell detail.
+- Updated card request validation, live-form defaults, and selected-card form hydration while keeping holder assignment, replacement, and dispute semantics safely out of scope.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_card_from_live_admin_flow|test_authenticated_user_can_update_card_from_live_admin_flow)'`, `2 passed`.
+
+### Card issued-at review visibility checkpoint
+- Surfaced the new Galaxy `issued_at` lifecycle timestamp across the Laravel-backed `cards` review shell so issued inventory is visible in both the index table and selected-card context instead of staying a schema-only foundation detail.
+- Updated the card-page glossary and focused feature coverage so Phase 1 inventory review now distinguishes issuance timing from later activation timing without widening any live write flow yet.
+- Re-ran `php artisan test --filter='(test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cards_page_surfaces_selected_card_context_from_laravel_data)'`, `2 passed`.
+
+### Card issued-at foundation checkpoint
+- Added a real nullable `issued_at` column to the Phase 1 `cards` table so the Galaxy inventory foundation can carry a first-class issuance lifecycle timestamp instead of only the more generic activation marker.
+- Promoted `issued_at` into the `Card` model fillable and cast map, then extended focused unit coverage so inventory lifecycle data is ready for later parity-safe reads without widening any assignment or replacement flows yet.
+- Re-ran `php artisan test --filter=FoundationModelCastsTest`, `3 passed`.
+
+### Foundation boolean casts checkpoint
+- Added explicit Eloquent boolean casts for `shops.is_active` and `card_holders.is_active`, tightening the Phase 1 Galaxy foundation around the real branch and holder entity shape instead of leaving these flags starter-loose at the model layer.
+- Added focused unit coverage in `FoundationModelCastsTest` so branch and holder activity state stays predictable as more Laravel-backed admin flows rely on those booleans.
+- Re-ran `php artisan test --filter=FoundationModelCastsTest`, `2 passed`.
+
+### Dashboard cardholder activity metric fix checkpoint
+- Corrected the Phase 1 dashboard foundation snapshot so active cardholder coverage now reads from the real Galaxy boolean flag `is_active` instead of a starter-style `status` field that cardholders do not use.
+- This keeps the dashboard's branch, holder, and card coverage summary aligned with the actual Phase 1 entity shape, making the Galaxy foundation less misleading during parity review.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_admin_dashboard`, `1 passed`.
+
+## 2026-05-05
+
+### Cards live note-edit flow checkpoint
+- Reused the new narrow Laravel-backed note-edit pattern on `cards`, turning the previously read-only inventory note surface into a real create/update workflow.
+- Added `cards.store` and `cards.update` handlers plus request validation for branch anchoring, card type, number, status, activation timing, and `review_note`, while keeping holder assignment, dispute handling, and replacement flows safely out of scope.
+- Reused the shared live form pattern so the cards workspace now supports both create and selected-record edit flows with backend redirect-to-context behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_card_from_live_admin_flow|test_authenticated_user_can_update_card_from_live_admin_flow|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data)'`, `4 passed`.
+
+### Cards inventory-identifier normalization checkpoint
+- Hardened the new `cards` live flow so inventory numbers are normalized to uppercase before validation and persistence, matching the Galaxy-style identifier shape instead of leaving generic free-form casing in the Laravel shell.
+- Added a card-specific duplicate-number validation message so operators get a clearer inventory collision cue when a normalized identifier is already present.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_card_from_live_admin_flow|test_authenticated_user_can_update_card_from_live_admin_flow|test_card_live_flow_normalizes_number_and_rejects_duplicate_inventory_identifier)'`, `3 passed`.
+
+### Backend flow checkpoint resource-awareness checkpoint
+- Hardened the shared success banner so live admin writes now show a resource-aware Galaxy-specific summary instead of only a generic backend checkpoint label.
+- The current branch, holder, inventory, tier, and access-shell flows now all have room to confirm what kind of Laravel-backed change just became visible in the admin workspace.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_shows_update_success_flash_message|test_card_types_page_shows_live_flow_success_flash_message|test_cards_page_shows_resource_specific_live_flow_success_flash_message)'`, `3 passed`.
+
+### Live form copy Galaxy-domain checkpoint
+- Hardened the live-form copy for the Phase 1 `shops`, `cardholders`, and `cards` write slices so create and edit labels now talk about Galaxy branches, holders, and inventory shells instead of generic CRUD nouns.
+- Kept the scope copy-only, but made the writable admin shell read more like an actual Galaxy foundation than a starter admin scaffold.
+- Re-ran `php artisan test --filter='(test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_replaces_preview_rows_with_model_backed_index_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_cardholders_page_replaces_preview_rows_with_model_backed_index_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data)'`, `6 passed`.
+
+### Tier and access live form copy checkpoint
+- Extended the same Galaxy-domain copy pass to the writable `card-types` and `roles-permissions` flows so tiers and access shells no longer read like generic Laravel create/edit forms.
+- Kept the scope copy-only, but aligned the Phase 1 writable access and tier surfaces with the same branch/holder/inventory-shell language already used elsewhere in the admin workspace.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_resolves_live_form_values_from_config_callback|test_card_types_page_resolves_route_parameters_from_config_callback)'`, `6 passed`.
+
+### Role identity normalization checkpoint
+- Hardened the writable `roles-permissions` flow so role names are trimmed before validation and persistence, keeping the first live access shell cleaner without widening permission, assignment, or scope writes.
+- Reused the same narrow identity-hardening pattern already applied to branches, holders, and cards so the Laravel-backed Galaxy access shell drifts less toward starter-style free-form input.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_live_flow_trims_role_identity_name)'`, `3 passed`.
+
+### Tier identity normalization checkpoint
+- Hardened the writable `card-types` flow so tier names are trimmed before validation and persistence, keeping the first live catalog shell cleaner without widening rule-import or publish-style writes.
+- Reused the same narrow identity-hardening pattern already applied to branches, holders, cards, and roles so the Laravel-backed Galaxy tier shell drifts less toward starter-style free-form input.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_store_card_type_from_live_admin_form|test_card_type_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_card_type_live_flow_trims_tier_identity_name)'`, `3 passed`.
+
+### Writable note normalization checkpoint
+- Hardened the writable Phase 1 request flows so whitespace-only note inputs now collapse to `null` instead of being saved as meaningless blank strings in the Laravel-backed Galaxy shell.
+- Applied this to branch, holder, card, role, and tier note fields without widening any relationship, publish, assignment, or scope writes.
+- Re-ran `php artisan test --filter='(test_role_live_flow_normalizes_blank_notes_to_null|test_card_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
+
+### Cardholder blank contact normalization checkpoint
+- Hardened the writable `cardholders` flow so blank phone and email inputs now collapse to `null` instead of being saved as empty strings in the Laravel-backed holder shell.
+- Kept the scope narrow and identity-focused, improving contact cleanliness without opening duplicate-profile, linkage, or lifecycle writes.
+- Re-ran `php artisan test --filter='(test_cardholder_live_flow_normalizes_contact_identity_fields|test_cardholder_live_flow_normalizes_blank_contact_fields_to_null)'`, `2 passed`.
+
+### Tier blank note normalization checkpoint
+- Added explicit feature coverage for the already-narrow `card-types` note normalization so whitespace-only tier notes now stay protected as `null` values in the Laravel-backed Galaxy catalog shell.
+- Kept the scope metadata-only and verification-focused, without widening tier rules, rollout publishing, or activation flows.
+- Re-ran `php artisan test --filter='(test_card_type_live_flow_trims_tier_identity_name|test_card_type_live_flow_normalizes_blank_notes_to_null)'`, `2 passed`.
+
+### Shop blank note normalization checkpoint
+- Added explicit feature coverage for the writable `shops` note normalization so whitespace-only branch review notes stay protected as `null` values in the Laravel-backed Galaxy branch shell.
+- Kept the step metadata-only and verification-focused, without widening ownership, scope-mutation, or reassignment writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_shop_from_live_admin_flow|test_shop_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
+
+### Cardholder blank note normalization checkpoint
+- Added explicit feature coverage for the writable `cardholders` note normalization so whitespace-only holder review notes stay protected as `null` values in the Laravel-backed Galaxy holder shell.
+- Kept the step metadata-only and verification-focused, without widening duplicate-profile, linkage, or lifecycle writes.
+- Re-ran `php artisan test --filter='(test_cardholder_live_flow_normalizes_blank_contact_fields_to_null|test_cardholder_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
+
+### Card update blank note normalization checkpoint
+- Added explicit feature coverage for the writable `cards` update flow so clearing an inventory review note with whitespace-only input stays protected as a real `null` value, not a leftover empty string.
+- Kept the step inventory-shell-only and verification-focused, without widening holder assignment, replacement, or dispute writes.
+- Re-ran `php artisan test --filter='(test_card_live_flow_normalizes_blank_review_note_to_null|test_card_update_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
+
+### Shop update blank note normalization checkpoint
+- Added explicit feature coverage for the writable `shops` update flow so clearing a branch review note with whitespace-only input stays protected as a real `null` value, not a leftover empty string.
+- Kept the step branch-shell-only and verification-focused, without widening ownership, reassignment, or scope-mutation writes.
+- Re-ran `php artisan test --filter='(test_shop_live_flow_normalizes_blank_review_note_to_null|test_shop_update_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
+
+### Cardholder update blank note normalization checkpoint
+- Added explicit feature coverage for the writable `cardholders` update flow so clearing a holder review note with whitespace-only input stays protected as a real `null` value, not a leftover empty string.
+- Kept the step holder-shell-only and verification-focused, without widening duplicate-profile, linkage, or lifecycle writes.
+- Re-ran `php artisan test --filter='(test_cardholder_live_flow_normalizes_blank_review_note_to_null|test_cardholder_update_live_flow_normalizes_blank_review_note_to_null)'`, `2 passed`.
+
+### Card type update blank note normalization checkpoint
+- Added explicit feature coverage for the writable `card-types` update flow so clearing tier review, activation, and rollout notes with whitespace-only input stays protected as real `null` values, not leftover empty strings.
+- Kept the step tier-shell-only and verification-focused, without widening rule-import, publish, or activation workflows.
+- Re-ran `php artisan test --filter='(test_card_type_live_flow_normalizes_blank_notes_to_null|test_card_type_update_live_flow_normalizes_blank_notes_to_null)'`, `2 passed`.
+
+### Role update blank note normalization checkpoint
+- Added explicit feature coverage for the writable `roles-permissions` update flow so clearing review, access, and assignment notes with whitespace-only input stays protected as real `null` values, not leftover empty strings.
+- Kept the step access-shell-only and verification-focused, without widening permission-matrix, staffing, or scope writes.
+- Re-ran `php artisan test --filter='(test_role_live_flow_normalizes_blank_notes_to_null|test_role_update_live_flow_normalizes_blank_notes_to_null)'`, `2 passed`.
+
+### Cardholder update blank contact normalization checkpoint
+- Added explicit feature coverage for the writable `cardholders` update flow so clearing phone and email with whitespace-only input stays protected as real `null` values, not leftover empty strings.
+- Kept the step holder-shell-only and verification-focused, without widening duplicate-profile, linkage, or lifecycle writes.
+- Re-ran `php artisan test --filter='(test_cardholder_live_flow_normalizes_blank_contact_fields_to_null|test_cardholder_update_live_flow_normalizes_blank_contact_fields_to_null)'`, `2 passed`.
+
+### Card update blank activation normalization checkpoint
+- Added explicit feature coverage for the writable `cards` update flow so clearing `activated_at` with whitespace-only input stays protected as a real `null` value instead of leaving a stale activation timestamp behind.
+- Kept the step inventory-shell-only and verification-focused, without widening holder assignment, dispute, or replacement writes.
+- Re-ran `php artisan test --filter='(test_card_update_live_flow_normalizes_blank_review_note_to_null|test_card_update_live_flow_normalizes_blank_activation_timestamp_to_null)'`, `2 passed`.
+
+### Card update identifier canonicalization checkpoint
+- Added explicit feature coverage for the writable `cards` update flow so inventory identifiers stay uppercase and canonical even when operators submit mixed-case, whitespace-padded values during live edit work.
+- Kept the step inventory-shell-only and verification-focused, without widening holder assignment, dispute, or replacement writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_update_card_from_live_admin_flow|test_card_update_live_flow_keeps_inventory_identifier_canonical)'`, `2 passed`.
+
+### Card update duplicate-identifier normalization checkpoint
+- Added explicit feature coverage for the writable `cards` update flow so a mixed-case, whitespace-padded inventory identifier still collides correctly with an existing canonical card number after normalization.
+- Kept the step inventory-shell-only and validation-focused, without widening holder assignment, dispute, or replacement writes.
+- Re-ran `php artisan test --filter='(test_card_update_live_flow_keeps_inventory_identifier_canonical|test_card_update_live_flow_rejects_duplicate_inventory_identifier_after_normalization)'`, `2 passed`.
+
+### Shop update duplicate-code normalization checkpoint
+- Added explicit feature coverage for the writable `shops` update flow so a whitespace-padded branch code still collides correctly with an existing canonical shop code after normalization.
+- Kept the step branch-shell-only and validation-focused, without widening ownership, reassignment, or scope-mutation writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_update_shop_from_live_admin_flow|test_shop_update_live_flow_rejects_duplicate_normalized_code)'`, `2 passed`.
+
+### Role update duplicate-slug normalization checkpoint
+- Added explicit feature coverage for the writable `roles-permissions` update flow so a whitespace-padded role slug still collides correctly with an existing canonical access-shell slug after normalization.
+- Kept the step access-shell-only and validation-focused, without widening permission-matrix, staffing, or scope writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_live_flow_rejects_duplicate_normalized_slug)'`, `2 passed`.
+
+### Card type update duplicate-slug normalization checkpoint
+- Added explicit feature coverage for the writable `card-types` update flow so a whitespace-padded tier slug still collides correctly with an existing canonical catalog slug after normalization.
+- Kept the step tier-shell-only and validation-focused, without widening rule-import, publish, or activation workflows.
+- Re-ran `php artisan test --filter='(test_card_type_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_card_type_update_live_flow_rejects_duplicate_normalized_slug)'`, `2 passed`.
+
+### Card type update canonical slug checkpoint
+- Added explicit feature coverage for the writable `card-types` update flow so mixed-case, whitespace-padded tier slugs still persist as canonical catalog slugs during a normal live edit path.
+- Kept the step tier-shell-only and identity-focused, without widening rule-import, publish, or activation workflows.
+- Re-ran `php artisan test --filter='(test_card_type_update_live_flow_rejects_duplicate_normalized_slug|test_card_type_update_live_flow_keeps_tier_slug_canonical)'`, `2 passed`.
+
+### Role update canonical slug checkpoint
+- Added explicit feature coverage for the writable `roles-permissions` update flow so mixed-case, whitespace-padded role slugs still persist as canonical access-shell slugs during a normal live edit path.
+- Kept the step access-shell-only and identity-focused, without widening permission-matrix, staffing, or scope writes.
+- Re-ran `php artisan test --filter='(test_role_update_live_flow_rejects_duplicate_normalized_slug|test_role_update_live_flow_keeps_role_slug_canonical)'`, `2 passed`.
+
+### Shop update canonical code checkpoint
+- Added explicit feature coverage for the writable `shops` update flow so mixed-case, whitespace-padded branch codes still persist as canonical shop codes during a normal live edit path.
+- Kept the step branch-shell-only and identity-focused, without widening ownership, reassignment, or scope-mutation writes.
+- Re-ran `php artisan test --filter='(test_shop_update_live_flow_rejects_duplicate_normalized_code|test_shop_update_live_flow_keeps_branch_code_canonical)'`, `2 passed`.
+
+### Cardholder update canonical contact checkpoint
+- Added explicit feature coverage for the writable `cardholders` update flow so whitespace-padded phone values and mixed-case email values still persist as canonical holder contact identity during a normal live edit path.
+- Kept the step holder-shell-only and identity-focused, without widening duplicate-profile, linkage, or lifecycle writes.
+- Re-ran `php artisan test --filter='(test_cardholder_update_live_flow_normalizes_blank_contact_fields_to_null|test_cardholder_update_live_flow_keeps_contact_identity_canonical)'`, `2 passed`.
+
+### Card update canonical status checkpoint
+- Added explicit feature coverage for the writable `cards` update flow so mixed-case, whitespace-padded status values still persist as canonical lowercase inventory status during a normal live edit path.
+- Kept the step inventory-shell-only and identity-focused, without widening holder assignment, dispute, or replacement writes.
+- Re-ran `php artisan test --filter='(test_card_update_live_flow_keeps_inventory_identifier_canonical|test_card_update_live_flow_keeps_status_canonical)'`, `2 passed`.
+
+### Role update canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `roles-permissions` update flow so string status inputs like `no` still persist as canonical boolean access-shell state during a normal live edit path.
+- Kept the step access-shell-only and identity-focused, without widening permission-matrix, staffing, or scope writes.
+- Re-ran `php artisan test --filter='(test_role_update_live_flow_keeps_role_slug_canonical|test_role_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Shop update canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `shops` update flow so string status inputs like `no` still persist as canonical boolean branch-shell state during a normal live edit path.
+- Kept the step branch-shell-only and identity-focused, without widening ownership, reassignment, or scope-mutation writes.
+- Re-ran `php artisan test --filter='(test_shop_update_live_flow_keeps_branch_code_canonical|test_shop_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Card type update canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `card-types` update flow so string status inputs like `no` still persist as canonical boolean tier-shell state during a normal live edit path.
+- Kept the step tier-shell-only and identity-focused, without widening rule-import, publish, or activation workflows.
+- Re-ran `php artisan test --filter='(test_card_type_update_live_flow_keeps_tier_slug_canonical|test_card_type_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Cardholder update canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `cardholders` update flow so string status inputs like `no` still persist as canonical boolean holder-shell state during a normal live edit path.
+- Kept the step holder-shell-only and identity-focused, without widening duplicate-profile, linkage, or lifecycle writes.
+- Re-ran `php artisan test --filter='(test_cardholder_update_live_flow_keeps_contact_identity_canonical|test_cardholder_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Card create blank activation normalization checkpoint
+- Added explicit feature coverage for the writable `cards` create flow so whitespace-only `activated_at` input stays protected as a real `null` value instead of entering the inventory shell as a fake timestamp.
+- Kept the step inventory-shell-only and verification-focused, without widening holder assignment, dispute, or replacement writes.
+- Re-ran `php artisan test --filter='(test_card_live_flow_normalizes_blank_activation_timestamp_to_null|test_card_update_live_flow_normalizes_blank_activation_timestamp_to_null)'`, `2 passed`.
+
+### Card create canonical status checkpoint
+- Added explicit feature coverage for the writable `cards` create flow so mixed-case or whitespace-padded status input still persists as canonical lowercase inventory state on first save.
+- Kept the step inventory-shell-only and normalization-focused, without widening assignment, dispute, or replacement writes.
+- Re-ran `php artisan test --filter='(test_card_live_flow_keeps_status_canonical|test_card_update_live_flow_keeps_status_canonical)'`, `2 passed`.
+
+### Next step after cards live note-edit flow checkpoint
+- Reuse this narrow Laravel-backed note-edit pattern on another still read-only review surface, or deepen one of the existing live slices with one more safe, metadata-only field that stays out of relationship writes.
+
+### Cardholders live note-edit flow checkpoint
+- Reused the new narrow Laravel-backed note-edit pattern on `cardholders`, turning a previously read-only holder surface into a real create/update workflow.
+- Added `cardholders.store` and `cardholders.update` handlers plus request validation for holder identity, branch anchoring, contact fields, status, and `review_note`, while keeping card linkage and activity-history writes safely out of scope.
+- Reused the shared live form pattern so the cardholders workspace now supports both create and selected-record edit flows with backend redirect-to-context behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_cardholder_from_live_admin_flow|test_authenticated_user_can_update_cardholder_from_live_admin_flow|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_replaces_preview_rows_with_model_backed_index_data)'`, `4 passed`.
+
+### Cardholders contact-identity normalization checkpoint
+- Hardened the new `cardholders` live flow so holder name and phone are trimmed and email is trimmed plus lowercased before validation and persistence.
+- Kept this scope intentionally metadata-only, improving the Galaxy-specific contact shell without imposing new duplicate-profile rules or opening card-linkage writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_cardholder_from_live_admin_flow|test_authenticated_user_can_update_cardholder_from_live_admin_flow|test_cardholder_live_flow_normalizes_contact_identity_fields)'`, `3 passed`.
+
+### Next step after cardholders live note-edit flow checkpoint
+- Reuse this narrow Laravel-backed note-edit pattern on `cards`, where review notes are still visible but the inventory surface remains read-only.
+
+### Shops live note-edit flow checkpoint
+- Turned `shops` into the first narrow Laravel-backed edit flow among the previously read-only note surfaces.
+- Added `shops.store` and `shops.update` handlers plus request validation for branch identity, status, and `review_note`, keeping manager reassignment and scope writes safely out of scope.
+- Reused the shared live form pattern so the shops workspace now supports both create and selected-record edit flows with backend redirect-to-context behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_shop_from_live_admin_flow|test_authenticated_user_can_update_shop_from_live_admin_flow|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_replaces_preview_rows_with_model_backed_index_data)'`, `4 passed`.
+
+### Shops branch-identity normalization checkpoint
+- Hardened the `shops` live flow so branch names are trimmed before validation and persistence, keeping the first writable branch shell cleaner without widening scope or manager writes.
+- Added coverage that duplicate shop codes are still rejected after slug normalization, so Galaxy-style branch identifiers stay canonical instead of drifting into starter-like free-form input.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_create_shop_from_live_admin_flow|test_authenticated_user_can_update_shop_from_live_admin_flow|test_shop_live_flow_trims_name_and_rejects_duplicate_normalized_code)'`, `3 passed`.
+
+### Next step after shops live note-edit flow checkpoint
+- Reuse this narrow Laravel-backed note-edit pattern on `cardholders` or `cards`, where review notes are still visible but read-only.
+
+### Shops overview review-note visibility checkpoint
+- Extended the main `shops` overview so saved branch review notes are visible before an operator drills into a selected branch.
+- Added a `Reviewed shops` metric and a `Review note` table column, turning saved branch metadata into page-level scope context instead of leaving it only inside selected-shop detail.
+- Re-ran `php artisan test --filter='test_shops_page_replaces_preview_rows_with_model_backed_index_data'`, `1 passed`.
+
+### Next step after shops overview review-note visibility checkpoint
+- With notes now visible across the main Phase 1 index surfaces, the next logical tiny slice is the first narrow Laravel-backed edit flow for a still read-only note surface.
+
+### Cardholders overview review-note visibility checkpoint
+- Extended the main `cardholders` overview so saved holder review notes are visible before an operator drills into a selected profile.
+- Added a `Reviewed holders` metric and a `Review note` table column, turning saved holder metadata into page-level lifecycle context instead of leaving it only inside selected-holder detail.
+- Re-ran `php artisan test --filter='test_cardholders_page_replaces_preview_rows_with_model_backed_index_data'`, `1 passed`.
+
+### Next step after cardholders overview review-note visibility checkpoint
+- Reuse this overview-level note visibility pattern on `shops`, or start wiring the first narrow Laravel-backed edit flow into one of the still read-only note surfaces.
+
+### Cards overview review-note visibility checkpoint
+- Extended the main `cards` overview so saved card review notes are visible before an operator drills into a selected inventory record.
+- Added a `Reviewed cards` metric and a `Review note` table column, turning the saved card metadata into page-level inventory context instead of leaving it only inside selected-card detail.
+- Re-ran `php artisan test --filter='test_cards_page_replaces_preview_rows_with_model_backed_inventory_data'`, `1 passed`.
+
+### Next step after cards overview review-note visibility checkpoint
+- Reuse this overview-level note visibility pattern on another Phase 1 inventory surface, or wire the first narrow Laravel-backed edit flow into `cards`, `shops`, or `cardholders` where notes are still read-only.
+
+### Roles overview permission-note visibility checkpoint
+- Extended the main `roles-permissions` overview so linked permission review notes are visible before an operator drills into a selected role.
+- Added a `Permission review notes` metric and a `Permission review note` table column, turning the new permission metadata into page-level Galaxy-specific access context instead of leaving it buried in selected-record detail only.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data'`, `1 passed`.
+
+### Next step after roles overview permission-note visibility checkpoint
+- Reuse this page-level metadata visibility pattern on another Phase 1 index surface, or wire the first editable Laravel-backed note flow into an entity that still only exposes read-mode note context.
+
+### Permission review-note foundation checkpoint
+- Added a persisted `review_note` column for `permissions`, closing another generic-starter gap in the Phase 1 access entity skeleton.
+- Surfaced linked permission review guidance inside the selected role Laravel read context across summary, timeline, and dependency layers so permission-bundle review can carry saved Galaxy-specific parity notes.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`, `1 passed`.
+
+### Next step after permission review-note foundation checkpoint
+- Continue extending tiny persisted review metadata to any remaining thin entities, or start wiring the first editable Laravel-backed note flow into a selected admin surface.
+
+### Card review-note foundation checkpoint
+- Added a persisted `review_note` column for `cards`, extending the Phase 1 entity skeleton with lightweight Galaxy-specific inventory review metadata instead of only shell copy.
+- Surfaced saved card review notes in the selected card read context across summary, timeline, and dependency layers so blocked inventory review can carry real Laravel-backed dispute guidance.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `1 passed`.
+
+### Next step after card review-note foundation checkpoint
+- Continue adding tiny persisted review metadata slices for the remaining core entities, or start wiring the first editable Laravel-backed note flow into one selected admin surface.
+
+### Shop and cardholder review-note foundation checkpoint
+- Added a persisted `review_note` column for `shops` and `card_holders`, extending the Phase 1 entity skeleton with lightweight Galaxy-specific review metadata instead of only shell copy.
+- Surfaced those saved notes in selected shop and selected cardholder read contexts across summary, timeline, and dependency layers so Laravel-backed admin review can carry branch/profile guidance from real data.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data)'`, `2 passed`.
+
+### Next step after shop and cardholder review-note foundation checkpoint
+- Continue adding tiny persisted review metadata slices for other core entities, or start wiring the first editable Laravel-backed note flow into one selected admin surface.
+
+### Roles-permissions selected-record handoff timeline checkpoint
+- Added a state-aware selected-role timeline handoff entry so access scope, staffing, and permission-bundle guidance stays visible in the activity timeline, not only in summary and dependency blocks.
+- Extended focused role review coverage to assert the new timeline wording for fully scoped live access, mixed branch permission coverage, assignment-sensitive live access without scope, and draft-role readiness cases without changing access writes or matrix behavior.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_assignment_sensitive_live_role_without_scope_surfaces_access_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `4 passed`.
+
+### Next step after roles-permissions selected-record handoff timeline checkpoint
+- Continue propagating state-aware handoff guidance across selected-record admin surfaces, or switch back to the next persisted Phase 1 foundation slice.
+
+### Shops selected-record handoff timeline checkpoint
+- Added a state-aware selected-shop timeline handoff entry so branch ownership and coverage guidance stays visible in the activity timeline, not only in summary and dependency blocks.
+- Extended focused shop review coverage to assert the new timeline wording for full-coverage, customer-coverage-only, manager-only, and paused branch cases without changing writes or scope logic.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context)'`, `5 passed`.
+
+### Next step after shops selected-record handoff timeline checkpoint
+- Continue propagating state-aware handoff guidance across selected-record admin surfaces, or switch back to the next persisted Phase 1 foundation slice.
+
+### Cardholders selected-record handoff timeline checkpoint
+- Added a state-aware selected-holder timeline handoff entry so active and inactive profile reviews keep the same Galaxy-specific activity guidance visible in the activity timeline, not only in summary and dependency blocks.
+- Extended focused holder review coverage to assert the new timeline wording for inactive-unlinked, active-linked, active-unlinked, and inactive-linked cases without changing profile writes or activity sourcing behavior.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
+
+### Next step after cardholders selected-record handoff timeline checkpoint
+- Continue propagating state-aware handoff guidance across selected-record admin surfaces, or switch back to the next persisted Phase 1 foundation slice.
+
+### Cards selected-record handoff timeline checkpoint
+- Added a state-aware selected-card timeline handoff entry so blocked and active inventory reviews keep the same Galaxy-specific evidence-first guidance visible in the activity timeline, not only in summary and dependency blocks.
+- Extended focused card review coverage to assert the new timeline wording for blocked holder-linked and blocked unassigned inventory cases without changing write flows or card queries.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context)'`, `3 passed`.
+
+### Next step after cards selected-record handoff timeline checkpoint
+- Continue propagating state-aware handoff guidance across selected-record admin surfaces, or switch back to the next persisted Phase 1 foundation slice.
+
+### Reports role-access pending-readiness handoff coverage checkpoint
+- Extended the pending-readiness `role-access` report scenario so it now explicitly asserts the staff-assignment-sensitive dependency-side handoff signal alongside the already-covered timeline handoff wording.
+- Kept the step low-risk and Laravel-backed by hardening focused test coverage around already-shipped Phase 1 reporting copy without changing access shaping, export flow, or report queries.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_pending_readiness_context'`, `1 passed`.
+
+### Next step after reports role-access pending-readiness handoff coverage checkpoint
+- Continue adding targeted guardrails where state-aware Galaxy wording recently landed, or switch back to the next persisted Phase 1 foundation slice.
+
+### Reports role-access mixed-state handoff coverage checkpoint
+- Extended the mixed `role-access` report scenarios so the role-state and permission-bundle review tests now explicitly assert the staffing-sensitive handoff wording in both the timeline and dependency layers.
+- Kept the step low-risk and Laravel-backed by hardening focused test coverage around already-shipped Phase 1 reporting copy without changing access shaping, export flow, or report queries.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_mixed_role_state_review_context|test_reports_page_supports_selected_mixed_permission_bundle_review_context)'`, `2 passed`.
+
+### Next step after reports role-access mixed-state handoff coverage checkpoint
+- Continue adding targeted guardrails where state-aware Galaxy wording recently landed, or switch back to the next persisted Phase 1 foundation slice.
+
+### Reports role-access branch-activity handoff coverage checkpoint
+- Extended the mixed branch-activity `role-access` scenario so it now explicitly asserts both the state-aware timeline handoff wording and the mirrored dependency-side handoff signal for the live staffing-sensitive access case.
+- Kept the step low-risk and Laravel-backed by hardening focused test coverage around already-shipped Phase 1 reporting copy without changing access shaping, export flow, or report queries.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_mixed_assignment_branch_activity_review_context'`, `1 passed`.
+
+### Next step after reports role-access branch-activity handoff coverage checkpoint
+- Continue adding targeted guardrails where state-aware Galaxy wording recently landed, or switch back to the next persisted Phase 1 foundation slice.
+
+### Reports mixed timeline handoff coverage checkpoint
+- Extended focused mixed-state report coverage so `cards-by-shop`, `cardholder-status`, and `role-access` now explicitly assert their state-aware timeline handoff wording, not just summary and dependency blocks.
+- Kept the step low-risk and Laravel-backed by hardening test coverage around already-shipped Phase 1 reporting copy without changing data flow, export logic, or query behavior.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_mixed_branch_activity_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context|test_reports_page_supports_selected_mixed_assignment_scope_review_context)'`, `3 passed`.
+
+### Next step after reports mixed timeline handoff coverage checkpoint
+- Continue adding targeted guardrails where state-aware Galaxy wording recently landed, or switch back to the next persisted Phase 1 foundation slice.
+
+### Reports cardholder-status timeline handoff refinement checkpoint
+- Made the selected `reports` `cardholder-status` timeline handoff line state-aware so the visible operator handoff now mirrors the same linked-profile lifecycle context already shown in the selected summary and dependency status.
+- Kept the step low-risk and Laravel-backed by refining only read-only reporting timeline copy and extending the focused cardholder-status assertion without changing any lifecycle shaping, export flow, or report queries.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context'`, `1 passed`.
+
+### Next step after reports cardholder-status timeline handoff refinement checkpoint
+- Continue mirroring state-aware handoff wording into the remaining report timelines, or switch back to the next persisted Phase 1 foundation slice.
+
+### Reports cards-by-shop timeline handoff refinement checkpoint
+- Made the selected `reports` `cards-by-shop` timeline handoff line state-aware so the visible operator handoff now mirrors the same linked-holder inventory context already shown in the selected summary and dependency status.
+- Kept the step low-risk and Laravel-backed by refining only read-only reporting timeline copy and extending the focused cards-by-shop assertion without changing any grouping logic, export flow, or report queries.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context'`, `1 passed`.
+
+### Next step after reports cards-by-shop timeline handoff refinement checkpoint
+- Continue mirroring state-aware handoff wording into the remaining report timelines, or switch back to the next persisted Phase 1 foundation slice.
+
+### Reports role-access timeline handoff refinement checkpoint
+- Made the selected `reports` `role-access` timeline handoff line state-aware so the visible operator handoff now mirrors the same staffing-sensitive access context already shown in the selected summary and dependency status.
+- Kept the step low-risk and Laravel-backed by refining only read-only reporting timeline copy and extending the focused role-access assertion without changing any scope shaping, export flow, or access queries.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_review_context'`, `1 passed`.
+
+### Next step after reports role-access timeline handoff refinement checkpoint
+- Continue mirroring state-aware handoff wording into the remaining report timelines, or switch back to the next persisted Phase 1 foundation slice.
+
+### Roles-permissions dependency handoff parity checkpoint
+- Wired the selected `roles-permissions` dependency-side `Handoff signal` through the existing role readiness helper so the lower implementation-status block now mirrors the same Galaxy-specific access handoff state as the selected summary.
+- Kept the step low-risk and Laravel-backed by refining only read-only admin review copy and extending the focused selected-role assertions without changing any role writes, scope mutation logic, or permission assignment behavior.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context)'`, `2 passed`.
+
+### Next step after roles-permissions dependency handoff parity checkpoint
+- Continue aligning dependency-side state labels with the already-selected summary on another live admin surface, or switch back to the next persisted Phase 1 foundation slice.
+
+### Reports role-access handoff state refinement checkpoint
+- Made the selected `reports` `role-access` handoff signal state-aware so access review now distinguishes role-and-staffing handoff context instead of reusing one generic export-handoff line.
+- Kept the step low-risk and Laravel-backed by refining only read-only reporting copy and extending the focused role-access assertions without changing any access shaping, export flow, or scope query behavior.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_mixed_assignment_scope_review_context)'`, `2 passed`.
+
+### Next step after reports role-access handoff state refinement checkpoint
+- Continue this tiny parity-copy cleanup on another report source or switch back to the next real persisted Phase 1 admin/data slice.
+
+### Reports cardholder-status handoff state refinement checkpoint
+- Made the selected `reports` `cardholder-status` handoff signal state-aware so holder review now distinguishes linked-profile versus lifecycle-and-linkage handoff context instead of reusing one generic export-handoff line.
+- Kept the step low-risk and Laravel-backed by refining only read-only reporting copy and extending the focused cardholder-status assertions without changing any status shaping, export flow, or lifecycle query behavior.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context)'`, `2 passed`.
+
+### Next step after reports cardholder-status handoff state refinement checkpoint
+- Continue the same tiny state-aware handoff pass on `role-access`, or return to the next persisted metadata slice on an already-live Galaxy form.
+
+### Reports cards-by-shop handoff state refinement checkpoint
+- Made the selected `reports` `cards-by-shop` handoff signal state-aware so branch inventory review now names linked-holder versus assignment-split handoff context instead of reusing one generic export-handoff line.
+- Kept the step low-risk and Laravel-backed by refining only read-only reporting copy and extending the focused cards-by-shop assertions without changing any report shaping, export flow, or grouped query behavior.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_mixed_branch_activity_review_context)'`, `2 passed`.
+
+### Next step after reports cards-by-shop handoff state refinement checkpoint
+- Continue the same tiny state-aware handoff pass on another Laravel-backed report source that still reuses broader export-handoff wording, or return to the next persisted metadata slice on an already-live Galaxy form.
+
+## 2026-04-29
+
+### Gifts paused-branch focus wording checkpoint
+- Tightened the selected `gifts` paused finite-stock reward focus line so the visible blocker now treats `catalog-review discussion` as a single Galaxy-specific discussion boundary instead of broader catalog-comparison wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused finite-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after gifts paused-branch focus wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts paused-branch evidence wording checkpoint
+- Tightened the selected `gifts` paused finite-stock reward evidence-priority line so the visible blocker now treats `catalog-review discussion` as a single Galaxy-specific discussion boundary instead of broader catalog-comparison wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused finite-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after gifts paused-branch evidence wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts zero-stock handoff wording checkpoint
+- Tightened the selected `gifts` paused zero-stock reward handoff line so the visible blocker now treats `publish-review discussion` as a single Galaxy-specific discussion boundary instead of broader publish-decision wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift handoff copy and updating the focused paused zero-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts zero-stock handoff wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts paused-branch handoff wording checkpoint
+- Tightened the selected `gifts` paused finite-stock reward handoff line so the visible blocker now treats `catalog-review discussion` as a single Galaxy-specific discussion boundary instead of broader catalog wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift handoff copy and updating the focused paused finite-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after gifts paused-branch handoff wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts zero-stock timeline wording checkpoint
+- Tightened the selected `gifts` paused zero-stock reward timeline evidence line so the visible blocker now treats `reopening-flow discussion` as a single Galaxy-specific discussion boundary instead of broader reopening wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift timeline copy and updating the focused paused zero-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts zero-stock timeline wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts paused-branch timeline wording checkpoint
+- Tightened the selected `gifts` paused finite-stock reward timeline evidence line so the visible blocker now treats `reopening-flow discussion` as a single Galaxy-specific discussion boundary instead of broader reopening wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift timeline copy and updating the focused paused finite-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after gifts paused-branch timeline wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts zero-stock evidence wording checkpoint
+- Tightened the selected `gifts` paused zero-stock reward evidence-priority line so the visible blocker now treats `reopening-flow discussion` as a single Galaxy-specific discussion boundary instead of broader reopening wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused zero-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts zero-stock evidence wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts paused-branch status wording checkpoint
+- Tightened the selected `gifts` paused finite-stock reward status signal so the visible blocker now treats `reopening-flow discussion` as a single Galaxy-specific discussion boundary while keeping the existing paused-branch-reopening-parity concept intact.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused finite-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after gifts paused-branch status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts zero-stock status wording checkpoint
+- Tightened the selected `gifts` paused zero-stock reward status signal so the visible blocker now treats `reopening-flow discussion` as a single Galaxy-specific discussion boundary instead of broader reopening wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused zero-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts zero-stock status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Shops rollout evidence wording checkpoint
+- Tightened the selected `shops` manager-owned branch evidence-priority line so the visible blocker now treats `rollout-flow discussion` as a single Galaxy-specific discussion boundary instead of broader rollout wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and updating the focused selected-shop assertion without changing any branch writes, manager assignment flow, scope mutation, or coverage behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops rollout evidence wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Services rules draft status wording checkpoint
+- Tightened the selected `services-rules` draft exclusion status signal so the visible blocker now treats `live-publish-flow discussion` as a single Galaxy-specific discussion boundary instead of broader live-publish wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-rule copy and updating the focused draft exclusion assertion without changing any rule writes, condition editing, publish flow, or scope behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after services rules draft status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cardholders inactive status wording checkpoint
+- Tightened the selected `cardholders` inactive-holder status signal so the visible blocker now treats `reactivation-flow discussion` as a single Galaxy-specific discussion boundary instead of broader revival wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused inactive-holder assertions without changing any profile writes, merge behavior, reactivation flow, or activity sourcing.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`, `1 passed`.
+
+### Next step after cardholders inactive status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts paused-branch backend wording checkpoint
+- Tightened the selected `gifts` paused finite-stock reward backend-gap copy so the visible blocker now names paused-branch-reopening parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only selected-gift backend-gap copy and updating the focused paused finite-stock assertions without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after gifts paused-branch backend wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cards draft status wording checkpoint
+- Tightened the selected `cards` draft-card status signal so the visible blocker now treats `issuance-flow discussion` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and updating the focused draft-card assertion without changing any issuance writes, activation flow, reassignment behavior, or inventory mutations.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_draft_card_review_context'`, `1 passed`.
+
+### Next step after cards draft status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Shops paused status wording checkpoint
+- Tightened the selected `shops` paused-branch status signal so the visible blocker now treats `reopening-flow discussion` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and updating the focused paused-branch assertions without changing any branch writes, reopening behavior, reassignment flow, or scope mutation logic.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_paused_branch_review_context'`, `1 passed`.
+
+### Next step after shops paused status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Roles draft status wording checkpoint
+- Tightened the selected `roles-permissions` draft-role status signal so the visible blocker now treats `live-access` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and updating the focused draft-role assertions without changing any matrix writes, scope writes, assignment wiring, or publish behavior.
+- Re-ran `php artisan test --filter='test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, `1 passed`.
+
+### Next step after roles draft status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts paused-branch status wording checkpoint
+- Tightened the selected `gifts` paused finite-stock reward status signal so the visible blocker now names paused-branch-reopening-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused finite-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after gifts paused-branch status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts zero-stock status wording checkpoint
+- Tightened the selected `gifts` paused zero-stock reward status signal so the visible blocker now names zero-stock-recovery-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused zero-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts zero-stock status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Services rules draft status wording checkpoint
+- Tightened the selected `services-rules` draft exclusion status signal so the visible blocker now treats `live-publish` as a single Galaxy-specific discussion boundary instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-rule copy and updating the focused draft-exclusion assertion without changing any rule persistence, condition editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after services rules draft status wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cardholders linkage posture wording checkpoint
+- Tightened the selected `cardholders` no-linked-cards posture so the visible blocker now names card-link-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused unlinked-holder assertions without changing any card-link flow, profile writes, merge handling, or activity sourcing.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_unlinked_holder_review_context'`, `2 passed`.
+
+### Next step after cardholders linkage posture wording checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts zero-stock backend-gap refinement checkpoint
+- Tightened the selected `gifts` paused zero-stock reward backend gap so the visible blocker now names paused-zero-stock-recovery parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused zero-stock assertions without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts zero-stock backend-gap refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cards assignment posture refinement checkpoint
+- Tightened the selected `cards` unassigned-holder assignment posture so the visible blocker now names assignment-flow-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and updating the focused blocked-unassigned card assertion without changing any assignment flow, reassignment behavior, lifecycle writes, or blocked-card handling.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `1 passed`.
+
+### Next step after cards assignment posture refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cardholders reactivation status-signal refinement checkpoint
+- Tightened the selected `cardholders` inactive-holder status signal so the visible blocker now names reactivation-flow-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused inactive-holder assertions without changing any profile writes, reactivation behavior, merge handling, or activity sourcing.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, `2 passed`.
+
+### Next step after cardholders reactivation status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Shops ownership posture refinement checkpoint
+- Tightened the selected `shops` no-manager posture so the visible blocker now names ownership-flow-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and updating the focused no-manager shop assertion without changing any branch writes, ownership assignment, reassignment flow, or scope mutation logic.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops ownership posture refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Shops paused status-signal refinement checkpoint
+- Tightened the selected `shops` paused-branch status signal so the visible blocker now names reopening-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and updating the focused paused-branch assertions without changing any branch writes, reopening behavior, reassignment flow, or scope mutation logic.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_paused_branch_review_context'`, `1 passed`.
+
+### Next step after shops paused status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Services rules draft backend-gap refinement checkpoint
+- Tightened the selected `services-rules` draft exclusion backend gap so the visible blocker now names bar-service-exclusion parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-rule copy and updating the focused draft-exclusion backend-gap assertions without changing any rule persistence, condition editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after services rules draft backend-gap refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts zero-stock status-signal refinement checkpoint
+- Tightened the selected `gifts` paused zero-stock reward status signal so the visible blocker now names zero-stock-recovery parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused zero-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts zero-stock status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts paused-branch status-signal refinement checkpoint
+- Tightened the selected `gifts` paused finite-stock reward status signal so the visible blocker now names paused-branch-reopening parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused paused finite-stock assertion without changing any gift CRUD behavior, stock handling, scope logic, or reopening flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after gifts paused-branch status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts all-shop backend-gap refinement checkpoint
+- Tightened the selected `gifts` all-shop reward backend gap so the visible blocker now names all-shop-reward parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused all-shop reward assertions without changing any gift CRUD behavior, stock handling, scope logic, or redemption flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_all_shop_gift_review_context'`, `1 passed`.
+
+### Next step after gifts all-shop backend-gap refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts scoped backend-gap refinement checkpoint
+- Tightened the selected `gifts` scoped reward backend gap so the visible blocker now names kiosk-reward parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-gift copy and updating the focused scoped reward assertions without changing any gift CRUD behavior, stock handling, scope logic, or redemption flow.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_scoped_gift_review_context'`, `1 passed`.
+
+### Next step after gifts scoped backend-gap refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Services rules draft status-signal refinement checkpoint
+- Tightened the selected `services-rules` draft exclusion status signal so the visible blocker now names bar-service-exclusion parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-rule copy and updating the focused draft-exclusion assertion without changing any rule persistence, condition editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after services rules draft status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Card types draft publish-blocker refinement checkpoint
+- Tightened the selected `card-types` draft-tier publish blocker so the visible blocker now names rule-and-rollout parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and updating the focused draft-tier publish assertion without changing any publish logic, rollout behavior, import behavior, or rule wiring.
+- Re-ran `php artisan test --filter='test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `1 passed`.
+
+### Next step after card types draft publish-blocker refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cardholders linkage posture refinement checkpoint
+- Tightened the selected `cardholders` no-linked-cards posture so the visible blocker now names card-link parity review directly instead of broader identity-review wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused unlinked-holder assertions without changing any profile writes, card-link behavior, merge handling, or activity sourcing.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_unlinked_holder_review_context'`, `2 passed`.
+
+### Next step after cardholders linkage posture refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cards draft status-signal refinement checkpoint
+- Tightened the selected `cards` draft-card status signal so the visible blocker now names issuance-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and updating the focused draft-card assertion without changing any issuance behavior, reassignment flow, lifecycle writes, or blocked-card handling.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_draft_card_review_context'`, `1 passed`.
+
+### Next step after cards draft status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Card types draft status-signal refinement checkpoint
+- Tightened the selected `card-types` draft-tier status signal so the visible blocker now names visible-card-coverage parity-review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and updating the focused draft-tier assertion without changing any publish logic, rollout behavior, import behavior, or rule wiring.
+- Re-ran `php artisan test --filter='test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `1 passed`.
+
+### Next step after card types draft status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Card types live status-signal refinement checkpoint
+- Tightened the selected `card-types` active-tier status signal so the visible blocker now names rollout-parity review as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and updating the focused live-tier assertion without changing any publish logic, rollout behavior, import behavior, or rule wiring.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal'`, `1 passed`.
+
+### Next step after card types live status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Roles live status-signal refinement checkpoint
+- Tightened the selected `roles-permissions` active-role status signal so the visible blocker now names live-access parity as a single Galaxy-specific concept instead of broader spaced wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and updating the focused active-role assertion without changing any matrix writes, scope writes, assignment wiring, or publish behavior.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`, `1 passed`.
+
+### Next step after roles live status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Roles draft status-signal refinement checkpoint
+- Tightened the selected `roles-permissions` draft-role status signal so the visible blocker now names access-rollout parity directly instead of the broader spaced `access rollout parity` wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and updating the focused draft-role assertions without changing any matrix writes, scope writes, assignment wiring, or publish behavior.
+- Re-ran `php artisan test --filter='test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, `1 passed`.
+
+### Next step after roles draft status-signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cardholders reactivation signal refinement checkpoint
+- Tightened the selected `cardholders` inactive-holder status signal in both summary and dependency blocks so dormant profiles now name reactivation-flow parity directly instead of broader reactivation parity wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and updating the focused inactive-holder assertions without changing any profile writes, reactivation flow, merge behavior, or activity sourcing.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, `2 passed`.
+
+### Next step after cardholders reactivation signal refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Shops manager posture refinement checkpoint
+- Tightened the selected `shops` unassigned-manager posture so dependency-side ownership gaps now name ownership-flow parity directly instead of broader parity-review-before-ownership wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused no-manager shop assertion without changing any branch writes, reassignment flow, or scope mutation behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops manager posture refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cards assignment posture refinement checkpoint
+- Tightened the selected `cards` unassigned-holder assignment posture so blocked inventory without a linked holder now names assignment-flow parity directly instead of broader parity-review-before-assignment wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and extending the focused blocked-unassigned card assertion without changing any card writes, assignment flow, reassignment flow, or dispute handling behavior.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_blocked_unassigned_card_review_context'`, `1 passed`.
+
+### Next step after cards assignment posture refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Shops ownership guidance refinement checkpoint
+- Tightened the selected `shops` unassigned-manager guidance so ownership gaps now name ownership-assignment parity directly instead of broader assignment-rules wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused no-manager shop assertion without changing any branch writes, reassignment flow, or scope mutation behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops ownership guidance refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Paused branch shop status-signal checkpoint
+- Tightened the selected `shops` paused status signal so inactive branches now name reopening parity review directly instead of broader parity-review-before-reopening wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused paused-branch assertions without changing any branch writes, reassignment flow, or reopening behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after paused branch shop status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Live card-type rollout status-signal checkpoint
+- Tightened the selected `card-types` live no-coverage status signal so active tiers now name rollout parity review directly instead of broader parity-review-before-rollout wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and extending the focused live no-coverage card-type assertion without changing any tier writes, activation flow, import behavior, or publish behavior.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `1 passed`.
+
+### Next step after live card-type rollout status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Draft card-type coverage status-signal checkpoint
+- Tightened the selected `card-types` draft no-coverage status signal so seed tiers now name visible-card-coverage parity review directly instead of broader parity-review-before-coverage wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and extending the focused draft no-coverage card-type assertion without changing any tier writes, activation flow, import behavior, or publish behavior.
+- Re-ran `php artisan test --filter='test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons'`, `1 passed`.
+
+### Next step after draft card-type coverage status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Paused branch gift status-signal checkpoint
+- Tightened the selected `gifts` paused finite-stock status signal so `weekend-brunch-pass` now names paused branch reopening parity review directly instead of broader parity-review-before-reopening wording.
+- Kept the step low-risk and preview-only by refining only visible selected-reward copy and extending the focused paused finite-stock gift assertion without changing any gift CRUD, stock recovery flow, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after paused branch gift status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Paused zero-stock gift status-signal checkpoint
+- Tightened the selected `gifts` paused zero-stock status signal so `premium-dessert-set` now names zero-stock recovery parity review directly instead of broader parity-review-before-reopening wording.
+- Kept the step low-risk and preview-only by refining only visible selected-reward copy and extending the focused paused zero-stock gift assertion without changing any gift CRUD, stock recovery flow, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after paused zero-stock gift status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Draft exclusion rule status-signal checkpoint
+- Tightened the selected `services-rules` draft exclusion status signal so `night-service-block` now names bar-service exclusion parity review directly instead of broader parity-review-before-publish wording.
+- Kept the step low-risk and preview-only by refining only visible selected-rule copy and extending the focused draft exclusion rule assertion without changing any rule persistence, exclusion validation, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after draft exclusion rule status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cards issuance status-signal checkpoint
+- Tightened the selected `cards` draft status signal so draft inventory now names issuance parity review directly instead of broader parity-review-before-issuance wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-card copy and extending the focused draft-card assertion without changing any card writes, issuance flow, reassignment flow, or dispute handling behavior.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `1 passed`.
+
+### Next step after cards issuance status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Roles access rollout status-signal checkpoint
+- Tightened the selected `roles-permissions` draft status signal so inactive roles now name access rollout parity review directly instead of broader parity-review-before-live-access wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-role copy and extending the focused draft-role assertions without changing any role writes, scope assignment, permission matrix behavior, or publish behavior.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`, `1 passed`.
+
+### Next step after roles access rollout status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Cardholders reactivation status-signal checkpoint
+- Tightened the selected `cardholders` inactive status signal so dormant profiles now name reactivation parity review directly instead of broader parity-review-before-reactivation wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-holder copy and extending the focused dormant-holder assertions without changing any holder writes, merge flow, reactivation flow, or activity sourcing behavior.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`, `1 passed`.
+
+### Next step after cardholders reactivation status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Shops branch coverage status-signal checkpoint
+- Tightened the selected `shops` active status signal so fully covered branches now name branch coverage parity review directly instead of broader live parity review wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-branch copy and extending the focused selected-shop assertions without changing any branch writes, reassignment flow, or scope mutation behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops branch coverage status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### All-shop birthday rule status-signal checkpoint
+- Tightened the selected `services-rules` all-shop status signal so `birthday-bonus` now names birthday uplift parity review directly instead of broader live parity review wording.
+- Kept the step low-risk and preview-only by refining only visible selected-rule copy and extending the focused all-shop rule assertion without changing any rule persistence, birthday-window editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_all_shop_rule_review_context'`, `1 passed`.
+
+### Next step after all-shop birthday rule status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Scoped uplift rule status-signal checkpoint
+- Tightened the selected `services-rules` scoped status signal so `partner-card-uplift` now names partner-card uplift parity review directly instead of broader branch-aware parity review wording.
+- Kept the step low-risk and preview-only by refining only visible selected-rule copy and extending the focused scoped rule assertion without changing any rule persistence, condition editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_scoped_rule_review_context'`, `1 passed`.
+
+### Next step after scoped uplift rule status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Card-types live coverage status-signal checkpoint
+- Tightened the selected `card-types` live coverage status signal so active tiers with saved card coverage now name live tier parity review directly instead of broader live catalog parity review wording.
+- Added a focused selected live tier coverage test to lock the Galaxy-specific status signal and handoff copy in place for a real Laravel-backed card-type scenario.
+- Re-ran `php artisan test --filter='test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal'`, `1 passed`.
+
+### Next step after card-types live coverage status-signal checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Card-types live publish blocker refinement checkpoint
+- Tightened the selected `card-types` live publish blocker copy so active tiers without visible card coverage now name Galaxy tier rollout parity directly instead of broader rollout parity wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier gating copy and extending two focused card-types assertions without changing any tier writes, activation flow, import behavior, or publish behavior.
+- Re-ran `php artisan test --filter='(test_card_types_page_exposes_edit_link_for_latest_saved_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Next step after card-types live publish blocker refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Card-types catalog publish blocker refinement checkpoint
+- Tightened the catalog-level `card-types` publish blocker copy so saved live tiers now name Galaxy tier rollout parity directly instead of broader old-catalog rollout wording.
+- Kept the step low-risk and Laravel-backed by refining only visible catalog action copy and extending the focused card-types readiness assertion without changing any tier writes, activation flow, import behavior, or publish behavior.
+- Re-ran `php artisan test --filter='test_card_types_catalog_actions_reflect_saved_tier_readiness'`, `1 passed`.
+
+### Next step after card-types catalog publish blocker refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Card-types import blocker refinement checkpoint
+- Tightened the selected `card-types` import blocker copy so draft tiers with visible card coverage now name draft tier accrual parity directly instead of broader draft rule parity wording.
+- Kept the step low-risk and Laravel-backed by refining only visible selected-tier copy and extending the focused selected card-type assertion without changing any tier writes, activation flow, rule import behavior, or publish behavior.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
+### Next step after card-types import blocker refinement checkpoint
+- Continue tightening selected Galaxy copy that still reads broader than the real parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Scoped kiosk gift status-signal refinement checkpoint
+- Tightened the selected `gifts` scoped status signal so `airport-transfer` now names kiosk reward parity review directly instead of broader branch-aware catalog parity review wording.
+- Kept the step low-risk and preview-only by refining only visible selected reward copy and extending the focused scoped gift assertion without changing any gift CRUD, stock updates, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_scoped_gift_review_context'`, `1 passed`.
+
+### Next step after scoped kiosk gift status-signal refinement checkpoint
+- Continue tightening preview-only selected copy on another Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### All-shop gift status-signal refinement checkpoint
+- Tightened the selected `gifts` all-shop status signal so `coffee-voucher` now names live all-shop reward parity review directly instead of broader catalog parity review wording.
+- Kept the step low-risk and preview-only by refining only visible selected reward copy and extending the focused all-shop gift assertion without changing any gift CRUD, stock updates, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_all_shop_gift_review_context'`, `1 passed`.
+
+### Next step after all-shop gift status-signal refinement checkpoint
+- Continue tightening preview-only selected copy on another Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Scoped kiosk gift backend-gap refinement checkpoint
+- Tightened the selected `gifts` scoped backend-gap copy so `airport-transfer` now names kiosk reward parity directly instead of broader local reward parity wording.
+- Kept the step low-risk and preview-only by refining only the selected reward copy and extending the focused scoped gift assertion without changing any gift CRUD, stock updates, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_scoped_gift_review_context'`, `1 passed`.
+
+### Next step after scoped kiosk gift backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Scoped uplift rule backend-gap refinement checkpoint
+- Tightened the selected `services-rules` scoped uplift backend-gap copy so `partner-card-uplift` now names partner-card uplift parity directly instead of broader scoped uplift parity wording.
+- Kept the step low-risk and preview-only by refining only the selected rule copy and extending the focused scoped uplift rule assertion without changing any rule persistence, condition editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_scoped_rule_review_context'`, `1 passed`.
+
+### Next step after scoped uplift rule backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### All-shop birthday rule backend-gap refinement checkpoint
+- Tightened the selected `services-rules` all-shop backend-gap copy so `birthday-bonus` now names all-shop birthday accrual parity directly instead of broader birthday accrual parity wording.
+- Kept the step low-risk and preview-only by refining only the selected rule copy and extending the focused all-shop rule assertion without changing any rule persistence, birthday-window editing, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_all_shop_rule_review_context'`, `1 passed`.
+
+### Next step after all-shop birthday rule backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Draft exclusion rule backend-gap refinement checkpoint
+- Tightened the selected `services-rules` draft exclusion backend-gap copy so `night-service-block` now names bar-service exclusion parity directly instead of broader draft exception parity wording.
+- Kept the step low-risk and preview-only by refining only the selected rule copy and extending the focused draft exclusion rule assertion without changing any rule persistence, exclusion validation, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after draft exclusion rule backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Paused zero-stock gift backend-gap refinement checkpoint
+- Tightened the selected `gifts` paused zero-stock backend-gap copy so `premium-dessert-set` now names paused zero-stock recovery parity directly instead of broader paused reward parity wording.
+- Kept the step low-risk and preview-only by refining only the selected reward copy and extending the focused paused zero-stock gift assertion without changing any gift CRUD, stock update, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after paused zero-stock gift backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Paused branch gift backend-gap refinement checkpoint
+- Tightened the selected `gifts` paused finite-stock backend-gap copy so `weekend-brunch-pass` now names paused branch reopening parity directly instead of broader branch reward parity wording.
+- Kept the step low-risk and preview-only by refining only the selected reward copy and extending the focused paused finite-stock gift assertion without changing any gift CRUD, stock update, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, `1 passed`.
+
+### Next step after paused branch gift backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### All-shop gift backend-gap refinement checkpoint
+- Tightened the selected `gifts` all-shop backend-gap copy so `coffee-voucher` now names all-shop reward parity directly instead of falling back to broader catalog parity wording.
+- Kept the step low-risk and preview-only by refining only the selected reward copy and extending the focused all-shop gift assertion without changing any gift CRUD, stock update, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_all_shop_gift_review_context'`, `1 passed`.
+
+### Next step after all-shop gift backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Scoped rule and gift backend-gap refinement checkpoint
+- Tightened the selected `services-rules` scoped uplift backend-gap copy so `partner-card-uplift` now names partner-card condition editing and scoped uplift parity directly instead of broader branch wording.
+- Tightened the selected `gifts` scoped reward backend-gap copy so `airport-transfer` now names kiosk-scoped stock updates and local reward parity directly instead of broader scoped stock wording.
+- Kept the step low-risk and preview-only by refining only selected preview copy and extending the focused scoped rule and scoped gift assertions without changing any rule writes, gift CRUD, stock updates, or redemption behavior.
+- Re-ran `php artisan test --filter='(test_services_rules_page_supports_selected_scoped_rule_review_context|test_gifts_page_supports_selected_scoped_gift_review_context)'`, `2 passed`.
+
+### Next step after scoped rule and gift backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Services-rules birthday backend-gap refinement checkpoint
+- Tightened the selected `services-rules` `birthday-bonus` backend-gap copy so the all-shop uplift preview now names birthday-window and accrual parity directly instead of falling back to a broader all-shop loyalty parity phrase.
+- Kept the step low-risk and preview-only by refining only the selected rule copy and extending the focused all-shop rule assertion without changing any rule persistence, scope handling, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_all_shop_rule_review_context'`, `1 passed`.
+
+### Next step after services-rules birthday backend-gap refinement checkpoint
+- Continue tightening preview-only backend-gap language on another selected Galaxy scenario that still reads broader than the actual parity blocker, or return to the next persisted metadata slice on an already-live form.
+
+### Services-rules backend-gap alignment checkpoint
+- Added a small state-aware `services-rules` backend-gap helper and reused it across selected rule summary and dependency blocks, so all-shop, scoped, and draft rule previews now call out parity-specific rule blockers instead of repeating one generic rule gap line.
+- Kept the step low-risk and preview-only by refining only selected rule review copy and extending the focused draft rule assertion without changing any rule persistence, scope validation, or publish behavior.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context'`, `1 passed`.
+
+### Next step after services-rules backend-gap alignment checkpoint
+- Reuse this state-aware backend-gap pattern on another preview-only Galaxy page that still repeats one generic blocker across multiple selected scenarios, or return to the next persisted metadata slice on an already-live form.
+
+### Gifts backend-gap alignment checkpoint
+- Added a small state-aware `gifts` backend-gap helper and reused it across selected reward summary and dependency blocks, so paused and active reward previews now call out scope-aware stock and redemption blockers instead of repeating one generic gift gap line.
+- Kept the step low-risk and preview-only by refining only selected reward review copy and extending the focused paused reward assertion without changing any gift CRUD, stock update, or redemption behavior.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context'`, `1 passed`.
+
+### Next step after gifts backend-gap alignment checkpoint
+- Reuse this state-aware backend-gap pattern on another preview-only Galaxy page that still repeats one generic blocker across multiple selected scenarios, or return to the next persisted metadata slice on an already-live form.
+
+### Shops dependency-gap alignment checkpoint
+- Aligned selected `shops` dependency status with the same state-aware `Backend gap` helper already used in the branch summary, so live branch review now repeats manager-and-scope mutation blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected branch dependency copy and extending the focused selected-shop assertion without changing any branch write, reassignment, or scope-mutation behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Next step after shops dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
+### Cardholders dependency-gap alignment checkpoint
+- Aligned selected `cardholders` dependency status with the same state-aware `Backend gap` helper already used in the holder summary, so inactive profile review now repeats reactivation-sensitive lifecycle blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected holder dependency copy and extending the focused selected-holder assertion without changing any search, profile write, or recent-activity behavior.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`, `1 passed`.
+
+### Next step after cardholders dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
+### Cards dependency-gap alignment checkpoint
+- Aligned selected `cards` dependency status with the same state-aware `Backend gap` helper already used in the card summary, so blocked inventory review now repeats dispute-sensitive lifecycle blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected card dependency copy and extending the focused selected-card assertion without changing any lifecycle write, dispute, or replacement behavior.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `1 passed`.
+
+### Next step after cards dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
+### Roles-permissions dependency-gap alignment checkpoint
+- Aligned selected `roles-permissions` dependency status with the same state-aware `Backend gap` helper already used in the role summary, so the live access review now repeats assignment-sensitive authorization blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected role dependency copy and extending the focused selected-role assertion without changing any matrix editing, assignment, or scope write behavior.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`, `1 passed`.
+
+### Next step after roles-permissions dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
+### Card-types dependency-gap alignment checkpoint
+- Aligned selected `card-types` dependency status with the same state-aware `Backend gap` helper already used in the tier summary, so the live edit review now repeats draft-versus-live rollout blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected tier dependency copy and extending the focused selected-tier assertion without changing any update flow, publish logic, or rule-import behavior.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
+### Next step after card-types dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
+### Checks-points dependency-gap alignment checkpoint
+- Aligned selected `checks-points` dependency status with the same state-aware `Backend gap` helper already used in the receipt summaries, so all three live receipt previews now repeat receipt-specific Laravel blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only selected receipt dependency copy and extending the focused receipt review assertions without changing any transaction reads, rule tracing, or adjustment flow behavior.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
+### Reports cardholder-status dependency-gap alignment checkpoint
+- Aligned selected `reports` `cardholder-status` dependency status with the same state-aware `Backend gap` helper already used in the summary, so the holder lifecycle report now repeats inactive-holder shaping blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected report-source dependency copy and extending the focused holder-status reporting assertion without changing any preset handling, shaping logic, or export flow.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context'`, `1 passed`.
+
+### Next step after reports cardholder-status dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live Galaxy preview that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live form.
+
+### Reports cards-by-shop dependency-gap alignment checkpoint
+- Aligned selected `reports` `cards-by-shop` dependency status with the same state-aware `Backend gap` helper already used in the summary, so the branch inventory report now repeats assignment-aware grouping blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected report-source dependency copy and extending the focused cards-by-shop reporting assertion without changing any preset handling, grouping logic, or export flow.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context'`, `1 passed`.
+
+### Next step after reports cards-by-shop dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live report source that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live Galaxy form.
+
+### Reports role-access dependency-gap alignment checkpoint
+- Aligned selected `reports` `role-access` dependency status with the same state-aware `Backend gap` helper already used in the summary, so the access report now repeats grouped access-shaping blockers consistently across both visible review blocks.
+- Kept the step low-risk and Laravel-backed by refining only the selected report-source dependency copy and extending the focused role-access reporting assertion without changing any preset handling, shaping logic, or export flow.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_review_context'`, `1 passed`.
+
+### Next step after reports role-access dependency-gap alignment checkpoint
+- Apply the same summary/dependency backend-gap alignment to another live report source that still mixes state-aware summary copy with generic dependency copy, or return to the next persisted metadata slice on an already-live Galaxy form.
+
+### Checks-points backend-gap cue checkpoint
+- Added a compact read-only `Backend gap` cue to selected `checks-points` receipt previews so positive, zero-accrual, and branch-aware receipt review now surfaces the still-blocked Laravel receipt and adjustment slice directly in the summary block.
+- Kept the step low-risk and read-only by enriching only the selected receipt summary copy and extending the focused receipt assertions without changing any lookup, ledger read, or adjustment flow.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points backend-gap cue checkpoint
+- Reuse this compact summary-level backend-gap cue on another selected preview that still hides its blocked Laravel slice too low in the page, or return to the next persisted metadata slice on an already-live Galaxy form.
+
+### Reports cardholder-status backend-gap checkpoint
+- Made selected `reports` `cardholder-status` `Backend gap` context-aware so live holder lifecycle coverage now names inactive-holder shaping blockers instead of reusing one generic lifecycle-export gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected report-source summary copy and extending the focused holder-status reporting assertion without changing any preset handling, report shaping, or export flow.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context'`, `1 passed`.
+
+### Next step after reports cardholder-status backend-gap checkpoint
+- Continue the same tiny source-specific backend-gap pass on the remaining Laravel-backed report source that still reuses a generic export blocker, or return to the next persisted metadata slice on an already-live Galaxy form.
+
+### Reports cards-by-shop backend-gap checkpoint
+- Made selected `reports` `cards-by-shop` `Backend gap` context-aware so live branch inventory coverage now names assignment-aware grouping blockers instead of reusing one generic grouped-export gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected report-source summary copy and extending the focused cards-by-shop reporting assertion without changing any preset handling, query shaping, or export flow.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context'`, `1 passed`.
+
+### Next step after reports cards-by-shop backend-gap checkpoint
+- Continue the same tiny source-specific backend-gap pass on another Laravel-backed report source that still reuses a generic export blocker, or return to the next persisted metadata slice on an already-live Galaxy form.
+
+### Reports role-access backend-gap checkpoint
+- Made selected `reports` `role-access` `Backend gap` context-aware so live access coverage with visible staff and permission bundles now names grouped access-shaping blockers instead of reusing one generic report-export gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected report-source summary copy and extending the focused role-access reporting assertion without changing any preset handling, query shaping, or export flow.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_review_context'`, `1 passed`.
+
+### Next step after reports role-access backend-gap checkpoint
+- Continue the same tiny source-specific backend-gap pass on another Laravel-backed report source that still reuses a generic export blocker, or return to the next persisted metadata slice on an already-live Galaxy form.
+
+### Card-types backend-gap state checkpoint
+- Made selected `card-types` `Backend gap` context-aware so live tiers now call out rollout-coverage blockers, while draft tiers now call out activation-first blockers instead of reusing one generic rule-import gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected tier summary copy and extending focused selected-tier assertions without changing any live form write, activation toggle, publish, or rule-import flow.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Next step after card-types backend-gap state checkpoint
+- Reuse this completed state-aware focus/posture/evidence/backend-gap pass on another Laravel-backed selected preview that still reuses one generic gap line, or switch to the next tiny persisted metadata slice on an already-live Galaxy form.
+
+### Roles permissions backend-gap state checkpoint
+- Made selected `roles-permissions` `Backend gap` context-aware so draft roles now call out activation and first bundle wiring blockers, while live roles keep assignment-sensitive access-write blocking instead of reusing one generic gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected role summary copy and extending focused selected-role assertions without changing any role assignment, matrix editing, scope write, activation, or publish flow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Next step after roles permissions backend-gap state checkpoint
+- Reuse this completed state-aware focus/posture/evidence/backend-gap pass on another Laravel-backed selected preview that still reuses one generic gap line, or switch to the next tiny persisted metadata slice on an already-live Galaxy form.
+
+### Shops state-aware summary parity checkpoint
+- Made selected `shops` `Branch posture`, `Evidence priority`, and `Backend gap` context-aware so paused, manager-only, coverage-only, and fully covered branches now surface different review guidance instead of reusing one generic branch summary block.
+- Kept the step low-risk and Laravel-backed by refining only the selected shop summary copy and extending focused selected-branch assertions without changing any branch write, reassignment, recovery, or scope-mutation flow.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context)'`, `4 passed`.
+
+### Next step after shops state-aware summary parity checkpoint
+- Continue the same state-aware selected-summary pass on another Laravel-backed workspace that still reuses one generic posture/evidence/backend-gap block, or switch to the next tiny persisted metadata slice on an already-live Galaxy form.
+
+## 2026-04-23
+
+### Roles permissions access-focus state checkpoint
+- Made selected `roles-permissions` `Access focus` context-aware so live roles keep scope/staff/bundle-first wording while draft roles now surface scope-gap and bundle-gap review wording instead of reusing one generic focus line.
+- Kept the step low-risk and Laravel-backed by refining only the selected role summary copy and extending focused selected-role assertions without changing any role assignment, matrix editing, scope write, or publish flow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Roles permissions access-posture state checkpoint
+- Made selected `roles-permissions` `Access posture` context-aware so draft roles now surface draft-review gating with activation blocked while live roles keep the existing access-review posture.
+- Kept the step low-risk and Laravel-backed by refining only the selected role summary copy and extending focused selected-role assertions without changing any role assignment, matrix editing, scope write, activation, or publish flow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Roles permissions evidence-priority state checkpoint
+- Made selected `roles-permissions` `Evidence priority` context-aware so draft roles now highlight scope-gap and bundle-gap evidence while live roles keep the existing scope/staff/bundle evidence line.
+- Kept the step low-risk and Laravel-backed by refining only the selected role summary copy and extending focused selected-role assertions without changing any role assignment, matrix editing, scope write, activation, or publish flow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Next step after roles permissions access-focus state checkpoint
+- Continue the same state-aware pass on `roles-permissions` backend-gap for draft-versus-live review, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cardholders holder-focus state checkpoint
+- Made selected `cardholders` `Holder focus` context-aware so active holder review now surfaces live-profile wording while inactive holder review keeps reactivation-first wording instead of reusing one generic focus line.
+- Kept the step low-risk and Laravel-backed by refining only the selected holder summary copy and extending focused selected-holder assertions without changing any holder search, profile write, merge, or reactivation flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
+
+### Cardholders holder-posture state checkpoint
+- Made selected `cardholders` `Holder posture` context-aware so active holder review now surfaces live-profile gating while inactive holder review keeps reactivation-first gating instead of reusing one generic posture line.
+- Kept the step low-risk and Laravel-backed by refining only the selected holder summary copy and extending focused selected-holder assertions without changing any holder search, profile write, merge, lifecycle-change, or reactivation flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
+
+### Cardholders evidence-priority state checkpoint
+- Made selected `cardholders` `Evidence priority` context-aware so active holder review now highlights live-profile evidence while inactive holder review keeps reactivation-first evidence instead of reusing one generic evidence line.
+- Kept the step low-risk and Laravel-backed by refining only the selected holder summary copy and extending focused selected-holder assertions without changing any holder search, profile write, merge, lifecycle-change, or reactivation flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
+
+### Cardholders backend-gap state checkpoint
+- Made selected `cardholders` `Backend gap` context-aware so active holder review now highlights live-profile blockers while inactive holder review keeps reactivation-first blockers instead of reusing one generic backend-gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected holder summary copy and extending focused selected-holder assertions without changing any holder search, profile write, merge, lifecycle-change, reactivation, or activity flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
+
+### Next step after cardholders holder-focus state checkpoint
+- Reuse this conditional summary-focus/posture/evidence/backend-gap pattern on another Laravel-backed selected preview that mixes live and inactive states, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cards inventory-focus state checkpoint
+- Made selected `cards` `Inventory focus` context-aware so blocked inventory now surfaces dispute-first review wording and draft inventory now surfaces issuance-gap wording instead of reusing one generic focus line.
+- Kept the step low-risk and Laravel-backed by refining only the selected card summary copy and extending focused selected-card assertions without changing any inventory write, replacement, dispute, or issuance flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context)'`, `5 passed`.
+
+### Cards inventory-posture state checkpoint
+- Made selected `cards` `Inventory posture` context-aware so blocked inventory now stays dispute-first in review wording and draft inventory now stays issuance-readiness-first instead of reusing the active-card posture line.
+- Kept the step low-risk and Laravel-backed by refining only the selected card summary copy and extending focused selected-card assertions without changing any inventory write, replacement, dispute, or issuance flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context)'`, `5 passed`.
+
+### Cards evidence-priority state checkpoint
+- Made selected `cards` `Evidence priority` context-aware so blocked inventory now highlights dispute-first evidence and draft inventory now highlights issuance-gap evidence instead of reusing the active-card evidence line.
+- Kept the step low-risk and Laravel-backed by refining only the selected card summary copy and extending focused selected-card assertions without changing any inventory write, replacement, dispute, or issuance flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context)'`, `5 passed`.
+
+### Cards backend-gap state checkpoint
+- Made selected `cards` `Backend gap` context-aware so blocked inventory now names dispute/replacement blockers and draft inventory now names issuance/activation blockers instead of reusing the active-card gap line.
+- Kept the step low-risk and Laravel-backed by refining only the selected card summary copy and extending focused selected-card assertions without changing any inventory write, replacement, dispute, issuance, or activation flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context)'`, `5 passed`.
+
+### Next step after cards inventory-focus state checkpoint
+- Reuse this conditional summary-focus/posture/evidence/backend-gap pattern on another Laravel-backed selected preview that mixes live and blocked states, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Shops paused-branch focus checkpoint
+- Made selected `shops` `Branch focus` context-aware so paused branches now surface a recovery-first review cue instead of reusing the active-branch ownership wording.
+- Kept the step low-risk and Laravel-backed by refining only the selected shop summary copy and extending paused selected-branch assertions without changing any branch write, reassignment, or recovery flow.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_paused_branch_review_context)'`, `3 passed`.
+
+### Next step after shops paused-branch focus checkpoint
+- Reuse this conditional summary-focus pattern on another Laravel-backed selected preview that mixes active and paused states, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Shops branch-focus checkpoint
+- Added a compact read-only `Branch focus` cue to selected `shops` summaries so branch review now names the first ownership-and-coverage parity angle directly in the selected shop block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected shop summary without changing any branch write, reassignment, or scope-mutation flow.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context)'`, `2 passed`.
+
+### Shops branch-posture checkpoint
+- Added a compact read-only `Branch posture` cue to selected `shops` summaries so the safe operating stance now appears directly beside the new focus line in the selected shop block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected shop summary without changing any branch write, reassignment, or scope-mutation flow.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context)'`, `2 passed`.
+
+### Shops evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `shops` summaries so branch review now highlights the first live ownership-and-coverage bundle to keep visible during parity review.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected shop summary without changing any branch write, reassignment, or scope-mutation flow.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context)'`, `2 passed`.
+
+### Shops backend-gap checkpoint
+- Added a compact read-only `Backend gap` cue to selected `shops` summaries so the still-blocked branch mutation slice now appears directly in the selected shop block instead of only in later dependency notes.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected shop summary without changing any branch write, reassignment, or scope-mutation flow.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context)'`, `2 passed`.
+
+### Next step after shops branch-focus checkpoint
+- Reuse this compact focus/posture/evidence/backend-gap cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cardholders holder-focus checkpoint
+- Added a compact read-only `Holder focus` cue to selected `cardholders` summaries so saved profile review now names the first parity angle directly in the selected holder block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected holder summary without changing any holder search, reactivation, or profile write flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context)'`, `2 passed`.
+
+### Cardholders holder-posture checkpoint
+- Added a compact read-only `Holder posture` cue to selected `cardholders` summaries so the safe operating stance now appears directly beside the new focus line in the selected holder block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected holder summary without changing any holder search, reactivation, or profile write flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context)'`, `2 passed`.
+
+### Cardholders evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `cardholders` summaries so profile review now highlights the first live evidence bundle to keep visible during parity review.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected holder summary without changing any holder search, reactivation, or profile write flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context)'`, `2 passed`.
+
+### Cardholders backend-gap checkpoint
+- Added a compact read-only `Backend gap` cue to selected `cardholders` summaries so the still-blocked holder slice now appears directly in the selected holder block instead of only in later dependency notes.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected holder summary without changing any holder search, reactivation, or profile write flow.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context)'`, `2 passed`.
+
+### Next step after cardholders holder-focus checkpoint
+- Reuse this compact focus/posture/evidence/backend-gap cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cards inventory-focus checkpoint
+- Added a compact read-only `Inventory focus` cue to selected `cards` summaries so saved inventory review now names the first parity angle directly in the selected card block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected card summary without changing any inventory write, replacement, or reassignment flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context)'`, `2 passed`.
+
+### Cards inventory-posture checkpoint
+- Added a compact read-only `Inventory posture` cue to selected `cards` summaries so the safe operating stance now appears directly beside the new focus line in the selected card block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected card summary without changing any inventory write, replacement, or reassignment flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context)'`, `2 passed`.
+
+### Cards evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `cards` summaries so inventory review now highlights the first live evidence bundle to keep visible during parity review.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected card summary without changing any inventory write, replacement, or reassignment flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context)'`, `2 passed`.
+
+### Cards backend-gap checkpoint
+- Added a compact read-only `Backend gap` cue to selected `cards` summaries so the still-blocked inventory slice now appears directly in the selected card block instead of only in later dependency notes.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected card summary without changing any inventory write, replacement, or reassignment flow.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context)'`, `2 passed`.
+
+### Next step after cards inventory-focus checkpoint
+- Reuse this compact focus/posture/evidence/backend-gap cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+- Reuse this compact focus/posture/evidence cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or add the matching backend-gap cue if this inventory summary still feels uneven.
+
+### Card-types tier-focus checkpoint
+- Added a compact read-only `Tier focus` cue to selected `card-types` summaries so saved tier review now names the first parity angle directly in the selected record block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected tier summary without changing any live form write path or rule-import gating.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
+### Card-types tier-posture checkpoint
+- Added a compact read-only `Tier posture` cue to selected `card-types` summaries so the safe operating stance now appears directly beside the new focus line in the selected tier block.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected tier summary without changing any live form write path or rule-import gating.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
+### Card-types evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `card-types` summaries so tier review now highlights the first live evidence bundle to keep visible during parity review.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected tier summary without changing any live form write path or rule-import gating.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
+### Card-types backend-gap checkpoint
+- Added a compact read-only `Backend gap` cue to selected `card-types` summaries so the still-blocked publish and rule-import slice now appears directly in the selected tier block instead of only in later dependency notes.
+- Kept the step low-risk and Laravel-backed by enriching only the existing selected tier summary without changing any live form write path or rule-import gating.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
+### Next step after card-types tier-focus checkpoint
+- Reuse this compact focus/posture/evidence/backend-gap cue set on another Laravel-backed selected preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles-permissions access-focus checkpoint
+- Added a compact read-only `Access focus` cue to selected `roles-permissions` summaries so access review context now names the first parity angle directly in the summary block.
+- Kept the step low-risk and read-only by enriching the existing selected-role summary without opening any matrix editing, assignment, or scope-writing workflow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context)'`, `2 passed`.
+
+### Roles-permissions access-posture checkpoint
+- Added a compact read-only `Access posture` cue to selected `roles-permissions` summaries so the safe operating stance now appears directly beside the new focus line in the selected role block.
+- Kept the step low-risk and read-only by enriching the existing selected-role summary without opening any matrix editing, assignment, or scope-writing workflow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context)'`, `2 passed`.
+
+### Roles-permissions evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `roles-permissions` summaries so access review now highlights the first live evidence bundle to keep visible during parity review.
+- Kept the step low-risk and read-only by enriching the existing selected-role summary without opening any matrix editing, assignment, or scope-writing workflow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context)'`, `2 passed`.
+
+### Roles-permissions backend-gap checkpoint
+- Added a compact read-only `Backend gap` cue to selected `roles-permissions` summaries so the still-blocked access slice now appears directly in the selected role block instead of only in later dependency notes.
+- Kept the step low-risk and read-only by enriching the existing selected-role summary without opening any matrix editing, assignment, or scope-writing workflow.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context)'`, `2 passed`.
+
+### Next step after roles-permissions access-focus checkpoint
+- Reuse this compact focus/posture/evidence/backend-gap cue set on another selected Laravel-backed preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports source-focus checkpoint
+- Added a compact read-only `Source focus` cue to selected `reports` sources so reporting previews now name the first parity angle to inspect instead of relying only on status and signal lists.
+- Kept the step low-risk and read-only by enriching the existing cards-by-shop, cardholder-status, and role-access source summaries without opening any export or query-writing workflow.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
+
+### Reports source-posture checkpoint
+- Added a compact read-only `Source posture` cue to the same selected `reports` sources so each reporting preview now states the safe operating stance immediately after the new focus line.
+- Kept the step summary-first and low-risk by enriching only the existing cards-by-shop, cardholder-status, and role-access selected summaries, without opening any new export or write path.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
+
+### Reports evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to the same selected `reports` sources so each reporting preview now highlights the first live evidence bundle to keep visible during parity review.
+- Kept the step summary-first and low-risk by enriching only the existing cards-by-shop, cardholder-status, and role-access selected summaries, without opening any new export or write path.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
+
+### Reports backend-gap checkpoint
+- Added a compact read-only `Backend gap` cue to the same selected `reports` sources so each reporting preview now surfaces the still-blocked Laravel work directly in the summary block instead of only in later dependency notes.
+- Kept the step summary-first and low-risk by enriching only the existing cards-by-shop, cardholder-status, and role-access selected summaries, without opening any new export or write path.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
+
+### Next step after reports source-focus checkpoint
+- Reuse this compact focus/posture/evidence/backend-gap cue set on another selected reporting source or resource preview that still reads too much like a static signal list, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Gifts evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `gifts` previews so each reward review now names which evidence bundle should stay visible first during parity review.
+- Kept the step low-risk and read-only by enriching the existing all-shop, scoped, paused zero-stock, and paused finite-stock reward previews without opening any publish or redemption workflow.
+- Re-ran `php artisan test --filter='(test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context)'`, `4 passed`.
+
+### Next step after gifts evidence-priority checkpoint
+- Reuse this evidence-priority cue on another selected resource preview that still lacks a clear first review bundle, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Gifts gift-handoff checkpoint
+- Added a compact read-only `Gift handoff signal` to selected `gifts` previews so reward review context now surfaces the handoff cue directly in the summary block instead of relying only on later timeline notes.
+- Kept the step low-risk and read-only by enriching the existing all-shop, scoped, paused zero-stock, and paused finite-stock reward previews without opening any publish or redemption workflow.
+- Re-ran `php artisan test --filter='(test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context)'`, `4 passed`.
+
+### Next step after gifts gift-handoff checkpoint
+- Reuse this summary-level handoff cue on another selected resource preview that still hides its next review context too low in the page, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Gifts gift-focus checkpoint
+- Added a compact read-only `Gift focus` cue to selected `gifts` previews so each reward review now names the first parity angle to inspect instead of relying only on status and posture lines.
+- Kept the step low-risk and read-only by enriching the existing all-shop, scoped, paused zero-stock, and paused finite-stock reward previews without opening any publish or redemption flow.
+- Re-ran `php artisan test --filter='(test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context)'`, `4 passed`.
+
+### Next step after gifts gift-focus checkpoint
+- Reuse this compact focus cue on another selected resource preview that still reads too much like a static placeholder, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Services-rules scope-posture checkpoint
+- Added a compact read-only `Scope posture` cue to selected `services-rules` previews so scope caution now appears directly in the summary block before operators reach the dependency section.
+- Kept the step low-risk and read-only by reusing the existing all-shop, scoped, and draft rule posture wording instead of opening any new publish or editing workflow.
+- Re-ran `php artisan test --filter='(test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context)'`, `3 passed`.
+
+### Next step after services-rules scope-posture checkpoint
+- Reuse this summary-level posture cue on another selected resource preview that still hides its scope or review caution too low in the page, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Services-rules rule-handoff checkpoint
+- Added a compact read-only `Rule handoff signal` to selected `services-rules` previews so rule review context now surfaces the handoff cue directly in the summary block instead of relying only on the later timeline notes.
+- Kept the step low-risk and read-only by enriching the existing all-shop, scoped, and draft rule previews without opening any publish or editing workflow.
+- Re-ran `php artisan test --filter='(test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context)'`, `3 passed`.
+
+### Next step after services-rules rule-handoff checkpoint
+- Reuse this summary-level handoff cue on another selected resource preview that still hides its next review context too low in the page, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Services-rules rule-focus checkpoint
+- Added a compact read-only `Rule focus` cue to selected `services-rules` previews so each rule review now names the first parity angle to inspect instead of relying only on status and posture lines.
+- Kept the step low-risk and read-only by enriching the existing all-shop, scoped, and draft rule previews without opening any new publish or editing flow.
+- Re-ran `php artisan test --filter='(test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context)'`, `3 passed`.
+
+### Next step after services-rules rule-focus checkpoint
+- Reuse this compact focus cue on another selected resource preview that still reads too much like a static placeholder, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Checks-points evidence-priority checkpoint
+- Added a compact read-only `Evidence priority` cue to selected `checks-points` receipt previews so each receipt review now names which evidence bundle should stay visible first during parity review.
+- Kept the step low-risk and read-only by enriching the existing positive-accrual, zero-accrual, and branch-aware receipt summaries without opening any new transaction workflow.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points evidence-priority checkpoint
+- Reuse this evidence-priority cue on another selected resource preview that still lacks a clear first review bundle, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Checks-points receipt-posture checkpoint
+- Added a compact read-only `Receipt posture` cue to selected `checks-points` receipt previews so the summary block now surfaces the same caution about read-only receipt review before operators reach the dependency section.
+- Kept the step low-risk and read-only by enriching the existing positive-accrual, zero-accrual, and branch-aware receipt summaries with already-established posture wording.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points receipt-posture checkpoint
+- Reuse this summary-level posture cue on another selected resource preview that still hides its review caution too low in the page, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Checks-points receipt-handoff checkpoint
+- Added a compact read-only `Receipt handoff signal` to selected `checks-points` receipt previews so receipt review context now surfaces the handoff cue directly in the summary block instead of relying only on the later timeline and dependency notes.
+- Kept the step low-risk and read-only by enriching the existing positive-accrual, zero-accrual, and branch-aware preview summaries.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points receipt-handoff checkpoint
+- Reuse this summary-level handoff cue on another selected resource preview that still hides its next review context too low in the page, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Checks-points receipt-focus checkpoint
+- Added a compact read-only `Receipt focus` cue to the selected `checks-points` receipt previews so each receipt review now names the first parity angle to inspect instead of relying on status and posture lines alone.
+- Kept the step low-risk and read-only by enriching the existing preview summaries for positive-accrual, zero-accrual, and branch-specific receipt review contexts.
+- Re-ran `php artisan test --filter='(test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context)'`, `3 passed`.
+
+### Next step after checks-points receipt-focus checkpoint
+- Reuse this compact focus cue on another selected resource preview that still reads like a static starter placeholder, or switch to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Dashboard foundation-posture checkpoint
+- Added a compact read-only `Foundation posture` line to the live foundation snapshot so the dashboard now distinguishes setup-first, partial, and fully visible foundation baseline states.
+- Kept the step low-risk and read-only by deriving the posture from the current visibility of the core Phase 1 foundation surfaces.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard foundation-posture checkpoint
+- Reuse this tiny foundation-posture pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard foundation-focus checkpoint
+- Added a compact read-only `Foundation focus` line to the live foundation snapshot so the dashboard now names the next first-pass foundation surface to stabilize instead of only showing readiness and counts.
+- Kept the step low-risk and read-only by deriving the focus from which core Phase 1 foundation surfaces are still missing from the visible Laravel baseline.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard foundation-focus checkpoint
+- Reuse this tiny foundation-focus pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard migration-map posture checkpoint
+- Added a compact read-only `Migration-map posture` line to the Galaxy migration map so the dashboard now distinguishes map-first planning, parity staging in progress, and grounded parity planning.
+- Kept the step low-risk and read-only by deriving the posture from current live coverage across the Phase 1 core Galaxy domains.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard migration-map posture checkpoint
+- Reuse this tiny migration-posture pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard migration-map focus checkpoint
+- Added a compact read-only `Migration-map focus` line to the Galaxy migration map so the dashboard now names the first staged parity target instead of only showing map totals.
+- Kept the step low-risk and config-backed by deriving the focus from the existing admin navigation map.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard migration-map focus checkpoint
+- Reuse this tiny config-backed focus pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard entry-posture checkpoint
+- Added a compact read-only `Entry posture` line to the live review entry section so the dashboard now distinguishes setup-first, partial, and review-ready staged entry surfaces.
+- Kept the step low-risk and read-only by deriving the posture from current live shop, cardholder, and card coverage already visible in Phase 1.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard entry-posture checkpoint
+- Reuse this tiny staged-entry posture pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard entry-focus checkpoint
+- Added a compact read-only `Entry focus` line to the live review entry section so the dashboard now names the first review surface instead of only listing staged entry links.
+- Kept the step low-risk and read-only by deriving the focus from the existing live entry-point list.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard entry-focus checkpoint
+- Reuse this tiny entry-focus pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard latest-work posture checkpoint
+- Added a compact read-only `Latest-work posture` line to the resume-latest-live-work section so the dashboard now distinguishes setup-first, partial, and review-ready jump-back coverage.
+- Kept the step low-risk and read-only by deriving the posture from the existing latest-work workspace list.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard latest-work posture checkpoint
+- Reuse this tiny jump-back posture pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard latest-work focus checkpoint
+- Added a compact read-only `Latest-work focus` line to the resume-latest-live-work section so the dashboard now names the first jump-back target instead of only counting available shortcuts.
+- Kept the step low-risk and read-only by deriving the focus from the existing latest-work workspace list.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard latest-work focus checkpoint
+- Reuse this tiny jump-back focus pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard branch-action focus checkpoint
+- Added a compact read-only `Scoped action focus` line to the assigned-branch snapshot so the dashboard now names the next branch-review target, like setup first, card issuance next, cardholder backfill next, or latest branch review ready.
+- Kept the step low-risk and read-only by deriving the focus from the existing branch activity and scoped action state.
+- Re-ran `php artisan test --filter='(test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up)'`, `4 passed`.
+
+### Next step after dashboard branch-action focus checkpoint
+- Reuse this tiny scoped-next-step pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard branch-action posture checkpoint
+- Added a compact read-only `Scoped action posture` line to the assigned-branch snapshot so the dashboard now signals whether scoped branch actions are still setup-first or already review-ready.
+- Kept the step low-risk and read-only by deriving the posture from the existing branch activity and scoped action state.
+- Re-ran `php artisan test --filter='(test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`.
+
+### Next step after dashboard branch-action posture checkpoint
+- Reuse this tiny scoped-posture pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard branch-action coverage checkpoint
+- Added a compact read-only `Scoped action coverage` line to the assigned-branch snapshot so Phase 1 now states how many scoped setup or review actions are ready inside the dashboard branch console.
+- Kept the step low-risk and read-only by deriving the count from the existing assigned-branch action list.
+- Re-ran `php artisan test --filter='(test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`.
+
+### Next step after dashboard branch-action coverage checkpoint
+- Reuse this tiny scoped-action coverage pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard scoped latest-work route-alignment checkpoint
+- Extended the route-path dashboard pass to the scoped latest-work and branch-setup assertions so branch-specific jump-back actions now stay aligned with the new operational route display.
+- Kept the step low-risk by tightening only rendered dashboard expectations around already-existing scoped review/setup links.
+- Re-ran `php artisan test --filter='(test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`.
+
+### Next step after dashboard scoped latest-work route-alignment checkpoint
+- Reuse this tiny operational-copy alignment pattern on another scoped dashboard surface that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard branch-action route visibility checkpoint
+- Added route-path display beside assigned-branch snapshot actions so scoped setup and review shortcuts now read more like operational Galaxy console actions than generic starter links.
+- Kept the step low-risk and read-only by reusing the existing scoped action routes already exposed by the dashboard.
+- Re-ran `php artisan test --filter='(test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`.
+
+### Next step after dashboard branch-action route visibility checkpoint
+- Reuse this tiny route-visibility pattern on another scoped dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard latest-work route visibility checkpoint
+- Added route-path display beside each dashboard `Resume latest live work` shortcut so the jump-back section now reads more like a real Galaxy review console than a generic starter link list.
+- Kept the step low-risk and read-only by reusing the existing latest-work routes already exposed by the dashboard.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_only_available_latest_workspace_links)'`, `2 passed`.
+
+### Next step after dashboard latest-work route visibility checkpoint
+- Reuse this tiny route-visibility pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard entry-route visibility checkpoint
+- Added route-path display beside each dashboard `Live review entry points` link so the Phase 1 review section reads more like an operational Galaxy console than a generic starter shortcut list.
+- Kept the step low-risk and read-only by reusing the existing staged entry routes already exposed by the dashboard.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard entry-route visibility checkpoint
+- Reuse this tiny route-visibility pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard latest-work coverage checkpoint
+- Added a compact read-only `Latest-work coverage` line to the resume-latest-live-work section so Phase 1 now states how many jump-back shortcuts are currently available from the Laravel shell.
+- Kept the step low-risk and read-only by deriving the count from the existing latest-work workspace list.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard latest-work coverage checkpoint
+- Reuse this tiny availability-coverage pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard entry-coverage checkpoint
+- Added a compact read-only `Entry coverage` line to the dashboard live review entry section so Phase 1 now states how many review entry points are already staged in the Laravel shell.
+- Kept the step low-risk and config-driven by deriving the count from the existing live entry-point list.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard entry-coverage checkpoint
+- Reuse this tiny config-backed coverage pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard tier-baseline coverage checkpoint
+- Added a compact read-only `Tier baseline coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how much of the visible card-type layer is active, not just present.
+- Kept the step low-risk and operational by deriving the ratio directly from existing `CardType` counts.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard tier-baseline coverage checkpoint
+- Reuse this tiny tier-coverage pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard card-type visibility checkpoint
+- Added `Live card types` and `Active card types` metrics to the dashboard foundation snapshot so the Phase 1 shell now keeps the tier layer visible beside shops, cardholders, cards, and access baseline coverage.
+- Kept the step low-risk and read-only by reusing existing `CardType` counts already present in the Laravel foundation.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard card-type visibility checkpoint
+- Reuse this tiny entity-visibility pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard migration-map route-total checkpoint
+- Added a compact read-only `Mapped routes` line to the dashboard migration map so the Phase 1 planning section now states how many Laravel route targets are already linked from the staged admin shell.
+- Kept the step low-risk and config-backed by reusing the existing planned-surface count that powers the route map.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map route-total checkpoint
+- Reuse this tiny config-backed planning-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard migration-map group-total checkpoint
+- Added a compact read-only `Mapped groups` line to the dashboard migration map so the Phase 1 planning section now states how many top-level admin groups are already staged in the Laravel shell.
+- Kept the step low-risk and config-backed by deriving the count directly from the existing navigation map.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map group-total checkpoint
+- Reuse this tiny config-backed planning-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard access-baseline coverage checkpoint
+- Added a compact read-only `Access baseline coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how much of the live roles and permissions layer is already visible in Laravel.
+- Kept the step low-risk and operational by deriving the metric directly from existing role and permission counts.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard access-baseline coverage checkpoint
+- Reuse this tiny access-coverage pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard branch-pause coverage checkpoint
+- Added a compact read-only `Branch pause coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how much visible shop coverage is paused instead of active.
+- Kept the step low-risk and operational by deriving the ratio directly from existing shop status counts.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard branch-pause coverage checkpoint
+- Reuse this tiny status-coverage pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard active-foundation coverage checkpoint
+- Added a compact read-only `Active foundation coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how much of the visible shop, cardholder, and card layer is active, not just present.
+- Kept the step low-risk and operational by deriving the ratios directly from existing live and active counters.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard active-foundation coverage checkpoint
+- Reuse this tiny activity-coverage pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard foundation-readiness signal checkpoint
+- Added a compact read-only `Foundation readiness` metric to the dashboard foundation snapshot so the Phase 1 shell now translates raw live-domain coverage into a simple starter, in-progress, or review-ready posture.
+- Kept the step low-risk and operational by deriving the signal from existing live entity counts instead of opening any new write or routing behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard foundation-readiness signal checkpoint
+- Reuse this tiny readiness-signal pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard live-domain coverage checkpoint
+- Added a compact read-only `Live domain coverage` metric to the dashboard foundation snapshot so Phase 1 now shows how many of the five core Galaxy domains already have live Laravel presence.
+- Kept the step low-risk and operational by deriving the count directly from existing live entity totals instead of opening any new workflow behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard live-domain coverage checkpoint
+- Reuse this tiny coverage metric pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard migration-map route-path checkpoint
+- Expanded the dashboard `Galaxy migration map` again so each mapped surface now shows its current Laravel route path beside the Galaxy-specific description.
+- Kept the step low-risk and config-backed by deriving the paths from the existing route names already stored in `config/admin-navigation.php`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map route-path checkpoint
+- Reuse this tiny config-backed planning-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard migration-map link checkpoint
+- Turned the dashboard `Galaxy migration map` into a linkable target map so operators can jump directly from the Phase 1 planning surface into the mapped Laravel admin pages.
+- Kept the step low-risk and config-backed by reusing the existing route names from `config/admin-navigation.php` instead of introducing any new navigation logic.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map link checkpoint
+- Reuse this tiny config-backed navigation-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard migration-map total-count checkpoint
+- Added a compact read-only `Mapped surfaces` line to the dashboard migration map so the Phase 1 target section now states the total number of planned admin surfaces already staged in the Laravel shell.
+- Kept the step low-risk and config-backed by reusing the existing `plannedSectionCount` instead of introducing any new workflow logic.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map total-count checkpoint
+- Reuse this tiny planning-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard migration-map group-count checkpoint
+- Expanded the dashboard `Galaxy migration map` again so each top-level group now shows how many mapped admin surfaces it contains, making the Phase 1 target map read more like a scoped migration plan than a plain label list.
+- Kept the step low-risk and read-only by deriving counts directly from the existing config-backed navigation map.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map group-count checkpoint
+- Reuse this tiny config-backed planning-detail pattern on another dashboard summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard migration-map description checkpoint
+- Expanded the dashboard `Galaxy migration map` to show each admin surface with its config-backed Galaxy description, so the Phase 1 target map now reads like an operational migration plan instead of a bare label list.
+- Kept the step low-risk and read-only by reusing `config/admin-navigation.php` descriptions already maintained for the shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+
+### Next step after dashboard migration-map description checkpoint
+- Reuse this tiny config-backed detail pattern on another dashboard or resource summary that still reads too generically, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Dashboard migration-map handoff signal checkpoint
+- Added a compact read-only `Migration-map handoff signal` to the dashboard target-map section so Phase 1 planning now states whether the current Laravel shell is still map-first, partially live, or broad enough for grounded parity handoff discussion.
+- Kept the step low-risk and read-only, reusing existing navigation and live-domain counts instead of adding any new workflow behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard migration-map handoff signal checkpoint
+- Reuse this compact handoff cue pattern on another dashboard summary that still reads too generically, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Dashboard latest-work handoff signal checkpoint
+- Added a compact read-only `Latest-work handoff signal` to the dashboard jump-back section so the console now states whether resume shortcuts already carry enough live workspace coverage for a meaningful handoff review.
+- Kept the step low-risk and read-only, distinguishing empty foundations, thin partial coverage, broad shared coverage, and branch-scoped shortcut coverage without changing any routing behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|test_dashboard_latest_live_work_shortcuts_respect_shop_scope)'`, `4 passed`.
+
+### Next step after dashboard latest-work handoff signal checkpoint
+- Reuse this compact handoff cue pattern on another dashboard summary that still reads too generically, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Dashboard entry-handoff signal checkpoint
+- Added a compact read-only `Entry handoff signal` to dashboard live review entry points so the console now states whether shared or assigned-branch entry surfaces already have enough live shop, holder, and card coverage for a meaningful handoff review.
+- Kept the step low-risk and dashboard-only, layering the cue beside existing scope notes instead of opening any new write or routing behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_unscoped_dashboard_does_not_show_shop_scope_summary)'`, `5 passed`.
+
+### Next step after dashboard entry-handoff signal checkpoint
+- Reuse this compact handoff cue pattern on another dashboard summary that still reads too generically, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Dashboard foundation-handoff signal checkpoint
+- Added a compact read-only `Foundation handoff signal` to the main dashboard snapshot so the top-level Galaxy foundation now states whether the current Laravel coverage is still starter-thin, partially live, or already broad enough for a useful handoff review.
+- Kept the step low-risk and dashboard-only, using existing live counts instead of opening any new write flow.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links)'`, `3 passed`.
+
+### Next step after dashboard foundation-handoff signal checkpoint
+- Reuse this compact handoff cue pattern on another dashboard summary that still reads too generically, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Dashboard branch-handoff snapshot checkpoint
+- Added a compact read-only `Handoff signal` to the shop-scoped dashboard branch snapshot so scoped admins can immediately tell whether the assigned branch already has enough live coverage for a meaningful handoff review.
+- Kept the step low-risk and read-only, with copy that distinguishes setup-pending branches, card-only coverage, holder-only coverage, and fully covered live branches.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up)'`, `4 passed`.
+
+### Next step after dashboard branch-handoff snapshot checkpoint
+- Reuse this compact handoff cue pattern on another scoped dashboard or selected review surface that still lacks it, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Card-types handoff-signal parity checkpoint
+- Added a compact read-only `Handoff signal` to selected `card-types` review so the tier workspace now shows whether the current Laravel tier already carries enough visible card coverage for a useful rollout handoff.
+- Surfaced the cue in both selected-tier summaries and dependency-status panels, with copy that distinguishes live tiers with coverage, live tiers still missing coverage, draft tiers with visible saved-card context, and draft tiers still waiting on first visible coverage.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Next step after card-types handoff-signal parity checkpoint
+- Reuse this compact handoff cue pattern on another selected live workspace that still lacks it, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles handoff-signal summary parity checkpoint
+- Added a compact read-only `Handoff signal` to selected `roles-permissions` summaries so the live access workspace now shows the same access-handoff readiness cue already present in dependency-status context.
+- Surfaced the cue with copy that distinguishes draft roles from live roles that already combine scope, staffing, and permission coverage, keeping the step read-only and parity-first.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `3 passed`.
+
+### Next step after roles handoff-signal summary parity checkpoint
+- Reuse this compact handoff cue pattern on another selected live workspace that still lacks summary/dependency parity, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cards inventory-handoff signal checkpoint
+- Added a compact read-only `Inventory handoff signal` to selected `cards` review so the inventory workspace now shows whether the current Laravel record already carries enough dispute or linkage context for a useful operator handoff.
+- Surfaced the cue in both selected-card summaries and dependency-status panels, with copy that distinguishes blocked holder-linked cards, blocked unassigned cards, active issued cards, and draft inventory still waiting on issuance parity.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context)'`, `5 passed`.
+
+### Next step after cards inventory-handoff signal checkpoint
+- Reuse this compact handoff cue pattern on another selected live workspace that still lacks one, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cardholders activity-handoff signal checkpoint
+- Added a compact read-only `Activity handoff signal` to selected `cardholders` review so holder lookup now shows whether the current Laravel profile already carries enough linked-card lifecycle context for a useful operator handoff.
+- Surfaced the cue in both selected-holder summaries and dependency-status panels, with copy that distinguishes dormant linked holders, dormant unlinked holders, active linked holders, and active holders still waiting on visible card activity context.
+- Re-ran `php artisan test --filter='(test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context)'`, `4 passed`.
+
+### Next step after cardholders activity-handoff signal checkpoint
+- Reuse this compact handoff cue pattern on another selected live workspace that still lacks one, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Shops scope-handoff signal checkpoint
+- Added a compact read-only `Scope handoff signal` to selected `shops` review so branch scope review now shows whether ownership plus customer coverage is actually handoff-ready instead of relying only on broader readiness and coverage lines.
+- Surfaced the cue in both selected-shop summaries and dependency-status panels, with copy that distinguishes paused branches, manager-and-customer-covered branches, manager-only rollout posture, and customer-coverage-without-ownership posture.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context)'`, `5 passed`.
+
+### Next step after shops scope-handoff signal checkpoint
+- Reuse this compact handoff cue pattern on another selected live workspace that still lacks one, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Card-types activation-freshness checkpoint
+- Added a compact read-only `Activation freshness` cue to selected `card-types` review so operators can tell whether activation guidance is already staged on the current Laravel tier shell.
+- Surfaced the cue in both selected-tier summary and dependency-status panels, distinguishing staged draft activation guidance from missing live activation context while keeping import and publish flows gated.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Next step after card-types activation-freshness checkpoint
+- Reuse this tiny persisted-guidance cue pattern on another already-live Laravel form, or add one more compact Galaxy-specific read-only signal on a selected review surface.
+
+### Roles review-freshness checkpoint
+- Added a compact read-only `Review freshness` cue to selected `roles-permissions` review so operators can immediately tell whether the current Laravel access shell already carries saved review context.
+- Surfaced the cue in both selected-role summary and dependency-status panels, distinguishing first-saved review notes from missing review context while keeping matrix, scope, and publish flows gated.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Next step after roles review-freshness checkpoint
+- Reuse this small persisted-review cue pattern on another already-live Laravel form, or add one more compact Galaxy-specific read-only signal on a selected review surface.
+
+### Reports handoff-signal checkpoint
+- Added a compact read-only `Handoff signal` to selected `reports` review so the reporting shell keeps operator handoff expectations visible inside the live workspace instead of implying export-first behavior.
+- Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the Phase 1 direction firmly read-only and parity-first.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
+
+### Next step after reports handoff-signal checkpoint
+- Add one more tiny read-only Galaxy-specific cue on another selected review surface, or return to the next persisted metadata slice on an already-live Laravel form.
+
+### Reports source-status signal checkpoint
+- Added a compact read-only `Source status signal` to selected `reports` review so each live reporting source now reads more like a Galaxy operational surface instead of relying only on broader source and readiness cues.
+- Surfaced the signal in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, while keeping presets, shaping, and exports explicitly gated.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `3 passed`.
+
+### Next step after reports source-status signal checkpoint
+- Reuse this compact reporting-cue pattern on another selected report context, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Card-types status-signal checkpoint
+- Added a compact read-only `Tier status signal` to selected `card-types` review so tier posture now reads more like a Galaxy rollout workspace instead of depending only on broader status and readiness copy.
+- Surfaced the signal in both selected-tier summary and dependency-status panels, with copy that distinguishes active tiers with saved card coverage, active tiers still waiting on visible coverage, draft tiers with visible saved-card context, and draft tiers still waiting on first coverage.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Next step after card-types status-signal checkpoint
+- Reuse this compact status-signal pattern on another selected live workspace that still lacks one, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles-permissions status-signal checkpoint
+- Added a compact read-only `Role status signal` to selected `roles-permissions` review so active versus draft access posture now reads more like a Galaxy access workspace instead of depending only on broader coverage and guidance fields.
+- Surfaced the signal in both selected-role summary and dependency-status panels, with copy that distinguishes draft-safe roles, fully scoped assignment-sensitive live roles, bundle-plus-staff roles still waiting on scope, permission-only live roles, and staffing-only live roles.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_selected_draft_role_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Next step after roles-permissions status-signal checkpoint
+- Reuse this compact status-signal pattern on another selected live workspace that still lacks one, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Shops status-signal checkpoint
+- Added a compact read-only `Shop status signal` to selected `shops` review so branch posture now reads more like Galaxy operations instead of relying only on generic readiness and coverage lines.
+- Surfaced the signal in both selected-shop summary and dependency-status panels, with copy that distinguishes paused branches, active branches with full manager-plus-customer coverage, manager-only rollout posture, and customer-coverage-without-manager posture.
+- Added focused paused-branch review coverage in `AdminDashboardTest` and re-ran `php artisan test --filter='(test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context)'`, `4 passed`.
+
+### Next step after shops status-signal checkpoint
+- Reuse this compact status-signal pattern on another selected live workspace that still lacks a posture-specific cue, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports comparison-signal cue checkpoint
+- Added compact read-only aggregate comparison cues to the live-backed selected `reports` sources so operators can tell when the current review surface already exposes enough mixed Galaxy state for a useful parity walkthrough instead of reading each lower-level cue in isolation.
+- Surfaced a new `Comparison signal` on `cards-by-shop` and `cardholder-status`, plus an `Access mix signal` on `role-access`, in both selected-source summaries and dependency-status panels while keeping presets, shaping, and exports blocked.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_mixed_branch_activity_review_context|test_reports_page_supports_selected_role_access_pending_readiness_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context)'`, `6 passed`.
+
+### Next step after reports comparison-signal cue checkpoint
+- Reuse this compact aggregate-cue pattern on another live-backed review surface, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+## 2026-04-22
+
+### Reports cardholder-review-readiness cue checkpoint
+- Added a compact read-only `Review readiness` cue to the selected `cardholder-status` report source so operators can see whether holder-status triage review is actually ready in the current Laravel-backed reporting shell.
+- Surfaced the cue in both selected-source summary and dependency-status panels for `cardholder-status`, keeping the step parity-safe and avoiding any preset, shaping, or export writes.
+- Added focused selected-source coverage in `AdminDashboardTest` for the `cardholder-status` review context and re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_replaces_preview_catalog_with_model_backed_reporting_sources|test_reports_page_accepts_case_insensitive_selected_source_query)'`, `4 passed`.
+
+### Next step after reports cardholder-review-readiness cue checkpoint
+- Either mirror a similarly compact readiness cue on another live-backed selected report source, or return to the next tiny persisted metadata slice on an already-live Laravel form without widening risky workflows.
+
+### Reports role-access-readiness cue checkpoint
+- Added a compact read-only `Access readiness` cue to selected `role-access` review so operators can see when reporting already has permission-linked active-role posture in live Laravel data instead of only generic role counts.
+- Surfaced the cue in both selected-source summary and dependency-status panels for `role-access`, keeping the step parity-safe and avoiding any assignment, policy-matrix, or export writes.
+- Added focused selected-source coverage in `AdminDashboardTest` for the `role-access` review context.
+
+### Next step after reports role-access-readiness cue checkpoint
+- Mirror one more compact readiness cue on the remaining live-backed report source, or return to the next tiny persisted metadata slice on an already-live Laravel form without widening risky workflows.
+
+### Reports cards-by-shop branch-review-readiness cue checkpoint
+- Added a compact read-only `Branch review readiness` cue to selected `cards-by-shop` review so operators can see when live branch and card coverage are sufficient for branch-total parity checks instead of only seeing generic source counts.
+- Surfaced the cue in both selected-source summary and dependency-status panels for `cards-by-shop`, keeping the step parity-safe and avoiding any query shaping, preset handling, or export writes.
+- Extended the focused selected-source reporting assertions in `AdminDashboardTest` for the `cards-by-shop` review context.
+
+### Next step after reports cards-by-shop branch-review-readiness cue checkpoint
+- Return to the next tiny persisted metadata slice on an already-live Laravel form, or reuse this compact readiness pattern on another Galaxy-specific selected review surface outside reports.
+
+### Roles action-readiness gating checkpoint
+- Tightened selected `roles-permissions` header action blockers so `Review matrix` and `Publish role` now react to the chosen Laravel role's actual permission-bundle and shop-scope readiness instead of showing one generic blocker state.
+- Kept the step Phase 1-safe: the actions remain disabled, but their gating copy now reflects whether the role is draft-only, active without a bundle, active without scope, or already carrying a live bundle.
+- Added focused feature coverage for both a live permission-linked role and a draft role with no bundle so this Galaxy-specific gating stays stable.
+
+### Next step after roles action-readiness gating checkpoint
+- Reuse readiness-driven action gating on another selected live workspace such as `card-types`, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Card-types action-readiness gating checkpoint
+- Tightened selected `card-types` header action blockers so `Import rules` now reacts to live versus draft state plus visible card coverage, and the workspace now exposes a gated `Publish type` action with readiness-specific blocker copy.
+- Kept the step Phase 1-safe: both actions remain disabled, but their reasons now explain whether the current tier is draft-only, live without visible card coverage, or already carrying visible cards in Laravel review.
+- Added focused feature coverage for both a draft tier with linked cards and a live tier without card coverage so this Galaxy-specific gating stays stable.
+
+### Next step after card-types action-readiness gating checkpoint
+- Reuse readiness-driven action gating on another selected live workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Card-types catalog action-gating checkpoint
+- Tightened the default `card-types` catalog header actions so even create-mode now explains why `Import rules` and `Publish type` are still staged, based on whether Laravel has no tiers yet, only draft tiers, or already-live saved tiers.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their blocker copy now makes the card-type workspace feel more like a staged Galaxy rollout surface than a generic starter form.
+- Added focused feature coverage for both the empty catalog and a saved live-tier catalog state so the readiness-driven copy stays stable.
+
+### Next step after card-types catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles catalog action-gating checkpoint
+- Tightened the default `roles-permissions` catalog header actions so saved roles now drive more specific blocker copy for `Review matrix` and `Publish role`, instead of leaving the workspace at generic preview-level gating once Laravel role records exist.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their reasons now reflect whether saved roles already carry permission bundles and visible shop scope in Laravel.
+- Added focused feature coverage for a saved live role with both permission and shop scope so the access-workspace gating stays stable.
+
+### Next step after roles catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cards catalog action-gating checkpoint
+- Tightened the default `cards` catalog header actions so inventory now exposes more specific blocker copy for `Issue card` and `Review blocked cards` once Laravel-backed card records exist, instead of staying at generic preview wording.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their reasons now reflect whether saved inventory already contains draft cards, blocked cards, or only earlier live coverage.
+- Added focused feature coverage for both the empty inventory catalog and a saved inventory state with draft plus blocked cards so the Galaxy-specific gating stays stable.
+
+### Next step after cards catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace such as `shops` or `cardholders`, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cardholders catalog action-gating checkpoint
+- Tightened the default `cardholders` catalog header actions so holder operations now expose more specific blocker copy for `New cardholder` and `Review recent activity` once Laravel-backed holder records exist, instead of staying at generic preview wording.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their reasons now reflect whether saved holder coverage already includes inactive lifecycle cases and linked-card activity context.
+- Added focused feature coverage for both the empty holder catalog and a saved holder state with inactive plus linked-card coverage so the Galaxy-specific gating stays stable.
+
+### Next step after cardholders catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace such as `shops`, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Shops catalog action-gating checkpoint
+- Tightened the default `shops` catalog header actions so branch operations now expose more specific blocker copy for `New shop` and `Review branch scope` once Laravel-backed branch records exist, instead of staying at generic preview wording.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their reasons now reflect whether saved branch coverage already includes paused branches, assigned managers, and visible holder/card scope context.
+- Added focused feature coverage for both the empty branch catalog and a saved branch state with paused plus scoped coverage so the Galaxy-specific gating stays stable.
+
+### Next step after shops catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports catalog export-gating checkpoint
+- Tightened the default `reports` catalog header actions so preset and export work now expose more specific blocker copy based on live Laravel source coverage instead of staying at one generic reporting-preview message.
+- Kept the step Phase 1-safe: `Review export presets` and the new disabled `Export source snapshot` action remain blocked, but their reasons now react to whether the reporting workspace has no live sources, early live sources, or broader multi-source coverage.
+- Added focused feature coverage for both the empty reporting catalog and a live multi-source reporting state so the Galaxy-specific gating stays stable.
+
+### Next step after reports catalog export-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Checks-points catalog action-gating checkpoint
+- Tightened the default `checks-points` catalog header actions so receipt lookup and accrual-gap review now expose more specific blocker copy tied to the previewed fiscal-search and zero-accrual troubleshooting posture instead of staying as neutral starter actions.
+- Kept the step Phase 1-safe: the catalog actions remain disabled, but their reasons now reflect whether the current workspace already carries multi-branch receipt coverage and visible zero-accrual cases that need parity-sensitive handling.
+- Added focused feature coverage so the Galaxy-specific receipt and troubleshooting gating stays visible on the main catalog page.
+
+### Next step after checks-points catalog action-gating checkpoint
+- Reuse this catalog-level gating refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports selected-source export-gating checkpoint
+- Tightened selected `reports` source actions so `Review export presets` and `Export source snapshot` now explain source-specific blockers for cards-by-shop, cardholder-status, and role-access review contexts instead of repeating one generic reporting message.
+- Kept the step Phase 1-safe: selected-source actions remain disabled, but their reasons now reflect the actual Galaxy parity work for branch totals, holder lifecycle summaries, and role/scope access coverage.
+- Added focused feature coverage for all three selected live report sources so these Galaxy-specific reporting blockers stay visible as the catalog becomes less starter-like.
+
+### Next step after reports selected-source export-gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Shops and cardholders selected-action gating checkpoint
+- Tightened selected `shops` and `cardholders` actions so branch-scope review and holder-activity review now expose blocker copy tied to real saved Laravel state instead of repeating one generic message in every selected-record context.
+- Kept the step Phase 1-safe: both actions remain disabled, but their reasons now react to manager plus holder/card coverage on branches and to inactive versus linked-card holder posture.
+- Added focused feature coverage so these selected-record Galaxy-specific blockers stay visible as more admin workspaces move away from starter phrasing.
+
+### Next step after shops and cardholders selected-action gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Checks-points selected-receipt gating checkpoint
+- Tightened selected `checks-points` actions so receipt lookup and accrual-gap review now expose blocker copy tied to the chosen receipt context instead of repeating one generic message in every selected receipt review.
+- Kept the step Phase 1-safe: both actions remain disabled, but their reasons now react to zero-accrual troubleshooting versus general fiscal-search parity work.
+- Added focused feature coverage so receipt-specific Galaxy troubleshooting blockers stay visible in selected review mode.
+
+### Next step after checks-points selected-receipt gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cards selected-action gating checkpoint
+- Tightened selected `cards` actions so blocked-card review now exposes blocker copy tied to the current Laravel inventory state instead of repeating one generic blocked-card message in every selected-card context.
+- Kept the step Phase 1-safe: the selected action remains disabled, but its reason now reacts to blocked versus active or draft inventory posture and whether holder linkage is already visible.
+- Added focused feature coverage so this Galaxy-specific inventory blocker stays visible in selected-card review.
+
+### Next step after cards selected-action gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Services-rules selected-action gating checkpoint
+- Tightened selected `services-rules` actions so priority review and rule publishing now expose blocker copy tied to the chosen rule posture instead of repeating one generic preview-shell message.
+- Kept the step Phase 1-safe: both selected actions remain disabled, but their reasons now react to draft versus active rules and to scoped versus all-shop rule posture.
+- Added focused feature coverage so these Galaxy-specific rule blockers stay visible in selected rule review.
+
+### Next step after services-rules selected-action gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Gifts selected-action gating checkpoint
+- Tightened selected `gifts` actions so stock audit and gift publishing now expose blocker copy tied to the chosen reward posture instead of repeating one generic preview-shell message.
+- Kept the step Phase 1-safe: both selected actions remain disabled, but their reasons now react to paused versus active rewards, zero-stock versus finite-stock posture, and scoped versus all-shop coverage.
+- Added focused feature coverage so these Galaxy-specific reward blockers stay visible in selected gift review.
+
+### Next step after gifts selected-action gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles-permissions selected-action gating checkpoint
+- Tightened selected `roles-permissions` actions so matrix review and role publishing now expose blocker copy tied to assignment-sensitive live role posture instead of stopping at more generic live-bundle wording.
+- Kept the step Phase 1-safe: both selected actions remain disabled, but their reasons now react to roles that already combine permission coverage with assigned staff and scoped shop visibility.
+- Added focused feature coverage so these Galaxy-specific access blockers stay visible in selected role review.
+
+### Next step after roles-permissions selected-action gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Checks-points branch-receipt coverage checkpoint
+- Added focused selected-receipt coverage for the North Shop branch receipt path so the branch-aware blocker copy introduced in `checks-points` stays locked to a real Galaxy troubleshooting context.
+- Kept the step Phase 1-safe: no workflow changed, but the feature test now protects the branch-specific receipt lookup and accrual-review posture from drifting back toward generic wording.
+
+### Next step after checks-points branch-receipt coverage checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Gifts scoped-reward coverage checkpoint
+- Added focused selected-gift coverage for the scoped finite-stock reward path so the Airport Kiosk blocker copy introduced in `gifts` stays locked to a real Galaxy redemption context.
+- Kept the step Phase 1-safe: no reward workflow changed, but the feature test now protects the scoped stock-audit and publish posture from drifting back toward generic wording.
+
+### Next step after gifts scoped-reward coverage checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Services-rules scoped-rule coverage checkpoint
+- Added focused selected-rule coverage for the scoped active rule path so the Central Shop blocker copy introduced in `services-rules` stays locked to a real Galaxy rule-review context.
+- Kept the step Phase 1-safe: no rule workflow changed, but the feature test now protects the scoped priority-review and publish posture from drifting back toward generic wording.
+
+### Next step after services-rules scoped-rule coverage checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Gifts all-shop reward coverage checkpoint
+- Added focused selected-gift coverage for the all-shop unlimited-stock reward path so the `coffee-voucher` blocker copy introduced in `gifts` stays locked to a real Galaxy catalog context.
+- Kept the step Phase 1-safe: no reward workflow changed, but the feature test now protects the all-shop stock-audit and publish posture from drifting back toward generic wording.
+
+### Next step after gifts all-shop reward coverage checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Services-rules all-shop rule coverage checkpoint
+- Added focused selected-rule coverage for the all-shop active rule path so the `birthday-bonus` blocker copy introduced in `services-rules` stays locked to a real Galaxy loyalty-rule context.
+- Kept the step Phase 1-safe: no rule workflow changed, but the feature test now protects the all-shop priority-review and publish posture from drifting back toward generic wording.
+
+### Next step after services-rules all-shop rule coverage checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Checks-points positive-accrual receipt coverage checkpoint
+- Added focused selected-receipt coverage for the positive-accrual path so the `CHK-90421` blocker copy in `checks-points` stays locked to a real Galaxy receipt-review context.
+- Kept the step Phase 1-safe: no receipt workflow changed, but the feature test now protects the positive-accrual lookup and troubleshooting posture from drifting back toward generic wording.
+
+### Next step after checks-points positive-accrual receipt coverage checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles active-no-bundle gating checkpoint
+- Added focused selected-role coverage for the active-but-unbundled access path so the `roles-permissions` blocker copy for a live role without a verified permission bundle stays locked to a real Galaxy access-review posture.
+- Kept the step Phase 1-safe: no role workflow changed, but the feature test now protects the active-no-bundle matrix and publish gating reasons from drifting back toward generic wording.
+
+### Next step after roles active-no-bundle gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Card-types live-no-coverage gating checkpoint
+- Added focused selected-tier coverage for the active-without-card-coverage path so the `card-types` blocker copy for live tiers missing visible cards stays locked to a real Galaxy catalog posture.
+- Kept the step Phase 1-safe: no card-type workflow changed, but the feature test now protects the live-no-coverage import and publish gating reasons from drifting back toward generic wording.
+
+### Next step after card-types live-no-coverage gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cardholders active-linked review checkpoint
+- Added focused selected-holder coverage for the active holder with linked-card path so the `cardholders` review-activity blocker copy stays locked to a real Galaxy lifecycle-review context.
+- Kept the step Phase 1-safe: no holder workflow changed, but the feature test now protects the linked-card active-holder activity posture from drifting back toward generic wording.
+
+### Next step after cardholders active-linked review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cards active-inventory review checkpoint
+- Added focused selected-card coverage for the active inventory path so the `cards` blocked-review copy for live, holder-linked inventory stays locked to a real Galaxy card-review context.
+- Kept the step Phase 1-safe: no card workflow changed, but the feature test now protects the active-inventory blocker and review posture from drifting back toward generic wording.
+
+### Next step after cards active-inventory review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Shops coverage-without-manager review checkpoint
+- Added focused selected-shop coverage for the active branch path where holder and card records exist but manager ownership is still unassigned, so the `shops` scope-review blocker copy stays locked to a real Galaxy branch context.
+- Kept the step Phase 1-safe: no shop workflow changed, but the feature test now protects the visible-coverage/no-manager review posture from drifting back toward generic wording.
+
+### Next step after shops coverage-without-manager review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Shops manager-only review checkpoint
+- Added focused selected-shop coverage for the active branch path where manager ownership is visible but holder/card coverage has not landed yet, so the `shops` scope-review blocker copy stays locked to a real Galaxy ownership-review context.
+- Kept the step Phase 1-safe: no shop workflow changed, but the feature test now protects the manager-only review posture from drifting back toward generic wording.
+
+### Next step after shops manager-only review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cards draft-inventory review checkpoint
+- Added focused selected-card coverage for the draft inventory path so the `cards` blocked-review copy for pre-issuance inventory stays locked to a real Galaxy card-review context.
+- Kept the step Phase 1-safe: no card workflow changed, but the feature test now protects the draft-inventory blocker and review posture from drifting back toward generic wording.
+
+### Next step after cards draft-inventory review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles live-bundle-without-scope gating checkpoint
+- Added focused selected-role coverage for the active permission-bundle path without visible shop scope so the `roles-permissions` blocker copy stays locked to a real Galaxy access-review posture.
+- Kept the step Phase 1-safe: no role workflow changed, but the feature test now protects the live-bundle review and publish gating reasons from drifting back toward generic wording.
+
+### Next step after roles live-bundle-without-scope gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cardholders inactive-linked review checkpoint
+- Added focused selected-holder coverage for the inactive profile path with visible linked cards so the `cardholders` review blocker and linkage posture stay anchored to a real Galaxy holder-review state.
+- Kept the step Phase 1-safe: no holder workflow changed, but the feature test now protects inactive linked-profile wording from drifting back toward generic starter copy.
+
+### Next step after cardholders inactive-linked review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Card-types draft-no-coverage gating checkpoint
+- Added focused selected-tier coverage for the earliest draft card-type posture without visible card coverage so the `card-types` default review blocker stays anchored to a real Galaxy tier-edit context.
+- Kept the step Phase 1-safe: no tier workflow changed, but the feature test now protects the draft-no-coverage action gating from drifting back toward generic starter copy.
+
+### Next step after card-types draft-no-coverage gating checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cardholders active-unlinked review checkpoint
+- Added focused selected-holder coverage for the active profile path before any linked cards exist so the `cardholders` review blocker stays tied to a real Galaxy lookup posture instead of generic placeholder wording.
+- Kept the step Phase 1-safe: no holder workflow changed, but the feature test now protects the active-unlinked review language from drifting as more Laravel-backed holder states come online.
+
+### Next step after cardholders active-unlinked review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Shops manager-linked coverage review checkpoint
+- Added focused selected-shop coverage for the active branch path where manager ownership and holder/card coverage are all visible, so the `shops` full-coverage blocker stays anchored to a real Galaxy branch-review context.
+- Kept the step Phase 1-safe: no shop workflow changed, but the feature test now protects the operator-visible branch scope language from drifting back toward generic starter copy.
+
+### Next step after shops manager-linked coverage review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cards blocked-holder review checkpoint
+- Added focused selected-card coverage for the blocked holder-linked path so the `cards` dispute and replacement blocker stays anchored to a real Galaxy inventory-review posture.
+- Kept the step Phase 1-safe: no card workflow changed, but the feature test now protects the blocked holder-linked review language from drifting back toward generic starter copy.
+
+### Next step after cards blocked-holder review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Cards blocked-unassigned review checkpoint
+- Added focused selected-card coverage for the blocked branch-linked path without holder linkage so the `cards` dispute and replacement blocker stays anchored to a real Galaxy inventory-review state instead of generic wording.
+- Kept the step Phase 1-safe: no card workflow changed, but the feature test now protects the blocked-unassigned review language as more Laravel-backed inventory states are hardened.
+
+### Next step after cards blocked-unassigned review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles assignment-sensitive no-scope review checkpoint
+- Added focused selected-role coverage for the live access path where assigned staff and a permission bundle are visible before any shop scope is linked, so the `roles-permissions` access-review posture stays anchored to a real Galaxy migration state.
+- Kept the step Phase 1-safe: no role workflow changed, but the feature test now protects the no-scope assignment-sensitive wording from drifting back toward generic starter copy.
+
+### Next step after roles assignment-sensitive no-scope review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports role-access pending-readiness checkpoint
+- Added focused selected-source coverage for the `role-access` report when roles are visible but permission-linked active access posture is still missing, so the reporting shell keeps a Galaxy-specific pending-readiness state instead of generic source wording.
+- Kept the step Phase 1-safe: no reporting workflow changed, but the feature test now protects the pending access-readiness language from drifting as more Laravel-backed role data comes online.
+
+### Next step after reports role-access pending-readiness checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Gifts paused finite-stock review checkpoint
+- Added a new Galaxy-specific paused finite-stock reward preview to the `gifts` workspace so the admin shell shows another realistic migration posture instead of relying on generic starter rows.
+- Added focused selected-state coverage for that reward, locking in the helper-driven combination where stock audit stays finite-stock scoped while publish remains paused-specific.
+
+### Next step after gifts paused finite-stock review checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports role-access assignment-signal checkpoint
+- Extended the selected `role-access` reporting source with a live assignment signal so access review now reflects whether staff-role linkage is already visible in Laravel, not just role and permission counts.
+- Kept the step Phase 1-safe: the reporting source remains read-only, but the selected-source summary and dependency state now expose another real Galaxy access-review cue.
+
+### Next step after reports role-access assignment-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports cardholder lifecycle-signal checkpoint
+- Extended the selected `cardholder-status` reporting source with a lifecycle signal backed by Laravel `is_active` holder state, so the review shell now distinguishes whether inactive holder coverage is visible alongside active profiles.
+- Added focused mixed-status coverage to keep this holder-lifecycle cue anchored to a real Galaxy support-review posture instead of drifting back to generic status wording.
+
+### Next step after reports cardholder lifecycle-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports branch activity-signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with a branch activity signal backed by Laravel `shops.is_active`, so report review can distinguish live branches from paused ones instead of showing only aggregate counts.
+- Added focused mixed-branch coverage to keep this comparison posture visible when cards exist across both active and paused branch rows.
+
+### Next step after reports branch activity-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports role state-signal checkpoint
+- Extended the selected `role-access` reporting source with a role state signal so access review now distinguishes live roles from draft access records instead of showing only aggregate role counts.
+- Added focused mixed-role coverage to keep this active-plus-draft access posture visible as the Laravel-backed reporting shell expands.
+
+### Next step after reports role state-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports inventory state-signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with an inventory state signal so branch review now distinguishes active cards from blocked inventory records instead of showing only raw counts.
+- Added focused mixed-inventory coverage to keep this active-plus-blocked reporting posture visible inside the Laravel-backed report shell.
+
+### Next step after reports inventory state-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports permission-bundle signal checkpoint
+- Extended the selected `role-access` reporting source with a permission-bundle signal so access review now distinguishes permission-linked active roles from unbundled active roles instead of relying on aggregate readiness alone.
+- Added focused mixed-bundle coverage to keep this parity-sensitive access posture visible in the Laravel-backed reporting shell.
+
+### Next step after reports permission-bundle signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports card-linkage signal checkpoint
+- Extended the selected `cardholder-status` reporting source with a card linkage signal so status review now distinguishes linked holders from unlinked profiles instead of relying on lifecycle counts alone.
+- Added focused mixed-linkage coverage to keep this linked-versus-unlinked holder posture visible in the Laravel-backed reporting shell.
+
+### Next step after reports card-linkage signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports assignment-scope signal checkpoint
+- Extended the selected `role-access` reporting source with an assignment scope signal so access review now distinguishes shop-linked staff assignments from bootstrap or unscoped assignments.
+- Added focused mixed assignment-scope coverage to keep this scoped-versus-unscoped access posture visible in the Laravel-backed reporting shell.
+
+### Next step after reports assignment-scope signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports holder-branch-activity signal checkpoint
+- Extended the selected `cardholder-status` reporting source with a holder branch activity signal so status review now distinguishes profiles in active branches from holder records parked in paused shops.
+- Added focused mixed branch-activity coverage to keep this active-versus-paused holder posture visible in the Laravel-backed reporting shell.
+
+### Next step after reports holder-branch-activity signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports assignment-linkage signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with an assignment linkage signal so branch review now distinguishes holder-linked cards from unassigned inventory records.
+- Added focused mixed inventory coverage to keep this issued-versus-unassigned card posture visible in the Laravel-backed reporting shell.
+
+### Next step after reports assignment-linkage signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports assignment-branch-activity signal checkpoint
+- Extended the selected `role-access` reporting source with an assignment branch activity signal so access review now distinguishes shop-linked staff in active branches from assignments parked in paused shops.
+- Added focused mixed branch-activity coverage to keep this active-versus-paused assignment posture visible in the Laravel-backed reporting shell.
+
+### Next step after reports assignment-branch-activity signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports staff-coverage signal checkpoint
+- Extended the selected `role-access` reporting source with a staff coverage signal so access review now distinguishes active roles that already carry visible staff assignments from unassigned live access roles.
+- Updated focused mixed-role coverage to keep this assigned-versus-unassigned active-role posture visible in the Laravel-backed reporting shell.
+
+### Next step after reports staff-coverage signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports draft-inventory signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with a draft inventory signal so branch review now distinguishes pre-issuance draft cards from already issued inventory records.
+- Updated focused mixed inventory coverage to keep this draft-versus-issued card posture visible in the Laravel-backed reporting shell.
+
+### Next step after reports draft-inventory signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports draft-staffing signal checkpoint
+- Extended the selected `role-access` reporting source with a draft staffing signal so assigned draft roles no longer read like generic access coverage.
+- Kept the cue read-only and Laravel-backed by reusing loaded role assignment counts, then updated focused report coverage for the draft-assigned access posture.
+
+### Next step after reports draft-staffing signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports linked-card-state signal checkpoint
+- Extended the selected `cardholder-status` reporting source with a linked card state signal so holder review now distinguishes active linked cards from blocked linked cards.
+- Kept the cue read-only and Laravel-backed by reusing the holder-to-cards relationship inside the reporting shell, then updated focused mixed holder coverage.
+
+### Next step after reports linked-card-state signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports linked-card-draft signal checkpoint
+- Extended the selected `cardholder-status` reporting source with a linked card draft signal so holder review now distinguishes pre-issuance linked cards from already issued linked inventory.
+- Kept the cue read-only and Laravel-backed by reusing linked card statuses inside the existing holder reporting shell, then updated focused holder coverage.
+
+### Next step after reports linked-card-draft signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports draft-bundle signal checkpoint
+- Extended the selected `role-access` reporting source with a draft bundle signal so permission-linked draft roles no longer read like generic draft access coverage.
+- Kept the cue read-only and Laravel-backed by reusing loaded role permission counts, then updated focused pending-access coverage.
+
+### Next step after reports draft-bundle signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports activation signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with an activation signal so branch inventory review now distinguishes activated cards from not-yet-activated inventory records.
+- Kept the cue read-only and Laravel-backed by using the real `cards.activated_at` field, then updated focused mixed inventory coverage.
+
+### Next step after reports activation signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports scoped-bundle signal checkpoint
+- Extended the selected `role-access` reporting source with a scoped bundle signal so permission-linked roles with shop-linked assignment context no longer read like generic bundled access coverage.
+- Kept the cue read-only and Laravel-backed by reusing loaded role permissions plus shop-linked assignments, then updated focused access-scope coverage.
+
+### Next step after reports scoped-bundle signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports bundle-branch-activity signal checkpoint
+- Extended the selected `role-access` reporting source with a bundle branch activity signal so permission-linked roles in active versus paused branches no longer read like one generic bundled posture.
+- Kept the cue read-only and Laravel-backed by reusing loaded role permissions plus scoped user branch activity, then updated focused access coverage.
+
+### Next step after reports bundle-branch-activity signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports assigned-bundle signal checkpoint
+- Extended the selected `role-access` reporting source with an assigned bundle signal so permission-linked roles with visible staff assignments no longer read like generic bundled access coverage.
+- Kept the cue read-only and Laravel-backed by reusing loaded role permission and assignment counts, then updated focused bundle coverage.
+
+### Next step after reports assigned-bundle signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports activated-assignment signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with an activated assignment signal so activated holder-linked cards no longer read like generic activation or generic assignment coverage.
+- Kept the cue read-only and Laravel-backed with real `cards.activated_at` plus `card_holder_id`, then updated focused report coverage.
+
+### Next step after reports activated-assignment signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports blocked-assignment signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with a blocked assignment signal so blocked holder-linked cards no longer read like generic blocked inventory or generic assignment coverage.
+- Kept the cue read-only and Laravel-backed with real `cards.status` plus `card_holder_id`, then updated focused branch-report coverage.
+
+### Next step after reports blocked-assignment signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports draft-assignment signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with a draft assignment signal so draft holder-linked cards no longer read like generic draft inventory or generic assignment coverage.
+- Kept the cue read-only and Laravel-backed with real `cards.status` plus `card_holder_id`, then updated focused branch-report coverage.
+
+### Next step after reports draft-assignment signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports paused-branch-assignment signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with a paused branch assignment signal so holder-linked inventory in paused shops no longer reads like generic assignment linkage.
+- Kept the cue read-only and Laravel-backed with real branch activity plus `card_holder_id`, then updated focused branch-report coverage.
+
+### Next step after reports paused-branch-assignment signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports active-branch-assignment signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with an active branch assignment signal so holder-linked inventory in active shops no longer reads like generic assignment linkage.
+- Kept the cue read-only and Laravel-backed with real branch activity plus `card_holder_id`, then updated focused branch-report coverage.
+
+### Next step after reports active-branch-assignment signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports unassigned-branch-activity signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with an unassigned branch activity signal so unassigned inventory in active versus paused branches no longer reads like one generic unassigned posture.
+- Kept the cue read-only and Laravel-backed with real branch activity plus `card_holder_id = null`, then updated focused branch-report coverage.
+
+### Next step after reports unassigned-branch-activity signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports activated-unassigned signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with an activated unassigned signal so activated cards without a linked holder no longer read like generic activation or generic unassigned inventory.
+- Kept the cue read-only and Laravel-backed with real `cards.activated_at` plus `card_holder_id = null`, then updated focused branch-report coverage.
+
+### Next step after reports activated-unassigned signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports blocked-unassigned signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with a blocked unassigned signal so blocked cards without a linked holder no longer read like generic blocked inventory or generic unassigned coverage.
+- Kept the cue read-only and Laravel-backed with real `cards.status` plus `card_holder_id = null`, then updated focused branch-report coverage.
+
+### Next step after reports blocked-unassigned signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports draft-unassigned signal checkpoint
+- Extended the selected `cards-by-shop` reporting source with a draft unassigned signal so draft cards without a linked holder no longer read like generic draft inventory or generic unassigned coverage.
+- Kept the cue read-only and Laravel-backed with real `cards.status` plus `card_holder_id = null`, then updated focused branch-report coverage.
+
+### Next step after reports draft-unassigned signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports linked-card-activation signal checkpoint
+- Extended the selected `cardholder-status` reporting source with a linked card activation signal so activated linked cards no longer read like generic linked-card state or generic holder coverage.
+- Kept the cue read-only and Laravel-backed with real `cards.activated_at` on the already selected linked-card relation, then updated focused holder-report coverage.
+
+### Next step after reports linked-card-activation signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports blocked-holder signal checkpoint
+- Extended the selected `cardholder-status` reporting source with a blocked holder signal so holder profiles carrying blocked linked-card posture no longer read like generic linked-card state.
+- Kept the cue read-only and Laravel-backed from the already loaded linked-card relation, then updated focused holder-report coverage.
+
+### Next step after reports blocked-holder signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports draft-holder signal checkpoint
+- Extended the selected `cardholder-status` reporting source with a draft holder signal so holder profiles carrying draft linked-card posture no longer read like generic linked-card draft coverage.
+- Kept the cue read-only and Laravel-backed from the already loaded linked-card relation, then updated focused holder-report coverage.
+
+### Next step after reports draft-holder signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports active-holder signal checkpoint
+- Extended the selected `cardholder-status` reporting source with an active holder signal so holder profiles carrying active linked-card posture read as a Galaxy-specific lifecycle cue instead of generic linked-card coverage.
+- Kept the cue read-only and Laravel-backed from the already loaded linked-card relation, then updated focused holder-report coverage.
+
+### Next step after reports active-holder signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports activated-holder signal checkpoint
+- Extended the selected `cardholder-status` reporting source with an activated holder signal so holder profiles carrying activated linked-card posture read as a Galaxy-specific lifecycle cue instead of generic card activation coverage.
+- Kept the cue read-only and Laravel-backed from the already loaded linked-card relation, then updated focused holder-report coverage.
+
+### Next step after reports activated-holder signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to the next tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles assignment-branch-activity checkpoint
+- Extended the selected `roles-permissions` review shell with an assignment branch activity signal so assigned staff linked to active versus paused shops read as a Galaxy-specific access cue instead of generic assignment count.
+- Kept the cue read-only and derived from the already eager-loaded `users.shop` relation, then updated focused selected-role coverage.
+
+### Next step after roles assignment-branch-activity checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles permission-branch-activity checkpoint
+- Extended the selected `roles-permissions` review shell with a permission branch activity signal so permission-linked staff in active versus paused branches read as a Galaxy-specific access cue instead of generic bundle presence.
+- Kept the cue read-only and derived from the already eager-loaded `users.shop` relation plus saved permission linkage, then added focused mixed-branch selected-role coverage.
+
+### Next step after roles permission-branch-activity checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
+### Roles scoped-permission signal checkpoint
+- Extended the selected `roles-permissions` review shell with a scoped permission signal so permission-linked roles with visible shop scope read as a Galaxy-specific access cue instead of generic bundle presence plus generic scope coverage.
+- Kept the cue read-only and derived from the already eager-loaded role scope plus saved permission linkage, then updated focused selected-role coverage.
+
+### Next step after roles scoped-permission signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
+### Services-rules status-signal checkpoint
+- Extended selected `services-rules` review previews with an explicit rule status signal so active uplifts and draft exclusions read as Galaxy-specific rollout posture instead of only generic scope/priority notes.
+- Kept the cue read-only and preview-backed, then updated focused selected-rule coverage across draft, scoped active, and all-shop active variants.
+
+### Next step after services-rules status-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
+### Gifts status-signal checkpoint
+- Extended selected `gifts` review previews with an explicit gift status signal so active rewards and paused stock-bound rewards read as Galaxy-specific rollout posture instead of only stock and scope notes.
+- Kept the cue read-only and preview-backed, then updated focused selected-gift coverage across paused, scoped active, and all-shop active variants.
+
+### Next step after gifts status-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
+### Checks-points status-signal checkpoint
+- Extended selected `checks-points` receipt previews with an explicit receipt status signal so positive, zero-accrual, and branch-specific receipts read as Galaxy-specific review posture instead of only receipt and accrual notes.
+- Kept the cue read-only and preview-backed, then updated focused selected-receipt coverage across zero-accrual, branch-aware, and positive-accrual variants.
+
+### Next step after checks-points status-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
+### Cards status-signal checkpoint
+- Extended selected `cards` review context with an explicit card status signal so active, blocked, and draft inventory records read as Galaxy-specific lifecycle posture instead of only readiness and linkage notes.
+- Kept the cue read-only and model-backed, then updated focused selected-card coverage across active, blocked holder-linked, blocked unassigned, and draft variants.
+
+### Next step after cards status-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
+### Cardholders status-signal checkpoint
+- Extended selected `cardholders` review context with an explicit holder status signal so active and inactive profiles read as Galaxy-specific lifecycle posture instead of only readiness and linkage notes.
+- Kept the cue read-only and model-backed, then updated focused selected-holder coverage across inactive, active linked, active unlinked, and inactive linked variants.
+
+### Next step after cardholders status-signal checkpoint
+- Reuse this selected-state readiness refinement on another Galaxy-specific workspace, or return to one more tiny persisted metadata slice on an already-live Laravel form.
+
+### Reports Laravel-input-signal cue checkpoint
+- Added a compact read-only `Laravel input signal` cue to selected `reports` live-source review so operators can see whether the current source already has enough Laravel-backed inputs for on-screen parity checks.
+- Surfaced the cue in both selected-source summaries and dependency-status panels for `cards-by-shop`, `cardholder-status`, and `role-access`, keeping the reports workspace more Galaxy-specific without opening presets, shaping, or export writes.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_replaces_preview_catalog_with_model_backed_reporting_sources|test_reports_page_accepts_case_insensitive_selected_source_query)'`, `3 passed`, after adding the Laravel-input-signal cue.
+
+### Next step after reports Laravel-input-signal cue checkpoint
+- Mirror another compact parity-safe signal on a live-backed selected surface, or return to the next tiny persisted metadata slice on an already-live Laravel form without widening risky workflows.
+
+### Card-types coverage-signal cue checkpoint
+- Added a read-only `Coverage signal` cue to selected `card-types` review so operators can see whether a tier is still draft-only, already live, and whether visible card coverage exists in Laravel.
+- Loaded selected card-type context with `cards_count` and surfaced the cue in both the selected summary and dependency-status panel, keeping the step Phase 1-safe and avoiding any publish, rollout, or rule-import writes.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_replaces_preview_metrics_with_model_backed_counts)'`, `3 passed`, after adding the coverage-signal cue.
+
+### Next step after card-types coverage-signal cue checkpoint
+- Either mirror this compact coverage posture on another selected live-backed surface, or return to the next tiny persisted metadata slice on an already-live Laravel form without opening risky workflows.
+
+### Reports source-signal cue checkpoint
+- Added a read-only `Source signal` cue to selected `reports` live-source review so operators can see source coverage posture in one compact Laravel-backed cue without opening preset handling, query shaping, or export writes.
+- Surfaced the cue in both selected-source summaries and dependency-status panels for the live-backed reporting sources in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.
+- Re-ran `php artisan test --filter='(test_reports_page_supports_selected_live_source_review_context|test_reports_page_replaces_preview_catalog_with_model_backed_reporting_sources)'`, `2 passed`, after adding the source-signal cue.
+
+### Next step after reports source-signal cue checkpoint
+- Return to an already-live Laravel form for the next safe metadata increment, or keep tightening read-only operational cues where they make the admin shell feel more Galaxy-specific without widening writes.
+
+### Roles-permissions coverage-signal cue checkpoint
+- Added a read-only `Coverage signal` cue to selected `roles-permissions` review so operators can see scope, staff, and permission coverage posture in one compact Laravel-backed cue without opening assignment, matrix, or shop-scope writes.
+- Surfaced the cue in both selected-role summaries and dependency-status panels through a small helper in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data)'`, `1 passed`, after adding the coverage-signal cue.
+
+### Next step after roles-permissions coverage-signal cue checkpoint
+- Mirror another narrow read-only operational cue on `reports`, or return to an already-live Laravel form for the next safe metadata increment.
+
+### Shops coverage-signal cue checkpoint
+- Added a read-only `Coverage signal` cue to selected `shops` review so operators can see manager, holder, and card coverage posture in one compact Laravel-backed cue without opening branch writes or ownership mutation flows.
+- Surfaced the cue in both selected-shop summaries and dependency-status panels through a small helper in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.
+- Re-ran `php artisan test --filter='(test_shops_page_surfaces_selected_shop_context_from_laravel_data)'`, `1 passed`, after adding the coverage-signal cue.
+
+### Next step after shops coverage-signal cue checkpoint
+- Mirror one more narrow read-only operational cue on `roles` or `reports`, or return to an already-live Laravel form for the next safe metadata increment.
+
+### Cards and cardholders linkage-signal cue checkpoint
+- Added a shared read-only `Linkage signal` cue to selected `cards` and selected `cardholders` contexts so operator review can see branch/holder linkage posture more directly without opening any lifecycle, reassignment, or profile write paths.
+- Surfaced the cue in both selected-record summaries and dependency-status panels using small backend helpers in `ResourceIndexController`, keeping the step Phase 1-safe and parity-first.
+- Re-ran `php artisan test --filter='(test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data)'`, `2 passed`, after adding the linkage-signal cues.
+
+### Next step after cards and cardholders linkage-signal cue checkpoint
+- Mirror the same kind of narrow read-only operational cue on `shops` or `roles`, or add another safe metadata increment only where a live Laravel form already exists.
+
+### Card-types rollout-note index visibility checkpoint
+- Surfaced the new persisted card-type `rollout_note` slice at the index level by adding a `Rollout notes` metric and a `Rollout note` table column, so rollout handoff context is visible before operators drill into selected-tier review.
+- Kept the step small and safe: it reuses saved rollout-note text on read-only index surfaces and does not widen publish logic, activation behavior writes, or rule-import flows.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_replaces_preview_rows_with_model_backed_edit_links|test_card_types_page_replaces_preview_metrics_with_model_backed_counts|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type)'`, `4 passed`, after exposing card-type rollout-note visibility on the index page.
+
+### Next step after card-types rollout-note index visibility checkpoint
+- Add one more narrow card-type metadata slice only if it stays clearly read-only and parity-safe, or switch back to another already-live Laravel surface for the next safe metadata increment.
+
+### Card-types rollout-note slice checkpoint
+- Added a thin persisted `rollout_note` slice to the shared `card-types` live form, including a nullable `rollout_note` column on `card_types`, request validation, explicit create/update persistence, and selected-tier rendering in summary, timeline, and dependency status.
+- Kept the step Phase 1-safe: the new field captures rollout handoff context without opening publish logic, activation behavior writes, or rule-import flows.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_authenticated_user_can_store_card_type_from_live_admin_form|test_card_type_live_admin_form_returns_operator_friendly_validation_messages|test_authenticated_user_can_update_card_type_from_live_admin_flow|test_card_types_page_shows_update_success_flash_message)'`, `5 passed`, after adding the card-type rollout-note slice.
+
+### Next step after card-types rollout-note slice checkpoint
+- Surface the new rollout note on card-types index-level cues, or return to another already-live Laravel form for the next narrow metadata increment while keeping publish and rule-import writes blocked.
+
+### Roles-permissions assignment-note index visibility checkpoint
+- Surfaced the new persisted role `assignment_note` slice at the index level by adding an `Assignment notes` metric and an `Assignment note` table column, so assignment handoff context is visible before operators drill into selected-role review.
+- Kept the step small and safe: it reuses saved assignment-note text on read-only index surfaces and does not widen role assignment flows, shop-scope mutation, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query)'`, `6 passed`, after exposing role assignment-note visibility on the index page.
+
+### Next step after roles-permissions assignment-note index visibility checkpoint
+- Add one more narrow role metadata slice only if it remains clearly read-only / parity-safe, or switch to another already-live surface for the next safe Laravel-backed metadata increment.
+
+### Roles-permissions assignment-note slice checkpoint
+- Added a thin persisted `assignment_note` slice to the shared `roles-permissions` live form, including a nullable `assignment_note` column on `roles`, request validation, explicit create/update persistence, and selected-role rendering in summary, timeline, and dependency status.
+- Kept the step Phase 1-safe: the new field captures assignment handoff context without opening role assignment flows, shop-scope mutation, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `6 passed`, after adding the role assignment-note slice.
+
+### Next step after roles-permissions assignment-note slice checkpoint
+- Surface the new assignment note on roles-permissions index-level cues, or switch to another already-live Laravel form for the next narrow metadata slice while keeping assignment and matrix writes blocked.
+
+### Roles-permissions access-note index visibility checkpoint
+- Surfaced the new persisted role `access_note` slice at the index level by adding an `Access notes` metric and an `Access note` table column, so access handoff context is visible before operators drill into selected-role review.
+- Kept the step small and safe: it reuses saved access-note text on read-only index surfaces and does not widen assignment flows, shop-scope mutation, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query)'`, `6 passed`, after exposing role access-note visibility on the index page.
+
+### Next step after roles-permissions access-note index visibility checkpoint
+- Add one more narrow role metadata slice while keeping assignment and permission-matrix writes blocked, or return to another live form surface for a similarly safe persisted metadata increment.
+
+### Roles-permissions access-note slice checkpoint
+- Added a thin persisted `access_note` slice to the shared `roles-permissions` live form, including a nullable `access_note` column on `roles`, request validation, explicit create/update persistence, and selected-role rendering in summary, timeline, and dependency status.
+- Kept the step Phase 1-safe: the new field captures operator-facing access handoff context without opening assignment flows, shop-scope mutation, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `6 passed`, after adding the role access-note slice.
+
+### Next step after roles-permissions access-note slice checkpoint
+- Surface the new access note on roles-permissions index-level cues, or add one more narrow role metadata slice while keeping assignment and permission-matrix writes blocked.
+
+### Card-types activation-note index visibility checkpoint
+- Surfaced the new persisted card-type `activation_note` slice at the catalog level by adding an `Activation notes` metric and an `Activation note` table column, so activation handoff context is visible before operators drill into selected-tier edit review.
+- Kept the step small and safe: it reuses saved activation-note text on read-only index surfaces and does not widen publish logic, activation behavior writes, or rule-import flows.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_replaces_preview_rows_with_model_backed_edit_links|test_card_types_page_replaces_preview_metrics_with_model_backed_counts|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type)'`, `4 passed`, after exposing card-type activation-note visibility on the index page.
+
+### Next step after card-types activation-note index visibility checkpoint
+- Add one more narrow persisted card-type metadata field, or return to `roles-permissions` for another safe metadata slice while keeping assignment and permission-matrix writes blocked.
+
+### Card-types activation-note slice checkpoint
+- Added a thin persisted `activation_note` slice to the shared `card-types` live form, including a nullable `activation_note` column on `card_types`, request validation, explicit create/update persistence, and selected-tier rendering in summary, timeline, and dependency status.
+- Kept the step Phase 1-safe: the new field captures operator-facing activation handoff context without opening publish logic, activation behavior writes, or rule-import flows.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_type_live_admin_form_normalizes_slug_and_boolean_input_before_store|test_card_type_live_admin_form_returns_operator_friendly_validation_messages|test_authenticated_user_can_update_card_type_from_live_admin_flow|test_card_types_page_shows_update_success_flash_message)'`, `5 passed`, after adding the card-type activation-note slice.
+
+### Next step after card-types activation-note slice checkpoint
+- Surface the new activation note on card-type index-level cues, or add one more narrow persisted metadata field on `roles-permissions` while keeping assignment and permission-matrix writes blocked.
+
+## 2026-04-21
+
+### Lifecycle cue helper alignment checkpoint
+- Aligned the repeated lifecycle cue plumbing behind shared helper paths in `ResourceIndexController`, so `roles`, `card-types`, `cards`, `cardholders`, and `shops` now resolve shared `Lifecycle freshness` and `Last saved in Laravel` labels from one backend path while preserving each surface's existing review copy.
+- Kept the step intentionally small and safe: no new writes or review surfaces were added, but the Laravel-backed lifecycle metadata layer is now less likely to drift before the next persisted slice.
+- Re-ran `php artisan test --filter='(test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data)'`, `5 passed`, after aligning the lifecycle cue helpers.
+
+### Next step after lifecycle cue helper alignment checkpoint
+- Return to one more narrow persisted metadata slice on an already-live Laravel form surface, or align another repeated review cue family the same way before widening any write scope.
+
+### Shops lifecycle timestamp cue checkpoint
+- Added read-only `Lifecycle freshness` and `Last saved in Laravel` cues to the selected shop context, including summary rows, timeline events, and dependency-status entries, so operators can review whether a saved branch is still in its first Laravel-backed state.
+- Kept the step Phase 1-safe: it reuses existing Laravel timestamps for branch review context only and does not widen branch writes, manager reassignment, or shop-scope mutation flows.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_replaces_preview_rows_with_model_backed_shop_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query)'`, `4 passed`, after adding the shop lifecycle timestamp cues.
+
+### Next step after shops lifecycle timestamp cue checkpoint
+- Start aligning the repeated lifecycle cue logic behind shared helper paths across roles, card-types, cards, cardholders, and shops, or return to one more narrow persisted metadata slice on an already-live Laravel form.
+
+### Cardholders lifecycle timestamp cue checkpoint
+- Added read-only `Lifecycle freshness` and `Last saved in Laravel` cues to the selected cardholder context, including summary rows, timeline events, and dependency-status entries, so operators can review whether a saved holder profile is still in its first Laravel-backed state.
+- Kept the step Phase 1-safe: it reuses existing Laravel timestamps for cardholder review context only and does not widen holder search, profile writes, or recent-activity sourcing.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_replaces_preview_rows_with_model_backed_holder_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query)'`, `4 passed`, after adding the cardholder lifecycle timestamp cues.
+
+### Next step after cardholders lifecycle timestamp cue checkpoint
+- Reuse the same read-only lifecycle metadata pattern on `shops`, or start aligning the repeated lifecycle cue logic behind shared helper paths before the next persisted slice.
+
+### Cards lifecycle timestamp cue checkpoint
+- Added read-only `Lifecycle freshness` and `Last saved in Laravel` cues to the selected card context, including summary rows, timeline events, and dependency-status entries, so operators can review whether a saved inventory record is still in its first Laravel-backed state.
+- Kept the step Phase 1-safe: it reuses existing Laravel timestamps for card review context only and does not widen card lifecycle writes, blocked-card handling, or replacement flows.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query)'`, `5 passed`, after adding the card lifecycle timestamp cues.
+
+### Next step after cards lifecycle timestamp cue checkpoint
+- Reuse the same read-only lifecycle metadata pattern on `cardholders` or `shops`, or align nearby card review cues behind shared helper paths before the next persisted slice.
+
+### Card-types lifecycle timestamp cue checkpoint
+- Added read-only `Lifecycle freshness` and `Last saved in Laravel` cues to the selected card-type context, including summary rows, timeline events, and dependency-status entries, so operators can review whether a saved tier is still in its first Laravel-backed state.
+- Kept the step Phase 1-safe: it reuses existing Laravel timestamps for card-type review context only and does not widen publish logic, activation behavior, or rule-import writes.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_replaces_preview_rows_with_model_backed_edit_links|test_card_types_page_replaces_preview_metrics_with_model_backed_counts)'`, `3 passed`, after adding the card-type lifecycle timestamp cues.
+
+### Next step after card-types lifecycle timestamp cue checkpoint
+- Align one more safe card-type review cue behind shared helpers, or reuse the same read-only lifecycle metadata pattern on another live Laravel-backed admin surface.
+
+### Card-types review-note index visibility checkpoint
+- Surfaced the new persisted card-type `review_note` slice at the catalog level by adding a `Reviewed tiers` metric and a `Review note` table column, so parity-sensitive tier notes are visible before operators drill into selected-tier edit context.
+- Kept the step small and safe: it reuses saved note text on read-only index surfaces and does not widen publish logic, activation behavior, or rule-import writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_replaces_preview_rows_with_model_backed_edit_links|test_card_types_page_replaces_preview_metrics_with_model_backed_counts|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type)'`, `4 passed`, after exposing card-type review-note visibility on the index page.
+
+### Next step after card-types review-note index visibility checkpoint
+- Add one more narrow card-type review metadata cue, or reuse the same persisted metadata pattern on another Galaxy admin surface that already has a live Laravel form.
+
+### Card-types persisted review-note slice checkpoint
+- Reused the new textarea-backed live form pattern on `card-types` by adding a thin persisted `review_note` slice, including a nullable column on `card_types`, request validation, explicit create/update persistence, and selected-tier rendering in summary, timeline, and dependency status.
+- Added operator-friendly max-length validation messaging for the new card-type review note and extended focused card-type feature coverage across create, update, selected edit context, and validation paths.
+- Re-ran `php artisan test --filter='(test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_type_live_admin_form_normalizes_slug_and_boolean_input_before_store|test_card_type_live_admin_form_returns_operator_friendly_validation_messages|test_card_type_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_card_type_from_live_admin_flow|test_card_type_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_card_types_page_shows_update_success_flash_message|test_card_type_update_returns_validation_errors_for_invalid_payload|test_card_type_update_returns_operator_friendly_validation_messages|test_card_type_update_validation_redirects_to_selected_index_without_referrer|test_card_type_update_validation_keeps_selected_edit_context_after_redirect|test_card_type_update_validation_keeps_operator_input_in_selected_edit_mode)'`, `12 passed`, after adding the card-type review-note slice.
+
+### Next step after card-types persisted review-note slice checkpoint
+- Surface the new card-type review note on index-level catalog cues, or reuse the same textarea-backed persisted metadata pattern on another Galaxy admin surface.
+
+### Roles-permissions review-note validation hardening checkpoint
+- Hardened the new persisted `review_note` slice with an operator-friendly max-length validation message, so textarea-backed role notes fail with workspace-specific guidance instead of generic validation copy.
+- Added focused create and update validation coverage for overlong review notes, preserving the existing `#live-form` redirect behavior on both POST and PATCH flows.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after hardening review-note validation.
+
+### Next step after roles-permissions review-note validation hardening checkpoint
+- Reuse the textarea-backed persisted metadata pattern on another Galaxy admin surface, or add one more narrow role metadata slice while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions review-note index visibility checkpoint
+- Surfaced the new persisted role `review_note` slice at the index level by adding a `Reviewed roles` metric and a `Review note` table column, so saved parity notes are visible before operators drill into selected-role context.
+- Kept the step small and safe: it reuses the saved note text in read-only index surfaces and does not widen assignment, scope, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after exposing review-note visibility on the index page.
+
+### Next step after roles-permissions review-note index visibility checkpoint
+- Reuse the new textarea-backed persisted metadata pattern on another Galaxy admin surface, or add one more narrow persisted role review field without opening assignment and permission-matrix writes.
+
+### Roles-permissions persisted review-note slice checkpoint
+- Added a thin persisted `review_note` slice to the shared `roles-permissions` live form, including textarea support in the shared resource form partial, a new nullable `review_note` column on `roles`, request validation, and create/update persistence.
+- Surfaced the saved note back into selected-role summary, timeline, and dependency status so Phase 1 operators can record parity-sensitive role context without opening assignment or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the persisted review-note slice.
+
+### Next step after roles-permissions persisted review-note slice checkpoint
+- Add another thin persisted role metadata slice, or start reusing the shared textarea-backed live form pattern on another Galaxy admin surface.
+
+### Roles-permissions last-saved timestamp cue checkpoint
+- Added a live `Last saved in Laravel` cue to the selected-role summary, timeline, and dependency status so the review workspace now exposes a concrete saved timestamp alongside the newer lifecycle freshness wording.
+- Kept the step Phase 1-safe: it reuses existing Laravel timestamps for operator-facing review context only and does not open any new access, scope, assignment, or permission writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the last-saved timestamp cue.
+
+### Next step after roles-permissions last-saved timestamp cue checkpoint
+- Turn one safe role review-metadata cue or scope-related cue into the next thin persisted slice, while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions lifecycle cue helper alignment checkpoint
+- Aligned the new lifecycle-freshness cues behind shared helper methods in `ResourceIndexController` so selected-role summary, timeline, and dependency status all resolve lifecycle wording from one backend path.
+- Kept the step intentionally small and safe: no new writes or surfaces were added, but the role lifecycle metadata layer is now less likely to drift before the next persisted slice.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after aligning the lifecycle helpers.
+
+### Next step after roles-permissions lifecycle cue helper alignment checkpoint
+- Turn one safe role review-metadata cue or scope-related cue into the next thin persisted slice, while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions lifecycle freshness cue checkpoint
+- Added a live `Lifecycle freshness` cue to the selected-role summary, timeline, and dependency status so the review workspace now shows whether a saved role is still in its first Laravel-created state or has already been updated.
+- Kept the step Phase 1-safe: it reuses existing role timestamps for review metadata only and does not open any new access, scope, or permission writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the lifecycle freshness cue.
+
+### Next step after roles-permissions lifecycle freshness cue checkpoint
+- Turn one safe role review-metadata cue or scope-related cue into the next thin persisted slice, while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions scope coverage helper alignment checkpoint
+- Aligned the new scope-coverage cues behind shared helper methods in `ResourceIndexController` so summary, dependency status, and timeline coverage messaging keep resolving from the same backend source.
+- Kept the step intentionally small and safe: no new writes or surfaces were added, but the role scope-coverage layer is now less likely to drift before the next persisted access slice.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after aligning the scope-coverage helpers.
+
+### Next step after roles-permissions scope coverage helper alignment checkpoint
+- Turn one safe scope-related cue or nearby review metadata cue into the next thin persisted slice, while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions scope coverage timeline checkpoint
+- Added a selected-role timeline event for live scope coverage so the review workspace now records not just that shop scope exists, but how much branch coverage Laravel currently exposes for that role.
+- Kept the change Phase 1-safe: it reuses the existing scoped-shop read context and does not open any new scope mutation, assignment, or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the scope coverage timeline cue.
+
+### Next step after roles-permissions scope coverage timeline checkpoint
+- Turn one safe scope-related cue or nearby review metadata cue into the next thin persisted slice, while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions scope coverage cue checkpoint
+- Added a live `Scope coverage` cue to the selected-role summary and dependency status so the review workspace now shows how many shops are currently visible through Laravel scope, not just whether scope posture is pending or visible.
+- Kept the step small and Phase 1-safe: it reuses the existing scoped-shop read context and does not open any new scope mutation or assignment writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the scope coverage cue.
+
+### Next step after roles-permissions scope coverage cue checkpoint
+- Turn a safe scope-related cue or nearby review metadata cue into the next thin persisted slice, while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions scope cue helper alignment checkpoint
+- Extracted shared role scope-rollout helpers in `ResourceIndexController` so the selected-role live form, summary, timeline, and dependency status all resolve scope posture from one backend source of truth.
+- Kept the step small and safe: no behavior was widened, but the new scope cues are now less likely to drift as the next thin access slice is added.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after aligning the role scope helpers.
+
+### Next step after roles-permissions scope cue helper alignment checkpoint
+- Turn one safe scope-related cue or adjacent review metadata cue into the next thin persisted slice, while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions scope posture context cue checkpoint
+- Surfaced shop-scope posture as its own selected-role summary row, timeline event, and dependency-status cue so the next safe access slice is visible in the review workspace without opening scope writes yet.
+- Kept the step narrow and Phase 1-safe: the workspace now explains whether scope rollout is visible or still pending from live Laravel data, but actual scope mutation remains blocked.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the scope posture context cues.
+
+### Next step after roles-permissions scope posture context cue checkpoint
+- Turn safe scope posture or adjacent review metadata into the next thin persisted slice while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions status context cue checkpoint
+- Followed up the new persisted role status slice by surfacing role status as its own selected-role timeline event and dependency-status cue, so active versus draft posture is visible in the review workspace without relying only on the form fields.
+- Kept the change narrow and Phase 1-safe: it reuses the saved `is_active` state for operator-facing context but does not open any new assignment or permission-matrix writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the status context cues.
+
+### Next step after roles-permissions status context cue checkpoint
+- Add the next thin role slice around safe scope posture or review metadata, while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions persisted status slice checkpoint
+- Turned the role `Laravel status` cue into the next thin persisted write slice by adding `is_active` to the `roles` table, wiring it through the shared role live form, and persisting it in the minimal role create/update controllers.
+- Shifted roles-permissions live metrics, table status labels, and selected-role status summary to use the saved Laravel role status instead of inferring active/draft only from permission presence.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the persisted status slice.
+
+### Next step after roles-permissions persisted status slice checkpoint
+- Build the next thin role write slice around safe scope posture or review metadata, while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions selected-role identity cue checkpoint
+- Added a visible `Role slug` summary row and a `Create new role` action inside selected-role context so the first live identity flow is easier to follow from the review state without backing out of the workspace.
+- Kept the step safe and narrow: no new writes were opened, but the selected-role experience now reflects the minimal Laravel-backed identity slice more clearly.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the selected-role identity cues.
+
+### Next step after roles-permissions selected-role identity cue checkpoint
+- Turn one of the scaffolded role form cues, likely status or scope posture, into the next thin persisted write slice while keeping assignment and permission-matrix flows blocked.
+
+### Roles-permissions scaffolded next-slice form cues checkpoint
+- Expanded the minimal `roles-permissions` live form with disabled `Scope rollout` and `Publish posture` selectors so the shared Laravel-backed form now exposes the next Phase 1 authorization slices without actually opening new writes yet.
+- Wired selected-role edit mode to resolve those scaffold fields from live Laravel context, so roles with linked shops or assignments now show parity-sensitive or assignment-sensitive posture directly inside the form.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the scaffolded form cues.
+
+### Next step after roles-permissions scaffolded next-slice form cues checkpoint
+- Convert one of the scaffold-only role fields, likely status or scope posture, into the next thin persisted write slice while keeping assignment and permission-matrix writes blocked.
+
+### Roles-permissions copy alignment checkpoint
+- Updated the `roles-permissions` workspace copy so it no longer describes the whole surface as preview-only now that the first minimal Laravel-backed role create/update flow is live.
+- Narrowed the remaining-gap language around publishing, assignment, and permission-matrix work so Phase 1 operators can see that role identity writes exist while broader authorization changes are still gated.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after aligning the copy.
+
+### Next step after roles-permissions copy alignment checkpoint
+- Add the next thin role write slice around status or scope scaffolding, while keeping permission-matrix editing blocked.
+
+### Roles-permissions write feedback checkpoint
+- Threaded the latest backend write result into the selected-role timeline and dependency status, so successful role create/update flows now leave visible in-workspace evidence beyond the global flash banner.
+- Generalized the card-type-only write-feedback helpers into shared resource-page helpers so the same write-adjacent feedback pattern can be reused across minimal Laravel-backed Phase 1 forms.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after wiring the role write feedback.
+
+### Next step after roles-permissions write feedback checkpoint
+- Reuse the generalized write-feedback pattern on another minimal live form, or add the next thin role write slice around status/scope scaffolding.
+
+### Roles-permissions live form wiring checkpoint
+- Hooked the shared `roles-permissions` preview shell into the new minimal Laravel-backed role write path by adding a config-driven `liveForm` for create mode and switching it into selected-role edit mode inside the resource controller.
+- Kept the slice intentionally narrow and safe for Phase 1: the live form now handles only role identity, `name` plus normalized unique `slug`, while scope and permission-matrix surfaces remain review-only.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after wiring the roles live form.
+
+### Next step after roles-permissions live form wiring checkpoint
+- Add the next thin role write slice around status/scope scaffolding, or move to another minimal write path that can reuse the same live-form pattern.
+
+### Roles-permissions minimal write-path foundation checkpoint
+- Added the first thin Laravel-backed create/update flow for `roles-permissions`, including role store/update controllers, request validation, selected-role redirects, and backend status flashes.
+- Kept the slice intentionally narrow and safe for Phase 1 by supporting only minimal role identity persistence, `name` plus normalized unique `slug`, without opening permission-matrix editing or shop-assignment writes yet.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_role_live_admin_form_returns_operator_friendly_validation_messages|test_role_create_validation_redirects_to_index_without_referrer|test_authenticated_user_can_update_role_from_minimal_live_admin_flow|test_role_update_allows_reusing_current_slug_but_rejects_other_existing_slug|test_roles_permissions_page_shows_update_success_flash_message)'`, `12 passed`, after adding the minimal role write path.
+
+### Next step after roles-permissions minimal write-path foundation checkpoint
+- Hook the preview role form to the new minimal role write path, or add the next thin write slice around role status/scope scaffolding before permission matrix editing.
+
+### Shops operational readiness cue checkpoint
+- Added an `Operational readiness` cue to the Laravel-backed selected-shop review context, so the shops surface now exposes a simple Galaxy-style branch posture instead of relying only on generic summary and dependency fields.
+- The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded shop status, manager linkage, and visible branch coverage, with states such as `active branch, operator-visible coverage live` and `paused branch, recovery review only`.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_replaces_preview_rows_with_model_backed_shop_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query)'`, `4 passed`, after adding the shops readiness cue.
+
+### Next step after shops operational readiness cue checkpoint
+- Move from read-side operator cues toward the next thin write-path foundation slice, or add one more small Laravel-backed posture cue only if it unlocks a clearer Phase 1 workflow.
+
+### Cardholders operational readiness cue checkpoint
+- Added an `Operational readiness` cue to the Laravel-backed selected-holder review context, so the cardholders surface now exposes a simple Galaxy-style profile posture instead of relying only on generic summary and dependency fields.
+- The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded holder status and linked-card counts, with states such as `inactive profile, review only` and `linked profile, operator-visible`.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cardholders_placeholder_page|test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_replaces_preview_rows_with_model_backed_holder_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query)'`, `5 passed`, after adding the cardholders readiness cue.
+
+### Next step after cardholders operational readiness cue checkpoint
+- Add one more Laravel-backed operator cue to shops, or move toward the next thin write-path foundation slice.
+
+### Cards operational readiness cue checkpoint
+- Added an `Operational readiness` cue to the Laravel-backed selected-card review context, so the cards surface now exposes a simple Galaxy-style inventory posture instead of relying only on generic summary and dependency fields.
+- The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded card status and holder linkage, with states such as `blocked inventory, operator review only` and `issued inventory, parity-sensitive`.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query)'`, `5 passed`, after adding the cards readiness cue.
+
+### Next step after cards operational readiness cue checkpoint
+- Add one more Laravel-backed operator cue to cardholders or shops, or move toward the next thin write-path foundation slice.
+
+### Roles-permissions operational readiness cue checkpoint
+- Moved beyond the dashboard and added an `Operational readiness` cue to the Laravel-backed selected-role review context in `roles-permissions`, so role review now surfaces a simple Galaxy-style operator posture instead of only generic summary fields.
+- The cue stays intentionally small and safe in Phase 1 by deriving from already-loaded role assignments and permission counts, with states such as `assignment-sensitive live role` and `draft-safe role shell`.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_placeholder_page|test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query)'`, `6 passed`, after adding the roles-permissions readiness cue.
+
+### Next step after roles-permissions operational readiness cue checkpoint
+- Add one more small Laravel-backed operator cue to a non-dashboard surface such as cards or roles-permissions, or move toward the next thin write-path foundation slice.
+
+### Dashboard mirrored partial-branch follow-up checkpoint
+- Added focused coverage for the mirrored partial branch state where cards exist before cardholders, so the assigned-branch snapshot now explicitly protects the backfill guidance for that asymmetrical setup path too.
+- The dashboard continues to steer that branch state toward `Review assigned branch cards and backfill the first visible cardholder record.`, while exposing the latest card shortcut and withholding the missing holder shortcut.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture|test_unscoped_dashboard_does_not_show_shop_scope_summary)'`, `9 passed`, after adding the mirrored partial-branch coverage.
+
+### Next step after dashboard mirrored partial-branch follow-up checkpoint
+- Move to the next Phase 1 surface outside the dashboard, since the assigned-branch snapshot now covers empty, partial, live, and paused operating states more explicitly.
+
+### Dashboard partial-branch follow-up cue checkpoint
+- Tightened the assigned-branch `Suggested follow-up` logic for partial setup so scoped branches with cardholders but no cards no longer fall straight through to the generic review guidance.
+- The dashboard now points that partial branch state toward the concrete next Phase 1 action, `Open assigned branch card setup and issue the first live card.`, which makes the snapshot more operational and less starter-like.
+- Added a focused scoped dashboard test for the partial branch state and re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture|test_unscoped_dashboard_does_not_show_shop_scope_summary)'`, `8 passed`, after the follow-up cue update.
+
+### Next step after dashboard partial-branch follow-up cue checkpoint
+- Add the mirrored partial-branch cue for cards-without-cardholders, or move to the next Phase 1 surface outside the dashboard.
+
+### Dashboard branch coverage cue checkpoint
+- Added a `Branch coverage` indicator to the assigned-branch snapshot so the dashboard now shows whether the branch already has both core Phase 1 record types live, only one side live, or no branch records yet.
+- Kept the cue intentionally simple and safe by deriving it from the existing scoped branch counts that were already being loaded for the snapshot.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture|test_unscoped_dashboard_does_not_show_shop_scope_summary)'`, `7 passed`, after adding the branch coverage cue.
+
+### Next step after dashboard branch coverage cue checkpoint
+- Add one more small operational cue, or move to the next Phase 1 surface outside the dashboard now that the dashboard reads more like a Galaxy branch console.
+
+### Dashboard branch readiness cue checkpoint
+- Added a dedicated `Branch readiness` indicator to the assigned-branch snapshot so the dashboard reads a little more like a Galaxy operational console instead of just a generic Laravel summary block.
+- The readiness cue stays intentionally simple and safe in Phase 1: active branches now surface `setup pending`, `setup in progress`, or `review-ready`, while paused branches surface `paused`.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture|test_unscoped_dashboard_does_not_show_shop_scope_summary)'`, `7 passed`, after adding the branch readiness cue.
+
+### Next step after dashboard branch readiness cue checkpoint
+- Add one more small branch-aware operational cue to the dashboard, or move to the next Phase 1 surface outside the dashboard now that the scoped shell is less starter-like.
+
+### Dashboard snapshot scoped-shop helper reuse checkpoint
+- Reused the shared `activeScopedShop` helper in `assignedBranchSnapshot`, so the snapshot loader now resolves its assigned active branch through the same shared gate already used by the scoped summary, live-entry, and latest-work paths.
+- Kept the step low-risk and behavior-safe by preserving the current snapshot content and behavior while removing one more inline scoped shop lookup.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the snapshot scoped-shop helper reuse.
+
+### Next step after dashboard snapshot scoped-shop helper reuse checkpoint
+- Move to the next small Phase 1 behavior step beyond dashboard helper cleanup, since the main scoped dashboard surfaces now share the same active-branch gate.
+
+### Dashboard scope-summary scoped-shop helper reuse checkpoint
+- Reused the shared `activeScopedShop` helper in `dashboardScopeSummary`, so the scoped summary card now resolves its assigned active branch through the same gate already used by the live-entry and latest-work scoped paths.
+- Kept the step low-risk and behavior-safe by preserving the current summary copy while removing one more inline scoped shop lookup.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the scope-summary scoped-shop helper reuse.
+
+### Next step after dashboard scope-summary scoped-shop helper reuse checkpoint
+- Reuse `activeScopedShop` in one more scoped dashboard rule such as the assigned-branch snapshot loader, or move to the next small Phase 1 behavior step beyond dashboard helper cleanup.
+
+### Dashboard live-entry scoped-shop helper reuse checkpoint
+- Reused the shared `activeScopedShop` helper in `liveReviewEntryPoints`, so the scoped live-entry path now resolves its assigned active branch through the same shared gate already used by the latest-work setup path.
+- Kept the step low-risk and behavior-safe by preserving the current scoped and unscoped entry labels while removing one more inline shop lookup.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the live-entry scoped-shop helper reuse.
+
+### Next step after dashboard live-entry scoped-shop helper reuse checkpoint
+- Reuse `activeScopedShop` in one more scoped dashboard rule, or move to the next small Phase 1 behavior step beyond dashboard helper cleanup.
+
+### Dashboard active-scoped-shop helper cleanup checkpoint
+- Extracted the repeated scoped-and-active shop guard used by the latest-work setup path into an `activeScopedShop` helper, so the scoped latest-setup logic now reads through one shared gate before applying empty-state predicates.
+- Kept the step low-risk and behavior-safe by preserving the current latest-work setup/review behavior while removing one more inline scope check.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the active-scoped-shop helper cleanup.
+
+### Next step after dashboard active-scoped-shop helper cleanup checkpoint
+- Reuse the new active scoped shop helper in one more dashboard rule, or move to the next small Phase 1 behavior step beyond dashboard helper cleanup.
+
+### Dashboard scoped entry predicate cleanup checkpoint
+- Reused the shared `shopHasNoRecords` predicate for the scoped cardholder and card live-entry setup rules, so all three scoped entry labels now read through the same empty-state predicate family instead of mixing helper calls with inline count checks.
+- Kept the step low-risk and behavior-safe by preserving the current scoped entry labels and routes while removing the remaining inline count comparisons in the entry-label trio.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the scoped entry predicate cleanup.
+
+### Next step after dashboard scoped entry predicate cleanup checkpoint
+- Reuse shared predicates in one more latest-work rule, or move to the next small Phase 1 behavior step now that the scoped entry-label cluster is cleaner.
+
+### Dashboard scoped shop-entry helper reuse checkpoint
+- Reused the shared `shopHasNoRecords` predicate for the scoped shop live-entry setup rule, so the `Set up assigned branch` versus `Review live shops in assigned branch` switch now reads through the same shop-level empty-state check already used elsewhere in the dashboard.
+- Kept the step low-risk and behavior-safe by preserving the current scoped shop entry behavior while removing one more inline count comparison.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the scoped shop-entry helper reuse.
+
+### Next step after dashboard scoped shop-entry helper reuse checkpoint
+- Reuse shared predicates in one more scoped entry/latest-work rule, or move to the next small Phase 1 behavior step beyond dashboard helper cleanup.
+
+### Dashboard empty-branch CTA helper cleanup checkpoint
+- Reused the shared `branchSetupPending` helper for the assigned-branch primary CTA so the setup-versus-review button choice now reads through the same setup-state predicate already used by the empty-branch activity, freshness, posture, and follow-up cues.
+- Kept the step low-risk and behavior-safe by preserving the current `Open assigned branch setup` versus `Open assigned branch review` behavior while removing one more inline condition.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty-branch CTA helper cleanup.
+
+### Next step after dashboard empty-branch CTA helper cleanup checkpoint
+- Apply the helper-driven setup-first pattern to one more branch-aware dashboard rule outside the assigned-branch snapshot, or move to the next small Phase 1 behavior step beyond dashboard posture cleanup.
+
+### Dashboard empty-branch setup helper cleanup checkpoint
+- Extracted the repeated empty-branch setup-state check into a shared `branchSetupPending` helper so the setup-first snapshot cluster now reads through one condition across activity, freshness, posture, and follow-up cues.
+- Kept the step low-risk and behavior-safe by preserving the current setup-first wording, routes, authorization, and live/paused branch behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty-branch setup helper cleanup.
+
+### Next step after dashboard empty-branch setup helper cleanup checkpoint
+- Reuse the helper-driven setup-first pattern in another branch-aware dashboard rule, or move to the next small Phase 1 behavior step outside the assigned-branch snapshot.
+
+### Dashboard empty-branch posture cue checkpoint
+- Tightened the empty active-branch `Branch posture` cue from `active branch, no live activity yet` to `active branch, setup pending`, so the snapshot posture now matches the setup-first language already used by the activity, freshness, follow-up, and CTA cues.
+- Kept the step low-risk by changing only the empty-branch posture wording while preserving the same routes, authorization, and live/paused branch behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty-branch posture cue update.
+
+### Next step after dashboard empty-branch posture cue checkpoint
+- Move to another small branch-aware behavior step outside the empty-branch snapshot, or extract a tiny helper for the setup-first empty-branch cue cluster now that several snapshot labels align around the same posture.
+
+### Dashboard empty-branch freshness cue checkpoint
+- Tightened the empty active-branch snapshot cue for `Activity freshness` from a neutral `unknown` state to `setup stage`, so the branch summary now reinforces that the branch is still in first-pass setup rather than merely missing timestamp data.
+- Kept the step low-risk by changing only the empty-branch freshness wording while preserving the same routes, authorization, and live/paused branch behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty-branch freshness cue update.
+
+### Next step after dashboard empty-branch freshness cue checkpoint
+- Align one more empty-branch snapshot cue with the setup-first posture, or move to another small branch-aware behavior step outside the snapshot summary now that activity source and freshness both read as setup-state signals.
+
+### Dashboard empty-branch activity cue checkpoint
+- Tightened the empty active-branch snapshot cue for `Latest activity source` from `No branch activity yet` to `Setup pending`, so the branch summary now reinforces the setup-first posture instead of describing the branch as a passive absence state.
+- Kept the step low-risk by changing only the empty-branch activity summary copy while preserving the same routes, authorization, and live/paused branch behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty-branch activity cue update.
+
+### Next step after dashboard empty-branch activity cue checkpoint
+- Align one more empty-branch snapshot cue with the setup-first posture, or move to another small branch-aware behavior step outside the snapshot summary.
+
+### Dashboard empty-branch follow-up posture checkpoint
+- Tightened the empty active-branch `Suggested follow-up` copy so it now points operators to `Open assigned branch setup and create the first live records`, matching the existing setup-first CTA and empty-branch shortcut posture.
+- Kept the step low-risk by changing only branch snapshot guidance while preserving the same routes, authorization, and paused/live branch behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty-branch follow-up posture update.
+
+### Next step after dashboard empty-branch follow-up posture checkpoint
+- Consider aligning one more branch snapshot cue with the setup-first empty-branch posture, or move to another small branch-aware behavior step outside the snapshot follow-up copy.
+
+### Dashboard shared live-entry helper cleanup checkpoint
+- Extracted the scoped shared-surface `Live review entry points` links into a small helper so the new shared card type, access role, and reporting labels no longer repeat raw workspace-link composition inline.
+- Kept the step low-risk and behavior-safe by preserving the same scoped labels, routes, and unscoped baseline behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the shared live-entry helper cleanup.
+
+### Next step after dashboard shared live-entry helper cleanup checkpoint
+- Reuse the new helper pattern for another scoped dashboard surface, or move to the next small branch-aware behavior step now that `Live review entry points` is tidier.
+
+### Dashboard scoped shared-surface labels checkpoint
+- Tightened the shop-scoped `Live review entry points` labels for card types, access roles, and reporting so those links now explicitly read as shared review surfaces while branch-scoped shop, cardholder, and card links keep their assigned-branch wording.
+- Kept the step low-risk by changing only scoped live-entry labels while preserving routes and the unscoped dashboard baseline.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the scoped shared-surface label update.
+
+### Next step after dashboard scoped shared-surface labels checkpoint
+- Consider extracting the scoped shared-surface live-entry labels into a helper, or move to another small branch-aware behavior step outside `Live review entry points` now that scoped review wording is clearer.
+
+### Dashboard scope-summary alignment checkpoint
+- Updated the scoped `Current review scope` summary so it now explicitly matches the newer branch-specific review wording, clarifying that latest-work shortcuts and live review links stay anchored to the assigned branch with branch-specific phrasing during Phase 1.
+- Kept the step low-risk by changing only explanatory scoped dashboard copy while preserving the same routes, records, and branch-aware behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the scope-summary alignment update.
+
+### Next step after dashboard scope-summary alignment checkpoint
+- Move back to a small branch-aware behavior step now that the scoped dashboard summaries, notes, and latest-work labels all speak with the same branch-specific voice.
+
+### Dashboard entry-posture alignment checkpoint
+- Updated the scoped `Entry posture` note so it now explicitly matches the newer branch-specific review wording, clarifying that shop, cardholder, and card review narrows to the assigned branch with branch-specific phrasing once the shared workspace opens.
+- Kept the step low-risk by changing only explanatory scoped dashboard copy while preserving the same entry routes, workspace behavior, and branch-aware setup/review logic.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the entry-posture alignment update.
+
+### Next step after dashboard entry-posture alignment checkpoint
+- Align the remaining scoped scope-summary copy with the newer branch-specific wording, or move to another small branch-aware behavior step now that the dashboard notes and latest-work labels are closer to one voice.
+
+### Dashboard latest-work scope-note alignment checkpoint
+- Updated the scoped `Phase 1 scope note` so it now explicitly matches the newer branch-specific latest-work wording, clarifying that shops, cardholders, and cards use both branch scope and branch-specific review language.
+- Kept the step low-risk by changing only explanatory scoped dashboard copy while preserving the same latest-work routes, record selection, and fallback behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the latest-work scope-note alignment update.
+
+### Next step after dashboard latest-work scope-note alignment checkpoint
+- Align one more scoped dashboard note with the newer branch-specific wording, or switch to another small branch-aware behavior step now that latest-work copy and labels are back in sync.
+
+### Dashboard branch-specific latest-shop label checkpoint
+- Reused the shared latest-work review label helper for the scoped latest-shop shortcut, so live shop-scoped admins now see `Open latest branch review` while empty assigned branches still keep the setup-oriented `Open branch setup` label.
+- Kept the step low-risk by changing only scoped shortcut wording while preserving the same routes, record selection, and empty-branch setup fallback.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the branch-specific latest-shop label update.
+
+### Next step after dashboard branch-specific latest-shop label checkpoint
+- Decide whether the shared review-label helper should cover one more latest-work surface, or move to another small branch-aware behavior step now that scoped latest-work wording is more consistent across shops, cardholders, and cards.
+
+### Dashboard latest-work review label helper cleanup checkpoint
+- Extracted the scoped-versus-global latest-work review wording into a shared helper so the branch-specific cardholder and card shortcut labels now read through one small path instead of duplicating the shop-scope check inline.
+- Kept the step low-risk and behavior-safe by preserving the current scoped labels, routes, and empty-branch setup behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the latest-work review label helper cleanup.
+
+### Next step after dashboard latest-work review label helper cleanup checkpoint
+- Reuse the shared review-label helper for one more dashboard shortcut surface, or shift to another small branch-aware behavior now that latest-work wording is more centralized.
+
+### Dashboard branch-specific latest-work labels checkpoint
+- Tightened the scoped latest-work wording for live cardholder and card shortcuts so shop-scoped admins now see `Open latest branch cardholder review` and `Open latest branch card review` instead of the more generic global review phrasing.
+- Kept the step low-risk by changing only scoped shortcut labels while preserving the same routes, records, and empty-branch setup fallbacks.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the branch-specific latest-work label update.
+
+### Next step after dashboard branch-specific latest-work labels checkpoint
+- Carry the same scoped wording pattern into one more dashboard surface or helper, or switch to a small structural cleanup now that the latest-work shortcuts read more branch-specific for scoped admins.
+
+### Dashboard note-style cleanup checkpoint
+- Extracted the repeated dashboard note styles in the Blade view into local variables so the growing set of Galaxy-specific guidance blocks now shares one small formatting baseline instead of repeating the same inline style strings.
+- Kept the step low-risk and behavior-safe by making only presentational structure cleanup changes, with no copy, route, or branch-aware logic changes.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the dashboard note-style cleanup.
+
+### Next step after dashboard note-style cleanup checkpoint
+- Return to a small branch-aware behavior step now that the dashboard copy structure is tidier, or make one more tiny view cleanup around the repeated section heading blocks before shifting back to behavior.
+
+### Dashboard migration-map guidance checkpoint
+- Added a Galaxy-specific guidance note to the `Galaxy migration map` section so the grouped navigation list now reads as a visible parity target for upcoming Phase 1 slices instead of a plain section dump.
+- Kept the step low-risk and visual-only by changing migration-map framing without touching routes, navigation config, or branch-aware dashboard behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the migration-map guidance update.
+
+### Next step after dashboard migration-map guidance checkpoint
+- Return to a small branch-aware behavior step now that the main dashboard sections all carry Galaxy-specific framing, or make one more tiny structural cleanup in the dashboard view to keep the copy additions tidy.
+
+### Dashboard empty latest-work guidance checkpoint
+- Added a Galaxy-specific Phase 1 note to the empty `Resume latest live work` fallback so the zero-record state now points operators toward first-pass setup across shops, cardholders, cards, and access structure instead of stopping at a generic absence message.
+- Kept the step low-risk and visual-only by changing fallback framing without touching latest-work routing or branch-aware shortcut behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `6 passed`, after the empty latest-work guidance update.
+
+### Next step after dashboard empty latest-work guidance checkpoint
+- Add one more Galaxy-specific cue in the migration map itself, or return to a small branch-aware behavior step now that the empty, scoped, and live dashboard states all have stronger Galaxy framing.
+
+### Dashboard assigned-branch snapshot guidance checkpoint
+- Added a Galaxy-specific operational note to the `Assigned branch snapshot` card so scoped admins get clearer framing around using the snapshot to spot setup gaps and fresh branch activity before opening review screens.
+- Kept the step low-risk and visual-only by changing only snapshot framing copy while preserving the existing branch posture fields and actions.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_latest_live_work_shortcuts_respect_shop_scope|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `4 passed`, after the assigned-branch snapshot guidance update.
+
+### Next step after dashboard assigned-branch snapshot guidance checkpoint
+- Add one more Galaxy-specific cue inside the migration map or empty latest-work fallback, or switch back to a small branch-aware behavior step now that the dashboard copy framing is stronger across the main surfaces.
+
+### Dashboard workflow guidance copy checkpoint
+- Added Galaxy-specific guidance copy to the `Live review entry points` and `Resume latest live work` sections so the dashboard reads more like an operational branch console and less like a raw link list.
+- Kept the step low-risk and visual-only by changing section framing without touching routing or branch-aware shortcut behavior.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `4 passed`, after the workflow guidance copy update.
+
+### Next step after dashboard workflow guidance copy checkpoint
+- Add one more Galaxy-specific dashboard cue inside the assigned-branch snapshot or migration map, or switch back to a small branch-aware behavior rule now that the top-level section framing is stronger.
+
+### Dashboard Galaxy framing copy checkpoint
+- Updated the dashboard Blade copy so the core metrics block now reads as a `Galaxy live foundation snapshot` instead of a generic counter grid, with supporting text that frames Phase 1 around real branch setup and review work.
+- Renamed the migration summary section heading to `Galaxy migration map` so the page reads more like a Galaxy-specific admin shell and less like a starter scaffold.
+- Re-ran `php artisan test --filter='(authenticated_user_can_access_admin_dashboard|dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `4 passed`, after the dashboard copy update.
+
+### Next step after dashboard Galaxy framing copy checkpoint
+- Carry the same Galaxy-specific framing into one more dashboard section note or heading, or shift back to a small branch-aware controller/view rule beyond copy-only cleanup.
+
+### Dashboard latest-work setup link helper cleanup checkpoint
+- Extracted the scoped latest-work setup link composition into a dedicated helper pair, so cardholder and card fallback shortcuts now share one explicit branch-aware gate and one explicit link builder.
+- Kept the step low-risk and behavior-safe by preserving the same empty-branch setup shortcuts while making future latest-work branching changes less repetitive.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after the latest-work setup link helper cleanup.
+
+### Next step after dashboard latest-work setup link helper cleanup checkpoint
+- Reuse the new latest-work setup gate in one more dashboard rule, or shift to the next small Galaxy-specific Phase 1 dashboard surface beyond latest-work shortcuts.
+
+### Dashboard latest-shop label helper cleanup checkpoint
+- Extracted the latest-shop setup-versus-review wording into a shared latest-work label helper, so the scoped latest-shop shortcut no longer carries its branch-aware posture logic inline.
+- Kept the step low-risk and behavior-safe by preserving the current shortcut labels while making the latest-work setup/review path easier to reuse for future dashboard shortcuts.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after the latest-shop label helper cleanup.
+
+### Next step after dashboard latest-shop label helper cleanup checkpoint
+- Reuse the new latest-work label helper for another scoped shortcut, or extract one more small shared helper around latest-work setup link composition.
+
+### Dashboard latest-work setup helper naming cleanup checkpoint
+- Renamed the scoped latest-work setup helper to make its role explicit, so the cardholder/card fallback path now reads more clearly as latest-work setup composition instead of a generic setup helper.
+- Kept the step low-risk and behavior-safe by preserving the exact same empty-branch shortcut behavior while making the branch-aware latest-work flow easier to extend.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after the helper naming cleanup.
+
+### Next step after dashboard latest-work setup helper naming cleanup checkpoint
+- Extract one more latest-work label helper so the shop/cardholder/card shortcut branching reads through one shared path, or reuse the clearer helper naming for another branch-aware dashboard cleanup.
+
+### Dashboard latest-work count-helper cleanup checkpoint
+- Extracted the shop relation-count lookup used by the new latest-work setup branching into shared helpers, so empty-branch shortcut checks now read through one consistent count path instead of repeating relation-to-count mapping inline.
+- Kept the step low-risk and behavior-safe by preserving the current empty-versus-live shortcut behavior while reducing controller duplication around branch-aware setup logic.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after the count-helper cleanup.
+
+### Next step after dashboard latest-work count-helper cleanup checkpoint
+- Reuse the new count helpers in one more branch-aware dashboard rule, or extract one more small latest-work label helper now that the setup branching is centralized.
+
+### Dashboard empty-branch latest setup shortcuts checkpoint
+- Extended the scoped latest-work block so active branches with no holder or card records now surface `Open first cardholder setup in assigned branch` and `Open first card setup in assigned branch` instead of simply omitting those shortcuts.
+- Kept the step low-risk and read-only by only changing operator-facing shortcut composition, while preserving the existing latest-review links once real branch holder/card records exist.
+- Extended the empty-branch dashboard assertions for the new latest-work setup shortcuts and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard empty-branch latest setup shortcuts checkpoint
+- Extract the new scoped latest-work setup shortcut branching into a small shared helper, or carry the same setup-versus-review posture into one more latest-work label.
+
+### Dashboard empty-branch latest-shop shortcut checkpoint
+- Tightened the scoped latest-shop shortcut so active branches with no holder or card records now surface `Open branch setup` instead of the more advanced latest-review label.
+- Kept the step low-risk and read-only by changing only the shortcut copy while preserving the same scoped shop route and existing latest-review behavior once branch activity exists.
+- Extended the empty-branch dashboard assertions for the new latest-shop shortcut label and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard empty-branch latest-shop shortcut checkpoint
+- Carry the same setup-versus-review posture into one more latest-work shortcut, or extract the new latest-shop label branching into a small shared helper alongside the entry-label path.
+
+### Dashboard snapshot primary-action helper cleanup checkpoint
+- Extracted the assigned-branch primary CTA label into a dedicated helper, so the setup-versus-review branch logic now lives in one explicit place instead of inside the snapshot action array.
+- Kept the step low-risk and behavior-safe by preserving the current active, empty, and paused branch action behavior while reducing one more small pocket of controller branching.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after the helper cleanup.
+
+### Next step after dashboard snapshot primary-action helper cleanup checkpoint
+- Reuse the same helper-cleanup pattern for one more snapshot action rule, or start carrying the same branch-aware posture into a latest-work shortcut label.
+
+### Dashboard scoped-entry label helper cleanup checkpoint
+- Extracted the growing empty-versus-live scoped entry-label branching into one shared helper, so the dashboard now derives shop, cardholder, and card setup labels through one consistent path instead of three nearly identical methods.
+- Kept the step low-risk and behavior-safe by preserving the same operator-facing labels and routes while only reducing controller duplication.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after the helper cleanup.
+
+### Next step after dashboard scoped-entry label helper cleanup checkpoint
+- Reuse the new helper for one more scoped entry rule, or start carrying the same empty-versus-live posture into one latest-work shortcut label.
+
+### Dashboard empty-branch card-entry CTA checkpoint
+- Tightened the scoped card live-entry label so active branches with no card records now surface `Set up first card in assigned branch` instead of the generic review label.
+- Kept the step low-risk and read-only by changing only the operator-facing entry copy while preserving the same scoped card route and existing review label once branch cards exist.
+- Extended the empty-branch dashboard assertions for the new card-entry CTA and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard empty-branch card-entry CTA checkpoint
+- Extract the growing scoped entry-label branching into one shared helper, or start moving the same empty-versus-live posture into another branch-aware dashboard surface.
+
+### Dashboard empty-branch cardholder-entry CTA checkpoint
+- Tightened the scoped cardholder live-entry label so active branches with no holder records now surface `Set up first cardholder in assigned branch` instead of the more advanced review label.
+- Kept the step low-risk and read-only by changing only the operator-facing entry copy while preserving the same scoped cardholder route and existing review label once branch holders exist.
+- Extended the empty-branch dashboard assertions for the new cardholder-entry CTA and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard empty-branch cardholder-entry CTA checkpoint
+- Carry the same empty-versus-live branching into the scoped cards entry, or extract the new scoped entry-label logic into one small shared helper before adding more label rules.
+
+### Dashboard empty-branch live-entry CTA checkpoint
+- Tightened the first scoped live-entry link so active branches with no live holder or card records now surface `Set up assigned branch` instead of `Review live shops in assigned branch`.
+- Kept the step low-risk and read-only by changing only the operator-facing entry label while preserving the same scoped shops route and the existing live-branch review label when branch data already exists.
+- Extended the empty-branch dashboard assertions for the new shared-entry CTA and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard empty-branch live-entry CTA checkpoint
+- Carry the same empty-versus-live branching into one more scoped dashboard link, or tighten one more small label around cardholder/card branch setup posture.
+
+### Dashboard empty-branch setup CTA checkpoint
+- Tightened the assigned-branch snapshot action copy so active branches with no live holder or card records now surface `Open assigned branch setup` instead of the more advanced `review` CTA.
+- Kept the step low-risk and read-only by changing only the branch-aware CTA label while preserving the same scoped branch route and existing live-branch review behavior.
+- Extended the empty-branch dashboard assertions for the new setup CTA and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard empty-branch setup CTA checkpoint
+- Reuse the same branch-aware CTA seam for one more shared dashboard entry, or tighten one more empty-versus-live action label inside the scoped branch console.
+
+### Dashboard paused-branch action-boundary checkpoint
+- Extracted assigned-branch snapshot actions into dedicated helper logic and made that action list explicitly empty for paused branches, so the dashboard helper layer no longer suggests reopening review flows for a branch that is still paused.
+- Kept the step Phase 1 safe by tightening read-only CTA visibility only, without widening paused-shop dashboard access or changing active-branch review behavior.
+- Extended the paused-branch helper coverage to assert the new empty action list and re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`.
+
+### Next step after dashboard paused-branch action-boundary checkpoint
+- Reuse the new action-boundary seam for one more small branch-aware CTA rule, or start tightening one of the shared dashboard live-entry links the same way.
+
+### Dashboard empty-branch posture test checkpoint
+- Added a focused scoped-dashboard scenario for an active branch with no holders or cards yet, so the new snapshot cues now prove their empty-branch posture instead of only the already-active branch path.
+- Kept the step low-risk by extending test coverage only: the snapshot is now explicitly checked for empty-state branch posture, unknown freshness, no latest-record quick links, and the first-live-record follow-up cue.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture)'`, `2 passed`, after covering the new empty-branch path.
+
+### Dashboard paused-branch helper coverage checkpoint
+- Added focused coverage for the paused-branch posture and follow-up helper logic, so the third main branch state is now asserted without weakening the current admin access baseline that blocks paused shops before the dashboard renders.
+- Kept the step low-risk by covering the paused path directly in test code instead of widening real dashboard access just to reach a currently guarded state.
+- Re-ran `php artisan test --filter='(dashboard_latest_live_work_shortcuts_respect_shop_scope|shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|dashboard_branch_helper_logic_covers_paused_branch_posture)'`, `3 passed`, after covering the third posture state.
+
+### Next step after dashboard paused-branch helper coverage checkpoint
+- Start turning one scoped dashboard cue into a stricter branch-aware entry boundary, or add one small read-only branch boundary around dashboard CTA visibility if it can stay Phase 1 safe.
+
+### Dashboard branch follow-up cue checkpoint
+- Extended the assigned-branch snapshot with `Suggested follow-up`, so scoped admins now get one compact next-step cue that matches paused, empty, or already-active branch posture.
+- Kept the step low-risk and read-only by deriving the cue from the same assigned-shop and latest branch-local record context already used by the snapshot.
+- Extended the focused dashboard assertions for the new follow-up cue and re-ran `php artisan test --filter=dashboard_latest_live_work_shortcuts_respect_shop_scope`, `1 passed`.
+
+### Next step after dashboard branch follow-up cue checkpoint
+- Start turning one scoped dashboard cue into a stricter branch-aware entry boundary, or add a focused empty-branch scenario test so the new posture cues cover more than the active branch path.
+
+### Dashboard branch posture cue checkpoint
+- Extended the assigned-branch snapshot with `Branch posture`, so scoped admins now get one compact Galaxy-style read on whether their branch is paused, active with live activity, or active but still empty.
+- Kept the step low-risk and read-only by deriving the posture from the assigned shop status plus the same latest branch-local holder/card presence already shown in the snapshot.
+- Extended the focused dashboard assertions for the new posture cue and re-ran `php artisan test --filter=dashboard_latest_live_work_shortcuts_respect_shop_scope`, `1 passed`.
+
+### Next step after dashboard branch posture cue checkpoint
+- Start turning one scoped dashboard cue into a stricter branch-aware entry boundary, or add one more compact branch console cue around empty-branch follow-up posture.
+
+### Dashboard branch activity-freshness cue checkpoint
+- Extended the assigned-branch snapshot with `Activity freshness`, so scoped admins can immediately see whether the newest visible branch movement still looks fresh or has already gone stale.
+- Kept the step low-risk and read-only by deriving the freshness cue from the same latest branch-local holder/card timestamps already exposed in the snapshot.
+- Extended the focused dashboard assertions for the new freshness cue and re-ran `php artisan test --filter=dashboard_latest_live_work_shortcuts_respect_shop_scope`, `1 passed`.
+
+### Next step after dashboard branch activity-freshness cue checkpoint
+- Add one more low-risk branch console cue around inactive branch posture, or start converting one of the scoped dashboard cues into a stricter branch-aware entry boundary.
+
+### Dashboard branch activity-source cue checkpoint
+- Extended the assigned-branch snapshot with `Latest activity source`, so scoped admins can immediately see whether the newest visible branch movement was a card issuance or a cardholder addition.
+- Kept the step low-risk and read-only by deriving the cue from the same latest branch-local holder/card records already shown in the snapshot.
+- Extended the focused dashboard assertions for the new activity-source cue and re-ran `php artisan test --filter=dashboard_latest_live_work_shortcuts_respect_shop_scope`, `1 passed`.
+
+### Next step after dashboard branch activity-source cue checkpoint
+- Add one more low-risk branch console cue around stale versus fresh activity posture, or start converting one of the scoped dashboard cues into a stricter branch-aware entry boundary.
+
+### Dashboard branch activity-date cue checkpoint
+- Extended the assigned-branch snapshot with `Latest holder added` and `Latest card issued`, so scoped admins can immediately tell how fresh the branch's newest live records are instead of only seeing names and statuses.
+- Kept the step low-risk and read-only by deriving the new cues from the existing latest branch-local holder/card records already loaded for the snapshot.
+- Extended the focused dashboard assertions with stable created-at coverage for the new cues, then re-ran `php artisan test --filter=dashboard_latest_live_work_shortcuts_respect_shop_scope`, `1 passed`.
+
+### Next step after dashboard branch activity-date cue checkpoint
+- Add one more low-risk branch console cue around stale-vs-fresh activity posture, or start converting one of the scoped dashboard cues into a stricter branch-aware entry boundary.
+
+### Dashboard branch identity cue checkpoint
+- Extended the assigned-branch snapshot with `Branch code` and `Primary manager`, so the scoped dashboard now shows not only branch-local metrics and latest records but also the key identity cues operators used to orient themselves in the old Galaxy branch console.
+- Kept the step low-risk and read-only by reusing the already loaded assigned shop and ordering visible branch users for a stable primary-manager preview.
+- Extended the focused dashboard assertions for the new identity cues and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard branch identity cue checkpoint
+- Add one more small branch-specific operational cue to the scoped dashboard, or start converting one of these scoped dashboard cues into a stricter branch-aware boundary.
+
+### Dashboard branch snapshot status cue checkpoint
+- Extended the assigned-branch snapshot with `Latest holder status` and `Latest card status`, so scoped admins now see the current operational posture of the most recent branch records before jumping into review.
+- Kept the step low-risk and read-only by deriving the new status cues directly from the same latest branch-local holder/card records already used by the snapshot and quick links.
+- Extended the focused dashboard assertions for the new status cues and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard branch snapshot status cue checkpoint
+- Add one more small branch-specific operational cue to the scoped dashboard, or convert one of these cues into a stricter branch-aware access boundary.
+
+### Dashboard branch snapshot latest-record cue checkpoint
+- Extended the assigned-branch snapshot with visible `Latest holder` and `Latest card` values, so scoped admins can see which branch records the new quick links will open before leaving the dashboard.
+- Kept the step low-risk and read-only by reusing already loaded branch-local latest records and falling back to explicit empty-state copy when no holder or card exists yet.
+- Extended the focused dashboard assertions for the new latest-record cues and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard branch snapshot latest-record cue checkpoint
+- Add one more small branch-specific dashboard cue around holder/card activity posture, or start converting one of these scoped dashboard affordances into a stricter access boundary.
+
+### Dashboard branch snapshot quick-links checkpoint
+- Expanded the new assigned-branch snapshot with direct quick links to the latest holder and latest card inside the scoped branch, so the dashboard now acts more like a small Galaxy branch console instead of only a passive summary.
+- Kept the step low-risk and read-only by reusing the existing holder/card review routes and only surfacing the links when scoped branch data actually exists.
+- Extended the focused dashboard assertions for the new branch quick links and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard branch snapshot quick-links checkpoint
+- Add one more small branch-scoped quick path from the dashboard into real review work, or start turning one of these scoped dashboard affordances into a stricter access boundary.
+
+### Dashboard assigned-branch CTA checkpoint
+- Added a direct `Open assigned branch review` action to the new scoped branch snapshot, so the dashboard now gives shop-scoped admins one obvious way to jump straight into the current branch workspace instead of only showing passive scope metrics.
+- Kept the step low-risk and read-only by reusing the existing `shops` review route and only surfacing the CTA for already scoped admins.
+- Extended the focused dashboard assertions for the new branch CTA and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard assigned-branch CTA checkpoint
+- Add one more small branch-scoped CTA or parity cue from the snapshot into holder/card review, or start enforcing one of these dashboard cues as a real entry-point boundary.
+
+### Dashboard assigned-branch snapshot checkpoint
+- Added an explicit assigned-branch snapshot for shop-scoped admins on the dashboard, so the first admin screen now surfaces the current branch name, status, visible holder/card counts, and assigned staff instead of only speaking about scope in abstract notes.
+- Kept the change Phase 1 safe and read-only: the snapshot appears only when the current user already qualifies for scoped admin review, while bootstrap users still keep the broader migration dashboard without branch-specific metrics.
+- Extended the focused dashboard assertions for the new assigned-branch snapshot and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard assigned-branch snapshot checkpoint
+- Carry this concrete scoped snapshot pattern into another shared admin surface, or start converting one of the dashboard scope cues into the next small enforced boundary beyond labels and notes.
+
+### Dashboard scoped entry-label checkpoint
+- Tightened the live entry labels for shop-scoped admins so `shops`, `cardholders`, and `cards` now explicitly say `in assigned branch`, making the dashboard entry layer itself read less like a generic global starter menu.
+- Kept the step Phase 1 safe by only changing operator-facing labels while preserving the broader shared entry behavior and unscoped copy for bootstrap admins.
+- Extended the focused dashboard assertions for scoped and unscoped entry labels, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard scoped entry-label checkpoint
+- Carry the same scoped-vs-shared wording cleanup into another admin surface, or turn one of these cues into the next small enforced boundary if it can stay low-risk.
+
+### Dashboard live-entry scope note checkpoint
+- Added a matching scoped note under `Live review entry points`, clarifying that the entry links still open shared Phase 1 workspaces while the live `shops`, `cardholders`, and `cards` review state narrows to branch scope after the workspace loads.
+- Kept the change strictly operator-facing and read-only, so the dashboard now communicates both halves of the current migration posture instead of leaving live-entry scope behavior implicit.
+- Extended the focused dashboard assertions for the new scoped entry note and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard live-entry scope note checkpoint
+- Either carry the same explicit scope communication into another shared admin surface, or take the next small authorization step that starts turning these operator cues into enforced entry-point boundaries.
+
+### Dashboard scoped-latest note checkpoint
+- Added a second scoped dashboard cue under `Resume latest live work`, clarifying that latest shortcuts for `shops`, `cardholders`, and `cards` now follow branch scope while `card-types`, `roles`, and `reports` still remain shared Phase 1 review surfaces.
+- Kept the change strictly read-only and operator-facing, so the dashboard now communicates the current migration posture instead of leaving scoped and global latest surfaces implicit.
+- Extended the focused dashboard assertions for both the scoped note and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard scoped-latest note checkpoint
+- Start pushing the same explicit Phase 1 scope communication into another shared surface, or take a similarly small authorization step that begins separating shared global workspaces from shop-aware ones more intentionally.
+
+### Dashboard branch-scope cue checkpoint
+- Added an explicit branch-scope summary to the dashboard for shop-scoped admins, so the first Galaxy admin screen now states when review posture is intentionally anchored to the assigned branch instead of behaving like a neutral starter dashboard.
+- Kept the step low-risk and read-only: the cue appears only for scoped admins who already satisfy the active-shop-plus-permission baseline, while bootstrap users still see the broader setup dashboard without extra scope copy.
+- Added focused dashboard coverage for the new scoped summary and the unscoped absence case, then re-ran the dashboard slice, `5 passed`.
+
+### Next step after dashboard branch-scope cue checkpoint
+- Carry the same explicit branch-scope cue into another live entry surface, or start a similarly small authorization step around scoped live review entry points if it can stay Phase 1 safe.
+
+### Shop-scoped dashboard latest-work shortcuts checkpoint
+- Reused the new shop-aware access baseline inside `DashboardController`, so the resume-latest shortcuts for `shops`, `cardholders`, and `cards` now pick the latest record the current scoped admin can actually review.
+- Kept the step Phase 1 safe by limiting the change to dashboard shortcut selection only: bootstrap users still see the global latest items, while shop-scoped admins no longer get cross-branch quick links from the first admin screen.
+- Added focused dashboard coverage for scoped latest-shop, latest-holder, and latest-card shortcuts, then re-ran the dashboard slice, `4 passed`.
+
+### Next step after shop-scoped dashboard latest-work shortcuts checkpoint
+- Either extract the shared dashboard shop-aware filtering into a reusable helper alongside the resource controller pattern, or carry the same scoped posture into another live entry surface that still exposes global latest context.
+
+### Shop-aware live workspace helper extraction checkpoint
+- Extracted the repeated shop-aware review boundary in `ResourceIndexController` into small shared helpers for current admin-user resolution, record filtering, and inaccessible-shop checks.
+- Rewired the live `shops`, `cardholders`, and `cards` workspaces to use the shared helper path without changing their current branch-scope behavior, which reduces drift as more Phase 1 scoped review surfaces arrive.
+- Re-ran the combined focused live workspace slice across all three areas, `17 passed`, to confirm the helper extraction stayed behavior-safe.
+
+### Next step after shop-aware live workspace helper extraction checkpoint
+- Reuse the new shared helper in the next shop-aware live slice or add one more low-risk scoped cue where current read-only Galaxy review still leaks starter-style generic behavior.
+
+### Shop-scoped cards workspace boundary checkpoint
+- Applied the same shop-target access boundary to the live `cards` workspace, so shop-scoped admins now only get card review links and latest-card shortcuts for inventory records inside their own branch.
+- Kept the step low-risk and read-only: inaccessible selected-card queries now fall back to the index state instead of opening cross-shop card context, while bootstrap access still preserves the broader setup view.
+- Added focused coverage for hidden cross-shop card links and inaccessible selected-card fallback, then re-ran the `cards` slice, `5 passed`.
+
+### Next step after shop-scoped cards workspace boundary checkpoint
+- Consider extracting the repeated shop-aware live-index boundary pattern into a small shared controller helper, so `shops`, `cardholders`, and `cards` stay aligned as more Phase 1 scoped review surfaces arrive.
+
+### Shop-scoped cardholders workspace boundary checkpoint
+- Carried the new shop-target access boundary into the live `cardholders` workspace, so shop-scoped admins now only get holder review links and latest-holder shortcuts for records attached to their own branch.
+- Kept the change low-risk and read-only: inaccessible selected-holder queries now fall back to the index state instead of opening cross-shop holder context, while bootstrap access still keeps the broader setup posture.
+- Added focused coverage for hidden cross-shop holder links and inaccessible selected-holder fallback, then re-ran the `cardholders` slice, `6 passed`.
+
+### Next step after shop-scoped cardholders workspace boundary checkpoint
+- Apply the same shop-aware read boundary to the live `cards` workspace so the main Phase 1 operational review surfaces align on branch scope before deeper policy work starts.
+
+### Shop-scoped shops workspace boundary checkpoint
+- Reused the new shop-target access helper inside the live `shops` workspace, so scoped admins now only get review links and latest-shop shortcuts for branches they are actually allowed to review.
+- Kept the step Phase 1 safe by limiting the boundary to the `shops` read slice: inaccessible selected-shop queries now fall back cleanly to the index state instead of opening a cross-shop review context.
+- Added focused coverage for hidden cross-shop links and inaccessible selected-shop fallback, then re-ran the `shops` slice, `6 passed`.
+
+### Next step after shop-scoped shops workspace boundary checkpoint
+- Carry the same small shop-aware boundary into one adjacent live workspace, likely `cardholders` or `cards`, so real Laravel review surfaces stop implying cross-shop reach before policies fully arrive.
+
+### Shop-target admin access helper checkpoint
+- Added an explicit `User::canAccessShop(?Shop $shop)` helper, so the emerging Phase 1 access baseline now expresses not only admin entry but also which shop a scoped admin can legitimately review.
+- Kept the rule intentionally small and safe: bootstrap users still retain setup reach, while scoped users must still satisfy the active-shop-plus-permission baseline and are limited to their assigned shop.
+- Added focused assertions for assigned-shop allow, other-shop deny, paused-shop deny, and null-shop deny, then re-ran the dashboard access slice, `8 passed`.
+
+### Next step after shop-target admin access helper checkpoint
+- Reuse the new shop-target helper in one small read-oriented admin slice, likely the `shops` workspace selection flow or a first policy-style boundary around shop-specific review.
+
+## 2026-04-20
+
+### Shop-scoped admin access helper checkpoint
+- Extracted the current active-shop-plus-permission rule on `User` into an explicit `hasShopScopedAdminAccess()` helper, so the Phase 1 admin baseline now exposes a clearer seam for upcoming shop-aware policies without changing behavior.
+- Updated the focused admin access assertions to prove bootstrap access, active scoped access, and denial cases now all read through the new helper instead of only the top-level panel check.
+- Re-ran the focused dashboard access slice, `6 passed`, to confirm the helper extraction stayed low-risk.
+
+### Next step after shop-scoped admin access helper checkpoint
+- Reuse the new shop-scoped helper in one more small authorization slice, likely a first explicit policy-style check or another shared admin gate helper that keeps Phase 1 access intent readable.
+
+## 2026-04-19
+
+### Admin access helper extraction checkpoint
+- Split the emerging admin-access baseline on `User` into explicit helper methods for bootstrap access, active-shop posture, and permission-bearing role presence, so the current gate logic reads more like Phase 1 authorization intent than a single opaque boolean check.
+- Added focused assertions around those helpers for unscoped, active-shop, paused-shop, and permissionless-role cases while re-running the dashboard slice, `9 passed`.
+- This keeps the current access baseline low-risk, but leaves a cleaner seam for the next shop-scope or policy-oriented authorization step.
+
+### Next step after admin access helper extraction checkpoint
+- Reuse the new explicit access helpers in one more small authorization slice, likely a shared shop-aware helper or first policy-style check that still preserves the current parity-first admin reads.
+
+### Permission-bearing admin access checkpoint
+- Tightened the shop-bound `access-admin` baseline again so active-shop users now need a role with at least one linked permission before they can enter the admin workspace.
+- Kept bootstrap access for unscoped setup users, while making shop-bound access feel more like a real Galaxy authorization baseline instead of a starter-level role-presence check.
+- Added focused dashboard coverage for the new role-without-permissions denial path and re-ran the dashboard slice, `8 passed`, to confirm the stricter rule behaves cleanly.
+
+### Next step after permission-bearing admin access checkpoint
+- Keep moving toward the planned authorization baseline, likely by making the gate intent more explicit in code or by introducing one small shop-aware access helper that future policies can reuse.
+
+### Shop-bound admin access tightening checkpoint
+- Tightened the new `access-admin` baseline one more step so shop-bound users now need both an active shop and at least one assigned role before they can enter the admin workspace, while unscoped setup users still keep bootstrap access.
+- Kept the change Phase 1 safe by using existing shop and role relations instead of jumping straight to full permission-policy parity.
+- Added focused dashboard coverage for the new active-shop-without-role denial path and re-ran the dashboard slice, `7 passed`, to confirm the tighter baseline behaves cleanly.
+
+### Next step after shop-bound admin access tightening checkpoint
+- Continue layering toward the planned authorization baseline, likely with one more small rule around permission-bearing roles or shop-aware access posture without disrupting the current read-only Galaxy review surfaces.
+
+### Admin access baseline checkpoint
+- Replaced the placeholder `access-admin` gate behavior with a small explicit admin-access baseline on `User`, so admin entry now stays open for unscoped setup users while denying users assigned to paused shops.
+- Kept the rule deliberately low-risk and Phase 1 friendly: this does not attempt full role-policy parity yet, but it starts honoring branch posture instead of treating admin access as unconditional starter behavior.
+- Added focused dashboard coverage for active-shop and paused-shop users, and re-ran the dashboard slice, `6 passed`, to confirm the new baseline behaves cleanly.
+
+### Next step after admin access baseline checkpoint
+- Continue toward the planned authorization and shop-scope baseline with another small rule, likely tightening access around explicit role/shop context without breaking the current parity-first read slices.
+
+### Live selected-summary parity checkpoint
+- Extended the live Laravel-backed `cards`, `cardholders`, and `shops` selected review summaries with clearer Galaxy-style review-mode and branch/scope guidance cues, so those workspaces read less like generic record detail views and more like parity-first operational review surfaces.
+- Extracted the selected-summary composition for those workspaces into dedicated controller helpers, which keeps the current live read slices easier to extend without reintroducing summary drift.
+- Re-ran the focused live workspace test slice, `16 passed`, to confirm the richer summaries still render cleanly with the existing action, timeline, and dependency-status layers.
+
+### Next step after live selected-summary parity checkpoint
+- Keep nudging the Laravel-backed admin foundation toward Phase 1 access and shop-scope goals, ideally with a small low-risk authorization baseline or another shared live-slice hardening pass that removes starter-style generic detail behavior.
+
+### Live dependency-status parity checkpoint
+- Extended the live Laravel-backed `cards`, `cardholders`, and `shops` selected review states with explicit dependency-status blocks, so those workspaces now communicate read-only posture and remaining backend gaps more like the richer Galaxy-style role and report slices.
+- Kept the change parity-first and read-only, covering lifecycle, assignment, branch, and activity posture cues without introducing risky write flows.
+- Re-ran the focused live workspace test slice, `16 passed`, to confirm the new dependency context renders cleanly alongside the existing selected-record summaries and timelines.
+
+### Next step after live dependency-status parity checkpoint
+- Keep reducing generic-starter residue inside the live Laravel-backed workspaces, likely with one more small shared hardening step around selected-record summaries or a first lightweight authorization/shop-scope baseline slice if it can stay low-risk.
+
+### Live selected-context action cleanup checkpoint
+- Extracted shared selected-context action wiring for the live Laravel-backed `roles-permissions`, `cards`, `cardholders`, and `shops` workspaces, so those read slices now reuse one helper for the standard back-link plus reviewing-state action pattern.
+- Re-ran focused live workspace tests after the controller cleanup, including the role slice, and fixed one older brittle placeholder assertion while confirming the selected-context behavior still holds.
+- This keeps the current Phase 1 Laravel-backed review surfaces more consistent and lowers the risk of controller drift as additional live admin flows are migrated.
+
+### Next step after live selected-context action cleanup checkpoint
+- Keep pushing toward a more explicitly Galaxy-specific Laravel foundation, ideally with a small shared hardening step around live workspace dependency/status context or another low-risk read slice that reduces starter-template residue.
+
+### Preview selection-key hardening checkpoint
+- Extracted shared string-key preview selection in `ResourceIndexController`, so `checks-points`, `reports`, `services-rules`, and `gifts` now use one normalized query-key lookup path instead of hand-rolled per-workspace selection code.
+- Hardened those request-driven review flows to accept case-insensitive selected preview queries while still falling back safely on unknown values.
+- Re-ran the combined focused preview-review slice across those four workspaces, `19 passed`, to confirm the shared lookup and new case-insensitive behavior hold together.
+
+### Next step after preview selection-key hardening checkpoint
+- Return to a real Laravel-backed Phase 1 slice, likely a small read-oriented hardening pass on the existing live workspaces or another shared controller cleanup that supports future model-backed expansion.
+
+### Preview review-context controller cleanup checkpoint
+- Extracted shared selected-preview context wiring in `ResourceIndexController`, so `checks-points`, `services-rules`, and `gifts` now reuse one helper for back-link actions, reviewing state, summary, timeline, and dependency context.
+- Re-ran the combined focused preview-review slice for those three workspaces, `11 passed`, to confirm the cleanup did not change the new Galaxy-style review behavior.
+- This makes the request-driven Phase 1 shell easier to extend without reintroducing controller drift as more preview-heavy workspaces or parity cues are added.
+
+### Next step after preview review-context controller cleanup checkpoint
+- Use the cleaner controller base to return to a real Laravel-backed Phase 1 slice, likely another small read-oriented improvement or a shared hardening pass on the existing live workspaces.
+
+### Services-rules format-and-handoff cue checkpoint
+- Extended the new selected-rule `services-rules` review state with rule-specific format guidance and evidence-first handoff cues, so the flow reads more like Galaxy rule operations instead of a generic preview detail page.
+- Kept the change parity-first and read-only, with priority review and publish actions still explicitly blocked until Laravel rule flows exist.
+- Re-ran the focused `php artisan test --filter=services_rules` slice, `4 passed`, to confirm the richer rule review context still behaves cleanly.
+
+### Next step after services-rules format-and-handoff cue checkpoint
+- Pivot back to a more backend-oriented Phase 1 slice, since the main preview-heavy workspaces now all have richer request-driven review states and clearer Galaxy-specific posture.
+
+### Gifts format-and-handoff cue checkpoint
+- Extended the new selected-gift `gifts` review state with reward-specific format guidance and evidence-first handoff cues, so the flow reads more like Galaxy reward operations instead of a generic preview detail page.
+- Kept the change parity-first and read-only, with stock audit and publish actions still explicitly blocked until Laravel inventory and redemption flows exist.
+- Re-ran the focused `php artisan test --filter=gifts` slice, `4 passed`, to confirm the richer gift review context still behaves cleanly.
+
+### Next step after gifts format-and-handoff cue checkpoint
+- Either carry the same deeper parity-cue treatment into `services-rules`, or pivot back to a more backend-oriented Phase 1 slice now that several preview-heavy workspaces have richer request-driven review states.
+
+### Checks-points format-and-handoff cue checkpoint
+- Extended the new selected-receipt `checks-points` review state with receipt-specific format guidance and evidence-first handoff cues, so the flow reads more like Galaxy troubleshooting instead of a generic preview detail page.
+- Kept the change parity-first and read-only, with receipt lookup and accrual-gap actions still explicitly blocked until Laravel transaction reads exist.
+- Re-ran the focused `php artisan test --filter=checks_points` slice, `3 passed`, to confirm the richer receipt review context still behaves cleanly.
+
+### Next step after checks-points format-and-handoff cue checkpoint
+- Either carry the same deeper parity-cue treatment into another newly added review flow, or pivot back to a backend-oriented Phase 1 slice now that the main preview-heavy workspaces have request-driven contexts.
+
+### Checks-points selected-receipt review checkpoint
+- Extended the preview-heavy `checks-points` workspace so each receipt row now links into a request-driven `?receipt=` review state instead of staying as a flat placeholder table.
+- Added selected-receipt summary, parity-first activity, dependency posture, and disabled troubleshooting actions for receipt previews, while safely ignoring unknown receipt queries and falling back to the catalog.
+- Re-ran the focused `php artisan test --filter=checks_points` slice, `3 passed`, to confirm the new selected-receipt review flow and fallback behavior hold together.
+
+### Next step after checks-points selected-receipt review checkpoint
+- Add one more Galaxy-specific parity cue inside the new receipt review flow, or return to a more backend-oriented Phase 1 slice now that several preview-heavy workspaces have request-driven review states.
+
+### Gifts selected-gift review checkpoint
+- Extended the preview-heavy `gifts` workspace so each gift row now links into a request-driven `?gift=` review state instead of staying as a flat placeholder table.
+- Added selected-gift summary, parity-first activity, dependency posture, and disabled review actions for reward previews, while safely ignoring unknown gift queries and falling back to the catalog.
+- Re-ran the focused `php artisan test --filter=gifts` slice, `4 passed`, to confirm the new selected-gift review flow and fallback behavior hold together.
+
+### Next step after gifts selected-gift review checkpoint
+- Either add one more Galaxy-specific parity cue to `gifts` or move to the next remaining preview-heavy area so the Phase 1 shell keeps replacing generic starter patterns with request-driven review states.
+
+### Services-rules selected-rule review checkpoint
+- Extended the preview-heavy `services-rules` workspace so each rule row now links into a request-driven `?rule=` review state instead of staying as a flat placeholder table.
+- Added selected-rule summary, parity-first activity, dependency posture, and disabled review actions for rule previews, while safely ignoring unknown rule queries and falling back to the catalog.
+- Re-ran the focused `php artisan test --filter=services_rules` slice, `4 passed`, to confirm the new selected-rule review flow and fallback behavior hold together.
+
+### Next step after services-rules selected-rule review checkpoint
+- Give `gifts` or another preview-heavy catalog workspace the same request-driven review treatment so more of the Galaxy shell stops reading like a generic starter.
+
+### Reports format-and-handoff cue checkpoint
+- Extended the selected-source `reports` review state with source-specific format guidance and operator handoff activity cues, so live reporting review now carries more Galaxy-like operational intent instead of reading like a generic catalog detail page.
+- Kept the change read-only and parity-first, with exports still explicitly blocked while on-screen review remains the primary reporting posture.
+- Re-ran the focused `php artisan test --filter=reports` slice, `4 passed`, to confirm the richer source context still behaves cleanly.
+
+### Next step after reports format-and-handoff cue checkpoint
+- Shift to another small Phase 1 foundation slice, likely strengthening `reports` with source-specific disabled actions or moving to the next preview-heavy workspace that still lacks a comparable live review context.
+
+### Reports source-scope parity cue checkpoint
+- Extended the new selected-source `reports` review state with source-specific scope guidance and default-period posture cues, so each live reporting source now reads more like Galaxy operational reporting instead of a generic catalog drill-in.
+- Added matching dependency-posture cues for branch comparison, holder-status review, and role-scope visibility, while keeping exports and presets explicitly gated.
+- Re-ran the focused `php artisan test --filter=reports` slice, `4 passed`, to confirm the richer selected-source context still holds together.
+
+### Next step after reports source-scope parity cue checkpoint
+- Add one more lightweight Galaxy-specific reporting cue, likely source-specific format guidance or operator handoff copy, before any attempt at report services or export plumbing.
+
+### Reports selected-source review checkpoint
+- Extended the partially live-backed `reports` workspace so each live reporting source row now links into a request-driven `?source=` review state instead of staying as a flat catalog row.
+- Added selected-source summary, activity, dependency posture, and disabled export gating for live report-source review, while safely ignoring unknown source queries and falling back to the catalog.
+- Re-ran the focused `php artisan test --filter=reports` slice, `4 passed`, to confirm both the new selected-source flow and the fallback behavior hold together.
+
+### Next step after reports selected-source review checkpoint
+- Extend the reporting source drill-in with one more Galaxy-specific parity cue, likely preset-period posture or source-specific scope guidance, before attempting broader Phase 1 reporting writes or export plumbing.
+
 ## 2026-04-18
 
 ### Card-type live-form callback expectation checkpoint
@@ -105,6 +4373,301 @@
 - Added regression coverage proving the live `roles-permissions` slice ignores an unknown `?role=` query and safely falls back to the model-backed index state instead of rendering a broken selected-record context.
 - Re-ran the focused `roles-permissions` Laravel-backed coverage, `3 passed`, to confirm the normal selected-role path and the new fallback behavior hold together.
 - This hardens the request-driven access review flow before more controller or routing cleanup lands in Phase 1.
+
+### Operational invalid-selection fallback checkpoint
+- Added regression coverage proving the live `shops`, `cardholders`, and `cards` slices also ignore unknown selected-record queries and fall back cleanly to their model-backed index states.
+- Re-ran the focused selected-record coverage for those operational modules, `6 passed`, to confirm the normal review paths and the new fallback behavior hold together.
+- This makes the shared request-driven review foundation more resilient before the next round of controller cleanup or new Phase 1 slices.
+
+### Roles-permissions malformed-selection fallback checkpoint
+- Added regression coverage proving the live `roles-permissions` slice also ignores a malformed non-numeric `?role=` query and falls back cleanly to the model-backed index state.
+- Re-ran the focused `roles-permissions` Laravel-backed coverage, `4 passed`, to confirm the normal selected-role path plus both fallback cases hold together.
+- This keeps the access review foundation safer as the shared selected-record plumbing continues to evolve.
+
+### Operational malformed-selection fallback checkpoint
+- Added regression coverage proving the live `shops`, `cardholders`, and `cards` slices also ignore malformed non-numeric selected-record queries and fall back cleanly to model-backed index states.
+- Re-ran the focused malformed-query coverage for those operational modules, `6 passed`, to confirm both unknown-id and malformed-query fallback behavior remain stable.
+- This completes the basic hardening loop for request-driven operational review state before the next bigger Phase 1 slice lands.
+
+### Checkpoint sync helper checkpoint
+- Added a repo-side helper script, `scripts/checkpoint-sync.sh`, to validate `shared/PROJECT_STATUS.json` and show whether `docs/progress-log.md` or `shared/PROJECT_STATUS.json` are still dirty before a checkpoint commit.
+- Documented the helper in `README.md` so repeated Phase 1 checkpoints can keep code, docs, and status aligned without relying only on chat memory.
+- Ran the helper locally to confirm the current checkpoint files are clean before the next implementation slice.
+
+### Card-types selected-record fallback checkpoint
+- Added regression coverage proving the live `card-types` workspace ignores both unknown and malformed `?cardType=` queries and falls back cleanly to the model-backed index state instead of rendering a broken edit-mode context.
+- Re-ran the focused `card-types` selected-record coverage, `3 passed`, to confirm the real edit-mode path and both fallback cases hold together.
+- This brings the write-backed card-type workspace in line with the request-driven fallback discipline already added to the live read slices.
+
+### Checkpoint sync guard hardening checkpoint
+- Tightened `scripts/checkpoint-sync.sh` so it now exits non-zero when `docs/progress-log.md` or `shared/PROJECT_STATUS.json` are still dirty, instead of only printing a reminder.
+- Updated `README.md` to document that the helper can act as a simple guard before commit/push, not just as an informational check.
+- Re-ran the helper on the current clean tree to confirm the stricter behavior still passes when checkpoint docs are already synced.
+
+### Checkpoint sync test coverage checkpoint
+- Added shell-backed feature coverage for `scripts/checkpoint-sync.sh`, covering both the clean path and a deliberately dirtied `shared/PROJECT_STATUS.json` path.
+- Confirmed the helper returns `0` when checkpoint files are synced and `2` when the shared status file is dirty, so the new guard behavior is now verified instead of only documented.
+- This makes the repo-side checkpoint discipline more durable before the next run of substantive Phase 1 backend work.
+
+### Card-types validation redirect context checkpoint
+- Updated the `card-types` update request so validation failures now redirect back to `/admin/card-types?cardType=<id>#live-form` instead of dropping operators into the generic create-state.
+- Added focused coverage proving invalid update payloads keep the selected tier in edit mode after redirect, including the selected-record summary and the PATCH-backed live form.
+- This strengthens the one real write-backed Phase 1 slice by preserving request-driven context even when backend validation blocks the save.
+
+### Card-types validation old-input checkpoint
+- Added regression coverage proving the selected `card-types` edit flow also keeps operator-entered form values after a validation failure instead of snapping every field back to the saved database state.
+- Confirmed the retry path stays in selected edit mode while preserving the attempted name, duplicate slug, points rate, and draft selection, `2 passed`.
+- This makes the current minimal write slice less frustrating for operators because a failed save still behaves like an edit retry, not a partial form reset.
+
+### Card-types validation summary accessibility checkpoint
+- Added regression coverage proving the selected `card-types` edit retry path also preserves the validation summary anchor links and field-level `aria-errormessage` bindings after backend validation fails.
+- Confirmed the selected edit context, summary links, and field error wiring hold together in the retry flow, `2 passed`.
+- This keeps the current write-backed slice more resilient and operator-friendly by ensuring validation feedback still points at the right live form fields inside the chosen tier context.
+
+### Card-types validation cancel-action checkpoint
+- Added regression coverage proving the selected `card-types` edit retry path keeps the secondary `Create new type` action pointed at the safe generic create-state after validation fails.
+- Confirmed the retry flow still stays in selected edit mode while the cancel action avoids a stale selected-record URL, `2 passed`.
+- This slightly reduces operator footguns in the current write slice by keeping the escape hatch predictable even after a failed save.
+
+### Card-types update success selected-context checkpoint
+- Updated the live `card-types` write flow so a successful PATCH now redirects back to `/admin/card-types?cardType=<id>#backend-flow-status` instead of dropping operators into the generic index state.
+- Added focused coverage proving successful updates, duplicate-slug retry coverage, and update flash rendering all align with the selected-tier context, `3 passed`.
+- This keeps the only live write-backed Phase 1 slice closer to request-driven parity by letting operators save and remain anchored in the same Galaxy tier workspace.
+
+### Card-types create success selected-context checkpoint
+- Updated the live `card-types` create flow so a successful POST now redirects straight into the newly created tier context at `/admin/card-types?cardType=<id>#backend-flow-status` instead of dropping operators back into the generic create-state.
+- Added focused coverage proving both the store redirect and the create success flash now land inside the selected-tier workspace, `2 passed`.
+- This makes the current write-backed Phase 1 slice feel more like a real Galaxy management surface because new tiers open immediately in their own Laravel-backed edit context after creation.
+
+### Card-types redirect pattern hardening checkpoint
+- Extracted a shared `RedirectsToSelectedCardTypeContext` controller concern so the live `card-types` create, update, and toggle-status flows all use one selected-tier success redirect pattern.
+- Re-ran focused write-flow coverage for store, update, and row-level status toggles, `3 passed`.
+- This trims controller duplication and makes the request-driven `card-types` workspace less likely to drift if the success redirect contract changes again.
+
+### Card-types activity timeline feedback checkpoint
+- Extended the selected `card-types` workspace so a backend write result now also appears as the first item in the recent activity timeline when the request carries a flash status.
+- Confirmed the toggle-status success flow still surfaces the write result in flash, selected summary, and the timeline together, `1 passed`.
+- This makes the current Phase 1 write slice feel more like an operational Galaxy workspace because the latest backend action now shows up in the same history block operators already scan for recent context.
+
+### Card-types success feedback pattern hardening checkpoint
+- Extracted the selected `card-types` latest-write feedback wiring into shared controller helpers so summary and timeline success cues no longer live as duplicate inline session checks in one large method.
+- Re-ran focused success-feedback coverage for toggle, create, and update selected-context flows, `3 passed`.
+- This keeps the live `card-types` workspace easier to extend without reintroducing drift between flash, selected summary, and timeline feedback paths.
+
+### Card-types dependency context feedback checkpoint
+- Extended the selected `card-types` dependency-status block so the latest backend write result now appears there as well when the request carries a flash status.
+- Confirmed the toggle-success flow now keeps the same latest-write cue visible across flash, selected summary, recent activity, and dependency context together, `1 passed`.
+- This makes the current Phase 1 workspace more coherent for operators because every main context block now agrees on the latest action outcome for the selected tier.
+
+### Card-types dependency feedback pattern hardening checkpoint
+- Extracted the selected `card-types` dependency-status latest-write cue into a small helper so all latest-flow feedback paths now follow the same controller pattern instead of growing as inline session checks.
+- Re-ran the focused toggle-success regression after the extraction, `1 passed`.
+- This keeps the live `card-types` workspace a bit easier to maintain as the selected-tier feedback model keeps getting richer.
+
+### Roles-permissions selected publish-gating checkpoint
+- Extended the selected `roles-permissions` workspace so a reviewed role now shows an explicitly disabled `Publish role` action alongside the existing matrix-review blocker.
+- The disabled reason now reacts to whether the chosen Laravel role already has a permission bundle or is still a draft shell, `1 passed`.
+- This makes the live access-review slice feel less like a generic preview because publish-style next steps are now visibly gated per selected role instead of staying implicit.
+
+### Roles-permissions dependency posture checkpoint
+- Extended the selected `roles-permissions` workspace with a Laravel-backed dependency-status block so review posture, matrix posture, publish posture, scope posture, and the remaining backend gap are now visible for the chosen role.
+- Confirmed the selected-role access review now carries those parity cues alongside the existing summary, actions, and timeline, `1 passed`.
+- This makes the live access-review slice feel more like an operational Galaxy workspace because the selected role now exposes explicit parity posture instead of relying only on summary copy.
+
+### Roles-permissions permission-bundle summary checkpoint
+- Extended the selected `roles-permissions` summary so the chosen Laravel role now shows an explicit `Permission bundle` line instead of forcing operators to infer access payload only from counts or timeline copy.
+- Confirmed the selected-role review keeps surfacing the linked permission names in the summary context, `1 passed`.
+- This makes the live access-review slice more useful for real operator checks because the selected role now exposes both the size and the visible shape of its current permission bundle.
+
+### Roles-permissions assignment-scope activity checkpoint
+- Extended the selected `roles-permissions` activity timeline so the chosen Laravel role now shows a dedicated activity note about current assigned-user count and shop scope state.
+- Confirmed the selected-role review now surfaces that assignment/scope cue alongside the existing permission-bundle activity note, `1 passed`.
+- This makes the live access-review slice feel more operational because the timeline now reflects not only what permissions a role carries, but also how that role is currently scoped in Laravel data.
+
+### Roles-permissions assignment-guidance summary checkpoint
+- Extended the selected `roles-permissions` summary so the chosen Laravel role now exposes explicit assignment guidance next to the assigned-user count.
+- Confirmed the selected-role review now distinguishes between roles that already affect linked staff and safer draft roles with no assigned users, `1 passed`.
+- This makes the live access-review slice more useful for real operator checks because the summary now explains what the current assignment count means for parity-sensitive access changes.
+
+### Roles-permissions permission-posture checkpoint
+- Extended the selected `roles-permissions` dependency context with an explicit `Permission posture` line so operators can see whether the current Laravel permission bundle is only reviewable or still safe as a draft shell.
+- Confirmed the selected-role review now carries that permission-specific parity cue alongside matrix, publish, and scope posture, `1 passed`.
+- This makes the live access-review slice less generic because permission-bundle state is now called out directly in the parity posture block instead of being implied only by summary text.
+
+### Roles-permissions assigned-staff preview checkpoint
+- Extended the selected `roles-permissions` summary so the chosen Laravel role now shows an explicit `Assigned staff preview` line with real linked user names when they exist.
+- Confirmed the selected-role review now surfaces a concrete assigned-user name in the summary context instead of only an abstract count, `1 passed`.
+- This makes the live access-review slice more operator-friendly because staff impact is now visible at a glance without forcing the reviewer to infer everything from counts and posture copy.
+
+### Roles-permissions assigned-staff posture checkpoint
+- Extended the selected `roles-permissions` dependency context with an explicit `Assigned staff posture` line so operators can see whether the current Laravel role already affects linked staff or is still safe as a draft review target.
+- Confirmed the selected-role review now carries that staff-impact parity cue alongside matrix, permission, publish, and scope posture, `1 passed`.
+- This makes the live access-review slice less generic because staff impact is now called out directly in the parity posture block instead of being implied only by counts and summary guidance.
+
+### Roles-permissions shop-scope preview checkpoint
+- Extended the selected `roles-permissions` summary so the chosen Laravel role now shows an explicit `Shop scope preview` line instead of leaving scope visibility only to the generic scope field and posture copy.
+- Confirmed the selected-role review now surfaces the current linked shop name directly in the summary context, `1 passed`.
+- This makes the live access-review slice more readable for operators because shop scope is now visible as its own quick preview cue alongside staff and permission previews.
+
+### Roles-permissions scope-guidance summary checkpoint
+- Extended the selected `roles-permissions` summary with an explicit `Scope guidance` line so visible shop scope now carries a direct parity-review interpretation instead of reading as a bare list.
+- Confirmed the selected-role review now explains that linked shop scope should be treated as a parity-sensitive access change, `1 passed`.
+- This makes the live access-review slice more useful because scope visibility and scope meaning now sit together in the summary context instead of being split between summary and posture blocks.
+
+### Roles-permissions structural hardening checkpoint
+- Refactored the selected `roles-permissions` review wiring in `ResourceIndexController` so selected-role summary, timeline, and dependency posture now come from dedicated helper methods instead of one large inline block.
+- Re-ran the focused roles-permissions Laravel-backed review set covering live rows, selected-role context, unknown selection fallback, and malformed selection fallback, `4 passed`.
+- This keeps the live access-review slice safer to extend because the selected-role checkpoint logic now has clearer internal boundaries before more read-only parity cues are added.
+
+### Roles-permissions QA consolidation checkpoint
+- Re-ran the focused Laravel-backed `roles-permissions` review set after the recent selected-role summary/posture additions and structural extraction.
+- Verified preview access, live role rows, selected-role review context, unknown selected-role fallback, and malformed selected-role fallback together, `5 passed`.
+- This confirms the live access-review slice is still coherent as one Phase 1 workspace instead of only passing in isolated single-test increments.
+
+### Roles-permissions review-mode checkpoint
+- Extended the selected `roles-permissions` summary with an explicit `Review mode` line so the chosen Laravel role now tells operators, in one sentence, whether they are reviewing a live-impact access shape or a draft-safe target.
+- Confirmed the selected-role review now surfaces that compact mode cue alongside the richer staff, scope, and permission context, `1 passed`.
+- This makes the live access-review slice easier to scan because the operator no longer has to infer overall review posture from several separate summary and dependency lines.
+
+### Roles-permissions permission-coverage checkpoint
+- Extended the selected `roles-permissions` summary with an explicit `Permission coverage` line so the visible permission count now carries a direct parity-review interpretation instead of reading as a bare number.
+- Confirmed the selected-role review now explains that a live bundle should be treated as parity-sensitive access coverage, `1 passed`.
+- This makes the live access-review slice more useful because permission visibility and permission meaning now sit together in the summary context instead of being split between counts and later guidance copy.
+
+### Reports live-source read-slice checkpoint
+- Added the first real Laravel-backed `reports` read slice in `ResourceIndexController`, reusing existing `Shop`, `Card`, `CardHolder`, and `Role` models to replace preview metrics and report rows when live data exists.
+- The reports workspace now surfaces live source counts, model-backed report entry rows, and a partially Laravel-backed notice while keeping the empty-data preview path intact, `2 passed`.
+- This opens a new safe Phase 1 slice outside `roles-permissions` because the reporting workspace now reflects real Galaxy data sources without introducing export or analytics write scope.
+
+### Reports live-activity checkpoint
+- Extended the new Laravel-backed `reports` slice with explicit activity timeline entries derived from current model counts instead of leaving the page activity block fully static.
+- Confirmed the reports workspace now narrates the live source snapshot and the remaining parity-first export blocker together, `2 passed`.
+- This makes the reporting slice feel less like a starter placeholder because live reporting context now appears in both summary metrics and the operational timeline.
+
+### Reports source-coverage checkpoint
+- Extended the Laravel-backed `reports` dependency context with an explicit `Source coverage` line so operators can see which live Galaxy domains are already feeding the read-only reporting slice.
+- Confirmed the reporting workspace now spells out current shop, card, cardholder, and role coverage in the dependency block, `2 passed`.
+- This makes the reporting slice more reviewable because source availability is now stated directly instead of being inferred only from metrics and rows.
+
+### Reports reporting-posture checkpoint
+- Extended the Laravel-backed `reports` dependency context with an explicit `Reporting posture` line so the page now states in one place that reporting is live-backed for read-only review but still parity-first for presets and exports.
+- Confirmed the reporting workspace now carries that posture cue alongside source coverage and backend dependency status, `2 passed`.
+- This makes the reporting slice easier to scan because operators no longer have to combine notice text and blocker copy to understand the current safe operating mode.
+
+### Reports readiness checkpoint
+- Extended the Laravel-backed `reports` dependency context with an explicit `Readiness signal` so operators can see that live source review is already working while preset/export work remains intentionally blocked.
+- Confirmed the reporting workspace now states that partial readiness cue alongside reporting posture and source coverage, `2 passed`.
+- This makes the reporting slice more actionable because the current safe boundary is now visible as a compact readiness status instead of being spread across several notes.
+
+### Reports preset-posture checkpoint
+- Extended the Laravel-backed `reports` dependency context with an explicit `Preset posture` line so the page now states that preset periods are still preview-only even though the live source layer is already reviewable.
+- Confirmed the reporting workspace now carries that preset-specific gating cue alongside readiness, posture, and source coverage, `2 passed`.
+- This makes the reporting slice clearer because the source-review layer and preset-flow layer are now separated explicitly instead of being blended into one generic blocker note.
+
+### Reports export-posture checkpoint
+- Extended the Laravel-backed `reports` dependency context with an explicit `Export posture` line so the page now states separately that export generation is still blocked even though the live reporting layer is already reviewable.
+- Confirmed the reporting workspace now carries that export-specific gating cue alongside preset posture, readiness, and source coverage, `2 passed`.
+- This makes the reporting slice clearer because source review, preset flow, and export flow are now separated into explicit safe-boundary cues instead of one blended blocker message.
+
+### Reports structural hardening checkpoint
+- Refactored the Laravel-backed `reports` slice in `ResourceIndexController` so the live reporting activity timeline and dependency posture now come from dedicated helper methods instead of one growing inline block.
+- Re-ran the focused reports set covering both the preview baseline and the live-source read slice, `2 passed`.
+- This keeps the new reporting slice safer to extend because live reporting cues now have clearer internal boundaries before selected-report or preset-aware read steps are added.
+
+### Reports QA consolidation checkpoint
+- Re-ran the focused `reports` set after the recent live-source, posture, readiness, preset, export, and structural-hardening steps.
+- Verified the preview baseline and the live Laravel-backed reporting slice together, `2 passed`.
+- This confirms the reporting workspace is still coherent as one Phase 1 slice instead of only passing after isolated incremental changes.
+
+### Reports preset-action gating checkpoint
+- Updated the `reports` page actions so `Review export presets` now renders as an explicitly gated action with a visible Laravel-flow blocker reason instead of looking like an available path.
+- Confirmed the disabled-state cue stays visible in both the preview baseline and the live Laravel-backed reporting slice, `2 passed`.
+- This makes the reporting workspace less starter-like because preset review now looks intentionally staged, not generically clickable.
+
+### Reports live-catalog action checkpoint
+- Renamed the primary `reports` action from `Open report catalog` to `Open live report catalog` so the entry point now reflects that this workspace is operating as a live-backed review layer, not a generic placeholder catalog.
+- Confirmed the updated action label stays visible in both the preview baseline and the live Laravel-backed reporting slice, `2 passed`.
+- This makes the reporting workspace read more like a Galaxy-specific review tool because the primary action now matches the current live-source Phase 1 posture.
+
+### Reports tracked-cardholders metric checkpoint
+- Extended the live Laravel-backed `reports` metrics with an explicit `Tracked cardholders` value so reporting coverage is not limited to shops and cards at the top-level summary.
+- Confirmed the new holder-coverage metric stays visible in the focused preview-plus-live reporting test set, `2 passed`.
+- This makes the reporting slice more informative because holder coverage is now surfaced directly in metrics instead of only appearing later in the report-row list and dependency copy.
+
+### Reports tracked-roles metric checkpoint
+- Extended the live Laravel-backed `reports` metrics with an explicit `Tracked roles` value so the top-level summary now mirrors the full live-source coverage already described in report rows and dependency status.
+- Confirmed the new role-coverage metric stays visible in the focused preview-plus-live reporting test set, `2 passed`.
+- This makes the reporting slice more complete because access-coverage inputs are now visible at the same summary level as shops, cards, and cardholders.
+
+### Dashboard live-metrics checkpoint
+- Added the first Laravel-backed read step for `/admin` dashboard so the landing page now surfaces live counts for shops, cardholders, cards, and roles instead of only route namespace and planned-section metadata.
+- Confirmed the dashboard still renders the Galaxy admin shell while exposing those live model counts, `1 passed`.
+- This opens a new safe Phase 1 slice because the admin landing page now reflects real Galaxy foundation data without introducing any write flow or navigation scope change.
+
+### Dashboard active-shop metric checkpoint
+- Extended the Laravel-backed dashboard metrics with an explicit `Active shops` value so the landing page now shows not only total branch count but also immediate operational shop-state coverage.
+- Confirmed the new active-shop metric stays visible in the focused dashboard test, `1 passed`.
+- This makes the dashboard slice more useful because the landing summary now carries one basic live-status signal instead of only raw entity totals.
+
+### Dashboard active-cardholder metric checkpoint
+- Extended the Laravel-backed dashboard metrics with an explicit `Active cardholders` value so the landing page now shows not only total holder volume but also a basic live-status view of the holder base.
+- Confirmed the new active-cardholder metric stays visible in the focused dashboard test, `1 passed`.
+- This makes the dashboard slice more useful because the top-level admin summary now carries a second operational state signal alongside branch activity.
+
+### Dashboard active-card metric checkpoint
+- Extended the Laravel-backed dashboard metrics with an explicit `Active cards` value so the landing page now shows not only total card inventory but also the currently live card count.
+- Confirmed the new active-card metric stays visible in the focused dashboard test, `1 passed`.
+- This makes the dashboard slice more informative because the top-level admin summary now carries a card-inventory state signal alongside shops and cardholders.
+
+### Dashboard permission-surface metric checkpoint
+- Extended the Laravel-backed dashboard metrics with an explicit `Live permissions` value so the admin landing page now reflects the current access surface in addition to role counts.
+- Confirmed the new permission metric stays visible in the focused dashboard test, `1 passed`.
+- This makes the dashboard slice more Galaxy-specific because access review now starts from a real permission footprint instead of only navigation and role totals.
+
+### Dashboard live-entry-points checkpoint
+- Added a dedicated `Live review entry points` block to `/admin` so the dashboard now links directly into the already-live Laravel-backed Phase 1 slices for shops, cardholders, cards, roles-permissions, and reports.
+- Confirmed the new dashboard links render alongside the live metrics in the focused dashboard test, `1 passed`.
+- This makes the admin landing page more operational because it now acts as a real Galaxy review hub instead of only a summary screen.
+
+### Dashboard card-type entry-point checkpoint
+- Extended the dashboard entry-point block with a direct link to the live `card-types` workspace so the landing page now exposes the current write-backed Phase 1 slice alongside the review-only modules.
+- Confirmed the new card-type link renders in the focused dashboard test, `1 passed`.
+- This makes the admin hub more aligned with active migration work because operators can now jump from `/admin` into the main live write slice without detouring through the navigation shell.
+
+### Dashboard latest-workspace checkpoint
+- Added a dedicated `Resume latest live work` block to `/admin` so the dashboard now links directly into request-driven selected contexts for the latest shop, cardholder, card, card type, and role records.
+- Confirmed the new latest-workspace links render with the expected selected-query URLs in the focused dashboard test, `1 passed`.
+- This makes the landing page materially more operational because it now resumes the real Phase 1 workspaces we already hardened, instead of only linking to generic module indexes.
+
+### Dashboard latest-workspace fallback checkpoint
+- Hardened the `Resume latest live work` block so it now shows explicit guidance when no live records exist yet, instead of rendering an empty list on a fresh database.
+- Confirmed both populated and empty-state dashboard behaviors in the focused dashboard test set, `2 passed`.
+- This keeps the new dashboard hub honest on clean environments because operators still get a useful next step even before the first Galaxy-backed records exist.
+
+### Dashboard named-latest-workspace checkpoint
+- Extended the `Resume latest live work` links so they now include real record identifiers like shop name, cardholder name, card number, card-type name, and role name instead of generic labels only.
+- Confirmed both populated and empty-state dashboard behaviors still pass in the focused dashboard test set, `2 passed`.
+- This makes the admin hub more usable because operators can now see which exact Galaxy record they are resuming before they click into the selected workspace.
+
+### Dashboard status-aware latest-workspace checkpoint
+- Extended the `Resume latest live work` links with compact status cues, so the dashboard now shows active or inactive posture for shops, cardholders, cards, and card types, plus current permission-bundle size for the latest role.
+- Confirmed both populated and empty-state dashboard behaviors still pass in the focused dashboard test set, `2 passed`.
+- This makes the admin hub more operational because operators can now see the current state of the latest live record before opening the selected workspace.
+
+### Dashboard partial latest-workspace checkpoint
+- Added focused regression coverage for partial-data dashboard state so `Resume latest live work` now proves it renders only the available latest links without falling back to the empty-state guidance.
+- Confirmed populated, empty-state, and partial-data dashboard behaviors together in the focused dashboard test set, `3 passed`.
+- This hardens the new admin hub because mixed real-world states no longer rely on implicit Blade branching behavior.
+
+### Dashboard latest-workspace structure checkpoint
+- Refactored `DashboardController` so the latest-workspace block is now assembled as a unified `latestWorkspaces` context array through dedicated helper methods instead of separate model props leaking directly into Blade.
+- Confirmed the structural refactor preserves populated, empty-state, and partial-data dashboard behaviors in the focused dashboard test set, `3 passed`.
+- This makes the dashboard slice safer to extend because future latest-work additions can now plug into one structured pattern instead of duplicating view conditionals.
+
+### Dashboard entry-point structure checkpoint
+- Refactored `DashboardController` so the `Live review entry points` block is now assembled through a unified `liveReviewEntryPoints` context array and the same shared dashboard link helper instead of a hard-coded Blade list.
+- Fixed a small helper-signature regression during the refactor, then confirmed populated, empty-state, and partial-data dashboard behaviors in the focused dashboard test set, `3 passed`.
+- This makes the dashboard slice more coherent because both hub blocks now follow the same structured controller-to-view pattern.
 
 ### Cards model-backed read checkpoint
 - Replaced the preview-only `cards` table and summary metrics with Eloquent-backed values whenever real `Card` records exist.
@@ -1630,3 +6193,279 @@
 
 ### Next step after gifts action-gating checkpoint
 - Reuse disabled action-gating on `roles-permissions`, or start turning one of the blocked preview actions into a more explicit readiness-driven state model tied to parity cues.
+
+### Role create canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `roles-permissions` create flow so string status inputs like `no` still persist as canonical boolean access-shell state on first save.
+- Kept the step access-shell-only and normalization-focused, without widening permission matrix edits, assignment writes, or scope mutation.
+- Re-ran `php artisan test --filter='(test_role_live_flow_keeps_status_boolean_canonical|test_role_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Card type create canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `card-types` create flow so string status inputs like `no` still persist as canonical boolean tier-shell state on first save.
+- Kept the step tier-shell-only and normalization-focused, without widening rollout imports, activation workflows, or rule publication.
+- Re-ran `php artisan test --filter='(test_card_type_live_flow_keeps_status_boolean_canonical|test_card_type_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Shop create canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `shops` create flow so string status inputs like `no` still persist as canonical boolean branch-shell state on first save.
+- Kept the step branch-shell-only and normalization-focused, without widening ownership assignment, reassignment, or scope mutation.
+- Re-ran `php artisan test --filter='(test_shop_live_flow_keeps_status_boolean_canonical|test_shop_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Cardholder create canonical boolean-status checkpoint
+- Added explicit feature coverage for the writable `cardholders` create flow so string status inputs like `no` still persist as canonical boolean holder-shell state on first save.
+- Kept the step holder-shell-only and normalization-focused, without widening duplicate-profile, linkage, or lifecycle writes.
+- Re-ran `php artisan test --filter='(test_cardholder_live_flow_keeps_status_boolean_canonical|test_cardholder_update_live_flow_keeps_status_boolean_canonical)'`, `2 passed`.
+
+### Cardholder header action copy checkpoint
+- Replaced the remaining generic `New cardholder` page action label with `New Galaxy holder` so the writable holder workspace reads more like a Galaxy-specific shell and less like a starter admin list.
+- Kept the change config- and controller-driven so the catalog and live Laravel-backed holder view stay aligned.
+- Also corrected two stale holder page assertions that still expected the primary action to be blocked even though the live holder create path is already available.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_catalog_actions_reflect_saved_holder_readiness)'`, `2 passed`.
+
+### Cards header action copy checkpoint
+- Replaced the remaining generic `Issue card` page action label with `New Galaxy card` so the writable inventory workspace reads more like a Galaxy-specific shell and less like a starter admin list.
+- Kept the change config- and controller-driven so the catalog and live Laravel-backed inventory view stay aligned.
+- Also corrected two stale cards page assertions that still expected the primary action to be blocked even though the live inventory create path is already available.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_cards_operational_index_shape|test_cards_catalog_actions_reflect_saved_inventory_readiness)'`, `2 passed`.
+
+### Shops header action copy checkpoint
+- Replaced the remaining generic `New shop` page action label with `New Galaxy branch` so the writable branch workspace reads more like a Galaxy-specific shell and less like a starter admin list.
+- Kept the change config- and controller-driven so the catalog and live Laravel-backed branch view stay aligned.
+- Also corrected two stale shops page assertions that still expected the primary action to be blocked even though the live branch create path is already available.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_shops_operational_index_shape|test_shops_catalog_actions_reflect_saved_branch_readiness)'`, `2 passed`.
+
+### Roles header action copy checkpoint
+- Replaced the remaining generic `New role` page action label with `New Galaxy role` so the writable access workspace reads more like a Galaxy-specific shell and less like a starter admin list.
+- Kept the change config- and controller-driven so the catalog and live Laravel-backed role view stay aligned.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data'`, `1 passed`.
+
+### Card types header action copy checkpoint
+- Replaced the remaining generic `New type` page action label with `New Galaxy tier` so the writable tier workspace reads more like a Galaxy-specific shell and less like a starter admin list.
+- Kept the change config- and controller-driven so the catalog and live Laravel-backed tier view stay aligned.
+- Re-ran `php artisan test --filter='test_card_types_catalog_actions_reflect_saved_tier_readiness'`, `1 passed`.
+
+### Card types preview copy checkpoint
+- Replaced the remaining generic preview copy `Create or edit card type` with `Create or edit Galaxy tier`, and `Create first type` with `Create first Galaxy tier`, so the tier workspace reads less like a starter catalog stub.
+- Kept the change config-driven and limited to the already writable `card-types` shell without widening publish or rule-import behavior.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'`, `1 passed`.
+
+### Roles preview copy checkpoint
+- Replaced the remaining generic preview copy `Create or edit role` with `Create or edit Galaxy role`, and `Create first role` with `Create first Galaxy role`, so the access workspace reads less like a starter authorization stub.
+- Kept the change config-driven and limited to the already writable `roles-permissions` shell without widening permission persistence, publishing, or assignment behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_management_preview|test_empty_state_ignores_malformed_entries)'`, `2 passed`.
+
+### Services rules preview copy checkpoint
+- Replaced remaining generic rule-shell copy with Galaxy-specific wording: `New rule` became `New Galaxy rule`, `Create or edit service rule` became `Create or edit Galaxy rule`, and `Create first rule` became `Create first Galaxy rule`.
+- Kept the change preview-only and config-driven so the rules workspace feels less like a starter CRUD stub without opening rule persistence or publish behavior.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview'`, `1 passed`.
+
+### Gifts preview copy checkpoint
+- Replaced remaining generic gift-shell copy with Galaxy-specific wording: `New gift` became `New Galaxy reward`, `Create or edit gift` became `Create or edit Galaxy reward`, and `Create first gift` became `Create first Galaxy reward`.
+- Kept the change preview-only and config-driven so the rewards workspace feels less like a starter catalog stub without opening gift CRUD, stock, or publish behavior.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'`, `1 passed`.
+
+### Gifts publish action copy checkpoint
+- Replaced the remaining generic reward publish label `Publish gift` with `Publish reward` in both the preview shell and selected reward review context so the gifts workspace reads less like a starter CRUD screen.
+- Kept the change copy-only and parity-first, without opening gift CRUD, stock recovery, or redemption writes.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_gifts_management_preview|test_gifts_page_supports_selected_all_shop_gift_review_context)'`, `2 passed`.
+
+### Card types publish action copy checkpoint
+- Replaced the remaining generic tier publish label `Publish type` with `Publish tier` in both the preview shell and selected tier review context so the card-types workspace reads less like a starter CRUD screen.
+- Kept the change copy-only and parity-first, without opening publish logic or rule-import behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_card_types_management_preview|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons)'`, `2 passed`.
+
+### Services rules publish action copy checkpoint
+- Replaced the remaining generic rules publish label `Publish rule` with `Publish Galaxy rule` in both the preview shell and selected rule review context so the rules workspace reads less like a starter CRUD screen.
+- Kept the change copy-only and parity-first, without opening rule persistence or publish behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_services_rules_management_preview|test_services_rules_page_supports_selected_all_shop_rule_review_context)'`, `2 passed`.
+
+### Card types selected action copy checkpoint
+- Replaced remaining generic selected-tier action labels with tier-specific wording: `Edit latest saved type` became `Edit latest saved tier`, `Create new type` became `Create new tier shell`, and `Activate type` became `Activate tier`.
+- Kept the change controller-driven and copy-only so the writable tier workspace reads less like a generic starter while preserving the existing status-toggle and edit-flow behavior.
+- Re-ran `php artisan test --filter='(test_card_types_page_exposes_edit_link_for_latest_saved_type|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type)'`, `2 passed`.
+
+### Roles access action copy checkpoint
+- Replaced remaining generic role-action copy with access-shell wording: `Publish role` became `Publish access` in both preview and selected-role contexts, and the selected-role reset action now reuses `Create new access shell` instead of the generic `Create new role`.
+- Kept the change copy-only and parity-first, without opening permission persistence, assignment writes, or broader publish behavior.
+- Re-ran `php artisan test --filter='(test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data)'`, `2 passed`.
+
+### Roles preview normalization test cleanup checkpoint
+- Removed stale generic role wording from role preview normalization coverage so helper/normalizer tests now match the Galaxy-specific access-shell copy already rendered by the product.
+- Narrowed one malformed-form assertion to the actual normalization behavior under test instead of expecting a disabled-reason string from an intentionally overridden fixture action.
+- Re-ran `php artisan test --filter='(test_form_preview_ignores_malformed_entries|test_primary_page_blocks_still_render_after_grouped_controller_lookup|test_resource_page_still_renders_after_normalizer_is_extracted)'`, `3 passed`.
+
+### Cards selected action copy checkpoint
+- Replaced the selected-card edit reset label `Create new inventory shell` with `Create new Galaxy card shell` so the writable inventory workspace reads less like a generic starter helper action.
+- Kept the change controller-driven and copy-only, without widening holder assignment, dispute handling, or replacement behavior.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`, `1 passed`.
+
+### Cardholders selected action copy checkpoint
+- Replaced the selected-holder edit reset label `Create new holder shell` with `Create new Galaxy holder shell` so the writable holder workspace reads less like a generic starter helper action.
+- Kept the change controller-driven and copy-only, without widening card linkage, activity history, or lifecycle writes.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`, `1 passed`.
+
+### Shops selected action copy checkpoint
+- Replaced the selected-branch edit reset label `Create new branch shell` with `Create new Galaxy branch shell` so the writable branch workspace reads less like a generic starter helper action.
+- Kept the change controller-driven and copy-only, without widening manager reassignment or scope-mutation behavior.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`, `1 passed`.
+
+### Card types selected reset copy checkpoint
+- Replaced the selected-tier reset label `Create new tier shell` with `Create new Galaxy tier shell` so the writable tier workspace stays aligned with the newer Galaxy-specific reset wording used on other writable surfaces.
+- Kept the change controller-driven and copy-only, without widening tier publish logic or rule-import behavior.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`, `1 passed`.
+
+### Roles selected reset copy checkpoint
+- Replaced the selected-role reset label `Create new access shell` with `Create new Galaxy access shell` so the writable access workspace stays aligned with the newer Galaxy-specific reset wording used on other writable surfaces.
+- Kept the change controller-driven and copy-only, without widening permission persistence, assignment writes, or publish behavior.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data'`, `1 passed`.
+
+### Cardholders paused-branch activity signal checkpoint
+- Added a selected-holder `Shop activity signal` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholder review stack now distinguishes active-branch lookup context from paused-branch recovery context instead of treating all branch-linked holders the same.
+- Extended selected-holder feature coverage in `tests/Feature/AdminDashboardTest.php` for the normal active-branch path and added a focused paused-branch holder case.
+- Kept the change read-only and parity-first, without widening holder writes, reactivation flows, or card-link mutations.
+
+### Cardholders branch-split metrics checkpoint
+- Added `Active-branch holders` and `Paused-branch holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php` so the holder workspace now exposes branch-state coverage directly instead of only total active/inactive holder counts.
+- Tightened the model-backed cardholders index test in `tests/Feature/AdminDashboardTest.php` by making the second fixture branch actually paused and asserting the new metric labels render in the live workspace.
+- Kept the change read-only and parity-first, without widening holder writes, branch reassignment, or card-link mutations.
+
+### Cardholders linked-status split checkpoint
+- Added `Active linked holders` and `Inactive linked holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php`, giving the holder workspace a compact lifecycle-aware split across holders that already carry card linkage.
+- Extended `tests/Feature/AdminDashboardTest.php` by asserting the new metric labels in the model-backed cardholders index fixture, reusing the existing active-linked and inactive-linked holder coverage already present in the data setup.
+- Kept the change read-only and parity-first, without widening holder writes, branch assignment flows, or card-link mutations.
+
+### Cardholders unlinked-status split checkpoint
+- Added `Active unlinked holders` and `Inactive unlinked holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php`, so the holder workspace now exposes the opposite side of the linkage split instead of only linked-holder slices.
+- Extended the model-backed cardholders index fixture in `tests/Feature/AdminDashboardTest.php` with an active unlinked holder and asserted both new metric labels render in the live workspace.
+- Kept the change read-only and parity-first, without widening holder writes, reassignment flows, or card-link mutations.
+
+### Cardholders paused-branch handoff checkpoint
+- Refined `cardholdersActivityHandoffSignal()` and `cardholdersActivityTimelineHandoffDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch holders now carry explicit branch-recovery wording through the selected-holder handoff stack instead of reusing the generic active-branch activity copy.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new handoff signal and timeline wording render in both the summary and dependency/closing context.
+- Kept the change read-only and parity-first, without widening holder writes, reactivation flows, or card-link mutations.
+
+### Cardholders paused-branch activity posture checkpoint
+- Added `cardholdersActivityPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder dependency stack now gives paused-branch holders their own activity-blocking copy instead of the generic holder lookup wording.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Activity posture` text renders in the closing/dependency context.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch status posture checkpoint
+- Added `cardholdersStatusPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit branch-recovery wording in the selected-holder dependency stack instead of the generic active-holder posture copy.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Status posture` text renders in the closing/dependency context.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch action-state checkpoint
+- Refined `cardholdersSelectedReviewActivityDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch holders now surface branch-recovery-specific disabled copy directly on the `Review recent activity` action instead of reusing the generic holder activity wording.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new disabled-reason copy renders in the selected-holder action state.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch catalog action checkpoint
+- Refined `cardholdersCatalogReviewActivityDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholders index now surfaces paused-branch recovery wording on the catalog-level `Review recent activity` action when paused branch coverage is already visible.
+- Extended the model-backed cardholders index test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch disabled-reason copy renders in the live index workspace.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders branch-linkage cross-split checkpoint
+- Added `Active-branch linked holders` and `Paused-branch unlinked holders` metrics to the live cardholders index in `app/Http/Controllers/Admin/ResourceIndexController.php`, so the holder workspace now exposes a narrower branch-plus-linkage split instead of only broad status/linkage totals.
+- Extended the model-backed cardholders index test in `tests/Feature/AdminDashboardTest.php` to assert both new metric labels render in the live workspace.
+- Kept the change read-only and parity-first, without widening holder writes, branch moves, or card-link mutations.
+
+### Cardholders paused-branch summary posture checkpoint
+- Refined `cardholdersHolderPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit branch-recovery wording in the selected-holder summary stack instead of the generic live-holder posture copy.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Holder posture` text renders in the summary context.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch evidence checkpoint
+- Refined `cardholdersEvidencePriority()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit branch-recovery wording in the selected-holder summary evidence stack instead of the generic active-holder priority copy.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Evidence priority` text renders in the summary context.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch focus checkpoint
+- Refined `cardholdersHolderFocus()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit branch-recovery wording in the selected-holder summary focus stack instead of the generic active-holder focus copy.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Holder focus` text renders in the summary context.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch backend-gap checkpoint
+- Refined `cardholdersBackendGap()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit recovery-oriented backend-gap wording instead of the generic live-holder gap copy.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Remaining backend gap` text renders in the detailed review stack.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Cardholders paused-branch lookup-guidance checkpoint
+- Refined the selected-holder `Lookup guidance` branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so active holders inside paused branches now get explicit recovery-aware lookup wording instead of the generic active-holder guidance.
+- Extended the focused paused-branch selected-holder test in `tests/Feature/AdminDashboardTest.php` to assert the new paused-branch `Lookup guidance` text renders in the detailed review stack.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or card-link mutations.
+
+### Shops paused-branch guidance checkpoint
+- Refined the selected-shop `Branch guidance` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery, ownership, and scope review explicitly instead of using a more generic paused-branch note.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated `Branch guidance` text renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch coverage checkpoint
+- Refined the selected-shop `Coverage posture` branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now describe cardholder/card counts as recovery review context instead of generic read-only coverage.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Coverage posture` text renders in the detailed review stack.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch manager-posture checkpoint
+- Refined `Manager posture` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now get recovery-aware ownership wording, with separate paused-branch copy for both assigned-manager and unassigned-manager states.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Manager posture` text renders in the detailed review stack.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch status-posture checkpoint
+- Refined the paused-branch `Status posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so detailed selected-shop review now calls out scope parity alongside recovery and ownership parity.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Status posture` text renders in the detailed review stack.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch manager-guidance checkpoint
+- Refined `Manager guidance` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now get recovery-aware ownership guidance in the selected-shop summary, with separate paused-branch copy for assigned-manager and unassigned-manager states.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Manager guidance` text renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch focus checkpoint
+- Refined `shopsBranchFocus()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery ownership gaps and scope-recovery context in the selected-shop summary instead of using a broader paused-branch focus note.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Branch focus` text renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch evidence checkpoint
+- Refined `shopsEvidencePriority()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery ownership gaps and scope-recovery context in the selected-shop summary evidence cue instead of using broader paused-branch wording.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Evidence priority` text renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch scope-handoff checkpoint
+- Refined `shopsScopeHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out recovery handoff plus ownership and scope approval explicitly instead of using broader paused-branch handoff wording.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Scope handoff signal` text renders in both selected-shop summary and detailed review contexts.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch handoff-timeline checkpoint
+- Refined `shopsScopeTimelineHandoffDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now carry recovery ownership gaps and scope approval context through the live-workspace handoff description instead of using broader paused-branch carry-forward wording.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch handoff timeline description renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Shops paused-branch backend-gap checkpoint
+- Refined `shopsBackendGap()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused branches now call out ownership repair alongside recovery writes, reassignment, and scope mutation in the detailed review guardrail copy.
+- Extended the focused paused-branch shop test in `tests/Feature/AdminDashboardTest.php` to assert the updated paused-branch `Backend gap` text renders in the selected-shop review context.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager reassignment behavior.
+
+### Card types tier-focus checkpoint
+- Refined the selected-tier `Tier focus` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft tiers now call out activation readiness alongside saved card coverage and rollout-note clarity instead of using broader draft-versus-live wording.
+- Extended the focused selected card-type test in `tests/Feature/AdminDashboardTest.php` to assert the updated draft-tier `Tier focus` text renders in the selected-tier review context.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types evidence checkpoint
+- Refined the selected-tier `Evidence priority` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft tiers now call out activation readiness alongside visible card coverage and rollout-note context instead of using the broader activation-note wording.
+- Extended the focused selected card-type test in `tests/Feature/AdminDashboardTest.php` to assert the updated draft-tier `Evidence priority` text renders in the selected-tier review context.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types live-tier summary checkpoint
+- Extended the focused live card-type readiness test in `tests/Feature/AdminDashboardTest.php` to assert the new live-tier branches for `Tier focus` and `Evidence priority`, so the active-tier wording added in `app/Http/Controllers/Admin/ResourceIndexController.php` is covered as well as the draft-tier branch.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types tier-posture checkpoint
+- Refined the selected-tier `Tier posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php` so live and draft tiers now get distinct posture wording instead of sharing one generic review-gating sentence.
+- Extended the focused selected card-type tests in `tests/Feature/AdminDashboardTest.php` to assert both the updated draft-tier and live-tier `Tier posture` branches.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types draft-readiness coverage checkpoint
+- Extended the focused draft card-type readiness test in `tests/Feature/AdminDashboardTest.php` to assert the draft-no-coverage branches for `Tier focus`, `Tier posture`, and `Evidence priority`, so the newer draft-tier summary wording is covered on both visible-coverage and no-coverage paths.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types live handoff checkpoint
+- Refined `cardTypesHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so live tiers with visible card coverage now call out rollout parity explicitly instead of using a broader rollout handoff note.
+- Extended the focused live card-type coverage test in `tests/Feature/AdminDashboardTest.php` to assert the updated live-tier `Handoff signal` text renders in the selected-tier review context.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.

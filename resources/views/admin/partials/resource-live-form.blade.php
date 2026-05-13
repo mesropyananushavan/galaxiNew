@@ -89,6 +89,22 @@
                                 <option value="{{ $option['value'] }}" @selected(old($field['name'], $field['value']) === $option['value'])>{{ $option['label'] }}</option>
                             @endforeach
                         </select>
+                    @elseif ($field['type'] === 'textarea')
+                        <textarea
+                            id="{{ $fieldId }}"
+                            name="{{ $field['name'] }}"
+                            @required($field['required'])
+                            @autofocus($field['autofocus'])
+                            @if ($describedBy !== '')
+                                aria-describedby="{{ $describedBy }}"
+                            @endif
+                            @if ($errors->has($field['name']))
+                                aria-errormessage="{{ $errorId }}"
+                            @endif
+                            aria-invalid="{{ $errors->has($field['name']) ? 'true' : 'false' }}"
+                            {!! $renderAttributes($field['attributes']) !!}
+                            style="border: 1px solid {{ $errors->has($field['name']) ? 'rgba(239, 68, 68, 0.55)' : 'var(--border)' }}; border-radius: 12px; padding: 12px 14px; background: var(--surface-muted); color: var(--text-main); min-height: 120px; resize: vertical;"
+                        >{{ old($field['name'], $field['value']) }}</textarea>
                     @else
                         <input
                             id="{{ $fieldId }}"
