@@ -3422,11 +3422,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsCoverageSignal(Role $selectedRole, mixed $scope): string
     {
-        return $this->rolesPermissionsCoverageSignalSummary($selectedRole, $scope);
-    }
-
-    private function rolesPermissionsCoverageSignalSummary(Role $selectedRole, mixed $scope): string
-    {
         return match (true) {
             $scope->isNotEmpty() && $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'scope, staff, and permission coverage visible',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'staff and permission coverage visible, scope pending',
