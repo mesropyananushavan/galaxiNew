@@ -3930,9 +3930,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
             ['label' => 'Backend gap', 'value' => $this->cardsBackendGap($selectedCard)],
             ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
-            ['label' => 'Shop guidance', 'value' => $selectedCard->shop !== null
-                ? 'Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.'
-                : 'No branch is linked yet, so shop-level handling should stay in parity review before operators rely on this card record operationally.'],
+            ['label' => 'Shop guidance', 'value' => $this->cardsShopGuidance($selectedCard)],
             ['label' => 'Laravel status', 'value' => $selectedCard->status],
             ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
@@ -3951,11 +3949,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Activation readiness', 'value' => $this->cardsActivationReadiness($selectedCard)],
             [
                 'label' => 'Inventory guidance',
-                'value' => match ($selectedCard->status) {
-                    'active' => 'This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.',
-                    'blocked' => 'This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.',
-                    default => 'This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.',
-                },
+                'value' => $this->cardsInventoryGuidance($selectedCard),
             ],
         ];
     }
@@ -3977,6 +3971,22 @@ class ResourceIndexController extends Controller
             $selectedCard->issued_at === null => 'Draft inventory shell, not yet issued in Laravel.',
             $selectedCard->activated_at === null => 'Issued inventory shell, still waiting for activation parity review.',
             default => 'Issued and activated inventory already visible in Laravel.',
+        };
+    }
+
+    private function cardsShopGuidance(Card $selectedCard): string
+    {
+        return $selectedCard->shop !== null
+            ? 'Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.'
+            : 'No branch is linked yet, so shop-level handling should stay in parity review before operators rely on this card record operationally.';
+    }
+
+    private function cardsInventoryGuidance(Card $selectedCard): string
+    {
+        return match ($selectedCard->status) {
+            'active' => 'This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.',
+            'blocked' => 'This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.',
+            default => 'This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.',
         };
     }
 

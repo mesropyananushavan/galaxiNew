@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cards shop-guidance and inventory-guidance helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card shop-guidance and inventory-guidance wording behind dedicated helpers instead of leaving those Galaxy-specific review strings inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more helper-driven so this Phase 1 foundation keeps drifting away from generic starter wiring.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
 ### Checks-points find-receipt helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `checks-points` surface by splitting the selected find-receipt disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
 - Kept the step narrow and behavior-preserving, but made the selected-receipt action gating helpers more consistent so this Galaxy-specific admin page stays easier to extend without drifting back toward starter-style controller glue.
