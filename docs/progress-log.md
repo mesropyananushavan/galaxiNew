@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cardholders status-signal helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder status-signal wording behind a dedicated helper instead of keeping that Galaxy-specific active-versus-inactive copy inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
 ### Cards shop-dependency posture helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card shop-posture wording behind a dedicated helper instead of keeping that Galaxy-specific branch-ownership split inline inside the dependency-status payload.
 - Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.

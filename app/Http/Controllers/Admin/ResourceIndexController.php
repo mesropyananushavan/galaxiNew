@@ -4247,9 +4247,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review mode', 'value' => $selectedCardHolder->is_active
                 ? 'Live profile review, this holder already participates in the Laravel lookup surface and should stay parity-first.'
                 : 'Dormant-profile review, this inactive holder stays safer for parity checks before any reactivation path is trusted.'],
-            ['label' => 'Holder status signal', 'value' => $selectedCardHolder->is_active
-                ? 'Active holder is already visible for live profile parity review.'
-                : 'Inactive holder remains safer for reactivation-flow-parity review before any reactivation-flow discussion.'],
+            ['label' => 'Holder status signal', 'value' => $this->cardholdersStatusSignal($selectedCardHolder)],
             ['label' => 'Operational readiness', 'value' => $this->cardholdersOperationalReadiness($selectedCardHolder)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
@@ -4271,6 +4269,13 @@ class ResourceIndexController extends Controller
                 'value' => $this->cardholdersLookupGuidance($selectedCardHolder),
             ],
         ];
+    }
+
+    private function cardholdersStatusSignal(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->is_active
+            ? 'Active holder is already visible for live profile parity review.'
+            : 'Inactive holder remains safer for reactivation-flow-parity review before any reactivation-flow discussion.';
     }
 
     private function cardholdersOperationalReadiness(CardHolder $selectedCardHolder): string
