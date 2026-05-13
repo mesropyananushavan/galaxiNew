@@ -3415,11 +3415,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsAssignmentNoteTimelineDescription(Role $selectedRole): string
     {
-        return $this->rolesPermissionsAssignmentNoteSummary($selectedRole);
-    }
-
-    private function rolesPermissionsAssignmentNoteSummary(Role $selectedRole): string
-    {
         return $selectedRole->assignment_note !== null && trim($selectedRole->assignment_note) !== ''
             ? sprintf('The current Laravel assignment note says: %s', $selectedRole->assignment_note)
             : 'No Laravel assignment note is saved yet, so assignment handoff guidance still depends on the surrounding workspace cues.';
