@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Gifts publish disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `gifts` surface by inlining the selected publish disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, and the targeted selected-gift slice passed (`4 passed`).
+
 ### Gifts stock-audit disabled-reason cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `gifts` surface by inlining the selected stock-audit disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
 - Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
