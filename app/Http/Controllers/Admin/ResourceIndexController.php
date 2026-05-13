@@ -4212,9 +4212,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
             ['label' => 'Lifecycle posture', 'value' => $this->cardsLifecyclePosture($selectedCard)],
             ['label' => 'Assignment posture', 'value' => $this->cardsAssignmentDependencyPosture($selectedCard)],
-            ['label' => 'Shop posture', 'value' => $selectedCard->shop !== null
-                ? 'Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.'
-                : 'No shop is assigned yet, so branch-level inventory handling should stay in review mode only.'],
+            ['label' => 'Shop posture', 'value' => $this->cardsShopDependencyPosture($selectedCard)],
             ['label' => 'Remaining backend gap', 'value' => $this->cardsBackendGap($selectedCard)],
         ];
     }
@@ -4233,6 +4231,13 @@ class ResourceIndexController extends Controller
         return $selectedCard->holder !== null
             ? 'Holder linkage is visible now, but reassignment and replacement actions should stay blocked until inventory parity is verified.'
             : 'No holder is linked yet, which keeps this inventory record safer for assignment-flow-parity review before assignment flows are enabled.';
+    }
+
+    private function cardsShopDependencyPosture(Card $selectedCard): string
+    {
+        return $selectedCard->shop !== null
+            ? 'Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.'
+            : 'No shop is assigned yet, so branch-level inventory handling should stay in review mode only.';
     }
 
     private function cardholdersSelectedHolderSummary(CardHolder $selectedCardHolder): array
