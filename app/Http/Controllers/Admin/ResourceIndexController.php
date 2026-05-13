@@ -4311,7 +4311,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Shop', 'value' => $this->cardholdersShopLabel($selectedCardHolder)],
             ['label' => 'Shop guidance', 'value' => $this->cardholdersShopGuidance($selectedCardHolder)],
             ['label' => 'Linked cards', 'value' => $this->cardholdersLinkedCardsLabel($selectedCardHolder)],
-            ['label' => 'Laravel status', 'value' => $this->cardholdersLaravelStatus($selectedCardHolder)],
+            ['label' => 'Laravel status', 'value' => $this->cardholdersLaravelStatusLabel($selectedCardHolder)],
             [
                 'label' => 'Lookup guidance',
                 'value' => $this->cardholdersLookupGuidance($selectedCardHolder),
@@ -4354,7 +4354,7 @@ class ResourceIndexController extends Controller
             : 'No branch is linked yet, so shop-aware lookup behavior should stay in parity review before profile actions are widened.';
     }
 
-    private function cardholdersLaravelStatus(CardHolder $selectedCardHolder): string
+    private function cardholdersLaravelStatusLabel(CardHolder $selectedCardHolder): string
     {
         return $selectedCardHolder->is_active ? 'active' : 'inactive';
     }

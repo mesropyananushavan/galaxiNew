@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cardholders Laravel-status helper naming checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by renaming the selected-holder Laravel-status helper to the more consistent `...Label()` form, keeping the admin-shell helper layer more uniform.
+- Kept the step behavior-preserving and limited to naming consistency, which helps the Galaxy-specific review surface read less like leftover starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
 ### Cardholders lookup-dependency helper signature cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `cardholders` surface by trimming the now-unused `CardHolder` argument from the dedicated lookup-dependency posture helper and updating its call site.
 - Kept the step behavior-preserving, but reduced a little generic-starter-style glue by making the selected-holder dependency helper match its actual read-only responsibility more cleanly.
