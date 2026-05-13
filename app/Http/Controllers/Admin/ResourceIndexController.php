@@ -4254,18 +4254,12 @@ class ResourceIndexController extends Controller
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
             ['label' => 'Backend gap', 'value' => $this->cardholdersBackendGap($selectedCardHolder)],
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
-            ['label' => 'Shop guidance', 'value' => $selectedCardHolder->shop !== null
-                ? 'Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.'
-                : 'No branch is linked yet, so shop-aware lookup behavior should stay in parity review before profile actions are widened.'],
+            ['label' => 'Shop guidance', 'value' => $this->cardholdersShopGuidance($selectedCardHolder)],
             ['label' => 'Linked cards', 'value' => (string) $selectedCardHolder->cards_count],
             ['label' => 'Laravel status', 'value' => $selectedCardHolder->is_active ? 'active' : 'inactive'],
             [
                 'label' => 'Lookup guidance',
-                'value' => match (true) {
-                    (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'This holder is active in Laravel but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.',
-                    $selectedCardHolder->is_active => 'This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.',
-                    default => 'This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
-                },
+                'value' => $this->cardholdersLookupGuidance($selectedCardHolder),
             ],
         ];
     }
@@ -4276,6 +4270,22 @@ class ResourceIndexController extends Controller
             ! $selectedCardHolder->is_active => 'inactive profile, review only',
             $selectedCardHolder->cards_count > 0 => 'linked profile, operator-visible',
             default => 'active profile, linkage build-out pending',
+        };
+    }
+
+    private function cardholdersShopGuidance(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->shop !== null
+            ? 'Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.'
+            : 'No branch is linked yet, so shop-aware lookup behavior should stay in parity review before profile actions are widened.';
+    }
+
+    private function cardholdersLookupGuidance(CardHolder $selectedCardHolder): string
+    {
+        return match (true) {
+            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'This holder is active in Laravel but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.',
+            $selectedCardHolder->is_active => 'This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.',
+            default => 'This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
         };
     }
 
