@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Shops scope disabled-reason helper split checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `shops` surface by splitting the selected scope disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context'`, and the targeted selected-shop slice passed (`4 passed`).
+
 ### Cardholders activity helper split and stale expectation fix checkpoint
 - Spread the same Phase 1 helper-cleanup pattern onto the `cardholders` surface by splitting the selected activity disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
 - While re-running the focused selected-holder slice, found a stale expectation in `test_cardholders_page_supports_selected_active_unlinked_holder_review_context`: the fixture creates an active shop, but the test was still expecting paused-branch posture/evidence copy. Updated the test to match the current Galaxy-specific active-shop review semantics.

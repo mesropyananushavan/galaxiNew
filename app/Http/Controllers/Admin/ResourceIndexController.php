@@ -2877,6 +2877,11 @@ class ResourceIndexController extends Controller
 
     private function shopsSelectedReviewScopeDisabledReason(Shop $selectedShop): string
     {
+        return $this->shopsSelectedReviewScopeDisabledReasonSummary($selectedShop);
+    }
+
+    private function shopsSelectedReviewScopeDisabledReasonSummary(Shop $selectedShop): string
+    {
         return match (true) {
             $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.',
             $selectedShop->users_count > 0 => 'Blocked until manager-linked branch scope is verified against the legacy Galaxy multi-shop model.',
