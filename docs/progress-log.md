@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Gifts stock-audit disabled-reason helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `gifts` surface by splitting the selected stock-audit disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made the selected-gift action gating helpers more consistent so this Galaxy-specific admin page stays easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, and the targeted selected-gift slice passed (`4 passed`).
+
 ### Gifts publish disabled-reason helper split checkpoint
 - Shifted this Phase 1 helper-cleanup pattern onto the `gifts` surface by splitting the selected publish disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
 - Kept the step narrow and behavior-preserving, but spread the Galaxy-specific shell cleanup beyond `roles-permissions` so another high-value admin page stays less starter-like as Phase 1 polish continues.

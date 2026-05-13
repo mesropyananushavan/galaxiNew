@@ -2779,6 +2779,11 @@ class ResourceIndexController extends Controller
 
     private function giftsSelectedStockAuditDisabledReason(array $selectedGiftPreview): string
     {
+        return $this->giftsSelectedStockAuditDisabledReasonSummary($selectedGiftPreview);
+    }
+
+    private function giftsSelectedStockAuditDisabledReasonSummary(array $selectedGiftPreview): string
+    {
         return match (true) {
             ($selectedGiftPreview['stock'] ?? null) === '0' => 'Blocked until zero-stock recovery checks are backed by Laravel inventory data and reopening parity.',
             ($selectedGiftPreview['stock'] ?? null) !== 'Unlimited' => 'Blocked until finite-stock checks are backed by Laravel inventory data and scoped stock parity.',
