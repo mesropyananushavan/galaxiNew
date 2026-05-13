@@ -3258,11 +3258,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsSelectedForReviewTimelineTitle(Role $selectedRole): string
     {
-        return $this->rolesPermissionsSelectedForReviewTimelineTitleSummary($selectedRole);
-    }
-
-    private function rolesPermissionsSelectedForReviewTimelineTitleSummary(Role $selectedRole): string
-    {
         return sprintf('%s selected for Laravel review', $selectedRole->name);
     }
 
