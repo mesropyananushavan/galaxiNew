@@ -3904,11 +3904,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review mode', 'value' => $selectedCard->status === 'draft'
                 ? 'Draft-safe review, this inventory record is still safer for parity checks before operators treat it as issued stock.'
                 : 'Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.'],
-            ['label' => 'Card status signal', 'value' => match ($selectedCard->status) {
-                'active' => 'Active card is already visible for live inventory parity review.',
-                'blocked' => 'Blocked card remains in operator review posture until dispute parity is verified.',
-                default => 'Draft card remains safer for issuance-parity review before any issuance-flow discussion.',
-            }],
+            ['label' => 'Card status signal', 'value' => $this->cardsStatusSignal($selectedCard)],
             ['label' => 'Operational readiness', 'value' => $this->cardsOperationalReadiness($selectedCard)],
             ['label' => 'Lifecycle stage', 'value' => $this->cardsLifecycleStage($selectedCard)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
@@ -3945,6 +3941,15 @@ class ResourceIndexController extends Controller
                 'value' => $this->cardsInventoryGuidance($selectedCard),
             ],
         ];
+    }
+
+    private function cardsStatusSignal(Card $selectedCard): string
+    {
+        return match ($selectedCard->status) {
+            'active' => 'Active card is already visible for live inventory parity review.',
+            'blocked' => 'Blocked card remains in operator review posture until dispute parity is verified.',
+            default => 'Draft card remains safer for issuance-parity review before any issuance-flow discussion.',
+        };
     }
 
     private function cardsOperationalReadiness(Card $selectedCard): string
@@ -4198,11 +4203,7 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected card', 'value' => $selectedCard->number],
             ['label' => 'Inventory posture', 'value' => 'Selected-card review is running in Laravel-backed read mode only'],
-            ['label' => 'Card status signal', 'value' => match ($selectedCard->status) {
-                'active' => 'Active card is already visible for live inventory parity review.',
-                'blocked' => 'Blocked card remains in operator review posture until dispute parity is verified.',
-                default => 'Draft card remains safer for issuance-parity review before any issuance-flow discussion.',
-            }],
+            ['label' => 'Card status signal', 'value' => $this->cardsStatusSignal($selectedCard)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
             ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
