@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cards lifecycle-posture helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card lifecycle-posture wording behind a dedicated helper instead of keeping that Galaxy-specific status match inline inside the dependency-status payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
 ### Cards status-signal helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the repeated selected-card status-signal wording behind a dedicated helper instead of keeping the same Galaxy-specific match block inline in both the summary and dependency-status payloads.
 - Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more consistent so the admin surface keeps drifting away from generic starter glue.
