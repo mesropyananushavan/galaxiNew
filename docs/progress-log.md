@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Gifts publish disabled-reason helper split checkpoint
+- Shifted this Phase 1 helper-cleanup pattern onto the `gifts` surface by splitting the selected publish disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but spread the Galaxy-specific shell cleanup beyond `roles-permissions` so another high-value admin page stays less starter-like as Phase 1 polish continues.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, and the targeted selected-gift slice passed (`4 passed`).
+
 ### Roles-permissions last-saved title helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern in the `roles-permissions` workspace by splitting the last-saved timeline title wording behind a dedicated summary helper instead of keeping the formatted string directly inside the title method.
 - Kept the step narrow and read-only, but made the helper layer a little more intentional so the selected-role freshness surface is easier to extend without drifting back toward starter-style controller glue.

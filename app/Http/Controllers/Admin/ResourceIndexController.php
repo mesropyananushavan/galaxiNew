@@ -2788,6 +2788,11 @@ class ResourceIndexController extends Controller
 
     private function giftsSelectedPublishGiftDisabledReason(array $selectedGiftPreview): string
     {
+        return $this->giftsSelectedPublishGiftDisabledReasonSummary($selectedGiftPreview);
+    }
+
+    private function giftsSelectedPublishGiftDisabledReasonSummary(array $selectedGiftPreview): string
+    {
         return match (true) {
             ($selectedGiftPreview['status'] ?? null) === 'paused' => 'Blocked until this paused reward clears CRUD, stock-recovery, and redemption parity beyond the preview shell.',
             ($selectedGiftPreview['scope'] ?? null) !== 'All shops' => 'Blocked until this scoped reward clears CRUD, scope-parity, and redemption checks beyond the preview shell.',
