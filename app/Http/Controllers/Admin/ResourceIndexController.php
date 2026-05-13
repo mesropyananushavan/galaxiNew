@@ -3341,11 +3341,6 @@ class ResourceIndexController extends Controller
             : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.';
     }
 
-    private function rolesPermissionsLifecycleDependencyLabel(Role $selectedRole): string
-    {
-        return $this->lifecycleFreshnessLabel($selectedRole);
-    }
-
     private function rolesPermissionsLifecycleTimelineDescription(Role $selectedRole): string
     {
         if ($selectedRole->updated_at === null || $selectedRole->created_at === null) {
@@ -3660,7 +3655,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Status posture', 'value' => $selectedRole->is_active
                 ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
-            ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleDependencyLabel($selectedRole)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedRole)],
             ['label' => 'Last saved in Laravel', 'value' => $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending')],
             ['label' => 'Review note', 'value' => $this->rolesPermissionsReviewNoteLabel($selectedRole)],
             ['label' => 'Review freshness', 'value' => $this->rolesPermissionsReviewFreshness($selectedRole)],
