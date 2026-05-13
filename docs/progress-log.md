@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Reports export disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `reports` surface by inlining the selected export disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_mixed_assignment_scope_review_context|test_reports_page_supports_selected_mixed_assignment_branch_activity_review_context'`, and the targeted selected-source slice passed (`5 passed`).
+
 ### Reports preset disabled-reason cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `reports` surface by inlining the selected preset disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
 - Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
