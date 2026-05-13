@@ -3535,11 +3535,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsScopeRolloutSummaryPosture(mixed $scope): string
     {
-        return $this->rolesPermissionsScopeRolloutSummary($scope);
-    }
-
-    private function rolesPermissionsScopeRolloutSummary(mixed $scope): string
-    {
         return $scope->isNotEmpty()
             ? 'Shop scope is visible in Laravel review, but scope writes should stay parity-first until the next thin access slice is ready.'
             : 'Shop scope is still pending in Laravel review, which keeps this role safer for draft-first parity checks.';
