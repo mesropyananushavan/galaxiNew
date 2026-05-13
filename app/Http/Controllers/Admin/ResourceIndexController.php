@@ -3553,11 +3553,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsScopeCoverageTimelineTitle(Role $selectedRole): string
     {
-        return $this->rolesPermissionsScopeCoverageTimelineTitleSummary($selectedRole);
-    }
-
-    private function rolesPermissionsScopeCoverageTimelineTitleSummary(Role $selectedRole): string
-    {
         return sprintf('%s scope coverage reflected from model state', $selectedRole->name);
     }
 
