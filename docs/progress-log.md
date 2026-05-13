@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Shops review-scope disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `shops` surface by inlining the selected review-scope disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context'`, and the targeted selected-shop slice passed (`5 passed`).
+
 ### Cardholders activity-review disabled-reason cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `cardholders` surface by inlining the selected activity-review disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
 - Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
