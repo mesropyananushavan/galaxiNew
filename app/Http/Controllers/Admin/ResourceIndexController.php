@@ -3911,7 +3911,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
             ['label' => 'Review note', 'value' => $this->cardsReviewNoteLabel($selectedCard)],
             ['label' => 'Holder', 'value' => $this->cardsHolderLabel($selectedCard)],
-            ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
+            ['label' => 'Card type', 'value' => $this->cardsTypeLabel($selectedCard)],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
             ['label' => 'Inventory focus', 'value' => $this->cardsInventoryFocus($selectedCard)],
             ['label' => 'Inventory posture', 'value' => $this->cardsInventoryPosture($selectedCard)],
@@ -3965,6 +3965,11 @@ class ResourceIndexController extends Controller
     private function cardsHolderLabel(Card $selectedCard): string
     {
         return $selectedCard->holder?->full_name ?? 'Unassigned';
+    }
+
+    private function cardsTypeLabel(Card $selectedCard): string
+    {
+        return $selectedCard->type?->name ?? 'Unknown';
     }
 
     private function cardsIssuedLabel(Card $selectedCard): string
