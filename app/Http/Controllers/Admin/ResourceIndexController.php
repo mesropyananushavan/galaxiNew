@@ -3573,11 +3573,6 @@ class ResourceIndexController extends Controller
         $permissionCount = $selectedRole->permissions->count();
         $assignedUserCount = $selectedRole->users_count ?? $selectedRole->users->count();
 
-        return $this->rolesPermissionsPublishRoleDisabledReasonSummary($selectedRole, $scope, $permissionCount, $assignedUserCount);
-    }
-
-    private function rolesPermissionsPublishRoleDisabledReasonSummary(Role $selectedRole, mixed $scope, int $permissionCount, int $assignedUserCount): string
-    {
         return match (true) {
             ! $selectedRole->is_active => 'Blocked until this draft role has a verified permission bundle and shop scope parity.',
             $permissionCount === 0 && $scope->isEmpty() => 'Blocked until this active role has both a verified permission bundle and shop scope parity.',
