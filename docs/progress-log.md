@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Reports preset disabled-reason helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `reports` surface by splitting the selected preset disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made the selected-report action gating helpers more consistent so this Galaxy-specific admin page stays easier to extend without drifting back toward starter-style controller glue.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_mixed_branch_activity_review_context|test_reports_page_supports_selected_role_access_pending_readiness_context|test_reports_page_supports_selected_mixed_role_state_review_context|test_reports_page_supports_selected_mixed_permission_bundle_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_mixed_assignment_scope_review_context|test_reports_page_supports_selected_mixed_assignment_branch_activity_review_context|test_reports_page_accepts_case_insensitive_selected_source_query'`, and the targeted selected-source slice passed (`12 passed`).
+
 ### Reports export disabled-reason helper split checkpoint
 - Spread the same Phase 1 helper-cleanup pattern onto the `reports` surface by splitting the selected export disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
 - Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
