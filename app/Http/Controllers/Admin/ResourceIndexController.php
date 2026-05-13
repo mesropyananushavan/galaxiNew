@@ -3920,7 +3920,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Backend gap', 'value' => $this->cardsBackendGap($selectedCard)],
             ['label' => 'Shop', 'value' => $this->cardsShopLabel($selectedCard)],
             ['label' => 'Shop guidance', 'value' => $this->cardsShopGuidance($selectedCard)],
-            ['label' => 'Laravel status', 'value' => $selectedCard->status],
+            ['label' => 'Laravel status', 'value' => $this->cardsLaravelStatusLabel($selectedCard)],
             ['label' => 'Issued', 'value' => $this->cardsIssuedLabel($selectedCard)],
             ['label' => 'Activated', 'value' => $this->cardsActivatedLabel($selectedCard)],
             ['label' => 'Blocked pre-activation signal', 'value' => $this->cardsBlockedPreActivationSignal($selectedCard)],
@@ -4005,6 +4005,11 @@ class ResourceIndexController extends Controller
     private function cardsShopLabel(Card $selectedCard): string
     {
         return $selectedCard->shop?->name ?? 'Unassigned';
+    }
+
+    private function cardsLaravelStatusLabel(Card $selectedCard): string
+    {
+        return $selectedCard->status;
     }
 
     private function cardsShopGuidance(Card $selectedCard): string
