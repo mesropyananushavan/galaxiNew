@@ -2752,11 +2752,6 @@ class ResourceIndexController extends Controller
 
     private function reportsSelectedSourcePresetDisabledReason(array $selectedReportSource): string
     {
-        return $this->reportsSelectedSourcePresetDisabledReasonSummary($selectedReportSource);
-    }
-
-    private function reportsSelectedSourcePresetDisabledReasonSummary(array $selectedReportSource): string
-    {
         return match ($selectedReportSource['key'] ?? null) {
             'cards-by-shop' => 'Blocked until branch-total preset periods are verified against live shop grouping and legacy reporting habits.',
             'cardholder-status' => 'Blocked until holder-status preset periods are verified against lifecycle and recency reporting parity.',
