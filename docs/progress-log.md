@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Checks-points review-gaps helper split checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `checks-points` surface by splitting the selected review-gaps disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context'`, and the targeted selected-receipt slice passed (`3 passed`).
+
 ### Shops scope disabled-reason helper split checkpoint
 - Spread the same Phase 1 helper-cleanup pattern onto the `shops` surface by splitting the selected scope disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
 - Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
