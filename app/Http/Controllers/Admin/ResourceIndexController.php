@@ -3918,7 +3918,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Evidence priority', 'value' => $this->cardsEvidencePriority($selectedCard)],
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
             ['label' => 'Backend gap', 'value' => $this->cardsBackendGap($selectedCard)],
-            ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
+            ['label' => 'Shop', 'value' => $this->cardsShopLabel($selectedCard)],
             ['label' => 'Shop guidance', 'value' => $this->cardsShopGuidance($selectedCard)],
             ['label' => 'Laravel status', 'value' => $selectedCard->status],
             ['label' => 'Issued', 'value' => $this->cardsIssuedLabel($selectedCard)],
@@ -4000,6 +4000,11 @@ class ResourceIndexController extends Controller
             $selectedCard->activated_at === null => 'Issued inventory shell, still waiting for activation parity review.',
             default => 'Issued and activated inventory already visible in Laravel.',
         };
+    }
+
+    private function cardsShopLabel(Card $selectedCard): string
+    {
+        return $selectedCard->shop?->name ?? 'Unassigned';
     }
 
     private function cardsShopGuidance(Card $selectedCard): string
