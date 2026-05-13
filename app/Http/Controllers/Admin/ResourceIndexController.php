@@ -4490,7 +4490,7 @@ class ResourceIndexController extends Controller
     private function cardholdersSelectedHolderDependencyStatus(CardHolder $selectedCardHolder): array
     {
         return [
-            ['label' => 'Selected holder', 'value' => $selectedCardHolder->full_name],
+            ['label' => 'Selected holder', 'value' => $this->cardholdersSelectedHolderLabel($selectedCardHolder)],
             ['label' => 'Lookup posture', 'value' => 'Selected-holder review is running in Laravel-backed read mode only'],
             ['label' => 'Holder status signal', 'value' => $selectedCardHolder->is_active
                 ? 'Active holder is already visible for live profile parity review.'
