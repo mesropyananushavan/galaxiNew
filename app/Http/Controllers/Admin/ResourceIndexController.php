@@ -3922,7 +3922,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Shop guidance', 'value' => $this->cardsShopGuidance($selectedCard)],
             ['label' => 'Laravel status', 'value' => $selectedCard->status],
             ['label' => 'Issued', 'value' => $this->cardsIssuedLabel($selectedCard)],
-            ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
+            ['label' => 'Activated', 'value' => $this->cardsActivatedLabel($selectedCard)],
             ['label' => 'Blocked pre-activation signal', 'value' => $this->cardsBlockedPreActivationSignal($selectedCard)],
             ['label' => 'Blocked activated signal', 'value' => $this->cardsBlockedActivatedSignal($selectedCard)],
             ['label' => 'Blocked holder-linked signal', 'value' => $this->cardsBlockedHolderLinkedSignal($selectedCard)],
@@ -3965,6 +3965,11 @@ class ResourceIndexController extends Controller
     private function cardsIssuedLabel(Card $selectedCard): string
     {
         return $selectedCard->issued_at?->format('Y-m-d') ?? '—';
+    }
+
+    private function cardsActivatedLabel(Card $selectedCard): string
+    {
+        return $selectedCard->activated_at?->format('Y-m-d') ?? '—';
     }
 
     private function cardsOperationalReadiness(Card $selectedCard): string
