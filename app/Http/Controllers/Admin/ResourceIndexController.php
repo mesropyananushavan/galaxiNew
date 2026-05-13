@@ -2807,6 +2807,11 @@ class ResourceIndexController extends Controller
 
     private function servicesRulesSelectedReviewPrioritiesDisabledReason(array $selectedRulePreview): string
     {
+        return $this->servicesRulesSelectedReviewPrioritiesDisabledReasonSummary($selectedRulePreview);
+    }
+
+    private function servicesRulesSelectedReviewPrioritiesDisabledReasonSummary(array $selectedRulePreview): string
+    {
         return match (true) {
             ($selectedRulePreview['status'] ?? null) === 'draft' => 'Blocked until draft rule priority order is verified against legacy exclusion precedence in Laravel.',
             ($selectedRulePreview['scope'] ?? null) !== 'All shops' => 'Blocked until scoped rule priority order is verified against broader loyalty overlaps in Laravel.',
