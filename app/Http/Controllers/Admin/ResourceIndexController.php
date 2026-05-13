@@ -4260,7 +4260,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Backend gap', 'value' => $this->cardholdersBackendGap($selectedCardHolder)],
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $this->cardholdersShopGuidance($selectedCardHolder)],
-            ['label' => 'Linked cards', 'value' => (string) $selectedCardHolder->cards_count],
+            ['label' => 'Linked cards', 'value' => $this->cardholdersLinkedCardsLabel($selectedCardHolder)],
             ['label' => 'Laravel status', 'value' => $this->cardholdersLaravelStatus($selectedCardHolder)],
             [
                 'label' => 'Lookup guidance',
@@ -4302,6 +4302,11 @@ class ResourceIndexController extends Controller
     private function cardholdersLaravelStatus(CardHolder $selectedCardHolder): string
     {
         return $selectedCardHolder->is_active ? 'active' : 'inactive';
+    }
+
+    private function cardholdersLinkedCardsLabel(CardHolder $selectedCardHolder): string
+    {
+        return (string) $selectedCardHolder->cards_count;
     }
 
     private function cardholdersLookupGuidance(CardHolder $selectedCardHolder): string
