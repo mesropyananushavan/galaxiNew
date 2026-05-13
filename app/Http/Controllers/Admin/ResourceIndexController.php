@@ -2860,6 +2860,11 @@ class ResourceIndexController extends Controller
 
     private function cardholdersSelectedReviewActivityDisabledReason(CardHolder $selectedCardHolder): string
     {
+        return $this->cardholdersSelectedReviewActivityDisabledReasonSummary($selectedCardHolder);
+    }
+
+    private function cardholdersSelectedReviewActivityDisabledReasonSummary(CardHolder $selectedCardHolder): string
+    {
         return match (true) {
             (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->cards_count > 0 => 'Blocked until paused-branch linked-card activity is backed by a stable Laravel event source for recovery-parity review.',
             (bool) $selectedCardHolder->shop?->is_active === false => 'Blocked until paused-branch activity history is backed by a stable Laravel event source for recovery-parity review.',

@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cardholders activity helper split and stale expectation fix checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `cardholders` surface by splitting the selected activity disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- While re-running the focused selected-holder slice, found a stale expectation in `test_cardholders_page_supports_selected_active_unlinked_holder_review_context`: the fixture creates an active shop, but the test was still expecting paused-branch posture/evidence copy. Updated the test to match the current Galaxy-specific active-shop review semantics.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
 ### Cards blocked-review disabled-reason helper split checkpoint
 - Spread the same Phase 1 helper-cleanup pattern onto the `cards` surface by splitting the selected blocked-review disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
 - Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
