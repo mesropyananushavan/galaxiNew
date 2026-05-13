@@ -2769,6 +2769,11 @@ class ResourceIndexController extends Controller
 
     private function reportsSelectedSourceExportDisabledReason(array $selectedReportSource): string
     {
+        return $this->reportsSelectedSourceExportDisabledReasonSummary($selectedReportSource);
+    }
+
+    private function reportsSelectedSourceExportDisabledReasonSummary(array $selectedReportSource): string
+    {
         return match ($selectedReportSource['key'] ?? null) {
             'cards-by-shop' => 'Blocked until branch-total export snapshots are verified against legacy grouped totals and file delivery.',
             'cardholder-status' => 'Blocked until holder-status export snapshots are verified against lifecycle summaries and file delivery.',

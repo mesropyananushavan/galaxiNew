@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Reports export disabled-reason helper split checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `reports` surface by splitting the selected export disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made another Galaxy-specific admin surface a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_report_source_context|test_reports_page_supports_cards_by_shop_export_context|test_reports_page_supports_cardholder_status_export_context|test_reports_page_supports_role_access_export_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'`, and the matching targeted slice passed (`2 passed`; in the current suite only the unknown-source and case-insensitive selected-source tests matched that exact filter string).
+
 ### Services-rules review-priorities disabled-reason helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `services-rules` surface by splitting the selected review-priorities disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
 - Kept the step narrow and behavior-preserving, but made the selected-rule action gating helpers more consistent so this Galaxy-specific admin page stays easier to extend without drifting back toward starter-style controller glue.
