@@ -2848,11 +2848,6 @@ class ResourceIndexController extends Controller
 
     private function cardsSelectedReviewBlockedDisabledReason(Card $selectedCard): string
     {
-        return $this->cardsSelectedReviewBlockedDisabledReasonSummary($selectedCard);
-    }
-
-    private function cardsSelectedReviewBlockedDisabledReasonSummary(Card $selectedCard): string
-    {
         return match (true) {
             $selectedCard->status === 'blocked' && $selectedCard->holder !== null => 'Blocked until this blocked holder-linked card clears dispute and replacement parity against the legacy Galaxy flow.',
             $selectedCard->status === 'blocked' => 'Blocked until this blocked card clears dispute and replacement parity against the legacy Galaxy flow.',

@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cards blocked-review disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `cards` surface by inlining the selected blocked-review disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
 ### Cardholders Laravel-status helper naming checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by renaming the selected-holder Laravel-status helper to the more consistent `...Label()` form, keeping the admin-shell helper layer more uniform.
 - Kept the step behavior-preserving and limited to naming consistency, which helps the Galaxy-specific review surface read less like leftover starter glue.
