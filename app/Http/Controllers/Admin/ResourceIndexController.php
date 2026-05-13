@@ -3268,11 +3268,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsStatusTimelineTitle(Role $selectedRole): string
     {
-        return $this->rolesPermissionsStatusTimelineTitleSummary($selectedRole);
-    }
-
-    private function rolesPermissionsStatusTimelineTitleSummary(Role $selectedRole): string
-    {
         return sprintf('%s status reflected from model state', $selectedRole->name);
     }
 
