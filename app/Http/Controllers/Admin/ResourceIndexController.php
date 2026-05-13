@@ -3369,11 +3369,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function rolesPermissionsReviewNoteLabel(Role $selectedRole): string
-    {
-        return $selectedRole->review_note ?: 'No review note saved yet';
-    }
-
     private function rolesPermissionsReviewNoteTimelineDescription(Role $selectedRole): string
     {
         return $selectedRole->review_note !== null && trim($selectedRole->review_note) !== ''
@@ -3657,7 +3652,7 @@ class ResourceIndexController extends Controller
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedRole)],
             ['label' => 'Last saved in Laravel', 'value' => $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending')],
-            ['label' => 'Review note', 'value' => $this->rolesPermissionsReviewNoteLabel($selectedRole)],
+            ['label' => 'Review note', 'value' => $selectedRole->review_note ?: 'No review note saved yet'],
             ['label' => 'Review freshness', 'value' => $this->rolesPermissionsReviewFreshness($selectedRole)],
             ['label' => 'Access note', 'value' => $this->rolesPermissionsAccessNoteLabel($selectedRole)],
             ['label' => 'Assignment note', 'value' => $this->rolesPermissionsAssignmentNoteLabel($selectedRole)],
