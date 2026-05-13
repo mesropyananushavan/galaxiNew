@@ -3021,7 +3021,7 @@ class ResourceIndexController extends Controller
                 ? 'Live-impact review, linked staff or permissions already exist in Laravel'
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
-            ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleFreshnessLabel($selectedRole)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedRole)],
             ['label' => 'Last saved in Laravel', 'value' => $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending')],
             ['label' => 'Review note', 'value' => $selectedRole->review_note ?: 'No review note saved yet'],
             ['label' => 'Review freshness', 'value' => $this->rolesPermissionsReviewFreshness($selectedRole)],
@@ -3247,11 +3247,6 @@ class ResourceIndexController extends Controller
     }
 
     private function rolesPermissionsLifecycleFreshness(Role $selectedRole): string
-    {
-        return $this->lifecycleFreshnessLabel($selectedRole);
-    }
-
-    private function rolesPermissionsLifecycleFreshnessLabel(Role $selectedRole): string
     {
         return $this->lifecycleFreshnessLabel($selectedRole);
     }
