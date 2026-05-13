@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Services-rules review-priorities disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `services-rules` surface by inlining the selected review-priorities disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context'`, and the targeted selected-rule slice passed (`3 passed`).
+
 ### Reports export disabled-reason cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `reports` surface by inlining the selected export disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
 - Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
