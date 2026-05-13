@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Checks-points review-gaps disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `checks-points` surface by inlining the selected review-gaps disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context'`, and the targeted selected-receipt slice passed (`3 passed`).
+
 ### Shops review-scope disabled-reason cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `shops` surface by inlining the selected review-scope disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
 - Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.

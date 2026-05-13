@@ -2748,11 +2748,6 @@ class ResourceIndexController extends Controller
 
     private function checksPointsSelectedReviewGapsDisabledReason(array $selectedReceiptPreview): string
     {
-        return $this->checksPointsSelectedReviewGapsDisabledReasonSummary($selectedReceiptPreview);
-    }
-
-    private function checksPointsSelectedReviewGapsDisabledReasonSummary(array $selectedReceiptPreview): string
-    {
         return match (true) {
             ($selectedReceiptPreview['points'] ?? null) === '0' => 'Blocked until zero-accrual review is backed by Laravel transaction and rule data.',
             ($selectedReceiptPreview['shop'] ?? null) === 'North Shop' => 'Blocked until branch-aware accrual review is backed by Laravel transaction and rule data.',
