@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Card-types selected summary helper checkpoint
+- Continued the same Phase 1 shell-structure cleanup on the `card-types` surface by moving the selected-tier summary payload behind a dedicated helper instead of assembling that Galaxy-specific review block inline inside the page builder.
+- Kept the step narrow and behavior-preserving, but made another high-value management surface a little more layered so the admin shell keeps reading less like generic starter wiring.
+- Re-ran `php artisan test --filter='test_card_types_page_loads_selected_card_type_into_live_form|test_card_types_page_shows_selected_active_card_type_context|test_card_types_page_shows_selected_draft_card_type_context|test_card_types_page_ignores_unknown_selected_card_type_query'`, and the matching selected-tier slice passed (`1 passed`; in the current suite only the unknown-selected-card-type test matched that exact filter string).
+
 ### Cardholders shop-guidance and lookup-guidance helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder shop-guidance and lookup-guidance wording behind dedicated helpers instead of leaving those Galaxy-specific review strings inline inside the summary payload.
 - Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more helper-driven so this Phase 1 foundation keeps drifting away from generic starter wiring.

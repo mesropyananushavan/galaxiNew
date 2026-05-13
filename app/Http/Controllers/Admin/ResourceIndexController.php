@@ -1975,43 +1975,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $page['selectedRecordSummary'] = [
-            ['label' => 'Selected tier', 'value' => $selectedCardType->name],
-            ['label' => 'Slug', 'value' => $selectedCardType->slug],
-            ['label' => 'Points rate', 'value' => number_format((float) $selectedCardType->points_rate, 2).'x'],
-            ['label' => 'Laravel status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
-            ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
-            ['label' => 'Last saved in Laravel', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
-            ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
-            ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
-            ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
-            ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
-            ['label' => 'Rollout freshness', 'value' => $this->cardTypesRolloutFreshness($selectedCardType)],
-            ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
-            ['label' => 'Coverage freshness', 'value' => $this->cardTypesCoverageFreshness($selectedCardType)],
-            ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
-            ['label' => 'Tier focus', 'value' => $this->cardTypesFocus($selectedCardType)],
-            ['label' => 'Tier posture', 'value' => $this->cardTypesPosture($selectedCardType)],
-            ['label' => 'Evidence priority', 'value' => $this->cardTypesEvidencePriority($selectedCardType)],
-            ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
-            ['label' => 'Backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
-            [
-                'label' => 'Status guidance',
-                'value' => $this->cardTypesStatusGuidance($selectedCardType),
-            ],
-            [
-                'label' => 'Rule-import blocker',
-                'value' => $this->cardTypesRuleImportBlocker($selectedCardType),
-            ],
-            [
-                'label' => 'Publish guidance',
-                'value' => $this->cardTypesPublishGuidance($selectedCardType),
-            ],
-            [
-                'label' => 'Readiness signal',
-                'value' => $this->cardTypesReadinessSignal($selectedCardType),
-            ],
-        ];
+        $page['selectedRecordSummary'] = $this->cardTypesSelectedTypeSummary($selectedCardType);
 
         $page = $this->appendCardTypeLatestFlowFeedback($page);
 
@@ -2190,6 +2154,35 @@ class ResourceIndexController extends Controller
         ];
 
         return $page;
+    }
+
+    private function cardTypesSelectedTypeSummary(CardType $selectedCardType): array
+    {
+        return [
+            ['label' => 'Selected tier', 'value' => $selectedCardType->name],
+            ['label' => 'Slug', 'value' => $selectedCardType->slug],
+            ['label' => 'Points rate', 'value' => number_format((float) $selectedCardType->points_rate, 2).'x'],
+            ['label' => 'Laravel status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
+            ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
+            ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
+            ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
+            ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
+            ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
+            ['label' => 'Rollout freshness', 'value' => $this->cardTypesRolloutFreshness($selectedCardType)],
+            ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
+            ['label' => 'Coverage freshness', 'value' => $this->cardTypesCoverageFreshness($selectedCardType)],
+            ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
+            ['label' => 'Tier focus', 'value' => $this->cardTypesFocus($selectedCardType)],
+            ['label' => 'Tier posture', 'value' => $this->cardTypesPosture($selectedCardType)],
+            ['label' => 'Evidence priority', 'value' => $this->cardTypesEvidencePriority($selectedCardType)],
+            ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
+            ['label' => 'Backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
+            ['label' => 'Status guidance', 'value' => $this->cardTypesStatusGuidance($selectedCardType)],
+            ['label' => 'Rule-import blocker', 'value' => $this->cardTypesRuleImportBlocker($selectedCardType)],
+            ['label' => 'Publish guidance', 'value' => $this->cardTypesPublishGuidance($selectedCardType)],
+            ['label' => 'Readiness signal', 'value' => $this->cardTypesReadinessSignal($selectedCardType)],
+        ];
     }
 
     private function cardTypesCreateShellActionLabel(): string
