@@ -4250,7 +4250,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Review note', 'value' => $selectedCardHolder->review_note ?: 'No review note saved yet'],
-            ['label' => 'Phone', 'value' => $selectedCardHolder->phone ?? '—'],
+            ['label' => 'Phone', 'value' => $this->cardholdersPhoneLabel($selectedCardHolder)],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Shop activity signal', 'value' => $this->cardholdersShopActivitySignal($selectedCardHolder)],
             ['label' => 'Holder focus', 'value' => $this->cardholdersHolderFocus($selectedCardHolder)],
@@ -4307,6 +4307,11 @@ class ResourceIndexController extends Controller
     private function cardholdersLinkedCardsLabel(CardHolder $selectedCardHolder): string
     {
         return (string) $selectedCardHolder->cards_count;
+    }
+
+    private function cardholdersPhoneLabel(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->phone ?? '—';
     }
 
     private function cardholdersLookupGuidance(CardHolder $selectedCardHolder): string
