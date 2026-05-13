@@ -4261,7 +4261,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $this->cardholdersShopGuidance($selectedCardHolder)],
             ['label' => 'Linked cards', 'value' => (string) $selectedCardHolder->cards_count],
-            ['label' => 'Laravel status', 'value' => $selectedCardHolder->is_active ? 'active' : 'inactive'],
+            ['label' => 'Laravel status', 'value' => $this->cardholdersLaravelStatus($selectedCardHolder)],
             [
                 'label' => 'Lookup guidance',
                 'value' => $this->cardholdersLookupGuidance($selectedCardHolder),
@@ -4297,6 +4297,11 @@ class ResourceIndexController extends Controller
         return $selectedCardHolder->shop !== null
             ? 'Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.'
             : 'No branch is linked yet, so shop-aware lookup behavior should stay in parity review before profile actions are widened.';
+    }
+
+    private function cardholdersLaravelStatus(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->is_active ? 'active' : 'inactive';
     }
 
     private function cardholdersLookupGuidance(CardHolder $selectedCardHolder): string
