@@ -3921,7 +3921,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Shop', 'value' => $selectedCard->shop?->name ?? 'Unassigned'],
             ['label' => 'Shop guidance', 'value' => $this->cardsShopGuidance($selectedCard)],
             ['label' => 'Laravel status', 'value' => $selectedCard->status],
-            ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
+            ['label' => 'Issued', 'value' => $this->cardsIssuedLabel($selectedCard)],
             ['label' => 'Activated', 'value' => $selectedCard->activated_at?->format('Y-m-d') ?? '—'],
             ['label' => 'Blocked pre-activation signal', 'value' => $this->cardsBlockedPreActivationSignal($selectedCard)],
             ['label' => 'Blocked activated signal', 'value' => $this->cardsBlockedActivatedSignal($selectedCard)],
@@ -3960,6 +3960,11 @@ class ResourceIndexController extends Controller
     private function cardsReviewNoteLabel(Card $selectedCard): string
     {
         return $selectedCard->review_note ?: 'No review note saved yet';
+    }
+
+    private function cardsIssuedLabel(Card $selectedCard): string
+    {
+        return $selectedCard->issued_at?->format('Y-m-d') ?? '—';
     }
 
     private function cardsOperationalReadiness(Card $selectedCard): string
@@ -4216,7 +4221,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Card status signal', 'value' => $this->cardsStatusSignal($selectedCard)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
-            ['label' => 'Issued', 'value' => $selectedCard->issued_at?->format('Y-m-d') ?? '—'],
+            ['label' => 'Issued', 'value' => $this->cardsIssuedLabel($selectedCard)],
             ['label' => 'Review note', 'value' => $this->cardsReviewNoteLabel($selectedCard)],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
