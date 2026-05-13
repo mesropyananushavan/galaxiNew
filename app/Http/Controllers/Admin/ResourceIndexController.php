@@ -4491,7 +4491,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected holder', 'value' => $this->cardholdersSelectedHolderLabel($selectedCardHolder)],
-            ['label' => 'Lookup posture', 'value' => $this->cardholdersLookupDependencyPosture($selectedCardHolder)],
+            ['label' => 'Lookup posture', 'value' => $this->cardholdersLookupDependencyPosture()],
             ['label' => 'Holder status signal', 'value' => $this->cardholdersStatusSignal($selectedCardHolder)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
@@ -4506,7 +4506,7 @@ class ResourceIndexController extends Controller
         ];
     }
 
-    private function cardholdersLookupDependencyPosture(CardHolder $selectedCardHolder): string
+    private function cardholdersLookupDependencyPosture(): string
     {
         return 'Selected-holder review is running in Laravel-backed read mode only';
     }
