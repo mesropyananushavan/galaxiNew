@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cardholders lookup-dependency posture helper checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the dependency-panel `Lookup posture` string behind a dedicated helper instead of keeping that read-only review copy inline.
+- Kept the step narrow and behavior-preserving, while making the holder review shell a bit more consistent with the layered Galaxy-specific admin pattern already used elsewhere in the selected-holder experience.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
 ### Cardholders dependency review-note helper checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by routing the dependency-panel `Review note` value through the existing review-note helper instead of keeping the fallback text inline.
 - Kept the step narrow and behavior-preserving, while making the holder review shell a bit more consistent with the layered Galaxy-specific admin pattern already used in the selected summary.
