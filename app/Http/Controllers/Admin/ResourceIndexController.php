@@ -3901,9 +3901,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected card', 'value' => $this->cardsSelectedCardLabel($selectedCard)],
-            ['label' => 'Review mode', 'value' => $selectedCard->status === 'draft'
-                ? 'Draft-safe review, this inventory record is still safer for parity checks before operators treat it as issued stock.'
-                : 'Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.'],
+            ['label' => 'Review mode', 'value' => $this->cardsReviewMode($selectedCard)],
             ['label' => 'Card status signal', 'value' => $this->cardsStatusSignal($selectedCard)],
             ['label' => 'Operational readiness', 'value' => $this->cardsOperationalReadiness($selectedCard)],
             ['label' => 'Lifecycle stage', 'value' => $this->cardsLifecycleStage($selectedCard)],
@@ -3946,6 +3944,13 @@ class ResourceIndexController extends Controller
     private function cardsSelectedCardLabel(Card $selectedCard): string
     {
         return $selectedCard->number;
+    }
+
+    private function cardsReviewMode(Card $selectedCard): string
+    {
+        return $selectedCard->status === 'draft'
+            ? 'Draft-safe review, this inventory record is still safer for parity checks before operators treat it as issued stock.'
+            : 'Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.';
     }
 
     private function cardsStatusSignal(Card $selectedCard): string
