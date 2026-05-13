@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Roles-permissions access-note timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the access-note timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
 ### Roles-permissions review-note timeline-title cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the review-note timeline title back into its primary helper and removing the now-redundant pass-through summary method.
 - Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
