@@ -3910,7 +3910,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardsLastSavedLabel($selectedCard)],
             ['label' => 'Review note', 'value' => $this->cardsReviewNoteLabel($selectedCard)],
-            ['label' => 'Holder', 'value' => $selectedCard->holder?->full_name ?? 'Unassigned'],
+            ['label' => 'Holder', 'value' => $this->cardsHolderLabel($selectedCard)],
             ['label' => 'Card type', 'value' => $selectedCard->type?->name ?? 'Unknown'],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
             ['label' => 'Inventory focus', 'value' => $this->cardsInventoryFocus($selectedCard)],
@@ -3960,6 +3960,11 @@ class ResourceIndexController extends Controller
     private function cardsReviewNoteLabel(Card $selectedCard): string
     {
         return $selectedCard->review_note ?: 'No review note saved yet';
+    }
+
+    private function cardsHolderLabel(Card $selectedCard): string
+    {
+        return $selectedCard->holder?->full_name ?? 'Unassigned';
     }
 
     private function cardsIssuedLabel(Card $selectedCard): string
