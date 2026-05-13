@@ -3280,11 +3280,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsLifecycleTimelineTitle(Role $selectedRole): string
     {
-        return $this->rolesPermissionsLifecycleTimelineTitleSummary($selectedRole);
-    }
-
-    private function rolesPermissionsLifecycleTimelineTitleSummary(Role $selectedRole): string
-    {
         return sprintf('%s lifecycle freshness reflected from model state', $selectedRole->name);
     }
 
