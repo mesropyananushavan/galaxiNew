@@ -4243,7 +4243,7 @@ class ResourceIndexController extends Controller
     private function cardholdersSelectedHolderSummary(CardHolder $selectedCardHolder): array
     {
         return [
-            ['label' => 'Selected holder', 'value' => $selectedCardHolder->full_name],
+            ['label' => 'Selected holder', 'value' => $this->cardholdersSelectedHolderLabel($selectedCardHolder)],
             ['label' => 'Review mode', 'value' => $this->cardholdersReviewMode($selectedCardHolder)],
             ['label' => 'Holder status signal', 'value' => $this->cardholdersStatusSignal($selectedCardHolder)],
             ['label' => 'Operational readiness', 'value' => $this->cardholdersOperationalReadiness($selectedCardHolder)],
@@ -4267,6 +4267,11 @@ class ResourceIndexController extends Controller
                 'value' => $this->cardholdersLookupGuidance($selectedCardHolder),
             ],
         ];
+    }
+
+    private function cardholdersSelectedHolderLabel(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->full_name;
     }
 
     private function cardholdersReviewMode(CardHolder $selectedCardHolder): string
