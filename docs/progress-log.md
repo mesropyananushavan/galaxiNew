@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cardholders activity-review disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `cardholders` surface by inlining the selected activity-review disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
 ### Cards blocked-review disabled-reason cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `cards` surface by inlining the selected blocked-review disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
 - Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
