@@ -2816,6 +2816,11 @@ class ResourceIndexController extends Controller
 
     private function servicesRulesSelectedPublishRuleDisabledReason(array $selectedRulePreview): string
     {
+        return $this->servicesRulesSelectedPublishRuleDisabledReasonSummary($selectedRulePreview);
+    }
+
+    private function servicesRulesSelectedPublishRuleDisabledReasonSummary(array $selectedRulePreview): string
+    {
         return match (true) {
             ($selectedRulePreview['status'] ?? null) === 'draft' => 'Blocked until this draft rule clears CRUD, exclusion-parity, and publish-safety checks beyond the preview shell.',
             ($selectedRulePreview['scope'] ?? null) !== 'All shops' => 'Blocked until this scoped rule clears CRUD, scope-parity, and publish-safety checks beyond the preview shell.',

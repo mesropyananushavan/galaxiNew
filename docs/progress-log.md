@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Services-rules publish disabled-reason helper split checkpoint
+- Spread the same Phase 1 helper-cleanup pattern onto the `services-rules` surface by splitting the selected publish disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
+- Kept the step narrow and behavior-preserving, but made another high-value Galaxy-specific admin page a little more helper-driven so the Phase 1 shell keeps moving away from starter-style controller glue.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context|test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog|test_services_rules_page_accepts_case_insensitive_selected_rule_query'`, and the targeted selected-rule slice passed (`5 passed`).
+
 ### Gifts stock-audit disabled-reason helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `gifts` surface by splitting the selected stock-audit disabled-reason wording behind a dedicated summary helper instead of keeping the match block directly inside the public helper.
 - Kept the step narrow and behavior-preserving, but made the selected-gift action gating helpers more consistent so this Galaxy-specific admin page stays easier to extend without drifting back toward starter-style controller glue.
