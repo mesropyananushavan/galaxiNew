@@ -4258,7 +4258,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Evidence priority', 'value' => $this->cardholdersEvidencePriority($selectedCardHolder)],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
             ['label' => 'Backend gap', 'value' => $this->cardholdersBackendGap($selectedCardHolder)],
-            ['label' => 'Shop', 'value' => $selectedCardHolder->shop?->name ?? 'Unassigned'],
+            ['label' => 'Shop', 'value' => $this->cardholdersShopLabel($selectedCardHolder)],
             ['label' => 'Shop guidance', 'value' => $this->cardholdersShopGuidance($selectedCardHolder)],
             ['label' => 'Linked cards', 'value' => $this->cardholdersLinkedCardsLabel($selectedCardHolder)],
             ['label' => 'Laravel status', 'value' => $this->cardholdersLaravelStatus($selectedCardHolder)],
@@ -4312,6 +4312,11 @@ class ResourceIndexController extends Controller
     private function cardholdersPhoneLabel(CardHolder $selectedCardHolder): string
     {
         return $selectedCardHolder->phone ?? '—';
+    }
+
+    private function cardholdersShopLabel(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->shop?->name ?? 'Unassigned';
     }
 
     private function cardholdersLookupGuidance(CardHolder $selectedCardHolder): string
