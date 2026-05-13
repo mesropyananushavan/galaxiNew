@@ -3528,7 +3528,14 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsScopeCoverageDependencyLabel(mixed $scope): string
     {
-        return $this->rolesPermissionsScopeCoverageLabel($scope);
+        $scopeCount = $scope->count();
+
+        return match (true) {
+            $scopeCount >= 3 => sprintf('%d shops currently linked in Laravel scope', $scopeCount),
+            $scopeCount === 2 => '2 shops currently linked in Laravel scope',
+            $scopeCount === 1 => sprintf('%s is currently linked in Laravel scope', $scope->first()),
+            default => 'No shops linked in Laravel scope yet',
+        };
     }
 
     private function rolesPermissionsScopePostureTimelineDescription(mixed $scope): string
