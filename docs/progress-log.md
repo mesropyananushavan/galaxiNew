@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Roles-permissions catalog review-matrix disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the catalog review-matrix disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted roles slice passed (`2 passed`).
+
 ### Roles-permissions review-matrix disabled-reason cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the selected review-matrix disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
 - Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
