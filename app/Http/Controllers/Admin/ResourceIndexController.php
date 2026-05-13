@@ -3310,11 +3310,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsPermissionBundleTimelineTitle(Role $selectedRole): string
     {
-        return $this->rolesPermissionsPermissionBundleTimelineTitleSummary($selectedRole);
-    }
-
-    private function rolesPermissionsPermissionBundleTimelineTitleSummary(Role $selectedRole): string
-    {
         return sprintf('%s permission bundle reflected from model state', $selectedRole->name);
     }
 
