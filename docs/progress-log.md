@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Cardholders review-note label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder review-note label behind a dedicated helper instead of keeping that fallback value inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
 ### Cardholders shop-label helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder shop label behind a dedicated helper instead of keeping that fallback value inline inside the summary payload.
 - Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
