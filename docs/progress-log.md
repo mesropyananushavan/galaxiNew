@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Roles-permissions lifecycle freshness-label cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by routing the summary freshness label directly to the shared lifecycle label helper and removing another redundant surface-specific pass-through layer.
+- Kept the change narrow and behavior-preserving, mirroring the same direct-helper cleanup already applied in adjacent dependency-panel helpers.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
 ### Roles-permissions lifecycle dependency-label cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the dependency-panel lifecycle label to the shared freshness helper and removing the now-redundant surface-specific pass-through wrapper.
 - Kept the change narrow and behavior-preserving by routing directly to the existing generic lifecycle label helper instead of duplicating any freshness wording.

@@ -3253,7 +3253,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsLifecycleFreshnessLabel(Role $selectedRole): string
     {
-        return $this->rolesPermissionsLifecycleFreshness($selectedRole);
+        return $this->lifecycleFreshnessLabel($selectedRole);
     }
 
     private function rolesPermissionsSelectedForReviewTimelineTitle(Role $selectedRole): string
