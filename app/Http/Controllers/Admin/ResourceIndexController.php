@@ -3391,11 +3391,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsReviewNoteTimelineDescription(Role $selectedRole): string
     {
-        return $this->rolesPermissionsReviewNoteSummary($selectedRole);
-    }
-
-    private function rolesPermissionsReviewNoteSummary(Role $selectedRole): string
-    {
         return $selectedRole->review_note !== null && trim($selectedRole->review_note) !== ''
             ? sprintf('The current Laravel review note says: %s', $selectedRole->review_note)
             : 'No Laravel review note is saved yet, so parity-sensitive operator context still depends on the surrounding workspace cues.';
