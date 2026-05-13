@@ -3307,6 +3307,11 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsLastSavedTimelineTitle(Role $selectedRole): string
     {
+        return $this->rolesPermissionsLastSavedTimelineTitleSummary($selectedRole);
+    }
+
+    private function rolesPermissionsLastSavedTimelineTitleSummary(Role $selectedRole): string
+    {
         return sprintf('%s last saved timestamp reflected from model state', $selectedRole->name);
     }
 
