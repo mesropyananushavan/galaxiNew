@@ -3336,11 +3336,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsAssignmentScopeTimelineTitle(Role $selectedRole): string
     {
-        return $this->rolesPermissionsAssignmentScopeTimelineTitleSummary($selectedRole);
-    }
-
-    private function rolesPermissionsAssignmentScopeTimelineTitleSummary(Role $selectedRole): string
-    {
         return sprintf('%s assignment scope reflected from model state', $selectedRole->name);
     }
 
