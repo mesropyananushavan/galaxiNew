@@ -2735,11 +2735,6 @@ class ResourceIndexController extends Controller
 
     private function checksPointsSelectedFindReceiptDisabledReason(array $selectedReceiptPreview): string
     {
-        return $this->checksPointsSelectedFindReceiptDisabledReasonSummary($selectedReceiptPreview);
-    }
-
-    private function checksPointsSelectedFindReceiptDisabledReasonSummary(array $selectedReceiptPreview): string
-    {
         return match ($selectedReceiptPreview['shop'] ?? null) {
             'North Shop' => 'Blocked until branch-aware receipt lookup is backed by Laravel shop filters and transaction reads.',
             default => 'Blocked until receipt lookup is backed by Laravel transaction reads and fiscal-search parity checks.',
