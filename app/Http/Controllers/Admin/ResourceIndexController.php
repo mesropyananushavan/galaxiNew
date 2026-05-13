@@ -3570,11 +3570,6 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsScopeCoverageTimelineDescription(mixed $scope): string
     {
-        return $this->rolesPermissionsScopeCoverageSummary($scope);
-    }
-
-    private function rolesPermissionsScopeCoverageSummary(mixed $scope): string
-    {
         $scopeCount = $scope->count();
 
         return match (true) {
