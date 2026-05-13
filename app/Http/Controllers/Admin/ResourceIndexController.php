@@ -4211,9 +4211,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
             ['label' => 'Inventory handoff signal', 'value' => $this->cardsInventoryHandoffSignal($selectedCard)],
             ['label' => 'Lifecycle posture', 'value' => $this->cardsLifecyclePosture($selectedCard)],
-            ['label' => 'Assignment posture', 'value' => $selectedCard->holder !== null
-                ? 'Holder linkage is visible now, but reassignment and replacement actions should stay blocked until inventory parity is verified.'
-                : 'No holder is linked yet, which keeps this inventory record safer for assignment-flow-parity review before assignment flows are enabled.'],
+            ['label' => 'Assignment posture', 'value' => $this->cardsAssignmentDependencyPosture($selectedCard)],
             ['label' => 'Shop posture', 'value' => $selectedCard->shop !== null
                 ? 'Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.'
                 : 'No shop is assigned yet, so branch-level inventory handling should stay in review mode only.'],
@@ -4228,6 +4226,13 @@ class ResourceIndexController extends Controller
             'blocked' => 'This blocked card should stay under review-only handling until dispute and replacement semantics match the old Galaxy flow.',
             default => 'This draft card should stay in parity review until issuance rules are confirmed in Laravel.',
         };
+    }
+
+    private function cardsAssignmentDependencyPosture(Card $selectedCard): string
+    {
+        return $selectedCard->holder !== null
+            ? 'Holder linkage is visible now, but reassignment and replacement actions should stay blocked until inventory parity is verified.'
+            : 'No holder is linked yet, which keeps this inventory record safer for assignment-flow-parity review before assignment flows are enabled.';
     }
 
     private function cardholdersSelectedHolderSummary(CardHolder $selectedCardHolder): array
