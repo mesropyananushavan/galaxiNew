@@ -3022,7 +3022,7 @@ class ResourceIndexController extends Controller
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
             ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleFreshnessLabel($selectedRole)],
-            ['label' => 'Last saved in Laravel', 'value' => $this->rolesPermissionsLastSavedLabel($selectedRole)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending')],
             ['label' => 'Review note', 'value' => $selectedRole->review_note ?: 'No review note saved yet'],
             ['label' => 'Review freshness', 'value' => $this->rolesPermissionsReviewFreshness($selectedRole)],
             ['label' => 'Access note', 'value' => $selectedRole->access_note ?: 'No access note saved yet'],
@@ -3362,11 +3362,6 @@ class ResourceIndexController extends Controller
             : sprintf('This role was last updated in Laravel on %s, so the review workspace now reflects post-creation access metadata.', $selectedRole->updated_at->format('Y-m-d H:i'));
     }
 
-    private function rolesPermissionsLastSavedLabel(Role $selectedRole): string
-    {
-        return $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending');
-    }
-
     private function rolesPermissionsLastSavedTimelineDescription(Role $selectedRole): string
     {
         return $selectedRole->updated_at !== null
@@ -3671,7 +3666,7 @@ class ResourceIndexController extends Controller
                 ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
             ['label' => 'Lifecycle freshness', 'value' => $this->rolesPermissionsLifecycleDependencyLabel($selectedRole)],
-            ['label' => 'Last saved in Laravel', 'value' => $this->rolesPermissionsLastSavedLabel($selectedRole)],
+            ['label' => 'Last saved in Laravel', 'value' => $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending')],
             ['label' => 'Review note', 'value' => $this->rolesPermissionsReviewNoteLabel($selectedRole)],
             ['label' => 'Review freshness', 'value' => $this->rolesPermissionsReviewFreshness($selectedRole)],
             ['label' => 'Access note', 'value' => $this->rolesPermissionsAccessNoteLabel($selectedRole)],

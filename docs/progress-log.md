@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Roles-permissions last-saved label cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by routing both last-saved label call sites directly to the shared `lastSavedLabel(...)` helper and removing the now-redundant surface-specific wrapper.
+- Kept the change narrow and behavior-preserving, while trimming one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
 ### Roles-permissions lifecycle freshness-label cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by routing the summary freshness label directly to the shared lifecycle label helper and removing another redundant surface-specific pass-through layer.
 - Kept the change narrow and behavior-preserving, mirroring the same direct-helper cleanup already applied in adjacent dependency-panel helpers.
