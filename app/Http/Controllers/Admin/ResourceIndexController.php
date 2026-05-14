@@ -3342,13 +3342,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function rolesPermissionsAccessNoteTimelineDescription(Role $selectedRole): string
-    {
-        return $selectedRole->access_note !== null && trim($selectedRole->access_note) !== ''
-            ? sprintf('The current Laravel access note says: %s', $selectedRole->access_note)
-            : 'No Laravel access note is saved yet, so access handoff guidance still depends on the surrounding workspace cues.';
-    }
-
     private function rolesPermissionsAssignmentNoteTimelineDescription(Role $selectedRole): string
     {
         return $selectedRole->assignment_note !== null && trim($selectedRole->assignment_note) !== ''
@@ -3506,7 +3499,9 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsAccessNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $this->rolesPermissionsAccessNoteTimelineDescription($selectedRole),
+                'description' => $selectedRole->access_note !== null && trim($selectedRole->access_note) !== ''
+                    ? sprintf('The current Laravel access note says: %s', $selectedRole->access_note)
+                    : 'No Laravel access note is saved yet, so access handoff guidance still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => $this->rolesPermissionsAssignmentNoteTimelineTitle($selectedRole),
