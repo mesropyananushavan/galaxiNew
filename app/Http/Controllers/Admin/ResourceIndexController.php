@@ -3410,13 +3410,6 @@ class ResourceIndexController extends Controller
         return sprintf('%s scope coverage reflected from model state', $selectedRole->name);
     }
 
-    private function rolesPermissionsScopePostureTimelineDescription(mixed $scope): string
-    {
-        return $scope->isNotEmpty()
-            ? sprintf('This role currently shows shop scope across %s in Laravel review mode, so scope rollout stays visible while writes remain gated.', $scope->join(', '))
-            : 'This role currently has no linked shop scope in Laravel, so the review context keeps it in a safer scope-pending posture.';
-    }
-
     private function rolesPermissionsScopeCoverageTimelineDescription(mixed $scope): string
     {
         $scopeCount = $scope->count();
@@ -3490,7 +3483,9 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsScopePostureTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $this->rolesPermissionsScopePostureTimelineDescription($scope),
+                'description' => $scope->isNotEmpty()
+                    ? sprintf('This role currently shows shop scope across %s in Laravel review mode, so scope rollout stays visible while writes remain gated.', $scope->join(', '))
+                    : 'This role currently has no linked shop scope in Laravel, so the review context keeps it in a safer scope-pending posture.',
             ],
             [
                 'title' => $this->rolesPermissionsScopeCoverageTimelineTitle($selectedRole),
