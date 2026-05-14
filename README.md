@@ -1,57 +1,48 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Galaxi Foundation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+`galaxiNew` is the Laravel target for the Galaxy migration.
 
-## About Laravel
+The current goal is Phase 1: turn this repo from a generic Laravel starter into a Galaxy-specific application foundation with visible admin information architecture, first live domain entities, and parity-first operational workflows.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Migration posture
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- `galaxiOld` remains the source of truth for business behavior and operator UX
+- `galaxiNew` is the Laravel monolith replacing it
+- parity first, redesign later
+- Blade-first admin shell, thin controllers, domain-oriented backend wiring
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Current Phase 1 focus
 
-## Learning Laravel
+- make the admin shell visibly Galaxy-specific
+- keep branch, cardholder, card, card type, role, reward, rule, and reporting surfaces aligned to the migration map
+- land the first safe Laravel-backed read and write slices without breaking parity-sensitive workflows
+- leave a clear checkpoint trail in docs and Git history
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Core Phase 1 references
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- `docs/blueprint.md`
+- `docs/phase-1-plan.md`
+- `docs/progress-log.md`
+- `docs/checkpoints/`
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Local development
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+cd /home/openclaw/.openclaw/workspace/repos/galaxiNew
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan migrate
+php artisan test
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Why this repo exists
 
-## Contributing
+This repository is not meant to stay a polished Laravel starter. Each small Phase 1 step should make the project feel more like Galaxy's future operational console and less like framework scaffolding.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Laravel note
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Laravel is the implementation framework here, but the product shape, workflow language, and admin priorities should follow Galaxy migration needs rather than default starter conventions.
 
 ## Admin baseline
 
@@ -98,6 +89,25 @@ php artisan test
 
 Скрипт валидирует `shared/PROJECT_STATUS.json` и показывает, остались ли `docs/progress-log.md` или `shared/PROJECT_STATUS.json` незакоммиченными.
 Если checkpoint-файлы dirty, скрипт завершается с non-zero exit code, чтобы его можно было использовать как простой guard перед commit/push.
+
+## Contributing
+
+Keep changes small, safe, and migration-oriented. Prefer visible improvements to Galaxy foundation posture over generic framework cleanup.
+
+## Upstream framework references
+
+- https://laravel.com/docs
+- https://laracasts.com
+- https://laravel.com/learn
+
+Laravel conventions still make this repo friendly to coding agents, but agent work should stay anchored to the Galaxy migration blueprint rather than generic starter tasks.
+
+```bash
+composer require laravel/boost --dev
+php artisan boost:install
+```
+
+Use Boost only when it helps Laravel implementation work inside the migration plan.
 
 ## License
 

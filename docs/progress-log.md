@@ -2,6 +2,11 @@
 
 ## 2026-05-14
 
+### App-name and README Galaxy-foundation framing checkpoint
+- Replaced the remaining top-level Laravel starter framing in `README.md` with a Galaxy migration overview, Phase 1 references, and project-specific local development guidance.
+- Changed the application name defaults from `Laravel` to `Galaxi Foundation` in `config/app.php` and `.env.example`, so fresh local environments inherit Galaxy-specific naming instead of starter branding.
+- Re-ran `php artisan test tests/Feature/ExampleTest.php`, and the focused homepage slice still passed (`1 passed`).
+
 ### Public landing page Galaxy-foundation replacement checkpoint
 - Replaced the stock Laravel welcome page with a Galaxy-specific landing page that points operators toward the admin workspace and frames the app as a Phase 1 migration foundation instead of a generic starter.
 - Added a focused feature assertion for `/` so the public entry point now has an explicit regression check for the new Galaxy positioning and Phase 1 call-to-action.
