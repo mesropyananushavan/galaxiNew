@@ -240,7 +240,7 @@ class DashboardController extends Controller
         return match (true) {
             $liveDomainCount === 5 => 'review-ready foundation',
             $liveDomainCount > 0 => 'foundation coverage in progress',
-            default => 'starter setup stage',
+            default => 'foundation setup stage',
         };
     }
 
@@ -551,7 +551,7 @@ class DashboardController extends Controller
             'label' => 'Foundation handoff signal',
             'value' => match (true) {
                 $shopCount === 0 && $cardHolderCount === 0 && $cardCount === 0 && $roleCount === 0 && $permissionCount === 0
-                    => 'Phase 1 is still in starter-to-Galaxy setup mode, so the dashboard should keep first live entities visible before any handoff review feels grounded.',
+                    => 'Phase 1 is still in Galaxy foundation setup mode, so the dashboard should keep first live entities visible before any handoff review feels grounded.',
                 $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0 && $roleCount > 0 && $permissionCount > 0
                     => 'The dashboard already shows enough live Galaxy entities to support a useful foundation handoff review.',
                 default

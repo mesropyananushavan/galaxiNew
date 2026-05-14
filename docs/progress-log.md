@@ -2,6 +2,11 @@
 
 ## 2026-05-14
 
+### Dashboard starter-copy cleanup checkpoint
+- Replaced the remaining starter-oriented dashboard wording with Galaxy-foundation language in the controller summary signals, dashboard intro copy, and foundation snapshot description.
+- Updated the focused dashboard feature expectations so the zero-state and live-state foundation slices now assert Galaxy foundation wording instead of starter phrasing.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist'`, and the targeted dashboard slice passed (`2 passed`).
+
 ### Composer metadata Galaxy-foundation identity checkpoint
 - Replaced the remaining Laravel skeleton package metadata in `composer.json` so the project now identifies itself as `galaxi/foundation` with a Galaxy migration description and Galaxy-oriented keywords.
 - Kept the step structural and low-risk, but it still moves the repo away from starter posture in package metadata that contributors and tooling see first.

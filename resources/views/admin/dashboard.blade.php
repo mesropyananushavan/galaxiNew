@@ -10,7 +10,7 @@
         <span class="eyebrow">Admin / Dashboard</span>
         <h2 style="margin: 16px 0 12px; font-size: 1.75rem;">Phase 1 admin information architecture baseline</h2>
         <p style="margin: 0; color: var(--text-muted); max-width: 780px; line-height: 1.6;">
-            The shell now reflects the Galaxy-specific admin map instead of a generic starter dashboard,
+            The shell now reflects the Galaxy-specific admin map instead of a generic baseline dashboard,
             so the next vertical slices can attach to the sections we actually need to migrate.
         </p>
 
@@ -67,7 +67,7 @@
             <h3 style="margin: 0 0 8px; font-size: 1.1rem;">Galaxy live foundation snapshot</h3>
             <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
                 These counters track the first live Galaxy surfaces already present in Phase 1,
-                so branch setup and review work can move through real operational entities instead of starter placeholders.
+                so branch setup and review work can move through real operational entities instead of generic placeholders.
             </p>
             @if (is_array($foundationHandoffSummary ?? null))
             <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
