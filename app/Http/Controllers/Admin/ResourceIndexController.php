@@ -3036,7 +3036,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Backend gap', 'value' => $this->rolesPermissionsBackendGap($selectedRole)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
-            ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutSummaryPosture($scope)],
+            ['label' => 'Scope rollout posture', 'value' => $scope->isNotEmpty()
+                ? 'Shop scope is visible in Laravel review, but scope writes should stay parity-first until the next thin access slice is ready.'
+                : 'Shop scope is still pending in Laravel review, which keeps this role safer for draft-first parity checks.'],
             ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
             ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
                 ? 'This role already has visible shop scope in Laravel, so any scope change should be treated as a parity-sensitive access change.'
@@ -3471,13 +3473,6 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsScopeRolloutValue(mixed $scope): string
     {
         return $scope->isNotEmpty() ? 'shop-scope-visible' : 'shop-scope-pending';
-    }
-
-    private function rolesPermissionsScopeRolloutSummaryPosture(mixed $scope): string
-    {
-        return $scope->isNotEmpty()
-            ? 'Shop scope is visible in Laravel review, but scope writes should stay parity-first until the next thin access slice is ready.'
-            : 'Shop scope is still pending in Laravel review, which keeps this role safer for draft-first parity checks.';
     }
 
     private function rolesPermissionsScopeCoverageLabel(mixed $scope): string
