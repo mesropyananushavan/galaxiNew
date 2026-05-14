@@ -2,6 +2,11 @@
 
 ## 2026-05-14
 
+### Composer metadata Galaxy-foundation identity checkpoint
+- Replaced the remaining Laravel skeleton package metadata in `composer.json` so the project now identifies itself as `galaxi/foundation` with a Galaxy migration description and Galaxy-oriented keywords.
+- Kept the step structural and low-risk, but it still moves the repo away from starter posture in package metadata that contributors and tooling see first.
+- Re-ran `php artisan test tests/Feature/ExampleTest.php`, and the focused homepage slice still passed (`1 passed`).
+
 ### App-name and README Galaxy-foundation framing checkpoint
 - Replaced the remaining top-level Laravel starter framing in `README.md` with a Galaxy migration overview, Phase 1 references, and project-specific local development guidance.
 - Changed the application name defaults from `Laravel` to `Galaxi Foundation` in `config/app.php` and `.env.example`, so fresh local environments inherit Galaxy-specific naming instead of starter branding.
