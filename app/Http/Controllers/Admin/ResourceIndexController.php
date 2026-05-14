@@ -3035,7 +3035,11 @@ class ResourceIndexController extends Controller
             ['label' => 'Handoff signal', 'value' => $this->rolesPermissionsHandoffSignal($selectedRole, $scope)],
             ['label' => 'Backend gap', 'value' => $this->rolesPermissionsBackendGap($selectedRole)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
-            ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageLabel($scope)],
+            ['label' => 'Scope coverage', 'value' => match (true) {
+                $scope->count() === 0 => 'No shop scope linked yet',
+                $scope->count() === 1 => '1 shop visible in Laravel review',
+                default => sprintf('%d shops visible in Laravel review', $scope->count()),
+            }],
             ['label' => 'Scope rollout posture', 'value' => $scope->isNotEmpty()
                 ? 'Shop scope is visible in Laravel review, but scope writes should stay parity-first until the next thin access slice is ready.'
                 : 'Shop scope is still pending in Laravel review, which keeps this role safer for draft-first parity checks.'],
@@ -3473,17 +3477,6 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsScopeRolloutValue(mixed $scope): string
     {
         return $scope->isNotEmpty() ? 'shop-scope-visible' : 'shop-scope-pending';
-    }
-
-    private function rolesPermissionsScopeCoverageLabel(mixed $scope): string
-    {
-        $scopeCount = $scope->count();
-
-        return match (true) {
-            $scopeCount === 0 => 'No shop scope linked yet',
-            $scopeCount === 1 => '1 shop visible in Laravel review',
-            default => sprintf('%d shops visible in Laravel review', $scopeCount),
-        };
     }
 
     private function rolesPermissionsScopeCoverageTimelineTitle(Role $selectedRole): string
