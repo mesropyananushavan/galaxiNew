@@ -3332,13 +3332,6 @@ class ResourceIndexController extends Controller
             : sprintf('This role was last updated in Laravel on %s, so the review workspace now reflects post-creation access metadata.', $selectedRole->updated_at->format('Y-m-d H:i'));
     }
 
-    private function rolesPermissionsLastSavedTimelineDescription(Role $selectedRole): string
-    {
-        return $selectedRole->updated_at !== null
-            ? sprintf('The latest saved Laravel timestamp for this role is %s, giving operators a concrete checkpoint for the current access shell.', $selectedRole->updated_at->format('Y-m-d H:i'))
-            : 'This role does not expose a latest saved Laravel timestamp yet, so the current access shell should stay in review-only posture.';
-    }
-
     private function rolesPermissionsReviewFreshness(Role $selectedRole): string
     {
         return match (true) {
@@ -3506,7 +3499,9 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsLastSavedTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $this->rolesPermissionsLastSavedTimelineDescription($selectedRole),
+                'description' => $selectedRole->updated_at !== null
+                    ? sprintf('The latest saved Laravel timestamp for this role is %s, giving operators a concrete checkpoint for the current access shell.', $selectedRole->updated_at->format('Y-m-d H:i'))
+                    : 'This role does not expose a latest saved Laravel timestamp yet, so the current access shell should stay in review-only posture.',
             ],
             [
                 'title' => $this->rolesPermissionsReviewNoteTimelineTitle($selectedRole),
