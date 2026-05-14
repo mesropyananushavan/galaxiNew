@@ -2,6 +2,11 @@
 
 ## 2026-05-13
 
+### Roles-permissions review-note timeline-description callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the review-note timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
 ### Roles-permissions last-saved timeline-description callsite cleanup checkpoint
 - Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the last-saved timeline description at its only call site and removing the now-redundant helper.
 - Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.

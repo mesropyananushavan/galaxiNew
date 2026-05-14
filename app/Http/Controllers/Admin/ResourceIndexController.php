@@ -3342,13 +3342,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function rolesPermissionsReviewNoteTimelineDescription(Role $selectedRole): string
-    {
-        return $selectedRole->review_note !== null && trim($selectedRole->review_note) !== ''
-            ? sprintf('The current Laravel review note says: %s', $selectedRole->review_note)
-            : 'No Laravel review note is saved yet, so parity-sensitive operator context still depends on the surrounding workspace cues.';
-    }
-
     private function rolesPermissionsAccessNoteTimelineDescription(Role $selectedRole): string
     {
         return $selectedRole->access_note !== null && trim($selectedRole->access_note) !== ''
@@ -3506,7 +3499,9 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsReviewNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $this->rolesPermissionsReviewNoteTimelineDescription($selectedRole),
+                'description' => $selectedRole->review_note !== null && trim($selectedRole->review_note) !== ''
+                    ? sprintf('The current Laravel review note says: %s', $selectedRole->review_note)
+                    : 'No Laravel review note is saved yet, so parity-sensitive operator context still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => $this->rolesPermissionsAccessNoteTimelineTitle($selectedRole),
