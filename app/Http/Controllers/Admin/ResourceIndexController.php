@@ -3342,13 +3342,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function rolesPermissionsAssignmentNoteTimelineDescription(Role $selectedRole): string
-    {
-        return $selectedRole->assignment_note !== null && trim($selectedRole->assignment_note) !== ''
-            ? sprintf('The current Laravel assignment note says: %s', $selectedRole->assignment_note)
-            : 'No Laravel assignment note is saved yet, so assignment handoff guidance still depends on the surrounding workspace cues.';
-    }
-
     private function rolesPermissionsCoverageSignal(Role $selectedRole, mixed $scope): string
     {
         return match (true) {
@@ -3506,7 +3499,9 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsAssignmentNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $this->rolesPermissionsAssignmentNoteTimelineDescription($selectedRole),
+                'description' => $selectedRole->assignment_note !== null && trim($selectedRole->assignment_note) !== ''
+                    ? sprintf('The current Laravel assignment note says: %s', $selectedRole->assignment_note)
+                    : 'No Laravel assignment note is saved yet, so assignment handoff guidance still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => $this->rolesPermissionsScopePostureTimelineTitle($selectedRole),
