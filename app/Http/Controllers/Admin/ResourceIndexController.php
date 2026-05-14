@@ -3496,18 +3496,6 @@ class ResourceIndexController extends Controller
         return sprintf('%s scope coverage reflected from model state', $selectedRole->name);
     }
 
-    private function rolesPermissionsScopeCoverageDependencyLabel(mixed $scope): string
-    {
-        $scopeCount = $scope->count();
-
-        return match (true) {
-            $scopeCount >= 3 => sprintf('%d shops currently linked in Laravel scope', $scopeCount),
-            $scopeCount === 2 => '2 shops currently linked in Laravel scope',
-            $scopeCount === 1 => sprintf('%s is currently linked in Laravel scope', $scope->first()),
-            default => 'No shops linked in Laravel scope yet',
-        };
-    }
-
     private function rolesPermissionsScopePostureTimelineDescription(mixed $scope): string
     {
         return $scope->isNotEmpty()
@@ -3649,7 +3637,12 @@ class ResourceIndexController extends Controller
             ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
             ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
-            ['label' => 'Scope coverage', 'value' => $this->rolesPermissionsScopeCoverageDependencyLabel($scope)],
+            ['label' => 'Scope coverage', 'value' => match (true) {
+                $scope->count() >= 3 => sprintf('%d shops currently linked in Laravel scope', $scope->count()),
+                $scope->count() === 2 => '2 shops currently linked in Laravel scope',
+                $scope->count() === 1 => sprintf('%s is currently linked in Laravel scope', $scope->first()),
+                default => 'No shops linked in Laravel scope yet',
+            }],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
             ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
                 ? 'Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.'
