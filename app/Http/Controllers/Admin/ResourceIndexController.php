@@ -3312,17 +3312,6 @@ class ResourceIndexController extends Controller
         return sprintf('%s assignment scope reflected from model state', $selectedRole->name);
     }
 
-    private function rolesPermissionsLifecycleTimelineDescription(Role $selectedRole): string
-    {
-        if ($selectedRole->updated_at === null || $selectedRole->created_at === null) {
-            return 'This role does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.';
-        }
-
-        return $selectedRole->updated_at->equalTo($selectedRole->created_at)
-            ? sprintf('This role was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved access shell.', $selectedRole->created_at->format('Y-m-d H:i'))
-            : sprintf('This role was last updated in Laravel on %s, so the review workspace now reflects post-creation access metadata.', $selectedRole->updated_at->format('Y-m-d H:i'));
-    }
-
     private function rolesPermissionsReviewFreshness(Role $selectedRole): string
     {
         return match (true) {
@@ -3464,7 +3453,11 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsLifecycleTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $this->rolesPermissionsLifecycleTimelineDescription($selectedRole),
+                'description' => $selectedRole->updated_at === null || $selectedRole->created_at === null
+                    ? 'This role does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.'
+                    : ($selectedRole->updated_at->equalTo($selectedRole->created_at)
+                        ? sprintf('This role was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved access shell.', $selectedRole->created_at->format('Y-m-d H:i'))
+                        : sprintf('This role was last updated in Laravel on %s, so the review workspace now reflects post-creation access metadata.', $selectedRole->updated_at->format('Y-m-d H:i'))),
             ],
             [
                 'title' => $this->rolesPermissionsLastSavedTimelineTitle($selectedRole),
