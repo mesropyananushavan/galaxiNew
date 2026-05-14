@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-05-14
+
+### Public landing page Galaxy-foundation replacement checkpoint
+- Replaced the stock Laravel welcome page with a Galaxy-specific landing page that points operators toward the admin workspace and frames the app as a Phase 1 migration foundation instead of a generic starter.
+- Added a focused feature assertion for `/` so the public entry point now has an explicit regression check for the new Galaxy positioning and Phase 1 call-to-action.
+- Re-ran `php artisan test tests/Feature/ExampleTest.php`, and the focused homepage slice passed (`1 passed`).
+
 ## 2026-05-13
 
 ### Roles-permissions scope-posture timeline-description callsite cleanup checkpoint

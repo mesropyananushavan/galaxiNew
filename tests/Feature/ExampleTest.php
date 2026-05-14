@@ -7,13 +7,14 @@ use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     */
-    public function test_the_application_returns_a_successful_response(): void
+    public function test_the_home_page_surfaces_the_galaxy_foundation_landing_page(): void
     {
         $response = $this->get('/');
 
-        $response->assertStatus(200);
+        $response
+            ->assertOk()
+            ->assertSee('Galaxy-specific Laravel foundation, not a generic starter.')
+            ->assertSee('Open admin workspace')
+            ->assertSee('Phase 1 snapshot');
     }
 }
