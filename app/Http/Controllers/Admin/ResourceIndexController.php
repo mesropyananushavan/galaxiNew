@@ -3376,11 +3376,6 @@ class ResourceIndexController extends Controller
             : 'No Laravel review note is saved yet, so parity-sensitive operator context still depends on the surrounding workspace cues.';
     }
 
-    private function rolesPermissionsAccessNoteLabel(Role $selectedRole): string
-    {
-        return $selectedRole->access_note ?: 'No access note saved yet';
-    }
-
     private function rolesPermissionsAccessNoteTimelineDescription(Role $selectedRole): string
     {
         return $selectedRole->access_note !== null && trim($selectedRole->access_note) !== ''
@@ -3654,7 +3649,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Laravel', 'value' => $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending')],
             ['label' => 'Review note', 'value' => $selectedRole->review_note ?: 'No review note saved yet'],
             ['label' => 'Review freshness', 'value' => $this->rolesPermissionsReviewFreshness($selectedRole)],
-            ['label' => 'Access note', 'value' => $this->rolesPermissionsAccessNoteLabel($selectedRole)],
+            ['label' => 'Access note', 'value' => $selectedRole->access_note ?: 'No access note saved yet'],
             ['label' => 'Assignment note', 'value' => $this->rolesPermissionsAssignmentNoteLabel($selectedRole)],
             ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
             ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
