@@ -3321,13 +3321,6 @@ class ResourceIndexController extends Controller
         return sprintf('%s assignment scope reflected from model state', $selectedRole->name);
     }
 
-    private function rolesPermissionsAssignmentScopeTimelineDescription(Role $selectedRole, mixed $scope): string
-    {
-        return $scope->isNotEmpty()
-            ? sprintf('This role is currently linked to %d assigned users across %s in Laravel review mode.', $selectedRole->users_count, $scope->join(', '))
-            : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.';
-    }
-
     private function rolesPermissionsLifecycleTimelineDescription(Role $selectedRole): string
     {
         if ($selectedRole->updated_at === null || $selectedRole->created_at === null) {
@@ -3555,7 +3548,9 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsAssignmentScopeTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $this->rolesPermissionsAssignmentScopeTimelineDescription($selectedRole, $scope),
+                'description' => $scope->isNotEmpty()
+                    ? sprintf('This role is currently linked to %d assigned users across %s in Laravel review mode.', $selectedRole->users_count, $scope->join(', '))
+                    : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.',
             ],
             [
                 'title' => $this->rolesPermissionsTimelineHandoffTitle(),
