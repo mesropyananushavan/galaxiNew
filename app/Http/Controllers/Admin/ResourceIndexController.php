@@ -3383,11 +3383,6 @@ class ResourceIndexController extends Controller
             : 'No Laravel access note is saved yet, so access handoff guidance still depends on the surrounding workspace cues.';
     }
 
-    private function rolesPermissionsAssignmentNoteLabel(Role $selectedRole): string
-    {
-        return $selectedRole->assignment_note ?: 'No assignment note saved yet';
-    }
-
     private function rolesPermissionsAssignmentNoteTimelineDescription(Role $selectedRole): string
     {
         return $selectedRole->assignment_note !== null && trim($selectedRole->assignment_note) !== ''
@@ -3650,7 +3645,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review note', 'value' => $selectedRole->review_note ?: 'No review note saved yet'],
             ['label' => 'Review freshness', 'value' => $this->rolesPermissionsReviewFreshness($selectedRole)],
             ['label' => 'Access note', 'value' => $selectedRole->access_note ?: 'No access note saved yet'],
-            ['label' => 'Assignment note', 'value' => $this->rolesPermissionsAssignmentNoteLabel($selectedRole)],
+            ['label' => 'Assignment note', 'value' => $selectedRole->assignment_note ?: 'No assignment note saved yet'],
             ['label' => 'Coverage signal', 'value' => $this->rolesPermissionsCoverageSignal($selectedRole, $scope)],
             ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
