@@ -3307,15 +3307,6 @@ class ResourceIndexController extends Controller
         return sprintf('%s permission review note reflected from model state', $selectedRole->name);
     }
 
-    private function rolesPermissionsPermissionReviewNoteTimelineDescription(Role $selectedRole): string
-    {
-        return ($permissionReviewNote = $selectedRole->permissions
-            ->pluck('review_note')
-            ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '')) !== null
-            ? sprintf('The current Laravel permission guidance says: %s', $permissionReviewNote)
-            : 'No linked permission review note is saved yet, so permission-bundle guidance still depends on the surrounding workspace cues.';
-    }
-
     private function rolesPermissionsAssignmentScopeTimelineTitle(Role $selectedRole): string
     {
         return sprintf('%s assignment scope reflected from model state', $selectedRole->name);
@@ -3523,7 +3514,11 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsPermissionReviewNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $this->rolesPermissionsPermissionReviewNoteTimelineDescription($selectedRole),
+                'description' => ($permissionReviewNote = $selectedRole->permissions
+                    ->pluck('review_note')
+                    ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '')) !== null
+                    ? sprintf('The current Laravel permission guidance says: %s', $permissionReviewNote)
+                    : 'No linked permission review note is saved yet, so permission-bundle guidance still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => $this->rolesPermissionsAssignmentScopeTimelineTitle($selectedRole),
