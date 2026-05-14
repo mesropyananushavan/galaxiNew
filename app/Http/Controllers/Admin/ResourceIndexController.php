@@ -3267,13 +3267,6 @@ class ResourceIndexController extends Controller
         return sprintf('%s status reflected from model state', $selectedRole->name);
     }
 
-    private function rolesPermissionsStatusTimelineDescription(Role $selectedRole): string
-    {
-        return $selectedRole->is_active
-            ? 'This role is currently marked as active in Laravel and the management context now treats it as a live access shell.'
-            : 'This role is currently marked as draft in Laravel, so the management context keeps it in a safer parity-review posture.';
-    }
-
     private function rolesPermissionsLifecycleTimelineTitle(Role $selectedRole): string
     {
         return sprintf('%s lifecycle freshness reflected from model state', $selectedRole->name);
@@ -3515,7 +3508,9 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsStatusTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $this->rolesPermissionsStatusTimelineDescription($selectedRole),
+                'description' => $selectedRole->is_active
+                    ? 'This role is currently marked as active in Laravel and the management context now treats it as a live access shell.'
+                    : 'This role is currently marked as draft in Laravel, so the management context keeps it in a safer parity-review posture.',
             ],
             [
                 'title' => $this->rolesPermissionsLifecycleTimelineTitle($selectedRole),
