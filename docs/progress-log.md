@@ -2,6 +2,11 @@
 
 ## 2026-05-16
 
+### Laravel Gate baseline for shop-scoped admin access checkpoint
+- Added an explicit `access-shop` Gate that routes Laravel authorization through the existing `User::canAccessShop(...)` helper, so Phase 1 shop scope now exists as first-class framework policy wiring instead of only model-level convenience logic.
+- Extended the focused admin-access tests to assert both `access-admin` and `access-shop` Gate behavior for bootstrap admins, scoped shop admins, and paused-shop users.
+- Re-ran `php artisan test --filter='test_unscoped_user_keeps_bootstrap_admin_access_helpers|test_shop_scoped_admin_access_helper_allows_only_the_users_assigned_shop|test_shop_scoped_admin_access_helper_denies_paused_shop_users_even_for_their_assigned_shop'` (`3 passed`).
+
 ### Card holder linkage and shop-scoped card validation checkpoint
 - Extended the live card create and update flows to persist `card_holder_id`, so the Laravel foundation now carries the Phase 1 card-to-cardholder relationship instead of leaving new cards unassigned by controller default.
 - Added shop-scoped validation for `card_holder_id` on card store/update requests, which blocks cross-shop holder assignment and tightens the Galaxy access baseline around inventory linkage.

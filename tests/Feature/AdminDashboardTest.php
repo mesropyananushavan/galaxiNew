@@ -416,7 +416,9 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->hasPermissionBearingRole());
         $this->assertFalse($user->hasShopScopedAdminAccess());
         $this->assertTrue($user->canAccessAdminPanel());
+        $this->assertTrue($user->can('access-admin'));
         $this->assertTrue($user->canAccessShop($shop));
+        $this->assertTrue($user->can('access-shop', $shop));
         $this->assertFalse($user->canAccessShop(null));
     }
 
@@ -452,8 +454,11 @@ class AdminDashboardTest extends TestCase
         $user->roles()->attach($role->id);
 
         $this->assertTrue($user->hasShopScopedAdminAccess());
+        $this->assertTrue($user->can('access-admin'));
         $this->assertTrue($user->canAccessShop($assignedShop));
+        $this->assertTrue($user->can('access-shop', $assignedShop));
         $this->assertFalse($user->canAccessShop($otherShop));
+        $this->assertFalse($user->can('access-shop', $otherShop));
         $this->assertFalse($user->canAccessShop(null));
     }
 
@@ -483,7 +488,9 @@ class AdminDashboardTest extends TestCase
         $user->roles()->attach($role->id);
 
         $this->assertFalse($user->hasShopScopedAdminAccess());
+        $this->assertFalse($user->can('access-admin'));
         $this->assertFalse($user->canAccessShop($pausedShop));
+        $this->assertFalse($user->can('access-shop', $pausedShop));
     }
 
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Gate::define('access-admin', static function (User $user): bool {
             return $user->canAccessAdminPanel();
+        });
+
+        Gate::define('access-shop', static function (User $user, Shop $shop): bool {
+            return $user->canAccessShop($shop);
         });
     }
 }
