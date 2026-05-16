@@ -2,6 +2,11 @@
 
 ## 2026-05-16
 
+### Shared shop-scope request validation checkpoint
+- Extracted the repeated `access-shop` request validation into `app/Http/Requests/Admin/Concerns/ValidatesAccessibleShop.php`, so Phase 1 shop-scoped write protection now lives in one reusable Laravel request concern instead of being duplicated across card and cardholder flows.
+- Rewired both `StoreCardRequest` and `StoreCardHolderRequest` to use that shared concern without changing the operator-facing validation messages.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_card_for_a_different_shop|test_shop_scoped_admin_cannot_update_card_into_a_different_shop|test_shop_scoped_admin_cannot_create_cardholder_for_a_different_shop|test_shop_scoped_admin_cannot_update_cardholder_into_a_different_shop'` (`4 passed`).
+
 ### Shop-scoped cardholder write authorization checkpoint
 - Wired the same `access-shop` Gate into `StoreCardHolderRequest`, so scoped admins can no longer create or update cardholders against a foreign shop while Phase 1 branch ownership rules are still taking shape.
 - Added focused regression coverage for both create and update attempts that try to move holder writes outside the operator's assigned branch, while keeping bootstrap-admin happy-path cardholder tests green.

@@ -2,13 +2,15 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Models\Shop;
+use App\Http\Requests\Admin\Concerns\ValidatesAccessibleShop;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Validator;
 
 class StoreCardHolderRequest extends FormRequest
 {
+    use ValidatesAccessibleShop;
+
     protected $redirectRoute = 'admin.cardholders.index';
 
     public function authorize(): bool
@@ -67,20 +69,10 @@ class StoreCardHolderRequest extends FormRequest
 
     public function withValidator(Validator $validator): void
     {
-        $validator->after(function (Validator $validator): void {
-            $user = $this->user();
-            $shopId = $this->input('shop_id');
-
-            if ($validator->errors()->has('shop_id') || $user === null || blank($shopId)) {
-                return;
-            }
-
-            $shop = Shop::query()->find($shopId);
-
-            if ($shop instanceof Shop && ! $user->can('access-shop', $shop)) {
-                $validator->errors()->add('shop_id', 'Choose a shop you can access so the Galaxy holder shell stays scoped to your assigned branch.');
-            }
-        });
+        $this->validateAccessibleShop(
+            $validator,
+            'Choose a shop you can access so the Galaxy holder shell stays scoped to your assigned branch.',
+        );
     }
 
     protected function getRedirectUrl(): string
