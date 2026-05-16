@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-05-16
+
+### Galaxy foundation factories and baseline seeder checkpoint
+- Added Phase 1 model factories for `Shop`, `Role`, `Permission`, `CardType`, `CardHolder`, and `Card`, so the core Galaxy entities now have reusable local/test fixtures instead of relying on the Laravel starter default alone.
+- Replaced the generic `DatabaseSeeder` user stub with a Galaxy-specific baseline dataset: bootstrap admin, shop-scoped operator, HQ shop, baseline permissions/role linkage, a seeded card type, card holder, and card.
+- Added `DatabaseSeederTest` to lock the seeded foundation graph in place, then re-ran `php artisan test tests/Feature/DatabaseSeederTest.php tests/Unit/FoundationModelCastsTest.php tests/Unit/CardTypeModelTest.php` (`5 passed`).
+
 ## 2026-05-14
 
 ### Dashboard starter-copy cleanup checkpoint
