@@ -2,6 +2,11 @@
 
 ## 2026-05-16
 
+### Shop-scoped cardholder write authorization checkpoint
+- Wired the same `access-shop` Gate into `StoreCardHolderRequest`, so scoped admins can no longer create or update cardholders against a foreign shop while Phase 1 branch ownership rules are still taking shape.
+- Added focused regression coverage for both create and update attempts that try to move holder writes outside the operator's assigned branch, while keeping bootstrap-admin happy-path cardholder tests green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_cardholder_for_a_different_shop|test_shop_scoped_admin_cannot_update_cardholder_into_a_different_shop|test_authenticated_user_can_create_cardholder_from_live_admin_flow|test_authenticated_user_can_update_cardholder_from_live_admin_flow'` (`4 passed`).
+
 ### Shop-scoped card write authorization checkpoint
 - Wired the new `access-shop` Gate into `StoreCardRequest`, so scoped admins can no longer create or update cards against a foreign shop even if they still have general admin access.
 - Added focused regression coverage for both create and update attempts that try to move card writes outside the operator's assigned branch, while keeping bootstrap-admin happy-path card tests green.

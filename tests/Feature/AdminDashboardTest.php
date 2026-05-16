@@ -5342,6 +5342,54 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_shop_scoped_admin_cannot_create_cardholder_for_a_different_shop(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Assigned Holder Shop',
+            'code' => 'galaxy-scoped-assigned-holder-shop',
+            'is_active' => true,
+        ]);
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Foreign Holder Shop',
+            'code' => 'galaxy-scoped-foreign-holder-shop',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Holder Operator',
+            'slug' => 'scoped-holder-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Manage scoped holders',
+            'slug' => 'manage-scoped-holders',
+            'review_note' => 'Phase 1 scoped holder create coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->from('/admin/cardholders')->actingAs($user)->post(route('admin.cardholders.store'), [
+            'shop_id' => (string) $otherShop->id,
+            'full_name' => 'Scoped Foreign Holder',
+            'phone' => '+37499114455',
+            'email' => 'scoped.foreign.holder@example.com',
+            'is_active' => 'true',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cardholders#live-form')
+            ->assertSessionHasErrors([
+                'shop_id' => 'Choose a shop you can access so the Galaxy holder shell stays scoped to your assigned branch.',
+            ]);
+
+        $this->assertDatabaseMissing('card_holders', [
+            'email' => 'scoped.foreign.holder@example.com',
+        ]);
+    }
+
     public function test_cardholder_live_flow_normalizes_contact_identity_fields(): void
     {
         $user = User::factory()->create();
@@ -5429,6 +5477,62 @@ class AdminDashboardTest extends TestCase
         $this->assertDatabaseHas('card_holders', [
             'id' => $cardHolder->id,
             'review_note' => null,
+        ]);
+    }
+
+    public function test_shop_scoped_admin_cannot_update_cardholder_into_a_different_shop(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Update Assigned Holder Shop',
+            'code' => 'galaxy-scoped-update-assigned-holder-shop',
+            'is_active' => true,
+        ]);
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Update Foreign Holder Shop',
+            'code' => 'galaxy-scoped-update-foreign-holder-shop',
+            'is_active' => true,
+        ]);
+        $cardHolder = CardHolder::create([
+            'shop_id' => $assignedShop->id,
+            'full_name' => 'Scoped Update Holder',
+            'phone' => '+37499119944',
+            'email' => 'scoped.update.holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Holder Update Operator',
+            'slug' => 'scoped-holder-update-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Update scoped holders',
+            'slug' => 'update-scoped-holders',
+            'review_note' => 'Phase 1 scoped holder update coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->patch(route('admin.cardholders.update', $cardHolder), [
+            'shop_id' => (string) $otherShop->id,
+            'full_name' => 'Scoped Update Holder',
+            'phone' => '+37499119944',
+            'email' => 'scoped.update.holder@example.com',
+            'is_active' => 'true',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'shop_id' => 'Choose a shop you can access so the Galaxy holder shell stays scoped to your assigned branch.',
+            ]);
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'shop_id' => $assignedShop->id,
         ]);
     }
 
