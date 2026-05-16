@@ -2859,6 +2859,13 @@ class AdminDashboardTest extends TestCase
             'points_rate' => '1.50',
             'is_active' => true,
         ]);
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Update Inventory Holder',
+            'phone' => '+37493000113',
+            'email' => 'update.inventory.holder@example.com',
+            'is_active' => true,
+        ]);
         $card = Card::create([
             'shop_id' => $shop->id,
             'card_type_id' => $cardType->id,
@@ -2868,6 +2875,7 @@ class AdminDashboardTest extends TestCase
 
         $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
             'shop_id' => (string) $shop->id,
+            'card_holder_id' => (string) $holder->id,
             'card_type_id' => (string) $cardType->id,
             'number' => ' gx-live-2001a ',
             'status' => 'blocked',
@@ -2883,6 +2891,7 @@ class AdminDashboardTest extends TestCase
         $this->assertDatabaseHas('cards', [
             'id' => $card->id,
             'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
             'card_type_id' => $cardType->id,
             'number' => 'GX-LIVE-2001A',
             'status' => 'blocked',
@@ -3532,6 +3541,59 @@ class AdminDashboardTest extends TestCase
 
         $this->assertDatabaseMissing('cards', [
             'number' => 'GX-SCOPE-1001',
+        ]);
+    }
+
+    public function test_card_update_live_flow_rejects_holder_from_a_different_shop(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Update Holder Scope Branch',
+            'code' => 'galaxy-update-holder-scope-branch',
+            'is_active' => true,
+        ]);
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Update Holder Foreign Branch',
+            'code' => 'galaxy-update-holder-foreign-branch',
+            'is_active' => true,
+        ]);
+        $holder = CardHolder::create([
+            'shop_id' => $otherShop->id,
+            'full_name' => 'Foreign Update Holder',
+            'phone' => '+37493000114',
+            'email' => 'foreign.update.holder@example.com',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Update Scope Gold',
+            'slug' => 'galaxy-update-scope-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $shop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-UPD-SCOPE-1001',
+            'status' => 'draft',
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $shop->id,
+            'card_holder_id' => (string) $holder->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => 'GX-UPD-SCOPE-1001',
+            'status' => 'draft',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'card_holder_id' => 'Choose a cardholder from the same shop so the Galaxy inventory shell keeps holder linkage scoped correctly.',
+            ]);
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'card_holder_id' => null,
         ]);
     }
 

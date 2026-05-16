@@ -5,7 +5,8 @@
 ### Card holder linkage and shop-scoped card validation checkpoint
 - Extended the live card create and update flows to persist `card_holder_id`, so the Laravel foundation now carries the Phase 1 card-to-cardholder relationship instead of leaving new cards unassigned by controller default.
 - Added shop-scoped validation for `card_holder_id` on card store/update requests, which blocks cross-shop holder assignment and tightens the Galaxy access baseline around inventory linkage.
-- Re-ran `php artisan test --filter='test_authenticated_user_can_create_card_from_live_admin_flow|test_card_live_flow_rejects_holder_from_a_different_shop|test_authenticated_user_can_update_card_from_live_admin_flow'` (`3 passed`).
+- Added the missing update-path regression coverage for foreign-shop holder assignment and confirmed the successful update flow now persists in-shop holder linkage too.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_update_card_from_live_admin_flow|test_card_update_live_flow_rejects_holder_from_a_different_shop|test_card_live_flow_rejects_holder_from_a_different_shop'` (`3 passed`).
 
 ### Galaxy foundation factories and baseline seeder checkpoint
 - Added Phase 1 model factories for `Shop`, `Role`, `Permission`, `CardType`, `CardHolder`, and `Card`, so the core Galaxy entities now have reusable local/test fixtures instead of relying on the Laravel starter default alone.
