@@ -19,6 +19,7 @@ class StoreCardRequest extends FormRequest
     {
         return [
             'shop_id' => ['required', 'integer', 'exists:shops,id'],
+            'card_holder_id' => ['nullable', 'integer', Rule::exists('card_holders', 'id')->where(fn ($query) => $query->where('shop_id', $this->input('shop_id')))],
             'card_type_id' => ['required', 'integer', 'exists:card_types,id'],
             'number' => ['required', 'string', 'max:255', Rule::unique('cards', 'number')],
             'status' => ['required', 'string', Rule::in(['draft', 'active', 'blocked'])],
@@ -43,6 +44,7 @@ class StoreCardRequest extends FormRequest
     {
         return [
             'shop_id' => 'shop',
+            'card_holder_id' => 'cardholder',
             'card_type_id' => 'card type',
             'number' => 'card number',
             'status' => 'card status',
@@ -55,6 +57,7 @@ class StoreCardRequest extends FormRequest
     public function messages(): array
     {
         return [
+            'card_holder_id.exists' => 'Choose a cardholder from the same shop so the Galaxy inventory shell keeps holder linkage scoped correctly.',
             'number.unique' => 'This card number is already in use in the Laravel inventory shell.',
             'issued_at.date' => 'Use a real issue timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
             'issued_at.required_with' => 'Add an issue timestamp before activation so the Galaxy lifecycle timeline stays operator-friendly.',

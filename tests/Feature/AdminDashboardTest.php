@@ -2809,9 +2809,17 @@ class AdminDashboardTest extends TestCase
             'points_rate' => '1.50',
             'is_active' => true,
         ]);
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Live Inventory Holder',
+            'phone' => '+37493000111',
+            'email' => 'live.inventory.holder@example.com',
+            'is_active' => true,
+        ]);
 
         $response = $this->actingAs($user)->post(route('admin.cards.store'), [
             'shop_id' => (string) $shop->id,
+            'card_holder_id' => (string) $holder->id,
             'card_type_id' => (string) $cardType->id,
             'number' => ' gx-live-1001 ',
             'status' => 'active',
@@ -2828,6 +2836,7 @@ class AdminDashboardTest extends TestCase
 
         $this->assertDatabaseHas('cards', [
             'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
             'card_type_id' => $cardType->id,
             'number' => 'GX-LIVE-1001',
             'status' => 'active',
@@ -3478,6 +3487,52 @@ class AdminDashboardTest extends TestCase
             ->assertSessionHasErrors([
                 'number' => 'This card number is already in use in the Laravel inventory shell.',
             ]);
+    }
+
+    public function test_card_live_flow_rejects_holder_from_a_different_shop(): void
+    {
+        $user = User::factory()->create();
+        $shop = Shop::create([
+            'name' => 'Galaxy Holder Scope Branch',
+            'code' => 'galaxy-holder-scope-branch',
+            'is_active' => true,
+        ]);
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Holder Foreign Branch',
+            'code' => 'galaxy-holder-foreign-branch',
+            'is_active' => true,
+        ]);
+        $holder = CardHolder::create([
+            'shop_id' => $otherShop->id,
+            'full_name' => 'Foreign Holder',
+            'phone' => '+37493000112',
+            'email' => 'foreign.holder@example.com',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Scope Gold',
+            'slug' => 'galaxy-scope-gold',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from('/admin/cards')->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $shop->id,
+            'card_holder_id' => (string) $holder->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => 'GX-SCOPE-1001',
+            'status' => 'draft',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cards#live-form')
+            ->assertSessionHasErrors([
+                'card_holder_id' => 'Choose a cardholder from the same shop so the Galaxy inventory shell keeps holder linkage scoped correctly.',
+            ]);
+
+        $this->assertDatabaseMissing('cards', [
+            'number' => 'GX-SCOPE-1001',
+        ]);
     }
 
     public function test_cards_page_supports_selected_active_card_review_context(): void
