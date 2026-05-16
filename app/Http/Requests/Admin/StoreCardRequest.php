@@ -2,9 +2,11 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 class StoreCardRequest extends FormRequest
 {
@@ -69,6 +71,24 @@ class StoreCardRequest extends FormRequest
             'review_note.required_if' => 'Add a review note before blocking this card so the Galaxy inventory workspace stays operator-friendly.',
             'review_note.max' => 'Keep the review note under 1000 characters so the inventory workspace stays operator-friendly.',
         ];
+    }
+
+    public function withValidator(Validator $validator): void
+    {
+        $validator->after(function (Validator $validator): void {
+            $user = $this->user();
+            $shopId = $this->input('shop_id');
+
+            if ($validator->errors()->has('shop_id') || $user === null || blank($shopId)) {
+                return;
+            }
+
+            $shop = Shop::query()->find($shopId);
+
+            if ($shop instanceof Shop && ! $user->can('access-shop', $shop)) {
+                $validator->errors()->add('shop_id', 'Choose a shop you can access so the Galaxy inventory shell stays scoped to your assigned branch.');
+            }
+        });
     }
 
     protected function getRedirectUrl(): string

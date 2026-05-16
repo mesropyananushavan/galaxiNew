@@ -2,6 +2,11 @@
 
 ## 2026-05-16
 
+### Shop-scoped card write authorization checkpoint
+- Wired the new `access-shop` Gate into `StoreCardRequest`, so scoped admins can no longer create or update cards against a foreign shop even if they still have general admin access.
+- Added focused regression coverage for both create and update attempts that try to move card writes outside the operator's assigned branch, while keeping bootstrap-admin happy-path card tests green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_card_for_a_different_shop|test_shop_scoped_admin_cannot_update_card_into_a_different_shop|test_authenticated_user_can_create_card_from_live_admin_flow|test_authenticated_user_can_update_card_from_live_admin_flow'` (`4 passed`).
+
 ### Laravel Gate baseline for shop-scoped admin access checkpoint
 - Added an explicit `access-shop` Gate that routes Laravel authorization through the existing `User::canAccessShop(...)` helper, so Phase 1 shop scope now exists as first-class framework policy wiring instead of only model-level convenience logic.
 - Extended the focused admin-access tests to assert both `access-admin` and `access-shop` Gate behavior for bootstrap admins, scoped shop admins, and paused-shop users.

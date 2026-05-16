@@ -3604,6 +3604,59 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_shop_scoped_admin_cannot_create_card_for_a_different_shop(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Assigned Card Shop',
+            'code' => 'galaxy-scoped-assigned-card-shop',
+            'is_active' => true,
+        ]);
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Foreign Card Shop',
+            'code' => 'galaxy-scoped-foreign-card-shop',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Scoped Card Type',
+            'slug' => 'galaxy-scoped-card-type',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Card Operator',
+            'slug' => 'scoped-card-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Manage scoped cards',
+            'slug' => 'manage-scoped-cards',
+            'review_note' => 'Phase 1 scoped card create coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->from('/admin/cards')->actingAs($user)->post(route('admin.cards.store'), [
+            'shop_id' => (string) $otherShop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => 'GX-SCOPED-FOREIGN-1001',
+            'status' => 'draft',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/cards#live-form')
+            ->assertSessionHasErrors([
+                'shop_id' => 'Choose a shop you can access so the Galaxy inventory shell stays scoped to your assigned branch.',
+            ]);
+
+        $this->assertDatabaseMissing('cards', [
+            'number' => 'GX-SCOPED-FOREIGN-1001',
+        ]);
+    }
+
     public function test_cards_page_supports_selected_active_card_review_context(): void
     {
         $shop = Shop::create([
@@ -10807,6 +10860,66 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-boolean-tier-create',
             'points_rate' => '0.85',
             'is_active' => false,
+        ]);
+    }
+
+    public function test_shop_scoped_admin_cannot_update_card_into_a_different_shop(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Update Assigned Shop',
+            'code' => 'galaxy-scoped-update-assigned-shop',
+            'is_active' => true,
+        ]);
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Update Foreign Shop',
+            'code' => 'galaxy-scoped-update-foreign-shop',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Scoped Update Card Type',
+            'slug' => 'galaxy-scoped-update-card-type',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $assignedShop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-SCOPED-UPD-1001',
+            'status' => 'draft',
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Card Update Operator',
+            'slug' => 'scoped-card-update-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Update scoped cards',
+            'slug' => 'update-scoped-cards',
+            'review_note' => 'Phase 1 scoped card update coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $otherShop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => 'GX-SCOPED-UPD-1001',
+            'status' => 'draft',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'shop_id' => 'Choose a shop you can access so the Galaxy inventory shell stays scoped to your assigned branch.',
+            ]);
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'shop_id' => $assignedShop->id,
         ]);
     }
 
