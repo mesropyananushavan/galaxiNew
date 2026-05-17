@@ -684,25 +684,20 @@ class ResourceIndexController extends Controller
             ['label' => 'Scoped shops', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
         ];
 
-        $page['actions'] = [
-            $this->foundationMutationAction(
-                'New Galaxy role',
-                '#live-form',
-                $this->rolesPermissionsFoundationMutationDisabledReason(),
-            ),
+        $page['actions'] = $this->foundationCatalogActions(
+            'New Galaxy role',
+            $this->rolesPermissionsFoundationMutationDisabledReason(),
             [
-                'label' => 'Review matrix',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->rolesPermissionsCatalogReviewMatrixDisabledReason($roles),
+                [
+                    'label' => 'Review matrix',
+                    'disabledReason' => $this->rolesPermissionsCatalogReviewMatrixDisabledReason($roles),
+                ],
+                [
+                    'label' => 'Publish access',
+                    'disabledReason' => $this->rolesPermissionsCatalogPublishRoleDisabledReason($roles),
+                ],
             ],
-            [
-                'label' => 'Publish access',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->rolesPermissionsCatalogPublishRoleDisabledReason($roles),
-            ],
-        ];
+        );
 
         $page['table']['rows'] = $roles->map(function (Role $role): array {
             $scope = $role->users->pluck('shop.name')->filter()->unique();
@@ -1210,19 +1205,16 @@ class ResourceIndexController extends Controller
             ->orderBy('name')
             ->get();
 
-        $page['actions'] = [
-            $this->foundationMutationAction(
-                'New Galaxy branch',
-                '#live-form',
-                $this->shopsFoundationMutationDisabledReason(),
-            ),
+        $page['actions'] = $this->foundationCatalogActions(
+            'New Galaxy branch',
+            $this->shopsFoundationMutationDisabledReason(),
             [
-                'label' => 'Review branch scope',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->shopsCatalogReviewScopeDisabledReason($shops),
+                [
+                    'label' => 'Review branch scope',
+                    'disabledReason' => $this->shopsCatalogReviewScopeDisabledReason($shops),
+                ],
             ],
-        ];
+        );
 
         if ($shops->isEmpty()) {
             return $page;
@@ -1932,25 +1924,20 @@ class ResourceIndexController extends Controller
             ])->all();
         }
 
-        $page['actions'] = [
-            $this->foundationMutationAction(
-                'New Galaxy tier',
-                '#live-form',
-                $this->cardTypesFoundationMutationDisabledReason(),
-            ),
+        $page['actions'] = $this->foundationCatalogActions(
+            'New Galaxy tier',
+            $this->cardTypesFoundationMutationDisabledReason(),
             [
-                'label' => 'Import rules',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->cardTypesCatalogImportRulesDisabledReason($cardTypes),
+                [
+                    'label' => 'Import rules',
+                    'disabledReason' => $this->cardTypesCatalogImportRulesDisabledReason($cardTypes),
+                ],
+                [
+                    'label' => 'Publish tier',
+                    'disabledReason' => $this->cardTypesCatalogPublishTypeDisabledReason($cardTypes),
+                ],
             ],
-            [
-                'label' => 'Publish tier',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->cardTypesCatalogPublishTypeDisabledReason($cardTypes),
-            ],
-        ];
+        );
 
         if ($latestCardType !== null) {
             $page = $this->appendPageAction($page, [
@@ -2906,6 +2893,26 @@ class ResourceIndexController extends Controller
                 'disabled' => true,
                 'disabledReason' => $reviewDisabledReason,
             ],
+        ];
+    }
+
+    private function foundationCatalogActions(string $primaryLabel, string $primaryDisabledReason, array $secondaryActions): array
+    {
+        return [
+            $this->foundationMutationAction(
+                $primaryLabel,
+                '#live-form',
+                $primaryDisabledReason,
+            ),
+            ...array_map(
+                fn (array $action): array => [
+                    'label' => (string) ($action['label'] ?? 'Review action'),
+                    'tone' => 'secondary',
+                    'disabled' => true,
+                    'disabledReason' => (string) ($action['disabledReason'] ?? ''),
+                ],
+                $secondaryActions,
+            ),
         ];
     }
 

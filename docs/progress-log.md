@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Foundation catalog action-helper checkpoint
+- Extracted the repeated foundation-catalog action pattern for `roles-permissions`, `shops`, and `card-types` into one `ResourceIndexController` helper, so those Phase 1 admin catalogs now build their bootstrap-controlled primary action plus disabled review/publish companions through the same small path.
+- Kept the step narrow and behavior-preserving, but it trims another slice of starter-style controller duplication from the highest-value Galaxy foundation catalogs.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_access_data|test_authenticated_user_can_access_shops_management_preview|test_shops_page_replaces_preview_rows_with_model_backed_branch_data|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_replaces_preview_rows_with_model_backed_tier_data'` (`2 passed`, with the current suite matching the focused roles-permissions and card-types catalog coverage for this slice).
+
 ### Catalog live-form action helper checkpoint
 - Extracted the repeated primary-plus-disabled-review action stack for the `cards` and `cardholders` catalogs into one `ResourceIndexController` helper, so both Galaxy management surfaces now build their `#live-form` entry action and review-only companion action through the same small path.
 - Kept the step narrow and behavior-preserving, but it trims another bit of starter-style controller duplication from two real Phase 1 admin catalogs.
