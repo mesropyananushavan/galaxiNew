@@ -764,9 +764,14 @@ class ResourceIndexController extends Controller
                 'role' => $selectedRole,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.roles-permissions.index';
-            $page['liveForm']['cancelLabel'] = 'Create new Galaxy access shell';
+            $page['liveForm']['cancelLabel'] = $this->canManageFoundationCatalog()
+                ? 'Create new Galaxy access shell'
+                : 'Back to access catalog';
             $page['liveForm']['cancelRouteParameters'] = [];
             $page['liveForm']['submitLabel'] = 'Save access changes';
+            $page['liveForm']['submitAttributes'] = $this->foundationLiveFormSubmitAttributes(
+                $this->rolesPermissionsFoundationMutationDisabledReason(),
+            );
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedRole->name,
                 'slug' => $selectedRole->slug,
@@ -2144,9 +2149,14 @@ class ResourceIndexController extends Controller
             'cardType' => $selectedCardType,
         ];
         $page['liveForm']['cancelRoute'] = 'admin.card-types.index';
-        $page['liveForm']['cancelLabel'] = $this->cardTypesLiveFormCancelLabel();
+        $page['liveForm']['cancelLabel'] = $this->canManageFoundationCatalog()
+            ? $this->cardTypesLiveFormCancelLabel()
+            : 'Back to tier catalog';
         $page['liveForm']['cancelRouteParameters'] = [];
         $page['liveForm']['submitLabel'] = $this->cardTypesLiveFormSubmitLabel();
+        $page['liveForm']['submitAttributes'] = $this->foundationLiveFormSubmitAttributes(
+            $this->cardTypesFoundationMutationDisabledReason(),
+        );
         $page['liveForm']['valuesResolver'] = [
             'name' => $selectedCardType->name,
             'slug' => $selectedCardType->slug,
@@ -4534,6 +4544,19 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsFoundationMutationDisabledReason(): string
     {
         return 'Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control.';
+    }
+
+    private function foundationLiveFormSubmitAttributes(string $disabledReason): array
+    {
+        if ($this->canManageFoundationCatalog()) {
+            return [];
+        }
+
+        return [
+            'disabled' => true,
+            'title' => $disabledReason,
+            'aria-disabled' => 'true',
+        ];
     }
 
     private function shopsFoundationMutationDisabledReason(): string

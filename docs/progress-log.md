@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Scoped foundation form-control gating checkpoint
+- Aligned the selected `roles-permissions` and `card-types` live forms with the existing Phase 1 backend restrictions, so shop-scoped admins now see disabled submit controls plus review-oriented cancel paths (`Back to access catalog` / `Back to tier catalog`) instead of create-oriented form affordances.
+- Reused the same central-control reasons already shown in the surrounding workspace actions, which keeps the form-level mutation affordances honest without changing the bootstrap-admin happy path.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_shop_scoped_admin_sees_card_type_mutation_actions_disabled_in_card_types_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_selected_card_type_reuses_shared_live_form_in_edit_mode'` (`3 passed`, with the filter matching the two scoped workspace checks plus the existing selected-role coverage).
+
 ### Scoped branch-workspace action-gating checkpoint
 - Aligned the `shops` shell with the existing Phase 1 branch-creation restriction, so shop-scoped admins now see the catalog-level `New Galaxy branch` action disabled and the selected-branch form swaps its create-oriented cancel path to `Back to branch catalog`.
 - Added focused coverage proving a scoped operator sees the central-control disabled reason on the shops catalog and no longer sees the misleading `Create new Galaxy branch shell` affordance inside the selected branch edit flow.
