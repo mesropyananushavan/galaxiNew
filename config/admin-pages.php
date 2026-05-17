@@ -945,7 +945,7 @@ return [
         'metrics' => [
             ['label' => 'Active Galaxy access shells', 'value' => '2'],
             ['label' => 'Draft Galaxy access shells', 'value' => '1'],
-            ['label' => 'Reviewed roles', 'value' => '2'],
+            ['label' => 'Reviewed Galaxy access shells', 'value' => '2'],
             ['label' => 'Access notes', 'value' => '1'],
             ['label' => 'Assignment notes', 'value' => '1'],
             ['label' => 'Permission review notes', 'value' => '2'],

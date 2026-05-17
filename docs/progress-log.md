@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Access-shell reviewed metric wording alignment checkpoint
+- Aligned the neighboring `roles-permissions` metric label from `Reviewed roles` to `Reviewed Galaxy access shells`, keeping the already-updated access surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context'`; the current matched slice covered the roles-permissions management preview plus selected role contexts and passed (`4 passed`).
+
 ### Card-shell active metric wording alignment checkpoint
 - Aligned the neighboring `cards` metric labels from `Active holder-linked cards` and `Active unassigned cards` to `Active holder-linked Galaxy card shells` and `Active unassigned Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the selected-card surface assertions that read the same metric stack.
