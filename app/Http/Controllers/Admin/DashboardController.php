@@ -800,7 +800,7 @@ class DashboardController extends Controller
         }
 
         if (! $latestCard instanceof Card) {
-            return 'Open assigned branch card setup and issue the first live card.';
+            return 'Open assigned branch Galaxy card shell setup and issue the first live card shell.';
         }
 
         return 'Resume the latest branch review flow from the scoped shortcuts.';
@@ -850,7 +850,7 @@ class DashboardController extends Controller
     {
         return $this->scopedEntryLabel(
             shop: $shop,
-            liveLabel: 'Review live shops in assigned branch',
+            liveLabel: 'Review live Galaxy branches in assigned branch',
             setupLabel: 'Set up assigned branch',
             countRelations: ['cardHolders', 'cards'],
             isSetupConditionMet: fn (Shop $shop): bool => $this->shopHasNoRecords($shop, ['cardHolders', 'cards']),

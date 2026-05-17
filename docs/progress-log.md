@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard scoped branch copy alignment checkpoint
+- Aligned the remaining scoped dashboard shop handoff label from `Review live shops in assigned branch` to the more Galaxy-specific `Review live Galaxy branches in assigned branch`, and updated the nearby branch-card setup guidance to `Open assigned branch Galaxy card shell setup and issue the first live card shell.` so the scoped handoff copy now matches the branch/card-shell tone used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another starter-style wording pocket from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_hide_unavailable_records_for_shop_scoped_admin|test_authenticated_user_can_access_admin_dashboard|test_shop_scoped_admin_sees_live_workspace_entry_points_for_assigned_shop'`; the current matched slice passed (`2 passed`).
+
 ### Dashboard setup shortcut copy alignment checkpoint
 - Aligned the remaining generic holder/card setup shortcuts on the dashboard from `cardholder/card setup` wording to the more Galaxy-specific `Galaxy holder/Galaxy card shell setup` wording, covering both the assigned-branch setup prompts and the fallback latest-work setup links.
 - Kept the step narrow and behavior-safe, but it removes another small cluster of starter-style labels from a live Galaxy navigation surface.
