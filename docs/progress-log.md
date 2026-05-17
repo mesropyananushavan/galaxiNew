@@ -2,6 +2,12 @@
 
 ## 2026-05-17
 
+### Selected card and holder action-helper checkpoint
+- Reused the shared `secondaryDisabledActions(...)` helper inside the selected `cards` and `cardholders` workspaces, so their disabled review companions now flow through the same small action-shaping path used elsewhere in the Phase 1 admin shell.
+- Kept the change narrow and behavior-preserving, but it trims another tiny bit of inline controller duplication while preserving the current Galaxy-specific selected-workspace copy.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query|test_cards_page_ignores_inaccessible_selected_card_query_for_shop_scoped_admins'` (`11 passed`).
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'` (`4 passed` within the earlier mixed focused run for this slice).
+
 ### Selected card and holder edit live-form helper checkpoint
 - Extracted the repeated non-foundation selected edit live-form setup for `cards` and `cardholders` into one small `ResourceIndexController` helper, so both Galaxy review workspaces now configure their PATCH route, catalog return, and submit copy through the same path.
 - Kept the change narrow and behavior-preserving, but it trims another bit of inline controller glue while preserving the current Galaxy-specific edit titles and selected-catalog return behavior.

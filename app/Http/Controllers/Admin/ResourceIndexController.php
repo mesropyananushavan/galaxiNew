@@ -964,14 +964,12 @@ class ResourceIndexController extends Controller
             'admin.cards.index',
             'Back to card catalog',
             $selectedCard->number,
-            [
-            [
-                'label' => 'Review blocked cards',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->cardsSelectedReviewBlockedDisabledReason($selectedCard),
-            ],
-            ],
+            $this->secondaryDisabledActions([
+                [
+                    'label' => 'Review blocked cards',
+                    'disabledReason' => $this->cardsSelectedReviewBlockedDisabledReason($selectedCard),
+                ],
+            ]),
         );
 
         $page['activityTimeline'] = [
@@ -1139,14 +1137,12 @@ class ResourceIndexController extends Controller
             'admin.cardholders.index',
             'Back to holder catalog',
             $selectedCardHolder->full_name,
-            [
-            [
-                'label' => 'Review recent activity',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->cardholdersSelectedReviewActivityDisabledReason($selectedCardHolder),
-            ],
-            ],
+            $this->secondaryDisabledActions([
+                [
+                    'label' => 'Review recent activity',
+                    'disabledReason' => $this->cardholdersSelectedReviewActivityDisabledReason($selectedCardHolder),
+                ],
+            ]),
         );
 
         $page['activityTimeline'] = [
