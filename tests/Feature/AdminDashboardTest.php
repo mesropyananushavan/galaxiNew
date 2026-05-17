@@ -9628,6 +9628,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Card Types placeholder')
+            ->assertSee('Galaxy tier workspace for card-tier identities, points rules, and activation review.')
             ->assertSee('Create Galaxy tier in Laravel')
             ->assertSee('Create tier shell')
             ->assertSee('Status')

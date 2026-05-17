@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Tier summary wording alignment checkpoint
+- Aligned the `card-types` page summary from the older generic baseline wording to `Galaxy tier workspace for card-tier identities, points rules, and activation review.` so the tier surface reads more like the intended Phase 1 Galaxy console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_surfaces_selected_card_type_context_from_laravel_data|test_card_types_page_supports_selected_draft_card_type_review_context|test_card_types_live_form_renders_existing_card_type_notes'`; the current matched slice covered the card-types management preview and passed (`1 passed`).
+
 ### Gifts summary wording alignment checkpoint
 - Aligned the `gifts` page summary from the older generic baseline wording to `Galaxy reward workspace for catalog scope, redemption settings, and stock-aware reward review.` so the reward surface reads more like the intended Phase 1 Galaxy console.
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.

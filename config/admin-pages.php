@@ -531,7 +531,7 @@ return [
     'card-types' => [
         'pageTitle' => 'Card Types',
         'eyebrow' => 'Catalog / Card Types',
-        'summary' => 'Baseline management screen for Galaxy card tiers, points rules, and activation settings.',
+        'summary' => 'Galaxy tier workspace for card-tier identities, points rules, and activation review.',
         'nextStep' => 'Replace sample controls with real CRUD handlers and validation.',
         'actions' => [
             ['label' => 'New Galaxy tier', 'tone' => 'primary', 'href' => '#live-form'],
