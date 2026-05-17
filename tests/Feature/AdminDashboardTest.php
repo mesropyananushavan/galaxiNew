@@ -1950,6 +1950,56 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_shop_scoped_admin_cannot_update_role(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Role Update Branch',
+            'code' => 'galaxy-scoped-role-update-branch',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $operatorRole = Role::create([
+            'name' => 'Scoped Role Update Operator',
+            'slug' => 'scoped-role-update-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Update scoped roles',
+            'slug' => 'update-scoped-roles',
+            'review_note' => 'Phase 1 scoped role update coverage.',
+        ]);
+        $operatorRole->permissions()->attach($permission->id);
+        $user->roles()->attach($operatorRole->id);
+
+        $roleToUpdate = Role::create([
+            'name' => 'Galaxy Protected Role',
+            'slug' => 'galaxy-protected-role',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.roles-permissions.index', ['role' => $roleToUpdate], absolute: false))->actingAs($user)->patch(route('admin.roles-permissions.update', $roleToUpdate), [
+            'name' => 'Scoped Updated Role',
+            'slug' => 'scoped-updated-role',
+            'is_active' => '0',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $roleToUpdate], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'Only bootstrap admins can update roles while the Galaxy access foundation is still centrally controlled.',
+            ]);
+
+        $this->assertDatabaseHas('roles', [
+            'id' => $roleToUpdate->id,
+            'name' => 'Galaxy Protected Role',
+            'slug' => 'galaxy-protected-role',
+            'is_active' => true,
+        ]);
+    }
+
     public function test_authenticated_user_can_update_role_from_minimal_live_admin_flow(): void
     {
         $user = User::factory()->create();

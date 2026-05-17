@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Bootstrap-only role update messaging checkpoint
+- Split the scoped-admin role-update block away from the role-create message path, so `UpdateRoleRequest` now returns an update-specific Phase 1 validation message instead of the misleading create-only copy.
+- Added regression coverage proving a shop-scoped operator is redirected back to the selected role edit flow with the new update-specific error, while the bootstrap-admin role update happy path stays green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_new_role|test_shop_scoped_admin_cannot_update_role|test_authenticated_user_can_update_role_from_minimal_live_admin_flow'` (`3 passed`).
+
 ### Bootstrap-only card type status-toggle checkpoint
 - Added a bootstrap-only guard to `CardTypeToggleStatusController` so shop-scoped admins can no longer flip tier status between active and draft during Phase 1.
 - Added regression coverage proving a scoped operator now gets a `403` on card-type status toggles, while the bootstrap-admin header toggle, row toggle, and success-flash redirect flows stay green.
