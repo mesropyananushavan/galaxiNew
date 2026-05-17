@@ -966,7 +966,7 @@ return [
             'method' => 'POST',
             'actionRoute' => 'admin.roles-permissions.store',
             'cancelRoute' => 'admin.roles-permissions.index',
-            'cancelLabel' => 'Back to roles',
+            'cancelLabel' => 'Back to access shell catalog',
             'submitLabel' => 'Create access shell',
             'fields' => [
                 ['name' => 'name', 'label' => 'Role name', 'type' => 'text', 'value' => 'Shop Manager', 'required' => true, 'autofocus' => true, 'placeholder' => 'Branch Supervisor', 'help' => 'Use the operator-facing role name that should mirror the legacy Galaxy staff model.', 'attributes' => ['autocomplete' => 'organization-title']],

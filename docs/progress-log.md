@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Roles access-shell cancel-label alignment checkpoint
+- Aligned the `roles-permissions` live form cancel label from the more generic `Back to roles` wording to `Back to access shell catalog`, keeping the Phase 1 access surface terminology consistent with the newer Galaxy-specific dashboard and catalog language.
+- Kept the step intentionally narrow and copy-only, but it removes another small starter-style phrase from a real Laravel-backed admin flow.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_roles_permissions_placeholder_page'`; the current matched slice passed (`2 passed`).
+
 ### Dashboard migration-map branch and reporting wording checkpoint
 - Aligned two remaining generic migration-map blurbs in `config/admin-navigation.php` so the Administration group now describes `Shops` as the `Galaxy branch catalog and scope boundaries` and `Reports` as `Galaxy reporting analytics and source histories.`
 - Kept the step intentionally narrow and copy-only, but it removes two more starter-style phrases from the Phase 1 target map that frames the dashboard shell.
