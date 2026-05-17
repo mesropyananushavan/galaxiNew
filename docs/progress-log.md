@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Bootstrap-only card type update messaging checkpoint
+- Split the scoped-admin card-type update block away from the card-type create message path, so `UpdateCardTypeRequest` now returns an update-specific Phase 1 validation message instead of the misleading create-only copy.
+- Added regression coverage proving a shop-scoped operator is redirected back to the selected tier edit flow with the new update-specific error, while the bootstrap-admin card-type update happy path stays green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_new_card_type|test_shop_scoped_admin_cannot_update_card_type|test_authenticated_user_can_update_card_type_from_live_admin_flow'` (`3 passed`).
+
 ### Bootstrap-only role update messaging checkpoint
 - Split the scoped-admin role-update block away from the role-create message path, so `UpdateRoleRequest` now returns an update-specific Phase 1 validation message instead of the misleading create-only copy.
 - Added regression coverage proving a shop-scoped operator is redirected back to the selected role edit flow with the new update-specific error, while the bootstrap-admin role update happy path stays green.

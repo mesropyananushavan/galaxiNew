@@ -10989,6 +10989,59 @@ class AdminDashboardTest extends TestCase
             ->assertSessionHasErrors(['name', 'points_rate', 'is_active']);
     }
 
+    public function test_shop_scoped_admin_cannot_update_card_type(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Tier Update Branch',
+            'code' => 'galaxy-scoped-tier-update-branch',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Tier Update Operator',
+            'slug' => 'scoped-tier-update-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Update scoped card types',
+            'slug' => 'update-scoped-card-types',
+            'review_note' => 'Phase 1 scoped card type update coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Protected Tier',
+            'slug' => 'galaxy-protected-tier-update',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->from(route('admin.card-types.index', ['cardType' => $cardType], absolute: false))->actingAs($user)->patch(route('admin.card-types.update', $cardType), [
+            'name' => 'Scoped Updated Tier',
+            'slug' => 'scoped-updated-tier',
+            'points_rate' => '1.25',
+            'is_active' => '0',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'Only bootstrap admins can update card types while the Galaxy tier foundation is still centrally controlled.',
+            ]);
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'name' => 'Galaxy Protected Tier',
+            'slug' => 'galaxy-protected-tier-update',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+    }
+
     public function test_authenticated_user_can_update_card_type_from_live_admin_flow(): void
     {
         $user = User::factory()->create();
