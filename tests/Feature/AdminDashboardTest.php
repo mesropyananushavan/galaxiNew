@@ -9260,7 +9260,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until rule CRUD and parity checks exist beyond the preview shell.')
             ->assertSee('aria-disabled="true"', false)
             ->assertSee('Management snapshot')
-            ->assertSee('Active rules')
+            ->assertSee('Active Galaxy rules')
             ->assertSee('Shop scopes')
             ->assertSee('No service rules configured yet')
             ->assertSee('Create first Galaxy rule')

@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Rule metric wording alignment checkpoint
+- Aligned the neighboring `services-rules` metric labels from `Active rules` and `Draft rules` to `Active Galaxy rules` and `Draft Galaxy rules`, keeping the already-updated rules surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the rules preview assertion that reads the same summary stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview|test_services_rules_page_supports_selected_priority_rule_review_context|test_services_rules_page_supports_selected_shop_scoped_rule_review_context|test_services_rules_page_supports_selected_blocking_rule_review_context'`; the current matched slice covered the services-rules management preview and passed (`1 passed`).
+
 ### Tier metric wording alignment checkpoint
 - Aligned the neighboring `card-types` metric labels from `Active tiers` and `Draft tiers` to `Active Galaxy tiers` and `Draft Galaxy tiers`, keeping the already-updated tier surface consistent with the newer Galaxy-specific copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the tier metrics assertions that read the same summary stack.

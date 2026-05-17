@@ -690,8 +690,8 @@ return [
             ['label' => 'Review priorities', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until rule priority resolution is verified in Laravel.'],
         ],
         'metrics' => [
-            ['label' => 'Active rules', 'value' => '2'],
-            ['label' => 'Draft rules', 'value' => '1'],
+            ['label' => 'Active Galaxy rules', 'value' => '2'],
+            ['label' => 'Draft Galaxy rules', 'value' => '1'],
             ['label' => 'Shop scopes', 'value' => '3'],
         ],
         'table' => [
