@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard reporting entry copy alignment checkpoint
+- Aligned the admin dashboard reporting entry labels from the more generic `Review live reporting sources` and `Review shared reporting sources` wording to the more Galaxy-specific `Review Galaxy reporting sources` and `Review shared Galaxy reporting sources`, so the reporting entry path now matches the newer reports-catalog shell tone.
+- Kept the step narrow and behavior-safe, but it removes another pair of starter-style labels from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context'` (`4 passed`).
+
 ### Reports primary action copy alignment checkpoint
 - Aligned the `reports` catalog primary action from the more generic `Open live report catalog` wording to the more Galaxy-specific `Open Galaxy reporting catalog`, keeping the reporting workspace closer to the Phase 1 admin-shell tone used elsewhere.
 - Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
