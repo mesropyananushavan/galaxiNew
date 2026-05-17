@@ -282,9 +282,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('/admin/cardholders?cardholder=1')
             ->assertSee('Open latest Galaxy card shell review: 550011223344 (active)</a> (Route: /admin/cards)', false)
             ->assertSee('/admin/cards?card=1')
-            ->assertSee('Open latest card type workspace: Dashboard Tier (active)</a> (Route: /admin/card-types)', false)
+            ->assertSee('Open latest Galaxy tier shell review: Dashboard Tier (active)</a> (Route: /admin/card-types)', false)
             ->assertSee('/admin/card-types?cardType=1')
-            ->assertSee('Open latest role review: Dashboard Lead (1 permissions)</a> (Route: /admin/roles-permissions)', false)
+            ->assertSee('Open latest Galaxy access shell review: Dashboard Lead (1 permissions)</a> (Route: /admin/roles-permissions)', false)
             ->assertSee('/admin/roles-permissions?role=1')
             ->assertSee('1');
     }
@@ -549,8 +549,8 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Open latest branch review:')
             ->assertDontSee('Open latest Galaxy holder review:')
             ->assertDontSee('Open latest Galaxy card shell review:')
-            ->assertDontSee('Open latest card type workspace:')
-            ->assertDontSee('Open latest role review:');
+            ->assertDontSee('Open latest Galaxy tier shell review:')
+            ->assertDontSee('Open latest Galaxy access shell review:');
     }
 
     public function test_dashboard_shows_only_available_latest_workspace_links(): void
@@ -621,13 +621,13 @@ class AdminDashboardTest extends TestCase
             ->assertSee('The migration map already spans 3 grouped sections, but only 1 core Galaxy domains have live Laravel coverage so far.')
             ->assertSee('Open latest branch review: Partial Dashboard Shop (inactive)</a> (Route: /admin/shops)', false)
             ->assertSee('/admin/shops?shop=1')
-            ->assertSee('Open latest card type workspace: Partial Dashboard Tier (draft)</a> (Route: /admin/card-types)', false)
+            ->assertSee('Open latest Galaxy tier shell review: Partial Dashboard Tier (draft)</a> (Route: /admin/card-types)', false)
             ->assertSee('/admin/card-types?cardType=1')
             ->assertDontSee('No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.')
             ->assertDontSee('In Phase 1, this usually means the branch is still moving through first-pass setup for shops, cardholders, cards, or access structure.')
             ->assertDontSee('Open latest Galaxy holder review:')
             ->assertDontSee('Open latest Galaxy card shell review:')
-            ->assertDontSee('Open latest role review:');
+            ->assertDontSee('Open latest Galaxy access shell review:');
     }
 
     public function test_dashboard_latest_live_work_shortcuts_respect_shop_scope(): void

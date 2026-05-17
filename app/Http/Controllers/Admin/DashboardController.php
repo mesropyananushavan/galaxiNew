@@ -360,7 +360,7 @@ class DashboardController extends Controller
         $cardType = CardType::query()->latest('id')->first();
 
         return $cardType ? $this->workspaceLink(
-            label: sprintf('Open latest card type workspace: %s (%s)', $cardType->name, $cardType->is_active ? 'active' : 'draft'),
+            label: sprintf('Open latest Galaxy tier shell review: %s (%s)', $cardType->name, $cardType->is_active ? 'active' : 'draft'),
             routeName: 'admin.card-types.index',
             parameters: ['cardType' => $cardType->id],
         ) : null;
@@ -394,7 +394,7 @@ class DashboardController extends Controller
         $role = Role::query()->latest('id')->first();
 
         return $role ? $this->workspaceLink(
-            label: sprintf('Open latest role review: %s (%d permissions)', $role->name, $role->permissions()->count()),
+            label: sprintf('Open latest Galaxy access shell review: %s (%d permissions)', $role->name, $role->permissions()->count()),
             routeName: 'admin.roles-permissions.index',
             parameters: ['role' => $role->id],
         ) : null;
