@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Shared foundation form review-mode checkpoint
+- Extracted the repeated selected-form central-control wiring into one `ResourceIndexController` helper, so roles, shops, and card types now apply the same review-mode cancel label, disabled submit, and locked-field behavior through one path.
+- This keeps the Phase 1 foundation shell easier to extend without changing the existing scoped-admin UX or the bootstrap-admin happy paths.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_shop_scoped_admin_sees_card_type_mutation_actions_disabled_in_card_types_workspace|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_authenticated_user_can_update_shop_from_live_admin_flow'` (`5 passed`).
+
 ### Scoped branch-form field-locking checkpoint
 - Extended the `shops` selected-branch form to match the existing scoped foundation review-only posture, so shop-scoped admins now see a disabled submit button plus locked form fields when Phase 1 central-control rules block branch creation.
 - Reused the same branch-foundation disabled reason already shown on the catalog action and kept the allowed branch update happy path green for bootstrap-admin flows.

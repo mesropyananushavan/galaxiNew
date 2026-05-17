@@ -764,16 +764,13 @@ class ResourceIndexController extends Controller
                 'role' => $selectedRole,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.roles-permissions.index';
-            $page['liveForm']['cancelLabel'] = $this->canManageFoundationCatalog()
-                ? 'Create new Galaxy access shell'
-                : 'Back to access catalog';
             $page['liveForm']['cancelRouteParameters'] = [];
             $page['liveForm']['submitLabel'] = 'Save access changes';
-            $page['liveForm']['submitAttributes'] = $this->foundationLiveFormSubmitAttributes(
+            $page['liveForm'] = $this->applyFoundationLiveFormReviewMode(
+                $page['liveForm'],
+                'Create new Galaxy access shell',
+                'Back to access catalog',
                 $this->rolesPermissionsFoundationMutationDisabledReason(),
-            );
-            $page['liveForm']['fields'] = $this->foundationLiveFormFields(
-                $page['liveForm']['fields'] ?? [],
             );
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedRole->name,
@@ -1304,16 +1301,13 @@ class ResourceIndexController extends Controller
                 'shop' => $selectedShop,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.shops.index';
-            $page['liveForm']['cancelLabel'] = $this->canManageFoundationCatalog()
-                ? 'Create new Galaxy branch shell'
-                : 'Back to branch catalog';
             $page['liveForm']['cancelRouteParameters'] = [];
             $page['liveForm']['submitLabel'] = 'Save branch changes';
-            $page['liveForm']['submitAttributes'] = $this->foundationLiveFormSubmitAttributes(
+            $page['liveForm'] = $this->applyFoundationLiveFormReviewMode(
+                $page['liveForm'],
+                'Create new Galaxy branch shell',
+                'Back to branch catalog',
                 $this->shopsFoundationMutationDisabledReason(),
-            );
-            $page['liveForm']['fields'] = $this->foundationLiveFormFields(
-                $page['liveForm']['fields'] ?? [],
             );
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedShop->name,
@@ -2158,16 +2152,13 @@ class ResourceIndexController extends Controller
             'cardType' => $selectedCardType,
         ];
         $page['liveForm']['cancelRoute'] = 'admin.card-types.index';
-        $page['liveForm']['cancelLabel'] = $this->canManageFoundationCatalog()
-            ? $this->cardTypesLiveFormCancelLabel()
-            : 'Back to tier catalog';
         $page['liveForm']['cancelRouteParameters'] = [];
         $page['liveForm']['submitLabel'] = $this->cardTypesLiveFormSubmitLabel();
-        $page['liveForm']['submitAttributes'] = $this->foundationLiveFormSubmitAttributes(
+        $page['liveForm'] = $this->applyFoundationLiveFormReviewMode(
+            $page['liveForm'],
+            $this->cardTypesLiveFormCancelLabel(),
+            'Back to tier catalog',
             $this->cardTypesFoundationMutationDisabledReason(),
-        );
-        $page['liveForm']['fields'] = $this->foundationLiveFormFields(
-            $page['liveForm']['fields'] ?? [],
         );
         $page['liveForm']['valuesResolver'] = [
             'name' => $selectedCardType->name,
@@ -4556,6 +4547,21 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsFoundationMutationDisabledReason(): string
     {
         return 'Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control.';
+    }
+
+    private function applyFoundationLiveFormReviewMode(
+        array $liveForm,
+        string $editableCancelLabel,
+        string $reviewCancelLabel,
+        string $disabledReason,
+    ): array {
+        $liveForm['cancelLabel'] = $this->canManageFoundationCatalog()
+            ? $editableCancelLabel
+            : $reviewCancelLabel;
+        $liveForm['submitAttributes'] = $this->foundationLiveFormSubmitAttributes($disabledReason);
+        $liveForm['fields'] = $this->foundationLiveFormFields($liveForm['fields'] ?? []);
+
+        return $liveForm;
     }
 
     private function foundationLiveFormSubmitAttributes(string $disabledReason): array
