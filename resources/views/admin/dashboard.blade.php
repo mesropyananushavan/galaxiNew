@@ -153,7 +153,7 @@
                 <p class="metric-value">{{ $roleCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Live access permissions</p>
+                <p class="metric-label">Live Galaxy access permissions</p>
                 <p class="metric-value">{{ $permissionCount }}</p>
             </article>
         </div>

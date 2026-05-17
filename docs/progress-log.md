@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard access surface wording alignment checkpoint
+- Aligned one more small access-oriented wording pocket on the dashboard and migration map by renaming the summary metric to `Live Galaxy access permissions` and shifting the Roles & Permissions map blurb from generic admin wording to `Galaxy access shells, permissions, and access baseline.`
+- This was a narrow Phase 1 admin-shell copy step with no behavior changes, but it keeps the access surface terminology more consistent with the newer `Galaxy access shells` language already used across the dashboard.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_unscoped_dashboard_does_not_show_shop_scope_summary'`; the current matched slice passed (`3 passed`).
+
 ### Dashboard scoped branch follow-up prose alignment checkpoint
 - Aligned another small assigned-branch wording pocket in the dashboard controller so the partial-coverage handoff signals and follow-up guidance now say `Galaxy holder` and `Galaxy card shell` instead of the older generic `holder/card/cardholder` phrasing.
 - This kept the change behavior-safe and limited to the scoped branch snapshot guidance layer, which continues the Phase 1 admin-shell shift away from starter terminology.
