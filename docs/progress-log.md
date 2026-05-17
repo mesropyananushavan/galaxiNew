@@ -2,6 +2,12 @@
 
 ## 2026-05-17
 
+### Selected card and holder edit live-form helper checkpoint
+- Extracted the repeated non-foundation selected edit live-form setup for `cards` and `cardholders` into one small `ResourceIndexController` helper, so both Galaxy review workspaces now configure their PATCH route, catalog return, and submit copy through the same path.
+- Kept the change narrow and behavior-preserving, but it trims another bit of inline controller glue while preserving the current Galaxy-specific edit titles and selected-catalog return behavior.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query|test_cards_page_ignores_inaccessible_selected_card_query_for_shop_scoped_admins'` (`4 passed`).
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context|test_cardholders_page_surfaces_paused_branch_signal_for_selected_holder|test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query|test_cardholders_page_ignores_inaccessible_selected_holder_query_for_shop_scoped_admins'` (`8 passed`).
+
 ### Selected foundation edit live-form helper checkpoint
 - Extracted the repeated selected foundation edit live-form setup for `roles-permissions`, `shops`, and `card-types` into one `ResourceIndexController` helper, so those Galaxy admin workspaces now configure their PATCH route, submit copy, and bootstrap-aware cancel behavior through the same small path.
 - Kept the change narrow and behavior-preserving, but it removes another slice of starter-style controller glue from the Phase 1 admin shell while preserving the Galaxy-specific titles and review-mode descriptions already in use.

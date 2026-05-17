@@ -937,19 +937,18 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = $this->cardsSelectedCardSummary($selectedCard);
 
         if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm']['title'] = 'Edit Galaxy card in Laravel';
-            $page['liveForm']['description'] = 'Update the selected Galaxy card through the shared live form while holder assignment, dispute handling, and replacement flows remain review-only.';
-            $page['liveForm']['method'] = 'PATCH';
-            $page['liveForm']['actionRoute'] = 'admin.cards.update';
-            $page['liveForm']['actionRouteParameters'] = [
-                'card' => $selectedCard,
-            ];
-            $page['liveForm'] = $this->applySelectedLiveFormCatalogReturn(
+            $page['liveForm'] = $this->applySelectedEditLiveForm(
                 $page['liveForm'],
+                'Edit Galaxy card in Laravel',
+                'Update the selected Galaxy card through the shared live form while holder assignment, dispute handling, and replacement flows remain review-only.',
+                'admin.cards.update',
+                [
+                    'card' => $selectedCard,
+                ],
                 'admin.cards.index',
                 'Back to card catalog',
+                'Save inventory changes',
             );
-            $page['liveForm']['submitLabel'] = 'Save inventory changes';
             $page['liveForm']['valuesResolver'] = [
                 'shop_id' => $selectedCard->shop_id !== null ? (string) $selectedCard->shop_id : '',
                 'card_type_id' => $selectedCard->card_type_id !== null ? (string) $selectedCard->card_type_id : '',
@@ -1114,19 +1113,18 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = $this->cardholdersSelectedHolderSummary($selectedCardHolder);
 
         if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm']['title'] = 'Edit Galaxy holder in Laravel';
-            $page['liveForm']['description'] = 'Update the selected Galaxy cardholder through the shared live form while card linkage and activity history remain review-only.';
-            $page['liveForm']['method'] = 'PATCH';
-            $page['liveForm']['actionRoute'] = 'admin.cardholders.update';
-            $page['liveForm']['actionRouteParameters'] = [
-                'cardholder' => $selectedCardHolder,
-            ];
-            $page['liveForm'] = $this->applySelectedLiveFormCatalogReturn(
+            $page['liveForm'] = $this->applySelectedEditLiveForm(
                 $page['liveForm'],
+                'Edit Galaxy holder in Laravel',
+                'Update the selected Galaxy cardholder through the shared live form while card linkage and activity history remain review-only.',
+                'admin.cardholders.update',
+                [
+                    'cardholder' => $selectedCardHolder,
+                ],
                 'admin.cardholders.index',
                 'Back to holder catalog',
+                'Save holder changes',
             );
-            $page['liveForm']['submitLabel'] = 'Save holder changes';
             $page['liveForm']['valuesResolver'] = [
                 'shop_id' => $selectedCardHolder->shop_id !== null ? (string) $selectedCardHolder->shop_id : '',
                 'full_name' => $selectedCardHolder->full_name,
@@ -4576,6 +4574,26 @@ class ResourceIndexController extends Controller
         $liveForm['cancelRouteParameters'] = [];
 
         return $liveForm;
+    }
+
+    private function applySelectedEditLiveForm(
+        array $liveForm,
+        string $title,
+        string $description,
+        string $actionRoute,
+        array $actionRouteParameters,
+        string $cancelRoute,
+        string $cancelLabel,
+        string $submitLabel,
+    ): array {
+        $liveForm['title'] = $title;
+        $liveForm['description'] = $description;
+        $liveForm['method'] = 'PATCH';
+        $liveForm['actionRoute'] = $actionRoute;
+        $liveForm['actionRouteParameters'] = $actionRouteParameters;
+        $liveForm['submitLabel'] = $submitLabel;
+
+        return $this->applySelectedLiveFormCatalogReturn($liveForm, $cancelRoute, $cancelLabel);
     }
 
     private function applySelectedFoundationEditLiveForm(
