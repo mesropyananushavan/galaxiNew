@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected read-context disabled-action helper checkpoint
+- Extracted a small `selectedReadContextWithDisabledActions(...)` helper and rewired the selected `reports` workspace plus the shared selected-preview path to use it, so those read-only Galaxy review surfaces now pass raw disabled-action definitions through one consistent shaping path.
+- Kept the step narrow and behavior-preserving, but it removes another bit of repetitive `selectedReadContextActions(...)` glue from `ResourceIndexController` while preserving the current selected-review copy.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_checks_points_page_accepts_case_insensitive_selected_receipt_query|test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_role_access_pending_readiness_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`11 passed`).
+
 ### Selected preview action-helper checkpoint
 - Reused the shared `secondaryDisabledActions(...)` helper inside the selected `checks-points`, `services-rules`, and `gifts` preview workspaces, so their disabled review companions now flow through the same small action-shaping path used across the rest of the Phase 1 admin shell.
 - Kept the step narrow and behavior-preserving, but it trims another small cluster of inline preview-action arrays from `ResourceIndexController` while preserving the current Galaxy-specific selected-preview copy.

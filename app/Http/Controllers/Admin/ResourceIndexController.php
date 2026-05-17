@@ -1830,11 +1830,11 @@ class ResourceIndexController extends Controller
         }
 
         $page['selectedRecordSummary'] = $selectedReportSource['selectedSummary'];
-        $page['actions'] = $this->selectedReadContextActions(
+        $page['actions'] = $this->selectedReadContextWithDisabledActions(
             'admin.reports.index',
             'Back to report catalog',
             $selectedReportSource['label'],
-            $this->secondaryDisabledActions([
+            [
                 [
                     'label' => 'Review export presets',
                     'disabledReason' => $this->reportsSelectedSourcePresetDisabledReason($selectedReportSource),
@@ -1843,7 +1843,7 @@ class ResourceIndexController extends Controller
                     'label' => 'Export source snapshot',
                     'disabledReason' => $this->reportsSelectedSourceExportDisabledReason($selectedReportSource),
                 ],
-            ]),
+            ],
         );
         $page['activityTimeline'] = $selectedReportSource['timeline'];
         $page['dependencyStatus'] = $selectedReportSource['dependencyStatus'];
@@ -2910,7 +2910,7 @@ class ResourceIndexController extends Controller
         array $additionalActions,
     ): array {
         $page['selectedRecordSummary'] = is_array($selectedPreview['summary'] ?? null) ? $selectedPreview['summary'] : [];
-        $page['actions'] = $this->selectedReadContextActions(
+        $page['actions'] = $this->selectedReadContextWithDisabledActions(
             $indexRouteName,
             $backLabel,
             (string) ($selectedPreview['label'] ?? 'Preview item'),
@@ -2940,6 +2940,20 @@ class ResourceIndexController extends Controller
             ],
             ...$additionalActions,
         ];
+    }
+
+    private function selectedReadContextWithDisabledActions(
+        string $indexRouteName,
+        string $backLabel,
+        string $selectedLabel,
+        array $disabledActions,
+    ): array {
+        return $this->selectedReadContextActions(
+            $indexRouteName,
+            $backLabel,
+            $selectedLabel,
+            $this->secondaryDisabledActions($disabledActions),
+        );
     }
 
     private function selectedPreviewByKey(array $previews, string $queryKey): ?array
