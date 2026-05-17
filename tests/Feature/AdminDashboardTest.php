@@ -5554,7 +5554,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Inactive unlinked holders')
             ->assertSee('Active-branch linked holders')
             ->assertSee('Paused-branch unlinked holders')
-            ->assertSee('Reviewed holders')
+            ->assertSee('Reviewed Galaxy holders')
             ->assertSee('Linked cards')
             ->assertSee('>1<', false)
             ->assertSee('active')

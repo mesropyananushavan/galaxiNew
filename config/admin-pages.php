@@ -150,7 +150,7 @@ return [
         'metrics' => [
             ['label' => 'Active Galaxy holders', 'value' => '2'],
             ['label' => 'Inactive Galaxy holders', 'value' => '1'],
-            ['label' => 'Reviewed holders', 'value' => '2'],
+            ['label' => 'Reviewed Galaxy holders', 'value' => '2'],
             ['label' => 'Linked cards', 'value' => '3'],
         ],
         'table' => [

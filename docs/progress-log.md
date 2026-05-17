@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Holder reviewed metric wording alignment checkpoint
+- Aligned the neighboring `cardholders` metric label from `Reviewed holders` to `Reviewed Galaxy holders`, keeping the already-updated holder surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the holder-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shop_scoped_admin_sees_cardholder_creation_actions_disabled_in_cardholders_workspace'`; the current matched slice covered the cardholders operational shape plus selected holder contexts and passed (`3 passed`).
+
 ### Access-shell permission metric wording alignment checkpoint
 - Aligned the neighboring `roles-permissions` metric label from `Permission review notes` to `Galaxy permission review notes`, keeping the already-updated access surface consistent with the newer Galaxy-specific copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
