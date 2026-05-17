@@ -4723,6 +4723,55 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_shop_scoped_admin_cannot_update_a_different_shop(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Assigned Branch',
+            'code' => 'galaxy-scoped-assigned-branch',
+            'is_active' => true,
+        ]);
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Foreign Branch',
+            'code' => 'galaxy-scoped-foreign-branch',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Shop Update Operator',
+            'slug' => 'scoped-shop-update-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Update scoped shops',
+            'slug' => 'update-scoped-shops',
+            'review_note' => 'Phase 1 scoped shop update coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->patch(route('admin.shops.update', $otherShop), [
+            'name' => 'Galaxy Scoped Foreign Branch Prime',
+            'code' => 'galaxy-scoped-foreign-branch-prime',
+            'is_active' => 'true',
+            'review_note' => 'Scoped admins should not mutate foreign branch settings.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.shops.index', ['shop' => $otherShop], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'shop_id' => 'Choose a shop you can access before changing branch settings in the Galaxy workspace.',
+            ]);
+
+        $this->assertDatabaseHas('shops', [
+            'id' => $otherShop->id,
+            'name' => 'Galaxy Scoped Foreign Branch',
+            'code' => 'galaxy-scoped-foreign-branch',
+        ]);
+    }
+
     public function test_shop_update_live_flow_keeps_branch_code_canonical(): void
     {
         $user = User::factory()->create();

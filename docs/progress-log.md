@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-05-17
+
+### Shop update scope-guard checkpoint
+- Added an `access-shop` validation guard to `UpdateShopRequest`, so shop-scoped admins can no longer change another branch's settings just because they still pass the broad admin gate.
+- Added focused regression coverage that proves a scoped operator cannot update a foreign shop, while keeping the bootstrap-admin shop update flow and duplicate-code validation green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_update_a_different_shop|test_authenticated_user_can_update_shop_from_live_admin_flow|test_shop_update_live_flow_rejects_duplicate_normalized_code'` (`3 passed`).
+
 ## 2026-05-16
 
 ### Shared shop-scope request validation checkpoint
