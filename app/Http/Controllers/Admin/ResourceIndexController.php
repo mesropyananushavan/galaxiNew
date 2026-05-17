@@ -271,11 +271,13 @@ class ResourceIndexController extends Controller
         $latestReceiptPreview = collect($receiptPreviews)->first();
 
         if (is_array($latestReceiptPreview)) {
-            $page = $this->appendPageAction($page, [
-                'label' => sprintf('Review %s receipt', strtolower($latestReceiptPreview['label'])),
-                'tone' => 'secondary',
-                'href' => route('admin.checks-points.index', ['receipt' => $latestReceiptPreview['key']], absolute: false),
-            ]);
+            $page = $this->appendLatestPreviewReviewAction(
+                $page,
+                sprintf('Review %s receipt', strtolower($latestReceiptPreview['label'])),
+                'admin.checks-points.index',
+                'receipt',
+                (string) $latestReceiptPreview['key'],
+            );
         }
 
         $selectedReceiptPreview = $this->selectedPreviewByKey($receiptPreviews, 'receipt');
@@ -432,11 +434,13 @@ class ResourceIndexController extends Controller
         $latestRulePreview = collect($rulePreviews)->first();
 
         if (is_array($latestRulePreview)) {
-            $page = $this->appendPageAction($page, [
-                'label' => sprintf('Review %s rule', strtolower($latestRulePreview['label'])),
-                'tone' => 'secondary',
-                'href' => route('admin.services-rules.index', ['rule' => $latestRulePreview['key']], absolute: false),
-            ]);
+            $page = $this->appendLatestPreviewReviewAction(
+                $page,
+                sprintf('Review %s rule', strtolower($latestRulePreview['label'])),
+                'admin.services-rules.index',
+                'rule',
+                (string) $latestRulePreview['key'],
+            );
         }
 
         $selectedRulePreview = $this->selectedPreviewByKey($rulePreviews, 'rule');
@@ -613,11 +617,13 @@ class ResourceIndexController extends Controller
         $latestGiftPreview = collect($giftPreviews)->first();
 
         if (is_array($latestGiftPreview)) {
-            $page = $this->appendPageAction($page, [
-                'label' => sprintf('Review %s gift', strtolower($latestGiftPreview['label'])),
-                'tone' => 'secondary',
-                'href' => route('admin.gifts.index', ['gift' => $latestGiftPreview['key']], absolute: false),
-            ]);
+            $page = $this->appendLatestPreviewReviewAction(
+                $page,
+                sprintf('Review %s gift', strtolower($latestGiftPreview['label'])),
+                'admin.gifts.index',
+                'gift',
+                (string) $latestGiftPreview['key'],
+            );
         }
 
         $selectedGiftPreview = $this->selectedPreviewByKey($giftPreviews, 'gift');
@@ -2825,6 +2831,20 @@ class ResourceIndexController extends Controller
             'label' => $label,
             'tone' => 'secondary',
             'href' => route($routeName, [$routeParameter => $recordId], absolute: false),
+        ]);
+    }
+
+    private function appendLatestPreviewReviewAction(
+        array $page,
+        string $label,
+        string $routeName,
+        string $routeParameter,
+        string $previewKey,
+    ): array {
+        return $this->appendPageAction($page, [
+            'label' => $label,
+            'tone' => 'secondary',
+            'href' => route($routeName, [$routeParameter => $previewKey], absolute: false),
         ]);
     }
 

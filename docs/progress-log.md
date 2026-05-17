@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Latest-preview review action helper checkpoint
+- Extracted the repeated preview-catalog `Review ...` link wiring for `checks-points`, `services-rules`, and `gifts` into one small `ResourceIndexController` helper, so those Galaxy preview catalogs now append their latest preview-review links through the same path.
+- Kept the step narrow and behavior-preserving, but it removes another small cluster of repeated route/link glue from the Phase 1 admin shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_authenticated_user_can_access_services_rules_preview|test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog|test_authenticated_user_can_access_gifts_preview|test_gifts_page_ignores_unknown_selected_gift_and_falls_back_to_catalog'` (`4 passed`, with the current suite matching the focused receipt/rule/gift catalog fallback coverage that exercises this helper path).
+
 ### Latest-saved review action helper checkpoint
 - Extracted the repeated `Review latest saved ...` catalog action wiring for `roles-permissions`, `cards`, `cardholders`, and `shops` into one small `ResourceIndexController` helper, so those Galaxy admin catalogs now append their latest-saved review links through the same path.
 - Kept the step narrow and behavior-preserving, but it removes another small cluster of repeated route/link glue from the Phase 1 admin shell.
