@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Card cancel-label alignment checkpoint
+- Aligned the `cards` live form cancel label from the more generic `Back to cards` wording to `Back to card catalog`, bringing the real Laravel-backed inventory form into line with the broader Galaxy card catalog language already used across the rest of the Phase 1 shell.
+- This stayed intentionally small and copy-only, but it removes another leftover starter-style phrase from a live admin flow.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`; the current matched slice passed (`5 passed`).
+
 ### Holder cancel-label alignment checkpoint
 - Aligned the `cardholders` live form cancel label from the more generic `Back to cardholders` wording to `Back to holder catalog`, bringing the real Laravel-backed holder form into line with the broader Galaxy holder catalog language already used across the rest of the Phase 1 shell.
 - This stayed intentionally small and copy-only, but it removes another leftover starter-style phrase from a live admin flow.

@@ -403,7 +403,7 @@ return [
             'method' => 'POST',
             'actionRoute' => 'admin.cards.store',
             'cancelRoute' => 'admin.cards.index',
-            'cancelLabel' => 'Back to cards',
+            'cancelLabel' => 'Back to card catalog',
             'submitLabel' => 'Create inventory shell',
             'fields' => [
                 ['name' => 'shop_id', 'label' => 'Shop', 'type' => 'select', 'value' => '', 'required' => true, 'help' => 'Keep the card anchored to its branch because stock review and blocked-card parity were branch-sensitive in Galaxy.', 'options' => []],
