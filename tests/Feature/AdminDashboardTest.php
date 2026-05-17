@@ -4410,6 +4410,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Shops placeholder')
+            ->assertSee('Galaxy branch workspace for scope boundaries, activation review, and future access checks.')
             ->assertSee('Operational index shape')
             ->assertSee('Central Shop')
             ->assertSee('Volume tier')

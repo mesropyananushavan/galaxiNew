@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Branch summary wording alignment checkpoint
+- Aligned the `shops` page summary from the older generic baseline wording to `Galaxy branch workspace for scope boundaries, activation review, and future access checks.` so the branch surface reads more like the intended Phase 1 Galaxy console.
+- While validating the narrow copy step, the focused slice exposed one neighboring metric label that still used older generic wording, so `Active shops` was safely aligned to `Active Galaxy branches` on the same surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_catalog_actions_reflect_saved_branch_readiness|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the current matched slice passed (`4 passed`).
+
 ### Rules summary wording alignment checkpoint
 - Aligned the `services-rules` page summary from the older generic baseline wording to `Galaxy rule workspace for service groups, eligibility review, and loyalty behavior conditions.` so the rules surface reads more like the intended Phase 1 Galaxy console.
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.

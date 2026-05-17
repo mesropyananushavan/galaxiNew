@@ -4,7 +4,7 @@ return [
     'shops' => [
         'pageTitle' => 'Shops',
         'eyebrow' => 'Administration / Shops',
-        'summary' => 'Baseline operational index for shop scope boundaries, activation state, and future access rules.',
+        'summary' => 'Galaxy branch workspace for scope boundaries, activation review, and future access checks.',
         'nextStep' => 'Replace sample rows with real shop records, manager info, and scoped access actions.',
         'actions' => [
             [
@@ -20,7 +20,7 @@ return [
             ],
         ],
         'metrics' => [
-            ['label' => 'Active shops', 'value' => '2'],
+            ['label' => 'Active Galaxy branches', 'value' => '2'],
             ['label' => 'Paused shops', 'value' => '1'],
             ['label' => 'Reviewed shops', 'value' => '2'],
             ['label' => 'Assigned managers', 'value' => '2'],
