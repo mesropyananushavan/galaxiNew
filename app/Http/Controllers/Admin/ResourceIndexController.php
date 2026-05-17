@@ -762,7 +762,7 @@ class ResourceIndexController extends Controller
             ];
         }
 
-        $page['actions'] = $this->selectedReadContextActions(
+        $page['actions'] = $this->selectedReadContextWithLeadingAndDisabledActions(
             'admin.roles-permissions.index',
             'Back to role catalog',
             $selectedRole->name,
@@ -773,16 +773,16 @@ class ResourceIndexController extends Controller
                     $this->rolesPermissionsFoundationMutationDisabledReason(),
                     'secondary',
                 ),
-                ...$this->secondaryDisabledActions([
-                    [
-                        'label' => 'Review matrix',
-                        'disabledReason' => $this->rolesPermissionsReviewMatrixDisabledReason($selectedRole),
-                    ],
-                    [
-                        'label' => 'Publish access',
-                        'disabledReason' => $this->rolesPermissionsPublishRoleDisabledReason($selectedRole, $scope),
-                    ],
-                ]),
+            ],
+            [
+                [
+                    'label' => 'Review matrix',
+                    'disabledReason' => $this->rolesPermissionsReviewMatrixDisabledReason($selectedRole),
+                ],
+                [
+                    'label' => 'Publish access',
+                    'disabledReason' => $this->rolesPermissionsPublishRoleDisabledReason($selectedRole, $scope),
+                ],
             ],
         );
 
@@ -2953,6 +2953,24 @@ class ResourceIndexController extends Controller
             $backLabel,
             $selectedLabel,
             $this->secondaryDisabledActions($disabledActions),
+        );
+    }
+
+    private function selectedReadContextWithLeadingAndDisabledActions(
+        string $indexRouteName,
+        string $backLabel,
+        string $selectedLabel,
+        array $leadingActions,
+        array $disabledActions,
+    ): array {
+        return $this->selectedReadContextActions(
+            $indexRouteName,
+            $backLabel,
+            $selectedLabel,
+            [
+                ...$leadingActions,
+                ...$this->secondaryDisabledActions($disabledActions),
+            ],
         );
     }
 

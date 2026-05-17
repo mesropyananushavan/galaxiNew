@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected role read-context helper checkpoint
+- Extracted a small `selectedReadContextWithLeadingAndDisabledActions(...)` helper and rewired the selected `roles-permissions` workspace to use it, so that Galaxy access review surface now builds its leading bootstrap-gated mutation action and disabled review companions through one consistent path.
+- Kept the step narrow and behavior-preserving, but it removes another small patch of repetitive selected-action glue from `ResourceIndexController` while preserving the existing Galaxy-specific copy and gating reasons.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_shop_scoped_admin_cannot_create_new_role|test_shop_scoped_admin_cannot_update_role'` (`6 passed`).
+
 ### Selected card, holder, and branch read-context helper checkpoint
 - Reused the shared `selectedReadContextWithDisabledActions(...)` helper inside the selected `cards`, `cardholders`, and `shops` workspaces, so those read-only Galaxy review surfaces now pass their disabled companion actions through the same helper path as the selected preview and report contexts.
 - Kept the step narrow and behavior-preserving, but it removes another small layer of repetitive `selectedReadContextActions(...)` plus disabled-action shaping glue from `ResourceIndexController`.
