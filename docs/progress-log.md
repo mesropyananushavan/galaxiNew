@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard setup shortcut copy alignment checkpoint
+- Aligned the remaining generic holder/card setup shortcuts on the dashboard from `cardholder/card setup` wording to the more Galaxy-specific `Galaxy holder/Galaxy card shell setup` wording, covering both the assigned-branch setup prompts and the fallback latest-work setup links.
+- Kept the step narrow and behavior-safe, but it removes another small cluster of starter-style labels from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_hide_unavailable_records_for_shop_scoped_admin|test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop'`; the current matched slice passed (`2 passed`).
+
 ### Dashboard latest-work tier and access copy alignment checkpoint
 - Aligned the remaining generic dashboard latest-work shortcut labels from `Open latest card type workspace` and `Open latest role review` to the more Galaxy-specific `Open latest Galaxy tier shell review` and `Open latest Galaxy access shell review`, so the full latest-work block now uses the same tier/access shell tone as the rest of the Phase 1 admin surfaces.
 - Kept the step narrow and behavior-safe, but it removes the last obvious starter-style labels from the dashboard latest-work shortcut group.

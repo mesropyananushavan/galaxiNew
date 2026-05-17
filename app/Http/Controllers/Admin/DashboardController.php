@@ -323,7 +323,7 @@ class DashboardController extends Controller
         if (! $cardHolder) {
             return $this->scopedLatestSetupWorkspaceLink(
                 relation: 'cardHolders',
-                label: 'Open first cardholder setup in assigned branch',
+                label: 'Open first Galaxy holder setup in assigned branch',
                 routeName: 'admin.cardholders.index',
             );
         }
@@ -350,7 +350,7 @@ class DashboardController extends Controller
             parameters: ['card' => $card->id],
         ) : $this->scopedLatestSetupWorkspaceLink(
             relation: 'cards',
-            label: 'Open first card setup in assigned branch',
+            label: 'Open first Galaxy card shell setup in assigned branch',
             routeName: 'admin.cards.index',
         );
     }
@@ -862,7 +862,7 @@ class DashboardController extends Controller
         return $this->scopedEntryLabel(
             shop: $shop,
             liveLabel: 'Review live Galaxy holders in assigned branch',
-            setupLabel: 'Set up first cardholder in assigned branch',
+            setupLabel: 'Set up first Galaxy holder in assigned branch',
             countRelations: ['cardHolders'],
             isSetupConditionMet: fn (Shop $shop): bool => $this->shopHasNoRecords($shop, ['cardHolders']),
         );
@@ -873,7 +873,7 @@ class DashboardController extends Controller
         return $this->scopedEntryLabel(
             shop: $shop,
             liveLabel: 'Review live Galaxy card shells in assigned branch',
-            setupLabel: 'Set up first card in assigned branch',
+            setupLabel: 'Set up first Galaxy card shell in assigned branch',
             countRelations: ['cards'],
             isSetupConditionMet: fn (Shop $shop): bool => $this->shopHasNoRecords($shop, ['cards']),
         );
