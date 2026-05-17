@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected catalog-action copy alignment checkpoint
+- Aligned the selected-workspace back actions for `cards` and `cardholders` from generic `Back to all ...` copy to Galaxy catalog language (`Back to card catalog` / `Back to holder catalog`), so the live review surfaces now match the catalog-return phrasing already used inside their edit forms.
+- Kept the step narrow and behavior-safe, but it makes two more selected Galaxy workspaces read less like generic list pages and more like intentional admin catalogs.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context|test_cardholders_page_surfaces_paused_branch_signal_for_selected_holder|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query|test_cards_page_hides_other_shop_card_review_links_for_shop_scoped_admins|test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query|test_cardholders_page_hides_other_shop_holder_review_links_for_shop_scoped_admins'` (`17 passed`).
+
 ### Selected live-form catalog-return helper checkpoint
 - Extracted the selected-record catalog-return wiring for `cards` and `cardholders` into one `ResourceIndexController` helper, so those live edit workspaces now share the same explicit `cancelRoute`, `cancelLabel`, and empty route-parameter setup through one path.
 - Kept the step narrow and behavior-preserving, but it trims a little more starter-style controller glue from two real Galaxy edit surfaces right after their cancel-label copy was aligned.

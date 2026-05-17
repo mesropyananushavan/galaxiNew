@@ -982,7 +982,7 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = $this->selectedReadContextActions(
             'admin.cards.index',
-            'Back to all cards',
+            'Back to card catalog',
             $selectedCard->number,
             [
             [
@@ -1166,7 +1166,7 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = $this->selectedReadContextActions(
             'admin.cardholders.index',
-            'Back to all holders',
+            'Back to holder catalog',
             $selectedCardHolder->full_name,
             [
             [

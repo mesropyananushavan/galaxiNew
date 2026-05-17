@@ -2639,7 +2639,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all cards')
+            ->assertSee('Back to card catalog')
             ->assertSee('href="/admin/cards"', false)
             ->assertSee('Reviewing: GX-910001')
             ->assertSee('Edit Galaxy card in Laravel')
@@ -3834,7 +3834,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all cards')
+            ->assertSee('Back to card catalog')
             ->assertSee('Reviewing: GX-920001')
             ->assertSee('Review blocked cards')
             ->assertSee('Blocked until blocked-card semantics are verified against this active Laravel inventory flow.')
@@ -3953,7 +3953,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all cards')
+            ->assertSee('Back to card catalog')
             ->assertSee('Reviewing: GX-920099')
             ->assertSee('Review blocked cards')
             ->assertSee('Blocked until this blocked holder-linked card clears dispute and replacement parity against the legacy Galaxy flow.')
@@ -4014,7 +4014,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all cards')
+            ->assertSee('Back to card catalog')
             ->assertSee('Reviewing: GX-920199')
             ->assertSee('Review blocked cards')
             ->assertSee('Blocked until this blocked card clears dispute and replacement parity against the legacy Galaxy flow.')
@@ -4082,7 +4082,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all cards')
+            ->assertSee('Back to card catalog')
             ->assertSee('Reviewing: GX-930001')
             ->assertSee('Review blocked cards')
             ->assertSee('Blocked until blocked-card semantics are verified against this draft Laravel inventory flow.')
@@ -4155,7 +4155,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('GX-920001')
             ->assertSee('Review latest saved card')
-            ->assertDontSee('Back to all cards')
+            ->assertDontSee('Back to card catalog')
             ->assertDontSee('Selected card')
             ->assertDontSee('selected for Laravel review');
     }
@@ -4199,7 +4199,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('GX-930001')
             ->assertSee('Review latest saved card')
-            ->assertDontSee('Back to all cards')
+            ->assertDontSee('Back to card catalog')
             ->assertDontSee('Selected card')
             ->assertDontSee('selected for Laravel review');
     }
@@ -4328,7 +4328,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('GX-950001')
             ->assertSee('GX-950002')
-            ->assertDontSee('Back to all cards')
+            ->assertDontSee('Back to card catalog')
             ->assertDontSee('Reviewing: GX-950002')
             ->assertDontSee('Selected card')
             ->assertSee('Review latest saved card')
@@ -6127,7 +6127,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all holders')
+            ->assertSee('Back to holder catalog')
             ->assertSee('href="/admin/cardholders"', false)
             ->assertSee('Reviewing: Anna Petrova')
             ->assertSee('Edit Galaxy holder in Laravel')
@@ -6245,7 +6245,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all holders')
+            ->assertSee('Back to holder catalog')
             ->assertSee('Reviewing: Mariam Linked Holder')
             ->assertSee('Review recent activity')
             ->assertSee('Blocked until linked-card activity is backed by a stable Laravel event source for active-holder lookup parity.')
@@ -6297,7 +6297,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all holders')
+            ->assertSee('Back to holder catalog')
             ->assertSee('Reviewing: Aram Unlinked Holder')
             ->assertSee('Review recent activity')
             ->assertSee('Blocked until a stable Laravel activity source exists for holder lookup parity.')
@@ -6364,7 +6364,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all holders')
+            ->assertSee('Back to holder catalog')
             ->assertSee('Reviewing: Sona Dormant Holder')
             ->assertSee('Review recent activity')
             ->assertSee('Blocked until linked-card activity is backed by a stable Laravel event source for holder lookup parity.')
@@ -6464,7 +6464,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Anna Petrova')
             ->assertSee('Review latest saved holder')
-            ->assertDontSee('Back to all holders')
+            ->assertDontSee('Back to holder catalog')
             ->assertDontSee('Selected holder')
             ->assertDontSee('selected for Laravel review');
     }
@@ -6493,7 +6493,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Anna Petrova')
             ->assertSee('Review latest saved holder')
-            ->assertDontSee('Back to all holders')
+            ->assertDontSee('Back to holder catalog')
             ->assertDontSee('Selected holder')
             ->assertDontSee('selected for Laravel review');
     }
@@ -6608,7 +6608,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Assigned Holder Review')
             ->assertSee('Other Holder Review')
-            ->assertDontSee('Back to all holders')
+            ->assertDontSee('Back to holder catalog')
             ->assertDontSee('Reviewing: Other Holder Review')
             ->assertDontSee('Selected holder')
             ->assertSee('Review latest saved holder');
