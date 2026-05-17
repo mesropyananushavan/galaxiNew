@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Access-shell summary wording alignment checkpoint
+- Aligned the `roles-permissions` page summary from the older generic baseline wording to `Galaxy access-shell workspace for role identities, permission bundles, and future shop-scoped access review.` so the access surface reads more like the intended Phase 1 Galaxy console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace'`; the current matched slice passed (`4 passed`).
+
 ### Checks summary wording alignment checkpoint
 - Aligned the `checks-points` page summary from the older generic `Operational placeholder` phrasing to `Galaxy receipt and accrual workspace for purchases, fiscal search, and point adjustments.` so the receipt/accrual surface reads more like the intended Galaxy operational console.
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.

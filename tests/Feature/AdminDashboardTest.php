@@ -1128,6 +1128,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Create Galaxy role in Laravel')
+            ->assertSee('Galaxy access-shell workspace for role identities, permission bundles, and future shop-scoped access review.')
             ->assertSee('Create access shell')
             ->assertSee('Back to access shell catalog')
             ->assertSee('Role name')

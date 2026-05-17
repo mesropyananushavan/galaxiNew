@@ -932,7 +932,7 @@ return [
     'roles-permissions' => [
         'pageTitle' => 'Roles & Permissions',
         'eyebrow' => 'Administration / Roles & Permissions',
-        'summary' => 'Baseline management screen for admin roles, permission bundles, and future shop-scoped access rules.',
+        'summary' => 'Galaxy access-shell workspace for role identities, permission bundles, and future shop-scoped access review.',
         'nextStep' => 'Keep the new minimal role identity flow narrow, then layer role assignment, permission matrix, and shop-aware policy flows on top of it.',
         'actions' => [
             [
