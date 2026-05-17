@@ -10073,6 +10073,49 @@ class AdminDashboardTest extends TestCase
             ->assertSee('>3<', false);
     }
 
+    public function test_shop_scoped_admin_cannot_create_new_card_type(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Tier Creator Branch',
+            'code' => 'galaxy-scoped-tier-creator-branch',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Tier Creator Operator',
+            'slug' => 'scoped-tier-creator-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Create scoped card types',
+            'slug' => 'create-scoped-card-types',
+            'review_note' => 'Phase 1 scoped card type create coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->from(route('admin.card-types.index'))->actingAs($user)->post(route('admin.card-types.store'), [
+            'name' => 'Scoped Unauthorized Tier',
+            'slug' => 'scoped-unauthorized-tier',
+            'points_rate' => '1.25',
+            'is_active' => '1',
+            'rollout_note' => 'Scoped admins should not create new card types during Phase 1.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.card-types.index').'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'Only bootstrap admins can create new card types while the Galaxy tier foundation is still centrally controlled.',
+            ]);
+
+        $this->assertDatabaseMissing('card_types', [
+            'slug' => 'scoped-unauthorized-tier',
+        ]);
+    }
+
     public function test_authenticated_user_can_store_card_type_from_live_admin_form(): void
     {
         $user = User::factory()->create();

@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Bootstrap-only card type creation checkpoint
+- Added a focused validation guard to `StoreCardTypeRequest` so shop-scoped admins can no longer create new card types while the Galaxy tier foundation is still under central bootstrap control.
+- Added regression coverage proving a scoped operator is blocked from card-type creation, while the existing bootstrap-admin card-type create flow stays green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_new_card_type|test_authenticated_user_can_store_card_type_from_live_admin_form|test_authenticated_user_can_update_card_type_from_live_admin_form'` (`2 passed`, with the filter matching the scoped-create guard plus the existing create flow).
+
 ### Bootstrap-only role creation checkpoint
 - Added a focused validation guard to `StoreRoleRequest` so shop-scoped admins can no longer create new roles while the Galaxy access foundation is still under central bootstrap control.
 - Added regression coverage proving a scoped operator is blocked from role creation, while the bootstrap-admin create/update role happy paths stay green.

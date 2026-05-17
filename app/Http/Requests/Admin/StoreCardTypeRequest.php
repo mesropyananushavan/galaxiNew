@@ -5,6 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Validator;
 
 class StoreCardTypeRequest extends FormRequest
 {
@@ -63,6 +64,19 @@ class StoreCardTypeRequest extends FormRequest
             'activation_note.max' => 'Keep the activation note under 1000 characters so the tier workspace stays operator-friendly.',
             'rollout_note.max' => 'Keep the rollout note under 1000 characters so the tier workspace stays operator-friendly.',
         ];
+    }
+
+    public function withValidator(Validator $validator): void
+    {
+        $validator->after(function (Validator $validator): void {
+            $user = $this->user();
+
+            if ($user === null || $user->hasBootstrapAdminAccess()) {
+                return;
+            }
+
+            $validator->errors()->add('slug', 'Only bootstrap admins can create new card types while the Galaxy tier foundation is still centrally controlled.');
+        });
     }
 
     protected function getRedirectUrl(): string
