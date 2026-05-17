@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Role and branch catalog-action copy alignment checkpoint
+- Aligned the selected-workspace back actions for `roles-permissions` and `shops` from generic `Back to all ...` copy to Galaxy catalog language (`Back to role catalog` / `Back to branch catalog`), so those live review surfaces now match the more intentional catalog phrasing already used elsewhere in the Phase 1 shell.
+- Kept the step narrow and behavior-safe, but it makes two more high-value Galaxy admin workspaces read less like generic lists and more like real operational catalogs.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_roles_permissions_page_supports_selected_draft_role_review_context|test_roles_permissions_page_supports_selected_scope_only_role_review_context|test_roles_permissions_page_supports_selected_assignment_only_role_review_context|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_shops_page_surfaces_selected_live_branch_context_from_laravel_data|test_shops_page_supports_selected_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_review_context|test_shops_page_surfaces_selected_paused_branch_recovery_context|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query|test_shops_page_hides_other_shop_review_links_for_shop_scoped_admins'` (`8 passed`, with the filter matching the focused selected-role and selected-shop coverage that currently exists in the suite).
+
 ### Selected catalog-action copy alignment checkpoint
 - Aligned the selected-workspace back actions for `cards` and `cardholders` from generic `Back to all ...` copy to Galaxy catalog language (`Back to card catalog` / `Back to holder catalog`), so the live review surfaces now match the catalog-return phrasing already used inside their edit forms.
 - Kept the step narrow and behavior-safe, but it makes two more selected Galaxy workspaces read less like generic list pages and more like intentional admin catalogs.

@@ -1377,7 +1377,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all roles')
+            ->assertSee('Back to role catalog')
             ->assertSee('href="/admin/roles-permissions"', false)
             ->assertSee('Reviewing: Shop Manager')
             ->assertSee('Review matrix')
@@ -1798,7 +1798,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Shop Manager')
             ->assertSee('Review latest saved role')
-            ->assertDontSee('Back to all roles')
+            ->assertDontSee('Back to role catalog')
             ->assertDontSee('Selected role')
             ->assertDontSee('selected for Laravel review');
     }
@@ -1837,7 +1837,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Shop Manager')
             ->assertSee('Review latest saved role')
-            ->assertDontSee('Back to all roles')
+            ->assertDontSee('Back to role catalog')
             ->assertDontSee('Selected role')
             ->assertDontSee('selected for Laravel review');
     }
@@ -4612,7 +4612,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all shops')
+            ->assertSee('Back to branch catalog')
             ->assertSee('href="/admin/shops"', false)
             ->assertSee('Reviewing: Galaxy Central')
             ->assertSee('Edit Galaxy branch in Laravel')
@@ -5073,7 +5073,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all shops')
+            ->assertSee('Back to branch catalog')
             ->assertSee('Reviewing: Galaxy Coverage Only Branch')
             ->assertSee('Review branch scope')
             ->assertSee('Blocked until visible branch coverage is verified against the legacy Galaxy multi-shop model.')
@@ -5147,7 +5147,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all shops')
+            ->assertSee('Back to branch catalog')
             ->assertSee('Reviewing: Galaxy Full Coverage Branch')
             ->assertSee('Review branch scope')
             ->assertSee('Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.')
@@ -5188,7 +5188,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all shops')
+            ->assertSee('Back to branch catalog')
             ->assertSee('Reviewing: Galaxy Manager Only Branch')
             ->assertSee('Review branch scope')
             ->assertSee('Blocked until manager-linked branch scope is verified against the legacy Galaxy multi-shop model.')
@@ -5230,7 +5230,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all shops')
+            ->assertSee('Back to branch catalog')
             ->assertSee('Reviewing: Galaxy Paused Branch')
             ->assertSee('Selected shop')
             ->assertSee('Review mode')
@@ -5292,7 +5292,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Galaxy Central')
             ->assertSee('Review latest saved shop')
-            ->assertDontSee('Back to all shops')
+            ->assertDontSee('Back to branch catalog')
             ->assertDontSee('Selected shop')
             ->assertDontSee('selected for Laravel review');
     }
@@ -5318,7 +5318,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Galaxy Central')
             ->assertSee('Review latest saved shop')
-            ->assertDontSee('Back to all shops')
+            ->assertDontSee('Back to branch catalog')
             ->assertDontSee('Selected shop')
             ->assertDontSee('selected for Laravel review');
     }
@@ -5451,7 +5451,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Galaxy Scoped Review Home')
             ->assertSee('Galaxy Scoped Review Other')
-            ->assertDontSee('Back to all shops')
+            ->assertDontSee('Back to branch catalog')
             ->assertDontSee('Reviewing: Galaxy Scoped Review Other')
             ->assertDontSee('Selected shop')
             ->assertSee('Review latest saved shop')

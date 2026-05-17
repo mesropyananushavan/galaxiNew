@@ -787,7 +787,7 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = $this->selectedReadContextActions(
             'admin.roles-permissions.index',
-            'Back to all roles',
+            'Back to role catalog',
             $selectedRole->name,
             [
             $this->foundationMutationAction(
@@ -1325,7 +1325,7 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = $this->selectedReadContextActions(
             'admin.shops.index',
-            'Back to all shops',
+            'Back to branch catalog',
             $selectedShop->name,
             [
             [
