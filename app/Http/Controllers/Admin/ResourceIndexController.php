@@ -704,11 +704,13 @@ class ResourceIndexController extends Controller
         $latestRole = $roles->sortByDesc('id')->first();
 
         if ($latestRole !== null) {
-            $page = $this->appendPageAction($page, [
-                'label' => 'Review latest saved role',
-                'tone' => 'secondary',
-                'href' => route('admin.roles-permissions.index', ['role' => $latestRole->id], absolute: false),
-            ]);
+            $page = $this->appendLatestSavedReviewAction(
+                $page,
+                'Review latest saved role',
+                'admin.roles-permissions.index',
+                'role',
+                $latestRole->id,
+            );
         }
 
         $selectedRoleId = $this->selectedRecordId('role');
@@ -897,11 +899,13 @@ class ResourceIndexController extends Controller
         $latestCard = $accessibleCards->sortByDesc('id')->first();
 
         if ($latestCard !== null) {
-            $page = $this->appendPageAction($page, [
-                'label' => 'Review latest saved card',
-                'tone' => 'secondary',
-                'href' => route('admin.cards.index', ['card' => $latestCard->id], absolute: false),
-            ]);
+            $page = $this->appendLatestSavedReviewAction(
+                $page,
+                'Review latest saved card',
+                'admin.cards.index',
+                'card',
+                $latestCard->id,
+            );
         }
 
         $selectedCardId = $this->selectedRecordId('card');
@@ -1071,11 +1075,13 @@ class ResourceIndexController extends Controller
         $latestCardHolder = $accessibleCardHolders->sortByDesc('id')->first();
 
         if ($latestCardHolder !== null) {
-            $page = $this->appendPageAction($page, [
-                'label' => 'Review latest saved holder',
-                'tone' => 'secondary',
-                'href' => route('admin.cardholders.index', ['cardholder' => $latestCardHolder->id], absolute: false),
-            ]);
+            $page = $this->appendLatestSavedReviewAction(
+                $page,
+                'Review latest saved holder',
+                'admin.cardholders.index',
+                'cardholder',
+                $latestCardHolder->id,
+            );
         }
 
         $selectedCardHolderId = $this->selectedRecordId('cardholder');
@@ -1222,11 +1228,13 @@ class ResourceIndexController extends Controller
         $latestShop = $accessibleShops->sortByDesc('id')->first();
 
         if ($latestShop !== null) {
-            $page = $this->appendPageAction($page, [
-                'label' => 'Review latest saved shop',
-                'tone' => 'secondary',
-                'href' => route('admin.shops.index', ['shop' => $latestShop->id], absolute: false),
-            ]);
+            $page = $this->appendLatestSavedReviewAction(
+                $page,
+                'Review latest saved shop',
+                'admin.shops.index',
+                'shop',
+                $latestShop->id,
+            );
         }
 
         $selectedShopId = $this->selectedRecordId('shop');
@@ -2804,6 +2812,20 @@ class ResourceIndexController extends Controller
         $page['actions'] = [...$actions, $action];
 
         return $page;
+    }
+
+    private function appendLatestSavedReviewAction(
+        array $page,
+        string $label,
+        string $routeName,
+        string $routeParameter,
+        int $recordId,
+    ): array {
+        return $this->appendPageAction($page, [
+            'label' => $label,
+            'tone' => 'secondary',
+            'href' => route($routeName, [$routeParameter => $recordId], absolute: false),
+        ]);
     }
 
     private function catalogLiveFormReviewActions(

@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Latest-saved review action helper checkpoint
+- Extracted the repeated `Review latest saved ...` catalog action wiring for `roles-permissions`, `cards`, `cardholders`, and `shops` into one small `ResourceIndexController` helper, so those Galaxy admin catalogs now append their latest-saved review links through the same path.
+- Kept the step narrow and behavior-preserving, but it removes another small cluster of repeated route/link glue from the Phase 1 admin shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_shops_page_replaces_preview_rows_with_model_backed_index_data|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cardholders_page_replaces_preview_rows_with_model_backed_index_data|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'` (`5 passed`).
+
 ### Selected tier action-stack helper checkpoint
 - Extracted the existing selected `card-types` action stack into a dedicated `ResourceIndexController` helper, so the Galaxy tier review surface now builds its create-shell, status-toggle, editing badge, and disabled import/publish companions through one small path without changing the current UI structure.
 - Kept the step narrow and behavior-preserving, specifically avoiding the riskier read-context helper path because the selected tier workspace uses a different action layout than the read-only selected catalogs.
