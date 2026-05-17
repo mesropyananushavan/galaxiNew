@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected live-form catalog-return helper checkpoint
+- Extracted the selected-record catalog-return wiring for `cards` and `cardholders` into one `ResourceIndexController` helper, so those live edit workspaces now share the same explicit `cancelRoute`, `cancelLabel`, and empty route-parameter setup through one path.
+- Kept the step narrow and behavior-preserving, but it trims a little more starter-style controller glue from two real Galaxy edit surfaces right after their cancel-label copy was aligned.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'` (`2 passed`).
+
 ### Selected edit-form cancel-label alignment checkpoint
 - Replaced the remaining create-oriented cancel labels on selected `cards` and `cardholders` live edit forms with review-oriented return paths (`Back to card catalog` / `Back to holder catalog`), so saved-record workspaces no longer imply operators are starting a brand new shell.
 - Kept the step narrow and behavior-safe, but it makes two more live Galaxy edit surfaces read like real review workflows instead of leftover starter-style create flows.

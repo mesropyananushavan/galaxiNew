@@ -963,9 +963,11 @@ class ResourceIndexController extends Controller
             $page['liveForm']['actionRouteParameters'] = [
                 'card' => $selectedCard,
             ];
-            $page['liveForm']['cancelRoute'] = 'admin.cards.index';
-            $page['liveForm']['cancelLabel'] = 'Back to card catalog';
-            $page['liveForm']['cancelRouteParameters'] = [];
+            $page['liveForm'] = $this->applySelectedLiveFormCatalogReturn(
+                $page['liveForm'],
+                'admin.cards.index',
+                'Back to card catalog',
+            );
             $page['liveForm']['submitLabel'] = 'Save inventory changes';
             $page['liveForm']['valuesResolver'] = [
                 'shop_id' => $selectedCard->shop_id !== null ? (string) $selectedCard->shop_id : '',
@@ -1146,9 +1148,11 @@ class ResourceIndexController extends Controller
             $page['liveForm']['actionRouteParameters'] = [
                 'cardholder' => $selectedCardHolder,
             ];
-            $page['liveForm']['cancelRoute'] = 'admin.cardholders.index';
-            $page['liveForm']['cancelLabel'] = 'Back to holder catalog';
-            $page['liveForm']['cancelRouteParameters'] = [];
+            $page['liveForm'] = $this->applySelectedLiveFormCatalogReturn(
+                $page['liveForm'],
+                'admin.cardholders.index',
+                'Back to holder catalog',
+            );
             $page['liveForm']['submitLabel'] = 'Save holder changes';
             $page['liveForm']['valuesResolver'] = [
                 'shop_id' => $selectedCardHolder->shop_id !== null ? (string) $selectedCardHolder->shop_id : '',
@@ -4550,6 +4554,15 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsFoundationMutationDisabledReason(): string
     {
         return 'Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control.';
+    }
+
+    private function applySelectedLiveFormCatalogReturn(array $liveForm, string $cancelRoute, string $cancelLabel): array
+    {
+        $liveForm['cancelRoute'] = $cancelRoute;
+        $liveForm['cancelLabel'] = $cancelLabel;
+        $liveForm['cancelRouteParameters'] = [];
+
+        return $liveForm;
     }
 
     private function applyFoundationLiveFormReviewMode(
