@@ -771,6 +771,7 @@ class ResourceIndexController extends Controller
                 'Create new Galaxy access shell',
                 'Back to access catalog',
                 $this->rolesPermissionsFoundationMutationDisabledReason(),
+                'Review the selected Galaxy role identity in the shared live form while Phase 1 keeps access-shell changes under bootstrap control.',
             );
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedRole->name,
@@ -1308,6 +1309,7 @@ class ResourceIndexController extends Controller
                 'Create new Galaxy branch shell',
                 'Back to branch catalog',
                 $this->shopsFoundationMutationDisabledReason(),
+                'Review the selected Galaxy branch in the shared live form while Phase 1 keeps branch-creation changes under bootstrap control.',
             );
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedShop->name,
@@ -2159,6 +2161,7 @@ class ResourceIndexController extends Controller
             $this->cardTypesLiveFormCancelLabel(),
             'Back to tier catalog',
             $this->cardTypesFoundationMutationDisabledReason(),
+            'Review the selected Galaxy tier in the shared live form while Phase 1 keeps tier-shell changes under bootstrap control.',
         );
         $page['liveForm']['valuesResolver'] = [
             'name' => $selectedCardType->name,
@@ -4554,10 +4557,15 @@ class ResourceIndexController extends Controller
         string $editableCancelLabel,
         string $reviewCancelLabel,
         string $disabledReason,
+        ?string $reviewDescription = null,
     ): array {
         $liveForm['cancelLabel'] = $this->canManageFoundationCatalog()
             ? $editableCancelLabel
             : $reviewCancelLabel;
+        if (! $this->canManageFoundationCatalog() && is_string($reviewDescription) && $reviewDescription !== '') {
+            $liveForm['description'] = $reviewDescription;
+        }
+
         $liveForm['submitAttributes'] = $this->foundationLiveFormSubmitAttributes($disabledReason);
         $liveForm['fields'] = $this->foundationLiveFormFields($liveForm['fields'] ?? []);
 

@@ -1328,6 +1328,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control.')
+            ->assertSee('Review the selected Galaxy role identity in the shared live form while Phase 1 keeps access-shell changes under bootstrap control.')
             ->assertSee('Back to access catalog')
             ->assertSee('>Save access changes<', false)
             ->assertSee('disabled title="Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control." aria-disabled="true"', false)
@@ -5359,6 +5360,7 @@ class AdminDashboardTest extends TestCase
 
         $selectedResponse
             ->assertOk()
+            ->assertSee('Review the selected Galaxy branch in the shared live form while Phase 1 keeps branch-creation changes under bootstrap control.')
             ->assertSee('Back to branch catalog')
             ->assertDontSee('Create new Galaxy branch shell')
             ->assertSee('>Save branch changes<', false)
@@ -9590,6 +9592,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Only bootstrap admins can reshape Galaxy tier shells while Phase 1 keeps the tier foundation under central control.')
+            ->assertSee('Review the selected Galaxy tier in the shared live form while Phase 1 keeps tier-shell changes under bootstrap control.')
             ->assertSee('Back to tier catalog')
             ->assertSee('Move to draft')
             ->assertSee('>Save tier changes<', false)
