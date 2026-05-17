@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Card metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Draft cards` to `Draft Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the selected-card surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
 ### Card-shell summary wording alignment checkpoint
 - Aligned the `cards` page summary from the older generic baseline wording to `Galaxy card-shell workspace for inventory, assignment review, status triage, and activation tracking.` so the card surface reads more like the intended Phase 1 Galaxy console.
 - While validating the narrow copy step, the focused slice exposed one neighboring metric label that still used older generic wording, so `Active cards` was safely aligned to `Active Galaxy card shells` on the same surface.
