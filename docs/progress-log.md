@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected preview action-helper checkpoint
+- Reused the shared `secondaryDisabledActions(...)` helper inside the selected `checks-points`, `services-rules`, and `gifts` preview workspaces, so their disabled review companions now flow through the same small action-shaping path used across the rest of the Phase 1 admin shell.
+- Kept the step narrow and behavior-preserving, but it trims another small cluster of inline preview-action arrays from `ResourceIndexController` while preserving the current Galaxy-specific selected-preview copy.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_checks_points_page_accepts_case_insensitive_selected_receipt_query|test_services_rules_page_supports_selected_rule_preview_context|test_services_rules_page_supports_selected_priority_ready_rule_preview_context|test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog|test_gifts_page_supports_selected_gift_preview_context|test_gifts_page_supports_selected_ready_reward_preview_context|test_gifts_page_ignores_unknown_selected_gift_and_falls_back_to_catalog'` (`7 passed`, with the current suite matching the focused selected receipt slice plus the selected rule/gift fallback coverage that exercises this helper swap).
+
 ### Selected reports action-helper checkpoint
 - Reused the shared `secondaryDisabledActions(...)` helper inside the selected `reports` workspace, so the disabled `Review export presets` and `Export source snapshot` companions now flow through the same action-shaping path used across the rest of the Phase 1 admin shell.
 - Kept the step narrow and behavior-preserving, but it trims another small inline action block from `ResourceIndexController` while preserving the current Galaxy-specific report-review copy.

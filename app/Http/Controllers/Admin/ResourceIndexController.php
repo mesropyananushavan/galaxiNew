@@ -289,20 +289,16 @@ class ResourceIndexController extends Controller
             $selectedReceiptPreview,
             'admin.checks-points.index',
             'Back to receipt catalog',
-            [
-            [
-                'label' => 'Find receipt',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->checksPointsSelectedFindReceiptDisabledReason($selectedReceiptPreview),
-            ],
-            [
-                'label' => 'Review accrual gaps',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->checksPointsSelectedReviewGapsDisabledReason($selectedReceiptPreview),
-            ],
-            ],
+            $this->secondaryDisabledActions([
+                [
+                    'label' => 'Find receipt',
+                    'disabledReason' => $this->checksPointsSelectedFindReceiptDisabledReason($selectedReceiptPreview),
+                ],
+                [
+                    'label' => 'Review accrual gaps',
+                    'disabledReason' => $this->checksPointsSelectedReviewGapsDisabledReason($selectedReceiptPreview),
+                ],
+            ]),
         );
 
         return $page;
@@ -454,20 +450,16 @@ class ResourceIndexController extends Controller
             $selectedRulePreview,
             'admin.services-rules.index',
             'Back to rule catalog',
-            [
-            [
-                'label' => 'Review priorities',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->servicesRulesSelectedReviewPrioritiesDisabledReason($selectedRulePreview),
-            ],
-            [
-                'label' => 'Publish Galaxy rule',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->servicesRulesSelectedPublishRuleDisabledReason($selectedRulePreview),
-            ],
-            ],
+            $this->secondaryDisabledActions([
+                [
+                    'label' => 'Review priorities',
+                    'disabledReason' => $this->servicesRulesSelectedReviewPrioritiesDisabledReason($selectedRulePreview),
+                ],
+                [
+                    'label' => 'Publish Galaxy rule',
+                    'disabledReason' => $this->servicesRulesSelectedPublishRuleDisabledReason($selectedRulePreview),
+                ],
+            ]),
         );
 
         return $page;
@@ -639,20 +631,16 @@ class ResourceIndexController extends Controller
             $selectedGiftPreview,
             'admin.gifts.index',
             'Back to gift catalog',
-            [
-            [
-                'label' => 'Stock audit',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->giftsSelectedStockAuditDisabledReason($selectedGiftPreview),
-            ],
-            [
-                'label' => 'Publish reward',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->giftsSelectedPublishGiftDisabledReason($selectedGiftPreview),
-            ],
-            ],
+            $this->secondaryDisabledActions([
+                [
+                    'label' => 'Stock audit',
+                    'disabledReason' => $this->giftsSelectedStockAuditDisabledReason($selectedGiftPreview),
+                ],
+                [
+                    'label' => 'Publish reward',
+                    'disabledReason' => $this->giftsSelectedPublishGiftDisabledReason($selectedGiftPreview),
+                ],
+            ]),
         );
 
         return $page;
