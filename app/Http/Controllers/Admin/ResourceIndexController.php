@@ -685,11 +685,11 @@ class ResourceIndexController extends Controller
         ];
 
         $page['actions'] = [
-            [
-                'label' => 'New Galaxy role',
-                'tone' => 'primary',
-                'href' => '#live-form',
-            ],
+            $this->foundationMutationAction(
+                'New Galaxy role',
+                '#live-form',
+                $this->rolesPermissionsFoundationMutationDisabledReason(),
+            ),
             [
                 'label' => 'Review matrix',
                 'tone' => 'secondary',
@@ -784,11 +784,12 @@ class ResourceIndexController extends Controller
             'Back to all roles',
             $selectedRole->name,
             [
-            [
-                'label' => 'Create new Galaxy access shell',
-                'tone' => 'secondary',
-                'href' => route('admin.roles-permissions.index', absolute: false).'#live-form',
-            ],
+            $this->foundationMutationAction(
+                'Create new Galaxy access shell',
+                route('admin.roles-permissions.index', absolute: false).'#live-form',
+                $this->rolesPermissionsFoundationMutationDisabledReason(),
+                'secondary',
+            ),
             [
                 'label' => 'Review matrix',
                 'tone' => 'secondary',
@@ -1936,11 +1937,11 @@ class ResourceIndexController extends Controller
         }
 
         $page['actions'] = [
-            [
-                'label' => 'New Galaxy tier',
-                'tone' => 'primary',
-                'href' => '#live-form',
-            ],
+            $this->foundationMutationAction(
+                'New Galaxy tier',
+                '#live-form',
+                $this->cardTypesFoundationMutationDisabledReason(),
+            ),
             [
                 'label' => 'Import rules',
                 'tone' => 'secondary',
@@ -1980,17 +1981,18 @@ class ResourceIndexController extends Controller
         $page = $this->appendCardTypeLatestFlowFeedback($page);
 
         $page['actions'] = [
-            [
-                'label' => $this->cardTypesCreateShellActionLabel(),
-                'tone' => 'primary',
-                'href' => route('admin.card-types.index', absolute: false).'#live-form',
-            ],
-            [
-                'label' => $this->cardTypesToggleStatusActionLabel($selectedCardType),
-                'tone' => 'secondary',
-                'href' => route('admin.card-types.toggle-status', $selectedCardType, absolute: false),
-                'method' => 'PATCH',
-            ],
+            $this->foundationMutationAction(
+                $this->cardTypesCreateShellActionLabel(),
+                route('admin.card-types.index', absolute: false).'#live-form',
+                $this->cardTypesFoundationMutationDisabledReason(),
+            ),
+            $this->foundationMutationAction(
+                $this->cardTypesToggleStatusActionLabel($selectedCardType),
+                route('admin.card-types.toggle-status', $selectedCardType, absolute: false),
+                $this->cardTypesFoundationMutationDisabledReason(),
+                'secondary',
+                'PATCH',
+            ),
             [
                 'label' => $this->cardTypesEditingActionLabel($selectedCardType),
                 'tone' => 'secondary',
@@ -4495,6 +4497,46 @@ class ResourceIndexController extends Controller
         $user = request()->user();
 
         return $user instanceof User ? $user : null;
+    }
+
+    private function canManageFoundationCatalog(): bool
+    {
+        return $this->adminUser()?->hasBootstrapAdminAccess() ?? false;
+    }
+
+    private function foundationMutationAction(
+        string $label,
+        string $href,
+        string $disabledReason,
+        string $tone = 'primary',
+        ?string $method = null,
+    ): array {
+        $action = [
+            'label' => $label,
+            'tone' => $tone,
+        ];
+
+        if (! $this->canManageFoundationCatalog()) {
+            return $action + [
+                'disabled' => true,
+                'disabledReason' => $disabledReason,
+            ];
+        }
+
+        return $action + array_filter([
+            'href' => $href,
+            'method' => $method,
+        ], fn (mixed $value): bool => $value !== null);
+    }
+
+    private function rolesPermissionsFoundationMutationDisabledReason(): string
+    {
+        return 'Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control.';
+    }
+
+    private function cardTypesFoundationMutationDisabledReason(): string
+    {
+        return 'Only bootstrap admins can reshape Galaxy tier shells while Phase 1 keeps the tier foundation under central control.';
     }
 
     private function filterShopScopedRecords(iterable $records, callable $shopResolver)

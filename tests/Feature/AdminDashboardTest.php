@@ -1293,6 +1293,44 @@ class AdminDashboardTest extends TestCase
             ->assertSee('draft');
     }
 
+    public function test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Role Workspace Branch',
+            'code' => 'galaxy-scoped-role-workspace-branch',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $operatorRole = Role::create([
+            'name' => 'Scoped Role Workspace Operator',
+            'slug' => 'scoped-role-workspace-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Review scoped role workspace',
+            'slug' => 'review-scoped-role-workspace',
+            'review_note' => 'Phase 1 scoped role workspace action gating coverage.',
+        ]);
+        $operatorRole->permissions()->attach($permission->id);
+        $user->roles()->attach($operatorRole->id);
+
+        $role = Role::create([
+            'name' => 'Shop Manager',
+            'slug' => 'shop-manager-scoped-workspace',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->get(route('admin.roles-permissions.index', ['role' => $role]));
+
+        $response
+            ->assertOk()
+            ->assertSee('Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control.')
+            ->assertSee('Create new Galaxy access shell');
+    }
+
     public function test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data(): void
     {
         $shop = Shop::create([
@@ -9458,6 +9496,46 @@ class AdminDashboardTest extends TestCase
             ->assertSee('stock-aware redemption')
             ->assertSee('Unlimited')
             ->assertSee('Coffee voucher');
+    }
+
+    public function test_shop_scoped_admin_sees_card_type_mutation_actions_disabled_in_card_types_workspace(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Tier Workspace Branch',
+            'code' => 'galaxy-scoped-tier-workspace-branch',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Tier Workspace Operator',
+            'slug' => 'scoped-tier-workspace-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Review scoped tier workspace',
+            'slug' => 'review-scoped-tier-workspace',
+            'review_note' => 'Phase 1 scoped tier workspace action gating coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Prime',
+            'slug' => 'galaxy-prime-scoped-workspace',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index', ['cardType' => $cardType]));
+
+        $response
+            ->assertOk()
+            ->assertSee('Only bootstrap admins can reshape Galaxy tier shells while Phase 1 keeps the tier foundation under central control.')
+            ->assertSee('Create new Galaxy tier shell')
+            ->assertSee('Move to draft');
     }
 
     public function test_authenticated_user_can_access_card_types_management_preview(): void

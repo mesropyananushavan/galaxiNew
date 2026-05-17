@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Scoped workspace action-gating checkpoint
+- Aligned the `roles-permissions` and `card-types` page actions with the existing Phase 1 backend restrictions, so shop-scoped admins now see the create/toggle foundation actions rendered as disabled instead of looking silently available.
+- Added focused workspace coverage proving scoped operators now see central-control disabled reasons in the selected role and selected tier flows, while the existing bootstrap-admin selected-workspace pages still render normally.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_shop_scoped_admin_sees_card_type_mutation_actions_disabled_in_card_types_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_selected_card_type_reuses_shared_live_form_in_edit_mode'` (`3 passed`, with the filter matching the two new scoped-workspace checks plus the existing selected-role coverage).
+
 ### Shared bootstrap-only request validation checkpoint
 - Extracted repeated bootstrap-only request validation into `app/Http/Requests/Admin/Concerns/ValidatesBootstrapAdminAccess.php`, so the Phase 1 central-control rule for shops, roles, and card types now lives in one reusable request concern.
 - Rewired `StoreShopRequest`, `StoreRoleRequest`, `UpdateRoleRequest`, `StoreCardTypeRequest`, and `UpdateCardTypeRequest` to use the shared concern without changing the operator-facing validation copy.
