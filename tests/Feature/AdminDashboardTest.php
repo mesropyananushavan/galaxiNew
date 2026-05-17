@@ -1908,6 +1908,48 @@ class AdminDashboardTest extends TestCase
         $this->assertDatabaseCount('roles', 0);
     }
 
+    public function test_shop_scoped_admin_cannot_create_new_role(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Role Creator Branch',
+            'code' => 'galaxy-scoped-role-creator-branch',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Role Creator Operator',
+            'slug' => 'scoped-role-creator-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Create scoped roles',
+            'slug' => 'create-scoped-roles',
+            'review_note' => 'Phase 1 scoped role create coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->from(route('admin.roles-permissions.index'))->actingAs($user)->post(route('admin.roles-permissions.store'), [
+            'name' => 'Scoped Unauthorized Role',
+            'slug' => 'scoped-unauthorized-role',
+            'is_active' => '1',
+            'review_note' => 'Scoped admins should not create new roles during Phase 1.',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
+            ->assertSessionHasErrors([
+                'slug' => 'Only bootstrap admins can create new roles while the Galaxy access foundation is still centrally controlled.',
+            ]);
+
+        $this->assertDatabaseMissing('roles', [
+            'slug' => 'scoped-unauthorized-role',
+        ]);
+    }
+
     public function test_authenticated_user_can_update_role_from_minimal_live_admin_flow(): void
     {
         $user = User::factory()->create();

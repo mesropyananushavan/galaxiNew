@@ -5,6 +5,7 @@ namespace App\Http\Requests\Admin;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Validator;
 
 class StoreRoleRequest extends FormRequest
 {
@@ -66,6 +67,19 @@ class StoreRoleRequest extends FormRequest
             'access_note.max' => 'Keep the access note under 1000 characters so the role workspace stays operator-friendly.',
             'assignment_note.max' => 'Keep the assignment note under 1000 characters so the role workspace stays operator-friendly.',
         ];
+    }
+
+    public function withValidator(Validator $validator): void
+    {
+        $validator->after(function (Validator $validator): void {
+            $user = $this->user();
+
+            if ($user === null || $user->hasBootstrapAdminAccess()) {
+                return;
+            }
+
+            $validator->errors()->add('slug', 'Only bootstrap admins can create new roles while the Galaxy access foundation is still centrally controlled.');
+        });
     }
 
     protected function getRedirectUrl(): string

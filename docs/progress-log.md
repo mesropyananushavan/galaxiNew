@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Bootstrap-only role creation checkpoint
+- Added a focused validation guard to `StoreRoleRequest` so shop-scoped admins can no longer create new roles while the Galaxy access foundation is still under central bootstrap control.
+- Added regression coverage proving a scoped operator is blocked from role creation, while the bootstrap-admin create/update role happy paths stay green.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_shop_scoped_admin_cannot_create_new_role|test_authenticated_user_can_update_role_from_minimal_live_admin_flow'` (`3 passed`).
+
 ### Bootstrap-only shop creation checkpoint
 - Added a focused validation guard to `StoreShopRequest` so shop-scoped admins can no longer create brand new branches while the Galaxy branch foundation is still under central bootstrap control.
 - Added regression coverage proving a scoped operator is blocked from shop creation, while the bootstrap-admin create/update shop happy paths stay green.
