@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected tier action-helper and title-alignment checkpoint
+- Reused the shared `secondaryDisabledActions(...)` helper inside the selected `card-types` workspace for the disabled `Import rules` and `Publish tier` actions, trimming one more small patch of inline controller duplication from the Phase 1 tier review shell.
+- While verifying that slice, aligned the remaining selected-tier test expectations from the old `Edit card type in Laravel` wording to the current Galaxy-specific title `Edit Galaxy tier in Laravel`, so the focused selected-tier coverage now matches the real admin copy.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_card_types_page_ignores_unknown_selected_card_type_query|test_card_types_page_ignores_malformed_selected_card_type_query|test_card_types_page_shows_update_success_flash_message|test_card_type_update_validation_keeps_operator_input_in_selected_edit_mode|test_card_type_update_validation_preserves_error_summary_links_in_selected_edit_mode|test_card_type_update_validation_keeps_safe_cancel_action_in_selected_edit_mode'` (`11 passed`).
+
 ### Reports catalog action-helper checkpoint
 - Rewired the `reports` catalog to build its primary entry action plus disabled review/export companions through a shared helper path, and extracted the repeated disabled-secondary-action shaping into one small helper as well.
 - Kept the step narrow and behavior-preserving, but it removes another bit of starter-style controller duplication from a live Galaxy review surface while also simplifying the newer foundation-catalog helper path.

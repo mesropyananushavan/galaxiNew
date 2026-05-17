@@ -1975,18 +1975,16 @@ class ResourceIndexController extends Controller
                 'label' => $this->cardTypesEditingActionLabel($selectedCardType),
                 'tone' => 'secondary',
             ],
-            [
-                'label' => $this->cardTypesImportRulesActionLabel(),
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
-            ],
-            [
-                'label' => $this->cardTypesPublishActionLabel(),
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
-            ],
+            ...$this->secondaryDisabledActions([
+                [
+                    'label' => $this->cardTypesImportRulesActionLabel(),
+                    'disabledReason' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
+                ],
+                [
+                    'label' => $this->cardTypesPublishActionLabel(),
+                    'disabledReason' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
+                ],
+            ]),
         ];
 
         $page['activityTimeline'] = [

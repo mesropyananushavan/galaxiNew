@@ -10406,7 +10406,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card type "Galaxy Prime" was created.')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
-            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Edit Galaxy tier in Laravel')
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }
 
@@ -12054,7 +12054,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep activation handoff visible while this tier stays in draft review.')
             ->assertSee('Rollout note:')
             ->assertSee('Keep rollout review-only while this tier stays in draft review.')
-            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Edit Galaxy tier in Laravel')
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }
 
@@ -12163,7 +12163,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Edit Galaxy tier in Laravel')
             ->assertSee('Save card type changes')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
@@ -12201,7 +12201,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Edit Galaxy tier in Laravel')
             ->assertSee('value="Galaxy Prime Attempt"', false)
             ->assertSee('value="galaxy-silver-duplicate-target"', false)
             ->assertSee('value="2.75"', false)
@@ -12233,7 +12233,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Edit Galaxy tier in Laravel')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
             ->assertSee('id="live-form-validation-title"', false)
@@ -12268,7 +12268,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Edit card type in Laravel')
+            ->assertSee('Edit Galaxy tier in Laravel')
             ->assertSee('Create new Galaxy tier shell')
             ->assertSee('href="/admin/card-types"', false)
             ->assertDontSee('href="/admin/card-types?cardType='.$cardType->id.'"', false);
