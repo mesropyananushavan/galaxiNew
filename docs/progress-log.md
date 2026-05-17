@@ -2,6 +2,12 @@
 
 ## 2026-05-17
 
+### Bootstrap-only card type status-toggle checkpoint
+- Added a bootstrap-only guard to `CardTypeToggleStatusController` so shop-scoped admins can no longer flip tier status between active and draft during Phase 1.
+- Added regression coverage proving a scoped operator now gets a `403` on card-type status toggles, while the bootstrap-admin header toggle, row toggle, and success-flash redirect flows stay green.
+- Refreshed the toggle success assertion so the draft-state follow-up matches the current visible-card-coverage gating copy.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_toggle_card_type_status|test_authenticated_user_can_toggle_card_type_status_from_header_action|test_authenticated_user_can_toggle_card_type_status_from_row_level_action|test_card_type_toggle_status_surfaces_selected_record_success_cue_after_redirect'` (`4 passed`).
+
 ### Bootstrap-only card type creation checkpoint
 - Added a focused validation guard to `StoreCardTypeRequest` so shop-scoped admins can no longer create new card types while the Galaxy tier foundation is still under central bootstrap control.
 - Added regression coverage proving a scoped operator is blocked from card-type creation, while the existing bootstrap-admin card-type create flow stays green.

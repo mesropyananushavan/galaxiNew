@@ -9902,6 +9902,47 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('selected for Laravel edit flow');
     }
 
+    public function test_shop_scoped_admin_cannot_toggle_card_type_status(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Tier Toggle Branch',
+            'code' => 'galaxy-scoped-tier-toggle-branch',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Tier Toggle Operator',
+            'slug' => 'scoped-tier-toggle-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Toggle scoped card types',
+            'slug' => 'toggle-scoped-card-types',
+            'review_note' => 'Phase 1 scoped card type toggle coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $cardType = CardType::create([
+            'name' => 'Galaxy Protected Tier',
+            'slug' => 'galaxy-protected-tier',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+
+        $response = $this->actingAs($user)->patch(route('admin.card-types.toggle-status', $cardType));
+
+        $response->assertForbidden();
+
+        $this->assertDatabaseHas('card_types', [
+            'id' => $cardType->id,
+            'is_active' => true,
+        ]);
+    }
+
     public function test_authenticated_user_can_toggle_card_type_status_from_header_action(): void
     {
         $user = User::factory()->create();
@@ -10007,7 +10048,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Latest backend write result')
             ->assertSee('Card type "Galaxy Prime" is now draft.')
             ->assertSee('Import rules')
-            ->assertSee('Blocked until draft parity review is complete.')
+            ->assertSee('Blocked until draft parity review has visible card coverage to compare against.')
             ->assertSee('Status guidance:')
             ->assertSee('This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.')
             ->assertSee('Rule-import blocker:')
