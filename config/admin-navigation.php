@@ -52,7 +52,7 @@ return [
             [
                 'label' => 'Shops',
                 'route' => 'admin.shops.index',
-                'description' => 'Shop list and scope boundaries.',
+                'description' => 'Galaxy branch catalog and scope boundaries.',
             ],
             [
                 'label' => 'Roles & Permissions',
@@ -62,7 +62,7 @@ return [
             [
                 'label' => 'Reports',
                 'route' => 'admin.reports.index',
-                'description' => 'Operational analytics and histories.',
+                'description' => 'Galaxy reporting analytics and source histories.',
             ],
         ],
     ],

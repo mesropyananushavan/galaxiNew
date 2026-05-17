@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard migration-map branch and reporting wording checkpoint
+- Aligned two remaining generic migration-map blurbs in `config/admin-navigation.php` so the Administration group now describes `Shops` as the `Galaxy branch catalog and scope boundaries` and `Reports` as `Galaxy reporting analytics and source histories.`
+- Kept the step intentionally narrow and copy-only, but it removes two more starter-style phrases from the Phase 1 target map that frames the dashboard shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the matched smoke slice passed (`1 passed`).
+
 ### Dashboard access surface wording alignment checkpoint
 - Aligned one more small access-oriented wording pocket on the dashboard and migration map by renaming the summary metric to `Live Galaxy access permissions` and shifting the Roles & Permissions map blurb from generic admin wording to `Galaxy access shells, permissions, and access baseline.`
 - This was a narrow Phase 1 admin-shell copy step with no behavior changes, but it keeps the access surface terminology more consistent with the newer `Galaxy access shells` language already used across the dashboard.
