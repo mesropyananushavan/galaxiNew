@@ -678,7 +678,7 @@ return [
     'services-rules' => [
         'pageTitle' => 'Services & Rules',
         'eyebrow' => 'Catalog / Services & Rules',
-        'summary' => 'Baseline management screen for service groups, eligibility rules, and business conditions that drive loyalty behavior.',
+        'summary' => 'Galaxy rule workspace for service groups, eligibility review, and loyalty behavior conditions.',
         'nextStep' => 'Replace sample controls with real rule CRUD, priority ordering, and condition editing.',
         'actions' => [
             [

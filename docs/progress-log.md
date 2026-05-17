@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Rules summary wording alignment checkpoint
+- Aligned the `services-rules` page summary from the older generic baseline wording to `Galaxy rule workspace for service groups, eligibility review, and loyalty behavior conditions.` so the rules surface reads more like the intended Phase 1 Galaxy console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview|test_services_rules_page_supports_selected_priority_rule_review_context|test_services_rules_page_supports_selected_shop_scoped_rule_review_context|test_services_rules_page_supports_selected_blocking_rule_review_context'`; the current matched slice covered the services-rules management preview and passed (`1 passed`).
+
 ### Tier summary wording alignment checkpoint
 - Aligned the `card-types` page summary from the older generic baseline wording to `Galaxy tier workspace for card-tier identities, points rules, and activation review.` so the tier surface reads more like the intended Phase 1 Galaxy console.
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.

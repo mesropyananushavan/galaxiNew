@@ -9247,6 +9247,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
+            ->assertSee('Galaxy rule workspace for service groups, eligibility review, and loyalty behavior conditions.')
             ->assertSee('Create or edit Galaxy rule')
             ->assertSee('Publish Galaxy rule')
             ->assertSee('New Galaxy rule')
