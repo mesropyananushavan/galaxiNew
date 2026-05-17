@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard access entry copy alignment checkpoint
+- Aligned the admin dashboard access entry labels from the older `Review live access roles` and `Review shared access roles` wording to the more Galaxy-specific `Review live Galaxy access shells` and `Review shared Galaxy access shells`, so the dashboard handoff path now matches the access workspace shell language used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another pair of starter-style labels from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_authenticated_user_can_access_roles_permissions_management_preview|test_role_permissions_page_exposes_latest_saved_role_review_link|test_reports_page_supports_selected_role_access_review_context'` and the current matched slice passed (`4 passed`).
+
 ### Dashboard reporting entry copy alignment checkpoint
 - Aligned the admin dashboard reporting entry labels from the more generic `Review live reporting sources` and `Review shared reporting sources` wording to the more Galaxy-specific `Review Galaxy reporting sources` and `Review shared Galaxy reporting sources`, so the reporting entry path now matches the newer reports-catalog shell tone.
 - Kept the step narrow and behavior-safe, but it removes another pair of starter-style labels from a live Galaxy navigation surface.
