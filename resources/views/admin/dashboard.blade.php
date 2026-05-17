@@ -117,43 +117,43 @@
                 <p class="metric-value">{{ $tierBaselineCoverage }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Live shops</p>
+                <p class="metric-label">Live Galaxy branches</p>
                 <p class="metric-value">{{ $shopCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Active shops</p>
+                <p class="metric-label">Active Galaxy branches</p>
                 <p class="metric-value">{{ $activeShopCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Live cardholders</p>
+                <p class="metric-label">Live Galaxy holders</p>
                 <p class="metric-value">{{ $cardHolderCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Active cardholders</p>
+                <p class="metric-label">Active Galaxy holders</p>
                 <p class="metric-value">{{ $activeCardHolderCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Live cards</p>
+                <p class="metric-label">Live Galaxy card shells</p>
                 <p class="metric-value">{{ $cardCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Active cards</p>
+                <p class="metric-label">Active Galaxy card shells</p>
                 <p class="metric-value">{{ $activeCardCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Live card types</p>
+                <p class="metric-label">Live Galaxy tiers</p>
                 <p class="metric-value">{{ $cardTypeCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Active card types</p>
+                <p class="metric-label">Active Galaxy tiers</p>
                 <p class="metric-value">{{ $activeCardTypeCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Live roles</p>
+                <p class="metric-label">Live Galaxy access shells</p>
                 <p class="metric-value">{{ $roleCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Live permissions</p>
+                <p class="metric-label">Live access permissions</p>
                 <p class="metric-value">{{ $permissionCount }}</p>
             </article>
         </div>

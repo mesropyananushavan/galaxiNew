@@ -77,7 +77,7 @@ class DashboardController extends Controller
         $entryPoint = $this->liveReviewEntryPoints()[0] ?? null;
 
         if (! is_array($entryPoint) || ! isset($entryPoint['label'])) {
-            return 'first live review surface still needs to be staged';
+            return 'first live Galaxy review surface still needs to be staged';
         }
 
         return sprintf('start with %s', mb_strtolower((string) $entryPoint['label']));
@@ -122,7 +122,7 @@ class DashboardController extends Controller
         ]))[0] ?? null;
 
         if (! is_array($latestWorkspace) || ! isset($latestWorkspace['label'])) {
-            return 'first live workspace still needs to be created';
+            return 'first live Galaxy workspace still needs to be created';
         }
 
         return sprintf('start with %s', mb_strtolower((string) $latestWorkspace['label']));
@@ -179,12 +179,12 @@ class DashboardController extends Controller
     protected function foundationFocus(): string
     {
         $foundationTargets = [
-            ['count' => Shop::query()->count(), 'label' => 'live shops'],
-            ['count' => CardHolder::query()->count(), 'label' => 'live cardholders'],
-            ['count' => Card::query()->count(), 'label' => 'live cards'],
-            ['count' => CardType::query()->count(), 'label' => 'live card types'],
-            ['count' => Role::query()->count(), 'label' => 'live roles'],
-            ['count' => Permission::query()->count(), 'label' => 'live permissions'],
+            ['count' => Shop::query()->count(), 'label' => 'live Galaxy branches'],
+            ['count' => CardHolder::query()->count(), 'label' => 'live Galaxy holders'],
+            ['count' => Card::query()->count(), 'label' => 'live Galaxy card shells'],
+            ['count' => CardType::query()->count(), 'label' => 'live Galaxy tiers'],
+            ['count' => Role::query()->count(), 'label' => 'live Galaxy access shells'],
+            ['count' => Permission::query()->count(), 'label' => 'live access permissions'],
         ];
 
         $firstMissingTarget = collect($foundationTargets)->first(fn (array $target): bool => $target['count'] === 0);

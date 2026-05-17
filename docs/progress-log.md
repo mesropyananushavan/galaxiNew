@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard metric label alignment checkpoint
+- Aligned the remaining generic dashboard metric labels and empty-state focus phrases from `shops/cardholders/cards/card types/roles` wording to the more Galaxy-specific `Galaxy branches/Galaxy holders/Galaxy card shells/Galaxy tiers/Galaxy access shells` language, so the dashboard summary grid now matches the shell tone already used by the action links and handoff notes.
+- Kept the step narrow and behavior-safe, but it removes another obvious starter-style wording pocket from the live dashboard shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_foundation_posture_reflects_empty_live_coverage|test_dashboard_entry_posture_reflects_partial_live_coverage|test_dashboard_latest_workspace_posture_reflects_partial_live_coverage|test_dashboard_latest_live_work_shortcuts_respect_shop_scope'`; the current matched slice passed (`2 passed`).
+
 ### Dashboard handoff summary prose alignment checkpoint
 - Aligned the remaining dashboard handoff/status summary phrases from older `cardholders/cards` and `shop, holder, and card coverage` wording to the more Galaxy-specific `Galaxy holders/card shells` and `branch, holder, and card-shell coverage` language, so the summary cues now match the newer branch/holder/card-shell labels already visible in the dashboard shell.
 - Kept the step narrow and behavior-safe, but it removes another small pocket of starter-style wording from the live dashboard narrative.

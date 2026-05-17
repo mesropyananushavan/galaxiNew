@@ -202,16 +202,16 @@ class AdminDashboardTest extends TestCase
             ->assertSee('all first-pass foundation surfaces are visible.')
             ->assertSee('Foundation posture:')
             ->assertSee('fully visible foundation baseline.')
-            ->assertSee('Live shops')
-            ->assertSee('Active shops')
-            ->assertSee('Live cardholders')
-            ->assertSee('Active cardholders')
-            ->assertSee('Live cards')
-            ->assertSee('Active cards')
-            ->assertSee('Live card types')
-            ->assertSee('Active card types')
-            ->assertSee('Live roles')
-            ->assertSee('Live permissions')
+            ->assertSee('Live Galaxy branches')
+            ->assertSee('Active Galaxy branches')
+            ->assertSee('Live Galaxy holders')
+            ->assertSee('Active Galaxy holders')
+            ->assertSee('Live Galaxy card shells')
+            ->assertSee('Active Galaxy card shells')
+            ->assertSee('Live Galaxy tiers')
+            ->assertSee('Active Galaxy tiers')
+            ->assertSee('Live Galaxy access shells')
+            ->assertSee('Live access permissions')
             ->assertSee('Live review entry points')
             ->assertSee('Use these Galaxy review surfaces to move from branch setup into live operational checks once records start landing')
             ->assertSee('Entry coverage:')
@@ -501,8 +501,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Live card types')
-            ->assertSee('Active card types')
+            ->assertSee('Live Galaxy tiers')
+            ->assertSee('Active Galaxy tiers')
             ->assertSee('Live domain coverage')
             ->assertSee('0/5 core Galaxy domains live')
             ->assertSee('Foundation readiness')
@@ -518,7 +518,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Foundation handoff signal')
             ->assertSee('Phase 1 is still in Galaxy foundation setup mode, so the dashboard should keep first live entities visible before any handoff review feels grounded.')
             ->assertSee('Foundation focus:')
-            ->assertSee('stabilize live shops next.')
+            ->assertSee('stabilize live Galaxy branches next.')
             ->assertSee('Foundation posture:')
             ->assertSee('setup-first foundation baseline.')
             ->assertSee('Entry coverage:')
@@ -533,7 +533,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Latest-work coverage:')
             ->assertSee('0 latest-work shortcuts currently available.')
             ->assertSee('Latest-work focus:')
-            ->assertSee('first live workspace still needs to be created.')
+            ->assertSee('first live Galaxy workspace still needs to be created.')
             ->assertSee('Latest-work posture:')
             ->assertSee('setup-first jump-back pending.')
             ->assertSee('Latest-work handoff signal')
@@ -574,9 +574,9 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Live card types')
+            ->assertSee('Live Galaxy tiers')
             ->assertSee('1')
-            ->assertSee('Active card types')
+            ->assertSee('Active Galaxy tiers')
             ->assertSee('0')
             ->assertSee('Live domain coverage')
             ->assertSee('1/5 core Galaxy domains live')
@@ -593,7 +593,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Foundation handoff signal')
             ->assertSee('Some live Galaxy entities are visible, but the dashboard still needs broader Laravel coverage before foundation handoff review feels complete.')
             ->assertSee('Foundation focus:')
-            ->assertSee('stabilize live cardholders next.')
+            ->assertSee('stabilize live Galaxy holders next.')
             ->assertSee('Foundation posture:')
             ->assertSee('partial foundation baseline.')
             ->assertSee('Entry coverage:')
@@ -2411,7 +2411,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('New Galaxy card')
             ->assertSee('Review blocked cards')
             ->assertSee('Blocked until the first Laravel-backed inventory slice exists for blocked-card parity review.')
-            ->assertSee('Active cards')
+            ->assertSee('Active Galaxy card shells')
             ->assertSee('Draft cards')
             ->assertSee('Blocked cards')
             ->assertSee('Issued cards')
@@ -2571,7 +2571,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create inventory shell')
             ->assertSee('action="/admin/cards"', false)
             ->assertSee('Review latest saved card shell')
-            ->assertSee('Active cards')
+            ->assertSee('Active Galaxy card shells')
             ->assertSee('Draft cards')
             ->assertSee('Blocked cards')
             ->assertSee('Issued cards')
@@ -4407,7 +4407,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review branch scope')
             ->assertSee('Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.')
             ->assertSee('aria-disabled="true"', false)
-            ->assertSee('Active shops')
+            ->assertSee('Active Galaxy branches')
             ->assertSee('Paused shops')
             ->assertSee('Assigned managers')
             ->assertSee('Shop operations are still preview-only')
@@ -8431,8 +8431,8 @@ class AdminDashboardTest extends TestCase
         $content = $response->getContent();
 
         $this->assertTrue(
-            strpos($content, 'Central Shop') < strpos($content, 'Active shops')
-                && strpos($content, 'Active shops') < strpos($content, 'First Laravel wiring step'),
+            strpos($content, 'Central Shop') < strpos($content, 'Active Galaxy branches')
+                && strpos($content, 'Active Galaxy branches') < strpos($content, 'First Laravel wiring step'),
             'Expected the dedicated base shell config stack to remain composable inside page defaults.'
         );
     }
@@ -8468,7 +8468,7 @@ class AdminDashboardTest extends TestCase
         $content = $response->getContent();
 
         $this->assertTrue(
-            strpos($content, 'Active shops')
+            strpos($content, 'Active Galaxy branches')
                 < strpos($content, 'Recent activity preview')
                 && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
                 && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
@@ -8509,7 +8509,7 @@ class AdminDashboardTest extends TestCase
         $content = $response->getContent();
 
         $this->assertTrue(
-            strpos($content, 'Active shops')
+            strpos($content, 'Active Galaxy branches')
                 < strpos($content, 'Recent activity preview')
                 && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
                 && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
@@ -8554,7 +8554,7 @@ class AdminDashboardTest extends TestCase
         $content = $response->getContent();
 
         $this->assertTrue(
-            strpos($content, 'Active shops')
+            strpos($content, 'Active Galaxy branches')
                 < strpos($content, 'Recent activity preview')
                 && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
                 && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
@@ -8700,7 +8700,7 @@ class AdminDashboardTest extends TestCase
         $user = User::factory()->create();
 
         Config::set('admin-pages.shops.metrics', [
-            ['label' => 'Active shops', 'value' => '2'],
+            ['label' => 'Active Galaxy branches', 'value' => '2'],
             'invalid-metric-entry',
             ['label' => 'Paused shops'],
             ['label' => 'Assigned managers', 'value' => 2],
@@ -8711,7 +8711,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Active shops')
+            ->assertSee('Active Galaxy branches')
             ->assertSee('Paused shops')
             ->assertDontSee('invalid-metric-entry')
             ->assertDontSee('Assigned managers')
