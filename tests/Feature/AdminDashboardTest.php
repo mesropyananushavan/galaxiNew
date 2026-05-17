@@ -9646,7 +9646,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Import rules')
             ->assertSee('Blocked until the first Laravel-backed tier exists for rule parity review.')
             ->assertSee('Management snapshot')
-            ->assertSee('Active tiers')
+            ->assertSee('Active Galaxy tiers')
             ->assertSee('Imported rules')
             ->assertSee('No custom card types configured yet')
             ->assertSee('Create first Galaxy tier')
@@ -10315,8 +10315,8 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Active tiers')
-            ->assertSee('Draft tiers')
+            ->assertSee('Active Galaxy tiers')
+            ->assertSee('Draft Galaxy tiers')
             ->assertSee('Reviewed tiers')
             ->assertSee('Activation notes')
             ->assertSee('Rollout notes')
