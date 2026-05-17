@@ -1236,7 +1236,7 @@ class ResourceIndexController extends Controller
         if ($latestShop !== null) {
             $page = $this->appendLatestSavedReviewAction(
                 $page,
-                'Review latest saved shop',
+                'Review latest saved branch shell',
                 'admin.shops.index',
                 'shop',
                 $latestShop->id,

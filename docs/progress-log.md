@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Branch latest-link copy alignment checkpoint
+- Aligned the `shops` catalog latest-review action from the generic `Review latest saved shop` wording to the more Galaxy-specific `Review latest saved branch shell`, keeping the branch workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_shops_page_replaces_preview_rows_with_model_backed_index_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query|test_shops_page_ignores_inaccessible_selected_shop_query_for_shop_scoped_admins'` (`5 passed`).
+
 ### Holder latest-link copy alignment checkpoint
 - Aligned the `cardholders` catalog latest-review action from the generic `Review latest saved holder` wording to the more Galaxy-specific `Review latest saved holder shell`, keeping the holder workspace closer to the Phase 1 admin-shell tone used elsewhere.
 - Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.

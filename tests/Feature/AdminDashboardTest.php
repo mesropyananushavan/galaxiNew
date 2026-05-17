@@ -4560,7 +4560,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create Galaxy branch in Laravel')
             ->assertSee('Create branch shell')
             ->assertSee('action="/admin/shops"', false)
-            ->assertSee('Review latest saved shop')
+            ->assertSee('Review latest saved branch shell')
             ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
             ->assertSee('Reviewed shops')
             ->assertSee('Assigned managers')
@@ -5291,7 +5291,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Galaxy Central')
-            ->assertSee('Review latest saved shop')
+            ->assertSee('Review latest saved branch shell')
             ->assertDontSee('Back to branch catalog')
             ->assertDontSee('Selected shop')
             ->assertDontSee('selected for Laravel review');
@@ -5317,7 +5317,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Galaxy Central')
-            ->assertSee('Review latest saved shop')
+            ->assertSee('Review latest saved branch shell')
             ->assertDontSee('Back to branch catalog')
             ->assertDontSee('Selected shop')
             ->assertDontSee('selected for Laravel review');
@@ -5410,7 +5410,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('href="/admin/shops?shop='.$assignedShop->id.'"', false)
             ->assertDontSee('href="/admin/shops?shop='.$otherShop->id.'"', false)
-            ->assertSee('Review latest saved shop')
+            ->assertSee('Review latest saved branch shell')
             ->assertSee('href="/admin/shops?shop='.$assignedShop->id.'"', false);
     }
 
@@ -5454,7 +5454,7 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Back to branch catalog')
             ->assertDontSee('Reviewing: Galaxy Scoped Review Other')
             ->assertDontSee('Selected shop')
-            ->assertSee('Review latest saved shop')
+            ->assertSee('Review latest saved branch shell')
             ->assertSee('href="/admin/shops?shop='.$assignedShop->id.'"', false);
     }
 
