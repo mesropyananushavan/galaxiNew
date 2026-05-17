@@ -775,11 +775,11 @@ class DashboardController extends Controller
         }
 
         if (! $latestHolder instanceof CardHolder) {
-            return 'Card activity is visible, but holder coverage still needs to catch up before full branch handoff review.';
+            return 'Galaxy card shell activity is visible, but Galaxy holder coverage still needs to catch up before full branch handoff review.';
         }
 
         if (! $latestCard instanceof Card) {
-            return 'Holder activity is visible, but card coverage still needs to catch up before full branch handoff review.';
+            return 'Galaxy holder activity is visible, but Galaxy card-shell coverage still needs to catch up before full branch handoff review.';
         }
 
         return 'Assigned branch already carries enough live coverage for a useful scoped handoff review.';
@@ -796,7 +796,7 @@ class DashboardController extends Controller
         }
 
         if (! $latestHolder instanceof CardHolder) {
-            return 'Review assigned branch cards and backfill the first visible cardholder record.';
+            return 'Review assigned branch Galaxy card shells and backfill the first visible Galaxy holder record.';
         }
 
         if (! $latestCard instanceof Card) {

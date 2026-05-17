@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard scoped branch follow-up prose alignment checkpoint
+- Aligned another small assigned-branch wording pocket in the dashboard controller so the partial-coverage handoff signals and follow-up guidance now say `Galaxy holder` and `Galaxy card shell` instead of the older generic `holder/card/cardholder` phrasing.
+- This kept the change behavior-safe and limited to the scoped branch snapshot guidance layer, which continues the Phase 1 admin-shell shift away from starter terminology.
+- Re-ran `php artisan test --filter='test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_full_branch_review_state'`; the current matched slice passed (`2 passed`).
+
 ### Dashboard scoped branch snapshot copy alignment checkpoint
 - Aligned the remaining generic assigned-branch snapshot labels and branch-local shortcut wording from `cardholders/cards` phrasing to the more Galaxy-specific `Galaxy holders/Galaxy card shells` language.
 - This covered the scoped branch snapshot metrics, latest-record labels, latest activity summaries, and the branch-local resume links, so the shop-scoped dashboard slice now matches the broader Galaxy shell tone already used elsewhere.
