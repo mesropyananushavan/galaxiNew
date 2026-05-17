@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Card-shell active metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric labels from `Active holder-linked cards` and `Active unassigned cards` to `Active holder-linked Galaxy card shells` and `Active unassigned Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the selected-card surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
 ### Access-shell metric wording alignment checkpoint
 - Aligned the neighboring `roles-permissions` metric labels from `Active roles` and `Draft roles` to `Active Galaxy access shells` and `Draft Galaxy access shells`, keeping the already-updated access surface consistent with the newer Galaxy-specific copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
