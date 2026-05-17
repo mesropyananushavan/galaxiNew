@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard latest-work copy alignment checkpoint
+- Aligned the dashboard latest-work shortcut labels from the older `shop/cardholder/card review` wording to more Galaxy-specific `branch/holder/card shell review` wording, so the jump-back shortcuts now match the branch, holder, and card shell language already used across Phase 1 workspaces.
+- Kept the step narrow and behavior-safe, but it removes another small cluster of starter-style labels from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_follow_latest_saved_records|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_dashboard_latest_live_work_shortcuts_hide_unavailable_records_for_shop_scoped_admin'`; the current matched slice passed after aligning the related latest-work focus assertions (`2 passed`).
+
 ### Dashboard card entry copy alignment checkpoint
 - Aligned the admin dashboard card entry labels from the older `Review live cards` wording to the more Galaxy-specific `Review live Galaxy card shells`, and updated the assigned-branch live handoff label to `Review live Galaxy card shells in assigned branch`, so the dashboard handoff path now matches the card workspace language used elsewhere in Phase 1.
 - Kept the step narrow and behavior-safe, but it removes another starter-style label from a live Galaxy navigation surface.

@@ -306,7 +306,7 @@ class DashboardController extends Controller
             shop: $shop,
             reviewLabel: $this->scopedLatestReviewWorkspaceLabel(
                 scopedLabel: 'Open latest branch review',
-                defaultLabel: 'Open latest shop review',
+                defaultLabel: 'Open latest branch review',
             ),
             setupLabel: 'Open branch setup',
             emptyRelations: ['cardHolders', 'cards'],
@@ -369,16 +369,16 @@ class DashboardController extends Controller
     protected function latestCardHolderWorkspaceLabel(): string
     {
         return $this->scopedLatestReviewWorkspaceLabel(
-            scopedLabel: 'Open latest branch cardholder review',
-            defaultLabel: 'Open latest cardholder review',
+            scopedLabel: 'Open latest branch holder review',
+            defaultLabel: 'Open latest Galaxy holder review',
         );
     }
 
     protected function latestCardWorkspaceLabel(): string
     {
         return $this->scopedLatestReviewWorkspaceLabel(
-            scopedLabel: 'Open latest branch card review',
-            defaultLabel: 'Open latest card review',
+            scopedLabel: 'Open latest branch card shell review',
+            defaultLabel: 'Open latest Galaxy card shell review',
         );
     }
 
