@@ -128,7 +128,7 @@ return [
             'method' => 'POST',
             'actionRoute' => 'admin.shops.store',
             'cancelRoute' => 'admin.shops.index',
-            'cancelLabel' => 'Back to shops',
+            'cancelLabel' => 'Back to branch catalog',
             'submitLabel' => 'Create branch shell',
             'fields' => [
                 ['name' => 'name', 'label' => 'Shop name', 'type' => 'text', 'value' => 'Central Shop', 'required' => true, 'autofocus' => true, 'placeholder' => 'Galaxy South', 'help' => 'Use the operator-facing branch name that should mirror the old Galaxy ownership map.', 'attributes' => ['autocomplete' => 'organization']],

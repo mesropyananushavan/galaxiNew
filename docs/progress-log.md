@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Branch cancel-label alignment checkpoint
+- Aligned the `shops` live form cancel label from the more generic `Back to shops` wording to `Back to branch catalog`, bringing the real Laravel-backed branch form into line with the broader Galaxy branch catalog language already used elsewhere in the Phase 1 shell.
+- This was a very small, copy-only cleanup step, but it removes another leftover starter-style phrase from a live admin flow.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_active_branch_review_context|test_shops_page_supports_selected_paused_branch_recovery_context|test_shops_page_resolves_live_form_action_from_route_name'`; the current matched slice passed (`1 passed`).
+
 ### Tier cancel-label alignment checkpoint
 - Aligned the `card-types` live form cancel label from the more generic `Back to catalog` wording to `Back to tier catalog`, so the tier surface now matches the more specific Galaxy catalog language already used across the other Phase 1 admin flows.
 - Kept the step intentionally narrow and copy-only, but it removes another small starter-style phrase from a real Laravel-backed admin form path.
