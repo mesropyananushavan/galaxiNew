@@ -148,8 +148,8 @@ return [
             ['label' => 'Review recent activity', 'tone' => 'secondary'],
         ],
         'metrics' => [
-            ['label' => 'Active holders', 'value' => '2'],
-            ['label' => 'Inactive holders', 'value' => '1'],
+            ['label' => 'Active Galaxy holders', 'value' => '2'],
+            ['label' => 'Inactive Galaxy holders', 'value' => '1'],
             ['label' => 'Reviewed holders', 'value' => '2'],
             ['label' => 'Linked cards', 'value' => '3'],
         ],
