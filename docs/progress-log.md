@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Secondary route-action helper checkpoint
+- Consolidated the newer latest-link helpers onto one small `appendSecondaryRouteAction(...)` base helper, so the latest saved review links, latest preview review links, and latest tier edit link now all append through the same route-building path.
+- Kept the step narrow and behavior-preserving, but it removes another layer of repeated secondary-action route glue from `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_checks_points_operational_index_shape|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_exposes_edit_link_for_latest_saved_type'` (`5 passed`).
+
 ### Latest source and tier-link helper checkpoint
 - Rewired the remaining inline latest-link actions for the `reports` catalog and the `card-types` catalog onto shared helper paths, so the live-source review link and the latest-tier edit link now append through the same small route/link helpers as the other Phase 1 admin catalogs.
 - Kept the step narrow and behavior-preserving, but it removes the last obvious one-off latest-link glue from `ResourceIndexController` without changing the Galaxy-specific action copy.

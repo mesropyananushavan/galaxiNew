@@ -2832,11 +2832,7 @@ class ResourceIndexController extends Controller
         string $routeParameter,
         int $recordId,
     ): array {
-        return $this->appendPageAction($page, [
-            'label' => $label,
-            'tone' => 'secondary',
-            'href' => route($routeName, [$routeParameter => $recordId], absolute: false),
-        ]);
+        return $this->appendSecondaryRouteAction($page, $label, $routeName, [$routeParameter => $recordId]);
     }
 
     private function appendLatestPreviewReviewAction(
@@ -2846,11 +2842,7 @@ class ResourceIndexController extends Controller
         string $routeParameter,
         string $previewKey,
     ): array {
-        return $this->appendPageAction($page, [
-            'label' => $label,
-            'tone' => 'secondary',
-            'href' => route($routeName, [$routeParameter => $previewKey], absolute: false),
-        ]);
+        return $this->appendSecondaryRouteAction($page, $label, $routeName, [$routeParameter => $previewKey]);
     }
 
     private function appendLatestSavedEditAction(
@@ -2861,10 +2853,20 @@ class ResourceIndexController extends Controller
         int $recordId,
         string $fragment = '',
     ): array {
+        return $this->appendSecondaryRouteAction($page, $label, $routeName, [$routeParameter => $recordId], $fragment);
+    }
+
+    private function appendSecondaryRouteAction(
+        array $page,
+        string $label,
+        string $routeName,
+        array $routeParameters,
+        string $fragment = '',
+    ): array {
         return $this->appendPageAction($page, [
             'label' => $label,
             'tone' => 'secondary',
-            'href' => route($routeName, [$routeParameter => $recordId], absolute: false).$fragment,
+            'href' => route($routeName, $routeParameters, absolute: false).$fragment,
         ]);
     }
 
