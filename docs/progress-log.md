@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Reports primary action copy alignment checkpoint
+- Aligned the `reports` catalog primary action from the more generic `Open live report catalog` wording to the more Galaxy-specific `Open Galaxy reporting catalog`, keeping the reporting workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`6 passed`).
+
 ### Reports latest-link copy alignment checkpoint
 - Aligned the `reports` catalog latest-review action from the generic `Review ... source` wording to the more Galaxy-specific `Review ... reporting source`, keeping the reporting workspace closer to the Phase 1 admin-shell tone used elsewhere.
 - Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.

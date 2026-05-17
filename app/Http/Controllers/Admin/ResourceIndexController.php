@@ -1400,7 +1400,7 @@ class ResourceIndexController extends Controller
         $pausedShopAssignedStaffCount = $shopScopedAssignedStaffCount - $activeShopAssignedStaffCount;
 
         $page['actions'] = $this->catalogPrimaryWithSecondaryReviewActions(
-            'Open live report catalog',
+            'Open Galaxy reporting catalog',
             [
                 [
                     'label' => 'Review export presets',
