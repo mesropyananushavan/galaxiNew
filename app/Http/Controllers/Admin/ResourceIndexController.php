@@ -292,7 +292,7 @@ class ResourceIndexController extends Controller
             $page,
             $selectedReceiptPreview,
             'admin.checks-points.index',
-            'Back to all receipts',
+            'Back to receipt catalog',
             [
             [
                 'label' => 'Find receipt',

@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Receipt catalog-action copy alignment checkpoint
+- Aligned the selected receipt workspace back action from generic `Back to all receipts` copy to Galaxy catalog language (`Back to receipt catalog`), so the checks-and-points review shell now reads more like an intentional operational catalog and less like a generic list fallback.
+- Kept the step narrow and behavior-safe, but it extends the same catalog-language cleanup into another Phase 1 parity surface that operators are expected to use for troubleshooting-first review.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_zero_accrual_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_checks_points_page_accepts_case_insensitive_selected_receipt_query'` (`4 passed`, with the current suite matching the focused branch/positive/query coverage for this selected-receipt slice).
+
 ### Role and branch catalog-action copy alignment checkpoint
 - Aligned the selected-workspace back actions for `roles-permissions` and `shops` from generic `Back to all ...` copy to Galaxy catalog language (`Back to role catalog` / `Back to branch catalog`), so those live review surfaces now match the more intentional catalog phrasing already used elsewhere in the Phase 1 shell.
 - Kept the step narrow and behavior-safe, but it makes two more high-value Galaxy admin workspaces read less like generic lists and more like real operational catalogs.

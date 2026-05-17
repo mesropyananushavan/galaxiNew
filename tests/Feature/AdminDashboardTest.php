@@ -6680,7 +6680,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all receipts')
+            ->assertSee('Back to receipt catalog')
             ->assertSee('/admin/checks-points')
             ->assertSee('Reviewing: CHK-90407')
             ->assertSee('Find receipt')
@@ -6724,7 +6724,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all receipts')
+            ->assertSee('Back to receipt catalog')
             ->assertSee('/admin/checks-points')
             ->assertSee('Reviewing: CHK-90388')
             ->assertSee('Find receipt')
@@ -6771,7 +6771,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all receipts')
+            ->assertSee('Back to receipt catalog')
             ->assertSee('/admin/checks-points')
             ->assertSee('Reviewing: CHK-90421')
             ->assertSee('Find receipt')
@@ -6820,7 +6820,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Review chk-90421 receipt')
-            ->assertDontSee('Back to all receipts')
+            ->assertDontSee('Back to receipt catalog')
             ->assertDontSee('Selected receipt preview');
     }
 
@@ -6832,7 +6832,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all receipts')
+            ->assertSee('Back to receipt catalog')
             ->assertSee('Reviewing: CHK-90407')
             ->assertSee('Selected receipt preview');
     }
