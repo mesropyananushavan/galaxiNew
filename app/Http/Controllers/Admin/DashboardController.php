@@ -484,7 +484,7 @@ class DashboardController extends Controller
         if (! $shop instanceof Shop) {
             return [
                 $this->workspaceLink('Review live Galaxy branches', 'admin.shops.index'),
-                $this->workspaceLink('Review live cardholders', 'admin.cardholders.index'),
+                $this->workspaceLink('Review live Galaxy holders', 'admin.cardholders.index'),
                 $this->workspaceLink('Review live cards', 'admin.cards.index'),
                 $this->workspaceLink('Review live Galaxy tiers', 'admin.card-types.index'),
                 $this->workspaceLink('Review live Galaxy access shells', 'admin.roles-permissions.index'),
@@ -861,7 +861,7 @@ class DashboardController extends Controller
     {
         return $this->scopedEntryLabel(
             shop: $shop,
-            liveLabel: 'Review live cardholders in assigned branch',
+            liveLabel: 'Review live Galaxy holders in assigned branch',
             setupLabel: 'Set up first cardholder in assigned branch',
             countRelations: ['cardHolders'],
             isSetupConditionMet: fn (Shop $shop): bool => $this->shopHasNoRecords($shop, ['cardHolders']),

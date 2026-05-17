@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard holder entry copy alignment checkpoint
+- Aligned the admin dashboard holder entry labels from the older `Review live cardholders` wording to the more Galaxy-specific `Review live Galaxy holders`, and updated the assigned-branch live handoff label to `Review live Galaxy holders in assigned branch`, so the dashboard handoff path now matches the holder workspace language used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another starter-style label from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_authenticated_user_can_access_cardholders_management_preview'`; the current matched slice passed (`2 passed`).
+
 ### Dashboard branch entry copy alignment checkpoint
 - Aligned the admin dashboard shops entry label from the older `Review live shops` wording to the more Galaxy-specific `Review live Galaxy branches`, so the dashboard handoff path now matches the branch catalog language used elsewhere in Phase 1.
 - Kept the step narrow and behavior-safe, but it removes another starter-style label from a live Galaxy navigation surface.
