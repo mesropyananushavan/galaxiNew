@@ -949,7 +949,7 @@ return [
             ['label' => 'Access notes', 'value' => '1'],
             ['label' => 'Assignment notes', 'value' => '1'],
             ['label' => 'Permission review notes', 'value' => '2'],
-            ['label' => 'Scoped shops', 'value' => '3'],
+            ['label' => 'Scoped Galaxy branches', 'value' => '3'],
         ],
         'table' => [
             'columns' => ['Role', 'Scope', 'Key permissions', 'Permission review note', 'Assignment note', 'Users', 'Status'],

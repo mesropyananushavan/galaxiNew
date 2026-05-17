@@ -1154,7 +1154,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Management snapshot')
             ->assertSee('Active Galaxy access shells')
             ->assertSee('Reviewed Galaxy access shells')
-            ->assertSee('Scoped shops')
+            ->assertSee('Scoped Galaxy branches')
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Create first Galaxy role')
             ->assertSee('Keep the new minimal role identity flow narrow, then layer role assignment, permission matrix, and shop-aware policy flows on top of it.')
@@ -1298,7 +1298,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Access notes')
             ->assertSee('Assignment notes')
             ->assertSee('Permission review notes')
-            ->assertSee('Scoped shops')
+            ->assertSee('Scoped Galaxy branches')
             ->assertSee('active')
             ->assertSee('draft');
     }
