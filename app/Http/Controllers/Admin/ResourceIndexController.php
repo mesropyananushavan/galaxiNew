@@ -747,18 +747,16 @@ class ResourceIndexController extends Controller
         );
 
         if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm']['title'] = 'Edit Galaxy role in Laravel';
-            $page['liveForm']['description'] = 'Update the selected Galaxy role identity through the shared live form while permission bundles and shop scope remain in review-only mode.';
-            $page['liveForm']['method'] = 'PATCH';
-            $page['liveForm']['actionRoute'] = 'admin.roles-permissions.update';
-            $page['liveForm']['actionRouteParameters'] = [
-                'role' => $selectedRole,
-            ];
-            $page['liveForm']['cancelRoute'] = 'admin.roles-permissions.index';
-            $page['liveForm']['cancelRouteParameters'] = [];
-            $page['liveForm']['submitLabel'] = 'Save access changes';
-            $page['liveForm'] = $this->applyFoundationLiveFormReviewMode(
+            $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
                 $page['liveForm'],
+                'Edit Galaxy role in Laravel',
+                'Update the selected Galaxy role identity through the shared live form while permission bundles and shop scope remain in review-only mode.',
+                'admin.roles-permissions.update',
+                [
+                    'role' => $selectedRole,
+                ],
+                'admin.roles-permissions.index',
+                'Save access changes',
                 'Create new Galaxy access shell',
                 'Back to access catalog',
                 $this->rolesPermissionsFoundationMutationDisabledReason(),
@@ -1270,18 +1268,16 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = $this->shopsSelectedShopSummary($selectedShop);
 
         if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm']['title'] = 'Edit Galaxy branch in Laravel';
-            $page['liveForm']['description'] = 'Update the selected Galaxy branch through the shared live form while manager reassignment and scope changes remain review-only.';
-            $page['liveForm']['method'] = 'PATCH';
-            $page['liveForm']['actionRoute'] = 'admin.shops.update';
-            $page['liveForm']['actionRouteParameters'] = [
-                'shop' => $selectedShop,
-            ];
-            $page['liveForm']['cancelRoute'] = 'admin.shops.index';
-            $page['liveForm']['cancelRouteParameters'] = [];
-            $page['liveForm']['submitLabel'] = 'Save branch changes';
-            $page['liveForm'] = $this->applyFoundationLiveFormReviewMode(
+            $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
                 $page['liveForm'],
+                'Edit Galaxy branch in Laravel',
+                'Update the selected Galaxy branch through the shared live form while manager reassignment and scope changes remain review-only.',
+                'admin.shops.update',
+                [
+                    'shop' => $selectedShop,
+                ],
+                'admin.shops.index',
+                'Save branch changes',
                 'Create new Galaxy branch shell',
                 'Back to branch catalog',
                 $this->shopsFoundationMutationDisabledReason(),
@@ -2106,18 +2102,16 @@ class ResourceIndexController extends Controller
 
         $page = $this->appendLatestBackendWriteDependencyStatus($page);
 
-        $page['liveForm']['title'] = $this->cardTypesLiveFormTitle();
-        $page['liveForm']['description'] = $this->cardTypesLiveFormDescription();
-        $page['liveForm']['method'] = 'PATCH';
-        $page['liveForm']['actionRoute'] = 'admin.card-types.update';
-        $page['liveForm']['actionRouteParameters'] = [
-            'cardType' => $selectedCardType,
-        ];
-        $page['liveForm']['cancelRoute'] = 'admin.card-types.index';
-        $page['liveForm']['cancelRouteParameters'] = [];
-        $page['liveForm']['submitLabel'] = $this->cardTypesLiveFormSubmitLabel();
-        $page['liveForm'] = $this->applyFoundationLiveFormReviewMode(
+        $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
             $page['liveForm'],
+            $this->cardTypesLiveFormTitle(),
+            $this->cardTypesLiveFormDescription(),
+            'admin.card-types.update',
+            [
+                'cardType' => $selectedCardType,
+            ],
+            'admin.card-types.index',
+            $this->cardTypesLiveFormSubmitLabel(),
             $this->cardTypesLiveFormCancelLabel(),
             'Back to tier catalog',
             $this->cardTypesFoundationMutationDisabledReason(),
@@ -4582,6 +4576,37 @@ class ResourceIndexController extends Controller
         $liveForm['cancelRouteParameters'] = [];
 
         return $liveForm;
+    }
+
+    private function applySelectedFoundationEditLiveForm(
+        array $liveForm,
+        string $title,
+        string $description,
+        string $actionRoute,
+        array $actionRouteParameters,
+        string $cancelRoute,
+        string $submitLabel,
+        string $editableCancelLabel,
+        string $reviewCancelLabel,
+        string $disabledReason,
+        ?string $reviewDescription = null,
+    ): array {
+        $liveForm['title'] = $title;
+        $liveForm['description'] = $description;
+        $liveForm['method'] = 'PATCH';
+        $liveForm['actionRoute'] = $actionRoute;
+        $liveForm['actionRouteParameters'] = $actionRouteParameters;
+        $liveForm['cancelRoute'] = $cancelRoute;
+        $liveForm['cancelRouteParameters'] = [];
+        $liveForm['submitLabel'] = $submitLabel;
+
+        return $this->applyFoundationLiveFormReviewMode(
+            $liveForm,
+            $editableCancelLabel,
+            $reviewCancelLabel,
+            $disabledReason,
+            $reviewDescription,
+        );
     }
 
     private function applyFoundationLiveFormReviewMode(

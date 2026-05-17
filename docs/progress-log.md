@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected foundation edit live-form helper checkpoint
+- Extracted the repeated selected foundation edit live-form setup for `roles-permissions`, `shops`, and `card-types` into one `ResourceIndexController` helper, so those Galaxy admin workspaces now configure their PATCH route, submit copy, and bootstrap-aware cancel behavior through the same small path.
+- Kept the change narrow and behavior-preserving, but it removes another slice of starter-style controller glue from the Phase 1 admin shell while preserving the Galaxy-specific titles and review-mode descriptions already in use.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query|test_shops_page_ignores_inaccessible_selected_shop_query_for_shop_scoped_admins|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_type_update_validation_keeps_safe_cancel_action_in_selected_edit_mode'` (`9 passed`).
+
 ### Receipt catalog action-helper checkpoint
 - Rewired the `checks-points` receipt catalog to build its disabled primary `Find receipt` action plus the disabled review companion through a shared helper path, keeping that read-only parity shell aligned with the newer helper-driven catalog patterns.
 - Kept the change narrow and behavior-preserving, but it trims another small inline action stack from `ResourceIndexController` and makes the receipt review shell more consistent with the other Galaxy admin catalogs.
