@@ -9710,7 +9710,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Edit latest saved tier')
+            ->assertSee('Edit latest saved tier shell')
             ->assertSee('href="/admin/card-types?cardType='.$latestCardType->id.'#live-form"', false);
     }
 
@@ -10070,7 +10070,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Galaxy Silver')
-            ->assertSee('Edit latest saved tier')
+            ->assertSee('Edit latest saved tier shell')
             ->assertDontSee('Edit card type in Laravel')
             ->assertDontSee('Selected tier')
             ->assertDontSee('selected for Laravel edit flow');
@@ -10092,7 +10092,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Galaxy Silver')
-            ->assertSee('Edit latest saved tier')
+            ->assertSee('Edit latest saved tier shell')
             ->assertDontSee('Edit card type in Laravel')
             ->assertDontSee('Selected tier')
             ->assertDontSee('selected for Laravel edit flow');

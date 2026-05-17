@@ -1919,7 +1919,7 @@ class ResourceIndexController extends Controller
         if ($latestCardType !== null) {
             $page = $this->appendLatestSavedEditAction(
                 $page,
-                'Edit latest saved tier',
+                'Edit latest saved tier shell',
                 'admin.card-types.index',
                 'cardType',
                 $latestCardType->id,

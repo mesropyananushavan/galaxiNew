@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Tier latest-link copy alignment checkpoint
+- Aligned the `card-types` catalog latest-edit action from the generic `Edit latest saved tier` wording to the more Galaxy-specific `Edit latest saved tier shell`, keeping the tier workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_catalog_actions_reflect_saved_tier_readiness|test_card_types_page_exposes_edit_link_for_latest_saved_type|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_ignores_unknown_selected_card_type_query|test_card_types_page_ignores_malformed_selected_card_type_query'` (`6 passed`).
+
 ### Branch latest-link copy alignment checkpoint
 - Aligned the `shops` catalog latest-review action from the generic `Review latest saved shop` wording to the more Galaxy-specific `Review latest saved branch shell`, keeping the branch workspace closer to the Phase 1 admin-shell tone used elsewhere.
 - Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
