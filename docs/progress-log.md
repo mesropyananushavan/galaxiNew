@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected reports action-helper alignment checkpoint
+- Rewired the selected `reports` workspace to build its back/review action stack through the shared `selectedReadContextActions(...)` helper instead of one inline array, so another Phase 1 review surface now follows the same helper-driven structure as the other selected Galaxy workspaces.
+- Kept the step narrow and behavior-preserving, but it trims a little more starter-style controller glue from a live admin surface that already uses Galaxy-specific catalog wording.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`3 passed`).
+
 ### Rule and gift catalog-action copy alignment checkpoint
 - Aligned the selected preview back actions for `services-rules` and `gifts` from generic `Back to all ...` copy to Galaxy catalog language (`Back to rule catalog` / `Back to gift catalog`), so two more Phase 1 parity surfaces now read like intentional operational catalogs instead of generic list fallbacks.
 - Kept the step narrow and behavior-safe, but it extends the same Galaxy-specific catalog wording into another pair of high-value admin review shells.

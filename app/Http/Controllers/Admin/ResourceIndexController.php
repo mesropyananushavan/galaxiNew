@@ -1889,29 +1889,25 @@ class ResourceIndexController extends Controller
         }
 
         $page['selectedRecordSummary'] = $selectedReportSource['selectedSummary'];
-        $page['actions'] = [
+        $page['actions'] = $this->selectedReadContextActions(
+            'admin.reports.index',
+            'Back to report catalog',
+            $selectedReportSource['label'],
             [
-                'label' => 'Back to report catalog',
-                'tone' => 'primary',
-                'href' => route('admin.reports.index', absolute: false),
+                [
+                    'label' => 'Review export presets',
+                    'tone' => 'secondary',
+                    'disabled' => true,
+                    'disabledReason' => $this->reportsSelectedSourcePresetDisabledReason($selectedReportSource),
+                ],
+                [
+                    'label' => 'Export source snapshot',
+                    'tone' => 'secondary',
+                    'disabled' => true,
+                    'disabledReason' => $this->reportsSelectedSourceExportDisabledReason($selectedReportSource),
+                ],
             ],
-            [
-                'label' => sprintf('Reviewing: %s', $selectedReportSource['label']),
-                'tone' => 'secondary',
-            ],
-            [
-                'label' => 'Review export presets',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->reportsSelectedSourcePresetDisabledReason($selectedReportSource),
-            ],
-            [
-                'label' => 'Export source snapshot',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->reportsSelectedSourceExportDisabledReason($selectedReportSource),
-            ],
-        ];
+        );
         $page['activityTimeline'] = $selectedReportSource['timeline'];
         $page['dependencyStatus'] = $selectedReportSource['dependencyStatus'];
 
