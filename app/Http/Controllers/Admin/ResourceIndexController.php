@@ -1821,11 +1821,13 @@ class ResourceIndexController extends Controller
         $latestLiveSource = collect($reportSources)->first(fn (array $source): bool => $source['status'] === 'live');
 
         if (is_array($latestLiveSource)) {
-            $page = $this->appendPageAction($page, [
-                'label' => sprintf('Review %s source', strtolower($latestLiveSource['label'])),
-                'tone' => 'secondary',
-                'href' => route('admin.reports.index', ['source' => $latestLiveSource['key']], absolute: false),
-            ]);
+            $page = $this->appendLatestPreviewReviewAction(
+                $page,
+                sprintf('Review %s source', strtolower($latestLiveSource['label'])),
+                'admin.reports.index',
+                'source',
+                (string) $latestLiveSource['key'],
+            );
         }
 
         $page['notice'] = [
@@ -1915,11 +1917,14 @@ class ResourceIndexController extends Controller
         );
 
         if ($latestCardType !== null) {
-            $page = $this->appendPageAction($page, [
-                'label' => 'Edit latest saved tier',
-                'tone' => 'secondary',
-                'href' => route('admin.card-types.index', ['cardType' => $latestCardType->id], absolute: false).'#live-form',
-            ]);
+            $page = $this->appendLatestSavedEditAction(
+                $page,
+                'Edit latest saved tier',
+                'admin.card-types.index',
+                'cardType',
+                $latestCardType->id,
+                '#live-form',
+            );
         }
 
         $selectedCardTypeId = $this->selectedRecordId('cardType');
@@ -2845,6 +2850,21 @@ class ResourceIndexController extends Controller
             'label' => $label,
             'tone' => 'secondary',
             'href' => route($routeName, [$routeParameter => $previewKey], absolute: false),
+        ]);
+    }
+
+    private function appendLatestSavedEditAction(
+        array $page,
+        string $label,
+        string $routeName,
+        string $routeParameter,
+        int $recordId,
+        string $fragment = '',
+    ): array {
+        return $this->appendPageAction($page, [
+            'label' => $label,
+            'tone' => 'secondary',
+            'href' => route($routeName, [$routeParameter => $recordId], absolute: false).$fragment,
         ]);
     }
 
