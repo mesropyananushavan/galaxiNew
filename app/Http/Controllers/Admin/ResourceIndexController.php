@@ -779,24 +779,22 @@ class ResourceIndexController extends Controller
             'Back to role catalog',
             $selectedRole->name,
             [
-            $this->foundationMutationAction(
-                'Create new Galaxy access shell',
-                route('admin.roles-permissions.index', absolute: false).'#live-form',
-                $this->rolesPermissionsFoundationMutationDisabledReason(),
-                'secondary',
-            ),
-            [
-                'label' => 'Review matrix',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->rolesPermissionsReviewMatrixDisabledReason($selectedRole),
-            ],
-            [
-                'label' => 'Publish access',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->rolesPermissionsPublishRoleDisabledReason($selectedRole, $scope),
-            ],
+                $this->foundationMutationAction(
+                    'Create new Galaxy access shell',
+                    route('admin.roles-permissions.index', absolute: false).'#live-form',
+                    $this->rolesPermissionsFoundationMutationDisabledReason(),
+                    'secondary',
+                ),
+                ...$this->secondaryDisabledActions([
+                    [
+                        'label' => 'Review matrix',
+                        'disabledReason' => $this->rolesPermissionsReviewMatrixDisabledReason($selectedRole),
+                    ],
+                    [
+                        'label' => 'Publish access',
+                        'disabledReason' => $this->rolesPermissionsPublishRoleDisabledReason($selectedRole, $scope),
+                    ],
+                ]),
             ],
         );
 
@@ -1289,14 +1287,12 @@ class ResourceIndexController extends Controller
             'admin.shops.index',
             'Back to branch catalog',
             $selectedShop->name,
-            [
-            [
-                'label' => 'Review branch scope',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->shopsSelectedReviewScopeDisabledReason($selectedShop),
-            ],
-            ],
+            $this->secondaryDisabledActions([
+                [
+                    'label' => 'Review branch scope',
+                    'disabledReason' => $this->shopsSelectedReviewScopeDisabledReason($selectedShop),
+                ],
+            ]),
         );
 
         $page['activityTimeline'] = [

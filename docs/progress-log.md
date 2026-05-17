@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected role and branch action-helper checkpoint
+- Reused the shared `secondaryDisabledActions(...)` helper inside the selected `roles-permissions` and `shops` workspaces, so their disabled review companions now flow through the same small action-shaping path used elsewhere in the Phase 1 admin shell.
+- Kept the step narrow and behavior-preserving, but it trims another small patch of inline controller duplication while preserving the Galaxy-specific selected-workspace copy and bootstrap gating reasons.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_active_role_access_review_context|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_roles_permissions_page_supports_selected_paused_scope_without_assignments_review_context|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_active_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query|test_shops_page_ignores_inaccessible_selected_shop_query_for_shop_scoped_admins'` (`9 passed`, with the current suite matching the focused selected role and branch coverage that exercises this slice).
+
 ### Selected card and holder action-helper checkpoint
 - Reused the shared `secondaryDisabledActions(...)` helper inside the selected `cards` and `cardholders` workspaces, so their disabled review companions now flow through the same small action-shaping path used elsewhere in the Phase 1 admin shell.
 - Kept the change narrow and behavior-preserving, but it trims another tiny bit of inline controller duplication while preserving the current Galaxy-specific selected-workspace copy.
