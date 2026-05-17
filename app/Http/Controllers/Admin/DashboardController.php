@@ -486,7 +486,7 @@ class DashboardController extends Controller
                 $this->workspaceLink('Review live shops', 'admin.shops.index'),
                 $this->workspaceLink('Review live cardholders', 'admin.cardholders.index'),
                 $this->workspaceLink('Review live cards', 'admin.cards.index'),
-                $this->workspaceLink('Review live card types', 'admin.card-types.index'),
+                $this->workspaceLink('Review live Galaxy tiers', 'admin.card-types.index'),
                 $this->workspaceLink('Review live Galaxy access shells', 'admin.roles-permissions.index'),
                 $this->workspaceLink('Review Galaxy reporting sources', 'admin.reports.index'),
             ];
@@ -500,7 +500,7 @@ class DashboardController extends Controller
             $this->workspaceLink($primaryScopedShopEntryLabel, 'admin.shops.index'),
             $this->workspaceLink($primaryScopedCardholderEntryLabel, 'admin.cardholders.index'),
             $this->workspaceLink($primaryScopedCardEntryLabel, 'admin.cards.index'),
-            $this->scopedSharedLiveEntryPoint('Review shared card types', 'admin.card-types.index'),
+            $this->scopedSharedLiveEntryPoint('Review shared Galaxy tiers', 'admin.card-types.index'),
             $this->scopedSharedLiveEntryPoint('Review shared Galaxy access shells', 'admin.roles-permissions.index'),
             $this->scopedSharedLiveEntryPoint('Review shared Galaxy reporting sources', 'admin.reports.index'),
         ];

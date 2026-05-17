@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard tier entry copy alignment checkpoint
+- Aligned the admin dashboard tier entry labels from the older `Review live card types` and `Review shared card types` wording to the more Galaxy-specific `Review live Galaxy tiers` and `Review shared Galaxy tiers`, so the dashboard handoff path now matches the tier workspace shell language used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another pair of starter-style labels from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_exposes_edit_link_for_latest_saved_type'` (`4 passed`).
+
 ### Dashboard access entry copy alignment checkpoint
 - Aligned the admin dashboard access entry labels from the older `Review live access roles` and `Review shared access roles` wording to the more Galaxy-specific `Review live Galaxy access shells` and `Review shared Galaxy access shells`, so the dashboard handoff path now matches the access workspace shell language used elsewhere in Phase 1.
 - Kept the step narrow and behavior-safe, but it removes another pair of starter-style labels from a live Galaxy navigation surface.
