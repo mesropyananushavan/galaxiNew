@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Tier cancel-label alignment checkpoint
+- Aligned the `card-types` live form cancel label from the more generic `Back to catalog` wording to `Back to tier catalog`, so the tier surface now matches the more specific Galaxy catalog language already used across the other Phase 1 admin flows.
+- Kept the step intentionally narrow and copy-only, but it removes another small starter-style phrase from a real Laravel-backed admin form path.
+- Re-ran `php artisan test --filter='test_card_types_page_resolves_live_form_action_from_route_name|test_card_types_page_resolves_live_form_mode_copy_from_config_callbacks|test_card_types_page_renders_live_form_patch_method_spoofing|test_authenticated_user_can_access_card_types_placeholder_page'`; the current matched slice passed (`3 passed`).
+
 ### Roles access-shell cancel-label alignment checkpoint
 - Aligned the `roles-permissions` live form cancel label from the more generic `Back to roles` wording to `Back to access shell catalog`, keeping the Phase 1 access surface terminology consistent with the newer Galaxy-specific dashboard and catalog language.
 - Kept the step intentionally narrow and copy-only, but it removes another small starter-style phrase from a real Laravel-backed admin flow.

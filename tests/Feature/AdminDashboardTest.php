@@ -10465,7 +10465,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('method="POST"', false)
             ->assertSee('action="/admin/card-types"', false)
             ->assertSee('href="/admin/card-types"', false)
-            ->assertSee('Back to catalog');
+            ->assertSee('Back to tier catalog');
     }
 
     public function test_card_types_page_resolves_live_form_action_route_parameters(): void
@@ -10667,7 +10667,7 @@ class AdminDashboardTest extends TestCase
             'cardType' => 7,
         ]);
         Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.index');
-        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Back to catalog');
+        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Back to tier catalog');
 
         $user = User::factory()->create();
 
@@ -10698,7 +10698,7 @@ class AdminDashboardTest extends TestCase
             'cardType' => $cardType->id,
         ]);
         Config::set('admin-pages.card-types.liveForm.cancelRoute', 'admin.card-types.index');
-        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Back to catalog');
+        Config::set('admin-pages.card-types.liveForm.cancelLabel', 'Back to tier catalog');
 
         $user = User::factory()->create();
 
@@ -10711,7 +10711,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('name="_method"', false)
             ->assertSee('value="PATCH"', false)
             ->assertSee('href="/admin/card-types"', false)
-            ->assertSee('Back to catalog');
+            ->assertSee('Back to tier catalog');
     }
 
     public function test_card_types_page_renders_hidden_live_form_fields_without_label_markup(): void
