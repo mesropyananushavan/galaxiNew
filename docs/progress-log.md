@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected card, holder, and branch read-context helper checkpoint
+- Reused the shared `selectedReadContextWithDisabledActions(...)` helper inside the selected `cards`, `cardholders`, and `shops` workspaces, so those read-only Galaxy review surfaces now pass their disabled companion actions through the same helper path as the selected preview and report contexts.
+- Kept the step narrow and behavior-preserving, but it removes another small layer of repetitive `selectedReadContextActions(...)` plus disabled-action shaping glue from `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_paused_branch_review_context|test_shops_page_ignores_inaccessible_selected_shop_query_for_shop_scoped_admins'` (`8 passed`).
+
 ### Selected read-context disabled-action helper checkpoint
 - Extracted a small `selectedReadContextWithDisabledActions(...)` helper and rewired the selected `reports` workspace plus the shared selected-preview path to use it, so those read-only Galaxy review surfaces now pass raw disabled-action definitions through one consistent shaping path.
 - Kept the step narrow and behavior-preserving, but it removes another bit of repetitive `selectedReadContextActions(...)` glue from `ResourceIndexController` while preserving the current selected-review copy.

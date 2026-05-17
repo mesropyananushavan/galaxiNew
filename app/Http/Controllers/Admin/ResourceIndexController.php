@@ -946,16 +946,16 @@ class ResourceIndexController extends Controller
             ];
         }
 
-        $page['actions'] = $this->selectedReadContextActions(
+        $page['actions'] = $this->selectedReadContextWithDisabledActions(
             'admin.cards.index',
             'Back to card catalog',
             $selectedCard->number,
-            $this->secondaryDisabledActions([
+            [
                 [
                     'label' => 'Review blocked cards',
                     'disabledReason' => $this->cardsSelectedReviewBlockedDisabledReason($selectedCard),
                 ],
-            ]),
+            ],
         );
 
         $page['activityTimeline'] = [
@@ -1119,16 +1119,16 @@ class ResourceIndexController extends Controller
             ];
         }
 
-        $page['actions'] = $this->selectedReadContextActions(
+        $page['actions'] = $this->selectedReadContextWithDisabledActions(
             'admin.cardholders.index',
             'Back to holder catalog',
             $selectedCardHolder->full_name,
-            $this->secondaryDisabledActions([
+            [
                 [
                     'label' => 'Review recent activity',
                     'disabledReason' => $this->cardholdersSelectedReviewActivityDisabledReason($selectedCardHolder),
                 ],
-            ]),
+            ],
         );
 
         $page['activityTimeline'] = [
@@ -1271,16 +1271,16 @@ class ResourceIndexController extends Controller
             ];
         }
 
-        $page['actions'] = $this->selectedReadContextActions(
+        $page['actions'] = $this->selectedReadContextWithDisabledActions(
             'admin.shops.index',
             'Back to branch catalog',
             $selectedShop->name,
-            $this->secondaryDisabledActions([
+            [
                 [
                     'label' => 'Review branch scope',
                     'disabledReason' => $this->shopsSelectedReviewScopeDisabledReason($selectedShop),
                 ],
-            ]),
+            ],
         );
 
         $page['activityTimeline'] = [
