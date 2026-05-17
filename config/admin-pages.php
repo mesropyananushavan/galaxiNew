@@ -943,8 +943,8 @@ return [
             ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.'],
         ],
         'metrics' => [
-            ['label' => 'Active roles', 'value' => '2'],
-            ['label' => 'Draft roles', 'value' => '1'],
+            ['label' => 'Active Galaxy access shells', 'value' => '2'],
+            ['label' => 'Draft Galaxy access shells', 'value' => '1'],
             ['label' => 'Reviewed roles', 'value' => '2'],
             ['label' => 'Access notes', 'value' => '1'],
             ['label' => 'Assignment notes', 'value' => '1'],
