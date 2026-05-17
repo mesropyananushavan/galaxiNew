@@ -1083,7 +1083,7 @@ class ResourceIndexController extends Controller
         if ($latestCardHolder !== null) {
             $page = $this->appendLatestSavedReviewAction(
                 $page,
-                'Review latest saved holder',
+                'Review latest saved holder shell',
                 'admin.cardholders.index',
                 'cardholder',
                 $latestCardHolder->id,

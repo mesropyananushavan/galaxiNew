@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Holder latest-link copy alignment checkpoint
+- Aligned the `cardholders` catalog latest-review action from the generic `Review latest saved holder` wording to the more Galaxy-specific `Review latest saved holder shell`, keeping the holder workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_cardholders_page_replaces_preview_rows_with_model_backed_index_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query|test_cardholders_page_ignores_inaccessible_selected_holder_query_for_shop_scoped_admins'` (`5 passed`).
+
 ### Card latest-link copy alignment checkpoint
 - Aligned the `cards` catalog latest-review action from the generic `Review latest saved card` wording to the more Galaxy-specific `Review latest saved card shell`, keeping the inventory workspace closer to the Phase 1 admin-shell tone used elsewhere.
 - Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.

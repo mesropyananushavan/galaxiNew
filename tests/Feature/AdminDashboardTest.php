@@ -5531,7 +5531,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create Galaxy holder in Laravel')
             ->assertSee('Create holder shell')
             ->assertSee('action="/admin/cardholders"', false)
-            ->assertSee('Review latest saved holder')
+            ->assertSee('Review latest saved holder shell')
             ->assertSee('Blocked until paused-branch linked-holder activity is verified against legacy lookup recovery history.')
             ->assertSee('Active-branch holders')
             ->assertSee('Paused-branch holders')
@@ -6463,7 +6463,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Anna Petrova')
-            ->assertSee('Review latest saved holder')
+            ->assertSee('Review latest saved holder shell')
             ->assertDontSee('Back to holder catalog')
             ->assertDontSee('Selected holder')
             ->assertDontSee('selected for Laravel review');
@@ -6492,7 +6492,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Anna Petrova')
-            ->assertSee('Review latest saved holder')
+            ->assertSee('Review latest saved holder shell')
             ->assertDontSee('Back to holder catalog')
             ->assertDontSee('Selected holder')
             ->assertDontSee('selected for Laravel review');
@@ -6551,7 +6551,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('href="/admin/cardholders?cardholder='.$assignedHolder->id.'"', false)
             ->assertDontSee('href="/admin/cardholders?cardholder='.$otherHolder->id.'"', false)
-            ->assertSee('Review latest saved holder')
+            ->assertSee('Review latest saved holder shell')
             ->assertSee('href="/admin/cardholders?cardholder='.$assignedHolder->id.'"', false);
     }
 
@@ -6611,7 +6611,7 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Back to holder catalog')
             ->assertDontSee('Reviewing: Other Holder Review')
             ->assertDontSee('Selected holder')
-            ->assertSee('Review latest saved holder');
+            ->assertSee('Review latest saved holder shell');
     }
 
     public function test_authenticated_user_can_access_checks_points_operational_index_shape(): void
