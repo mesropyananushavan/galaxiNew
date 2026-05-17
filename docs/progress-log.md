@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Role latest-link copy alignment checkpoint
+- Aligned the `roles-permissions` catalog latest-review action from the generic `Review latest saved role` wording to the more Galaxy-specific `Review latest saved access shell`, keeping that access workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'` (`5 passed`).
+
 ### Secondary route-action helper checkpoint
 - Consolidated the newer latest-link helpers onto one small `appendSecondaryRouteAction(...)` base helper, so the latest saved review links, latest preview review links, and latest tier edit link now all append through the same route-building path.
 - Kept the step narrow and behavior-preserving, but it removes another layer of repeated secondary-action route glue from `ResourceIndexController`.

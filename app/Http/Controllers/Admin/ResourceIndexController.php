@@ -712,7 +712,7 @@ class ResourceIndexController extends Controller
         if ($latestRole !== null) {
             $page = $this->appendLatestSavedReviewAction(
                 $page,
-                'Review latest saved role',
+                'Review latest saved access shell',
                 'admin.roles-permissions.index',
                 'role',
                 $latestRole->id,

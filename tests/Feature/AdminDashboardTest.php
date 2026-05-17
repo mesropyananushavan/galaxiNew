@@ -1281,7 +1281,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('No permissions linked yet')
             ->assertSee('No permission review note saved yet')
             ->assertSee('No assignment note saved yet')
-            ->assertSee('Review latest saved role')
+            ->assertSee('Review latest saved access shell')
             ->assertSee('Active roles')
             ->assertSee('Draft roles')
             ->assertSee('Reviewed roles')
@@ -1797,7 +1797,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Shop Manager')
-            ->assertSee('Review latest saved role')
+            ->assertSee('Review latest saved access shell')
             ->assertDontSee('Back to role catalog')
             ->assertDontSee('Selected role')
             ->assertDontSee('selected for Laravel review');
@@ -1836,7 +1836,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Shop Manager')
-            ->assertSee('Review latest saved role')
+            ->assertSee('Review latest saved access shell')
             ->assertDontSee('Back to role catalog')
             ->assertDontSee('Selected role')
             ->assertDontSee('selected for Laravel review');
