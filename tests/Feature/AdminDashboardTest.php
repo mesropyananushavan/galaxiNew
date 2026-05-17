@@ -6865,6 +6865,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Planned reports')
             ->assertSee('Export formats')
             ->assertSee('Preset periods')
+            ->assertSee('Galaxy reporting workspace for analytics, histories, and export-oriented admin review.')
             ->assertSee('Reporting operations are still preview-only')
             ->assertSee('Catalog actions, summary metrics, and export cues are outlining the Galaxy reporting workspace, but no Laravel reporting pipeline is wired yet.')
             ->assertSee('Migration readiness checklist')

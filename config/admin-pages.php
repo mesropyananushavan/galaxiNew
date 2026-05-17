@@ -1081,7 +1081,7 @@ return [
     'reports' => [
         'pageTitle' => 'Reports',
         'eyebrow' => 'Administration / Reports',
-        'summary' => 'Operational placeholder for analytics, histories, and export-oriented admin reporting.',
+        'summary' => 'Galaxy reporting workspace for analytics, histories, and export-oriented admin review.',
         'nextStep' => 'Add report catalog, date-range presets, and export entry points.',
         'actions' => [
             ['label' => 'Open live report catalog', 'tone' => 'primary'],

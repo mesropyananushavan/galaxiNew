@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Reports summary wording alignment checkpoint
+- Aligned the `reports` page summary from the older generic `Operational placeholder` phrasing to `Galaxy reporting workspace for analytics, histories, and export-oriented admin review.` so the reporting surface reads less like a starter stub and more like the intended Phase 1 Galaxy shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_replaces_preview_rows_with_model_backed_report_data|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_role_access_review_context'`; the current matched slice covered the reports operational shape and selected role-access context and passed (`2 passed`).
+
 ### Card cancel-label alignment checkpoint
 - Aligned the `cards` live form cancel label from the more generic `Back to cards` wording to `Back to card catalog`, bringing the real Laravel-backed inventory form into line with the broader Galaxy card catalog language already used across the rest of the Phase 1 shell.
 - This stayed intentionally small and copy-only, but it removes another leftover starter-style phrase from a live admin flow.
