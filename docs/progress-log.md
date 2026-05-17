@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Holder cancel-label alignment checkpoint
+- Aligned the `cardholders` live form cancel label from the more generic `Back to cardholders` wording to `Back to holder catalog`, bringing the real Laravel-backed holder form into line with the broader Galaxy holder catalog language already used across the rest of the Phase 1 shell.
+- This stayed intentionally small and copy-only, but it removes another leftover starter-style phrase from a live admin flow.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context|test_cardholders_page_resolves_live_form_action_from_route_name'`; the current matched slice passed after re-grepping the real method names (`4 passed`).
+
 ### Branch cancel-label alignment checkpoint
 - Aligned the `shops` live form cancel label from the more generic `Back to shops` wording to `Back to branch catalog`, bringing the real Laravel-backed branch form into line with the broader Galaxy branch catalog language already used elsewhere in the Phase 1 shell.
 - This was a very small, copy-only cleanup step, but it removes another leftover starter-style phrase from a live admin flow.

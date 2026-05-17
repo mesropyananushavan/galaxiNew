@@ -256,7 +256,7 @@ return [
             'method' => 'POST',
             'actionRoute' => 'admin.cardholders.store',
             'cancelRoute' => 'admin.cardholders.index',
-            'cancelLabel' => 'Back to cardholders',
+            'cancelLabel' => 'Back to holder catalog',
             'submitLabel' => 'Create holder shell',
             'fields' => [
                 ['name' => 'shop_id', 'label' => 'Shop', 'type' => 'select', 'value' => '', 'required' => true, 'help' => 'Keep the holder anchored to a branch, because Galaxy lookup and lifecycle review were branch-aware.', 'options' => []],
