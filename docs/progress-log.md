@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard scoped branch snapshot copy alignment checkpoint
+- Aligned the remaining generic assigned-branch snapshot labels and branch-local shortcut wording from `cardholders/cards` phrasing to the more Galaxy-specific `Galaxy holders/Galaxy card shells` language.
+- This covered the scoped branch snapshot metrics, latest-record labels, latest activity summaries, and the branch-local resume links, so the shop-scoped dashboard slice now matches the broader Galaxy shell tone already used elsewhere.
+- Re-ran `php artisan test --filter='test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_unscoped_dashboard_does_not_show_shop_scope_summary|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up|test_dashboard_branch_helper_logic_covers_paused_branch_posture'`; the current matched slice passed after tightening one brittle unscoped absence assertion (`6 passed`).
+
 ### Dashboard compact summary copy alignment checkpoint
 - Aligned the remaining generic compact dashboard summaries and fallback prose from `shops/cardholders/cards/roles/card types` wording to the more Galaxy-specific `Galaxy branches/Galaxy holders/Galaxy card shells/Galaxy access shells/Galaxy tiers` language, including the latest-work intro sentence and the no-records fallback note.
 - Kept the step narrow and behavior-safe, but it removes another visible starter-style wording cluster from the live dashboard shell.

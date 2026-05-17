@@ -604,15 +604,15 @@ class DashboardController extends Controller
                 ['label' => 'Handoff signal', 'value' => $branchHandoffSignal],
                 ['label' => 'Primary manager', 'value' => $shop->users->first()?->name ?? 'Unassigned'],
                 ['label' => 'Laravel status', 'value' => $shop->is_active ? 'active' : 'paused'],
-                ['label' => 'Visible cardholders', 'value' => (string) $shop->card_holders_count],
-                ['label' => 'Visible cards', 'value' => (string) $shop->cards_count],
+                ['label' => 'Visible Galaxy holders', 'value' => (string) $shop->card_holders_count],
+                ['label' => 'Visible Galaxy card shells', 'value' => (string) $shop->cards_count],
                 ['label' => 'Assigned staff', 'value' => (string) $shop->users_count],
-                ['label' => 'Latest holder', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->full_name : 'No holders in assigned branch yet'],
-                ['label' => 'Latest holder status', 'value' => $latestHolder instanceof CardHolder ? ($latestHolder->is_active ? 'active' : 'inactive') : 'n/a'],
-                ['label' => 'Latest holder added', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->created_at?->toDateString() ?? 'unknown' : 'n/a'],
-                ['label' => 'Latest card', 'value' => $latestCard instanceof Card ? $latestCard->number : 'No cards in assigned branch yet'],
-                ['label' => 'Latest card status', 'value' => $latestCard instanceof Card ? $latestCard->status : 'n/a'],
-                ['label' => 'Latest card issued', 'value' => $latestCard instanceof Card ? $latestCard->created_at?->toDateString() ?? 'unknown' : 'n/a'],
+                ['label' => 'Latest Galaxy holder', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->full_name : 'No Galaxy holders in assigned branch yet'],
+                ['label' => 'Latest Galaxy holder status', 'value' => $latestHolder instanceof CardHolder ? ($latestHolder->is_active ? 'active' : 'inactive') : 'n/a'],
+                ['label' => 'Latest Galaxy holder added', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->created_at?->toDateString() ?? 'unknown' : 'n/a'],
+                ['label' => 'Latest Galaxy card shell', 'value' => $latestCard instanceof Card ? $latestCard->number : 'No Galaxy card shells in assigned branch yet'],
+                ['label' => 'Latest Galaxy card shell status', 'value' => $latestCard instanceof Card ? $latestCard->status : 'n/a'],
+                ['label' => 'Latest Galaxy card shell issued', 'value' => $latestCard instanceof Card ? $latestCard->created_at?->toDateString() ?? 'unknown' : 'n/a'],
                 ['label' => 'Latest activity source', 'value' => $latestActivity],
                 ['label' => 'Activity freshness', 'value' => $activityFreshness],
                 ['label' => 'Suggested follow-up', 'value' => $suggestedFollowUp],
@@ -654,11 +654,11 @@ class DashboardController extends Controller
         }
 
         if (! $latestHolder instanceof CardHolder) {
-            return 'cardholder backfill next';
+            return 'Galaxy holder backfill next';
         }
 
         if (! $latestCard instanceof Card) {
-            return 'card issuance next';
+            return 'Galaxy card issuance next';
         }
 
         return 'latest branch review ready';
@@ -671,11 +671,11 @@ class DashboardController extends Controller
         }
 
         if (! $latestCard instanceof Card) {
-            return 'Cardholder added';
+            return 'Galaxy holder added';
         }
 
         if (! $latestHolder instanceof CardHolder) {
-            return 'Card issued';
+            return 'Galaxy card shell issued';
         }
 
         $holderCreatedAt = $latestHolder->created_at;
@@ -686,16 +686,16 @@ class DashboardController extends Controller
         }
 
         if ($holderCreatedAt === null) {
-            return 'Card issued';
+            return 'Galaxy card shell issued';
         }
 
         if ($cardCreatedAt === null) {
-            return 'Cardholder added';
+            return 'Galaxy holder added';
         }
 
         return $cardCreatedAt->greaterThanOrEqualTo($holderCreatedAt)
-            ? 'Card issued'
-            : 'Cardholder added';
+            ? 'Galaxy card shell issued'
+            : 'Galaxy holder added';
     }
 
     protected function latestBranchActivityFreshness(?CardHolder $latestHolder, ?Card $latestCard): string
@@ -824,14 +824,14 @@ class DashboardController extends Controller
 
         if ($latestHolder instanceof CardHolder) {
             $actions[] = [
-                'label' => 'Open latest holder in branch',
+                'label' => 'Open latest Galaxy holder in branch',
                 'route' => route('admin.cardholders.index', ['cardholder' => $latestHolder->id]),
             ];
         }
 
         if ($latestCard instanceof Card) {
             $actions[] = [
-                'label' => 'Open latest card in branch',
+                'label' => 'Open latest Galaxy card shell in branch',
                 'route' => route('admin.cards.index', ['card' => $latestCard->id]),
             ];
         }
