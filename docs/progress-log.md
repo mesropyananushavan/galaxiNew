@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard branch entry copy alignment checkpoint
+- Aligned the admin dashboard shops entry label from the older `Review live shops` wording to the more Galaxy-specific `Review live Galaxy branches`, so the dashboard handoff path now matches the branch catalog language used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another starter-style label from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_authenticated_user_can_access_shops_management_preview'`; the current matched slice passed after aligning the related dashboard focus assertions (`2 passed`).
+
 ### Dashboard tier entry copy alignment checkpoint
 - Aligned the admin dashboard tier entry labels from the older `Review live card types` and `Review shared card types` wording to the more Galaxy-specific `Review live Galaxy tiers` and `Review shared Galaxy tiers`, so the dashboard handoff path now matches the tier workspace shell language used elsewhere in Phase 1.
 - Kept the step narrow and behavior-safe, but it removes another pair of starter-style labels from a live Galaxy navigation surface.

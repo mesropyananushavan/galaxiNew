@@ -483,7 +483,7 @@ class DashboardController extends Controller
 
         if (! $shop instanceof Shop) {
             return [
-                $this->workspaceLink('Review live shops', 'admin.shops.index'),
+                $this->workspaceLink('Review live Galaxy branches', 'admin.shops.index'),
                 $this->workspaceLink('Review live cardholders', 'admin.cardholders.index'),
                 $this->workspaceLink('Review live cards', 'admin.cards.index'),
                 $this->workspaceLink('Review live Galaxy tiers', 'admin.card-types.index'),
