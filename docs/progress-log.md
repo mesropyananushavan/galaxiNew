@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Foreign-record update guard for scoped cards and holders checkpoint
+- Extended the shared shop-scope validation pattern to cover the current route record on card and cardholder updates, not just the submitted target `shop_id`.
+- This closes a real Phase 1 access hole: scoped admins can no longer grab a foreign card or holder and "move" it into their own branch through an update request.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_update_foreign_card_even_if_target_shop_is_accessible|test_shop_scoped_admin_cannot_update_foreign_cardholder_even_if_target_shop_is_accessible|test_authenticated_user_can_update_card_from_live_admin_flow|test_authenticated_user_can_update_cardholder_from_live_admin_flow'` (`4 passed`).
+
 ### Shop update scope-guard checkpoint
 - Added an `access-shop` validation guard to `UpdateShopRequest`, so shop-scoped admins can no longer change another branch's settings just because they still pass the broad admin gate.
 - Added focused regression coverage that proves a scoped operator cannot update a foreign shop, while keeping the bootstrap-admin shop update flow and duplicate-code validation green.

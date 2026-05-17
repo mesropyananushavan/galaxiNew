@@ -5585,6 +5585,62 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_shop_scoped_admin_cannot_update_foreign_cardholder_even_if_target_shop_is_accessible(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Assigned Holder Guard Shop',
+            'code' => 'galaxy-scoped-assigned-holder-guard-shop',
+            'is_active' => true,
+        ]);
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Foreign Holder Guard Shop',
+            'code' => 'galaxy-scoped-foreign-holder-guard-shop',
+            'is_active' => true,
+        ]);
+        $cardHolder = CardHolder::create([
+            'shop_id' => $otherShop->id,
+            'full_name' => 'Scoped Foreign Guard Holder',
+            'phone' => '+37499119988',
+            'email' => 'scoped.foreign.guard.holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Holder Guard Operator',
+            'slug' => 'scoped-holder-guard-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Guard scoped holders',
+            'slug' => 'guard-scoped-holders',
+            'review_note' => 'Phase 1 foreign holder update guard coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->patch(route('admin.cardholders.update', $cardHolder), [
+            'shop_id' => (string) $assignedShop->id,
+            'full_name' => 'Scoped Foreign Guard Holder',
+            'phone' => '+37499119988',
+            'email' => 'scoped.foreign.guard.holder@example.com',
+            'is_active' => 'true',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'shop_id' => 'Choose a cardholder from a shop you can access before changing holder details in the Galaxy workspace.',
+            ]);
+
+        $this->assertDatabaseHas('card_holders', [
+            'id' => $cardHolder->id,
+            'shop_id' => $otherShop->id,
+        ]);
+    }
+
     public function test_cardholder_update_live_flow_normalizes_blank_review_note_to_null(): void
     {
         $user = User::factory()->create();
@@ -11073,6 +11129,66 @@ class AdminDashboardTest extends TestCase
         $this->assertDatabaseHas('cards', [
             'id' => $card->id,
             'shop_id' => $assignedShop->id,
+        ]);
+    }
+
+    public function test_shop_scoped_admin_cannot_update_foreign_card_even_if_target_shop_is_accessible(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Assigned Card Guard Shop',
+            'code' => 'galaxy-scoped-assigned-card-guard-shop',
+            'is_active' => true,
+        ]);
+        $otherShop = Shop::create([
+            'name' => 'Galaxy Scoped Foreign Card Guard Shop',
+            'code' => 'galaxy-scoped-foreign-card-guard-shop',
+            'is_active' => true,
+        ]);
+        $cardType = CardType::create([
+            'name' => 'Galaxy Scoped Card Guard Type',
+            'slug' => 'galaxy-scoped-card-guard-type',
+            'points_rate' => '1.50',
+            'is_active' => true,
+        ]);
+        $card = Card::create([
+            'shop_id' => $otherShop->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-SCOPED-GUARD-1001',
+            'status' => 'draft',
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Card Guard Operator',
+            'slug' => 'scoped-card-guard-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Guard scoped cards',
+            'slug' => 'guard-scoped-cards',
+            'review_note' => 'Phase 1 foreign card update guard coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->actingAs($user)->patch(route('admin.cards.update', $card), [
+            'shop_id' => (string) $assignedShop->id,
+            'card_type_id' => (string) $cardType->id,
+            'number' => 'GX-SCOPED-GUARD-1001',
+            'status' => 'draft',
+        ]);
+
+        $response
+            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
+            ->assertSessionHasErrors([
+                'shop_id' => 'Choose a card from a shop you can access before changing inventory details in the Galaxy workspace.',
+            ]);
+
+        $this->assertDatabaseHas('cards', [
+            'id' => $card->id,
+            'shop_id' => $otherShop->id,
         ]);
     }
 

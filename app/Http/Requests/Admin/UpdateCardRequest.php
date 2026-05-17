@@ -2,8 +2,10 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Card;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 class UpdateCardRequest extends StoreCardRequest
 {
@@ -22,6 +24,17 @@ class UpdateCardRequest extends StoreCardRequest
             'activated_at' => ['nullable', 'date', 'required_if:status,active', 'prohibited_if:status,draft', 'after_or_equal:issued_at'],
             'review_note' => ['nullable', 'string', 'required_if:status,blocked', 'max:1000'],
         ];
+    }
+
+    public function withValidator(Validator $validator): void
+    {
+        parent::withValidator($validator);
+
+        $this->validateCurrentShopAccess(
+            $validator,
+            fn (): ?\App\Models\Shop => $this->route('card') instanceof Card ? $this->route('card')->shop : null,
+            'Choose a card from a shop you can access before changing inventory details in the Galaxy workspace.',
+        );
     }
 
     protected function getRedirectUrl(): string
