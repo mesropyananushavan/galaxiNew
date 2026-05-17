@@ -271,14 +271,14 @@ return [
     'cards' => [
         'pageTitle' => 'Cards',
         'eyebrow' => 'Operations / Cards',
-        'summary' => 'Baseline operational index for card inventory, assignments, statuses, and activation tracking.',
+        'summary' => 'Galaxy card-shell workspace for inventory, assignment review, status triage, and activation tracking.',
         'nextStep' => 'Replace sample rows with real query-backed inventory and status filters.',
         'actions' => [
             ['label' => 'New Galaxy card', 'tone' => 'primary'],
             ['label' => 'Review blocked cards', 'tone' => 'secondary'],
         ],
         'metrics' => [
-            ['label' => 'Active cards', 'value' => '1'],
+            ['label' => 'Active Galaxy card shells', 'value' => '1'],
             ['label' => 'Draft cards', 'value' => '1'],
             ['label' => 'Blocked cards', 'value' => '1'],
             ['label' => 'Issued cards', 'value' => '2'],

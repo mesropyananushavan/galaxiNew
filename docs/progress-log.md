@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Card-shell summary wording alignment checkpoint
+- Aligned the `cards` page summary from the older generic baseline wording to `Galaxy card-shell workspace for inventory, assignment review, status triage, and activation tracking.` so the card surface reads more like the intended Phase 1 Galaxy console.
+- While validating the narrow copy step, the focused slice exposed one neighboring metric label that still used older generic wording, so `Active cards` was safely aligned to `Active Galaxy card shells` on the same surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
 ### Holder summary wording alignment checkpoint
 - Aligned the `cardholders` page summary from the older generic baseline wording to `Galaxy holder workspace for worker and client lookup, holder history, and lifecycle review.` so the holder surface reads more like the intended Phase 1 Galaxy console.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and removed another visible generic wording pocket from a real admin surface.

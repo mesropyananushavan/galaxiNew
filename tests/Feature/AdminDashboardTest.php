@@ -2415,6 +2415,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Cards placeholder')
+            ->assertSee('Galaxy card-shell workspace for inventory, assignment review, status triage, and activation tracking.')
             ->assertSee('Operational index shape')
             ->assertSee('GX-100001')
             ->assertSee('Central Shop')
