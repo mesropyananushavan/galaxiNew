@@ -199,7 +199,7 @@
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Resume latest live work</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
-            Jump back into the latest Galaxy workspace for the branch, cardholder, card, or access item that most recently changed.
+            Jump back into the latest Galaxy workspace for the branch, holder, card shell, or access shell that most recently changed.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Latest-work coverage:</strong>
@@ -236,7 +236,7 @@
                 No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.
             </p>
             <p style="{{ $dashboardWideNoteStyle }}">
-                In Phase 1, this usually means the branch is still moving through first-pass setup for shops, cardholders, cards, or access structure.
+                In Phase 1, this usually means the branch is still moving through first-pass setup for Galaxy branches, Galaxy holders, Galaxy card shells, or access structure.
             </p>
         @endif
     </section>

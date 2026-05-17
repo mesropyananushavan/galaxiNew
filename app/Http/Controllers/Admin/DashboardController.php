@@ -254,9 +254,9 @@ class DashboardController extends Controller
         $activeCardCount = Card::query()->where('status', 'active')->count();
 
         $coverageParts = [
-            sprintf('shops %d/%d active', $activeShopCount, $shopCount),
-            sprintf('cardholders %d/%d active', $activeCardHolderCount, $cardHolderCount),
-            sprintf('cards %d/%d active', $activeCardCount, $cardCount),
+            sprintf('Galaxy branches %d/%d active', $activeShopCount, $shopCount),
+            sprintf('Galaxy holders %d/%d active', $activeCardHolderCount, $cardHolderCount),
+            sprintf('Galaxy card shells %d/%d active', $activeCardCount, $cardCount),
         ];
 
         return implode(', ', $coverageParts);
@@ -275,7 +275,7 @@ class DashboardController extends Controller
         $roleCount = Role::query()->count();
         $permissionCount = Permission::query()->count();
 
-        return sprintf('%d roles, %d permissions visible', $roleCount, $permissionCount);
+        return sprintf('%d Galaxy access shells, %d access permissions visible', $roleCount, $permissionCount);
     }
 
     protected function tierBaselineCoverage(): string
@@ -283,7 +283,7 @@ class DashboardController extends Controller
         $cardTypeCount = CardType::query()->count();
         $activeCardTypeCount = CardType::query()->where('is_active', true)->count();
 
-        return sprintf('%d/%d card types active', $activeCardTypeCount, $cardTypeCount);
+        return sprintf('%d/%d Galaxy tiers active', $activeCardTypeCount, $cardTypeCount);
     }
 
     protected function latestShopWorkspace(): ?array

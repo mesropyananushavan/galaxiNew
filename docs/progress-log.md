@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard compact summary copy alignment checkpoint
+- Aligned the remaining generic compact dashboard summaries and fallback prose from `shops/cardholders/cards/roles/card types` wording to the more Galaxy-specific `Galaxy branches/Galaxy holders/Galaxy card shells/Galaxy access shells/Galaxy tiers` language, including the latest-work intro sentence and the no-records fallback note.
+- Kept the step narrow and behavior-safe, but it removes another visible starter-style wording cluster from the live dashboard shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_foundation_posture_reflects_empty_live_coverage'`; the current matched slice passed after aligning the remaining tier summary expectation (`4 passed`).
+
 ### Dashboard metric label alignment checkpoint
 - Aligned the remaining generic dashboard metric labels and empty-state focus phrases from `shops/cardholders/cards/card types/roles` wording to the more Galaxy-specific `Galaxy branches/Galaxy holders/Galaxy card shells/Galaxy tiers/Galaxy access shells` language, so the dashboard summary grid now matches the shell tone already used by the action links and handoff notes.
 - Kept the step narrow and behavior-safe, but it removes another obvious starter-style wording pocket from the live dashboard shell.
