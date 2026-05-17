@@ -757,9 +757,9 @@ class DashboardController extends Controller
         $hasCards = $shop->cards_count > 0;
 
         return match (true) {
-            $hasCardholders && $hasCards => 'cardholders and cards live',
-            $hasCardholders => 'cardholders live, cards pending',
-            $hasCards => 'cards live, cardholders pending',
+            $hasCardholders && $hasCards => 'Galaxy holders and card shells live',
+            $hasCardholders => 'Galaxy holders live, card shells pending',
+            $hasCards => 'Galaxy card shells live, holders pending',
             default => 'core branch records pending',
         };
     }
@@ -915,13 +915,13 @@ class DashboardController extends Controller
             'label' => 'Entry handoff signal',
             'value' => match (true) {
                 $shop instanceof Shop && $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0
-                    => 'Assigned-branch entry points already have enough live shop, holder, and card coverage to support a useful scoped handoff review.',
+                    => 'Assigned-branch entry points already have enough live branch, holder, and card-shell coverage to support a useful scoped handoff review.',
                 $shop instanceof Shop
-                    => 'Assigned-branch entry points should stay setup-aware until the branch shows live shop, holder, and card coverage together.',
+                    => 'Assigned-branch entry points should stay setup-aware until the branch shows live branch, holder, and card-shell coverage together.',
                 $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0
-                    => 'Shared entry points already have enough live branch, holder, and card coverage to support a useful foundation handoff review.',
+                    => 'Shared entry points already have enough live branch, holder, and card-shell coverage to support a useful foundation handoff review.',
                 default
-                    => 'Entry points should stay setup-first until live branch, holder, and card coverage is visible across the Laravel foundation.',
+                    => 'Entry points should stay setup-first until live branch, holder, and card-shell coverage is visible across the Laravel foundation.',
             },
         ];
     }

@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Dashboard handoff summary prose alignment checkpoint
+- Aligned the remaining dashboard handoff/status summary phrases from older `cardholders/cards` and `shop, holder, and card coverage` wording to the more Galaxy-specific `Galaxy holders/card shells` and `branch, holder, and card-shell coverage` language, so the summary cues now match the newer branch/holder/card-shell labels already visible in the dashboard shell.
+- Kept the step narrow and behavior-safe, but it removes another small pocket of starter-style wording from the live dashboard narrative.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_shop_scoped_admin_sees_live_workspace_entry_points_for_assigned_shop|test_dashboard_entry_posture_reflects_partial_live_coverage|test_dashboard_latest_workspace_posture_reflects_partial_live_coverage'`; the current matched slice passed (`2 passed`).
+
 ### Dashboard scope-note prose alignment checkpoint
 - Aligned the scoped dashboard explanatory prose from older `shops/cardholders/cards` wording to the newer Galaxy-specific `Galaxy branches/Galaxy holders/Galaxy card shells` language, and matched the latest-work scope note so the surrounding handoff copy now reflects the same branch, holder, card-shell, tier, and access-shell tone as the visible shortcuts.
 - Kept the step narrow and behavior-safe, but it removes another small pocket of starter-style wording from the live dashboard narrative.
