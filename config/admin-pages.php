@@ -141,7 +141,7 @@ return [
     'cardholders' => [
         'pageTitle' => 'Cardholders',
         'eyebrow' => 'Operations / Cardholders',
-        'summary' => 'Baseline operational index for workers, clients, holder history, and future lifecycle actions.',
+        'summary' => 'Galaxy holder workspace for worker and client lookup, holder history, and lifecycle review.',
         'nextStep' => 'Replace sample rows with real holder search, profile links, and status actions.',
         'actions' => [
             ['label' => 'New Galaxy holder', 'tone' => 'primary', 'href' => '#live-form'],

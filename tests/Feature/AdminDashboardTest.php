@@ -4354,6 +4354,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Cardholders placeholder')
+            ->assertSee('Galaxy holder workspace for worker and client lookup, holder history, and lifecycle review.')
             ->assertSee('Operational index shape')
             ->assertSee('Anna Petrova')
             ->assertSee('Has cards')
