@@ -900,7 +900,7 @@ class DashboardController extends Controller
 
         return [
             'label' => 'Entry posture',
-            'value' => 'These entry points still open the shared Phase 1 workspaces, but shop-backed review inside shops, cardholders, and cards now narrows to the assigned branch with branch-specific review wording once the workspace loads.',
+            'value' => 'These entry points still open the shared Phase 1 workspaces, but branch-backed review inside Galaxy branches, Galaxy holders, and Galaxy card shells now narrows to the assigned branch with branch-specific review wording once the workspace loads.',
         ];
     }
 
@@ -934,7 +934,7 @@ class DashboardController extends Controller
 
         return [
             'label' => 'Phase 1 scope note',
-            'value' => 'Latest-work shortcuts for shops, cardholders, and cards now follow branch scope and branch-specific review wording. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.',
+            'value' => 'Latest-work shortcuts for Galaxy branches, Galaxy holders, and Galaxy card shells now follow branch scope and branch-specific review wording. Galaxy tiers, Galaxy access shells, and reporting remain shared review surfaces until deeper shop-aware policies arrive.',
         ];
     }
 

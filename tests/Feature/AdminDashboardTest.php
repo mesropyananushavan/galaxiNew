@@ -769,7 +769,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Entry handoff signal')
             ->assertSee('Assigned-branch entry points already have enough live shop, holder, and card coverage to support a useful scoped handoff review.')
             ->assertSee('Entry posture')
-            ->assertSee('These entry points still open the shared Phase 1 workspaces, but shop-backed review inside shops, cardholders, and cards now narrows to the assigned branch with branch-specific review wording once the workspace loads.')
+            ->assertSee('These entry points still open the shared Phase 1 workspaces, but branch-backed review inside Galaxy branches, Galaxy holders, and Galaxy card shells now narrows to the assigned branch with branch-specific review wording once the workspace loads.')
             ->assertSee('Review live Galaxy branches in assigned branch')
             ->assertSee('Review live Galaxy holders in assigned branch')
             ->assertSee('Review live Galaxy card shells in assigned branch')
@@ -780,7 +780,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Latest-work handoff signal')
             ->assertSee('Scoped latest-work shortcuts already carry enough branch-backed coverage for a useful handoff review jump-back.')
             ->assertSee('Phase 1 scope note')
-            ->assertSee('Latest-work shortcuts for shops, cardholders, and cards now follow branch scope and branch-specific review wording. Card types, roles, and reporting remain shared review surfaces until deeper shop-aware policies arrive.')
+            ->assertSee('Latest-work shortcuts for Galaxy branches, Galaxy holders, and Galaxy card shells now follow branch scope and branch-specific review wording. Galaxy tiers, Galaxy access shells, and reporting remain shared review surfaces until deeper shop-aware policies arrive.')
             ->assertSee('Open latest branch review: Dashboard Home Shop (active)</a> (Route: /admin/shops)', false)
             ->assertSee('/admin/shops?shop='.$assignedShop->id)
             ->assertDontSee('Open latest branch review: Dashboard Other Shop (active)')
@@ -836,7 +836,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review live Galaxy holders')
             ->assertSee('Review live Galaxy card shells')
             ->assertDontSee('Phase 1 scope note')
-            ->assertDontSee('Latest-work shortcuts for shops, cardholders, and cards now follow branch scope.');
+            ->assertDontSee('Latest-work shortcuts for Galaxy branches, Galaxy holders, and Galaxy card shells now follow branch scope.');
     }
 
     public function test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture(): void
