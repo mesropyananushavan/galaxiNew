@@ -1924,34 +1924,7 @@ class ResourceIndexController extends Controller
 
         $page = $this->appendCardTypeLatestFlowFeedback($page);
 
-        $page['actions'] = [
-            $this->foundationMutationAction(
-                $this->cardTypesCreateShellActionLabel(),
-                route('admin.card-types.index', absolute: false).'#live-form',
-                $this->cardTypesFoundationMutationDisabledReason(),
-            ),
-            $this->foundationMutationAction(
-                $this->cardTypesToggleStatusActionLabel($selectedCardType),
-                route('admin.card-types.toggle-status', $selectedCardType, absolute: false),
-                $this->cardTypesFoundationMutationDisabledReason(),
-                'secondary',
-                'PATCH',
-            ),
-            [
-                'label' => $this->cardTypesEditingActionLabel($selectedCardType),
-                'tone' => 'secondary',
-            ],
-            ...$this->secondaryDisabledActions([
-                [
-                    'label' => $this->cardTypesImportRulesActionLabel(),
-                    'disabledReason' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
-                ],
-                [
-                    'label' => $this->cardTypesPublishActionLabel(),
-                    'disabledReason' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
-                ],
-            ]),
-        ];
+        $page['actions'] = $this->cardTypesSelectedActions($selectedCardType);
 
         $page['activityTimeline'] = [
             [
@@ -2886,6 +2859,38 @@ class ResourceIndexController extends Controller
                 'disabledReason' => $primaryDisabledReason,
             ],
             ...$this->secondaryDisabledActions($secondaryActions),
+        ];
+    }
+
+    private function cardTypesSelectedActions(CardType $selectedCardType): array
+    {
+        return [
+            $this->foundationMutationAction(
+                $this->cardTypesCreateShellActionLabel(),
+                route('admin.card-types.index', absolute: false).'#live-form',
+                $this->cardTypesFoundationMutationDisabledReason(),
+            ),
+            $this->foundationMutationAction(
+                $this->cardTypesToggleStatusActionLabel($selectedCardType),
+                route('admin.card-types.toggle-status', $selectedCardType, absolute: false),
+                $this->cardTypesFoundationMutationDisabledReason(),
+                'secondary',
+                'PATCH',
+            ),
+            [
+                'label' => $this->cardTypesEditingActionLabel($selectedCardType),
+                'tone' => 'secondary',
+            ],
+            ...$this->secondaryDisabledActions([
+                [
+                    'label' => $this->cardTypesImportRulesActionLabel(),
+                    'disabledReason' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
+                ],
+                [
+                    'label' => $this->cardTypesPublishActionLabel(),
+                    'disabledReason' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
+                ],
+            ]),
         ];
     }
 

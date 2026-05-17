@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected tier action-stack helper checkpoint
+- Extracted the existing selected `card-types` action stack into a dedicated `ResourceIndexController` helper, so the Galaxy tier review surface now builds its create-shell, status-toggle, editing badge, and disabled import/publish companions through one small path without changing the current UI structure.
+- Kept the step narrow and behavior-preserving, specifically avoiding the riskier read-context helper path because the selected tier workspace uses a different action layout than the read-only selected catalogs.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_shop_scoped_admin_cannot_toggle_card_type_status|test_authenticated_user_can_toggle_card_type_status_from_header_action|test_authenticated_user_can_toggle_card_type_status_from_row_level_action'` (`8 passed`).
+
 ### Selected role read-context helper checkpoint
 - Extracted a small `selectedReadContextWithLeadingAndDisabledActions(...)` helper and rewired the selected `roles-permissions` workspace to use it, so that Galaxy access review surface now builds its leading bootstrap-gated mutation action and disabled review companions through one consistent path.
 - Kept the step narrow and behavior-preserving, but it removes another small patch of repetitive selected-action glue from `ResourceIndexController` while preserving the existing Galaxy-specific copy and gating reasons.
