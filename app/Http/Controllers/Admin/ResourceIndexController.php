@@ -1415,24 +1415,19 @@ class ResourceIndexController extends Controller
         $activeShopAssignedStaffCount = $roles->sum(fn (Role $role): int => $role->users->filter(fn ($user): bool => $user->shop_id !== null && (bool) $user->shop?->is_active)->count());
         $pausedShopAssignedStaffCount = $shopScopedAssignedStaffCount - $activeShopAssignedStaffCount;
 
-        $page['actions'] = [
+        $page['actions'] = $this->catalogPrimaryWithSecondaryReviewActions(
+            'Open live report catalog',
             [
-                'label' => 'Open live report catalog',
-                'tone' => 'primary',
+                [
+                    'label' => 'Review export presets',
+                    'disabledReason' => $this->reportsCatalogPresetDisabledReason($shopCount, $cardCount, $cardHolderCount, $roleCount),
+                ],
+                [
+                    'label' => 'Export source snapshot',
+                    'disabledReason' => $this->reportsCatalogExportDisabledReason($shopCount, $cardCount, $cardHolderCount, $roleCount),
+                ],
             ],
-            [
-                'label' => 'Review export presets',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->reportsCatalogPresetDisabledReason($shopCount, $cardCount, $cardHolderCount, $roleCount),
-            ],
-            [
-                'label' => 'Export source snapshot',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->reportsCatalogExportDisabledReason($shopCount, $cardCount, $cardHolderCount, $roleCount),
-            ],
-        ];
+        );
 
         if ($shopCount === 0 && $cardCount === 0 && $cardHolderCount === 0 && $roleCount === 0) {
             return $page;
@@ -2904,16 +2899,32 @@ class ResourceIndexController extends Controller
                 '#live-form',
                 $primaryDisabledReason,
             ),
-            ...array_map(
-                fn (array $action): array => [
-                    'label' => (string) ($action['label'] ?? 'Review action'),
-                    'tone' => 'secondary',
-                    'disabled' => true,
-                    'disabledReason' => (string) ($action['disabledReason'] ?? ''),
-                ],
-                $secondaryActions,
-            ),
+            ...$this->secondaryDisabledActions($secondaryActions),
         ];
+    }
+
+    private function catalogPrimaryWithSecondaryReviewActions(string $primaryLabel, array $secondaryActions): array
+    {
+        return [
+            [
+                'label' => $primaryLabel,
+                'tone' => 'primary',
+            ],
+            ...$this->secondaryDisabledActions($secondaryActions),
+        ];
+    }
+
+    private function secondaryDisabledActions(array $actions): array
+    {
+        return array_map(
+            fn (array $action): array => [
+                'label' => (string) ($action['label'] ?? 'Review action'),
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => (string) ($action['disabledReason'] ?? ''),
+            ],
+            $actions,
+        );
     }
 
     private function applySelectedPreviewContext(

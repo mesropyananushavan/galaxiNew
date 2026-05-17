@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Reports catalog action-helper checkpoint
+- Rewired the `reports` catalog to build its primary entry action plus disabled review/export companions through a shared helper path, and extracted the repeated disabled-secondary-action shaping into one small helper as well.
+- Kept the step narrow and behavior-preserving, but it removes another bit of starter-style controller duplication from a live Galaxy review surface while also simplifying the newer foundation-catalog helper path.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`4 passed`).
+
 ### Foundation catalog action-helper checkpoint
 - Extracted the repeated foundation-catalog action pattern for `roles-permissions`, `shops`, and `card-types` into one `ResourceIndexController` helper, so those Phase 1 admin catalogs now build their bootstrap-controlled primary action plus disabled review/publish companions through the same small path.
 - Kept the step narrow and behavior-preserving, but it trims another slice of starter-style controller duplication from the highest-value Galaxy foundation catalogs.
