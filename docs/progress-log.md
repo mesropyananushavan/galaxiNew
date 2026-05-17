@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Access-shell notes metric wording alignment checkpoint
+- Aligned the neighboring `roles-permissions` metric label from `Access notes` to `Galaxy access notes`, keeping the already-updated access surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context'`; the current matched slice covered the roles-permissions management preview plus selected role contexts and passed (`4 passed`).
+
 ### Access-shell scope metric wording alignment checkpoint
 - Aligned the neighboring `roles-permissions` metric label from `Scoped shops` to `Scoped Galaxy branches`, keeping the already-updated access surface consistent with the newer Galaxy-specific branch wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
