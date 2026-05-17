@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Reward metric wording alignment checkpoint
+- Aligned the neighboring `gifts` metric labels from `Active gifts` and `Paused gifts` to `Active Galaxy rewards` and `Paused Galaxy rewards`, keeping the already-updated reward surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the gifts preview assertion that reads the same summary stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_operational_index_shape|test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_unlimited_stock_gift_review_context'`; the current matched slice covered the gifts operational shape plus selected reward review contexts and passed (`3 passed`).
+
 ### Rule metric wording alignment checkpoint
 - Aligned the neighboring `services-rules` metric labels from `Active rules` and `Draft rules` to `Active Galaxy rules` and `Draft Galaxy rules`, keeping the already-updated rules surface consistent with the newer Galaxy-specific copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the rules preview assertion that reads the same summary stack.

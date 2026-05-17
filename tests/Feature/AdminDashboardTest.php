@@ -9537,7 +9537,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until gift CRUD and redemption parity exist beyond the preview shell.')
             ->assertSee('aria-disabled="true"', false)
             ->assertSee('Management snapshot')
-            ->assertSee('Active gifts')
+            ->assertSee('Active Galaxy rewards')
             ->assertSee('Low stock items')
             ->assertSee('No gift campaigns configured yet')
             ->assertSee('Create first Galaxy reward')

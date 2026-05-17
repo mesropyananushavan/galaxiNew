@@ -817,8 +817,8 @@ return [
             ['label' => 'Stock audit', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until stock checks are backed by Laravel inventory data.'],
         ],
         'metrics' => [
-            ['label' => 'Active gifts', 'value' => '2'],
-            ['label' => 'Paused gifts', 'value' => '1'],
+            ['label' => 'Active Galaxy rewards', 'value' => '2'],
+            ['label' => 'Paused Galaxy rewards', 'value' => '1'],
             ['label' => 'Low stock items', 'value' => '1'],
         ],
         'table' => [
