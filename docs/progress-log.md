@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Rule and gift catalog-action copy alignment checkpoint
+- Aligned the selected preview back actions for `services-rules` and `gifts` from generic `Back to all ...` copy to Galaxy catalog language (`Back to rule catalog` / `Back to gift catalog`), so two more Phase 1 parity surfaces now read like intentional operational catalogs instead of generic list fallbacks.
+- Kept the step narrow and behavior-safe, but it extends the same Galaxy-specific catalog wording into another pair of high-value admin review shells.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_blocking_rule_review_context|test_services_rules_page_supports_selected_partner_rule_review_context|test_services_rules_page_supports_selected_birthday_rule_review_context|test_services_rules_page_ignores_unknown_selected_rule_query|test_services_rules_page_accepts_case_insensitive_selected_rule_query|test_gifts_page_supports_selected_zero_stock_gift_review_context|test_gifts_page_supports_selected_branch_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_branch_gift_review_context|test_gifts_page_ignores_unknown_selected_gift_query|test_gifts_page_accepts_case_insensitive_selected_gift_query'` (`3 passed`, with the current suite matching the case-insensitive selected-rule query plus selected/all-shop and case-insensitive selected-gift coverage for this preview slice).
+
 ### Receipt catalog-action copy alignment checkpoint
 - Aligned the selected receipt workspace back action from generic `Back to all receipts` copy to Galaxy catalog language (`Back to receipt catalog`), so the checks-and-points review shell now reads more like an intentional operational catalog and less like a generic list fallback.
 - Kept the step narrow and behavior-safe, but it extends the same catalog-language cleanup into another Phase 1 parity surface that operators are expected to use for troubleshooting-first review.

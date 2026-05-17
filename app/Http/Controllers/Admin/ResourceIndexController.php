@@ -457,7 +457,7 @@ class ResourceIndexController extends Controller
             $page,
             $selectedRulePreview,
             'admin.services-rules.index',
-            'Back to all rules',
+            'Back to rule catalog',
             [
             [
                 'label' => 'Review priorities',
@@ -642,7 +642,7 @@ class ResourceIndexController extends Controller
             $page,
             $selectedGiftPreview,
             'admin.gifts.index',
-            'Back to all gifts',
+            'Back to gift catalog',
             [
             [
                 'label' => 'Stock audit',

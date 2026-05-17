@@ -8080,7 +8080,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all rules')
+            ->assertSee('Back to rule catalog')
             ->assertSee('/admin/services-rules')
             ->assertSee('Reviewing: Night service block')
             ->assertSee('Review priorities')
@@ -8122,7 +8122,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all rules')
+            ->assertSee('Back to rule catalog')
             ->assertSee('/admin/services-rules')
             ->assertSee('Reviewing: Partner card uplift')
             ->assertSee('Review priorities')
@@ -8169,7 +8169,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all rules')
+            ->assertSee('Back to rule catalog')
             ->assertSee('/admin/services-rules')
             ->assertSee('Reviewing: Birthday bonus')
             ->assertSee('Review priorities')
@@ -8216,7 +8216,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Review birthday bonus rule')
-            ->assertDontSee('Back to all rules')
+            ->assertDontSee('Back to rule catalog')
             ->assertDontSee('Selected rule preview');
     }
 
@@ -8228,7 +8228,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all rules')
+            ->assertSee('Back to rule catalog')
             ->assertSee('Reviewing: Night service block')
             ->assertSee('Selected rule preview');
     }
@@ -9302,7 +9302,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all gifts')
+            ->assertSee('Back to gift catalog')
             ->assertSee('/admin/gifts')
             ->assertSee('Reviewing: Premium dessert set')
             ->assertSee('Stock audit')
@@ -9344,7 +9344,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all gifts')
+            ->assertSee('Back to gift catalog')
             ->assertSee('/admin/gifts')
             ->assertSee('Reviewing: Airport transfer')
             ->assertSee('Stock audit')
@@ -9391,7 +9391,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all gifts')
+            ->assertSee('Back to gift catalog')
             ->assertSee('/admin/gifts')
             ->assertSee('Reviewing: Coffee voucher')
             ->assertSee('Stock audit')
@@ -9438,7 +9438,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all gifts')
+            ->assertSee('Back to gift catalog')
             ->assertSee('/admin/gifts')
             ->assertSee('Reviewing: Weekend brunch pass')
             ->assertSee('Stock audit')
@@ -9486,7 +9486,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Review coffee voucher gift')
-            ->assertDontSee('Back to all gifts')
+            ->assertDontSee('Back to gift catalog')
             ->assertDontSee('Selected gift preview');
     }
 
@@ -9498,7 +9498,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Back to all gifts')
+            ->assertSee('Back to gift catalog')
             ->assertSee('Reviewing: Premium dessert set')
             ->assertSee('Selected gift preview');
     }
