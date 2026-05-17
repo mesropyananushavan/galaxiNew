@@ -1309,6 +1309,12 @@ class ResourceIndexController extends Controller
                 : 'Back to branch catalog';
             $page['liveForm']['cancelRouteParameters'] = [];
             $page['liveForm']['submitLabel'] = 'Save branch changes';
+            $page['liveForm']['submitAttributes'] = $this->foundationLiveFormSubmitAttributes(
+                $this->shopsFoundationMutationDisabledReason(),
+            );
+            $page['liveForm']['fields'] = $this->foundationLiveFormFields(
+                $page['liveForm']['fields'] ?? [],
+            );
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedShop->name,
                 'code' => $selectedShop->code,

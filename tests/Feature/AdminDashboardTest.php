@@ -5360,7 +5360,14 @@ class AdminDashboardTest extends TestCase
         $selectedResponse
             ->assertOk()
             ->assertSee('Back to branch catalog')
-            ->assertDontSee('Create new Galaxy branch shell');
+            ->assertDontSee('Create new Galaxy branch shell')
+            ->assertSee('>Save branch changes<', false)
+            ->assertSee('disabled title="Only bootstrap admins can create new Galaxy branch shells while Phase 1 keeps the branch foundation under central control." aria-disabled="true"', false)
+            ->assertSee('name="name"', false)
+            ->assertSee('readonly', false)
+            ->assertSee('aria-readonly="true"', false)
+            ->assertSee('name="is_active"', false)
+            ->assertSee('aria-disabled="true"', false);
     }
 
     public function test_shops_page_hides_other_shop_review_links_for_shop_scoped_admins(): void

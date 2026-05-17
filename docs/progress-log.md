@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Scoped branch-form field-locking checkpoint
+- Extended the `shops` selected-branch form to match the existing scoped foundation review-only posture, so shop-scoped admins now see a disabled submit button plus locked form fields when Phase 1 central-control rules block branch creation.
+- Reused the same branch-foundation disabled reason already shown on the catalog action and kept the allowed branch update happy path green for bootstrap-admin flows.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace|test_authenticated_user_can_update_shop_from_live_admin_flow|test_shops_page_surfaces_selected_live_branch_context_from_laravel_data'` (`2 passed`, with the filter matching the scoped branch-workspace check plus the existing live shop update flow).
+
 ### Scoped foundation field-locking checkpoint
 - Extended the scoped foundation-form gating for `roles-permissions` and `card-types`, so shop-scoped admins now see the form fields themselves locked in review mode, not just a disabled submit button.
 - Text-like fields now render read-only and select fields render disabled when Phase 1 central-control rules block the mutation path, which keeps the live shell visually honest without changing bootstrap-admin editing.
