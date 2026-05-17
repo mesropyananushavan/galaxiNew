@@ -4577,6 +4577,48 @@ class AdminDashboardTest extends TestCase
         ]);
     }
 
+    public function test_shop_scoped_admin_cannot_create_new_shop(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Creator Branch',
+            'code' => 'galaxy-scoped-creator-branch',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+        $role = Role::create([
+            'name' => 'Scoped Shop Creator Operator',
+            'slug' => 'scoped-shop-creator-operator',
+            'is_active' => true,
+        ]);
+        $permission = Permission::create([
+            'name' => 'Create scoped shops',
+            'slug' => 'create-scoped-shops',
+            'review_note' => 'Phase 1 scoped shop create coverage.',
+        ]);
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $response = $this->from('/admin/shops')->actingAs($user)->post(route('admin.shops.store'), [
+            'name' => 'Galaxy Scoped Unauthorized Branch',
+            'code' => 'galaxy-scoped-unauthorized-branch',
+            'is_active' => 'true',
+            'review_note' => 'Scoped admins should not create new branches during Phase 1.',
+        ]);
+
+        $response
+            ->assertRedirect('/admin/shops#live-form')
+            ->assertSessionHasErrors([
+                'shop_id' => 'Only bootstrap admins can create new shops while the Galaxy branch foundation is still centrally controlled.',
+            ]);
+
+        $this->assertDatabaseMissing('shops', [
+            'code' => 'galaxy-scoped-unauthorized-branch',
+        ]);
+    }
+
     public function test_authenticated_user_can_update_shop_from_live_admin_flow(): void
     {
         $user = User::factory()->create();

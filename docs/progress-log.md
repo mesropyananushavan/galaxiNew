@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Bootstrap-only shop creation checkpoint
+- Added a focused validation guard to `StoreShopRequest` so shop-scoped admins can no longer create brand new branches while the Galaxy branch foundation is still under central bootstrap control.
+- Added regression coverage proving a scoped operator is blocked from shop creation, while the bootstrap-admin create/update shop happy paths stay green.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_create_shop_from_live_admin_flow|test_shop_scoped_admin_cannot_create_new_shop|test_authenticated_user_can_update_shop_from_live_admin_flow'` (`3 passed`).
+
 ### Foreign-record update guard for scoped cards and holders checkpoint
 - Extended the shared shop-scope validation pattern to cover the current route record on card and cardholder updates, not just the submitted target `shop_id`.
 - This closes a real Phase 1 access hole: scoped admins can no longer grab a foreign card or holder and "move" it into their own branch through an update request.
