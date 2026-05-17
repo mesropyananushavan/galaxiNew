@@ -1823,7 +1823,7 @@ class ResourceIndexController extends Controller
         if (is_array($latestLiveSource)) {
             $page = $this->appendLatestPreviewReviewAction(
                 $page,
-                sprintf('Review %s source', strtolower($latestLiveSource['label'])),
+                sprintf('Review %s reporting source', strtolower($latestLiveSource['label'])),
                 'admin.reports.index',
                 'source',
                 (string) $latestLiveSource['key'],

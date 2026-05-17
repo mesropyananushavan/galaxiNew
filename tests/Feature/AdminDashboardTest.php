@@ -6952,7 +6952,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Role access coverage')
             ->assertSee('/admin/reports?source=role-access')
             ->assertSee('1 roles')
-            ->assertSee('Review cards by shop source')
+            ->assertSee('Review cards by shop reporting source')
             ->assertSee('Open live report catalog')
             ->assertSee('Review export presets')
             ->assertSee('Blocked until preset handling is verified against multiple live Laravel reporting sources.')
@@ -7524,7 +7524,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Review cards by shop source')
+            ->assertSee('Review cards by shop reporting source')
             ->assertDontSee('Back to report catalog')
             ->assertDontSee('Selected report source');
     }
