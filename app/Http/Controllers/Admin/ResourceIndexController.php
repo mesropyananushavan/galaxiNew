@@ -772,6 +772,9 @@ class ResourceIndexController extends Controller
             $page['liveForm']['submitAttributes'] = $this->foundationLiveFormSubmitAttributes(
                 $this->rolesPermissionsFoundationMutationDisabledReason(),
             );
+            $page['liveForm']['fields'] = $this->foundationLiveFormFields(
+                $page['liveForm']['fields'] ?? [],
+            );
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedRole->name,
                 'slug' => $selectedRole->slug,
@@ -2156,6 +2159,9 @@ class ResourceIndexController extends Controller
         $page['liveForm']['submitLabel'] = $this->cardTypesLiveFormSubmitLabel();
         $page['liveForm']['submitAttributes'] = $this->foundationLiveFormSubmitAttributes(
             $this->cardTypesFoundationMutationDisabledReason(),
+        );
+        $page['liveForm']['fields'] = $this->foundationLiveFormFields(
+            $page['liveForm']['fields'] ?? [],
         );
         $page['liveForm']['valuesResolver'] = [
             'name' => $selectedCardType->name,
@@ -4557,6 +4563,37 @@ class ResourceIndexController extends Controller
             'title' => $disabledReason,
             'aria-disabled' => 'true',
         ];
+    }
+
+    private function foundationLiveFormFields(mixed $fields): array
+    {
+        if ($this->canManageFoundationCatalog() || ! is_array($fields)) {
+            return is_array($fields) ? $fields : [];
+        }
+
+        return array_map(function (mixed $field): mixed {
+            if (! is_array($field) || ! is_string($field['type'] ?? null)) {
+                return $field;
+            }
+
+            if (($field['type'] ?? null) === 'hidden') {
+                return $field;
+            }
+
+            $attributes = is_array($field['attributes'] ?? null) ? $field['attributes'] : [];
+
+            if (($field['type'] ?? null) === 'select') {
+                $attributes['disabled'] = true;
+                $attributes['aria-disabled'] = 'true';
+            } else {
+                $attributes['readonly'] = true;
+                $attributes['aria-readonly'] = 'true';
+            }
+
+            $field['attributes'] = $attributes;
+
+            return $field;
+        }, $fields);
     }
 
     private function shopsFoundationMutationDisabledReason(): string

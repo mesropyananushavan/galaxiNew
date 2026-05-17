@@ -1330,7 +1330,12 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control.')
             ->assertSee('Back to access catalog')
             ->assertSee('>Save access changes<', false)
-            ->assertSee('disabled title="Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control." aria-disabled="true"', false);
+            ->assertSee('disabled title="Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control." aria-disabled="true"', false)
+            ->assertSee('name="name"', false)
+            ->assertSee('readonly', false)
+            ->assertSee('aria-readonly="true"', false)
+            ->assertSee('name="is_active"', false)
+            ->assertSee('aria-disabled="true"', false);
     }
 
     public function test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data(): void
@@ -9581,7 +9586,12 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Back to tier catalog')
             ->assertSee('Move to draft')
             ->assertSee('>Save tier changes<', false)
-            ->assertSee('disabled title="Only bootstrap admins can reshape Galaxy tier shells while Phase 1 keeps the tier foundation under central control." aria-disabled="true"', false);
+            ->assertSee('disabled title="Only bootstrap admins can reshape Galaxy tier shells while Phase 1 keeps the tier foundation under central control." aria-disabled="true"', false)
+            ->assertSee('name="name"', false)
+            ->assertSee('readonly', false)
+            ->assertSee('aria-readonly="true"', false)
+            ->assertSee('name="is_active"', false)
+            ->assertSee('aria-disabled="true"', false);
     }
 
     public function test_authenticated_user_can_access_card_types_management_preview(): void

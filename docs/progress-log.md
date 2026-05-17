@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Scoped foundation field-locking checkpoint
+- Extended the scoped foundation-form gating for `roles-permissions` and `card-types`, so shop-scoped admins now see the form fields themselves locked in review mode, not just a disabled submit button.
+- Text-like fields now render read-only and select fields render disabled when Phase 1 central-control rules block the mutation path, which keeps the live shell visually honest without changing bootstrap-admin editing.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_shop_scoped_admin_sees_card_type_mutation_actions_disabled_in_card_types_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_selected_card_type_reuses_shared_live_form_in_edit_mode'` (`3 passed`, with the filter matching the two scoped workspace checks plus the existing selected-role coverage).
+
 ### Scoped foundation form-control gating checkpoint
 - Aligned the selected `roles-permissions` and `card-types` live forms with the existing Phase 1 backend restrictions, so shop-scoped admins now see disabled submit controls plus review-oriented cancel paths (`Back to access catalog` / `Back to tier catalog`) instead of create-oriented form affordances.
 - Reused the same central-control reasons already shown in the surrounding workspace actions, which keeps the form-level mutation affordances honest without changing the bootstrap-admin happy path.
