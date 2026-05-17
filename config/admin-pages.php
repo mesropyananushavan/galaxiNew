@@ -805,7 +805,7 @@ return [
     'gifts' => [
         'pageTitle' => 'Gifts',
         'eyebrow' => 'Catalog / Gifts',
-        'summary' => 'Baseline management screen for gift catalog, redemption settings, and stock-aware reward management.',
+        'summary' => 'Galaxy reward workspace for catalog scope, redemption settings, and stock-aware reward review.',
         'nextStep' => 'Replace sample controls with real gift CRUD, stock tracking, and redemption flows.',
         'actions' => [
             [

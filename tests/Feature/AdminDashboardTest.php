@@ -9298,6 +9298,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Gifts placeholder')
+            ->assertSee('Galaxy reward workspace for catalog scope, redemption settings, and stock-aware reward review.')
             ->assertSee('Coffee voucher')
             ->assertSee('/admin/gifts?gift=coffee-voucher')
             ->assertSee('Points range')

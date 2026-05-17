@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Gifts summary wording alignment checkpoint
+- Aligned the `gifts` page summary from the older generic baseline wording to `Galaxy reward workspace for catalog scope, redemption settings, and stock-aware reward review.` so the reward surface reads more like the intended Phase 1 Galaxy console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_operational_index_shape|test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_unlimited_stock_gift_review_context'`; the current matched slice covered the gifts operational shape plus selected reward review contexts and passed (`3 passed`).
+
 ### Access-shell summary wording alignment checkpoint
 - Aligned the `roles-permissions` page summary from the older generic baseline wording to `Galaxy access-shell workspace for role identities, permission bundles, and future shop-scoped access review.` so the access surface reads more like the intended Phase 1 Galaxy console.
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
