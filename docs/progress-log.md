@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Checks summary wording alignment checkpoint
+- Aligned the `checks-points` page summary from the older generic `Operational placeholder` phrasing to `Galaxy receipt and accrual workspace for purchases, fiscal search, and point adjustments.` so the receipt/accrual surface reads more like the intended Galaxy operational console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_zero_accrual_review_context|test_checks_points_page_supports_selected_positive_accrual_review_context'`; the current matched slice covered the checks operational shape and selected receipt context and passed (`2 passed`).
+
 ### Reports summary wording alignment checkpoint
 - Aligned the `reports` page summary from the older generic `Operational placeholder` phrasing to `Galaxy reporting workspace for analytics, histories, and export-oriented admin review.` so the reporting surface reads less like a starter stub and more like the intended Phase 1 Galaxy shell.
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.

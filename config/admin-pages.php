@@ -419,7 +419,7 @@ return [
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
         'eyebrow' => 'Operations / Checks & Points',
-        'summary' => 'Operational placeholder for purchases, accrual events, fiscal search, and point adjustments.',
+        'summary' => 'Galaxy receipt and accrual workspace for purchases, fiscal search, and point adjustments.',
         'nextStep' => 'Add fiscal lookup, accrual history, and shop/date filters.',
         'actions' => [
             ['label' => 'Find receipt', 'tone' => 'primary'],

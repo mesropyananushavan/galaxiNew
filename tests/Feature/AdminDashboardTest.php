@@ -6643,6 +6643,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Receipts listed')
             ->assertSee('Positive accruals')
             ->assertSee('Zero accruals')
+            ->assertSee('Galaxy receipt and accrual workspace for purchases, fiscal search, and point adjustments.')
             ->assertSee('Checks and points operations are still preview-only')
             ->assertSee('Receipt lookup actions, accrual metrics, and troubleshooting cues are shaping the final Galaxy flow, but real Laravel transaction reads do not exist yet.')
             ->assertSee('Migration readiness checklist')
