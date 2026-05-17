@@ -17,6 +17,11 @@
 - Kept the step intentionally narrow and copy-only, with no behavior change, and removed another visible generic wording pocket from a real admin surface.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shop_scoped_admin_sees_cardholder_creation_actions_disabled_in_cardholders_workspace'`; the current matched slice covered the cardholders operational shape plus selected holder review contexts and passed (`3 passed`).
 
+### Branch metric wording alignment checkpoint
+- Aligned the neighboring `shops` metric label from `Paused shops` to `Paused Galaxy branches`, keeping the already-updated branch surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the malformed-metrics coverage to match the same branch wording.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_resource_summary_metrics_ignore_malformed_metric_entries|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the current matched slice passed (`4 passed`).
+
 ### Branch summary wording alignment checkpoint
 - Aligned the `shops` page summary from the older generic baseline wording to `Galaxy branch workspace for scope boundaries, activation review, and future access checks.` so the branch surface reads more like the intended Phase 1 Galaxy console.
 - While validating the narrow copy step, the focused slice exposed one neighboring metric label that still used older generic wording, so `Active shops` was safely aligned to `Active Galaxy branches` on the same surface.
