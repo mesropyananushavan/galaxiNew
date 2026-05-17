@@ -1217,11 +1217,11 @@ class ResourceIndexController extends Controller
             ->get();
 
         $page['actions'] = [
-            [
-                'label' => 'New Galaxy branch',
-                'tone' => 'primary',
-                'href' => '#live-form',
-            ],
+            $this->foundationMutationAction(
+                'New Galaxy branch',
+                '#live-form',
+                $this->shopsFoundationMutationDisabledReason(),
+            ),
             [
                 'label' => 'Review branch scope',
                 'tone' => 'secondary',
@@ -1296,7 +1296,9 @@ class ResourceIndexController extends Controller
                 'shop' => $selectedShop,
             ];
             $page['liveForm']['cancelRoute'] = 'admin.shops.index';
-            $page['liveForm']['cancelLabel'] = 'Create new Galaxy branch shell';
+            $page['liveForm']['cancelLabel'] = $this->canManageFoundationCatalog()
+                ? 'Create new Galaxy branch shell'
+                : 'Back to branch catalog';
             $page['liveForm']['cancelRouteParameters'] = [];
             $page['liveForm']['submitLabel'] = 'Save branch changes';
             $page['liveForm']['valuesResolver'] = [
@@ -4532,6 +4534,11 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsFoundationMutationDisabledReason(): string
     {
         return 'Only bootstrap admins can reshape Galaxy access shells while Phase 1 keeps the access foundation under central control.';
+    }
+
+    private function shopsFoundationMutationDisabledReason(): string
+    {
+        return 'Only bootstrap admins can create new Galaxy branch shells while Phase 1 keeps the branch foundation under central control.';
     }
 
     private function cardTypesFoundationMutationDisabledReason(): string

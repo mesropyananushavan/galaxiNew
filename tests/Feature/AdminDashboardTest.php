@@ -5314,6 +5314,48 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('selected for Laravel review');
     }
 
+    public function test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace(): void
+    {
+        $assignedShop = Shop::create([
+            'name' => 'Galaxy Scoped Branch Workspace',
+            'code' => 'galaxy-scoped-branch-workspace',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create([
+            'shop_id' => $assignedShop->id,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scoped Branch Workspace Operator',
+            'slug' => 'scoped-branch-workspace-operator',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Review scoped branch workspace',
+            'slug' => 'review-scoped-branch-workspace',
+            'review_note' => 'Phase 1 scoped branch workspace action gating coverage.',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+        $user->roles()->attach($role->id);
+
+        $catalogResponse = $this->actingAs($user)->get(route('admin.shops.index'));
+
+        $catalogResponse
+            ->assertOk()
+            ->assertSee('Only bootstrap admins can create new Galaxy branch shells while Phase 1 keeps the branch foundation under central control.')
+            ->assertSee('New Galaxy branch');
+
+        $selectedResponse = $this->actingAs($user)->get(route('admin.shops.index', ['shop' => $assignedShop]));
+
+        $selectedResponse
+            ->assertOk()
+            ->assertSee('Back to branch catalog')
+            ->assertDontSee('Create new Galaxy branch shell');
+    }
+
     public function test_shops_page_hides_other_shop_review_links_for_shop_scoped_admins(): void
     {
         $assignedShop = Shop::create([

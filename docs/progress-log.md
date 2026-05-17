@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Scoped branch-workspace action-gating checkpoint
+- Aligned the `shops` shell with the existing Phase 1 branch-creation restriction, so shop-scoped admins now see the catalog-level `New Galaxy branch` action disabled and the selected-branch form swaps its create-oriented cancel path to `Back to branch catalog`.
+- Added focused coverage proving a scoped operator sees the central-control disabled reason on the shops catalog and no longer sees the misleading `Create new Galaxy branch shell` affordance inside the selected branch edit flow.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace|test_authenticated_user_can_access_shops_management_preview|test_shops_page_surfaces_selected_live_branch_context_from_laravel_data|test_authenticated_user_can_update_shop_from_live_admin_flow'` (`2 passed`, with the filter matching the new scoped branch-workspace check plus the existing live shop update flow).
+
 ### Scoped workspace action-gating checkpoint
 - Aligned the `roles-permissions` and `card-types` page actions with the existing Phase 1 backend restrictions, so shop-scoped admins now see the create/toggle foundation actions rendered as disabled instead of looking silently available.
 - Added focused workspace coverage proving scoped operators now see central-control disabled reasons in the selected role and selected tier flows, while the existing bootstrap-admin selected-workspace pages still render normally.
