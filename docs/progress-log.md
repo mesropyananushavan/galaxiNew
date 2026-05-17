@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected reports action-helper checkpoint
+- Reused the shared `secondaryDisabledActions(...)` helper inside the selected `reports` workspace, so the disabled `Review export presets` and `Export source snapshot` companions now flow through the same action-shaping path used across the rest of the Phase 1 admin shell.
+- Kept the step narrow and behavior-preserving, but it trims another small inline action block from `ResourceIndexController` while preserving the current Galaxy-specific report-review copy.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_role_access_pending_readiness_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`6 passed`).
+
 ### Selected role and branch action-helper checkpoint
 - Reused the shared `secondaryDisabledActions(...)` helper inside the selected `roles-permissions` and `shops` workspaces, so their disabled review companions now flow through the same small action-shaping path used elsewhere in the Phase 1 admin shell.
 - Kept the step narrow and behavior-preserving, but it trims another small patch of inline controller duplication while preserving the Galaxy-specific selected-workspace copy and bootstrap gating reasons.

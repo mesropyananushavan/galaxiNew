@@ -1846,20 +1846,16 @@ class ResourceIndexController extends Controller
             'admin.reports.index',
             'Back to report catalog',
             $selectedReportSource['label'],
-            [
+            $this->secondaryDisabledActions([
                 [
                     'label' => 'Review export presets',
-                    'tone' => 'secondary',
-                    'disabled' => true,
                     'disabledReason' => $this->reportsSelectedSourcePresetDisabledReason($selectedReportSource),
                 ],
                 [
                     'label' => 'Export source snapshot',
-                    'tone' => 'secondary',
-                    'disabled' => true,
                     'disabledReason' => $this->reportsSelectedSourceExportDisabledReason($selectedReportSource),
                 ],
-            ],
+            ]),
         );
         $page['activityTimeline'] = $selectedReportSource['timeline'];
         $page['dependencyStatus'] = $selectedReportSource['dependencyStatus'];
