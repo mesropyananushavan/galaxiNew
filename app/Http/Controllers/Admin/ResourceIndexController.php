@@ -2913,18 +2913,12 @@ class ResourceIndexController extends Controller
         array $additionalActions,
     ): array {
         $page['selectedRecordSummary'] = is_array($selectedPreview['summary'] ?? null) ? $selectedPreview['summary'] : [];
-        $page['actions'] = [
-            [
-                'label' => $backLabel,
-                'tone' => 'primary',
-                'href' => route($indexRouteName, absolute: false),
-            ],
-            [
-                'label' => sprintf('Reviewing: %s', (string) ($selectedPreview['label'] ?? 'Preview item')),
-                'tone' => 'secondary',
-            ],
-            ...$additionalActions,
-        ];
+        $page['actions'] = $this->selectedReadContextActions(
+            $indexRouteName,
+            $backLabel,
+            (string) ($selectedPreview['label'] ?? 'Preview item'),
+            $additionalActions,
+        );
         $page['activityTimeline'] = is_array($selectedPreview['timeline'] ?? null) ? $selectedPreview['timeline'] : [];
         $page['dependencyStatus'] = is_array($selectedPreview['dependencyStatus'] ?? null) ? $selectedPreview['dependencyStatus'] : [];
 

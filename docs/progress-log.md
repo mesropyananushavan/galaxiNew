@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected preview action-helper consolidation checkpoint
+- Rewired `applySelectedPreviewContext(...)` to build its back/review action stack through the shared `selectedReadContextActions(...)` helper instead of duplicating that action array inline, so receipts, rules, gifts, and other selected-preview surfaces now flow through the same selected-workspace action path.
+- Kept the step narrow and behavior-preserving, but it removes another small layer of starter-style controller duplication from the Phase 1 Galaxy admin shell.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_branch_receipt_review_context|test_services_rules_page_accepts_case_insensitive_selected_rule_query|test_gifts_page_supports_selected_all_shop_gift_review_context|test_reports_page_supports_selected_live_source_review_context'` (`4 passed`).
+
 ### Selected reports action-helper alignment checkpoint
 - Rewired the selected `reports` workspace to build its back/review action stack through the shared `selectedReadContextActions(...)` helper instead of one inline array, so another Phase 1 review surface now follows the same helper-driven structure as the other selected Galaxy workspaces.
 - Kept the step narrow and behavior-preserving, but it trims a little more starter-style controller glue from a live admin surface that already uses Galaxy-specific catalog wording.
