@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Card latest-link copy alignment checkpoint
+- Aligned the `cards` catalog latest-review action from the generic `Review latest saved card` wording to the more Galaxy-specific `Review latest saved card shell`, keeping the inventory workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query|test_cards_page_ignores_inaccessible_selected_card_query_for_shop_scoped_admins|test_cards_page_surfaces_selected_card_context_from_laravel_data'` (`5 passed`).
+
 ### Role latest-link copy alignment checkpoint
 - Aligned the `roles-permissions` catalog latest-review action from the generic `Review latest saved role` wording to the more Galaxy-specific `Review latest saved access shell`, keeping that access workspace closer to the Phase 1 admin-shell tone used elsewhere.
 - Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.

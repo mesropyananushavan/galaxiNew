@@ -2570,7 +2570,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create Galaxy card in Laravel')
             ->assertSee('Create inventory shell')
             ->assertSee('action="/admin/cards"', false)
-            ->assertSee('Review latest saved card')
+            ->assertSee('Review latest saved card shell')
             ->assertSee('Active cards')
             ->assertSee('Draft cards')
             ->assertSee('Blocked cards')
@@ -4154,7 +4154,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('GX-920001')
-            ->assertSee('Review latest saved card')
+            ->assertSee('Review latest saved card shell')
             ->assertDontSee('Back to card catalog')
             ->assertDontSee('Selected card')
             ->assertDontSee('selected for Laravel review');
@@ -4198,7 +4198,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('GX-930001')
-            ->assertSee('Review latest saved card')
+            ->assertSee('Review latest saved card shell')
             ->assertDontSee('Back to card catalog')
             ->assertDontSee('Selected card')
             ->assertDontSee('selected for Laravel review');
@@ -4264,7 +4264,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('href="/admin/cards?card='.$assignedCard->id.'"', false)
             ->assertDontSee('href="/admin/cards?card='.$otherCard->id.'"', false)
-            ->assertSee('Review latest saved card')
+            ->assertSee('Review latest saved card shell')
             ->assertSee('href="/admin/cards?card='.$assignedCard->id.'"', false);
     }
 
@@ -4331,7 +4331,7 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Back to card catalog')
             ->assertDontSee('Reviewing: GX-950002')
             ->assertDontSee('Selected card')
-            ->assertSee('Review latest saved card')
+            ->assertSee('Review latest saved card shell')
             ->assertSee('href="/admin/cards?card=1"', false);
     }
 

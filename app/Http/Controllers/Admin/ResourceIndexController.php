@@ -907,7 +907,7 @@ class ResourceIndexController extends Controller
         if ($latestCard !== null) {
             $page = $this->appendLatestSavedReviewAction(
                 $page,
-                'Review latest saved card',
+                'Review latest saved card shell',
                 'admin.cards.index',
                 'card',
                 $latestCard->id,
