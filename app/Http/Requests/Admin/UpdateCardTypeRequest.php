@@ -25,15 +25,11 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
 
     public function withValidator(Validator $validator): void
     {
-        $validator->after(function (Validator $validator): void {
-            $user = $this->user();
-
-            if ($user === null || $user->hasBootstrapAdminAccess()) {
-                return;
-            }
-
-            $validator->errors()->add('slug', 'Only bootstrap admins can update card types while the Galaxy tier foundation is still centrally controlled.');
-        });
+        $this->validateBootstrapAdminAccess(
+            $validator,
+            'slug',
+            'Only bootstrap admins can update card types while the Galaxy tier foundation is still centrally controlled.'
+        );
     }
 
     protected function getRedirectUrl(): string

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\ValidatesBootstrapAdminAccess;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Str;
@@ -9,6 +10,8 @@ use Illuminate\Validation\Validator;
 
 class StoreRoleRequest extends FormRequest
 {
+    use ValidatesBootstrapAdminAccess;
+
     protected $redirectRoute = 'admin.roles-permissions.index';
 
     public function authorize(): bool
@@ -71,15 +74,11 @@ class StoreRoleRequest extends FormRequest
 
     public function withValidator(Validator $validator): void
     {
-        $validator->after(function (Validator $validator): void {
-            $user = $this->user();
-
-            if ($user === null || $user->hasBootstrapAdminAccess()) {
-                return;
-            }
-
-            $validator->errors()->add('slug', 'Only bootstrap admins can create new roles while the Galaxy access foundation is still centrally controlled.');
-        });
+        $this->validateBootstrapAdminAccess(
+            $validator,
+            'slug',
+            'Only bootstrap admins can create new roles while the Galaxy access foundation is still centrally controlled.'
+        );
     }
 
     protected function getRedirectUrl(): string

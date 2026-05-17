@@ -25,15 +25,11 @@ class UpdateRoleRequest extends StoreRoleRequest
 
     public function withValidator(Validator $validator): void
     {
-        $validator->after(function (Validator $validator): void {
-            $user = $this->user();
-
-            if ($user === null || $user->hasBootstrapAdminAccess()) {
-                return;
-            }
-
-            $validator->errors()->add('slug', 'Only bootstrap admins can update roles while the Galaxy access foundation is still centrally controlled.');
-        });
+        $this->validateBootstrapAdminAccess(
+            $validator,
+            'slug',
+            'Only bootstrap admins can update roles while the Galaxy access foundation is still centrally controlled.'
+        );
     }
 
     protected function getRedirectUrl(): string

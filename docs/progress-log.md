@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Shared bootstrap-only request validation checkpoint
+- Extracted repeated bootstrap-only request validation into `app/Http/Requests/Admin/Concerns/ValidatesBootstrapAdminAccess.php`, so the Phase 1 central-control rule for shops, roles, and card types now lives in one reusable request concern.
+- Rewired `StoreShopRequest`, `StoreRoleRequest`, `UpdateRoleRequest`, `StoreCardTypeRequest`, and `UpdateCardTypeRequest` to use the shared concern without changing the operator-facing validation copy.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_new_role|test_shop_scoped_admin_cannot_update_role|test_shop_scoped_admin_cannot_create_new_shop|test_shop_scoped_admin_cannot_create_new_card_type|test_shop_scoped_admin_cannot_update_card_type'` (`5 passed`).
+
 ### Bootstrap-only card type update messaging checkpoint
 - Split the scoped-admin card-type update block away from the card-type create message path, so `UpdateCardTypeRequest` now returns an update-specific Phase 1 validation message instead of the misleading create-only copy.
 - Added regression coverage proving a shop-scoped operator is redirected back to the selected tier edit flow with the new update-specific error, while the bootstrap-admin card-type update happy path stays green.

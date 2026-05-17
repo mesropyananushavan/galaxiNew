@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\ValidatesBootstrapAdminAccess;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Str;
@@ -9,6 +10,8 @@ use Illuminate\Validation\Validator;
 
 class StoreShopRequest extends FormRequest
 {
+    use ValidatesBootstrapAdminAccess;
+
     protected $redirectRoute = 'admin.shops.index';
 
     public function authorize(): bool
@@ -63,15 +66,11 @@ class StoreShopRequest extends FormRequest
 
     public function withValidator(Validator $validator): void
     {
-        $validator->after(function (Validator $validator): void {
-            $user = $this->user();
-
-            if ($user === null || $user->hasBootstrapAdminAccess()) {
-                return;
-            }
-
-            $validator->errors()->add('shop_id', 'Only bootstrap admins can create new shops while the Galaxy branch foundation is still centrally controlled.');
-        });
+        $this->validateBootstrapAdminAccess(
+            $validator,
+            'shop_id',
+            'Only bootstrap admins can create new shops while the Galaxy branch foundation is still centrally controlled.'
+        );
     }
 
     protected function getRedirectUrl(): string
