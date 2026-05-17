@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Selected edit-form cancel-label alignment checkpoint
+- Replaced the remaining create-oriented cancel labels on selected `cards` and `cardholders` live edit forms with review-oriented return paths (`Back to card catalog` / `Back to holder catalog`), so saved-record workspaces no longer imply operators are starting a brand new shell.
+- Kept the step narrow and behavior-safe, but it makes two more live Galaxy edit surfaces read like real review workflows instead of leftover starter-style create flows.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'` (`2 passed`).
+
 ### Review-mode foundation form copy checkpoint
 - Extended the shared foundation-form review-mode helper so scoped admins now see review-specific descriptions in the selected role, branch, and tier forms instead of edit-oriented “update” copy.
 - This keeps the Phase 1 shell linguistically aligned with the already-disabled submit controls and locked fields, while leaving bootstrap-admin edit descriptions untouched.
