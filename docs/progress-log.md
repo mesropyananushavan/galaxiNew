@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Receipt catalog action-helper checkpoint
+- Rewired the `checks-points` receipt catalog to build its disabled primary `Find receipt` action plus the disabled review companion through a shared helper path, keeping that read-only parity shell aligned with the newer helper-driven catalog patterns.
+- Kept the change narrow and behavior-preserving, but it trims another small inline action stack from `ResourceIndexController` and makes the receipt review shell more consistent with the other Galaxy admin catalogs.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_checks_points_page_accepts_case_insensitive_selected_receipt_query'` (`6 passed`).
+
 ### Selected tier action-helper and title-alignment checkpoint
 - Reused the shared `secondaryDisabledActions(...)` helper inside the selected `card-types` workspace for the disabled `Import rules` and `Publish tier` actions, trimming one more small patch of inline controller duplication from the Phase 1 tier review shell.
 - While verifying that slice, aligned the remaining selected-tier test expectations from the old `Edit card type in Laravel` wording to the current Galaxy-specific title `Edit Galaxy tier in Laravel`, so the focused selected-tier coverage now matches the real admin copy.

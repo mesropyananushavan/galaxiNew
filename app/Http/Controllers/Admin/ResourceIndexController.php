@@ -248,20 +248,16 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        $page['actions'] = [
+        $page['actions'] = $this->catalogDisabledPrimaryWithSecondaryReviewActions(
+            'Find receipt',
+            $this->checksPointsCatalogFindReceiptDisabledReason($receiptPreviews),
             [
-                'label' => 'Find receipt',
-                'tone' => 'primary',
-                'disabled' => true,
-                'disabledReason' => $this->checksPointsCatalogFindReceiptDisabledReason($receiptPreviews),
+                [
+                    'label' => 'Review accrual gaps',
+                    'disabledReason' => $this->checksPointsCatalogReviewGapsDisabledReason($receiptPreviews),
+                ],
             ],
-            [
-                'label' => 'Review accrual gaps',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->checksPointsCatalogReviewGapsDisabledReason($receiptPreviews),
-            ],
-        ];
+        );
 
         $page['table']['rows'] = collect($receiptPreviews)->map(fn (array $receipt): array => [
             $this->linkedTableCell($receipt['label'], 'admin.checks-points.index', ['receipt' => $receipt['key']]),
@@ -2907,6 +2903,19 @@ class ResourceIndexController extends Controller
             [
                 'label' => $primaryLabel,
                 'tone' => 'primary',
+            ],
+            ...$this->secondaryDisabledActions($secondaryActions),
+        ];
+    }
+
+    private function catalogDisabledPrimaryWithSecondaryReviewActions(string $primaryLabel, string $primaryDisabledReason, array $secondaryActions): array
+    {
+        return [
+            [
+                'label' => $primaryLabel,
+                'tone' => 'primary',
+                'disabled' => true,
+                'disabledReason' => $primaryDisabledReason,
             ],
             ...$this->secondaryDisabledActions($secondaryActions),
         ];
