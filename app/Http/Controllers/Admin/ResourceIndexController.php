@@ -867,19 +867,11 @@ class ResourceIndexController extends Controller
                 ->all();
         }
 
-        $page['actions'] = [
-            [
-                'label' => 'New Galaxy card',
-                'tone' => 'primary',
-                'href' => '#live-form',
-            ],
-            [
-                'label' => 'Review blocked cards',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->cardsCatalogReviewBlockedDisabledReason($cards),
-            ],
-        ];
+        $page['actions'] = $this->catalogLiveFormReviewActions(
+            'New Galaxy card',
+            'Review blocked cards',
+            $this->cardsCatalogReviewBlockedDisabledReason($cards),
+        );
 
         if ($cards->isEmpty()) {
             return $page;
@@ -1061,19 +1053,11 @@ class ResourceIndexController extends Controller
                 ->all();
         }
 
-        $page['actions'] = [
-            [
-                'label' => 'New Galaxy holder',
-                'tone' => 'primary',
-                'href' => '#live-form',
-            ],
-            [
-                'label' => 'Review recent activity',
-                'tone' => 'secondary',
-                'disabled' => true,
-                'disabledReason' => $this->cardholdersCatalogReviewActivityDisabledReason($cardHolders),
-            ],
-        ];
+        $page['actions'] = $this->catalogLiveFormReviewActions(
+            'New Galaxy holder',
+            'Review recent activity',
+            $this->cardholdersCatalogReviewActivityDisabledReason($cardHolders),
+        );
 
         if ($cardHolders->isEmpty()) {
             return $page;
@@ -2903,6 +2887,26 @@ class ResourceIndexController extends Controller
         $page['actions'] = [...$actions, $action];
 
         return $page;
+    }
+
+    private function catalogLiveFormReviewActions(
+        string $primaryLabel,
+        string $reviewLabel,
+        string $reviewDisabledReason,
+    ): array {
+        return [
+            [
+                'label' => $primaryLabel,
+                'tone' => 'primary',
+                'href' => '#live-form',
+            ],
+            [
+                'label' => $reviewLabel,
+                'tone' => 'secondary',
+                'disabled' => true,
+                'disabledReason' => $reviewDisabledReason,
+            ],
+        ];
     }
 
     private function applySelectedPreviewContext(

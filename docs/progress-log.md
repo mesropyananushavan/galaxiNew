@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Catalog live-form action helper checkpoint
+- Extracted the repeated primary-plus-disabled-review action stack for the `cards` and `cardholders` catalogs into one `ResourceIndexController` helper, so both Galaxy management surfaces now build their `#live-form` entry action and review-only companion action through the same small path.
+- Kept the step narrow and behavior-preserving, but it trims another bit of starter-style controller duplication from two real Phase 1 admin catalogs.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_management_preview|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_authenticated_user_can_access_cardholders_management_preview|test_cardholders_page_replaces_preview_rows_with_model_backed_index_data'` (`2 passed`, with the current suite matching the focused model-backed cards/cardholders catalog coverage for this slice).
+
 ### Selected preview action-helper consolidation checkpoint
 - Rewired `applySelectedPreviewContext(...)` to build its back/review action stack through the shared `selectedReadContextActions(...)` helper instead of duplicating that action array inline, so receipts, rules, gifts, and other selected-preview surfaces now flow through the same selected-workspace action path.
 - Kept the step narrow and behavior-preserving, but it removes another small layer of starter-style controller duplication from the Phase 1 Galaxy admin shell.
