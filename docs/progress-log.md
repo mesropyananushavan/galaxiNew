@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Branch manager guidance wording alignment checkpoint
+- Aligned the selected `shops` manager-guidance copy from generic manager wording to Galaxy-specific branch-manager language (`No branch manager`, `paused Galaxy branch`, `Galaxy branch ownership-assignment parity`, and `current branch manager ownership`) so the live selected-branch review context stays consistent with the broader Phase 1 branch shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the neighboring focused selected-branch assertions that surfaced during validation.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_paused_branch_recovery_context|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the focused shops slice passed (`3 passed`).
+
 ### Branch metrics wording alignment checkpoint
 - Aligned the real `shops` summary metrics from generic shop wording to Galaxy-specific branch language (`Active Galaxy branches`, `Paused Galaxy branches`, `Reviewed Galaxy branches`, and `Assigned branch managers`) so the live branch catalog surface matches the broader Phase 1 admin shell vocabulary.
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.
