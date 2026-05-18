@@ -2609,7 +2609,7 @@ class ResourceIndexController extends Controller
         return match (true) {
             $pausedCount > 0 => 'Blocked until paused-branch recovery and manager assignment parity are verified.',
             $managerCount > 0 => 'Blocked until saved branch ownership and manager assignment parity are verified.',
-            default => 'Blocked until the first Laravel-backed shops index and manager assignment parity checks are verified.',
+            default => 'Blocked until the first Galaxy foundation-backed shops index and manager assignment parity checks are verified.',
         };
     }
 

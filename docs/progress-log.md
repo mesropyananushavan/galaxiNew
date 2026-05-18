@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Branch blocker wording alignment checkpoint
+- Aligned the live `shops` blocker copy from `first Laravel-backed shops index` to `first Galaxy foundation-backed shops index` so the selected-branch parity blocker stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused shop slice that covers that blocker guidance.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_manager_linked_coverage_review_context'`; the focused shop slice passed (`1 passed`).
+
 ### Holder blocker wording alignment checkpoint
 - Aligned the live `cardholders` blocker copy from `first Laravel-backed cardholder slice` to `first Galaxy foundation-backed cardholder slice` so the selected-holder parity blockers stay consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused holder assertion that reads that blocker guidance.
