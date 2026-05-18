@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Shared admin save-banner wording alignment checkpoint
+- Aligned the shared admin save fallback banner from `Latest Laravel-backed admin changes are now visible in the Galaxy workspace` to `Latest Galaxy foundation-backed admin changes are now visible in the workspace` so the generic post-save handoff copy stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and re-ran a focused admin page slice as a quick regression check after the shared view update.
+- Re-ran `php artisan test --filter='test_role_form_persists_identity_fields|test_cards_page_persists_selected_card|test_cardholders_page_persists_selected_holder_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context'`; the focused slice passed for the matched test (`1 passed`).
+
 ### Gift blocker wording alignment checkpoint
 - Aligned the live `gifts` blocker copy from `first Laravel-backed gift write flow` to `first Galaxy foundation-backed gift write flow` so the reward workflow shell stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused gift assertion that reads that blocker.

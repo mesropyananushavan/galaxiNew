@@ -9,7 +9,7 @@
                 'cards' => 'Inventory changes are now visible in the Galaxy foundation-backed workspace.',
                 'card-types' => 'Tier changes are now visible in the Galaxy foundation-backed workspace.',
                 'roles-permissions' => 'Access-shell changes are now visible in the Galaxy foundation-backed workspace.',
-                default => 'Latest Laravel-backed admin changes are now visible in the Galaxy workspace.',
+                default => 'Latest Galaxy foundation-backed admin changes are now visible in the workspace.',
             };
         @endphp
         <section class="card" id="backend-flow-status" tabindex="-1" role="status" aria-live="polite" style="border-color: rgba(34, 197, 94, 0.35); background: rgba(34, 197, 94, 0.08);">
