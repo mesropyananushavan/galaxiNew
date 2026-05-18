@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports selected-source title wording alignment checkpoint
+- Aligned the live `reports` selected-source titles from `selected for Laravel review` to `selected for Galaxy review` for the branch card-shell, holder-status, and access reporting sources so those review surfaces feel less like starter-era handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those selected-source titles.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`3 passed`).
+
 ### Reports branch source-coverage wording alignment checkpoint
 - Aligned the live `reports` branch source-coverage string from the slightly generic `read-only reporting review` wording to Galaxy-specific language (`read-only Galaxy branch card-shell reporting review`) so the selected branch source reads more consistently with the surrounding Galaxy branch/card-shell vocabulary.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that branch source-coverage string.

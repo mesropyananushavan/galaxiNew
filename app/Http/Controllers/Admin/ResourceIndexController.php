@@ -1504,7 +1504,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until file export formatting and delivery are validated.'],
                 ],
                 'timeline' => [
-                    ['title' => 'Galaxy branch card-shell coverage selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked Galaxy card shells across %d Galaxy branches from the current Laravel foundation.', $cardCount, $shopCount)],
+                    ['title' => 'Galaxy branch card-shell coverage selected for Galaxy review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked Galaxy card shells across %d Galaxy branches from the current Laravel foundation.', $cardCount, $shopCount)],
                     ['title' => 'Shop-level inventory parity stays review-only', 'time' => 'Current request', 'description' => 'Counts are live-backed now, but grouped report shaping and export output should stay parity-first until reporting pipeline checks exist.'],
                     ['title' => 'Branch inventory handoff stays on-screen first', 'time' => 'Current request', 'description' => $this->reportsCardsByShopTimelineHandoffDescription($holderLinkedCardCount, $unassignedCardCount)],
                 ],
@@ -1632,7 +1632,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until summary exports and lifecycle report expectations are validated.'],
                 ],
                 'timeline' => [
-                    ['title' => 'Galaxy holder status source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked Galaxy holders from the current Laravel foundation.', $cardHolderCount)],
+                    ['title' => 'Galaxy holder status source selected for Galaxy review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked Galaxy holders from the current Laravel foundation.', $cardHolderCount)],
                     ['title' => 'Lifecycle reporting parity stays review-only', 'time' => 'Current request', 'description' => 'Source counts are live-backed now, but period presets and export behavior should stay blocked until reporting parity is verified.'],
                     ['title' => 'Support handoff should keep holder posture visible', 'time' => 'Current request', 'description' => $this->reportsCardholderStatusTimelineHandoffDescription($linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                 ],
@@ -1751,7 +1751,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until access export expectations and file delivery are validated.'],
                 ],
                 'timeline' => [
-                    ['title' => 'Galaxy access source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked Galaxy access shells from the current Laravel foundation.', $roleCount)],
+                    ['title' => 'Galaxy access source selected for Galaxy review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked Galaxy access shells from the current Laravel foundation.', $roleCount)],
                     ['title' => 'Access reporting parity stays review-only', 'time' => 'Current request', 'description' => 'Source counts are live-backed now, but grouped role exports and access analytics should stay blocked until reporting parity is verified.'],
                     ['title' => 'Access-review handoff should stay visible in the workspace', 'time' => 'Current request', 'description' => $this->reportsRoleAccessTimelineHandoffDescription($permissionLinkedRoleCount, $assignedStaffCount)],
                 ],
