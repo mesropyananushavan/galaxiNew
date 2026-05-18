@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Role live-flow note wording alignment checkpoint
+- Aligned the live `roles-permissions` update-flow note fixture from `first live Laravel role adjustments` to `first live Galaxy foundation role adjustments` so the minimal live role path stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and re-ran the focused live role update slice that persists that note.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_update_role_from_minimal_live_admin_flow'`; the focused roles slice passed (`1 passed`).
+
 ### Dashboard migration-coverage wording alignment checkpoint
 - Aligned the live dashboard migration-map summary from `live Laravel coverage so far` to `live Galaxy foundation coverage so far` so the top-level Phase 1 progress signal matches the newer Galaxy foundation wording used across the admin shell.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that coverage summary.

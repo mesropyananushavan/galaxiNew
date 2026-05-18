@@ -2069,7 +2069,7 @@ class AdminDashboardTest extends TestCase
             'name' => '  Branch Operations Lead  ',
             'slug' => 'Branch Operations Lead',
             'is_active' => '1',
-            'review_note' => 'Document the first live Laravel role adjustments before widening scope.',
+            'review_note' => 'Document the first live Galaxy foundation role adjustments before widening scope.',
             'access_note' => 'Keep access handoff visible while this role remains under parity review.',
             'assignment_note' => 'Keep assignment rollout review-only while this role remains under parity review.',
         ]);
@@ -2083,7 +2083,7 @@ class AdminDashboardTest extends TestCase
             'name' => 'Branch Operations Lead',
             'slug' => 'branch-operations-lead',
             'is_active' => true,
-            'review_note' => 'Document the first live Laravel role adjustments before widening scope.',
+            'review_note' => 'Document the first live Galaxy foundation role adjustments before widening scope.',
             'access_note' => 'Keep access handoff visible while this role remains under parity review.',
             'assignment_note' => 'Keep assignment rollout review-only while this role remains under parity review.',
         ]);
