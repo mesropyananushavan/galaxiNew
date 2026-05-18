@@ -7473,7 +7473,7 @@ class AdminDashboardTest extends TestCase
 
         $assignedUser->roles()->attach($bundledRole->id);
 
-        $permissionBundleSignal = '1 permission-linked roles are already visible beside 1 unbundled active Galaxy access roles for parity review';
+        $permissionBundleSignal = '1 permission-linked Galaxy access roles are already visible beside 1 unbundled active Galaxy access roles for parity review';
 
         $user = User::factory()->create();
 
@@ -8015,14 +8015,14 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assignment branch activity signal')
             ->assertSee($assignmentBranchActivitySignal)
             ->assertSee('Bundle branch activity signal')
-            ->assertSee('1 permission-linked roles are already visible in active Galaxy branches beside 1 roles in paused Galaxy branches for parity review')
+            ->assertSee('1 permission-linked Galaxy access roles are already visible in active Galaxy branches beside 1 Galaxy access roles in paused Galaxy branches for parity review')
             ->assertSee('Access-review handoff should stay visible in the workspace')
             ->assertSee('Operators should hand off role-coverage and staffing findings in the live review context before trusting export files for access decisions.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Assignment branch activity signal:')
             ->assertSee($assignmentBranchActivitySignal)
             ->assertSee('Bundle branch activity signal:')
-            ->assertSee('1 permission-linked roles are already visible in active Galaxy branches beside 1 roles in paused Galaxy branches for parity review')
+            ->assertSee('1 permission-linked Galaxy access roles are already visible in active Galaxy branches beside 1 Galaxy access roles in paused Galaxy branches for parity review')
             ->assertSee('Handoff signal:')
             ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.');
     }

@@ -1734,13 +1734,13 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d permission-linked roles already carry shop-linked access scope for parity review', $scopedPermissionLinkedRoleCount)
                         : 'shop-linked permission-bundle coverage is still pending'],
                     ['label' => 'Bundle branch activity signal', 'value' => $activeBranchPermissionLinkedRoleCount > 0 && $pausedBranchPermissionLinkedRoleCount > 0
-                        ? sprintf('%d permission-linked roles are already visible in active Galaxy branches beside %d roles in paused Galaxy branches for parity review', $activeBranchPermissionLinkedRoleCount, $pausedBranchPermissionLinkedRoleCount)
+                        ? sprintf('%d permission-linked Galaxy access roles are already visible in active Galaxy branches beside %d Galaxy access roles in paused Galaxy branches for parity review', $activeBranchPermissionLinkedRoleCount, $pausedBranchPermissionLinkedRoleCount)
                         : 'paused-branch permission-bundle coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active Galaxy access roles are already visible beside %d draft Galaxy access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],
                     ['label' => 'Permission bundle signal', 'value' => $permissionLinkedRoleCount > 0 && $permissionlessActiveRoleCount > 0
-                        ? sprintf('%d permission-linked roles are already visible beside %d unbundled active Galaxy access roles for parity review', $permissionLinkedRoleCount, $permissionlessActiveRoleCount)
+                        ? sprintf('%d permission-linked Galaxy access roles are already visible beside %d unbundled active Galaxy access roles for parity review', $permissionLinkedRoleCount, $permissionlessActiveRoleCount)
                         : 'unbundled active-role coverage is still pending'],
                     ['label' => 'Scope guidance', 'value' => 'Keep this source centered on role coverage and scope visibility first, because old Galaxy access checks were driven by who could see which branch context.' ],
                     ['label' => 'Default period posture', 'value' => 'Use current access coverage review first, then stage preset periods only after scope and assignment parity are verified.'],
@@ -1794,13 +1794,13 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d permission-linked roles already carry shop-linked access scope for parity review', $scopedPermissionLinkedRoleCount)
                         : 'shop-linked permission-bundle coverage is still pending'],
                     ['label' => 'Bundle branch activity signal', 'value' => $activeBranchPermissionLinkedRoleCount > 0 && $pausedBranchPermissionLinkedRoleCount > 0
-                        ? sprintf('%d permission-linked roles are already visible in active Galaxy branches beside %d roles in paused Galaxy branches for parity review', $activeBranchPermissionLinkedRoleCount, $pausedBranchPermissionLinkedRoleCount)
+                        ? sprintf('%d permission-linked Galaxy access roles are already visible in active Galaxy branches beside %d Galaxy access roles in paused Galaxy branches for parity review', $activeBranchPermissionLinkedRoleCount, $pausedBranchPermissionLinkedRoleCount)
                         : 'paused-branch permission-bundle coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active Galaxy access roles are already visible beside %d draft Galaxy access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
                         : 'draft access-role coverage is still pending'],
                     ['label' => 'Permission bundle signal', 'value' => $permissionLinkedRoleCount > 0 && $permissionlessActiveRoleCount > 0
-                        ? sprintf('%d permission-linked roles are already visible beside %d unbundled active Galaxy access roles for parity review', $permissionLinkedRoleCount, $permissionlessActiveRoleCount)
+                        ? sprintf('%d permission-linked Galaxy access roles are already visible beside %d unbundled active Galaxy access roles for parity review', $permissionLinkedRoleCount, $permissionlessActiveRoleCount)
                         : 'unbundled active-role coverage is still pending'],
                     ['label' => 'Scope posture', 'value' => 'Scope visibility should stay read-only until access-report parity and branch-assignment shaping are verified.'],
                     ['label' => 'Access posture', 'value' => 'Role coverage should stay read-only until access-report parity and scope shaping are verified.'],
