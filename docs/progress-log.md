@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Role write-path description wording alignment checkpoint
+- Aligned the live `roles-permissions` write-path description from `first minimal Laravel-backed role write path` to `first minimal Galaxy foundation-backed role write path` so the role-management shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused roles assertion for the updated description string.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused roles slice passed (`1 passed`).
+
 ### Shared admin save-banner wording alignment checkpoint
 - Aligned the shared admin save fallback banner from `Latest Laravel-backed admin changes are now visible in the Galaxy workspace` to `Latest Galaxy foundation-backed admin changes are now visible in the workspace` so the generic post-save handoff copy stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and re-ran a focused admin page slice as a quick regression check after the shared view update.
