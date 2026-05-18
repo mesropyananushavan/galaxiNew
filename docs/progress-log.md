@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Holder headline metrics wording alignment checkpoint
+- Aligned the real `cardholders` headline metrics from generic holder/card wording to Galaxy-specific language (`Active/Inactive/Reviewed Galaxy holders` and `Linked Galaxy card shells`) so the live holder workspace better matches the broader Phase 1 Galaxy shell vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shop_scoped_admin_sees_cardholder_creation_actions_disabled_in_cardholders_workspace'`; the focused cardholders slice passed (`3 passed`).
+
 ### Card shell headline metrics wording alignment checkpoint
 - Aligned the real `cards` headline metrics from generic card wording to Galaxy-specific card-shell language (`Active/Draft/Blocked/Issued/Reviewed Galaxy card shells`) so the live inventory surface now matches the broader Phase 1 Galaxy shell vocabulary already asserted across the admin tests.
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.

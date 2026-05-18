@@ -1052,8 +1052,8 @@ class ResourceIndexController extends Controller
         );
 
         $page['metrics'] = [
-            ['label' => 'Active holders', 'value' => (string) $cardHolders->where('is_active', true)->count()],
-            ['label' => 'Inactive holders', 'value' => (string) $cardHolders->where('is_active', false)->count()],
+            ['label' => 'Active Galaxy holders', 'value' => (string) $cardHolders->where('is_active', true)->count()],
+            ['label' => 'Inactive Galaxy holders', 'value' => (string) $cardHolders->where('is_active', false)->count()],
             ['label' => 'Active-branch holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => (bool) $cardHolder->shop?->is_active)->count()],
             ['label' => 'Paused-branch holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->shop !== null && ! (bool) $cardHolder->shop->is_active)->count()],
             ['label' => 'Active linked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->is_active && $cardHolder->cards_count > 0)->count()],
@@ -1062,8 +1062,8 @@ class ResourceIndexController extends Controller
             ['label' => 'Inactive unlinked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => ! $cardHolder->is_active && $cardHolder->cards_count === 0)->count()],
             ['label' => 'Active-branch linked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => (bool) $cardHolder->shop?->is_active && $cardHolder->cards_count > 0)->count()],
             ['label' => 'Paused-branch unlinked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->shop !== null && ! (bool) $cardHolder->shop->is_active && $cardHolder->cards_count === 0)->count()],
-            ['label' => 'Reviewed holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => filled($cardHolder->review_note))->count()],
-            ['label' => 'Linked cards', 'value' => (string) $cardHolders->sum('cards_count')],
+            ['label' => 'Reviewed Galaxy holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => filled($cardHolder->review_note))->count()],
+            ['label' => 'Linked Galaxy card shells', 'value' => (string) $cardHolders->sum('cards_count')],
         ];
 
         $page['table']['rows'] = $cardHolders->map(fn (CardHolder $cardHolder): array => [
