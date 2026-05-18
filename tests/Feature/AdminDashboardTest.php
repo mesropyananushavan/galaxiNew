@@ -2600,7 +2600,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked pre-activation Galaxy card shells')
             ->assertSee('Blocked activated Galaxy card shells')
             ->assertSee('Blocked Galaxy card shells with holders')
-            ->assertSee('Blocked unassigned cards')
+            ->assertSee('Blocked unassigned Galaxy card shells')
             ->assertSee('Reviewed Galaxy card shells')
             ->assertSee('Keep active-card parity visible before widening replacement actions.')
             ->assertSee('No review note saved yet')
