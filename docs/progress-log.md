@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Card shell headline metrics wording alignment checkpoint
+- Aligned the real `cards` headline metrics from generic card wording to Galaxy-specific card-shell language (`Active/Draft/Blocked/Issued/Reviewed Galaxy card shells`) so the live inventory surface now matches the broader Phase 1 Galaxy shell vocabulary already asserted across the admin tests.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the focused cards slice passed (`2 passed`).
+
 ### Branch manager guidance wording alignment checkpoint
 - Aligned the selected `shops` manager-guidance copy from generic manager wording to Galaxy-specific branch-manager language (`No branch manager`, `paused Galaxy branch`, `Galaxy branch ownership-assignment parity`, and `current branch manager ownership`) so the live selected-branch review context stays consistent with the broader Phase 1 branch shell.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the neighboring focused selected-branch assertions that surfaced during validation.

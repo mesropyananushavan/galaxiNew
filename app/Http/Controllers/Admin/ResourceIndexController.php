@@ -867,10 +867,10 @@ class ResourceIndexController extends Controller
         );
 
         $page['metrics'] = [
-            ['label' => 'Active cards', 'value' => (string) $cards->where('status', 'active')->count()],
-            ['label' => 'Draft cards', 'value' => (string) $cards->where('status', 'draft')->count()],
-            ['label' => 'Blocked cards', 'value' => (string) $cards->where('status', 'blocked')->count()],
-            ['label' => 'Issued cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->issued_at !== null)->count()],
+            ['label' => 'Active Galaxy card shells', 'value' => (string) $cards->where('status', 'active')->count()],
+            ['label' => 'Draft Galaxy card shells', 'value' => (string) $cards->where('status', 'draft')->count()],
+            ['label' => 'Blocked Galaxy card shells', 'value' => (string) $cards->where('status', 'blocked')->count()],
+            ['label' => 'Issued Galaxy card shells', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->issued_at !== null)->count()],
             ['label' => 'Pre-activation cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->issued_at !== null && $card->activated_at === null)->count()],
             ['label' => 'Holder-linked cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->card_holder_id !== null)->count()],
             ['label' => 'Assignment-ready cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->card_holder_id !== null)->count()],
@@ -886,7 +886,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Blocked activated cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->status === 'blocked' && $card->activated_at !== null)->count()],
             ['label' => 'Blocked cards with holders', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->status === 'blocked' && $card->card_holder_id !== null)->count()],
             ['label' => 'Blocked unassigned cards', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->status === 'blocked' && $card->card_holder_id === null)->count()],
-            ['label' => 'Reviewed cards', 'value' => (string) $cards->filter(fn (Card $card): bool => filled($card->review_note))->count()],
+            ['label' => 'Reviewed Galaxy card shells', 'value' => (string) $cards->filter(fn (Card $card): bool => filled($card->review_note))->count()],
         ];
 
         $page['table']['rows'] = $cards->map(fn (Card $card): array => [
