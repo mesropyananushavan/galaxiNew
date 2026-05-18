@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Branch reviewed metric wording alignment checkpoint
+- Aligned the neighboring `shops` metric label from `Reviewed shops` to `Reviewed Galaxy branches`, keeping the already-updated branch surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the branch-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_resource_summary_metrics_ignore_malformed_metric_entries|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the current matched slice passed (`4 passed`).
+
 ### Holder reviewed metric wording alignment checkpoint
 - Aligned the neighboring `cardholders` metric label from `Reviewed holders` to `Reviewed Galaxy holders`, keeping the already-updated holder surface consistent with the newer Galaxy-specific copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the holder-surface assertion that reads the same metric stack.

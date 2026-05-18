@@ -22,7 +22,7 @@ return [
         'metrics' => [
             ['label' => 'Active Galaxy branches', 'value' => '2'],
             ['label' => 'Paused Galaxy branches', 'value' => '1'],
-            ['label' => 'Reviewed shops', 'value' => '2'],
+            ['label' => 'Reviewed Galaxy branches', 'value' => '2'],
             ['label' => 'Assigned managers', 'value' => '2'],
         ],
         'table' => [

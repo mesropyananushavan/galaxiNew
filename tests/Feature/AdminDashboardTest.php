@@ -4575,7 +4575,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('action="/admin/shops"', false)
             ->assertSee('Review latest saved branch shell')
             ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
-            ->assertSee('Reviewed shops')
+            ->assertSee('Reviewed Galaxy branches')
             ->assertSee('Assigned managers')
             ->assertSee('>1<', false)
             ->assertSee('active')
