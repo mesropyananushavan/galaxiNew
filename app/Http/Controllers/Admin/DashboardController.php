@@ -984,7 +984,7 @@ class DashboardController extends Controller
                 $liveDomainCount > 0
                     => sprintf('The migration map already spans %d grouped sections, but only %d core Galaxy domains have live Galaxy foundation coverage so far.', $mappedGroupCount, $liveDomainCount),
                 default
-                    => sprintf('The migration map already spans %d grouped sections and %d planned surfaces, but handoff planning should stay map-first until live Galaxy domains start landing in Laravel.', $mappedGroupCount, $plannedSectionCount),
+                    => sprintf('The migration map already spans %d grouped sections and %d planned surfaces, but handoff planning should stay map-first until live Galaxy domains start landing in the Galaxy foundation.', $mappedGroupCount, $plannedSectionCount),
             },
         ];
     }

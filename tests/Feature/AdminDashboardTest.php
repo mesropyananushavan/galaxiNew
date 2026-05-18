@@ -551,7 +551,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Migration-map posture:')
             ->assertSee('map-first parity planning.')
             ->assertSee('Migration-map handoff signal')
-            ->assertSee('The migration map already spans 3 grouped sections and 10 planned surfaces, but handoff planning should stay map-first until live Galaxy domains start landing in Laravel.')
+            ->assertSee('The migration map already spans 3 grouped sections and 10 planned surfaces, but handoff planning should stay map-first until live Galaxy domains start landing in the Galaxy foundation.')
             ->assertSee('No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.')
             ->assertSee('In Phase 1, this usually means the branch is still moving through first-pass setup for Galaxy branches, Galaxy holders, Galaxy card shells, or access structure.')
             ->assertDontSee('Open latest branch review:')

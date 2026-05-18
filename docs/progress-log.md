@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Dashboard landing-summary wording alignment checkpoint
+- Aligned the live dashboard migration-map fallback summary from `start landing in Laravel` to `start landing in the Galaxy foundation` so the top-level Phase 1 handoff language stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that fallback summary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
 ### Dashboard foundation-summary wording alignment checkpoint
 - Aligned the live dashboard entry-point summary from `Laravel foundation` to `Galaxy foundation` so the top-level Phase 1 setup guidance stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertions that read that foundation summary.
