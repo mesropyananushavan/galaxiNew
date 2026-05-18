@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports holder source-coverage wording alignment checkpoint
+- Aligned the live `reports` holder source-coverage string from the slightly generic `read-only status reporting review` wording to Galaxy-specific language (`read-only Galaxy holder status reporting review`) so the selected holder source reads more consistently with the surrounding Galaxy holder vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that holder source-coverage string.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_cardholder_status_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
 ### Reports access source-coverage wording alignment checkpoint
 - Aligned the live `reports` access source-coverage string from the slightly generic `read-only access reporting review` wording to Galaxy-specific language (`read-only Galaxy access reporting review`) so the selected access source reads more consistently with the surrounding Galaxy access-shell vocabulary.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that access source-coverage string.
