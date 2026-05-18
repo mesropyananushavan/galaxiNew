@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Management last-saved label wording alignment checkpoint
+- Aligned the live management checkpoint labels from `Last saved in Laravel` to `Last saved in Galaxy foundation` across the selected-detail shells so these review surfaces keep the newer Galaxy foundation vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those last-saved labels.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused management slice passed (`5 passed`).
+
 ### Management edit-action wording alignment checkpoint
 - Aligned the live edit-action labels for `roles-permissions`, `cards`, `cardholders`, and `shops` from `Edit ... in Laravel` to `Edit ... in Galaxy foundation` so these selected-detail shells read less like generic starter scaffolding.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those edit-action labels.
