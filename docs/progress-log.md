@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Dashboard branch-status wording alignment checkpoint
+- Aligned the dashboard assigned-branch snapshot label from `Laravel status` to `Galaxy foundation status` so the latest-branch handoff card stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that branch-status label.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
 ### Shared implementation-handoff wording alignment checkpoint
 - Aligned the shared admin handoff section title from `First Laravel wiring step` to `First Galaxy foundation wiring step` so the repeated Phase 1 implementation cue reads less like starter-era scaffolding across the management and reporting workspaces.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused assertions that read that shared handoff title.

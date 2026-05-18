@@ -748,7 +748,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assigned branch already carries enough live coverage for a useful scoped handoff review.')
             ->assertSee('Primary manager')
             ->assertSee('Scoped Dashboard Manager')
-            ->assertSee('Galaxy status')
+            ->assertSee('Galaxy foundation status')
             ->assertSee('Visible Galaxy holders')
             ->assertSee('Visible Galaxy card shells')
             ->assertSee('Assigned staff')

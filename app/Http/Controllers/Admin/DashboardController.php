@@ -603,7 +603,7 @@ class DashboardController extends Controller
                 ['label' => 'Branch coverage', 'value' => $branchCoverage],
                 ['label' => 'Handoff signal', 'value' => $branchHandoffSignal],
                 ['label' => 'Primary manager', 'value' => $shop->users->first()?->name ?? 'Unassigned'],
-                ['label' => 'Laravel status', 'value' => $shop->is_active ? 'active' : 'paused'],
+                ['label' => 'Galaxy foundation status', 'value' => $shop->is_active ? 'active' : 'paused'],
                 ['label' => 'Visible Galaxy holders', 'value' => (string) $shop->card_holders_count],
                 ['label' => 'Visible Galaxy card shells', 'value' => (string) $shop->cards_count],
                 ['label' => 'Assigned staff', 'value' => (string) $shop->users_count],
