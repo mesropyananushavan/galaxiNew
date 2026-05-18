@@ -4504,7 +4504,7 @@ class ResourceIndexController extends Controller
         }
 
         return $model->updated_at->equalTo($model->created_at)
-            ? 'newly created in Laravel review'
+            ? 'newly created in Galaxy foundation review'
             : 'updated after initial Laravel creation';
     }
 

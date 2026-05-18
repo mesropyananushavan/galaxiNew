@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Management lifecycle-freshness wording alignment checkpoint
+- Aligned the live management lifecycle-freshness string from `newly created in Laravel review` to `newly created in Galaxy foundation review` so the selected-detail shells keep the same Galaxy-specific foundation language used in the surrounding copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read that lifecycle-freshness state.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused management slice passed (`5 passed`).
+
 ### Card-types coverage wording alignment checkpoint
 - Aligned the live card-type coverage signal copy from `The current Laravel tier is showing ...` to `The current Galaxy foundation tier is showing ...` so the selected tier review shell reads more like Galaxy-specific foundation guidance.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card-type assertions that read that coverage signal.
