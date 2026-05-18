@@ -5557,6 +5557,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active-branch linked holders')
             ->assertSee('Paused-branch unlinked holders')
             ->assertSee('Reviewed Galaxy holders')
+            ->assertSee('This is the first minimal Galaxy foundation-backed cardholder write path. Keep it limited to profile identity, status, and review notes while card linkage and activity history remain parity-first review surfaces.')
             ->assertSee('Linked Galaxy card shells')
             ->assertSee('>1<', false)
             ->assertSee('active')

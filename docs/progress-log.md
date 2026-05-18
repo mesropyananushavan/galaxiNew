@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Holder write-path description wording alignment checkpoint
+- Aligned the live `cardholders` write-path description from `first minimal Laravel-backed cardholder write path` to `first minimal Galaxy foundation-backed cardholder write path` so the holder-management shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused holder assertion for the updated description string.
+- Re-ran `php artisan test --filter='test_cardholders_page_replaces_preview_rows_with_model_backed_index_data'`; the focused holder slice passed (`1 passed`).
+
 ### Branch write-path description wording alignment checkpoint
 - Aligned the live `shops` write-path description from `first minimal Laravel-backed shop write path` to `first minimal Galaxy foundation-backed shop write path` so the branch-management shell stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused shop assertion for the updated description string.

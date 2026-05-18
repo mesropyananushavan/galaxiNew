@@ -252,7 +252,7 @@ return [
         ],
         'liveForm' => [
             'title' => 'Create Galaxy holder in Laravel',
-            'description' => 'This is the first minimal Laravel-backed cardholder write path. Keep it limited to profile identity, status, and review notes while card linkage and activity history remain parity-first review surfaces.',
+            'description' => 'This is the first minimal Galaxy foundation-backed cardholder write path. Keep it limited to profile identity, status, and review notes while card linkage and activity history remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.cardholders.store',
             'cancelRoute' => 'admin.cardholders.index',
