@@ -921,7 +921,7 @@ class DashboardController extends Controller
                 $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0
                     => 'Shared entry points already have enough live branch, holder, and card-shell coverage to support a useful foundation handoff review.',
                 default
-                    => 'Entry points should stay setup-first until live branch, holder, and card-shell coverage is visible across the Laravel foundation.',
+                    => 'Entry points should stay setup-first until live branch, holder, and card-shell coverage is visible across the Galaxy foundation.',
             },
         ];
     }
