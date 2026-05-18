@@ -281,7 +281,7 @@ return [
             ['label' => 'Active Galaxy card shells', 'value' => '1'],
             ['label' => 'Draft Galaxy card shells', 'value' => '1'],
             ['label' => 'Blocked cards', 'value' => '1'],
-            ['label' => 'Issued cards', 'value' => '2'],
+            ['label' => 'Issued Galaxy card shells', 'value' => '2'],
             ['label' => 'Pre-activation cards', 'value' => '1'],
             ['label' => 'Holder-linked cards', 'value' => '2'],
             ['label' => 'Assignment-ready cards', 'value' => '2'],
