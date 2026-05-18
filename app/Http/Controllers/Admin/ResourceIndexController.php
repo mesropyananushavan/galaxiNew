@@ -977,7 +977,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s status reflected from model state', $selectedCard->number),
                 'time' => 'Current request',
-                'description' => sprintf('This card is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedCard->status),
+                'description' => sprintf('This card is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $selectedCard->status),
             ],
             [
                 'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedCard->number),
@@ -1152,7 +1152,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s status reflected from model state', $selectedCardHolder->full_name),
                 'time' => 'Current request',
-                'description' => sprintf('This holder is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedCardHolder->is_active ? 'active' : 'inactive'),
+                'description' => sprintf('This holder is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $selectedCardHolder->is_active ? 'active' : 'inactive'),
             ],
             [
                 'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedCardHolder->full_name),
@@ -1306,7 +1306,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s status reflected from model state', $selectedShop->name),
                 'time' => 'Current request',
-                'description' => sprintf('This branch is currently marked as %s in Laravel and the management context now mirrors that state.', $selectedShop->is_active ? 'active' : 'paused'),
+                'description' => sprintf('This branch is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $selectedShop->is_active ? 'active' : 'paused'),
             ],
             [
                 'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedShop->name),
@@ -2172,7 +2172,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesStatusTimelineDescription(CardType $selectedCardType): string
     {
-        return sprintf('This tier is currently marked as %s in Laravel and the management context card now mirrors that state.', $selectedCardType->is_active ? 'active' : 'draft');
+        return sprintf('This tier is currently marked as %s in the Galaxy foundation layer and the management context card now mirrors that state.', $selectedCardType->is_active ? 'active' : 'draft');
     }
 
     private function cardTypesLastSavedTimelineTitle(CardType $selectedCardType): string
@@ -3552,8 +3552,8 @@ class ResourceIndexController extends Controller
                 'title' => $this->rolesPermissionsStatusTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $selectedRole->is_active
-                    ? 'This role is currently marked as active in Laravel and the management context now treats it as a live access shell.'
-                    : 'This role is currently marked as draft in Laravel, so the management context keeps it in a safer parity-review posture.',
+                    ? 'This role is currently marked as active in the Galaxy foundation layer and the management context now treats it as a live access shell.'
+                    : 'This role is currently marked as draft in the Galaxy foundation layer, so the management context keeps it in a safer parity-review posture.',
             ],
             [
                 'title' => $this->rolesPermissionsLifecycleTimelineTitle($selectedRole),
