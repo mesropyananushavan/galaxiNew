@@ -2102,7 +2102,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected tier', 'value' => $selectedCardType->name],
             ['label' => 'Slug', 'value' => $selectedCardType->slug],
             ['label' => 'Points rate', 'value' => number_format((float) $selectedCardType->points_rate, 2).'x'],
-            ['label' => 'Laravel status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
+            ['label' => 'Galaxy status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
             ['label' => 'Last saved in Laravel', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
@@ -3175,7 +3175,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Permission branch activity signal', 'value' => $permissionBranchActivitySignal],
             ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
             ['label' => 'Permission review note', 'value' => $permissionReviewNote ?: 'No linked permission review note saved yet'],
-            ['label' => 'Laravel status', 'value' => $selectedRole->is_active ? 'active' : 'draft'],
+            ['label' => 'Galaxy status', 'value' => $selectedRole->is_active ? 'active' : 'draft'],
             [
                 'label' => 'Access guidance',
                 'value' => match (true) {
@@ -3731,7 +3731,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Backend gap', 'value' => $this->cardsBackendGap($selectedCard)],
             ['label' => 'Shop', 'value' => $this->cardsShopLabel($selectedCard)],
             ['label' => 'Shop guidance', 'value' => $this->cardsShopGuidance($selectedCard)],
-            ['label' => 'Laravel status', 'value' => $this->cardsLaravelStatusLabel($selectedCard)],
+            ['label' => 'Galaxy status', 'value' => $this->cardsLaravelStatusLabel($selectedCard)],
             ['label' => 'Issued', 'value' => $this->cardsIssuedLabel($selectedCard)],
             ['label' => 'Activated', 'value' => $this->cardsActivatedLabel($selectedCard)],
             ['label' => 'Blocked pre-activation signal', 'value' => $this->cardsBlockedPreActivationSignal($selectedCard)],
@@ -4124,7 +4124,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Shop', 'value' => $this->cardholdersShopLabel($selectedCardHolder)],
             ['label' => 'Shop guidance', 'value' => $this->cardholdersShopGuidance($selectedCardHolder)],
             ['label' => 'Linked cards', 'value' => $this->cardholdersLinkedCardsLabel($selectedCardHolder)],
-            ['label' => 'Laravel status', 'value' => $this->cardholdersLaravelStatusLabel($selectedCardHolder)],
+            ['label' => 'Galaxy status', 'value' => $this->cardholdersLaravelStatusLabel($selectedCardHolder)],
             [
                 'label' => 'Lookup guidance',
                 'value' => $this->cardholdersLookupGuidance($selectedCardHolder),
@@ -4376,7 +4376,7 @@ class ResourceIndexController extends Controller
             }],
             ['label' => 'Cardholders', 'value' => (string) $selectedShop->card_holders_count],
             ['label' => 'Cards', 'value' => (string) $selectedShop->cards_count],
-            ['label' => 'Laravel status', 'value' => $selectedShop->is_active ? 'active' : 'paused'],
+            ['label' => 'Galaxy status', 'value' => $selectedShop->is_active ? 'active' : 'paused'],
             [
                 'label' => 'Branch guidance',
                 'value' => $selectedShop->is_active

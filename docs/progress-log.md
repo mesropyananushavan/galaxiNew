@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Management status-label wording alignment checkpoint
+- Aligned the live management status labels from `Laravel status` to `Galaxy status` across the selected-detail shells so these review surfaces read less like generic starter scaffolding.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those status labels.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_surfaces_selected_tier_context_from_laravel_data'`; the focused management slice passed for the matched tests (`4 passed`).
+
 ### Management foundation-layer wording alignment checkpoint
 - Aligned the live selected-detail workspace descriptions for `roles-permissions`, `cards`, `shops`, and `cardholders` from `Laravel data` wording to `the Galaxy foundation layer` so the management review shell reads less like a starter handoff surface.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those workspace descriptions.
