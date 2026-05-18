@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Branch live-form title wording alignment checkpoint
+- Aligned the live `shops` form title from `Create Galaxy branch in Laravel` to `Create Galaxy branch in Galaxy foundation` so the branch-management shell reads less like starter-era backend handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused shop assertion that reads that live-form title.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`; the focused shops slice passed (`1 passed`).
+
 ### Dashboard branch-status wording alignment checkpoint
 - Aligned the dashboard assigned-branch snapshot label from `Laravel status` to `Galaxy foundation status` so the latest-branch handoff card stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that branch-status label.

@@ -4571,7 +4571,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep branch ownership parity visible before scope writes are trusted.')
             ->assertSee('No review note saved yet')
             ->assertSee('Unassigned')
-            ->assertSee('Create Galaxy branch in Laravel')
+            ->assertSee('Create Galaxy branch in Galaxy foundation')
             ->assertSee('Create branch shell')
             ->assertSee('action="/admin/shops"', false)
             ->assertSee('Review latest saved branch shell')

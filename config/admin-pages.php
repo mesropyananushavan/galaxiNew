@@ -123,7 +123,7 @@ return [
             ],
         ],
         'liveForm' => [
-            'title' => 'Create Galaxy branch in Laravel',
+            'title' => 'Create Galaxy branch in Galaxy foundation',
             'description' => 'This is the first minimal Galaxy foundation-backed shop write path. Keep it limited to branch identity and review notes while manager reassignment and scope changes remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.shops.store',
