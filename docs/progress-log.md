@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Branch write-path description wording alignment checkpoint
+- Aligned the live `shops` write-path description from `first minimal Laravel-backed shop write path` to `first minimal Galaxy foundation-backed shop write path` so the branch-management shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused shop assertion for the updated description string.
+- Re-ran `php artisan test --filter='test_shops_page_replaces_preview_rows_with_model_backed_index_data'`; the focused shops slice passed (`1 passed`).
+
 ### Role write-path description wording alignment checkpoint
 - Aligned the live `roles-permissions` write-path description from `first minimal Laravel-backed role write path` to `first minimal Galaxy foundation-backed role write path` so the role-management shell stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused roles assertion for the updated description string.

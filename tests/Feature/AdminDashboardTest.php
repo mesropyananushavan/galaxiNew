@@ -4577,6 +4577,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review latest saved branch shell')
             ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
             ->assertSee('Reviewed Galaxy branches')
+            ->assertSee('This is the first minimal Galaxy foundation-backed shop write path. Keep it limited to branch identity and review notes while manager reassignment and scope changes remain parity-first review surfaces.')
             ->assertSee('Assigned branch managers')
             ->assertSee('>1<', false)
             ->assertSee('active')
