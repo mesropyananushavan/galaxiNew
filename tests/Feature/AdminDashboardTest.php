@@ -7350,9 +7350,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assignment signal')
             ->assertSee('1 staff assignments are already visible for access review')
             ->assertSee('Draft staffing signal')
-            ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review')
+            ->assertSee('1 draft Galaxy access roles already carry visible staff assignments that still need activation review')
             ->assertSee('Draft bundle signal')
-            ->assertSee('1 draft access roles already carry visible permission bundles that still need activation review')
+            ->assertSee('1 draft Galaxy access roles already carry visible permission bundles that still need activation review')
             ->assertSee('Assigned bundle signal')
             ->assertSee('assigned permission-bundle coverage is still pending')
             ->assertSee('Scoped bundle signal')
@@ -7374,9 +7374,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Access readiness:')
             ->assertSee('permission-linked active access posture is still pending')
             ->assertSee('Draft staffing signal:')
-            ->assertSee('1 draft access roles already carry visible staff assignments that still need activation review')
+            ->assertSee('1 draft Galaxy access roles already carry visible staff assignments that still need activation review')
             ->assertSee('Draft bundle signal:')
-            ->assertSee('1 draft access roles already carry visible permission bundles that still need activation review')
+            ->assertSee('1 draft Galaxy access roles already carry visible permission bundles that still need activation review')
             ->assertSee('Assigned bundle signal:')
             ->assertSee('assigned permission-bundle coverage is still pending')
             ->assertSee('Scoped bundle signal:')
@@ -7414,7 +7414,7 @@ class AdminDashboardTest extends TestCase
 
         $assignedUser->roles()->attach($activeRole->id);
 
-        $roleStateSignal = '1 active roles are already visible beside 1 draft access roles for parity review';
+        $roleStateSignal = '1 active Galaxy access roles are already visible beside 1 draft Galaxy access roles for parity review';
 
         $user = User::factory()->create();
 
@@ -7473,7 +7473,7 @@ class AdminDashboardTest extends TestCase
 
         $assignedUser->roles()->attach($bundledRole->id);
 
-        $permissionBundleSignal = '1 permission-linked roles are already visible beside 1 unbundled active roles for parity review';
+        $permissionBundleSignal = '1 permission-linked roles are already visible beside 1 unbundled active Galaxy access roles for parity review';
 
         $user = User::factory()->create();
 

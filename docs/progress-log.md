@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports access role-state wording alignment checkpoint
+- Aligned the live `reports` access role-state/detail strings from generic `active roles` and `draft access roles` wording to Galaxy-specific language (`active Galaxy access roles`, `draft Galaxy access roles`, and `unbundled active Galaxy access roles`) so the selected access review source reads more like a Galaxy-specific operational shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those access role-state strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_role_access_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
 ### Reports branch card-shell workspace wording alignment checkpoint
 - Aligned the live `reports` branch card-shell workspace/detail strings from leftover generic `cards/shops` and `paused shops` wording to Galaxy-specific language (`Galaxy card shells`, `Galaxy branches`, and `paused Galaxy branches`) so the selected reporting source reads consistently with the rest of the branch review shell.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those branch card-shell workspace/detail strings.
