@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Card issued-linkage metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Issued holder-linked cards` to `Issued holder-linked Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
 ### Card blocked metric wording alignment checkpoint
 - Aligned the neighboring `cards` metric label from `Blocked cards` to `Blocked Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertions that read the same metric stack.
