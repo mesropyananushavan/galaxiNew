@@ -1213,10 +1213,10 @@ class ResourceIndexController extends Controller
         );
 
         $page['metrics'] = [
-            ['label' => 'Active shops', 'value' => (string) $shops->where('is_active', true)->count()],
-            ['label' => 'Paused shops', 'value' => (string) $shops->where('is_active', false)->count()],
-            ['label' => 'Reviewed shops', 'value' => (string) $shops->filter(fn (Shop $shop): bool => filled($shop->review_note))->count()],
-            ['label' => 'Assigned managers', 'value' => (string) $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count()],
+            ['label' => 'Active Galaxy branches', 'value' => (string) $shops->where('is_active', true)->count()],
+            ['label' => 'Paused Galaxy branches', 'value' => (string) $shops->where('is_active', false)->count()],
+            ['label' => 'Reviewed Galaxy branches', 'value' => (string) $shops->filter(fn (Shop $shop): bool => filled($shop->review_note))->count()],
+            ['label' => 'Assigned branch managers', 'value' => (string) $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count()],
         ];
 
         $page['table']['rows'] = $shops->map(fn (Shop $shop): array => [
