@@ -23,7 +23,7 @@ return [
             ['label' => 'Active Galaxy branches', 'value' => '2'],
             ['label' => 'Paused Galaxy branches', 'value' => '1'],
             ['label' => 'Reviewed Galaxy branches', 'value' => '2'],
-            ['label' => 'Assigned managers', 'value' => '2'],
+            ['label' => 'Assigned branch managers', 'value' => '2'],
         ],
         'table' => [
             'columns' => ['Shop', 'Code', 'Review note', 'Manager', 'Cardholders', 'Cards', 'Status'],

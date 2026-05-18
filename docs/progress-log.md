@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Branch manager metric wording alignment checkpoint
+- Aligned the neighboring `shops` metric label from `Assigned managers` to `Assigned branch managers`, keeping the already-updated branch surface consistent with the newer Galaxy-specific branch wording.
+- The focused shops slice briefly exposed one stale operational-index assertion that still expected the older label; that assertion was updated in the same narrow step, with no behavior change.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_resource_summary_metrics_ignore_malformed_metric_entries|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the current matched slice passed (`4 passed`).
+
 ### Tier reviewed metric wording alignment checkpoint
 - Aligned the neighboring `card-types` metric label from `Reviewed tiers` to `Reviewed Galaxy tiers`, keeping the already-updated tier surface consistent with the newer Galaxy-specific copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the tier-surface assertion that reads the same metric stack.

@@ -4422,7 +4422,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('aria-disabled="true"', false)
             ->assertSee('Active Galaxy branches')
             ->assertSee('Paused Galaxy branches')
-            ->assertSee('Assigned managers')
+            ->assertSee('Assigned branch managers')
             ->assertSee('Shop operations are still preview-only')
             ->assertSee('Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Laravel queries or handlers yet.')
             ->assertSee('Migration readiness checklist')
@@ -4576,7 +4576,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review latest saved branch shell')
             ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
             ->assertSee('Reviewed Galaxy branches')
-            ->assertSee('Assigned managers')
+            ->assertSee('Assigned branch managers')
             ->assertSee('>1<', false)
             ->assertSee('active')
             ->assertSee('paused');
@@ -8718,7 +8718,7 @@ class AdminDashboardTest extends TestCase
             ['label' => 'Active Galaxy branches', 'value' => '2'],
             'invalid-metric-entry',
             ['label' => 'Paused Galaxy branches'],
-            ['label' => 'Assigned managers', 'value' => 2],
+            ['label' => 'Assigned branch managers', 'value' => 2],
             ['label' => 'Paused Galaxy branches', 'value' => '1'],
         ]);
 
@@ -8729,7 +8729,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active Galaxy branches')
             ->assertSee('Paused Galaxy branches')
             ->assertDontSee('invalid-metric-entry')
-            ->assertDontSee('Assigned managers')
+            ->assertDontSee('Assigned branch managers')
             ->assertDontSee('Array');
     }
 
