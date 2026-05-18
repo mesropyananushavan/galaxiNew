@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-05-18
+
+### Access metrics wording alignment checkpoint
+- Aligned the real `roles-permissions` metric labels from older generic role/access wording to Galaxy-specific Phase 1 shell language (`Active/Draft/Reviewed Galaxy access shells`, `Galaxy access notes`, `Galaxy assignment notes`, `Galaxy permission review notes`, and `Scoped Galaxy branches`).
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a live Laravel-backed foundation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context'`; the focused roles-permissions slice passed (`5 passed`).
+
 ## 2026-05-17
 
 ### Card blocked-unassigned metric wording alignment checkpoint
