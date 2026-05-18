@@ -994,7 +994,7 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $selectedCard->review_note !== null && trim($selectedCard->review_note) !== ''
                     ? sprintf('The current Galaxy foundation card review note says: %s', $selectedCard->review_note)
-                    : 'No Laravel card review note is saved yet, so inventory handoff context still depends on the surrounding workspace cues.',
+                    : 'No Galaxy foundation card review note is saved yet, so inventory handoff context still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => 'Inventory handoff stays visible in the workspace',
@@ -1169,7 +1169,7 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $selectedCardHolder->review_note !== null && trim($selectedCardHolder->review_note) !== ''
                     ? sprintf('The current Galaxy foundation holder review note says: %s', $selectedCardHolder->review_note)
-                    : 'No Laravel holder review note is saved yet, so lifecycle handoff context still depends on the surrounding workspace cues.',
+                    : 'No Galaxy foundation holder review note is saved yet, so lifecycle handoff context still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => 'Holder activity handoff stays visible in the workspace',
@@ -1323,7 +1323,7 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $selectedShop->review_note !== null && trim($selectedShop->review_note) !== ''
                     ? sprintf('The current Galaxy foundation branch review note says: %s', $selectedShop->review_note)
-                    : 'No Laravel branch review note is saved yet, so scope handoff context still depends on the surrounding workspace cues.',
+                    : 'No Galaxy foundation branch review note is saved yet, so scope handoff context still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => 'Branch scope handoff stays visible in the workspace',
@@ -2465,21 +2465,21 @@ class ResourceIndexController extends Controller
     {
         return $selectedCardType->review_note !== null && trim($selectedCardType->review_note) !== ''
             ? sprintf('The current Galaxy foundation tier review note says: %s', $selectedCardType->review_note)
-            : 'No Laravel tier review note is saved yet, so parity-sensitive tier context still depends on the surrounding workspace cues.';
+            : 'No Galaxy foundation tier review note is saved yet, so parity-sensitive tier context still depends on the surrounding workspace cues.';
     }
 
     private function cardTypesActivationNoteReflection(CardType $selectedCardType): string
     {
         return $selectedCardType->activation_note !== null && trim($selectedCardType->activation_note) !== ''
             ? sprintf('The current Galaxy foundation activation note says: %s', $selectedCardType->activation_note)
-            : 'No Laravel activation note is saved yet, so activation handoff guidance still depends on the surrounding workspace cues.';
+            : 'No Galaxy foundation activation note is saved yet, so activation handoff guidance still depends on the surrounding workspace cues.';
     }
 
     private function cardTypesRolloutNoteReflection(CardType $selectedCardType): string
     {
         return $selectedCardType->rollout_note !== null && trim($selectedCardType->rollout_note) !== ''
             ? sprintf('The current Galaxy foundation rollout note says: %s', $selectedCardType->rollout_note)
-            : 'No Laravel rollout note is saved yet, so rollout guidance still depends on the surrounding workspace cues.';
+            : 'No Galaxy foundation rollout note is saved yet, so rollout guidance still depends on the surrounding workspace cues.';
     }
 
     private function cardTypesHasVisibleCoverage(CardType $selectedCardType): bool
@@ -3576,21 +3576,21 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $selectedRole->review_note !== null && trim($selectedRole->review_note) !== ''
                     ? sprintf('The current Galaxy foundation review note says: %s', $selectedRole->review_note)
-                    : 'No Laravel review note is saved yet, so parity-sensitive operator context still depends on the surrounding workspace cues.',
+                    : 'No Galaxy foundation review note is saved yet, so parity-sensitive operator context still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => $this->rolesPermissionsAccessNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $selectedRole->access_note !== null && trim($selectedRole->access_note) !== ''
                     ? sprintf('The current Galaxy foundation access note says: %s', $selectedRole->access_note)
-                    : 'No Laravel access note is saved yet, so access handoff guidance still depends on the surrounding workspace cues.',
+                    : 'No Galaxy foundation access note is saved yet, so access handoff guidance still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => $this->rolesPermissionsAssignmentNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $selectedRole->assignment_note !== null && trim($selectedRole->assignment_note) !== ''
                     ? sprintf('The current Galaxy foundation assignment note says: %s', $selectedRole->assignment_note)
-                    : 'No Laravel assignment note is saved yet, so assignment handoff guidance still depends on the surrounding workspace cues.',
+                    : 'No Galaxy foundation assignment note is saved yet, so assignment handoff guidance still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => $this->rolesPermissionsScopePostureTimelineTitle($selectedRole),

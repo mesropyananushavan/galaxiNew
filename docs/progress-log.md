@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Management fallback-note wording alignment checkpoint
+- Aligned the live management fallback note copy from `No Laravel ... note is saved yet` to `No Galaxy foundation ... note is saved yet` across the selected-detail shells so these handoff states stay consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those fallback note messages.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused management slice passed (`5 passed`).
+
 ### Management live-state wording alignment checkpoint
 - Aligned the live management state descriptions from `currently marked as ... in Laravel` to `currently marked as ... in the Galaxy foundation layer` so these selected-detail shells stay consistent with the newer Galaxy foundation vocabulary.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those live-state descriptions.
