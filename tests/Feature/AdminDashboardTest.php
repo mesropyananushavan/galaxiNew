@@ -7059,7 +7059,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Comparison signal')
             ->assertSee('full branch, inventory, and assignment comparison coverage is still pending')
             ->assertSee('Branch review readiness')
-            ->assertSee('ready for branch-total review across 1 live shops')
+            ->assertSee('ready for branch-total review across 1 live Galaxy branches')
             ->assertSee('Branch activity signal')
             ->assertSee('paused branch coverage is still pending for comparison review')
             ->assertSee('Inventory state signal')
@@ -7099,7 +7099,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Backend gap')
             ->assertSee('Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.')
             ->assertSee('Galaxy branch card-shell coverage selected for Laravel review')
-            ->assertSee('This reporting view now reflects 1 tracked cards across 1 shops from the current Laravel foundation.')
+            ->assertSee('This reporting view now reflects 1 tracked Galaxy card shells across 1 Galaxy branches from the current Laravel foundation.')
             ->assertSee('Branch inventory handoff stays on-screen first')
             ->assertSee('Operators should hand off branch-total and linked-holder inventory findings in the live workspace before relying on exported files for this source.')
             ->assertSee('Source status signal:')
@@ -7111,7 +7111,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Comparison signal:')
             ->assertSee('full branch, inventory, and assignment comparison coverage is still pending')
             ->assertSee('Branch review readiness:')
-            ->assertSee('ready for branch-total review across 1 live shops')
+            ->assertSee('ready for branch-total review across 1 live Galaxy branches')
             ->assertSee('Branch activity signal:')
             ->assertSee('paused branch coverage is still pending for comparison review')
             ->assertSee('Inventory state signal:')
@@ -7224,7 +7224,7 @@ class AdminDashboardTest extends TestCase
             'shop_id' => $pausedShop->id,
         ]);
 
-        $branchActivitySignal = '1 live shops are already visible beside 1 paused branches for comparison review';
+        $branchActivitySignal = '1 live Galaxy branches are already visible beside 1 paused branches for comparison review';
 
         $user = User::factory()->create();
 

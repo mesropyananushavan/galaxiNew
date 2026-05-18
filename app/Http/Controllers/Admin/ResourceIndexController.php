@@ -1444,16 +1444,16 @@ class ResourceIndexController extends Controller
                     ['label' => 'Source posture', 'value' => 'Keep branch inventory review on-screen first, then leave grouped export expectations in preview mode until parity is proven.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep branch totals, paused-shop counts, and assigned-versus-unassigned inventory visible together before trusting any export view.'],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
-                    ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'card and branch inputs are ready for on-screen review' : 'card or branch inputs still need live Laravel coverage'],
+                    ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'Galaxy card-shell and branch inputs are ready for on-screen review' : 'Galaxy card-shell or branch inputs still need live Laravel coverage'],
                     ['label' => 'Comparison signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount && $activeCardCount > 0 && $blockedCardCount > 0 && $holderLinkedCardCount > 0 && $unassignedCardCount > 0
                         ? 'branch, inventory, and assignment comparison cues are all visible for parity walkthrough'
                         : 'full branch, inventory, and assignment comparison coverage is still pending'],
                     ['label' => 'Branch review readiness', 'value' => $cardCount > 0 && $shopCount > 0
-                        ? sprintf('ready for branch-total review across %d live shops', $shopCount)
-                        : 'wait for both live branch and card coverage before branch-total review'],
+                        ? sprintf('ready for branch-total review across %d live Galaxy branches', $shopCount)
+                        : 'wait for both live Galaxy branch and Galaxy card-shell coverage before branch-total review'],
                     ['label' => 'Branch activity signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount
-                        ? sprintf('%d live shops are already visible beside %d paused branches for comparison review', $activeShopCount, $shopCount - $activeShopCount)
-                        : 'paused branch coverage is still pending for comparison review'],
+                        ? sprintf('%d live Galaxy branches are already visible beside %d paused branches for comparison review', $activeShopCount, $shopCount - $activeShopCount)
+                        : 'paused Galaxy branch coverage is still pending for comparison review'],
                     ['label' => 'Inventory state signal', 'value' => $activeCardCount > 0 && $blockedCardCount > 0
                         ? sprintf('%d active cards are already visible beside %d blocked inventory records for parity review', $activeCardCount, $blockedCardCount)
                         : 'blocked inventory coverage is still pending for parity review'],
@@ -1504,7 +1504,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until file export formatting and delivery are validated.'],
                 ],
                 'timeline' => [
-                    ['title' => 'Galaxy branch card-shell coverage selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked cards across %d shops from the current Laravel foundation.', $cardCount, $shopCount)],
+                    ['title' => 'Galaxy branch card-shell coverage selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked Galaxy card shells across %d Galaxy branches from the current Laravel foundation.', $cardCount, $shopCount)],
                     ['title' => 'Shop-level inventory parity stays review-only', 'time' => 'Current request', 'description' => 'Counts are live-backed now, but grouped report shaping and export output should stay parity-first until reporting pipeline checks exist.'],
                     ['title' => 'Branch inventory handoff stays on-screen first', 'time' => 'Current request', 'description' => $this->reportsCardsByShopTimelineHandoffDescription($holderLinkedCardCount, $unassignedCardCount)],
                 ],
@@ -1515,16 +1515,16 @@ class ResourceIndexController extends Controller
                         ? 'Cards-by-shop source is already visible with live branch inventory for parity review.'
                         : 'Cards-by-shop source remains safer as planning-only review until live branch inventory appears.'],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
-                    ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'card and branch inputs are ready for on-screen review' : 'card or branch inputs still need live Laravel coverage'],
+                    ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'Galaxy card-shell and branch inputs are ready for on-screen review' : 'Galaxy card-shell or branch inputs still need live Laravel coverage'],
                     ['label' => 'Comparison signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount && $activeCardCount > 0 && $blockedCardCount > 0 && $holderLinkedCardCount > 0 && $unassignedCardCount > 0
                         ? 'branch, inventory, and assignment comparison cues are all visible for parity walkthrough'
                         : 'full branch, inventory, and assignment comparison coverage is still pending'],
                     ['label' => 'Branch review readiness', 'value' => $cardCount > 0 && $shopCount > 0
-                        ? sprintf('ready for branch-total review across %d live shops', $shopCount)
-                        : 'wait for both live branch and card coverage before branch-total review'],
+                        ? sprintf('ready for branch-total review across %d live Galaxy branches', $shopCount)
+                        : 'wait for both live Galaxy branch and Galaxy card-shell coverage before branch-total review'],
                     ['label' => 'Branch activity signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount
-                        ? sprintf('%d live shops are already visible beside %d paused branches for comparison review', $activeShopCount, $shopCount - $activeShopCount)
-                        : 'paused branch coverage is still pending for comparison review'],
+                        ? sprintf('%d live Galaxy branches are already visible beside %d paused branches for comparison review', $activeShopCount, $shopCount - $activeShopCount)
+                        : 'paused Galaxy branch coverage is still pending for comparison review'],
                     ['label' => 'Inventory state signal', 'value' => $activeCardCount > 0 && $blockedCardCount > 0
                         ? sprintf('%d active cards are already visible beside %d blocked inventory records for parity review', $activeCardCount, $blockedCardCount)
                         : 'blocked inventory coverage is still pending for parity review'],
