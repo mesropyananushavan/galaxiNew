@@ -1444,7 +1444,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Source posture', 'value' => 'Keep branch inventory review on-screen first, then leave grouped export expectations in preview mode until parity is proven.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep branch totals, paused-shop counts, and assigned-versus-unassigned inventory visible together before trusting any export view.'],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
-                    ['label' => 'Galaxy input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'Galaxy card-shell and branch inputs are ready for on-screen review' : 'Galaxy card-shell or branch inputs still need live Laravel coverage'],
+                    ['label' => 'Galaxy input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'Galaxy card-shell and branch inputs are ready for on-screen review' : 'Galaxy card-shell or branch inputs still need live Galaxy foundation coverage'],
                     ['label' => 'Comparison signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount && $activeCardCount > 0 && $blockedCardCount > 0 && $holderLinkedCardCount > 0 && $unassignedCardCount > 0
                         ? 'branch, inventory, and assignment comparison cues are all visible for parity walkthrough'
                         : 'full branch, inventory, and assignment comparison coverage is still pending'],
@@ -1515,7 +1515,7 @@ class ResourceIndexController extends Controller
                         ? 'Galaxy branch card-shell source is already visible with live branch inventory for parity review.'
                         : 'Galaxy branch card-shell source remains safer as planning-only review until live branch inventory appears.'],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
-                    ['label' => 'Galaxy input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'Galaxy card-shell and branch inputs are ready for on-screen review' : 'Galaxy card-shell or branch inputs still need live Laravel coverage'],
+                    ['label' => 'Galaxy input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'Galaxy card-shell and branch inputs are ready for on-screen review' : 'Galaxy card-shell or branch inputs still need live Galaxy foundation coverage'],
                     ['label' => 'Comparison signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount && $activeCardCount > 0 && $blockedCardCount > 0 && $holderLinkedCardCount > 0 && $unassignedCardCount > 0
                         ? 'branch, inventory, and assignment comparison cues are all visible for parity walkthrough'
                         : 'full branch, inventory, and assignment comparison coverage is still pending'],
@@ -1588,7 +1588,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Source posture', 'value' => 'Keep support-style status triage visible first, then leave export-style lifecycle summaries in preview mode until parity is proven.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep holder status counts, linked-versus-unlinked profiles, and blocked-card posture visible together before trusting any export view.'],
                     ['label' => 'Source signal', 'value' => $cardHolderCount > 0 ? 'live holder status coverage visible' : 'holder status coverage pending'],
-                    ['label' => 'Galaxy input signal', 'value' => $cardHolderCount > 0 ? 'holder status inputs are ready for on-screen review' : 'holder status inputs still need live Laravel coverage'],
+                    ['label' => 'Galaxy input signal', 'value' => $cardHolderCount > 0 ? 'holder status inputs are ready for on-screen review' : 'holder status inputs still need live Galaxy foundation coverage'],
                     ['label' => 'Comparison signal', 'value' => $inactiveCardHolderCount > 0 && $activeCardHolderCount > 0 && $linkedCardHolderCount > 0 && $unlinkedCardHolderCount > 0 && $activeLinkedCardCount > 0 && $blockedLinkedCardCount > 0
                         ? 'lifecycle, linkage, and linked-card comparison cues are all visible for parity walkthrough'
                         : 'full lifecycle, linkage, and linked-card comparison coverage is still pending'],
@@ -1643,7 +1643,7 @@ class ResourceIndexController extends Controller
                         ? 'Galaxy holder-status source is already visible with live lifecycle coverage for parity review.'
                         : 'Galaxy holder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
                     ['label' => 'Source signal', 'value' => $cardHolderCount > 0 ? 'live holder status coverage visible' : 'holder status coverage pending'],
-                    ['label' => 'Galaxy input signal', 'value' => $cardHolderCount > 0 ? 'holder status inputs are ready for on-screen review' : 'holder status inputs still need live Laravel coverage'],
+                    ['label' => 'Galaxy input signal', 'value' => $cardHolderCount > 0 ? 'holder status inputs are ready for on-screen review' : 'holder status inputs still need live Galaxy foundation coverage'],
                     ['label' => 'Comparison signal', 'value' => $inactiveCardHolderCount > 0 && $activeCardHolderCount > 0 && $linkedCardHolderCount > 0 && $unlinkedCardHolderCount > 0 && $activeLinkedCardCount > 0 && $blockedLinkedCardCount > 0
                         ? 'lifecycle, linkage, and linked-card comparison cues are all visible for parity walkthrough'
                         : 'full lifecycle, linkage, and linked-card comparison coverage is still pending'],
@@ -1702,7 +1702,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Source posture', 'value' => 'Keep access scope review in the live workspace first, then leave export-style access summaries in preview mode until parity is proven.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep active roles, permission-linked coverage, and assigned staff scope visible together before trusting any export view.'],
                     ['label' => 'Source signal', 'value' => $roleCount > 0 ? 'live role coverage visible' : 'role coverage pending'],
-                    ['label' => 'Galaxy input signal', 'value' => $roleCount > 0 ? 'role inputs are ready for on-screen review' : 'role inputs still need live Laravel coverage'],
+                    ['label' => 'Galaxy input signal', 'value' => $roleCount > 0 ? 'role inputs are ready for on-screen review' : 'role inputs still need live Galaxy foundation coverage'],
                     ['label' => 'Access mix signal', 'value' => $permissionLinkedRoleCount > 0 && $assignedStaffCount > 0 && $activeRoleCount > 0
                         ? 'role, bundle, and staffing inputs are jointly visible for access parity walkthrough'
                         : 'combined role, bundle, and staffing coverage is still pending'],
@@ -1762,7 +1762,7 @@ class ResourceIndexController extends Controller
                         ? 'Galaxy access source is already visible with live access coverage for parity review.'
                         : 'Galaxy access source remains safer as planning-only review until live access coverage appears.'],
                     ['label' => 'Source signal', 'value' => $roleCount > 0 ? 'live role coverage visible' : 'role coverage pending'],
-                    ['label' => 'Galaxy input signal', 'value' => $roleCount > 0 ? 'role inputs are ready for on-screen review' : 'role inputs still need live Laravel coverage'],
+                    ['label' => 'Galaxy input signal', 'value' => $roleCount > 0 ? 'role inputs are ready for on-screen review' : 'role inputs still need live Galaxy foundation coverage'],
                     ['label' => 'Access mix signal', 'value' => $permissionLinkedRoleCount > 0 && $assignedStaffCount > 0 && $activeRoleCount > 0
                         ? 'role, bundle, and staffing inputs are jointly visible for access parity walkthrough'
                         : 'combined role, bundle, and staffing coverage is still pending'],

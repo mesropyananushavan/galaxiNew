@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports input-coverage wording alignment checkpoint
+- Aligned the live `reports` input-signal fallback values from `live Laravel coverage` to `live Galaxy foundation coverage` so the reporting source-state copy stays consistent with the newer Galaxy-specific foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those input-signal states.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
 ### Management review-posture wording alignment checkpoint
 - Aligned the live management review-posture strings from `Laravel-backed read mode only` to `Galaxy foundation-backed read mode only` across the selected role, card, holder, and shop shells so these surfaces stay consistent with the newer Galaxy foundation vocabulary.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those posture strings.
