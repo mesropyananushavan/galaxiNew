@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Card reviewed metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Reviewed cards` to `Reviewed Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
 ### Branch reviewed metric wording alignment checkpoint
 - Aligned the neighboring `shops` metric label from `Reviewed shops` to `Reviewed Galaxy branches`, keeping the already-updated branch surface consistent with the newer Galaxy-specific copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the branch-surface assertion that reads the same metric stack.
