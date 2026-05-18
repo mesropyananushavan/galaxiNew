@@ -745,7 +745,7 @@ class ResourceIndexController extends Controller
         if (is_array($page['liveForm'] ?? null)) {
             $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
                 $page['liveForm'],
-                'Edit Galaxy role in Laravel',
+                'Edit Galaxy role in Galaxy foundation',
                 'Update the selected Galaxy role identity through the shared live form while permission bundles and shop scope remain in review-only mode.',
                 'admin.roles-permissions.update',
                 [
@@ -935,7 +935,7 @@ class ResourceIndexController extends Controller
         if (is_array($page['liveForm'] ?? null)) {
             $page['liveForm'] = $this->applySelectedEditLiveForm(
                 $page['liveForm'],
-                'Edit Galaxy card in Laravel',
+                'Edit Galaxy card in Galaxy foundation',
                 'Update the selected Galaxy card through the shared live form while holder assignment, dispute handling, and replacement flows remain review-only.',
                 'admin.cards.update',
                 [
@@ -1111,7 +1111,7 @@ class ResourceIndexController extends Controller
         if (is_array($page['liveForm'] ?? null)) {
             $page['liveForm'] = $this->applySelectedEditLiveForm(
                 $page['liveForm'],
-                'Edit Galaxy holder in Laravel',
+                'Edit Galaxy holder in Galaxy foundation',
                 'Update the selected Galaxy cardholder through the shared live form while card linkage and activity history remain review-only.',
                 'admin.cardholders.update',
                 [
@@ -1264,7 +1264,7 @@ class ResourceIndexController extends Controller
         if (is_array($page['liveForm'] ?? null)) {
             $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
                 $page['liveForm'],
-                'Edit Galaxy branch in Laravel',
+                'Edit Galaxy branch in Galaxy foundation',
                 'Update the selected Galaxy branch through the shared live form while manager reassignment and scope changes remain review-only.',
                 'admin.shops.update',
                 [

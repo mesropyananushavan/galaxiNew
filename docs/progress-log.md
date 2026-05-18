@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Management edit-action wording alignment checkpoint
+- Aligned the live edit-action labels for `roles-permissions`, `cards`, `cardholders`, and `shops` from `Edit ... in Laravel` to `Edit ... in Galaxy foundation` so these selected-detail shells read less like generic starter scaffolding.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those edit-action labels.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`; the focused management slice passed (`4 passed`).
+
 ### Card-types edit-flow wording alignment checkpoint
 - Aligned the live selected-tier handoff copy from `selected for Laravel edit flow` / `Edit Galaxy tier in Laravel` to `selected for Galaxy edit flow` / `Edit Galaxy tier in Galaxy foundation` so the card-type edit shell reads less like starter-era Laravel scaffolding.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card-type assertions that read that edit-flow copy.
