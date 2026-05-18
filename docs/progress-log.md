@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Tier reviewed metric wording alignment checkpoint
+- Aligned the neighboring `card-types` metric label from `Reviewed tiers` to `Reviewed Galaxy tiers`, keeping the already-updated tier surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the tier-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_surfaces_selected_card_type_context_from_laravel_data|test_card_types_metrics_ignore_non_numeric_review_only_entries|test_card_types_page_supports_selected_draft_card_type_review_context'`; the current matched slice covered the card-types management preview and passed (`1 passed`).
+
 ### Card reviewed metric wording alignment checkpoint
 - Aligned the neighboring `cards` metric label from `Reviewed cards` to `Reviewed Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.

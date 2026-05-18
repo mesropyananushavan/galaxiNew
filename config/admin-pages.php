@@ -540,7 +540,7 @@ return [
         'metrics' => [
             ['label' => 'Active Galaxy tiers', 'value' => '2'],
             ['label' => 'Draft Galaxy tiers', 'value' => '1'],
-            ['label' => 'Reviewed tiers', 'value' => '1'],
+            ['label' => 'Reviewed Galaxy tiers', 'value' => '1'],
             ['label' => 'Activation notes', 'value' => '1'],
             ['label' => 'Rollout notes', 'value' => '1'],
             ['label' => 'Imported rules', 'value' => '0'],
