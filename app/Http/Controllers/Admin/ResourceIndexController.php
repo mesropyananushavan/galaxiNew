@@ -1582,8 +1582,8 @@ class ResourceIndexController extends Controller
                         : 'Draft-safe review, no cardholders are tracked yet so this source remains a planning-only catalog entry.'],
                     ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy holders are currently available for read-only status reporting review.', $cardHolderCount)],
                     ['label' => 'Source status signal', 'value' => $cardHolderCount > 0
-                        ? 'Cardholder-status source is already visible with live lifecycle coverage for parity review.'
-                        : 'Cardholder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
+                        ? 'Galaxy holder-status source is already visible with live lifecycle coverage for parity review.'
+                        : 'Galaxy holder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
                     ['label' => 'Source focus', 'value' => 'Start with active-versus-inactive holder posture before expanding into deeper linkage comparisons.'],
                     ['label' => 'Source posture', 'value' => 'Keep support-style status triage visible first, then leave export-style lifecycle summaries in preview mode until parity is proven.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep holder status counts, linked-versus-unlinked profiles, and blocked-card posture visible together before trusting any export view.'],
@@ -1640,8 +1640,8 @@ class ResourceIndexController extends Controller
                     ['label' => 'Selected source', 'value' => 'Galaxy holder status overview'],
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d Galaxy holders are currently visible to the reporting workspace.', $cardHolderCount)],
                     ['label' => 'Source status signal', 'value' => $cardHolderCount > 0
-                        ? 'Cardholder-status source is already visible with live lifecycle coverage for parity review.'
-                        : 'Cardholder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
+                        ? 'Galaxy holder-status source is already visible with live lifecycle coverage for parity review.'
+                        : 'Galaxy holder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
                     ['label' => 'Source signal', 'value' => $cardHolderCount > 0 ? 'live holder status coverage visible' : 'holder status coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardHolderCount > 0 ? 'holder status inputs are ready for on-screen review' : 'holder status inputs still need live Laravel coverage'],
                     ['label' => 'Comparison signal', 'value' => $inactiveCardHolderCount > 0 && $activeCardHolderCount > 0 && $linkedCardHolderCount > 0 && $unlinkedCardHolderCount > 0 && $activeLinkedCardCount > 0 && $blockedLinkedCardCount > 0
@@ -1696,8 +1696,8 @@ class ResourceIndexController extends Controller
                         : 'Draft-safe review, no roles are tracked yet so this source remains a catalog-only planning stub.'],
                     ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy access shells are currently available for read-only access reporting review.', $roleCount)],
                     ['label' => 'Source status signal', 'value' => $roleCount > 0
-                        ? 'Role-access source is already visible with live access coverage for parity review.'
-                        : 'Role-access source remains safer as planning-only review until live access coverage appears.'],
+                        ? 'Galaxy access source is already visible with live access coverage for parity review.'
+                        : 'Galaxy access source remains safer as planning-only review until live access coverage appears.'],
                     ['label' => 'Source focus', 'value' => 'Start with role coverage and branch scope visibility before comparing any later export expectations.'],
                     ['label' => 'Source posture', 'value' => 'Keep access scope review in the live workspace first, then leave export-style access summaries in preview mode until parity is proven.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep active roles, permission-linked coverage, and assigned staff scope visible together before trusting any export view.'],
@@ -1759,8 +1759,8 @@ class ResourceIndexController extends Controller
                     ['label' => 'Selected source', 'value' => 'Galaxy access coverage'],
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d Galaxy access shells are currently visible to the reporting workspace.', $roleCount)],
                     ['label' => 'Source status signal', 'value' => $roleCount > 0
-                        ? 'Role-access source is already visible with live access coverage for parity review.'
-                        : 'Role-access source remains safer as planning-only review until live access coverage appears.'],
+                        ? 'Galaxy access source is already visible with live access coverage for parity review.'
+                        : 'Galaxy access source remains safer as planning-only review until live access coverage appears.'],
                     ['label' => 'Source signal', 'value' => $roleCount > 0 ? 'live role coverage visible' : 'role coverage pending'],
                     ['label' => 'Laravel input signal', 'value' => $roleCount > 0 ? 'role inputs are ready for on-screen review' : 'role inputs still need live Laravel coverage'],
                     ['label' => 'Access mix signal', 'value' => $permissionLinkedRoleCount > 0 && $assignedStaffCount > 0 && $activeRoleCount > 0

@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports holder/access source-status wording alignment checkpoint
+- Aligned the live `reports` holder and access source-status strings from mixed generic wording to Galaxy-specific language (`Galaxy holder-status source` and `Galaxy access source`) so the selected reporting review state stays consistent with the newer Galaxy naming across the rest of the shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those source-status strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed (`3 passed`).
+
 ### Reports branch card-shell review wording alignment checkpoint
 - Aligned the live `reports` branch card-shell review copy from generic branch/card wording to Galaxy-specific language (`live Galaxy branches`, `Galaxy card shells`, and `tracked Galaxy card shells across Galaxy branches`) so the selected reporting source reads more like a Galaxy-specific operational review surface.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those branch card-shell review strings.
