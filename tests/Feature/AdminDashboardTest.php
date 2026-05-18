@@ -247,7 +247,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Migration-map posture:')
             ->assertSee('grounded parity planning.')
             ->assertSee('Migration-map handoff signal')
-            ->assertSee('The migration map already spans 3 grouped sections with live coverage in 5 core Galaxy domains, so parity handoff planning can stay grounded in the current Laravel shell.')
+            ->assertSee('The migration map already spans 3 grouped sections with live coverage in 5 core Galaxy domains, so parity handoff planning can stay grounded in the current Galaxy foundation shell.')
             ->assertSee('Operations (4 surfaces):')
             ->assertSee('Catalog (3 surfaces):')
             ->assertSee('Administration (3 surfaces):')

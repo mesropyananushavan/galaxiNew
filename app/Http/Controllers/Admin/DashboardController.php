@@ -980,7 +980,7 @@ class DashboardController extends Controller
             'label' => 'Migration-map handoff signal',
             'value' => match (true) {
                 $liveDomainCount >= 5
-                    => sprintf('The migration map already spans %d grouped sections with live coverage in %d core Galaxy domains, so parity handoff planning can stay grounded in the current Laravel shell.', $mappedGroupCount, $liveDomainCount),
+                    => sprintf('The migration map already spans %d grouped sections with live coverage in %d core Galaxy domains, so parity handoff planning can stay grounded in the current Galaxy foundation shell.', $mappedGroupCount, $liveDomainCount),
                 $liveDomainCount > 0
                     => sprintf('The migration map already spans %d grouped sections, but only %d core Galaxy domains have live Galaxy foundation coverage so far.', $mappedGroupCount, $liveDomainCount),
                 default
