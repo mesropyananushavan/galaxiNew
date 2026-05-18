@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Management review-posture wording alignment checkpoint
+- Aligned the live management review-posture strings from `Laravel-backed read mode only` to `Galaxy foundation-backed read mode only` across the selected role, card, holder, and shop shells so these surfaces stay consistent with the newer Galaxy foundation vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those posture strings.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`; the focused management slice passed (`4 passed`).
+
 ### Reports source-model wording alignment checkpoint
 - Aligned the live `reports` overview copy from `Laravel models` to `Galaxy foundation models` so the reporting workspace summary reads less like starter-era implementation language and more like Galaxy-specific foundation scaffolding.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that overview/model copy.

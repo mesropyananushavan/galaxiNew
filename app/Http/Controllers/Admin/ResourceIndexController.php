@@ -3667,7 +3667,7 @@ class ResourceIndexController extends Controller
 
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
-            ['label' => 'Review posture', 'value' => 'Selected-role review is running in Laravel-backed read mode only'],
+            ['label' => 'Review posture', 'value' => 'Selected-role review is running in Galaxy foundation-backed read mode only'],
             ['label' => 'Status posture', 'value' => $selectedRole->is_active
                 ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
                 : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
@@ -4077,7 +4077,7 @@ class ResourceIndexController extends Controller
 
     private function cardsInventoryDependencyPosture(): string
     {
-        return 'Selected-card review is running in Laravel-backed read mode only';
+        return 'Selected-card review is running in Galaxy foundation-backed read mode only';
     }
 
     private function cardsLifecyclePosture(Card $selectedCard): string
@@ -4321,7 +4321,7 @@ class ResourceIndexController extends Controller
 
     private function cardholdersLookupDependencyPosture(): string
     {
-        return 'Selected-holder review is running in Laravel-backed read mode only';
+        return 'Selected-holder review is running in Galaxy foundation-backed read mode only';
     }
 
     private function cardholdersStatusPosture(CardHolder $selectedCardHolder): string
@@ -4534,7 +4534,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected shop', 'value' => $selectedShop->name],
-            ['label' => 'Branch posture', 'value' => 'Selected-shop review is running in Laravel-backed read mode only'],
+            ['label' => 'Branch posture', 'value' => 'Selected-shop review is running in Galaxy foundation-backed read mode only'],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $selectedShop->review_note ?: 'No review note saved yet'],
