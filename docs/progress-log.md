@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports holder linked-card lifecycle wording alignment checkpoint
+- Aligned the live `reports` holder-status linked-card lifecycle strings from generic linked-card wording to Galaxy-specific language (`holder-linked Galaxy card shells`) so the selected holder review source reads more like a Galaxy-specific operational shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those holder linked-card lifecycle strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_cardholder_status_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
 ### Reports access role-state wording alignment checkpoint
 - Aligned the live `reports` access role-state/detail strings from generic `active roles` and `draft access roles` wording to Galaxy-specific language (`active Galaxy access roles`, `draft Galaxy access roles`, and `unbundled active Galaxy access roles`) so the selected access review source reads more like a Galaxy-specific operational shell.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those access role-state strings.

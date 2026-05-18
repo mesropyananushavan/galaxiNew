@@ -1600,13 +1600,13 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d linked holders are already visible beside %d unlinked profiles for parity review', $linkedCardHolderCount, $unlinkedCardHolderCount)
                         : 'unlinked holder coverage is still pending for parity review'],
                     ['label' => 'Linked card state signal', 'value' => $activeLinkedCardCount > 0 && $blockedLinkedCardCount > 0
-                        ? sprintf('%d active linked cards are already visible beside %d blocked linked cards for parity review', $activeLinkedCardCount, $blockedLinkedCardCount)
+                        ? sprintf('%d active holder-linked Galaxy card shells are already visible beside %d blocked holder-linked Galaxy card shells for parity review', $activeLinkedCardCount, $blockedLinkedCardCount)
                         : 'blocked linked-card coverage is still pending for parity review'],
                     ['label' => 'Linked card draft signal', 'value' => $draftLinkedCardCount > 0
-                        ? sprintf('%d draft linked cards are already visible for pre-issuance parity review', $draftLinkedCardCount)
+                        ? sprintf('%d draft holder-linked Galaxy card shells are already visible for pre-issuance parity review', $draftLinkedCardCount)
                         : 'draft linked-card coverage is still pending for parity review'],
                     ['label' => 'Linked card activation signal', 'value' => $activatedLinkedCardCount > 0
-                        ? sprintf('%d activated linked cards are already visible for holder-lifecycle parity review', $activatedLinkedCardCount)
+                        ? sprintf('%d activated holder-linked Galaxy card shells are already visible for holder-lifecycle parity review', $activatedLinkedCardCount)
                         : 'activated linked-card coverage is still pending for parity review'],
                     ['label' => 'Blocked holder signal', 'value' => $blockedLinkedHolderCount > 0
                         ? sprintf('%d holder profiles already carry blocked linked-card posture for support review', $blockedLinkedHolderCount)
@@ -1655,13 +1655,13 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d linked holders are already visible beside %d unlinked profiles for parity review', $linkedCardHolderCount, $unlinkedCardHolderCount)
                         : 'unlinked holder coverage is still pending for parity review'],
                     ['label' => 'Linked card state signal', 'value' => $activeLinkedCardCount > 0 && $blockedLinkedCardCount > 0
-                        ? sprintf('%d active linked cards are already visible beside %d blocked linked cards for parity review', $activeLinkedCardCount, $blockedLinkedCardCount)
+                        ? sprintf('%d active holder-linked Galaxy card shells are already visible beside %d blocked holder-linked Galaxy card shells for parity review', $activeLinkedCardCount, $blockedLinkedCardCount)
                         : 'blocked linked-card coverage is still pending for parity review'],
                     ['label' => 'Linked card draft signal', 'value' => $draftLinkedCardCount > 0
-                        ? sprintf('%d draft linked cards are already visible for pre-issuance parity review', $draftLinkedCardCount)
+                        ? sprintf('%d draft holder-linked Galaxy card shells are already visible for pre-issuance parity review', $draftLinkedCardCount)
                         : 'draft linked-card coverage is still pending for parity review'],
                     ['label' => 'Linked card activation signal', 'value' => $activatedLinkedCardCount > 0
-                        ? sprintf('%d activated linked cards are already visible for holder-lifecycle parity review', $activatedLinkedCardCount)
+                        ? sprintf('%d activated holder-linked Galaxy card shells are already visible for holder-lifecycle parity review', $activatedLinkedCardCount)
                         : 'activated linked-card coverage is still pending for parity review'],
                     ['label' => 'Blocked holder signal', 'value' => $blockedLinkedHolderCount > 0
                         ? sprintf('%d holder profiles already carry blocked linked-card posture for support review', $blockedLinkedHolderCount)
