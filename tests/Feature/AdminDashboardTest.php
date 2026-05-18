@@ -9822,7 +9822,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Readiness signal:')
             ->assertSee('Not ready to publish: draft mode is still the holding state for parity validation and rule-import review.')
             ->assertSee('Recent activity preview')
-            ->assertSee('Galaxy Prime selected for Laravel edit flow')
+            ->assertSee('Galaxy Prime selected for Galaxy edit flow')
             ->assertSee('Current request')
             ->assertSee('The shared card-type form is now loading this saved tier directly from Laravel data instead of preview-only defaults.')
             ->assertSee('Galaxy Prime status reflected from model state')
@@ -9890,7 +9890,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Allow draft-safe edits and validation only, keep live-facing actions gated')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Draft activation, publish logic, and rule-import parity should stay preview-only until draft tier parity is verified.')
-            ->assertSee('Edit Galaxy tier in Laravel')
+            ->assertSee('Edit Galaxy tier in Galaxy foundation')
             ->assertSee('Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.')
             ->assertSee('>Save tier changes<', false)
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false)
@@ -10424,7 +10424,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card type "Galaxy Prime" was created.')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
-            ->assertSee('Edit Galaxy tier in Laravel')
+            ->assertSee('Edit Galaxy tier in Galaxy foundation')
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }
 
@@ -12072,7 +12072,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep activation handoff visible while this tier stays in draft review.')
             ->assertSee('Rollout note:')
             ->assertSee('Keep rollout review-only while this tier stays in draft review.')
-            ->assertSee('Edit Galaxy tier in Laravel')
+            ->assertSee('Edit Galaxy tier in Galaxy foundation')
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false);
     }
 
@@ -12181,7 +12181,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Edit Galaxy tier in Laravel')
+            ->assertSee('Edit Galaxy tier in Galaxy foundation')
             ->assertSee('Save card type changes')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
@@ -12219,7 +12219,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Edit Galaxy tier in Laravel')
+            ->assertSee('Edit Galaxy tier in Galaxy foundation')
             ->assertSee('value="Galaxy Prime Attempt"', false)
             ->assertSee('value="galaxy-silver-duplicate-target"', false)
             ->assertSee('value="2.75"', false)
@@ -12251,7 +12251,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Edit Galaxy tier in Laravel')
+            ->assertSee('Edit Galaxy tier in Galaxy foundation')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
             ->assertSee('id="live-form-validation-title"', false)
@@ -12286,7 +12286,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Edit Galaxy tier in Laravel')
+            ->assertSee('Edit Galaxy tier in Galaxy foundation')
             ->assertSee('Create new Galaxy tier shell')
             ->assertSee('href="/admin/card-types"', false)
             ->assertDontSee('href="/admin/card-types?cardType='.$cardType->id.'"', false);

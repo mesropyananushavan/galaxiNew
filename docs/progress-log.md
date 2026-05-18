@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Card-types edit-flow wording alignment checkpoint
+- Aligned the live selected-tier handoff copy from `selected for Laravel edit flow` / `Edit Galaxy tier in Laravel` to `selected for Galaxy edit flow` / `Edit Galaxy tier in Galaxy foundation` so the card-type edit shell reads less like starter-era Laravel scaffolding.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card-type assertions that read that edit-flow copy.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_links_latest_saved_record_into_edit_flow'`; the focused card-types slice passed for the matched test (`1 passed`).
+
 ### Management created-at wording alignment checkpoint
 - Aligned the live management created-at lifecycle copy from `created in Laravel` and `current Laravel foundation` wording to `created in the Galaxy foundation layer` / `current Galaxy foundation layer` so these selected-detail shells read more like Galaxy-specific foundation review surfaces.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those lifecycle strings.

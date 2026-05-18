@@ -2152,7 +2152,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesSelectedForEditFlowTitle(CardType $selectedCardType): string
     {
-        return sprintf('%s selected for Laravel edit flow', $selectedCardType->name);
+        return sprintf('%s selected for Galaxy edit flow', $selectedCardType->name);
     }
 
     private function cardTypesSelectedForEditFlowDescription(): string
@@ -2267,7 +2267,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesLiveFormTitle(): string
     {
-        return 'Edit Galaxy tier in Laravel';
+        return 'Edit Galaxy tier in Galaxy foundation';
     }
 
     private function cardTypesLiveFormDescription(): string
