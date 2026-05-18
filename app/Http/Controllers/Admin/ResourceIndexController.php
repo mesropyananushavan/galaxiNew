@@ -972,7 +972,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s selected for Galaxy review', $selectedCard->number),
                 'time' => 'Current request',
-                'description' => 'The shared cards workspace is now loading this saved inventory record from Laravel data instead of only static preview rows.',
+                'description' => 'The shared cards workspace is now loading this saved inventory record from the Galaxy foundation layer instead of only static preview rows.',
             ],
             [
                 'title' => sprintf('%s status reflected from model state', $selectedCard->number),
@@ -1147,7 +1147,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s selected for Galaxy review', $selectedCardHolder->full_name),
                 'time' => 'Current request',
-                'description' => 'The shared cardholders workspace is now loading this saved holder from Laravel data instead of only static preview rows.',
+                'description' => 'The shared cardholders workspace is now loading this saved holder from the Galaxy foundation layer instead of only static preview rows.',
             ],
             [
                 'title' => sprintf('%s status reflected from model state', $selectedCardHolder->full_name),
@@ -1301,7 +1301,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s selected for Galaxy review', $selectedShop->name),
                 'time' => 'Current request',
-                'description' => 'The shared shops workspace is now loading this saved branch from Laravel data instead of only static preview rows.',
+                'description' => 'The shared shops workspace is now loading this saved branch from the Galaxy foundation layer instead of only static preview rows.',
             ],
             [
                 'title' => sprintf('%s status reflected from model state', $selectedShop->name),
@@ -3546,7 +3546,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsSelectedForReviewTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => 'The shared roles-permissions workspace is now loading this saved role from Laravel data instead of only static preview rows.',
+                'description' => 'The shared roles-permissions workspace is now loading this saved role from the Galaxy foundation layer instead of only static preview rows.',
             ],
             [
                 'title' => $this->rolesPermissionsStatusTimelineTitle($selectedRole),

@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Management foundation-layer wording alignment checkpoint
+- Aligned the live selected-detail workspace descriptions for `roles-permissions`, `cards`, `shops`, and `cardholders` from `Laravel data` wording to `the Galaxy foundation layer` so the management review shell reads less like a starter handoff surface.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those workspace descriptions.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`; the focused management slice passed (`4 passed`).
+
 ### Reports foundation-layer wording alignment checkpoint
 - Aligned the live `reports` selected-source descriptions and workspace summary from `current Laravel foundation` wording to `current Galaxy foundation layer` so the reporting shell reads less like a starter handoff and more like a Galaxy-specific foundation surface.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those foundation-layer strings.
