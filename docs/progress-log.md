@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports branch recovery inventory wording alignment checkpoint
+- Aligned the live `reports` branch recovery and unassigned inventory detail strings from leftover generic `holder-linked cards` and `unassigned cards` wording to Galaxy-specific language (`holder-linked Galaxy card shells` and `unassigned Galaxy card shells`) so the selected branch card-shell review stays consistent across active and paused branch comparisons.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those branch recovery inventory strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cards_by_shop_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched test (`1 passed`).
+
 ### Reports branch source-status wording alignment checkpoint
 - Aligned the live `reports` branch source-status string from the leftover generic `Cards-by-shop source` label to Galaxy-specific language (`Galaxy branch card-shell source`) so the selected reporting source reads consistently with the surrounding branch card-shell review copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that branch source-status string.
