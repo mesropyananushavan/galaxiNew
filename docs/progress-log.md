@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports branch card-shell activity wording alignment checkpoint
+- Aligned the live `reports` branch card-shell activity/detail strings from generic `holder-linked cards`, `active branches`, and `live customer inventory` wording to Galaxy-specific language (`holder-linked Galaxy card shells`, `active Galaxy branches`, and `live Galaxy customer inventory`) so the selected branch review source reads less like starter copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those branch card-shell activity strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cards_by_shop_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched test (`1 passed`).
+
 ### Reports workspace foundation-summary wording alignment checkpoint
 - Aligned the live `reports` workspace foundation summary from generic entity names (`shops`, `cards`, `cardholders`, `roles`) to Galaxy-specific language (`Galaxy branches`, `Galaxy card shells`, `Galaxy holders`, and `Galaxy access shells`) so the overview shell reads less like a starter dashboard.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that workspace foundation-summary string.

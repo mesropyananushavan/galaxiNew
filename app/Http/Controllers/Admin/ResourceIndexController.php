@@ -1461,7 +1461,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d holder-linked cards are already visible beside %d unassigned inventory records for parity review', $holderLinkedCardCount, $unassignedCardCount)
                         : 'unassigned inventory coverage is still pending for parity review'],
                     ['label' => 'Activated assignment signal', 'value' => $activatedHolderLinkedCardCount > 0
-                        ? sprintf('%d activated holder-linked cards are already visible for live customer inventory review', $activatedHolderLinkedCardCount)
+                        ? sprintf('%d activated holder-linked Galaxy card shells are already visible for live Galaxy customer inventory review', $activatedHolderLinkedCardCount)
                         : 'activated holder-linked inventory is still pending for parity review'],
                     ['label' => 'Blocked assignment signal', 'value' => $blockedHolderLinkedCardCount > 0
                         ? sprintf('%d blocked holder-linked cards are already visible for dispute and replacement review', $blockedHolderLinkedCardCount)
@@ -1470,7 +1470,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d draft holder-linked cards are already visible for pre-issuance customer review', $draftHolderLinkedCardCount)
                         : 'draft holder-linked inventory is still pending for parity review'],
                     ['label' => 'Active branch assignment signal', 'value' => $activeShopHolderLinkedCardCount > 0
-                        ? sprintf('%d holder-linked cards are already visible in active branches for live branch review', $activeShopHolderLinkedCardCount)
+                        ? sprintf('%d holder-linked Galaxy card shells are already visible in active Galaxy branches for live branch review', $activeShopHolderLinkedCardCount)
                         : 'active-branch holder-linked inventory is still pending for parity review'],
                     ['label' => 'Paused branch assignment signal', 'value' => $pausedShopHolderLinkedCardCount > 0
                         ? sprintf('%d holder-linked cards are already visible in paused Galaxy branches for branch-recovery review', $pausedShopHolderLinkedCardCount)
@@ -1532,7 +1532,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d holder-linked cards are already visible beside %d unassigned inventory records for parity review', $holderLinkedCardCount, $unassignedCardCount)
                         : 'unassigned inventory coverage is still pending for parity review'],
                     ['label' => 'Activated assignment signal', 'value' => $activatedHolderLinkedCardCount > 0
-                        ? sprintf('%d activated holder-linked cards are already visible for live customer inventory review', $activatedHolderLinkedCardCount)
+                        ? sprintf('%d activated holder-linked Galaxy card shells are already visible for live Galaxy customer inventory review', $activatedHolderLinkedCardCount)
                         : 'activated holder-linked inventory is still pending for parity review'],
                     ['label' => 'Blocked assignment signal', 'value' => $blockedHolderLinkedCardCount > 0
                         ? sprintf('%d blocked holder-linked cards are already visible for dispute and replacement review', $blockedHolderLinkedCardCount)
@@ -1541,7 +1541,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d draft holder-linked cards are already visible for pre-issuance customer review', $draftHolderLinkedCardCount)
                         : 'draft holder-linked inventory is still pending for parity review'],
                     ['label' => 'Active branch assignment signal', 'value' => $activeShopHolderLinkedCardCount > 0
-                        ? sprintf('%d holder-linked cards are already visible in active branches for live branch review', $activeShopHolderLinkedCardCount)
+                        ? sprintf('%d holder-linked Galaxy card shells are already visible in active Galaxy branches for live branch review', $activeShopHolderLinkedCardCount)
                         : 'active-branch holder-linked inventory is still pending for parity review'],
                     ['label' => 'Paused branch assignment signal', 'value' => $pausedShopHolderLinkedCardCount > 0
                         ? sprintf('%d holder-linked cards are already visible in paused Galaxy branches for branch-recovery review', $pausedShopHolderLinkedCardCount)
