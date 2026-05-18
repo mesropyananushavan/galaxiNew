@@ -9261,7 +9261,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('aria-disabled="true"', false)
             ->assertSee('Management snapshot')
             ->assertSee('Active Galaxy rules')
-            ->assertSee('Shop scopes')
+            ->assertSee('Galaxy branch scopes')
             ->assertSee('No service rules configured yet')
             ->assertSee('Create first Galaxy rule')
             ->assertSee('Rule editing is still preview-only')

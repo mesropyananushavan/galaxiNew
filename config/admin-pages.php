@@ -692,7 +692,7 @@ return [
         'metrics' => [
             ['label' => 'Active Galaxy rules', 'value' => '2'],
             ['label' => 'Draft Galaxy rules', 'value' => '1'],
-            ['label' => 'Shop scopes', 'value' => '3'],
+            ['label' => 'Galaxy branch scopes', 'value' => '3'],
         ],
         'table' => [
             'columns' => ['Rule group', 'Scope', 'Condition', 'Effect', 'Priority', 'Status'],

@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Rule scope metric wording alignment checkpoint
+- Aligned the neighboring `services-rules` metric label from `Shop scopes` to `Galaxy branch scopes`, keeping the already-updated rules surface consistent with the newer Galaxy-specific branch wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the rules preview assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview|test_services_rules_page_supports_selected_priority_rule_review_context|test_services_rules_page_supports_selected_shop_scoped_rule_review_context|test_services_rules_page_supports_selected_blocking_rule_review_context'`; the current matched slice covered the services-rules management preview and passed (`1 passed`).
+
 ### Branch manager metric wording alignment checkpoint
 - Aligned the neighboring `shops` metric label from `Assigned managers` to `Assigned branch managers`, keeping the already-updated branch surface consistent with the newer Galaxy-specific branch wording.
 - The focused shops slice briefly exposed one stale operational-index assertion that still expected the older label; that assertion was updated in the same narrow step, with no behavior change.
