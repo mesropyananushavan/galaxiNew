@@ -7731,7 +7731,7 @@ class AdminDashboardTest extends TestCase
         $inactiveHolderCount = CardHolder::query()->where('is_active', false)->count();
         $activeHolderCount = CardHolder::query()->where('is_active', true)->count();
         $lifecycleSignal = sprintf('%d inactive holders are already visible beside %d active profiles for lifecycle review', $inactiveHolderCount, $activeHolderCount);
-        $holderBranchActivitySignal = '2 holder profiles are already visible in active branches beside 1 profiles in paused shops for parity review';
+        $holderBranchActivitySignal = '2 holder profiles are already visible in active Galaxy branches beside 1 profiles in paused Galaxy branches for parity review';
 
         $user = User::factory()->create();
 
@@ -8001,7 +8001,7 @@ class AdminDashboardTest extends TestCase
         $activeScopedUser->roles()->attach($role->id);
         $pausedScopedUser->roles()->attach($role->id);
 
-        $assignmentBranchActivitySignal = '1 shop-linked staff assignments are already visible in active branches beside 1 assignments in paused shops for parity review';
+        $assignmentBranchActivitySignal = '1 branch-linked staff assignments are already visible in active Galaxy branches beside 1 assignments in paused Galaxy branches for parity review';
 
         $user = User::factory()->create();
 
@@ -8015,14 +8015,14 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assignment branch activity signal')
             ->assertSee($assignmentBranchActivitySignal)
             ->assertSee('Bundle branch activity signal')
-            ->assertSee('1 permission-linked roles are already visible in active branches beside 1 roles in paused shops for parity review')
+            ->assertSee('1 permission-linked roles are already visible in active Galaxy branches beside 1 roles in paused Galaxy branches for parity review')
             ->assertSee('Access-review handoff should stay visible in the workspace')
             ->assertSee('Operators should hand off role-coverage and staffing findings in the live review context before trusting export files for access decisions.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Assignment branch activity signal:')
             ->assertSee($assignmentBranchActivitySignal)
             ->assertSee('Bundle branch activity signal:')
-            ->assertSee('1 permission-linked roles are already visible in active branches beside 1 roles in paused shops for parity review')
+            ->assertSee('1 permission-linked roles are already visible in active Galaxy branches beside 1 roles in paused Galaxy branches for parity review')
             ->assertSee('Handoff signal:')
             ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.');
     }

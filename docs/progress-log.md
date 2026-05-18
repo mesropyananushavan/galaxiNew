@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports holder/access branch-comparison wording alignment checkpoint
+- Aligned the live `reports` holder and access branch-comparison detail strings from mixed `paused shops` wording to Galaxy-specific branch language (`active Galaxy branches`, `paused Galaxy branches`, and `branch-linked staff assignments`) so the selected reporting views read consistently with the rest of the Galaxy shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those holder/access comparison strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_comparison_context|test_reports_page_supports_selected_role_access_comparison_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_cardholder_status_review_context'`; the focused reports slice passed for the matched tests (`2 passed`).
+
 ### Reports holder/access source-status wording alignment checkpoint
 - Aligned the live `reports` holder and access source-status strings from mixed generic wording to Galaxy-specific language (`Galaxy holder-status source` and `Galaxy access source`) so the selected reporting review state stays consistent with the newer Galaxy naming across the rest of the shell.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those source-status strings.

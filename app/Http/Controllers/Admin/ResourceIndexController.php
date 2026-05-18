@@ -1621,7 +1621,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d holder profiles already carry activated linked-card posture for lifecycle review', $activatedLinkedHolderCount)
                         : 'activated-holder coverage is still pending for lifecycle review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
-                        ? sprintf('%d holder profiles are already visible in active branches beside %d profiles in paused shops for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
+                        ? sprintf('%d holder profiles are already visible in active Galaxy branches beside %d profiles in paused Galaxy branches for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],
                     ['label' => 'Scope guidance', 'value' => 'Keep this source focused on active versus inactive holder posture first, because old Galaxy support flows used status review before deeper profile history.' ],
                     ['label' => 'Default period posture', 'value' => 'Use a current-status review first, then stage preset periods until lifecycle and recency parity are verified.'],
@@ -1676,7 +1676,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d holder profiles already carry activated linked-card posture for lifecycle review', $activatedLinkedHolderCount)
                         : 'activated-holder coverage is still pending for lifecycle review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
-                        ? sprintf('%d holder profiles are already visible in active branches beside %d profiles in paused shops for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
+                        ? sprintf('%d holder profiles are already visible in active Galaxy branches beside %d profiles in paused Galaxy branches for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],
                     ['label' => 'Scope posture', 'value' => 'Status-first review should stay ahead of deeper segmentation until lifecycle parity and operator lookup habits are matched.'],
                     ['label' => 'Lifecycle posture', 'value' => 'Status aggregation should stay read-only until holder lifecycle and activity parity are verified.'],
@@ -1716,7 +1716,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d shop-linked staff assignments are already visible beside %d unscoped access assignments for parity review', $shopScopedAssignedStaffCount, $unscopedAssignedStaffCount)
                         : 'unscoped access-assignment coverage is still pending'],
                     ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedStaffCount > 0 && $pausedShopAssignedStaffCount > 0
-                        ? sprintf('%d shop-linked staff assignments are already visible in active branches beside %d assignments in paused shops for parity review', $activeShopAssignedStaffCount, $pausedShopAssignedStaffCount)
+                        ? sprintf('%d branch-linked staff assignments are already visible in active Galaxy branches beside %d assignments in paused Galaxy branches for parity review', $activeShopAssignedStaffCount, $pausedShopAssignedStaffCount)
                         : 'paused-branch access-assignment coverage is still pending'],
                     ['label' => 'Staff coverage signal', 'value' => $assignedActiveRoleCount > 0 && $unassignedActiveRoleCount > 0
                         ? sprintf('%d active roles already carry visible staff coverage beside %d unassigned access roles for parity review', $assignedActiveRoleCount, $unassignedActiveRoleCount)
@@ -1734,7 +1734,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d permission-linked roles already carry shop-linked access scope for parity review', $scopedPermissionLinkedRoleCount)
                         : 'shop-linked permission-bundle coverage is still pending'],
                     ['label' => 'Bundle branch activity signal', 'value' => $activeBranchPermissionLinkedRoleCount > 0 && $pausedBranchPermissionLinkedRoleCount > 0
-                        ? sprintf('%d permission-linked roles are already visible in active branches beside %d roles in paused shops for parity review', $activeBranchPermissionLinkedRoleCount, $pausedBranchPermissionLinkedRoleCount)
+                        ? sprintf('%d permission-linked roles are already visible in active Galaxy branches beside %d roles in paused Galaxy branches for parity review', $activeBranchPermissionLinkedRoleCount, $pausedBranchPermissionLinkedRoleCount)
                         : 'paused-branch permission-bundle coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
@@ -1776,7 +1776,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d shop-linked staff assignments are already visible beside %d unscoped access assignments for parity review', $shopScopedAssignedStaffCount, $unscopedAssignedStaffCount)
                         : 'unscoped access-assignment coverage is still pending'],
                     ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedStaffCount > 0 && $pausedShopAssignedStaffCount > 0
-                        ? sprintf('%d shop-linked staff assignments are already visible in active branches beside %d assignments in paused shops for parity review', $activeShopAssignedStaffCount, $pausedShopAssignedStaffCount)
+                        ? sprintf('%d branch-linked staff assignments are already visible in active Galaxy branches beside %d assignments in paused Galaxy branches for parity review', $activeShopAssignedStaffCount, $pausedShopAssignedStaffCount)
                         : 'paused-branch access-assignment coverage is still pending'],
                     ['label' => 'Staff coverage signal', 'value' => $assignedActiveRoleCount > 0 && $unassignedActiveRoleCount > 0
                         ? sprintf('%d active roles already carry visible staff coverage beside %d unassigned access roles for parity review', $assignedActiveRoleCount, $unassignedActiveRoleCount)
@@ -1794,7 +1794,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d permission-linked roles already carry shop-linked access scope for parity review', $scopedPermissionLinkedRoleCount)
                         : 'shop-linked permission-bundle coverage is still pending'],
                     ['label' => 'Bundle branch activity signal', 'value' => $activeBranchPermissionLinkedRoleCount > 0 && $pausedBranchPermissionLinkedRoleCount > 0
-                        ? sprintf('%d permission-linked roles are already visible in active branches beside %d roles in paused shops for parity review', $activeBranchPermissionLinkedRoleCount, $pausedBranchPermissionLinkedRoleCount)
+                        ? sprintf('%d permission-linked roles are already visible in active Galaxy branches beside %d roles in paused Galaxy branches for parity review', $activeBranchPermissionLinkedRoleCount, $pausedBranchPermissionLinkedRoleCount)
                         : 'paused-branch permission-bundle coverage is still pending'],
                     ['label' => 'Role state signal', 'value' => $activeRoleCount > 0 && $roleCount > $activeRoleCount
                         ? sprintf('%d active roles are already visible beside %d draft access roles for parity review', $activeRoleCount, $roleCount - $activeRoleCount)
