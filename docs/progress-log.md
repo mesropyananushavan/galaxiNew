@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports source-model wording alignment checkpoint
+- Aligned the live `reports` overview copy from `Laravel models` to `Galaxy foundation models` so the reporting workspace summary reads less like starter-era implementation language and more like Galaxy-specific foundation scaffolding.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that overview/model copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_replaces_preview_rows_with_model_backed_report_data|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
 ### Reports workspace-title wording alignment checkpoint
 - Aligned the live `reports` overview title from `Reporting workspace is now partially Laravel-backed` to `Reporting workspace is now partially Galaxy foundation-backed` so the top-level reporting shell reads less like starter-era infrastructure copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that workspace title.

@@ -1832,7 +1832,7 @@ class ResourceIndexController extends Controller
 
         $page['notice'] = [
             'title' => 'Reporting workspace is now partially Galaxy foundation-backed',
-            'description' => 'Catalog metrics and report entry rows now reflect live Galaxy source counts from Laravel models, while presets and exports remain preview-only.',
+            'description' => 'Catalog metrics and report entry rows now reflect live Galaxy source counts from Galaxy foundation models, while presets and exports remain preview-only.',
         ];
 
         $page['activityTimeline'] = $this->reportsActivityTimeline($shopCount, $cardCount, $cardHolderCount, $roleCount);
@@ -3086,7 +3086,7 @@ class ResourceIndexController extends Controller
     {
         return [
             [
-                'title' => 'Live reporting sources reflected from Laravel models',
+                'title' => 'Live reporting sources reflected from Galaxy foundation models',
                 'time' => 'Current request',
                 'description' => sprintf('The reporting workspace now sees %d Galaxy branches, %d Galaxy card shells, %d Galaxy holders, and %d Galaxy access shells through the current Galaxy foundation layer.', $shopCount, $cardCount, $cardHolderCount, $roleCount),
             ],
@@ -3101,7 +3101,7 @@ class ResourceIndexController extends Controller
     private function reportsDependencyStatus(int $shopCount, int $cardCount, int $cardHolderCount, int $roleCount): array
     {
         return [
-            ['label' => 'Domain model', 'value' => 'Report catalog is still lightweight, but source counts now come from live Laravel models'],
+            ['label' => 'Domain model', 'value' => 'Report catalog is still lightweight, but source counts now come from live Galaxy foundation models'],
             ['label' => 'Reporting posture', 'value' => 'This workspace is now live-backed for read-only source review, but preset and export flows should stay parity-first until the reporting pipeline is verified.'],
             ['label' => 'Readiness signal', 'value' => 'Partially ready: live source review works now, while preset handling and exports stay blocked behind later reporting-pipeline verification.'],
             ['label' => 'Preset posture', 'value' => 'Preset periods are still preview-only, so operators should treat the live source layer as reviewable while preset-driven report flows remain gated.'],
