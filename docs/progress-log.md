@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Dashboard migration-coverage wording alignment checkpoint
+- Aligned the live dashboard migration-map summary from `live Laravel coverage so far` to `live Galaxy foundation coverage so far` so the top-level Phase 1 progress signal matches the newer Galaxy foundation wording used across the admin shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that coverage summary.
+- Re-ran `php artisan test --filter='migration map already spans|test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
 ### Card write-path description wording alignment checkpoint
 - Aligned the live `cards` write-path description from `first minimal Laravel-backed card write path` to `first minimal Galaxy foundation-backed card write path` so the card-management shell stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and re-ran a stable focused cards slice as a regression check after the config-backed wording update.

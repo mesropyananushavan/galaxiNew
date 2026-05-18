@@ -626,7 +626,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Migration-map posture:')
             ->assertSee('parity staging in progress.')
             ->assertSee('Migration-map handoff signal')
-            ->assertSee('The migration map already spans 3 grouped sections, but only 1 core Galaxy domains have live Laravel coverage so far.')
+            ->assertSee('The migration map already spans 3 grouped sections, but only 1 core Galaxy domains have live Galaxy foundation coverage so far.')
             ->assertSee('Open latest branch review: Partial Dashboard Shop (inactive)</a> (Route: /admin/shops)', false)
             ->assertSee('/admin/shops?shop=1')
             ->assertSee('Open latest Galaxy tier shell review: Partial Dashboard Tier (draft)</a> (Route: /admin/card-types)', false)
