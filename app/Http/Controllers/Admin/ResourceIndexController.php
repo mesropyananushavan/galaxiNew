@@ -1632,13 +1632,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until summary exports and lifecycle report expectations are validated.'],
                 ],
                 'timeline' => [
-                    ['title' => 'Cardholder status source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked cardholders from the current Laravel foundation.', $cardHolderCount)],
+                    ['title' => 'Galaxy holder status source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked Galaxy holders from the current Laravel foundation.', $cardHolderCount)],
                     ['title' => 'Lifecycle reporting parity stays review-only', 'time' => 'Current request', 'description' => 'Source counts are live-backed now, but period presets and export behavior should stay blocked until reporting parity is verified.'],
                     ['title' => 'Support handoff should keep holder posture visible', 'time' => 'Current request', 'description' => $this->reportsCardholderStatusTimelineHandoffDescription($linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Galaxy holder status overview'],
-                    ['label' => 'Laravel inputs', 'value' => sprintf('%d cardholders are currently visible to the reporting workspace.', $cardHolderCount)],
+                    ['label' => 'Laravel inputs', 'value' => sprintf('%d Galaxy holders are currently visible to the reporting workspace.', $cardHolderCount)],
                     ['label' => 'Source status signal', 'value' => $cardHolderCount > 0
                         ? 'Cardholder-status source is already visible with live lifecycle coverage for parity review.'
                         : 'Cardholder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
@@ -1751,13 +1751,13 @@ class ResourceIndexController extends Controller
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until access export expectations and file delivery are validated.'],
                 ],
                 'timeline' => [
-                    ['title' => 'Role access source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked roles from the current Laravel foundation.', $roleCount)],
+                    ['title' => 'Galaxy access source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked Galaxy access shells from the current Laravel foundation.', $roleCount)],
                     ['title' => 'Access reporting parity stays review-only', 'time' => 'Current request', 'description' => 'Source counts are live-backed now, but grouped role exports and access analytics should stay blocked until reporting parity is verified.'],
                     ['title' => 'Access-review handoff should stay visible in the workspace', 'time' => 'Current request', 'description' => $this->reportsRoleAccessTimelineHandoffDescription($permissionLinkedRoleCount, $assignedStaffCount)],
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Galaxy access coverage'],
-                    ['label' => 'Laravel inputs', 'value' => sprintf('%d roles are currently visible to the reporting workspace.', $roleCount)],
+                    ['label' => 'Laravel inputs', 'value' => sprintf('%d Galaxy access shells are currently visible to the reporting workspace.', $roleCount)],
                     ['label' => 'Source status signal', 'value' => $roleCount > 0
                         ? 'Role-access source is already visible with live access coverage for parity review.'
                         : 'Role-access source remains safer as planning-only review until live access coverage appears.'],

@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports selected-source handoff wording alignment checkpoint
+- Aligned the live `reports` selected-source handoff copy for holder and access reviews from generic entity wording to Galaxy-specific language (`Galaxy holder status source`, `tracked Galaxy holders`, `Galaxy access source`, and `tracked Galaxy access shells`) so the detailed reporting review state reads less like a starter placeholder.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those selected-source handoff strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed (`3 passed`).
+
 ### Reports source coverage wording alignment checkpoint
 - Aligned the live `reports` selected-source coverage strings from generic entity wording to Galaxy-specific language (`Galaxy card shells`, `Galaxy branches`, `Galaxy holders`, and `Galaxy access shells`) so the reporting review context reads more like Galaxy operational reporting than a starter stub.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those selected-source coverage strings.
