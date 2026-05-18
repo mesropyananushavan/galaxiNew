@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Tier headline metrics wording alignment checkpoint
+- Aligned the real `card-types` headline metrics from generic tier wording to Galaxy-specific language (`Active/Draft/Reviewed Galaxy tiers`) so the live tier workspace better matches the broader Phase 1 Galaxy shell vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_surfaces_selected_card_type_context_from_laravel_data|test_card_types_metrics_ignore_non_numeric_review_only_entries|test_card_types_page_supports_selected_draft_card_type_review_context'`; the focused card-types slice passed (`1 passed`).
+
 ### Holder headline metrics wording alignment checkpoint
 - Aligned the real `cardholders` headline metrics from generic holder/card wording to Galaxy-specific language (`Active/Inactive/Reviewed Galaxy holders` and `Linked Galaxy card shells`) so the live holder workspace better matches the broader Phase 1 Galaxy shell vocabulary.
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.
