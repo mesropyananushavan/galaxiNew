@@ -1438,7 +1438,7 @@ class ResourceIndexController extends Controller
                         : 'Draft-safe review, no cards are tracked yet so this source remains a catalog-only planning stub.'],
                     ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy card shells across %d tracked Galaxy branches are currently available for read-only reporting review.', $cardCount, $shopCount)],
                     ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
-                        ? 'Cards-by-shop source is already visible with live branch inventory for parity review.'
+                        ? 'Galaxy branch card-shell source is already visible with live branch inventory for parity review.'
                         : 'Galaxy branch card-shell source remains safer as planning-only review until live branch inventory appears.'],
                     ['label' => 'Source focus', 'value' => 'Start with branch totals and assignment mix before discussing any later export snapshot.'],
                     ['label' => 'Source posture', 'value' => 'Keep branch inventory review on-screen first, then leave grouped export expectations in preview mode until parity is proven.'],
@@ -1512,7 +1512,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Selected source', 'value' => 'Galaxy branch card-shell coverage'],
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d Galaxy card shells and %d Galaxy branches are currently visible to the reporting workspace.', $cardCount, $shopCount)],
                     ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
-                        ? 'Cards-by-shop source is already visible with live branch inventory for parity review.'
+                        ? 'Galaxy branch card-shell source is already visible with live branch inventory for parity review.'
                         : 'Galaxy branch card-shell source remains safer as planning-only review until live branch inventory appears.'],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'Galaxy card-shell and branch inputs are ready for on-screen review' : 'Galaxy card-shell or branch inputs still need live Laravel coverage'],
