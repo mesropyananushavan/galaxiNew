@@ -987,7 +987,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s last saved timestamp reflected from model state', $selectedCard->number),
                 'time' => 'Current request',
-                'description' => sprintf('The latest saved Laravel timestamp for this card is %s, giving operators a concrete checkpoint for the current inventory shell.', $this->cardsLastSavedLabel($selectedCard)),
+                'description' => sprintf('The latest saved Galaxy foundation timestamp for this card is %s, giving operators a concrete checkpoint for the current inventory shell.', $this->cardsLastSavedLabel($selectedCard)),
             ],
             [
                 'title' => sprintf('%s review note reflected from model state', $selectedCard->number),
@@ -1162,7 +1162,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s last saved timestamp reflected from model state', $selectedCardHolder->full_name),
                 'time' => 'Current request',
-                'description' => sprintf('The latest saved Laravel timestamp for this holder is %s, giving operators a concrete checkpoint for the current profile shell.', $this->cardholdersLastSavedLabel($selectedCardHolder)),
+                'description' => sprintf('The latest saved Galaxy foundation timestamp for this holder is %s, giving operators a concrete checkpoint for the current profile shell.', $this->cardholdersLastSavedLabel($selectedCardHolder)),
             ],
             [
                 'title' => sprintf('%s review note reflected from model state', $selectedCardHolder->full_name),
@@ -1316,7 +1316,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s last saved timestamp reflected from model state', $selectedShop->name),
                 'time' => 'Current request',
-                'description' => sprintf('The latest saved Laravel timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.', $this->shopsLastSavedLabel($selectedShop)),
+                'description' => sprintf('The latest saved Galaxy foundation timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.', $this->shopsLastSavedLabel($selectedShop)),
             ],
             [
                 'title' => sprintf('%s review note reflected from model state', $selectedShop->name),
@@ -2182,7 +2182,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesLastSavedTimelineDescription(CardType $selectedCardType): string
     {
-        return sprintf('The latest saved Laravel timestamp for this tier is %s, giving operators a concrete checkpoint for the current catalog shell.', $this->cardTypesLastSavedLabel($selectedCardType));
+        return sprintf('The latest saved Galaxy foundation timestamp for this tier is %s, giving operators a concrete checkpoint for the current catalog shell.', $this->cardTypesLastSavedLabel($selectedCardType));
     }
 
     private function cardTypesReviewNoteTimelineTitle(CardType $selectedCardType): string
@@ -3568,7 +3568,7 @@ class ResourceIndexController extends Controller
                 'title' => $this->rolesPermissionsLastSavedTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $selectedRole->updated_at !== null
-                    ? sprintf('The latest saved Laravel timestamp for this role is %s, giving operators a concrete checkpoint for the current access shell.', $selectedRole->updated_at->format('Y-m-d H:i'))
+                    ? sprintf('The latest saved Galaxy foundation timestamp for this role is %s, giving operators a concrete checkpoint for the current access shell.', $selectedRole->updated_at->format('Y-m-d H:i'))
                     : 'This role does not expose a latest saved Laravel timestamp yet, so the current access shell should stay in review-only posture.',
             ],
             [
