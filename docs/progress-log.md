@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Role scope-review wording alignment checkpoint
+- Aligned the live `roles-permissions` scope review copy from `Laravel review` / `Laravel review mode` to `Galaxy foundation review` / `Galaxy foundation review mode` so the selected access shell stays consistent with the newer Galaxy foundation language.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused role assertions that read those scope-review strings.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused role slice passed (`1 passed`).
+
 ### Reports input-coverage wording alignment checkpoint
 - Aligned the live `reports` input-signal fallback values from `live Laravel coverage` to `live Galaxy foundation coverage` so the reporting source-state copy stays consistent with the newer Galaxy-specific foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those input-signal states.

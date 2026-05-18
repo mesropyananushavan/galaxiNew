@@ -3149,12 +3149,12 @@ class ResourceIndexController extends Controller
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
             ['label' => 'Scope coverage', 'value' => match (true) {
                 $scope->count() === 0 => 'No shop scope linked yet',
-                $scope->count() === 1 => '1 shop visible in Laravel review',
-                default => sprintf('%d shops visible in Laravel review', $scope->count()),
+                $scope->count() === 1 => '1 shop visible in Galaxy foundation review',
+                default => sprintf('%d shops visible in Galaxy foundation review', $scope->count()),
             }],
             ['label' => 'Scope rollout posture', 'value' => $scope->isNotEmpty()
-                ? 'Shop scope is visible in Laravel review, but scope writes should stay parity-first until the next thin access slice is ready.'
-                : 'Shop scope is still pending in Laravel review, which keeps this role safer for draft-first parity checks.'],
+                ? 'Shop scope is visible in Galaxy foundation review, but scope writes should stay parity-first until the next thin access slice is ready.'
+                : 'Shop scope is still pending in Galaxy foundation review, which keeps this role safer for draft-first parity checks.'],
             ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
             ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
                 ? 'This role already has visible shop scope in Laravel, so any scope change should be treated as a parity-sensitive access change.'
@@ -3527,16 +3527,16 @@ class ResourceIndexController extends Controller
         $scopeCount = $scope->count();
 
         return match (true) {
-            $scopeCount === 0 => 'No shops are currently linked to this role in Laravel review, so scope coverage remains empty while rollout stays blocked.',
-            $scopeCount === 1 => sprintf('This role currently exposes shop scope across %s in Laravel review, giving operators one visible branch to compare before any scope writes are enabled.', $scope->join(', ')),
-            default => sprintf('This role currently exposes shop scope across %d shops in Laravel review, so operators can verify branch coverage before any scope writes are enabled.', $scopeCount),
+            $scopeCount === 0 => 'No shops are currently linked to this role in Galaxy foundation review, so scope coverage remains empty while rollout stays blocked.',
+            $scopeCount === 1 => sprintf('This role currently exposes shop scope across %s in Galaxy foundation review, giving operators one visible branch to compare before any scope writes are enabled.', $scope->join(', ')),
+            default => sprintf('This role currently exposes shop scope across %d shops in Galaxy foundation review, so operators can verify branch coverage before any scope writes are enabled.', $scopeCount),
         };
     }
 
     private function rolesPermissionsScopeRolloutDependencyPosture(mixed $scope): string
     {
         return $scope->isNotEmpty()
-            ? 'This role already shows shop scope in Laravel review, but scope mutation should stay blocked until a dedicated access slice is verified.'
+            ? 'This role already shows shop scope in Galaxy foundation review, but scope mutation should stay blocked until a dedicated access slice is verified.'
             : 'This role has no visible shop scope yet, so scope rollout should stay in review-only posture until a dedicated access slice is ready.';
     }
 
@@ -3596,7 +3596,7 @@ class ResourceIndexController extends Controller
                 'title' => $this->rolesPermissionsScopePostureTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $scope->isNotEmpty()
-                    ? sprintf('This role currently shows shop scope across %s in Laravel review mode, so scope rollout stays visible while writes remain gated.', $scope->join(', '))
+                    ? sprintf('This role currently shows shop scope across %s in Galaxy foundation review mode, so scope rollout stays visible while writes remain gated.', $scope->join(', '))
                     : 'This role currently has no linked shop scope in Laravel, so the review context keeps it in a safer scope-pending posture.',
             ],
             [
@@ -3624,7 +3624,7 @@ class ResourceIndexController extends Controller
                 'title' => $this->rolesPermissionsAssignmentScopeTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $scope->isNotEmpty()
-                    ? sprintf('This role is currently linked to %d assigned users across %s in Laravel review mode.', $selectedRole->users_count, $scope->join(', '))
+                    ? sprintf('This role is currently linked to %d assigned users across %s in Galaxy foundation review mode.', $selectedRole->users_count, $scope->join(', '))
                     : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.',
             ],
             [
