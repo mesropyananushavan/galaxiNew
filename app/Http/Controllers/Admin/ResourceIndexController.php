@@ -993,7 +993,7 @@ class ResourceIndexController extends Controller
                 'title' => sprintf('%s review note reflected from model state', $selectedCard->number),
                 'time' => 'Current request',
                 'description' => $selectedCard->review_note !== null && trim($selectedCard->review_note) !== ''
-                    ? sprintf('The current Laravel card review note says: %s', $selectedCard->review_note)
+                    ? sprintf('The current Galaxy foundation card review note says: %s', $selectedCard->review_note)
                     : 'No Laravel card review note is saved yet, so inventory handoff context still depends on the surrounding workspace cues.',
             ],
             [
@@ -1168,7 +1168,7 @@ class ResourceIndexController extends Controller
                 'title' => sprintf('%s review note reflected from model state', $selectedCardHolder->full_name),
                 'time' => 'Current request',
                 'description' => $selectedCardHolder->review_note !== null && trim($selectedCardHolder->review_note) !== ''
-                    ? sprintf('The current Laravel holder review note says: %s', $selectedCardHolder->review_note)
+                    ? sprintf('The current Galaxy foundation holder review note says: %s', $selectedCardHolder->review_note)
                     : 'No Laravel holder review note is saved yet, so lifecycle handoff context still depends on the surrounding workspace cues.',
             ],
             [
@@ -1322,7 +1322,7 @@ class ResourceIndexController extends Controller
                 'title' => sprintf('%s review note reflected from model state', $selectedShop->name),
                 'time' => 'Current request',
                 'description' => $selectedShop->review_note !== null && trim($selectedShop->review_note) !== ''
-                    ? sprintf('The current Laravel branch review note says: %s', $selectedShop->review_note)
+                    ? sprintf('The current Galaxy foundation branch review note says: %s', $selectedShop->review_note)
                     : 'No Laravel branch review note is saved yet, so scope handoff context still depends on the surrounding workspace cues.',
             ],
             [
@@ -2464,21 +2464,21 @@ class ResourceIndexController extends Controller
     private function cardTypesReviewNoteReflection(CardType $selectedCardType): string
     {
         return $selectedCardType->review_note !== null && trim($selectedCardType->review_note) !== ''
-            ? sprintf('The current Laravel tier review note says: %s', $selectedCardType->review_note)
+            ? sprintf('The current Galaxy foundation tier review note says: %s', $selectedCardType->review_note)
             : 'No Laravel tier review note is saved yet, so parity-sensitive tier context still depends on the surrounding workspace cues.';
     }
 
     private function cardTypesActivationNoteReflection(CardType $selectedCardType): string
     {
         return $selectedCardType->activation_note !== null && trim($selectedCardType->activation_note) !== ''
-            ? sprintf('The current Laravel activation note says: %s', $selectedCardType->activation_note)
+            ? sprintf('The current Galaxy foundation activation note says: %s', $selectedCardType->activation_note)
             : 'No Laravel activation note is saved yet, so activation handoff guidance still depends on the surrounding workspace cues.';
     }
 
     private function cardTypesRolloutNoteReflection(CardType $selectedCardType): string
     {
         return $selectedCardType->rollout_note !== null && trim($selectedCardType->rollout_note) !== ''
-            ? sprintf('The current Laravel rollout note says: %s', $selectedCardType->rollout_note)
+            ? sprintf('The current Galaxy foundation rollout note says: %s', $selectedCardType->rollout_note)
             : 'No Laravel rollout note is saved yet, so rollout guidance still depends on the surrounding workspace cues.';
     }
 
@@ -3575,21 +3575,21 @@ class ResourceIndexController extends Controller
                 'title' => $this->rolesPermissionsReviewNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $selectedRole->review_note !== null && trim($selectedRole->review_note) !== ''
-                    ? sprintf('The current Laravel review note says: %s', $selectedRole->review_note)
+                    ? sprintf('The current Galaxy foundation review note says: %s', $selectedRole->review_note)
                     : 'No Laravel review note is saved yet, so parity-sensitive operator context still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => $this->rolesPermissionsAccessNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $selectedRole->access_note !== null && trim($selectedRole->access_note) !== ''
-                    ? sprintf('The current Laravel access note says: %s', $selectedRole->access_note)
+                    ? sprintf('The current Galaxy foundation access note says: %s', $selectedRole->access_note)
                     : 'No Laravel access note is saved yet, so access handoff guidance still depends on the surrounding workspace cues.',
             ],
             [
                 'title' => $this->rolesPermissionsAssignmentNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $selectedRole->assignment_note !== null && trim($selectedRole->assignment_note) !== ''
-                    ? sprintf('The current Laravel assignment note says: %s', $selectedRole->assignment_note)
+                    ? sprintf('The current Galaxy foundation assignment note says: %s', $selectedRole->assignment_note)
                     : 'No Laravel assignment note is saved yet, so assignment handoff guidance still depends on the surrounding workspace cues.',
             ],
             [
@@ -3617,7 +3617,7 @@ class ResourceIndexController extends Controller
                 'description' => ($permissionReviewNote = $selectedRole->permissions
                     ->pluck('review_note')
                     ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '')) !== null
-                    ? sprintf('The current Laravel permission guidance says: %s', $permissionReviewNote)
+                    ? sprintf('The current Galaxy foundation permission guidance says: %s', $permissionReviewNote)
                     : 'No linked permission review note is saved yet, so permission-bundle guidance still depends on the surrounding workspace cues.',
             ],
             [

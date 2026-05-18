@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Management review-note wording alignment checkpoint
+- Aligned the live management review-note prefixes from `The current Laravel ...` to `The current Galaxy foundation ...` across the selected-detail shells so these operator notes read more like Galaxy-specific foundation guidance than starter-era Laravel handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those note prefixes.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_surfaces_selected_tier_context_from_laravel_data'`; the focused management slice passed for the matched tests (`4 passed`).
+
 ### Management timestamp wording alignment checkpoint
 - Aligned the live selected-detail checkpoint copy from `The latest saved Laravel timestamp` to `The latest saved Galaxy foundation timestamp` across the management shells so these review surfaces read more like Galaxy-specific foundation tooling.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those timestamp checkpoints.
