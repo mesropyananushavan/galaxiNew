@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Management workspace-save wording alignment checkpoint
+- Aligned the live management save-state copy from `Laravel-backed Galaxy workspace` / `Laravel-backed role form` to `Galaxy foundation-backed workspace` / `Galaxy foundation-backed role form` so the post-save handoff language reads less like starter-era implementation scaffolding.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused assertions that read those save-state strings.
+- Re-ran `php artisan test --filter='test_role_form_persists_identity_fields|test_card_types_page_persists_selected_tier|test_cards_page_persists_selected_card|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused slice passed for the matched test (`1 passed`).
+
 ### Reports export-snapshot wording alignment checkpoint
 - Aligned the live `reports` export parity blocker from `live Laravel source snapshots` to `live Galaxy foundation source snapshots` so the reporting export guidance stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that export-snapshot blocker.

@@ -4,11 +4,11 @@
     @if (session('status'))
         @php
             $backendFlowSummary = match ($resourceKey ?? null) {
-                'shops' => 'Branch changes are now visible in the Laravel-backed Galaxy workspace.',
-                'cardholders' => 'Holder changes are now visible in the Laravel-backed Galaxy workspace.',
-                'cards' => 'Inventory changes are now visible in the Laravel-backed Galaxy workspace.',
-                'card-types' => 'Tier changes are now visible in the Laravel-backed Galaxy workspace.',
-                'roles-permissions' => 'Access-shell changes are now visible in the Laravel-backed Galaxy workspace.',
+                'shops' => 'Branch changes are now visible in the Galaxy foundation-backed workspace.',
+                'cardholders' => 'Holder changes are now visible in the Galaxy foundation-backed workspace.',
+                'cards' => 'Inventory changes are now visible in the Galaxy foundation-backed workspace.',
+                'card-types' => 'Tier changes are now visible in the Galaxy foundation-backed workspace.',
+                'roles-permissions' => 'Access-shell changes are now visible in the Galaxy foundation-backed workspace.',
                 default => 'Latest Laravel-backed admin changes are now visible in the Galaxy workspace.',
             };
         @endphp

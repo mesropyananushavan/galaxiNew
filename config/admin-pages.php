@@ -1019,7 +1019,7 @@ return [
         ],
         'notice' => [
             'title' => 'Role identity writes are live, publishing is still preview-only',
-            'description' => 'The first Laravel-backed role form now saves role identity, but permission persistence, publishing controls, and assignment flows still need implementation.',
+            'description' => 'The first Galaxy foundation-backed role form now saves role identity, but permission persistence, publishing controls, and assignment flows still need implementation.',
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy staff and access matrix'],
