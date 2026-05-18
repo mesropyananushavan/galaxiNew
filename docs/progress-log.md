@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Card write-path description wording alignment checkpoint
+- Aligned the live `cards` write-path description from `first minimal Laravel-backed card write path` to `first minimal Galaxy foundation-backed card write path` so the card-management shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and re-ran a stable focused cards slice as a regression check after the config-backed wording update.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`; the focused cards slice passed (`1 passed`).
+
 ### Holder write-path description wording alignment checkpoint
 - Aligned the live `cardholders` write-path description from `first minimal Laravel-backed cardholder write path` to `first minimal Galaxy foundation-backed cardholder write path` so the holder-management shell stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused holder assertion for the updated description string.
