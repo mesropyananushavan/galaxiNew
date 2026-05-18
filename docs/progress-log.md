@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports export-snapshot wording alignment checkpoint
+- Aligned the live `reports` export parity blocker from `live Laravel source snapshots` to `live Galaxy foundation source snapshots` so the reporting export guidance stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that export-snapshot blocker.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
 ### Reports preset-blocker wording alignment checkpoint
 - Aligned the live `reports` preset blocker from `multiple live Laravel reporting sources` to `multiple live Galaxy foundation reporting sources` so the reporting preset parity guidance stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that preset blocker.

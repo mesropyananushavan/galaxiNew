@@ -2644,7 +2644,7 @@ class ResourceIndexController extends Controller
 
         return match (true) {
             $liveSourceCount >= 3 && $inventoryCoverageReady => 'Blocked until multi-source export snapshots are verified against legacy file delivery and grouped totals.',
-            $liveSourceCount > 0 => 'Blocked until live Laravel source snapshots are verified against legacy export totals and file delivery.',
+            $liveSourceCount > 0 => 'Blocked until live Galaxy foundation source snapshots are verified against legacy export totals and file delivery.',
             default => 'Blocked until the first live Galaxy foundation report source exists for export parity review.',
         };
     }
