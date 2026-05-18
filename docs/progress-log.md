@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Holder live-form title wording alignment checkpoint
+- Aligned the live `cardholders` form title from `Create Galaxy holder in Laravel` to `Create Galaxy holder in Galaxy foundation` so the holder-management shell reads less like starter-era backend handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused holder assertion that reads that live-form title.
+- Re-ran `php artisan test --filter='test_cardholders_page_replaces_preview_rows_with_model_backed_index_data'`; the focused holder slice passed (`1 passed`).
+
 ### Role live-form title wording alignment checkpoint
 - Aligned the live `roles-permissions` form title from `Create Galaxy role in Laravel` to `Create Galaxy role in Galaxy foundation` so the access-management shell reads less like starter-era backend handoff copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and retained the state-specific selected-role edit title separately.

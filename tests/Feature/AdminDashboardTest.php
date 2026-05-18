@@ -5543,7 +5543,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Meri Unlinked Holder')
             ->assertSee('Keep duplicate-holder parity visible before profile merges are trusted.')
             ->assertSee('No review note saved yet')
-            ->assertSee('Create Galaxy holder in Laravel')
+            ->assertSee('Create Galaxy holder in Galaxy foundation')
             ->assertSee('Create holder shell')
             ->assertSee('action="/admin/cardholders"', false)
             ->assertSee('Review latest saved holder shell')
