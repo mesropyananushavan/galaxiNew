@@ -599,7 +599,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Tier baseline coverage')
             ->assertSee('0/1 Galaxy tiers active')
             ->assertSee('Foundation handoff signal')
-            ->assertSee('Some live Galaxy entities are visible, but the dashboard still needs broader Laravel coverage before foundation handoff review feels complete.')
+            ->assertSee('Some live Galaxy entities are visible, but the dashboard still needs broader Galaxy foundation coverage before foundation handoff review feels complete.')
             ->assertSee('Foundation focus:')
             ->assertSee('stabilize live Galaxy holders next.')
             ->assertSee('Foundation posture:')

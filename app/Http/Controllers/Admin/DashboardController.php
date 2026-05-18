@@ -555,7 +555,7 @@ class DashboardController extends Controller
                 $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0 && $roleCount > 0 && $permissionCount > 0
                     => 'The dashboard already shows enough live Galaxy entities to support a useful foundation handoff review.',
                 default
-                    => 'Some live Galaxy entities are visible, but the dashboard still needs broader Laravel coverage before foundation handoff review feels complete.',
+                    => 'Some live Galaxy entities are visible, but the dashboard still needs broader Galaxy foundation coverage before foundation handoff review feels complete.',
             },
         ];
     }

@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Dashboard live-coverage wording alignment checkpoint
+- Aligned the live dashboard readiness summary from `broader Laravel coverage` to `broader Galaxy foundation coverage` so the top-level handoff signal stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that readiness summary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
 ### Dashboard route-target wording alignment checkpoint
 - Aligned the live dashboard target-map summary from `Laravel route targets` to `Galaxy foundation route targets` so the top-level Phase 1 navigation summary feels less tied to starter-era terminology.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that route-target summary.
