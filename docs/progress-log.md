@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports input-signal wording alignment checkpoint
+- Aligned the live `reports` source-state label from `Laravel input signal` to `Galaxy input signal` so the reporting review shell stays consistent with the newer Galaxy-specific wording already surrounding those live-source summaries.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that input-signal label.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
 ### Management last-saved label wording alignment checkpoint
 - Aligned the live management checkpoint labels from `Last saved in Laravel` to `Last saved in Galaxy foundation` across the selected-detail shells so these review surfaces keep the newer Galaxy foundation vocabulary.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those last-saved labels.
