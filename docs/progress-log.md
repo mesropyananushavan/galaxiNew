@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Branch coverage-review wording alignment checkpoint
+- Aligned the live `shops` selected-detail coverage string from `read-only Laravel review` to `read-only Galaxy foundation review` so the branch shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused shop assertion that reads that coverage string.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_manager_linked_coverage_review_context'`; the focused shop slice passed (`1 passed`).
+
 ### Role scope-review wording alignment checkpoint
 - Aligned the live `roles-permissions` scope review copy from `Laravel review` / `Laravel review mode` to `Galaxy foundation review` / `Galaxy foundation review mode` so the selected access shell stays consistent with the newer Galaxy foundation language.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused role assertions that read those scope-review strings.

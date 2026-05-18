@@ -4699,7 +4699,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Manager posture:')
             ->assertSee('Assigned branch managers are visible in Laravel, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.')
             ->assertSee('Coverage posture:')
-            ->assertSee('This branch currently exposes 1 cardholders and 1 cards for read-only Laravel review.')
+            ->assertSee('This branch currently exposes 1 cardholders and 1 cards for read-only Galaxy foundation review.')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows should stay preview-only until branch parity is verified.');
     }
