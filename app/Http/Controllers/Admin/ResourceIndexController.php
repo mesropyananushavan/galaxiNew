@@ -1694,7 +1694,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Review mode', 'value' => $roleCount > 0
                         ? 'Live-source review, access roles already exist in Laravel for read-only reporting checks.'
                         : 'Draft-safe review, no roles are tracked yet so this source remains a catalog-only planning stub.'],
-                    ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy access shells are currently available for read-only access reporting review.', $roleCount)],
+                    ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy access shells are currently available for read-only Galaxy access reporting review.', $roleCount)],
                     ['label' => 'Source status signal', 'value' => $roleCount > 0
                         ? 'Galaxy access source is already visible with live access coverage for parity review.'
                         : 'Galaxy access source remains safer as planning-only review until live access coverage appears.'],
