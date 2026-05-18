@@ -970,7 +970,7 @@ class ResourceIndexController extends Controller
 
         $page['activityTimeline'] = [
             [
-                'title' => sprintf('%s selected for Laravel review', $selectedCard->number),
+                'title' => sprintf('%s selected for Galaxy review', $selectedCard->number),
                 'time' => 'Current request',
                 'description' => 'The shared cards workspace is now loading this saved inventory record from Laravel data instead of only static preview rows.',
             ],
@@ -1145,7 +1145,7 @@ class ResourceIndexController extends Controller
 
         $page['activityTimeline'] = [
             [
-                'title' => sprintf('%s selected for Laravel review', $selectedCardHolder->full_name),
+                'title' => sprintf('%s selected for Galaxy review', $selectedCardHolder->full_name),
                 'time' => 'Current request',
                 'description' => 'The shared cardholders workspace is now loading this saved holder from Laravel data instead of only static preview rows.',
             ],
@@ -1299,7 +1299,7 @@ class ResourceIndexController extends Controller
 
         $page['activityTimeline'] = [
             [
-                'title' => sprintf('%s selected for Laravel review', $selectedShop->name),
+                'title' => sprintf('%s selected for Galaxy review', $selectedShop->name),
                 'time' => 'Current request',
                 'description' => 'The shared shops workspace is now loading this saved branch from Laravel data instead of only static preview rows.',
             ],
@@ -3371,7 +3371,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsSelectedForReviewTimelineTitle(Role $selectedRole): string
     {
-        return sprintf('%s selected for Laravel review', $selectedRole->name);
+        return sprintf('%s selected for Galaxy review', $selectedRole->name);
     }
 
     private function rolesPermissionsStatusTimelineTitle(Role $selectedRole): string
