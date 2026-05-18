@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports foundation-layer wording alignment checkpoint
+- Aligned the live `reports` selected-source descriptions and workspace summary from `current Laravel foundation` wording to `current Galaxy foundation layer` so the reporting shell reads less like a starter handoff and more like a Galaxy-specific foundation surface.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those foundation-layer strings.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_uses_live_model_counts_in_summary_metrics'`; the focused reports slice passed for the matched tests (`3 passed`).
+
 ### Reports inputs-label wording alignment checkpoint
 - Aligned the live `reports` selected-source input labels from `Laravel inputs` to `Galaxy inputs` so the reporting review shell stays consistent with the newer Galaxy-specific wording already surrounding those sources.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those input labels.
