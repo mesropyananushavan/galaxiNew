@@ -3088,7 +3088,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => 'Live reporting sources reflected from Laravel models',
                 'time' => 'Current request',
-                'description' => sprintf('The reporting workspace now sees %d shops, %d cards, %d cardholders, and %d roles through the current Laravel foundation.', $shopCount, $cardCount, $cardHolderCount, $roleCount),
+                'description' => sprintf('The reporting workspace now sees %d Galaxy branches, %d Galaxy card shells, %d Galaxy holders, and %d Galaxy access shells through the current Laravel foundation.', $shopCount, $cardCount, $cardHolderCount, $roleCount),
             ],
             [
                 'title' => 'Export catalog remains parity-first',

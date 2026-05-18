@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports workspace foundation-summary wording alignment checkpoint
+- Aligned the live `reports` workspace foundation summary from generic entity names (`shops`, `cards`, `cardholders`, `roles`) to Galaxy-specific language (`Galaxy branches`, `Galaxy card shells`, `Galaxy holders`, and `Galaxy access shells`) so the overview shell reads less like a starter dashboard.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that workspace foundation-summary string.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_uses_live_model_counts_in_summary_metrics'`; the focused reports slice passed for the matched test (`1 passed`).
+
 ### Reports holder linked-card lifecycle wording alignment checkpoint
 - Aligned the live `reports` holder-status linked-card lifecycle strings from generic linked-card wording to Galaxy-specific language (`holder-linked Galaxy card shells`) so the selected holder review source reads more like a Galaxy-specific operational shell.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those holder linked-card lifecycle strings.
