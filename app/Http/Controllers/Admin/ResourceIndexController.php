@@ -1436,7 +1436,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Review mode', 'value' => $cardCount > 0
                         ? 'Live-source review, card inventory already exists in Laravel for shop-level reporting checks.'
                         : 'Draft-safe review, no cards are tracked yet so this source remains a catalog-only planning stub.'],
-                    ['label' => 'Source coverage', 'value' => sprintf('%d cards across %d tracked shops are currently available for read-only reporting review.', $cardCount, $shopCount)],
+                    ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy card shells across %d tracked Galaxy branches are currently available for read-only reporting review.', $cardCount, $shopCount)],
                     ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
                         ? 'Cards-by-shop source is already visible with live branch inventory for parity review.'
                         : 'Cards-by-shop source remains safer as planning-only review until live branch inventory appears.'],
@@ -1580,7 +1580,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Review mode', 'value' => $cardHolderCount > 0
                         ? 'Live-source review, holder status records already exist in Laravel for read-only reporting checks.'
                         : 'Draft-safe review, no cardholders are tracked yet so this source remains a planning-only catalog entry.'],
-                    ['label' => 'Source coverage', 'value' => sprintf('%d cardholders are currently available for read-only status reporting review.', $cardHolderCount)],
+                    ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy holders are currently available for read-only status reporting review.', $cardHolderCount)],
                     ['label' => 'Source status signal', 'value' => $cardHolderCount > 0
                         ? 'Cardholder-status source is already visible with live lifecycle coverage for parity review.'
                         : 'Cardholder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
@@ -1694,7 +1694,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Review mode', 'value' => $roleCount > 0
                         ? 'Live-source review, access roles already exist in Laravel for read-only reporting checks.'
                         : 'Draft-safe review, no roles are tracked yet so this source remains a catalog-only planning stub.'],
-                    ['label' => 'Source coverage', 'value' => sprintf('%d roles are currently available for read-only access reporting review.', $roleCount)],
+                    ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy access shells are currently available for read-only access reporting review.', $roleCount)],
                     ['label' => 'Source status signal', 'value' => $roleCount > 0
                         ? 'Role-access source is already visible with live access coverage for parity review.'
                         : 'Role-access source remains safer as planning-only review until live access coverage appears.'],

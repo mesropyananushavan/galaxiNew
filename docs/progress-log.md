@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports source coverage wording alignment checkpoint
+- Aligned the live `reports` selected-source coverage strings from generic entity wording to Galaxy-specific language (`Galaxy card shells`, `Galaxy branches`, `Galaxy holders`, and `Galaxy access shells`) so the reporting review context reads more like Galaxy operational reporting than a starter stub.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those selected-source coverage strings.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_cards_by_shop_comparison_context|test_reports_page_supports_selected_cardholder_status_comparison_context|test_reports_page_supports_selected_role_access_assignment_context'`; the focused reports slice passed (`3 passed`).
+
 ### Reports source naming alignment checkpoint
 - Aligned the live `reports` source names from generic labels to Galaxy-specific language (`Galaxy branch card-shell coverage`, `Galaxy holder status overview`, and `Galaxy access coverage`) so the reporting catalog and selected-source review states read more like Galaxy admin surfaces than starter report placeholders.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those source names in both the catalog and selected-review contexts.
