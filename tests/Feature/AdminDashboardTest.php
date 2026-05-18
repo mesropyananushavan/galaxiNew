@@ -6970,7 +6970,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review Galaxy branch card-shell coverage reporting source')
             ->assertSee('Open Galaxy reporting catalog')
             ->assertSee('Review export presets')
-            ->assertSee('Blocked until preset handling is verified against multiple live Laravel reporting sources.')
+            ->assertSee('Blocked until preset handling is verified against multiple live Galaxy foundation reporting sources.')
             ->assertSee('Export source snapshot')
             ->assertSee('Blocked until multi-source export snapshots are verified against legacy file delivery and grouped totals.')
             ->assertSee('Reporting workspace is now partially Galaxy foundation-backed')

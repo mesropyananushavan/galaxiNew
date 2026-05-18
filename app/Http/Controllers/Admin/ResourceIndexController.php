@@ -2631,7 +2631,7 @@ class ResourceIndexController extends Controller
         $liveSourceCount = collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])->filter(fn (int $count): bool => $count > 0)->count();
 
         return match (true) {
-            $liveSourceCount >= 3 => 'Blocked until preset handling is verified against multiple live Laravel reporting sources.',
+            $liveSourceCount >= 3 => 'Blocked until preset handling is verified against multiple live Galaxy foundation reporting sources.',
             $liveSourceCount > 0 => 'Blocked until preset handling is backed by Laravel reporting flow validation across the first live sources.',
             default => 'Blocked until preset handling is backed by Laravel reporting flow validation.',
         };
