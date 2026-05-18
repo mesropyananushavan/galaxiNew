@@ -812,7 +812,7 @@ return [
                 'label' => 'New Galaxy reward',
                 'tone' => 'primary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until the first Laravel-backed gift write flow exists for catalog, scope, cost, and stock state.',
+                'disabledReason' => 'Blocked until the first Galaxy foundation-backed gift write flow exists for catalog, scope, cost, and stock state.',
             ],
             ['label' => 'Stock audit', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until stock checks are backed by Laravel inventory data.'],
         ],

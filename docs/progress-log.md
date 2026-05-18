@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Gift blocker wording alignment checkpoint
+- Aligned the live `gifts` blocker copy from `first Laravel-backed gift write flow` to `first Galaxy foundation-backed gift write flow` so the reward workflow shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused gift assertion that reads that blocker.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'`; the focused gifts slice passed (`1 passed`).
+
 ### Management workspace-save wording alignment checkpoint
 - Aligned the live management save-state copy from `Laravel-backed Galaxy workspace` / `Laravel-backed role form` to `Galaxy foundation-backed workspace` / `Galaxy foundation-backed role form` so the post-save handoff language reads less like starter-era implementation scaffolding.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused assertions that read those save-state strings.
