@@ -961,7 +961,7 @@ return [
             'filters' => ['Scope', 'Status', 'Permission set'],
         ],
         'liveForm' => [
-            'title' => 'Create Galaxy role in Laravel',
+            'title' => 'Create Galaxy role in Galaxy foundation',
             'description' => 'This is the first minimal Galaxy foundation-backed role write path. Keep it limited to role identity while permission bundles and shop scope remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.roles-permissions.store',

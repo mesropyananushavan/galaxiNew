@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Role live-form title wording alignment checkpoint
+- Aligned the live `roles-permissions` form title from `Create Galaxy role in Laravel` to `Create Galaxy role in Galaxy foundation` so the access-management shell reads less like starter-era backend handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and retained the state-specific selected-role edit title separately.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused roles slice passed (`1 passed`).
+
 ### Branch live-form title wording alignment checkpoint
 - Aligned the live `shops` form title from `Create Galaxy branch in Laravel` to `Create Galaxy branch in Galaxy foundation` so the branch-management shell reads less like starter-era backend handoff copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused shop assertion that reads that live-form title.
