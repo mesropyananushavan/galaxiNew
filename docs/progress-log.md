@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Holder blocker wording alignment checkpoint
+- Aligned the live `cardholders` blocker copy from `first Laravel-backed cardholder slice` to `first Galaxy foundation-backed cardholder slice` so the selected-holder parity blockers stay consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused holder assertion that reads that blocker guidance.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`; the focused holder slice passed (`1 passed`).
+
 ### Card inventory-blocker wording alignment checkpoint
 - Aligned the live `cards` blocker copy from `first Laravel-backed ... inventory slice` to `first Galaxy foundation-backed ... inventory slice` so the selected-card parity blockers stay consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card assertion that reads that blocker guidance.

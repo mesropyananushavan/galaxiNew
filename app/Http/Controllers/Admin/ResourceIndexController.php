@@ -2582,7 +2582,7 @@ class ResourceIndexController extends Controller
         return match (true) {
             $inactiveCount > 0 => 'Blocked until saved inactive-holder states are verified against legacy profile and lifecycle parity.',
             $linkedCards > 0 => 'Blocked until linked-holder coverage is verified against the old Galaxy profile flow.',
-            default => 'Blocked until the first Laravel-backed cardholder slice exists for profile parity review.',
+            default => 'Blocked until the first Galaxy foundation-backed cardholder slice exists for profile parity review.',
         };
     }
 
@@ -2597,7 +2597,7 @@ class ResourceIndexController extends Controller
             $pausedBranchCount > 0 => 'Blocked until paused-branch holder activity is verified against legacy lookup recovery history.',
             $linkedCards > 0 => 'Blocked until linked-holder activity coverage is verified against legacy lookup history.',
             $activeCount > 0 => 'Blocked until active-holder coverage has a stable Laravel activity source for parity review.',
-            default => 'Blocked until the first Laravel-backed cardholder slice exists for activity-history parity review.',
+            default => 'Blocked until the first Galaxy foundation-backed cardholder slice exists for activity-history parity review.',
         };
     }
 
