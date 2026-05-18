@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Dashboard route-target wording alignment checkpoint
+- Aligned the live dashboard target-map summary from `Laravel route targets` to `Galaxy foundation route targets` so the top-level Phase 1 navigation summary feels less tied to starter-era terminology.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that route-target summary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
 ### Role live-flow note wording alignment checkpoint
 - Aligned the live `roles-permissions` update-flow note fixture from `first live Laravel role adjustments` to `first live Galaxy foundation role adjustments` so the minimal live role path stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and re-ran the focused live role update slice that persists that note.

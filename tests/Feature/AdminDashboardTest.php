@@ -241,7 +241,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Mapped groups:')
             ->assertSee('3 top-level admin groups are currently staged in the Phase 1 target map.')
             ->assertSee('Mapped routes:')
-            ->assertSee('10 Laravel route targets are currently linked from the Phase 1 target map.')
+            ->assertSee('10 Galaxy foundation route targets are currently linked from the Phase 1 target map.')
             ->assertSee('Migration-map focus:')
             ->assertSee('start with dashboard.')
             ->assertSee('Migration-map posture:')
