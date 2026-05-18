@@ -280,7 +280,7 @@ return [
         'metrics' => [
             ['label' => 'Active Galaxy card shells', 'value' => '1'],
             ['label' => 'Draft Galaxy card shells', 'value' => '1'],
-            ['label' => 'Blocked cards', 'value' => '1'],
+            ['label' => 'Blocked Galaxy card shells', 'value' => '1'],
             ['label' => 'Issued Galaxy card shells', 'value' => '2'],
             ['label' => 'Pre-activation cards', 'value' => '1'],
             ['label' => 'Holder-linked cards', 'value' => '2'],
