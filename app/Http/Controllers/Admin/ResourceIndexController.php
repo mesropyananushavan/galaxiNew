@@ -1436,7 +1436,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Review mode', 'value' => $cardCount > 0
                         ? 'Live-source review, card inventory already exists in Laravel for shop-level reporting checks.'
                         : 'Draft-safe review, no cards are tracked yet so this source remains a catalog-only planning stub.'],
-                    ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy card shells across %d tracked Galaxy branches are currently available for read-only reporting review.', $cardCount, $shopCount)],
+                    ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy card shells across %d tracked Galaxy branches are currently available for read-only Galaxy branch card-shell reporting review.', $cardCount, $shopCount)],
                     ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
                         ? 'Galaxy branch card-shell source is already visible with live branch inventory for parity review.'
                         : 'Galaxy branch card-shell source remains safer as planning-only review until live branch inventory appears.'],
