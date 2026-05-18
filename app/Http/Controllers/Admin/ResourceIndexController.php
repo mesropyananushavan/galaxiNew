@@ -1429,7 +1429,7 @@ class ResourceIndexController extends Controller
             [
                 'key' => 'cards-by-shop',
                 'label' => 'Cards by shop',
-                'scope' => $shopCount > 0 ? sprintf('%d shops', $shopCount) : 'No shops tracked yet',
+                'scope' => $shopCount > 0 ? sprintf('%d Galaxy branches', $shopCount) : 'No Galaxy branches tracked yet',
                 'status' => $cardCount > 0 ? 'live' : 'draft',
                 'selectedSummary' => [
                     ['label' => 'Selected report source', 'value' => 'Cards by shop'],
@@ -1573,7 +1573,7 @@ class ResourceIndexController extends Controller
             [
                 'key' => 'cardholder-status',
                 'label' => 'Cardholder status overview',
-                'scope' => $cardHolderCount > 0 ? sprintf('%d holders', $cardHolderCount) : 'No holders tracked yet',
+                'scope' => $cardHolderCount > 0 ? sprintf('%d Galaxy holders', $cardHolderCount) : 'No Galaxy holders tracked yet',
                 'status' => $cardHolderCount > 0 ? 'live' : 'draft',
                 'selectedSummary' => [
                     ['label' => 'Selected report source', 'value' => 'Cardholder status overview'],
@@ -1687,7 +1687,7 @@ class ResourceIndexController extends Controller
             [
                 'key' => 'role-access',
                 'label' => 'Role access coverage',
-                'scope' => $roleCount > 0 ? sprintf('%d roles', $roleCount) : 'No roles tracked yet',
+                'scope' => $roleCount > 0 ? sprintf('%d Galaxy access shells', $roleCount) : 'No Galaxy access shells tracked yet',
                 'status' => $roleCount > 0 ? 'live' : 'draft',
                 'selectedSummary' => [
                     ['label' => 'Selected report source', 'value' => 'Role access coverage'],
