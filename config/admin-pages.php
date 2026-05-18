@@ -289,7 +289,7 @@ return [
             ['label' => 'Issued holder-linked Galaxy card shells', 'value' => '2'],
             ['label' => 'Issued unassigned Galaxy card shells', 'value' => '0'],
             ['label' => 'Pre-activation holder-linked Galaxy card shells', 'value' => '1'],
-            ['label' => 'Pre-activation unassigned cards', 'value' => '0'],
+            ['label' => 'Pre-activation unassigned Galaxy card shells', 'value' => '0'],
             ['label' => 'Unassigned cards', 'value' => '1'],
             ['label' => 'Active holder-linked Galaxy card shells', 'value' => '1'],
             ['label' => 'Active unassigned Galaxy card shells', 'value' => '0'],
