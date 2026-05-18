@@ -1831,7 +1831,7 @@ class ResourceIndexController extends Controller
         }
 
         $page['notice'] = [
-            'title' => 'Reporting workspace is now partially Laravel-backed',
+            'title' => 'Reporting workspace is now partially Galaxy foundation-backed',
             'description' => 'Catalog metrics and report entry rows now reflect live Galaxy source counts from Laravel models, while presets and exports remain preview-only.',
         ];
 

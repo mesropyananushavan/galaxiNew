@@ -6973,7 +6973,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until preset handling is verified against multiple live Laravel reporting sources.')
             ->assertSee('Export source snapshot')
             ->assertSee('Blocked until multi-source export snapshots are verified against legacy file delivery and grouped totals.')
-            ->assertSee('Reporting workspace is now partially Laravel-backed')
+            ->assertSee('Reporting workspace is now partially Galaxy foundation-backed')
             ->assertSee('Catalog metrics and report entry rows now reflect live Galaxy source counts from Laravel models, while presets and exports remain preview-only.')
             ->assertSee('Live reporting sources reflected from Laravel models')
             ->assertSee('The reporting workspace now sees 1 Galaxy branches, 1 Galaxy card shells, 1 Galaxy holders, and 1 Galaxy access shells through the current Galaxy foundation layer.')

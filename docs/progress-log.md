@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports workspace-title wording alignment checkpoint
+- Aligned the live `reports` overview title from `Reporting workspace is now partially Laravel-backed` to `Reporting workspace is now partially Galaxy foundation-backed` so the top-level reporting shell reads less like starter-era infrastructure copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that workspace title.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_replaces_preview_rows_with_model_backed_report_data|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
 ### Management fallback-note wording alignment checkpoint
 - Aligned the live management fallback note copy from `No Laravel ... note is saved yet` to `No Galaxy foundation ... note is saved yet` across the selected-detail shells so these handoff states stay consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those fallback note messages.
