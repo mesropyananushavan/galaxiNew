@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports access assignment-comparison wording alignment checkpoint
+- Aligned the live `reports` access assignment comparison string from a mixed `assignments in paused Galaxy branches` ending to fully consistent Galaxy wording (`branch-linked staff assignments in paused Galaxy branches`) so the selected access review source stays uniform across both sides of the comparison.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that assignment comparison string.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_role_access_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
 ### Reports holder branch-profile wording alignment checkpoint
 - Aligned the live `reports` holder-status branch comparison string from generic `holder profiles` wording to Galaxy-specific language (`Galaxy holder profiles`) so the selected holder review reads more consistently with the surrounding Galaxy holder shell.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that holder branch-profile comparison string.

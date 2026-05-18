@@ -8001,7 +8001,7 @@ class AdminDashboardTest extends TestCase
         $activeScopedUser->roles()->attach($role->id);
         $pausedScopedUser->roles()->attach($role->id);
 
-        $assignmentBranchActivitySignal = '1 branch-linked staff assignments are already visible in active Galaxy branches beside 1 assignments in paused Galaxy branches for parity review';
+        $assignmentBranchActivitySignal = '1 branch-linked staff assignments are already visible in active Galaxy branches beside 1 branch-linked staff assignments in paused Galaxy branches for parity review';
 
         $user = User::factory()->create();
 
