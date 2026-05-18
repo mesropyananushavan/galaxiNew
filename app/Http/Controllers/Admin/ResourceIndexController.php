@@ -1510,7 +1510,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Galaxy branch card-shell coverage'],
-                    ['label' => 'Laravel inputs', 'value' => sprintf('%d Galaxy card shells and %d Galaxy branches are currently visible to the reporting workspace.', $cardCount, $shopCount)],
+                    ['label' => 'Galaxy inputs', 'value' => sprintf('%d Galaxy card shells and %d Galaxy branches are currently visible to the reporting workspace.', $cardCount, $shopCount)],
                     ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
                         ? 'Galaxy branch card-shell source is already visible with live branch inventory for parity review.'
                         : 'Galaxy branch card-shell source remains safer as planning-only review until live branch inventory appears.'],
@@ -1638,7 +1638,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Galaxy holder status overview'],
-                    ['label' => 'Laravel inputs', 'value' => sprintf('%d Galaxy holders are currently visible to the reporting workspace.', $cardHolderCount)],
+                    ['label' => 'Galaxy inputs', 'value' => sprintf('%d Galaxy holders are currently visible to the reporting workspace.', $cardHolderCount)],
                     ['label' => 'Source status signal', 'value' => $cardHolderCount > 0
                         ? 'Galaxy holder-status source is already visible with live lifecycle coverage for parity review.'
                         : 'Galaxy holder-status source remains safer as planning-only review until live lifecycle coverage appears.'],
@@ -1757,7 +1757,7 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Galaxy access coverage'],
-                    ['label' => 'Laravel inputs', 'value' => sprintf('%d Galaxy access shells are currently visible to the reporting workspace.', $roleCount)],
+                    ['label' => 'Galaxy inputs', 'value' => sprintf('%d Galaxy access shells are currently visible to the reporting workspace.', $roleCount)],
                     ['label' => 'Source status signal', 'value' => $roleCount > 0
                         ? 'Galaxy access source is already visible with live access coverage for parity review.'
                         : 'Galaxy access source remains safer as planning-only review until live access coverage appears.'],
