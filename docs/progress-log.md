@@ -2,6 +2,11 @@
 
 ## 2026-05-17
 
+### Holder linkage metric wording alignment checkpoint
+- Aligned the neighboring `cardholders` metric label from `Linked cards` to `Linked Galaxy card shells`, keeping the already-updated holder surface consistent with the newer Galaxy-specific card-shell wording.
+- The focused holder slice briefly exposed one stale operational-index assertion that still expected the older label; that assertion was updated in the same narrow step, with no behavior change.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shop_scoped_admin_sees_cardholder_creation_actions_disabled_in_cardholders_workspace'`; the current matched slice covered the cardholders operational shape plus selected holder contexts and passed (`3 passed`).
+
 ### Rule scope metric wording alignment checkpoint
 - Aligned the neighboring `services-rules` metric label from `Shop scopes` to `Galaxy branch scopes`, keeping the already-updated rules surface consistent with the newer Galaxy-specific branch wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the rules preview assertion that reads the same metric stack.

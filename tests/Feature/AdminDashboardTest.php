@@ -4364,7 +4364,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until the first Laravel-backed cardholder slice exists for activity-history parity review.')
             ->assertSee('Active Galaxy holders')
             ->assertSee('Inactive Galaxy holders')
-            ->assertSee('Linked cards')
+            ->assertSee('Linked Galaxy card shells')
             ->assertSee('Cardholder operations are still preview-only')
             ->assertSee('Search actions, metrics, and lifecycle cues are shaping the target Galaxy flow, but they are not backed by Laravel reads or writes yet.')
             ->assertSee('Migration readiness checklist')
@@ -5555,7 +5555,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active-branch linked holders')
             ->assertSee('Paused-branch unlinked holders')
             ->assertSee('Reviewed Galaxy holders')
-            ->assertSee('Linked cards')
+            ->assertSee('Linked Galaxy card shells')
             ->assertSee('>1<', false)
             ->assertSee('active')
             ->assertSee('inactive');

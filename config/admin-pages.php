@@ -151,7 +151,7 @@ return [
             ['label' => 'Active Galaxy holders', 'value' => '2'],
             ['label' => 'Inactive Galaxy holders', 'value' => '1'],
             ['label' => 'Reviewed Galaxy holders', 'value' => '2'],
-            ['label' => 'Linked cards', 'value' => '3'],
+            ['label' => 'Linked Galaxy card shells', 'value' => '3'],
         ],
         'table' => [
             'columns' => ['Name', 'Phone', 'Review note', 'Shop', 'Cards', 'Status', 'Last activity'],
