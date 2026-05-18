@@ -1,5 +1,5 @@
 @include('admin.partials.resource-summary-list', [
-    'title' => 'First Laravel wiring step',
+    'title' => 'First Galaxy foundation wiring step',
     'summary' => $implementationHandoff['summary'],
     'items' => $implementationHandoff['steps'],
 ])

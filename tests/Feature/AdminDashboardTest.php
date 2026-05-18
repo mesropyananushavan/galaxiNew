@@ -1179,7 +1179,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Hand off draft roles with the exact legacy bundle they are meant to mirror.')
             ->assertSee('Open issues to carry')
             ->assertSee('Cashier assignment rules remain unverified against legacy shop-scoped behavior.')
-            ->assertSee('First Laravel wiring step')
+            ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('Build on the new minimal role create/update path before exposing full assignment screens.')
             ->assertSee('Keep role identity persistence stable before tackling permission matrix editing.')
             ->assertSee('Role and Permission models plus migration skeletons exist')
@@ -2436,7 +2436,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Implementation dependencies')
             ->assertSee('Card and CardType models plus migration skeletons exist')
             ->assertSee('Inventory reads, assignment flows, and status mutations are still pending')
-            ->assertSee('First Laravel wiring step')
+            ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('When PHP is available, start with a read-only inventory table before exposing issue, block, or assignment flows.')
             ->assertSee('Load cards with holder, type, status, issue timing, and activation timing columns.')
             ->assertSee('The timestamp when an already issued physical or virtual card became usable in the loyalty flow.')
@@ -4374,7 +4374,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Implementation dependencies')
             ->assertSee('CardHolder model and shop linkage baseline exist')
             ->assertSee('Searchable index, profile read path, and activity sourcing are still pending')
-            ->assertSee('First Laravel wiring step')
+            ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('When PHP is available, start with a searchable cardholder index before attempting profile edits or lifecycle actions.')
             ->assertSee('Load cardholders with shop, status, and linked-card counts.')
             ->assertSee('Recent activity preview')
@@ -4432,7 +4432,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Implementation dependencies')
             ->assertSee('Shop model and user-to-shop linkage baseline exist')
             ->assertSee('Query-backed shop index and branch actions are still pending')
-            ->assertSee('First Laravel wiring step')
+            ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('When PHP is available, start with a minimal read-only shop index before adding any branch mutation flows.')
             ->assertSee('Wire an Eloquent-backed shops index with manager and status columns.')
             ->assertSee('Recent activity preview')
@@ -6659,7 +6659,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Implementation dependencies')
             ->assertSee('Transaction domain tables do not exist yet')
             ->assertSee('Receipt history queries and adjustment handlers are still pending')
-            ->assertSee('First Laravel wiring step')
+            ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('When PHP is available, start with a read-only receipt history before attempting manual accrual adjustments.')
             ->assertSee('Introduce transaction tables or a read model for receipt and points history.')
             ->assertSee('Recent activity preview')
@@ -6882,7 +6882,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Implementation dependencies')
             ->assertSee('Report catalog is still config-backed with no reporting domain service yet')
             ->assertSee('Preset handling, query sources, and export pipeline are still pending')
-            ->assertSee('First Laravel wiring step')
+            ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('When PHP is available, start with a simple report catalog and fixed presets before building exports or analytics pipelines.')
             ->assertSee('Move report definitions into a lightweight service or queryable catalog source.')
             ->assertSee('Recent activity preview')
@@ -8353,7 +8353,7 @@ class AdminDashboardTest extends TestCase
             strpos($content, 'Legacy parity mapping')
                 < strpos($content, 'Shift handoff notes')
                 && strpos($content, 'Shift handoff notes') < strpos($content, 'Open issues to carry')
-                && strpos($content, 'Open issues to carry') < strpos($content, 'First Laravel wiring step'),
+                && strpos($content, 'Open issues to carry') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected the dedicated operational workflow config stack to remain composable inside page defaults.'
         );
     }
@@ -8378,7 +8378,7 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue(
             strpos($content, 'Recent activity preview')
                 < strpos($content, 'Legacy parity mapping')
-                && strpos($content, 'Legacy parity mapping') < strpos($content, 'First Laravel wiring step'),
+                && strpos($content, 'Legacy parity mapping') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected the dedicated operational context config stack to remain composable inside page defaults.'
         );
     }
@@ -8400,7 +8400,7 @@ class AdminDashboardTest extends TestCase
 
         $this->assertTrue(
             strpos($content, 'Implementation dependencies')
-                < strpos($content, 'First Laravel wiring step'),
+                < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected the dedicated operational closing config stack to remain composable inside page defaults.'
         );
     }
@@ -8425,7 +8425,7 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue(
             strpos($content, 'Card type rules are still preview-only')
                 < strpos($content, 'No custom card types configured yet')
-                && strpos($content, 'No custom card types configured yet') < strpos($content, 'First Laravel wiring step'),
+                && strpos($content, 'No custom card types configured yet') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected the dedicated preview shell config stack to remain composable inside page defaults.'
         );
     }
@@ -8450,7 +8450,7 @@ class AdminDashboardTest extends TestCase
 
         $this->assertTrue(
             strpos($content, 'Central Shop') < strpos($content, 'Active Galaxy branches')
-                && strpos($content, 'Active Galaxy branches') < strpos($content, 'First Laravel wiring step'),
+                && strpos($content, 'Active Galaxy branches') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected the dedicated base shell config stack to remain composable inside page defaults.'
         );
     }
@@ -8490,7 +8490,7 @@ class AdminDashboardTest extends TestCase
                 < strpos($content, 'Recent activity preview')
                 && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
                 && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
-                && strpos($content, 'Open issues to carry') < strpos($content, 'First Laravel wiring step'),
+                && strpos($content, 'Open issues to carry') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected base, context, preview, workflow, and closing shell layers to compose in sequence.'
         );
     }
@@ -8531,7 +8531,7 @@ class AdminDashboardTest extends TestCase
                 < strpos($content, 'Recent activity preview')
                 && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
                 && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
-                && strpos($content, 'Open issues to carry') < strpos($content, 'First Laravel wiring step'),
+                && strpos($content, 'Open issues to carry') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected admin-resource-blocks to bridge all five shell layers into resource page defaults.'
         );
     }
@@ -8576,7 +8576,7 @@ class AdminDashboardTest extends TestCase
                 < strpos($content, 'Recent activity preview')
                 && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
                 && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
-                && strpos($content, 'Open issues to carry') < strpos($content, 'First Laravel wiring step'),
+                && strpos($content, 'Open issues to carry') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected the full admin-resource-page-defaults array to bridge layered shell composition through admin-resource-blocks.'
         );
     }
@@ -8903,7 +8903,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('First Laravel wiring step')
+            ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('When PHP is available, start with a minimal read-only shop index before adding any branch mutation flows.')
             ->assertSee('Wire an Eloquent-backed shops index with manager and status columns.')
             ->assertSee('Delay create and edit actions until the read path is stable against live data.')
@@ -9141,7 +9141,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Escalation guide')
             ->assertSee('Shift handoff notes')
             ->assertSee('Open issues to carry')
-            ->assertSee('First Laravel wiring step');
+            ->assertSee('First Galaxy foundation wiring step');
     }
 
     public function test_key_value_blocks_still_render_after_grouped_controller_lookup(): void
@@ -9201,7 +9201,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Preview notice')
             ->assertSee('Implementation dependencies')
             ->assertSee('Open issues to carry')
-            ->assertSee('First Laravel wiring step');
+            ->assertSee('First Galaxy foundation wiring step');
     }
 
     public function test_resource_page_returns_not_found_when_page_definition_is_not_an_array(): void
@@ -9242,7 +9242,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shops placeholder')
             ->assertSee('Operational index shape')
             ->assertSee('Preview notice')
-            ->assertSee('First Laravel wiring step');
+            ->assertSee('First Galaxy foundation wiring step');
     }
 
     public function test_authenticated_user_can_access_services_rules_management_preview(): void
@@ -9284,7 +9284,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Hand off unresolved priority conflicts with the compared legacy rule names.')
             ->assertSee('Open issues to carry')
             ->assertSee('Night service block parity is still under review against legacy exclusions.')
-            ->assertSee('First Laravel wiring step')
+            ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('When backend work starts, introduce the smallest rule persistence path before attempting full condition-builder parity.')
             ->assertSee('Keep advanced condition syntax out of the first implementation slice.')
             ->assertSee('Service/rule domain is still preview-config only')
@@ -9563,7 +9563,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Hand off paused rewards with the latest stock assumption and shop scope.')
             ->assertSee('Open issues to carry')
             ->assertSee('Premium dessert set remains paused until zero-stock parity is confirmed.')
-            ->assertSee('First Laravel wiring step')
+            ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('When PHP is available, begin with basic gift CRUD and defer stock synchronization until after the first write path works.')
             ->assertSee('Treat warehouse sync and redemption logs as a later follow-up slice.')
             ->assertSee('Gift domain is still represented through config-backed preview data')
@@ -9673,7 +9673,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Hand off draft tiers with the exact legacy rate and activation mode they are meant to mirror.')
             ->assertSee('Open issues to carry')
             ->assertSee('Partner tier approval flow parity is still unresolved against the legacy workflow.')
-            ->assertSee('First Laravel wiring step')
+            ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('When PHP becomes available, start by turning the card type preview into a real create/update path with the smallest possible write flow.')
             ->assertSee('Persist a minimal name, slug, rate, and activation mode payload before expanding rule imports.')
             ->assertSee('CardType model and migration skeleton exist')
