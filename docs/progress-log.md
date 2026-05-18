@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Card-types note-freshness wording alignment checkpoint
+- Aligned the live `card-types` activation and rollout freshness copy from `live Laravel tier shell` to `live Galaxy foundation tier shell` so the selected-tier handoff language stays consistent with the newer Galaxy foundation vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card-type assertion that reads those freshness states.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused card-types slice passed (`1 passed`).
+
 ### Branch coverage-review wording alignment checkpoint
 - Aligned the live `shops` selected-detail coverage string from `read-only Laravel review` to `read-only Galaxy foundation review` so the branch shell stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused shop assertion that reads that coverage string.

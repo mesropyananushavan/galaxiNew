@@ -2519,7 +2519,7 @@ class ResourceIndexController extends Controller
     private function cardTypesActivationFreshness(CardType $selectedCardType): string
     {
         return match (true) {
-            filled($selectedCardType->activation_note) && $selectedCardType->is_active => 'Activation note is already saved on this live Laravel tier shell.',
+            filled($selectedCardType->activation_note) && $selectedCardType->is_active => 'Activation note is already saved on this live Galaxy foundation tier shell.',
             filled($selectedCardType->activation_note) => 'Activation note is already staged on this draft Laravel tier shell.',
             $selectedCardType->is_active => 'Live tier still needs a saved activation note before rollout handoff can feel grounded.',
             default => 'Draft tier can stay safe while activation guidance is still being written.',
@@ -2529,7 +2529,7 @@ class ResourceIndexController extends Controller
     private function cardTypesRolloutFreshness(CardType $selectedCardType): string
     {
         return match (true) {
-            filled($selectedCardType->rollout_note) && $selectedCardType->is_active => 'Rollout note is already saved on this live Laravel tier shell.',
+            filled($selectedCardType->rollout_note) && $selectedCardType->is_active => 'Rollout note is already saved on this live Galaxy foundation tier shell.',
             filled($selectedCardType->rollout_note) => 'Rollout note is already staged on this draft Laravel tier shell.',
             $selectedCardType->is_active => 'Live tier still needs a saved rollout note before rollout handoff can feel grounded.',
             default => 'Draft tier can stay safe while rollout guidance is still being written.',
