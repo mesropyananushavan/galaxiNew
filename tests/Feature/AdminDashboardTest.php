@@ -6952,11 +6952,11 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Live sources')
-            ->assertSee('Tracked shops')
-            ->assertSee('Tracked cards')
-            ->assertSee('Tracked cardholders')
-            ->assertSee('Tracked roles')
+            ->assertSee('Live Galaxy sources')
+            ->assertSee('Tracked Galaxy branches')
+            ->assertSee('Tracked Galaxy card shells')
+            ->assertSee('Tracked Galaxy holders')
+            ->assertSee('Tracked Galaxy access shells')
             ->assertSee('1')
             ->assertSee('Cards by shop')
             ->assertSee('/admin/reports?source=cards-by-shop')

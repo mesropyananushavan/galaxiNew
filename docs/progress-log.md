@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports headline metrics wording alignment checkpoint
+- Aligned the live `reports` headline metrics from generic source labels to Galaxy-specific language (`Live Galaxy sources`, `Tracked Galaxy branches`, `Tracked Galaxy card shells`, `Tracked Galaxy holders`, and `Tracked Galaxy access shells`) so the reporting shell reads more like a Galaxy foundation surface than a starter dashboard stub.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads the same summary stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_replaces_preview_rows_with_model_backed_report_data|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed (`2 passed`).
+
 ### Tier headline metrics wording alignment checkpoint
 - Aligned the real `card-types` headline metrics from generic tier wording to Galaxy-specific language (`Active/Draft/Reviewed Galaxy tiers`) so the live tier workspace better matches the broader Phase 1 Galaxy shell vocabulary.
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.

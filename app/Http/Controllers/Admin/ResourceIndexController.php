@@ -1418,11 +1418,11 @@ class ResourceIndexController extends Controller
         }
 
         $page['metrics'] = [
-            ['label' => 'Live sources', 'value' => (string) collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])->filter(fn (int $count): bool => $count > 0)->count()],
-            ['label' => 'Tracked shops', 'value' => (string) $shopCount],
-            ['label' => 'Tracked cards', 'value' => (string) $cardCount],
-            ['label' => 'Tracked cardholders', 'value' => (string) $cardHolderCount],
-            ['label' => 'Tracked roles', 'value' => (string) $roleCount],
+            ['label' => 'Live Galaxy sources', 'value' => (string) collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])->filter(fn (int $count): bool => $count > 0)->count()],
+            ['label' => 'Tracked Galaxy branches', 'value' => (string) $shopCount],
+            ['label' => 'Tracked Galaxy card shells', 'value' => (string) $cardCount],
+            ['label' => 'Tracked Galaxy holders', 'value' => (string) $cardHolderCount],
+            ['label' => 'Tracked Galaxy access shells', 'value' => (string) $roleCount],
         ];
 
         $reportSources = [
