@@ -4545,10 +4545,10 @@ class ResourceIndexController extends Controller
                 ? 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'
                 : 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'],
             ['label' => 'Manager posture', 'value' => match (true) {
-                ! $selectedShop->is_active && $selectedShop->users_count > 0 => 'Assigned managers are visible in this paused branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
-                ! $selectedShop->is_active => 'No manager is assigned yet, which keeps this paused branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',
-                $selectedShop->users_count > 0 => 'Assigned managers are visible in Laravel, but reassignment should stay blocked until branch ownership parity is confirmed.',
-                default => 'No manager is assigned yet, which keeps this branch safer for ownership-flow-parity review before ownership flows are enabled.',
+                ! $selectedShop->is_active && $selectedShop->users_count > 0 => 'Assigned branch managers are visible in this paused Galaxy branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
+                ! $selectedShop->is_active => 'No branch manager is assigned yet, which keeps this paused Galaxy branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',
+                $selectedShop->users_count > 0 => 'Assigned branch managers are visible in Laravel, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.',
+                default => 'No branch manager is assigned yet, which keeps this Galaxy branch safer for ownership-flow parity review before ownership flows are enabled.',
             }],
             ['label' => 'Coverage posture', 'value' => $selectedShop->is_active
                 ? sprintf('This branch currently exposes %d cardholders and %d cards for read-only Laravel review.', $selectedShop->card_holders_count, $selectedShop->cards_count)

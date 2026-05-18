@@ -4697,7 +4697,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Status posture:')
             ->assertSee('This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.')
             ->assertSee('Manager posture:')
-            ->assertSee('Assigned managers are visible in Laravel, but reassignment should stay blocked until branch ownership parity is confirmed.')
+            ->assertSee('Assigned branch managers are visible in Laravel, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.')
             ->assertSee('Coverage posture:')
             ->assertSee('This branch currently exposes 1 cardholders and 1 cards for read-only Laravel review.')
             ->assertSee('Remaining backend gap:')

@@ -2,6 +2,13 @@
 
 ## 2026-05-18
 
+### Branch manager posture wording alignment checkpoint
+- Aligned the selected `shops` manager-posture copy from older generic manager wording to Galaxy-specific branch language (`Assigned branch managers`, `paused Galaxy branch`, and `Galaxy branch ownership parity`) so a live Laravel-backed branch-review detail surface reads less like a starter admin stub.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused selected-branch assertion that reads the same review context.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace|test_authenticated_user_can_access_shops_operational_index_shape|test_resource_summary_metrics_ignore_malformed_metric_entries'`; the focused shops slice passed (`4 passed`).
+
+## 2026-05-18
+
 ### Access metrics wording alignment checkpoint
 - Aligned the real `roles-permissions` metric labels from older generic role/access wording to Galaxy-specific Phase 1 shell language (`Active/Draft/Reviewed Galaxy access shells`, `Galaxy access notes`, `Galaxy assignment notes`, `Galaxy permission review notes`, and `Scoped Galaxy branches`).
 - Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a live Laravel-backed foundation surface.
