@@ -2419,7 +2419,7 @@ class ResourceIndexController extends Controller
         $activeCount = $cardTypes->where('is_active', true)->count();
 
         return match (true) {
-            $savedCount === 0 => 'Blocked until the first Laravel-backed tier exists for rule parity review.',
+            $savedCount === 0 => 'Blocked until the first Galaxy foundation-backed tier exists for rule parity review.',
             $activeCount > 0 => 'Blocked until saved tier accrual parity is verified before importing legacy rules.',
             default => 'Blocked until a saved draft tier is ready for parity-first rule review.',
         };
@@ -2431,7 +2431,7 @@ class ResourceIndexController extends Controller
         $activeCount = $cardTypes->where('is_active', true)->count();
 
         return match (true) {
-            $savedCount === 0 => 'Blocked until the first Laravel-backed tier exists before any publish-style rollout.',
+            $savedCount === 0 => 'Blocked until the first Galaxy foundation-backed tier exists before any publish-style rollout.',
             $activeCount > 0 => 'Blocked until saved live tiers clear Galaxy tier rollout parity before any broader catalog move.',
             default => 'Blocked until a saved draft tier clears rollout parity before any publish-like move.',
         };
