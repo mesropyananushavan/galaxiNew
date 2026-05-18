@@ -2421,7 +2421,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Central Shop')
             ->assertSee('New Galaxy card')
             ->assertSee('Review blocked cards')
-            ->assertSee('Blocked until the first Laravel-backed inventory slice exists for blocked-card parity review.')
+            ->assertSee('Blocked until the first Galaxy foundation-backed inventory slice exists for blocked-card parity review.')
             ->assertSee('Active Galaxy card shells')
             ->assertSee('Draft Galaxy card shells')
             ->assertSee('Blocked Galaxy card shells')

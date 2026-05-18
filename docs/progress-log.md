@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Card inventory-blocker wording alignment checkpoint
+- Aligned the live `cards` blocker copy from `first Laravel-backed ... inventory slice` to `first Galaxy foundation-backed ... inventory slice` so the selected-card parity blockers stay consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card assertion that reads that blocker guidance.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`; the focused cards slice passed (`1 passed`).
+
 ### Card-types blocker wording alignment checkpoint
 - Aligned the live `card-types` blocked guidance from `first Laravel-backed tier` to `first Galaxy foundation-backed tier` so the selected-tier rollout and rule-parity blockers stay consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card-type assertions that read those blocker strings.

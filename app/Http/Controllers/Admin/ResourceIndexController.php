@@ -2558,7 +2558,7 @@ class ResourceIndexController extends Controller
         return match (true) {
             $draftCount > 0 => 'Blocked until saved draft inventory is verified against legacy issue-flow parity.',
             $activeCount > 0 => 'Blocked until active inventory and issuance parity are verified against the old Galaxy card flow.',
-            default => 'Blocked until the first Laravel-backed card inventory slice exists for issue-flow parity review.',
+            default => 'Blocked until the first Galaxy foundation-backed card inventory slice exists for issue-flow parity review.',
         };
     }
 
@@ -2570,7 +2570,7 @@ class ResourceIndexController extends Controller
         return match (true) {
             $blockedCount > 0 => 'Blocked until saved blocked-card states are verified against legacy inventory semantics.',
             $activeCount > 0 => 'Blocked until live inventory has verified blocked-card parity to compare against legacy behavior.',
-            default => 'Blocked until the first Laravel-backed inventory slice exists for blocked-card parity review.',
+            default => 'Blocked until the first Galaxy foundation-backed inventory slice exists for blocked-card parity review.',
         };
     }
 
