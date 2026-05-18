@@ -1439,7 +1439,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy card shells across %d tracked Galaxy branches are currently available for read-only reporting review.', $cardCount, $shopCount)],
                     ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
                         ? 'Cards-by-shop source is already visible with live branch inventory for parity review.'
-                        : 'Cards-by-shop source remains safer as planning-only review until live branch inventory appears.'],
+                        : 'Galaxy branch card-shell source remains safer as planning-only review until live branch inventory appears.'],
                     ['label' => 'Source focus', 'value' => 'Start with branch totals and assignment mix before discussing any later export snapshot.'],
                     ['label' => 'Source posture', 'value' => 'Keep branch inventory review on-screen first, then leave grouped export expectations in preview mode until parity is proven.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep branch totals, paused-shop counts, and assigned-versus-unassigned inventory visible together before trusting any export view.'],
@@ -1473,10 +1473,10 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d holder-linked cards are already visible in active branches for live branch review', $activeShopHolderLinkedCardCount)
                         : 'active-branch holder-linked inventory is still pending for parity review'],
                     ['label' => 'Paused branch assignment signal', 'value' => $pausedShopHolderLinkedCardCount > 0
-                        ? sprintf('%d holder-linked cards are already visible in paused branches for branch-recovery review', $pausedShopHolderLinkedCardCount)
+                        ? sprintf('%d holder-linked cards are already visible in paused Galaxy branches for branch-recovery review', $pausedShopHolderLinkedCardCount)
                         : 'paused-branch holder-linked inventory is still pending for parity review'],
                     ['label' => 'Unassigned branch activity signal', 'value' => $activeShopUnassignedCardCount > 0 && $pausedShopUnassignedCardCount > 0
-                        ? sprintf('%d unassigned cards are already visible in active branches beside %d unassigned cards in paused shops for parity review', $activeShopUnassignedCardCount, $pausedShopUnassignedCardCount)
+                        ? sprintf('%d unassigned cards are already visible in active Galaxy branches beside %d unassigned cards in paused Galaxy branches for parity review', $activeShopUnassignedCardCount, $pausedShopUnassignedCardCount)
                         : 'mixed unassigned branch coverage is still pending for parity review'],
                     ['label' => 'Activated unassigned signal', 'value' => $activatedUnassignedCardCount > 0
                         ? sprintf('%d activated unassigned cards are already visible for inventory recovery review', $activatedUnassignedCardCount)
@@ -1510,10 +1510,10 @@ class ResourceIndexController extends Controller
                 ],
                 'dependencyStatus' => [
                     ['label' => 'Selected source', 'value' => 'Galaxy branch card-shell coverage'],
-                    ['label' => 'Laravel inputs', 'value' => sprintf('%d cards and %d shops are currently visible to the reporting workspace.', $cardCount, $shopCount)],
+                    ['label' => 'Laravel inputs', 'value' => sprintf('%d Galaxy card shells and %d Galaxy branches are currently visible to the reporting workspace.', $cardCount, $shopCount)],
                     ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
                         ? 'Cards-by-shop source is already visible with live branch inventory for parity review.'
-                        : 'Cards-by-shop source remains safer as planning-only review until live branch inventory appears.'],
+                        : 'Galaxy branch card-shell source remains safer as planning-only review until live branch inventory appears.'],
                     ['label' => 'Source signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'live cards and branch coverage visible' : 'cards or branch coverage still pending'],
                     ['label' => 'Laravel input signal', 'value' => $cardCount > 0 && $shopCount > 0 ? 'Galaxy card-shell and branch inputs are ready for on-screen review' : 'Galaxy card-shell or branch inputs still need live Laravel coverage'],
                     ['label' => 'Comparison signal', 'value' => $activeShopCount > 0 && $shopCount > $activeShopCount && $activeCardCount > 0 && $blockedCardCount > 0 && $holderLinkedCardCount > 0 && $unassignedCardCount > 0
@@ -1544,10 +1544,10 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d holder-linked cards are already visible in active branches for live branch review', $activeShopHolderLinkedCardCount)
                         : 'active-branch holder-linked inventory is still pending for parity review'],
                     ['label' => 'Paused branch assignment signal', 'value' => $pausedShopHolderLinkedCardCount > 0
-                        ? sprintf('%d holder-linked cards are already visible in paused branches for branch-recovery review', $pausedShopHolderLinkedCardCount)
+                        ? sprintf('%d holder-linked cards are already visible in paused Galaxy branches for branch-recovery review', $pausedShopHolderLinkedCardCount)
                         : 'paused-branch holder-linked inventory is still pending for parity review'],
                     ['label' => 'Unassigned branch activity signal', 'value' => $activeShopUnassignedCardCount > 0 && $pausedShopUnassignedCardCount > 0
-                        ? sprintf('%d unassigned cards are already visible in active branches beside %d unassigned cards in paused shops for parity review', $activeShopUnassignedCardCount, $pausedShopUnassignedCardCount)
+                        ? sprintf('%d unassigned cards are already visible in active Galaxy branches beside %d unassigned cards in paused Galaxy branches for parity review', $activeShopUnassignedCardCount, $pausedShopUnassignedCardCount)
                         : 'mixed unassigned branch coverage is still pending for parity review'],
                     ['label' => 'Activated unassigned signal', 'value' => $activatedUnassignedCardCount > 0
                         ? sprintf('%d activated unassigned cards are already visible for inventory recovery review', $activatedUnassignedCardCount)
