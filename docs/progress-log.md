@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports export-blocker wording alignment checkpoint
+- Aligned the live `reports` export blocker from `first live Laravel report source` to `first live Galaxy foundation report source` so the reporting export parity guidance stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that export blocker.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
 ### Branch blocker wording alignment checkpoint
 - Aligned the live `shops` blocker copy from `first Laravel-backed shops index` to `first Galaxy foundation-backed shops index` so the selected-branch parity blocker stays consistent with the newer Galaxy foundation wording.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused shop slice that covers that blocker guidance.

@@ -6866,7 +6866,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review export presets')
             ->assertSee('Blocked until preset handling is backed by Laravel reporting flow validation.')
             ->assertSee('Export source snapshot')
-            ->assertSee('Blocked until the first live Laravel report source exists for export parity review.')
+            ->assertSee('Blocked until the first live Galaxy foundation report source exists for export parity review.')
             ->assertSee('Planned reports')
             ->assertSee('Export formats')
             ->assertSee('Preset periods')
