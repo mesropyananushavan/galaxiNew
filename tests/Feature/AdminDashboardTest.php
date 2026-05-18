@@ -2579,7 +2579,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Unassigned')
             ->assertSee('Galaxy Gold')
             ->assertSee('Galaxy Central')
-            ->assertSee('Create Galaxy card in Laravel')
+            ->assertSee('Create Galaxy card in Galaxy foundation')
             ->assertSee('Create inventory shell')
             ->assertSee('action="/admin/cards"', false)
             ->assertSee('Review latest saved card shell')

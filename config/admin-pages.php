@@ -398,7 +398,7 @@ return [
             ],
         ],
         'liveForm' => [
-            'title' => 'Create Galaxy card in Laravel',
+            'title' => 'Create Galaxy card in Galaxy foundation',
             'description' => 'This is the first minimal Galaxy foundation-backed card write path. Keep it limited to branch anchoring, type, inventory status, issue timing, activation timing, and review notes while holder assignment and replacement handling remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.cards.store',
