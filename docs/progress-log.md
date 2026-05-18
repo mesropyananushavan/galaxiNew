@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Card-types coverage wording alignment checkpoint
+- Aligned the live card-type coverage signal copy from `The current Laravel tier is showing ...` to `The current Galaxy foundation tier is showing ...` so the selected tier review shell reads more like Galaxy-specific foundation guidance.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card-type assertions that read that coverage signal.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused card-types slice passed (`1 passed`).
+
 ### Management review-note wording alignment checkpoint
 - Aligned the live management review-note prefixes from `The current Laravel ...` to `The current Galaxy foundation ...` across the selected-detail shells so these operator notes read more like Galaxy-specific foundation guidance than starter-era Laravel handoff copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those note prefixes.

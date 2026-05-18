@@ -2262,7 +2262,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
     {
-        return sprintf('The current Laravel tier is showing %s in the workspace review shell.', $this->cardTypesCoverageSignal($selectedCardType));
+        return sprintf('The current Galaxy foundation tier is showing %s in the workspace review shell.', $this->cardTypesCoverageSignal($selectedCardType));
     }
 
     private function cardTypesLiveFormTitle(): string
