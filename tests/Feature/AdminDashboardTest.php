@@ -6958,16 +6958,16 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Tracked Galaxy holders')
             ->assertSee('Tracked Galaxy access shells')
             ->assertSee('1')
-            ->assertSee('Cards by shop')
+            ->assertSee('Galaxy branch card-shell coverage')
             ->assertSee('/admin/reports?source=cards-by-shop')
             ->assertSee('1 Galaxy branches')
-            ->assertSee('Cardholder status overview')
+            ->assertSee('Galaxy holder status overview')
             ->assertSee('/admin/reports?source=cardholder-status')
             ->assertSee('1 Galaxy holders')
-            ->assertSee('Role access coverage')
+            ->assertSee('Galaxy access coverage')
             ->assertSee('/admin/reports?source=role-access')
             ->assertSee('1 Galaxy access shells')
-            ->assertSee('Review cards by shop reporting source')
+            ->assertSee('Review Galaxy branch card-shell coverage reporting source')
             ->assertSee('Open Galaxy reporting catalog')
             ->assertSee('Review export presets')
             ->assertSee('Blocked until preset handling is verified against multiple live Laravel reporting sources.')
@@ -7033,13 +7033,13 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Back to report catalog')
             ->assertSee('/admin/reports')
-            ->assertSee('Reviewing: Cards by shop')
+            ->assertSee('Reviewing: Galaxy branch card-shell coverage')
             ->assertSee('Review export presets')
             ->assertSee('Blocked until branch-total preset periods are verified against live shop grouping and legacy reporting habits.')
             ->assertSee('Export source snapshot')
             ->assertSee('Blocked until branch-total export snapshots are verified against legacy grouped totals and file delivery.')
             ->assertSee('Selected report source')
-            ->assertSee('Cards by shop')
+            ->assertSee('Galaxy branch card-shell coverage')
             ->assertSee('Review mode')
             ->assertSee('Live-source review, card inventory already exists in Laravel for shop-level reporting checks.')
             ->assertSee('Source coverage')
@@ -7098,7 +7098,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep branch-total and linked-holder inventory findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Backend gap')
             ->assertSee('Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.')
-            ->assertSee('Cards by shop source selected for Laravel review')
+            ->assertSee('Galaxy branch card-shell coverage selected for Laravel review')
             ->assertSee('This reporting view now reflects 1 tracked cards across 1 shops from the current Laravel foundation.')
             ->assertSee('Branch inventory handoff stays on-screen first')
             ->assertSee('Operators should hand off branch-total and linked-holder inventory findings in the live workspace before relying on exported files for this source.')
@@ -7232,7 +7232,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Reviewing: Cards by shop')
+            ->assertSee('Reviewing: Galaxy branch card-shell coverage')
             ->assertSee('Source coverage')
             ->assertSee('6 cards across 2 tracked shops are currently available for read-only reporting review.')
             ->assertSee('Comparison signal')
@@ -7332,13 +7332,13 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Back to report catalog')
-            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Reviewing: Galaxy access coverage')
             ->assertSee('Review export presets')
             ->assertSee('Blocked until role-access preset periods are verified against scope and assignment reporting parity.')
             ->assertSee('Export source snapshot')
             ->assertSee('Blocked until role-access export snapshots are verified against scope summaries and file delivery.')
             ->assertSee('Selected report source')
-            ->assertSee('Role access coverage')
+            ->assertSee('Galaxy access coverage')
             ->assertSee('Source coverage')
             ->assertSee('1 roles are currently available for read-only access reporting review.')
             ->assertSee('Source signal')
@@ -7422,7 +7422,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Reviewing: Galaxy access coverage')
             ->assertSee('Source coverage')
             ->assertSee('2 roles are currently available for read-only access reporting review.')
             ->assertSee('Role state signal')
@@ -7481,7 +7481,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Reviewing: Galaxy access coverage')
             ->assertSee('Source coverage')
             ->assertSee('2 roles are currently available for read-only access reporting review.')
             ->assertSee('Permission bundle signal')
@@ -7539,7 +7539,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Review cards by shop reporting source')
+            ->assertSee('Review Galaxy branch card-shell coverage reporting source')
             ->assertDontSee('Back to report catalog')
             ->assertDontSee('Selected report source');
     }
@@ -7591,13 +7591,13 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Back to report catalog')
-            ->assertSee('Reviewing: Cardholder status overview')
+            ->assertSee('Reviewing: Galaxy holder status overview')
             ->assertSee('Review export presets')
             ->assertSee('Blocked until holder-status preset periods are verified against lifecycle and recency reporting parity.')
             ->assertSee('Export source snapshot')
             ->assertSee('Blocked until holder-status export snapshots are verified against lifecycle summaries and file delivery.')
             ->assertSee('Selected report source')
-            ->assertSee('Cardholder status overview')
+            ->assertSee('Galaxy holder status overview')
             ->assertSee('Source coverage')
             ->assertSee('1 cardholders are currently available for read-only status reporting review.')
             ->assertSee('Source status signal')
@@ -7739,7 +7739,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Reviewing: Cardholder status overview')
+            ->assertSee('Reviewing: Galaxy holder status overview')
             ->assertSee('Source coverage')
             ->assertSee('3 cardholders are currently available for read-only status reporting review.')
             ->assertSee('Comparison signal')
@@ -7823,13 +7823,13 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Back to report catalog')
-            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Reviewing: Galaxy access coverage')
             ->assertSee('Review export presets')
             ->assertSee('Blocked until role-access preset periods are verified against scope and assignment reporting parity.')
             ->assertSee('Export source snapshot')
             ->assertSee('Blocked until role-access export snapshots are verified against scope summaries and file delivery.')
             ->assertSee('Selected report source')
-            ->assertSee('Role access coverage')
+            ->assertSee('Galaxy access coverage')
             ->assertSee('Source coverage')
             ->assertSee('1 roles are currently available for read-only access reporting review.')
             ->assertSee('Source status signal')
@@ -7935,7 +7935,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Reviewing: Galaxy access coverage')
             ->assertSee('Source coverage')
             ->assertSee('1 roles are currently available for read-only access reporting review.')
             ->assertSee('Assignment signal')
@@ -8009,7 +8009,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Reviewing: Role access coverage')
+            ->assertSee('Reviewing: Galaxy access coverage')
             ->assertSee('Assignment signal')
             ->assertSee('2 staff assignments are already visible for access review')
             ->assertSee('Assignment branch activity signal')
@@ -8066,7 +8066,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Back to report catalog')
-            ->assertSee('Reviewing: Cards by shop')
+            ->assertSee('Reviewing: Galaxy branch card-shell coverage')
             ->assertSee('Selected report source');
     }
 

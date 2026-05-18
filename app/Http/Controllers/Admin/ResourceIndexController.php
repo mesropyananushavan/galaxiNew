@@ -1428,11 +1428,11 @@ class ResourceIndexController extends Controller
         $reportSources = [
             [
                 'key' => 'cards-by-shop',
-                'label' => 'Cards by shop',
+                'label' => 'Galaxy branch card-shell coverage',
                 'scope' => $shopCount > 0 ? sprintf('%d Galaxy branches', $shopCount) : 'No Galaxy branches tracked yet',
                 'status' => $cardCount > 0 ? 'live' : 'draft',
                 'selectedSummary' => [
-                    ['label' => 'Selected report source', 'value' => 'Cards by shop'],
+                    ['label' => 'Selected report source', 'value' => 'Galaxy branch card-shell coverage'],
                     ['label' => 'Review mode', 'value' => $cardCount > 0
                         ? 'Live-source review, card inventory already exists in Laravel for shop-level reporting checks.'
                         : 'Draft-safe review, no cards are tracked yet so this source remains a catalog-only planning stub.'],
@@ -1504,12 +1504,12 @@ class ResourceIndexController extends Controller
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until file export formatting and delivery are validated.'],
                 ],
                 'timeline' => [
-                    ['title' => 'Cards by shop source selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked cards across %d shops from the current Laravel foundation.', $cardCount, $shopCount)],
+                    ['title' => 'Galaxy branch card-shell coverage selected for Laravel review', 'time' => 'Current request', 'description' => sprintf('This reporting view now reflects %d tracked cards across %d shops from the current Laravel foundation.', $cardCount, $shopCount)],
                     ['title' => 'Shop-level inventory parity stays review-only', 'time' => 'Current request', 'description' => 'Counts are live-backed now, but grouped report shaping and export output should stay parity-first until reporting pipeline checks exist.'],
                     ['title' => 'Branch inventory handoff stays on-screen first', 'time' => 'Current request', 'description' => $this->reportsCardsByShopTimelineHandoffDescription($holderLinkedCardCount, $unassignedCardCount)],
                 ],
                 'dependencyStatus' => [
-                    ['label' => 'Selected source', 'value' => 'Cards by shop'],
+                    ['label' => 'Selected source', 'value' => 'Galaxy branch card-shell coverage'],
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d cards and %d shops are currently visible to the reporting workspace.', $cardCount, $shopCount)],
                     ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
                         ? 'Cards-by-shop source is already visible with live branch inventory for parity review.'
@@ -1572,11 +1572,11 @@ class ResourceIndexController extends Controller
             ],
             [
                 'key' => 'cardholder-status',
-                'label' => 'Cardholder status overview',
+                'label' => 'Galaxy holder status overview',
                 'scope' => $cardHolderCount > 0 ? sprintf('%d Galaxy holders', $cardHolderCount) : 'No Galaxy holders tracked yet',
                 'status' => $cardHolderCount > 0 ? 'live' : 'draft',
                 'selectedSummary' => [
-                    ['label' => 'Selected report source', 'value' => 'Cardholder status overview'],
+                    ['label' => 'Selected report source', 'value' => 'Galaxy holder status overview'],
                     ['label' => 'Review mode', 'value' => $cardHolderCount > 0
                         ? 'Live-source review, holder status records already exist in Laravel for read-only reporting checks.'
                         : 'Draft-safe review, no cardholders are tracked yet so this source remains a planning-only catalog entry.'],
@@ -1637,7 +1637,7 @@ class ResourceIndexController extends Controller
                     ['title' => 'Support handoff should keep holder posture visible', 'time' => 'Current request', 'description' => $this->reportsCardholderStatusTimelineHandoffDescription($linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                 ],
                 'dependencyStatus' => [
-                    ['label' => 'Selected source', 'value' => 'Cardholder status overview'],
+                    ['label' => 'Selected source', 'value' => 'Galaxy holder status overview'],
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d cardholders are currently visible to the reporting workspace.', $cardHolderCount)],
                     ['label' => 'Source status signal', 'value' => $cardHolderCount > 0
                         ? 'Cardholder-status source is already visible with live lifecycle coverage for parity review.'
@@ -1686,11 +1686,11 @@ class ResourceIndexController extends Controller
             ],
             [
                 'key' => 'role-access',
-                'label' => 'Role access coverage',
+                'label' => 'Galaxy access coverage',
                 'scope' => $roleCount > 0 ? sprintf('%d Galaxy access shells', $roleCount) : 'No Galaxy access shells tracked yet',
                 'status' => $roleCount > 0 ? 'live' : 'draft',
                 'selectedSummary' => [
-                    ['label' => 'Selected report source', 'value' => 'Role access coverage'],
+                    ['label' => 'Selected report source', 'value' => 'Galaxy access coverage'],
                     ['label' => 'Review mode', 'value' => $roleCount > 0
                         ? 'Live-source review, access roles already exist in Laravel for read-only reporting checks.'
                         : 'Draft-safe review, no roles are tracked yet so this source remains a catalog-only planning stub.'],
@@ -1756,7 +1756,7 @@ class ResourceIndexController extends Controller
                     ['title' => 'Access-review handoff should stay visible in the workspace', 'time' => 'Current request', 'description' => $this->reportsRoleAccessTimelineHandoffDescription($permissionLinkedRoleCount, $assignedStaffCount)],
                 ],
                 'dependencyStatus' => [
-                    ['label' => 'Selected source', 'value' => 'Role access coverage'],
+                    ['label' => 'Selected source', 'value' => 'Galaxy access coverage'],
                     ['label' => 'Laravel inputs', 'value' => sprintf('%d roles are currently visible to the reporting workspace.', $roleCount)],
                     ['label' => 'Source status signal', 'value' => $roleCount > 0
                         ? 'Role-access source is already visible with live access coverage for parity review.'
