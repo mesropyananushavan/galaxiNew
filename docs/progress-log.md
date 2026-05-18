@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Reports holder branch-profile wording alignment checkpoint
+- Aligned the live `reports` holder-status branch comparison string from generic `holder profiles` wording to Galaxy-specific language (`Galaxy holder profiles`) so the selected holder review reads more consistently with the surrounding Galaxy holder shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that holder branch-profile comparison string.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_cardholder_status_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
 ### Reports branch recovery inventory wording alignment checkpoint
 - Aligned the live `reports` branch recovery and unassigned inventory detail strings from leftover generic `holder-linked cards` and `unassigned cards` wording to Galaxy-specific language (`holder-linked Galaxy card shells` and `unassigned Galaxy card shells`) so the selected branch card-shell review stays consistent across active and paused branch comparisons.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those branch recovery inventory strings.

@@ -1621,7 +1621,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d holder profiles already carry activated linked-card posture for lifecycle review', $activatedLinkedHolderCount)
                         : 'activated-holder coverage is still pending for lifecycle review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
-                        ? sprintf('%d holder profiles are already visible in active Galaxy branches beside %d profiles in paused Galaxy branches for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
+                        ? sprintf('%d Galaxy holder profiles are already visible in active Galaxy branches beside %d Galaxy holder profiles in paused Galaxy branches for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],
                     ['label' => 'Scope guidance', 'value' => 'Keep this source focused on active versus inactive holder posture first, because old Galaxy support flows used status review before deeper profile history.' ],
                     ['label' => 'Default period posture', 'value' => 'Use a current-status review first, then stage preset periods until lifecycle and recency parity are verified.'],
@@ -1676,7 +1676,7 @@ class ResourceIndexController extends Controller
                         ? sprintf('%d holder profiles already carry activated linked-card posture for lifecycle review', $activatedLinkedHolderCount)
                         : 'activated-holder coverage is still pending for lifecycle review'],
                     ['label' => 'Holder branch activity signal', 'value' => $activeShopCardHolderCount > 0 && $pausedShopCardHolderCount > 0
-                        ? sprintf('%d holder profiles are already visible in active Galaxy branches beside %d profiles in paused Galaxy branches for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
+                        ? sprintf('%d Galaxy holder profiles are already visible in active Galaxy branches beside %d Galaxy holder profiles in paused Galaxy branches for parity review', $activeShopCardHolderCount, $pausedShopCardHolderCount)
                         : 'paused-branch holder coverage is still pending for parity review'],
                     ['label' => 'Scope posture', 'value' => 'Status-first review should stay ahead of deeper segmentation until lifecycle parity and operator lookup habits are matched.'],
                     ['label' => 'Lifecycle posture', 'value' => 'Status aggregation should stay read-only until holder lifecycle and activity parity are verified.'],

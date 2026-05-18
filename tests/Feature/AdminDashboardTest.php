@@ -7731,7 +7731,7 @@ class AdminDashboardTest extends TestCase
         $inactiveHolderCount = CardHolder::query()->where('is_active', false)->count();
         $activeHolderCount = CardHolder::query()->where('is_active', true)->count();
         $lifecycleSignal = sprintf('%d inactive holders are already visible beside %d active profiles for lifecycle review', $inactiveHolderCount, $activeHolderCount);
-        $holderBranchActivitySignal = '2 holder profiles are already visible in active Galaxy branches beside 1 profiles in paused Galaxy branches for parity review';
+        $holderBranchActivitySignal = '2 Galaxy holder profiles are already visible in active Galaxy branches beside 1 Galaxy holder profiles in paused Galaxy branches for parity review';
 
         $user = User::factory()->create();
 
