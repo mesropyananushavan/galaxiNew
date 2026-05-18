@@ -2366,7 +2366,7 @@ class ResourceIndexController extends Controller
     private function cardTypesStatusGuidance(CardType $selectedCardType): string
     {
         return $selectedCardType->is_active
-            ? 'This tier is live in the current Laravel foundation, so operators should move it back to draft before parity-sensitive rule changes.'
+            ? 'This tier is live in the current Galaxy foundation layer, so operators should move it back to draft before parity-sensitive rule changes.'
             : 'This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.';
     }
 
@@ -2408,8 +2408,8 @@ class ResourceIndexController extends Controller
         return $this->lifecycleFreshnessDescription(
             $selectedCardType,
             'This tier does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
-            'This tier was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved catalog shell.',
-            'This tier was first created in Laravel on %s and last updated on %s, so operators are reviewing a catalog shell that has already changed after initial setup.',
+            'This tier was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved catalog shell.',
+            'This tier was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing a catalog shell that has already changed after initial setup.',
         );
     }
 
@@ -3561,7 +3561,7 @@ class ResourceIndexController extends Controller
                 'description' => $selectedRole->updated_at === null || $selectedRole->created_at === null
                     ? 'This role does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.'
                     : ($selectedRole->updated_at->equalTo($selectedRole->created_at)
-                        ? sprintf('This role was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved access shell.', $selectedRole->created_at->format('Y-m-d H:i'))
+                        ? sprintf('This role was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved access shell.', $selectedRole->created_at->format('Y-m-d H:i'))
                         : sprintf('This role was last updated in Laravel on %s, so the review workspace now reflects post-creation access metadata.', $selectedRole->updated_at->format('Y-m-d H:i'))),
             ],
             [
@@ -4014,8 +4014,8 @@ class ResourceIndexController extends Controller
         return $this->lifecycleFreshnessDescription(
             $selectedCard,
             'This card does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
-            'This card was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved inventory shell.',
-            'This card was first created in Laravel on %s and last updated on %s, so operators are reviewing inventory that has already changed after initial setup.',
+            'This card was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved inventory shell.',
+            'This card was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing inventory that has already changed after initial setup.',
         );
     }
 
@@ -4247,8 +4247,8 @@ class ResourceIndexController extends Controller
         return $this->lifecycleFreshnessDescription(
             $selectedCardHolder,
             'This holder does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
-            'This holder was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved profile shell.',
-            'This holder was first created in Laravel on %s and last updated on %s, so operators are reviewing a profile shell that has already changed after initial setup.',
+            'This holder was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved profile shell.',
+            'This holder was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing a profile shell that has already changed after initial setup.',
         );
     }
 
@@ -4443,8 +4443,8 @@ class ResourceIndexController extends Controller
         return $this->lifecycleFreshnessDescription(
             $selectedShop,
             'This branch does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
-            'This branch was created in Laravel on %s and has not been updated since, so operators are still reviewing the first saved branch shell.',
-            'This branch was first created in Laravel on %s and last updated on %s, so operators are reviewing a branch shell that has already changed after initial setup.',
+            'This branch was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved branch shell.',
+            'This branch was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing a branch shell that has already changed after initial setup.',
         );
     }
 
