@@ -9254,7 +9254,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create or edit Galaxy rule')
             ->assertSee('Publish Galaxy rule')
             ->assertSee('New Galaxy rule')
-            ->assertSee('Blocked until the first Laravel-backed service-rule write flow exists for group, scope, effect, and priority.')
+            ->assertSee('Blocked until the first Galaxy foundation-backed service-rule write flow exists for group, scope, effect, and priority.')
             ->assertSee('Review priorities')
             ->assertSee('Blocked until rule priority resolution is verified in Laravel.')
             ->assertSee('Blocked until rule CRUD and parity checks exist beyond the preview shell.')
