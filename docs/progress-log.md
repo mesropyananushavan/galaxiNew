@@ -2,6 +2,13 @@
 
 ## 2026-05-19
 
+### Tier note-freshness wording alignment checkpoint
+- Aligned the selected `card-types` activation and rollout freshness copy from `draft Laravel tier shell` to `draft Galaxy foundation tier shell` so saved tier review states stay consistent with the newer Galaxy foundation wording already used across the Phase 1 admin shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused tier assertions that read those freshness states.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_links_latest_saved_record_into_edit_flow'`; the matched focused tier slice passed (`1 passed`).
+
+## 2026-05-19
+
 ### Roles and cards saved-shell wording alignment checkpoint
 - Aligned a narrow set of selected-role and selected-card review strings from `Laravel` wording to `Galaxy foundation` wording so the live management shell reads less like starter-era scaffolding after records are already loaded from saved data.
 - Updated the matching focused assertions for the roles preview, role persistence, selected-role context, and selected-card context slices, keeping the step copy-only with no behavior change.
