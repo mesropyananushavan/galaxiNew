@@ -487,10 +487,10 @@ class ResourceIndexController extends Controller
                     ['label' => 'Gift handoff signal', 'value' => 'Carry points cost, stock policy, and scope context forward before any later publish discussion begins.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep points cost, stock policy, and shop scope visible together before comparing this reward against any later publish narrative.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop rewards should stay parity-first, because wide-scope catalog changes affect the most operators and redemptions.'],
-                    ['label' => 'Stock posture', 'value' => 'Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Laravel inventory writes exist.'],
+                    ['label' => 'Stock posture', 'value' => 'Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Galaxy foundation inventory writes exist.'],
                     ['label' => 'Backend gap', 'value' => $this->giftsBackendGap('coffee-voucher')],
                     ['label' => 'Format guidance', 'value' => 'Keep this reward in table-first review mode, because operators usually compare scope, stock policy, and points cost together before discussing publication.'],
-                    ['label' => 'Redemption guidance', 'value' => 'Treat this reward as review-only until gift CRUD and redemption parity are backed by Laravel flows.'],
+                    ['label' => 'Redemption guidance', 'value' => 'Treat this reward as review-only until gift CRUD and redemption parity are backed by Galaxy foundation flows.'],
                 ],
                 'timeline' => [
                     ['title' => 'Coffee voucher selected for reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the baseline all-shop reward in a dedicated Galaxy review context instead of a flat catalog row.'],
@@ -500,7 +500,7 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Coffee voucher'],
                     ['label' => 'Gift status signal', 'value' => 'Active all-shop reward is already visible for live all-shop reward parity review.'],
-                    ['label' => 'Scope posture', 'value' => 'All-shop reward coverage should remain stable until Laravel scope handling is verified against the legacy catalog.'],
+                    ['label' => 'Scope posture', 'value' => 'All-shop reward coverage should remain stable until Galaxy foundation scope handling is verified against the legacy catalog.'],
                     ['label' => 'Stock posture', 'value' => 'Unlimited-stock assumptions still need backend inventory wiring before operators can trust live publish behavior.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('coffee-voucher')],
                 ],

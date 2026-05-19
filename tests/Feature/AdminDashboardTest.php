@@ -9435,20 +9435,20 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope posture')
             ->assertSee('All-shop rewards should stay parity-first, because wide-scope catalog changes affect the most operators and redemptions.')
             ->assertSee('Stock posture')
-            ->assertSee('Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Laravel inventory writes exist.')
+            ->assertSee('Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Galaxy foundation inventory writes exist.')
             ->assertSee('Backend gap')
             ->assertSee('Gift CRUD, all-shop stock assumptions, and redemption persistence should stay preview-only until all-shop-reward parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep this reward in table-first review mode, because operators usually compare scope, stock policy, and points cost together before discussing publication.')
             ->assertSee('Redemption guidance')
-            ->assertSee('Treat this reward as review-only until gift CRUD and redemption parity are backed by Laravel flows.')
+            ->assertSee('Treat this reward as review-only until gift CRUD and redemption parity are backed by Galaxy foundation flows.')
             ->assertSee('Coffee voucher selected for reward review')
             ->assertSee('All-shop reward handoff stays stock-aware')
             ->assertSee('All-shop reward handoff keeps catalog evidence visible')
             ->assertSee('Points cost, stock policy, and shop scope should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Gift CRUD, all-shop stock assumptions, and redemption persistence should stay preview-only until all-shop-reward parity is verified.')
-            ->assertSee('All-shop reward coverage should remain stable until Laravel scope handling is verified against the legacy catalog.')
+            ->assertSee('All-shop reward coverage should remain stable until Galaxy foundation scope handling is verified against the legacy catalog.')
             ->assertSee('Unlimited-stock assumptions still need backend inventory wiring before operators can trust live publish behavior.');
     }
 

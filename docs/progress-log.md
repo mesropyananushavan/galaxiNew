@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Gifts all-shop wording checkpoint
+- Aligned a narrow selected `gifts` all-shop reward slice away from generic `Laravel` wording, covering the coffee-voucher stock posture, redemption guidance, and dependency-status scope posture copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected all-shop gift review surface.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`; the focused gifts slice passed (`3 passed`).
+
 ### Services-rules all-shop wording checkpoint
 - Aligned the selected `services-rules` all-shop birthday-bonus review copy away from generic `Laravel` wording, covering all-shop scope posture, priority posture, effect guidance, and the dependency-status priority note.
 - Updated the matching `AdminDashboardTest` assertions for the selected all-shop rule review surface.
