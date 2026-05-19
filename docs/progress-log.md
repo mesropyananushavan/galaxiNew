@@ -2,6 +2,13 @@
 
 ## 2026-05-19
 
+### Tier lifecycle-and-readiness wording alignment checkpoint
+- Aligned the remaining selected `card-types` lifecycle and readiness strings from `Laravel` wording to `Galaxy foundation` wording, including the live-tier publish guidance, readiness signal, and missing-timestamp fallback.
+- Kept the step intentionally copy-only with no behavior change, and used the existing focused tier preview and selected-tier slices as a regression check after the wording update.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_handles_tier_without_linked_cards|test_authenticated_user_can_access_card_types_management_preview'`; the matched focused tier slice passed (`2 passed`).
+
+## 2026-05-19
+
 ### Tier flow-and-coverage wording alignment checkpoint
 - Aligned a narrow set of `card-types` saved-tier copy from `Laravel` wording to `Galaxy foundation` wording, including the catalog flow badge, selected-tier saved-data handoff, and saved card-coverage freshness states.
 - Kept the step intentionally copy-only with no behavior change, and updated the focused tier preview and selected-tier assertions that read those strings.

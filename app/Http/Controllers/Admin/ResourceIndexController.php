@@ -2380,14 +2380,14 @@ class ResourceIndexController extends Controller
     private function cardTypesPublishGuidance(CardType $selectedCardType): string
     {
         return $selectedCardType->is_active
-            ? 'Treat this tier as already live in Laravel, so publish-like changes should wait for rule parity and operator confirmation.'
+            ? 'Treat this tier as already live in the Galaxy foundation layer, so publish-like changes should wait for rule parity and operator confirmation.'
             : 'Keep this tier in draft until rule import expectations and old Galaxy behavior are mapped clearly enough to publish safely.';
     }
 
     private function cardTypesReadinessSignal(CardType $selectedCardType): string
     {
         return $selectedCardType->is_active
-            ? 'Partially ready: the tier is live in Laravel, but parity-sensitive follow-up actions should stay gated.'
+            ? 'Partially ready: the tier is live in the Galaxy foundation layer, but parity-sensitive follow-up actions should stay gated.'
             : 'Not ready to publish: draft mode is still the holding state for parity validation and rule-import review.';
     }
 
@@ -2407,7 +2407,7 @@ class ResourceIndexController extends Controller
     {
         return $this->lifecycleFreshnessDescription(
             $selectedCardType,
-            'This tier does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
+            'This tier does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.',
             'This tier was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved catalog shell.',
             'This tier was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing a catalog shell that has already changed after initial setup.',
         );
