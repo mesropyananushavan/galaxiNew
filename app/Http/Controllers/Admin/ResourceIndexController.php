@@ -4353,7 +4353,7 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected shop', 'value' => $selectedShop->name],
             ['label' => 'Review mode', 'value' => $selectedShop->is_active
-                ? 'Live branch review, this Laravel shop already carries operational visibility and should stay parity-first.'
+                ? 'Live branch review, this Galaxy foundation shop already carries operational visibility and should stay parity-first.'
                 : 'Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.'],
             ['label' => 'Operational readiness', 'value' => $this->shopsOperationalReadiness($selectedShop)],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
@@ -4380,7 +4380,7 @@ class ResourceIndexController extends Controller
             [
                 'label' => 'Branch guidance',
                 'value' => $selectedShop->is_active
-                    ? 'This branch is already active in Laravel, so scope and manager changes should stay parity-first until branch ownership rules are verified.'
+                    ? 'This branch is already active in the Galaxy foundation layer, so scope and manager changes should stay parity-first until branch ownership rules are verified.'
                     : 'This branch is still paused, so recovery, ownership, and scope review should stay parity-first before operators treat it as fully live.',
             ],
         ];
@@ -4442,7 +4442,7 @@ class ResourceIndexController extends Controller
     {
         return $this->lifecycleFreshnessDescription(
             $selectedShop,
-            'This branch does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
+            'This branch does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.',
             'This branch was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved branch shell.',
             'This branch was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing a branch shell that has already changed after initial setup.',
         );
@@ -4505,7 +4505,7 @@ class ResourceIndexController extends Controller
 
         return $model->updated_at->equalTo($model->created_at)
             ? 'newly created in Galaxy foundation review'
-            : 'updated after initial Laravel creation';
+            : 'updated after initial Galaxy foundation creation';
     }
 
     private function lifecycleFreshnessDescription(Model $model, string $pendingDescription, string $createdDescription, string $updatedDescription): string
@@ -4547,12 +4547,12 @@ class ResourceIndexController extends Controller
             ['label' => 'Manager posture', 'value' => match (true) {
                 ! $selectedShop->is_active && $selectedShop->users_count > 0 => 'Assigned branch managers are visible in this paused Galaxy branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
                 ! $selectedShop->is_active => 'No branch manager is assigned yet, which keeps this paused Galaxy branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',
-                $selectedShop->users_count > 0 => 'Assigned branch managers are visible in Laravel, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.',
+                $selectedShop->users_count > 0 => 'Assigned branch managers are visible in the Galaxy foundation layer, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.',
                 default => 'No branch manager is assigned yet, which keeps this Galaxy branch safer for ownership-flow parity review before ownership flows are enabled.',
             }],
             ['label' => 'Coverage posture', 'value' => $selectedShop->is_active
                 ? sprintf('This branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation review.', $selectedShop->card_holders_count, $selectedShop->cards_count)
-                : sprintf('This paused branch currently exposes %d cardholders and %d cards for read-only Laravel recovery review.', $selectedShop->card_holders_count, $selectedShop->cards_count)],
+                : sprintf('This paused branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation recovery review.', $selectedShop->card_holders_count, $selectedShop->cards_count)],
             ['label' => 'Remaining backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
         ];
     }

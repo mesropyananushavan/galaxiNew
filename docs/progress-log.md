@@ -2,6 +2,13 @@
 
 ## 2026-05-19
 
+### Branch lifecycle-and-recovery wording alignment checkpoint
+- Aligned a narrow set of selected `shops` lifecycle, review-mode, manager-visibility, and paused-branch recovery strings from `Laravel` wording to `Galaxy foundation` wording so the branch review shell keeps matching the newer Galaxy-specific foundation vocabulary.
+- Kept the step intentionally copy-only with no behavior change, and updated the focused branch assertions that read those selected-branch review strings.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_handles_paused_branch_without_manager_or_cards|test_shops_page_surfaces_selected_shop_context_from_laravel_data'`; the matched focused branch slice passed (`2 passed`).
+
+## 2026-05-19
+
 ### Holder lifecycle-and-activity wording alignment checkpoint
 - Aligned a narrow set of selected `cardholders` lifecycle, activity-source, linked-card, and active/inactive status strings from `Laravel` wording to `Galaxy foundation` wording so the holder review shell keeps matching the newer Galaxy-specific foundation vocabulary.
 - Kept the step intentionally copy-only with no behavior change, and updated the focused holder assertions that read those selected-holder review strings.

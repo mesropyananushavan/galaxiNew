@@ -4639,7 +4639,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.')
             ->assertSee('Selected shop')
             ->assertSee('Review mode')
-            ->assertSee('Live branch review, this Laravel shop already carries operational visibility and should stay parity-first.')
+            ->assertSee('Live branch review, this Galaxy foundation shop already carries operational visibility and should stay parity-first.')
             ->assertSee('Operational readiness')
             ->assertSee('active branch, operator-visible coverage live')
             ->assertSee('Lifecycle freshness')
@@ -4669,7 +4669,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Cards')
             ->assertSee('Galaxy status')
             ->assertSee('Branch guidance')
-            ->assertSee('This branch is already active in Laravel, so scope and manager changes should stay parity-first until branch ownership rules are verified.')
+            ->assertSee('This branch is already active in the Galaxy foundation layer, so scope and manager changes should stay parity-first until branch ownership rules are verified.')
             ->assertSee('Galaxy Central selected for Galaxy review')
             ->assertSee('Current request')
             ->assertSee('The shared shops workspace is now loading this saved branch from the Galaxy foundation layer instead of only static preview rows.')
@@ -4700,7 +4700,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Status posture:')
             ->assertSee('This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.')
             ->assertSee('Manager posture:')
-            ->assertSee('Assigned branch managers are visible in Laravel, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.')
+            ->assertSee('Assigned branch managers are visible in the Galaxy foundation layer, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.')
             ->assertSee('Coverage posture:')
             ->assertSee('This branch currently exposes 1 cardholders and 1 cards for read-only Galaxy foundation review.')
             ->assertSee('Remaining backend gap:')
@@ -5284,7 +5284,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Manager posture:')
             ->assertSee('No branch manager is assigned yet, which keeps this paused Galaxy branch safer for recovery and ownership-flow parity review before ownership flows are enabled.')
             ->assertSee('Coverage posture:')
-            ->assertSee('This paused branch currently exposes 0 cardholders and 0 cards for read-only Laravel recovery review.');
+            ->assertSee('This paused branch currently exposes 0 cardholders and 0 cards for read-only Galaxy foundation recovery review.');
     }
 
     public function test_shops_page_ignores_unknown_selected_shop_query(): void
