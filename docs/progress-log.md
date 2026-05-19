@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Services-rules all-shop wording checkpoint
+- Aligned the selected `services-rules` all-shop birthday-bonus review copy away from generic `Laravel` wording, covering all-shop scope posture, priority posture, effect guidance, and the dependency-status priority note.
+- Updated the matching `AdminDashboardTest` assertions for the selected all-shop rule review surface.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_all_shop_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_rule_review_context'`; the focused services-rules slice passed (`3 passed`).
+
 ### Services-rules scoped wording checkpoint
 - Aligned a small selected `services-rules` slice away from generic `Laravel` wording, covering the scoped partner-card review copy and the draft night-service exception copy.
 - Updated the matching `AdminDashboardTest` assertions for the selected scoped-rule and selected draft-rule review surfaces.

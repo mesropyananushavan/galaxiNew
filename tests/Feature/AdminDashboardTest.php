@@ -8207,24 +8207,24 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Rule handoff signal')
             ->assertSee('Carry birthday eligibility, scope, and uplift context forward before any later publish discussion begins.')
             ->assertSee('Scope posture')
-            ->assertSee('All-shop scope should remain stable until Laravel scope handling is verified against legacy loyalty behavior.')
+            ->assertSee('All-shop scope should remain stable until Galaxy foundation scope handling is verified against legacy loyalty behavior.')
             ->assertSee('Condition posture')
             ->assertSee('Birthday window logic should stay parity-first, because date-sensitive loyalty rules are easy to drift during migration.')
             ->assertSee('Priority posture')
-            ->assertSee('Keep this rule near the top of the preview stack until Laravel priority resolution is verified against the old Galaxy order.')
+            ->assertSee('Keep this rule near the top of the preview stack until Galaxy foundation priority resolution is verified against the old Galaxy order.')
             ->assertSee('Backend gap')
             ->assertSee('Rule persistence, birthday-window editing, and publish flow should stay preview-only until all-shop birthday accrual parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep this rule in table-first review mode, because operators usually compare scope, effect, and priority together before discussing publication.')
             ->assertSee('Effect guidance')
-            ->assertSee('Treat the uplift as review-only until accrual calculations and birthday eligibility are backed by Laravel writes.')
+            ->assertSee('Treat the uplift as review-only until accrual calculations and birthday eligibility are backed by Galaxy foundation writes.')
             ->assertSee('Birthday bonus selected for rule review')
             ->assertSee('Birthday rule handoff stays parity-first')
             ->assertSee('Birthday rule handoff keeps parity evidence visible')
             ->assertSee('Scope, priority, and uplift effect should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Rule persistence, birthday-window editing, and publish flow should stay preview-only until all-shop birthday accrual parity is verified.')
-            ->assertSee('Priority resolution remains preview-only until overlapping rule order is validated in Laravel.');
+            ->assertSee('Priority resolution remains preview-only until overlapping rule order is validated in the Galaxy foundation layer.');
     }
 
     public function test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog(): void
