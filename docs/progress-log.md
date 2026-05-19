@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Services-rules scoped wording checkpoint
+- Aligned a small selected `services-rules` slice away from generic `Laravel` wording, covering the scoped partner-card review copy and the draft night-service exception copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected scoped-rule and selected draft-rule review surfaces.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context'`; the focused services-rules slice passed (`3 passed`).
+
 ### Reporting live-source wording checkpoint
 - Aligned another small `reports` slice from `Laravel` wording to `Galaxy foundation` wording, this time covering the selected live-source review copy for `cardholder-status` and `role-access` reporting surfaces.
 - Kept the change copy-only with no behavior change and confirmed the surrounding reporting shell still renders correctly without further assertion rewrites.
