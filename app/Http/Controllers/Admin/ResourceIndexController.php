@@ -1892,7 +1892,7 @@ class ResourceIndexController extends Controller
                 $cardType->slug,
                 number_format((float) $cardType->points_rate, 2).'x',
                 filled($cardType->rollout_note) ? str($cardType->rollout_note)->limit(72)->toString() : 'No rollout note saved yet',
-                $cardType->is_active ? 'Active in Laravel flow' : 'Draft in Laravel flow',
+                $cardType->is_active ? 'Active in Galaxy foundation flow' : 'Draft in Galaxy foundation flow',
                 [
                     'label' => $cardType->is_active ? 'Move to draft' : 'Activate tier',
                     'href' => route('admin.card-types.toggle-status', $cardType, absolute: false),
@@ -2157,7 +2157,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesSelectedForEditFlowDescription(): string
     {
-        return 'The shared card-type form is now loading this saved tier directly from Laravel data instead of preview-only defaults.';
+        return 'The shared card-type form is now loading this saved tier directly from Galaxy foundation data instead of preview-only defaults.';
     }
 
     private function cardTypesLifecycleFreshnessTimelineTitle(CardType $selectedCardType): string
@@ -2396,9 +2396,9 @@ class ResourceIndexController extends Controller
         $cardsCount = $selectedCardType->cards_count ?? 0;
 
         return match (true) {
-            $selectedCardType->is_active && $cardsCount > 0 => 'Live tier already has saved card coverage anchored in Laravel for rollout review.',
+            $selectedCardType->is_active && $cardsCount > 0 => 'Live tier already has saved card coverage anchored in Galaxy foundation data for rollout review.',
             $selectedCardType->is_active => 'Live tier still needs its first saved card coverage before rollout review can feel grounded.',
-            $cardsCount > 0 => 'Draft tier already has saved card coverage anchored in Laravel for parity review.',
+            $cardsCount > 0 => 'Draft tier already has saved card coverage anchored in Galaxy foundation data for parity review.',
             default => 'Draft tier is still waiting on its first saved card coverage before parity review can feel grounded.',
         };
     }

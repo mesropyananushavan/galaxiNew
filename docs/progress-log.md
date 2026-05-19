@@ -2,6 +2,13 @@
 
 ## 2026-05-19
 
+### Tier flow-and-coverage wording alignment checkpoint
+- Aligned a narrow set of `card-types` saved-tier copy from `Laravel` wording to `Galaxy foundation` wording, including the catalog flow badge, selected-tier saved-data handoff, and saved card-coverage freshness states.
+- Kept the step intentionally copy-only with no behavior change, and updated the focused tier preview and selected-tier assertions that read those strings.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_links_latest_saved_record_into_edit_flow|test_authenticated_user_can_access_card_types_management_preview'`; the matched focused tier slice passed (`2 passed`).
+
+## 2026-05-19
+
 ### Roles scope-and-status wording alignment checkpoint
 - Aligned a narrow set of selected-role scope, permission-bundle, timestamp-fallback, and status-posture strings from `Laravel` wording to `Galaxy foundation` wording so the access review shell keeps sounding like Galaxy-specific foundation work instead of starter-era scaffolding.
 - Kept the step intentionally copy-only with no behavior change, and updated the focused selected-role assertion that covered the active status-posture string.
