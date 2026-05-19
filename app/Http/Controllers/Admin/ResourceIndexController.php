@@ -586,10 +586,10 @@ class ResourceIndexController extends Controller
                     ['label' => 'Gift handoff signal', 'value' => 'Carry remaining stock and local reopening context forward before any wider catalog-review discussion begins.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep remaining stock, local scope, and points cost visible together before any wider catalog-review discussion begins.'],
                     ['label' => 'Scope posture', 'value' => 'Paused branch rewards should stay locally reviewable, because reopening decisions still depend on shop-specific redemption habits.'],
-                    ['label' => 'Stock posture', 'value' => 'Finite paused stock should remain review-only until Laravel inventory updates and reopening flows can preserve remaining-quantity parity.'],
+                    ['label' => 'Stock posture', 'value' => 'Finite paused stock should remain review-only until Galaxy foundation inventory updates and reopening flows can preserve remaining-quantity parity.'],
                     ['label' => 'Backend gap', 'value' => $this->giftsBackendGap('weekend-brunch-pass')],
                     ['label' => 'Format guidance', 'value' => 'Keep paused finite-stock rewards in compact on-screen review first, because operators need scope, stock, and reopening posture visible together before escalating.'],
-                    ['label' => 'Redemption guidance', 'value' => 'Treat this paused branch reward as review-only until stock-aware reopening and redemption parity are backed by Laravel flows.'],
+                    ['label' => 'Redemption guidance', 'value' => 'Treat this paused branch reward as review-only until stock-aware reopening and redemption parity are backed by Galaxy foundation flows.'],
                 ],
                 'timeline' => [
                     ['title' => 'Weekend brunch pass selected for paused branch reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the paused finite-stock reward in a dedicated Galaxy review context instead of leaving it as a flat table row.'],
@@ -599,7 +599,7 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Weekend brunch pass'],
                     ['label' => 'Gift status signal', 'value' => 'Paused finite-stock reward remains safer for paused-branch-reopening-parity review before any reopening-flow discussion.'],
-                    ['label' => 'Scope posture', 'value' => 'Paused branch reward behavior should stay preview-only until Laravel scope and reopening checks are verified.'],
+                    ['label' => 'Scope posture', 'value' => 'Paused branch reward behavior should stay preview-only until Galaxy foundation scope and reopening checks are verified.'],
                     ['label' => 'Stock posture', 'value' => 'Finite paused stock still needs backend inventory wiring before operators can trust reopening decisions.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('weekend-brunch-pass')],
                 ],

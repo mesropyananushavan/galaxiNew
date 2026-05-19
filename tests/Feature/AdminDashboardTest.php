@@ -9482,20 +9482,20 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope posture')
             ->assertSee('Paused branch rewards should stay locally reviewable, because reopening decisions still depend on shop-specific redemption habits.')
             ->assertSee('Stock posture')
-            ->assertSee('Finite paused stock should remain review-only until Laravel inventory updates and reopening flows can preserve remaining-quantity parity.')
+            ->assertSee('Finite paused stock should remain review-only until Galaxy foundation inventory updates and reopening flows can preserve remaining-quantity parity.')
             ->assertSee('Backend gap')
             ->assertSee('Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until paused-branch-reopening parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep paused finite-stock rewards in compact on-screen review first, because operators need scope, stock, and reopening posture visible together before escalating.')
             ->assertSee('Redemption guidance')
-            ->assertSee('Treat this paused branch reward as review-only until stock-aware reopening and redemption parity are backed by Laravel flows.')
+            ->assertSee('Treat this paused branch reward as review-only until stock-aware reopening and redemption parity are backed by Galaxy foundation flows.')
             ->assertSee('Weekend brunch pass selected for paused branch reward review')
             ->assertSee('Paused branch reward handoff stays stock-aware')
             ->assertSee('Paused branch reward keeps finite-stock evidence visible')
             ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any reopening-flow discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until paused-branch-reopening parity is verified.')
-            ->assertSee('Paused branch reward behavior should stay preview-only until Laravel scope and reopening checks are verified.')
+            ->assertSee('Paused branch reward behavior should stay preview-only until Galaxy foundation scope and reopening checks are verified.')
             ->assertSee('Finite paused stock still needs backend inventory wiring before operators can trust reopening decisions.');
     }
 

@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Gifts paused finite-stock wording checkpoint
+- Aligned a narrow selected `gifts` paused finite-stock reward slice away from generic `Laravel` wording, covering the weekend-brunch-pass stock posture, redemption guidance, and dependency-status scope posture copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected paused finite-stock gift review surface.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`; the focused gifts slice passed (`3 passed`).
+
 ### Gifts scoped wording checkpoint
 - Aligned a narrow selected `gifts` scoped reward slice away from generic `Laravel` wording, covering the airport-transfer stock posture, redemption guidance, and dependency-status scope posture copy.
 - Updated the matching `AdminDashboardTest` assertions for the selected scoped gift review surface.
