@@ -1504,7 +1504,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review posture:')
             ->assertSee('Selected-role review is running in Galaxy foundation-backed read mode only')
             ->assertSee('Status posture:')
-            ->assertSee('This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.')
+            ->assertSee('This role is active in the Galaxy foundation layer now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.')
             ->assertSee('Lifecycle freshness:')
             ->assertSee('newly created in Galaxy foundation review')
             ->assertSee('Last saved in Galaxy foundation:')

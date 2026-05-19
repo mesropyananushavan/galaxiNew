@@ -2,6 +2,13 @@
 
 ## 2026-05-19
 
+### Roles scope-and-status wording alignment checkpoint
+- Aligned a narrow set of selected-role scope, permission-bundle, timestamp-fallback, and status-posture strings from `Laravel` wording to `Galaxy foundation` wording so the access review shell keeps sounding like Galaxy-specific foundation work instead of starter-era scaffolding.
+- Kept the step intentionally copy-only with no behavior change, and updated the focused selected-role assertion that covered the active status-posture string.
+- Re-ran `php artisan test --filter='test_role_form_persists_identity_fields|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the matched focused roles slice passed (`1 passed`).
+
+## 2026-05-19
+
 ### Tier note-freshness wording alignment checkpoint
 - Aligned the selected `card-types` activation and rollout freshness copy from `draft Laravel tier shell` to `draft Galaxy foundation tier shell` so saved tier review states stay consistent with the newer Galaxy foundation wording already used across the Phase 1 admin shell.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused tier assertions that read those freshness states.

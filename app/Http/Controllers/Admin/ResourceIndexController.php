@@ -3569,7 +3569,7 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $selectedRole->updated_at !== null
                     ? sprintf('The latest saved Galaxy foundation timestamp for this role is %s, giving operators a concrete checkpoint for the current access shell.', $selectedRole->updated_at->format('Y-m-d H:i'))
-                    : 'This role does not expose a latest saved Laravel timestamp yet, so the current access shell should stay in review-only posture.',
+                    : 'This role does not expose a latest saved Galaxy foundation timestamp yet, so the current access shell should stay in review-only posture.',
             ],
             [
                 'title' => $this->rolesPermissionsReviewNoteTimelineTitle($selectedRole),
@@ -3597,7 +3597,7 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $scope->isNotEmpty()
                     ? sprintf('This role currently shows shop scope across %s in Galaxy foundation review mode, so scope rollout stays visible while writes remain gated.', $scope->join(', '))
-                    : 'This role currently has no linked shop scope in Laravel, so the review context keeps it in a safer scope-pending posture.',
+                    : 'This role currently has no linked shop scope in the Galaxy foundation layer, so the review context keeps it in a safer scope-pending posture.',
             ],
             [
                 'title' => $this->rolesPermissionsScopeCoverageTimelineTitle($selectedRole),
@@ -3608,8 +3608,8 @@ class ResourceIndexController extends Controller
                 'title' => $this->rolesPermissionsPermissionBundleTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $permissionPreview->isNotEmpty()
-                    ? sprintf('This role currently exposes %s in Laravel and the review context now mirrors that access bundle.', $permissionPreview->take(3)->implode(', '))
-                    : 'This role currently has no linked permissions in Laravel, so it remains a safe draft for parity-first access review.',
+                    ? sprintf('This role currently exposes %s in the Galaxy foundation layer and the review context now mirrors that access bundle.', $permissionPreview->take(3)->implode(', '))
+                    : 'This role currently has no linked permissions in the Galaxy foundation layer, so it remains a safe draft for parity-first access review.',
             ],
             [
                 'title' => $this->rolesPermissionsPermissionReviewNoteTimelineTitle($selectedRole),
@@ -3669,8 +3669,8 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Review posture', 'value' => 'Selected-role review is running in Galaxy foundation-backed read mode only'],
             ['label' => 'Status posture', 'value' => $selectedRole->is_active
-                ? 'This role is active in Laravel now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
-                : 'This role remains draft in Laravel, which keeps it safer for parity checks before operators depend on it for live access.'],
+                ? 'This role is active in the Galaxy foundation layer now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
+                : 'This role remains draft in the Galaxy foundation layer, which keeps it safer for parity checks before operators depend on it for live access.'],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedRole)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending')],
             ['label' => 'Review note', 'value' => $selectedRole->review_note ?: 'No review note saved yet'],
@@ -3681,10 +3681,10 @@ class ResourceIndexController extends Controller
             ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
             ['label' => 'Scope coverage', 'value' => match (true) {
-                $scope->count() >= 3 => sprintf('%d shops currently linked in Laravel scope', $scope->count()),
-                $scope->count() === 2 => '2 shops currently linked in Laravel scope',
-                $scope->count() === 1 => sprintf('%s is currently linked in Laravel scope', $scope->first()),
-                default => 'No shops linked in Laravel scope yet',
+                $scope->count() >= 3 => sprintf('%d shops currently linked in Galaxy foundation scope', $scope->count()),
+                $scope->count() === 2 => '2 shops currently linked in Galaxy foundation scope',
+                $scope->count() === 1 => sprintf('%s is currently linked in Galaxy foundation scope', $scope->first()),
+                default => 'No shops linked in Galaxy foundation scope yet',
             }],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
             ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
