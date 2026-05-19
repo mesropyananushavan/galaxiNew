@@ -520,10 +520,10 @@ class ResourceIndexController extends Controller
                     ['label' => 'Gift handoff signal', 'value' => 'Carry local stock and scope context forward before any broader publish discussion begins.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep stock, scope, and points cost visible together before comparing this reward against broader catalog behavior.'],
                     ['label' => 'Scope posture', 'value' => 'Kiosk-scoped rewards should stay branch-aware, because legacy redemption expectations depended on local availability.'],
-                    ['label' => 'Stock posture', 'value' => 'Finite stock should remain review-only until Laravel inventory updates can preserve remaining-quantity parity.'],
+                    ['label' => 'Stock posture', 'value' => 'Finite stock should remain review-only until Galaxy foundation inventory updates can preserve remaining-quantity parity.'],
                     ['label' => 'Backend gap', 'value' => $this->giftsBackendGap('airport-transfer')],
                     ['label' => 'Format guidance', 'value' => 'Keep kiosk-scoped rewards in compact on-screen review first, because operators need cost, stock, and local scope visible together before escalating.'],
-                    ['label' => 'Redemption guidance', 'value' => 'Treat this scoped reward as review-only until stock-aware redemption behavior is backed by Laravel flows.'],
+                    ['label' => 'Redemption guidance', 'value' => 'Treat this scoped reward as review-only until stock-aware redemption behavior is backed by Galaxy foundation flows.'],
                 ],
                 'timeline' => [
                     ['title' => 'Airport transfer selected for scoped reward review', 'time' => 'Current request', 'description' => 'This preview now keeps the kiosk-scoped reward in its own Galaxy review context instead of a flat catalog row.'],
@@ -533,7 +533,7 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Airport transfer'],
                     ['label' => 'Gift status signal', 'value' => 'Active scoped reward is already visible for kiosk reward parity review.'],
-                    ['label' => 'Scope posture', 'value' => 'Shop-scoped reward behavior should stay preview-only until Laravel scope checks are verified against legacy kiosk rules.'],
+                    ['label' => 'Scope posture', 'value' => 'Shop-scoped reward behavior should stay preview-only until Galaxy foundation scope checks are verified against legacy kiosk rules.'],
                     ['label' => 'Stock posture', 'value' => 'Finite-stock handling still needs backend inventory wiring before a publish path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('airport-transfer')],
                 ],

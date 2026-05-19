@@ -9388,20 +9388,20 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope posture')
             ->assertSee('Kiosk-scoped rewards should stay branch-aware, because legacy redemption expectations depended on local availability.')
             ->assertSee('Stock posture')
-            ->assertSee('Finite stock should remain review-only until Laravel inventory updates can preserve remaining-quantity parity.')
+            ->assertSee('Finite stock should remain review-only until Galaxy foundation inventory updates can preserve remaining-quantity parity.')
             ->assertSee('Backend gap')
             ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until kiosk-reward parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep kiosk-scoped rewards in compact on-screen review first, because operators need cost, stock, and local scope visible together before escalating.')
             ->assertSee('Redemption guidance')
-            ->assertSee('Treat this scoped reward as review-only until stock-aware redemption behavior is backed by Laravel flows.')
+            ->assertSee('Treat this scoped reward as review-only until stock-aware redemption behavior is backed by Galaxy foundation flows.')
             ->assertSee('Airport transfer selected for scoped reward review')
             ->assertSee('Finite-stock handoff stays branch-specific')
             ->assertSee('Finite-stock handoff keeps kiosk evidence visible')
             ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until kiosk-reward parity is verified.')
-            ->assertSee('Shop-scoped reward behavior should stay preview-only until Laravel scope checks are verified against legacy kiosk rules.')
+            ->assertSee('Shop-scoped reward behavior should stay preview-only until Galaxy foundation scope checks are verified against legacy kiosk rules.')
             ->assertSee('Finite-stock handling still needs backend inventory wiring before a publish path is safe.');
     }
 
