@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-05-19
+
+### Cards and roles live-form status-label wording alignment checkpoint
+- Aligned the remaining `cards` and `roles-permissions` live-form field labels from `Laravel status` to `Galaxy foundation status` so those two active write slices match the newer Galaxy foundation vocabulary already used across the rest of the admin shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and used the existing focused selected-context slices as regression coverage after the config update.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data'`; the focused cards and roles slice passed (`2 passed`).
+
 ## 2026-05-18
 
 ### Holder live-form status-label wording alignment checkpoint
