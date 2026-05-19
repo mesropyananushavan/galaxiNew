@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Gifts paused zero-stock wording checkpoint
+- Aligned a narrow selected `gifts` paused zero-stock reward slice away from generic `Laravel` wording, covering the premium-dessert-set stock posture, redemption guidance, and dependency-status scope/stock posture copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected paused zero-stock gift review surface.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`; the focused gifts slice passed (`3 passed`).
+
 ### Gifts paused finite-stock wording checkpoint
 - Aligned a narrow selected `gifts` paused finite-stock reward slice away from generic `Laravel` wording, covering the weekend-brunch-pass stock posture, redemption guidance, and dependency-status scope posture copy.
 - Updated the matching `AdminDashboardTest` assertions for the selected paused finite-stock gift review surface.
