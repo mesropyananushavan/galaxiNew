@@ -3559,10 +3559,10 @@ class ResourceIndexController extends Controller
                 'title' => $this->rolesPermissionsLifecycleTimelineTitle($selectedRole),
                 'time' => 'Current request',
                 'description' => $selectedRole->updated_at === null || $selectedRole->created_at === null
-                    ? 'This role does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.'
+                    ? 'This role does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.'
                     : ($selectedRole->updated_at->equalTo($selectedRole->created_at)
                         ? sprintf('This role was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved access shell.', $selectedRole->created_at->format('Y-m-d H:i'))
-                        : sprintf('This role was last updated in Laravel on %s, so the review workspace now reflects post-creation access metadata.', $selectedRole->updated_at->format('Y-m-d H:i'))),
+                        : sprintf('This role was last updated in the Galaxy foundation layer on %s, so the review workspace now reflects post-creation access metadata.', $selectedRole->updated_at->format('Y-m-d H:i'))),
             ],
             [
                 'title' => $this->rolesPermissionsLastSavedTimelineTitle($selectedRole),
@@ -3686,15 +3686,15 @@ class ResourceIndexController extends Controller
                 $scope->count() === 1 => sprintf('%s is currently linked in Galaxy foundation scope', $scope->first()),
                 default => 'No shops linked in Galaxy foundation scope yet',
             }],
-            ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in Laravel'],
+            ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in the Galaxy foundation layer'],
             ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
-                ? 'Linked staff are already affected by this role in Laravel, so assignment parity should be checked before any access changes move forward.'
+                ? 'Linked staff are already affected by this role in the Galaxy foundation layer, so assignment parity should be checked before any access changes move forward.'
                 : 'No linked staff are affected yet, which keeps this role safer for draft review before assignment parity is confirmed.'],
             ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
                 ? sprintf('%d assigned staff are already visible in active branches beside %d assigned staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
                 : 'paused-branch assignment coverage is still pending for parity review'],
             ['label' => 'Permission posture', 'value' => $permissionPreview->isNotEmpty()
-                ? 'The visible Laravel permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.'
+                ? 'The visible Galaxy foundation permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.'
                 : 'No permissions are linked yet, so this role remains a safer draft shell for parity-first access review.'],
             ['label' => 'Permission review note', 'value' => $permissionReviewNote ?: 'No linked permission review note saved yet'],
             ['label' => 'Scoped permission signal', 'value' => $scopedPermissionSignal],

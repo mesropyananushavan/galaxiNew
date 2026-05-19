@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Role timeline-and-matrix posture wording checkpoint
+- Aligned another narrow selected `roles-permissions` slice from `Laravel` wording to `Galaxy foundation` wording, this time covering lifecycle timestamp fallback, last-updated timeline copy, matrix posture, linked-staff impact, and visible permission-bundle review copy.
+- Kept the step copy-only with no behavior change, and updated the matching focused selected-role assertions that read those access-review strings.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the selected-role slice passed (`1 passed`).
+
 ### Role access-and-matrix wording alignment checkpoint
 - Aligned a narrow set of selected `roles-permissions` review, scope, assignment, and matrix-blocking strings from `Laravel` wording to `Galaxy foundation` wording so the access shell keeps matching the newer Galaxy-specific foundation vocabulary.
 - Kept the change copy-only with no behavior change, and updated the matching focused role assertions that read those selected-role review strings.
