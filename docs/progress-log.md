@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Role disabled-reason and draft-state wording checkpoint
+- Aligned another small `roles-permissions` slice from `Laravel` wording to `Galaxy foundation` wording, covering draft/live review-mode fallback, active-vs-draft access guidance, and the remaining first-verified permission-bundle disabled reasons.
+- Kept the change copy-only with no behavior change, and updated the focused role assertions that still referenced the older permission-bundle wording.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_handles_saved_role_without_scope_or_permissions|test_roles_permissions_page_handles_saved_role_without_scope_or_permissions_but_with_active_status|test_roles_permissions_catalog_actions_reflect_saved_role_readiness'`; the matching focused role slice passed (`1 passed`).
+
 ### Role timeline-and-matrix posture wording checkpoint
 - Aligned another narrow selected `roles-permissions` slice from `Laravel` wording to `Galaxy foundation` wording, this time covering lifecycle timestamp fallback, last-updated timeline copy, matrix posture, linked-staff impact, and visible permission-bundle review copy.
 - Kept the step copy-only with no behavior change, and updated the matching focused selected-role assertions that read those access-review strings.

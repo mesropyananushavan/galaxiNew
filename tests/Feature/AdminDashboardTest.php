@@ -1642,7 +1642,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Reviewing: Draft Branch Auditor')
             ->assertSee('Review matrix')
-            ->assertSee('Blocked until this draft role has a first verified Laravel permission bundle to compare against legacy staff access.')
+            ->assertSee('Blocked until this draft role has a first verified Galaxy foundation permission bundle to compare against legacy staff access.')
             ->assertSee('Publish access')
             ->assertSee('Blocked until this draft role has a verified permission bundle and shop scope parity.')
             ->assertSee('Role status signal')
@@ -1698,7 +1698,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Reviewing: Scoped Floor Lead')
             ->assertSee('Review matrix')
-            ->assertSee('Blocked until this active role has a first verified Laravel permission bundle to compare against legacy staff access.')
+            ->assertSee('Blocked until this active role has a first verified Galaxy foundation permission bundle to compare against legacy staff access.')
             ->assertSee('Publish access')
             ->assertSee('Blocked until this active role has a verified permission bundle to compare against legacy staff access.');
     }

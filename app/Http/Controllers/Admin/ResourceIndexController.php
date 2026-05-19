@@ -3131,7 +3131,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Role slug', 'value' => $selectedRole->slug],
             ['label' => 'Review mode', 'value' => $selectedRole->is_active || $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0
                 ? 'Live-impact review, linked staff or permissions already exist in the Galaxy foundation layer'
-                : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
+                : 'Draft-safe review, no linked staff or permissions yet in the Galaxy foundation layer'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedRole)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending')],
@@ -3180,8 +3180,8 @@ class ResourceIndexController extends Controller
                 'label' => 'Access guidance',
                 'value' => match (true) {
                     $selectedRole->is_active && $selectedRole->permissions_count > 0 => 'This role already carries a Galaxy foundation permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.',
-                    $selectedRole->is_active => 'This role is active in Laravel, but permission bundle and assignment follow-up should stay parity-first until the matrix editor is verified.',
-                    default => 'This role is still a draft shell in Laravel, which keeps it safe for parity checks before operators rely on it for staff access.',
+                    $selectedRole->is_active => 'This role is active in the Galaxy foundation layer, but permission bundle and assignment follow-up should stay parity-first until the matrix editor is verified.',
+                    default => 'This role is still a draft shell in the Galaxy foundation layer, which keeps it safe for parity checks before operators rely on it for staff access.',
                 },
             ],
         ];
@@ -3465,8 +3465,8 @@ class ResourceIndexController extends Controller
 
         return match (true) {
             $permissionLinkedCount > 0 => 'Blocked until saved Galaxy foundation permission bundles are verified against legacy staff access.',
-            $activeCount > 0 => 'Blocked until an active role has a first verified Laravel permission bundle to compare against legacy staff access.',
-            default => 'Blocked until a saved draft role has a first verified Laravel permission bundle to compare against legacy staff access.',
+            $activeCount > 0 => 'Blocked until an active role has a first verified Galaxy foundation permission bundle to compare against legacy staff access.',
+            default => 'Blocked until a saved draft role has a first verified Galaxy foundation permission bundle to compare against legacy staff access.',
         };
     }
 
@@ -3492,8 +3492,8 @@ class ResourceIndexController extends Controller
         return match (true) {
             $permissionCount > 0 && $assignedUserCount > 0 => 'Blocked until this assignment-sensitive Galaxy foundation permission bundle is verified against legacy staff access.',
             $permissionCount > 0 => 'Blocked until the Galaxy foundation permission matrix can be verified against legacy staff access for this live bundle.',
-            $selectedRole->is_active => 'Blocked until this active role has a first verified Laravel permission bundle to compare against legacy staff access.',
-            default => 'Blocked until this draft role has a first verified Laravel permission bundle to compare against legacy staff access.',
+            $selectedRole->is_active => 'Blocked until this active role has a first verified Galaxy foundation permission bundle to compare against legacy staff access.',
+            default => 'Blocked until this draft role has a first verified Galaxy foundation permission bundle to compare against legacy staff access.',
         };
     }
 
