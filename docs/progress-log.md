@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Holder live-form status-label wording alignment checkpoint
+- Aligned the `cardholders` live-form field label from `Laravel status` to `Galaxy foundation status` so the holder-management shell uses the newer Galaxy foundation wording inside the saved-form controls as well.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused holder assertion for that form label.
+- Re-ran `php artisan test --filter='test_cardholders_page_replaces_preview_rows_with_model_backed_index_data'`; the focused holder slice passed (`1 passed`).
+
 ### Branch live-form status-label wording alignment checkpoint
 - Aligned the `shops` live-form field label from `Laravel status` to `Galaxy foundation status` so the branch-management shell uses the newer Galaxy foundation wording inside the saved-form controls as well.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused shop assertion for that form label.

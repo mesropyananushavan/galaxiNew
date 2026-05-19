@@ -5546,6 +5546,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('No review note saved yet')
             ->assertSee('Create Galaxy holder in Galaxy foundation')
             ->assertSee('Create holder shell')
+            ->assertSee('Galaxy foundation status')
             ->assertSee('action="/admin/cardholders"', false)
             ->assertSee('Review latest saved holder shell')
             ->assertSee('Blocked until paused-branch linked-holder activity is verified against legacy lookup recovery history.')
