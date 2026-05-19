@@ -9636,7 +9636,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Card Types placeholder')
             ->assertSee('Galaxy tier workspace for card-tier identities, points rules, and activation review.')
-            ->assertSee('Create Galaxy tier in Laravel')
+            ->assertSee('Create Galaxy tier in Galaxy foundation')
             ->assertSee('Create tier shell')
             ->assertSee('Status')
             ->assertSee('Active')
@@ -10606,7 +10606,7 @@ class AdminDashboardTest extends TestCase
     {
         Config::set('admin-pages.card-types.liveForm.valuesResolver', function (string $resource, array $page, array $liveForm): array {
             $this->assertSame('card-types', $resource);
-            $this->assertSame('Create Galaxy tier in Laravel', $liveForm['title']);
+            $this->assertSame('Create Galaxy tier in Galaxy foundation', $liveForm['title']);
             $this->assertSame('Card Types', $page['pageTitle']);
 
             return [
@@ -10641,7 +10641,7 @@ class AdminDashboardTest extends TestCase
         Config::set('admin-pages.card-types.liveForm.actionRouteParameters', function (string $resource, array $page, array $liveForm): array {
             $this->assertSame('card-types', $resource);
             $this->assertSame('Card Types', $page['pageTitle']);
-            $this->assertSame('Create Galaxy tier in Laravel', $liveForm['title']);
+            $this->assertSame('Create Galaxy tier in Galaxy foundation', $liveForm['title']);
 
             return [
                 'cardType' => new AdminCardTypePreviewRoutable('gold'),

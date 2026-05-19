@@ -555,7 +555,7 @@ return [
             'filters' => ['Status', 'Activation mode', 'Points rate'],
         ],
         'liveForm' => [
-            'title' => 'Create Galaxy tier in Laravel',
+            'title' => 'Create Galaxy tier in Galaxy foundation',
             'description' => 'This is the first real write-oriented Phase 1 form path. Keep it minimal and parity-first while preview controls still cover the richer future workflow.',
             'method' => 'POST',
             'actionRoute' => 'admin.card-types.store',

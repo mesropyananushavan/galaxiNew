@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Tier live-form title wording alignment checkpoint
+- Aligned the live `card-types` form title from `Create Galaxy tier in Laravel` to `Create Galaxy tier in Galaxy foundation` so the tier-management shell reads less like starter-era backend handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused tier assertions that read that live-form title.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused tier slice passed (`1 passed`).
+
 ### Card live-form title wording alignment checkpoint
 - Aligned the live `cards` form title from `Create Galaxy card in Laravel` to `Create Galaxy card in Galaxy foundation` so the card-management shell reads less like starter-era backend handoff copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused cards assertion that reads that live-form title.
