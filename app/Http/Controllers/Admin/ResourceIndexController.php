@@ -1434,7 +1434,7 @@ class ResourceIndexController extends Controller
                 'selectedSummary' => [
                     ['label' => 'Selected report source', 'value' => 'Galaxy branch card-shell coverage'],
                     ['label' => 'Review mode', 'value' => $cardCount > 0
-                        ? 'Live-source review, card inventory already exists in Laravel for shop-level reporting checks.'
+                        ? 'Live-source review, card inventory already exists in the Galaxy foundation layer for shop-level reporting checks.'
                         : 'Draft-safe review, no cards are tracked yet so this source remains a catalog-only planning stub.'],
                     ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy card shells across %d tracked Galaxy branches are currently available for read-only Galaxy branch card-shell reporting review.', $cardCount, $shopCount)],
                     ['label' => 'Source status signal', 'value' => $cardCount > 0 && $shopCount > 0
@@ -3106,7 +3106,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Readiness signal', 'value' => 'Partially ready: live source review works now, while preset handling and exports stay blocked behind later reporting-pipeline verification.'],
             ['label' => 'Preset posture', 'value' => 'Preset periods are still preview-only, so operators should treat the live source layer as reviewable while preset-driven report flows remain gated.'],
             ['label' => 'Export posture', 'value' => 'Export generation is still blocked, so the live reporting layer should stay review-only until file delivery and parity checks are verified.'],
-            ['label' => 'Source coverage', 'value' => sprintf('Laravel reporting inputs currently cover %d shops, %d cards, %d cardholders, and %d roles for read-only review.', $shopCount, $cardCount, $cardHolderCount, $roleCount)],
+            ['label' => 'Source coverage', 'value' => sprintf('Galaxy foundation reporting inputs currently cover %d shops, %d cards, %d cardholders, and %d roles for read-only review.', $shopCount, $cardCount, $cardHolderCount, $roleCount)],
             ['label' => 'Backend dependency', 'value' => 'Preset handling, query shaping, and export pipeline are still pending'],
             ['label' => 'Operational dependency', 'value' => 'Legacy report presets and export expectations still need live verification'],
         ];

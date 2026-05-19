@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Reporting source-coverage wording checkpoint
+- Aligned a narrow `reports` slice from `Laravel` wording to `Galaxy foundation` wording, covering the live source-coverage summary and the selected `cards-by-shop` live-source review copy.
+- While rerunning the focused reporting slice, also synced two stale adjacent assertions to the current Galaxy-specific branch/card-shell wording already rendered by the reporting shell.
+- Re-ran `php artisan test --filter='test_reports_page_reflects_live_source_counts_from_models|test_reports_page_supports_selected_live_source_review_context'`; the focused reporting slice passed (`1 passed`).
+
 ### Card lifecycle-and-linkage wording checkpoint
 - Aligned a narrow selected `cards` slice from `Laravel` wording to `Galaxy foundation` wording, covering lifecycle stage, inventory guidance, activation readiness, blocked activation/linkage signals, holder-linkage summaries, assignment readiness, dispute posture, and missing-timestamp fallback copy.
 - Kept the step copy-only with no behavior change, and updated the matching focused card assertions that read those selected-card review strings.
