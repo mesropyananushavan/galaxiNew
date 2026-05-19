@@ -3427,8 +3427,8 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsReviewFreshness(Role $selectedRole): string
     {
         return match (true) {
-            filled($selectedRole->review_note) && $selectedRole->updated_at !== null && $selectedRole->created_at !== null && $selectedRole->updated_at->equalTo($selectedRole->created_at) => 'First review note is already saved on the initial Laravel access shell.',
-            filled($selectedRole->review_note) => 'Review note is already saved on the current Laravel access shell.',
+            filled($selectedRole->review_note) && $selectedRole->updated_at !== null && $selectedRole->created_at !== null && $selectedRole->updated_at->equalTo($selectedRole->created_at) => 'First review note is already saved on the initial Galaxy foundation access shell.',
+            filled($selectedRole->review_note) => 'Review note is already saved on the current Galaxy foundation access shell.',
             $selectedRole->is_active => 'Live role still needs a saved review note before access handoff can feel grounded.',
             default => 'Draft role still needs a saved review note before parity handoff can feel grounded.',
         };
@@ -3464,7 +3464,7 @@ class ResourceIndexController extends Controller
         $activeCount = $roles->where('is_active', true)->count();
 
         return match (true) {
-            $permissionLinkedCount > 0 => 'Blocked until saved Laravel permission bundles are verified against legacy staff access.',
+            $permissionLinkedCount > 0 => 'Blocked until saved Galaxy foundation permission bundles are verified against legacy staff access.',
             $activeCount > 0 => 'Blocked until an active role has a first verified Laravel permission bundle to compare against legacy staff access.',
             default => 'Blocked until a saved draft role has a first verified Laravel permission bundle to compare against legacy staff access.',
         };
@@ -3763,7 +3763,7 @@ class ResourceIndexController extends Controller
     {
         return $selectedCard->status === 'draft'
             ? 'Draft-safe review, this inventory record is still safer for parity checks before operators treat it as issued stock.'
-            : 'Live inventory review, this saved Laravel card already carries operational state that should stay parity-first.';
+            : 'Live inventory review, this saved Galaxy foundation card already carries operational state that should stay parity-first.';
     }
 
     private function cardsStatusSignal(Card $selectedCard): string

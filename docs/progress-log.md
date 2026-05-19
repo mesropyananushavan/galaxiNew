@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Roles and cards saved-shell wording alignment checkpoint
+- Aligned a narrow set of selected-role and selected-card review strings from `Laravel` wording to `Galaxy foundation` wording so the live management shell reads less like starter-era scaffolding after records are already loaded from saved data.
+- Updated the matching focused assertions for the roles preview, role persistence, selected-role context, and selected-card context slices, keeping the step copy-only with no behavior change.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_role_form_persists_identity_fields|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data'`; the focused roles and cards slice passed (`3 passed`).
+
 ### Cards and roles live-form status-label wording alignment checkpoint
 - Aligned the remaining `cards` and `roles-permissions` live-form field labels from `Laravel status` to `Galaxy foundation status` so those two active write slices match the newer Galaxy foundation vocabulary already used across the rest of the admin shell.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and used the existing focused selected-context slices as regression coverage after the config update.
