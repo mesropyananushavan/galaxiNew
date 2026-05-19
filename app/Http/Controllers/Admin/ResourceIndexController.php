@@ -4195,9 +4195,9 @@ class ResourceIndexController extends Controller
     private function cardholdersLookupGuidance(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'This holder is active in Laravel but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.',
-            $selectedCardHolder->is_active => 'This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.',
-            default => 'This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
+            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'This holder is active in the Galaxy foundation layer but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.',
+            $selectedCardHolder->is_active => 'This holder is active in the Galaxy foundation layer, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.',
+            default => 'This holder is inactive in the Galaxy foundation layer, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
         };
     }
 
@@ -4246,7 +4246,7 @@ class ResourceIndexController extends Controller
     {
         return $this->lifecycleFreshnessDescription(
             $selectedCardHolder,
-            'This holder does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
+            'This holder does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.',
             'This holder was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved profile shell.',
             'This holder was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing a profile shell that has already changed after initial setup.',
         );
@@ -4336,15 +4336,15 @@ class ResourceIndexController extends Controller
     private function cardholdersCardLinkagePosture(CardHolder $selectedCardHolder): string
     {
         return $selectedCardHolder->cards_count > 0
-            ? 'Linked cards are visible in Laravel, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.'
+            ? 'Linked cards are visible in the Galaxy foundation layer, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.'
             : 'No linked cards exist yet, which keeps this holder safer for card-link-parity review before card-link flows are enabled.';
     }
 
     private function cardholdersActivityPosture(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false => 'Recent activity remains blocked until a stable Laravel event source preserves paused-branch lookup and recovery parity.',
-            default => 'Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.',
+            (bool) $selectedCardHolder->shop?->is_active === false => 'Recent activity remains blocked until a stable Galaxy foundation event source preserves paused-branch lookup and recovery parity.',
+            default => 'Recent activity remains blocked until a stable Galaxy foundation event source exists for holder lookup parity.',
         };
     }
 

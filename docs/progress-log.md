@@ -2,6 +2,13 @@
 
 ## 2026-05-19
 
+### Holder lifecycle-and-activity wording alignment checkpoint
+- Aligned a narrow set of selected `cardholders` lifecycle, activity-source, linked-card, and active/inactive status strings from `Laravel` wording to `Galaxy foundation` wording so the holder review shell keeps matching the newer Galaxy-specific foundation vocabulary.
+- Kept the step intentionally copy-only with no behavior change, and updated the focused holder assertions that read those selected-holder review strings.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_handles_selected_holder_without_linked_cards|test_cardholders_page_handles_selected_holder_from_paused_branch'`; the matched focused holder slice passed (`1 passed`).
+
+## 2026-05-19
+
 ### Tier lifecycle-and-readiness wording alignment checkpoint
 - Aligned the remaining selected `card-types` lifecycle and readiness strings from `Laravel` wording to `Galaxy foundation` wording, including the live-tier publish guidance, readiness signal, and missing-timestamp fallback.
 - Kept the step intentionally copy-only with no behavior change, and used the existing focused tier preview and selected-tier slices as a regression check after the wording update.

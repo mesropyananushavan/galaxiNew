@@ -6188,7 +6188,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Linked cards')
             ->assertSee('Galaxy status')
             ->assertSee('Lookup guidance')
-            ->assertSee('This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.')
+            ->assertSee('This holder is inactive in the Galaxy foundation layer, which keeps the record safe for parity checks before operators treat it as fully reactivated.')
             ->assertSee('Anna Petrova selected for Galaxy review')
             ->assertSee('Current request')
             ->assertSee('The shared cardholders workspace is now loading this saved holder from the Galaxy foundation layer instead of only static preview rows.')
@@ -6221,7 +6221,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card linkage posture:')
             ->assertSee('No linked cards exist yet, which keeps this holder safer for card-link-parity review before card-link flows are enabled.')
             ->assertSee('Activity posture:')
-            ->assertSee('Recent activity remains blocked until a stable Laravel event source exists for holder lookup parity.')
+            ->assertSee('Recent activity remains blocked until a stable Galaxy foundation event source exists for holder lookup parity.')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Reactivation handling, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.');
     }
@@ -6290,7 +6290,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Linked cards')
             ->assertSee('1')
             ->assertSee('Lookup guidance')
-            ->assertSee('This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.');
+            ->assertSee('This holder is active in the Galaxy foundation layer, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.');
     }
 
     public function test_cardholders_page_supports_selected_active_unlinked_holder_review_context(): void
@@ -6340,7 +6340,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Backend gap')
             ->assertSee('Profile writes, merge handling, and recent-activity sourcing should stay preview-only until holder parity is verified.')
             ->assertSee('Lookup guidance')
-            ->assertSee('This holder is active in Laravel, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.')
+            ->assertSee('This holder is active in the Galaxy foundation layer, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.')
             ->assertSee('Card linkage posture:')
             ->assertSee('No linked cards exist yet, which keeps this holder safer for card-link-parity review before card-link flows are enabled.');
     }
@@ -6407,9 +6407,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Backend gap')
             ->assertSee('Reactivation handling, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.')
             ->assertSee('Lookup guidance')
-            ->assertSee('This holder is inactive in Laravel, which keeps the record safe for parity checks before operators treat it as fully reactivated.')
+            ->assertSee('This holder is inactive in the Galaxy foundation layer, which keeps the record safe for parity checks before operators treat it as fully reactivated.')
             ->assertSee('Card linkage posture:')
-            ->assertSee('Linked cards are visible in Laravel, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.');
+            ->assertSee('Linked cards are visible in the Galaxy foundation layer, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.');
     }
 
     public function test_cardholders_page_surfaces_paused_branch_signal_for_selected_holder(): void
@@ -6451,11 +6451,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Status posture:')
             ->assertSee('This holder is visible in a paused branch, so lifecycle changes should stay blocked until branch-recovery and lookup parity are verified.')
             ->assertSee('Activity posture:')
-            ->assertSee('Recent activity remains blocked until a stable Laravel event source preserves paused-branch lookup and recovery parity.')
+            ->assertSee('Recent activity remains blocked until a stable Galaxy foundation event source preserves paused-branch lookup and recovery parity.')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Recovery handling, profile writes, merge handling, and recent-activity sourcing should stay preview-only until paused-branch holder parity is verified.')
             ->assertSee('Lookup guidance:')
-            ->assertSee('This holder is active in Laravel but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.');
+            ->assertSee('This holder is active in the Galaxy foundation layer but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.');
     }
 
     public function test_cardholders_page_ignores_unknown_selected_holder_query(): void
