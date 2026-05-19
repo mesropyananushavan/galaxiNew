@@ -2,6 +2,11 @@
 
 ## 2026-05-18
 
+### Branch live-form status-label wording alignment checkpoint
+- Aligned the `shops` live-form field label from `Laravel status` to `Galaxy foundation status` so the branch-management shell uses the newer Galaxy foundation wording inside the saved-form controls as well.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused shop assertion for that form label.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`; the focused shops slice passed (`1 passed`).
+
 ### Tier live-form title wording alignment checkpoint
 - Aligned the live `card-types` form title from `Create Galaxy tier in Laravel` to `Create Galaxy tier in Galaxy foundation` so the tier-management shell reads less like starter-era backend handoff copy.
 - Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused tier assertions that read that live-form title.

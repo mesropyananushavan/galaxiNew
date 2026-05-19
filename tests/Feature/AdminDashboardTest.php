@@ -4573,6 +4573,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Unassigned')
             ->assertSee('Create Galaxy branch in Galaxy foundation')
             ->assertSee('Create branch shell')
+            ->assertSee('Galaxy foundation status')
             ->assertSee('action="/admin/shops"', false)
             ->assertSee('Review latest saved branch shell')
             ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
