@@ -2671,7 +2671,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Operational readiness')
             ->assertSee('blocked inventory, operator review only')
             ->assertSee('Lifecycle stage')
-            ->assertSee('Issued and activated inventory already visible in Laravel.')
+            ->assertSee('Issued and activated inventory already visible in the Galaxy foundation layer.')
             ->assertSee('Lifecycle freshness')
             ->assertSee('newly created in Galaxy foundation review')
             ->assertSee('Last saved in Galaxy foundation')
@@ -2699,13 +2699,13 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy status')
             ->assertSee('Activated')
             ->assertSee('Blocked pre-activation signal')
-            ->assertSee('Blocked inventory already carries activation context in Laravel for dispute-first review.')
+            ->assertSee('Blocked inventory already carries activation context in the Galaxy foundation layer for dispute-first review.')
             ->assertSee('Blocked activated signal')
-            ->assertSee('Blocked inventory had already reached activation before dispute review in Laravel.')
+            ->assertSee('Blocked inventory had already reached activation before dispute review in the Galaxy foundation layer.')
             ->assertSee('Blocked holder-linked signal')
             ->assertSee('Blocked inventory already carries holder linkage, so dispute and replacement review can stay anchored to the current member record.')
             ->assertSee('Blocked unassigned signal')
-            ->assertSee('Blocked inventory already carries holder linkage in Laravel for dispute-first review.')
+            ->assertSee('Blocked inventory already carries holder linkage in the Galaxy foundation layer for dispute-first review.')
             ->assertSee('Holder linkage summary')
             ->assertSee('Holder linkage is present, but this card stays in blocked dispute review until replacement parity is proven.')
             ->assertSee('Assignment readiness summary')
@@ -2713,11 +2713,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assignment posture')
             ->assertSee('Blocked inventory already carries holder linkage, so dispute review can stay member-linked while replacement and reassignment remain parity-gated.')
             ->assertSee('Dispute posture')
-            ->assertSee('Treat this as a dispute-first blocked card with prior activation context still visible in Laravel.')
+            ->assertSee('Treat this as a dispute-first blocked card with prior activation context still visible in the Galaxy foundation layer.')
             ->assertSee('Activation readiness')
-            ->assertSee('Activation is already recorded in Laravel for this issued card.')
+            ->assertSee('Activation is already recorded in the Galaxy foundation layer for this issued card.')
             ->assertSee('Inventory guidance')
-            ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.')
+            ->assertSee('This card is blocked in the Galaxy foundation layer, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.')
             ->assertSee('GX-910001 selected for Galaxy review')
             ->assertSee('Current request')
             ->assertSee('The shared cards workspace is now loading this saved inventory record from the Galaxy foundation layer instead of only static preview rows.')
@@ -2803,7 +2803,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Dispute posture')
             ->assertSee('Treat this as blocked inventory triage before any active-card recovery assumptions are made.')
             ->assertSee('Activation readiness')
-            ->assertSee('Issued inventory is still waiting for activation review in Laravel.')
+            ->assertSee('Issued inventory is still waiting for activation review in the Galaxy foundation layer.')
             ->assertSee('Pre-activation unassigned signal:')
             ->assertSee('Pre-activation inventory is still unassigned, so holder recovery should stay explicit before activation parity widens into live usage.');
     }
@@ -2851,9 +2851,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Pre-activation holder-linked signal')
             ->assertSee('Pre-activation inventory already carries holder linkage, so activation parity can stay anchored to the current member record before live usage expands.')
             ->assertSee('Holder linkage summary')
-            ->assertSee('Holder linkage is already present in Laravel for this card review.')
+            ->assertSee('Holder linkage is already present in the Galaxy foundation layer for this card review.')
             ->assertSee('Assignment readiness summary')
-            ->assertSee('Holder linkage is present, so assignment state is ready for parity-first review in Laravel.')
+            ->assertSee('Holder linkage is present, so assignment state is ready for parity-first review in the Galaxy foundation layer.')
             ->assertSee('Pre-activation holder-linked signal:')
             ->assertSee('Pre-activation inventory already carries holder linkage, so activation parity can stay anchored to the current member record before live usage expands.');
     }
@@ -2900,7 +2900,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assignment posture')
             ->assertSee('Issued inventory is still unassigned, so assignment work should stay recovery-first until holder linkage catches up with activation review.')
             ->assertSee('Activation readiness')
-            ->assertSee('Issued inventory is still waiting for activation review in Laravel.')
+            ->assertSee('Issued inventory is still waiting for activation review in the Galaxy foundation layer.')
             ->assertSee('Issued')
             ->assertSee('2026-04-09')
             ->assertSee('Activated')
@@ -2939,7 +2939,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Reviewing: GX-910003')
             ->assertSee('Lifecycle stage')
-            ->assertSee('Draft inventory shell, not yet issued in Laravel.')
+            ->assertSee('Draft inventory shell, not yet issued in the Galaxy foundation layer.')
             ->assertSee('Holder linkage summary')
             ->assertSee('Holder linkage is still intentionally absent while this card stays in draft inventory review.')
             ->assertSee('Assignment readiness summary')
@@ -3860,12 +3860,12 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active inventory already carries holder linkage, so parity review can stay anchored to the current member record before later replacement flows are widened.')
             ->assertSee('Active unassigned signal')
             ->assertSee('Holder linkage summary')
-            ->assertSee('Holder linkage is already present in Laravel for this card review.')
+            ->assertSee('Holder linkage is already present in the Galaxy foundation layer for this card review.')
             ->assertSee('Assignment readiness summary')
-            ->assertSee('Holder linkage is present, so assignment state is ready for parity-first review in Laravel.')
+            ->assertSee('Holder linkage is present, so assignment state is ready for parity-first review in the Galaxy foundation layer.')
             ->assertSee('Assignment posture')
             ->assertSee('Active inventory is already anchored to a holder record, so parity review can stay member-linked before wider replacement work opens up.')
-            ->assertSee('Active inventory already carries holder linkage in Laravel for parity-first review.')
+            ->assertSee('Active inventory already carries holder linkage in the Galaxy foundation layer for parity-first review.')
             ->assertSee('Linkage signal')
             ->assertSee('holder and branch linkage visible')
             ->assertSee('Inventory focus')
@@ -3879,7 +3879,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Backend gap')
             ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows should stay preview-only until inventory parity is verified.')
             ->assertSee('Inventory guidance')
-            ->assertSee('This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.');
+            ->assertSee('This card is already active in the Galaxy foundation layer, so inventory changes should stay parity-first until blocked and replacement semantics are verified.');
     }
 
     public function test_cards_page_supports_selected_active_unassigned_card_review_context(): void
@@ -3994,7 +3994,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Backend gap')
             ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.')
             ->assertSee('Inventory guidance')
-            ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
+            ->assertSee('This card is blocked in the Galaxy foundation layer, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
     }
 
     public function test_cards_page_supports_selected_blocked_unassigned_card_review_context(): void
@@ -4061,7 +4061,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assignment posture')
             ->assertSee('Blocked inventory is still unassigned, so reassignment and replacement review should stay explicit before any holder recovery assumptions are trusted.')
             ->assertSee('Inventory guidance')
-            ->assertSee('This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.')
+            ->assertSee('This card is blocked in the Galaxy foundation layer, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.')
             ->assertSee('Assignment posture:')
             ->assertSee('No holder is linked yet, which keeps this inventory record safer for assignment-flow-parity review before assignment flows are enabled.');
     }
@@ -4125,7 +4125,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assignment readiness summary:')
             ->assertSee('Assignment state is still intentionally pending while this card remains a draft inventory shell.')
             ->assertSee('Inventory guidance')
-            ->assertSee('This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.');
+            ->assertSee('This card is still draft inventory in the Galaxy foundation layer, which keeps it safe for parity checks before operators treat it as issued stock.');
     }
 
     public function test_cards_page_ignores_unknown_selected_card_query(): void

@@ -3814,9 +3814,9 @@ class ResourceIndexController extends Controller
     private function cardsLifecycleStage(Card $selectedCard): string
     {
         return match (true) {
-            $selectedCard->issued_at === null => 'Draft inventory shell, not yet issued in Laravel.',
+            $selectedCard->issued_at === null => 'Draft inventory shell, not yet issued in the Galaxy foundation layer.',
             $selectedCard->activated_at === null => 'Issued inventory shell, still waiting for activation parity review.',
-            default => 'Issued and activated inventory already visible in Laravel.',
+            default => 'Issued and activated inventory already visible in the Galaxy foundation layer.',
         };
     }
 
@@ -3840,17 +3840,17 @@ class ResourceIndexController extends Controller
     private function cardsInventoryGuidance(Card $selectedCard): string
     {
         return match ($selectedCard->status) {
-            'active' => 'This card is already active in Laravel, so inventory changes should stay parity-first until blocked and replacement semantics are verified.',
-            'blocked' => 'This card is blocked in Laravel, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.',
-            default => 'This card is still draft inventory in Laravel, which keeps it safe for parity checks before operators treat it as issued stock.',
+            'active' => 'This card is already active in the Galaxy foundation layer, so inventory changes should stay parity-first until blocked and replacement semantics are verified.',
+            'blocked' => 'This card is blocked in the Galaxy foundation layer, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.',
+            default => 'This card is still draft inventory in the Galaxy foundation layer, which keeps it safe for parity checks before operators treat it as issued stock.',
         };
     }
 
     private function cardsActivationReadiness(Card $selectedCard): string
     {
         return match (true) {
-            $selectedCard->issued_at !== null && $selectedCard->activated_at === null => 'Issued inventory is still waiting for activation review in Laravel.',
-            $selectedCard->activated_at !== null => 'Activation is already recorded in Laravel for this issued card.',
+            $selectedCard->issued_at !== null && $selectedCard->activated_at === null => 'Issued inventory is still waiting for activation review in the Galaxy foundation layer.',
+            $selectedCard->activated_at !== null => 'Activation is already recorded in the Galaxy foundation layer for this issued card.',
             default => 'This card has not been issued yet, so activation should remain out of scope during parity review.',
         };
     }
@@ -3859,7 +3859,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $selectedCard->status === 'blocked' && $selectedCard->issued_at !== null && $selectedCard->activated_at === null => 'Blocked inventory was issued but never activated, so dispute review should stay separate from active-card recovery handling.',
-            $selectedCard->status === 'blocked' => 'Blocked inventory already carries activation context in Laravel for dispute-first review.',
+            $selectedCard->status === 'blocked' => 'Blocked inventory already carries activation context in the Galaxy foundation layer for dispute-first review.',
             default => 'Blocked pre-activation review is out of scope for this card right now.',
         };
     }
@@ -3867,7 +3867,7 @@ class ResourceIndexController extends Controller
     private function cardsBlockedActivatedSignal(Card $selectedCard): string
     {
         return match (true) {
-            $selectedCard->status === 'blocked' && $selectedCard->activated_at !== null => 'Blocked inventory had already reached activation before dispute review in Laravel.',
+            $selectedCard->status === 'blocked' && $selectedCard->activated_at !== null => 'Blocked inventory had already reached activation before dispute review in the Galaxy foundation layer.',
             $selectedCard->status === 'blocked' => 'Blocked activated review is not the active slice for this card right now.',
             default => 'Blocked activated review is out of scope for this card right now.',
         };
@@ -3886,7 +3886,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $selectedCard->status === 'blocked' && $selectedCard->holder === null => 'Blocked inventory is still unassigned, so replacement and reassignment review should stay explicit before any holder recovery assumptions are made.',
-            $selectedCard->status === 'blocked' => 'Blocked inventory already carries holder linkage in Laravel for dispute-first review.',
+            $selectedCard->status === 'blocked' => 'Blocked inventory already carries holder linkage in the Galaxy foundation layer for dispute-first review.',
             default => 'Blocked unassigned review is out of scope for this card right now.',
         };
     }
@@ -3922,7 +3922,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $selectedCard->status === 'active' && $selectedCard->holder === null => 'Active inventory is still unassigned, so holder-linkage recovery should stay visible before operators assume a stable member attachment.',
-            $selectedCard->status === 'active' => 'Active inventory already carries holder linkage in Laravel for parity-first review.',
+            $selectedCard->status === 'active' => 'Active inventory already carries holder linkage in the Galaxy foundation layer for parity-first review.',
             default => 'Active unassigned review is out of scope for this card right now.',
         };
     }
@@ -3931,7 +3931,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $selectedCard->holder !== null && $selectedCard->status === 'blocked' => 'Holder linkage is present, but this card stays in blocked dispute review until replacement parity is proven.',
-            $selectedCard->holder !== null => 'Holder linkage is already present in Laravel for this card review.',
+            $selectedCard->holder !== null => 'Holder linkage is already present in the Galaxy foundation layer for this card review.',
             $selectedCard->issued_at !== null => 'Holder linkage is still missing from this issued card, so assignment recovery remains visible.',
             default => 'Holder linkage is still intentionally absent while this card stays in draft inventory review.',
         };
@@ -3941,7 +3941,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $selectedCard->holder !== null && $selectedCard->status === 'blocked' => 'Holder linkage is present, but assignment changes stay dispute-gated while blocked parity is still under review.',
-            $selectedCard->holder !== null => 'Holder linkage is present, so assignment state is ready for parity-first review in Laravel.',
+            $selectedCard->holder !== null => 'Holder linkage is present, so assignment state is ready for parity-first review in the Galaxy foundation layer.',
             $selectedCard->issued_at !== null => 'Assignment state is still pending because this issued card has not been linked to a holder yet.',
             default => 'Assignment state is still intentionally pending while this card remains a draft inventory shell.',
         };
@@ -3963,7 +3963,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $selectedCard->status === 'blocked' && $selectedCard->activated_at === null => 'Treat this as blocked inventory triage before any active-card recovery assumptions are made.',
-            $selectedCard->status === 'blocked' => 'Treat this as a dispute-first blocked card with prior activation context still visible in Laravel.',
+            $selectedCard->status === 'blocked' => 'Treat this as a dispute-first blocked card with prior activation context still visible in the Galaxy foundation layer.',
             default => 'Dispute handling is not the primary posture for this card right now.',
         };
     }
@@ -4013,7 +4013,7 @@ class ResourceIndexController extends Controller
     {
         return $this->lifecycleFreshnessDescription(
             $selectedCard,
-            'This card does not expose complete Laravel timestamps yet, so lifecycle freshness should stay in review-only posture.',
+            'This card does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.',
             'This card was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved inventory shell.',
             'This card was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing inventory that has already changed after initial setup.',
         );

@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Card lifecycle-and-linkage wording checkpoint
+- Aligned a narrow selected `cards` slice from `Laravel` wording to `Galaxy foundation` wording, covering lifecycle stage, inventory guidance, activation readiness, blocked activation/linkage signals, holder-linkage summaries, assignment readiness, dispute posture, and missing-timestamp fallback copy.
+- Kept the step copy-only with no behavior change, and updated the matching focused card assertions that read those selected-card review strings.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`; the matching focused card slice passed (`7 passed`).
+
 ### Role disabled-reason and draft-state wording checkpoint
 - Aligned another small `roles-permissions` slice from `Laravel` wording to `Galaxy foundation` wording, covering draft/live review-mode fallback, active-vs-draft access guidance, and the remaining first-verified permission-bundle disabled reasons.
 - Kept the change copy-only with no behavior change, and updated the focused role assertions that still referenced the older permission-bundle wording.
