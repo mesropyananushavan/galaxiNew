@@ -1578,7 +1578,7 @@ class ResourceIndexController extends Controller
                 'selectedSummary' => [
                     ['label' => 'Selected report source', 'value' => 'Galaxy holder status overview'],
                     ['label' => 'Review mode', 'value' => $cardHolderCount > 0
-                        ? 'Live-source review, holder status records already exist in Laravel for read-only reporting checks.'
+                        ? 'Live-source review, holder status records already exist in the Galaxy foundation layer for read-only reporting checks.'
                         : 'Draft-safe review, no cardholders are tracked yet so this source remains a planning-only catalog entry.'],
                     ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy holders are currently available for read-only Galaxy holder status reporting review.', $cardHolderCount)],
                     ['label' => 'Source status signal', 'value' => $cardHolderCount > 0
@@ -1692,7 +1692,7 @@ class ResourceIndexController extends Controller
                 'selectedSummary' => [
                     ['label' => 'Selected report source', 'value' => 'Galaxy access coverage'],
                     ['label' => 'Review mode', 'value' => $roleCount > 0
-                        ? 'Live-source review, access roles already exist in Laravel for read-only reporting checks.'
+                        ? 'Live-source review, access roles already exist in the Galaxy foundation layer for read-only reporting checks.'
                         : 'Draft-safe review, no roles are tracked yet so this source remains a catalog-only planning stub.'],
                     ['label' => 'Source coverage', 'value' => sprintf('%d Galaxy access shells are currently available for read-only Galaxy access reporting review.', $roleCount)],
                     ['label' => 'Source status signal', 'value' => $roleCount > 0

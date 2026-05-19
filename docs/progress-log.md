@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Reporting live-source wording checkpoint
+- Aligned another small `reports` slice from `Laravel` wording to `Galaxy foundation` wording, this time covering the selected live-source review copy for `cardholder-status` and `role-access` reporting surfaces.
+- Kept the change copy-only with no behavior change and confirmed the surrounding reporting shell still renders correctly without further assertion rewrites.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context'`; the focused reporting slice passed (`3 passed`).
+
 ### Reporting source-coverage wording checkpoint
 - Aligned a narrow `reports` slice from `Laravel` wording to `Galaxy foundation` wording, covering the live source-coverage summary and the selected `cards-by-shop` live-source review copy.
 - While rerunning the focused reporting slice, also synced two stale adjacent assertions to the current Galaxy-specific branch/card-shell wording already rendered by the reporting shell.
