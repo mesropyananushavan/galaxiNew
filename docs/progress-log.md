@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Role access-and-matrix wording alignment checkpoint
+- Aligned a narrow set of selected `roles-permissions` review, scope, assignment, and matrix-blocking strings from `Laravel` wording to `Galaxy foundation` wording so the access shell keeps matching the newer Galaxy-specific foundation vocabulary.
+- Kept the change copy-only with no behavior change, and updated the matching focused role assertions that read those selected-role review strings.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_reflects_saved_role_context|test_roles_permissions_page_supports_saved_role_with_assignments_and_permissions|test_roles_permissions_catalog_actions_reflect_saved_role_readiness|test_roles_permissions_page_handles_saved_role_without_scope_or_permissions'`; the matched focused role slice passed (`1 passed`).
+
 ### Branch lifecycle-and-recovery wording alignment checkpoint
 - Aligned a narrow set of selected `shops` lifecycle, review-mode, manager-visibility, and paused-branch recovery strings from `Laravel` wording to `Galaxy foundation` wording so the branch review shell keeps matching the newer Galaxy-specific foundation vocabulary.
 - Kept the step intentionally copy-only with no behavior change, and updated the focused branch assertions that read those selected-branch review strings.

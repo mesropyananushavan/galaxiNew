@@ -3130,7 +3130,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Role slug', 'value' => $selectedRole->slug],
             ['label' => 'Review mode', 'value' => $selectedRole->is_active || $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0
-                ? 'Live-impact review, linked staff or permissions already exist in Laravel'
+                ? 'Live-impact review, linked staff or permissions already exist in the Galaxy foundation layer'
                 : 'Draft-safe review, no linked staff or permissions yet in Laravel'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedRole)],
@@ -3146,7 +3146,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Evidence priority', 'value' => $this->rolesPermissionsEvidencePriority($selectedRole)],
             ['label' => 'Handoff signal', 'value' => $this->rolesPermissionsHandoffSignal($selectedRole, $scope)],
             ['label' => 'Backend gap', 'value' => $this->rolesPermissionsBackendGap($selectedRole)],
-            ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice'],
+            ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Galaxy foundation read slice'],
             ['label' => 'Scope coverage', 'value' => match (true) {
                 $scope->count() === 0 => 'No shop scope linked yet',
                 $scope->count() === 1 => '1 shop visible in Galaxy foundation review',
@@ -3157,7 +3157,7 @@ class ResourceIndexController extends Controller
                 : 'Shop scope is still pending in Galaxy foundation review, which keeps this role safer for draft-first parity checks.'],
             ['label' => 'Shop scope preview', 'value' => $scope->isNotEmpty() ? $scope->take(3)->join(', ') : 'No shops linked yet'],
             ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
-                ? 'This role already has visible shop scope in Laravel, so any scope change should be treated as a parity-sensitive access change.'
+                ? 'This role already has visible shop scope in the Galaxy foundation layer, so any scope change should be treated as a parity-sensitive access change.'
                 : 'No shop scope is linked yet, which keeps this role safer for draft review before scope parity is confirmed.'],
             ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
             ['label' => 'Assigned staff preview', 'value' => $assignedUserPreview->isNotEmpty() ? $assignedUserPreview->join(', ') : 'No staff linked yet'],
@@ -3165,7 +3165,7 @@ class ResourceIndexController extends Controller
                 ? sprintf('%d assigned staff are already visible in active branches beside %d assigned staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
                 : 'paused-branch assignment coverage is still pending for parity review'],
             ['label' => 'Assignment guidance', 'value' => $selectedRole->users_count > 0
-                ? 'Assigned staff are already linked in Laravel, so scope and permission changes should be reviewed against real operator impact.'
+                ? 'Assigned staff are already linked in the Galaxy foundation layer, so scope and permission changes should be reviewed against real operator impact.'
                 : 'No staff are linked yet, which keeps this role safer for draft access review before assignment parity is confirmed.'],
             ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
             ['label' => 'Permission coverage', 'value' => $selectedRole->permissions_count > 0
@@ -3179,7 +3179,7 @@ class ResourceIndexController extends Controller
             [
                 'label' => 'Access guidance',
                 'value' => match (true) {
-                    $selectedRole->is_active && $selectedRole->permissions_count > 0 => 'This role already carries a Laravel permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.',
+                    $selectedRole->is_active && $selectedRole->permissions_count > 0 => 'This role already carries a Galaxy foundation permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.',
                     $selectedRole->is_active => 'This role is active in Laravel, but permission bundle and assignment follow-up should stay parity-first until the matrix editor is verified.',
                     default => 'This role is still a draft shell in Laravel, which keeps it safe for parity checks before operators rely on it for staff access.',
                 },
@@ -3490,8 +3490,8 @@ class ResourceIndexController extends Controller
         $assignedUserCount = $selectedRole->users_count ?? $selectedRole->users->count();
 
         return match (true) {
-            $permissionCount > 0 && $assignedUserCount > 0 => 'Blocked until this assignment-sensitive Laravel permission bundle is verified against legacy staff access.',
-            $permissionCount > 0 => 'Blocked until the Laravel permission matrix can be verified against legacy staff access for this live bundle.',
+            $permissionCount > 0 && $assignedUserCount > 0 => 'Blocked until this assignment-sensitive Galaxy foundation permission bundle is verified against legacy staff access.',
+            $permissionCount > 0 => 'Blocked until the Galaxy foundation permission matrix can be verified against legacy staff access for this live bundle.',
             $selectedRole->is_active => 'Blocked until this active role has a first verified Laravel permission bundle to compare against legacy staff access.',
             default => 'Blocked until this draft role has a first verified Laravel permission bundle to compare against legacy staff access.',
         };
@@ -3507,8 +3507,8 @@ class ResourceIndexController extends Controller
             $permissionCount === 0 && $scope->isEmpty() => 'Blocked until this active role has both a verified permission bundle and shop scope parity.',
             $permissionCount === 0 => 'Blocked until this active role has a verified permission bundle to compare against legacy staff access.',
             $scope->isEmpty() => 'Blocked until this live permission bundle also has verified shop scope parity.',
-            $assignedUserCount > 0 => 'Blocked until assignment-sensitive live role parity is verified for this Laravel permission bundle.',
-            default => 'Blocked until live role assignment parity is verified for this Laravel permission bundle.',
+            $assignedUserCount > 0 => 'Blocked until assignment-sensitive live role parity is verified for this Galaxy foundation permission bundle.',
+            default => 'Blocked until live role assignment parity is verified for this Galaxy foundation permission bundle.',
         };
     }
 
