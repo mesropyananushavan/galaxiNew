@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Card-types selected-edit wording checkpoint
+- Aligned a narrow `card-types` selected-query coverage slice away from leftover `Laravel` wording, updating the negative edit-flow assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
+- Re-ran `php artisan test --filter='test_card_types_page_ignores_unknown_selected_card_type_query|test_card_types_page_ignores_malformed_selected_card_type_query'`; both focused selected-query coverage tests passed (`2 passed`).
+- Kept the change test-only and low risk while continuing to remove starter-era wording from Phase 1 guardrails.
+
 ### Shops helper-coverage wording checkpoint
 - Aligned `shops` helper-level malformed-config coverage away from leftover `Laravel` wording, updating the synthetic notice and readiness-checklist strings in `AdminDashboardTest` to `Galaxy foundation` queries and wiring language.
 - Tightened the malformed readiness assertion by swapping the overly generic numeric marker `42` for a unique `424242`, which avoids false failures from unrelated page content while keeping the same malformed-entry intent.

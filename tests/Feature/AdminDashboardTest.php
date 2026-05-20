@@ -10110,9 +10110,9 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Galaxy Silver')
             ->assertSee('Edit latest saved tier shell')
-            ->assertDontSee('Edit card type in Laravel')
+            ->assertDontSee('Edit card type in Galaxy foundation')
             ->assertDontSee('Selected tier')
-            ->assertDontSee('selected for Laravel edit flow');
+            ->assertDontSee('selected for Galaxy foundation edit flow');
     }
 
     public function test_card_types_page_ignores_malformed_selected_card_type_query(): void
@@ -10132,9 +10132,9 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Galaxy Silver')
             ->assertSee('Edit latest saved tier shell')
-            ->assertDontSee('Edit card type in Laravel')
+            ->assertDontSee('Edit card type in Galaxy foundation')
             ->assertDontSee('Selected tier')
-            ->assertDontSee('selected for Laravel edit flow');
+            ->assertDontSee('selected for Galaxy foundation edit flow');
     }
 
     public function test_shop_scoped_admin_cannot_toggle_card_type_status(): void
