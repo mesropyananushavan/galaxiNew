@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Checks-points disabled-reason wording checkpoint
+- Aligned the selected `checks-points` receipt disabled-reason helper copy away from generic `Laravel` wording, covering receipt-lookup and accrual-gap review strings for zero-accrual, branch-aware, and positive-accrual receipt review states.
+- Updated the matching `AdminDashboardTest` assertions for the selected receipt review surfaces.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context'`; the focused checks-points slice passed (`3 passed`).
+
 ### Checks-points branch-receipt wording checkpoint
 - Aligned a narrow selected `checks-points` branch-receipt slice away from generic `Laravel` wording, covering the CHK-90388 receipt-posture and troubleshooting-guidance copy.
 - Updated the matching `AdminDashboardTest` assertions for the selected branch receipt review surface.
