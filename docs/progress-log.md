@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### README starter-wording checkpoint
+- Aligned a narrow README framing slice away from leftover `generic Laravel starter` language, switching the Phase 1 goal and repository-posture text to `starter scaffolding` wording.
+- Re-ran a focused grep check on `README.md` to confirm the updated goal and repo-posture phrasing are in place.
+- Kept the step intentionally small and docs-only while continuing to align top-level project guidance with the newer Galaxy-specific foundation framing.
+
 ### Phase-1 plan objective wording checkpoint
 - Aligned a narrow planning line in `docs/phase-1-plan.md`, switching the top-level objective from `generic Laravel starter` to `generic starter scaffolding` so the Phase 1 plan matches the newer Galaxy-specific foundation framing.
 - Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated objective wording is in place.

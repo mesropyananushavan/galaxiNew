@@ -2,7 +2,7 @@
 
 `galaxiNew` is the Laravel target for the Galaxy migration.
 
-The current goal is Phase 1: turn this repo from a generic Laravel starter into a Galaxy-specific application foundation with visible admin information architecture, first live domain entities, and parity-first operational workflows.
+The current goal is Phase 1: turn this repo from generic starter scaffolding into a Galaxy-specific application foundation with visible admin information architecture, first live domain entities, and parity-first operational workflows.
 
 ## Migration posture
 
@@ -38,7 +38,7 @@ php artisan test
 
 ## Why this repo exists
 
-This repository is not meant to stay a polished Laravel starter. Each small Phase 1 step should make the project feel more like Galaxy's future operational console and less like framework scaffolding.
+This repository is not meant to stay polished starter scaffolding. Each small Phase 1 step should make the project feel more like Galaxy's future operational console and less like framework scaffolding.
 
 ## Laravel note
 
