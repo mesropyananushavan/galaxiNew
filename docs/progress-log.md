@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### README phase-focus wording checkpoint
+- Aligned a narrow `README.md` Phase 1 focus line away from leftover `Laravel-backed` framing, switching the safe read/write milestone to `Galaxy foundation-backed read and write slices`.
+- Re-ran a focused grep check on `README.md` to confirm the updated Phase 1 focus wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align top-level project guidance with the newer Galaxy foundation vocabulary.
+
 ### README posture-wording checkpoint
 - Aligned a narrow migration-posture line in `README.md`, switching `galaxiNew` from the more framework-first `Laravel monolith replacing it` wording to `Galaxy-focused Laravel monolith replacing it`.
 - Re-ran a focused grep check on `README.md` to confirm the updated posture wording is in place.

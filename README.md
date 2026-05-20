@@ -15,7 +15,7 @@ The current goal is Phase 1: turn this repo from generic starter scaffolding int
 
 - make the admin shell visibly Galaxy-specific
 - keep branch, cardholder, card, card type, role, reward, rule, and reporting surfaces aligned to the migration map
-- land the first safe Laravel-backed read and write slices without breaking parity-sensitive workflows
+- land the first safe Galaxy foundation-backed read and write slices without breaking parity-sensitive workflows
 - leave a clear checkpoint trail in docs and Git history
 
 ## Core Phase 1 references
