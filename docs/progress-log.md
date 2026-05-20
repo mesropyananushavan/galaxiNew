@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome docs-list checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/progress-log.md`, making the live Phase 1 entry page point directly at the repo's ongoing checkpoint trail.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding a visible Phase 1 guidance improvement instead of another wording-only tweak.
+
 ### Welcome rules-card wording checkpoint
 - Aligned the public landing rules card in `resources/views/welcome.blade.php`, replacing `Land small safe slices with visible Git history` with `Land small safe foundation slices with visible Git history` so the live Phase 1 landing copy stays aligned with Galaxy foundation wording.
 - Expanded `tests/Feature/ExampleTest.php` to assert the updated rules-card copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
