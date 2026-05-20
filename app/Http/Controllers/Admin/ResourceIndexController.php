@@ -698,7 +698,7 @@ class ResourceIndexController extends Controller
 
             return [
                 $this->linkedTableCell($role->name, 'admin.roles-permissions.index', ['role' => $role->id]),
-                $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Laravel read slice',
+                $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in the Galaxy foundation read slice',
                 $permissionPreview !== '' ? $permissionPreview : 'No permissions linked yet',
                 $permissionReviewNote !== null ? str($permissionReviewNote)->limit(72)->toString() : 'No permission review note saved yet',
                 filled($role->assignment_note) ? str($role->assignment_note)->limit(72)->toString() : 'No assignment note saved yet',

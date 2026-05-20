@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Roles catalog read-slice wording checkpoint
+- Aligned a narrow `roles-permissions` catalog helper fallback away from generic `Laravel` wording, switching the unscoped table-row copy to Galaxy foundation language.
+- Added the matching catalog assertion in `AdminDashboardTest` and synced one adjacent stale placeholder assertion to the currently rendered roles summary copy when the broader check exposed drift.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_placeholder_page|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused roles slice passed (`2 passed`).
+
 ### Cardholders review-mode wording checkpoint
 - Aligned a narrow selected `cardholders` review-mode helper string away from generic `Laravel` wording, switching the live-profile lookup-surface copy to Galaxy foundation language.
 - Kept the step isolated to `ResourceIndexController` because the nearby selected-holder test cluster already exercises the affected review surfaces without hard-coding that exact line.

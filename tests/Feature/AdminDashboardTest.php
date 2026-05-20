@@ -1116,7 +1116,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSeeText('Administration / Roles & Permissions')
             ->assertSee('roles-permissions')
-            ->assertSee('shop-scoped access rules');
+            ->assertSee('future shop-scoped access review.');
     }
 
     public function test_authenticated_user_can_access_roles_permissions_management_preview(): void
@@ -1289,6 +1289,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep card access parity visible before widening matrix edits.')
             ->assertSee('Keep branch staff rollout review-only until parity checks are complete.')
             ->assertSee('Cashier Draft')
+            ->assertSee('Unscoped in the Galaxy foundation read slice')
             ->assertSee('No permissions linked yet')
             ->assertSee('No permission review note saved yet')
             ->assertSee('No assignment note saved yet')
