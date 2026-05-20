@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### README phase-goal wording checkpoint
+- Aligned a narrow Phase 1 goal line in `README.md`, trimming the leftover `generic starter scaffolding` phrasing down to `starter scaffolding` so the top-level repo guidance matches the updated Phase 1 plan.
+- Re-ran a focused grep check on `README.md` to confirm the updated Phase 1 goal wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten Galaxy-specific migration framing across the repo.
+
 ### Phase-1 objective wording checkpoint
 - Aligned a narrow objective line in `docs/phase-1-plan.md`, trimming the leftover `generic starter scaffolding` phrasing down to `starter scaffolding` so the plan keeps the focus on Galaxy foundation work instead of generic framing.
 - Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated objective wording is in place.
