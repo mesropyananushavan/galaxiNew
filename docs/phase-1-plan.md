@@ -1,7 +1,7 @@
 # Phase 1 Plan
 
 ## Objective
-Turn `galaxiNew` from generic Laravel starter into Galaxy-specific application foundation.
+Turn `galaxiNew` from generic starter scaffolding into a Galaxy-specific application foundation.
 
 ## Work items
 1. Define admin navigation map based on `galaxiOld`

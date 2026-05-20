@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Phase-1 plan objective wording checkpoint
+- Aligned a narrow planning line in `docs/phase-1-plan.md`, switching the top-level objective from `generic Laravel starter` to `generic starter scaffolding` so the Phase 1 plan matches the newer Galaxy-specific foundation framing.
+- Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated objective wording is in place.
+- Kept the step intentionally small and docs-only while continuing to trim starter-era framing from the repo's migration guidance.
+
 ### Blueprint goal-wording checkpoint
 - Aligned a narrow Phase 1 planning line in `docs/blueprint.md`, switching the goal from `generic Laravel baseline` to `generic starter baseline` so the migration blueprint matches the newer Galaxy-specific foundation framing.
 - Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated goal wording is in place.
