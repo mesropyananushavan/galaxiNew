@@ -21,6 +21,7 @@ class ExampleTest extends TestCase
             ->assertSee('docs/admin-shell-layering.md')
             ->assertSee('docs/admin-shell-config-map.md')
             ->assertSee('docs/decisions.md')
+            ->assertSee('docs/module_mapping.md')
             ->assertSee('docs/checkpoints/')
             ->assertSee('docs/qa-test-environment.md')
             ->assertSee('docs/progress-log.md')

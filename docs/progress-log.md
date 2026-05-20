@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome module-mapping-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/module_mapping.md`, making the live Phase 1 entry page point directly at the repo's module-mapping migration reference alongside the other core planning docs.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
 ### Welcome decisions-docs checkpoint
 - Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/decisions.md`, making the live Phase 1 entry page point directly at the repo's recorded migration decisions alongside the other core references.
 - Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
