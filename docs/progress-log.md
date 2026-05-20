@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Blueprint phase-goal wording checkpoint
+- Aligned a narrow Phase 1 goal line in `docs/blueprint.md`, trimming the leftover `generic starter baseline` phrasing down to `starter baseline` so the blueprint keeps the focus on Galaxy-specific foundation work instead of generic starter framing.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated Phase 1 goal wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten top-level migration guidance.
+
 ### README agent-guidance wording checkpoint
 - Aligned a narrow agent-guidance line in `README.md`, replacing the framework-first `Laravel conventions` phrasing with `Galaxy foundation structure` wording while keeping the same coding-agent guidance.
 - Re-ran a focused grep check on `README.md` to confirm the updated agent-guidance wording is in place.
