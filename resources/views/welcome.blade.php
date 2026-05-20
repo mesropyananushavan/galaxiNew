@@ -247,6 +247,7 @@
                     <li><code>docs/phase-1-plan.md</code></li>
                     <li><code>docs/admin-shell-layering.md</code></li>
                     <li><code>docs/checkpoints/</code></li>
+                    <li><code>docs/qa-test-environment.md</code></li>
                     <li><code>docs/progress-log.md</code></li>
                 </ul>
             </article>

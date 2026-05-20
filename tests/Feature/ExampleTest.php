@@ -20,6 +20,7 @@ class ExampleTest extends TestCase
             ->assertSee('Land small safe foundation slices with visible Git history')
             ->assertSee('docs/admin-shell-layering.md')
             ->assertSee('docs/checkpoints/')
+            ->assertSee('docs/qa-test-environment.md')
             ->assertSee('docs/progress-log.md')
             ->assertSee('Open admin workspace')
             ->assertSee('Phase 1 snapshot');
