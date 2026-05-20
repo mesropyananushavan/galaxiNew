@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Roles selected-query wording checkpoint
+- Aligned a narrow `roles-permissions` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query'`; both focused selected-query tests passed (`2 passed`).
+- Kept the change test-only and low risk while continuing to strip starter-era wording from Phase 1 guardrail coverage.
+
 ### Shops selected-query wording checkpoint
 - Aligned a narrow `shops` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
 - Dropped two stale negative checks for `Back to branch catalog` and `Selected shop`, because the current fallback workspace legitimately renders those strings while still ignoring malformed or unknown query values.

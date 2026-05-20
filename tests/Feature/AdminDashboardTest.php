@@ -1814,7 +1814,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review latest saved access shell')
             ->assertDontSee('Back to role catalog')
             ->assertDontSee('Selected role')
-            ->assertDontSee('selected for Laravel review');
+            ->assertDontSee('selected for Galaxy foundation review');
     }
 
     public function test_roles_permissions_page_ignores_malformed_selected_role_query(): void
@@ -1853,7 +1853,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review latest saved access shell')
             ->assertDontSee('Back to role catalog')
             ->assertDontSee('Selected role')
-            ->assertDontSee('selected for Laravel review');
+            ->assertDontSee('selected for Galaxy foundation review');
     }
 
     public function test_authenticated_user_can_create_role_from_minimal_live_admin_flow(): void
