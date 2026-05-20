@@ -4085,7 +4085,7 @@ class ResourceIndexController extends Controller
         return match ($selectedCard->status) {
             'active' => 'This active card should stay read-only until issue, block, and replacement parity are verified.',
             'blocked' => 'This blocked card should stay under review-only handling until dispute and replacement semantics match the old Galaxy flow.',
-            default => 'This draft card should stay in parity review until issuance rules are confirmed in Laravel.',
+            default => 'This draft card should stay in parity review until issuance rules are confirmed in the Galaxy foundation layer.',
         };
     }
 

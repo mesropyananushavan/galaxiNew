@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Cards draft-lifecycle wording checkpoint
+- Aligned the remaining draft-card lifecycle fallback in the selected `cards` helper away from generic `Laravel` wording, switching the issuance-rule confirmation copy to Galaxy foundation language.
+- Kept the step isolated to `ResourceIndexController` because the nearby selected-card test cluster already exercises the draft and blocked review surfaces without pinning that exact fallback string.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_supports_selected_draft_card_review_context'`; the focused cards slice passed (`3 passed`).
+
 ### Cardholders catalog activity wording checkpoint
 - Aligned the remaining active-holder fallback in the `cardholders` catalog helper away from generic `Laravel` wording, switching the parity-review activity-source copy to Galaxy foundation language.
 - Kept the step isolated to `ResourceIndexController` because the nearby cardholders test cluster already exercises the catalog and selected-holder render paths without hard-coding that fallback branch.
