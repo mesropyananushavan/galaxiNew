@@ -213,6 +213,10 @@
                         <span class="status-value">Galaxy-specific admin IA and first live foundations</span>
                     </div>
                     <div class="status-row">
+                        <span class="status-label">Reference trail</span>
+                        <span class="status-value">Blueprint, Phase 1 plan, checkpoints, progress log</span>
+                    </div>
+                    <div class="status-row">
                         <span class="status-label">Migration mode</span>
                         <span class="status-value success">Phase 1 active</span>
                     </div>
