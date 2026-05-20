@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome schema-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/db_schema.md`, making the live Phase 1 entry page point directly at the schema reference for the first live entity work.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
 ### Welcome migration-plan-docs checkpoint
 - Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/migration-plan.md`, making the live Phase 1 entry page point directly at the broader migration-plan reference alongside the narrower Phase 1 plan.
 - Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
