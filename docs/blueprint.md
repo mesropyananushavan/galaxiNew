@@ -5,7 +5,7 @@
 
 ## Target product posture
 - `galaxiOld` is the source of truth for business behavior and UX patterns.
-- `galaxiNew` is the target implementation on Laravel.
+- `galaxiNew` is the target implementation in the Galaxy foundation.
 - parity first, redesign later.
 
 ## Target architecture

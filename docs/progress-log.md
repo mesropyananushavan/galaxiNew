@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Blueprint target-posture wording checkpoint
+- Aligned a narrow target-posture line in `docs/blueprint.md`, switching `target implementation on Laravel` to `target implementation in the Galaxy foundation` so the migration blueprint starts from Galaxy-specific product framing instead of framework-first wording.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated target-posture wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align blueprint language with the repo's current Galaxy foundation vocabulary.
+
 ### Blueprint shell-note wording checkpoint
 - Aligned a narrow admin-shell note in `docs/blueprint.md`, switching `real Laravel reads and writes` wording to `real Galaxy foundation reads and writes` so the migration blueprint matches the newer Galaxy-specific foundation framing already used in Phase 1 guidance.
 - Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated shell-note wording is in place.
