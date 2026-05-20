@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome shell-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/admin-shell-layering.md`, making the live Phase 1 entry page point directly at the current admin-shell layering guide alongside the blueprint, plan, and progress log.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
 ### Welcome docs-list checkpoint
 - Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/progress-log.md`, making the live Phase 1 entry page point directly at the repo's ongoing checkpoint trail.
 - Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.

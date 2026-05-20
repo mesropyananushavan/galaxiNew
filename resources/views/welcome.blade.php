@@ -245,6 +245,7 @@
                     <li><a href="https://docs.openclaw.ai" target="_blank" rel="noreferrer">OpenClaw docs</a></li>
                     <li><code>docs/blueprint.md</code></li>
                     <li><code>docs/phase-1-plan.md</code></li>
+                    <li><code>docs/admin-shell-layering.md</code></li>
                     <li><code>docs/progress-log.md</code></li>
                 </ul>
             </article>
