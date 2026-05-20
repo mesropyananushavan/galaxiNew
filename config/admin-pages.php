@@ -1128,12 +1128,12 @@ return [
         ],
         'notice' => [
             'title' => 'Reporting operations are still preview-only',
-            'description' => 'Catalog actions, summary metrics, and export cues are outlining the Galaxy reporting workspace, but no Laravel reporting pipeline is wired yet.',
+            'description' => 'Catalog actions, summary metrics, and export cues are outlining the Galaxy reporting workspace, but no Galaxy foundation reporting pipeline is wired yet.',
         ],
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Preview report catalog actions and preset metrics are defined'],
             ['status' => 'ready', 'label' => 'Operational parity cues for export-first reporting are visible'],
-            ['status' => 'pending', 'label' => 'Real report sources, presets, and exports still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 'Real report sources, presets, and exports still need PHP-backed Galaxy foundation wiring'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Report catalog is still config-backed with no reporting domain service yet'],

@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Reports pipeline-wording checkpoint
+- Aligned a narrow live `reports` preview slice away from leftover `Laravel` wording, switching the reporting notice and readiness-checklist blocker to `Galaxy foundation` language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertions so the rendered reporting workspace keeps covering the visible notice and blocker copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed (`1 passed`).
+
 ### Services-rules priority-blocker wording checkpoint
 - Aligned a narrow live `services-rules` action blocker away from leftover `Laravel` wording, switching the disabled `Review priorities` reason to `Galaxy foundation` language in `config/admin-pages.php`.
 - Updated the matching `AdminDashboardTest` assertion so the rendered rules management preview keeps covering the visible blocker copy.
