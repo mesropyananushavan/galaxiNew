@@ -4824,7 +4824,7 @@ class AdminDashboardTest extends TestCase
             'name' => '  Galaxy Existing Branch Copy  ',
             'code' => ' Galaxy Existing Branch ',
             'is_active' => 'true',
-            'review_note' => 'Duplicate normalized code should stay blocked in the Laravel branch shell.',
+            'review_note' => 'Duplicate normalized code should stay blocked in the Galaxy foundation branch shell.',
         ]);
 
         $response

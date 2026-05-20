@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Holder-shell placeholder wording checkpoint
+- Aligned a narrow `cardholders` live-form schema string away from leftover `Laravel` wording, switching the review-note placeholder to `Galaxy foundation holder shell` in `config/admin-pages.php`.
+- Updated the nearby duplicate-code shop-flow fixture copy in `AdminDashboardTest` so the Phase 1 validation slice no longer carries starter-era branch-shell wording.
+- Re-ran `php artisan test --filter='test_shop_live_flow_trims_name_and_rejects_duplicate_normalized_code'`; the focused live-flow validation slice passed (`1 passed`).
+
 ### Roles permission-matrix wording checkpoint
 - Aligned a narrow live `roles-permissions` open-issues slice away from leftover `Laravel` wording, switching the permission-matrix blocker to `first Galaxy foundation write slice` language in `config/admin-pages.php`.
 - Updated the matching `AdminDashboardTest` assertion so the rendered access-control workspace keeps covering that visible migration-gap copy.
