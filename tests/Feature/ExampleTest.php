@@ -13,7 +13,7 @@ class ExampleTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Galaxy-specific foundation, not a generic starter.')
+            ->assertSee('Galaxy-specific foundation, not generic scaffolding.')
             ->assertSee('Galaxy foundation home for admin flows')
             ->assertSee('Open admin workspace')
             ->assertSee('Phase 1 snapshot');

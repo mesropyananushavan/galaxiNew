@@ -182,7 +182,7 @@
 
             <div class="hero-grid">
                 <div>
-                    <h1>Galaxy-specific foundation, not a generic starter.</h1>
+                    <h1>Galaxy-specific foundation, not generic scaffolding.</h1>
                     <p>
                         This Phase 1 shell is turning <strong>galaxiNew</strong> into the Galaxy foundation home for admin flows,
                         beginning with branch, cardholder, card, card type, access, and reporting foundations.

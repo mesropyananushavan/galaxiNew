@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome hero wording checkpoint
+- Aligned the public landing hero in `resources/views/welcome.blade.php`, replacing `Galaxy-specific foundation, not a generic starter.` with `Galaxy-specific foundation, not generic scaffolding.` so the live Phase 1 landing page keeps shedding starter-era wording.
+- Synced `tests/Feature/ExampleTest.php` with the new welcome-page headline and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while moving from docs-only cleanups back to a visible UI surface plus focused coverage.
+
 ### Phase-1 shell-posture wording checkpoint
 - Aligned a narrow admin-shell posture line in `docs/phase-1-plan.md`, trimming `less starter-like` down to `less scaffold-like` so the Phase 1 plan keeps moving away from starter-era wording.
 - Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated shell-posture wording is in place.
