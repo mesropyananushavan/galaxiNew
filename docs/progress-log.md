@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Card-types placeholder wording checkpoint
+- Aligned a narrow `card-types` live-form schema slice away from leftover `Laravel` wording, switching the review-note and activation-note placeholders to `Galaxy foundation card type` language in `config/admin-pages.php`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'`; the focused card-types preview slice stayed green (`1 passed`).
+- Kept the change schema-only and low risk, since placeholder markup remains intentionally brittle for direct rendered assertions.
+
 ### Holder-shell placeholder wording checkpoint
 - Aligned a narrow `cardholders` live-form schema string away from leftover `Laravel` wording, switching the review-note placeholder to `Galaxy foundation holder shell` in `config/admin-pages.php`.
 - Updated the nearby duplicate-code shop-flow fixture copy in `AdminDashboardTest` so the Phase 1 validation slice no longer carries starter-era branch-shell wording.
