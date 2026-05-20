@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Services-rules handler-wording checkpoint
+- Aligned a narrow live `services-rules` preview slice away from leftover `Laravel` wording, switching the preview notice, readiness-checklist label, and first implementation-handoff step to `Galaxy foundation` language in `config/admin-pages.php`.
+- Added matching `AdminDashboardTest` assertions for the rendered notice, readiness state, and implementation handoff copy so this visible rules workspace slice stays covered.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview'`; the focused services-rules slice passed (`1 passed`).
+
 ### Card-types update-review wording checkpoint
 - Aligned a narrow live `card-types` update slice away from leftover `Laravel` wording, switching the saved review-note fixture and matching success-flash review copy to `Galaxy foundation` language in `AdminDashboardTest`.
 - Kept the step intentionally narrow around the live update path so the selected-tier success surface stays consistent with the broader foundation-first vocabulary already used across the card-types shell.

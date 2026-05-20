@@ -9278,6 +9278,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('No service rules configured yet')
             ->assertSee('Create first Galaxy rule')
             ->assertSee('Rule editing is still preview-only')
+            ->assertSee('This screen outlines the target Galaxy rule workflow, but save and publish actions are not wired to Galaxy foundation handlers yet.')
             ->assertSee('Rule identity')
             ->assertSee('Effect and priority')
             ->assertSee('Compare legacy rules')
@@ -9300,7 +9301,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Service/rule domain is still preview-config only')
             ->assertSee('Rule CRUD endpoints and validation are still pending')
             ->assertSee('Legacy rule groups identified')
-            ->assertSee('Rule persistence still blocked until Laravel handlers can run')
+            ->assertSee('Rule persistence still blocked until Galaxy foundation handlers can run')
+            ->assertSee('Define a first Galaxy foundation model and migration for service rules.')
             ->assertSee('Birthday bonus rule validated')
             ->assertSee('Night service block left in draft')
             ->assertSee('loyalty effect logic');

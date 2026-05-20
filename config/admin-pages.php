@@ -743,7 +743,7 @@ return [
         ],
         'notice' => [
             'title' => 'Rule editing is still preview-only',
-            'description' => 'This screen outlines the target Galaxy rule workflow, but save and publish actions are not wired to Laravel handlers yet.',
+            'description' => 'This screen outlines the target Galaxy rule workflow, but save and publish actions are not wired to Galaxy foundation handlers yet.',
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy services and business rules'],
@@ -757,7 +757,7 @@ return [
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Legacy rule groups identified'],
             ['status' => 'ready', 'label' => 'Priority preview and parity metadata added'],
-            ['status' => 'pending', 'label' => 'Rule persistence still blocked until Laravel handlers can run'],
+            ['status' => 'pending', 'label' => 'Rule persistence still blocked until Galaxy foundation handlers can run'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Service/rule domain is still preview-config only'],
@@ -796,7 +796,7 @@ return [
         'implementationHandoff' => [
             'summary' => 'When backend work starts, introduce the smallest rule persistence path before attempting full condition-builder parity.',
             'steps' => [
-                'Define a first Laravel model and migration for service rules.',
+                'Define a first Galaxy foundation model and migration for service rules.',
                 'Wire a simple store action for rule group, scope, effect, and priority.',
                 'Keep advanced condition syntax out of the first implementation slice.',
             ],
