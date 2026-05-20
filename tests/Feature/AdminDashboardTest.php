@@ -6869,7 +6869,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Report type')
             ->assertSee('Open Galaxy reporting catalog')
             ->assertSee('Review export presets')
-            ->assertSee('Blocked until preset handling is backed by Laravel reporting flow validation.')
+            ->assertSee('Blocked until preset handling is backed by Galaxy foundation reporting flow validation.')
             ->assertSee('Export source snapshot')
             ->assertSee('Blocked until the first live Galaxy foundation report source exists for export parity review.')
             ->assertSee('Planned reports')

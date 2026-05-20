@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Reports preset-helper wording checkpoint
+- Aligned a narrow `reports` helper slice away from generic `Laravel` wording, covering the catalog and selected-source preset disabled-reason copy that still referred to reporting-flow validation in Laravel.
+- Updated the matching `AdminDashboardTest` assertion for the reports catalog surface and rechecked adjacent selected-source reporting paths.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed (`3 passed`).
+
 ### Checks-points disabled-reason wording checkpoint
 - Aligned the selected `checks-points` receipt disabled-reason helper copy away from generic `Laravel` wording, covering receipt-lookup and accrual-gap review strings for zero-accrual, branch-aware, and positive-accrual receipt review states.
 - Updated the matching `AdminDashboardTest` assertions for the selected receipt review surfaces.

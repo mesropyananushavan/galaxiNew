@@ -2632,8 +2632,8 @@ class ResourceIndexController extends Controller
 
         return match (true) {
             $liveSourceCount >= 3 => 'Blocked until preset handling is verified against multiple live Galaxy foundation reporting sources.',
-            $liveSourceCount > 0 => 'Blocked until preset handling is backed by Laravel reporting flow validation across the first live sources.',
-            default => 'Blocked until preset handling is backed by Laravel reporting flow validation.',
+            $liveSourceCount > 0 => 'Blocked until preset handling is backed by Galaxy foundation reporting flow validation across the first live sources.',
+            default => 'Blocked until preset handling is backed by Galaxy foundation reporting flow validation.',
         };
     }
 
@@ -2696,7 +2696,7 @@ class ResourceIndexController extends Controller
             'cards-by-shop' => 'Blocked until branch-total preset periods are verified against live shop grouping and legacy reporting habits.',
             'cardholder-status' => 'Blocked until holder-status preset periods are verified against lifecycle and recency reporting parity.',
             'role-access' => 'Blocked until role-access preset periods are verified against scope and assignment reporting parity.',
-            default => 'Blocked until preset handling is backed by Laravel reporting flow validation.',
+            default => 'Blocked until preset handling is backed by Galaxy foundation reporting flow validation.',
         };
     }
 
