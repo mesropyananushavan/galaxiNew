@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Blueprint architecture-wording checkpoint
+- Aligned a narrow target-architecture line in `docs/blueprint.md`, switching the plain `Laravel monolith` bullet to `Galaxy-focused Laravel monolith` so the architecture section matches the newer Galaxy-specific top-level framing.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated architecture wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align blueprint language with the repo's current Galaxy foundation posture.
+
 ### Blueprint target-posture wording checkpoint
 - Aligned a narrow target-posture line in `docs/blueprint.md`, switching `target implementation on Laravel` to `target implementation in the Galaxy foundation` so the migration blueprint starts from Galaxy-specific product framing instead of framework-first wording.
 - Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated target-posture wording is in place.

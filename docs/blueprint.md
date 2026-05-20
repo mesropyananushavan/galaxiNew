@@ -9,7 +9,7 @@
 - parity first, redesign later.
 
 ## Target architecture
-- Laravel monolith
+- Galaxy-focused Laravel monolith
 - Blade-first UI
 - Alpine.js for lightweight interactions
 - Livewire only if a specific admin workflow clearly benefits from it
