@@ -615,7 +615,7 @@ return [
         ],
         'notice' => [
             'title' => 'Card type workflow is partially live',
-            'description' => 'A minimal Laravel create path now exists for card types, while the richer tier rules and publish workflow remain preview-only.',
+            'description' => 'A minimal Galaxy foundation create path now exists for card types, while the richer tier rules and publish workflow remain preview-only.',
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy card tier catalog'],
@@ -629,7 +629,7 @@ return [
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Legacy tier names mapped'],
             ['status' => 'ready', 'label' => 'Preview actions and grouped fields defined'],
-            ['status' => 'ready', 'label' => 'Minimal Laravel create path is now wired for card types'],
+            ['status' => 'ready', 'label' => 'Minimal Galaxy foundation create path is now wired for card types'],
             ['status' => 'pending', 'label' => 'Tier rule publishing and richer workflow handlers still need PHP-backed follow-through'],
         ],
         'dependencyStatus' => [

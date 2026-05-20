@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Card-types live-notice wording checkpoint
+- Aligned a narrow live `card-types` management slice away from leftover `Laravel` wording, switching the partially-live notice copy and matching readiness-checklist label to `Galaxy foundation` language in `config/admin-pages.php`.
+- Added matching assertions in `AdminDashboardTest` so the visible card-type workflow notice and readiness state stay covered together.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused card-types slice passed (`2 passed`).
+
 ### Cards duplicate-number validation wording checkpoint
 - Aligned the live `StoreCardRequest` duplicate-number validation message away from leftover `Laravel` wording, switching the inventory-shell error copy to `Galaxy foundation` language.
 - Synced the matching duplicate-card assertions in `AdminDashboardTest` so the live card write path keeps checking the updated backend validation wording.
