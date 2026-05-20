@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### README posture-wording checkpoint
+- Aligned a narrow migration-posture line in `README.md`, switching `galaxiNew` from the more framework-first `Laravel monolith replacing it` wording to `Galaxy-focused Laravel monolith replacing it`.
+- Re-ran a focused grep check on `README.md` to confirm the updated posture wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align top-level project guidance with Galaxy-specific foundation framing.
+
 ### Blueprint summary-wording checkpoint
 - Aligned a narrow top-level summary line in `docs/blueprint.md`, switching `simple Laravel monolith` to `Galaxy-focused Laravel monolith` so the migration blueprint starts from Galaxy-specific product framing instead of framework-first wording.
 - Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated summary wording is in place.

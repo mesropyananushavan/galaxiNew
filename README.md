@@ -7,7 +7,7 @@ The current goal is Phase 1: turn this repo from generic starter scaffolding int
 ## Migration posture
 
 - `galaxiOld` remains the source of truth for business behavior and operator UX
-- `galaxiNew` is the Laravel monolith replacing it
+- `galaxiNew` is the Galaxy-focused Laravel monolith replacing it
 - parity first, redesign later
 - Blade-first admin shell, thin controllers, domain-oriented backend wiring
 
