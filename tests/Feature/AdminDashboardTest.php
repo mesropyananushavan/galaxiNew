@@ -11236,7 +11236,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'Galaxy Prime Plus',
             'points_rate' => '2.25',
             'is_active' => 'false',
-            'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
+            'review_note' => 'Document the first Galaxy foundation tier adjustments before widening rule imports.',
             'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
             'rollout_note' => 'Keep rollout review-only while this tier stays in draft review.',
         ]);
@@ -11251,7 +11251,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime-plus',
             'points_rate' => '2.25',
             'is_active' => false,
-            'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
+            'review_note' => 'Document the first Galaxy foundation tier adjustments before widening rule imports.',
             'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
             'rollout_note' => 'Keep rollout review-only while this tier stays in draft review.',
         ]);
@@ -12062,7 +12062,7 @@ class AdminDashboardTest extends TestCase
             'slug' => 'galaxy-prime-plus-flash',
             'points_rate' => '2.25',
             'is_active' => false,
-            'review_note' => 'Document the first Laravel tier adjustments before widening rule imports.',
+            'review_note' => 'Document the first Galaxy foundation tier adjustments before widening rule imports.',
             'activation_note' => 'Keep activation handoff visible while this tier stays in draft review.',
             'rollout_note' => 'Keep rollout review-only while this tier stays in draft review.',
         ]);
@@ -12082,7 +12082,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime Plus')
             ->assertSee('Review note:')
-            ->assertSee('Document the first Laravel tier adjustments before widening rule imports.')
+            ->assertSee('Document the first Galaxy foundation tier adjustments before widening rule imports.')
             ->assertSee('Activation note:')
             ->assertSee('Keep activation handoff visible while this tier stays in draft review.')
             ->assertSee('Rollout note:')

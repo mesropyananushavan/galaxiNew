@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Card-types update-review wording checkpoint
+- Aligned a narrow live `card-types` update slice away from leftover `Laravel` wording, switching the saved review-note fixture and matching success-flash review copy to `Galaxy foundation` language in `AdminDashboardTest`.
+- Kept the step intentionally narrow around the live update path so the selected-tier success surface stays consistent with the broader foundation-first vocabulary already used across the card-types shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_update_card_type_from_live_admin_flow|test_card_types_page_shows_update_success_flash_message'`; the focused card-types update slice passed (`2 passed`).
+
 ### Gifts warehouse-sync wording checkpoint
 - Aligned a narrow live `gifts` activity-timeline slice away from leftover `Laravel` wording, switching the coffee-voucher warehouse-sync note to `Galaxy foundation` language in `config/admin-pages.php`.
 - Added the matching visible-copy assertion in `AdminDashboardTest` so the rendered gifts management timeline keeps covering the updated wording.
