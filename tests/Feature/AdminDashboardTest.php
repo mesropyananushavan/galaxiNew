@@ -1133,6 +1133,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Back to access shell catalog')
             ->assertSee('Role name')
             ->assertSee('Slug')
+            ->assertSee('Lowercase identifier for the minimal Galaxy foundation role record.')
             ->assertSee('Galaxy foundation status')
             ->assertSee('Draft')
             ->assertSee('Active')

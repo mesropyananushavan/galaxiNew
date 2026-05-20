@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Roles live-form slug-helper wording checkpoint
+- Aligned a narrow live `roles-permissions` form slice away from leftover `Laravel` wording, switching the slug helper text to `Galaxy foundation` language and syncing the adjacent role-note placeholders in `config/admin-pages.php`.
+- Added a matching stable visible-copy assertion in `AdminDashboardTest` for the live roles form so the helper wording stays covered without depending on placeholder markup.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused roles slice passed (`2 passed`).
+
 ### Cards live-form tier-helper wording checkpoint
 - Aligned a narrow live `cards` form slice away from leftover `Laravel` wording, switching the card-type helper text to `Galaxy foundation` language and syncing the adjacent review-note placeholder copy in `config/admin-pages.php`.
 - Added matching stable visible-copy assertions in `AdminDashboardTest` for the live cards form so the helper text stays covered without depending on placeholder markup.
