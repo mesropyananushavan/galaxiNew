@@ -236,6 +236,7 @@
                     <li>Preserve Galaxy admin information architecture</li>
                     <li>Keep shop-aware access and parity-sensitive flows explicit</li>
                     <li>Land small safe foundation slices with visible Git history</li>
+                    <li>Keep checkpoints, analysis notes, and QA references close to the work</li>
                 </ul>
             </article>
 
