@@ -221,6 +221,10 @@
                         <span class="status-value">Focused checks after each safe slice</span>
                     </div>
                     <div class="status-row">
+                        <span class="status-label">Commit trail</span>
+                        <span class="status-value">Every safe slice leaves a visible Git checkpoint</span>
+                    </div>
+                    <div class="status-row">
                         <span class="status-label">Migration mode</span>
                         <span class="status-value success">Phase 1 active</span>
                     </div>
