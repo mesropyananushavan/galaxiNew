@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Closing-blocks comment wording checkpoint
+- Aligned a small real-config slice in `config/admin-operational-closing-blocks.php`, switching the shared closing-blocks comment from `first Laravel wiring step` to `first Galaxy foundation wiring step` so internal config guidance matches the live admin vocabulary.
+- Re-ran `php -l config/admin-operational-closing-blocks.php`; the focused config syntax check passed.
+- Kept the step intentionally tiny and behavior-preserving while removing one more starter-era naming tail from shared Phase 1 scaffolding.
+
 ### Controller helper naming checkpoint
 - Aligned a small real-code slice in `ResourceIndexController`, renaming the remaining `cardsLaravelStatusLabel` and `cardholdersLaravelStatusLabel` helpers to `...GalaxyStatusLabel` so internal controller naming matches the Galaxy foundation vocabulary already shown in the UI.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_cardholders_operational_index_shape'`; both focused cards/cardholders slices passed (`2 passed`).
