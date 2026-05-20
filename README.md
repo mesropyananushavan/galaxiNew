@@ -38,7 +38,7 @@ php artisan test
 
 ## Why this repo exists
 
-This repository is not meant to stay polished starter scaffolding. Each small Phase 1 step should make the project feel more like Galaxy's future operational console and less like framework scaffolding.
+This repository is not meant to stay polished scaffold. Each small Phase 1 step should make the project feel more like Galaxy's future operational console and less like framework scaffolding.
 
 ## Laravel note
 

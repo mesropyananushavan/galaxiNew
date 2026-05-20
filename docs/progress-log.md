@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### README repo-posture wording checkpoint
+- Aligned a narrow repo-posture line in `README.md`, trimming `polished starter scaffolding` down to `polished scaffold` so the top-level project framing keeps moving away from starter-era wording.
+- Re-ran a focused grep check on `README.md` to confirm the updated repo-posture wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten Galaxy-specific migration framing across the repo.
+
 ### README phase-goal wording checkpoint
 - Aligned a narrow Phase 1 goal line in `README.md`, trimming the leftover `generic starter scaffolding` phrasing down to `starter scaffolding` so the top-level repo guidance matches the updated Phase 1 plan.
 - Re-ran a focused grep check on `README.md` to confirm the updated Phase 1 goal wording is in place.
