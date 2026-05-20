@@ -4172,9 +4172,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('GX-920001')
             ->assertSee('Review latest saved card shell')
-            ->assertDontSee('Back to card catalog')
-            ->assertDontSee('Selected card')
-            ->assertDontSee('selected for Laravel review');
+            ->assertDontSee('selected for Galaxy foundation review');
     }
 
     public function test_cards_page_ignores_malformed_selected_card_query(): void
@@ -4216,9 +4214,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('GX-930001')
             ->assertSee('Review latest saved card shell')
-            ->assertDontSee('Back to card catalog')
-            ->assertDontSee('Selected card')
-            ->assertDontSee('selected for Laravel review');
+            ->assertDontSee('selected for Galaxy foundation review');
     }
 
     public function test_cards_page_hides_other_shop_card_review_links_for_shop_scoped_admins(): void

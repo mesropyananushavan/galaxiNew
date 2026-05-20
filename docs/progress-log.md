@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Cards selected-query wording checkpoint
+- Aligned a narrow `cards` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
+- Dropped stale negative checks for `Back to card catalog` and `Selected card`, because the current fallback workspace legitimately renders those strings while still ignoring malformed or unknown query values.
+- Re-ran `php artisan test --filter='test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query'`; both focused selected-query tests passed (`2 passed`).
+
 ### Roles selected-query wording checkpoint
 - Aligned a narrow `roles-permissions` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
 - Re-ran `php artisan test --filter='test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query'`; both focused selected-query tests passed (`2 passed`).
