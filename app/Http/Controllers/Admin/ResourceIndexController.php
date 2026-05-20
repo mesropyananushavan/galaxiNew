@@ -2759,12 +2759,12 @@ class ResourceIndexController extends Controller
     private function cardholdersSelectedReviewActivityDisabledReason(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->cards_count > 0 => 'Blocked until paused-branch linked-card activity is backed by a stable Laravel event source for recovery-parity review.',
-            (bool) $selectedCardHolder->shop?->is_active === false => 'Blocked until paused-branch activity history is backed by a stable Laravel event source for recovery-parity review.',
-            $selectedCardHolder->cards_count > 0 && $selectedCardHolder->is_active => 'Blocked until linked-card activity is backed by a stable Laravel event source for active-holder lookup parity.',
-            $selectedCardHolder->cards_count > 0 => 'Blocked until linked-card activity is backed by a stable Laravel event source for holder lookup parity.',
-            ! $selectedCardHolder->is_active => 'Blocked until inactive-holder activity history is backed by a stable Laravel event source for lifecycle parity.',
-            default => 'Blocked until a stable Laravel activity source exists for holder lookup parity.',
+            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->cards_count > 0 => 'Blocked until paused-branch linked-card activity is backed by a stable Galaxy foundation event source for recovery-parity review.',
+            (bool) $selectedCardHolder->shop?->is_active === false => 'Blocked until paused-branch activity history is backed by a stable Galaxy foundation event source for recovery-parity review.',
+            $selectedCardHolder->cards_count > 0 && $selectedCardHolder->is_active => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for active-holder lookup parity.',
+            $selectedCardHolder->cards_count > 0 => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for holder lookup parity.',
+            ! $selectedCardHolder->is_active => 'Blocked until inactive-holder activity history is backed by a stable Galaxy foundation event source for lifecycle parity.',
+            default => 'Blocked until a stable Galaxy foundation activity source exists for holder lookup parity.',
         };
     }
 

@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Cardholders activity-source wording checkpoint
+- Aligned a narrow selected `cardholders` helper slice away from generic `Laravel` wording, covering active, inactive, linked, unlinked, and paused-branch activity disabled reasons in the selected holder review surface.
+- Updated the matching `AdminDashboardTest` assertions for the selected holder, active linked holder, active unlinked holder, inactive linked holder, and paused-branch holder review contexts.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context|test_cardholders_page_surfaces_paused_branch_signal_for_selected_holder'`; the focused cardholders slice passed (`5 passed`).
+
 ### Gifts stock-audit wording checkpoint
 - Aligned a narrow selected `gifts` helper slice away from generic `Laravel` wording, covering zero-stock, finite-stock, and all-shop stock-audit disabled reasons in the selected reward review surface.
 - Updated the matching `AdminDashboardTest` assertions for the selected gift, scoped gift, all-shop gift, and paused finite-stock gift review contexts.
