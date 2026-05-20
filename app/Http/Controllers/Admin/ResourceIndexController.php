@@ -2732,8 +2732,8 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ($selectedRulePreview['status'] ?? null) === 'draft' => 'Blocked until draft rule priority order is verified against legacy exclusion precedence in the Galaxy foundation layer.',
-            ($selectedRulePreview['scope'] ?? null) !== 'All shops' => 'Blocked until scoped rule priority order is verified against broader loyalty overlaps in Laravel.',
-            default => 'Blocked until all-shop rule priority order is verified in Laravel.',
+            ($selectedRulePreview['scope'] ?? null) !== 'All shops' => 'Blocked until scoped rule priority order is verified against broader loyalty overlaps in the Galaxy foundation layer.',
+            default => 'Blocked until all-shop rule priority order is verified in the Galaxy foundation layer.',
         };
     }
 

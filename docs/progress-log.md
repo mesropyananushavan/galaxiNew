@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Services-rules review-priority wording checkpoint
+- Aligned the remaining selected `services-rules` review-priority helper copy away from generic `Laravel` wording, covering the scoped and all-shop disabled-reason strings rendered for partner-card and birthday-bonus review surfaces.
+- Updated the matching `AdminDashboardTest` assertions for the selected scoped-rule and selected all-shop rule review paths.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context'`; the focused services-rules slice passed (`3 passed`).
+
 ### Services-rules draft exception wording checkpoint
 - Aligned another narrow selected `services-rules` draft-exception slice away from generic `Laravel` wording, covering the night-service-block review-priority disabled reason, the no-accrual effect guidance, and the dependency-status priority note.
 - Updated the matching `AdminDashboardTest` assertions for the selected draft-rule review surface.
