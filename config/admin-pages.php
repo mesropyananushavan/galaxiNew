@@ -663,7 +663,7 @@ return [
             'summary' => 'Known card-type migration gaps that still block safe rollout.',
             'items' => [
                 'Partner tier approval flow parity is still unresolved against the legacy workflow.',
-                'Rule import behavior is still undefined for the first Laravel write slice.',
+                'Rule import behavior is still undefined for the first Galaxy foundation write slice.',
             ],
         ],
         'implementationHandoff' => [

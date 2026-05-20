@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Card-types rule-import wording checkpoint
+- Aligned a narrow live `card-types` open-issues message away from leftover `Laravel` wording, switching the rule-import blocker to `first Galaxy foundation write slice` in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertion so the rendered card-types preview keeps covering that visible migration-gap copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'`; the focused card-types preview slice passed (`1 passed`).
+
 ### Reports preset-blocker wording checkpoint
 - Aligned a narrow live `reports` action blocker away from leftover `Laravel` wording, switching the disabled `Review export presets` reason to `Galaxy foundation reporting flow validation` in `config/admin-pages.php`.
 - The existing `AdminDashboardTest` reports preview assertion already covered this rendered blocker copy, so the focused rerun stayed code-only with no extra test edits.

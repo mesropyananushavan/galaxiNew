@@ -9687,6 +9687,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Hand off draft tiers with the exact legacy rate and activation mode they are meant to mirror.')
             ->assertSee('Open issues to carry')
             ->assertSee('Partner tier approval flow parity is still unresolved against the legacy workflow.')
+            ->assertSee('Rule import behavior is still undefined for the first Galaxy foundation write slice.')
             ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('When PHP becomes available, start by turning the card type preview into a real create/update path with the smallest possible write flow.')
             ->assertSee('Persist a minimal name, slug, rate, and activation mode payload before expanding rule imports.')
