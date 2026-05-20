@@ -38,7 +38,7 @@ php artisan test
 
 ## Why this repo exists
 
-This repository is not meant to stay polished scaffold. Each small Phase 1 step should make the project feel more like Galaxy's future operational console and less like framework scaffolding.
+This repository is not meant to stay polished scaffold. Each small Phase 1 step should make the project feel more like Galaxy's future operational console and less like default framework structure.
 
 ## Laravel note
 
@@ -92,7 +92,7 @@ php artisan test
 
 ## Contributing
 
-Keep changes small, safe, and migration-oriented. Prefer visible improvements to Galaxy foundation posture over generic framework cleanup.
+Keep changes small, safe, and migration-oriented. Prefer visible improvements to Galaxy foundation posture over generic cleanup.
 
 ## Upstream framework references
 
@@ -100,7 +100,7 @@ Keep changes small, safe, and migration-oriented. Prefer visible improvements to
 - https://laracasts.com
 - https://laravel.com/learn
 
-The Galaxy foundation structure should still keep this repo friendly to coding agents, but agent work should stay anchored to the Galaxy migration blueprint rather than starter-era tasks.
+The Galaxy foundation structure should still keep this repo friendly to coding agents, but agent work should stay anchored to the Galaxy migration blueprint rather than scaffold-era tasks.
 
 ```bash
 composer require laravel/boost --dev

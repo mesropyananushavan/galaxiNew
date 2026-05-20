@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### README framework-tail checkpoint
+- Aligned three remaining top-level README posture lines away from starter/framework framing: `framework scaffolding` became `default framework structure`, `generic framework cleanup` became `generic cleanup`, and `starter-era tasks` became `scaffold-era tasks`.
+- Re-checked the touched README slice with focused `grep` verification to confirm the new copy is present and the replaced starter/framework tails are gone.
+- Kept the step intentionally small, but moved it back to repo guidance instead of continuing to grow the landing-page docs list.
+
 ### Welcome commit-trail checkpoint
 - Extended the public landing snapshot card in `resources/views/welcome.blade.php` with a `Commit trail` status row, `Every safe slice leaves a visible Git checkpoint`, so the live Phase 1 entry page reflects the repo's current Git-trace discipline directly in the top summary block.
 - Expanded `tests/Feature/ExampleTest.php` to assert the new snapshot copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
