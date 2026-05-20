@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### README agent-guidance wording checkpoint
+- Aligned a narrow agent-guidance line in `README.md`, replacing the framework-first `Laravel conventions` phrasing with `Galaxy foundation structure` wording while keeping the same coding-agent guidance.
+- Re-ran a focused grep check on `README.md` to confirm the updated agent-guidance wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align top-level project guidance with the repo's current Galaxy foundation framing.
+
 ### Blueprint architecture-wording checkpoint
 - Aligned a narrow target-architecture line in `docs/blueprint.md`, switching the plain `Laravel monolith` bullet to `Galaxy-focused Laravel monolith` so the architecture section matches the newer Galaxy-specific top-level framing.
 - Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated architecture wording is in place.
