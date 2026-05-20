@@ -3211,7 +3211,7 @@ class ResourceIndexController extends Controller
     private function reportsCardsByShopBackendGap(int $cardCount, int $shopCount, int $holderLinkedCardCount, int $unassignedCardCount): string
     {
         return match (true) {
-            $cardCount === 0 || $shopCount === 0 => 'Report-source seeding, grouped query shaping, and export generation should stay preview-only until branch inventory inputs exist in Laravel.',
+            $cardCount === 0 || $shopCount === 0 => 'Report-source seeding, grouped query shaping, and export generation should stay preview-only until branch inventory inputs exist in the Galaxy foundation layer.',
             $holderLinkedCardCount > 0 && $unassignedCardCount > 0 => 'Preset handling, assignment-aware grouping, and export generation should stay preview-only until branch-total and inventory-assignment parity are verified.',
             $holderLinkedCardCount > 0 => 'Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.',
             $unassignedCardCount > 0 => 'Preset handling, holder-linkage shaping, and export generation should stay preview-only until branch-total customer-linkage parity is verified.',
@@ -3242,7 +3242,7 @@ class ResourceIndexController extends Controller
     private function reportsCardholderStatusBackendGap(int $cardHolderCount, int $linkedCardHolderCount, int $inactiveCardHolderCount, int $blockedLinkedCardCount): string
     {
         return match (true) {
-            $cardHolderCount === 0 => 'Report-source seeding, status shaping, and export generation should stay preview-only until holder lifecycle inputs exist in Laravel.',
+            $cardHolderCount === 0 => 'Report-source seeding, status shaping, and export generation should stay preview-only until holder lifecycle inputs exist in the Galaxy foundation layer.',
             $linkedCardHolderCount > 0 && $inactiveCardHolderCount > 0 => 'Preset handling, lifecycle-segmentation shaping, and export generation should stay preview-only until inactive-holder parity is verified.',
             $linkedCardHolderCount > 0 => 'Preset handling, inactive-holder shaping, and export generation should stay preview-only until linked-profile lifecycle parity is verified.',
             $blockedLinkedCardCount > 0 => 'Preset handling, blocked-card shaping, and export generation should stay preview-only until support-style lifecycle parity is verified.',
@@ -3273,7 +3273,7 @@ class ResourceIndexController extends Controller
     private function reportsRoleAccessBackendGap(int $roleCount, int $permissionLinkedRoleCount, int $assignedStaffCount): string
     {
         return match (true) {
-            $roleCount === 0 => 'Role-source seeding, preset handling, and export generation should stay preview-only until access-report inputs exist in Laravel.',
+            $roleCount === 0 => 'Role-source seeding, preset handling, and export generation should stay preview-only until access-report inputs exist in the Galaxy foundation layer.',
             $permissionLinkedRoleCount > 0 && $assignedStaffCount > 0 => 'Preset handling, grouped access shaping, and export generation should stay preview-only until scope and staffing parity are verified.',
             $permissionLinkedRoleCount > 0 => 'Preset handling, assignment-aware shaping, and export generation should stay preview-only until access-report staffing parity is verified.',
             $assignedStaffCount > 0 => 'Preset handling, permission-bundle shaping, and export generation should stay preview-only until access-report bundle parity is verified.',

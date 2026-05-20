@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Reports backend-gap wording checkpoint
+- Aligned a narrow `reports` helper slice away from generic `Laravel` wording, covering three backend-gap fallback messages for cards-by-shop, cardholder-status, and role-access report sources.
+- Kept the step copy-only in `ResourceIndexController` because the existing reporting test cluster exercises these surfaces without hard-coding the exact fallback strings.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context'`; the focused reporting slice passed (`4 passed`).
+
 ### Cards blocked-review wording checkpoint
 - Aligned a narrow selected `cards` helper slice away from generic `Laravel` wording, covering the active and draft blocked-review disabled-reason copy for selected card review states.
 - Updated the matching `AdminDashboardTest` assertions for the selected active-card and draft-card review surfaces.
