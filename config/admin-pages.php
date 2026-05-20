@@ -336,12 +336,12 @@ return [
         ],
         'notice' => [
             'title' => 'Card operations are still preview-only',
-            'description' => 'Inventory actions, status metrics, and filters are laid out for Galaxy parity, but they are not connected to Laravel handlers yet.',
+            'description' => 'Inventory actions, status metrics, and filters are laid out for Galaxy parity, but they are not connected to Galaxy foundation handlers yet.',
         ],
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Preview inventory statuses and card-type filters are defined'],
             ['status' => 'ready', 'label' => 'Operational parity cues for blocked and draft cards are visible'],
-            ['status' => 'pending', 'label' => 'Inventory queries and card lifecycle handlers still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 'Inventory queries and card lifecycle handlers still need PHP-backed Galaxy foundation wiring'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Card and CardType models plus migration skeletons exist'],
