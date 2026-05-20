@@ -253,6 +253,7 @@
                     <li><code>docs/db_schema.md</code></li>
                     <li><code>docs/api_endpoints.md</code></li>
                     <li><code>docs/checkpoints/</code></li>
+                    <li><code>docs/analysis/</code></li>
                     <li><code>docs/qa-test-environment.md</code></li>
                     <li><code>docs/progress-log.md</code></li>
                 </ul>

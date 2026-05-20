@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome analysis-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/analysis/`, making the live Phase 1 entry page point directly at the repo's analysis workspace alongside checkpoints, QA guidance, and the core migration references.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
 ### Welcome API-docs checkpoint
 - Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/api_endpoints.md`, making the live Phase 1 entry page point directly at the current API reference alongside the schema and planning docs.
 - Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.

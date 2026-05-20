@@ -26,6 +26,7 @@ class ExampleTest extends TestCase
             ->assertSee('docs/db_schema.md')
             ->assertSee('docs/api_endpoints.md')
             ->assertSee('docs/checkpoints/')
+            ->assertSee('docs/analysis/')
             ->assertSee('docs/qa-test-environment.md')
             ->assertSee('docs/progress-log.md')
             ->assertSee('Open admin workspace')
