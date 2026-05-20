@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-05-20
+
+### Shops branch-form wording checkpoint
+- Aligned a narrow live `shops` form slice away from leftover `Laravel` wording, switching the branch-code helper text and adjacent review-note placeholder copy to `Galaxy foundation` language in `config/admin-pages.php`.
+- Added a matching stable visible-copy assertion in `AdminDashboardTest` for the live shops form and kept the check on rendered helper text instead of brittle placeholder markup.
+- Re-ran `php artisan test --filter='test_shops_page_replaces_preview_rows_with_model_backed_index_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data'`; the focused shops slice passed (`2 passed`).
+
 ## 2026-05-19
 
 ### Roles catalog read-slice wording checkpoint

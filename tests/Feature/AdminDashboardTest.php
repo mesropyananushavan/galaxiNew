@@ -4575,6 +4575,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create Galaxy branch in Galaxy foundation')
             ->assertSee('Create branch shell')
             ->assertSee('Galaxy foundation status')
+            ->assertSee('Lowercase identifier for the minimal Galaxy foundation branch record.')
+            ->assertSee('Use this safe Phase 1 note to record branch review context without opening manager or scope writes.')
             ->assertSee('action="/admin/shops"', false)
             ->assertSee('Review latest saved branch shell')
             ->assertSee('href="/admin/shops?shop='.$pausedShop->id.'"', false)
