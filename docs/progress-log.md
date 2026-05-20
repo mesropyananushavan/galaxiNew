@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Roles access-note metric checkpoint
+- Tightened the neighboring live `roles-permissions` management metric label from `Galaxy access notes` to `Access-policy Galaxy notes` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot now names that count after the underlying access-policy artifact instead of a generic note bucket.
+- Synced the focused roles assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live admin-surface cleanup instead of drifting back to docs-only wording work.
+
 ### Roles assignment-note metric checkpoint
 - Tightened the neighboring live `roles-permissions` management metric label from `Galaxy assignment notes` to `Role-assignment Galaxy notes` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot keeps naming note counts after the underlying assignment artifact instead of a generic note bucket.
 - Synced the focused roles assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
