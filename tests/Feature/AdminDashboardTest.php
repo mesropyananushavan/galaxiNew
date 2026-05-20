@@ -9548,7 +9548,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('New Galaxy reward')
             ->assertSee('Blocked until the first Galaxy foundation-backed gift write flow exists for catalog, scope, cost, and stock state.')
             ->assertSee('Stock audit')
-            ->assertSee('Blocked until stock checks are backed by Laravel inventory data.')
+            ->assertSee('Blocked until stock checks are backed by Galaxy foundation inventory data.')
             ->assertSee('Blocked until gift CRUD and redemption parity exist beyond the preview shell.')
             ->assertSee('aria-disabled="true"', false)
             ->assertSee('Management snapshot')
