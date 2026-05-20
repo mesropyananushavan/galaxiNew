@@ -3731,7 +3731,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Backend gap', 'value' => $this->cardsBackendGap($selectedCard)],
             ['label' => 'Shop', 'value' => $this->cardsShopLabel($selectedCard)],
             ['label' => 'Shop guidance', 'value' => $this->cardsShopGuidance($selectedCard)],
-            ['label' => 'Galaxy status', 'value' => $this->cardsLaravelStatusLabel($selectedCard)],
+            ['label' => 'Galaxy status', 'value' => $this->cardsGalaxyStatusLabel($selectedCard)],
             ['label' => 'Issued', 'value' => $this->cardsIssuedLabel($selectedCard)],
             ['label' => 'Activated', 'value' => $this->cardsActivatedLabel($selectedCard)],
             ['label' => 'Blocked pre-activation signal', 'value' => $this->cardsBlockedPreActivationSignal($selectedCard)],
@@ -3825,7 +3825,7 @@ class ResourceIndexController extends Controller
         return $selectedCard->shop?->name ?? 'Unassigned';
     }
 
-    private function cardsLaravelStatusLabel(Card $selectedCard): string
+    private function cardsGalaxyStatusLabel(Card $selectedCard): string
     {
         return $selectedCard->status;
     }
@@ -4124,7 +4124,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Shop', 'value' => $this->cardholdersShopLabel($selectedCardHolder)],
             ['label' => 'Shop guidance', 'value' => $this->cardholdersShopGuidance($selectedCardHolder)],
             ['label' => 'Linked cards', 'value' => $this->cardholdersLinkedCardsLabel($selectedCardHolder)],
-            ['label' => 'Galaxy status', 'value' => $this->cardholdersLaravelStatusLabel($selectedCardHolder)],
+            ['label' => 'Galaxy status', 'value' => $this->cardholdersGalaxyStatusLabel($selectedCardHolder)],
             [
                 'label' => 'Lookup guidance',
                 'value' => $this->cardholdersLookupGuidance($selectedCardHolder),
@@ -4167,7 +4167,7 @@ class ResourceIndexController extends Controller
             : 'No branch is linked yet, so shop-aware lookup behavior should stay in parity review before profile actions are widened.';
     }
 
-    private function cardholdersLaravelStatusLabel(CardHolder $selectedCardHolder): string
+    private function cardholdersGalaxyStatusLabel(CardHolder $selectedCardHolder): string
     {
         return $selectedCardHolder->is_active ? 'active' : 'inactive';
     }

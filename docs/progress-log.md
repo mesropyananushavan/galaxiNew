@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Controller helper naming checkpoint
+- Aligned a small real-code slice in `ResourceIndexController`, renaming the remaining `cardsLaravelStatusLabel` and `cardholdersLaravelStatusLabel` helpers to `...GalaxyStatusLabel` so internal controller naming matches the Galaxy foundation vocabulary already shown in the UI.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_cardholders_operational_index_shape'`; both focused cards/cardholders slices passed (`2 passed`).
+- Kept the step behavior-preserving while trimming another starter-era naming tail from live Phase 1 controller code.
+
 ### Normalizer unit-wording checkpoint
 - Aligned a narrow `AdminResourcePageNormalizerTest` fixture slice away from leftover `Laravel` wording, switching repeated live-form titles and a nested preview description to `Galaxy foundation` language.
 - Re-ran `php artisan test --filter='test_normalize_live_form_keeps_valid_fields_and_ignores_malformed_entries|test_normalize_live_form_defaults_invalid_method_to_post|test_normalize_live_form_keeps_valid_cancel_action|test_normalize_filters_malformed_nested_page_metadata'`; the focused normalizer wording slice passed (`4 passed`).
