@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Phase-1 shell-posture wording checkpoint
+- Aligned a narrow admin-shell posture line in `docs/phase-1-plan.md`, trimming `less starter-like` down to `less scaffold-like` so the Phase 1 plan keeps moving away from starter-era wording.
+- Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated shell-posture wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten Galaxy-specific migration framing across the planning docs.
+
 ### README agent-task wording checkpoint
 - Aligned a narrow coding-agent guidance line in `README.md`, replacing the leftover `generic starter tasks` phrasing with `starter-era tasks` so the top-level repo guidance keeps moving away from generic starter framing.
 - Re-ran a focused grep check on `README.md` to confirm the updated agent-task wording is in place.

@@ -28,5 +28,5 @@ Turn `galaxiNew` from starter scaffolding into a Galaxy-specific application fou
 ## Current admin shell structure note
 - The Phase 1 admin shell is now intentionally layered so parity-first UI work can keep moving while PHP execution is unavailable.
 - The current resource-page composition is documented in `docs/admin-shell-layering.md` and split into base, context, preview, workflow, and closing stacks.
-- High-value Galaxy-specific management pages such as `card-types`, `services-rules`, `gifts`, and `roles-permissions` now use the richer workflow layer so the shell is visibly less starter-like before real Galaxy foundation writes exist.
+- High-value Galaxy-specific management pages such as `card-types`, `services-rules`, `gifts`, and `roles-permissions` now use the richer workflow layer so the shell is visibly less scaffold-like before real Galaxy foundation writes exist.
 - That layering should stay config-driven even when the first real Galaxy foundation reads or form flows begin replacing preview-only blocks.
