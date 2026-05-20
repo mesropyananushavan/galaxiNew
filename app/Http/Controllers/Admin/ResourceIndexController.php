@@ -405,7 +405,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Priority posture', 'value' => 'Keep this blocking rule below confirmed accrual logic until exclusion order is verified.'],
                     ['label' => 'Backend gap', 'value' => $this->servicesRulesBackendGap('night-service-block')],
                     ['label' => 'Format guidance', 'value' => 'Keep draft exclusion rules in compact on-screen review first, because operators need scope, condition, and effect visible together before discussing publication.' ],
-                    ['label' => 'Effect guidance', 'value' => 'Treat the no-accrual effect as a review-only exception until Laravel can safely reproduce the old block semantics.'],
+                    ['label' => 'Effect guidance', 'value' => 'Treat the no-accrual effect as a review-only exception until the Galaxy foundation layer can safely reproduce the old block semantics.'],
                 ],
                 'timeline' => [
                     ['title' => 'Night service block selected for exception review', 'time' => 'Current request', 'description' => 'This preview now keeps the draft exclusion rule in a dedicated Galaxy review context instead of leaving it as a flat table row.'],
@@ -416,7 +416,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Selected rule', 'value' => 'Night service block'],
                     ['label' => 'Rule status signal', 'value' => 'Draft exclusion rule remains safer for bar-service-exclusion parity review before any live-publish-flow discussion.'],
                     ['label' => 'Scope posture', 'value' => 'North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.'],
-                    ['label' => 'Priority posture', 'value' => 'Blocking-rule order is still preview-only until exclusion precedence is validated in Laravel.'],
+                    ['label' => 'Priority posture', 'value' => 'Blocking-rule order is still preview-only until exclusion precedence is validated in the Galaxy foundation layer.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->servicesRulesBackendGap('night-service-block')],
                 ],
             ],
@@ -2731,7 +2731,7 @@ class ResourceIndexController extends Controller
     private function servicesRulesSelectedReviewPrioritiesDisabledReason(array $selectedRulePreview): string
     {
         return match (true) {
-            ($selectedRulePreview['status'] ?? null) === 'draft' => 'Blocked until draft rule priority order is verified against legacy exclusion precedence in Laravel.',
+            ($selectedRulePreview['status'] ?? null) === 'draft' => 'Blocked until draft rule priority order is verified against legacy exclusion precedence in the Galaxy foundation layer.',
             ($selectedRulePreview['scope'] ?? null) !== 'All shops' => 'Blocked until scoped rule priority order is verified against broader loyalty overlaps in Laravel.',
             default => 'Blocked until all-shop rule priority order is verified in Laravel.',
         };

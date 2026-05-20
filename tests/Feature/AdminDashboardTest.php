@@ -8104,7 +8104,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('/admin/services-rules')
             ->assertSee('Reviewing: Night service block')
             ->assertSee('Review priorities')
-            ->assertSee('Blocked until draft rule priority order is verified against legacy exclusion precedence in Laravel.')
+            ->assertSee('Blocked until draft rule priority order is verified against legacy exclusion precedence in the Galaxy foundation layer.')
             ->assertSee('Publish Galaxy rule')
             ->assertSee('Blocked until this draft rule clears CRUD, exclusion-parity, and publish-safety checks beyond the preview shell.')
             ->assertSee('Selected rule preview')
@@ -8131,7 +8131,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope, blocking condition, and no-accrual effect should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Rule persistence, exclusion validation, and publish flow should stay preview-only until bar-service-exclusion parity is verified.')
-            ->assertSee('North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.');
+            ->assertSee('North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.')
+            ->assertSee('Blocking-rule order is still preview-only until exclusion precedence is validated in the Galaxy foundation layer.')
+            ->assertSee('Treat the no-accrual effect as a review-only exception until the Galaxy foundation layer can safely reproduce the old block semantics.');
     }
 
     public function test_services_rules_page_supports_selected_scoped_rule_review_context(): void
