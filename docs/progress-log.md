@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Phase-1 shell-note wording checkpoint
+- Aligned a narrow admin-shell note in `docs/phase-1-plan.md`, switching `real Laravel writes/reads` wording to `real Galaxy foundation writes/reads` so the Phase 1 guidance matches the newer Galaxy-specific foundation framing.
+- Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated shell-note wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align planning language with the repo's current Galaxy foundation vocabulary.
+
 ### README phase-focus wording checkpoint
 - Aligned a narrow `README.md` Phase 1 focus line away from leftover `Laravel-backed` framing, switching the safe read/write milestone to `Galaxy foundation-backed read and write slices`.
 - Re-ran a focused grep check on `README.md` to confirm the updated Phase 1 focus wording is in place.
