@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Normalizer unit-wording checkpoint
+- Aligned a narrow `AdminResourcePageNormalizerTest` fixture slice away from leftover `Laravel` wording, switching repeated live-form titles and a nested preview description to `Galaxy foundation` language.
+- Re-ran `php artisan test --filter='test_normalize_live_form_keeps_valid_fields_and_ignores_malformed_entries|test_normalize_live_form_defaults_invalid_method_to_post|test_normalize_live_form_keeps_valid_cancel_action|test_normalize_filters_malformed_nested_page_metadata'`; the focused normalizer wording slice passed (`4 passed`).
+- Noted an unrelated pre-existing drift elsewhere in the same unit class around table-row normalization, so I kept this step narrow instead of broadening into behavior changes.
+
 ### Cardholders selected-query wording checkpoint
 - Aligned a narrow `cardholders` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
 - Dropped stale negative checks for `Back to holder catalog` and `Selected holder`, because the current fallback workspace legitimately renders those strings while still ignoring malformed or unknown query values.
