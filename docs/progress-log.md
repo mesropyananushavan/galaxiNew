@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Scaffold-defaults framing checkpoint
+- Aligned the top-level Phase 1 objective wording in `README.md` and `docs/phase-1-plan.md` from `starter scaffolding` to `scaffold defaults`, trimming one more starter-era framing tail from the repo's main migration guidance.
+- Re-checked the touched guidance lines with focused `grep` verification to confirm the new copy is present and the old `starter scaffolding` phrase is gone from those files.
+- Kept the step intentionally small, but moved it through the main repo guidance rather than continuing to grow the landing-page surface.
+
 ### README framework-tail checkpoint
 - Aligned three remaining top-level README posture lines away from starter/framework framing: `framework scaffolding` became `default framework structure`, `generic framework cleanup` became `generic cleanup`, and `starter-era tasks` became `scaffold-era tasks`.
 - Re-checked the touched README slice with focused `grep` verification to confirm the new copy is present and the replaced starter/framework tails are gone.
