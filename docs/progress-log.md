@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Phase-1 objective wording checkpoint
+- Aligned a narrow objective line in `docs/phase-1-plan.md`, trimming the leftover `generic starter scaffolding` phrasing down to `starter scaffolding` so the plan keeps the focus on Galaxy foundation work instead of generic framing.
+- Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated objective wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten top-level Phase 1 planning guidance.
+
 ### Phase-1 definition wording checkpoint
 - Aligned a narrow definition-of-done line in `docs/phase-1-plan.md`, trimming the leftover `empty starter` phrasing down to `empty scaffold` so the plan keeps the focus on Galaxy foundation progress instead of starter-era wording.
 - Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated definition wording is in place.
