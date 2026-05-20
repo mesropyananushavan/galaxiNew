@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Cardholders catalog activity wording checkpoint
+- Aligned the remaining active-holder fallback in the `cardholders` catalog helper away from generic `Laravel` wording, switching the parity-review activity-source copy to Galaxy foundation language.
+- Kept the step isolated to `ResourceIndexController` because the nearby cardholders test cluster already exercises the catalog and selected-holder render paths without hard-coding that fallback branch.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context'`; the focused cardholders slice passed (`3 passed`).
+
 ### Cardholders activity-source wording checkpoint
 - Aligned a narrow selected `cardholders` helper slice away from generic `Laravel` wording, covering active, inactive, linked, unlinked, and paused-branch activity disabled reasons in the selected holder review surface.
 - Updated the matching `AdminDashboardTest` assertions for the selected holder, active linked holder, active unlinked holder, inactive linked holder, and paused-branch holder review contexts.

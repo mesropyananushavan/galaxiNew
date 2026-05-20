@@ -2596,7 +2596,7 @@ class ResourceIndexController extends Controller
             $pausedBranchCount > 0 && $linkedCards > 0 => 'Blocked until paused-branch linked-holder activity is verified against legacy lookup recovery history.',
             $pausedBranchCount > 0 => 'Blocked until paused-branch holder activity is verified against legacy lookup recovery history.',
             $linkedCards > 0 => 'Blocked until linked-holder activity coverage is verified against legacy lookup history.',
-            $activeCount > 0 => 'Blocked until active-holder coverage has a stable Laravel activity source for parity review.',
+            $activeCount > 0 => 'Blocked until active-holder coverage has a stable Galaxy foundation activity source for parity review.',
             default => 'Blocked until the first Galaxy foundation-backed cardholder slice exists for activity-history parity review.',
         };
     }
