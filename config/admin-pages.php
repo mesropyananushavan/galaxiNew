@@ -1066,7 +1066,7 @@ return [
             'summary' => 'Known access-control migration gaps that still block safe rollout.',
             'items' => [
                 'Cashier assignment rules remain unverified against legacy shop-scoped behavior.',
-                'Permission matrix editing is still undefined for the first Laravel write slice.',
+                'Permission matrix editing is still undefined for the first Galaxy foundation write slice.',
             ],
         ],
         'implementationHandoff' => [

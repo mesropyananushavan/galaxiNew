@@ -1180,6 +1180,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Hand off draft roles with the exact legacy bundle they are meant to mirror.')
             ->assertSee('Open issues to carry')
             ->assertSee('Cashier assignment rules remain unverified against legacy shop-scoped behavior.')
+            ->assertSee('Permission matrix editing is still undefined for the first Galaxy foundation write slice.')
             ->assertSee('First Galaxy foundation wiring step')
             ->assertSee('Build on the new minimal role create/update path before exposing full assignment screens.')
             ->assertSee('Keep role identity persistence stable before tackling permission matrix editing.')

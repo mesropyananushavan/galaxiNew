@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Roles permission-matrix wording checkpoint
+- Aligned a narrow live `roles-permissions` open-issues slice away from leftover `Laravel` wording, switching the permission-matrix blocker to `first Galaxy foundation write slice` language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertion so the rendered access-control workspace keeps covering that visible migration-gap copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview'`; the focused roles-permissions preview slice passed (`1 passed`).
+
 ### Gifts validation-wording checkpoint
 - Aligned a narrow live `gifts` implementation-handoff slice away from leftover `Laravel` wording, switching the warehouse-sync open issue and minimal form-wiring step to `Galaxy foundation` language in `config/admin-pages.php`.
 - Updated the matching `AdminDashboardTest` assertions so the rendered gifts workspace keeps covering those visible migration-gap and handoff strings.
