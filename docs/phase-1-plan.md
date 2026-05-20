@@ -23,7 +23,7 @@ Turn `galaxiNew` from generic starter scaffolding into a Galaxy-specific applica
 - core entities exist as Laravel models/migrations
 - admin shell reflects target sections
 - authorization baseline exists
-- project is visibly no longer an empty starter
+- project is visibly no longer an empty scaffold
 
 ## Current admin shell structure note
 - The Phase 1 admin shell is now intentionally layered so parity-first UI work can keep moving while PHP execution is unavailable.

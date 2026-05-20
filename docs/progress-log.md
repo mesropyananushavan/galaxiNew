@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Phase-1 definition wording checkpoint
+- Aligned a narrow definition-of-done line in `docs/phase-1-plan.md`, trimming the leftover `empty starter` phrasing down to `empty scaffold` so the plan keeps the focus on Galaxy foundation progress instead of starter-era wording.
+- Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated definition wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten top-level Phase 1 planning guidance.
+
 ### Blueprint phase-goal wording checkpoint
 - Aligned a narrow Phase 1 goal line in `docs/blueprint.md`, trimming the leftover `generic starter baseline` phrasing down to `starter baseline` so the blueprint keeps the focus on Galaxy-specific foundation work instead of generic starter framing.
 - Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated Phase 1 goal wording is in place.
