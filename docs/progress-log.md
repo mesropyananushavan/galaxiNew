@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Blueprint baseline-framing checkpoint
+- Aligned the Phase 1 goal in `docs/blueprint.md` from `starter baseline` to `placeholder baseline`, trimming one more starter-era framing tail from the core migration blueprint.
+- Re-checked the touched blueprint line with focused `grep` verification to confirm the new copy is present and the old `starter baseline` phrase is gone from that file.
+- Kept the step intentionally small, but moved it through the main migration blueprint instead of continuing to grow the landing-page surface.
+
 ### Scaffold-defaults framing checkpoint
 - Aligned the top-level Phase 1 objective wording in `README.md` and `docs/phase-1-plan.md` from `starter scaffolding` to `scaffold defaults`, trimming one more starter-era framing tail from the repo's main migration guidance.
 - Re-checked the touched guidance lines with focused `grep` verification to confirm the new copy is present and the old `starter scaffolding` phrase is gone from those files.

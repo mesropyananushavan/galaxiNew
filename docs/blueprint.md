@@ -42,7 +42,7 @@
 
 ## Phase 1
 ### Goal
-Create the real application foundation for Galaxy, not just a starter baseline.
+Create the real application foundation for Galaxy, not just a placeholder baseline.
 
 ### Scope
 - define target admin information architecture
