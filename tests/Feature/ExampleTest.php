@@ -24,6 +24,7 @@ class ExampleTest extends TestCase
             ->assertSee('docs/decisions.md')
             ->assertSee('docs/module_mapping.md')
             ->assertSee('docs/db_schema.md')
+            ->assertSee('docs/api_endpoints.md')
             ->assertSee('docs/checkpoints/')
             ->assertSee('docs/qa-test-environment.md')
             ->assertSee('docs/progress-log.md')
