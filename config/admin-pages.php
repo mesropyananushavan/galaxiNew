@@ -940,7 +940,7 @@ return [
                 'tone' => 'primary',
                 'href' => '#live-form',
             ],
-            ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.'],
+            ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Galaxy foundation permission matrix can be verified against legacy staff access.'],
         ],
         'metrics' => [
             ['label' => 'Active Galaxy access shells', 'value' => '2'],
@@ -976,7 +976,7 @@ return [
                 ['name' => 'access_note', 'label' => 'Access note', 'type' => 'textarea', 'value' => 'Confirm the branch access handoff before operators rely on this live role shell.', 'required' => false, 'placeholder' => 'Capture operator-facing access handoff notes for this Laravel role shell.', 'help' => 'Keep access guidance visible here without opening assignment or permission-matrix writes.', 'attributes' => ['maxlength' => '1000']],
                 ['name' => 'assignment_note', 'label' => 'Assignment note', 'type' => 'textarea', 'value' => 'Keep assignment rollout review-only until legacy staff mapping is verified.', 'required' => false, 'placeholder' => 'Capture assignment handoff notes without opening staff assignment writes.', 'help' => 'Use this safe Phase 1 note to document assignment review context while assignment flows stay blocked.', 'attributes' => ['maxlength' => '1000']],
                 ['name' => 'scope_rollout', 'label' => 'Scope rollout', 'type' => 'select', 'value' => 'shop-scope-pending', 'required' => false, 'help' => 'Phase 1 keeps shop scope review-only until the next thin write slice is ready.', 'attributes' => ['disabled' => true], 'options' => [['value' => 'shop-scope-pending', 'label' => 'Shop scope still pending'], ['value' => 'shop-scope-visible', 'label' => 'Shop scope visible in review'], ['value' => 'global-review', 'label' => 'Global review only']]],
-                ['name' => 'publish_posture', 'label' => 'Publish posture', 'type' => 'select', 'value' => 'draft-only', 'required' => false, 'help' => 'Publishing remains blocked even though role identity and status can already be saved in Laravel.', 'attributes' => ['disabled' => true], 'options' => [['value' => 'draft-only', 'label' => 'Draft-safe only'], ['value' => 'parity-sensitive', 'label' => 'Parity-sensitive live bundle'], ['value' => 'assignment-sensitive', 'label' => 'Assignment-sensitive live bundle']]],
+                ['name' => 'publish_posture', 'label' => 'Publish posture', 'type' => 'select', 'value' => 'draft-only', 'required' => false, 'help' => 'Publishing remains blocked even though role identity and status can already be saved in the Galaxy foundation layer.', 'attributes' => ['disabled' => true], 'options' => [['value' => 'draft-only', 'label' => 'Draft-safe only'], ['value' => 'parity-sensitive', 'label' => 'Parity-sensitive live bundle'], ['value' => 'assignment-sensitive', 'label' => 'Assignment-sensitive live bundle']]],
             ],
         ],
         'form' => [

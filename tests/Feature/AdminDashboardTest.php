@@ -1142,7 +1142,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Phase 1 keeps shop scope review-only until the next thin write slice is ready.')
             ->assertSee('Publish posture')
             ->assertSee('Draft-safe only')
-            ->assertSee('Publishing remains blocked even though role identity and status can already be saved in Laravel.')
+            ->assertSee('Publishing remains blocked even though role identity and status can already be saved in the Galaxy foundation layer.')
             ->assertSee('Create or edit Galaxy role')
             ->assertSee('Publish access')
             ->assertSee('Blocked until role persistence and shop-scoped parity checks exist beyond the preview shell.')

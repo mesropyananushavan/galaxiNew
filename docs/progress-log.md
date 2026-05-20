@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Roles-permissions preview wording checkpoint
+- Aligned a tiny `roles-permissions` admin-form slice away from generic `Laravel` wording, covering the publish-posture help text and adjacent review-matrix disabled reason in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertion for the management-preview surface after a focused rerun exposed the stale neighboring matrix copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview'`; the focused roles-permissions preview slice passed (`1 passed`).
+
 ### Reports preset-helper wording checkpoint
 - Aligned a narrow `reports` helper slice away from generic `Laravel` wording, covering the catalog and selected-source preset disabled-reason copy that still referred to reporting-flow validation in Laravel.
 - Updated the matching `AdminDashboardTest` assertion for the reports catalog surface and rechecked adjacent selected-source reporting paths.
