@@ -917,14 +917,14 @@ return [
             'summary' => 'Known gift migration gaps that still block safe rollout.',
             'items' => [
                 'Premium dessert set remains paused until zero-stock parity is confirmed.',
-                'Warehouse synchronization is still undefined for the first Laravel write slice.',
+                'Warehouse synchronization is still undefined for the first Galaxy foundation write slice.',
             ],
         ],
         'implementationHandoff' => [
             'summary' => 'When PHP is available, begin with basic gift CRUD and defer stock synchronization until after the first write path works.',
             'steps' => [
                 'Create a gift model and migration with name, cost, scope, and stock fields.',
-                'Wire a minimal create and edit form flow through Laravel validation.',
+                'Wire a minimal create and edit form flow through Galaxy foundation validation.',
                 'Treat warehouse sync and redemption logs as a later follow-up slice.',
             ],
         ],

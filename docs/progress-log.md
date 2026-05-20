@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Gifts validation-wording checkpoint
+- Aligned a narrow live `gifts` implementation-handoff slice away from leftover `Laravel` wording, switching the warehouse-sync open issue and minimal form-wiring step to `Galaxy foundation` language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertions so the rendered gifts workspace keeps covering those visible migration-gap and handoff strings.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'`; the focused gifts preview slice passed (`1 passed`).
+
 ### Cards handlers-wording checkpoint
 - Aligned a narrow live `cards` preview slice away from leftover `Laravel` wording, switching the notice and readiness-checklist blocker to `Galaxy foundation` handlers and wiring language in `config/admin-pages.php`.
 - Updated the matching `AdminDashboardTest` assertions so the rendered cards workspace keeps covering that visible Phase 1 blocker copy.
