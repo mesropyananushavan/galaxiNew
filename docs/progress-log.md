@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### README intro-wording checkpoint
+- Aligned the top README intro line in `README.md`, switching `Laravel target for the Galaxy migration` to `Galaxy foundation target for the migration` so the repo opens with more product-first framing.
+- Re-ran a focused grep check on `README.md` to confirm the updated intro wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten Galaxy-specific migration framing across the repo.
+
 ### README repo-posture wording checkpoint
 - Aligned a narrow repo-posture line in `README.md`, trimming `polished starter scaffolding` down to `polished scaffold` so the top-level project framing keeps moving away from starter-era wording.
 - Re-ran a focused grep check on `README.md` to confirm the updated repo-posture wording is in place.
