@@ -62,7 +62,7 @@ class StoreCardRequest extends FormRequest
     {
         return [
             'card_holder_id.exists' => 'Choose a cardholder from the same shop so the Galaxy inventory shell keeps holder linkage scoped correctly.',
-            'number.unique' => 'This card number is already in use in the Laravel inventory shell.',
+            'number.unique' => 'This card number is already in use in the Galaxy foundation inventory shell.',
             'issued_at.date' => 'Use a real issue timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
             'issued_at.required_with' => 'Add an issue timestamp before activation so the Galaxy lifecycle timeline stays operator-friendly.',
             'issued_at.required_if' => 'Add an issue timestamp before blocking this card so the Galaxy lifecycle timeline stays operator-friendly.',

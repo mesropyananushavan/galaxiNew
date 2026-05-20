@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Cards duplicate-number validation wording checkpoint
+- Aligned the live `StoreCardRequest` duplicate-number validation message away from leftover `Laravel` wording, switching the inventory-shell error copy to `Galaxy foundation` language.
+- Synced the matching duplicate-card assertions in `AdminDashboardTest` so the live card write path keeps checking the updated backend validation wording.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_create_card_from_live_admin_flow|test_card_live_flow_rejects_duplicate_number_after_normalization|test_card_update_rejects_duplicate_number_after_normalization'`; the matched focused cards write slice passed (`1 passed`).
+
 ### Roles live-form slug-helper wording checkpoint
 - Aligned a narrow live `roles-permissions` form slice away from leftover `Laravel` wording, switching the slug helper text to `Galaxy foundation` language and syncing the adjacent role-note placeholders in `config/admin-pages.php`.
 - Added a matching stable visible-copy assertion in `AdminDashboardTest` for the live roles form so the helper wording stays covered without depending on placeholder markup.

@@ -3656,7 +3656,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertRedirect('/admin/cards#live-form')
             ->assertSessionHasErrors([
-                'number' => 'This card number is already in use in the Laravel inventory shell.',
+                'number' => 'This card number is already in use in the Galaxy foundation inventory shell.',
             ]);
     }
 
@@ -12038,7 +12038,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertRedirect(route('admin.cards.index', ['card' => $cardToUpdate], absolute: false).'#live-form')
             ->assertSessionHasErrors([
-                'number' => 'This card number is already in use in the Laravel inventory shell.',
+                'number' => 'This card number is already in use in the Galaxy foundation inventory shell.',
             ]);
 
         $this->assertDatabaseHas('cards', [
