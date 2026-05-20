@@ -19,6 +19,7 @@ class ExampleTest extends TestCase
             ->assertSee('Cardholders and card inventory foundations')
             ->assertSee('Land small safe foundation slices with visible Git history')
             ->assertSee('docs/admin-shell-layering.md')
+            ->assertSee('docs/checkpoints/')
             ->assertSee('docs/progress-log.md')
             ->assertSee('Open admin workspace')
             ->assertSee('Phase 1 snapshot');
