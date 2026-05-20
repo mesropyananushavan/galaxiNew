@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Roles permission-note metric checkpoint
+- Tightened the live `roles-permissions` management metric label from `Galaxy permission review notes` to `Permission-linked Galaxy review notes` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot reads more like a real permission artifact and less like a vague note bucket.
+- Synced the focused roles assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but moved it onto a live admin surface instead of another docs-only framing pass.
+
 ### Blueprint baseline-framing checkpoint
 - Aligned the Phase 1 goal in `docs/blueprint.md` from `starter baseline` to `placeholder baseline`, trimming one more starter-era framing tail from the core migration blueprint.
 - Re-checked the touched blueprint line with focused `grep` verification to confirm the new copy is present and the old `starter baseline` phrase is gone from that file.
