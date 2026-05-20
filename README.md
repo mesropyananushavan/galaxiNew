@@ -100,7 +100,7 @@ Keep changes small, safe, and migration-oriented. Prefer visible improvements to
 - https://laracasts.com
 - https://laravel.com/learn
 
-The Galaxy foundation structure should still keep this repo friendly to coding agents, but agent work should stay anchored to the Galaxy migration blueprint rather than generic starter tasks.
+The Galaxy foundation structure should still keep this repo friendly to coding agents, but agent work should stay anchored to the Galaxy migration blueprint rather than starter-era tasks.
 
 ```bash
 composer require laravel/boost --dev

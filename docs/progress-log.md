@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### README agent-task wording checkpoint
+- Aligned a narrow coding-agent guidance line in `README.md`, replacing the leftover `generic starter tasks` phrasing with `starter-era tasks` so the top-level repo guidance keeps moving away from generic starter framing.
+- Re-ran a focused grep check on `README.md` to confirm the updated agent-task wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten Galaxy-specific migration framing across the repo.
+
 ### README intro-wording checkpoint
 - Aligned the top README intro line in `README.md`, switching `Laravel target for the Galaxy migration` to `Galaxy foundation target for the migration` so the repo opens with more product-first framing.
 - Re-ran a focused grep check on `README.md` to confirm the updated intro wording is in place.
