@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Cardholders review-mode wording checkpoint
+- Aligned a narrow selected `cardholders` review-mode helper string away from generic `Laravel` wording, switching the live-profile lookup-surface copy to Galaxy foundation language.
+- Kept the step isolated to `ResourceIndexController` because the nearby selected-holder test cluster already exercises the affected review surfaces without hard-coding that exact line.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`; the focused cardholders slice passed (`3 passed`).
+
 ### Cards draft-lifecycle wording checkpoint
 - Aligned the remaining draft-card lifecycle fallback in the selected `cards` helper away from generic `Laravel` wording, switching the issuance-rule confirmation copy to Galaxy foundation language.
 - Kept the step isolated to `ResourceIndexController` because the nearby selected-card test cluster already exercises the draft and blocked review surfaces without pinning that exact fallback string.
