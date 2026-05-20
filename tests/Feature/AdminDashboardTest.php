@@ -1300,7 +1300,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft Galaxy access shells')
             ->assertSee('Reviewed Galaxy access shells')
             ->assertSee('Galaxy access notes')
-            ->assertSee('Galaxy assignment notes')
+            ->assertSee('Role-assignment Galaxy notes')
             ->assertSee('Permission-linked Galaxy review notes')
             ->assertSee('Scoped Galaxy branches')
             ->assertSee('active')

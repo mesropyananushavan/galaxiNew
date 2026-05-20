@@ -669,7 +669,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Draft Galaxy access shells', 'value' => (string) $roles->where('is_active', false)->count()],
             ['label' => 'Reviewed Galaxy access shells', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->review_note))->count()],
             ['label' => 'Galaxy access notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->access_note))->count()],
-            ['label' => 'Galaxy assignment notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->assignment_note))->count()],
+            ['label' => 'Role-assignment Galaxy notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->assignment_note))->count()],
             ['label' => 'Permission-linked Galaxy review notes', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->permissions->pluck('review_note'))->filter(fn (mixed $note): bool => filled($note))->count()],
             ['label' => 'Scoped Galaxy branches', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
         ];

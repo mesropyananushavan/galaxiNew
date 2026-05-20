@@ -947,7 +947,7 @@ return [
             ['label' => 'Draft Galaxy access shells', 'value' => '1'],
             ['label' => 'Reviewed Galaxy access shells', 'value' => '2'],
             ['label' => 'Galaxy access notes', 'value' => '1'],
-            ['label' => 'Galaxy assignment notes', 'value' => '1'],
+            ['label' => 'Role-assignment Galaxy notes', 'value' => '1'],
             ['label' => 'Permission-linked Galaxy review notes', 'value' => '2'],
             ['label' => 'Scoped Galaxy branches', 'value' => '3'],
         ],
