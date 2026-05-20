@@ -1,7 +1,7 @@
 # Galaxi Migration Blueprint
 
 ## Short conclusion
-`galaxiNew` should become a simple Laravel monolith that reproduces the critical business behavior and operational UX of `galaxiOld` before introducing any non-essential improvements.
+`galaxiNew` should become a Galaxy-focused Laravel monolith that reproduces the critical business behavior and operational UX of `galaxiOld` before introducing any non-essential improvements.
 
 ## Target product posture
 - `galaxiOld` is the source of truth for business behavior and UX patterns.
