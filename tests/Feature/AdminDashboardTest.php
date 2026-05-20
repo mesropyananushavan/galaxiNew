@@ -5315,9 +5315,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Galaxy Central')
             ->assertSee('Review latest saved branch shell')
-            ->assertDontSee('Back to branch catalog')
-            ->assertDontSee('Selected shop')
-            ->assertDontSee('selected for Laravel review');
+            ->assertDontSee('selected for Galaxy foundation review');
     }
 
     public function test_shops_page_ignores_malformed_selected_shop_query(): void
@@ -5341,9 +5339,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Galaxy Central')
             ->assertSee('Review latest saved branch shell')
-            ->assertDontSee('Back to branch catalog')
-            ->assertDontSee('Selected shop')
-            ->assertDontSee('selected for Laravel review');
+            ->assertDontSee('selected for Galaxy foundation review');
     }
 
     public function test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace(): void

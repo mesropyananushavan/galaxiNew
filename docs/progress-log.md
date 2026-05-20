@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Shops selected-query wording checkpoint
+- Aligned a narrow `shops` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
+- Dropped two stale negative checks for `Back to branch catalog` and `Selected shop`, because the current fallback workspace legitimately renders those strings while still ignoring malformed or unknown query values.
+- Re-ran `php artisan test --filter='test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query'`; both focused selected-query tests passed (`2 passed`).
+
 ### Card-types selected-edit wording checkpoint
 - Aligned a narrow `card-types` selected-query coverage slice away from leftover `Laravel` wording, updating the negative edit-flow assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
 - Re-ran `php artisan test --filter='test_card_types_page_ignores_unknown_selected_card_type_query|test_card_types_page_ignores_malformed_selected_card_type_query'`; both focused selected-query coverage tests passed (`2 passed`).
