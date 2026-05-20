@@ -15,6 +15,7 @@ class ExampleTest extends TestCase
             ->assertOk()
             ->assertSee('Galaxy-specific foundation, not generic scaffolding.')
             ->assertSee('Galaxy foundation home for admin flows')
+            ->assertSee('replacing scaffold defaults with Galaxy operational context')
             ->assertSee('Open admin workspace')
             ->assertSee('Phase 1 snapshot');
     }

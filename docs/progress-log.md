@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome snapshot wording checkpoint
+- Aligned the public landing snapshot copy in `resources/views/welcome.blade.php`, replacing `starter defaults` with `scaffold defaults` so the live Phase 1 landing page keeps shedding starter-era wording.
+- Expanded `tests/Feature/ExampleTest.php` to assert the updated snapshot sentence and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while continuing the move from docs-only wording cleanup into visible UI copy plus focused coverage.
+
 ### Welcome hero wording checkpoint
 - Aligned the public landing hero in `resources/views/welcome.blade.php`, replacing `Galaxy-specific foundation, not a generic starter.` with `Galaxy-specific foundation, not generic scaffolding.` so the live Phase 1 landing page keeps shedding starter-era wording.
 - Synced `tests/Feature/ExampleTest.php` with the new welcome-page headline and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
