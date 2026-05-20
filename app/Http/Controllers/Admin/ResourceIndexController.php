@@ -2751,8 +2751,8 @@ class ResourceIndexController extends Controller
         return match (true) {
             $selectedCard->status === 'blocked' && $selectedCard->holder !== null => 'Blocked until this blocked holder-linked card clears dispute and replacement parity against the legacy Galaxy flow.',
             $selectedCard->status === 'blocked' => 'Blocked until this blocked card clears dispute and replacement parity against the legacy Galaxy flow.',
-            $selectedCard->status === 'active' => 'Blocked until blocked-card semantics are verified against this active Laravel inventory flow.',
-            default => 'Blocked until blocked-card semantics are verified against this draft Laravel inventory flow.',
+            $selectedCard->status === 'active' => 'Blocked until blocked-card semantics are verified against this active Galaxy foundation inventory flow.',
+            default => 'Blocked until blocked-card semantics are verified against this draft Galaxy foundation inventory flow.',
         };
     }
 

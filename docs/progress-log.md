@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Cards blocked-review wording checkpoint
+- Aligned a narrow selected `cards` helper slice away from generic `Laravel` wording, covering the active and draft blocked-review disabled-reason copy for selected card review states.
+- Updated the matching `AdminDashboardTest` assertions for the selected active-card and draft-card review surfaces.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`; the focused cards slice passed (`2 passed`).
+
 ### Roles-permissions preview wording checkpoint
 - Aligned a tiny `roles-permissions` admin-form slice away from generic `Laravel` wording, covering the publish-posture help text and adjacent review-matrix disabled reason in `config/admin-pages.php`.
 - Updated the matching `AdminDashboardTest` assertion for the management-preview surface after a focused rerun exposed the stale neighboring matrix copy.
