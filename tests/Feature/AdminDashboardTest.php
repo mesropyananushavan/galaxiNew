@@ -9581,6 +9581,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Legacy reward catalog mapped')
             ->assertSee('Real redemption and stock sync need PHP-backed flows')
             ->assertSee('Coffee voucher stock policy checked')
+            ->assertSee('Unlimited stock remains the baseline until real warehouse sync is wired in the Galaxy foundation.')
             ->assertSee('Premium dessert set paused')
             ->assertSee('Old Galaxy gift and reward list')
             ->assertSee('stock-aware redemption')

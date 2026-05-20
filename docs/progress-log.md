@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Gifts warehouse-sync wording checkpoint
+- Aligned a narrow live `gifts` activity-timeline slice away from leftover `Laravel` wording, switching the coffee-voucher warehouse-sync note to `Galaxy foundation` language in `config/admin-pages.php`.
+- Added the matching visible-copy assertion in `AdminDashboardTest` so the rendered gifts management timeline keeps covering the updated wording.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview|test_authenticated_user_can_access_gifts_operational_index_shape'`; the focused gifts slice passed (`2 passed`).
+
 ### Welcome landing foundation-wording checkpoint
 - Aligned the public landing hero away from leftover `Laravel` framing, switching the main headline, intro sentence, and target-posture snapshot in `resources/views/welcome.blade.php` to clearer `Galaxy foundation` language.
 - Updated `ExampleTest` so the homepage assertion now checks the new foundation-first landing copy.

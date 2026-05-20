@@ -878,7 +878,7 @@ return [
             ['label' => 'Migration note', 'value' => 'Preserve the existing reward catalog shape before expanding campaign logic'],
         ],
         'activityTimeline' => [
-            ['title' => 'Coffee voucher stock policy checked', 'time' => 'Today, 11:10', 'description' => 'Unlimited stock remains the baseline until real warehouse sync is wired in Laravel.'],
+            ['title' => 'Coffee voucher stock policy checked', 'time' => 'Today, 11:10', 'description' => 'Unlimited stock remains the baseline until real warehouse sync is wired in the Galaxy foundation.'],
             ['title' => 'Premium dessert set paused', 'time' => 'Yesterday, 15:45', 'description' => 'Reward stayed paused to mirror zero-stock behavior from the legacy catalog.'],
         ],
         'readinessChecklist' => [
