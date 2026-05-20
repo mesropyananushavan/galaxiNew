@@ -687,7 +687,7 @@ return [
                 'disabled' => true,
                 'disabledReason' => 'Blocked until the first Galaxy foundation-backed service-rule write flow exists for group, scope, effect, and priority.',
             ],
-            ['label' => 'Review priorities', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until rule priority resolution is verified in Laravel.'],
+            ['label' => 'Review priorities', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until rule priority resolution is verified in the Galaxy foundation.'],
         ],
         'metrics' => [
             ['label' => 'Active Galaxy rules', 'value' => '2'],

@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Services-rules priority-blocker wording checkpoint
+- Aligned a narrow live `services-rules` action blocker away from leftover `Laravel` wording, switching the disabled `Review priorities` reason to `Galaxy foundation` language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertion so the rendered rules management preview keeps covering the visible blocker copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview'`; the focused services-rules preview slice passed (`1 passed`).
+
 ### Gifts stock-audit blocker wording checkpoint
 - Aligned a narrow live `gifts` management blocker away from leftover `Laravel` wording, switching the disabled stock-audit reason to `Galaxy foundation inventory data` in `config/admin-pages.php`.
 - Updated the matching `AdminDashboardTest` assertion so the rendered gifts management preview keeps covering the visible blocker copy.
