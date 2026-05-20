@@ -226,12 +226,12 @@ class ResourceIndexController extends Controller
                     ['label' => 'Receipt status signal', 'value' => 'Branch receipt is already visible for shop-aware ledger parity review.'],
                     ['label' => 'Receipt focus', 'value' => 'Start with local shop evidence before comparing this receipt against cross-branch behavior.'],
                     ['label' => 'Receipt handoff signal', 'value' => 'Carry branch receipt and shop context forward before any cross-branch troubleshooting expands.'],
-                    ['label' => 'Receipt posture', 'value' => 'Branch receipt lookup should stay read-only until Laravel shop filters and transaction history are verified against the old flow.'],
+                    ['label' => 'Receipt posture', 'value' => 'Branch receipt lookup should stay read-only until Galaxy foundation shop filters and transaction history are verified against the old flow.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep shop, amount, and points visible together before comparing this branch receipt against other locations.'],
                     ['label' => 'Accrual posture', 'value' => 'North Shop accrual receipts should stay branch-aware, because cross-shop troubleshooting must preserve local receipt context.'],
                     ['label' => 'Backend gap', 'value' => $this->checksPointsBackendGap('chk-90388')],
                     ['label' => 'Format guidance', 'value' => 'Keep branch receipts in table-first review mode, because operators need the shop, amount, and points visible together before cross-shop comparisons begin.'],
-                    ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and shop-aware filters exist.'],
+                    ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Galaxy foundation transaction history and shop-aware filters exist.'],
                 ],
                 'timeline' => [
                     ['title' => 'CHK-90388 selected for branch receipt review', 'time' => 'Current request', 'description' => 'This preview now keeps the North Shop receipt in a dedicated Galaxy review context instead of a flat transaction row.'],
@@ -241,7 +241,7 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected receipt', 'value' => 'CHK-90388'],
                     ['label' => 'Receipt status signal', 'value' => 'Branch receipt is already visible for shop-aware ledger parity review.'],
-                    ['label' => 'Receipt posture', 'value' => 'Branch receipt lookup should stay read-only until Laravel shop filters and transaction history are verified against the old flow.'],
+                    ['label' => 'Receipt posture', 'value' => 'Branch receipt lookup should stay read-only until Galaxy foundation shop filters and transaction history are verified against the old flow.'],
                     ['label' => 'Accrual posture', 'value' => 'Positive branch accrual outcomes still need live transaction-domain parity before any adjustment path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->checksPointsBackendGap('chk-90388')],
                 ],

@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Checks-points branch-receipt wording checkpoint
+- Aligned a narrow selected `checks-points` branch-receipt slice away from generic `Laravel` wording, covering the CHK-90388 receipt-posture and troubleshooting-guidance copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected branch receipt review surface.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context'`; the focused checks-points slice passed (`3 passed`).
+
 ### Checks-points positive-accrual wording checkpoint
 - Aligned a narrow selected `checks-points` positive-accrual receipt slice away from generic `Laravel` wording, covering the CHK-90421 receipt-posture and troubleshooting-guidance copy.
 - Updated the matching `AdminDashboardTest` assertions for the selected positive-accrual receipt review surface.
