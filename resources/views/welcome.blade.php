@@ -197,7 +197,7 @@
                 <aside class="card status">
                     <div>
                         <h2>Phase 1 snapshot</h2>
-                        <p>Parity first, redesign later. The current shell is focused on replacing scaffold defaults with Galaxy operational context.</p>
+                        <p>Parity first, redesign later. The current foundation layer is focused on replacing scaffold defaults with Galaxy operational context.</p>
                     </div>
 
                     <div class="status-row">
