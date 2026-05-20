@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Shops queries-wording checkpoint
+- Aligned a narrow live `shops` preview slice away from leftover `Laravel` wording, switching the notice and readiness-checklist blocker to `Galaxy foundation` queries and wiring language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertions so the rendered shops workspace keeps covering that visible Phase 1 blocker copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape'`; the focused shops preview slice passed (`1 passed`).
+
 ### Checks-points receipts wording checkpoint
 - Aligned a narrow live `checks-points` preview slice away from leftover `Laravel` wording, switching the receipts notice and readiness-checklist blocker to `Galaxy foundation` language in `config/admin-pages.php`.
 - Updated the matching `AdminDashboardTest` receipts-preview assertions, including the neighboring zero-accrual blocker expectation that had drifted from the rendered copy.

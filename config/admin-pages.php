@@ -61,12 +61,12 @@ return [
         ],
         'notice' => [
             'title' => 'Shop operations are still preview-only',
-            'description' => 'Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Laravel queries or handlers yet.',
+            'description' => 'Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Galaxy foundation queries or handlers yet.',
         ],
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Preview shop rows and branch actions defined'],
             ['status' => 'ready', 'label' => 'Operational parity cues for scope and manager ownership are visible'],
-            ['status' => 'pending', 'label' => 'Real shop queries and branch mutations still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 'Real shop queries and branch mutations still need PHP-backed Galaxy foundation wiring'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Shop model and user-to-shop linkage baseline exist'],
