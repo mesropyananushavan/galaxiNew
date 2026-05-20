@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Gifts stock-audit wording checkpoint
+- Aligned a narrow selected `gifts` helper slice away from generic `Laravel` wording, covering zero-stock, finite-stock, and all-shop stock-audit disabled reasons in the selected reward review surface.
+- Updated the matching `AdminDashboardTest` assertions for the selected gift, scoped gift, all-shop gift, and paused finite-stock gift review contexts.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`; the focused gifts slice passed (`4 passed`).
+
 ### Reports backend-gap wording checkpoint
 - Aligned a narrow `reports` helper slice away from generic `Laravel` wording, covering three backend-gap fallback messages for cards-by-shop, cardholder-status, and role-access report sources.
 - Kept the step copy-only in `ResourceIndexController` because the existing reporting test cluster exercises these surfaces without hard-coding the exact fallback strings.
