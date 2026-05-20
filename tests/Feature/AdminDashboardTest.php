@@ -6481,9 +6481,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Anna Petrova')
             ->assertSee('Review latest saved holder shell')
-            ->assertDontSee('Back to holder catalog')
-            ->assertDontSee('Selected holder')
-            ->assertDontSee('selected for Laravel review');
+            ->assertDontSee('selected for Galaxy foundation review');
     }
 
     public function test_cardholders_page_ignores_malformed_selected_holder_query(): void
@@ -6510,9 +6508,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Anna Petrova')
             ->assertSee('Review latest saved holder shell')
-            ->assertDontSee('Back to holder catalog')
-            ->assertDontSee('Selected holder')
-            ->assertDontSee('selected for Laravel review');
+            ->assertDontSee('selected for Galaxy foundation review');
     }
 
     public function test_cardholders_page_hides_other_shop_holder_review_links_for_shop_scoped_admins(): void

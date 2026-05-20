@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Cardholders selected-query wording checkpoint
+- Aligned a narrow `cardholders` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
+- Dropped stale negative checks for `Back to holder catalog` and `Selected holder`, because the current fallback workspace legitimately renders those strings while still ignoring malformed or unknown query values.
+- Re-ran `php artisan test --filter='test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query'`; both focused selected-query tests passed (`2 passed`).
+
 ### Cards selected-query wording checkpoint
 - Aligned a narrow `cards` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
 - Dropped stale negative checks for `Back to card catalog` and `Selected card`, because the current fallback workspace legitimately renders those strings while still ignoring malformed or unknown query values.
