@@ -217,6 +217,10 @@
                         <span class="status-value">Blueprint, Phase 1 plan, checkpoints, progress log</span>
                     </div>
                     <div class="status-row">
+                        <span class="status-label">QA rhythm</span>
+                        <span class="status-value">Focused checks after each safe slice</span>
+                    </div>
+                    <div class="status-row">
                         <span class="status-label">Migration mode</span>
                         <span class="status-value success">Phase 1 active</span>
                     </div>

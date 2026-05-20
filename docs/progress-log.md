@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome QA-rhythm checkpoint
+- Extended the public landing snapshot card in `resources/views/welcome.blade.php` with a `QA rhythm` status row, `Focused checks after each safe slice`, so the live Phase 1 entry page reflects the repo's current test discipline directly in the top summary block.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new snapshot copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible workflow cue to the landing snapshot.
+
 ### Welcome reference-trail checkpoint
 - Extended the public landing snapshot card in `resources/views/welcome.blade.php` with a `Reference trail` status row so the live Phase 1 entry page now surfaces the main working path, `Blueprint, Phase 1 plan, checkpoints, progress log`, directly in the top summary block.
 - Expanded `tests/Feature/ExampleTest.php` to assert the new snapshot copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
