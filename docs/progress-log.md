@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Checks-points receipts wording checkpoint
+- Aligned a narrow live `checks-points` preview slice away from leftover `Laravel` wording, switching the receipts notice and readiness-checklist blocker to `Galaxy foundation` language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` receipts-preview assertions, including the neighboring zero-accrual blocker expectation that had drifted from the rendered copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape'`; the focused checks-points preview slice passed (`1 passed`).
+
 ### Card-types rule-import wording checkpoint
 - Aligned a narrow live `card-types` open-issues message away from leftover `Laravel` wording, switching the rule-import blocker to `first Galaxy foundation write slice` in `config/admin-pages.php`.
 - Updated the matching `AdminDashboardTest` assertion so the rendered card-types preview keeps covering that visible migration-gap copy.

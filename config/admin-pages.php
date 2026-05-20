@@ -466,12 +466,12 @@ return [
         ],
         'notice' => [
             'title' => 'Checks and points operations are still preview-only',
-            'description' => 'Receipt lookup actions, accrual metrics, and troubleshooting cues are shaping the final Galaxy flow, but real Laravel transaction reads do not exist yet.',
+            'description' => 'Receipt lookup actions, accrual metrics, and troubleshooting cues are shaping the final Galaxy flow, but real Galaxy foundation transaction reads do not exist yet.',
         ],
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Preview receipt lookup surface and accrual metrics are defined'],
             ['status' => 'ready', 'label' => 'Operational parity cues for receipt-first troubleshooting are visible'],
-            ['status' => 'pending', 'label' => 'Transaction tables, receipt reads, and adjustment flows still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 'Transaction tables, receipt reads, and adjustment flows still need PHP-backed Galaxy foundation wiring'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Transaction domain tables do not exist yet'],
