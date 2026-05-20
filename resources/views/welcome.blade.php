@@ -182,9 +182,9 @@
 
             <div class="hero-grid">
                 <div>
-                    <h1>Galaxy-specific Laravel foundation, not a generic starter.</h1>
+                    <h1>Galaxy-specific foundation, not a generic starter.</h1>
                     <p>
-                        This Phase 1 shell is turning <strong>galaxiNew</strong> into the Laravel home for Galaxy admin flows,
+                        This Phase 1 shell is turning <strong>galaxiNew</strong> into the Galaxy foundation home for admin flows,
                         beginning with branch, cardholder, card, card type, access, and reporting foundations.
                     </p>
 
@@ -202,7 +202,7 @@
 
                     <div class="status-row">
                         <span class="status-label">Target posture</span>
-                        <span class="status-value">Laravel monolith with Blade-first admin</span>
+                        <span class="status-value">Galaxy foundation monolith with Blade-first admin</span>
                     </div>
                     <div class="status-row">
                         <span class="status-label">Primary route</span>

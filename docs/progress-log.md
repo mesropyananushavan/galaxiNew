@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome landing foundation-wording checkpoint
+- Aligned the public landing hero away from leftover `Laravel` framing, switching the main headline, intro sentence, and target-posture snapshot in `resources/views/welcome.blade.php` to clearer `Galaxy foundation` language.
+- Updated `ExampleTest` so the homepage assertion now checks the new foundation-first landing copy.
+- Re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'`; the focused landing slice passed (`1 passed`).
+
 ### Card-types live-notice wording checkpoint
 - Aligned a narrow live `card-types` management slice away from leftover `Laravel` wording, switching the partially-live notice copy and matching readiness-checklist label to `Galaxy foundation` language in `config/admin-pages.php`.
 - Added matching assertions in `AdminDashboardTest` so the visible card-type workflow notice and readiness state stay covered together.
