@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome alternate-migration-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/migration_plan.md`, so the live Phase 1 entry page now exposes both migration-plan filename variants that currently exist in the repo.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement on the landing page.
+
 ### Welcome working-rules checkpoint
 - Extended the public landing `Working rules` list in `resources/views/welcome.blade.php` with an explicit reminder to keep checkpoints, analysis notes, and QA references close to the work, so the live Phase 1 entry page reflects the repo's current operating habit instead of only listing docs.
 - Expanded `tests/Feature/ExampleTest.php` to assert the new rules-line copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.

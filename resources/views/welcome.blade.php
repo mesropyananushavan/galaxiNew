@@ -247,6 +247,7 @@
                     <li><code>docs/blueprint.md</code></li>
                     <li><code>docs/phase-1-plan.md</code></li>
                     <li><code>docs/migration-plan.md</code></li>
+                    <li><code>docs/migration_plan.md</code></li>
                     <li><code>docs/admin-shell-layering.md</code></li>
                     <li><code>docs/admin-shell-config-map.md</code></li>
                     <li><code>docs/decisions.md</code></li>
