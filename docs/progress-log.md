@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Cards live-form tier-helper wording checkpoint
+- Aligned a narrow live `cards` form slice away from leftover `Laravel` wording, switching the card-type helper text to `Galaxy foundation` language and syncing the adjacent review-note placeholder copy in `config/admin-pages.php`.
+- Added matching stable visible-copy assertions in `AdminDashboardTest` for the live cards form so the helper text stays covered without depending on placeholder markup.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_replaces_preview_rows_with_model_backed_index_data'`; the matched focused cards slice passed (`1 passed`).
+
 ### Shops branch-form wording checkpoint
 - Aligned a narrow live `shops` form slice away from leftover `Laravel` wording, switching the branch-code helper text and adjacent review-note placeholder copy to `Galaxy foundation` language in `config/admin-pages.php`.
 - Added a matching stable visible-copy assertion in `AdminDashboardTest` for the live shops form and kept the check on rendered helper text instead of brittle placeholder markup.

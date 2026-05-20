@@ -2582,6 +2582,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy Central')
             ->assertSee('Create Galaxy card in Galaxy foundation')
             ->assertSee('Create inventory shell')
+            ->assertSee('Use the saved Galaxy foundation tier that matches the old Galaxy accrual and activation behavior.')
+            ->assertSee('Use this safe Phase 1 note to record inventory review context without opening holder reassignment or replacement writes.')
             ->assertSee('action="/admin/cards"', false)
             ->assertSee('Review latest saved card shell')
             ->assertSee('Active Galaxy card shells')
