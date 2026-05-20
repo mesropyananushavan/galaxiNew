@@ -949,7 +949,7 @@ return [
             ['label' => 'Access-policy Galaxy notes', 'value' => '1'],
             ['label' => 'Role-assignment Galaxy notes', 'value' => '1'],
             ['label' => 'Permission-linked Galaxy review notes', 'value' => '2'],
-            ['label' => 'Scoped Galaxy branches', 'value' => '3'],
+            ['label' => 'Branch-scoped Galaxy coverage', 'value' => '3'],
         ],
         'table' => [
             'columns' => ['Role', 'Scope', 'Key permissions', 'Permission review note', 'Assignment note', 'Users', 'Status'],

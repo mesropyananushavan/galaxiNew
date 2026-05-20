@@ -1155,7 +1155,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Management snapshot')
             ->assertSee('Active Galaxy access shells')
             ->assertSee('Reviewed Galaxy access shells')
-            ->assertSee('Scoped Galaxy branches')
+            ->assertSee('Branch-scoped Galaxy coverage')
             ->assertSee('No shop-scoped roles configured yet')
             ->assertSee('Create first Galaxy role')
             ->assertSee('This is the first minimal Galaxy foundation-backed role write path. Keep it limited to role identity while permission bundles and shop scope remain parity-first review surfaces.')
@@ -1302,7 +1302,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Access-policy Galaxy notes')
             ->assertSee('Role-assignment Galaxy notes')
             ->assertSee('Permission-linked Galaxy review notes')
-            ->assertSee('Scoped Galaxy branches')
+            ->assertSee('Branch-scoped Galaxy coverage')
             ->assertSee('active')
             ->assertSee('draft');
     }
