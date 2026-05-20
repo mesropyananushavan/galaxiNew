@@ -225,7 +225,7 @@
                 <h3>Live management surfaces</h3>
                 <ul>
                     <li>Shops and branch scope review</li>
-                    <li>Cardholders and card inventory shells</li>
+                    <li>Cardholders and card inventory foundations</li>
                     <li>Card types, roles, reports, gifts, and rules previews</li>
                 </ul>
             </article>

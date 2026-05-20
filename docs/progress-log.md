@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome surface-list wording checkpoint
+- Aligned the public landing surface list in `resources/views/welcome.blade.php`, replacing `Cardholders and card inventory shells` with `Cardholders and card inventory foundations` so the live Phase 1 landing page stays consistent with the repo's current foundation framing.
+- Expanded `tests/Feature/ExampleTest.php` to assert the updated surface-list copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while continuing to tighten visible Galaxy-specific UI copy with focused coverage.
+
 ### Welcome snapshot wording checkpoint
 - Aligned the public landing snapshot copy in `resources/views/welcome.blade.php`, replacing `starter defaults` with `scaffold defaults` so the live Phase 1 landing page keeps shedding starter-era wording.
 - Expanded `tests/Feature/ExampleTest.php` to assert the updated snapshot sentence and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
