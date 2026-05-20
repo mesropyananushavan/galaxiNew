@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Cardholders reads-wording checkpoint
+- Aligned a narrow live `cardholders` preview slice away from leftover `Laravel` wording, switching the notice and readiness-checklist blocker to `Galaxy foundation` reads and wiring language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertions so the rendered cardholders workspace keeps covering that visible Phase 1 blocker copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'`; the focused cardholders preview slice passed (`1 passed`).
+
 ### Shops queries-wording checkpoint
 - Aligned a narrow live `shops` preview slice away from leftover `Laravel` wording, switching the notice and readiness-checklist blocker to `Galaxy foundation` queries and wiring language in `config/admin-pages.php`.
 - Updated the matching `AdminDashboardTest` assertions so the rendered shops workspace keeps covering that visible Phase 1 blocker copy.

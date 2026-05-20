@@ -189,12 +189,12 @@ return [
         ],
         'notice' => [
             'title' => 'Cardholder operations are still preview-only',
-            'description' => 'Search actions, metrics, and lifecycle cues are shaping the target Galaxy flow, but they are not backed by Laravel reads or writes yet.',
+            'description' => 'Search actions, metrics, and lifecycle cues are shaping the target Galaxy flow, but they are not backed by Galaxy foundation reads or writes yet.',
         ],
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Preview holder search surface and activity cues are defined'],
             ['status' => 'ready', 'label' => 'Operational parity notes for lookup speed and linkage are visible'],
-            ['status' => 'pending', 'label' => 'Search, profile reads, and activity history still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 'Search, profile reads, and activity history still need PHP-backed Galaxy foundation wiring'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'CardHolder model and shop linkage baseline exist'],
