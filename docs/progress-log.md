@@ -2,6 +2,11 @@
 
 ## 2026-05-19
 
+### Checks-points zero-accrual wording checkpoint
+- Aligned a narrow selected `checks-points` zero-accrual receipt slice away from generic `Laravel` wording, covering the CHK-90407 receipt-posture and troubleshooting-guidance copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected zero-accrual receipt review surface.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context'`; the focused checks-points slice passed (`3 passed`).
+
 ### Services-rules review-priority wording checkpoint
 - Aligned the remaining selected `services-rules` review-priority helper copy away from generic `Laravel` wording, covering the scoped and all-shop disabled-reason strings rendered for partner-card and birthday-bonus review surfaces.
 - Updated the matching `AdminDashboardTest` assertions for the selected scoped-rule and selected all-shop rule review paths.

@@ -191,12 +191,12 @@ class ResourceIndexController extends Controller
                     ['label' => 'Receipt status signal', 'value' => 'Zero-accrual receipt remains highly visible for parity troubleshooting review.'],
                     ['label' => 'Receipt focus', 'value' => 'Start with the zero-point outcome before expanding into broader rule-gap discussion.'],
                     ['label' => 'Receipt handoff signal', 'value' => 'Carry receipt evidence and zero-point context forward before escalating any rule-gap discussion.'],
-                    ['label' => 'Receipt posture', 'value' => 'Receipt lookup should stay read-only until Laravel transaction history is verified against legacy fiscal search behavior.'],
+                    ['label' => 'Receipt posture', 'value' => 'Receipt lookup should stay read-only until Galaxy foundation transaction history is verified against legacy fiscal search behavior.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep receipt, amount, and zero-point outcome visible together before expanding into broader rule troubleshooting.'],
                     ['label' => 'Accrual posture', 'value' => 'Zero-accrual receipts should stay highly visible, because they drive the most parity-sensitive troubleshooting in the old Galaxy flow.'],
                     ['label' => 'Backend gap', 'value' => $this->checksPointsBackendGap('chk-90407')],
                     ['label' => 'Format guidance', 'value' => 'Keep zero-accrual receipts in compact on-screen review first, because operators need amount, points, and rule context together before escalating.'],
-                    ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and rule-backed explanations exist.'],
+                    ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Galaxy foundation transaction history and rule-backed explanations exist.'],
                 ],
                 'timeline' => [
                     ['title' => 'CHK-90407 selected for zero-accrual review', 'time' => 'Current request', 'description' => 'This preview now keeps the zero-accrual receipt in a dedicated Galaxy review context instead of a flat transaction row.'],
@@ -206,7 +206,7 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected receipt', 'value' => 'CHK-90407'],
                     ['label' => 'Receipt status signal', 'value' => 'Zero-accrual receipt remains highly visible for parity troubleshooting review.'],
-                    ['label' => 'Receipt posture', 'value' => 'Receipt lookup should stay read-only until Laravel transaction history is verified against legacy fiscal search behavior.'],
+                    ['label' => 'Receipt posture', 'value' => 'Receipt lookup should stay read-only until Galaxy foundation transaction history is verified against legacy fiscal search behavior.'],
                     ['label' => 'Accrual posture', 'value' => 'Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->checksPointsBackendGap('chk-90407')],
                 ],
