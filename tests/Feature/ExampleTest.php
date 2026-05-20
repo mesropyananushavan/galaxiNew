@@ -17,6 +17,7 @@ class ExampleTest extends TestCase
             ->assertSee('Galaxy foundation home for admin flows')
             ->assertSee('current foundation layer is focused on replacing scaffold defaults with Galaxy operational context')
             ->assertSee('Cardholders and card inventory foundations')
+            ->assertSee('Land small safe foundation slices with visible Git history')
             ->assertSee('Open admin workspace')
             ->assertSee('Phase 1 snapshot');
     }

@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Welcome rules-card wording checkpoint
+- Aligned the public landing rules card in `resources/views/welcome.blade.php`, replacing `Land small safe slices with visible Git history` with `Land small safe foundation slices with visible Git history` so the live Phase 1 landing copy stays aligned with Galaxy foundation wording.
+- Expanded `tests/Feature/ExampleTest.php` to assert the updated rules-card copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while continuing to tighten visible UI wording with focused coverage.
+
 ### Welcome foundation-layer wording checkpoint
 - Aligned the public landing snapshot sentence in `resources/views/welcome.blade.php`, replacing `The current shell is focused...` with `The current foundation layer is focused...` so the live Phase 1 landing copy matches the repo's current Galaxy foundation framing more closely.
 - Updated `tests/Feature/ExampleTest.php` to assert the fuller sentence and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
