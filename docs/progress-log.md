@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Blueprint goal-wording checkpoint
+- Aligned a narrow Phase 1 planning line in `docs/blueprint.md`, switching the goal from `generic Laravel baseline` to `generic starter baseline` so the migration blueprint matches the newer Galaxy-specific foundation framing.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated goal wording is in place.
+- Kept the step intentionally small and docs-only while continuing to trim starter-era framing from the repo's guiding migration language.
+
 ### Closing-blocks comment wording checkpoint
 - Aligned a small real-config slice in `config/admin-operational-closing-blocks.php`, switching the shared closing-blocks comment from `first Laravel wiring step` to `first Galaxy foundation wiring step` so internal config guidance matches the live admin vocabulary.
 - Re-ran `php -l config/admin-operational-closing-blocks.php`; the focused config syntax check passed.

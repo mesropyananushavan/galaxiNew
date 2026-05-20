@@ -42,7 +42,7 @@
 
 ## Phase 1
 ### Goal
-Create the real application foundation for Galaxy, not just generic Laravel baseline.
+Create the real application foundation for Galaxy, not just a generic starter baseline.
 
 ### Scope
 - define target admin information architecture
