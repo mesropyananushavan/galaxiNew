@@ -156,12 +156,12 @@ class ResourceIndexController extends Controller
                     ['label' => 'Receipt status signal', 'value' => 'Positive accrual receipt is already visible for live ledger parity review.'],
                     ['label' => 'Receipt focus', 'value' => 'Start with amount-to-points parity before discussing any later correction path.'],
                     ['label' => 'Receipt handoff signal', 'value' => 'Carry receipt, card, and amount context forward before any later correction discussion begins.'],
-                    ['label' => 'Receipt posture', 'value' => 'Fiscal receipt review should remain read-only until Laravel transaction history is verified against the legacy ledger.'],
+                    ['label' => 'Receipt posture', 'value' => 'Fiscal receipt review should remain read-only until Galaxy foundation transaction history is verified against the legacy ledger.'],
                     ['label' => 'Evidence priority', 'value' => 'Keep amount, points, and timestamp visible together before comparing this receipt against any later correction narrative.'],
                     ['label' => 'Accrual posture', 'value' => 'Positive accrual receipts should stay parity-first, because receipt math must match the old Galaxy ledger before any correction flow appears.'],
                     ['label' => 'Backend gap', 'value' => $this->checksPointsBackendGap('chk-90421')],
                     ['label' => 'Format guidance', 'value' => 'Keep this receipt in table-first review mode, because operators usually compare amount, points, and timestamp together before opening deeper investigation.'],
-                    ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Laravel transaction history and adjustment flows exist.'],
+                    ['label' => 'Troubleshooting guidance', 'value' => 'Treat this receipt as read-only review until Galaxy foundation transaction history and adjustment flows exist.'],
                 ],
                 'timeline' => [
                     ['title' => 'CHK-90421 selected for receipt review', 'time' => 'Current request', 'description' => 'This preview now keeps the positive-accrual receipt in a dedicated Galaxy review context instead of a flat transaction row.'],
@@ -171,7 +171,7 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected receipt', 'value' => 'CHK-90421'],
                     ['label' => 'Receipt status signal', 'value' => 'Positive accrual receipt is already visible for live ledger parity review.'],
-                    ['label' => 'Receipt posture', 'value' => 'Fiscal receipt review should remain read-only until Laravel transaction history is verified against the legacy ledger.'],
+                    ['label' => 'Receipt posture', 'value' => 'Fiscal receipt review should remain read-only until Galaxy foundation transaction history is verified against the legacy ledger.'],
                     ['label' => 'Accrual posture', 'value' => 'Positive point outcomes still need live transaction-domain parity before any adjustment path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->checksPointsBackendGap('chk-90421')],
                 ],
