@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Blueprint shell-note wording checkpoint
+- Aligned a narrow admin-shell note in `docs/blueprint.md`, switching `real Laravel reads and writes` wording to `real Galaxy foundation reads and writes` so the migration blueprint matches the newer Galaxy-specific foundation framing already used in Phase 1 guidance.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated shell-note wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align blueprint language with the repo's current Galaxy foundation vocabulary.
+
 ### Phase-1 shell-note wording checkpoint
 - Aligned a narrow admin-shell note in `docs/phase-1-plan.md`, switching `real Laravel writes/reads` wording to `real Galaxy foundation writes/reads` so the Phase 1 guidance matches the newer Galaxy-specific foundation framing.
 - Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated shell-note wording is in place.
