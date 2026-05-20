@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Shops helper-coverage wording checkpoint
+- Aligned `shops` helper-level malformed-config coverage away from leftover `Laravel` wording, updating the synthetic notice and readiness-checklist strings in `AdminDashboardTest` to `Galaxy foundation` queries and wiring language.
+- Tightened the malformed readiness assertion by swapping the overly generic numeric marker `42` for a unique `424242`, which avoids false failures from unrelated page content while keeping the same malformed-entry intent.
+- Re-ran `php artisan test --filter='test_preview_notice_ignores_malformed_notice_entries|test_readiness_checklist_ignores_malformed_entries'`; both focused helper-coverage tests passed (`2 passed`).
+
 ### Resource-defaults rationale wording checkpoint
 - Aligned a shared `admin-resource-page-defaults` test fixture away from leftover `Laravel` wording, switching the visible rationale copy to `Galaxy foundation forms` in `AdminDashboardTest`.
 - Re-ran `php artisan test --filter='test_resource_page_defaults_helpers_ignore_malformed_page_rationale_entries'`; the focused helper-coverage slice passed (`1 passed`).

@@ -8785,7 +8785,7 @@ class AdminDashboardTest extends TestCase
 
         Config::set('admin-pages.shops.notice', [
             'title' => ['invalid-title'],
-            'description' => 'Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Laravel queries or handlers yet.',
+            'description' => 'Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Galaxy foundation queries or handlers yet.',
         ]);
 
         $response = $this->actingAs($user)->get('/admin/shops');
@@ -8793,7 +8793,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertDontSee('Preview notice')
-            ->assertDontSee('Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Laravel queries or handlers yet.')
+            ->assertDontSee('Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Galaxy foundation queries or handlers yet.')
             ->assertDontSee('Array');
     }
 
@@ -8805,8 +8805,8 @@ class AdminDashboardTest extends TestCase
             ['status' => 'ready', 'label' => 'Preview shop rows and branch actions defined'],
             'invalid-readiness-entry',
             ['label' => 'Missing status'],
-            ['status' => 'pending', 'label' => 42],
-            ['status' => 'pending', 'label' => 'Real shop queries and branch mutations still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 424242],
+            ['status' => 'pending', 'label' => 'Real shop queries and branch mutations still need PHP-backed Galaxy foundation wiring'],
         ]);
 
         $response = $this->actingAs($user)->get('/admin/shops');
@@ -8815,10 +8815,10 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Migration readiness checklist')
             ->assertSee('Preview shop rows and branch actions defined')
-            ->assertSee('Real shop queries and branch mutations still need PHP-backed Laravel wiring')
+            ->assertSee('Real shop queries and branch mutations still need PHP-backed Galaxy foundation wiring')
             ->assertDontSee('invalid-readiness-entry')
             ->assertDontSee('Missing status')
-            ->assertDontSee('42')
+            ->assertDontSee('424242')
             ->assertDontSee('Array');
     }
 
