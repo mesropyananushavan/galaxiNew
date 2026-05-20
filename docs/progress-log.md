@@ -2,6 +2,11 @@
 
 ## 2026-05-20
 
+### Resource-defaults rationale wording checkpoint
+- Aligned a shared `admin-resource-page-defaults` test fixture away from leftover `Laravel` wording, switching the visible rationale copy to `Galaxy foundation forms` in `AdminDashboardTest`.
+- Re-ran `php artisan test --filter='test_resource_page_defaults_helpers_ignore_malformed_page_rationale_entries'`; the focused helper-coverage slice passed (`1 passed`).
+- Kept the change narrow and low risk while continuing to remove starter-era language from shared Phase 1 scaffolding.
+
 ### Card-types placeholder wording checkpoint
 - Aligned a narrow `card-types` live-form schema slice away from leftover `Laravel` wording, switching the review-note and activation-note placeholders to `Galaxy foundation card type` language in `config/admin-pages.php`.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'`; the focused card-types preview slice stayed green (`1 passed`).

@@ -8687,7 +8687,7 @@ class AdminDashboardTest extends TestCase
                 'Keep parity-first rollout visible to operators.',
                 ['invalid-rationale-entry'],
                 42,
-                'Leave real Laravel forms for the first safe backend slice.',
+                'Leave real Galaxy foundation forms for the first safe backend slice.',
             ],
         ]);
 
@@ -8697,7 +8697,7 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Why this page exists now')
             ->assertSee('Keep parity-first rollout visible to operators.')
-            ->assertSee('Leave real Laravel forms for the first safe backend slice.')
+            ->assertSee('Leave real Galaxy foundation forms for the first safe backend slice.')
             ->assertDontSee('invalid-rationale-entry')
             ->assertDontSee('42');
     }
