@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Reporting foundation-preview notice checkpoint
+- Tightened the visible reporting notice title in `config/admin-pages.php`, replacing `Reporting operations are still preview-only` with `Reporting operations are still foundation-preview only` so the reports workspace matches the newer foundation-preview framing already used across the shared resource header plus the updated shops, cardholders, cards, and checks notices.
+- Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another visible Phase 1 management page instead of stopping at the earlier branch, holder, card, and receipt surfaces.
+
 ### Checks-and-points foundation-preview notice checkpoint
 - Tightened the visible checks-and-points notice title in `config/admin-pages.php`, replacing `Checks and points operations are still preview-only` with `Checks and points operations are still foundation-preview only` so the receipt-and-accrual surface matches the newer foundation-preview framing already used across the shared resource header plus the updated shops, cardholders, and cards notices.
 - Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape'` successfully for the touched operational surface.

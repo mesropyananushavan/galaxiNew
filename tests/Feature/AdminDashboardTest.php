@@ -6871,7 +6871,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Export formats')
             ->assertSee('Preset periods')
             ->assertSee('Galaxy reporting workspace for analytics, histories, and export-oriented admin review.')
-            ->assertSee('Reporting operations are still preview-only')
+            ->assertSee('Reporting operations are still foundation-preview only')
             ->assertSee('Catalog actions, summary metrics, and export cues are outlining the Galaxy reporting workspace, but no Galaxy foundation reporting pipeline is wired yet.')
             ->assertSee('Migration readiness checklist')
             ->assertSee('Preview report catalog actions and preset metrics are defined')

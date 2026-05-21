@@ -1127,7 +1127,7 @@ return [
             'Underlying analytics sources do not exist yet, so reports remain catalog-only previews.',
         ],
         'notice' => [
-            'title' => 'Reporting operations are still preview-only',
+            'title' => 'Reporting operations are still foundation-preview only',
             'description' => 'Catalog actions, summary metrics, and export cues are outlining the Galaxy reporting workspace, but no Galaxy foundation reporting pipeline is wired yet.',
         ],
         'readinessChecklist' => [
