@@ -1876,7 +1876,7 @@ class ResourceIndexController extends Controller
             $page['metrics'] = [
                 ['label' => 'Active Galaxy tiers', 'value' => (string) $cardTypes->where('is_active', true)->count()],
                 ['label' => 'Draft Galaxy tiers', 'value' => (string) $cardTypes->where('is_active', false)->count()],
-                ['label' => 'Reviewed Galaxy tiers', 'value' => (string) $cardTypes->filter(fn (CardType $cardType): bool => filled($cardType->review_note))->count()],
+                ['label' => 'Review-noted Galaxy tiers', 'value' => (string) $cardTypes->filter(fn (CardType $cardType): bool => filled($cardType->review_note))->count()],
                 ['label' => 'Activation notes', 'value' => (string) $cardTypes->filter(fn (CardType $cardType): bool => filled($cardType->activation_note))->count()],
                 ['label' => 'Rollout notes', 'value' => (string) $cardTypes->filter(fn (CardType $cardType): bool => filled($cardType->rollout_note))->count()],
                 ['label' => 'Saved types', 'value' => (string) $cardTypes->count()],

@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Tiers review-note metric checkpoint
+- Tightened the live `card-types` management metric label from `Reviewed Galaxy tiers` to `Review-noted Galaxy tiers` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the tier snapshot names that count after the underlying review-note signal instead of a vague past-tense state label.
+- Synced the focused tier assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on another active admin surface instead of falling back to docs-only wording work.
+
 ### Branches review-note metric checkpoint
 - Tightened the live `shops` management metric label from `Reviewed Galaxy branches` to `Review-noted Galaxy branches` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the branch snapshot names that count after the underlying review-note signal instead of a vague past-tense state label.
 - Synced the focused branch assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape'` successfully.
