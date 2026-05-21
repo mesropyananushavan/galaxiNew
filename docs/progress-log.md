@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Cards review-note metric checkpoint
+- Tightened the live `cards` management metric label from `Reviewed Galaxy card shells` to `Review-noted Galaxy card shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the inventory snapshot names that count after the underlying review-note signal instead of a vague past-tense state label.
+- Synced the focused cards assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape'` successfully.
+- Kept the step intentionally small, but moved the cleanup onto a second live admin surface instead of only iterating inside the access workspace.
+
 ### Roles active-state metric checkpoint
 - Tightened the live `roles-permissions` management metric label from `Active Galaxy access shells` to `Active-state Galaxy access shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot now uses matching state-oriented wording across both the active and draft counts.
 - Synced the focused roles assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.

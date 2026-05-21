@@ -297,7 +297,7 @@ return [
             ['label' => 'Blocked activated Galaxy card shells', 'value' => '1'],
             ['label' => 'Blocked Galaxy card shells with holders', 'value' => '1'],
             ['label' => 'Blocked unassigned Galaxy card shells', 'value' => '0'],
-            ['label' => 'Reviewed Galaxy card shells', 'value' => '1'],
+            ['label' => 'Review-noted Galaxy card shells', 'value' => '1'],
         ],
         'table' => [
             'columns' => ['Number', 'Holder', 'Type', 'Review note', 'Shop', 'Status', 'Issued', 'Activated'],
