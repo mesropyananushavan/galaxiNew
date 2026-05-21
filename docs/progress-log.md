@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Resource-header foundation-preview checkpoint
+- Tightened the shared resource-page header in `resources/views/admin/partials/resource-page-header.blade.php`, replacing the visible `{{ $pageTitle }} placeholder` title pattern with `{{ $pageTitle }} foundation preview` so Phase 1 admin surfaces read less like dead scaffolding and more like Galaxy foundation review shells.
+- Synced the touched header assertions in `tests/Feature/AdminDashboardTest.php` across cardholders, cards, shops, gifts, card types, reports, and the shared shell coverage slices, then re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_placeholder_page|test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_reports_operational_index_shape|test_resource_page_shell_keeps_shared_header_and_rationale_visible|test_resource_page_still_renders_with_injected_normalizer_dependency|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_card_types_management_preview'` successfully.
+- Kept the step intentionally small, but moved a shared visible admin-shell label one notch closer to Galaxy-specific foundation language across several Phase 1 surfaces at once.
+
 ### Dashboard foundation-copy checkpoint
 - Tightened one remaining visible admin-dashboard sentence in `resources/views/admin/dashboard.blade.php`, replacing `generic placeholders` with `scaffold-era placeholders` so the top Phase 1 live-foundation snapshot keeps shedding generic starter-era framing.
 - Synced the matching dashboard assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'` successfully.

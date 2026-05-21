@@ -1101,7 +1101,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Cardholders placeholder')
+            ->assertSee('Cardholders foundation preview')
             ->assertSee('cardholders')
             ->assertSee('Phase');
     }
@@ -2418,7 +2418,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Cards placeholder')
+            ->assertSee('Cards foundation preview')
             ->assertSee('Galaxy card-shell workspace for inventory, assignment review, status triage, and activation tracking.')
             ->assertSee('Operational index shape')
             ->assertSee('GX-100001')
@@ -4356,7 +4356,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Cardholders placeholder')
+            ->assertSee('Cardholders foundation preview')
             ->assertSee('Galaxy holder workspace for worker and client lookup, holder history, and lifecycle review.')
             ->assertSee('Operational index shape')
             ->assertSee('Anna Petrova')
@@ -4413,7 +4413,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Shops placeholder')
+            ->assertSee('Shops foundation preview')
             ->assertSee('Galaxy branch workspace for scope boundaries, activation review, and future access checks.')
             ->assertSee('Operational index shape')
             ->assertSee('Central Shop')
@@ -6859,7 +6859,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Reports placeholder')
+            ->assertSee('Reports foundation preview')
             ->assertSee('Points accrual summary')
             ->assertSee('Report type')
             ->assertSee('Open Galaxy reporting catalog')
@@ -8258,7 +8258,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Shops placeholder')
+            ->assertSee('Shops foundation preview')
             ->assertSee('Section key')
             ->assertSee('shops')
             ->assertSee('Phase')
@@ -9238,7 +9238,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Shops placeholder')
+            ->assertSee('Shops foundation preview')
             ->assertSee('Operational index shape')
             ->assertSee('Preview notice')
             ->assertSee('First Galaxy foundation wiring step');
@@ -9306,7 +9306,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Gifts placeholder')
+            ->assertSee('Gifts foundation preview')
             ->assertSee('Galaxy reward workspace for catalog scope, redemption settings, and stock-aware reward review.')
             ->assertSee('Coffee voucher')
             ->assertSee('/admin/gifts?gift=coffee-voucher')
@@ -9640,7 +9640,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Card Types placeholder')
+            ->assertSee('Card Types foundation preview')
             ->assertSee('Galaxy tier workspace for card-tier identities, points rules, and activation review.')
             ->assertSee('Create Galaxy tier in Galaxy foundation')
             ->assertSee('Create tier shell')

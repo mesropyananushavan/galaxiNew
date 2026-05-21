@@ -1,6 +1,6 @@
 <section class="card">
     <span class="eyebrow">{{ $eyebrow }}</span>
-    <h2 style="margin: 16px 0 12px; font-size: 1.75rem;">{{ $pageTitle }} placeholder</h2>
+    <h2 style="margin: 16px 0 12px; font-size: 1.75rem;">{{ $pageTitle }} foundation preview</h2>
     <p style="margin: 0; color: var(--text-muted); max-width: 780px; line-height: 1.6;">
         {{ $summary }}
     </p>
