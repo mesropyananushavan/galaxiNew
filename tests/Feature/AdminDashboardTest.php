@@ -4422,7 +4422,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review branch scope')
             ->assertSee('Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.')
             ->assertSee('aria-disabled="true"', false)
-            ->assertSee('Active Galaxy branches')
+            ->assertSee('Active-state Galaxy branches')
             ->assertSee('Paused Galaxy branches')
             ->assertSee('Assigned branch managers')
             ->assertSee('Shop operations are still preview-only')
@@ -8448,8 +8448,8 @@ class AdminDashboardTest extends TestCase
         $content = $response->getContent();
 
         $this->assertTrue(
-            strpos($content, 'Central Shop') < strpos($content, 'Active Galaxy branches')
-                && strpos($content, 'Active Galaxy branches') < strpos($content, 'First Galaxy foundation wiring step'),
+            strpos($content, 'Central Shop') < strpos($content, 'Active-state Galaxy branches')
+                && strpos($content, 'Active-state Galaxy branches') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected the dedicated base shell config stack to remain composable inside page defaults.'
         );
     }
@@ -8485,7 +8485,7 @@ class AdminDashboardTest extends TestCase
         $content = $response->getContent();
 
         $this->assertTrue(
-            strpos($content, 'Active Galaxy branches')
+            strpos($content, 'Active-state Galaxy branches')
                 < strpos($content, 'Recent activity preview')
                 && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
                 && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
@@ -8526,7 +8526,7 @@ class AdminDashboardTest extends TestCase
         $content = $response->getContent();
 
         $this->assertTrue(
-            strpos($content, 'Active Galaxy branches')
+            strpos($content, 'Active-state Galaxy branches')
                 < strpos($content, 'Recent activity preview')
                 && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
                 && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
@@ -8571,7 +8571,7 @@ class AdminDashboardTest extends TestCase
         $content = $response->getContent();
 
         $this->assertTrue(
-            strpos($content, 'Active Galaxy branches')
+            strpos($content, 'Active-state Galaxy branches')
                 < strpos($content, 'Recent activity preview')
                 && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
                 && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
@@ -8717,7 +8717,7 @@ class AdminDashboardTest extends TestCase
         $user = User::factory()->create();
 
         Config::set('admin-pages.shops.metrics', [
-            ['label' => 'Active Galaxy branches', 'value' => '2'],
+            ['label' => 'Active-state Galaxy branches', 'value' => '2'],
             'invalid-metric-entry',
             ['label' => 'Paused Galaxy branches'],
             ['label' => 'Assigned branch managers', 'value' => 2],
@@ -8728,7 +8728,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Active Galaxy branches')
+            ->assertSee('Active-state Galaxy branches')
             ->assertSee('Paused Galaxy branches')
             ->assertDontSee('invalid-metric-entry')
             ->assertDontSee('Assigned branch managers')

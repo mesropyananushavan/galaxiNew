@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Branches active-state metric checkpoint
+- Tightened the live `shops` management metric label from `Active Galaxy branches` to `Active-state Galaxy branches` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the branch snapshot now uses more explicit state-oriented wording that matches the newer tier and access metrics.
+- Synced the focused branch assertions in `tests/Feature/AdminDashboardTest.php`, including the nearby layered-shell ordering checks that read the same metric block, and re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_resource_page_defaults_helpers_ignore_malformed_metrics|test_resource_page_defaults_can_compose_all_five_shell_layers|test_resource_page_defaults_can_bridge_all_five_shell_layers_via_admin_resource_blocks|test_resource_page_defaults_array_can_bridge_all_five_shell_layers_via_admin_resource_blocks'` successfully for the matching shops slice.
+- Kept the step intentionally small, but continued the same live metric cleanup on an already active admin surface instead of falling back to docs-only wording work.
+
 ### Tiers draft-state metric checkpoint
 - Tightened the live `card-types` management metric label from `Draft Galaxy tiers` to `Draft-state Galaxy tiers` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the tier snapshot now uses matching state-oriented wording across both the active and draft counts.
 - Synced the focused tier assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'` successfully.

@@ -20,7 +20,7 @@ return [
             ],
         ],
         'metrics' => [
-            ['label' => 'Active Galaxy branches', 'value' => '2'],
+            ['label' => 'Active-state Galaxy branches', 'value' => '2'],
             ['label' => 'Paused Galaxy branches', 'value' => '1'],
             ['label' => 'Review-noted Galaxy branches', 'value' => '2'],
             ['label' => 'Assigned branch managers', 'value' => '2'],
