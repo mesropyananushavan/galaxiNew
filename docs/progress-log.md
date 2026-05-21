@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Holders active-state metric checkpoint
+- Tightened the live `cardholders` management metric label from `Active Galaxy holders` to `Active-state Galaxy holders` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the holder snapshot now uses more explicit state-oriented wording that matches the newer branch, tier, and access metrics.
+- Synced the focused holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on another active admin surface instead of falling back to docs-only wording work.
+
 ### Branches active-state metric checkpoint
 - Tightened the live `shops` management metric label from `Active Galaxy branches` to `Active-state Galaxy branches` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the branch snapshot now uses more explicit state-oriented wording that matches the newer tier and access metrics.
 - Synced the focused branch assertions in `tests/Feature/AdminDashboardTest.php`, including the nearby layered-shell ordering checks that read the same metric block, and re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_resource_page_defaults_helpers_ignore_malformed_metrics|test_resource_page_defaults_can_compose_all_five_shell_layers|test_resource_page_defaults_can_bridge_all_five_shell_layers_via_admin_resource_blocks|test_resource_page_defaults_array_can_bridge_all_five_shell_layers_via_admin_resource_blocks'` successfully for the matching shops slice.

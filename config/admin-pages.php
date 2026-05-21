@@ -148,7 +148,7 @@ return [
             ['label' => 'Review recent activity', 'tone' => 'secondary'],
         ],
         'metrics' => [
-            ['label' => 'Active Galaxy holders', 'value' => '2'],
+            ['label' => 'Active-state Galaxy holders', 'value' => '2'],
             ['label' => 'Inactive Galaxy holders', 'value' => '1'],
             ['label' => 'Review-noted Galaxy holders', 'value' => '2'],
             ['label' => 'Linked Galaxy card shells', 'value' => '3'],
