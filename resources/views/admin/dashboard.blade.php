@@ -121,7 +121,7 @@
                 <p class="metric-value">{{ $shopCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Active Galaxy branches</p>
+                <p class="metric-label">Active-state Galaxy branches</p>
                 <p class="metric-value">{{ $activeShopCount }}</p>
             </article>
             <article class="metric">
@@ -129,7 +129,7 @@
                 <p class="metric-value">{{ $cardHolderCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Active Galaxy holders</p>
+                <p class="metric-label">Active-state Galaxy holders</p>
                 <p class="metric-value">{{ $activeCardHolderCount }}</p>
             </article>
             <article class="metric">
@@ -137,7 +137,7 @@
                 <p class="metric-value">{{ $cardCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Active Galaxy card shells</p>
+                <p class="metric-label">Active-state Galaxy card shells</p>
                 <p class="metric-value">{{ $activeCardCount }}</p>
             </article>
             <article class="metric">
@@ -145,7 +145,7 @@
                 <p class="metric-value">{{ $cardTypeCount }}</p>
             </article>
             <article class="metric">
-                <p class="metric-label">Active Galaxy tiers</p>
+                <p class="metric-label">Active-state Galaxy tiers</p>
                 <p class="metric-value">{{ $activeCardTypeCount }}</p>
             </article>
             <article class="metric">

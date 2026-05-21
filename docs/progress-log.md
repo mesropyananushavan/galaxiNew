@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Dashboard state-metric checkpoint
+- Tightened the main admin dashboard metric labels in `resources/views/admin/dashboard.blade.php` from the older `Active Galaxy ...` wording to the same more explicit state-oriented format already used across the live resource pages: `Active-state Galaxy branches`, `Active-state Galaxy holders`, `Active-state Galaxy card shells`, and `Active-state Galaxy tiers`.
+- Synced the dashboard assertions in `tests/Feature/AdminDashboardTest.php` for the authenticated admin, empty-workspace fallback, and partial-latest-links coverage slices, then re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links'` successfully.
+- Kept the step intentionally small, but moved the same Galaxy-specific state-label cleanup onto the top admin dashboard instead of leaving the repo with different wording between the main live snapshot and the underlying resource surfaces.
+
 ### Rules-and-rewards state-metric checkpoint
 - Tightened the preview `services-rules` and `gifts` management metric labels in `config/admin-pages.php` from `Active/Draft/Paused Galaxy ...` wording to the same more explicit state-oriented format already used across the live Phase 1 admin surfaces: `Active-state Galaxy rules`, `Draft-state Galaxy rules`, `Active-state Galaxy rewards`, and `Paused-state Galaxy rewards`.
 - Also renamed the gifts stock counter from `Low stock items` to `Low-stock Galaxy rewards` so the reward snapshot reads less like a generic placeholder bucket and more like a Galaxy-specific management surface.
