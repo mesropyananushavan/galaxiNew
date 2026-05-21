@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Tiers note-label metric checkpoint
+- Tightened the live `card-types` management metric labels from generic `Activation notes` and `Rollout notes` to `Tier activation notes` and `Tier rollout notes`, and also aligned `Saved types` to `Saved Galaxy tiers` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the tier snapshot reads more like a Galaxy surface than a generic bucket list.
+- Synced the config-backed preview metrics in `config/admin-pages.php`, updated the focused tier assertions in `tests/Feature/AdminDashboardTest.php`, and re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on an already active admin surface instead of falling back to docs-only wording work.
+
 ### Tiers review-note metric checkpoint
 - Tightened the live `card-types` management metric label from `Reviewed Galaxy tiers` to `Review-noted Galaxy tiers` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the tier snapshot names that count after the underlying review-note signal instead of a vague past-tense state label.
 - Synced the focused tier assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'` successfully.

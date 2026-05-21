@@ -541,8 +541,8 @@ return [
             ['label' => 'Active Galaxy tiers', 'value' => '2'],
             ['label' => 'Draft Galaxy tiers', 'value' => '1'],
             ['label' => 'Review-noted Galaxy tiers', 'value' => '1'],
-            ['label' => 'Activation notes', 'value' => '1'],
-            ['label' => 'Rollout notes', 'value' => '1'],
+            ['label' => 'Tier activation notes', 'value' => '1'],
+            ['label' => 'Tier rollout notes', 'value' => '1'],
             ['label' => 'Imported rules', 'value' => '0'],
         ],
         'table' => [
