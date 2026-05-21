@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Cardholders foundation-preview notice checkpoint
+- Tightened the visible cardholders notice title in `config/admin-pages.php`, replacing `Cardholder operations are still preview-only` with `Cardholder operations are still foundation-preview only` so the holder-management surface matches the newer foundation-preview framing already used in the shared resource header and the updated shops notice.
+- Synced the matching holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another live Phase 1 management surface instead of drifting back to docs-only wording work.
+
 ### Shops foundation-preview notice checkpoint
 - Tightened the visible shops notice title in `config/admin-pages.php`, replacing `Shop operations are still preview-only` with `Shop operations are still foundation-preview only` so the first branch-management surface uses the same newer foundation-preview framing as the shared resource header.
 - Synced the matching shops assertions and nearby layered-shell ordering checks in `tests/Feature/AdminDashboardTest.php`, then re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_resource_page_defaults_can_compose_all_five_shell_layers|test_resource_page_defaults_can_bridge_all_five_shell_layers_via_admin_resource_blocks|test_resource_page_defaults_array_can_bridge_all_five_shell_layers_via_admin_resource_blocks|test_resource_page_still_renders_with_injected_normalizer_dependency'` successfully for the touched shops slice.

@@ -4367,7 +4367,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active-state Galaxy holders')
             ->assertSee('Inactive-state Galaxy holders')
             ->assertSee('Linked Galaxy card shells')
-            ->assertSee('Cardholder operations are still preview-only')
+            ->assertSee('Cardholder operations are still foundation-preview only')
             ->assertSee('Search actions, metrics, and lifecycle cues are shaping the target Galaxy flow, but they are not backed by Galaxy foundation reads or writes yet.')
             ->assertSee('Migration readiness checklist')
             ->assertSee('Preview holder search surface and activity cues are defined')

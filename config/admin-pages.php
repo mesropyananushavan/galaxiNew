@@ -188,7 +188,7 @@ return [
             'Recent activity still needs a stable event source before the preview can become a real index.',
         ],
         'notice' => [
-            'title' => 'Cardholder operations are still preview-only',
+            'title' => 'Cardholder operations are still foundation-preview only',
             'description' => 'Search actions, metrics, and lifecycle cues are shaping the target Galaxy flow, but they are not backed by Galaxy foundation reads or writes yet.',
         ],
         'readinessChecklist' => [
