@@ -4425,7 +4425,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active-state Galaxy branches')
             ->assertSee('Paused-state Galaxy branches')
             ->assertSee('Assigned branch managers')
-            ->assertSee('Shop operations are still preview-only')
+            ->assertSee('Shop operations are still foundation-preview only')
             ->assertSee('Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Galaxy foundation queries or handlers yet.')
             ->assertSee('Migration readiness checklist')
             ->assertSee('Preview shop rows and branch actions defined')
@@ -8487,8 +8487,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue(
             strpos($content, 'Active-state Galaxy branches')
                 < strpos($content, 'Recent activity preview')
-                && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
-                && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
+                && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still foundation-preview only')
+                && strpos($content, 'Shop operations are still foundation-preview only') < strpos($content, 'Open issues to carry')
                 && strpos($content, 'Open issues to carry') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected base, context, preview, workflow, and closing shell layers to compose in sequence.'
         );
@@ -8528,8 +8528,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue(
             strpos($content, 'Active-state Galaxy branches')
                 < strpos($content, 'Recent activity preview')
-                && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
-                && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
+                && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still foundation-preview only')
+                && strpos($content, 'Shop operations are still foundation-preview only') < strpos($content, 'Open issues to carry')
                 && strpos($content, 'Open issues to carry') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected admin-resource-blocks to bridge all five shell layers into resource page defaults.'
         );
@@ -8573,8 +8573,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue(
             strpos($content, 'Active-state Galaxy branches')
                 < strpos($content, 'Recent activity preview')
-                && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still preview-only')
-                && strpos($content, 'Shop operations are still preview-only') < strpos($content, 'Open issues to carry')
+                && strpos($content, 'Recent activity preview') < strpos($content, 'Shop operations are still foundation-preview only')
+                && strpos($content, 'Shop operations are still foundation-preview only') < strpos($content, 'Open issues to carry')
                 && strpos($content, 'Open issues to carry') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected the full admin-resource-page-defaults array to bridge layered shell composition through admin-resource-blocks.'
         );
@@ -9168,7 +9168,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Preview notice')
             ->assertSee('Migration readiness checklist')
             ->assertSee('Recent activity preview')
-            ->assertSee('Shop operations are still preview-only')
+            ->assertSee('Shop operations are still foundation-preview only')
             ->assertSee('Preview shop rows and branch actions defined')
             ->assertSee('Central Shop scope reviewed');
     }

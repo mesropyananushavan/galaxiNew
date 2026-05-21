@@ -60,7 +60,7 @@ return [
             'Manager ownership rules still need parity verification against the old Galaxy branch model.',
         ],
         'notice' => [
-            'title' => 'Shop operations are still preview-only',
+            'title' => 'Shop operations are still foundation-preview only',
             'description' => 'Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Galaxy foundation queries or handlers yet.',
         ],
         'readinessChecklist' => [

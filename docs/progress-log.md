@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Shops foundation-preview notice checkpoint
+- Tightened the visible shops notice title in `config/admin-pages.php`, replacing `Shop operations are still preview-only` with `Shop operations are still foundation-preview only` so the first branch-management surface uses the same newer foundation-preview framing as the shared resource header.
+- Synced the matching shops assertions and nearby layered-shell ordering checks in `tests/Feature/AdminDashboardTest.php`, then re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_resource_page_defaults_can_compose_all_five_shell_layers|test_resource_page_defaults_can_bridge_all_five_shell_layers_via_admin_resource_blocks|test_resource_page_defaults_array_can_bridge_all_five_shell_layers_via_admin_resource_blocks|test_resource_page_still_renders_with_injected_normalizer_dependency'` successfully for the touched shops slice.
+- Kept the step intentionally small, but moved one live Phase 1 branch workspace notice away from older preview-only wording and toward the repo's Galaxy foundation vocabulary.
+
 ### Resource-rationale scaffold-stub checkpoint
 - Tightened the shared resource-shell rationale in `config/admin-page-rationale.php`, replacing `dead placeholders` with `dormant scaffold stubs` so the visible Phase 1 page framing leans further away from generic starter-era language.
 - Synced the matching shell assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_resource_page_shell_keeps_shared_header_and_rationale_visible'` successfully.
