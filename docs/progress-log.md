@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Gifts foundation-preview notice checkpoint
+- Tightened the visible `gifts` notice title in `config/admin-pages.php`, replacing `Gift redemption controls are still preview-only` with `Gift redemption controls are still foundation-preview only` so the rewards workspace matches the newer foundation-preview framing already used across the shared resource header and the updated branch, holder, card, checks, reporting, and rules surfaces.
+- Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another visible Phase 1 management page instead of drifting back to docs-only changes.
+
 ### Rules foundation-preview notice checkpoint
 - Tightened the visible `services-rules` notice title in `config/admin-pages.php`, replacing `Rule editing is still preview-only` with `Rule editing is still foundation-preview only` so the rules workspace matches the newer foundation-preview framing already used across the shared resource header and the updated branch, holder, card, checks, and reporting surfaces.
 - Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview'` successfully.

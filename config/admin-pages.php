@@ -869,7 +869,7 @@ return [
             ],
         ],
         'notice' => [
-            'title' => 'Gift redemption controls are still preview-only',
+            'title' => 'Gift redemption controls are still foundation-preview only',
             'description' => 'This shell defines the target Galaxy workflow, but inventory and publishing actions are not wired to backend requests yet.',
         ],
         'legacyMapping' => [

@@ -9547,7 +9547,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Low-stock Galaxy rewards')
             ->assertSee('No gift campaigns configured yet')
             ->assertSee('Create first Galaxy reward')
-            ->assertSee('Gift redemption controls are still preview-only')
+            ->assertSee('Gift redemption controls are still foundation-preview only')
             ->assertSee('Catalog identity')
             ->assertSee('Availability')
             ->assertSee('Compare legacy catalog')
