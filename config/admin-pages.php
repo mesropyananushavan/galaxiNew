@@ -538,7 +538,7 @@ return [
             ['label' => 'Import rules', 'tone' => 'secondary'],
         ],
         'metrics' => [
-            ['label' => 'Active Galaxy tiers', 'value' => '2'],
+            ['label' => 'Active-state Galaxy tiers', 'value' => '2'],
             ['label' => 'Draft Galaxy tiers', 'value' => '1'],
             ['label' => 'Review-noted Galaxy tiers', 'value' => '1'],
             ['label' => 'Tier activation notes', 'value' => '1'],
