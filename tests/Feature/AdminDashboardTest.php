@@ -8266,7 +8266,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Next step')
             ->assertSee('Replace sample rows with real shop records, manager info, and scoped access actions.')
             ->assertSee('Why this page exists now')
-            ->assertSee('connect the admin navigation to real Galaxy sections instead of dead placeholders;')
+            ->assertSee('connect the admin navigation to real Galaxy sections instead of dormant scaffold stubs;')
             ->assertSee('reserve stable route names for future CRUD and reporting flows;')
             ->assertSee('make the Phase 1 shell visibly closer to the old operational product shape.');
     }
