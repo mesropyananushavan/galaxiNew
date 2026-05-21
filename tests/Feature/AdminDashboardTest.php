@@ -1297,7 +1297,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('No assignment note saved yet')
             ->assertSee('Review latest saved access shell')
             ->assertSee('Active Galaxy access shells')
-            ->assertSee('Draft Galaxy access shells')
+            ->assertSee('Draft-state Galaxy access shells')
             ->assertSee('Review-noted Galaxy access shells')
             ->assertSee('Access-policy Galaxy notes')
             ->assertSee('Role-assignment Galaxy notes')

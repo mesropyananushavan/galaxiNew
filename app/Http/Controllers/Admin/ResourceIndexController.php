@@ -666,7 +666,7 @@ class ResourceIndexController extends Controller
 
         $page['metrics'] = [
             ['label' => 'Active Galaxy access shells', 'value' => (string) $roles->where('is_active', true)->count()],
-            ['label' => 'Draft Galaxy access shells', 'value' => (string) $roles->where('is_active', false)->count()],
+            ['label' => 'Draft-state Galaxy access shells', 'value' => (string) $roles->where('is_active', false)->count()],
             ['label' => 'Review-noted Galaxy access shells', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->review_note))->count()],
             ['label' => 'Access-policy Galaxy notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->access_note))->count()],
             ['label' => 'Role-assignment Galaxy notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->assignment_note))->count()],
