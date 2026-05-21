@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Roles foundation-preview notice checkpoint
+- Tightened the visible `roles-permissions` notice title in `config/admin-pages.php`, replacing `Role identity writes are live, publishing is still preview-only` with `Role identity writes are live, publishing is still foundation-preview only` so the access workspace matches the newer foundation-preview framing already used across the shared resource header and the updated branch, holder, card, checks, reporting, rules, and gifts surfaces.
+- Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another visible Phase 1 management page instead of stopping once the simpler preview-only notices were aligned.
+
 ### Gifts foundation-preview notice checkpoint
 - Tightened the visible `gifts` notice title in `config/admin-pages.php`, replacing `Gift redemption controls are still preview-only` with `Gift redemption controls are still foundation-preview only` so the rewards workspace matches the newer foundation-preview framing already used across the shared resource header and the updated branch, holder, card, checks, reporting, and rules surfaces.
 - Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'` successfully.

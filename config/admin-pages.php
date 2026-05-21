@@ -1018,7 +1018,7 @@ return [
             ],
         ],
         'notice' => [
-            'title' => 'Role identity writes are live, publishing is still preview-only',
+            'title' => 'Role identity writes are live, publishing is still foundation-preview only',
             'description' => 'The first Galaxy foundation-backed role form now saves role identity, but permission persistence, publishing controls, and assignment flows still need implementation.',
         ],
         'legacyMapping' => [

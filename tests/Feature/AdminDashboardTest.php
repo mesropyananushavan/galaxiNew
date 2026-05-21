@@ -1160,7 +1160,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create first Galaxy role')
             ->assertSee('This is the first minimal Galaxy foundation-backed role write path. Keep it limited to role identity while permission bundles and shop scope remain parity-first review surfaces.')
             ->assertSee('Keep the new minimal role identity flow narrow, then layer role assignment, permission matrix, and shop-aware policy flows on top of it.')
-            ->assertSee('Role identity writes are live, publishing is still preview-only')
+            ->assertSee('Role identity writes are live, publishing is still foundation-preview only')
             ->assertSee('The first Galaxy foundation-backed role form now saves role identity, but permission persistence, publishing controls, and assignment flows still need implementation.')
             ->assertSee('Role identity')
             ->assertSee('Access policy')
