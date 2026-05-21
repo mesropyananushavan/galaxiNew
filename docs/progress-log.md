@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Branches paused-state metric checkpoint
+- Tightened the live `shops` management metric label from `Paused Galaxy branches` to `Paused-state Galaxy branches` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the top branch state pair now uses matching state-oriented wording.
+- Synced the focused branch assertions in `tests/Feature/AdminDashboardTest.php`, including the malformed-metrics helper coverage on the same shops slice, and re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_resource_page_defaults_helpers_ignore_malformed_metrics'` successfully for the matching branch surface.
+- Kept the step intentionally small, but continued the same live metric cleanup on an active admin surface instead of falling back to docs-only wording work.
+
 ### Holders inactive-state metric checkpoint
 - Tightened the live `cardholders` management metric label from `Inactive Galaxy holders` to `Inactive-state Galaxy holders` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the top holder state pair now uses matching state-oriented wording.
 - Synced the focused holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.

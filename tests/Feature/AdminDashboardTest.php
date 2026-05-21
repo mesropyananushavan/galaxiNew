@@ -4423,7 +4423,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.')
             ->assertSee('aria-disabled="true"', false)
             ->assertSee('Active-state Galaxy branches')
-            ->assertSee('Paused Galaxy branches')
+            ->assertSee('Paused-state Galaxy branches')
             ->assertSee('Assigned branch managers')
             ->assertSee('Shop operations are still preview-only')
             ->assertSee('Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Galaxy foundation queries or handlers yet.')
@@ -8719,9 +8719,9 @@ class AdminDashboardTest extends TestCase
         Config::set('admin-pages.shops.metrics', [
             ['label' => 'Active-state Galaxy branches', 'value' => '2'],
             'invalid-metric-entry',
-            ['label' => 'Paused Galaxy branches'],
+            ['label' => 'Paused-state Galaxy branches'],
             ['label' => 'Assigned branch managers', 'value' => 2],
-            ['label' => 'Paused Galaxy branches', 'value' => '1'],
+            ['label' => 'Paused-state Galaxy branches', 'value' => '1'],
         ]);
 
         $response = $this->actingAs($user)->get('/admin/shops');
@@ -8729,7 +8729,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Active-state Galaxy branches')
-            ->assertSee('Paused Galaxy branches')
+            ->assertSee('Paused-state Galaxy branches')
             ->assertDontSee('invalid-metric-entry')
             ->assertDontSee('Assigned branch managers')
             ->assertDontSee('Array');

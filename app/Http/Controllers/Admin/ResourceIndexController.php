@@ -1214,7 +1214,7 @@ class ResourceIndexController extends Controller
 
         $page['metrics'] = [
             ['label' => 'Active-state Galaxy branches', 'value' => (string) $shops->where('is_active', true)->count()],
-            ['label' => 'Paused Galaxy branches', 'value' => (string) $shops->where('is_active', false)->count()],
+            ['label' => 'Paused-state Galaxy branches', 'value' => (string) $shops->where('is_active', false)->count()],
             ['label' => 'Review-noted Galaxy branches', 'value' => (string) $shops->filter(fn (Shop $shop): bool => filled($shop->review_note))->count()],
             ['label' => 'Assigned branch managers', 'value' => (string) $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count()],
         ];
