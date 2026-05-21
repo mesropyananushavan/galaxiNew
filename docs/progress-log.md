@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Gifts operator-checklist wording checkpoint
+- Tightened the `gifts` operator-checklist summary in `config/admin-pages.php`, replacing `workflow is still preview-only` with `workflow is still foundation-preview only` so the rewards workspace keeps using the same newer framing beyond just the notice title.
+- Expanded the focused gifts assertion slice in `tests/Feature/AdminDashboardTest.php` to cover the updated checklist summary and re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'` successfully.
+- Kept the step intentionally small, but continued moving visible Phase 1 rewards copy toward a more consistent Galaxy foundation vocabulary instead of stopping at the previous notice-only tweak.
+
 ### Roles foundation-preview notice checkpoint
 - Tightened the visible `roles-permissions` notice title in `config/admin-pages.php`, replacing `Role identity writes are live, publishing is still preview-only` with `Role identity writes are live, publishing is still foundation-preview only` so the access workspace matches the newer foundation-preview framing already used across the shared resource header and the updated branch, holder, card, checks, reporting, rules, and gifts surfaces.
 - Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.

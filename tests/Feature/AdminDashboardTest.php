@@ -9559,6 +9559,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Migration readiness checklist')
             ->assertSee('Implementation dependencies')
             ->assertSee('Operator checklist')
+            ->assertSee('Keep the gift catalog aligned with redemption reality while the workflow is still foundation-preview only.')
             ->assertSee('Review zero-stock rewards before reopening a paused gift.')
             ->assertSee('Escalation guide')
             ->assertSee('Escalate stock discrepancies before reactivating a paused reward.')

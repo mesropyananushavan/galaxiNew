@@ -892,7 +892,7 @@ return [
             ['label' => 'Operational dependency', 'value' => 'Warehouse and loyalty parity checks are needed before enabling publish flow'],
         ],
         'operatorChecklist' => [
-            'summary' => 'Keep the gift catalog aligned with redemption reality while the workflow is still preview-only.',
+            'summary' => 'Keep the gift catalog aligned with redemption reality while the workflow is still foundation-preview only.',
             'items' => [
                 'Review zero-stock rewards before reopening a paused gift.',
                 'Confirm shop scope against the legacy reward catalog before publishing changes.',
