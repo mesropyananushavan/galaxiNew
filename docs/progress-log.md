@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Tiers draft-state metric checkpoint
+- Tightened the live `card-types` management metric label from `Draft Galaxy tiers` to `Draft-state Galaxy tiers` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the tier snapshot now uses matching state-oriented wording across both the active and draft counts.
+- Synced the focused tier assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'` successfully.
+- Logged the neighboring-expectation miss from the earlier tier-label pass in `.learnings/ERRORS.md` so future small copy renames on a shared surface grep all same-slice assertions before reruns.
+
 ### Tiers active-state metric checkpoint
 - Tightened the live `card-types` management metric label from `Active Galaxy tiers` to `Active-state Galaxy tiers` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the tier snapshot now uses more explicit state-oriented wording that matches the recent access-surface cleanup.
 - Synced the two focused tier assertions in `tests/Feature/AdminDashboardTest.php`; the first focused run exposed one neighboring expectation on the same surface, and the second rerun of `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'` passed cleanly.

@@ -10325,7 +10325,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Active-state Galaxy tiers')
-            ->assertSee('Draft Galaxy tiers')
+            ->assertSee('Draft-state Galaxy tiers')
             ->assertSee('Review-noted Galaxy tiers')
             ->assertSee('Tier activation notes')
             ->assertSee('Tier rollout notes')
