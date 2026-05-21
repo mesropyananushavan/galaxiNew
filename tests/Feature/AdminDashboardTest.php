@@ -4365,7 +4365,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Review recent activity')
             ->assertSee('Blocked until the first Galaxy foundation-backed cardholder slice exists for activity-history parity review.')
             ->assertSee('Active-state Galaxy holders')
-            ->assertSee('Inactive Galaxy holders')
+            ->assertSee('Inactive-state Galaxy holders')
             ->assertSee('Linked Galaxy card shells')
             ->assertSee('Cardholder operations are still preview-only')
             ->assertSee('Search actions, metrics, and lifecycle cues are shaping the target Galaxy flow, but they are not backed by Galaxy foundation reads or writes yet.')

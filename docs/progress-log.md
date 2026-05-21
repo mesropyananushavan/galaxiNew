@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Holders inactive-state metric checkpoint
+- Tightened the live `cardholders` management metric label from `Inactive Galaxy holders` to `Inactive-state Galaxy holders` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the top holder state pair now uses matching state-oriented wording.
+- Synced the focused holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on another active admin surface instead of falling back to docs-only wording work.
+
 ### Holders active-state metric checkpoint
 - Tightened the live `cardholders` management metric label from `Active Galaxy holders` to `Active-state Galaxy holders` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the holder snapshot now uses more explicit state-oriented wording that matches the newer branch, tier, and access metrics.
 - Synced the focused holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.

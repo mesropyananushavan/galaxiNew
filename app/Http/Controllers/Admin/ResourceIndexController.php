@@ -1053,7 +1053,7 @@ class ResourceIndexController extends Controller
 
         $page['metrics'] = [
             ['label' => 'Active-state Galaxy holders', 'value' => (string) $cardHolders->where('is_active', true)->count()],
-            ['label' => 'Inactive Galaxy holders', 'value' => (string) $cardHolders->where('is_active', false)->count()],
+            ['label' => 'Inactive-state Galaxy holders', 'value' => (string) $cardHolders->where('is_active', false)->count()],
             ['label' => 'Active-branch holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => (bool) $cardHolder->shop?->is_active)->count()],
             ['label' => 'Paused-branch holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->shop !== null && ! (bool) $cardHolder->shop->is_active)->count()],
             ['label' => 'Active linked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->is_active && $cardHolder->cards_count > 0)->count()],

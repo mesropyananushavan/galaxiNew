@@ -149,7 +149,7 @@ return [
         ],
         'metrics' => [
             ['label' => 'Active-state Galaxy holders', 'value' => '2'],
-            ['label' => 'Inactive Galaxy holders', 'value' => '1'],
+            ['label' => 'Inactive-state Galaxy holders', 'value' => '1'],
             ['label' => 'Review-noted Galaxy holders', 'value' => '2'],
             ['label' => 'Linked Galaxy card shells', 'value' => '3'],
         ],
