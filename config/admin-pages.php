@@ -335,7 +335,7 @@ return [
             'Status semantics still need verification against legacy blocked and draft card behavior.',
         ],
         'notice' => [
-            'title' => 'Card operations are still preview-only',
+            'title' => 'Card operations are still foundation-preview only',
             'description' => 'Inventory actions, status metrics, and filters are laid out for Galaxy parity, but they are not connected to Galaxy foundation handlers yet.',
         ],
         'readinessChecklist' => [

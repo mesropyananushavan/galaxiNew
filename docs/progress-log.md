@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Cards foundation-preview notice checkpoint
+- Tightened the visible cards notice title in `config/admin-pages.php`, replacing `Card operations are still preview-only` with `Card operations are still foundation-preview only` so the inventory-management surface matches the newer foundation-preview framing already used in the shared resource header plus the updated shops and cardholders notices.
+- Synced the matching cards assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another live Phase 1 management surface instead of slipping back into docs-only wording changes.
+
 ### Cardholders foundation-preview notice checkpoint
 - Tightened the visible cardholders notice title in `config/admin-pages.php`, replacing `Cardholder operations are still preview-only` with `Cardholder operations are still foundation-preview only` so the holder-management surface matches the newer foundation-preview framing already used in the shared resource header and the updated shops notice.
 - Synced the matching holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.

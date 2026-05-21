@@ -2431,7 +2431,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked Galaxy card shells')
             ->assertSee('Issued Galaxy card shells')
             ->assertSee('Pre-activation cards')
-            ->assertSee('Card operations are still preview-only')
+            ->assertSee('Card operations are still foundation-preview only')
             ->assertSee('Inventory actions, status metrics, and filters are laid out for Galaxy parity, but they are not connected to Galaxy foundation handlers yet.')
             ->assertSee('Migration readiness checklist')
             ->assertSee('Preview inventory statuses and card-type filters are defined')
