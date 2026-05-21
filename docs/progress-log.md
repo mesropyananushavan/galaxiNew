@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Holders review-note metric checkpoint
+- Tightened the live `cardholders` management metric label from `Reviewed Galaxy holders` to `Review-noted Galaxy holders` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the holder snapshot names that count after the underlying review-note signal instead of a vague past-tense state label.
+- Synced the focused holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on another active admin surface instead of falling back to docs-only wording work.
+
 ### Cards review-note metric checkpoint
 - Tightened the live `cards` management metric label from `Reviewed Galaxy card shells` to `Review-noted Galaxy card shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the inventory snapshot names that count after the underlying review-note signal instead of a vague past-tense state label.
 - Synced the focused cards assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape'` successfully.
