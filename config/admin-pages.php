@@ -943,7 +943,7 @@ return [
             ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Galaxy foundation permission matrix can be verified against legacy staff access.'],
         ],
         'metrics' => [
-            ['label' => 'Active Galaxy access shells', 'value' => '2'],
+            ['label' => 'Active-state Galaxy access shells', 'value' => '2'],
             ['label' => 'Draft-state Galaxy access shells', 'value' => '1'],
             ['label' => 'Review-noted Galaxy access shells', 'value' => '2'],
             ['label' => 'Access-policy Galaxy notes', 'value' => '1'],

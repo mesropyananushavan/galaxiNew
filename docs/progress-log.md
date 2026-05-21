@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Roles active-state metric checkpoint
+- Tightened the live `roles-permissions` management metric label from `Active Galaxy access shells` to `Active-state Galaxy access shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot now uses matching state-oriented wording across both the active and draft counts.
+- Synced the focused roles assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live admin-surface cleanup instead of drifting back to docs-only wording work.
+
 ### Roles draft-state metric checkpoint
 - Tightened the live `roles-permissions` management metric label from `Draft Galaxy access shells` to `Draft-state Galaxy access shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot uses a more explicit state-oriented label instead of a shorter generic adjective.
 - Synced the focused roles assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
