@@ -465,7 +465,7 @@ return [
             'Transaction domain tables do not exist yet, so accrual parity remains structural only.',
         ],
         'notice' => [
-            'title' => 'Checks and points operations are still preview-only',
+            'title' => 'Checks and points operations are still foundation-preview only',
             'description' => 'Receipt lookup actions, accrual metrics, and troubleshooting cues are shaping the final Galaxy flow, but real Galaxy foundation transaction reads do not exist yet.',
         ],
         'readinessChecklist' => [

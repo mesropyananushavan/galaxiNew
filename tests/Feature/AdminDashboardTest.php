@@ -6648,7 +6648,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Positive accruals')
             ->assertSee('Zero accruals')
             ->assertSee('Galaxy receipt and accrual workspace for purchases, fiscal search, and point adjustments.')
-            ->assertSee('Checks and points operations are still preview-only')
+            ->assertSee('Checks and points operations are still foundation-preview only')
             ->assertSee('Receipt lookup actions, accrual metrics, and troubleshooting cues are shaping the final Galaxy flow, but real Galaxy foundation transaction reads do not exist yet.')
             ->assertSee('Migration readiness checklist')
             ->assertSee('Preview receipt lookup surface and accrual metrics are defined')
