@@ -9267,7 +9267,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy branch scopes')
             ->assertSee('No service rules configured yet')
             ->assertSee('Create first Galaxy rule')
-            ->assertSee('Rule editing is still preview-only')
+            ->assertSee('Rule editing is still foundation-preview only')
             ->assertSee('This screen outlines the target Galaxy rule workflow, but save and publish actions are not wired to Galaxy foundation handlers yet.')
             ->assertSee('Rule identity')
             ->assertSee('Effect and priority')

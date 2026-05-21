@@ -742,7 +742,7 @@ return [
             ],
         ],
         'notice' => [
-            'title' => 'Rule editing is still preview-only',
+            'title' => 'Rule editing is still foundation-preview only',
             'description' => 'This screen outlines the target Galaxy rule workflow, but save and publish actions are not wired to Galaxy foundation handlers yet.',
         ],
         'legacyMapping' => [

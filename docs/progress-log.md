@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Rules foundation-preview notice checkpoint
+- Tightened the visible `services-rules` notice title in `config/admin-pages.php`, replacing `Rule editing is still preview-only` with `Rule editing is still foundation-preview only` so the rules workspace matches the newer foundation-preview framing already used across the shared resource header and the updated branch, holder, card, checks, and reporting surfaces.
+- Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another visible Phase 1 management page instead of stopping at the operational surfaces only.
+
 ### Reporting foundation-preview notice checkpoint
 - Tightened the visible reporting notice title in `config/admin-pages.php`, replacing `Reporting operations are still preview-only` with `Reporting operations are still foundation-preview only` so the reports workspace matches the newer foundation-preview framing already used across the shared resource header plus the updated shops, cardholders, cards, and checks notices.
 - Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape'` successfully.
