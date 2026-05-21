@@ -278,7 +278,7 @@ return [
             ['label' => 'Review blocked cards', 'tone' => 'secondary'],
         ],
         'metrics' => [
-            ['label' => 'Active Galaxy card shells', 'value' => '1'],
+            ['label' => 'Active-state Galaxy card shells', 'value' => '1'],
             ['label' => 'Draft Galaxy card shells', 'value' => '1'],
             ['label' => 'Blocked Galaxy card shells', 'value' => '1'],
             ['label' => 'Issued Galaxy card shells', 'value' => '2'],

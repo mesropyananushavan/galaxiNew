@@ -867,7 +867,7 @@ class ResourceIndexController extends Controller
         );
 
         $page['metrics'] = [
-            ['label' => 'Active Galaxy card shells', 'value' => (string) $cards->where('status', 'active')->count()],
+            ['label' => 'Active-state Galaxy card shells', 'value' => (string) $cards->where('status', 'active')->count()],
             ['label' => 'Draft Galaxy card shells', 'value' => (string) $cards->where('status', 'draft')->count()],
             ['label' => 'Blocked Galaxy card shells', 'value' => (string) $cards->where('status', 'blocked')->count()],
             ['label' => 'Issued Galaxy card shells', 'value' => (string) $cards->filter(fn (Card $card): bool => $card->issued_at !== null)->count()],
