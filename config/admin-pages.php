@@ -690,8 +690,8 @@ return [
             ['label' => 'Review priorities', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until rule priority resolution is verified in the Galaxy foundation.'],
         ],
         'metrics' => [
-            ['label' => 'Active Galaxy rules', 'value' => '2'],
-            ['label' => 'Draft Galaxy rules', 'value' => '1'],
+            ['label' => 'Active-state Galaxy rules', 'value' => '2'],
+            ['label' => 'Draft-state Galaxy rules', 'value' => '1'],
             ['label' => 'Galaxy branch scopes', 'value' => '3'],
         ],
         'table' => [
@@ -817,9 +817,9 @@ return [
             ['label' => 'Stock audit', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until stock checks are backed by Galaxy foundation inventory data.'],
         ],
         'metrics' => [
-            ['label' => 'Active Galaxy rewards', 'value' => '2'],
-            ['label' => 'Paused Galaxy rewards', 'value' => '1'],
-            ['label' => 'Low stock items', 'value' => '1'],
+            ['label' => 'Active-state Galaxy rewards', 'value' => '2'],
+            ['label' => 'Paused-state Galaxy rewards', 'value' => '1'],
+            ['label' => 'Low-stock Galaxy rewards', 'value' => '1'],
         ],
         'table' => [
             'columns' => ['Gift', 'Points cost', 'Shop scope', 'Stock', 'Status'],

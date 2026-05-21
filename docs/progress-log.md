@@ -2,6 +2,12 @@
 
 ## 2026-05-21
 
+### Rules-and-rewards state-metric checkpoint
+- Tightened the preview `services-rules` and `gifts` management metric labels in `config/admin-pages.php` from `Active/Draft/Paused Galaxy ...` wording to the same more explicit state-oriented format already used across the live Phase 1 admin surfaces: `Active-state Galaxy rules`, `Draft-state Galaxy rules`, `Active-state Galaxy rewards`, and `Paused-state Galaxy rewards`.
+- Also renamed the gifts stock counter from `Low stock items` to `Low-stock Galaxy rewards` so the reward snapshot reads less like a generic placeholder bucket and more like a Galaxy-specific management surface.
+- Synced the focused preview assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview|test_authenticated_user_can_access_gifts_management_preview'` successfully.
+- Kept the step intentionally small, but moved the same state-label cleanup onto two still-preview Galaxy management surfaces instead of only iterating inside already-live cards, holders, shops, roles, and tiers.
+
 ### Cards draft-state metric checkpoint
 - Tightened the live `cards` management metric label from `Draft Galaxy card shells` to `Draft-state Galaxy card shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the top inventory state metrics now use matching state-oriented wording.
 - Synced the focused cards assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape'` successfully.
