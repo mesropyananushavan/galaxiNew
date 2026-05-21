@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-05-21
+
+### Roles review-note metric checkpoint
+- Tightened the neighboring live `roles-permissions` management metric label from `Reviewed Galaxy access shells` to `Review-noted Galaxy access shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot now names that count after the actual review-note signal instead of a vague past-tense state label.
+- Synced the focused roles assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live admin-surface cleanup instead of drifting back to docs-only wording work.
+
 ## 2026-05-20
 
 ### Roles branch-coverage metric checkpoint
