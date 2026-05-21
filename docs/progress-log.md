@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Dashboard foundation-copy checkpoint
+- Tightened one remaining visible admin-dashboard sentence in `resources/views/admin/dashboard.blade.php`, replacing `generic placeholders` with `scaffold-era placeholders` so the top Phase 1 live-foundation snapshot keeps shedding generic starter-era framing.
+- Synced the matching dashboard assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'` successfully.
+- Kept the step intentionally small, but continued removing generic scaffold language from a live Galaxy admin surface instead of only adjusting background docs.
+
 ### Dashboard state-metric checkpoint
 - Tightened the main admin dashboard metric labels in `resources/views/admin/dashboard.blade.php` from the older `Active Galaxy ...` wording to the same more explicit state-oriented format already used across the live resource pages: `Active-state Galaxy branches`, `Active-state Galaxy holders`, `Active-state Galaxy card shells`, and `Active-state Galaxy tiers`.
 - Synced the dashboard assertions in `tests/Feature/AdminDashboardTest.php` for the authenticated admin, empty-workspace fallback, and partial-latest-links coverage slices, then re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links'` successfully.

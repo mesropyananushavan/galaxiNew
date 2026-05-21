@@ -67,7 +67,7 @@
             <h3 style="margin: 0 0 8px; font-size: 1.1rem;">Galaxy live foundation snapshot</h3>
             <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
                 These counters track the first live Galaxy surfaces already present in Phase 1,
-                so branch setup and review work can move through real operational entities instead of generic placeholders.
+                so branch setup and review work can move through real operational entities instead of scaffold-era placeholders.
             </p>
             @if (is_array($foundationHandoffSummary ?? null))
             <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">

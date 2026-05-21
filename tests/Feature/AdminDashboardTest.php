@@ -195,7 +195,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Tier baseline coverage')
             ->assertSee('1/1 Galaxy tiers active')
             ->assertSee('Galaxy live foundation snapshot')
-            ->assertSee('branch setup and review work can move through real operational entities instead of generic placeholders')
+            ->assertSee('branch setup and review work can move through real operational entities instead of scaffold-era placeholders')
             ->assertSee('Foundation handoff signal')
             ->assertSee('The dashboard already shows enough live Galaxy entities to support a useful foundation handoff review.')
             ->assertSee('Foundation focus:')
