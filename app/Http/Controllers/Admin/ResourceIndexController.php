@@ -3242,11 +3242,11 @@ class ResourceIndexController extends Controller
     private function reportsCardholderStatusBackendGap(int $cardHolderCount, int $linkedCardHolderCount, int $inactiveCardHolderCount, int $blockedLinkedCardCount): string
     {
         return match (true) {
-            $cardHolderCount === 0 => 'Report-source seeding, status shaping, and export generation should stay preview-only until holder lifecycle inputs exist in the Galaxy foundation layer.',
-            $linkedCardHolderCount > 0 && $inactiveCardHolderCount > 0 => 'Preset handling, lifecycle-segmentation shaping, and export generation should stay preview-only until inactive-holder parity is verified.',
-            $linkedCardHolderCount > 0 => 'Preset handling, inactive-holder shaping, and export generation should stay preview-only until linked-profile lifecycle parity is verified.',
-            $blockedLinkedCardCount > 0 => 'Preset handling, blocked-card shaping, and export generation should stay preview-only until support-style lifecycle parity is verified.',
-            default => 'Preset handling, report shaping, and export generation should stay preview-only until lifecycle parity is verified.',
+            $cardHolderCount === 0 => 'Report-source seeding, status shaping, and export generation should stay foundation-preview only until holder lifecycle inputs exist in the Galaxy foundation layer.',
+            $linkedCardHolderCount > 0 && $inactiveCardHolderCount > 0 => 'Preset handling, lifecycle-segmentation shaping, and export generation should stay foundation-preview only until inactive-holder parity is verified.',
+            $linkedCardHolderCount > 0 => 'Preset handling, inactive-holder shaping, and export generation should stay foundation-preview only until linked-profile lifecycle parity is verified.',
+            $blockedLinkedCardCount > 0 => 'Preset handling, blocked-card shaping, and export generation should stay foundation-preview only until support-style lifecycle parity is verified.',
+            default => 'Preset handling, report shaping, and export generation should stay foundation-preview only until lifecycle parity is verified.',
         };
     }
 

@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Reports cardholder-status backend-gap foundation-preview checkpoint
+- Tightened the cardholder-status reporting `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across empty-source, mixed-lifecycle, linked-profile, blocked-support, and default holder-status review states so this reporting handoff surface matches the newer Galaxy foundation wording already used across the live Phase 1 shell.
+- Synced the matching holder-status reporting assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused reports slice successfully.
+- Kept the step intentionally small, but moved one more live reporting-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
 ### Reports cards-by-shop backend-gap foundation-preview checkpoint
 - Tightened the cards-by-shop reporting `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across empty-source, mixed-assignment, linked-holder, unassigned, and default branch-total review states so this reporting handoff surface matches the newer Galaxy foundation wording already used across the live Phase 1 shell.
 - Synced the matching branch-total reporting assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused reports slice successfully.
