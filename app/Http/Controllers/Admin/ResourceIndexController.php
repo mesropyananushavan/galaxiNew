@@ -3336,11 +3336,11 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsBackendGap(Role $selectedRole): string
     {
         return match (true) {
-            ! $selectedRole->is_active => 'Draft activation, first permission-bundle wiring, and shop-scoped authorization writes should stay preview-only until access parity is verified.',
-            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.',
-            $selectedRole->permissions_count > 0 => 'Assignment linking, matrix editing, and shop-scoped authorization writes should stay preview-only until bundle-led access parity is verified.',
-            $selectedRole->users_count > 0 => 'Permission-bundle wiring, matrix editing, and shop-scoped authorization writes should stay preview-only until staff-led access parity is verified.',
-            default => 'Role assignment, permission-bundle wiring, and shop-scoped authorization writes should stay preview-only until access parity is verified.',
+            ! $selectedRole->is_active => 'Draft activation, first permission-bundle wiring, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.',
+            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Role assignment, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.',
+            $selectedRole->permissions_count > 0 => 'Assignment linking, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until bundle-led access parity is verified.',
+            $selectedRole->users_count > 0 => 'Permission-bundle wiring, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until staff-led access parity is verified.',
+            default => 'Role assignment, permission-bundle wiring, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.',
         };
     }
 

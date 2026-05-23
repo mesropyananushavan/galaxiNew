@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Roles backend-gap foundation-preview checkpoint
+- Tightened the roles-and-permissions detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across draft, staffed, permission-linked, and default access review states so the deeper authorization handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching access review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused roles review slice successfully.
+- Kept the step intentionally small, but moved one more live authorization-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
 ### Cardholders backend-gap foundation-preview checkpoint
 - Tightened the cardholders detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across paused-branch, active, and reactivation holder review states so the deeper holder handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
 - Synced the matching holder review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused cardholders review slice successfully.

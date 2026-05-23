@@ -1425,7 +1425,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Handoff signal')
             ->assertSee('Live role already carries scope, staffing, and permission coverage for a useful access handoff review.')
             ->assertSee('Backend gap')
-            ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.')
+            ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.')
             ->assertSee('Scope rollout')
             ->assertSee('Shop scope visible in review')
             ->assertSee('Publish posture')
@@ -1550,7 +1550,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Handoff signal:')
             ->assertSee('Live role already carries scope, staffing, and permission coverage for a useful access handoff review.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.');
+            ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.');
     }
 
     public function test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context(): void
@@ -1617,7 +1617,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Access handoff stays visible in the workspace')
             ->assertSee('Operators should carry visible shop scope, assigned staff, and permission-bundle coverage in the live workspace before trusting any publish or matrix-edit follow-up.')
             ->assertSee('Backend gap')
-            ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes should stay preview-only until access parity is verified.')
+            ->assertSee('Role assignment, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Assignment branch activity signal:')
             ->assertSee('1 assigned staff are already visible in active branches beside 1 assigned staff in paused shops for parity review')
@@ -1661,7 +1661,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Handoff signal')
             ->assertSee('Draft role should stay in handoff-only posture until review note, bundle, and scope parity are explicit.')
             ->assertSee('Backend gap')
-            ->assertSee('Draft activation, first permission-bundle wiring, and shop-scoped authorization writes should stay preview-only until access parity is verified.')
+            ->assertSee('Draft activation, first permission-bundle wiring, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.')
             ->assertSee('Review freshness')
             ->assertSee('Draft role still needs a saved review note before parity handoff can feel grounded.')
             ->assertSee('Role status signal:')
