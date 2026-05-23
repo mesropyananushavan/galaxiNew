@@ -7861,7 +7861,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Handoff signal')
             ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Backend gap')
-            ->assertSee('Preset handling, grouped access shaping, and export generation should stay preview-only until scope and staffing parity are verified.')
+            ->assertSee('Preset handling, grouped access shaping, and export generation should stay foundation-preview only until scope and staffing parity are verified.')
             ->assertSee('Permission bundle signal')
             ->assertSee('unbundled active-role coverage is still pending')
             ->assertSee('Galaxy access source selected for Galaxy review')
@@ -7888,7 +7888,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Access posture:')
             ->assertSee('Role coverage should stay read-only until access-report parity and scope shaping are verified.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Preset handling, grouped access shaping, and export generation should stay preview-only until scope and staffing parity are verified.')
+            ->assertSee('Preset handling, grouped access shaping, and export generation should stay foundation-preview only until scope and staffing parity are verified.')
             ->assertSee('Handoff signal:')
             ->assertSee('Keep role-coverage and staffing findings in the live workspace before asking for export-driven handoff.');
     }
