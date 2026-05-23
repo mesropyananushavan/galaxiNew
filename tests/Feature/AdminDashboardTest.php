@@ -6180,7 +6180,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Activity handoff signal')
             ->assertSee('Dormant holder should stay in handoff-only posture until reactivation parity is explicit.')
             ->assertSee('Backend gap')
-            ->assertSee('Reactivation handling, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.')
+            ->assertSee('Reactivation handling, profile writes, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.')
             ->assertSee('Shop')
             ->assertSee('Shop guidance')
             ->assertSee('Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.')
@@ -6222,7 +6222,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Activity posture:')
             ->assertSee('Recent activity remains blocked until a stable Galaxy foundation event source exists for holder lookup parity.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Reactivation handling, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.');
+            ->assertSee('Reactivation handling, profile writes, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.');
     }
 
     public function test_cardholders_page_supports_selected_active_linked_holder_review_context(): void
@@ -6285,7 +6285,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Holder activity handoff stays visible in the workspace')
             ->assertSee('Operators should carry active status, linked-card evidence, and branch context in the live workspace before trusting any lifecycle-change or merge follow-up.')
             ->assertSee('Backend gap')
-            ->assertSee('Profile writes, merge handling, and recent-activity sourcing should stay preview-only until holder parity is verified.')
+            ->assertSee('Profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.')
             ->assertSee('Linked cards')
             ->assertSee('1')
             ->assertSee('Lookup guidance')
@@ -6337,7 +6337,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Holder activity handoff stays visible in the workspace')
             ->assertSee('Operators should carry active status, branch context, and card-linkage gaps in the live workspace before trusting any lifecycle-change or merge follow-up.')
             ->assertSee('Backend gap')
-            ->assertSee('Profile writes, merge handling, and recent-activity sourcing should stay preview-only until holder parity is verified.')
+            ->assertSee('Profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.')
             ->assertSee('Lookup guidance')
             ->assertSee('This holder is active in the Galaxy foundation layer, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.')
             ->assertSee('Card linkage posture:')
@@ -6404,7 +6404,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Holder activity handoff stays visible in the workspace')
             ->assertSee('Operators should carry inactive status, linked-card evidence, and branch context in the live workspace before trusting any reactivation or merge follow-up.')
             ->assertSee('Backend gap')
-            ->assertSee('Reactivation handling, profile writes, and recent-activity sourcing should stay preview-only until holder parity is verified.')
+            ->assertSee('Reactivation handling, profile writes, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.')
             ->assertSee('Lookup guidance')
             ->assertSee('This holder is inactive in the Galaxy foundation layer, which keeps the record safe for parity checks before operators treat it as fully reactivated.')
             ->assertSee('Card linkage posture:')
@@ -6452,7 +6452,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Activity posture:')
             ->assertSee('Recent activity remains blocked until a stable Galaxy foundation event source preserves paused-branch lookup and recovery parity.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Recovery handling, profile writes, merge handling, and recent-activity sourcing should stay preview-only until paused-branch holder parity is verified.')
+            ->assertSee('Recovery handling, profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until paused-branch holder parity is verified.')
             ->assertSee('Lookup guidance:')
             ->assertSee('This holder is active in the Galaxy foundation layer but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.');
     }

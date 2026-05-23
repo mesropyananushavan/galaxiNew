@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Cardholders backend-gap foundation-preview checkpoint
+- Tightened the cardholders detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across paused-branch, active, and reactivation holder review states so the deeper holder handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching holder review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused cardholders review slice successfully.
+- Kept the step intentionally small, but moved one more live holder-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
 ### Cards backend-gap foundation-preview checkpoint
 - Tightened the cards detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across blocked, active, and draft inventory review states so the deeper inventory handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
 - Synced the matching blocked, active, and draft inventory assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused cards review slice successfully.
