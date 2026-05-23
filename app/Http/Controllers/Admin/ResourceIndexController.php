@@ -309,9 +309,9 @@ class ResourceIndexController extends Controller
     private function checksPointsBackendGap(string $receiptKey): string
     {
         return match ($receiptKey) {
-            'chk-90407' => 'Receipt reads, zero-accrual rule traces, and adjustment handlers should stay preview-only until fiscal-search parity is verified.',
-            'chk-90388' => 'Branch-aware receipt reads, shop-filter parity, and adjustment handlers should stay preview-only until cross-branch ledger parity is verified.',
-            default => 'Receipt reads, transaction tables, and adjustment handlers should stay preview-only until accrual parity is verified.',
+            'chk-90407' => 'Receipt reads, zero-accrual rule traces, and adjustment handlers should stay foundation-preview only until fiscal-search parity is verified.',
+            'chk-90388' => 'Branch-aware receipt reads, shop-filter parity, and adjustment handlers should stay foundation-preview only until cross-branch ledger parity is verified.',
+            default => 'Receipt reads, transaction tables, and adjustment handlers should stay foundation-preview only until accrual parity is verified.',
         };
     }
 

@@ -6716,7 +6716,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Accrual posture')
             ->assertSee('Zero-accrual receipts should stay highly visible, because they drive the most parity-sensitive troubleshooting in the old Galaxy flow.')
             ->assertSee('Backend gap')
-            ->assertSee('Receipt reads, zero-accrual rule traces, and adjustment handlers should stay preview-only until fiscal-search parity is verified.')
+            ->assertSee('Receipt reads, zero-accrual rule traces, and adjustment handlers should stay foundation-preview only until fiscal-search parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep zero-accrual receipts in compact on-screen review first, because operators need amount, points, and rule context together before escalating.')
             ->assertSee('Troubleshooting guidance')
@@ -6727,7 +6727,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Receipt, amount, and zero-point outcome should stay visible in the workspace before any rule-gap discussion moves forward.')
             ->assertSee('Zero-point outcomes still need rule and receipt parity verification before any adjustment path is safe.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Receipt reads, zero-accrual rule traces, and adjustment handlers should stay preview-only until fiscal-search parity is verified.');
+            ->assertSee('Receipt reads, zero-accrual rule traces, and adjustment handlers should stay foundation-preview only until fiscal-search parity is verified.');
     }
 
     public function test_checks_points_page_supports_selected_branch_receipt_review_context(): void
@@ -6762,7 +6762,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Accrual posture')
             ->assertSee('North Shop accrual receipts should stay branch-aware, because cross-shop troubleshooting must preserve local receipt context.')
             ->assertSee('Backend gap')
-            ->assertSee('Branch-aware receipt reads, shop-filter parity, and adjustment handlers should stay preview-only until cross-branch ledger parity is verified.')
+            ->assertSee('Branch-aware receipt reads, shop-filter parity, and adjustment handlers should stay foundation-preview only until cross-branch ledger parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep branch receipts in table-first review mode, because operators need the shop, amount, and points visible together before cross-shop comparisons begin.')
             ->assertSee('Troubleshooting guidance')
@@ -6774,7 +6774,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Branch receipt lookup should stay read-only until Galaxy foundation shop filters and transaction history are verified against the old flow.')
             ->assertSee('Positive branch accrual outcomes still need live transaction-domain parity before any adjustment path is safe.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Branch-aware receipt reads, shop-filter parity, and adjustment handlers should stay preview-only until cross-branch ledger parity is verified.');
+            ->assertSee('Branch-aware receipt reads, shop-filter parity, and adjustment handlers should stay foundation-preview only until cross-branch ledger parity is verified.');
     }
 
     public function test_checks_points_page_supports_selected_positive_accrual_receipt_review_context(): void
@@ -6811,7 +6811,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Accrual posture')
             ->assertSee('Positive accrual receipts should stay parity-first, because receipt math must match the old Galaxy ledger before any correction flow appears.')
             ->assertSee('Backend gap')
-            ->assertSee('Receipt reads, transaction tables, and adjustment handlers should stay preview-only until accrual parity is verified.')
+            ->assertSee('Receipt reads, transaction tables, and adjustment handlers should stay foundation-preview only until accrual parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep this receipt in table-first review mode, because operators usually compare amount, points, and timestamp together before opening deeper investigation.')
             ->assertSee('Troubleshooting guidance')
@@ -6822,7 +6822,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Amount, points, and timestamp should stay visible in the workspace before any future export or correction discussion begins.')
             ->assertSee('Positive point outcomes still need live transaction-domain parity before any adjustment path is safe.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Receipt reads, transaction tables, and adjustment handlers should stay preview-only until accrual parity is verified.');
+            ->assertSee('Receipt reads, transaction tables, and adjustment handlers should stay foundation-preview only until accrual parity is verified.');
     }
 
     public function test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog(): void
