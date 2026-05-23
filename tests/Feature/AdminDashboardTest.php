@@ -9344,7 +9344,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Stock posture')
             ->assertSee('Zero-stock rewards should remain paused in review mode until Galaxy foundation inventory and reopening flows can reproduce the old behavior safely.')
             ->assertSee('Backend gap')
-            ->assertSee('Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused-zero-stock-recovery parity is verified.')
+            ->assertSee('Gift CRUD, zero-stock recovery, and redemption persistence should stay foundation-preview only until paused-zero-stock-recovery parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep paused zero-stock rewards in compact on-screen review first, because operators need scope, stock, and cost visible together before discussing reopening.')
             ->assertSee('Redemption guidance')
@@ -9354,7 +9354,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Paused reward handoff keeps stock evidence visible')
             ->assertSee('Scope, zero-stock state, and points cost should stay visible in the workspace before any reopening-flow discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Gift CRUD, zero-stock recovery, and redemption persistence should stay preview-only until paused-zero-stock-recovery parity is verified.')
+            ->assertSee('Gift CRUD, zero-stock recovery, and redemption persistence should stay foundation-preview only until paused-zero-stock-recovery parity is verified.')
             ->assertSee('Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in the Galaxy foundation layer.');
     }
 
@@ -9390,7 +9390,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Stock posture')
             ->assertSee('Finite stock should remain review-only until Galaxy foundation inventory updates can preserve remaining-quantity parity.')
             ->assertSee('Backend gap')
-            ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until kiosk-reward parity is verified.')
+            ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay foundation-preview only until kiosk-reward parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep kiosk-scoped rewards in compact on-screen review first, because operators need cost, stock, and local scope visible together before escalating.')
             ->assertSee('Redemption guidance')
@@ -9400,7 +9400,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Finite-stock handoff keeps kiosk evidence visible')
             ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay preview-only until kiosk-reward parity is verified.')
+            ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay foundation-preview only until kiosk-reward parity is verified.')
             ->assertSee('Shop-scoped reward behavior should stay preview-only until Galaxy foundation scope checks are verified against legacy kiosk rules.')
             ->assertSee('Finite-stock handling still needs backend inventory wiring before a publish path is safe.');
     }
@@ -9437,7 +9437,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Stock posture')
             ->assertSee('Unlimited stock can stay reviewable, but warehouse sync assumptions should remain explicit until Galaxy foundation inventory writes exist.')
             ->assertSee('Backend gap')
-            ->assertSee('Gift CRUD, all-shop stock assumptions, and redemption persistence should stay preview-only until all-shop-reward parity is verified.')
+            ->assertSee('Gift CRUD, all-shop stock assumptions, and redemption persistence should stay foundation-preview only until all-shop-reward parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep this reward in table-first review mode, because operators usually compare scope, stock policy, and points cost together before discussing publication.')
             ->assertSee('Redemption guidance')
@@ -9447,7 +9447,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('All-shop reward handoff keeps catalog evidence visible')
             ->assertSee('Points cost, stock policy, and shop scope should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Gift CRUD, all-shop stock assumptions, and redemption persistence should stay preview-only until all-shop-reward parity is verified.')
+            ->assertSee('Gift CRUD, all-shop stock assumptions, and redemption persistence should stay foundation-preview only until all-shop-reward parity is verified.')
             ->assertSee('All-shop reward coverage should remain stable until Galaxy foundation scope handling is verified against the legacy catalog.')
             ->assertSee('Unlimited-stock assumptions still need backend inventory wiring before operators can trust live publish behavior.');
     }
@@ -9484,7 +9484,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Stock posture')
             ->assertSee('Finite paused stock should remain review-only until Galaxy foundation inventory updates and reopening flows can preserve remaining-quantity parity.')
             ->assertSee('Backend gap')
-            ->assertSee('Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until paused-branch-reopening parity is verified.')
+            ->assertSee('Gift CRUD, paused-stock recovery, and redemption persistence should stay foundation-preview only until paused-branch-reopening parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep paused finite-stock rewards in compact on-screen review first, because operators need scope, stock, and reopening posture visible together before escalating.')
             ->assertSee('Redemption guidance')
@@ -9494,7 +9494,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Paused branch reward keeps finite-stock evidence visible')
             ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any reopening-flow discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Gift CRUD, paused-stock recovery, and redemption persistence should stay preview-only until paused-branch-reopening parity is verified.')
+            ->assertSee('Gift CRUD, paused-stock recovery, and redemption persistence should stay foundation-preview only until paused-branch-reopening parity is verified.')
             ->assertSee('Paused branch reward behavior should stay preview-only until Galaxy foundation scope and reopening checks are verified.')
             ->assertSee('Finite paused stock still needs backend inventory wiring before operators can trust reopening decisions.');
     }
