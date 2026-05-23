@@ -3211,11 +3211,11 @@ class ResourceIndexController extends Controller
     private function reportsCardsByShopBackendGap(int $cardCount, int $shopCount, int $holderLinkedCardCount, int $unassignedCardCount): string
     {
         return match (true) {
-            $cardCount === 0 || $shopCount === 0 => 'Report-source seeding, grouped query shaping, and export generation should stay preview-only until branch inventory inputs exist in the Galaxy foundation layer.',
-            $holderLinkedCardCount > 0 && $unassignedCardCount > 0 => 'Preset handling, assignment-aware grouping, and export generation should stay preview-only until branch-total and inventory-assignment parity are verified.',
-            $holderLinkedCardCount > 0 => 'Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.',
-            $unassignedCardCount > 0 => 'Preset handling, holder-linkage shaping, and export generation should stay preview-only until branch-total customer-linkage parity is verified.',
-            default => 'Preset handling, grouped query shaping, and export generation should stay preview-only until report parity is verified.',
+            $cardCount === 0 || $shopCount === 0 => 'Report-source seeding, grouped query shaping, and export generation should stay foundation-preview only until branch inventory inputs exist in the Galaxy foundation layer.',
+            $holderLinkedCardCount > 0 && $unassignedCardCount > 0 => 'Preset handling, assignment-aware grouping, and export generation should stay foundation-preview only until branch-total and inventory-assignment parity are verified.',
+            $holderLinkedCardCount > 0 => 'Preset handling, unassigned-inventory shaping, and export generation should stay foundation-preview only until branch-total assignment parity is verified.',
+            $unassignedCardCount > 0 => 'Preset handling, holder-linkage shaping, and export generation should stay foundation-preview only until branch-total customer-linkage parity is verified.',
+            default => 'Preset handling, grouped query shaping, and export generation should stay foundation-preview only until report parity is verified.',
         };
     }
 

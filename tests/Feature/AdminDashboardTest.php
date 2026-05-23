@@ -7097,7 +7097,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Handoff signal')
             ->assertSee('Keep branch-total and linked-holder inventory findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Backend gap')
-            ->assertSee('Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.')
+            ->assertSee('Preset handling, unassigned-inventory shaping, and export generation should stay foundation-preview only until branch-total assignment parity is verified.')
             ->assertSee('Galaxy branch card-shell coverage selected for Galaxy review')
             ->assertSee('This reporting view now reflects 1 tracked Galaxy card shells across 1 Galaxy branches from the current Galaxy foundation layer.')
             ->assertSee('Branch inventory handoff stays on-screen first')
@@ -7139,7 +7139,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Grouping posture')
             ->assertSee('Shop grouping should stay read-only until query shaping is verified against legacy report totals.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Preset handling, unassigned-inventory shaping, and export generation should stay preview-only until branch-total assignment parity is verified.')
+            ->assertSee('Preset handling, unassigned-inventory shaping, and export generation should stay foundation-preview only until branch-total assignment parity is verified.')
             ->assertSee('Handoff signal:')
             ->assertSee('Keep branch-total and linked-holder inventory findings in the live workspace before asking for export-driven handoff.');
     }
