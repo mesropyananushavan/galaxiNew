@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Card-types backend-gap foundation-preview checkpoint
+- Tightened the card-types detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across live-tier, live-coverage, draft-tier, and visible-coverage review states so the deeper tier handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching tier review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused card-types review slice successfully.
+- Kept the step intentionally small, but moved one more live tier-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
 ### Rules backend-gap foundation-preview checkpoint
 - Tightened the services-rules detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across birthday, partner-card, blocking-rule, and default rule review states so the deeper rules handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
 - Synced the matching rules review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused rule-review slice successfully.
