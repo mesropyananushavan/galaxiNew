@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Rules backend-gap foundation-preview checkpoint
+- Tightened the services-rules detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across birthday, partner-card, blocking-rule, and default rule review states so the deeper rules handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching rules review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused rule-review slice successfully.
+- Kept the step intentionally small, but moved one more live rules-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
 ### Gifts backend-gap foundation-preview checkpoint
 - Tightened the gifts detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across all-shop, kiosk-scoped, zero-stock, paused-branch, and default reward review states so the deeper rewards handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
 - Synced the matching gifts review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused reward-review slice successfully.

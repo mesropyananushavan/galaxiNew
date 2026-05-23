@@ -8117,7 +8117,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Priority posture')
             ->assertSee('Keep this blocking rule below confirmed accrual logic until exclusion order is verified.')
             ->assertSee('Backend gap')
-            ->assertSee('Rule persistence, exclusion validation, and publish flow should stay preview-only until bar-service-exclusion parity is verified.')
+            ->assertSee('Rule persistence, exclusion validation, and publish flow should stay foundation-preview only until bar-service-exclusion parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep draft exclusion rules in compact on-screen review first, because operators need scope, condition, and effect visible together before discussing publication.')
             ->assertSee('Night service block selected for exception review')
@@ -8125,7 +8125,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft exclusion handoff keeps parity evidence visible')
             ->assertSee('Scope, blocking condition, and no-accrual effect should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Rule persistence, exclusion validation, and publish flow should stay preview-only until bar-service-exclusion parity is verified.')
+            ->assertSee('Rule persistence, exclusion validation, and publish flow should stay foundation-preview only until bar-service-exclusion parity is verified.')
             ->assertSee('North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.')
             ->assertSee('Blocking-rule order is still preview-only until exclusion precedence is validated in the Galaxy foundation layer.')
             ->assertSee('Treat the no-accrual effect as a review-only exception until the Galaxy foundation layer can safely reproduce the old block semantics.');
@@ -8163,7 +8163,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Priority posture')
             ->assertSee('This scoped uplift should remain below birthday-wide behavior until legacy overlap order is rechecked.')
             ->assertSee('Backend gap')
-            ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay preview-only until partner-card uplift parity is verified.')
+            ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay foundation-preview only until partner-card uplift parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep scoped uplift rules in compact on-screen review first, because operators need scope, condition, and priority visible together before escalating.')
             ->assertSee('Effect guidance')
@@ -8173,7 +8173,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scoped uplift handoff keeps branch evidence visible')
             ->assertSee('Scope, condition, and priority should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay preview-only until partner-card uplift parity is verified.')
+            ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay foundation-preview only until partner-card uplift parity is verified.')
             ->assertSee('Shop-scoped behavior should stay preview-only until Galaxy foundation scope checks are verified against legacy branch rules.')
             ->assertSee('Overlap with broader loyalty rules still needs parity verification before any publish path is safe.');
     }
@@ -8210,7 +8210,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Priority posture')
             ->assertSee('Keep this rule near the top of the preview stack until Galaxy foundation priority resolution is verified against the old Galaxy order.')
             ->assertSee('Backend gap')
-            ->assertSee('Rule persistence, birthday-window editing, and publish flow should stay preview-only until all-shop birthday accrual parity is verified.')
+            ->assertSee('Rule persistence, birthday-window editing, and publish flow should stay foundation-preview only until all-shop birthday accrual parity is verified.')
             ->assertSee('Format guidance')
             ->assertSee('Keep this rule in table-first review mode, because operators usually compare scope, effect, and priority together before discussing publication.')
             ->assertSee('Effect guidance')
@@ -8220,7 +8220,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Birthday rule handoff keeps parity evidence visible')
             ->assertSee('Scope, priority, and uplift effect should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
-            ->assertSee('Rule persistence, birthday-window editing, and publish flow should stay preview-only until all-shop birthday accrual parity is verified.')
+            ->assertSee('Rule persistence, birthday-window editing, and publish flow should stay foundation-preview only until all-shop birthday accrual parity is verified.')
             ->assertSee('Priority resolution remains preview-only until overlapping rule order is validated in the Galaxy foundation layer.');
     }
 
