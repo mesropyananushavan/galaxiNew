@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Reports preset-posture foundation-preview checkpoint
+- Tightened the reporting catalog `Preset posture` dependency copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Preset periods are still preview-only` with `Preset periods are still foundation-preview only` so the report-catalog dependency panel matches the newer Galaxy foundation vocabulary already used across the live Phase 1 surfaces.
+- Synced the matching catalog assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused reporting catalog slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on the shared reporting catalog instead of leaving one older preview-only phrase behind.
+
 ### Reports role-access backend-gap foundation-preview checkpoint
 - Tightened the role-access reporting `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across empty-source, grouped-access, assignment-aware, permission-bundle, and default access review states so this reporting handoff surface matches the newer Galaxy foundation wording already used across the live Phase 1 shell.
 - Synced the matching role-access reporting assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused reports slice successfully.
