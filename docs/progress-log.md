@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Shops backend-gap foundation-preview checkpoint
+- Tightened the shops detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across paused-branch, full-coverage, manager-led, and ownership-gap branch review states so the deeper branch handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching branch review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused shops review slice successfully.
+- Kept the step intentionally small, but moved one more live branch-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
 ### Roles backend-gap foundation-preview checkpoint
 - Tightened the roles-and-permissions detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across draft, staffed, permission-linked, and default access review states so the deeper authorization handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
 - Synced the matching access review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused roles review slice successfully.

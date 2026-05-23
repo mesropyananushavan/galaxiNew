@@ -4426,10 +4426,10 @@ class ResourceIndexController extends Controller
     private function shopsBackendGap(Shop $selectedShop): string
     {
         return match (true) {
-            ! $selectedShop->is_active => 'Branch recovery writes, manager reassignment, ownership repair, and shop-scope mutation flows should stay preview-only until paused-branch parity is verified.',
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay preview-only until branch parity is verified.',
-            $selectedShop->users_count > 0 => 'Coverage backfill writes, manager reassignment, and shop-scope mutation flows should stay preview-only until manager-led branch parity is verified.',
-            default => 'Ownership assignment, branch writes, and shop-scope mutation flows should stay preview-only until branch coverage parity is verified.',
+            ! $selectedShop->is_active => 'Branch recovery writes, manager reassignment, ownership repair, and shop-scope mutation flows should stay foundation-preview only until paused-branch parity is verified.',
+            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until branch parity is verified.',
+            $selectedShop->users_count > 0 => 'Coverage backfill writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until manager-led branch parity is verified.',
+            default => 'Ownership assignment, branch writes, and shop-scope mutation flows should stay foundation-preview only until branch coverage parity is verified.',
         };
     }
 

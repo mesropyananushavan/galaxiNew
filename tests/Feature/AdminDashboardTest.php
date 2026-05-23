@@ -4664,7 +4664,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope handoff signal')
             ->assertSee('Branch already shows enough ownership and customer coverage for a useful scope handoff review.')
             ->assertSee('Backend gap')
-            ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows should stay preview-only until branch parity is verified.')
+            ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until branch parity is verified.')
             ->assertSee('Assigned manager')
             ->assertSee('Manager guidance')
             ->assertSee('Keep current branch manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.')
@@ -4707,7 +4707,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Coverage posture:')
             ->assertSee('This branch currently exposes 1 cardholders and 1 cards for read-only Galaxy foundation review.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows should stay preview-only until branch parity is verified.');
+            ->assertSee('Branch writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until branch parity is verified.');
     }
 
     public function test_authenticated_user_can_create_shop_from_live_admin_flow(): void
@@ -5115,7 +5115,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Branch scope handoff stays visible in the workspace')
             ->assertSee('Operators should carry customer coverage, ownership gaps, and branch readiness in the live workspace before trusting any scope-mutation or reassignment follow-up.')
             ->assertSee('Backend gap')
-            ->assertSee('Ownership assignment, branch writes, and shop-scope mutation flows should stay preview-only until branch coverage parity is verified.')
+            ->assertSee('Ownership assignment, branch writes, and shop-scope mutation flows should stay foundation-preview only until branch coverage parity is verified.')
             ->assertSee('Assigned manager')
             ->assertSee('Unassigned')
             ->assertSee('Manager guidance')
@@ -5228,11 +5228,11 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Branch scope handoff stays visible in the workspace')
             ->assertSee('Operators should carry manager ownership, branch readiness gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.')
             ->assertSee('Backend gap')
-            ->assertSee('Coverage backfill writes, manager reassignment, and shop-scope mutation flows should stay preview-only until manager-led branch parity is verified.')
+            ->assertSee('Coverage backfill writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until manager-led branch parity is verified.')
             ->assertSee('Assigned manager')
             ->assertSee('Tigran Managerov')
             ->assertSee('Manager guidance')
-            ->assertSee('Keep current manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.');
+            ->assertSee('Keep current branch manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.');
     }
 
     public function test_shops_page_supports_selected_paused_branch_review_context(): void
@@ -5271,7 +5271,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Branch scope handoff stays visible in the workspace')
             ->assertSee('Operators should carry paused status, recovery ownership gaps, branch coverage, and scope approval context in the live workspace before trusting any recovery or reassignment follow-up.')
             ->assertSee('Backend gap')
-            ->assertSee('Branch recovery writes, manager reassignment, ownership repair, and shop-scope mutation flows should stay preview-only until paused-branch parity is verified.')
+            ->assertSee('Branch recovery writes, manager reassignment, ownership repair, and shop-scope mutation flows should stay foundation-preview only until paused-branch parity is verified.')
             ->assertSee('Manager guidance')
             ->assertSee('No branch manager is assigned yet, so recovery ownership expectations should stay parity-first until paused Galaxy branch ownership-assignment parity is verified.')
             ->assertSee('Galaxy status')
