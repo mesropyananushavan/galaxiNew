@@ -3998,9 +3998,9 @@ class ResourceIndexController extends Controller
     private function cardsBackendGap(Card $selectedCard): string
     {
         return match ($selectedCard->status) {
-            'blocked' => 'Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.',
-            'active' => 'Card lifecycle writes, blocked-card handling, and replacement flows should stay preview-only until inventory parity is verified.',
-            default => 'Card issuance, activation, and lifecycle writes should stay preview-only until inventory parity is verified.',
+            'blocked' => 'Blocked-card handling, dispute resolution, and replacement flows should stay foundation-preview only until inventory parity is verified.',
+            'active' => 'Card lifecycle writes, blocked-card handling, and replacement flows should stay foundation-preview only until inventory parity is verified.',
+            default => 'Card issuance, activation, and lifecycle writes should stay foundation-preview only until inventory parity is verified.',
         };
     }
 

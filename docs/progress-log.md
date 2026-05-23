@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Cards backend-gap foundation-preview checkpoint
+- Tightened the cards detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across blocked, active, and draft inventory review states so the deeper inventory handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching blocked, active, and draft inventory assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused cards review slice successfully.
+- Kept the step intentionally small, but moved one more live inventory-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
 ### Gifts operator-checklist wording checkpoint
 - Tightened the `gifts` operator-checklist summary in `config/admin-pages.php`, replacing `workflow is still preview-only` with `workflow is still foundation-preview only` so the rewards workspace keeps using the same newer framing beyond just the notice title.
 - Expanded the focused gifts assertion slice in `tests/Feature/AdminDashboardTest.php` to cover the updated checklist summary and re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'` successfully.

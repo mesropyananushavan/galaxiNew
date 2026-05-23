@@ -2697,7 +2697,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Inventory handoff signal')
             ->assertSee('Blocked holder-linked inventory already carries enough dispute context for a useful handoff review.')
             ->assertSee('Backend gap')
-            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.')
+            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay foundation-preview only until inventory parity is verified.')
             ->assertSee('Shop')
             ->assertSee('Shop guidance')
             ->assertSee('Keep this card tied to its current branch context during review, because cross-shop inventory handling was parity-sensitive in the old Galaxy flow.')
@@ -2757,7 +2757,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Shop posture:')
             ->assertSee('Shop ownership is visible for review, but cross-branch movement should stay blocked until branch inventory rules are verified.')
             ->assertSee('Remaining backend gap:')
-            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.');
+            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay foundation-preview only until inventory parity is verified.');
     }
 
     public function test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card(): void
@@ -3882,7 +3882,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Inventory handoff signal')
             ->assertSee('Active issued inventory already carries enough linkage context for a useful handoff review.')
             ->assertSee('Backend gap')
-            ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows should stay preview-only until inventory parity is verified.')
+            ->assertSee('Card lifecycle writes, blocked-card handling, and replacement flows should stay foundation-preview only until inventory parity is verified.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is already active in the Galaxy foundation layer, so inventory changes should stay parity-first until blocked and replacement semantics are verified.');
     }
@@ -3997,7 +3997,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Assignment posture')
             ->assertSee('Blocked inventory already carries holder linkage, so dispute review can stay member-linked while replacement and reassignment remain parity-gated.')
             ->assertSee('Backend gap')
-            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.')
+            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay foundation-preview only until inventory parity is verified.')
             ->assertSee('Inventory guidance')
             ->assertSee('This card is blocked in the Galaxy foundation layer, so replacement and dispute handling should remain review-only until legacy card-state parity is confirmed.');
     }
@@ -4054,7 +4054,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Inventory handoff stays visible in the workspace')
             ->assertSee('Operators should carry blocked status, branch ownership, and holder-linkage gaps in the live workspace before trusting any replacement or reassignment follow-up.')
             ->assertSee('Backend gap')
-            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay preview-only until inventory parity is verified.')
+            ->assertSee('Blocked-card handling, dispute resolution, and replacement flows should stay foundation-preview only until inventory parity is verified.')
             ->assertSee('Blocked holder-linked signal')
             ->assertSee('Blocked holder-linked review is not the active slice for this card right now.')
             ->assertSee('Blocked unassigned signal')
@@ -4126,7 +4126,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Inventory handoff signal')
             ->assertSee('Draft inventory should stay in handoff-only posture until issuance parity is explicit.')
             ->assertSee('Backend gap')
-            ->assertSee('Card issuance, activation, and lifecycle writes should stay preview-only until inventory parity is verified.')
+            ->assertSee('Card issuance, activation, and lifecycle writes should stay foundation-preview only until inventory parity is verified.')
             ->assertSee('Assignment readiness summary:')
             ->assertSee('Assignment state is still intentionally pending while this card remains a draft inventory shell.')
             ->assertSee('Inventory guidance')
