@@ -10,19 +10,12 @@ class UpdateShopRequest extends StoreShopRequest
 {
     use ResolvesAdminSelectedResourceRedirects;
 
+    protected const SELECTED_RESOURCE_ROUTE_PARAMETER = 'shop';
+    protected const SELECTED_RESOURCE_ROUTE_NAME = 'admin.shops.index';
+
     public function authorize(): bool
     {
         return $this->authorizeUpdate('shop', Shop::class);
-    }
-
-    protected function selectedResourceRouteParameter(): string
-    {
-        return 'shop';
-    }
-
-    protected function selectedResourceRouteName(): string
-    {
-        return 'admin.shops.index';
     }
 
     public function rules(): array

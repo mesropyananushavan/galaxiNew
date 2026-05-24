@@ -12,19 +12,12 @@ class UpdateCardRequest extends StoreCardRequest
 {
     use ResolvesAdminSelectedResourceRedirects;
 
+    protected const SELECTED_RESOURCE_ROUTE_PARAMETER = 'card';
+    protected const SELECTED_RESOURCE_ROUTE_NAME = 'admin.cards.index';
+
     public function authorize(): bool
     {
         return $this->authorizeUpdate('card', Card::class);
-    }
-
-    protected function selectedResourceRouteParameter(): string
-    {
-        return 'card';
-    }
-
-    protected function selectedResourceRouteName(): string
-    {
-        return 'admin.cards.index';
     }
 
     public function rules(): array

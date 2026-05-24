@@ -11,19 +11,12 @@ class UpdateCardHolderRequest extends StoreCardHolderRequest
 {
     use ResolvesAdminSelectedResourceRedirects;
 
+    protected const SELECTED_RESOURCE_ROUTE_PARAMETER = 'cardholder';
+    protected const SELECTED_RESOURCE_ROUTE_NAME = 'admin.cardholders.index';
+
     public function authorize(): bool
     {
         return $this->authorizeUpdate('cardholder', CardHolder::class);
-    }
-
-    protected function selectedResourceRouteParameter(): string
-    {
-        return 'cardholder';
-    }
-
-    protected function selectedResourceRouteName(): string
-    {
-        return 'admin.cardholders.index';
     }
 
     public function withValidator(Validator $validator): void

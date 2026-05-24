@@ -10,19 +10,12 @@ class UpdateRoleRequest extends StoreRoleRequest
 {
     use ResolvesAdminSelectedResourceRedirects;
 
+    protected const SELECTED_RESOURCE_ROUTE_PARAMETER = 'role';
+    protected const SELECTED_RESOURCE_ROUTE_NAME = 'admin.roles-permissions.index';
+
     public function authorize(): bool
     {
         return $this->authorizeUpdate('role', Role::class);
-    }
-
-    protected function selectedResourceRouteParameter(): string
-    {
-        return 'role';
-    }
-
-    protected function selectedResourceRouteName(): string
-    {
-        return 'admin.roles-permissions.index';
     }
 
     public function rules(): array

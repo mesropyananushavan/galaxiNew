@@ -6,20 +6,16 @@ use Illuminate\Routing\UrlGenerator;
 
 trait ResolvesAdminSelectedResourceRedirects
 {
-    abstract protected function selectedResourceRouteParameter(): string;
-
-    abstract protected function selectedResourceRouteName(): string;
-
     protected function getRedirectUrl(): string
     {
         /** @var UrlGenerator $url */
         $url = $this->redirector->getUrlGenerator();
-        $routeParameter = $this->selectedResourceRouteParameter();
+        $routeParameter = static::SELECTED_RESOURCE_ROUTE_PARAMETER;
         $resource = $this->route($routeParameter);
 
         if ($resource !== null) {
             return $url->route(
-                $this->selectedResourceRouteName(),
+                static::SELECTED_RESOURCE_ROUTE_NAME,
                 [$routeParameter => $resource],
                 absolute: false,
             ).'#live-form';

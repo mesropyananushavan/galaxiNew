@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Update redirect constant cleanup checkpoint
+- Reworked `ResolvesAdminSelectedResourceRedirects` to read its selected-resource route metadata from per-request class constants instead of one-line abstract methods, so the shared update redirect seam no longer forces every update request to repeat the same tiny method bodies.
+- Switched `UpdateShopRequest`, `UpdateRoleRequest`, `UpdateCardTypeRequest`, `UpdateCardRequest`, and `UpdateCardHolderRequest` onto the constant-based configuration without changing their current `#live-form` redirect behavior.
+- Re-ran the focused update-side live-form slice successfully after the cleanup.
+
 ### Admin policy registration checkpoint
 - Added `app/Providers/Concerns/RegistersAdminPolicies.php` and moved the current Phase 1 policy bindings behind one small provider-side helper, so the Galaxy admin authorization baseline no longer keeps its model-to-policy map inline in `AppServiceProvider`.
 - Updated `AppServiceProvider` to register both policies and Gates through shared provider concerns while keeping the same policy classes and access decisions on the live admin surface.
