@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Cardholder and card route policy-entry checkpoint
+- Added `viewAny()` abilities to `CardHolderPolicy` and `CardPolicy`, then wired `/admin/cardholders` and `/admin/cards` through `can:viewAny,...` so both live workspaces now have explicit policy-aware route entry points just like `shops`.
+- Expanded the focused access helper assertions to prove bootstrap admins and assigned scoped operators can enter those workspaces through the new policy abilities while paused scoped operators are denied.
+- Re-ran the focused holder/card index and access slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it makes two more Galaxy Phase 1 workspaces feel less like generic starter routes and more like explicit Laravel authorization surfaces.
+
 ### Cardholder and card update policy-entry checkpoint
 - Added first explicit `CardHolderPolicy` and `CardPolicy` update abilities, both delegating record access back through the existing shop-level `view` seam so scoped ownership stays anchored to the record's current branch.
 - Wired `PATCH /admin/cardholders/{cardholder}` and `PATCH /admin/cards/{card}` through `can:update,...`, so foreign-record mutation attempts are now rejected at the route entry point while assigned-record cross-shop retarget attempts still fall through to the existing validation guards.

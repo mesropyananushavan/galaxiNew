@@ -426,6 +426,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->canAccessAdminPanel());
         $this->assertTrue($user->can('access-admin'));
         $this->assertTrue($user->can('viewAny', Shop::class));
+        $this->assertTrue($user->can('viewAny', CardHolder::class));
+        $this->assertTrue($user->can('viewAny', Card::class));
         $this->assertTrue($user->canAccessShop($shop));
         $this->assertTrue($user->can('access-shop', $shop));
         $this->assertTrue($user->can('view', $shop));
@@ -467,6 +469,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->hasShopScopedAdminAccess());
         $this->assertTrue($user->can('access-admin'));
         $this->assertTrue($user->can('viewAny', Shop::class));
+        $this->assertTrue($user->can('viewAny', CardHolder::class));
+        $this->assertTrue($user->can('viewAny', Card::class));
         $this->assertTrue($user->canAccessShop($assignedShop));
         $this->assertTrue($user->can('access-shop', $assignedShop));
         $this->assertTrue($user->can('view', $assignedShop));
@@ -506,6 +510,8 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->hasShopScopedAdminAccess());
         $this->assertFalse($user->can('access-admin'));
         $this->assertFalse($user->can('viewAny', Shop::class));
+        $this->assertFalse($user->can('viewAny', CardHolder::class));
+        $this->assertFalse($user->can('viewAny', Card::class));
         $this->assertFalse($user->canAccessShop($pausedShop));
         $this->assertFalse($user->can('access-shop', $pausedShop));
         $this->assertFalse($user->can('view', $pausedShop));

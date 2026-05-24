@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\RoleUpdateController;
 use App\Http\Controllers\Admin\ResourceIndexController;
 use App\Http\Controllers\Admin\ShopStoreController;
 use App\Http\Controllers\Admin\ShopUpdateController;
+use App\Models\Card;
+use App\Models\CardHolder;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Route;
 
@@ -29,12 +31,18 @@ Route::prefix('admin')
         Route::patch('/shops/{shop}', ShopUpdateController::class)
             ->middleware('can:update,shop')
             ->name('shops.update');
-        Route::get('/cardholders', ResourceIndexController::class)->defaults('resource', 'cardholders')->name('cardholders.index');
+        Route::get('/cardholders', ResourceIndexController::class)
+            ->middleware('can:viewAny,'.CardHolder::class)
+            ->defaults('resource', 'cardholders')
+            ->name('cardholders.index');
         Route::post('/cardholders', CardHolderStoreController::class)->name('cardholders.store');
         Route::patch('/cardholders/{cardholder}', CardHolderUpdateController::class)
             ->middleware('can:update,cardholder')
             ->name('cardholders.update');
-        Route::get('/cards', ResourceIndexController::class)->defaults('resource', 'cards')->name('cards.index');
+        Route::get('/cards', ResourceIndexController::class)
+            ->middleware('can:viewAny,'.Card::class)
+            ->defaults('resource', 'cards')
+            ->name('cards.index');
         Route::post('/cards', CardStoreController::class)->name('cards.store');
         Route::patch('/cards/{card}', CardUpdateController::class)
             ->middleware('can:update,card')

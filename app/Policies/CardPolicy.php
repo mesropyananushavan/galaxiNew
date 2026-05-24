@@ -7,6 +7,11 @@ use App\Models\User;
 
 class CardPolicy
 {
+    public function viewAny(User $user): bool
+    {
+        return $user->canAccessAdminPanel();
+    }
+
     public function update(User $user, Card $card): bool
     {
         return $user->can('view', $card->shop);
