@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
@@ -9,11 +10,13 @@ use Illuminate\Support\Str;
 
 class StoreRoleRequest extends FormRequest
 {
+    use AuthorizesPolicyActions;
+
     protected $redirectRoute = 'admin.roles-permissions.index';
 
     public function authorize(): bool
     {
-        return $this->user()?->can('create', Role::class) ?? false;
+        return $this->authorizeCreate(Role::class);
     }
 
     public function rules(): array

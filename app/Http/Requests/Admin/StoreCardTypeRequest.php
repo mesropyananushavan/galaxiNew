@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Models\CardType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
@@ -9,11 +10,13 @@ use Illuminate\Support\Str;
 
 class StoreCardTypeRequest extends FormRequest
 {
+    use AuthorizesPolicyActions;
+
     protected $redirectRoute = 'admin.card-types.index';
 
     public function authorize(): bool
     {
-        return $this->user()?->can('create', CardType::class) ?? false;
+        return $this->authorizeCreate(CardType::class);
     }
 
     public function rules(): array

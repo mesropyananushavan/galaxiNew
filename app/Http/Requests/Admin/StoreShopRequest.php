@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
@@ -9,11 +10,13 @@ use Illuminate\Support\Str;
 
 class StoreShopRequest extends FormRequest
 {
+    use AuthorizesPolicyActions;
+
     protected $redirectRoute = 'admin.shops.index';
 
     public function authorize(): bool
     {
-        return $this->user()?->can('create', Shop::class) ?? false;
+        return $this->authorizeCreate(Shop::class);
     }
 
     public function rules(): array

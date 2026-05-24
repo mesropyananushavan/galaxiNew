@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Http\Requests\Admin\Concerns\ValidatesAccessibleShop;
 use App\Models\Card;
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,13 +12,14 @@ use Illuminate\Validation\Validator;
 
 class StoreCardRequest extends FormRequest
 {
+    use AuthorizesPolicyActions;
     use ValidatesAccessibleShop;
 
     protected $redirectRoute = 'admin.cards.index';
 
     public function authorize(): bool
     {
-        return $this->user()?->can('create', Card::class) ?? false;
+        return $this->authorizeCreate(Card::class);
     }
 
     public function rules(): array

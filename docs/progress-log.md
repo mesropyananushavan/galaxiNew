@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Request authorize concern checkpoint
+- Added a shared `AuthorizesPolicyActions` concern for admin requests and moved the repeated policy-based `create` authorize pattern for shops, roles, card types, cards, and cardholders onto that helper.
+- Re-ran the focused create-side slice successfully across branch, access, tier, card, and holder flows after the refactor.
+- Kept the step intentionally small, but it turns one more pocket of repeated starter-era request auth wiring into an explicit Galaxy foundation seam.
+
 ### Card request import cleanup checkpoint
 - Replaced the remaining fully qualified `?\App\Models\Shop` closure return types in `UpdateCardRequest` and `UpdateCardHolderRequest` with normal `Shop` imports.
 - Re-ran the focused card/cardholder update slice successfully after the cleanup.
