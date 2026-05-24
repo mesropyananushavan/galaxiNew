@@ -18,6 +18,16 @@ class UpdateCardHolderRequest extends StoreCardHolderRequest
         return $this->authorizeUpdate('cardholder', CardHolder::class);
     }
 
+    protected function selectedResourceRouteParameter(): string
+    {
+        return 'cardholder';
+    }
+
+    protected function selectedResourceRouteName(): string
+    {
+        return 'admin.cardholders.index';
+    }
+
     public function withValidator(Validator $validator): void
     {
         parent::withValidator($validator);
@@ -29,8 +39,4 @@ class UpdateCardHolderRequest extends StoreCardHolderRequest
         );
     }
 
-    protected function getRedirectUrl(): string
-    {
-        return $this->redirectToSelectedResource('cardholder', 'admin.cardholders.index');
-    }
 }

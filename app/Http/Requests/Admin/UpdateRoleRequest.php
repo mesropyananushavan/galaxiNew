@@ -17,6 +17,16 @@ class UpdateRoleRequest extends StoreRoleRequest
         return $this->authorizeUpdate('role', Role::class);
     }
 
+    protected function selectedResourceRouteParameter(): string
+    {
+        return 'role';
+    }
+
+    protected function selectedResourceRouteName(): string
+    {
+        return 'admin.roles-permissions.index';
+    }
+
     public function rules(): array
     {
         $role = $this->route('role');
@@ -32,8 +42,4 @@ class UpdateRoleRequest extends StoreRoleRequest
         ]);
     }
 
-    protected function getRedirectUrl(): string
-    {
-        return $this->redirectToSelectedResource('role', 'admin.roles-permissions.index');
-    }
 }

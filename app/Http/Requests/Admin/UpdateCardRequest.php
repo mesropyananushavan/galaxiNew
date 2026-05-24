@@ -19,6 +19,16 @@ class UpdateCardRequest extends StoreCardRequest
         return $this->authorizeUpdate('card', Card::class);
     }
 
+    protected function selectedResourceRouteParameter(): string
+    {
+        return 'card';
+    }
+
+    protected function selectedResourceRouteName(): string
+    {
+        return 'admin.cards.index';
+    }
+
     public function rules(): array
     {
         $card = $this->route('card');
@@ -47,8 +57,4 @@ class UpdateCardRequest extends StoreCardRequest
         );
     }
 
-    protected function getRedirectUrl(): string
-    {
-        return $this->redirectToSelectedResource('card', 'admin.cards.index');
-    }
 }

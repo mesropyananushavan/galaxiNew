@@ -17,6 +17,16 @@ class UpdateShopRequest extends StoreShopRequest
         return $this->authorizeUpdate('shop', Shop::class);
     }
 
+    protected function selectedResourceRouteParameter(): string
+    {
+        return 'shop';
+    }
+
+    protected function selectedResourceRouteName(): string
+    {
+        return 'admin.shops.index';
+    }
+
     public function rules(): array
     {
         $shop = $this->route('shop');
@@ -32,8 +42,4 @@ class UpdateShopRequest extends StoreShopRequest
         ]);
     }
 
-    protected function getRedirectUrl(): string
-    {
-        return $this->redirectToSelectedResource('shop', 'admin.shops.index');
-    }
 }

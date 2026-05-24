@@ -17,6 +17,16 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
         return $this->authorizeUpdate('cardType', CardType::class);
     }
 
+    protected function selectedResourceRouteParameter(): string
+    {
+        return 'cardType';
+    }
+
+    protected function selectedResourceRouteName(): string
+    {
+        return 'admin.card-types.index';
+    }
+
     public function rules(): array
     {
         $cardType = $this->route('cardType');
@@ -32,8 +42,4 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
         ]);
     }
 
-    protected function getRedirectUrl(): string
-    {
-        return $this->redirectToSelectedResource('cardType', 'admin.card-types.index');
-    }
 }

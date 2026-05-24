@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Update-request selected-resource redirect concern refinement checkpoint
+- Refined `ResolvesAdminSelectedResourceRedirects` so the shared update-side redirect seam now reads route parameter and route name through tiny protected methods instead of repeating one-line `getRedirectUrl()` overrides in every update request.
+- Re-ran the focused update-side live-form slice successfully across branch, access, tier, card, and holder flows after the refinement.
+- Kept the step intentionally small, but it leaves the shared redirect seam cleaner and avoids reintroducing per-request redirect boilerplate.
+
 ### Update-request selected-resource redirect concern checkpoint
 - Added a shared `ResolvesAdminSelectedResourceRedirects` concern for admin update requests and moved the repeated selected-record `#live-form` redirect resolution pattern for shops, roles, card types, cards, and cardholders onto that helper.
 - Re-ran the focused update-side live-form slice successfully across branch, access, tier, card, and holder flows after the refactor.
