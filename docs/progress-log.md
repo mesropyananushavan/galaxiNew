@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Shops route policy-entry checkpoint
+- Added `ShopPolicy::viewAny()` and wired `/admin/shops` through `can:viewAny,App\Models\Shop`, so the branch workspace now has an explicit policy-aware route entry point instead of relying only on the broader admin gate plus downstream record checks.
+- Expanded the focused access helper assertions to prove bootstrap admins and assigned scoped operators can hit the new `viewAny` ability while paused scoped operators are denied.
+- Re-ran the focused shops access and workspace slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it makes the first Galaxy branch workspace entry feel more like a real Laravel authorization surface and less like a generic starter route.
+
 ### Dashboard latest-work policy reuse checkpoint
 - Reused the new `ShopPolicy` on the dashboard latest-work path by switching `DashboardController::latestAccessibleRecord()` from direct `canAccessShop()` helper checks to the explicit `view` ability.
 - This keeps the first admin entry-point filtering aligned with the same policy seam now used by branch writes, shared branch review filtering, and shared card/cardholder shop validation.
