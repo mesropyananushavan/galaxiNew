@@ -427,6 +427,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('access-admin'));
         $this->assertTrue($user->canAccessShop($shop));
         $this->assertTrue($user->can('access-shop', $shop));
+        $this->assertTrue($user->can('view', $shop));
+        $this->assertTrue($user->can('update', $shop));
         $this->assertFalse($user->canAccessShop(null));
     }
 
@@ -465,8 +467,12 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('access-admin'));
         $this->assertTrue($user->canAccessShop($assignedShop));
         $this->assertTrue($user->can('access-shop', $assignedShop));
+        $this->assertTrue($user->can('view', $assignedShop));
+        $this->assertTrue($user->can('update', $assignedShop));
         $this->assertFalse($user->canAccessShop($otherShop));
         $this->assertFalse($user->can('access-shop', $otherShop));
+        $this->assertFalse($user->can('view', $otherShop));
+        $this->assertFalse($user->can('update', $otherShop));
         $this->assertFalse($user->canAccessShop(null));
     }
 
@@ -499,6 +505,8 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->can('access-admin'));
         $this->assertFalse($user->canAccessShop($pausedShop));
         $this->assertFalse($user->can('access-shop', $pausedShop));
+        $this->assertFalse($user->can('view', $pausedShop));
+        $this->assertFalse($user->can('update', $pausedShop));
     }
 
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void

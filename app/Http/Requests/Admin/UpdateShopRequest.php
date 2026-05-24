@@ -34,7 +34,7 @@ class UpdateShopRequest extends StoreShopRequest
                 return;
             }
 
-            if (! $user->can('access-shop', $shop)) {
+            if (! $user->can('update', $shop)) {
                 $validator->errors()->add('shop_id', 'Choose a shop you can access before changing branch settings in the Galaxy workspace.');
             }
         });

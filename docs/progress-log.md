@@ -1,5 +1,13 @@
 # Progress Log
 
+## 2026-05-24
+
+### Shops policy baseline checkpoint
+- Added a first explicit Laravel `ShopPolicy` and registered it in `AppServiceProvider`, so Phase 1 branch access now has a policy-shaped seam instead of living only behind the lower-level `access-shop` gate.
+- Switched `UpdateShopRequest` to authorize branch mutations through the new `update` policy path while preserving the same Galaxy-specific validation message for foreign-branch edits.
+- Expanded the focused admin access assertions to prove bootstrap admins, assigned shop-scoped operators, and paused scoped operators all read through the new `view` / `update` shop abilities as expected, then re-ran the focused shop-access slice successfully.
+- Kept the step intentionally small, but it moves the repo one notch closer to a real Galaxy authorization foundation by introducing an actual Laravel policy surface for branch access.
+
 ## 2026-05-21
 
 ### Phase-1 planning vocabulary alignment checkpoint
