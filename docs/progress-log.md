@@ -2,6 +2,10 @@
 
 ## 2026-05-24
 
+### Blueprint admin-shell reference sync checkpoint
+- Updated `docs/blueprint.md` so its admin-shell implementation note now points directly at `docs/admin-information-architecture.md` and `docs/admin-shell-config-map.md` alongside the existing shell-layering reference.
+- Kept the step intentionally small, but it closes a real blueprint-level documentation gap by making the current Phase 1 IA map and config-ownership guide visible from the migration blueprint instead of only from the plan, README, landing page, and cross-linked notes.
+
 ### Phase 1 plan reference sync checkpoint
 - Updated `docs/phase-1-plan.md` so its current admin shell note now points directly at `docs/admin-information-architecture.md` and `docs/admin-shell-config-map.md` alongside the existing shell-layering reference.
 - Kept the step intentionally small, but it closes a real plan-level documentation gap by making the current Phase 1 IA map and config-ownership guide visible from the main migration plan instead of only from README, the landing page, and cross-linked notes.

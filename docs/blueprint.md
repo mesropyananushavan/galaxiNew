@@ -36,8 +36,10 @@
 - keep the Phase 1 admin shell layered and config-driven while preview screens stand in for unavailable PHP-backed flows
 
 ## Admin shell implementation note
+- The current admin navigation map is documented in `docs/admin-information-architecture.md`.
 - The current Phase 1 resource-page shell is intentionally split into base, context, preview, workflow, and closing layers.
 - See `docs/admin-shell-layering.md` for the current structure and the bridge role of `config/admin-resource-blocks.php`.
+- Config ownership for those shell layers and page surfaces is documented in `docs/admin-shell-config-map.md`.
 - When real Galaxy foundation reads and writes arrive, replace foundation-preview slices without collapsing that layered shell back into one large inline block list.
 
 ## Phase 1
