@@ -10,7 +10,7 @@ Related docs:
 
 ## Why this exists
 Phase 1 calls for a documented admin navigation map and a visible Galaxy-specific information architecture.
-This note captures the current sidebar groups, route targets, and the live-vs-preview posture behind each admin surface.
+This note captures the current sidebar groups, route targets, and the live-vs-foundation-preview posture behind each admin surface.
 
 ## Current sidebar groups
 
@@ -51,8 +51,8 @@ These are the current Phase 1 surfaces with real Laravel-backed mutation entry p
 - `POST /admin/roles-permissions`
 - `PATCH /admin/roles-permissions/{role}`
 
-## Current preview-only admin routes
-These surfaces are intentionally still config-backed review shells in Phase 1.
+## Current foundation-preview admin routes
+These surfaces are intentionally still config-backed foundation-preview review shells in Phase 1.
 
 - `GET /admin/checks-points`
 - `GET /admin/services-rules`
@@ -67,5 +67,5 @@ These surfaces are intentionally still config-backed review shells in Phase 1.
 
 ## Rule of thumb for next slices
 - If a surface already has a live create or update route, prefer the next thin behavior-safe improvement there.
-- If a surface is still preview-only, preserve the layered shell and replace one review block at a time when real Galaxy foundation reads or writes are ready.
+- If a surface is still foundation-preview only, preserve the layered shell and replace one review block at a time when real Galaxy foundation reads or writes are ready.
 - Keep this map in sync with `config/admin-navigation.php` and `routes/admin.php` whenever a new admin surface or mutation entry point lands.

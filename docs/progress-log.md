@@ -2,6 +2,10 @@
 
 ## 2026-05-24
 
+### Admin information architecture vocabulary sync checkpoint
+- Updated `docs/admin-information-architecture.md` so its route-posture section now says `foundation-preview` instead of the older `preview-only` wording, and aligned the intro line to `live-vs-foundation-preview posture` as well.
+- Kept the change intentionally small, but it closes a real vocabulary drift inside the new IA map so it matches the Phase 1 shell language already used across the dashboard, plan, and resource surfaces.
+
 ### Admin dashboard Phase 1 references checkpoint
 - Added a compact `Phase 1 reference docs` card to `resources/views/admin/dashboard.blade.php` so the live admin landing surface now keeps the blueprint, plan, IA map, shell layering notes, config map, and progress log visible inside the operator workspace.
 - Extended `tests/Feature/AdminDashboardTest.php` so the main dashboard feature slice now asserts the new Phase 1 reference card and its key doc paths.
