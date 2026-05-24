@@ -38,7 +38,7 @@
 ## Admin shell implementation note
 - The current Phase 1 resource-page shell is intentionally split into base, context, preview, workflow, and closing layers.
 - See `docs/admin-shell-layering.md` for the current structure and the bridge role of `config/admin-resource-blocks.php`.
-- When real Galaxy foundation reads and writes arrive, replace preview-only slices without collapsing that layered shell back into one large inline block list.
+- When real Galaxy foundation reads and writes arrive, replace foundation-preview slices without collapsing that layered shell back into one large inline block list.
 
 ## Phase 1
 ### Goal

@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Phase-1 planning vocabulary alignment checkpoint
+- Tightened the remaining planning-language references in `docs/phase-1-plan.md` and `docs/blueprint.md`, replacing `preview-only blocks` / `preview-only slices` with `foundation-preview blocks` / `foundation-preview slices` so the migration guidance matches the vocabulary now used across the live Phase 1 shell.
+- Kept the step intentionally small, but aligned the Phase 1 planning docs with the code and shell copy cleanup already completed on the live Galaxy admin surfaces.
+- No application behavior changed in this pass; the change is documentation-only and intended to reduce drift between the migration plan and the current shell language.
+
 ### Preview-shell stack cleanup checkpoint
 - Updated the dedicated preview-shell stack comment in `config/admin-preview-shell-blocks.php` to say `foundation-preview CRUD structure`, so even the config guidance reflects the newer Galaxy foundation vocabulary.
 - Tightened the preview-shell ordering assertion in `tests/Feature/AdminDashboardTest.php` to anchor on the current live card-types notice title (`Card type workflow is partially live`) instead of an older `preview-only` phrase that no longer exists in the rendered shell.
