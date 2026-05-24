@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Selected-resource unique rule checkpoint
+- Extended the update-side selected-resource seam with a shared `uniqueRuleIgnoringSelectedResource()` helper, so the current live update requests no longer need to rebuild the same `Rule::unique(...)->ignore(...)` pattern around the resolved route model by hand.
+- Switched `UpdateShopRequest`, `UpdateRoleRequest`, `UpdateCardTypeRequest`, and `UpdateCardRequest` onto the new helper while keeping the same duplicate-protection behavior for branch codes, role slugs, tier slugs, and card numbers.
+- Re-ran the focused shop, role, tier, and card update slice successfully after the cleanup.
+
 ### Selected-resource validation helper checkpoint
 - Extended `ValidatesAccessibleShop` with a shared `validateSelectedResourceShopAccess()` path, so the card and cardholder update requests no longer need to wrap the same selected-resource shop lookup inside their own one-off validator closures.
 - Switched `UpdateCardRequest` and `UpdateCardHolderRequest` onto the new helper while keeping the same foreign-record and cross-shop forbidden behavior.

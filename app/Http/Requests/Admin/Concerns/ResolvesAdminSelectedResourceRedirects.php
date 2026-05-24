@@ -4,6 +4,8 @@ namespace App\Http\Requests\Admin\Concerns;
 
 use App\Models\Shop;
 use Illuminate\Routing\UrlGenerator;
+use Illuminate\Validation\Rules\Unique;
+use Illuminate\Validation\Rule;
 
 trait ResolvesAdminSelectedResourceRedirects
 {
@@ -24,6 +26,11 @@ trait ResolvesAdminSelectedResourceRedirects
         return is_object($resource) && $resource->shop instanceof Shop
             ? $resource->shop
             : null;
+    }
+
+    protected function uniqueRuleIgnoringSelectedResource(string $table, ?string $column = null): Unique
+    {
+        return Rule::unique($table, $column)->ignore($this->selectedResource());
     }
 
     protected function getRedirectUrl(): string

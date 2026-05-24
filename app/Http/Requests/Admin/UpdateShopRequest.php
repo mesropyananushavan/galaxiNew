@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\Shop;
-use Illuminate\Validation\Rule;
 
 class UpdateShopRequest extends StoreShopRequest
 {
@@ -20,15 +19,13 @@ class UpdateShopRequest extends StoreShopRequest
 
     public function rules(): array
     {
-        $shop = $this->selectedResource();
-
         return array_merge(parent::rules(), [
             'code' => [
                 'required',
                 'string',
                 'max:255',
                 'alpha_dash',
-                Rule::unique('shops', 'code')->ignore($shop),
+                $this->uniqueRuleIgnoringSelectedResource('shops', 'code'),
             ],
         ]);
     }

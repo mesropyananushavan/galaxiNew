@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\Role;
-use Illuminate\Validation\Rule;
 
 class UpdateRoleRequest extends StoreRoleRequest
 {
@@ -20,15 +19,13 @@ class UpdateRoleRequest extends StoreRoleRequest
 
     public function rules(): array
     {
-        $role = $this->selectedResource();
-
         return array_merge(parent::rules(), [
             'slug' => [
                 'required',
                 'string',
                 'max:255',
                 'alpha_dash',
-                Rule::unique('roles', 'slug')->ignore($role),
+                $this->uniqueRuleIgnoringSelectedResource('roles', 'slug'),
             ],
         ]);
     }

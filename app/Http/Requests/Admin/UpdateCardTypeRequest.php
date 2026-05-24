@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\CardType;
-use Illuminate\Validation\Rule;
 
 class UpdateCardTypeRequest extends StoreCardTypeRequest
 {
@@ -20,15 +19,13 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
 
     public function rules(): array
     {
-        $cardType = $this->selectedResource();
-
         return array_merge(parent::rules(), [
             'slug' => [
                 'required',
                 'string',
                 'max:255',
                 'alpha_dash',
-                Rule::unique('card_types', 'slug')->ignore($cardType),
+                $this->uniqueRuleIgnoringSelectedResource('card_types', 'slug'),
             ],
         ]);
     }

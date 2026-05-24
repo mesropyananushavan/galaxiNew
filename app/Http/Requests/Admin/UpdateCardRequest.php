@@ -21,14 +21,11 @@ class UpdateCardRequest extends StoreCardRequest
 
     public function rules(): array
     {
-        $card = $this->selectedResource();
-        $cardId = is_object($card) && isset($card->id) ? $card->id : $card;
-
         return [
             'shop_id' => ['required', 'integer', 'exists:shops,id'],
             'card_holder_id' => ['nullable', 'integer', Rule::exists('card_holders', 'id')->where(fn ($query) => $query->where('shop_id', $this->input('shop_id')))],
             'card_type_id' => ['required', 'integer', 'exists:card_types,id'],
-            'number' => ['required', 'string', 'max:255', Rule::unique('cards', 'number')->ignore($cardId)],
+            'number' => ['required', 'string', 'max:255', $this->uniqueRuleIgnoringSelectedResource('cards', 'number')],
             'status' => ['required', 'string', Rule::in(['draft', 'active', 'blocked'])],
             'issued_at' => ['nullable', 'date', 'required_with:activated_at', 'required_if:status,blocked'],
             'activated_at' => ['nullable', 'date', 'required_if:status,active', 'prohibited_if:status,draft', 'after_or_equal:issued_at'],
