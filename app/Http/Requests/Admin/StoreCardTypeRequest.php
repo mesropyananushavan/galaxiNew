@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\CardType;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Str;
@@ -12,7 +13,7 @@ class StoreCardTypeRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return $this->user()?->can('access-admin') ?? false;
+        return $this->user()?->can('create', CardType::class) ?? false;
     }
 
     public function rules(): array

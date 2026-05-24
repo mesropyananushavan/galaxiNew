@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Str;
@@ -12,7 +13,7 @@ class StoreShopRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return $this->user()?->can('access-admin') ?? false;
+        return $this->user()?->can('create', Shop::class) ?? false;
     }
 
     public function rules(): array

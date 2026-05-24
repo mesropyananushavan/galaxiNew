@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Store-request policy authorize checkpoint
+- Switched `StoreShopRequest`, `StoreRoleRequest`, and `StoreCardTypeRequest` from the broader `access-admin` authorize check to explicit policy-based `create` checks, so those live Phase 1 creation forms now describe the same auth intent as their route middleware.
+- Re-ran the focused shop/role/tier create slice successfully, keeping bootstrap-admin happy paths and scoped forbidden paths green.
+- Kept the step intentionally small, but it makes the request layer read less like a generic starter fallback and more like the Galaxy-specific policy surface now driving create access.
+
 ### Card-types toggle controller cleanup checkpoint
 - Removed the now-unused `Request` dependency from `CardTypeToggleStatusController`, because the toggle path's authorization decision already moved fully to route-level policy middleware.
 - Re-ran the focused toggle-status slice successfully after the cleanup, keeping both scoped forbidden coverage and bootstrap-admin happy paths green.
