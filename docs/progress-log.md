@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Reports catalog foundation-preview description checkpoint
+- Tightened the reporting catalog notice description in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `presets and exports remain preview-only` with `presets and exports remain foundation-preview only` so the top reporting catalog summary matches the newer Galaxy foundation vocabulary already used across the deeper report-review surfaces.
+- Synced the matching catalog assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused reporting catalog slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a shared reporting summary surface instead of leaving one older preview-only phrase behind.
+
 ### Reports preset-posture foundation-preview checkpoint
 - Tightened the reporting catalog `Preset posture` dependency copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Preset periods are still preview-only` with `Preset periods are still foundation-preview only` so the report-catalog dependency panel matches the newer Galaxy foundation vocabulary already used across the live Phase 1 surfaces.
 - Synced the matching catalog assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused reporting catalog slice successfully.

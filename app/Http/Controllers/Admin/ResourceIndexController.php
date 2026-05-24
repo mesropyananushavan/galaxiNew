@@ -1832,7 +1832,7 @@ class ResourceIndexController extends Controller
 
         $page['notice'] = [
             'title' => 'Reporting workspace is now partially Galaxy foundation-backed',
-            'description' => 'Catalog metrics and report entry rows now reflect live Galaxy source counts from Galaxy foundation models, while presets and exports remain preview-only.',
+            'description' => 'Catalog metrics and report entry rows now reflect live Galaxy source counts from Galaxy foundation models, while presets and exports remain foundation-preview only.',
         ];
 
         $page['activityTimeline'] = $this->reportsActivityTimeline($shopCount, $cardCount, $cardHolderCount, $roleCount);
