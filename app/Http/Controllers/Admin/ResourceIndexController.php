@@ -1262,7 +1262,7 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = $this->shopsSelectedShopSummary($selectedShop);
 
         if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
+            $page['liveForm'] = $this->applySelectedEditLiveForm(
                 $page['liveForm'],
                 'Edit Galaxy branch in Galaxy foundation',
                 'Update the selected Galaxy branch through the shared live form while manager reassignment and scope changes remain review-only.',
@@ -1271,11 +1271,8 @@ class ResourceIndexController extends Controller
                     'shop' => $selectedShop,
                 ],
                 'admin.shops.index',
-                'Save branch changes',
-                'Create new Galaxy branch shell',
                 'Back to branch catalog',
-                $this->shopsFoundationMutationDisabledReason(),
-                'Review the selected Galaxy branch in the shared live form while Phase 1 keeps branch-creation changes under bootstrap control.',
+                'Save branch changes',
             );
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedShop->name,

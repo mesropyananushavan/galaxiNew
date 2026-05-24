@@ -5399,16 +5399,15 @@ class AdminDashboardTest extends TestCase
 
         $selectedResponse
             ->assertOk()
-            ->assertSee('Review the selected Galaxy branch in the shared live form while Phase 1 keeps branch-creation changes under bootstrap control.')
+            ->assertSee('Update the selected Galaxy branch through the shared live form while manager reassignment and scope changes remain review-only.')
             ->assertSee('Back to branch catalog')
             ->assertDontSee('Create new Galaxy branch shell')
             ->assertSee('>Save branch changes<', false)
-            ->assertSee('disabled title="Only bootstrap admins can create new Galaxy branch shells while Phase 1 keeps the branch foundation under central control." aria-disabled="true"', false)
+            ->assertDontSee('disabled title="Only bootstrap admins can create new Galaxy branch shells while Phase 1 keeps the branch foundation under central control." aria-disabled="true"', false)
             ->assertSee('name="name"', false)
-            ->assertSee('readonly', false)
-            ->assertSee('aria-readonly="true"', false)
-            ->assertSee('name="is_active"', false)
-            ->assertSee('aria-disabled="true"', false);
+            ->assertDontSee('readonly', false)
+            ->assertDontSee('aria-readonly="true"', false)
+            ->assertSee('name="is_active"', false);
     }
 
     public function test_shops_page_hides_other_shop_review_links_for_shop_scoped_admins(): void

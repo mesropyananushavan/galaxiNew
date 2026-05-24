@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Shops selected edit-form policy alignment checkpoint
+- Switched the selected shop live form in `ResourceIndexController` away from the bootstrap-only foundation review helper and back onto the normal edit-form helper, so shop-scoped admins who can already pass `ShopPolicy::update()` now see an editable branch form instead of a review-locked one.
+- Kept branch creation actions bootstrap-only, so the catalog still signals the current Phase 1 central-control posture for new branch shells while no longer over-applying that posture to permitted branch updates.
+- Updated the shops workspace UI coverage and re-ran the focused selected-shop/update slice successfully.
+- Kept the step intentionally small, but it removes one more generic starter-era mismatch between live UI affordances and the Galaxy-specific policy surface already governing branch updates.
+
 ### Card and cardholder create-policy entry checkpoint
 - Added explicit `create` abilities to `CardPolicy` and `CardHolderPolicy`, then guarded the `POST /admin/cards` and `POST /admin/cardholders` entry points with policy middleware.
 - Switched `StoreCardRequest` and `StoreCardHolderRequest` from the broader `access-admin` authorize check to explicit policy-based `create` checks, so these live Phase 1 creation forms now describe the same auth intent as their route entry.
