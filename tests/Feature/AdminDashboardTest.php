@@ -427,6 +427,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('access-admin'));
         $this->assertTrue($user->can('viewAny', Shop::class));
         $this->assertTrue($user->can('create', Shop::class));
+        $this->assertTrue($user->can('create', Role::class));
+        $this->assertTrue($user->can('create', CardType::class));
         $this->assertTrue($user->can('viewAny', CardHolder::class));
         $this->assertTrue($user->can('viewAny', Card::class));
         $this->assertTrue($user->canAccessShop($shop));
@@ -471,6 +473,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('access-admin'));
         $this->assertTrue($user->can('viewAny', Shop::class));
         $this->assertFalse($user->can('create', Shop::class));
+        $this->assertFalse($user->can('create', Role::class));
+        $this->assertFalse($user->can('create', CardType::class));
         $this->assertTrue($user->can('viewAny', CardHolder::class));
         $this->assertTrue($user->can('viewAny', Card::class));
         $this->assertTrue($user->canAccessShop($assignedShop));
@@ -513,6 +517,8 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->can('access-admin'));
         $this->assertFalse($user->can('viewAny', Shop::class));
         $this->assertFalse($user->can('create', Shop::class));
+        $this->assertFalse($user->can('create', Role::class));
+        $this->assertFalse($user->can('create', CardType::class));
         $this->assertFalse($user->can('viewAny', CardHolder::class));
         $this->assertFalse($user->can('viewAny', Card::class));
         $this->assertFalse($user->canAccessShop($pausedShop));
@@ -2019,11 +2025,7 @@ class AdminDashboardTest extends TestCase
             'review_note' => 'Scoped admins should not create new roles during Phase 1.',
         ]);
 
-        $response
-            ->assertRedirect(route('admin.roles-permissions.index').'#live-form')
-            ->assertSessionHasErrors([
-                'slug' => 'Only bootstrap admins can create new roles while the Galaxy access foundation is still centrally controlled.',
-            ]);
+        $response->assertForbidden();
 
         $this->assertDatabaseMissing('roles', [
             'slug' => 'scoped-unauthorized-role',
@@ -10390,11 +10392,7 @@ class AdminDashboardTest extends TestCase
             'rollout_note' => 'Scoped admins should not create new card types during Phase 1.',
         ]);
 
-        $response
-            ->assertRedirect(route('admin.card-types.index').'#live-form')
-            ->assertSessionHasErrors([
-                'slug' => 'Only bootstrap admins can create new card types while the Galaxy tier foundation is still centrally controlled.',
-            ]);
+        $response->assertForbidden();
 
         $this->assertDatabaseMissing('card_types', [
             'slug' => 'scoped-unauthorized-tier',

@@ -15,6 +15,8 @@ use App\Http\Controllers\Admin\ShopStoreController;
 use App\Http\Controllers\Admin\ShopUpdateController;
 use App\Models\Card;
 use App\Models\CardHolder;
+use App\Models\CardType;
+use App\Models\Role;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Route;
 
@@ -51,13 +53,17 @@ Route::prefix('admin')
             ->name('cards.update');
         Route::get('/checks-points', ResourceIndexController::class)->defaults('resource', 'checks-points')->name('checks-points.index');
         Route::get('/card-types', ResourceIndexController::class)->defaults('resource', 'card-types')->name('card-types.index');
-        Route::post('/card-types', CardTypeStoreController::class)->name('card-types.store');
+        Route::post('/card-types', CardTypeStoreController::class)
+            ->middleware('can:create,'.CardType::class)
+            ->name('card-types.store');
         Route::patch('/card-types/{cardType}', CardTypeUpdateController::class)->name('card-types.update');
         Route::patch('/card-types/{cardType}/toggle-status', CardTypeToggleStatusController::class)->name('card-types.toggle-status');
         Route::get('/services-rules', ResourceIndexController::class)->defaults('resource', 'services-rules')->name('services-rules.index');
         Route::get('/gifts', ResourceIndexController::class)->defaults('resource', 'gifts')->name('gifts.index');
         Route::get('/roles-permissions', ResourceIndexController::class)->defaults('resource', 'roles-permissions')->name('roles-permissions.index');
-        Route::post('/roles-permissions', RoleStoreController::class)->name('roles-permissions.store');
+        Route::post('/roles-permissions', RoleStoreController::class)
+            ->middleware('can:create,'.Role::class)
+            ->name('roles-permissions.store');
         Route::patch('/roles-permissions/{role}', RoleUpdateController::class)->name('roles-permissions.update');
         Route::get('/reports', ResourceIndexController::class)->defaults('resource', 'reports')->name('reports.index');
     });

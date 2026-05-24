@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Roles and card-types create policy-entry checkpoint
+- Added first explicit `RolePolicy` and `CardTypePolicy` create/update abilities, keeping the current Phase 1 posture intentionally narrow by allowing those catalog writes only for bootstrap admins.
+- Wired `POST /admin/roles-permissions` and `POST /admin/card-types` through `can:create,...`, so scoped create attempts are now rejected at the route entry point instead of relying only on the later bootstrap-only validation hook.
+- Tightened the focused scoped role-create and tier-create regressions to expect direct forbidden responses, and expanded the access helper assertions to prove only bootstrap admins can hit the new `create` abilities.
+- Kept the step intentionally small, but it moves two more live Galaxy foundation catalog write paths away from generic starter guarding and toward a clearer Laravel authorization surface.
+
 ### Shops create route policy checkpoint
 - Added `ShopPolicy::create()` and wired `POST /admin/shops` through `can:create,App\Models\Shop`, so branch creation is now policy-aware at the route entry point instead of relying only on the later bootstrap-only validation hook.
 - Tightened the focused scoped branch-create regression to expect a direct forbidden response, and expanded the access helper assertions to prove only bootstrap admins can hit the new `create` ability.
