@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Gifts airport-transfer scope foundation-preview checkpoint
+- Tightened the airport-transfer gift-review `Scope posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Shop-scoped reward behavior should stay preview-only` with `Shop-scoped reward behavior should stay foundation-preview only` so the scoped kiosk reward dependency row matches the newer Galaxy foundation vocabulary.
+- Synced the matching selected-gift assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused scoped-gift review slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live gifts review surface instead of leaving one older preview-only dependency line behind.
+
 ### Services-rules night-block priority foundation-preview checkpoint
 - Tightened the night-service-block `Priority posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Blocking-rule order is still preview-only` with `Blocking-rule order is still foundation-preview only` so the exclusion review surface matches the newer Galaxy foundation vocabulary.
 - Synced the matching selected-rule assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused exception-rule review slice successfully.

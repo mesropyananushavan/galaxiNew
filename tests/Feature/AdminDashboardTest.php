@@ -9409,7 +9409,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Gift CRUD, kiosk-scoped stock updates, and redemption persistence should stay foundation-preview only until kiosk-reward parity is verified.')
-            ->assertSee('Shop-scoped reward behavior should stay preview-only until Galaxy foundation scope checks are verified against legacy kiosk rules.')
+            ->assertSee('Shop-scoped reward behavior should stay foundation-preview only until Galaxy foundation scope checks are verified against legacy kiosk rules.')
             ->assertSee('Finite-stock handling still needs backend inventory wiring before a publish path is safe.');
     }
 
