@@ -2,8 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Card;
+use App\Models\CardHolder;
 use App\Models\Shop;
 use App\Models\User;
+use App\Policies\CardHolderPolicy;
+use App\Policies\CardPolicy;
 use App\Policies\ShopPolicy;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
@@ -24,6 +28,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::policy(Shop::class, ShopPolicy::class);
+        Gate::policy(CardHolder::class, CardHolderPolicy::class);
+        Gate::policy(Card::class, CardPolicy::class);
 
         Gate::define('access-admin', static function (User $user): bool {
             return $user->canAccessAdminPanel();

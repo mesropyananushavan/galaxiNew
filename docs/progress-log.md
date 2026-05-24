@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Cardholder and card update policy-entry checkpoint
+- Added first explicit `CardHolderPolicy` and `CardPolicy` update abilities, both delegating record access back through the existing shop-level `view` seam so scoped ownership stays anchored to the record's current branch.
+- Wired `PATCH /admin/cardholders/{cardholder}` and `PATCH /admin/cards/{card}` through `can:update,...`, so foreign-record mutation attempts are now rejected at the route entry point while assigned-record cross-shop retarget attempts still fall through to the existing validation guards.
+- Tightened the focused foreign-record update regressions to expect direct forbidden responses, then re-ran the scoped cardholder and card update slice successfully.
+- Kept the step intentionally small, but it moves two more live Galaxy mutation paths from starter-style downstream guarding toward a clearer Laravel policy surface.
+
 ### Shops update route policy checkpoint
 - Wired `PATCH /admin/shops/{shop}` through `can:update,shop`, so foreign-branch mutation attempts are now rejected at the route entry point instead of relying only on later request validation.
 - Tightened the focused scoped-shop update regression to expect a direct forbidden response for cross-branch updates, while keeping the existing branch data unchanged in the database.

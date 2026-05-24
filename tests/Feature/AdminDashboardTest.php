@@ -5884,11 +5884,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => 'true',
         ]);
 
-        $response
-            ->assertRedirect(route('admin.cardholders.index', ['cardholder' => $cardHolder], absolute: false).'#live-form')
-            ->assertSessionHasErrors([
-                'shop_id' => 'Choose a cardholder from a shop you can access before changing holder details in the Galaxy workspace.',
-            ]);
+        $response->assertForbidden();
 
         $this->assertDatabaseHas('card_holders', [
             'id' => $cardHolder->id,
@@ -11644,11 +11640,7 @@ class AdminDashboardTest extends TestCase
             'status' => 'draft',
         ]);
 
-        $response
-            ->assertRedirect(route('admin.cards.index', ['card' => $card], absolute: false).'#live-form')
-            ->assertSessionHasErrors([
-                'shop_id' => 'Choose a card from a shop you can access before changing inventory details in the Galaxy workspace.',
-            ]);
+        $response->assertForbidden();
 
         $this->assertDatabaseHas('cards', [
             'id' => $card->id,
