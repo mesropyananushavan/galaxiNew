@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Card policy create/viewAny cleanup checkpoint
+- Simplified `CardPolicy::create()` and `CardHolderPolicy::create()` to delegate to their `viewAny()` checks instead of duplicating the same `canAccessAdminPanel()` condition inline.
+- Re-ran the focused card/cardholder create plus admin-access helper slice successfully after the cleanup.
+- Kept the step intentionally small, but it trims one more bit of starter-style duplication from the policy layer without changing the current Phase 1 behavior.
+
 ### Shops foundation action helper follow-up checkpoint
 - Finished the shared foundation-helper alignment by passing `Shop::class` into the shops catalog action helper too, so branch creation UI gating now uses the same policy target path as the rest of the refactored helper surface.
 - Re-ran the focused shops workspace slice successfully, keeping scoped branch-update access and bootstrap-only branch-creation gating intact.

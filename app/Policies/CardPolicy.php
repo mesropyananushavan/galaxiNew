@@ -14,7 +14,7 @@ class CardPolicy
 
     public function create(User $user): bool
     {
-        return $user->canAccessAdminPanel();
+        return $this->viewAny($user);
     }
 
     public function update(User $user, Card $card): bool
