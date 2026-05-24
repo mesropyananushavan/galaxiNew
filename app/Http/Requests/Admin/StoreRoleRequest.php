@@ -4,16 +4,17 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
+use App\Http\Requests\Admin\Concerns\NormalizesSlugInputs;
 use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
 
 class StoreRoleRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
     use NormalizesBooleanFormInputs;
+    use NormalizesSlugInputs;
     use NormalizesTextFormInputs;
     use ResolvesAdminLiveFormRedirects;
 
@@ -42,7 +43,7 @@ class StoreRoleRequest extends FormRequest
 
         $this->merge([
             'name' => $this->normalizeTrimmedString($this->input('name')),
-            'slug' => is_string($this->input('slug')) ? Str::slug($this->input('slug')) : $this->input('slug'),
+            'slug' => $this->normalizeSlugInput($this->input('slug')),
             'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
             'access_note' => $this->normalizeNullableTrimmedString($this->input('access_note')),
             'assignment_note' => $this->normalizeNullableTrimmedString($this->input('assignment_note')),

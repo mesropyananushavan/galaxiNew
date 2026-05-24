@@ -4,16 +4,17 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
+use App\Http\Requests\Admin\Concerns\NormalizesSlugInputs;
 use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
 
 class StoreShopRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
     use NormalizesBooleanFormInputs;
+    use NormalizesSlugInputs;
     use NormalizesTextFormInputs;
     use ResolvesAdminLiveFormRedirects;
 
@@ -40,7 +41,7 @@ class StoreShopRequest extends FormRequest
 
         $this->merge([
             'name' => $this->normalizeTrimmedString($this->input('name')),
-            'code' => is_string($this->input('code')) ? Str::slug($this->input('code')) : $this->input('code'),
+            'code' => $this->normalizeSlugInput($this->input('code')),
             'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
             'is_active' => $this->normalizeBooleanInput($status),
         ]);

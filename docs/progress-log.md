@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Slug input normalization concern checkpoint
+- Added a shared `NormalizesSlugInputs` concern and moved the repeated `Str::slug(...)` input normalization pattern for shops, roles, and card types onto that helper.
+- Re-ran the focused branch/access/tier create-update slice successfully after the refactor.
+- Kept the step intentionally small, but it turns one more repeated bit of request input shaping into a clearer Galaxy foundation seam.
+
 ### Text input normalization helper refinement checkpoint
 - Extended `NormalizesTextFormInputs` with shared upper/lower-after-trim helpers and moved the remaining inline case-normalization patterns in the card and cardholder store flows onto that seam.
 - Re-ran the focused card/cardholder create-update slice successfully after the refinement.
