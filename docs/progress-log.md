@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Roles and card-types route policy-entry checkpoint
+- Added `viewAny()` abilities to `RolePolicy` and `CardTypePolicy`, then wired `/admin/roles-permissions` and `/admin/card-types` through `can:viewAny,...` so both Galaxy foundation catalogs now have explicit policy-aware route entry points in addition to their bootstrap-only create guards.
+- Expanded the focused access helper assertions to prove bootstrap admins and assigned scoped operators can enter those catalog workspaces through the new `viewAny` abilities while paused scoped operators are denied.
+- Re-ran the focused access plus management-preview slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it makes two more core Phase 1 workspaces feel less like generic starter routes and more like explicit Laravel authorization surfaces.
+
 ### Roles and card-types create policy-entry checkpoint
 - Added first explicit `RolePolicy` and `CardTypePolicy` create/update abilities, keeping the current Phase 1 posture intentionally narrow by allowing those catalog writes only for bootstrap admins.
 - Wired `POST /admin/roles-permissions` and `POST /admin/card-types` through `can:create,...`, so scoped create attempts are now rejected at the route entry point instead of relying only on the later bootstrap-only validation hook.
