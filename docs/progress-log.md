@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Admin dashboard checkpoint-trail reference sync checkpoint
+- Extended the `Phase 1 reference docs` card on `resources/views/admin/dashboard.blade.php` to include `docs/checkpoints/`, so the live admin landing surface now keeps the checkpoint directory visible alongside the blueprint, plan, IA map, shell notes, config map, and progress log.
+- Extended `tests/Feature/AdminDashboardTest.php` so the existing dashboard feature slice now asserts the checkpoint-directory reference too.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_admin_dashboard` successfully after the follow-up.
+
 ### Admin-shell doc cross-link sync checkpoint
 - Updated `docs/admin-shell-config-map.md` and `docs/admin-shell-layering.md` so both notes now cross-link the new `docs/admin-information-architecture.md` reference doc.
 - Extended the config-map reading order to point at the current admin navigation map before shell-layer ownership details.

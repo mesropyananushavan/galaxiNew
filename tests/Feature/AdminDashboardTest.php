@@ -217,6 +217,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('docs/admin-information-architecture.md')
             ->assertSee('docs/admin-shell-layering.md')
             ->assertSee('docs/admin-shell-config-map.md')
+            ->assertSee('docs/checkpoints/')
             ->assertSee('docs/progress-log.md')
             ->assertSee('Live review entry points')
             ->assertSee('Use these Galaxy review surfaces to move from branch setup into live operational checks once records start landing')

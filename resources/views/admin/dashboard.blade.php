@@ -171,6 +171,7 @@
             <li><code>docs/admin-information-architecture.md</code></li>
             <li><code>docs/admin-shell-layering.md</code></li>
             <li><code>docs/admin-shell-config-map.md</code></li>
+            <li><code>docs/checkpoints/</code></li>
             <li><code>docs/progress-log.md</code></li>
         </ul>
     </section>
