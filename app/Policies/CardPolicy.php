@@ -4,12 +4,15 @@ namespace App\Policies;
 
 use App\Models\Card;
 use App\Models\User;
+use App\Policies\Concerns\HandlesAdminPolicyAccess;
 
 class CardPolicy
 {
+    use HandlesAdminPolicyAccess;
+
     public function viewAny(User $user): bool
     {
-        return $user->canAccessAdminPanel();
+        return $this->canViewAdminIndex($user);
     }
 
     public function create(User $user): bool

@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Shared policy baseline checkpoint
+- Added `app/Policies/Concerns/HandlesAdminPolicyAccess.php` and moved the repeated admin-entry plus bootstrap-foundation baseline checks behind named helpers, so the current Phase 1 policies read through one small shared seam instead of repeating the same user access calls inline.
+- Wired `ShopPolicy`, `RolePolicy`, `CardTypePolicy`, `CardPolicy`, and `CardHolderPolicy` into the new concern without changing their current ability boundaries.
+- Re-ran the focused policy/auth and create-flow slice successfully across shop, role, tier, card, and holder permissions after the cleanup.
+
 ### Boolean helper refinement checkpoint
 - Added a dedicated `normalizeFilterBooleanInput()` path to `NormalizesBooleanFormInputs` and switched `StoreCardTypeRequest` onto it, so the shared helper now mirrors the tier flow's original filter-based fallback behavior instead of approximating it through the stricter boolean seam.
 - Re-ran the focused tier create/update/toggle slice successfully after the refinement.
