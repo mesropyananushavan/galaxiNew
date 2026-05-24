@@ -39,7 +39,9 @@ Route::prefix('admin')
             ->middleware('can:viewAny,'.CardHolder::class)
             ->defaults('resource', 'cardholders')
             ->name('cardholders.index');
-        Route::post('/cardholders', CardHolderStoreController::class)->name('cardholders.store');
+        Route::post('/cardholders', CardHolderStoreController::class)
+            ->middleware('can:create,'.CardHolder::class)
+            ->name('cardholders.store');
         Route::patch('/cardholders/{cardholder}', CardHolderUpdateController::class)
             ->middleware('can:update,cardholder')
             ->name('cardholders.update');
@@ -47,7 +49,9 @@ Route::prefix('admin')
             ->middleware('can:viewAny,'.Card::class)
             ->defaults('resource', 'cards')
             ->name('cards.index');
-        Route::post('/cards', CardStoreController::class)->name('cards.store');
+        Route::post('/cards', CardStoreController::class)
+            ->middleware('can:create,'.Card::class)
+            ->name('cards.store');
         Route::patch('/cards/{card}', CardUpdateController::class)
             ->middleware('can:update,card')
             ->name('cards.update');

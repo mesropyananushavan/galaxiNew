@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Card and cardholder create-policy entry checkpoint
+- Added explicit `create` abilities to `CardPolicy` and `CardHolderPolicy`, then guarded the `POST /admin/cards` and `POST /admin/cardholders` entry points with policy middleware.
+- Switched `StoreCardRequest` and `StoreCardHolderRequest` from the broader `access-admin` authorize check to explicit policy-based `create` checks, so these live Phase 1 creation forms now describe the same auth intent as their route entry.
+- Extended the admin access helper assertions to cover `create` abilities for cards and cardholders, and re-ran the focused create slice successfully, keeping bootstrap-admin happy paths plus scoped cross-shop forbidden paths green.
+- Kept the step intentionally small, but it rounds out one more piece of the Galaxy-specific policy surface so card and holder creation reads less like generic starter access wiring.
+
 ### Card and cardholder update-request policy authorize checkpoint
 - Added explicit policy-based `authorize()` checks to `UpdateCardRequest` and `UpdateCardHolderRequest`, so those live Phase 1 update forms now describe the same `update` intent as their route middleware instead of inheriting broader store-oriented access semantics.
 - Re-ran the focused card/cardholder update slice successfully, keeping bootstrap-admin happy paths plus scoped foreign-record and cross-shop forbidden paths green.

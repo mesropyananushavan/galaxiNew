@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\ValidatesAccessibleShop;
+use App\Models\Card;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
@@ -16,7 +17,7 @@ class StoreCardRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return $this->user()?->can('access-admin') ?? false;
+        return $this->user()?->can('create', Card::class) ?? false;
     }
 
     public function rules(): array

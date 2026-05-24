@@ -12,6 +12,11 @@ class CardPolicy
         return $user->canAccessAdminPanel();
     }
 
+    public function create(User $user): bool
+    {
+        return $user->canAccessAdminPanel();
+    }
+
     public function update(User $user, Card $card): bool
     {
         return $user->can('view', $card->shop);
