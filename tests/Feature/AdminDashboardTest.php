@@ -7092,6 +7092,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep this source centered on branch-by-branch totals, because old Galaxy operators usually compared card inventory by shop before opening broader exports.')
             ->assertSee('Default period posture')
             ->assertSee('Use current snapshot review first, then keep preset periods staged until branch-total parity is verified.')
+            ->assertSee('Preset posture')
+            ->assertSee('Keep period presets foundation-preview only until shop-level totals and export parity are verified.')
             ->assertSee('Format guidance')
             ->assertSee('Prefer table-first review here, because branch inventory checks should stay visible on screen before anyone expects export files.')
             ->assertSee('Handoff signal')

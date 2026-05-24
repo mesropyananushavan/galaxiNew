@@ -1500,7 +1500,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because branch inventory checks should stay visible on screen before anyone expects export files.'],
                     ['label' => 'Handoff signal', 'value' => $this->reportsCardsByShopHandoffSignal($holderLinkedCardCount, $unassignedCardCount)],
                     ['label' => 'Backend gap', 'value' => $this->reportsCardsByShopBackendGap($cardCount, $shopCount, $holderLinkedCardCount, $unassignedCardCount)],
-                    ['label' => 'Preset posture', 'value' => 'Keep period presets preview-only until shop-level totals and export parity are verified.'],
+                    ['label' => 'Preset posture', 'value' => 'Keep period presets foundation-preview only until shop-level totals and export parity are verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until file export formatting and delivery are validated.'],
                 ],
                 'timeline' => [
