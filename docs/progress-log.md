@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Preview-shell stack cleanup checkpoint
+- Updated the dedicated preview-shell stack comment in `config/admin-preview-shell-blocks.php` to say `foundation-preview CRUD structure`, so even the config guidance reflects the newer Galaxy foundation vocabulary.
+- Tightened the preview-shell ordering assertion in `tests/Feature/AdminDashboardTest.php` to anchor on the current live card-types notice title (`Card type workflow is partially live`) instead of an older `preview-only` phrase that no longer exists in the rendered shell.
+- Kept the step intentionally small, but cleared the remaining tracked `preview-only` cleanup from config guidance and a stale composability assertion without changing application behavior.
+
 ### Preview-shell test vocabulary foundation-preview checkpoint
 - Tightened lingering preview-shell fixture wording in `tests/Unit/AdminResourcePageNormalizerTest.php`, replacing `Role publishing is still preview-only` and `migration is preview-only` with `foundation-preview only` language so the normalizer coverage reflects the newer Galaxy foundation vocabulary too.
 - Synced the malformed form-preview fixture assertions in `tests/Feature/AdminDashboardTest.php` to use `foundation-preview only` wording for the role matrix help text, then re-ran the targeted normalizer and form-preview slices successfully.

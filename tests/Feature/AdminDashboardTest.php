@@ -8431,7 +8431,7 @@ class AdminDashboardTest extends TestCase
         $content = $response->getContent();
 
         $this->assertTrue(
-            strpos($content, 'Card type rules are still preview-only')
+            strpos($content, 'Card type workflow is partially live')
                 < strpos($content, 'No custom card types configured yet')
                 && strpos($content, 'No custom card types configured yet') < strpos($content, 'First Galaxy foundation wiring step'),
             'Expected the dedicated preview shell config stack to remain composable inside page defaults.'
