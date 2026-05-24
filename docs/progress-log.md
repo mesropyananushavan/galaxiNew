@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Dashboard latest-work policy reuse checkpoint
+- Reused the new `ShopPolicy` on the dashboard latest-work path by switching `DashboardController::latestAccessibleRecord()` from direct `canAccessShop()` helper checks to the explicit `view` ability.
+- This keeps the first admin entry-point filtering aligned with the same policy seam now used by branch writes, shared branch review filtering, and shared card/cardholder shop validation.
+- Re-ran the focused dashboard latest-work slice successfully after the policy reuse change.
+- Kept the step intentionally small, but it moves one more shared Phase 1 access path away from starter-style helper checks and toward a clearer Laravel authorization surface.
+
 ### Shared shop-validation policy reuse checkpoint
 - Reused the new `ShopPolicy` inside `ValidatesAccessibleShop`, switching the shared card and cardholder shop-access validation concern from the lower-level `access-shop` gate to the explicit `view` ability.
 - This keeps the scoped store/update validation flow for cards and cardholders aligned with the same policy seam already used by the first branch write guard and the shared branch review filter.

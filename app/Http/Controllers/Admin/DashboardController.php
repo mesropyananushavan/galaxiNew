@@ -998,6 +998,6 @@ class DashboardController extends Controller
         }
 
         return collect($records)
-            ->first(fn (mixed $record): bool => $adminUser->canAccessShop($shopResolver($record)));
+            ->first(fn (mixed $record): bool => $adminUser->can('view', $shopResolver($record)));
     }
 }
