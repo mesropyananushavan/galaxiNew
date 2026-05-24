@@ -40,7 +40,7 @@
 - Kept the step intentionally small, but it gives the new Phase 1 IA/doc-map slice a real regression check instead of leaving it as an unguarded content-only addition.
 
 ### Admin information architecture map checkpoint
-- Added `docs/admin-information-architecture.md` as a compact current-state map of the Phase 1 Galaxy admin sidebar groups, route targets, live mutation entry points, preview-only surfaces, and authorization posture.
+- Added `docs/admin-information-architecture.md` as a compact current-state map of the Phase 1 Galaxy admin sidebar groups, route targets, live mutation entry points, foundation-preview surfaces, and authorization posture.
 - Linked the new IA note from `resources/views/welcome.blade.php` so the public landing docs list now exposes the current admin navigation map alongside the other Phase 1 reference docs.
 - Kept the step intentionally small, but it closes one more real Phase 1 deliverable gap by making the current admin information architecture easier to inspect without reverse-engineering it from config and routes.
 
