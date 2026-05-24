@@ -58,10 +58,11 @@ A minimal admin shell is available as the first post-foundation vertical slice:
 ### Current access behavior
 
 - guests hitting `/admin` are redirected to `/login`
-- authenticated users can access `/admin`
-- `access-admin` is currently an explicit stub gate that returns `true` for any authenticated user
+- bootstrap admins without a shop assignment can access `/admin`
+- shop-scoped users can access `/admin` only when their assigned branch is active and they hold at least one permission-bearing role
+- shop-scoped access to branch-bound writes still flows through explicit policy and request validation seams
 
-This is an intentional baseline step, not a full roles / permissions system yet.
+This is still a Phase 1 baseline, but it is no longer a blanket authenticated-user stub.
 
 ## QA / test bootstrap
 

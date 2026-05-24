@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### README access-baseline sync checkpoint
+- Updated the top-level `README.md` admin access section so it no longer claims `access-admin` is a blanket authenticated-user stub, and instead reflects the current Phase 1 bootstrap-admin plus active-branch, permission-bearing shop-admin baseline.
+- Re-ran a focused grep check on `README.md` after the edit so the stale stub wording is no longer left behind in the main repo guidance.
+- Kept the step intentionally small, but it closes a real documentation drift between the live authorization baseline and the first file contributors are likely to read.
+
 ### Admin information architecture landing-test checkpoint
 - Extended `tests/Feature/ExampleTest.php` so the public landing page guardrail now asserts the new `docs/admin-information-architecture.md` reference alongside the visible IA-oriented guidance and `Helpful project docs` section.
 - Re-ran `tests/Feature/ExampleTest.php` successfully after the follow-up.
