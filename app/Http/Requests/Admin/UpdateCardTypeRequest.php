@@ -2,11 +2,19 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\CardType;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 
 class UpdateCardTypeRequest extends StoreCardTypeRequest
 {
+    public function authorize(): bool
+    {
+        $cardType = $this->route('cardType');
+
+        return $cardType instanceof CardType && ($this->user()?->can('update', $cardType) ?? false);
+    }
+
     public function rules(): array
     {
         $cardType = $this->route('cardType');

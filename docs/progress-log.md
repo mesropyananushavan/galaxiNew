@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Update-request policy authorize checkpoint
+- Added explicit policy-based `authorize()` checks to `UpdateShopRequest`, `UpdateRoleRequest`, and `UpdateCardTypeRequest`, so those live Phase 1 update forms now describe the same `update` intent as their route middleware instead of inheriting store-oriented create semantics.
+- Re-ran the focused shop/role/tier update slice successfully, keeping bootstrap-admin happy paths and scoped forbidden paths green.
+- Kept the step intentionally small, but it makes the request layer read less like a generic starter inheritance shortcut and more like the Galaxy-specific policy surface now driving update access.
+
 ### Store-request policy authorize checkpoint
 - Switched `StoreShopRequest`, `StoreRoleRequest`, and `StoreCardTypeRequest` from the broader `access-admin` authorize check to explicit policy-based `create` checks, so those live Phase 1 creation forms now describe the same auth intent as their route middleware.
 - Re-ran the focused shop/role/tier create slice successfully, keeping bootstrap-admin happy paths and scoped forbidden paths green.

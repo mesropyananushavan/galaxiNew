@@ -2,11 +2,19 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Models\Role;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 
 class UpdateRoleRequest extends StoreRoleRequest
 {
+    public function authorize(): bool
+    {
+        $role = $this->route('role');
+
+        return $role instanceof Role && ($this->user()?->can('update', $role) ?? false);
+    }
+
     public function rules(): array
     {
         $role = $this->route('role');
