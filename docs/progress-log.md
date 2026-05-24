@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Admin information architecture map checkpoint
+- Added `docs/admin-information-architecture.md` as a compact current-state map of the Phase 1 Galaxy admin sidebar groups, route targets, live mutation entry points, preview-only surfaces, and authorization posture.
+- Linked the new IA note from `resources/views/welcome.blade.php` so the public landing docs list now exposes the current admin navigation map alongside the other Phase 1 reference docs.
+- Kept the step intentionally small, but it closes one more real Phase 1 deliverable gap by making the current admin information architecture easier to inspect without reverse-engineering it from config and routes.
+
 ### Selected-resource unique rule checkpoint
 - Extended the update-side selected-resource seam with a shared `uniqueRuleIgnoringSelectedResource()` helper, so the current live update requests no longer need to rebuild the same `Rule::unique(...)->ignore(...)` pattern around the resolved route model by hand.
 - Switched `UpdateShopRequest`, `UpdateRoleRequest`, `UpdateCardTypeRequest`, and `UpdateCardRequest` onto the new helper while keeping the same duplicate-protection behavior for branch codes, role slugs, tier slugs, and card numbers.
