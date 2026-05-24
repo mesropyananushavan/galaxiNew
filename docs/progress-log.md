@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Text input normalization helper refinement checkpoint
+- Extended `NormalizesTextFormInputs` with shared upper/lower-after-trim helpers and moved the remaining inline case-normalization patterns in the card and cardholder store flows onto that seam.
+- Re-ran the focused card/cardholder create-update slice successfully after the refinement.
+- Kept the step intentionally small, but it smooths off one more little pocket of repeated request normalization logic in the live Galaxy foundation flows.
+
 ### Text input normalization concern follow-up checkpoint
 - Extended `NormalizesTextFormInputs` into the tier and card store flows too, so `StoreCardTypeRequest` and `StoreCardRequest` now use the same shared trimming and nullable-string normalization seam instead of carrying their own inline variants.
 - Re-ran the focused tier/card create-update slice successfully after the follow-up refactor.

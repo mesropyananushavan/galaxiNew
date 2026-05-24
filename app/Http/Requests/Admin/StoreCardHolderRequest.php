@@ -45,9 +45,7 @@ class StoreCardHolderRequest extends FormRequest
         $this->merge([
             'full_name' => $this->normalizeTrimmedString($this->input('full_name')),
             'phone' => $this->normalizeNullableTrimmedString($this->input('phone')),
-            'email' => ($normalizedEmail = $this->normalizeNullableTrimmedString($this->input('email'))) !== null && is_string($normalizedEmail)
-                ? strtolower($normalizedEmail)
-                : $normalizedEmail,
+            'email' => $this->normalizeNullableLowerTrimmedString($this->input('email')),
             'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
             'is_active' => $this->normalizeBooleanInput($status),
         ]);

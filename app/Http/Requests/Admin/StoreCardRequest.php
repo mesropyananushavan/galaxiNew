@@ -42,12 +42,8 @@ class StoreCardRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'number' => ($normalizedNumber = $this->normalizeTrimmedString($this->input('number'))) !== null && is_string($normalizedNumber)
-                ? strtoupper($normalizedNumber)
-                : $normalizedNumber,
-            'status' => ($normalizedStatus = $this->normalizeTrimmedString($this->input('status'))) !== null && is_string($normalizedStatus)
-                ? strtolower($normalizedStatus)
-                : $normalizedStatus,
+            'number' => $this->normalizeUpperTrimmedString($this->input('number')),
+            'status' => $this->normalizeLowerTrimmedString($this->input('status')),
             'issued_at' => blank($this->input('issued_at')) ? null : $this->input('issued_at'),
             'activated_at' => blank($this->input('activated_at')) ? null : $this->input('activated_at'),
             'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
