@@ -8135,7 +8135,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Remaining backend gap')
             ->assertSee('Rule persistence, exclusion validation, and publish flow should stay foundation-preview only until bar-service-exclusion parity is verified.')
             ->assertSee('North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.')
-            ->assertSee('Blocking-rule order is still preview-only until exclusion precedence is validated in the Galaxy foundation layer.')
+            ->assertSee('Blocking-rule order is still foundation-preview only until exclusion precedence is validated in the Galaxy foundation layer.')
             ->assertSee('Treat the no-accrual effect as a review-only exception until the Galaxy foundation layer can safely reproduce the old block semantics.');
     }
 

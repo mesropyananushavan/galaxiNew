@@ -416,7 +416,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Selected rule', 'value' => 'Night service block'],
                     ['label' => 'Rule status signal', 'value' => 'Draft exclusion rule remains safer for bar-service-exclusion parity review before any live-publish-flow discussion.'],
                     ['label' => 'Scope posture', 'value' => 'North Shop exclusions should stay draft-only until scoped exception behavior is verified against the legacy system.'],
-                    ['label' => 'Priority posture', 'value' => 'Blocking-rule order is still preview-only until exclusion precedence is validated in the Galaxy foundation layer.'],
+                    ['label' => 'Priority posture', 'value' => 'Blocking-rule order is still foundation-preview only until exclusion precedence is validated in the Galaxy foundation layer.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->servicesRulesBackendGap('night-service-block')],
                 ],
             ],
