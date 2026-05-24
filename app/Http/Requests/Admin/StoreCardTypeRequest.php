@@ -48,7 +48,7 @@ class StoreCardTypeRequest extends FormRequest
             'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
             'activation_note' => $this->normalizeNullableTrimmedString($this->input('activation_note')),
             'rollout_note' => $this->normalizeNullableTrimmedString($this->input('rollout_note')),
-            'is_active' => $this->normalizeBooleanInput($status, $this->input('is_active')),
+            'is_active' => $this->normalizeFilterBooleanInput($status),
         ]);
     }
 

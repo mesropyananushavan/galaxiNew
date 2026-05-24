@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Boolean helper refinement checkpoint
+- Added a dedicated `normalizeFilterBooleanInput()` path to `NormalizesBooleanFormInputs` and switched `StoreCardTypeRequest` onto it, so the shared helper now mirrors the tier flow's original filter-based fallback behavior instead of approximating it through the stricter boolean seam.
+- Re-ran the focused tier create/update/toggle slice successfully after the refinement.
+- Kept the step intentionally small, but it makes the shared normalization seam a little more precise without changing the current Phase 1 behavior.
+
 ### Update-request authorize inheritance cleanup checkpoint
 - Removed the now-redundant local `AuthorizesPolicyActions` trait usage from the update requests, because each update form already inherits the shared authorize helper seam from its store-request base class.
 - Re-ran the focused update-side slice successfully across branch, access, tier, card, and holder flows after the cleanup.

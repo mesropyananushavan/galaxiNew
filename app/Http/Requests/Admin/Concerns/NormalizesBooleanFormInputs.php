@@ -13,4 +13,9 @@ trait NormalizesBooleanFormInputs
             default => $default,
         };
     }
+
+    protected function normalizeFilterBooleanInput(mixed $value): mixed
+    {
+        return filter_var($value, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) ?? $value;
+    }
 }
