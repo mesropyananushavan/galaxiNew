@@ -8,6 +8,13 @@ use Illuminate\Validation\Validator;
 
 class UpdateCardHolderRequest extends StoreCardHolderRequest
 {
+    public function authorize(): bool
+    {
+        $cardHolder = $this->route('cardholder');
+
+        return $cardHolder instanceof CardHolder && ($this->user()?->can('update', $cardHolder) ?? false);
+    }
+
     public function withValidator(Validator $validator): void
     {
         parent::withValidator($validator);

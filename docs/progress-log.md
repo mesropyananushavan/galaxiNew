@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Card and cardholder update-request policy authorize checkpoint
+- Added explicit policy-based `authorize()` checks to `UpdateCardRequest` and `UpdateCardHolderRequest`, so those live Phase 1 update forms now describe the same `update` intent as their route middleware instead of inheriting broader store-oriented access semantics.
+- Re-ran the focused card/cardholder update slice successfully, keeping bootstrap-admin happy paths plus scoped foreign-record and cross-shop forbidden paths green.
+- Kept the step intentionally small, but it makes two more live request flows read less like generic starter inheritance shortcuts and more like the Galaxy-specific policy surface now driving update access.
+
 ### Update-request policy authorize checkpoint
 - Added explicit policy-based `authorize()` checks to `UpdateShopRequest`, `UpdateRoleRequest`, and `UpdateCardTypeRequest`, so those live Phase 1 update forms now describe the same `update` intent as their route middleware instead of inheriting store-oriented create semantics.
 - Re-ran the focused shop/role/tier update slice successfully, keeping bootstrap-admin happy paths and scoped forbidden paths green.

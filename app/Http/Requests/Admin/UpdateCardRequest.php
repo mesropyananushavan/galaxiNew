@@ -9,6 +9,13 @@ use Illuminate\Validation\Validator;
 
 class UpdateCardRequest extends StoreCardRequest
 {
+    public function authorize(): bool
+    {
+        $card = $this->route('card');
+
+        return $card instanceof Card && ($this->user()?->can('update', $card) ?? false);
+    }
+
     public function rules(): array
     {
         $card = $this->route('card');
