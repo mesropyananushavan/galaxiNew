@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Gifts weekend-brunch paused-scope foundation-preview checkpoint
+- Tightened the weekend-brunch-pass paused reward dependency `Scope posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Paused branch reward behavior should stay preview-only` with `Paused branch reward behavior should stay foundation-preview only` so the paused branch reward dependency row matches the newer Galaxy foundation vocabulary.
+- Synced the matching selected paused-gift assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused paused finite-stock gift review slice successfully.
+- Kept the step intentionally small, but finished the remaining `preview-only` cleanup inside `ResourceIndexController.php` on a live gifts review surface instead of leaving one last older dependency line behind.
+
 ### Gifts premium-dessert-set paused dependency foundation-preview checkpoint
 - Tightened the premium-dessert-set paused reward dependency copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Paused shop-scoped reward behavior should stay preview-only` and `Zero-stock handling is still preview-only` with `foundation-preview only` wording so the paused zero-stock gift review uses the newer Galaxy foundation vocabulary consistently.
 - Expanded the focused paused-gift assertions in `tests/Feature/AdminDashboardTest.php` to cover the updated paused-scope dependency line alongside the revised zero-stock posture, then re-ran the selected paused-reward review slice successfully.

@@ -9505,7 +9505,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope, remaining stock, and points cost should stay visible in the workspace before any reopening-flow discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Gift CRUD, paused-stock recovery, and redemption persistence should stay foundation-preview only until paused-branch-reopening parity is verified.')
-            ->assertSee('Paused branch reward behavior should stay preview-only until Galaxy foundation scope and reopening checks are verified.')
+            ->assertSee('Paused branch reward behavior should stay foundation-preview only until Galaxy foundation scope and reopening checks are verified.')
             ->assertSee('Finite paused stock still needs backend inventory wiring before operators can trust reopening decisions.');
     }
 

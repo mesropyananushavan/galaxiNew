@@ -599,7 +599,7 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Weekend brunch pass'],
                     ['label' => 'Gift status signal', 'value' => 'Paused finite-stock reward remains safer for paused-branch-reopening-parity review before any reopening-flow discussion.'],
-                    ['label' => 'Scope posture', 'value' => 'Paused branch reward behavior should stay preview-only until Galaxy foundation scope and reopening checks are verified.'],
+                    ['label' => 'Scope posture', 'value' => 'Paused branch reward behavior should stay foundation-preview only until Galaxy foundation scope and reopening checks are verified.'],
                     ['label' => 'Stock posture', 'value' => 'Finite paused stock still needs backend inventory wiring before operators can trust reopening decisions.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('weekend-brunch-pass')],
                 ],
