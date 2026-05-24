@@ -1,6 +1,7 @@
 # Admin Shell Config Map
 
 Related docs:
+- `docs/admin-information-architecture.md`
 - `docs/admin-shell-layering.md`
 - `docs/phase-1-plan.md`
 - `docs/blueprint.md`
@@ -54,5 +55,6 @@ If you are extending one of these screens, keep workflow metadata in `config/adm
 ## Suggested reading order
 1. Read `docs/blueprint.md` for overall migration posture.
 2. Read `docs/phase-1-plan.md` for the current Phase 1 target.
-3. Read `docs/admin-shell-layering.md` for shell structure.
-4. Use this file to pick the exact config entry point to edit.
+3. Read `docs/admin-information-architecture.md` for the current admin navigation map.
+4. Read `docs/admin-shell-layering.md` for shell structure.
+5. Use this file to pick the exact config entry point to edit.

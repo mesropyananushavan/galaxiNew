@@ -3,6 +3,7 @@
 Related docs:
 - `docs/phase-1-plan.md`
 - `docs/blueprint.md`
+- `docs/admin-information-architecture.md`
 - `docs/admin-shell-config-map.md`
 
 ## Why this exists

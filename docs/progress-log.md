@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Admin-shell doc cross-link sync checkpoint
+- Updated `docs/admin-shell-config-map.md` and `docs/admin-shell-layering.md` so both notes now cross-link the new `docs/admin-information-architecture.md` reference doc.
+- Extended the config-map reading order to point at the current admin navigation map before shell-layer ownership details.
+- Kept the step intentionally small, but it closes a real reference-navigation gap inside the shell docs themselves now that the IA map is part of the core Phase 1 doc set.
+
 ### Blueprint admin-shell reference sync checkpoint
 - Updated `docs/blueprint.md` so its admin-shell implementation note now points directly at `docs/admin-information-architecture.md` and `docs/admin-shell-config-map.md` alongside the existing shell-layering reference.
 - Kept the step intentionally small, but it closes a real blueprint-level documentation gap by making the current Phase 1 IA map and config-ownership guide visible from the migration blueprint instead of only from the plan, README, landing page, and cross-linked notes.
