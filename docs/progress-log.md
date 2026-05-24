@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Shops request-guard cleanup checkpoint
+- Removed the now-redundant `can('update', $shop)` validator hook from `UpdateShopRequest`, because `PATCH /admin/shops/{shop}` is already policy-guarded at route entry.
+- Kept the real branch-field validation intact while letting authorization live in one clearer place instead of being split between route middleware and a late request hook.
+- Re-ran the focused shop update slice successfully after the cleanup.
+- Kept the step intentionally small, but it makes the Phase 1 branch authorization baseline cleaner and less starter-like without changing live behavior.
+
 ### Roles and card-types request-guard cleanup checkpoint
 - Removed the now-redundant bootstrap-only validator hooks from `StoreRoleRequest`, `UpdateRoleRequest`, `StoreCardTypeRequest`, and `UpdateCardTypeRequest`, because those routes are already policy-guarded at entry for create/update access.
 - Kept the real field validation intact while letting authorization live in one clearer place instead of being split between route middleware and late request hooks.

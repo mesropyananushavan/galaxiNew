@@ -2,10 +2,8 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Models\Shop;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Validator;
 
 class UpdateShopRequest extends StoreShopRequest
 {
@@ -22,22 +20,6 @@ class UpdateShopRequest extends StoreShopRequest
                 Rule::unique('shops', 'code')->ignore($shop),
             ],
         ]);
-    }
-
-    public function withValidator(Validator $validator): void
-    {
-        $validator->after(function (Validator $validator): void {
-            $user = $this->user();
-            $shop = $this->route('shop');
-
-            if ($user === null || ! $shop instanceof Shop) {
-                return;
-            }
-
-            if (! $user->can('update', $shop)) {
-                $validator->errors()->add('shop_id', 'Choose a shop you can access before changing branch settings in the Galaxy workspace.');
-            }
-        });
     }
 
     protected function getRedirectUrl(): string
