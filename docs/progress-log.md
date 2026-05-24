@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Reports role-access preset-posture foundation-preview checkpoint
+- Tightened the role-access reporting `Preset posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Keep access-report presets preview-only` with `Keep access-report presets foundation-preview only` so that source-specific dependency row matches the newer Galaxy foundation vocabulary already used across the shared reporting catalog.
+- Expanded the focused role-access reporting assertions in `tests/Feature/AdminDashboardTest.php` to cover the updated preset-posture line and re-ran the selected access-report slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live reporting surface instead of leaving one older preview-only dependency line behind.
+
 ### Card-types edit-flow foundation-preview defaults checkpoint
 - Tightened the selected tier edit-flow description in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `preview-only defaults` with `foundation-preview defaults` so the shared card-type edit handoff matches the newer Galaxy foundation vocabulary already used across the live Phase 1 shell.
 - Synced the matching selected-tier assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused card-type edit slice successfully.

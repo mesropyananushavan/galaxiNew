@@ -1747,7 +1747,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Format guidance', 'value' => 'Prefer table-first review here, because access coverage checks need visible role and scope context before any export workflow is trusted.' ],
                     ['label' => 'Handoff signal', 'value' => $this->reportsRoleAccessHandoffSignal($permissionLinkedRoleCount, $assignedStaffCount)],
                     ['label' => 'Backend gap', 'value' => $this->reportsRoleAccessBackendGap($roleCount, $permissionLinkedRoleCount, $assignedStaffCount)],
-                    ['label' => 'Preset posture', 'value' => 'Keep access-report presets preview-only until role and scope parity are verified.'],
+                    ['label' => 'Preset posture', 'value' => 'Keep access-report presets foundation-preview only until role and scope parity are verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until access export expectations and file delivery are validated.'],
                 ],
                 'timeline' => [

@@ -7854,6 +7854,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('unscoped access-assignment coverage is still pending')
             ->assertSee('Assignment branch activity signal')
             ->assertSee('paused-branch access-assignment coverage is still pending')
+            ->assertSee('Preset posture')
+            ->assertSee('Keep access-report presets foundation-preview only until role and scope parity are verified.')
             ->assertSee('Staff coverage signal')
             ->assertSee('unassigned active-role staff coverage is still pending')
             ->assertSee('Role state signal')
