@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Text input normalization concern follow-up checkpoint
+- Extended `NormalizesTextFormInputs` into the tier and card store flows too, so `StoreCardTypeRequest` and `StoreCardRequest` now use the same shared trimming and nullable-string normalization seam instead of carrying their own inline variants.
+- Re-ran the focused tier/card create-update slice successfully after the follow-up refactor.
+- Kept the step intentionally small, but it rounds out the same request-layer cleanup pattern across more of the live Galaxy foundation surface.
+
 ### Text input normalization concern checkpoint
 - Added a shared `NormalizesTextFormInputs` concern and moved the repeated trimmed-string and nullable trimmed-string normalization pattern for shops, roles, and cardholders onto that helper.
 - Re-ran the focused branch/access/holder create-update slice successfully after the refactor.

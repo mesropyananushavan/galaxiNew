@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Http\Requests\Admin\Concerns\ValidatesAccessibleShop;
 use App\Models\Card;
@@ -13,6 +14,7 @@ use Illuminate\Validation\Validator;
 class StoreCardRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
+    use NormalizesTextFormInputs;
     use ResolvesAdminLiveFormRedirects;
     use ValidatesAccessibleShop;
 
@@ -40,11 +42,15 @@ class StoreCardRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'number' => is_string($this->input('number')) ? strtoupper(trim($this->input('number'))) : $this->input('number'),
-            'status' => is_string($this->input('status')) ? strtolower(trim($this->input('status'))) : $this->input('status'),
+            'number' => ($normalizedNumber = $this->normalizeTrimmedString($this->input('number'))) !== null && is_string($normalizedNumber)
+                ? strtoupper($normalizedNumber)
+                : $normalizedNumber,
+            'status' => ($normalizedStatus = $this->normalizeTrimmedString($this->input('status'))) !== null && is_string($normalizedStatus)
+                ? strtolower($normalizedStatus)
+                : $normalizedStatus,
             'issued_at' => blank($this->input('issued_at')) ? null : $this->input('issued_at'),
             'activated_at' => blank($this->input('activated_at')) ? null : $this->input('activated_at'),
-            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
+            'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
         ]);
     }
 

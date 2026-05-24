@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Models\CardType;
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,6 +12,7 @@ use Illuminate\Support\Str;
 class StoreCardTypeRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
+    use NormalizesTextFormInputs;
     use ResolvesAdminLiveFormRedirects;
 
     protected $redirectRoute = 'admin.card-types.index';
@@ -36,11 +38,11 @@ class StoreCardTypeRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
+            'name' => $this->normalizeTrimmedString($this->input('name')),
             'slug' => is_string($this->input('slug')) ? Str::slug($this->input('slug')) : $this->input('slug'),
-            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
-            'activation_note' => is_string($this->input('activation_note')) ? (trim($this->input('activation_note')) !== '' ? trim($this->input('activation_note')) : null) : $this->input('activation_note'),
-            'rollout_note' => is_string($this->input('rollout_note')) ? (trim($this->input('rollout_note')) !== '' ? trim($this->input('rollout_note')) : null) : $this->input('rollout_note'),
+            'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
+            'activation_note' => $this->normalizeNullableTrimmedString($this->input('activation_note')),
+            'rollout_note' => $this->normalizeNullableTrimmedString($this->input('rollout_note')),
             'is_active' => filter_var($this->input('is_active'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)
                 ?? $this->input('is_active'),
         ]);
