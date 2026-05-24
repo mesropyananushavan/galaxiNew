@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Validator;
 
 class UpdateRoleRequest extends StoreRoleRequest
 {
@@ -21,15 +20,6 @@ class UpdateRoleRequest extends StoreRoleRequest
                 Rule::unique('roles', 'slug')->ignore($role),
             ],
         ]);
-    }
-
-    public function withValidator(Validator $validator): void
-    {
-        $this->validateBootstrapAdminAccess(
-            $validator,
-            'slug',
-            'Only bootstrap admins can update roles while the Galaxy access foundation is still centrally controlled.'
-        );
     }
 
     protected function getRedirectUrl(): string

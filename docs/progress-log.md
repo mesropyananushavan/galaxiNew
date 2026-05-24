@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Roles and card-types request-guard cleanup checkpoint
+- Removed the now-redundant bootstrap-only validator hooks from `StoreRoleRequest`, `UpdateRoleRequest`, `StoreCardTypeRequest`, and `UpdateCardTypeRequest`, because those routes are already policy-guarded at entry for create/update access.
+- Kept the real field validation intact while letting authorization live in one clearer place instead of being split between route middleware and late request hooks.
+- Re-ran the focused role/tier create and update slice successfully after the cleanup.
+- Kept the step intentionally small, but it makes the Phase 1 Galaxy catalog authorization baseline cleaner and less starter-like without changing live behavior.
+
 ### Card-types toggle-status policy-entry checkpoint
 - Wired `PATCH /admin/card-types/{cardType}/toggle-status` through `can:update,cardType`, so the live tier status toggle now uses the same route-level policy seam as the other card-type mutation paths.
 - Removed the controller-local bootstrap abort from `CardTypeToggleStatusController`, because the route-level guard now owns that authorization decision.

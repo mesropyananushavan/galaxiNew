@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Validator;
 
 class UpdateCardTypeRequest extends StoreCardTypeRequest
 {
@@ -21,15 +20,6 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
                 Rule::unique('card_types', 'slug')->ignore($cardType),
             ],
         ]);
-    }
-
-    public function withValidator(Validator $validator): void
-    {
-        $this->validateBootstrapAdminAccess(
-            $validator,
-            'slug',
-            'Only bootstrap admins can update card types while the Galaxy tier foundation is still centrally controlled.'
-        );
     }
 
     protected function getRedirectUrl(): string

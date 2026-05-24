@@ -2,16 +2,12 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Http\Requests\Admin\Concerns\ValidatesBootstrapAdminAccess;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Validator;
 
 class StoreCardTypeRequest extends FormRequest
 {
-    use ValidatesBootstrapAdminAccess;
-
     protected $redirectRoute = 'admin.card-types.index';
 
     public function authorize(): bool
@@ -67,15 +63,6 @@ class StoreCardTypeRequest extends FormRequest
             'activation_note.max' => 'Keep the activation note under 1000 characters so the tier workspace stays operator-friendly.',
             'rollout_note.max' => 'Keep the rollout note under 1000 characters so the tier workspace stays operator-friendly.',
         ];
-    }
-
-    public function withValidator(Validator $validator): void
-    {
-        $this->validateBootstrapAdminAccess(
-            $validator,
-            'slug',
-            'Only bootstrap admins can create new card types while the Galaxy tier foundation is still centrally controlled.'
-        );
     }
 
     protected function getRedirectUrl(): string
