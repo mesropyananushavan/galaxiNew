@@ -2,6 +2,10 @@
 
 ## 2026-05-24
 
+### Phase 1 plan reference sync checkpoint
+- Updated `docs/phase-1-plan.md` so its current admin shell note now points directly at `docs/admin-information-architecture.md` and `docs/admin-shell-config-map.md` alongside the existing shell-layering reference.
+- Kept the step intentionally small, but it closes a real plan-level documentation gap by making the current Phase 1 IA map and config-ownership guide visible from the main migration plan instead of only from README, the landing page, and cross-linked notes.
+
 ### Admin information architecture vocabulary sync checkpoint
 - Updated `docs/admin-information-architecture.md` so its route-posture section now says `foundation-preview` instead of the older `preview-only` wording, and aligned the intro line to `live-vs-foundation-preview posture` as well.
 - Kept the change intentionally small, but it closes a real vocabulary drift inside the new IA map so it matches the Phase 1 shell language already used across the dashboard, plan, and resource surfaces.
