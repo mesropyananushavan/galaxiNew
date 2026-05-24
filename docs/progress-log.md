@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Admin information architecture landing-test checkpoint
+- Extended `tests/Feature/ExampleTest.php` so the public landing page guardrail now asserts the new `docs/admin-information-architecture.md` reference alongside the visible IA-oriented guidance and `Helpful project docs` section.
+- Re-ran `tests/Feature/ExampleTest.php` successfully after the follow-up.
+- Kept the step intentionally small, but it gives the new Phase 1 IA/doc-map slice a real regression check instead of leaving it as an unguarded content-only addition.
+
 ### Admin information architecture map checkpoint
 - Added `docs/admin-information-architecture.md` as a compact current-state map of the Phase 1 Galaxy admin sidebar groups, route targets, live mutation entry points, preview-only surfaces, and authorization posture.
 - Linked the new IA note from `resources/views/welcome.blade.php` so the public landing docs list now exposes the current admin navigation map alongside the other Phase 1 reference docs.
