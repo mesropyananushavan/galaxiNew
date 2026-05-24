@@ -7766,6 +7766,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 holder profiles already carry activated linked-card posture for lifecycle review')
             ->assertSee('Holder branch activity signal')
             ->assertSee($holderBranchActivitySignal)
+            ->assertSee('Preset posture')
+            ->assertSee('Keep status-period presets foundation-preview only until holder lifecycle parity is verified.')
             ->assertSee('Handoff signal')
             ->assertSee('Keep holder lifecycle and linkage findings in the live workspace before asking for export-driven handoff.')
             ->assertSee('Support handoff should keep holder posture visible')
@@ -7793,6 +7795,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('1 holder profiles already carry activated linked-card posture for lifecycle review')
             ->assertSee('Holder branch activity signal:')
             ->assertSee($holderBranchActivitySignal)
+            ->assertSee('Preset posture:')
+            ->assertSee('Keep status-period presets foundation-preview only until holder lifecycle parity is verified.')
             ->assertSee('Handoff signal:')
             ->assertSee('Keep holder lifecycle and linkage findings in the live workspace before asking for export-driven handoff.');
     }

@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Reports cardholder-status preset-posture foundation-preview checkpoint
+- Tightened the cardholder-status reporting `Preset posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Keep status-period presets preview-only` with `Keep status-period presets foundation-preview only` so the source-specific dependency row matches the newer Galaxy foundation vocabulary already used across the live reporting catalog.
+- Expanded the focused cardholder-status reporting assertions in `tests/Feature/AdminDashboardTest.php` to cover the updated preset-posture line in both the primary review content and dependency-status section, then re-ran the selected reporting slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live reporting surface instead of leaving one older preview-only dependency line behind.
+
 ### Reports cards-by-shop preset-posture foundation-preview checkpoint
 - Tightened the cards-by-shop reporting `Preset posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Keep period presets preview-only` with `Keep period presets foundation-preview only` so the source-specific dependency row matches the newer Galaxy foundation vocabulary already used across the shared reporting catalog.
 - Expanded the focused cards-by-shop reporting assertions in `tests/Feature/AdminDashboardTest.php` to cover the updated preset-posture line and re-ran the selected reporting slice successfully.

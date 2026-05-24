@@ -1628,7 +1628,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Format guidance', 'value' => 'Prefer a compact on-screen table first, because holder-status review usually started as a fast support triage surface, not an export job.' ],
                     ['label' => 'Handoff signal', 'value' => $this->reportsCardholderStatusHandoffSignal($linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
                     ['label' => 'Backend gap', 'value' => $this->reportsCardholderStatusBackendGap($cardHolderCount, $linkedCardHolderCount, $inactiveCardHolderCount, $blockedLinkedCardCount)],
-                    ['label' => 'Preset posture', 'value' => 'Keep status-period presets preview-only until holder lifecycle parity is verified.'],
+                    ['label' => 'Preset posture', 'value' => 'Keep status-period presets foundation-preview only until holder lifecycle parity is verified.'],
                     ['label' => 'Export posture', 'value' => 'Treat this source as review-only until summary exports and lifecycle report expectations are validated.'],
                 ],
                 'timeline' => [
