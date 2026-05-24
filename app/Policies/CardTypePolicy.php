@@ -19,6 +19,6 @@ class CardTypePolicy
 
     public function update(User $user, CardType $cardType): bool
     {
-        return $user->hasBootstrapAdminAccess();
+        return $this->create($user);
     }
 }

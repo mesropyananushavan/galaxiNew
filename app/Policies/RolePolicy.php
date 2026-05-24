@@ -19,6 +19,6 @@ class RolePolicy
 
     public function update(User $user, Role $role): bool
     {
-        return $user->hasBootstrapAdminAccess();
+        return $this->create($user);
     }
 }

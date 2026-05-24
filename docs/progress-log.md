@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Policy dedupe follow-up checkpoint
+- Simplified `ShopPolicy::update()` to delegate to `view()`, and simplified `RolePolicy::update()` plus `CardTypePolicy::update()` to delegate to their existing bootstrap-only `create()` checks.
+- Re-ran the focused shop/role/tier ability and live-update slice successfully after the cleanup.
+- Kept the step intentionally small, but it trims another little pocket of policy duplication without changing the current Phase 1 behavior.
+
 ### Card policy create/viewAny cleanup checkpoint
 - Simplified `CardPolicy::create()` and `CardHolderPolicy::create()` to delegate to their `viewAny()` checks instead of duplicating the same `canAccessAdminPanel()` condition inline.
 - Re-ran the focused card/cardholder create plus admin-access helper slice successfully after the cleanup.

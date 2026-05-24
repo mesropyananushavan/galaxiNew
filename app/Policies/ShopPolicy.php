@@ -24,6 +24,6 @@ class ShopPolicy
 
     public function update(User $user, Shop $shop): bool
     {
-        return $user->canAccessShop($shop);
+        return $this->view($user, $shop);
     }
 }
