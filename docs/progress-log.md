@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Services-rules partner-card scope foundation-preview checkpoint
+- Tightened the partner-card uplift `Scope posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Shop-scoped behavior should stay preview-only` with `Shop-scoped behavior should stay foundation-preview only` in both the selected-rule summary and dependency-status rows.
+- Synced the matching selected scoped-rule assertions in `tests/Feature/AdminDashboardTest.php` and re-ran the focused partner-card rule review slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live services-rules review surface instead of leaving repeated starter-era preview wording behind.
+
 ### Services-rules birthday priority foundation-preview checkpoint
 - Tightened the birthday-rule `Priority posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Priority resolution remains preview-only` with `Priority resolution remains foundation-preview only` so the selected all-shop rule review uses the newer Galaxy foundation vocabulary.
 - Synced the matching selected-rule assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused birthday-rule review slice successfully.

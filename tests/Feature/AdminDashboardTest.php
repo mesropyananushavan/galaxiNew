@@ -8165,7 +8165,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Rule handoff signal')
             ->assertSee('Carry scoped card-type conditions and branch context forward before any broader publish discussion begins.')
             ->assertSee('Scope posture')
-            ->assertSee('Shop-scoped behavior should stay preview-only until Galaxy foundation scope checks are verified against legacy branch rules.')
+            ->assertSee('Shop-scoped behavior should stay foundation-preview only until Galaxy foundation scope checks are verified against legacy branch rules.')
             ->assertSee('Condition posture')
             ->assertSee('Partner-card checks should stay tied to visible card-type parity before any Galaxy foundation rule editor opens them up.')
             ->assertSee('Priority posture')
@@ -8182,7 +8182,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope, condition, and priority should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Rule persistence, partner-card condition editing, and publish flow should stay foundation-preview only until partner-card uplift parity is verified.')
-            ->assertSee('Shop-scoped behavior should stay preview-only until Galaxy foundation scope checks are verified against legacy branch rules.')
+            ->assertSee('Shop-scoped behavior should stay foundation-preview only until Galaxy foundation scope checks are verified against legacy branch rules.')
             ->assertSee('Overlap with broader loyalty rules still needs parity verification before any publish path is safe.');
     }
 

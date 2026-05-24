@@ -366,7 +366,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Rule status signal', 'value' => 'Active scoped uplift is already visible for partner-card uplift parity review.'],
                     ['label' => 'Rule focus', 'value' => 'Start with scoped card-type conditions before comparing this uplift against broader loyalty overlaps.'],
                     ['label' => 'Rule handoff signal', 'value' => 'Carry scoped card-type conditions and branch context forward before any broader publish discussion begins.'],
-                    ['label' => 'Scope posture', 'value' => 'Shop-scoped behavior should stay preview-only until Galaxy foundation scope checks are verified against legacy branch rules.'],
+                    ['label' => 'Scope posture', 'value' => 'Shop-scoped behavior should stay foundation-preview only until Galaxy foundation scope checks are verified against legacy branch rules.'],
                     ['label' => 'Condition posture', 'value' => 'Partner-card checks should stay tied to visible card-type parity before any Galaxy foundation rule editor opens them up.'],
                     ['label' => 'Priority posture', 'value' => 'This scoped uplift should remain below birthday-wide behavior until legacy overlap order is rechecked.'],
                     ['label' => 'Backend gap', 'value' => $this->servicesRulesBackendGap('partner-card-uplift')],
@@ -381,7 +381,7 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected rule', 'value' => 'Partner card uplift'],
                     ['label' => 'Rule status signal', 'value' => 'Active scoped uplift is already visible for partner-card uplift parity review.'],
-                    ['label' => 'Scope posture', 'value' => 'Shop-scoped behavior should stay preview-only until Galaxy foundation scope checks are verified against legacy branch rules.'],
+                    ['label' => 'Scope posture', 'value' => 'Shop-scoped behavior should stay foundation-preview only until Galaxy foundation scope checks are verified against legacy branch rules.'],
                     ['label' => 'Priority posture', 'value' => 'Overlap with broader loyalty rules still needs parity verification before any publish path is safe.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->servicesRulesBackendGap('partner-card-uplift')],
                 ],

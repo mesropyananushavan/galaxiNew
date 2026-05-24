@@ -4,6 +4,38 @@ Command failures and integration errors.
 
 ---
 
+## [ERR-20260524-001] edit-duplicate-match-on-repeated-copy
+
+**Logged**: 2026-05-24T01:36:22Z
+**Priority**: low
+**Status**: resolved
+**Area**: docs
+
+### Summary
+A targeted `edit` failed because the old text matched two repeated `Scope posture` lines in the same rule-preview block.
+
+### Error
+```
+Found 2 occurrences of edits[0] in /home/openclaw/.openclaw/workspace/repos/galaxiNew/app/Http/Controllers/Admin/ResourceIndexController.php. Each oldText must be unique. Please provide more context to make it unique.
+```
+
+### Context
+- Operation attempted: replace one `preview-only` scope-posture string with `foundation-preview only` on the partner-card uplift review surface.
+- Root cause: the first `oldText` did not include enough surrounding context to distinguish the summary row from the dependency-status row.
+- Impact: no code damage, just required a more specific replacement block.
+
+### Suggested Fix
+When the same copy appears multiple times in one preview structure, include the neighboring labels or wrap the whole repeated subsection in one exact replacement.
+
+### Metadata
+- Reproducible: yes
+- Related Files: app/Http/Controllers/Admin/ResourceIndexController.php
+
+### Resolution
+- **Resolved**: 2026-05-24T01:36:22Z
+
+---
+
 ## [ERR-20260521-001] focused-tier-test-neighbor-expectation
 
 **Logged**: 2026-05-21T02:21:00Z
