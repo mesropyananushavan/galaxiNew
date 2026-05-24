@@ -3,13 +3,14 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\CardType;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 
 class UpdateCardTypeRequest extends StoreCardTypeRequest
 {
     use AuthorizesPolicyActions;
+    use ResolvesAdminSelectedResourceRedirects;
 
     public function authorize(): bool
     {
@@ -33,14 +34,6 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
 
     protected function getRedirectUrl(): string
     {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-        $cardType = $this->route('cardType');
-
-        if ($cardType !== null) {
-            return $url->route('admin.card-types.index', ['cardType' => $cardType], absolute: false).'#live-form';
-        }
-
-        return parent::getRedirectUrl();
+        return $this->redirectToSelectedResource('cardType', 'admin.card-types.index');
     }
 }

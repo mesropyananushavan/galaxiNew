@@ -3,13 +3,14 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\Shop;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 
 class UpdateShopRequest extends StoreShopRequest
 {
     use AuthorizesPolicyActions;
+    use ResolvesAdminSelectedResourceRedirects;
 
     public function authorize(): bool
     {
@@ -33,14 +34,6 @@ class UpdateShopRequest extends StoreShopRequest
 
     protected function getRedirectUrl(): string
     {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-        $shop = $this->route('shop');
-
-        if ($shop !== null) {
-            return $url->route('admin.shops.index', ['shop' => $shop], absolute: false).'#live-form';
-        }
-
-        return parent::getRedirectUrl();
+        return $this->redirectToSelectedResource('shop', 'admin.shops.index');
     }
 }

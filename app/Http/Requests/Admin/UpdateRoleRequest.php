@@ -3,13 +3,14 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\Role;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 
 class UpdateRoleRequest extends StoreRoleRequest
 {
     use AuthorizesPolicyActions;
+    use ResolvesAdminSelectedResourceRedirects;
 
     public function authorize(): bool
     {
@@ -33,14 +34,6 @@ class UpdateRoleRequest extends StoreRoleRequest
 
     protected function getRedirectUrl(): string
     {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-        $role = $this->route('role');
-
-        if ($role !== null) {
-            return $url->route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form';
-        }
-
-        return parent::getRedirectUrl();
+        return $this->redirectToSelectedResource('role', 'admin.roles-permissions.index');
     }
 }

@@ -3,14 +3,15 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\CardHolder;
 use App\Models\Shop;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Validator;
 
 class UpdateCardHolderRequest extends StoreCardHolderRequest
 {
     use AuthorizesPolicyActions;
+    use ResolvesAdminSelectedResourceRedirects;
 
     public function authorize(): bool
     {
@@ -30,14 +31,6 @@ class UpdateCardHolderRequest extends StoreCardHolderRequest
 
     protected function getRedirectUrl(): string
     {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-        $cardholder = $this->route('cardholder');
-
-        if ($cardholder !== null) {
-            return $url->route('admin.cardholders.index', ['cardholder' => $cardholder], absolute: false).'#live-form';
-        }
-
-        return parent::getRedirectUrl();
+        return $this->redirectToSelectedResource('cardholder', 'admin.cardholders.index');
     }
 }

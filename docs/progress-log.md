@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Update-request selected-resource redirect concern checkpoint
+- Added a shared `ResolvesAdminSelectedResourceRedirects` concern for admin update requests and moved the repeated selected-record `#live-form` redirect resolution pattern for shops, roles, card types, cards, and cardholders onto that helper.
+- Re-ran the focused update-side live-form slice successfully across branch, access, tier, card, and holder flows after the refactor.
+- Kept the step intentionally small, but it completes another tidy request-layer seam so both create and update flows now share clearer Galaxy foundation redirect plumbing.
+
 ### Store-request live-form redirect concern checkpoint
 - Added a shared `ResolvesAdminLiveFormRedirects` concern for admin store requests and moved the repeated `#live-form` redirect resolution pattern for shops, roles, card types, cards, and cardholders onto that helper.
 - Re-ran the focused create-side live-form slice successfully across branch, access, tier, card, and holder flows after the refactor.
