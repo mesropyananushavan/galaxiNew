@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Card-types toggle-status policy-entry checkpoint
+- Wired `PATCH /admin/card-types/{cardType}/toggle-status` through `can:update,cardType`, so the live tier status toggle now uses the same route-level policy seam as the other card-type mutation paths.
+- Removed the controller-local bootstrap abort from `CardTypeToggleStatusController`, because the route-level guard now owns that authorization decision.
+- Re-ran the focused toggle-status slice successfully, keeping both the scoped forbidden path and the bootstrap-admin header/row happy paths green.
+- Kept the step intentionally small, but it moves one more live Galaxy tier mutation away from bespoke controller guarding and toward a clearer Laravel authorization surface.
+
 ### Roles and card-types update policy-entry checkpoint
 - Wired `PATCH /admin/roles-permissions/{role}` and `PATCH /admin/card-types/{cardType}` through `can:update,...`, so scoped update attempts are now rejected at the route entry point instead of relying only on later bootstrap-only validation.
 - Tightened the focused scoped role-update and tier-update regressions to expect direct forbidden responses, while re-checking the bootstrap-admin happy paths for both minimal live update flows.

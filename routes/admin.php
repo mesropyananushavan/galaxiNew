@@ -62,7 +62,9 @@ Route::prefix('admin')
         Route::patch('/card-types/{cardType}', CardTypeUpdateController::class)
             ->middleware('can:update,cardType')
             ->name('card-types.update');
-        Route::patch('/card-types/{cardType}/toggle-status', CardTypeToggleStatusController::class)->name('card-types.toggle-status');
+        Route::patch('/card-types/{cardType}/toggle-status', CardTypeToggleStatusController::class)
+            ->middleware('can:update,cardType')
+            ->name('card-types.toggle-status');
         Route::get('/services-rules', ResourceIndexController::class)->defaults('resource', 'services-rules')->name('services-rules.index');
         Route::get('/gifts', ResourceIndexController::class)->defaults('resource', 'gifts')->name('gifts.index');
         Route::get('/roles-permissions', ResourceIndexController::class)

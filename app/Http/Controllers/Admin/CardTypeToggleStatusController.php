@@ -14,8 +14,6 @@ class CardTypeToggleStatusController extends Controller
 
     public function __invoke(Request $request, CardType $cardType): RedirectResponse
     {
-        abort_unless($request->user()?->hasBootstrapAdminAccess(), 403);
-
         $cardType->update([
             'is_active' => ! $cardType->is_active,
         ]);
