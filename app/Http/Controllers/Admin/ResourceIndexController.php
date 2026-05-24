@@ -348,7 +348,7 @@ class ResourceIndexController extends Controller
                     ['label' => 'Selected rule', 'value' => 'Birthday bonus'],
                     ['label' => 'Rule status signal', 'value' => 'Active loyalty uplift is already visible for birthday uplift parity review.'],
                     ['label' => 'Scope posture', 'value' => 'All-shop scope should remain stable until Galaxy foundation scope handling is verified against legacy loyalty behavior.'],
-                    ['label' => 'Priority posture', 'value' => 'Priority resolution remains preview-only until overlapping rule order is validated in the Galaxy foundation layer.'],
+                    ['label' => 'Priority posture', 'value' => 'Priority resolution remains foundation-preview only until overlapping rule order is validated in the Galaxy foundation layer.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->servicesRulesBackendGap('birthday-bonus')],
                 ],
             ],

@@ -8229,7 +8229,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope, priority, and uplift effect should stay visible in the workspace before any publish discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Rule persistence, birthday-window editing, and publish flow should stay foundation-preview only until all-shop birthday accrual parity is verified.')
-            ->assertSee('Priority resolution remains preview-only until overlapping rule order is validated in the Galaxy foundation layer.');
+            ->assertSee('Priority resolution remains foundation-preview only until overlapping rule order is validated in the Galaxy foundation layer.');
     }
 
     public function test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog(): void

@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Services-rules birthday priority foundation-preview checkpoint
+- Tightened the birthday-rule `Priority posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Priority resolution remains preview-only` with `Priority resolution remains foundation-preview only` so the selected all-shop rule review uses the newer Galaxy foundation vocabulary.
+- Synced the matching selected-rule assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused birthday-rule review slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live services-rules review surface instead of leaving one older preview-only dependency line behind.
+
 ### Reports cardholder-status preset-posture foundation-preview checkpoint
 - Tightened the cardholder-status reporting `Preset posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Keep status-period presets preview-only` with `Keep status-period presets foundation-preview only` so the source-specific dependency row matches the newer Galaxy foundation vocabulary already used across the live reporting catalog.
 - Expanded the focused cardholder-status reporting assertions in `tests/Feature/AdminDashboardTest.php` to cover the updated preset-posture line in both the primary review content and dependency-status section, then re-ran the selected reporting slice successfully.
