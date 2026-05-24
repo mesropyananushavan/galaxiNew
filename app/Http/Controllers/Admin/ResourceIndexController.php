@@ -1198,6 +1198,7 @@ class ResourceIndexController extends Controller
         $page['actions'] = $this->foundationCatalogActions(
             'New Galaxy branch',
             $this->shopsFoundationMutationDisabledReason(),
+            Shop::class,
             [
                 [
                     'label' => 'Review branch scope',

@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Shops foundation action helper follow-up checkpoint
+- Finished the shared foundation-helper alignment by passing `Shop::class` into the shops catalog action helper too, so branch creation UI gating now uses the same policy target path as the rest of the refactored helper surface.
+- Re-ran the focused shops workspace slice successfully, keeping scoped branch-update access and bootstrap-only branch-creation gating intact.
+- Kept the step intentionally small, but it closes the last little inconsistency left behind by the previous helper refactor.
+
 ### Foundation UI helper policy alignment checkpoint
 - Reworked the shared `ResourceIndexController` foundation-mutation helpers to check `user()->can(...)` against the relevant policy target instead of reaching directly for `hasBootstrapAdminAccess()`.
 - Kept the current Phase 1 behavior unchanged for roles and card types by passing their existing `create` and `update` policy targets into the helper layer, so the UI still stays bootstrap-only where the policies do.
