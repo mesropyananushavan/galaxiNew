@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Gifts premium-dessert-set paused dependency foundation-preview checkpoint
+- Tightened the premium-dessert-set paused reward dependency copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Paused shop-scoped reward behavior should stay preview-only` and `Zero-stock handling is still preview-only` with `foundation-preview only` wording so the paused zero-stock gift review uses the newer Galaxy foundation vocabulary consistently.
+- Expanded the focused paused-gift assertions in `tests/Feature/AdminDashboardTest.php` to cover the updated paused-scope dependency line alongside the revised zero-stock posture, then re-ran the selected paused-reward review slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live gifts review surface instead of leaving two older preview-only dependency lines behind.
+
 ### Gifts airport-transfer scope foundation-preview checkpoint
 - Tightened the airport-transfer gift-review `Scope posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Shop-scoped reward behavior should stay preview-only` with `Shop-scoped reward behavior should stay foundation-preview only` so the scoped kiosk reward dependency row matches the newer Galaxy foundation vocabulary.
 - Synced the matching selected-gift assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused scoped-gift review slice successfully.

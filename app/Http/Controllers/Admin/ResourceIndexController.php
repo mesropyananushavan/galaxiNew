@@ -566,8 +566,8 @@ class ResourceIndexController extends Controller
                 'dependencyStatus' => [
                     ['label' => 'Selected gift', 'value' => 'Premium dessert set'],
                     ['label' => 'Gift status signal', 'value' => 'Paused zero-stock reward remains safer for zero-stock-recovery-parity review before any reopening-flow discussion.'],
-                    ['label' => 'Scope posture', 'value' => 'Paused shop-scoped reward behavior should stay preview-only until Galaxy foundation scope and reopening checks are verified.'],
-                    ['label' => 'Stock posture', 'value' => 'Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in the Galaxy foundation layer.'],
+                    ['label' => 'Scope posture', 'value' => 'Paused shop-scoped reward behavior should stay foundation-preview only until Galaxy foundation scope and reopening checks are verified.'],
+                    ['label' => 'Stock posture', 'value' => 'Zero-stock handling is still foundation-preview only until inventory sync and recovery behavior are validated in the Galaxy foundation layer.'],
                     ['label' => 'Remaining backend gap', 'value' => $this->giftsBackendGap('premium-dessert-set')],
                 ],
             ],

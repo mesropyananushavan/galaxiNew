@@ -9349,6 +9349,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Carry zero-stock and reopening context forward before any later publish-review discussion expands.')
             ->assertSee('Evidence priority')
             ->assertSee('Keep zero-stock state, shop scope, and points cost visible together before any reopening-flow discussion expands.')
+            ->assertSee('Scope posture')
+            ->assertSee('Paused shop-scoped reward behavior should stay foundation-preview only until Galaxy foundation scope and reopening checks are verified.')
             ->assertSee('Stock posture')
             ->assertSee('Zero-stock rewards should remain paused in review mode until Galaxy foundation inventory and reopening flows can reproduce the old behavior safely.')
             ->assertSee('Backend gap')
@@ -9363,7 +9365,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope, zero-stock state, and points cost should stay visible in the workspace before any reopening-flow discussion begins.')
             ->assertSee('Remaining backend gap')
             ->assertSee('Gift CRUD, zero-stock recovery, and redemption persistence should stay foundation-preview only until paused-zero-stock-recovery parity is verified.')
-            ->assertSee('Zero-stock handling is still preview-only until inventory sync and recovery behavior are validated in the Galaxy foundation layer.');
+            ->assertSee('Zero-stock handling is still foundation-preview only until inventory sync and recovery behavior are validated in the Galaxy foundation layer.');
     }
 
     public function test_gifts_page_supports_selected_scoped_gift_review_context(): void
