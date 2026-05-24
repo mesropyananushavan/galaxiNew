@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\Card;
-use App\Models\Shop;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
 
@@ -41,9 +40,8 @@ class UpdateCardRequest extends StoreCardRequest
     {
         parent::withValidator($validator);
 
-        $this->validateCurrentShopAccess(
+        $this->validateSelectedResourceShopAccess(
             $validator,
-            fn (): ?Shop => $this->selectedResourceShop(),
             'Choose a card from a shop you can access before changing inventory details in the Galaxy workspace.',
         );
     }

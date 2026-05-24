@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Selected-resource validation helper checkpoint
+- Extended `ValidatesAccessibleShop` with a shared `validateSelectedResourceShopAccess()` path, so the card and cardholder update requests no longer need to wrap the same selected-resource shop lookup inside their own one-off validator closures.
+- Switched `UpdateCardRequest` and `UpdateCardHolderRequest` onto the new helper while keeping the same foreign-record and cross-shop forbidden behavior.
+- Re-ran the focused card and cardholder update slice successfully after the cleanup.
+
 ### Selected-resource shop helper checkpoint
 - Extended the update-side selected-resource seam with a shared `selectedResourceShop()` helper, so card and cardholder update validation no longer need to repeat their own current-shop lookup closures against the resolved route model.
 - Switched `UpdateCardRequest` and `UpdateCardHolderRequest` onto the shared shop helper while keeping the same scoped-forbidden behavior for foreign and cross-shop updates.

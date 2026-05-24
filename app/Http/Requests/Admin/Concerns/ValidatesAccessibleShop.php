@@ -26,6 +26,11 @@ trait ValidatesAccessibleShop
         });
     }
 
+    protected function validateSelectedResourceShopAccess(Validator $validator, string $message): void
+    {
+        $this->validateCurrentShopAccess($validator, fn (): ?Shop => $this->selectedResourceShop(), $message);
+    }
+
     protected function validateCurrentShopAccess(Validator $validator, Closure $shopResolver, string $message): void
     {
         $validator->after(function (Validator $validator) use ($shopResolver, $message): void {

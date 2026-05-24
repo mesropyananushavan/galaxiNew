@@ -4,7 +4,6 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\CardHolder;
-use App\Models\Shop;
 use Illuminate\Validation\Validator;
 
 class UpdateCardHolderRequest extends StoreCardHolderRequest
@@ -23,9 +22,8 @@ class UpdateCardHolderRequest extends StoreCardHolderRequest
     {
         parent::withValidator($validator);
 
-        $this->validateCurrentShopAccess(
+        $this->validateSelectedResourceShopAccess(
             $validator,
-            fn (): ?Shop => $this->selectedResourceShop(),
             'Choose a cardholder from a shop you can access before changing holder details in the Galaxy workspace.',
         );
     }
