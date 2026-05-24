@@ -4798,7 +4798,11 @@ class ResourceIndexController extends Controller
             return false;
         }
 
-        return ! $user->canAccessShop($shop);
+        if (! $shop instanceof Shop) {
+            return true;
+        }
+
+        return ! $user->can('view', $shop);
     }
 
     private function selectedRecordId(string $queryKey): int

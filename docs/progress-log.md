@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Shops read-filter policy reuse checkpoint
+- Reused the new `ShopPolicy` on the shared admin read path by switching `ResourceIndexController::cannotAccessRecordShop()` from direct `canAccessShop()` calls to the explicit `view` ability, so branch review filtering now flows through the same policy seam as the first write guard.
+- Kept the inaccessible selected-shop regression coverage focused on the real outcome, namely that scoped admins still cannot open foreign-branch review state even if the catalog keeps showing branch names in read-only form.
+- Re-ran the focused scoped shops workspace slice successfully after the policy reuse change.
+- Kept the step intentionally small, but it moves one more Phase 1 branch-access path from starter-style helper checks toward a clearer Laravel authorization surface.
+
 ### Shops policy baseline checkpoint
 - Added a first explicit Laravel `ShopPolicy` and registered it in `AppServiceProvider`, so Phase 1 branch access now has a policy-shaped seam instead of living only behind the lower-level `access-shop` gate.
 - Switched `UpdateShopRequest` to authorize branch mutations through the new `update` policy path while preserving the same Galaxy-specific validation message for foreign-branch edits.

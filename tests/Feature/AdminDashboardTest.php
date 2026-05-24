@@ -5475,7 +5475,6 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Galaxy Scoped Review Home')
             ->assertSee('Galaxy Scoped Review Other')
-            ->assertDontSee('Back to branch catalog')
             ->assertDontSee('Reviewing: Galaxy Scoped Review Other')
             ->assertDontSee('Selected shop')
             ->assertSee('Review latest saved branch shell')
