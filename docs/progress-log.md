@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Card-types edit-flow foundation-preview defaults checkpoint
+- Tightened the selected tier edit-flow description in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `preview-only defaults` with `foundation-preview defaults` so the shared card-type edit handoff matches the newer Galaxy foundation vocabulary already used across the live Phase 1 shell.
+- Synced the matching selected-tier assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused card-type edit slice successfully.
+- Kept the step intentionally small, but removed one more starter-era sounding phrase from a live Galaxy tier-edit surface instead of leaving the shared edit-flow copy behind.
+
 ### Reports catalog foundation-preview description checkpoint
 - Tightened the reporting catalog notice description in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `presets and exports remain preview-only` with `presets and exports remain foundation-preview only` so the top reporting catalog summary matches the newer Galaxy foundation vocabulary already used across the deeper report-review surfaces.
 - Synced the matching catalog assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused reporting catalog slice successfully.

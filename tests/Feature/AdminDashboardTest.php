@@ -9836,7 +9836,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Recent activity preview')
             ->assertSee('Galaxy Prime selected for Galaxy edit flow')
             ->assertSee('Current request')
-            ->assertSee('The shared card-type form is now loading this saved tier directly from Galaxy foundation data instead of preview-only defaults.')
+            ->assertSee('The shared card-type form is now loading this saved tier directly from Galaxy foundation data instead of foundation-preview defaults.')
             ->assertSee('Galaxy Prime status reflected from model state')
             ->assertSee('This tier is currently marked as draft in the Galaxy foundation layer and the management context card now mirrors that state.')
             ->assertSee('Galaxy Prime lifecycle freshness reflected from model state')

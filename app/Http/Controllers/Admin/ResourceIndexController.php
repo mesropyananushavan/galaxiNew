@@ -2157,7 +2157,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesSelectedForEditFlowDescription(): string
     {
-        return 'The shared card-type form is now loading this saved tier directly from Galaxy foundation data instead of preview-only defaults.';
+        return 'The shared card-type form is now loading this saved tier directly from Galaxy foundation data instead of foundation-preview defaults.';
     }
 
     private function cardTypesLifecycleFreshnessTimelineTitle(CardType $selectedCardType): string
