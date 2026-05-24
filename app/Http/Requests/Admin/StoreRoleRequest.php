@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
+use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
@@ -13,6 +14,7 @@ class StoreRoleRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
     use NormalizesBooleanFormInputs;
+    use NormalizesTextFormInputs;
     use ResolvesAdminLiveFormRedirects;
 
     protected $redirectRoute = 'admin.roles-permissions.index';
@@ -39,11 +41,11 @@ class StoreRoleRequest extends FormRequest
         $status = $this->input('is_active');
 
         $this->merge([
-            'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
+            'name' => $this->normalizeTrimmedString($this->input('name')),
             'slug' => is_string($this->input('slug')) ? Str::slug($this->input('slug')) : $this->input('slug'),
-            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
-            'access_note' => is_string($this->input('access_note')) ? (trim($this->input('access_note')) !== '' ? trim($this->input('access_note')) : null) : $this->input('access_note'),
-            'assignment_note' => is_string($this->input('assignment_note')) ? (trim($this->input('assignment_note')) !== '' ? trim($this->input('assignment_note')) : null) : $this->input('assignment_note'),
+            'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
+            'access_note' => $this->normalizeNullableTrimmedString($this->input('access_note')),
+            'assignment_note' => $this->normalizeNullableTrimmedString($this->input('assignment_note')),
             'is_active' => $this->normalizeBooleanInput($status),
         ]);
     }

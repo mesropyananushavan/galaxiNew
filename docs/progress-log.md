@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Text input normalization concern checkpoint
+- Added a shared `NormalizesTextFormInputs` concern and moved the repeated trimmed-string and nullable trimmed-string normalization pattern for shops, roles, and cardholders onto that helper.
+- Re-ran the focused branch/access/holder create-update slice successfully after the refactor.
+- Kept the step intentionally small, but it trims another recurring bit of request boilerplate into one clearer Galaxy foundation seam.
+
 ### Boolean input normalization concern checkpoint
 - Added a shared `NormalizesBooleanFormInputs` concern and moved the repeated `is_active` normalization pattern for shops, roles, and cardholders onto that helper.
 - Re-ran the focused branch/access/holder create-update slice successfully after the refactor.

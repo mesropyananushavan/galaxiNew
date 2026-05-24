@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
+use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Http\Requests\Admin\Concerns\ValidatesAccessibleShop;
 use App\Models\CardHolder;
@@ -14,6 +15,7 @@ class StoreCardHolderRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
     use NormalizesBooleanFormInputs;
+    use NormalizesTextFormInputs;
     use ResolvesAdminLiveFormRedirects;
     use ValidatesAccessibleShop;
 
@@ -41,10 +43,12 @@ class StoreCardHolderRequest extends FormRequest
         $status = $this->input('is_active');
 
         $this->merge([
-            'full_name' => is_string($this->input('full_name')) ? trim($this->input('full_name')) : $this->input('full_name'),
-            'phone' => is_string($this->input('phone')) ? (trim($this->input('phone')) !== '' ? trim($this->input('phone')) : null) : $this->input('phone'),
-            'email' => is_string($this->input('email')) ? (trim($this->input('email')) !== '' ? strtolower(trim($this->input('email'))) : null) : $this->input('email'),
-            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
+            'full_name' => $this->normalizeTrimmedString($this->input('full_name')),
+            'phone' => $this->normalizeNullableTrimmedString($this->input('phone')),
+            'email' => ($normalizedEmail = $this->normalizeNullableTrimmedString($this->input('email'))) !== null && is_string($normalizedEmail)
+                ? strtolower($normalizedEmail)
+                : $normalizedEmail,
+            'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
             'is_active' => $this->normalizeBooleanInput($status),
         ]);
     }

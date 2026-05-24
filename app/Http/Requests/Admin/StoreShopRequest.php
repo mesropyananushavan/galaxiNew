@@ -4,6 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
+use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
@@ -13,6 +14,7 @@ class StoreShopRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
     use NormalizesBooleanFormInputs;
+    use NormalizesTextFormInputs;
     use ResolvesAdminLiveFormRedirects;
 
     protected $redirectRoute = 'admin.shops.index';
@@ -37,9 +39,9 @@ class StoreShopRequest extends FormRequest
         $status = $this->input('is_active');
 
         $this->merge([
-            'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
+            'name' => $this->normalizeTrimmedString($this->input('name')),
             'code' => is_string($this->input('code')) ? Str::slug($this->input('code')) : $this->input('code'),
-            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
+            'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
             'is_active' => $this->normalizeBooleanInput($status),
         ]);
     }
