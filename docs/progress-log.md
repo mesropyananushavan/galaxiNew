@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Foundation UI helper policy alignment checkpoint
+- Reworked the shared `ResourceIndexController` foundation-mutation helpers to check `user()->can(...)` against the relevant policy target instead of reaching directly for `hasBootstrapAdminAccess()`.
+- Kept the current Phase 1 behavior unchanged for roles and card types by passing their existing `create` and `update` policy targets into the helper layer, so the UI still stays bootstrap-only where the policies do.
+- Re-ran the focused roles and card-types update/toggle slice successfully after the helper alignment.
+- Kept the step intentionally small, but it removes one more generic starter-era auth shortcut so the admin workspace UI now reads the same Galaxy-specific policy surface as the route and request layers.
+
 ### Shops selected edit-form policy alignment checkpoint
 - Switched the selected shop live form in `ResourceIndexController` away from the bootstrap-only foundation review helper and back onto the normal edit-form helper, so shop-scoped admins who can already pass `ShopPolicy::update()` now see an editable branch form instead of a review-locked one.
 - Kept branch creation actions bootstrap-only, so the catalog still signals the current Phase 1 central-control posture for new branch shells while no longer over-applying that posture to permitted branch updates.

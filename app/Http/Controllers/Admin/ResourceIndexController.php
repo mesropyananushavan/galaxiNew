@@ -677,6 +677,7 @@ class ResourceIndexController extends Controller
         $page['actions'] = $this->foundationCatalogActions(
             'New Galaxy role',
             $this->rolesPermissionsFoundationMutationDisabledReason(),
+            Role::class,
             [
                 [
                     'label' => 'Review matrix',
@@ -756,6 +757,7 @@ class ResourceIndexController extends Controller
                 'Create new Galaxy access shell',
                 'Back to access catalog',
                 $this->rolesPermissionsFoundationMutationDisabledReason(),
+                $selectedRole,
                 'Review the selected Galaxy role identity in the shared live form while Phase 1 keeps access-shell changes under bootstrap control.',
             );
             $page['liveForm']['valuesResolver'] = [
@@ -779,6 +781,8 @@ class ResourceIndexController extends Controller
                     'Create new Galaxy access shell',
                     route('admin.roles-permissions.index', absolute: false).'#live-form',
                     $this->rolesPermissionsFoundationMutationDisabledReason(),
+                    Role::class,
+                    'create',
                     'secondary',
                 ),
             ],
@@ -1901,6 +1905,7 @@ class ResourceIndexController extends Controller
         $page['actions'] = $this->foundationCatalogActions(
             'New Galaxy tier',
             $this->cardTypesFoundationMutationDisabledReason(),
+            CardType::class,
             [
                 [
                     'label' => 'Import rules',
@@ -2078,6 +2083,7 @@ class ResourceIndexController extends Controller
             $this->cardTypesLiveFormCancelLabel(),
             'Back to tier catalog',
             $this->cardTypesFoundationMutationDisabledReason(),
+            $selectedCardType,
             'Review the selected Galaxy tier in the shared live form while Phase 1 keeps tier-shell changes under bootstrap control.',
         );
         $page['liveForm']['valuesResolver'] = [
@@ -2887,13 +2893,14 @@ class ResourceIndexController extends Controller
         ];
     }
 
-    private function foundationCatalogActions(string $primaryLabel, string $primaryDisabledReason, array $secondaryActions): array
+    private function foundationCatalogActions(string $primaryLabel, string $primaryDisabledReason, mixed $authorizationTarget, array $secondaryActions): array
     {
         return [
             $this->foundationMutationAction(
                 $primaryLabel,
                 '#live-form',
                 $primaryDisabledReason,
+                $authorizationTarget,
             ),
             ...$this->secondaryDisabledActions($secondaryActions),
         ];
@@ -2930,11 +2937,14 @@ class ResourceIndexController extends Controller
                 $this->cardTypesCreateShellActionLabel(),
                 route('admin.card-types.index', absolute: false).'#live-form',
                 $this->cardTypesFoundationMutationDisabledReason(),
+                CardType::class,
             ),
             $this->foundationMutationAction(
                 $this->cardTypesToggleStatusActionLabel($selectedCardType),
                 route('admin.card-types.toggle-status', $selectedCardType, absolute: false),
                 $this->cardTypesFoundationMutationDisabledReason(),
+                $selectedCardType,
+                'update',
                 'secondary',
                 'PATCH',
             ),
@@ -4606,15 +4616,17 @@ class ResourceIndexController extends Controller
         return $user instanceof User ? $user : null;
     }
 
-    private function canManageFoundationCatalog(): bool
+    private function canManageFoundationCatalog(mixed $authorizationTarget, string $ability = 'create'): bool
     {
-        return $this->adminUser()?->hasBootstrapAdminAccess() ?? false;
+        return $this->adminUser()?->can($ability, $authorizationTarget) ?? false;
     }
 
     private function foundationMutationAction(
         string $label,
         string $href,
         string $disabledReason,
+        mixed $authorizationTarget,
+        string $ability = 'create',
         string $tone = 'primary',
         ?string $method = null,
     ): array {
@@ -4623,7 +4635,7 @@ class ResourceIndexController extends Controller
             'tone' => $tone,
         ];
 
-        if (! $this->canManageFoundationCatalog()) {
+        if (! $this->canManageFoundationCatalog($authorizationTarget, $ability)) {
             return $action + [
                 'disabled' => true,
                 'disabledReason' => $disabledReason,
@@ -4681,6 +4693,7 @@ class ResourceIndexController extends Controller
         string $editableCancelLabel,
         string $reviewCancelLabel,
         string $disabledReason,
+        mixed $authorizationTarget,
         ?string $reviewDescription = null,
     ): array {
         $liveForm['title'] = $title;
@@ -4697,6 +4710,7 @@ class ResourceIndexController extends Controller
             $editableCancelLabel,
             $reviewCancelLabel,
             $disabledReason,
+            $authorizationTarget,
             $reviewDescription,
         );
     }
@@ -4706,24 +4720,27 @@ class ResourceIndexController extends Controller
         string $editableCancelLabel,
         string $reviewCancelLabel,
         string $disabledReason,
+        mixed $authorizationTarget,
         ?string $reviewDescription = null,
     ): array {
-        $liveForm['cancelLabel'] = $this->canManageFoundationCatalog()
+        $canManageFoundationCatalog = $this->canManageFoundationCatalog($authorizationTarget, 'update');
+
+        $liveForm['cancelLabel'] = $canManageFoundationCatalog
             ? $editableCancelLabel
             : $reviewCancelLabel;
-        if (! $this->canManageFoundationCatalog() && is_string($reviewDescription) && $reviewDescription !== '') {
+        if (! $canManageFoundationCatalog && is_string($reviewDescription) && $reviewDescription !== '') {
             $liveForm['description'] = $reviewDescription;
         }
 
-        $liveForm['submitAttributes'] = $this->foundationLiveFormSubmitAttributes($disabledReason);
-        $liveForm['fields'] = $this->foundationLiveFormFields($liveForm['fields'] ?? []);
+        $liveForm['submitAttributes'] = $this->foundationLiveFormSubmitAttributes($disabledReason, $authorizationTarget);
+        $liveForm['fields'] = $this->foundationLiveFormFields($liveForm['fields'] ?? [], $authorizationTarget);
 
         return $liveForm;
     }
 
-    private function foundationLiveFormSubmitAttributes(string $disabledReason): array
+    private function foundationLiveFormSubmitAttributes(string $disabledReason, mixed $authorizationTarget): array
     {
-        if ($this->canManageFoundationCatalog()) {
+        if ($this->canManageFoundationCatalog($authorizationTarget, 'update')) {
             return [];
         }
 
@@ -4734,9 +4751,9 @@ class ResourceIndexController extends Controller
         ];
     }
 
-    private function foundationLiveFormFields(mixed $fields): array
+    private function foundationLiveFormFields(mixed $fields, mixed $authorizationTarget): array
     {
-        if ($this->canManageFoundationCatalog() || ! is_array($fields)) {
+        if ($this->canManageFoundationCatalog($authorizationTarget, 'update') || ! is_array($fields)) {
             return is_array($fields) ? $fields : [];
         }
 
