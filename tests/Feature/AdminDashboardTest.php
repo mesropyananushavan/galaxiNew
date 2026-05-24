@@ -9095,7 +9095,7 @@ class AdminDashboardTest extends TestCase
             'sections' => [
                 [
                     'title' => 'Role identity',
-                    'help' => 'Keep legacy naming visible while the matrix is still preview-only.',
+                        'help' => 'Keep legacy naming visible while the matrix is still foundation-preview only.',
                     'actions' => [
                         ['label' => 'Compare staff roles', 'tone' => 'secondary'],
                         ['label' => ['invalid-label']],
@@ -9123,7 +9123,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Create or edit Galaxy role')
             ->assertSee('Publish access')
             ->assertSee('Role identity')
-            ->assertSee('Keep legacy naming visible while the matrix is still preview-only.')
+            ->assertSee('Keep legacy naming visible while the matrix is still foundation-preview only.')
             ->assertSee('Compare staff roles')
             ->assertSee('Role name')
             ->assertSee('Shop Manager')

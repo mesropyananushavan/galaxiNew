@@ -619,7 +619,7 @@ class AdminResourcePageNormalizerTest extends TestCase
                 'invalid-action-entry',
             ],
             'notice' => [
-                'title' => 'Role publishing is still preview-only',
+                'title' => 'Role publishing is still foundation-preview only',
                 'description' => 'Preview actions remain structural until Galaxy foundation handlers exist.',
             ],
             'readinessChecklist' => [
@@ -663,7 +663,7 @@ class AdminResourcePageNormalizerTest extends TestCase
                 'sections' => [
                     [
                         'title' => 'Role identity',
-                        'help' => 'Keep legacy naming visible while migration is preview-only.',
+                        'help' => 'Keep legacy naming visible while migration is foundation-preview only.',
                         'actions' => [
                             ['label' => 'Compare staff roles', 'tone' => 'secondary'],
                             'invalid-section-action',
@@ -682,7 +682,7 @@ class AdminResourcePageNormalizerTest extends TestCase
             ['label' => 'Publish role', 'tone' => 'primary'],
         ], $normalized['actions']);
 
-        $this->assertSame('Role publishing is still preview-only', $normalized['notice']['title']);
+        $this->assertSame('Role publishing is still foundation-preview only', $normalized['notice']['title']);
         $this->assertCount(1, $normalized['readinessChecklist']);
         $this->assertCount(1, $normalized['activityTimeline']);
         $this->assertCount(1, $normalized['dependencyStatus']);

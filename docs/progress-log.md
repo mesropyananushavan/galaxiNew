@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Preview-shell test vocabulary foundation-preview checkpoint
+- Tightened lingering preview-shell fixture wording in `tests/Unit/AdminResourcePageNormalizerTest.php`, replacing `Role publishing is still preview-only` and `migration is preview-only` with `foundation-preview only` language so the normalizer coverage reflects the newer Galaxy foundation vocabulary too.
+- Synced the malformed form-preview fixture assertions in `tests/Feature/AdminDashboardTest.php` to use `foundation-preview only` wording for the role matrix help text, then re-ran the targeted normalizer and form-preview slices successfully.
+- Kept the step intentionally small, but removed a few remaining starter-era `preview-only` phrases from test-backed preview shell coverage instead of leaving the safety net on older language.
+
 ### Cards activity timeline foundation-preview checkpoint
 - Tightened the config-backed cards activity timeline copy in `config/admin-pages.php`, replacing `Draft issuance behavior stays preview-only` with `Draft issuance behavior stays foundation-preview only` so the inventory review shell matches the newer Galaxy foundation vocabulary.
 - Expanded the matching cards management assertion in `tests/Feature/AdminDashboardTest.php` to cover the updated timeline description and re-ran the focused cards management preview slice successfully.
