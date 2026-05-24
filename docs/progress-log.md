@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Card-types toggle controller cleanup checkpoint
+- Removed the now-unused `Request` dependency from `CardTypeToggleStatusController`, because the toggle path's authorization decision already moved fully to route-level policy middleware.
+- Re-ran the focused toggle-status slice successfully after the cleanup, keeping both scoped forbidden coverage and bootstrap-admin happy paths green.
+- Kept the step intentionally small, but it finishes one more little piece of the same Phase 1 auth cleanup so the live tier toggle path reads less like starter-era defensive layering.
+
 ### Shops create request-guard cleanup checkpoint
 - Removed the now-redundant bootstrap-only validator hook from `StoreShopRequest`, because `POST /admin/shops` is already policy-guarded at route entry through `ShopPolicy::create()`.
 - Deleted the orphaned `ValidatesBootstrapAdminAccess` concern after the cleanup, because no remaining Phase 1 request flow still needed that late authorization hook.
