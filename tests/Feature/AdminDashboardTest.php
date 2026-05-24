@@ -9681,7 +9681,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Recent activity preview')
             ->assertSee('Migration readiness checklist')
             ->assertSee('Implementation dependencies')
-            ->assertSee('A minimal Galaxy foundation create path now exists for card types, while the richer tier rules and publish workflow remain preview-only.')
+            ->assertSee('A minimal Galaxy foundation create path now exists for card types, while the richer tier rules and publish workflow remain foundation-preview only.')
             ->assertSee('Minimal Galaxy foundation create path is now wired for card types')
             ->assertSee('Operator checklist')
             ->assertSee('Review activation mode before publishing a new or changed tier.')

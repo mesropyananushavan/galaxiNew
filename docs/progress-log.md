@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Card-types create-path foundation-preview workflow checkpoint
+- Tightened the config-backed card-types implementation dependency copy in `config/admin-pages.php`, replacing `publish workflow remain preview-only` with `publish workflow remain foundation-preview only` so the first real write-path handoff uses the newer Galaxy foundation vocabulary too.
+- Synced the matching card-types management preview assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused card-types management slice successfully.
+- Kept the step intentionally small, but removed one more starter-era `preview-only` phrase from a live config-backed Phase 1 write-path surface instead of leaving the card-types handoff copy behind.
+
 ### Gifts weekend-brunch paused-scope foundation-preview checkpoint
 - Tightened the weekend-brunch-pass paused reward dependency `Scope posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Paused branch reward behavior should stay preview-only` with `Paused branch reward behavior should stay foundation-preview only` so the paused branch reward dependency row matches the newer Galaxy foundation vocabulary.
 - Synced the matching selected paused-gift assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused paused finite-stock gift review slice successfully.

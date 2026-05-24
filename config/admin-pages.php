@@ -615,7 +615,7 @@ return [
         ],
         'notice' => [
             'title' => 'Card type workflow is partially live',
-            'description' => 'A minimal Galaxy foundation create path now exists for card types, while the richer tier rules and publish workflow remain preview-only.',
+            'description' => 'A minimal Galaxy foundation create path now exists for card types, while the richer tier rules and publish workflow remain foundation-preview only.',
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy card tier catalog'],
