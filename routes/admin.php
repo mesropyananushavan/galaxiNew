@@ -26,7 +26,9 @@ Route::prefix('admin')
             ->defaults('resource', 'shops')
             ->name('shops.index');
         Route::post('/shops', ShopStoreController::class)->name('shops.store');
-        Route::patch('/shops/{shop}', ShopUpdateController::class)->name('shops.update');
+        Route::patch('/shops/{shop}', ShopUpdateController::class)
+            ->middleware('can:update,shop')
+            ->name('shops.update');
         Route::get('/cardholders', ResourceIndexController::class)->defaults('resource', 'cardholders')->name('cardholders.index');
         Route::post('/cardholders', CardHolderStoreController::class)->name('cardholders.store');
         Route::patch('/cardholders/{cardholder}', CardHolderUpdateController::class)->name('cardholders.update');

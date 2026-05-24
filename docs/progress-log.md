@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Shops update route policy checkpoint
+- Wired `PATCH /admin/shops/{shop}` through `can:update,shop`, so foreign-branch mutation attempts are now rejected at the route entry point instead of relying only on later request validation.
+- Tightened the focused scoped-shop update regression to expect a direct forbidden response for cross-branch updates, while keeping the existing branch data unchanged in the database.
+- Re-ran the focused shops access and update slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it moves one more live Galaxy branch mutation path from starter-style downstream guarding toward a clearer Laravel policy surface.
+
 ### Shops route policy-entry checkpoint
 - Added `ShopPolicy::viewAny()` and wired `/admin/shops` through `can:viewAny,App\Models\Shop`, so the branch workspace now has an explicit policy-aware route entry point instead of relying only on the broader admin gate plus downstream record checks.
 - Expanded the focused access helper assertions to prove bootstrap admins and assigned scoped operators can hit the new `viewAny` ability while paused scoped operators are denied.

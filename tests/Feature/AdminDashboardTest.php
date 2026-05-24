@@ -4971,11 +4971,7 @@ class AdminDashboardTest extends TestCase
             'review_note' => 'Scoped admins should not mutate foreign branch settings.',
         ]);
 
-        $response
-            ->assertRedirect(route('admin.shops.index', ['shop' => $otherShop], absolute: false).'#live-form')
-            ->assertSessionHasErrors([
-                'shop_id' => 'Choose a shop you can access before changing branch settings in the Galaxy workspace.',
-            ]);
+        $response->assertForbidden();
 
         $this->assertDatabaseHas('shops', [
             'id' => $otherShop->id,
