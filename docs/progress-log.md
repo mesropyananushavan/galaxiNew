@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Store-request live-form redirect concern checkpoint
+- Added a shared `ResolvesAdminLiveFormRedirects` concern for admin store requests and moved the repeated `#live-form` redirect resolution pattern for shops, roles, card types, cards, and cardholders onto that helper.
+- Re-ran the focused create-side live-form slice successfully across branch, access, tier, card, and holder flows after the refactor.
+- Kept the step intentionally small, but it turns another repeated bit of live admin request plumbing into one explicit Galaxy foundation seam.
+
 ### Update-request authorize concern follow-up checkpoint
 - Finished the shared `AuthorizesPolicyActions` extraction by moving the repeated policy-based `update` authorize pattern for shops, roles, card types, cards, and cardholders onto the same helper.
 - Re-ran the focused update-side slice successfully across branch, access, tier, card, and holder flows after the follow-up refactor.

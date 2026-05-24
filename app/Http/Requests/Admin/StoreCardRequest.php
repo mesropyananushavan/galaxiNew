@@ -3,16 +3,17 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Http\Requests\Admin\Concerns\ValidatesAccessibleShop;
 use App\Models\Card;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
 
 class StoreCardRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
+    use ResolvesAdminLiveFormRedirects;
     use ValidatesAccessibleShop;
 
     protected $redirectRoute = 'admin.cards.index';
@@ -86,23 +87,4 @@ class StoreCardRequest extends FormRequest
         );
     }
 
-    protected function getRedirectUrl(): string
-    {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-
-        if ($this->redirect) {
-            return $url->to($this->redirect).'#live-form';
-        }
-
-        if ($this->redirectRoute) {
-            return $url->route($this->redirectRoute).'#live-form';
-        }
-
-        if ($this->redirectAction) {
-            return $url->action($this->redirectAction).'#live-form';
-        }
-
-        return $url->previous().'#live-form';
-    }
 }
