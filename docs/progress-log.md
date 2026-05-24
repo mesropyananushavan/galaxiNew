@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Shops create request-guard cleanup checkpoint
+- Removed the now-redundant bootstrap-only validator hook from `StoreShopRequest`, because `POST /admin/shops` is already policy-guarded at route entry through `ShopPolicy::create()`.
+- Deleted the orphaned `ValidatesBootstrapAdminAccess` concern after the cleanup, because no remaining Phase 1 request flow still needed that late authorization hook.
+- Re-ran the focused shop-create validation slice successfully after the cleanup.
+- Kept the step intentionally small, but it makes the Phase 1 branch creation baseline cleaner and less starter-like without changing live behavior.
+
 ### Shops request-guard cleanup checkpoint
 - Removed the now-redundant `can('update', $shop)` validator hook from `UpdateShopRequest`, because `PATCH /admin/shops/{shop}` is already policy-guarded at route entry.
 - Kept the real branch-field validation intact while letting authorization live in one clearer place instead of being split between route middleware and a late request hook.

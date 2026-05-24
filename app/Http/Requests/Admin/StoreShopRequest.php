@@ -2,16 +2,12 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Http\Requests\Admin\Concerns\ValidatesBootstrapAdminAccess;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Str;
-use Illuminate\Validation\Validator;
 
 class StoreShopRequest extends FormRequest
 {
-    use ValidatesBootstrapAdminAccess;
-
     protected $redirectRoute = 'admin.shops.index';
 
     public function authorize(): bool
@@ -62,15 +58,6 @@ class StoreShopRequest extends FormRequest
             'code.unique' => 'This shop code is already in use.',
             'review_note.max' => 'Keep the review note under 1000 characters so the branch workspace stays operator-friendly.',
         ];
-    }
-
-    public function withValidator(Validator $validator): void
-    {
-        $this->validateBootstrapAdminAccess(
-            $validator,
-            'shop_id',
-            'Only bootstrap admins can create new shops while the Galaxy branch foundation is still centrally controlled.'
-        );
     }
 
     protected function getRedirectUrl(): string
