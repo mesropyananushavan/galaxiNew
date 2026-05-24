@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Card request import cleanup checkpoint
+- Replaced the remaining fully qualified `?\App\Models\Shop` closure return types in `UpdateCardRequest` and `UpdateCardHolderRequest` with normal `Shop` imports.
+- Re-ran the focused card/cardholder update slice successfully after the cleanup.
+- Kept the step intentionally small, but it makes the already-aligned request layer read a little more like deliberate Galaxy foundation code and a little less like leftover starter scaffolding.
+
 ### Policy dedupe follow-up checkpoint
 - Simplified `ShopPolicy::update()` to delegate to `view()`, and simplified `RolePolicy::update()` plus `CardTypePolicy::update()` to delegate to their existing bootstrap-only `create()` checks.
 - Re-ran the focused shop/role/tier ability and live-update slice successfully after the cleanup.

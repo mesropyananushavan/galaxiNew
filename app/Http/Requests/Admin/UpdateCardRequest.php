@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Models\Card;
+use App\Models\Shop;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\Validator;
@@ -39,7 +40,7 @@ class UpdateCardRequest extends StoreCardRequest
 
         $this->validateCurrentShopAccess(
             $validator,
-            fn (): ?\App\Models\Shop => $this->route('card') instanceof Card ? $this->route('card')->shop : null,
+            fn (): ?Shop => $this->route('card') instanceof Card ? $this->route('card')->shop : null,
             'Choose a card from a shop you can access before changing inventory details in the Galaxy workspace.',
         );
     }
