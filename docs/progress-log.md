@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Update-request authorize inheritance cleanup checkpoint
+- Removed the now-redundant local `AuthorizesPolicyActions` trait usage from the update requests, because each update form already inherits the shared authorize helper seam from its store-request base class.
+- Re-ran the focused update-side slice successfully across branch, access, tier, card, and holder flows after the cleanup.
+- Kept the step intentionally small, but it trims one more bit of request-layer duplication without changing the current Phase 1 behavior.
+
 ### Boolean input normalization follow-up checkpoint
 - Extended `NormalizesBooleanFormInputs` into `StoreCardTypeRequest`, replacing the last inline `is_active` normalization variant in the live tier store flow.
 - Re-ran the focused tier create/update/toggle slice successfully after the follow-up refactor.

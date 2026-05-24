@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\CardHolder;
 use App\Models\Shop;
@@ -10,7 +9,6 @@ use Illuminate\Validation\Validator;
 
 class UpdateCardHolderRequest extends StoreCardHolderRequest
 {
-    use AuthorizesPolicyActions;
     use ResolvesAdminSelectedResourceRedirects;
 
     public function authorize(): bool

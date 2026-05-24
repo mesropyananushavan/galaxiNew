@@ -2,14 +2,12 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\Shop;
 use Illuminate\Validation\Rule;
 
 class UpdateShopRequest extends StoreShopRequest
 {
-    use AuthorizesPolicyActions;
     use ResolvesAdminSelectedResourceRedirects;
 
     public function authorize(): bool

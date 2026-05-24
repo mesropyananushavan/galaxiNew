@@ -2,14 +2,12 @@
 
 namespace App\Http\Requests\Admin;
 
-use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
 use App\Models\CardType;
 use Illuminate\Validation\Rule;
 
 class UpdateCardTypeRequest extends StoreCardTypeRequest
 {
-    use AuthorizesPolicyActions;
     use ResolvesAdminSelectedResourceRedirects;
 
     public function authorize(): bool
