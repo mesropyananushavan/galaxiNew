@@ -161,6 +161,21 @@
     </section>
 
     <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 reference docs</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            Keep the current Galaxy admin map, shell layering, and checkpoint trail close while Phase 1 slices are still moving.
+        </p>
+        <ul class="list">
+            <li><code>docs/blueprint.md</code></li>
+            <li><code>docs/phase-1-plan.md</code></li>
+            <li><code>docs/admin-information-architecture.md</code></li>
+            <li><code>docs/admin-shell-layering.md</code></li>
+            <li><code>docs/admin-shell-config-map.md</code></li>
+            <li><code>docs/progress-log.md</code></li>
+        </ul>
+    </section>
+
+    <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Live review entry points</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
             Use these Galaxy review surfaces to move from branch setup into live operational checks once records start landing.

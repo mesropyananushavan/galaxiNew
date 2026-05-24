@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Admin dashboard Phase 1 references checkpoint
+- Added a compact `Phase 1 reference docs` card to `resources/views/admin/dashboard.blade.php` so the live admin landing surface now keeps the blueprint, plan, IA map, shell layering notes, config map, and progress log visible inside the operator workspace.
+- Extended `tests/Feature/AdminDashboardTest.php` so the main dashboard feature slice now asserts the new Phase 1 reference card and its key doc paths.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_admin_dashboard` successfully after the follow-up.
+
 ### README Phase 1 reference sync checkpoint
 - Updated the top-level `README.md` Phase 1 references so it now points directly at `docs/admin-information-architecture.md`, `docs/admin-shell-layering.md`, and `docs/admin-shell-config-map.md` alongside the blueprint, plan, progress log, and checkpoints.
 - Re-ran a focused read/grep check on `README.md` after the edit so the main repo guidance now exposes the current IA and admin-shell reference docs instead of leaving them discoverable only from the landing page and cross-linked notes.
