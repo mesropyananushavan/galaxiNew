@@ -2,6 +2,11 @@
 
 ## 2026-05-21
 
+### Cards activity timeline foundation-preview checkpoint
+- Tightened the config-backed cards activity timeline copy in `config/admin-pages.php`, replacing `Draft issuance behavior stays preview-only` with `Draft issuance behavior stays foundation-preview only` so the inventory review shell matches the newer Galaxy foundation vocabulary.
+- Expanded the matching cards management assertion in `tests/Feature/AdminDashboardTest.php` to cover the updated timeline description and re-ran the focused cards management preview slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live config-backed cards surface instead of leaving one older preview-only activity note behind.
+
 ### Card-types create-path foundation-preview workflow checkpoint
 - Tightened the config-backed card-types implementation dependency copy in `config/admin-pages.php`, replacing `publish workflow remain preview-only` with `publish workflow remain foundation-preview only` so the first real write-path handoff uses the newer Galaxy foundation vocabulary too.
 - Synced the matching card-types management preview assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused card-types management slice successfully.

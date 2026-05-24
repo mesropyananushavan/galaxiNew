@@ -2446,6 +2446,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Recent activity preview')
             ->assertSee('Blocked card state kept visible')
             ->assertSee('Draft card review deferred')
+            ->assertSee('Draft issuance behavior stays foundation-preview only until real inventory reads can be verified.')
             ->assertSee('Legacy parity mapping')
             ->assertSee('Old Galaxy card inventory screen')
             ->assertSee('Card states, holder linkage, issue and activation visibility')

@@ -358,7 +358,7 @@ return [
         ],
         'activityTimeline' => [
             ['title' => 'Blocked card state kept visible', 'time' => 'Today, 18:20', 'description' => 'The blocked preview row remains in place to preserve old Galaxy card-state visibility.'],
-            ['title' => 'Draft card review deferred', 'time' => 'Yesterday, 12:10', 'description' => 'Draft issuance behavior stays preview-only until real inventory reads can be verified.'],
+            ['title' => 'Draft card review deferred', 'time' => 'Yesterday, 12:10', 'description' => 'Draft issuance behavior stays foundation-preview only until real inventory reads can be verified.'],
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy card inventory screen'],
