@@ -2,17 +2,18 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Models\Shop;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 
 class UpdateShopRequest extends StoreShopRequest
 {
+    use AuthorizesPolicyActions;
+
     public function authorize(): bool
     {
-        $shop = $this->route('shop');
-
-        return $shop instanceof Shop && ($this->user()?->can('update', $shop) ?? false);
+        return $this->authorizeUpdate('shop', Shop::class);
     }
 
     public function rules(): array

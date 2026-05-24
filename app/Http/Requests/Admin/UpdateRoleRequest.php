@@ -2,17 +2,18 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Models\Role;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 
 class UpdateRoleRequest extends StoreRoleRequest
 {
+    use AuthorizesPolicyActions;
+
     public function authorize(): bool
     {
-        $role = $this->route('role');
-
-        return $role instanceof Role && ($this->user()?->can('update', $role) ?? false);
+        return $this->authorizeUpdate('role', Role::class);
     }
 
     public function rules(): array

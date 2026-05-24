@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Update-request authorize concern follow-up checkpoint
+- Finished the shared `AuthorizesPolicyActions` extraction by moving the repeated policy-based `update` authorize pattern for shops, roles, card types, cards, and cardholders onto the same helper.
+- Re-ran the focused update-side slice successfully across branch, access, tier, card, and holder flows after the follow-up refactor.
+- Kept the step intentionally small, but it completes one tidy request-layer seam so create/update policy authorization now reads through one explicit Galaxy foundation helper instead of repeated inline checks.
+
 ### Request authorize concern checkpoint
 - Added a shared `AuthorizesPolicyActions` concern for admin requests and moved the repeated policy-based `create` authorize pattern for shops, roles, card types, cards, and cardholders onto that helper.
 - Re-ran the focused create-side slice successfully across branch, access, tier, card, and holder flows after the refactor.

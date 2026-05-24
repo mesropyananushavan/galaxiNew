@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Models\CardHolder;
 use App\Models\Shop;
 use Illuminate\Routing\UrlGenerator;
@@ -9,11 +10,11 @@ use Illuminate\Validation\Validator;
 
 class UpdateCardHolderRequest extends StoreCardHolderRequest
 {
+    use AuthorizesPolicyActions;
+
     public function authorize(): bool
     {
-        $cardHolder = $this->route('cardholder');
-
-        return $cardHolder instanceof CardHolder && ($this->user()?->can('update', $cardHolder) ?? false);
+        return $this->authorizeUpdate('cardholder', CardHolder::class);
     }
 
     public function withValidator(Validator $validator): void

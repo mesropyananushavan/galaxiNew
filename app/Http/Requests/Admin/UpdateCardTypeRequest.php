@@ -2,17 +2,18 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
 use App\Models\CardType;
 use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
 
 class UpdateCardTypeRequest extends StoreCardTypeRequest
 {
+    use AuthorizesPolicyActions;
+
     public function authorize(): bool
     {
-        $cardType = $this->route('cardType');
-
-        return $cardType instanceof CardType && ($this->user()?->can('update', $cardType) ?? false);
+        return $this->authorizeUpdate('cardType', CardType::class);
     }
 
     public function rules(): array
