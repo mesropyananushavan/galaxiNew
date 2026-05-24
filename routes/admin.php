@@ -59,7 +59,9 @@ Route::prefix('admin')
         Route::post('/card-types', CardTypeStoreController::class)
             ->middleware('can:create,'.CardType::class)
             ->name('card-types.store');
-        Route::patch('/card-types/{cardType}', CardTypeUpdateController::class)->name('card-types.update');
+        Route::patch('/card-types/{cardType}', CardTypeUpdateController::class)
+            ->middleware('can:update,cardType')
+            ->name('card-types.update');
         Route::patch('/card-types/{cardType}/toggle-status', CardTypeToggleStatusController::class)->name('card-types.toggle-status');
         Route::get('/services-rules', ResourceIndexController::class)->defaults('resource', 'services-rules')->name('services-rules.index');
         Route::get('/gifts', ResourceIndexController::class)->defaults('resource', 'gifts')->name('gifts.index');
@@ -70,6 +72,8 @@ Route::prefix('admin')
         Route::post('/roles-permissions', RoleStoreController::class)
             ->middleware('can:create,'.Role::class)
             ->name('roles-permissions.store');
-        Route::patch('/roles-permissions/{role}', RoleUpdateController::class)->name('roles-permissions.update');
+        Route::patch('/roles-permissions/{role}', RoleUpdateController::class)
+            ->middleware('can:update,role')
+            ->name('roles-permissions.update');
         Route::get('/reports', ResourceIndexController::class)->defaults('resource', 'reports')->name('reports.index');
     });

@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Roles and card-types update policy-entry checkpoint
+- Wired `PATCH /admin/roles-permissions/{role}` and `PATCH /admin/card-types/{cardType}` through `can:update,...`, so scoped update attempts are now rejected at the route entry point instead of relying only on later bootstrap-only validation.
+- Tightened the focused scoped role-update and tier-update regressions to expect direct forbidden responses, while re-checking the bootstrap-admin happy paths for both minimal live update flows.
+- Re-ran the focused role/tier update slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it moves two more live Galaxy catalog mutation paths away from generic starter guarding and toward a clearer Laravel authorization surface.
+
 ### Roles and card-types route policy-entry checkpoint
 - Added `viewAny()` abilities to `RolePolicy` and `CardTypePolicy`, then wired `/admin/roles-permissions` and `/admin/card-types` through `can:viewAny,...` so both Galaxy foundation catalogs now have explicit policy-aware route entry points in addition to their bootstrap-only create guards.
 - Expanded the focused access helper assertions to prove bootstrap admins and assigned scoped operators can enter those catalog workspaces through the new `viewAny` abilities while paused scoped operators are denied.

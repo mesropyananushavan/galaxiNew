@@ -2074,11 +2074,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => '0',
         ]);
 
-        $response
-            ->assertRedirect(route('admin.roles-permissions.index', ['role' => $roleToUpdate], absolute: false).'#live-form')
-            ->assertSessionHasErrors([
-                'slug' => 'Only bootstrap admins can update roles while the Galaxy access foundation is still centrally controlled.',
-            ]);
+        $response->assertForbidden();
 
         $this->assertDatabaseHas('roles', [
             'id' => $roleToUpdate->id,
@@ -11225,11 +11221,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => '0',
         ]);
 
-        $response
-            ->assertRedirect(route('admin.card-types.index', ['cardType' => $cardType], absolute: false).'#live-form')
-            ->assertSessionHasErrors([
-                'slug' => 'Only bootstrap admins can update card types while the Galaxy tier foundation is still centrally controlled.',
-            ]);
+        $response->assertForbidden();
 
         $this->assertDatabaseHas('card_types', [
             'id' => $cardType->id,
