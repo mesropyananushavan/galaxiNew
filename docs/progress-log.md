@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Shared shop-validation policy reuse checkpoint
+- Reused the new `ShopPolicy` inside `ValidatesAccessibleShop`, switching the shared card and cardholder shop-access validation concern from the lower-level `access-shop` gate to the explicit `view` ability.
+- This keeps the scoped store/update validation flow for cards and cardholders aligned with the same policy seam already used by the first branch write guard and the shared branch review filter.
+- Re-ran the focused scoped cardholder and card update-guard slice successfully after the concern change.
+- Kept the step intentionally small, but it moves another shared authorization helper away from starter-style direct access checks and toward a clearer Galaxy Phase 1 policy surface.
+
 ### Shops read-filter policy reuse checkpoint
 - Reused the new `ShopPolicy` on the shared admin read path by switching `ResourceIndexController::cannotAccessRecordShop()` from direct `canAccessShop()` calls to the explicit `view` ability, so branch review filtering now flows through the same policy seam as the first write guard.
 - Kept the inaccessible selected-shop regression coverage focused on the real outcome, namely that scoped admins still cannot open foreign-branch review state even if the catalog keeps showing branch names in read-only form.

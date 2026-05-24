@@ -20,7 +20,7 @@ trait ValidatesAccessibleShop
 
             $shop = Shop::query()->find($shopId);
 
-            if ($shop instanceof Shop && ! $user->can('access-shop', $shop)) {
+            if ($shop instanceof Shop && ! $user->can('view', $shop)) {
                 $validator->errors()->add('shop_id', $message);
             }
         });
@@ -36,7 +36,7 @@ trait ValidatesAccessibleShop
                 return;
             }
 
-            if (! $user->can('access-shop', $shop)) {
+            if (! $user->can('view', $shop)) {
                 $validator->errors()->add('shop_id', $message);
             }
         });
