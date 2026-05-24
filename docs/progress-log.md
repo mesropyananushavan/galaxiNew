@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Boolean input normalization follow-up checkpoint
+- Extended `NormalizesBooleanFormInputs` into `StoreCardTypeRequest`, replacing the last inline `is_active` normalization variant in the live tier store flow.
+- Re-ran the focused tier create/update/toggle slice successfully after the follow-up refactor.
+- Kept the step intentionally small, but it finishes one more little piece of the shared request normalization seam across the Phase 1 admin surface.
+
 ### Slug input normalization concern checkpoint
 - Added a shared `NormalizesSlugInputs` concern and moved the repeated `Str::slug(...)` input normalization pattern for shops, roles, and card types onto that helper.
 - Re-ran the focused branch/access/tier create-update slice successfully after the refactor.

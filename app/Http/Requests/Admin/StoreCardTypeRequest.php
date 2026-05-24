@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
 use App\Http\Requests\Admin\Concerns\NormalizesSlugInputs;
 use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
@@ -12,6 +13,7 @@ use Illuminate\Foundation\Http\FormRequest;
 class StoreCardTypeRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
+    use NormalizesBooleanFormInputs;
     use NormalizesSlugInputs;
     use NormalizesTextFormInputs;
     use ResolvesAdminLiveFormRedirects;
@@ -38,14 +40,15 @@ class StoreCardTypeRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
+        $status = $this->input('is_active');
+
         $this->merge([
             'name' => $this->normalizeTrimmedString($this->input('name')),
             'slug' => $this->normalizeSlugInput($this->input('slug')),
             'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
             'activation_note' => $this->normalizeNullableTrimmedString($this->input('activation_note')),
             'rollout_note' => $this->normalizeNullableTrimmedString($this->input('rollout_note')),
-            'is_active' => filter_var($this->input('is_active'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)
-                ?? $this->input('is_active'),
+            'is_active' => $this->normalizeBooleanInput($status, $this->input('is_active')),
         ]);
     }
 
