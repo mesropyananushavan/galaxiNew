@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Admin policy registration checkpoint
+- Added `app/Providers/Concerns/RegistersAdminPolicies.php` and moved the current Phase 1 policy bindings behind one small provider-side helper, so the Galaxy admin authorization baseline no longer keeps its model-to-policy map inline in `AppServiceProvider`.
+- Updated `AppServiceProvider` to register both policies and Gates through shared provider concerns while keeping the same policy classes and access decisions on the live admin surface.
+- Re-ran the focused policy-registration and admin-flow slice successfully after the cleanup.
+
 ### Admin gate registration checkpoint
 - Added `app/Providers/Concerns/RegistersAdminAccessGates.php` and moved the repeated `access-admin` plus `access-shop` Gate registration callbacks behind one small provider-side helper, so the current Phase 1 admin access baseline now reads through an explicit seam instead of sitting inline in `AppServiceProvider`.
 - Updated `AppServiceProvider` to call the shared gate registration helper while keeping the same access decisions on `User` and the same policy wiring for the live admin surface.
