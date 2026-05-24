@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,6 +12,7 @@ use Illuminate\Support\Str;
 class StoreShopRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
+    use NormalizesBooleanFormInputs;
     use ResolvesAdminLiveFormRedirects;
 
     protected $redirectRoute = 'admin.shops.index';
@@ -38,12 +40,7 @@ class StoreShopRequest extends FormRequest
             'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
             'code' => is_string($this->input('code')) ? Str::slug($this->input('code')) : $this->input('code'),
             'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
-            'is_active' => match (true) {
-                is_bool($status) => $status,
-                is_string($status) => in_array(strtolower($status), ['1', 'true', 'on', 'yes'], true),
-                is_int($status) => $status === 1,
-                default => false,
-            },
+            'is_active' => $this->normalizeBooleanInput($status),
         ]);
     }
 

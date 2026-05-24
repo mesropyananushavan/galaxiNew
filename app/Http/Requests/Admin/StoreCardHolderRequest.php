@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Http\Requests\Admin\Concerns\ValidatesAccessibleShop;
 use App\Models\CardHolder;
@@ -12,6 +13,7 @@ use Illuminate\Validation\Validator;
 class StoreCardHolderRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
+    use NormalizesBooleanFormInputs;
     use ResolvesAdminLiveFormRedirects;
     use ValidatesAccessibleShop;
 
@@ -43,12 +45,7 @@ class StoreCardHolderRequest extends FormRequest
             'phone' => is_string($this->input('phone')) ? (trim($this->input('phone')) !== '' ? trim($this->input('phone')) : null) : $this->input('phone'),
             'email' => is_string($this->input('email')) ? (trim($this->input('email')) !== '' ? strtolower(trim($this->input('email'))) : null) : $this->input('email'),
             'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
-            'is_active' => match (true) {
-                is_bool($status) => $status,
-                is_string($status) => in_array(strtolower($status), ['1', 'true', 'on', 'yes'], true),
-                is_int($status) => $status === 1,
-                default => false,
-            },
+            'is_active' => $this->normalizeBooleanInput($status),
         ]);
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
 use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
 use App\Models\Role;
 use Illuminate\Foundation\Http\FormRequest;
@@ -11,6 +12,7 @@ use Illuminate\Support\Str;
 class StoreRoleRequest extends FormRequest
 {
     use AuthorizesPolicyActions;
+    use NormalizesBooleanFormInputs;
     use ResolvesAdminLiveFormRedirects;
 
     protected $redirectRoute = 'admin.roles-permissions.index';
@@ -42,12 +44,7 @@ class StoreRoleRequest extends FormRequest
             'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
             'access_note' => is_string($this->input('access_note')) ? (trim($this->input('access_note')) !== '' ? trim($this->input('access_note')) : null) : $this->input('access_note'),
             'assignment_note' => is_string($this->input('assignment_note')) ? (trim($this->input('assignment_note')) !== '' ? trim($this->input('assignment_note')) : null) : $this->input('assignment_note'),
-            'is_active' => match (true) {
-                is_bool($status) => $status,
-                is_string($status) => in_array(strtolower($status), ['1', 'true', 'on', 'yes'], true),
-                is_int($status) => $status === 1,
-                default => false,
-            },
+            'is_active' => $this->normalizeBooleanInput($status),
         ]);
     }
 
