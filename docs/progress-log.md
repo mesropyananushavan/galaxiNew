@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### README Phase 1 reference sync checkpoint
+- Updated the top-level `README.md` Phase 1 references so it now points directly at `docs/admin-information-architecture.md`, `docs/admin-shell-layering.md`, and `docs/admin-shell-config-map.md` alongside the blueprint, plan, progress log, and checkpoints.
+- Re-ran a focused read/grep check on `README.md` after the edit so the main repo guidance now exposes the current IA and admin-shell reference docs instead of leaving them discoverable only from the landing page and cross-linked notes.
+- Kept the step intentionally small, but it closes another real top-level documentation gap around the current Phase 1 admin foundation map.
+
 ### README access-baseline sync checkpoint
 - Updated the top-level `README.md` admin access section so it no longer claims `access-admin` is a blanket authenticated-user stub, and instead reflects the current Phase 1 bootstrap-admin plus active-branch, permission-bearing shop-admin baseline.
 - Re-ran a focused grep check on `README.md` after the edit so the stale stub wording is no longer left behind in the main repo guidance.
