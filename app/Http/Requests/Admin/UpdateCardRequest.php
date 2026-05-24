@@ -17,12 +17,12 @@ class UpdateCardRequest extends StoreCardRequest
 
     public function authorize(): bool
     {
-        return $this->authorizeUpdate('card', Card::class);
+        return $this->authorizeSelectedResourceUpdate(Card::class);
     }
 
     public function rules(): array
     {
-        $card = $this->route('card');
+        $card = $this->selectedResource();
         $cardId = is_object($card) && isset($card->id) ? $card->id : $card;
 
         return [
@@ -43,7 +43,7 @@ class UpdateCardRequest extends StoreCardRequest
 
         $this->validateCurrentShopAccess(
             $validator,
-            fn (): ?Shop => $this->route('card') instanceof Card ? $this->route('card')->shop : null,
+            fn (): ?Shop => $this->selectedResource() instanceof Card ? $this->selectedResource()->shop : null,
             'Choose a card from a shop you can access before changing inventory details in the Galaxy workspace.',
         );
     }

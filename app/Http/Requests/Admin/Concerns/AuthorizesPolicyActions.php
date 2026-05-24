@@ -9,6 +9,11 @@ trait AuthorizesPolicyActions
         return $this->user()?->can('create', $modelClass) ?? false;
     }
 
+    protected function authorizeSelectedResourceUpdate(string $modelClass): bool
+    {
+        return $this->authorizeUpdate(static::SELECTED_RESOURCE_ROUTE_PARAMETER, $modelClass);
+    }
+
     protected function authorizeUpdate(string $routeParameter, string $modelClass): bool
     {
         $model = $this->route($routeParameter);

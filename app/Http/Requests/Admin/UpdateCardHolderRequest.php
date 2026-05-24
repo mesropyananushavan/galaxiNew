@@ -16,7 +16,7 @@ class UpdateCardHolderRequest extends StoreCardHolderRequest
 
     public function authorize(): bool
     {
-        return $this->authorizeUpdate('cardholder', CardHolder::class);
+        return $this->authorizeSelectedResourceUpdate(CardHolder::class);
     }
 
     public function withValidator(Validator $validator): void
@@ -25,7 +25,7 @@ class UpdateCardHolderRequest extends StoreCardHolderRequest
 
         $this->validateCurrentShopAccess(
             $validator,
-            fn (): ?Shop => $this->route('cardholder') instanceof CardHolder ? $this->route('cardholder')->shop : null,
+            fn (): ?Shop => $this->selectedResource() instanceof CardHolder ? $this->selectedResource()->shop : null,
             'Choose a cardholder from a shop you can access before changing holder details in the Galaxy workspace.',
         );
     }

@@ -15,12 +15,12 @@ class UpdateShopRequest extends StoreShopRequest
 
     public function authorize(): bool
     {
-        return $this->authorizeUpdate('shop', Shop::class);
+        return $this->authorizeSelectedResourceUpdate(Shop::class);
     }
 
     public function rules(): array
     {
-        $shop = $this->route('shop');
+        $shop = $this->selectedResource();
 
         return array_merge(parent::rules(), [
             'code' => [

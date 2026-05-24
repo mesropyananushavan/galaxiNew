@@ -6,12 +6,22 @@ use Illuminate\Routing\UrlGenerator;
 
 trait ResolvesAdminSelectedResourceRedirects
 {
+    protected function selectedResourceRouteParameter(): string
+    {
+        return static::SELECTED_RESOURCE_ROUTE_PARAMETER;
+    }
+
+    protected function selectedResource(): mixed
+    {
+        return $this->route($this->selectedResourceRouteParameter());
+    }
+
     protected function getRedirectUrl(): string
     {
         /** @var UrlGenerator $url */
         $url = $this->redirector->getUrlGenerator();
-        $routeParameter = static::SELECTED_RESOURCE_ROUTE_PARAMETER;
-        $resource = $this->route($routeParameter);
+        $routeParameter = $this->selectedResourceRouteParameter();
+        $resource = $this->selectedResource();
 
         if ($resource !== null) {
             return $url->route(

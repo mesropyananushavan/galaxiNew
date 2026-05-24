@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Selected-resource helper follow-up checkpoint
+- Extended the update-side shared selected-resource seam a little further by teaching it to expose the configured route parameter and resolved resource directly, then reusing that path in update authorization, unique-rule lookup, redirect resolution, and current-shop validation.
+- Switched `UpdateShopRequest`, `UpdateRoleRequest`, `UpdateCardTypeRequest`, `UpdateCardRequest`, and `UpdateCardHolderRequest` off the last repeated inline route-parameter strings that still lingered after the constant-based redirect cleanup.
+- Re-ran the focused update-side branch, access, tier, card, and holder slice successfully after the follow-up refactor.
+
 ### Update redirect constant cleanup checkpoint
 - Reworked `ResolvesAdminSelectedResourceRedirects` to read its selected-resource route metadata from per-request class constants instead of one-line abstract methods, so the shared update redirect seam no longer forces every update request to repeat the same tiny method bodies.
 - Switched `UpdateShopRequest`, `UpdateRoleRequest`, `UpdateCardTypeRequest`, `UpdateCardRequest`, and `UpdateCardHolderRequest` onto the constant-based configuration without changing their current `#live-form` redirect behavior.

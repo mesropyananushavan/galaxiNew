@@ -15,12 +15,12 @@ class UpdateCardTypeRequest extends StoreCardTypeRequest
 
     public function authorize(): bool
     {
-        return $this->authorizeUpdate('cardType', CardType::class);
+        return $this->authorizeSelectedResourceUpdate(CardType::class);
     }
 
     public function rules(): array
     {
-        $cardType = $this->route('cardType');
+        $cardType = $this->selectedResource();
 
         return array_merge(parent::rules(), [
             'slug' => [

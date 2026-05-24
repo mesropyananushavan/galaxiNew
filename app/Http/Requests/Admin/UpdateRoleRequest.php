@@ -15,12 +15,12 @@ class UpdateRoleRequest extends StoreRoleRequest
 
     public function authorize(): bool
     {
-        return $this->authorizeUpdate('role', Role::class);
+        return $this->authorizeSelectedResourceUpdate(Role::class);
     }
 
     public function rules(): array
     {
-        $role = $this->route('role');
+        $role = $this->selectedResource();
 
         return array_merge(parent::rules(), [
             'slug' => [
