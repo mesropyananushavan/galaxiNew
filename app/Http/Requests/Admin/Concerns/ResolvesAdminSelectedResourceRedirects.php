@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Admin\Concerns;
 
+use App\Models\Shop;
 use Illuminate\Routing\UrlGenerator;
 
 trait ResolvesAdminSelectedResourceRedirects
@@ -14,6 +15,15 @@ trait ResolvesAdminSelectedResourceRedirects
     protected function selectedResource(): mixed
     {
         return $this->route($this->selectedResourceRouteParameter());
+    }
+
+    protected function selectedResourceShop(): ?Shop
+    {
+        $resource = $this->selectedResource();
+
+        return is_object($resource) && $resource->shop instanceof Shop
+            ? $resource->shop
+            : null;
     }
 
     protected function getRedirectUrl(): string

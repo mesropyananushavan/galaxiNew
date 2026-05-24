@@ -43,7 +43,7 @@ class UpdateCardRequest extends StoreCardRequest
 
         $this->validateCurrentShopAccess(
             $validator,
-            fn (): ?Shop => $this->selectedResource() instanceof Card ? $this->selectedResource()->shop : null,
+            fn (): ?Shop => $this->selectedResourceShop(),
             'Choose a card from a shop you can access before changing inventory details in the Galaxy workspace.',
         );
     }

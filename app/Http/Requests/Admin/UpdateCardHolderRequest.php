@@ -25,7 +25,7 @@ class UpdateCardHolderRequest extends StoreCardHolderRequest
 
         $this->validateCurrentShopAccess(
             $validator,
-            fn (): ?Shop => $this->selectedResource() instanceof CardHolder ? $this->selectedResource()->shop : null,
+            fn (): ?Shop => $this->selectedResourceShop(),
             'Choose a cardholder from a shop you can access before changing holder details in the Galaxy workspace.',
         );
     }

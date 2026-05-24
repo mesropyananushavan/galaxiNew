@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Selected-resource shop helper checkpoint
+- Extended the update-side selected-resource seam with a shared `selectedResourceShop()` helper, so card and cardholder update validation no longer need to repeat their own current-shop lookup closures against the resolved route model.
+- Switched `UpdateCardRequest` and `UpdateCardHolderRequest` onto the shared shop helper while keeping the same scoped-forbidden behavior for foreign and cross-shop updates.
+- Re-ran the focused card and cardholder update slice successfully after the cleanup.
+
 ### Selected-resource helper follow-up checkpoint
 - Extended the update-side shared selected-resource seam a little further by teaching it to expose the configured route parameter and resolved resource directly, then reusing that path in update authorization, unique-rule lookup, redirect resolution, and current-shop validation.
 - Switched `UpdateShopRequest`, `UpdateRoleRequest`, `UpdateCardTypeRequest`, `UpdateCardRequest`, and `UpdateCardHolderRequest` off the last repeated inline route-parameter strings that still lingered after the constant-based redirect cleanup.
