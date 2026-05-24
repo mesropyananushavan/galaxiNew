@@ -2,6 +2,12 @@
 
 ## 2026-05-24
 
+### Shops create route policy checkpoint
+- Added `ShopPolicy::create()` and wired `POST /admin/shops` through `can:create,App\Models\Shop`, so branch creation is now policy-aware at the route entry point instead of relying only on the later bootstrap-only validation hook.
+- Tightened the focused scoped branch-create regression to expect a direct forbidden response, and expanded the access helper assertions to prove only bootstrap admins can hit the new `create` ability.
+- Re-ran the focused shop-create and access slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it moves the first live Galaxy branch creation path another notch away from generic starter guarding and toward a clearer Laravel authorization surface.
+
 ### Cardholder and card route policy-entry checkpoint
 - Added `viewAny()` abilities to `CardHolderPolicy` and `CardPolicy`, then wired `/admin/cardholders` and `/admin/cards` through `can:viewAny,...` so both live workspaces now have explicit policy-aware route entry points just like `shops`.
 - Expanded the focused access helper assertions to prove bootstrap admins and assigned scoped operators can enter those workspaces through the new policy abilities while paused scoped operators are denied.

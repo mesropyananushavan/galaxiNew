@@ -27,7 +27,9 @@ Route::prefix('admin')
             ->middleware('can:viewAny,'.Shop::class)
             ->defaults('resource', 'shops')
             ->name('shops.index');
-        Route::post('/shops', ShopStoreController::class)->name('shops.store');
+        Route::post('/shops', ShopStoreController::class)
+            ->middleware('can:create,'.Shop::class)
+            ->name('shops.store');
         Route::patch('/shops/{shop}', ShopUpdateController::class)
             ->middleware('can:update,shop')
             ->name('shops.update');

@@ -12,6 +12,11 @@ class ShopPolicy
         return $user->canAccessAdminPanel();
     }
 
+    public function create(User $user): bool
+    {
+        return $user->hasBootstrapAdminAccess();
+    }
+
     public function view(User $user, Shop $shop): bool
     {
         return $user->canAccessShop($shop);
