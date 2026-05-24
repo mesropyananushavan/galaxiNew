@@ -2,6 +2,11 @@
 
 ## 2026-05-24
 
+### Admin gate registration checkpoint
+- Added `app/Providers/Concerns/RegistersAdminAccessGates.php` and moved the repeated `access-admin` plus `access-shop` Gate registration callbacks behind one small provider-side helper, so the current Phase 1 admin access baseline now reads through an explicit seam instead of sitting inline in `AppServiceProvider`.
+- Updated `AppServiceProvider` to call the shared gate registration helper while keeping the same access decisions on `User` and the same policy wiring for the live admin surface.
+- Re-ran the focused admin-access helper slice successfully after the cleanup.
+
 ### Shared policy baseline checkpoint
 - Added `app/Policies/Concerns/HandlesAdminPolicyAccess.php` and moved the repeated admin-entry plus bootstrap-foundation baseline checks behind named helpers, so the current Phase 1 policies read through one small shared seam instead of repeating the same user access calls inline.
 - Wired `ShopPolicy`, `RolePolicy`, `CardTypePolicy`, `CardPolicy`, and `CardHolderPolicy` into the new concern without changing their current ability boundaries.

@@ -7,17 +7,18 @@ use App\Models\CardHolder;
 use App\Models\CardType;
 use App\Models\Role;
 use App\Models\Shop;
-use App\Models\User;
 use App\Policies\CardHolderPolicy;
 use App\Policies\CardPolicy;
 use App\Policies\CardTypePolicy;
 use App\Policies\RolePolicy;
 use App\Policies\ShopPolicy;
+use App\Providers\Concerns\RegistersAdminAccessGates;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    use RegistersAdminAccessGates;
     /**
      * Register any application services.
      */
@@ -37,12 +38,6 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Role::class, RolePolicy::class);
         Gate::policy(CardType::class, CardTypePolicy::class);
 
-        Gate::define('access-admin', static function (User $user): bool {
-            return $user->canAccessAdminPanel();
-        });
-
-        Gate::define('access-shop', static function (User $user, Shop $shop): bool {
-            return $user->canAccessShop($shop);
-        });
+        $this->registerAdminAccessGates();
     }
 }
