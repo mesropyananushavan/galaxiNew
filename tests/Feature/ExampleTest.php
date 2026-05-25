@@ -24,6 +24,7 @@ class ExampleTest extends TestCase
             ->assertSee('Land small safe foundation slices with visible Git history')
             ->assertSee('Keep checkpoints, analysis notes, and QA references close to the work')
             ->assertSee('Helpful project docs')
+            ->assertSee('docs/phase-1-domain-map.md')
             ->assertSee('docs/migration-plan.md')
             ->assertSee('docs/migration_plan.md')
             ->assertSee('docs/admin-information-architecture.md')

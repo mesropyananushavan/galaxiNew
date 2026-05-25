@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Phase 1 domain-map doc-trail checkpoint
+- Added `docs/phase-1-domain-map.md` as a compact human-readable companion to `config/phase-1-domain-map.php`, so the first Galaxy entity baseline is now visible in the repo doc trail as well as in config and the admin workspace.
+- Linked the new Phase 1 domain-map note from `resources/views/admin/dashboard.blade.php`, `resources/views/welcome.blade.php`, and `README.md` so the public landing surface, admin reference list, and top-level repo guidance all expose the same Galaxy-specific entity baseline.
+- Extended `tests/Feature/AdminDashboardTest.php` and `tests/Feature/ExampleTest.php`, then re-ran the focused dashboard and landing-page feature slices successfully.
+
 ### Dashboard Phase 1 entity-map checkpoint
 - Added `config/phase-1-domain-map.php` as a small Galaxy-specific foundation map for the first six Phase 1 entities, so the repo now carries an explicit entity baseline instead of leaving that list buried only in planning docs.
 - Extended `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` to surface the new entity map, live entity coverage, and entity posture directly inside the admin workspace.

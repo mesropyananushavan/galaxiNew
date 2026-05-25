@@ -258,6 +258,7 @@
                     <li><a href="https://docs.openclaw.ai" target="_blank" rel="noreferrer">OpenClaw docs</a></li>
                     <li><code>docs/blueprint.md</code></li>
                     <li><code>docs/phase-1-plan.md</code></li>
+                    <li><code>docs/phase-1-domain-map.md</code></li>
                     <li><code>docs/migration-plan.md</code></li>
                     <li><code>docs/migration_plan.md</code></li>
                     <li><code>docs/admin-information-architecture.md</code></li>

@@ -22,6 +22,7 @@ The current goal is Phase 1: turn this repo from scaffold defaults into a Galaxy
 
 - `docs/blueprint.md`
 - `docs/phase-1-plan.md`
+- `docs/phase-1-domain-map.md`
 - `docs/admin-information-architecture.md`
 - `docs/admin-shell-layering.md`
 - `docs/admin-shell-config-map.md`
