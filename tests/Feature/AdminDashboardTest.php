@@ -218,6 +218,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('6/6 Phase 1 entities already have live Galaxy records.')
             ->assertSee('Entity inventory:')
             ->assertSee('6 Phase 1 entities currently mapped.')
+            ->assertSee('Entity baseline:')
+            ->assertSee('config/phase-1-domain-map.php')
             ->assertSee('Entity posture:')
             ->assertSee('documented entity baseline for live foundation work.')
             ->assertSee('Source of truth:')

@@ -174,6 +174,10 @@
             {{ $phaseOneDomainInventory }}.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
+            <strong>Entity baseline:</strong>
+            <code>config/phase-1-domain-map.php</code> keeps this mapped Galaxy entity inventory aligned.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
             <strong>Entity posture:</strong>
             {{ $phaseOneDomainPosture }}.
         </p>

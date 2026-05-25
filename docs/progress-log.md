@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard entity baseline checkpoint
+- Extended `resources/views/admin/dashboard.blade.php` with a small `Entity baseline` note pointing at `config/phase-1-domain-map.php`, so the Phase 1 entity inventory now shows an explicit baseline/config seam in addition to its live-record coverage and mapped-entity count.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new baseline note stays covered on the live admin surface.
+- Kept the step intentionally small, but it makes the entity card read a little more like the newer admin/public inventory patterns instead of only showing counts plus one source-of-truth note.
+
 ### Landing doc baseline checkpoint
 - Extended `resources/views/welcome.blade.php` with a small `Doc baseline` note pointing at `config/landing-docs.php`, so the public Galaxy migration reference inventory now shows an explicit baseline/config seam in addition to its coverage signal and source-of-truth note.
 - Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new baseline note stays covered on the public surface.
