@@ -40,6 +40,7 @@
 - The current Phase 1 resource-page shell is intentionally split into base, context, preview, workflow, and closing layers.
 - See `docs/admin-shell-layering.md` for the current structure and the bridge role of `config/admin-resource-blocks.php`.
 - Config ownership for those shell layers and page surfaces is documented in `docs/admin-shell-config-map.md`.
+- The current small config-backed and doc-backed foundation seams are summarized in `docs/phase-1-foundation-seams.md`.
 - When real Galaxy foundation reads and writes arrive, replace foundation-preview slices without collapsing that layered shell back into one large inline block list.
 
 ## Phase 1
@@ -62,6 +63,7 @@ Create the real application foundation for Galaxy, not just a placeholder baseli
 ### Deliverables
 - documented IA/menu map
 - documented Phase 1 domain map (`docs/phase-1-domain-map.md` + `config/phase-1-domain-map.php`)
+- documented Phase 1 foundation seams (`docs/phase-1-foundation-seams.md`)
 - initial migrations for core entities
 - model skeletons
 - admin layout updated toward old parity

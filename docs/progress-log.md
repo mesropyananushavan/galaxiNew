@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Phase 1 foundation-seams blueprint-plan alignment checkpoint
+- Updated `docs/blueprint.md` and `docs/phase-1-plan.md` so the new `docs/phase-1-foundation-seams.md` note is now part of the main Phase 1 narrative, not just the dashboard, landing-page, and README reference trail.
+- Promoted the seams note into both the blueprint admin-shell implementation note and the plan's entity/admin-shell guidance, so contributors can discover the current Galaxy-specific seam map directly from the core migration docs.
+- Kept the step intentionally small and docs-only, but it closes another real visibility gap around the explicit Phase 1 foundation structure.
+
 ### Phase 1 foundation-seams note checkpoint
 - Added `docs/phase-1-foundation-seams.md` as a compact map of the current Galaxy-specific Phase 1 seams, tying together the entity baseline, admin reference trail, and public landing doc trail.
 - Linked the new note through `config/phase-1-reference-docs.php`, `config/landing-docs.php`, and `README.md`, then extended the focused dashboard and landing-page feature assertions so the new seam note stays visible from both live entry surfaces.
