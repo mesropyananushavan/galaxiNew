@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard reference readable-guide checkpoint
+- Extended `resources/views/admin/dashboard.blade.php` with a small `Reference guide` note pointing at `docs/blueprint.md` and `docs/phase-1-plan.md`, so the admin-side Phase 1 reference inventory now calls out the readable anchors contributors use alongside its config baseline.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new readable-guide note stays covered on the live admin surface.
+- Kept the step intentionally small, but it makes the admin reference card read a little more like the readable-guide plus baseline pattern now used on the newer public seam-source surface.
+
 ### Landing seam-source readable-guide checkpoint
 - Extended `resources/views/welcome.blade.php` with a small `Seam-source source of truth` note pointing at `README.md`, so the public Galaxy migration landing page now separates the config baseline for seam-source inventory from the readable guide contributors actually review.
 - Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new readable-guide note stays covered alongside the seam-source baseline and public-doc source-of-truth notes.

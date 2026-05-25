@@ -244,6 +244,10 @@
             <code>config/phase-1-reference-docs.php</code> keeps this admin-side Phase 1 reference inventory aligned.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
+            <strong>Reference guide:</strong>
+            <code>docs/blueprint.md</code> and <code>docs/phase-1-plan.md</code> remain the readable anchors for this admin-side Phase 1 reference trail.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
             <code>config/phase-1-reference-docs.php</code> keeps this admin-side Phase 1 reference trail aligned.
         </p>
