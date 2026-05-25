@@ -247,6 +247,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep the new Galaxy-specific Phase 1 seams visible where contributors review the live foundation shell.')
             ->assertSee('Seam coverage:')
             ->assertSee('4 Phase 1 foundation seams currently tracked.')
+            ->assertSee('Seam baseline:')
+            ->assertSee('config/phase-1-foundation-seams.php')
             ->assertSee('Seam posture:')
             ->assertSee('small config-backed and doc-backed foundation seams stay explicit.')
             ->assertSee('docs/phase-1-foundation-seams.md')

@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard seam baseline checkpoint
+- Extended `resources/views/admin/dashboard.blade.php` with a small `Seam baseline` note pointing at `config/phase-1-foundation-seams.php`, so the Phase 1 seam inventory now shows an explicit baseline/config seam in addition to its seam count and source-of-truth note.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new baseline note stays covered on the live admin surface.
+- Kept the step intentionally small, but it makes the seam card read in the same inventory-plus-baseline style as the newer entity and reference cards.
+
 ### Dashboard entity baseline checkpoint
 - Extended `resources/views/admin/dashboard.blade.php` with a small `Entity baseline` note pointing at `config/phase-1-domain-map.php`, so the Phase 1 entity inventory now shows an explicit baseline/config seam in addition to its live-record coverage and mapped-entity count.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new baseline note stays covered on the live admin surface.

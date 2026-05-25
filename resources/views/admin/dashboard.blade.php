@@ -206,6 +206,10 @@
             {{ $phaseOneFoundationSeamsCoverage }}.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
+            <strong>Seam baseline:</strong>
+            <code>config/phase-1-foundation-seams.php</code> keeps this mapped seam inventory aligned.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
             <strong>Seam posture:</strong>
             {{ $phaseOneFoundationSeamsPosture }}.
         </p>
