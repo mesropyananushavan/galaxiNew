@@ -255,6 +255,7 @@
             <article class="card">
                 <h3>Helpful project docs</h3>
                 <p>Doc coverage: {{ count(config('landing-docs.items', [])) }} public Galaxy migration references currently linked.</p>
+                <p>Seam-source coverage: {{ count(config('phase-1-seam-sources.items', [])) }} Phase 1 seam sources currently documented in <code>README.md</code>.</p>
                 <p>Source of truth: <code>config/landing-docs.php</code> keeps this public Galaxy migration reference trail aligned.</p>
                 <ul>
                     @foreach (config('landing-docs.items', []) as $doc)

@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Landing seam-source coverage checkpoint
+- Added `config/phase-1-seam-sources.php` and surfaced a small `Seam-source coverage` signal on `resources/views/welcome.blade.php`, so the public Galaxy migration landing page now reflects the current README-level Phase 1 seam-source inventory instead of only the doc-link inventory.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new seam-source count now stays covered alongside the existing doc coverage and source-of-truth signals.
+- Kept the step intentionally small, but it ties the public landing surface a bit more tightly to the top-level Galaxy foundation guidance instead of leaving README seam sources invisible there.
+
 ### Dashboard entity inventory checkpoint
 - Extended `app/Http/Controllers/Admin/DashboardController.php` with a small `phaseOneDomainInventory()` helper and surfaced that count on the `Phase 1 core entity map` card in `resources/views/admin/dashboard.blade.php`.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin surface now guards the mapped-entity inventory count alongside the existing live-record coverage signal.
