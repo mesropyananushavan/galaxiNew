@@ -26,6 +26,8 @@ class ExampleTest extends TestCase
             ->assertSee('Helpful project docs')
             ->assertSee('Doc coverage:')
             ->assertSee('18 public Galaxy migration references currently linked.')
+            ->assertSee('Doc baseline:')
+            ->assertSee('config/landing-docs.php')
             ->assertSee('Seam-source coverage:')
             ->assertSee('4 Phase 1 seam sources currently documented in')
             ->assertSee('README.md')
