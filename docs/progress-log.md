@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Foundation-seam source richness checkpoint
+- Extended `config/phase-1-foundation-seams.php` so the admin and public reference-trail entries now point at the seam note as a readable summary anchor alongside their config and runtime surfaces.
+- Updated `docs/phase-1-foundation-seams.md` plus `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the richer admin/public seam descriptions stay visible on the live admin surface.
+- Kept the step intentionally small, but it makes the seam inventory read more consistently across domain, admin, and public slices instead of leaving the latter two as config-only pointers.
+
 ### README foundation-seam source trail checkpoint
 - Extended `docs/phase-1-foundation-seams.md` with an explicit source-of-truth section that points at the readable note, `config/phase-1-foundation-seams.php`, and the live dashboard surface.
 - Updated `README.md` with a compact `Phase 1 seam sources` section so the top-level repo guidance now exposes the small config seams that keep the Galaxy-specific entity map, seam inventory, admin references, and public landing docs aligned.

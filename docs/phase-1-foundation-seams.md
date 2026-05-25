@@ -16,11 +16,13 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 
 ### Admin reference trail
+- readable summary anchor: this file
 - implementation baseline: `config/phase-1-reference-docs.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 - current role: keeps the admin-side Phase 1 blueprint, plan, IA, shell, checkpoint, and progress-log trail aligned
 
 ### Public landing reference trail
+- readable summary anchor: this file
 - implementation baseline: `config/landing-docs.php`
 - visible runtime surface: `resources/views/welcome.blade.php`
 - current role: keeps the public Galaxy migration doc trail aligned
