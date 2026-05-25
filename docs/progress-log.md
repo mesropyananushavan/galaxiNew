@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard Phase 1 reference-doc config checkpoint
+- Added `config/phase-1-reference-docs.php` and switched the dashboard reference-doc card onto that config, so the current Phase 1 blueprint, plan, domain-map, IA, shell, checkpoint, and progress-log trail now reads through one small Galaxy-specific seam instead of an inline Blade list.
+- Extended `app/Http/Controllers/Admin/DashboardController.php` and `tests/Feature/AdminDashboardTest.php` so the live admin workspace and its focused regression slice both keep the new config-driven reference trail visible.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_admin_dashboard` successfully after the refactor.
+
 ### Phase 1 domain-map source-of-truth checkpoint
 - Extended the dashboard entity-map card with an explicit source-of-truth note that points at `docs/phase-1-domain-map.md` and `config/phase-1-domain-map.php`, so the live admin workspace now tells contributors where the readable and implementation-facing Phase 1 entity baselines live.
 - Updated `docs/phase-1-plan.md` and `docs/blueprint.md` so the migration plan and blueprint now treat the Phase 1 domain map as a first-class deliverable instead of an implied side note.
