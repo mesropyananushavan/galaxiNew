@@ -161,6 +161,30 @@
     </section>
 
     <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 core entity map</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneDomainFocus }}
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Entity coverage:</strong>
+            {{ $phaseOneDomainCoverage }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Entity posture:</strong>
+            {{ $phaseOneDomainPosture }}.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneDomainMap as $entity)
+                <li>
+                    <strong>{{ $entity['label'] }}</strong>
+                    (<code>{{ $entity['table'] }}</code>)
+                    , {{ $entity['coverage'] }}
+                </li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 reference docs</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
             Keep the current Galaxy admin map, shell layering, and checkpoint trail close while Phase 1 slices are still moving.

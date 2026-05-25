@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-05-25
+
+### Dashboard Phase 1 entity-map checkpoint
+- Added `config/phase-1-domain-map.php` as a small Galaxy-specific foundation map for the first six Phase 1 entities, so the repo now carries an explicit entity baseline instead of leaving that list buried only in planning docs.
+- Extended `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` to surface the new entity map, live entity coverage, and entity posture directly inside the admin workspace.
+- Extended `tests/Feature/AdminDashboardTest.php` and re-ran the focused admin dashboard feature slice successfully, so the new Galaxy entity-map surface is covered by a real regression check.
+
 ## 2026-05-24
 
 ### Admin dashboard checkpoint-trail reference sync checkpoint

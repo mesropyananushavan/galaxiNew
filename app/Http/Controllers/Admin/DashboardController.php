@@ -21,6 +21,9 @@ class DashboardController extends Controller
         return view('admin.dashboard', [
             'pageTitle' => 'Dashboard',
             'navigationGroups' => $navigation,
+            'phaseOneDomainMap' => config('phase-1-domain-map.entities', []),
+            'phaseOneDomainFocus' => (string) config('phase-1-domain-map.focus', 'Keep the first Galaxy foundation entities explicit while Phase 1 work is still landing.'),
+            'phaseOneDomainPosture' => (string) config('phase-1-domain-map.posture', 'documented entity baseline for live foundation work'),
             'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),
             'liveDomainCoverage' => $this->liveDomainCoverage(),
             'foundationFocus' => $this->foundationFocus(),
@@ -50,6 +53,7 @@ class DashboardController extends Controller
             'migrationMapHandoffSummary' => $this->migrationMapHandoffSummary($navigation),
             'migrationMapFocus' => $this->migrationMapFocus($navigation),
             'migrationMapPosture' => $this->migrationMapPosture(),
+            'phaseOneDomainCoverage' => $this->phaseOneDomainCoverage(),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'liveEntryPointCoverage' => $this->liveEntryPointCoverage(),
             'liveEntryPointFocus' => $this->liveEntryPointFocus(),
@@ -70,6 +74,18 @@ class DashboardController extends Controller
     protected function liveEntryPointCoverage(): string
     {
         return sprintf('%d live review entry points staged', count($this->liveReviewEntryPoints()));
+    }
+
+    protected function phaseOneDomainCoverage(): string
+    {
+        $entities = collect(config('phase-1-domain-map.entities', []));
+
+        $visibleCount = $entities
+            ->filter(fn (array $entity): bool => filled($entity['model'] ?? null) && class_exists($entity['model']))
+            ->filter(fn (array $entity): bool => $entity['model']::query()->count() > 0)
+            ->count();
+
+        return sprintf('%d/%d Phase 1 entities already have live Galaxy records', $visibleCount, $entities->count());
     }
 
     protected function liveEntryPointFocus(): string
