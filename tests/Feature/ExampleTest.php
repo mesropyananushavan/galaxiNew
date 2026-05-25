@@ -29,6 +29,8 @@ class ExampleTest extends TestCase
             ->assertSee('Seam-source coverage:')
             ->assertSee('4 Phase 1 seam sources currently documented in')
             ->assertSee('README.md')
+            ->assertSee('Seam-source baseline:')
+            ->assertSee('config/phase-1-seam-sources.php')
             ->assertSee('Source of truth:')
             ->assertSee('config/landing-docs.php')
             ->assertSee('OpenClaw docs')

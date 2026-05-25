@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Landing seam-source baseline checkpoint
+- Extended `resources/views/welcome.blade.php` with a small `Seam-source baseline` note pointing at `config/phase-1-seam-sources.php`, so the public Galaxy migration landing page now makes the README-level seam-source inventory traceable through its own config seam.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new baseline note stays covered alongside the seam-source count and the landing-doc source-of-truth note.
+- Kept the step intentionally small, but it makes the public surface read a little more like a deliberate Galaxy foundation contract and a little less like a one-off README mention.
+
 ### Landing seam-source coverage checkpoint
 - Added `config/phase-1-seam-sources.php` and surfaced a small `Seam-source coverage` signal on `resources/views/welcome.blade.php`, so the public Galaxy migration landing page now reflects the current README-level Phase 1 seam-source inventory instead of only the doc-link inventory.
 - Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new seam-source count now stays covered alongside the existing doc coverage and source-of-truth signals.
