@@ -24,6 +24,8 @@ class ExampleTest extends TestCase
             ->assertSee('Land small safe foundation slices with visible Git history')
             ->assertSee('Keep checkpoints, analysis notes, and QA references close to the work')
             ->assertSee('Helpful project docs')
+            ->assertSee('Doc coverage:')
+            ->assertSee('18 public Galaxy migration references currently linked.')
             ->assertSee('Source of truth:')
             ->assertSee('config/landing-docs.php')
             ->assertSee('OpenClaw docs')
