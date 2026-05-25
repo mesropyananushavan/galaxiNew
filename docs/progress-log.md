@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### README foundation-seam source trail checkpoint
+- Extended `docs/phase-1-foundation-seams.md` with an explicit source-of-truth section that points at the readable note, `config/phase-1-foundation-seams.php`, and the live dashboard surface.
+- Updated `README.md` with a compact `Phase 1 seam sources` section so the top-level repo guidance now exposes the small config seams that keep the Galaxy-specific entity map, seam inventory, admin references, and public landing docs aligned.
+- Re-ran a focused readback on `README.md` and the seams note after a small follow-up fix, so the top-level Phase 1 reference trail stays clean and non-duplicated.
+
 ### Dashboard Phase 1 foundation-seams source sync checkpoint
 - Refined the `Phase 1 foundation seams` card on `resources/views/admin/dashboard.blade.php` so its source-of-truth note now points at both `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, matching the readable-summary plus implementation-baseline pattern already used by the entity map card.
 - Extended `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new readable-summary reference stays covered on the live admin surface.
