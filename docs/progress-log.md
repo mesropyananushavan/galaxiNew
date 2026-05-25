@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard reference baseline checkpoint
+- Extended `resources/views/admin/dashboard.blade.php` with a small `Reference baseline` note pointing at `config/phase-1-reference-docs.php`, so the admin Phase 1 reference inventory now shows an explicit baseline/config seam in addition to its coverage signal and source-of-truth note.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new baseline note stays covered on the live admin surface.
+- Kept the step intentionally small, but it makes the admin reference card read a little more like the newer public seam-source inventory pattern instead of only showing links plus one source note.
+
 ### Landing seam-source baseline checkpoint
 - Extended `resources/views/welcome.blade.php` with a small `Seam-source baseline` note pointing at `config/phase-1-seam-sources.php`, so the public Galaxy migration landing page now makes the README-level seam-source inventory traceable through its own config seam.
 - Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new baseline note stays covered alongside the seam-source count and the landing-doc source-of-truth note.
