@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Phase 1 domain-map source-of-truth checkpoint
+- Extended the dashboard entity-map card with an explicit source-of-truth note that points at `docs/phase-1-domain-map.md` and `config/phase-1-domain-map.php`, so the live admin workspace now tells contributors where the readable and implementation-facing Phase 1 entity baselines live.
+- Updated `docs/phase-1-plan.md` and `docs/blueprint.md` so the migration plan and blueprint now treat the Phase 1 domain map as a first-class deliverable instead of an implied side note.
+- Extended `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully.
+
 ### Phase 1 domain-map doc-trail checkpoint
 - Added `docs/phase-1-domain-map.md` as a compact human-readable companion to `config/phase-1-domain-map.php`, so the first Galaxy entity baseline is now visible in the repo doc trail as well as in config and the admin workspace.
 - Linked the new Phase 1 domain-map note from `resources/views/admin/dashboard.blade.php`, `resources/views/welcome.blade.php`, and `README.md` so the public landing surface, admin reference list, and top-level repo guidance all expose the same Galaxy-specific entity baseline.

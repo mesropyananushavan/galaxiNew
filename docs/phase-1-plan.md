@@ -19,6 +19,11 @@ Turn `galaxiNew` from scaffold defaults into a Galaxy-specific application found
 - CardType
 - Card
 
+## Entity baseline note
+- The human-readable Phase 1 entity map lives in `docs/phase-1-domain-map.md`.
+- The implementation-facing baseline for that same set lives in `config/phase-1-domain-map.php`.
+- Keep those two files aligned with the dashboard entity-map card when the Phase 1 baseline changes.
+
 ## Definition of done
 - core entities exist as Laravel models/migrations
 - admin shell reflects target sections

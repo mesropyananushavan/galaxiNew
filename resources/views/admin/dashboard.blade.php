@@ -173,6 +173,10 @@
             <strong>Entity posture:</strong>
             {{ $phaseOneDomainPosture }}.
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            <code>docs/phase-1-domain-map.md</code> for the readable summary, <code>config/phase-1-domain-map.php</code> for the implementation baseline.
+        </p>
         <ul class="list">
             @foreach ($phaseOneDomainMap as $entity)
                 <li>
