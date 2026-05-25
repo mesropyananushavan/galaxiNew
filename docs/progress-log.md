@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Landing-page doc-trail config checkpoint
+- Added `config/landing-docs.php` and switched the public `Helpful project docs` list in `resources/views/welcome.blade.php` onto that config, so the landing-page reference trail now reads through one small Galaxy-specific seam instead of an inline Blade list.
+- Extended `tests/Feature/ExampleTest.php` so the focused landing-page guardrail now asserts the config-driven doc trail still includes the OpenClaw reference plus the current Phase 1 and Galaxy migration docs.
+- Re-ran `php artisan test --filter=test_the_home_page_surfaces_the_galaxy_foundation_landing_page` successfully after the refactor.
+
 ### Dashboard Phase 1 reference-doc config checkpoint
 - Added `config/phase-1-reference-docs.php` and switched the dashboard reference-doc card onto that config, so the current Phase 1 blueprint, plan, domain-map, IA, shell, checkpoint, and progress-log trail now reads through one small Galaxy-specific seam instead of an inline Blade list.
 - Extended `app/Http/Controllers/Admin/DashboardController.php` and `tests/Feature/AdminDashboardTest.php` so the live admin workspace and its focused regression slice both keep the new config-driven reference trail visible.

@@ -255,23 +255,15 @@
             <article class="card">
                 <h3>Helpful project docs</h3>
                 <ul>
-                    <li><a href="https://docs.openclaw.ai" target="_blank" rel="noreferrer">OpenClaw docs</a></li>
-                    <li><code>docs/blueprint.md</code></li>
-                    <li><code>docs/phase-1-plan.md</code></li>
-                    <li><code>docs/phase-1-domain-map.md</code></li>
-                    <li><code>docs/migration-plan.md</code></li>
-                    <li><code>docs/migration_plan.md</code></li>
-                    <li><code>docs/admin-information-architecture.md</code></li>
-                    <li><code>docs/admin-shell-layering.md</code></li>
-                    <li><code>docs/admin-shell-config-map.md</code></li>
-                    <li><code>docs/decisions.md</code></li>
-                    <li><code>docs/module_mapping.md</code></li>
-                    <li><code>docs/db_schema.md</code></li>
-                    <li><code>docs/api_endpoints.md</code></li>
-                    <li><code>docs/checkpoints/</code></li>
-                    <li><code>docs/analysis/</code></li>
-                    <li><code>docs/qa-test-environment.md</code></li>
-                    <li><code>docs/progress-log.md</code></li>
+                    @foreach (config('landing-docs.items', []) as $doc)
+                        <li>
+                            @if (($doc['external'] ?? false) && filled($doc['href'] ?? null))
+                                <a href="{{ $doc['href'] }}" target="_blank" rel="noreferrer">{{ $doc['label'] }}</a>
+                            @else
+                                <code>{{ $doc['label'] }}</code>
+                            @endif
+                        </li>
+                    @endforeach
                 </ul>
             </article>
         </section>
