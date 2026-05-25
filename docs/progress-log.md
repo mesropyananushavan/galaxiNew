@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard foundation-seam coverage checkpoint
+- Extended `app/Http/Controllers/Admin/DashboardController.php` with a small `phaseOneFoundationSeamsCoverage()` helper and surfaced that count on the `Phase 1 foundation seams` card in `resources/views/admin/dashboard.blade.php`.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin surface now guards the current seam inventory count as well as the seam descriptions.
+- Kept the step intentionally small, but it makes the seam map read a little more like an operational Phase 1 inventory and a little less like a static note dump.
+
 ### Foundation-seam source richness checkpoint
 - Extended `config/phase-1-foundation-seams.php` so the admin and public reference-trail entries now point at the seam note as a readable summary anchor alongside their config and runtime surfaces.
 - Updated `docs/phase-1-foundation-seams.md` plus `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the richer admin/public seam descriptions stay visible on the live admin surface.

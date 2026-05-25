@@ -29,6 +29,7 @@ class DashboardController extends Controller
             'phaseOneFoundationSeams' => config('phase-1-foundation-seams.items', []),
             'phaseOneFoundationSeamsFocus' => (string) config('phase-1-foundation-seams.focus', 'Keep the new Galaxy-specific Phase 1 seams visible where contributors review the live foundation shell.'),
             'phaseOneFoundationSeamsPosture' => (string) config('phase-1-foundation-seams.posture', 'small config-backed and doc-backed foundation seams stay explicit'),
+            'phaseOneFoundationSeamsCoverage' => $this->phaseOneFoundationSeamsCoverage(),
             'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),
             'liveDomainCoverage' => $this->liveDomainCoverage(),
             'foundationFocus' => $this->foundationFocus(),
@@ -91,6 +92,13 @@ class DashboardController extends Controller
             ->count();
 
         return sprintf('%d/%d Phase 1 entities already have live Galaxy records', $visibleCount, $entities->count());
+    }
+
+    protected function phaseOneFoundationSeamsCoverage(): string
+    {
+        $seams = collect(config('phase-1-foundation-seams.items', []));
+
+        return sprintf('%d Phase 1 foundation seams currently tracked', $seams->count());
     }
 
     protected function liveEntryPointFocus(): string

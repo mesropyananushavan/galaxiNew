@@ -194,6 +194,10 @@
             {{ $phaseOneFoundationSeamsFocus }}
         </p>
         <p style="{{ $dashboardNoteStyle }}">
+            <strong>Seam coverage:</strong>
+            {{ $phaseOneFoundationSeamsCoverage }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
             <strong>Seam posture:</strong>
             {{ $phaseOneFoundationSeamsPosture }}.
         </p>

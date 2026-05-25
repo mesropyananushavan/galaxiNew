@@ -241,6 +241,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card shell inventory linked to holders, tiers, and branches.')
             ->assertSee('Phase 1 foundation seams')
             ->assertSee('Keep the new Galaxy-specific Phase 1 seams visible where contributors review the live foundation shell.')
+            ->assertSee('Seam coverage:')
+            ->assertSee('3 Phase 1 foundation seams currently tracked.')
             ->assertSee('Seam posture:')
             ->assertSee('small config-backed and doc-backed foundation seams stay explicit.')
             ->assertSee('docs/phase-1-foundation-seams.md')
