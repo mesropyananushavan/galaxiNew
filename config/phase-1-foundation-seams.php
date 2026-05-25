@@ -31,5 +31,13 @@ return [
                 'resources/views/welcome.blade.php',
             ],
         ],
+        [
+            'label' => 'Top-level repo guidance',
+            'summary' => 'Top-level contributor guidance stays aligned across the seam note and README reference trail.',
+            'sources' => [
+                'docs/phase-1-foundation-seams.md',
+                'README.md',
+            ],
+        ],
     ],
 ];

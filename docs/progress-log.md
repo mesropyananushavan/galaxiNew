@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Foundation-seam repo-guidance checkpoint
+- Extended `config/phase-1-foundation-seams.php` and `docs/phase-1-foundation-seams.md` with a fourth seam, `Top-level repo guidance`, so the README-level Phase 1 reference trail is now part of the same explicit Galaxy-specific seam inventory as the domain, admin, and public landing slices.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin seam card now guards the expanded seam inventory and its new `4 Phase 1 foundation seams currently tracked` signal.
+- Kept the step intentionally small, but it closes one more gap between documented Phase 1 guidance and the runtime seam map shown inside the admin workspace.
+
 ### Dashboard foundation-seam coverage checkpoint
 - Extended `app/Http/Controllers/Admin/DashboardController.php` with a small `phaseOneFoundationSeamsCoverage()` helper and surfaced that count on the `Phase 1 foundation seams` card in `resources/views/admin/dashboard.blade.php`.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin surface now guards the current seam inventory count as well as the seam descriptions.
