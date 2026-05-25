@@ -216,6 +216,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep the first Galaxy foundation entities explicit while Phase 1 replaces scaffold defaults with branch, access, holder, card, and tier-aware building blocks')
             ->assertSee('Entity coverage:')
             ->assertSee('6/6 Phase 1 entities already have live Galaxy records.')
+            ->assertSee('Entity inventory:')
+            ->assertSee('6 Phase 1 entities currently mapped.')
             ->assertSee('Entity posture:')
             ->assertSee('documented entity baseline for live foundation work.')
             ->assertSee('Source of truth:')

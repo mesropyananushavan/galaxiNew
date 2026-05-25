@@ -170,6 +170,10 @@
             {{ $phaseOneDomainCoverage }}.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
+            <strong>Entity inventory:</strong>
+            {{ $phaseOneDomainInventory }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
             <strong>Entity posture:</strong>
             {{ $phaseOneDomainPosture }}.
         </p>

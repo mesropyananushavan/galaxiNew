@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard entity inventory checkpoint
+- Extended `app/Http/Controllers/Admin/DashboardController.php` with a small `phaseOneDomainInventory()` helper and surfaced that count on the `Phase 1 core entity map` card in `resources/views/admin/dashboard.blade.php`.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin surface now guards the mapped-entity inventory count alongside the existing live-record coverage signal.
+- Kept the step intentionally small, but it brings the entity card into the same more operational inventory style now used by the seam and reference cards.
+
 ### Landing-page doc coverage checkpoint
 - Extended `resources/views/welcome.blade.php` with a small `Doc coverage` signal for the config-driven `Helpful project docs` list, so the public Galaxy migration landing page now shows the current size of its reference trail instead of only listing links.
 - Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public doc inventory count now stays covered alongside the existing source-of-truth and reference assertions.

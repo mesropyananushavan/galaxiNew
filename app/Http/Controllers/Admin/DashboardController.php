@@ -24,6 +24,7 @@ class DashboardController extends Controller
             'phaseOneDomainMap' => config('phase-1-domain-map.entities', []),
             'phaseOneDomainFocus' => (string) config('phase-1-domain-map.focus', 'Keep the first Galaxy foundation entities explicit while Phase 1 work is still landing.'),
             'phaseOneDomainPosture' => (string) config('phase-1-domain-map.posture', 'documented entity baseline for live foundation work'),
+            'phaseOneDomainInventory' => $this->phaseOneDomainInventory(),
             'phaseOneReferenceDocs' => config('phase-1-reference-docs.items', []),
             'phaseOneReferenceDocsFocus' => (string) config('phase-1-reference-docs.focus', 'Keep the current Galaxy admin map, shell layering, and checkpoint trail close while Phase 1 slices are still moving.'),
             'phaseOneReferenceDocsCoverage' => $this->phaseOneReferenceDocsCoverage(),
@@ -93,6 +94,11 @@ class DashboardController extends Controller
             ->count();
 
         return sprintf('%d/%d Phase 1 entities already have live Galaxy records', $visibleCount, $entities->count());
+    }
+
+    protected function phaseOneDomainInventory(): string
+    {
+        return sprintf('%d Phase 1 entities currently mapped', count(config('phase-1-domain-map.entities', [])));
     }
 
     protected function phaseOneFoundationSeamsCoverage(): string
