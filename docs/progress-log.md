@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard reference-doc source note checkpoint
+- Extended `resources/views/admin/dashboard.blade.php` with a small source-of-truth note pointing at `config/phase-1-reference-docs.php`, so the admin Phase 1 reference card now tells contributors where its doc trail is maintained.
+- Extended `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new source note stays covered by a real guardrail.
+- Kept the step intentionally small, but it makes the admin reference surface read a little less like starter content and a little more like an explicit Galaxy foundation seam.
+
 ### Landing-page doc-trail source note checkpoint
 - Extended `resources/views/welcome.blade.php` with a small source-of-truth note pointing at `config/landing-docs.php`, so the public Galaxy migration landing page now tells contributors where its doc trail is maintained.
 - Extended `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new source note stays covered by a real guardrail.

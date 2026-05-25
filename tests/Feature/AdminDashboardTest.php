@@ -241,6 +241,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Card shell inventory linked to holders, tiers, and branches.')
             ->assertSee('Phase 1 reference docs')
             ->assertSee('Keep the current Galaxy admin map, shell layering, and checkpoint trail close while Phase 1 slices are still moving')
+            ->assertSee('Source of truth:')
+            ->assertSee('config/phase-1-reference-docs.php')
             ->assertSee('docs/blueprint.md')
             ->assertSee('docs/phase-1-plan.md')
             ->assertSee('docs/phase-1-domain-map.md')

@@ -193,6 +193,10 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneReferenceDocsFocus }}
         </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            <code>config/phase-1-reference-docs.php</code> keeps this admin-side Phase 1 reference trail aligned.
+        </p>
         <ul class="list">
             @foreach ($phaseOneReferenceDocs as $referenceDoc)
                 <li><code>{{ $referenceDoc }}</code></li>
