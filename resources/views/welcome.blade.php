@@ -254,6 +254,7 @@
 
             <article class="card">
                 <h3>Helpful project docs</h3>
+                <p>Source of truth: <code>config/landing-docs.php</code> keeps this public Galaxy migration reference trail aligned.</p>
                 <ul>
                     @foreach (config('landing-docs.items', []) as $doc)
                         <li>

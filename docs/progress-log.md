@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Landing-page doc-trail source note checkpoint
+- Extended `resources/views/welcome.blade.php` with a small source-of-truth note pointing at `config/landing-docs.php`, so the public Galaxy migration landing page now tells contributors where its doc trail is maintained.
+- Extended `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new source note stays covered by a real guardrail.
+- Kept the step intentionally small, but it makes the public reference surface read a little less like starter content and a little more like an explicit Galaxy foundation seam.
+
 ### Landing-page doc-trail config checkpoint
 - Added `config/landing-docs.php` and switched the public `Helpful project docs` list in `resources/views/welcome.blade.php` onto that config, so the landing-page reference trail now reads through one small Galaxy-specific seam instead of an inline Blade list.
 - Extended `tests/Feature/ExampleTest.php` so the focused landing-page guardrail now asserts the config-driven doc trail still includes the OpenClaw reference plus the current Phase 1 and Galaxy migration docs.
