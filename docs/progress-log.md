@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard Phase 1 foundation-seams config checkpoint
+- Added `config/phase-1-foundation-seams.php` and surfaced it on `resources/views/admin/dashboard.blade.php`, so the current Galaxy-specific seam map now exists as implementation-facing config and not only as a documentation note.
+- Extended `app/Http/Controllers/Admin/DashboardController.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the new seam inventory stays visible from the live admin workspace.
+- Kept the step intentionally small, but it turns one more Phase 1 foundation concept into a runtime-visible Galaxy-specific seam instead of a docs-only description.
+
 ### Phase 1 foundation-seams blueprint-plan alignment checkpoint
 - Updated `docs/blueprint.md` and `docs/phase-1-plan.md` so the new `docs/phase-1-foundation-seams.md` note is now part of the main Phase 1 narrative, not just the dashboard, landing-page, and README reference trail.
 - Promoted the seams note into both the blueprint admin-shell implementation note and the plan's entity/admin-shell guidance, so contributors can discover the current Galaxy-specific seam map directly from the core migration docs.

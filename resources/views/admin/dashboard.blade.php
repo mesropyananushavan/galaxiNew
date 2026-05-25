@@ -189,6 +189,32 @@
     </section>
 
     <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 foundation seams</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneFoundationSeamsFocus }}
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Seam posture:</strong>
+            {{ $phaseOneFoundationSeamsPosture }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            <code>config/phase-1-foundation-seams.php</code> keeps this seam map aligned with the live Galaxy foundation shell.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneFoundationSeams as $seam)
+                <li>
+                    <strong>{{ $seam['label'] }}</strong>, {{ $seam['summary'] }}
+                    @if (is_array($seam['sources'] ?? null) && $seam['sources'] !== [])
+                        <br>
+                        <span style="color: var(--text-muted);">Sources: {{ implode(', ', $seam['sources']) }}</span>
+                    @endif
+                </li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 reference docs</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneReferenceDocsFocus }}
