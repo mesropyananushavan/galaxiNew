@@ -29,6 +29,7 @@ class ExampleTest extends TestCase
             ->assertSee('OpenClaw docs')
             ->assertSee('docs/blueprint.md')
             ->assertSee('docs/phase-1-domain-map.md')
+            ->assertSee('docs/phase-1-foundation-seams.md')
             ->assertSee('docs/migration-plan.md')
             ->assertSee('docs/migration_plan.md')
             ->assertSee('docs/admin-information-architecture.md')

@@ -10,6 +10,7 @@ return [
         ['label' => 'docs/blueprint.md'],
         ['label' => 'docs/phase-1-plan.md'],
         ['label' => 'docs/phase-1-domain-map.md'],
+        ['label' => 'docs/phase-1-foundation-seams.md'],
         ['label' => 'docs/migration-plan.md'],
         ['label' => 'docs/migration_plan.md'],
         ['label' => 'docs/admin-information-architecture.md'],

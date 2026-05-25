@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Phase 1 foundation-seams note checkpoint
+- Added `docs/phase-1-foundation-seams.md` as a compact map of the current Galaxy-specific Phase 1 seams, tying together the entity baseline, admin reference trail, and public landing doc trail.
+- Linked the new note through `config/phase-1-reference-docs.php`, `config/landing-docs.php`, and `README.md`, then extended the focused dashboard and landing-page feature assertions so the new seam note stays visible from both live entry surfaces.
+- Re-ran the focused dashboard and landing-page feature slices successfully after the follow-up.
+
 ### Dashboard reference-doc source note checkpoint
 - Extended `resources/views/admin/dashboard.blade.php` with a small source-of-truth note pointing at `config/phase-1-reference-docs.php`, so the admin Phase 1 reference card now tells contributors where its doc trail is maintained.
 - Extended `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new source note stays covered by a real guardrail.

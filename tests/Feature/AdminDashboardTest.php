@@ -246,6 +246,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('docs/blueprint.md')
             ->assertSee('docs/phase-1-plan.md')
             ->assertSee('docs/phase-1-domain-map.md')
+            ->assertSee('docs/phase-1-foundation-seams.md')
             ->assertSee('docs/admin-information-architecture.md')
             ->assertSee('docs/admin-shell-layering.md')
             ->assertSee('docs/admin-shell-config-map.md')
