@@ -243,6 +243,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keep the new Galaxy-specific Phase 1 seams visible where contributors review the live foundation shell.')
             ->assertSee('Seam posture:')
             ->assertSee('small config-backed and doc-backed foundation seams stay explicit.')
+            ->assertSee('docs/phase-1-foundation-seams.md')
             ->assertSee('config/phase-1-foundation-seams.php')
             ->assertSee('Domain baseline')
             ->assertSee('Entity baseline stays aligned across readable docs, implementation config, and the dashboard runtime surface.')

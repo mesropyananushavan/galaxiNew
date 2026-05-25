@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard Phase 1 foundation-seams source sync checkpoint
+- Refined the `Phase 1 foundation seams` card on `resources/views/admin/dashboard.blade.php` so its source-of-truth note now points at both `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, matching the readable-summary plus implementation-baseline pattern already used by the entity map card.
+- Extended `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new readable-summary reference stays covered on the live admin surface.
+- Kept the step intentionally small, but it makes the new seam inventory read more like a deliberate Galaxy foundation contract and less like a one-sided config pointer.
+
 ### Dashboard Phase 1 foundation-seams config checkpoint
 - Added `config/phase-1-foundation-seams.php` and surfaced it on `resources/views/admin/dashboard.blade.php`, so the current Galaxy-specific seam map now exists as implementation-facing config and not only as a documentation note.
 - Extended `app/Http/Controllers/Admin/DashboardController.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the new seam inventory stays visible from the live admin workspace.

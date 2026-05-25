@@ -199,7 +199,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            <code>config/phase-1-foundation-seams.php</code> keeps this seam map aligned with the live Galaxy foundation shell.
+            <code>docs/phase-1-foundation-seams.md</code> for the readable summary, <code>config/phase-1-foundation-seams.php</code> for the implementation baseline.
         </p>
         <ul class="list">
             @foreach ($phaseOneFoundationSeams as $seam)
