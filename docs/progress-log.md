@@ -2,6 +2,11 @@
 
 ## 2026-05-25
 
+### Dashboard reference-doc coverage checkpoint
+- Extended `app/Http/Controllers/Admin/DashboardController.php` with a small `phaseOneReferenceDocsCoverage()` helper and surfaced that count on the `Phase 1 reference docs` card in `resources/views/admin/dashboard.blade.php`.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin surface now guards the current reference-doc inventory count as well as the linked doc trail.
+- Kept the step intentionally small, but it makes the admin reference map read a little more like an operational Phase 1 inventory and a little less like a static link list.
+
 ### Foundation-seam repo-guidance checkpoint
 - Extended `config/phase-1-foundation-seams.php` and `docs/phase-1-foundation-seams.md` with a fourth seam, `Top-level repo guidance`, so the README-level Phase 1 reference trail is now part of the same explicit Galaxy-specific seam inventory as the domain, admin, and public landing slices.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin seam card now guards the expanded seam inventory and its new `4 Phase 1 foundation seams currently tracked` signal.
