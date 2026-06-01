@@ -255,7 +255,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            @foreach ($phaseOneFoundationSeamsGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach for the readable summary and implementation baseline.
+            @foreach ($phaseOneFoundationSeamsSourceOfTruth as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach remain the readable and implementation anchors for this mapped seam inventory.
         </p>
         <ul class="list">
             @foreach ($phaseOneFoundationSeams as $seam)

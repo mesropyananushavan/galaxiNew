@@ -3,6 +3,7 @@
 return [
     'focus' => 'Keep the new Galaxy-specific Phase 1 seams visible where contributors review the live foundation shell.',
     'guide' => ['docs/phase-1-foundation-seams.md', 'config/phase-1-foundation-seams.php'],
+    'source_of_truth' => ['docs/phase-1-foundation-seams.md', 'config/phase-1-foundation-seams.php'],
     'posture' => 'small config-backed and doc-backed foundation seams stay explicit',
     'items' => [
         [

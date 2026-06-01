@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Foundation-seam source-of-truth config checkpoint
+- Extended `config/phase-1-foundation-seams.php` with shared `source_of_truth` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed source-of-truth narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin seam surface now reads its source-of-truth anchors from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated dashboard seam copy with a clearer config-backed foundation seam.
+
 ### Blueprint entity source-truth sync checkpoint
 - Updated `docs/blueprint.md` so its Phase 1 deliverables now explicitly mirror the centralized entity-map source-of-truth anchors already carried in `config/phase-1-domain-map.php`.
 - Kept the step intentionally small and docs-only, but it keeps the higher-level migration blueprint aligned with the config-backed entity source-of-truth language now feeding the live admin entity card and the Phase 1 plan.
