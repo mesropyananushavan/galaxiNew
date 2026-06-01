@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### Foundation-seam seam-source copy sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `README seam-source trail` note now mirrors the shared `focus` and `posture` language already centralized in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it makes the readable seam map less likely to drift away from the config-backed seam-source narrative now feeding the live admin and public entry surfaces.
+
 ### Seam-source config copy checkpoint
 - Extended `config/phase-1-seam-sources.php` with shared `focus` and `posture` copy, then wired both `resources/views/admin/dashboard.blade.php` and `resources/views/welcome.blade.php` onto that config-backed seam text.
 - Updated `app/Http/Controllers/Admin/DashboardController.php`, `tests/Feature/AdminDashboardTest.php`, and `tests/Feature/ExampleTest.php`, then re-ran the focused dashboard and landing-page feature slices successfully so both live entry surfaces now read the same seam-source narrative from one Galaxy-specific seam.
