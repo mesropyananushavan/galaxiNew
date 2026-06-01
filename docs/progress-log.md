@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### README reference copy sync checkpoint
+- Updated `README.md` so the top-level `Core Phase 1 references` section now mirrors the centralized admin-side reference `focus`, `guide`, and `posture` narrative already carried in `config/phase-1-reference-docs.php`.
+- Kept the step intentionally small and docs-only, but it keeps the repo-level Phase 1 guidance aligned with the config-backed reference language now feeding the live admin dashboard reference surface.
+
 ### Dashboard-reference config copy checkpoint
 - Extended `config/phase-1-reference-docs.php` with shared `focus`, `guide`, and `posture` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed admin reference narrative.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin entry surface now reads its own reference-trail copy from one Galaxy-specific seam instead of keeping that wording inline in Blade.

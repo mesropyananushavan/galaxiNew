@@ -20,6 +20,12 @@ The current goal is Phase 1: turn this repo from scaffold defaults into a Galaxy
 
 ## Core Phase 1 references
 
+Focus: keep the current Galaxy admin map, shell layering, checkpoint trail, and seam-source baseline close while Phase 1 slices are still moving.
+
+Guide: `README.md`, `docs/blueprint.md`, and `docs/phase-1-plan.md` remain the readable anchors for this top-level Phase 1 reference trail.
+
+Posture: admin reference inventory stays explicit across the live Galaxy dashboard trail.
+
 - `docs/blueprint.md`
 - `docs/phase-1-plan.md`
 - `docs/phase-1-domain-map.md`
