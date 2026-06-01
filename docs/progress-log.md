@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Landing README reference sync checkpoint
+- Extended `config/landing-docs.php` so the public `Helpful project docs` inventory now includes `README.md` alongside the Phase 1 doc set.
+- Updated `resources/views/welcome.blade.php` and `tests/Feature/ExampleTest.php`, then re-ran the focused landing-page feature slice successfully so the top-level Galaxy migration guide stays visible from the public foundation surface too.
+- Kept the step intentionally small, but it makes the landing-page reference trail a little more complete and a little less docs-directory-only while Phase 1 foundation work is still repo-guidance heavy.
+
 ### Dashboard README reference sync checkpoint
 - Extended `config/phase-1-reference-docs.php` so the admin-side `Phase 1 reference docs` inventory now includes `README.md` alongside the Phase 1 doc set.
 - Updated `resources/views/admin/dashboard.blade.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the top-level Galaxy migration guide stays visible from the live admin workspace.

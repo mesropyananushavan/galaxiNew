@@ -259,6 +259,7 @@
                 <p>Seam-source coverage: {{ count(config('phase-1-seam-sources.items', [])) }} Phase 1 seam sources currently documented in <code>README.md</code>.</p>
                 <p>Seam-source baseline: <code>config/phase-1-seam-sources.php</code> keeps that README-level seam-source inventory aligned.</p>
                 <p>Seam-source source of truth: <code>README.md</code> remains the readable guide for those Phase 1 seam sources.</p>
+                <p>Doc guide: <code>README.md</code>, <code>docs/blueprint.md</code>, and <code>docs/phase-1-plan.md</code> remain the readable anchors for this public Galaxy migration reference trail.</p>
                 <p>Source of truth: <code>config/landing-docs.php</code> keeps this public Galaxy migration reference trail aligned.</p>
                 <ul>
                     @foreach (config('landing-docs.items', []) as $doc)

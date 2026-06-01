@@ -7,6 +7,7 @@ return [
             'href' => 'https://docs.openclaw.ai',
             'external' => true,
         ],
+        ['label' => 'README.md'],
         ['label' => 'docs/blueprint.md'],
         ['label' => 'docs/phase-1-plan.md'],
         ['label' => 'docs/phase-1-domain-map.md'],
