@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### Blueprint entity source-truth sync checkpoint
+- Updated `docs/blueprint.md` so its Phase 1 deliverables now explicitly mirror the centralized entity-map source-of-truth anchors already carried in `config/phase-1-domain-map.php`.
+- Kept the step intentionally small and docs-only, but it keeps the higher-level migration blueprint aligned with the config-backed entity source-of-truth language now feeding the live admin entity card and the Phase 1 plan.
+
 ### Phase-1-plan entity source-truth sync checkpoint
 - Updated `docs/phase-1-plan.md` so its `Entity baseline note` now explicitly mirrors the centralized entity-map source-of-truth anchors already carried in `config/phase-1-domain-map.php`.
 - Kept the step intentionally small and docs-only, but it keeps the main Phase 1 plan aligned with the config-backed entity source-of-truth language now feeding the live admin entity card.
