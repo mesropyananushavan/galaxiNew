@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### README reference source-truth sync checkpoint
+- Updated `README.md` so its `Core Phase 1 references` section now explicitly mirrors the centralized admin-side reference source-of-truth pattern, pairing the readable guide anchors with `config/phase-1-reference-docs.php` as the implementation baseline.
+- Kept the step intentionally small and docs-only, but it keeps the top-level Phase 1 reference guidance aligned with the config-backed source-of-truth language already used on the live admin dashboard reference surface.
+
 ### README seam-source guide sync checkpoint
 - Updated `README.md` so its `Phase 1 seam sources` section now mirrors the centralized seam-source `guide` language already carried in `config/phase-1-seam-sources.php`.
 - Kept the step intentionally small and docs-only, but it keeps the top-level seam-source guidance aligned with the same readable/implementation anchors now feeding the live admin and public seam-source surfaces.

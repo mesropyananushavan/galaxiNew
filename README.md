@@ -24,6 +24,8 @@ Focus: keep the current Galaxy admin map, shell layering, checkpoint trail, and 
 
 Guide: `README.md`, `docs/blueprint.md`, and `docs/phase-1-plan.md` remain the readable anchors for this top-level Phase 1 reference trail.
 
+Source of truth: `README.md`, `docs/blueprint.md`, and `docs/phase-1-plan.md` for the readable guides, `config/phase-1-reference-docs.php` for the implementation baseline.
+
 Posture: admin reference inventory stays explicit across the live Galaxy dashboard trail.
 
 - `docs/blueprint.md`
