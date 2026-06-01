@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Landing-doc source-of-truth config checkpoint
+- Extended `config/landing-docs.php` with shared `source_of_truth` copy, then wired `resources/views/welcome.blade.php` onto that config-backed source-of-truth narrative.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public entry surface now reads its source-of-truth anchors from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated landing reference copy with a clearer config-backed foundation seam.
+
 ### README reference source-truth sync checkpoint
 - Updated `README.md` so its `Core Phase 1 references` section now explicitly mirrors the centralized admin-side reference source-of-truth pattern, pairing the readable guide anchors with `config/phase-1-reference-docs.php` as the implementation baseline.
 - Kept the step intentionally small and docs-only, but it keeps the top-level Phase 1 reference guidance aligned with the config-backed source-of-truth language already used on the live admin dashboard reference surface.
