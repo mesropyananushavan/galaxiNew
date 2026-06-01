@@ -273,7 +273,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Reference guide:</strong>
-            <code>docs/blueprint.md</code> and <code>docs/phase-1-plan.md</code> remain the readable anchors for this admin-side Phase 1 reference trail.
+            <code>README.md</code>, <code>docs/blueprint.md</code>, and <code>docs/phase-1-plan.md</code> remain the readable anchors for this admin-side Phase 1 reference trail.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
