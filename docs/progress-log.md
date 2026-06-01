@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Landing reference seam-source inventory checkpoint
+- Extended `config/landing-docs.php` so the public `Helpful project docs` inventory now explicitly includes `config/phase-1-seam-sources.php` in its config-driven list, not only in supporting notes.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public reference card now guards the expanded twenty-item reference inventory.
+- Kept the step intentionally small, but it makes the public-side Phase 1 reference trail a little more structurally honest about the seam-source baseline that already helps anchor the broader Galaxy migration map.
+
 ### Dashboard reference seam-source inventory checkpoint
 - Extended `config/phase-1-reference-docs.php` so the admin-side `Phase 1 reference docs` inventory now explicitly includes `config/phase-1-seam-sources.php` in its config-driven list, not only in supporting notes.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin reference card now guards the expanded eleven-item reference inventory.
