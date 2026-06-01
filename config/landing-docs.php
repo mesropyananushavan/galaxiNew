@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'focus' => 'Keep the public Galaxy migration reference trail visible from the landing surface while repo guidance and Phase 1 seams are still moving.',
+    'guide' => ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md'],
+    'posture' => 'public reference inventory stays explicit across the live Galaxy landing trail',
     'items' => [
         [
             'label' => 'OpenClaw docs',

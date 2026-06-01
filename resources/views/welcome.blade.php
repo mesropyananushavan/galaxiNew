@@ -254,6 +254,7 @@
 
             <article class="card">
                 <h3>Helpful project docs</h3>
+                <p>Doc focus: {{ config('landing-docs.focus') }}</p>
                 <p>Doc coverage: {{ count(config('landing-docs.items', [])) }} public Galaxy migration references currently linked.</p>
                 <p>Doc baseline: <code>config/landing-docs.php</code> keeps this public Galaxy migration reference inventory aligned.</p>
                 <p>Seam-source focus: {{ config('phase-1-seam-sources.focus') }}</p>
@@ -261,7 +262,8 @@
                 <p>Seam-source baseline: <code>config/phase-1-seam-sources.php</code> keeps that README-level seam-source inventory aligned.</p>
                 <p>Seam-source posture: {{ config('phase-1-seam-sources.posture') }}.</p>
                 <p>Seam-source source of truth: <code>README.md</code> remains the readable guide for those Phase 1 seam sources.</p>
-                <p>Doc guide: <code>README.md</code>, <code>docs/blueprint.md</code>, and <code>docs/phase-1-plan.md</code> remain the readable anchors for this public Galaxy migration reference trail.</p>
+                <p>Doc guide: @foreach (config('landing-docs.guide', []) as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach remain the readable anchors for this public Galaxy migration reference trail.</p>
+                <p>Doc posture: {{ config('landing-docs.posture') }}.</p>
                 <p>Source of truth: <code>README.md</code> for the readable guide, <code>config/landing-docs.php</code> for the implementation baseline.</p>
                 <p>Reference seam bridge: <code>config/phase-1-seam-sources.php</code> keeps the README-level seam-source inventory tied into this broader public Phase 1 reference trail.</p>
                 <ul>

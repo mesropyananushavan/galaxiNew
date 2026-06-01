@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Landing-doc config copy checkpoint
+- Extended `config/landing-docs.php` with shared `focus`, `guide`, and `posture` copy, then wired `resources/views/welcome.blade.php` onto that config-backed public reference narrative.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public entry surface now reads its own reference-trail copy from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated landing-page reference copy with a clearer config-backed foundation seam.
+
 ### README seam-source copy sync checkpoint
 - Updated `README.md` so its `Phase 1 seam sources` section now mirrors the centralized seam-source `focus` and `posture` language from `config/phase-1-seam-sources.php`.
 - Kept the step intentionally small and docs-only, but it keeps the top-level Galaxy migration guidance aligned with the same seam-source narrative already feeding the live admin surface, public landing surface, and readable seam note.
