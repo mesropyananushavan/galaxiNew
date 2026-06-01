@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-06-01
+
+### Dashboard seam-source inventory checkpoint
+- Extended `app/Http/Controllers/Admin/DashboardController.php` with a small `phaseOneSeamSourcesCoverage()` helper and surfaced a dedicated `Phase 1 seam-source inventory` card on `resources/views/admin/dashboard.blade.php`, so the README-level config seam trail is now visible inside the live admin workspace instead of only on the public landing page.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new seam-source inventory stays covered alongside the existing entity, seam, and reference cards.
+- Kept the step intentionally small, but it makes the admin-side Phase 1 foundation surface a little more traceable and a little less dependent on jumping back out to the repo root for seam-source context.
+
 ## 2026-05-25
 
 ### Dashboard reference readable-guide checkpoint

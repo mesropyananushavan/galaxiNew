@@ -197,6 +197,34 @@
     </section>
 
     <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 seam-source inventory</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            Keep the README-level seam-source inventory visible inside the admin workspace, so contributors can trace which small config seams are currently carrying the Galaxy-specific Phase 1 foundation.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Seam-source coverage:</strong>
+            {{ $phaseOneSeamSourcesCoverage }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Seam-source baseline:</strong>
+            <code>config/phase-1-seam-sources.php</code> keeps this README-level seam-source inventory aligned.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Seam-source guide:</strong>
+            <code>README.md</code> remains the readable anchor for this Phase 1 seam-source trail.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            <code>README.md</code> for the readable guide, <code>config/phase-1-seam-sources.php</code> for the implementation baseline.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneSeamSources as $seamSource)
+                <li><code>{{ $seamSource }}</code></li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 foundation seams</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneFoundationSeamsFocus }}

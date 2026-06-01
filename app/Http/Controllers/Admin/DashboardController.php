@@ -28,6 +28,8 @@ class DashboardController extends Controller
             'phaseOneReferenceDocs' => config('phase-1-reference-docs.items', []),
             'phaseOneReferenceDocsFocus' => (string) config('phase-1-reference-docs.focus', 'Keep the current Galaxy admin map, shell layering, and checkpoint trail close while Phase 1 slices are still moving.'),
             'phaseOneReferenceDocsCoverage' => $this->phaseOneReferenceDocsCoverage(),
+            'phaseOneSeamSources' => config('phase-1-seam-sources.items', []),
+            'phaseOneSeamSourcesCoverage' => $this->phaseOneSeamSourcesCoverage(),
             'phaseOneFoundationSeams' => config('phase-1-foundation-seams.items', []),
             'phaseOneFoundationSeamsFocus' => (string) config('phase-1-foundation-seams.focus', 'Keep the new Galaxy-specific Phase 1 seams visible where contributors review the live foundation shell.'),
             'phaseOneFoundationSeamsPosture' => (string) config('phase-1-foundation-seams.posture', 'small config-backed and doc-backed foundation seams stay explicit'),
@@ -113,6 +115,13 @@ class DashboardController extends Controller
         $referenceDocs = collect(config('phase-1-reference-docs.items', []));
 
         return sprintf('%d Phase 1 reference docs currently linked', $referenceDocs->count());
+    }
+
+    protected function phaseOneSeamSourcesCoverage(): string
+    {
+        $seamSources = collect(config('phase-1-seam-sources.items', []));
+
+        return sprintf('%d README-level seam sources currently tracked', $seamSources->count());
     }
 
     protected function liveEntryPointFocus(): string
