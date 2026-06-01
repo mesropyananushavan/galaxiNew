@@ -38,6 +38,7 @@ class ExampleTest extends TestCase
             ->assertSee('Seam-source source of truth:')
             ->assertSee('README.md')
             ->assertSee('Source of truth:')
+            ->assertSee('README.md')
             ->assertSee('config/landing-docs.php')
             ->assertSee('OpenClaw docs')
             ->assertSee('docs/blueprint.md')

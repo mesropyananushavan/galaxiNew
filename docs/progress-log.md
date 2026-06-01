@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Landing reference source-truth sync checkpoint
+- Updated `resources/views/welcome.blade.php` so the public `Helpful project docs` card now frames `README.md` as the readable guide and `config/landing-docs.php` as the implementation baseline inside its source-of-truth note.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public reference surface now follows the same readable-guide plus baseline pattern already used across the stronger admin-side Phase 1 inventory cards.
+- Kept the step intentionally small, but it makes the public entry surface a little more explicit about where contributors should read versus where they should edit when the Galaxy migration reference trail changes.
+
 ### Blueprint-plan seam-source sync checkpoint
 - Updated `docs/blueprint.md` and `docs/phase-1-plan.md` so both core Phase 1 narrative docs now call out the README-level seam-source inventory as part of the main foundation seam map via `config/phase-1-seam-sources.php`.
 - Kept the step intentionally small and docs-only, but it closes the last obvious narrative gap between the expanded seam map and the blueprint/plan guidance contributors read before they touch the live admin or public entry surfaces.
