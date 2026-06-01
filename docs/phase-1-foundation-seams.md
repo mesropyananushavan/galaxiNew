@@ -6,6 +6,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 ## Source of truth
 - readable summary: this file
 - implementation baseline: `config/phase-1-foundation-seams.php`
+- seam-source baseline bridge: `config/phase-1-seam-sources.php`
 - live runtime surface: `resources/views/admin/dashboard.blade.php`
 
 ## Current seams

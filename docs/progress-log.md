@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### Foundation-seam source-truth bridge checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so its source-of-truth section now explicitly points at `config/phase-1-seam-sources.php` alongside the main seam baseline.
+- Kept the step intentionally small and docs-only, but it makes the readable seam note a little more explicit about the implementation bridge now connecting the main seam map to the README-level seam-source inventory.
+
 ### Landing reference seam-bridge checkpoint
 - Updated `resources/views/welcome.blade.php` so the public `Helpful project docs` card now calls out `config/phase-1-seam-sources.php` as the seam bridge tying README-level seam sources into the broader public Phase 1 reference trail.
 - Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public entry surface now exposes the same seam-bridge pattern that the admin-side reference card already uses.
