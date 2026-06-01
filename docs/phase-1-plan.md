@@ -24,6 +24,7 @@ Turn `galaxiNew` from scaffold defaults into a Galaxy-specific application found
 - The implementation-facing baseline for that same set lives in `config/phase-1-domain-map.php`.
 - Keep those two files aligned with the dashboard entity-map card when the Phase 1 baseline changes.
 - See `docs/phase-1-foundation-seams.md` for the broader map of the small config-backed and doc-backed seams now supporting the Galaxy-specific Phase 1 foundation.
+- `config/phase-1-seam-sources.php` now carries the README-level seam-source baseline that ties repo guidance back into the admin/public Phase 1 reference trails.
 
 ## Definition of done
 - core entities exist as Laravel models/migrations

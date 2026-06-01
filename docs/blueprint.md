@@ -65,6 +65,7 @@ Create the real application foundation for Galaxy, not just a placeholder baseli
 - documented IA/menu map
 - documented Phase 1 domain map (`docs/phase-1-domain-map.md` + `config/phase-1-domain-map.php`)
 - documented Phase 1 foundation seams (`docs/phase-1-foundation-seams.md`)
+- documented seam-source baseline (`config/phase-1-seam-sources.php` + README seam-source trail)
 - initial migrations for core entities
 - model skeletons
 - admin layout updated toward old parity

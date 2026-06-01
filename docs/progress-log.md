@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### Blueprint-plan seam-source deliverable sync checkpoint
+- Updated `docs/blueprint.md` and `docs/phase-1-plan.md` so the core Phase 1 narrative now treats `config/phase-1-seam-sources.php` and the README seam-source trail as an explicit part of the current foundation deliverable set.
+- Kept the step intentionally small and docs-only, but it brings the main migration narrative back in line with the seam-source-aware reference inventories and seam map that are already live on the repo, admin, and public entry surfaces.
+
 ### Foundation-seam reference-trail seam-source sync checkpoint
 - Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the `Admin reference trail` and `Public landing reference trail` seams now explicitly include `config/phase-1-seam-sources.php` as part of their aligned source trail.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live seam card now guards the stronger seam-source-aware descriptions for both reference-trail seams.
