@@ -33,6 +33,10 @@ The current goal is Phase 1: turn this repo from scaffold defaults into a Galaxy
 
 ### Phase 1 seam sources
 
+Focus: keep the README-level seam-source inventory visible across repo guidance plus the admin and public Phase 1 entry surfaces.
+
+Posture: README-backed seam-source baseline stays explicit across the live Galaxy reference trail.
+
 - `config/phase-1-domain-map.php` keeps the entity baseline aligned with the dashboard
 - `config/phase-1-foundation-seams.php` keeps the seam inventory aligned with the dashboard
 - `config/phase-1-reference-docs.php` keeps the admin-side Phase 1 reference trail aligned

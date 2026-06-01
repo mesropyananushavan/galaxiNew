@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### README seam-source copy sync checkpoint
+- Updated `README.md` so its `Phase 1 seam sources` section now mirrors the centralized seam-source `focus` and `posture` language from `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the top-level Galaxy migration guidance aligned with the same seam-source narrative already feeding the live admin surface, public landing surface, and readable seam note.
+
 ### Foundation-seam seam-source copy sync checkpoint
 - Updated `docs/phase-1-foundation-seams.md` so the readable `README seam-source trail` note now mirrors the shared `focus` and `posture` language already centralized in `config/phase-1-seam-sources.php`.
 - Kept the step intentionally small and docs-only, but it makes the readable seam map less likely to drift away from the config-backed seam-source narrative now feeding the live admin and public entry surfaces.
