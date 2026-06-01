@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### README seam-source guide sync checkpoint
+- Updated `README.md` so its `Phase 1 seam sources` section now mirrors the centralized seam-source `guide` language already carried in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the top-level seam-source guidance aligned with the same readable/implementation anchors now feeding the live admin and public seam-source surfaces.
+
 ### Seam-source guide config checkpoint
 - Extended `config/phase-1-seam-sources.php` with shared `guide` copy, then wired `app/Http/Controllers/Admin/DashboardController.php`, `resources/views/admin/dashboard.blade.php`, and `resources/views/welcome.blade.php` onto that config-backed seam-source anchor narrative.
 - Updated `tests/Feature/AdminDashboardTest.php` and `tests/Feature/ExampleTest.php`, then re-ran the focused dashboard and landing-page feature slices successfully so both live entry surfaces now read the seam-source guide/source-of-truth copy from one Galaxy-specific seam.
