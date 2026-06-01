@@ -277,7 +277,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            <code>config/phase-1-reference-docs.php</code> keeps this admin-side Phase 1 reference trail aligned.
+            <code>README.md</code>, <code>docs/blueprint.md</code>, and <code>docs/phase-1-plan.md</code> for the readable guides, <code>config/phase-1-reference-docs.php</code> for the implementation baseline.
         </p>
         <ul class="list">
             @foreach ($phaseOneReferenceDocs as $referenceDoc)

@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Dashboard reference source-truth sync checkpoint
+- Updated `resources/views/admin/dashboard.blade.php` so the `Phase 1 reference docs` card now frames `README.md`, `docs/blueprint.md`, and `docs/phase-1-plan.md` as readable guides and `config/phase-1-reference-docs.php` as the implementation baseline inside its source-of-truth note.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin reference surface now matches the readable-guide plus baseline/source-of-truth pattern now used across the stronger Phase 1 entry cards.
+- Kept the step intentionally small, but it makes the admin entry surface a little more explicit about where contributors should read versus where they should edit when the Galaxy migration reference trail changes.
+
 ### Landing reference source-truth sync checkpoint
 - Updated `resources/views/welcome.blade.php` so the public `Helpful project docs` card now frames `README.md` as the readable guide and `config/landing-docs.php` as the implementation baseline inside its source-of-truth note.
 - Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public reference surface now follows the same readable-guide plus baseline pattern already used across the stronger admin-side Phase 1 inventory cards.
