@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Seam-source self-baseline sync checkpoint
+- Extended the README `Phase 1 seam sources` list and `config/phase-1-seam-sources.php` so the seam-source inventory now explicitly includes its own config baseline.
+- Updated `tests/Feature/ExampleTest.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused landing-page and dashboard feature slices successfully so both live entry surfaces now reflect the expanded README-level seam-source trail.
+- Kept the step intentionally small, but it makes the seam-source inventory a little more self-describing and a little less like a special case hidden outside its own baseline list.
+
 ### Landing README reference sync checkpoint
 - Extended `config/landing-docs.php` so the public `Helpful project docs` inventory now includes `README.md` alongside the Phase 1 doc set.
 - Updated `resources/views/welcome.blade.php` and `tests/Feature/ExampleTest.php`, then re-ran the focused landing-page feature slice successfully so the top-level Galaxy migration guide stays visible from the public foundation surface too.

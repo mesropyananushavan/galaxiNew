@@ -36,6 +36,7 @@ The current goal is Phase 1: turn this repo from scaffold defaults into a Galaxy
 - `config/phase-1-foundation-seams.php` keeps the seam inventory aligned with the dashboard
 - `config/phase-1-reference-docs.php` keeps the admin-side Phase 1 reference trail aligned
 - `config/landing-docs.php` keeps the public Galaxy migration doc trail aligned
+- `config/phase-1-seam-sources.php` keeps this README-level seam-source inventory aligned
 
 ## Local development
 
