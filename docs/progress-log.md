@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### README reference seam-bridge checkpoint
+- Extended `README.md` so the top-level `Core Phase 1 references` list now explicitly includes `config/phase-1-seam-sources.php` alongside the main Phase 1 docs.
+- Updated `resources/views/admin/dashboard.blade.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the admin-side reference card now calls out the seam bridge tying README-level seam sources into the broader Phase 1 reference trail.
+- Kept the step intentionally small, but it makes the repo-level and admin-side reference surfaces a little more explicit about how the seam-source baseline participates in the Galaxy migration reference map.
+
 ### Dashboard reference source-truth sync checkpoint
 - Updated `resources/views/admin/dashboard.blade.php` so the `Phase 1 reference docs` card now frames `README.md`, `docs/blueprint.md`, and `docs/phase-1-plan.md` as readable guides and `config/phase-1-reference-docs.php` as the implementation baseline inside its source-of-truth note.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin reference surface now matches the readable-guide plus baseline/source-of-truth pattern now used across the stronger Phase 1 entry cards.

@@ -284,6 +284,10 @@
                 <li><code>{{ $referenceDoc }}</code></li>
             @endforeach
         </ul>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Reference seam bridge:</strong>
+            <code>config/phase-1-seam-sources.php</code> keeps the README-level seam-source inventory tied into this broader Phase 1 reference trail.
+        </p>
     </section>
 
     <section class="card">
