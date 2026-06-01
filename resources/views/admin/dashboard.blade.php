@@ -293,7 +293,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            @foreach ($phaseOneReferenceDocsGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach for the readable guides, <code>config/phase-1-reference-docs.php</code> for the implementation baseline.
+            @foreach ($phaseOneReferenceDocsSourceOfTruth as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach remain the readable and implementation anchors for this admin-side Phase 1 reference trail.
         </p>
         <ul class="list">
             @foreach ($phaseOneReferenceDocs as $referenceDoc)
