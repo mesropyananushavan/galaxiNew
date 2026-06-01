@@ -246,8 +246,12 @@
             {{ $phaseOneFoundationSeamsPosture }}.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
+            <strong>Seam guide:</strong>
+            @foreach ($phaseOneFoundationSeamsGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach remain the readable and implementation anchors for this mapped seam inventory.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            <code>docs/phase-1-foundation-seams.md</code> for the readable summary, <code>config/phase-1-foundation-seams.php</code> for the implementation baseline.
+            @foreach ($phaseOneFoundationSeamsGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach for the readable summary and implementation baseline.
         </p>
         <ul class="list">
             @foreach ($phaseOneFoundationSeams as $seam)

@@ -266,6 +266,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('config/phase-1-foundation-seams.php')
             ->assertSee('Seam posture:')
             ->assertSee('small config-backed and doc-backed foundation seams stay explicit.')
+            ->assertSee('Seam guide:')
             ->assertSee('docs/phase-1-foundation-seams.md')
             ->assertSee('config/phase-1-foundation-seams.php')
             ->assertSee('Domain baseline')

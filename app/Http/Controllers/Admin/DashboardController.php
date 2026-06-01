@@ -36,6 +36,7 @@ class DashboardController extends Controller
             'phaseOneSeamSourcesCoverage' => $this->phaseOneSeamSourcesCoverage(),
             'phaseOneFoundationSeams' => config('phase-1-foundation-seams.items', []),
             'phaseOneFoundationSeamsFocus' => (string) config('phase-1-foundation-seams.focus', 'Keep the new Galaxy-specific Phase 1 seams visible where contributors review the live foundation shell.'),
+            'phaseOneFoundationSeamsGuide' => config('phase-1-foundation-seams.guide', ['docs/phase-1-foundation-seams.md', 'config/phase-1-foundation-seams.php']),
             'phaseOneFoundationSeamsPosture' => (string) config('phase-1-foundation-seams.posture', 'small config-backed and doc-backed foundation seams stay explicit'),
             'phaseOneFoundationSeamsCoverage' => $this->phaseOneFoundationSeamsCoverage(),
             'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),

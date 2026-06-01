@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Foundation-seam config copy checkpoint
+- Extended `config/phase-1-foundation-seams.php` with shared `guide` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed seam reference narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin seam card now reads its guide/source-of-truth copy from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated dashboard seam copy with a clearer config-backed foundation seam.
+
 ### README reference copy sync checkpoint
 - Updated `README.md` so the top-level `Core Phase 1 references` section now mirrors the centralized admin-side reference `focus`, `guide`, and `posture` narrative already carried in `config/phase-1-reference-docs.php`.
 - Kept the step intentionally small and docs-only, but it keeps the repo-level Phase 1 guidance aligned with the config-backed reference language now feeding the live admin dashboard reference surface.
