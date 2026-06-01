@@ -32,6 +32,12 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - visible runtime surface: `README.md`
 - current role: keeps top-level Phase 1 references and seam-source guidance aligned for contributors before they open the live surfaces
 
+### README seam-source trail
+- readable summary anchor: this file
+- implementation baseline: `config/phase-1-seam-sources.php`
+- visible runtime surfaces: `README.md`, `resources/views/admin/dashboard.blade.php`, `resources/views/welcome.blade.php`
+- current role: keeps the README-level config seam inventory aligned across repo guidance plus the admin and public entry surfaces
+
 ## Phase 1 posture
 - prefer small config-backed seams over new inline Blade lists when the goal is stable Galaxy migration structure
 - keep source-of-truth notes visible where contributors first encounter the surface

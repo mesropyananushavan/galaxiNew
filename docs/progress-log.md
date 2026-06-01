@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Foundation-seam seam-source trail checkpoint
+- Extended `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` with a dedicated `README seam-source trail` seam, so the surfaced README-level seam-source inventory now belongs to the main Phase 1 seam map instead of sitting beside it.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin seam card now guards the expanded five-seam inventory and its new README seam-source entry.
+- Kept the step intentionally small, but it closes one more gap between the explicit seam map and the small repo/admin/public config trails that are already carrying the Galaxy-specific Phase 1 foundation.
+
 ### Seam-source self-baseline sync checkpoint
 - Extended the README `Phase 1 seam sources` list and `config/phase-1-seam-sources.php` so the seam-source inventory now explicitly includes its own config baseline.
 - Updated `tests/Feature/ExampleTest.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused landing-page and dashboard feature slices successfully so both live entry surfaces now reflect the expanded README-level seam-source trail.
