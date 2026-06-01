@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### Blueprint entity copy sync checkpoint
+- Updated `docs/blueprint.md` so its Phase 1 deliverables now explicitly echo the centralized entity-map focus on branch, access, holder, card, and tier-aware building blocks already carried in `config/phase-1-domain-map.php`.
+- Kept the step intentionally small and docs-only, but it keeps the higher-level migration blueprint aligned with the config-backed entity guidance now feeding the live admin entity card and the Phase 1 plan.
+
 ### Phase-1-plan entity copy sync checkpoint
 - Updated `docs/phase-1-plan.md` so its `Entity baseline note` now mirrors the centralized entity-map `focus`, `guide`, and `posture` language already carried in `config/phase-1-domain-map.php`.
 - Kept the step intentionally small and docs-only, but it keeps the main Phase 1 narrative aligned with the config-backed entity guidance now feeding the live admin entity card.
