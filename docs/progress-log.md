@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Domain-map config copy checkpoint
+- Extended `config/phase-1-domain-map.php` with shared `guide` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed entity-map reference narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin entity card now reads its guide/source-of-truth copy from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated dashboard entity copy with a clearer config-backed foundation seam.
+
 ### Foundation-seam config copy checkpoint
 - Extended `config/phase-1-foundation-seams.php` with shared `guide` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed seam reference narrative.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin seam card now reads its guide/source-of-truth copy from one Galaxy-specific seam instead of keeping that wording inline in Blade.

@@ -222,6 +222,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('config/phase-1-domain-map.php')
             ->assertSee('Entity posture:')
             ->assertSee('documented entity baseline for live foundation work.')
+            ->assertSee('Entity guide:')
             ->assertSee('Source of truth:')
             ->assertSee('docs/phase-1-domain-map.md')
             ->assertSee('config/phase-1-domain-map.php')

@@ -182,8 +182,12 @@
             {{ $phaseOneDomainPosture }}.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
+            <strong>Entity guide:</strong>
+            @foreach ($phaseOneDomainGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach remain the readable and implementation anchors for this mapped Galaxy entity inventory.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            <code>docs/phase-1-domain-map.md</code> for the readable summary, <code>config/phase-1-domain-map.php</code> for the implementation baseline.
+            @foreach ($phaseOneDomainGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach for the readable summary and implementation baseline.
         </p>
         <ul class="list">
             @foreach ($phaseOneDomainMap as $entity)
