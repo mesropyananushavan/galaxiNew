@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Dashboard reference seam-source inventory checkpoint
+- Extended `config/phase-1-reference-docs.php` so the admin-side `Phase 1 reference docs` inventory now explicitly includes `config/phase-1-seam-sources.php` in its config-driven list, not only in supporting notes.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin reference card now guards the expanded eleven-item reference inventory.
+- Kept the step intentionally small, but it makes the admin-side Phase 1 reference trail a little more structurally honest about the seam-source baseline that already helps anchor the broader Galaxy migration map.
+
 ### Foundation-seam source-truth bridge checkpoint
 - Updated `docs/phase-1-foundation-seams.md` so its source-of-truth section now explicitly points at `config/phase-1-seam-sources.php` alongside the main seam baseline.
 - Kept the step intentionally small and docs-only, but it makes the readable seam note a little more explicit about the implementation bridge now connecting the main seam map to the README-level seam-source inventory.

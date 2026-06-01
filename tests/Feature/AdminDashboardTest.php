@@ -287,7 +287,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Phase 1 reference docs')
             ->assertSee('Keep the current Galaxy admin map, shell layering, and checkpoint trail close while Phase 1 slices are still moving')
             ->assertSee('Reference coverage:')
-            ->assertSee('10 Phase 1 reference docs currently linked.')
+            ->assertSee('11 Phase 1 reference docs currently linked.')
             ->assertSee('Reference baseline:')
             ->assertSee('config/phase-1-reference-docs.php')
             ->assertSee('Reference guide:')

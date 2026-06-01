@@ -8,6 +8,7 @@ return [
         'docs/phase-1-plan.md',
         'docs/phase-1-domain-map.md',
         'docs/phase-1-foundation-seams.md',
+        'config/phase-1-seam-sources.php',
         'docs/admin-information-architecture.md',
         'docs/admin-shell-layering.md',
         'docs/admin-shell-config-map.md',
