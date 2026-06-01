@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Seam-source config copy checkpoint
+- Extended `config/phase-1-seam-sources.php` with shared `focus` and `posture` copy, then wired both `resources/views/admin/dashboard.blade.php` and `resources/views/welcome.blade.php` onto that config-backed seam text.
+- Updated `app/Http/Controllers/Admin/DashboardController.php`, `tests/Feature/AdminDashboardTest.php`, and `tests/Feature/ExampleTest.php`, then re-ran the focused dashboard and landing-page feature slices successfully so both live entry surfaces now read the same seam-source narrative from one Galaxy-specific seam.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated Blade copy with a clearer config-backed foundation seam.
+
 ### Blueprint-plan seam-source deliverable sync checkpoint
 - Updated `docs/blueprint.md` and `docs/phase-1-plan.md` so the core Phase 1 narrative now treats `config/phase-1-seam-sources.php` and the README seam-source trail as an explicit part of the current foundation deliverable set.
 - Kept the step intentionally small and docs-only, but it brings the main migration narrative back in line with the seam-source-aware reference inventories and seam map that are already live on the repo, admin, and public entry surfaces.

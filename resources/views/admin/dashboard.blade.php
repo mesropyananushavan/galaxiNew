@@ -199,7 +199,7 @@
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 seam-source inventory</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
-            Keep the README-level seam-source inventory visible inside the admin workspace, so contributors can trace which small config seams are currently carrying the Galaxy-specific Phase 1 foundation.
+            {{ $phaseOneSeamSourcesFocus }}
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Seam-source coverage:</strong>
@@ -212,6 +212,10 @@
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Seam-source guide:</strong>
             <code>README.md</code> remains the readable anchor for this Phase 1 seam-source trail.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Seam-source posture:</strong>
+            {{ $phaseOneSeamSourcesPosture }}.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
