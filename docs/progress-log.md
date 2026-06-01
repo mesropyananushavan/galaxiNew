@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### Foundation-seam note source-truth sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so its `Source of truth` section now explicitly mirrors the centralized seam source-of-truth anchors already carried in `config/phase-1-foundation-seams.php`.
+- Kept the step intentionally small and docs-only, but it keeps the readable seam note aligned with the config-backed seam source-of-truth language now feeding the live admin seam card.
+
 ### Foundation-seam source-of-truth config checkpoint
 - Extended `config/phase-1-foundation-seams.php` with shared `source_of_truth` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed source-of-truth narrative.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin seam surface now reads its source-of-truth anchors from one Galaxy-specific seam instead of keeping that wording inline in Blade.
