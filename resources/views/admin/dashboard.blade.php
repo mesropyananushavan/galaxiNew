@@ -277,11 +277,15 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Reference guide:</strong>
-            <code>README.md</code>, <code>docs/blueprint.md</code>, and <code>docs/phase-1-plan.md</code> remain the readable anchors for this admin-side Phase 1 reference trail.
+            @foreach ($phaseOneReferenceDocsGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach remain the readable anchors for this admin-side Phase 1 reference trail.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Reference posture:</strong>
+            {{ $phaseOneReferenceDocsPosture }}.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            <code>README.md</code>, <code>docs/blueprint.md</code>, and <code>docs/phase-1-plan.md</code> for the readable guides, <code>config/phase-1-reference-docs.php</code> for the implementation baseline.
+            @foreach ($phaseOneReferenceDocsGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach for the readable guides, <code>config/phase-1-reference-docs.php</code> for the implementation baseline.
         </p>
         <ul class="list">
             @foreach ($phaseOneReferenceDocs as $referenceDoc)
