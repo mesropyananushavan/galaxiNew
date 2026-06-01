@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Landing reference seam-bridge checkpoint
+- Updated `resources/views/welcome.blade.php` so the public `Helpful project docs` card now calls out `config/phase-1-seam-sources.php` as the seam bridge tying README-level seam sources into the broader public Phase 1 reference trail.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public entry surface now exposes the same seam-bridge pattern that the admin-side reference card already uses.
+- Kept the step intentionally small, but it makes the public reference surface a little more explicit about how repo-level seam guidance participates in the live Galaxy migration entry trail.
+
 ### README reference seam-bridge checkpoint
 - Extended `README.md` so the top-level `Core Phase 1 references` list now explicitly includes `config/phase-1-seam-sources.php` alongside the main Phase 1 docs.
 - Updated `resources/views/admin/dashboard.blade.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the admin-side reference card now calls out the seam bridge tying README-level seam sources into the broader Phase 1 reference trail.

@@ -40,6 +40,8 @@ class ExampleTest extends TestCase
             ->assertSee('Source of truth:')
             ->assertSee('README.md')
             ->assertSee('config/landing-docs.php')
+            ->assertSee('Reference seam bridge:')
+            ->assertSee('config/phase-1-seam-sources.php')
             ->assertSee('OpenClaw docs')
             ->assertSee('docs/blueprint.md')
             ->assertSee('docs/phase-1-domain-map.md')
