@@ -187,7 +187,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            @foreach ($phaseOneDomainGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach for the readable summary and implementation baseline.
+            @foreach ($phaseOneDomainSourceOfTruth as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach remain the readable and implementation anchors for this mapped Galaxy entity inventory.
         </p>
         <ul class="list">
             @foreach ($phaseOneDomainMap as $entity)

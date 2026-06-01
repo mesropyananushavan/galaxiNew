@@ -24,6 +24,7 @@ class DashboardController extends Controller
             'phaseOneDomainMap' => config('phase-1-domain-map.entities', []),
             'phaseOneDomainFocus' => (string) config('phase-1-domain-map.focus', 'Keep the first Galaxy foundation entities explicit while Phase 1 work is still landing.'),
             'phaseOneDomainGuide' => config('phase-1-domain-map.guide', ['docs/phase-1-domain-map.md', 'config/phase-1-domain-map.php']),
+            'phaseOneDomainSourceOfTruth' => config('phase-1-domain-map.source_of_truth', ['docs/phase-1-domain-map.md', 'config/phase-1-domain-map.php']),
             'phaseOneDomainPosture' => (string) config('phase-1-domain-map.posture', 'documented entity baseline for live foundation work'),
             'phaseOneDomainInventory' => $this->phaseOneDomainInventory(),
             'phaseOneReferenceDocs' => config('phase-1-reference-docs.items', []),

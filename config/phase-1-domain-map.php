@@ -3,6 +3,7 @@
 return [
     'focus' => 'Keep the first Galaxy foundation entities explicit while Phase 1 replaces scaffold defaults with branch, access, holder, card, and tier-aware building blocks.',
     'guide' => ['docs/phase-1-domain-map.md', 'config/phase-1-domain-map.php'],
+    'source_of_truth' => ['docs/phase-1-domain-map.md', 'config/phase-1-domain-map.php'],
     'posture' => 'documented entity baseline for live foundation work',
     'entities' => [
         [
