@@ -22,6 +22,7 @@ Turn `galaxiNew` from scaffold defaults into a Galaxy-specific application found
 ## Entity baseline note
 - Focus: keep the first Galaxy foundation entities explicit while Phase 1 replaces scaffold defaults with branch, access, holder, card, and tier-aware building blocks.
 - Guide: `docs/phase-1-domain-map.md` and `config/phase-1-domain-map.php` remain the readable and implementation anchors for this mapped Galaxy entity inventory.
+- Source of truth: `docs/phase-1-domain-map.md` and `config/phase-1-domain-map.php` remain the readable and implementation anchors for this mapped Galaxy entity inventory.
 - Posture: documented entity baseline for live foundation work.
 - Keep those two files aligned with the dashboard entity-map card when the Phase 1 baseline changes.
 - See `docs/phase-1-foundation-seams.md` for the broader map of the small config-backed and doc-backed seams now supporting the Galaxy-specific Phase 1 foundation.
