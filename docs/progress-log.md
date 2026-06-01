@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### README seam-source source-truth sync checkpoint
+- Updated `README.md` so its `Phase 1 seam sources` section now explicitly mirrors the centralized seam-source source-of-truth anchors already carried in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the top-level seam-source guidance aligned with the config-backed source-of-truth language now feeding the live admin and public seam-source surfaces.
+
 ### Foundation-seam note source-truth sync checkpoint
 - Updated `docs/phase-1-foundation-seams.md` so its `Source of truth` section now explicitly mirrors the centralized seam source-of-truth anchors already carried in `config/phase-1-foundation-seams.php`.
 - Kept the step intentionally small and docs-only, but it keeps the readable seam note aligned with the config-backed seam source-of-truth language now feeding the live admin seam card.

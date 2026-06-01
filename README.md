@@ -45,6 +45,8 @@ Focus: keep the README-level seam-source inventory visible across repo guidance 
 
 Guide: `README.md` and `config/phase-1-seam-sources.php` remain the readable and implementation anchors for this seam-source trail.
 
+Source of truth: `README.md` and `config/phase-1-seam-sources.php` remain the readable and implementation anchors for this seam-source trail.
+
 Posture: README-backed seam-source baseline stays explicit across the live Galaxy reference trail.
 
 - `config/phase-1-domain-map.php` keeps the entity baseline aligned with the dashboard
