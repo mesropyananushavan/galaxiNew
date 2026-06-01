@@ -252,6 +252,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('config/phase-1-seam-sources.php')
             ->assertSee('Seam-source guide:')
             ->assertSee('README.md')
+            ->assertSee('config/phase-1-seam-sources.php')
             ->assertSee('Seam-source posture:')
             ->assertSee('README-backed seam-source baseline stays explicit across the live Galaxy reference trail.')
             ->assertSee('config/phase-1-domain-map.php')

@@ -47,6 +47,7 @@ class ExampleTest extends TestCase
             ->assertSee('README-backed seam-source baseline stays explicit across the live Galaxy reference trail.')
             ->assertSee('Seam-source source of truth:')
             ->assertSee('README.md')
+            ->assertSee('config/phase-1-seam-sources.php')
             ->assertSee('Source of truth:')
             ->assertSee('README.md')
             ->assertSee('config/landing-docs.php')

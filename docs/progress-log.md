@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Seam-source guide config checkpoint
+- Extended `config/phase-1-seam-sources.php` with shared `guide` copy, then wired `app/Http/Controllers/Admin/DashboardController.php`, `resources/views/admin/dashboard.blade.php`, and `resources/views/welcome.blade.php` onto that config-backed seam-source anchor narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and `tests/Feature/ExampleTest.php`, then re-ran the focused dashboard and landing-page feature slices successfully so both live entry surfaces now read the seam-source guide/source-of-truth copy from one Galaxy-specific seam.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated seam-source anchor wording with a clearer config-backed foundation seam.
+
 ### Blueprint entity copy sync checkpoint
 - Updated `docs/blueprint.md` so its Phase 1 deliverables now explicitly echo the centralized entity-map focus on branch, access, holder, card, and tier-aware building blocks already carried in `config/phase-1-domain-map.php`.
 - Kept the step intentionally small and docs-only, but it keeps the higher-level migration blueprint aligned with the config-backed entity guidance now feeding the live admin entity card and the Phase 1 plan.

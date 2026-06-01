@@ -215,7 +215,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Seam-source guide:</strong>
-            <code>README.md</code> remains the readable anchor for this Phase 1 seam-source trail.
+            @foreach ($phaseOneSeamSourcesGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach remain the readable and implementation anchors for this Phase 1 seam-source trail.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Seam-source posture:</strong>
@@ -223,7 +223,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            <code>README.md</code> for the readable guide, <code>config/phase-1-seam-sources.php</code> for the implementation baseline.
+            @foreach ($phaseOneSeamSourcesGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach for the readable guide and implementation baseline.
         </p>
         <ul class="list">
             @foreach ($phaseOneSeamSources as $seamSource)
