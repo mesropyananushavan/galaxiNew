@@ -2,6 +2,10 @@
 
 ## 2026-06-01
 
+### Blueprint-plan seam-source sync checkpoint
+- Updated `docs/blueprint.md` and `docs/phase-1-plan.md` so both core Phase 1 narrative docs now call out the README-level seam-source inventory as part of the main foundation seam map via `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it closes the last obvious narrative gap between the expanded seam map and the blueprint/plan guidance contributors read before they touch the live admin or public entry surfaces.
+
 ### Foundation-seam seam-source trail checkpoint
 - Extended `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` with a dedicated `README seam-source trail` seam, so the surfaced README-level seam-source inventory now belongs to the main Phase 1 seam map instead of sitting beside it.
 - Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin seam card now guards the expanded five-seam inventory and its new README seam-source entry.

@@ -37,5 +37,6 @@ Turn `galaxiNew` from scaffold defaults into a Galaxy-specific application found
 - The current resource-page composition is documented in `docs/admin-shell-layering.md` and split into base, context, preview, workflow, and closing stacks.
 - Config ownership for those shell layers and page surfaces is documented in `docs/admin-shell-config-map.md`.
 - The current small config-backed and doc-backed foundation seams are summarized in `docs/phase-1-foundation-seams.md`.
+- The README-level seam-source inventory is now part of that same seam map through `config/phase-1-seam-sources.php`, so repo guidance and the live admin/public entry surfaces stay aligned through one explicit Phase 1 seam trail.
 - High-value Galaxy-specific management pages such as `card-types`, `services-rules`, `gifts`, and `roles-permissions` now use the richer workflow layer so the shell is visibly less scaffold-like before real Galaxy foundation writes exist.
 - That layering should stay config-driven even when the first real Galaxy foundation reads or form flows begin replacing foundation-preview blocks.

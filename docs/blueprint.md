@@ -41,6 +41,7 @@
 - See `docs/admin-shell-layering.md` for the current structure and the bridge role of `config/admin-resource-blocks.php`.
 - Config ownership for those shell layers and page surfaces is documented in `docs/admin-shell-config-map.md`.
 - The current small config-backed and doc-backed foundation seams are summarized in `docs/phase-1-foundation-seams.md`.
+- The README-level seam-source inventory now belongs to that same seam map through `config/phase-1-seam-sources.php`, so repo guidance and live entry surfaces keep sharing one explicit Phase 1 seam trail.
 - When real Galaxy foundation reads and writes arrive, replace foundation-preview slices without collapsing that layered shell back into one large inline block list.
 
 ## Phase 1
