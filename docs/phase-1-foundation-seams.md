@@ -19,14 +19,16 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 ### Admin reference trail
 - readable summary anchor: this file
 - implementation baseline: `config/phase-1-reference-docs.php`
+- seam-source bridge: `config/phase-1-seam-sources.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
-- current role: keeps the admin-side Phase 1 blueprint, plan, IA, shell, checkpoint, and progress-log trail aligned
+- current role: keeps the admin-side Phase 1 blueprint, plan, IA, shell, checkpoint, progress-log, and seam-source baseline trail aligned
 
 ### Public landing reference trail
 - readable summary anchor: this file
 - implementation baseline: `config/landing-docs.php`
+- seam-source bridge: `config/phase-1-seam-sources.php`
 - visible runtime surface: `resources/views/welcome.blade.php`
-- current role: keeps the public Galaxy migration doc trail aligned
+- current role: keeps the public Galaxy migration doc trail plus seam-source baseline aligned
 
 ### Top-level repo guidance
 - readable summary anchor: this file

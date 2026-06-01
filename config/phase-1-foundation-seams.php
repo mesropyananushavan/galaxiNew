@@ -15,19 +15,21 @@ return [
         ],
         [
             'label' => 'Admin reference trail',
-            'summary' => 'Admin-side Phase 1 references stay aligned across the seam note, dashboard-focused config, and the live admin runtime surface.',
+            'summary' => 'Admin-side Phase 1 references stay aligned across the seam note, dashboard-focused config, seam-source baseline, and the live admin runtime surface.',
             'sources' => [
                 'docs/phase-1-foundation-seams.md',
                 'config/phase-1-reference-docs.php',
+                'config/phase-1-seam-sources.php',
                 'resources/views/admin/dashboard.blade.php',
             ],
         ],
         [
             'label' => 'Public landing reference trail',
-            'summary' => 'Public Galaxy migration references stay aligned across the seam note, landing-page doc config, and the live public runtime surface.',
+            'summary' => 'Public Galaxy migration references stay aligned across the seam note, landing-page doc config, seam-source baseline, and the live public runtime surface.',
             'sources' => [
                 'docs/phase-1-foundation-seams.md',
                 'config/landing-docs.php',
+                'config/phase-1-seam-sources.php',
                 'resources/views/welcome.blade.php',
             ],
         ],

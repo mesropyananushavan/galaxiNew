@@ -2,6 +2,11 @@
 
 ## 2026-06-01
 
+### Foundation-seam reference-trail seam-source sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the `Admin reference trail` and `Public landing reference trail` seams now explicitly include `config/phase-1-seam-sources.php` as part of their aligned source trail.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live seam card now guards the stronger seam-source-aware descriptions for both reference-trail seams.
+- Kept the step intentionally small, but it makes the readable seam map and the runtime seam inventory better match the config-driven reference trails already shipped on the admin and public entry surfaces.
+
 ### Landing reference seam-source inventory checkpoint
 - Extended `config/landing-docs.php` so the public `Helpful project docs` inventory now explicitly includes `config/phase-1-seam-sources.php` in its config-driven list, not only in supporting notes.
 - Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public reference card now guards the expanded twenty-item reference inventory.
