@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Roles workspace status-scope follow-up checkpoint
+- Updated the `Roles & Permissions` workspace metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` so active and draft access-shell counts now read through `Role::active()` and `Role::draft()` instead of inline collection status filters.
+- Kept the follow-up intentionally small and behavior-preserving, but it applies the new role status baseline to one more live Galaxy access surface.
+
 ### Role status-scope baseline checkpoint
 - Added `active()` and `draft()` scopes to `app/Models/Role.php` so the Phase 1 access-shell status baseline has a reusable home in the model instead of being inferred only from inline `is_active` filters.
 - Updated the role catalog summary in `app/Http/Controllers/Admin/ResourceIndexController.php` to read active role coverage through the new role scope while leaving the visible roles workspace behavior unchanged.

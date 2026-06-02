@@ -654,19 +654,20 @@ class ResourceIndexController extends Controller
 
     private function enrichRolesPermissionsPage(array $page): array
     {
-        $roles = Role::query()
+        $rolesQuery = Role::query()
             ->with(['permissions' => fn ($query) => $query->orderBy('name'), 'users.shop'])
             ->withCount(['permissions', 'users'])
-            ->orderBy('name')
-            ->get();
+            ->orderBy('name');
+
+        $roles = $rolesQuery->get();
 
         if ($roles->isEmpty()) {
             return $page;
         }
 
         $page['metrics'] = [
-            ['label' => 'Active-state Galaxy access shells', 'value' => (string) $roles->where('is_active', true)->count()],
-            ['label' => 'Draft-state Galaxy access shells', 'value' => (string) $roles->where('is_active', false)->count()],
+            ['label' => 'Active-state Galaxy access shells', 'value' => (string) (clone $rolesQuery)->active()->count()],
+            ['label' => 'Draft-state Galaxy access shells', 'value' => (string) (clone $rolesQuery)->draft()->count()],
             ['label' => 'Review-noted Galaxy access shells', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->review_note))->count()],
             ['label' => 'Access-policy Galaxy notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->access_note))->count()],
             ['label' => 'Role-assignment Galaxy notes', 'value' => (string) $roles->filter(fn (Role $role): bool => filled($role->assignment_note))->count()],
