@@ -335,8 +335,8 @@ class DashboardController extends Controller
 
     protected function accessBaselineCoverage(): string
     {
-        $roleCount = Role::query()->count();
-        $permissionCount = Permission::query()->count();
+        $roleCount = Role::query()->permissionBearing()->count();
+        $permissionCount = Permission::query()->assignedToRoles()->count();
 
         return sprintf('%d Galaxy access shells, %d access permissions visible', $roleCount, $permissionCount);
     }

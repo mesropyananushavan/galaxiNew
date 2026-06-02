@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Access-foundation scope baseline checkpoint
+- Added small Galaxy access scopes to `app/Models/Role.php` and `app/Models/Permission.php` so permission-bearing access shells and assigned permission vocabulary can be queried from the Phase 1 models instead of being implied only by inline dashboard logic.
+- Updated `app/Http/Controllers/Admin/DashboardController.php` to read `Access baseline coverage` through those model scopes while leaving the visible dashboard wording unchanged.
+
 ### Active-foundation scope baseline checkpoint
 - Added small Galaxy foundation query scopes to `app/Models/Shop.php`, `app/Models/CardHolder.php`, `app/Models/CardType.php`, and `app/Models/Card.php` so the current active-state semantics live with the Phase 1 domain models instead of being repeated inline in the dashboard controller.
 - Updated `app/Http/Controllers/Admin/DashboardController.php` to read active shop, holder, card, and tier counts through those model scopes, keeping the live Phase 1 dashboard behavior unchanged while making the foundation models slightly more intentional and reusable.

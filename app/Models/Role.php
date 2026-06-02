@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -17,6 +18,11 @@ class Role extends Model
         return [
             'is_active' => 'boolean',
         ];
+    }
+
+    public function scopePermissionBearing(Builder $query): Builder
+    {
+        return $query->whereHas('permissions');
     }
 
     public function permissions(): BelongsToMany
