@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Cardholder linked-card-state scope follow-up checkpoint
+- Added `blockedLinked()`, `draftLinked()`, `cardActiveLinked()`, and `activatedLinked()` to `app/Models/CardHolder.php` so holder coverage across linked card states can be queried from the model layer instead of being recomputed only through inline per-holder card collection checks.
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked, draft, active, and activated linked-holder coverage now reads through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current holder-status semantics.
+
 ### Cardholder activity-linkage scope follow-up checkpoint
 - Added `activeLinked()`, `inactiveLinked()`, `activeUnlinked()`, and `inactiveUnlinked()` to `app/Models/CardHolder.php` so holder activity/linkage coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
 - Updated the `Cardholders` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read those four holder slices through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current holder workspace semantics.

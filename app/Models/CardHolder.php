@@ -66,6 +66,26 @@ class CardHolder extends Model
         return $query->where('is_active', false)->doesntHave('cards');
     }
 
+    public function scopeBlockedLinked(Builder $query): Builder
+    {
+        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->where('status', 'blocked'));
+    }
+
+    public function scopeDraftLinked(Builder $query): Builder
+    {
+        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->where('status', 'draft'));
+    }
+
+    public function scopeCardActiveLinked(Builder $query): Builder
+    {
+        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->where('status', 'active'));
+    }
+
+    public function scopeActivatedLinked(Builder $query): Builder
+    {
+        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->whereNotNull('activated_at'));
+    }
+
     public function scopeAssignedToActiveShopLinked(Builder $query): Builder
     {
         return $query->assignedToActiveShop()->linked();

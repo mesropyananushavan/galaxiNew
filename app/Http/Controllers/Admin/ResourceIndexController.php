@@ -1374,10 +1374,10 @@ class ResourceIndexController extends Controller
         $blockedLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->where('status', 'blocked')->count());
         $draftLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->where('status', 'draft')->count());
         $activatedLinkedCardCount = $cardHolders->sum(fn (CardHolder $cardHolder): int => $cardHolder->cards->filter(fn ($card): bool => $card->activated_at !== null)->count());
-        $blockedLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->status === 'blocked'))->count();
-        $draftLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->status === 'draft'))->count();
-        $activeLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->status === 'active'))->count();
-        $activatedLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->activated_at !== null))->count();
+        $blockedLinkedHolderCount = CardHolder::query()->blockedLinked()->count();
+        $draftLinkedHolderCount = CardHolder::query()->draftLinked()->count();
+        $activeLinkedHolderCount = CardHolder::query()->cardActiveLinked()->count();
+        $activatedLinkedHolderCount = CardHolder::query()->activatedLinked()->count();
         $rolesQuery = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active');
         $roles = $rolesQuery->get();
         $roleCount = $roles->count();
