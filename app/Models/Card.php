@@ -133,6 +133,11 @@ class Card extends Model
         return $query->draft()->unassigned();
     }
 
+    public function scopeActivatedUnassigned(Builder $query): Builder
+    {
+        return $query->whereNotNull('activated_at')->unassigned();
+    }
+
     public function scopeBlockedUnassigned(Builder $query): Builder
     {
         return $query->blocked()->unassigned();
