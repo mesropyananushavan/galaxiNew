@@ -261,7 +261,7 @@
                 <p>Seam-source coverage: {{ count(config('phase-1-seam-sources.items', [])) }} Phase 1 seam sources currently documented in <code>README.md</code>.</p>
                 <p>Seam-source baseline: <code>config/phase-1-seam-sources.php</code> keeps that README-level seam-source inventory aligned.</p>
                 <p>Seam-source posture: {{ config('phase-1-seam-sources.posture') }}.</p>
-                <p>Seam-source source of truth: @foreach (config('phase-1-seam-sources.guide', []) as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach remain the readable and implementation anchors for those Phase 1 seam sources.</p>
+                <p>Seam-source source of truth: @foreach (config('phase-1-seam-sources.source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach remain the readable and implementation anchors for those Phase 1 seam sources.</p>
                 <p>Doc guide: @foreach (config('landing-docs.guide', []) as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach remain the readable anchors for this public Galaxy migration reference trail.</p>
                 <p>Doc posture: {{ config('landing-docs.posture') }}.</p>
                 <p>Source of truth: @foreach (config('landing-docs.source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach remain the readable and implementation anchors for this public Galaxy migration reference trail.</p>

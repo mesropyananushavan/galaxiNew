@@ -223,7 +223,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            @foreach ($phaseOneSeamSourcesGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach for the readable guide and implementation baseline.
+            @foreach ($phaseOneSeamSourcesSourceOfTruth as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach remain the readable and implementation anchors for this Phase 1 seam-source trail.
         </p>
         <ul class="list">
             @foreach ($phaseOneSeamSources as $seamSource)

@@ -36,6 +36,7 @@ class DashboardController extends Controller
             'phaseOneSeamSources' => config('phase-1-seam-sources.items', []),
             'phaseOneSeamSourcesFocus' => (string) config('phase-1-seam-sources.focus', 'Keep the README-level seam-source inventory visible inside the admin workspace, so contributors can trace which small config seams are currently carrying the Galaxy-specific Phase 1 foundation.'),
             'phaseOneSeamSourcesGuide' => config('phase-1-seam-sources.guide', ['README.md', 'config/phase-1-seam-sources.php']),
+            'phaseOneSeamSourcesSourceOfTruth' => config('phase-1-seam-sources.source_of_truth', ['README.md', 'config/phase-1-seam-sources.php']),
             'phaseOneSeamSourcesPosture' => (string) config('phase-1-seam-sources.posture', 'README-backed seam-source baseline stays explicit across the live Galaxy reference trail'),
             'phaseOneSeamSourcesCoverage' => $this->phaseOneSeamSourcesCoverage(),
             'phaseOneFoundationSeams' => config('phase-1-foundation-seams.items', []),

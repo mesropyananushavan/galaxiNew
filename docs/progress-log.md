@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-06-02
+
+### Seam-source source-of-truth config checkpoint
+- Extended `config/phase-1-seam-sources.php` with shared `source_of_truth` copy, then wired `app/Http/Controllers/Admin/DashboardController.php`, `resources/views/admin/dashboard.blade.php`, and `resources/views/welcome.blade.php` onto that config-backed source-of-truth narrative.
+- Updated the live admin and public seam-source surfaces without changing their visible anchor set, so existing focused assertions stayed valid while the seam-source source-of-truth pattern became structurally consistent with the other Phase 1 cards.
+- Kept the step intentionally small, but it removes one more implicit reuse of `guide` where a dedicated source-of-truth seam is clearer.
+
 ## 2026-06-01
 
 ### README seam-source source-truth sync checkpoint
