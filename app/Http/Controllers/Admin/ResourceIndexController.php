@@ -2554,7 +2554,7 @@ class ResourceIndexController extends Controller
     private function cardsCatalogIssueCardDisabledReason(mixed $cards): string
     {
         $draftCount = Card::query()->draft()->count();
-        $activeCount = $cards->where('status', 'active')->count();
+        $activeCount = Card::query()->active()->count();
 
         return match (true) {
             $draftCount > 0 => 'Blocked until saved draft inventory is verified against legacy issue-flow parity.',
@@ -2566,7 +2566,7 @@ class ResourceIndexController extends Controller
     private function cardsCatalogReviewBlockedDisabledReason(mixed $cards): string
     {
         $blockedCount = Card::query()->blocked()->count();
-        $activeCount = $cards->where('status', 'active')->count();
+        $activeCount = Card::query()->active()->count();
 
         return match (true) {
             $blockedCount > 0 => 'Blocked until saved blocked-card states are verified against legacy inventory semantics.',
