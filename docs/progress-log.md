@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Draft linked-card report baseline follow-up checkpoint
+- Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft linked-card coverage now reads through the existing `Card::draftHolderLinked()` scope instead of being recomputed through per-holder card collection sums.
+- Reused the existing draft card focused assertion as the parity check for this helper-level cleanup.
+
 ### Blocked linked-card report baseline follow-up checkpoint
 - Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked linked-card coverage now reads through the existing `Card::blockedHolderLinked()` scope instead of being recomputed through per-holder card collection sums.
 - Reused the existing blocked-holder-linked focused assertion as the parity check for this helper-level cleanup.
