@@ -2653,7 +2653,7 @@ class ResourceIndexController extends Controller
     private function checksPointsCatalogFindReceiptDisabledReason(array $receiptPreviews): string
     {
         $shopCount = $this->receiptPreviewShopCount($receiptPreviews);
-        $receiptCount = count($receiptPreviews);
+        $receiptCount = $this->receiptPreviewCount($receiptPreviews);
 
         return match (true) {
             $receiptCount > 0 && $shopCount > 1 => 'Blocked until fiscal receipt lookup is verified against branch-aware transaction history and legacy search habits.',
@@ -4924,6 +4924,11 @@ class ResourceIndexController extends Controller
             ->pluck('shop')
             ->unique()
             ->count();
+    }
+
+    private function receiptPreviewCount(array $receiptPreviews): int
+    {
+        return count($receiptPreviews);
     }
 
     private function roleShopScopeNames(Role $role): Collection

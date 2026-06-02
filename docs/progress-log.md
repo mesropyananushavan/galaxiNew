@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Receipt count helper follow-up checkpoint
+- Added a dedicated `receiptPreviewCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so receipt-preview volume checks are defined once instead of being recomputed through inline `count($receiptPreviews)` calls.
+- Updated the checks-and-points receipt-lookup action-gating helper to read through the shared helper, then re-ran the existing branch-aware lookup assertion as the parity check for this structural cleanup.
+
 ### Receipt shop-count helper follow-up checkpoint
 - Added a dedicated `receiptPreviewShopCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so branch-aware receipt coverage is defined once instead of being recomputed through repeated `pluck('shop')->unique()->count()` chains.
 - Updated both checks-and-points action-gating helpers to read through the shared helper, then added a focused feature assertion proving the receipt lookup baseline message still renders.
