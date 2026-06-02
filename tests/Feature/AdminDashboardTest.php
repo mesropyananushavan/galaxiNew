@@ -2231,6 +2231,24 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($activatedHolderLinkedCard->id, Card::query()->activatedUnassigned()->pluck('id')->all());
     }
 
+    public function test_shop_active_scope_matches_branch_catalog_metric_baseline(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Active Scope Branch',
+            'code' => 'active-scope-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Paused Scope Branch',
+            'code' => 'paused-scope-branch',
+            'is_active' => false,
+        ]);
+
+        $this->assertSame([$activeShop->id], Shop::query()->active()->pluck('id')->all());
+        $this->assertNotContains($pausedShop->id, Shop::query()->active()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

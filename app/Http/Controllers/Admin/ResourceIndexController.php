@@ -1220,7 +1220,7 @@ class ResourceIndexController extends Controller
         );
 
         $page['metrics'] = [
-            ['label' => 'Active-state Galaxy branches', 'value' => (string) $shops->where('is_active', true)->count()],
+            ['label' => 'Active-state Galaxy branches', 'value' => (string) Shop::query()->active()->count()],
             ['label' => 'Paused-state Galaxy branches', 'value' => (string) Shop::query()->paused()->count()],
             ['label' => 'Review-noted Galaxy branches', 'value' => (string) Shop::query()->reviewNoted()->count()],
             ['label' => 'Assigned branch managers', 'value' => (string) Shop::query()->managerAssigned()->count()],
@@ -1344,7 +1344,7 @@ class ResourceIndexController extends Controller
     private function enrichReportsPage(array $page): array
     {
         $shopCount = Shop::query()->count();
-        $activeShopCount = Shop::query()->where('is_active', true)->count();
+        $activeShopCount = Shop::query()->active()->count();
         $cardCount = Card::query()->count();
         $activeCardCount = Card::query()->where('status', 'active')->count();
         $blockedCardCount = Card::query()->blocked()->count();

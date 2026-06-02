@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Shop active-state scope follow-up checkpoint
+- Updated the `Shops` catalog metric and reports inventory branch baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-state Galaxy branch coverage now reads through the existing `Shop::active()` scope instead of being recomputed only through inline `is_active = true` filters.
+- Added a focused feature assertion proving the existing active-branch scope still matches the current branch-catalog baseline.
+
 ### Card activated-unassigned scope follow-up checkpoint
 - Added `activatedUnassigned()` to `app/Models/Card.php` so activated unassigned card coverage can be queried from the model layer instead of being recomputed only through inline activated-plus-unassigned filters.
 - Updated the reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so activated unassigned card coverage now reads through the new scope, then added a focused feature assertion proving it matches the current reports inventory baseline.
