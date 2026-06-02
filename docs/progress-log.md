@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### User role-assignment shop scope follow-up checkpoint
+- Added `assignedToPausedShop()`, `roleAssigned()`, `roleAssignedToActiveShop()`, and `roleAssignedToPausedShop()` to `app/Models/User.php` so branch-linked staffing coverage can be queried from the model layer instead of being recomputed only through inline role-user sums.
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so shop-scoped, active-branch, and paused-branch assigned-staff coverage now reads through the new user scopes, then added a focused feature assertion proving the query-level baseline matches the current Phase 1 staffing semantics.
+
 ### Cardholder linked-card-state scope follow-up checkpoint
 - Added `blockedLinked()`, `draftLinked()`, `cardActiveLinked()`, and `activatedLinked()` to `app/Models/CardHolder.php` so holder coverage across linked card states can be queried from the model layer instead of being recomputed only through inline per-holder card collection checks.
 - Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked, draft, active, and activated linked-holder coverage now reads through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current holder-status semantics.

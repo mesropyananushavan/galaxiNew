@@ -1393,10 +1393,10 @@ class ResourceIndexController extends Controller
         $unassignedActiveRoleCount = $activeRoleCount - $assignedActiveRoleCount;
         $draftAssignedRoleCount = (clone $rolesQuery)->draft()->assigned()->count();
         $assignedStaffCount = (int) $roles->sum('users_count');
-        $shopScopedAssignedStaffCount = $roles->sum(fn (Role $role): int => $role->users->filter(fn ($user): bool => $user->shop_id !== null)->count());
+        $shopScopedAssignedStaffCount = User::query()->roleAssigned()->whereNotNull('shop_id')->count();
         $unscopedAssignedStaffCount = $assignedStaffCount - $shopScopedAssignedStaffCount;
-        $activeShopAssignedStaffCount = $roles->sum(fn (Role $role): int => $role->users->filter(fn ($user): bool => $user->shop_id !== null && (bool) $user->shop?->is_active)->count());
-        $pausedShopAssignedStaffCount = $shopScopedAssignedStaffCount - $activeShopAssignedStaffCount;
+        $activeShopAssignedStaffCount = User::query()->roleAssignedToActiveShop()->count();
+        $pausedShopAssignedStaffCount = User::query()->roleAssignedToPausedShop()->count();
 
         $page['actions'] = $this->catalogPrimaryWithSecondaryReviewActions(
             'Open Galaxy reporting catalog',

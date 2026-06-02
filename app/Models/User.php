@@ -42,6 +42,28 @@ class User extends Authenticatable
             ->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->active());
     }
 
+    public function scopeAssignedToPausedShop(Builder $query): Builder
+    {
+        return $query
+            ->whereNotNull('shop_id')
+            ->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->where('is_active', false));
+    }
+
+    public function scopeRoleAssigned(Builder $query): Builder
+    {
+        return $query->whereHas('roles');
+    }
+
+    public function scopeRoleAssignedToActiveShop(Builder $query): Builder
+    {
+        return $query->roleAssigned()->assignedToActiveShop();
+    }
+
+    public function scopeRoleAssignedToPausedShop(Builder $query): Builder
+    {
+        return $query->roleAssigned()->assignedToPausedShop();
+    }
+
     public function scopePermissionBearing(Builder $query): Builder
     {
         return $query->whereHas('roles', fn (Builder $roleQuery): Builder => $roleQuery->permissionBearing());

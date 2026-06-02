@@ -1662,6 +1662,44 @@ class AdminDashboardTest extends TestCase
         $this->assertSame([$activatedHolder->id], CardHolder::query()->activatedLinked()->pluck('id')->all());
     }
 
+    public function test_user_role_assignment_shop_scopes_match_reports_access_staffing_baseline(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'User Role Active Branch',
+            'code' => 'user-role-active-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'User Role Paused Branch',
+            'code' => 'user-role-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $role = Role::create([
+            'name' => 'User Role Assignment Scope',
+            'slug' => 'user-role-assignment-scope',
+            'is_active' => true,
+        ]);
+
+        $activeUser = User::factory()->create(['shop_id' => $activeShop->id]);
+        $pausedUser = User::factory()->create(['shop_id' => $pausedShop->id]);
+        $bootstrapUser = User::factory()->create(['shop_id' => null]);
+        $shopRolelessUser = User::factory()->create(['shop_id' => $activeShop->id]);
+
+        $activeUser->roles()->attach($role->id);
+        $pausedUser->roles()->attach($role->id);
+        $bootstrapUser->roles()->attach($role->id);
+
+        $this->assertEqualsCanonicalizing(
+            [$activeUser->id, $pausedUser->id, $bootstrapUser->id],
+            User::query()->roleAssigned()->pluck('id')->all(),
+        );
+        $this->assertSame([$activeUser->id], User::query()->roleAssignedToActiveShop()->pluck('id')->all());
+        $this->assertSame([$pausedUser->id], User::query()->roleAssignedToPausedShop()->pluck('id')->all());
+        $this->assertNotContains($shopRolelessUser->id, User::query()->roleAssigned()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
