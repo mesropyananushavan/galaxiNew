@@ -2034,6 +2034,47 @@ class AdminDashboardTest extends TestCase
         $this->assertCount(1, Card::query()->pausedShopHolderLinked()->pluck('id')->all());
     }
 
+    public function test_card_shop_unassigned_scopes_match_reports_inventory_baseline(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Card Active Unassigned Branch',
+            'code' => 'card-active-unassigned-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Card Paused Unassigned Branch',
+            'code' => 'card-paused-unassigned-branch',
+            'is_active' => false,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Card Shop Unassigned Tier',
+            'slug' => 'card-shop-unassigned-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $activeShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-SHOP-UNASSIGNED-001',
+            'status' => 'draft',
+        ]);
+
+        Card::create([
+            'shop_id' => $pausedShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-SHOP-UNASSIGNED-002',
+            'status' => 'draft',
+        ]);
+
+        $this->assertCount(1, Card::query()->activeShopUnassigned()->pluck('id')->all());
+        $this->assertCount(1, Card::query()->pausedShopUnassigned()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

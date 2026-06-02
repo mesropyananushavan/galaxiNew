@@ -73,6 +73,16 @@ class Card extends Model
         return $query->holderLinked()->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->paused());
     }
 
+    public function scopeActiveShopUnassigned(Builder $query): Builder
+    {
+        return $query->unassigned()->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->active());
+    }
+
+    public function scopePausedShopUnassigned(Builder $query): Builder
+    {
+        return $query->unassigned()->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->paused());
+    }
+
     public function scopeIssuedUnassigned(Builder $query): Builder
     {
         return $query->issued()->unassigned();
