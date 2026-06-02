@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card-type active-state scope follow-up checkpoint
+- Updated card-type catalog action-gating helpers in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-tier coverage now reads through the existing `CardType::active()` scope instead of being recomputed only through inline `is_active = true` filters.
+- Added a focused feature assertion proving the existing active-tier scope still matches the current catalog action-gating baseline.
+
 ### Cardholder active-state scope follow-up checkpoint
 - Updated the reports and card-holder catalog baselines in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-state Galaxy holder coverage now reads through the existing `CardHolder::active()` scope instead of being recomputed only through inline `is_active = true` filters.
 - Added a focused feature assertion proving the existing active holder scope still matches the current holder baseline.

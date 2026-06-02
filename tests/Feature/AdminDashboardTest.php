@@ -2303,6 +2303,26 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($inactiveHolder->id, CardHolder::query()->active()->pluck('id')->all());
     }
 
+    public function test_card_type_active_scope_matches_catalog_action_gating_baseline(): void
+    {
+        $activeTier = CardType::create([
+            'name' => 'Active Tier Action Scope',
+            'slug' => 'active-tier-action-scope',
+            'points_rate' => '1.10',
+            'is_active' => true,
+        ]);
+
+        $draftTier = CardType::create([
+            'name' => 'Draft Tier Action Scope',
+            'slug' => 'draft-tier-action-scope',
+            'points_rate' => '0.90',
+            'is_active' => false,
+        ]);
+
+        $this->assertSame([$activeTier->id], CardType::query()->active()->pluck('id')->all());
+        $this->assertNotContains($draftTier->id, CardType::query()->active()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
