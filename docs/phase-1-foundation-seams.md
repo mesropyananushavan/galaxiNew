@@ -14,6 +14,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 ### Domain baseline
 - readable summary: `docs/phase-1-domain-map.md`
 - implementation baseline: `config/phase-1-domain-map.php`
+- source-of-truth anchors: `docs/phase-1-domain-map.md`, `config/phase-1-domain-map.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 
 ### Admin reference trail

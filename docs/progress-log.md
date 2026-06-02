@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Foundation-seam domain source sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `Domain baseline` seam now explicitly lists the same source-of-truth anchors already centralized in `config/phase-1-domain-map.php`.
+- Kept the step intentionally small and docs-only, but it makes the seam note more consistent about how the domain baseline fits into the broader config-backed Phase 1 source-of-truth pattern.
+
 ### Foundation-seam top-level guidance source sync checkpoint
 - Updated `docs/phase-1-foundation-seams.md` so the readable `Top-level repo guidance` seam now explicitly lists the same source-of-truth anchors already surfaced through the README-centric Phase 1 reference trail.
 - Kept the step intentionally small and docs-only, but it makes the seam note more consistent about how repo-level guidance fits into the broader config-backed reference pattern now used across Phase 1 surfaces.
