@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card blocked-unassigned scope follow-up checkpoint
+- Updated the reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked unassigned card coverage now reads through the existing `Card::blockedUnassigned()` scope instead of being recomputed only through inline blocked-plus-unassigned filters.
+- Added a focused feature assertion proving the existing blocked-unassigned scope still matches the current reports inventory baseline.
+
 ### Card draft-unassigned scope follow-up checkpoint
 - Added `draftUnassigned()` to `app/Models/Card.php` so draft unassigned card coverage can be queried from the model layer instead of being recomputed only through inline draft-plus-unassigned filters.
 - Updated the reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft unassigned card coverage now reads through the new scope, then added a focused feature assertion proving it matches the current reports inventory baseline.
