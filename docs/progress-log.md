@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Foundation-seam top-level guidance source sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `Top-level repo guidance` seam now explicitly lists the same source-of-truth anchors already surfaced through the README-centric Phase 1 reference trail.
+- Kept the step intentionally small and docs-only, but it makes the seam note more consistent about how repo-level guidance fits into the broader config-backed reference pattern now used across Phase 1 surfaces.
+
 ### Foundation-seam seam-source source-truth sync checkpoint
 - Updated `docs/phase-1-foundation-seams.md` so the readable `README seam-source trail` seam now explicitly lists the same source-of-truth anchors already centralized in `config/phase-1-seam-sources.php`.
 - Kept the step intentionally small and docs-only, but it keeps the seam note aligned with the config-backed seam-source source-of-truth pattern now used across the repo plus the live admin and public seam-source surfaces.

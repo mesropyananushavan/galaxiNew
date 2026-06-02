@@ -34,6 +34,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 
 ### Top-level repo guidance
 - readable summary anchor: this file
+- source-of-truth anchors: `README.md`, `docs/blueprint.md`, `docs/phase-1-plan.md`, `config/phase-1-reference-docs.php`
 - visible runtime surface: `README.md`
 - current role: keeps top-level Phase 1 references and seam-source guidance aligned for contributors before they open the live surfaces
 
