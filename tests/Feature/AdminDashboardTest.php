@@ -1470,6 +1470,43 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($uncoveredShop->id, Shop::query()->roleCovered()->pluck('id')->all());
     }
 
+    public function test_role_shop_aware_permission_scopes_match_reports_access_baseline(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Role Active Branch',
+            'code' => 'role-active-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Role Paused Branch',
+            'code' => 'role-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Shop Aware Permission Role',
+            'slug' => 'shop-aware-permission-role',
+            'is_active' => true,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Shop Aware Permission',
+            'slug' => 'shop-aware-permission',
+        ]);
+
+        $activeUser = User::factory()->create(['shop_id' => $activeShop->id]);
+        $pausedUser = User::factory()->create(['shop_id' => $pausedShop->id]);
+
+        $role->permissions()->attach($permission->id);
+        $activeUser->roles()->attach($role->id);
+        $pausedUser->roles()->attach($role->id);
+
+        $this->assertSame([$role->id], Role::query()->activeShopScopedPermissionBearing()->pluck('id')->all());
+        $this->assertSame([$role->id], Role::query()->activeAssignedToActiveShopPermissionBearing()->pluck('id')->all());
+        $this->assertSame([$role->id], Role::query()->activeAssignedToPausedShopPermissionBearing()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

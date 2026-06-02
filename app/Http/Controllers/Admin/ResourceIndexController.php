@@ -1385,15 +1385,9 @@ class ResourceIndexController extends Controller
         $permissionLinkedRoleCount = (clone $rolesQuery)->activePermissionBearing()->count();
         $permissionlessActiveRoleCount = $activeRoleCount - $permissionLinkedRoleCount;
         $assignedPermissionLinkedRoleCount = (clone $rolesQuery)->activeAssignedPermissionBearing()->count();
-        $scopedPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active
-            && $role->permissions_count > 0
-            && $role->users->contains(fn ($user): bool => $user->shop_id !== null))->count();
-        $activeBranchPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active
-            && $role->permissions_count > 0
-            && $role->users->contains(fn ($user): bool => $user->shop_id !== null && (bool) $user->shop?->is_active))->count();
-        $pausedBranchPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active
-            && $role->permissions_count > 0
-            && $role->users->contains(fn ($user): bool => $user->shop_id !== null && ! (bool) $user->shop?->is_active))->count();
+        $scopedPermissionLinkedRoleCount = (clone $rolesQuery)->activeShopScopedPermissionBearing()->count();
+        $activeBranchPermissionLinkedRoleCount = (clone $rolesQuery)->activeAssignedToActiveShopPermissionBearing()->count();
+        $pausedBranchPermissionLinkedRoleCount = (clone $rolesQuery)->activeAssignedToPausedShopPermissionBearing()->count();
         $draftPermissionLinkedRoleCount = (clone $rolesQuery)->draftPermissionBearing()->count();
         $assignedActiveRoleCount = (clone $rolesQuery)->activeAssigned()->count();
         $unassignedActiveRoleCount = $activeRoleCount - $assignedActiveRoleCount;

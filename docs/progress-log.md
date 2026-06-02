@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role shop-aware permission scope follow-up checkpoint
+- Added `activeShopScopedPermissionBearing()`, `activeAssignedToActiveShopPermissionBearing()`, and `activeAssignedToPausedShopPermissionBearing()` to `app/Models/Role.php` so shop-aware permission-linked access coverage can be queried from the model layer instead of being recomputed only through inline user-collection checks.
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so scoped, active-branch, and paused-branch permission-linked role coverage now read through the new scopes, then added a focused feature assertion proving they match the current Phase 1 access baseline.
+
 ### Shop role-coverage follow-up checkpoint
 - Added `roleCovered()` to `app/Models/Shop.php` so branch coverage with staff-to-role assignments can be queried from the model layer instead of being recomputed only through inline role-user flattening.
 - Updated the `Roles & Permissions` catalog metric for branch-scoped Galaxy coverage in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Shop::roleCovered()`, then added a focused feature assertion proving the new scope matches the current branch-coverage baseline.
