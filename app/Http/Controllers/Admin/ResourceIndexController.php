@@ -4956,8 +4956,13 @@ class ResourceIndexController extends Controller
     private function positiveCountEntries(array $counts): int
     {
         return collect($counts)
-            ->filter(fn (int $count): bool => $count > 0)
+            ->filter(fn (int $count): bool => $this->isPositiveCount($count))
             ->count();
+    }
+
+    private function isPositiveCount(int $count): bool
+    {
+        return $count > 0;
     }
 
     private function phase(array $defaults): int
