@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card shop holder-linked scope follow-up checkpoint
+- Added `activeShopHolderLinked()` and `pausedShopHolderLinked()` to `app/Models/Card.php` so branch-aware holder-linked card coverage can be queried from the model layer instead of being recomputed only through inline holder-plus-shop filters.
+- Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-branch and paused-branch holder-linked card coverage now read through the new scopes, then added a focused feature assertion proving they match the current reports inventory baseline.
+
 ### Card blocked-holder-linked scope follow-up checkpoint
 - Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked holder-linked card coverage now reads through the existing `Card::blockedHolderLinked()` scope instead of being recomputed only through inline blocked plus holder filters.
 - Added a focused feature assertion proving the existing blocked holder-linked scope still matches the current reports inventory baseline.
