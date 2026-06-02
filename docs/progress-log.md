@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card activated-state scope follow-up checkpoint
+- Added `activated()` to `app/Models/Card.php` and reused it inside the activated holder-linked and activated unassigned scopes so activation coverage is defined once at the model layer.
+- Updated the reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so activated-card coverage now reads through the new scope, then added a focused feature assertion proving it matches the current reports baseline.
+
 ### Card active-state action-gating follow-up checkpoint
 - Updated card catalog action-gating helpers in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-card coverage now reads through the existing `Card::active()` scope instead of being recomputed only through collection-level `status = active` filters.
 - Reused the existing active-card focused assertion as the parity check for this helper-level cleanup.

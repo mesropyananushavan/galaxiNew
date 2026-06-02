@@ -2393,6 +2393,42 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($draftCard->id, Card::query()->active()->pluck('id')->all());
     }
 
+    public function test_card_activated_scope_matches_reports_inventory_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Activated Card Scope Shop',
+            'code' => 'activated-card-scope-shop',
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Activated Card Scope Tier',
+            'slug' => 'activated-card-scope-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $activatedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-ACTIVATED-CARD-001',
+            'status' => 'active',
+            'activated_at' => '2026-05-02 10:00:00',
+        ]);
+
+        $unactivatedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-ACTIVATED-CARD-002',
+            'status' => 'active',
+            'activated_at' => null,
+        ]);
+
+        $this->assertSame([$activatedCard->id], Card::query()->activated()->pluck('id')->all());
+        $this->assertNotContains($unactivatedCard->id, Card::query()->activated()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
