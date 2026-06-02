@@ -786,6 +786,45 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($nullReviewNoteShop->id, Shop::query()->reviewNoted()->pluck('id')->all());
     }
 
+    public function test_cardholder_review_note_scope_matches_holder_catalog_metric_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Holder Scope Shop',
+            'code' => 'holder-scope-shop',
+        ]);
+
+        $reviewNotedHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Review Noted Holder',
+            'phone' => '+37411000001',
+            'email' => 'review-holder@example.com',
+            'is_active' => true,
+            'review_note' => 'Visible holder parity checkpoint.',
+        ]);
+
+        $blankReviewNoteHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Blank Review Note Holder',
+            'phone' => '+37411000002',
+            'email' => 'blank-holder@example.com',
+            'is_active' => true,
+            'review_note' => '',
+        ]);
+
+        $nullReviewNoteHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Null Review Note Holder',
+            'phone' => '+37411000003',
+            'email' => 'null-holder@example.com',
+            'is_active' => true,
+            'review_note' => null,
+        ]);
+
+        $this->assertSame([$reviewNotedHolder->id], CardHolder::query()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($blankReviewNoteHolder->id, CardHolder::query()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($nullReviewNoteHolder->id, CardHolder::query()->reviewNoted()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Cardholder review-note scope follow-up checkpoint
+- Added `reviewNoted()` to `app/Models/CardHolder.php` so saved holder review coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Cardholders` catalog metric for review-noted Galaxy holders in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `CardHolder::reviewNoted()`, then added a focused feature assertion proving blank holder notes stay out of the Phase 1 baseline.
+
 ### Shop review-note scope follow-up checkpoint
 - Added `reviewNoted()` to `app/Models/Shop.php` so saved branch review coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
 - Updated the `Shops` catalog metric for review-noted Galaxy branches in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Shop::reviewNoted()`, then added a focused feature assertion proving blank branch notes stay out of the Phase 1 baseline.
