@@ -23,6 +23,36 @@ class Card extends Model
         return $query->whereNotNull('review_note')->where('review_note', '!=', '');
     }
 
+    public function scopeIssued(Builder $query): Builder
+    {
+        return $query->whereNotNull('issued_at');
+    }
+
+    public function scopePreActivation(Builder $query): Builder
+    {
+        return $query->issued()->whereNull('activated_at');
+    }
+
+    public function scopeHolderLinked(Builder $query): Builder
+    {
+        return $query->whereNotNull('card_holder_id');
+    }
+
+    public function scopeUnassigned(Builder $query): Builder
+    {
+        return $query->whereNull('card_holder_id');
+    }
+
+    public function scopeIssuedHolderLinked(Builder $query): Builder
+    {
+        return $query->issued()->holderLinked();
+    }
+
+    public function scopeBlockedUnassigned(Builder $query): Builder
+    {
+        return $query->where('status', 'blocked')->unassigned();
+    }
+
     public function shop(): BelongsTo
     {
         return $this->belongsTo(Shop::class);

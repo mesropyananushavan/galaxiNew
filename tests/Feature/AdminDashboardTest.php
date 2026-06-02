@@ -1031,6 +1031,73 @@ class AdminDashboardTest extends TestCase
         $this->assertSame([$pausedUnlinkedHolder->id], CardHolder::query()->assignedToPausedShopUnlinked()->pluck('id')->all());
     }
 
+    public function test_card_inventory_scopes_match_catalog_metric_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Inventory Scope Shop',
+            'code' => 'inventory-scope-shop',
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Inventory Scope Holder',
+            'phone' => '+37414000001',
+            'email' => 'inventory-scope-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Inventory Scope Tier',
+            'slug' => 'inventory-scope-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $issuedHolderLinkedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-INVENTORY-001',
+            'status' => 'active',
+            'issued_at' => '2026-04-10 09:00:00',
+            'activated_at' => '2026-04-10 10:00:00',
+        ]);
+
+        $blockedUnassignedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-INVENTORY-002',
+            'status' => 'blocked',
+            'issued_at' => '2026-04-11 09:00:00',
+        ]);
+
+        $draftUnassignedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-INVENTORY-003',
+            'status' => 'draft',
+            'issued_at' => null,
+        ]);
+
+        $this->assertEqualsCanonicalizing(
+            [$issuedHolderLinkedCard->id, $blockedUnassignedCard->id],
+            Card::query()->issued()->pluck('id')->all(),
+        );
+        $this->assertEqualsCanonicalizing(
+            [$blockedUnassignedCard->id],
+            Card::query()->preActivation()->pluck('id')->all(),
+        );
+        $this->assertSame([$issuedHolderLinkedCard->id], Card::query()->holderLinked()->pluck('id')->all());
+        $this->assertEqualsCanonicalizing(
+            [$blockedUnassignedCard->id, $draftUnassignedCard->id],
+            Card::query()->unassigned()->pluck('id')->all(),
+        );
+        $this->assertSame([$issuedHolderLinkedCard->id], Card::query()->issuedHolderLinked()->pluck('id')->all());
+        $this->assertSame([$blockedUnassignedCard->id], Card::query()->blockedUnassigned()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
