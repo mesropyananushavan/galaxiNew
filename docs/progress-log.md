@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Blocked linked-card report baseline follow-up checkpoint
+- Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked linked-card coverage now reads through the existing `Card::blockedHolderLinked()` scope instead of being recomputed through per-holder card collection sums.
+- Reused the existing blocked-holder-linked focused assertion as the parity check for this helper-level cleanup.
+
 ### Cardholder inactive-state action-gating follow-up checkpoint
 - Updated the cardholder catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so inactive-holder coverage now reads through the existing `CardHolder::inactive()` scope instead of being recomputed only through an inline `is_active = false` filter.
 - Reused the existing inactive-holder focused assertion as the parity check for this helper-level baseline cleanup.
