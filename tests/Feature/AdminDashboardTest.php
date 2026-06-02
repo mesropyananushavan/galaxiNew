@@ -2508,6 +2508,41 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until accrual-gap review is backed by Galaxy foundation transaction and rule data.');
     }
 
+    public function test_roles_permissions_page_keeps_scope_names_visible_after_helper_extraction(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Scope Helper Active Shop',
+            'code' => 'scope-helper-active-shop',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Scope Helper Paused Shop',
+            'code' => 'scope-helper-paused-shop',
+            'is_active' => false,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scope Helper Role',
+            'slug' => 'scope-helper-role',
+            'is_active' => true,
+        ]);
+
+        $activeUser = User::factory()->create(['shop_id' => $activeShop->id]);
+        $pausedUser = User::factory()->create(['shop_id' => $pausedShop->id]);
+
+        $role->users()->attach([$activeUser->id, $pausedUser->id]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Scope Helper Active Shop')
+            ->assertSee('Scope Helper Paused Shop');
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role scope-name helper follow-up checkpoint
+- Added a dedicated `roleShopScopeNames()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so role scope-name previews are defined once instead of being recomputed through repeated `pluck(...)->filter()->unique()` chains.
+- Updated both the roles catalog row builder and selected-role detail setup to read through the shared helper, then added a focused feature assertion proving branch scope names still render in the role review page.
+
 ### Zero-accrual receipt helper follow-up checkpoint
 - Added a dedicated `zeroAccrualReceiptCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so zero-accrual receipt review logic is defined once instead of being recomputed through an inline collection filter.
 - Updated the checks-and-points gap-review helper to read through the shared helper, then added a focused feature assertion proving the current accrual-gap baseline message still renders.

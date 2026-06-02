@@ -693,7 +693,7 @@ class ResourceIndexController extends Controller
         );
 
         $page['table']['rows'] = $roles->map(function (Role $role): array {
-            $scope = $role->users->pluck('shop.name')->filter()->unique();
+            $scope = $this->roleShopScopeNames($role);
             $permissionPreview = $role->permissions->pluck('name')->take(3)->implode(', ');
             $permissionReviewNote = $role->permissions
                 ->pluck('review_note')
@@ -734,7 +734,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $scope = $selectedRole->users->pluck('shop.name')->filter()->unique();
+        $scope = $this->roleShopScopeNames($selectedRole);
         $permissionPreview = $selectedRole->permissions->pluck('name');
         $assignedUserPreview = $selectedRole->users->pluck('name')->filter()->take(3);
 
@@ -4911,6 +4911,15 @@ class ResourceIndexController extends Controller
         return collect($receiptPreviews)
             ->filter(fn (array $receipt): bool => $receipt['points'] === '0')
             ->count();
+    }
+
+    private function roleShopScopeNames(Role $role): Collection
+    {
+        return $role->users
+            ->pluck('shop.name')
+            ->filter()
+            ->unique()
+            ->values();
     }
 
     private function phase(array $defaults): int
