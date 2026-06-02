@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role permission-bearing action-gating follow-up checkpoint
+- Updated the roles catalog action-gating logic in `app/Http/Controllers/Admin/ResourceIndexController.php` so permission-linked coverage now reads through `Role::permissionBearing()` instead of being recomputed only through inline collection filters.
+- Added a focused feature assertion proving the existing permission-bearing scope still matches the current roles catalog action-gating baseline.
+
 ### Role assigned-scope follow-up checkpoint
 - Added `assigned()` to `app/Models/Role.php` so role staffing coverage can be queried from the model layer without coupling every follow-up to status-specific helpers.
 - Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft assigned-role coverage now reads through `Role::draft()->assigned()`, then added a focused feature assertion proving the shared assignment scope matches the current Phase 1 draft-role staffing baseline.

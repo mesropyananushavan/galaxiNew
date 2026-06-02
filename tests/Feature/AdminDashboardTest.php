@@ -1223,6 +1223,31 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($draftUnassignedRole->id, Role::query()->assigned()->pluck('id')->all());
     }
 
+    public function test_role_permission_bearing_scope_matches_roles_catalog_action_gating_baseline(): void
+    {
+        $permissionLinkedRole = Role::create([
+            'name' => 'Permission Linked Catalog Role',
+            'slug' => 'permission-linked-catalog-role',
+            'is_active' => true,
+        ]);
+
+        $plainRole = Role::create([
+            'name' => 'Plain Catalog Role',
+            'slug' => 'plain-catalog-role',
+            'is_active' => false,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Catalog Permission',
+            'slug' => 'catalog-permission',
+        ]);
+
+        $permissionLinkedRole->permissions()->attach($permission->id);
+
+        $this->assertSame([$permissionLinkedRole->id], Role::query()->permissionBearing()->pluck('id')->all());
+        $this->assertNotContains($plainRole->id, Role::query()->permissionBearing()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
