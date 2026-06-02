@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Zero-accrual receipt predicate follow-up checkpoint
+- Added a dedicated `isZeroAccrualReceipt()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so zero-accrual receipt detection reads as a named domain rule instead of an inline `points === '0'` predicate.
+- Updated `zeroAccrualReceiptCount()` to read through the shared helper, then re-ran the existing accrual-gap assertion as the parity check for this structural cleanup.
+
 ### Positive-count helper follow-up checkpoint
 - Added a dedicated `positiveCountEntries()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so live-source counting is defined once instead of embedding a raw `count > 0` collection filter in the reports helper.
 - Updated `liveSourceCount()` to read through the shared helper, then re-ran the existing multi-source reports assertion as the parity check for this structural cleanup.

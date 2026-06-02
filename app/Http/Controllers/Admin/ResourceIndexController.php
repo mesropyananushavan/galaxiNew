@@ -4912,8 +4912,13 @@ class ResourceIndexController extends Controller
     private function zeroAccrualReceiptCount(array $receiptPreviews): int
     {
         return collect($receiptPreviews)
-            ->filter(fn (array $receipt): bool => $receipt['points'] === '0')
+            ->filter(fn (array $receipt): bool => $this->isZeroAccrualReceipt($receipt))
             ->count();
+    }
+
+    private function isZeroAccrualReceipt(array $receipt): bool
+    {
+        return ($receipt['points'] ?? null) === '0';
     }
 
     private function receiptPreviewShopCount(array $receiptPreviews): int
