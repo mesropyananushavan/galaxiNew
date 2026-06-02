@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card-type review-note scope follow-up checkpoint
+- Added `reviewNoted()` to `app/Models/CardType.php` so saved tier review coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Card Types` catalog metric for review-noted Galaxy tiers in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `CardType::reviewNoted()`, then added a focused feature assertion proving blank tier notes stay out of the Phase 1 baseline.
+
 ### Card review-note scope follow-up checkpoint
 - Added `reviewNoted()` to `app/Models/Card.php` so saved card-shell review coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
 - Updated the `Cards` catalog metric for review-noted Galaxy card shells in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Card::reviewNoted()`, then added a focused feature assertion proving blank card notes stay out of the Phase 1 baseline.

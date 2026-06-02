@@ -879,6 +879,37 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($nullReviewNoteCard->id, Card::query()->reviewNoted()->pluck('id')->all());
     }
 
+    public function test_card_type_review_note_scope_matches_tier_catalog_metric_baseline(): void
+    {
+        $reviewNotedTier = CardType::create([
+            'name' => 'Review Noted Tier',
+            'slug' => 'review-noted-tier',
+            'points_rate' => '1.25',
+            'is_active' => true,
+            'review_note' => 'Visible tier parity checkpoint.',
+        ]);
+
+        $blankReviewNoteTier = CardType::create([
+            'name' => 'Blank Review Note Tier',
+            'slug' => 'blank-review-note-tier',
+            'points_rate' => '0.90',
+            'is_active' => true,
+            'review_note' => '',
+        ]);
+
+        $nullReviewNoteTier = CardType::create([
+            'name' => 'Null Review Note Tier',
+            'slug' => 'null-review-note-tier',
+            'points_rate' => '0.75',
+            'is_active' => false,
+            'review_note' => null,
+        ]);
+
+        $this->assertSame([$reviewNotedTier->id], CardType::query()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($blankReviewNoteTier->id, CardType::query()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($nullReviewNoteTier->id, CardType::query()->reviewNoted()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
