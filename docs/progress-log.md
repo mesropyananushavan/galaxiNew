@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card activated-holder-linked scope follow-up checkpoint
+- Added `activatedHolderLinked()` to `app/Models/Card.php` so activated holder-linked card coverage can be queried from the model layer instead of being recomputed only through inline `activated_at` plus holder filters.
+- Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so activated holder-linked card coverage now reads through the new scope, then added a focused feature assertion proving it matches the current reports inventory baseline.
+
 ### Card holder-linked scope follow-up checkpoint
 - Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so holder-linked card coverage now reads through the existing `Card::holderLinked()` scope instead of being recomputed only through an inline `card_holder_id` filter.
 - Added a focused feature assertion proving the existing holder-linked scope still matches the current reports inventory baseline.

@@ -1891,6 +1891,50 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($unassignedCard->id, Card::query()->holderLinked()->pluck('id')->all());
     }
 
+    public function test_card_activated_holder_linked_scope_matches_reports_inventory_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Activated Holder Linked Shop',
+            'code' => 'activated-holder-linked-shop',
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Activated Holder Linked Person',
+            'phone' => '+37423000001',
+            'email' => 'activated-holder-linked@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Activated Holder Linked Tier',
+            'slug' => 'activated-holder-linked-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $activatedHolderLinkedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-ACTIVATED-LINKED-001',
+            'status' => 'active',
+            'activated_at' => '2026-04-16 10:00:00',
+        ]);
+
+        $unactivatedHolderLinkedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-ACTIVATED-LINKED-002',
+            'status' => 'active',
+            'activated_at' => null,
+        ]);
+
+        $this->assertSame([$activatedHolderLinkedCard->id], Card::query()->activatedHolderLinked()->pluck('id')->all());
+        $this->assertNotContains($unactivatedHolderLinkedCard->id, Card::query()->activatedHolderLinked()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
