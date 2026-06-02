@@ -6,6 +6,10 @@
 - Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so activated linked-card coverage now reads through the existing `Card::activatedHolderLinked()` scope instead of being recomputed through per-holder activation filters.
 - Reused the existing activated-holder-linked focused assertion as the parity check for this helper-level cleanup.
 
+### User shop-assignment scope reuse follow-up checkpoint
+- Updated role detail summaries in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-shop and paused-shop assigned staff coverage now read through the existing `User::assignedToActiveShop()` and `User::assignedToPausedShop()` scopes instead of being recomputed through relation collection filters.
+- Added a focused feature assertion proving the existing user shop-assignment scopes still match the current role-detail baseline.
+
 ### Active linked-card report baseline follow-up checkpoint
 - Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so active linked-card coverage now reads through the existing `Card::activeHolderLinked()` scope instead of being recomputed through per-holder card collection sums.
 - Reused the existing active-card focused assertion as the parity check for this helper-level cleanup.

@@ -2429,6 +2429,46 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($unactivatedCard->id, Card::query()->activated()->pluck('id')->all());
     }
 
+    public function test_user_shop_assignment_scopes_match_role_detail_baseline(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Role Detail Active Shop',
+            'code' => 'role-detail-active-shop',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Role Detail Paused Shop',
+            'code' => 'role-detail-paused-shop',
+            'is_active' => false,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Role Detail Scope Role',
+            'slug' => 'role-detail-scope-role',
+            'is_active' => true,
+        ]);
+
+        $activeUser = User::create([
+            'name' => 'Role Detail Active User',
+            'email' => 'role-detail-active-user@example.com',
+            'password' => bcrypt('password'),
+            'shop_id' => $activeShop->id,
+        ]);
+
+        $pausedUser = User::create([
+            'name' => 'Role Detail Paused User',
+            'email' => 'role-detail-paused-user@example.com',
+            'password' => bcrypt('password'),
+            'shop_id' => $pausedShop->id,
+        ]);
+
+        $role->users()->attach([$activeUser->id, $pausedUser->id]);
+
+        $this->assertSame([$activeUser->id], $role->users()->assignedToActiveShop()->pluck('users.id')->all());
+        $this->assertSame([$pausedUser->id], $role->users()->assignedToPausedShop()->pluck('users.id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

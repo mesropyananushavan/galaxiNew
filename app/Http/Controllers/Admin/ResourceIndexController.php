@@ -3119,8 +3119,8 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsSelectedRoleSummary(Role $selectedRole, mixed $scope, mixed $permissionPreview, mixed $assignedUserPreview): array
     {
-        $activeShopAssignedUserCount = $selectedRole->users->filter(fn ($user): bool => (bool) $user->shop?->is_active)->count();
-        $pausedShopAssignedUserCount = $selectedRole->users->filter(fn ($user): bool => $user->shop !== null && ! $user->shop->is_active)->count();
+        $activeShopAssignedUserCount = $selectedRole->users()->assignedToActiveShop()->count();
+        $pausedShopAssignedUserCount = $selectedRole->users()->assignedToPausedShop()->count();
         $permissionBranchActivitySignal = $selectedRole->permissions_count > 0 && $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
             ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
             : 'paused-branch permission-linked staff coverage is still pending for parity review';
@@ -3658,8 +3658,8 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsSelectedRoleDependencyStatus(Role $selectedRole, mixed $scope, mixed $permissionPreview): array
     {
-        $activeShopAssignedUserCount = $selectedRole->users->filter(fn ($user): bool => (bool) $user->shop?->is_active)->count();
-        $pausedShopAssignedUserCount = $selectedRole->users->filter(fn ($user): bool => $user->shop !== null && ! $user->shop->is_active)->count();
+        $activeShopAssignedUserCount = $selectedRole->users()->assignedToActiveShop()->count();
+        $pausedShopAssignedUserCount = $selectedRole->users()->assignedToPausedShop()->count();
         $permissionBranchActivitySignal = $selectedRole->permissions_count > 0 && $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
             ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
             : 'paused-branch permission-linked staff coverage is still pending for parity review';
