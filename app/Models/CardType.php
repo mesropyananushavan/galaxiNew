@@ -26,6 +26,11 @@ class CardType extends Model
         return $query->where('is_active', true);
     }
 
+    public function scopeDraft(Builder $query): Builder
+    {
+        return $query->where('is_active', false);
+    }
+
     public function scopeReviewNoted(Builder $query): Builder
     {
         return $query->whereNotNull('review_note')->where('review_note', '!=', '');
