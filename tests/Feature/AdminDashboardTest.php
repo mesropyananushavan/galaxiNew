@@ -825,6 +825,60 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($nullReviewNoteHolder->id, CardHolder::query()->reviewNoted()->pluck('id')->all());
     }
 
+    public function test_card_review_note_scope_matches_card_catalog_metric_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Card Scope Shop',
+            'code' => 'card-scope-shop',
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Card Scope Holder',
+            'phone' => '+37412000001',
+            'email' => 'card-scope-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Card Scope Tier',
+            'slug' => 'card-scope-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $reviewNotedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-CARD-SCOPE-001',
+            'status' => 'active',
+            'review_note' => 'Visible card parity checkpoint.',
+        ]);
+
+        $blankReviewNoteCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-CARD-SCOPE-002',
+            'status' => 'active',
+            'review_note' => '',
+        ]);
+
+        $nullReviewNoteCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-CARD-SCOPE-003',
+            'status' => 'active',
+            'review_note' => null,
+        ]);
+
+        $this->assertSame([$reviewNotedCard->id], Card::query()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($blankReviewNoteCard->id, Card::query()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($nullReviewNoteCard->id, Card::query()->reviewNoted()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

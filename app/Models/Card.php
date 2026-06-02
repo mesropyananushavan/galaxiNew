@@ -18,6 +18,11 @@ class Card extends Model
         return $query->where('status', 'active');
     }
 
+    public function scopeReviewNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('review_note')->where('review_note', '!=', '');
+    }
+
     public function shop(): BelongsTo
     {
         return $this->belongsTo(Shop::class);
