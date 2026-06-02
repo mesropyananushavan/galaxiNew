@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Non-empty string predicate follow-up checkpoint
+- Added a dedicated `isNonEmptyString()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so role preview string cleanup reads through one named predicate instead of an inline `is_string(...) && trim(...) !== ''` check.
+- Updated `nonEmptyStrings()` to read through the new helper, then re-ran an existing role review assertion as the parity check for this structural cleanup.
+
 ### Record-visibility helper follow-up checkpoint
 - Added a dedicated `recordIsVisibleToAdmin()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so shop-scoped record filtering reads through one named visibility rule instead of an inline collection predicate.
 - Updated the shared shop-scoped record filter to use the new helper, then re-ran an existing role review assertion as the parity check for this structural cleanup.

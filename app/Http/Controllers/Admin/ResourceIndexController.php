@@ -4955,7 +4955,12 @@ class ResourceIndexController extends Controller
 
     private function nonEmptyStrings(Collection $values): Collection
     {
-        return $values->filter(fn (mixed $value): bool => is_string($value) && trim($value) !== '');
+        return $values->filter(fn (mixed $value): bool => $this->isNonEmptyString($value));
+    }
+
+    private function isNonEmptyString(mixed $value): bool
+    {
+        return is_string($value) && trim($value) !== '';
     }
 
     private function positiveCountEntries(array $counts): int
