@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Assigned staff scope reuse follow-up checkpoint
+- Updated the roles reports baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so assigned staff coverage now reads through the existing `User::roleAssigned()` scope instead of being recomputed through role collection `users_count` sums.
+- Reused the existing user shop-assignment focused assertion as the parity check for this helper-level cleanup.
+
 ### Activated linked-card report baseline follow-up checkpoint
 - Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so activated linked-card coverage now reads through the existing `Card::activatedHolderLinked()` scope instead of being recomputed through per-holder activation filters.
 - Reused the existing activated-holder-linked focused assertion as the parity check for this helper-level cleanup.
