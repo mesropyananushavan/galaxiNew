@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role shop-scoped assignment action-gating follow-up checkpoint
+- Added `shopScopedAssigned()` to `app/Models/Role.php` so branch-linked role coverage can be queried from the model layer instead of being recomputed only through inline user collection flattening.
+- Updated the roles catalog publish-action gating in `app/Http/Controllers/Admin/ResourceIndexController.php` so scoped role coverage now reads through `Role::shopScopedAssigned()`, then added a focused feature assertion proving the new scope matches the current publish-gating baseline.
+
 ### Shop foundation-coverage action-gating follow-up checkpoint
 - Added `foundationCovered()` to `app/Models/Shop.php` so branch coverage with holder or card records can be queried from the model layer instead of being recomputed only through inline collection filters.
 - Updated the shops catalog action-gating logic in `app/Http/Controllers/Admin/ResourceIndexController.php` so branch coverage now reads through `Shop::foundationCovered()`, then added a focused feature assertion proving the new scope matches the current shops catalog coverage baseline.

@@ -1372,6 +1372,41 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($uncoveredShop->id, Shop::query()->foundationCovered()->pluck('id')->all());
     }
 
+    public function test_role_shop_scoped_assignment_scope_matches_publish_action_gating_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Scoped Role Branch',
+            'code' => 'scoped-role-branch',
+            'is_active' => true,
+        ]);
+
+        $shopScopedRole = Role::create([
+            'name' => 'Shop Scoped Role',
+            'slug' => 'shop-scoped-role',
+            'is_active' => true,
+        ]);
+
+        $unscopedRole = Role::create([
+            'name' => 'Unscoped Role',
+            'slug' => 'unscoped-role',
+            'is_active' => true,
+        ]);
+
+        $shopUser = User::factory()->create([
+            'shop_id' => $shop->id,
+        ]);
+
+        $bootstrapUser = User::factory()->create([
+            'shop_id' => null,
+        ]);
+
+        $shopUser->roles()->attach($shopScopedRole->id);
+        $bootstrapUser->roles()->attach($unscopedRole->id);
+
+        $this->assertSame([$shopScopedRole->id], Role::query()->shopScopedAssigned()->pluck('id')->all());
+        $this->assertNotContains($unscopedRole->id, Role::query()->shopScopedAssigned()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

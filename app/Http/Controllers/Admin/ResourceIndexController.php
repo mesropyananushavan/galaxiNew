@@ -3484,7 +3484,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsCatalogPublishRoleDisabledReason(mixed $roles): string
     {
         $permissionLinkedCount = Role::query()->permissionBearing()->count();
-        $scopedCount = $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count();
+        $scopedCount = Role::query()->shopScopedAssigned()->count();
         $activeCount = $roles->where('is_active', true)->count();
 
         return match (true) {
