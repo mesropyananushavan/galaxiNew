@@ -55,13 +55,13 @@ class DashboardController extends Controller
             'accessBaselineCoverage' => $this->accessBaselineCoverage(),
             'tierBaselineCoverage' => $this->tierBaselineCoverage(),
             'shopCount' => Shop::query()->count(),
-            'activeShopCount' => Shop::query()->where('is_active', true)->count(),
+            'activeShopCount' => Shop::query()->active()->count(),
             'cardHolderCount' => CardHolder::query()->count(),
-            'activeCardHolderCount' => CardHolder::query()->where('is_active', true)->count(),
+            'activeCardHolderCount' => CardHolder::query()->active()->count(),
             'cardCount' => Card::query()->count(),
-            'activeCardCount' => Card::query()->where('status', 'active')->count(),
+            'activeCardCount' => Card::query()->active()->count(),
             'cardTypeCount' => CardType::query()->count(),
-            'activeCardTypeCount' => CardType::query()->where('is_active', true)->count(),
+            'activeCardTypeCount' => CardType::query()->active()->count(),
             'roleCount' => Role::query()->count(),
             'permissionCount' => Permission::query()->count(),
             'foundationHandoffSummary' => $this->foundationHandoffSummary(),
@@ -310,11 +310,11 @@ class DashboardController extends Controller
     protected function activeFoundationCoverage(): string
     {
         $shopCount = Shop::query()->count();
-        $activeShopCount = Shop::query()->where('is_active', true)->count();
+        $activeShopCount = Shop::query()->active()->count();
         $cardHolderCount = CardHolder::query()->count();
-        $activeCardHolderCount = CardHolder::query()->where('is_active', true)->count();
+        $activeCardHolderCount = CardHolder::query()->active()->count();
         $cardCount = Card::query()->count();
-        $activeCardCount = Card::query()->where('status', 'active')->count();
+        $activeCardCount = Card::query()->active()->count();
 
         $coverageParts = [
             sprintf('Galaxy branches %d/%d active', $activeShopCount, $shopCount),
@@ -344,7 +344,7 @@ class DashboardController extends Controller
     protected function tierBaselineCoverage(): string
     {
         $cardTypeCount = CardType::query()->count();
-        $activeCardTypeCount = CardType::query()->where('is_active', true)->count();
+        $activeCardTypeCount = CardType::query()->active()->count();
 
         return sprintf('%d/%d Galaxy tiers active', $activeCardTypeCount, $cardTypeCount);
     }

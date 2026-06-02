@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Active-foundation scope baseline checkpoint
+- Added small Galaxy foundation query scopes to `app/Models/Shop.php`, `app/Models/CardHolder.php`, `app/Models/CardType.php`, and `app/Models/Card.php` so the current active-state semantics live with the Phase 1 domain models instead of being repeated inline in the dashboard controller.
+- Updated `app/Http/Controllers/Admin/DashboardController.php` to read active shop, holder, card, and tier counts through those model scopes, keeping the live Phase 1 dashboard behavior unchanged while making the foundation models slightly more intentional and reusable.
+
 ### Foundation-seam domain source sync checkpoint
 - Updated `docs/phase-1-foundation-seams.md` so the readable `Domain baseline` seam now explicitly lists the same source-of-truth anchors already centralized in `config/phase-1-domain-map.php`.
 - Kept the step intentionally small and docs-only, but it makes the seam note more consistent about how the domain baseline fits into the broader config-backed Phase 1 source-of-truth pattern.
