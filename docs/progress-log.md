@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card holder-linked scope follow-up checkpoint
+- Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so holder-linked card coverage now reads through the existing `Card::holderLinked()` scope instead of being recomputed only through an inline `card_holder_id` filter.
+- Added a focused feature assertion proving the existing holder-linked scope still matches the current reports inventory baseline.
+
 ### Card draft-state scope follow-up checkpoint
 - Added `draft()` and `draftHolderLinked()` to `app/Models/Card.php` so draft card-shell coverage can be queried from the model layer instead of being recomputed only through inline `status = draft` plus holder filters.
 - Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft holder-linked card coverage now reads through `Card::draftHolderLinked()`, then added a focused feature assertion proving the new scopes match the current draft-state baseline.
