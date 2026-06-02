@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card blocked-state scope follow-up checkpoint
+- Added `blocked()` to `app/Models/Card.php` so blocked card-shell coverage can be queried from the model layer instead of being recomputed only through inline `status = blocked` filters.
+- Updated the cards inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` to read blocked coverage through `Card::blocked()`, then added a focused feature assertion proving the new scope matches the current blocked-state baseline.
+
 ### Card-type draft-state scope follow-up checkpoint
 - Added `draft()` to `app/Models/CardType.php` so draft tier coverage can be queried from the model layer instead of being recomputed only through inline `is_active = false` filters.
 - Updated the `Card Types` catalog metric for draft-state Galaxy tiers in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `CardType::draft()`, then added a focused feature assertion proving the new scope matches the current tier-state baseline.

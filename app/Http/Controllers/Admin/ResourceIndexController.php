@@ -875,7 +875,7 @@ class ResourceIndexController extends Controller
         $page['metrics'] = [
             ['label' => 'Active-state Galaxy card shells', 'value' => (string) $cards->where('status', 'active')->count()],
             ['label' => 'Draft-state Galaxy card shells', 'value' => (string) $cards->where('status', 'draft')->count()],
-            ['label' => 'Blocked Galaxy card shells', 'value' => (string) $cards->where('status', 'blocked')->count()],
+            ['label' => 'Blocked Galaxy card shells', 'value' => (string) Card::query()->blocked()->count()],
             ['label' => 'Issued Galaxy card shells', 'value' => (string) Card::query()->issued()->count()],
             ['label' => 'Pre-activation cards', 'value' => (string) Card::query()->preActivation()->count()],
             ['label' => 'Holder-linked cards', 'value' => (string) Card::query()->holderLinked()->count()],
@@ -1347,7 +1347,7 @@ class ResourceIndexController extends Controller
         $activeShopCount = Shop::query()->where('is_active', true)->count();
         $cardCount = Card::query()->count();
         $activeCardCount = Card::query()->where('status', 'active')->count();
-        $blockedCardCount = Card::query()->where('status', 'blocked')->count();
+        $blockedCardCount = Card::query()->blocked()->count();
         $draftCardCount = Card::query()->where('status', 'draft')->count();
         $activatedCardCount = Card::query()->whereNotNull('activated_at')->count();
         $holderLinkedCardCount = Card::query()->whereNotNull('card_holder_id')->count();

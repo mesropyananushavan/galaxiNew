@@ -18,6 +18,11 @@ class Card extends Model
         return $query->where('status', 'active');
     }
 
+    public function scopeBlocked(Builder $query): Builder
+    {
+        return $query->where('status', 'blocked');
+    }
+
     public function scopeReviewNoted(Builder $query): Builder
     {
         return $query->whereNotNull('review_note')->where('review_note', '!=', '');
@@ -75,22 +80,22 @@ class Card extends Model
 
     public function scopeBlockedPreActivation(Builder $query): Builder
     {
-        return $query->where('status', 'blocked')->preActivation();
+        return $query->blocked()->preActivation();
     }
 
     public function scopeBlockedActivated(Builder $query): Builder
     {
-        return $query->where('status', 'blocked')->whereNotNull('activated_at');
+        return $query->blocked()->whereNotNull('activated_at');
     }
 
     public function scopeBlockedHolderLinked(Builder $query): Builder
     {
-        return $query->where('status', 'blocked')->holderLinked();
+        return $query->blocked()->holderLinked();
     }
 
     public function scopeBlockedUnassigned(Builder $query): Builder
     {
-        return $query->where('status', 'blocked')->unassigned();
+        return $query->blocked()->unassigned();
     }
 
     public function shop(): BelongsTo
