@@ -1394,7 +1394,7 @@ class ResourceIndexController extends Controller
         $pausedBranchPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active
             && $role->permissions_count > 0
             && $role->users->contains(fn ($user): bool => $user->shop_id !== null && ! (bool) $user->shop?->is_active))->count();
-        $draftPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => ! $role->is_active && $role->permissions_count > 0)->count();
+        $draftPermissionLinkedRoleCount = (clone $rolesQuery)->draftPermissionBearing()->count();
         $assignedActiveRoleCount = (clone $rolesQuery)->activeAssigned()->count();
         $unassignedActiveRoleCount = $activeRoleCount - $assignedActiveRoleCount;
         $draftAssignedRoleCount = (clone $rolesQuery)->draft()->assigned()->count();

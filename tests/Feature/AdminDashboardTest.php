@@ -1407,6 +1407,39 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($unscopedRole->id, Role::query()->shopScopedAssigned()->pluck('id')->all());
     }
 
+    public function test_role_draft_permission_bearing_scope_matches_reports_access_baseline(): void
+    {
+        $draftPermissionRole = Role::create([
+            'name' => 'Draft Permission Role',
+            'slug' => 'draft-permission-role',
+            'is_active' => false,
+        ]);
+
+        $activePermissionRole = Role::create([
+            'name' => 'Active Permission Role',
+            'slug' => 'active-permission-role',
+            'is_active' => true,
+        ]);
+
+        $draftPlainRole = Role::create([
+            'name' => 'Draft Plain Role',
+            'slug' => 'draft-plain-role',
+            'is_active' => false,
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Draft Permission Scope Permission',
+            'slug' => 'draft-permission-scope-permission',
+        ]);
+
+        $draftPermissionRole->permissions()->attach($permission->id);
+        $activePermissionRole->permissions()->attach($permission->id);
+
+        $this->assertSame([$draftPermissionRole->id], Role::query()->draftPermissionBearing()->pluck('id')->all());
+        $this->assertNotContains($activePermissionRole->id, Role::query()->draftPermissionBearing()->pluck('id')->all());
+        $this->assertNotContains($draftPlainRole->id, Role::query()->draftPermissionBearing()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

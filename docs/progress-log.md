@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role draft permission-bearing follow-up checkpoint
+- Added `draftPermissionBearing()` to `app/Models/Role.php` so draft permission-linked access coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft permission-linked role coverage now reads through `Role::draftPermissionBearing()`, then added a focused feature assertion proving the new scope matches the current Phase 1 access baseline.
+
 ### Role shop-scoped assignment action-gating follow-up checkpoint
 - Added `shopScopedAssigned()` to `app/Models/Role.php` so branch-linked role coverage can be queried from the model layer instead of being recomputed only through inline user collection flattening.
 - Updated the roles catalog publish-action gating in `app/Http/Controllers/Admin/ResourceIndexController.php` so scoped role coverage now reads through `Role::shopScopedAssigned()`, then added a focused feature assertion proving the new scope matches the current publish-gating baseline.

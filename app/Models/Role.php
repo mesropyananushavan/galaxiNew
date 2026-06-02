@@ -40,6 +40,11 @@ class Role extends Model
         return $query->active()->permissionBearing();
     }
 
+    public function scopeDraftPermissionBearing(Builder $query): Builder
+    {
+        return $query->draft()->permissionBearing();
+    }
+
     public function scopeAssigned(Builder $query): Builder
     {
         return $query->whereHas('users');
