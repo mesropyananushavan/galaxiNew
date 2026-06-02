@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Shop-access predicate helper follow-up checkpoint
+- Added a dedicated `canAccessRecordShop()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so shop-scoped record visibility reads through one positive access predicate instead of repeating an inline negated `cannotAccessRecordShop()` filter.
+- Updated the shared shop-scoped record filter to use the new helper, then re-ran an existing role review feature assertion as the parity check for this structural cleanup.
+
 ### Non-empty role preview helper follow-up checkpoint
 - Added a dedicated `nonEmptyStrings()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so role scope-name and assigned-user preview cleanup is defined once instead of being repeated through bare `filter()` collection chains.
 - Updated `roleShopScopeNames()` and `roleAssignedUserPreview()` to read through the shared helper, then added a focused feature assertion proving visible scope names and assigned-user previews still render after blank values are ignored.

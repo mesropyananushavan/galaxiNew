@@ -4800,8 +4800,13 @@ class ResourceIndexController extends Controller
         }
 
         return $records
-            ->filter(fn (mixed $record): bool => ! $this->cannotAccessRecordShop($adminUser, $shopResolver($record)))
+            ->filter(fn (mixed $record): bool => $this->canAccessRecordShop($adminUser, $shopResolver($record)))
             ->values();
+    }
+
+    private function canAccessRecordShop(?User $user, ?Shop $shop): bool
+    {
+        return ! $this->cannotAccessRecordShop($user, $shop);
     }
 
     private function cannotAccessRecordShop(?User $user, ?Shop $shop): bool
