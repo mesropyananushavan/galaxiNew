@@ -48,6 +48,46 @@ class Card extends Model
         return $query->issued()->holderLinked();
     }
 
+    public function scopeIssuedUnassigned(Builder $query): Builder
+    {
+        return $query->issued()->unassigned();
+    }
+
+    public function scopePreActivationHolderLinked(Builder $query): Builder
+    {
+        return $query->preActivation()->holderLinked();
+    }
+
+    public function scopePreActivationUnassigned(Builder $query): Builder
+    {
+        return $query->preActivation()->unassigned();
+    }
+
+    public function scopeActiveHolderLinked(Builder $query): Builder
+    {
+        return $query->active()->holderLinked();
+    }
+
+    public function scopeActiveUnassigned(Builder $query): Builder
+    {
+        return $query->active()->unassigned();
+    }
+
+    public function scopeBlockedPreActivation(Builder $query): Builder
+    {
+        return $query->where('status', 'blocked')->preActivation();
+    }
+
+    public function scopeBlockedActivated(Builder $query): Builder
+    {
+        return $query->where('status', 'blocked')->whereNotNull('activated_at');
+    }
+
+    public function scopeBlockedHolderLinked(Builder $query): Builder
+    {
+        return $query->where('status', 'blocked')->holderLinked();
+    }
+
     public function scopeBlockedUnassigned(Builder $query): Builder
     {
         return $query->where('status', 'blocked')->unassigned();

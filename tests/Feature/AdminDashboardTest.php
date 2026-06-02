@@ -1098,6 +1098,97 @@ class AdminDashboardTest extends TestCase
         $this->assertSame([$blockedUnassignedCard->id], Card::query()->blockedUnassigned()->pluck('id')->all());
     }
 
+    public function test_card_extended_inventory_scopes_match_catalog_metric_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Extended Inventory Scope Shop',
+            'code' => 'extended-inventory-scope-shop',
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Extended Inventory Holder',
+            'phone' => '+37415000001',
+            'email' => 'extended-inventory-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Extended Inventory Tier',
+            'slug' => 'extended-inventory-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $preActivationHolderLinkedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-EXT-001',
+            'status' => 'active',
+            'issued_at' => '2026-04-12 09:00:00',
+            'activated_at' => null,
+        ]);
+
+        $preActivationUnassignedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-EXT-002',
+            'status' => 'draft',
+            'issued_at' => '2026-04-12 10:00:00',
+            'activated_at' => null,
+        ]);
+
+        $blockedActivatedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-EXT-003',
+            'status' => 'blocked',
+            'issued_at' => '2026-04-12 11:00:00',
+            'activated_at' => '2026-04-12 12:00:00',
+        ]);
+
+        $blockedPreActivationCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-EXT-004',
+            'status' => 'blocked',
+            'issued_at' => '2026-04-12 13:00:00',
+            'activated_at' => null,
+        ]);
+
+        $activeUnassignedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-EXT-005',
+            'status' => 'active',
+            'issued_at' => null,
+            'activated_at' => null,
+        ]);
+
+        $this->assertEqualsCanonicalizing(
+            [$preActivationUnassignedCard->id, $blockedPreActivationCard->id],
+            Card::query()->issuedUnassigned()->pluck('id')->all(),
+        );
+        $this->assertSame([$preActivationHolderLinkedCard->id], Card::query()->preActivationHolderLinked()->pluck('id')->all());
+        $this->assertEqualsCanonicalizing(
+            [$preActivationUnassignedCard->id, $blockedPreActivationCard->id],
+            Card::query()->preActivationUnassigned()->pluck('id')->all(),
+        );
+        $this->assertEqualsCanonicalizing(
+            [$preActivationHolderLinkedCard->id],
+            Card::query()->activeHolderLinked()->pluck('id')->all(),
+        );
+        $this->assertSame([$activeUnassignedCard->id], Card::query()->activeUnassigned()->pluck('id')->all());
+        $this->assertSame([$blockedActivatedCard->id], Card::query()->blockedActivated()->pluck('id')->all());
+        $this->assertSame([$blockedActivatedCard->id], Card::query()->blockedHolderLinked()->pluck('id')->all());
+        $this->assertSame([$blockedPreActivationCard->id], Card::query()->blockedPreActivation()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

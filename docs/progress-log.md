@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card inventory scope follow-up checkpoint
+- Added `issuedUnassigned()`, `preActivationHolderLinked()`, `preActivationUnassigned()`, `activeHolderLinked()`, `activeUnassigned()`, `blockedPreActivation()`, `blockedActivated()`, and `blockedHolderLinked()` to `app/Models/Card.php` so the remaining core Galaxy card-shell inventory slices can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Cards` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read those remaining issued, active, and blocked inventory slices through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current inventory semantics.
+
 ### Card inventory scope baseline checkpoint
 - Added `issued()`, `preActivation()`, `holderLinked()`, `unassigned()`, `issuedHolderLinked()`, and `blockedUnassigned()` to `app/Models/Card.php` so the basic Galaxy card-shell inventory coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
 - Updated the `Cards` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read issued, pre-activation, assignment-ready, assignment-pending, issued holder-linked, and blocked unassigned coverage through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current inventory semantics.
