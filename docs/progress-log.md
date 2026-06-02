@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Blueprint seam-source source-truth sync checkpoint
+- Updated `docs/blueprint.md` so its Phase 1 deliverables now explicitly mirror the centralized seam-source source-of-truth anchors already carried in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the higher-level migration blueprint aligned with the config-backed seam-source source-of-truth language now feeding the live admin and public seam-source surfaces.
+
 ### Phase-1-plan seam-source source-truth sync checkpoint
 - Updated `docs/phase-1-plan.md` so its seam-source baseline note now explicitly mirrors the centralized seam-source source-of-truth anchors already carried in `config/phase-1-seam-sources.php`.
 - Kept the step intentionally small and docs-only, but it keeps the main Phase 1 plan aligned with the config-backed seam-source source-of-truth language now feeding the live admin and public seam-source surfaces.

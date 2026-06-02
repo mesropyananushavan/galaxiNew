@@ -65,7 +65,7 @@ Create the real application foundation for Galaxy, not just a placeholder baseli
 - documented IA/menu map
 - documented Phase 1 domain map (`docs/phase-1-domain-map.md` + `config/phase-1-domain-map.php`) with explicit focus on branch, access, holder, card, and tier-aware building blocks, and those same files remain the readable and implementation source-of-truth anchors for the mapped entity inventory
 - documented Phase 1 foundation seams (`docs/phase-1-foundation-seams.md`)
-- documented seam-source baseline (`config/phase-1-seam-sources.php` + README seam-source trail)
+- documented seam-source baseline (`config/phase-1-seam-sources.php` + README seam-source trail), and those same files remain the readable and implementation source-of-truth anchors for that seam-source inventory
 - initial migrations for core entities
 - model skeletons
 - admin layout updated toward old parity
