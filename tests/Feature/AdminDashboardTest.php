@@ -910,6 +910,44 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($nullReviewNoteTier->id, CardType::query()->reviewNoted()->pluck('id')->all());
     }
 
+    public function test_card_type_activation_and_rollout_note_scopes_match_tier_catalog_metrics_baseline(): void
+    {
+        $fullyNotedTier = CardType::create([
+            'name' => 'Fully Noted Tier',
+            'slug' => 'fully-noted-tier',
+            'points_rate' => '1.50',
+            'is_active' => true,
+            'activation_note' => 'Activation parity checkpoint is visible.',
+            'rollout_note' => 'Rollout parity checkpoint is visible.',
+        ]);
+
+        $blankNotesTier = CardType::create([
+            'name' => 'Blank Notes Tier',
+            'slug' => 'blank-notes-tier',
+            'points_rate' => '1.10',
+            'is_active' => true,
+            'activation_note' => '',
+            'rollout_note' => '',
+        ]);
+
+        $mixedNotesTier = CardType::create([
+            'name' => 'Mixed Notes Tier',
+            'slug' => 'mixed-notes-tier',
+            'points_rate' => '0.80',
+            'is_active' => false,
+            'activation_note' => 'Activation note stays visible.',
+            'rollout_note' => null,
+        ]);
+
+        $this->assertEqualsCanonicalizing(
+            [$fullyNotedTier->id, $mixedNotesTier->id],
+            CardType::query()->activationNoted()->pluck('id')->all(),
+        );
+        $this->assertSame([$fullyNotedTier->id], CardType::query()->rolloutNoted()->pluck('id')->all());
+        $this->assertNotContains($blankNotesTier->id, CardType::query()->activationNoted()->pluck('id')->all());
+        $this->assertNotContains($blankNotesTier->id, CardType::query()->rolloutNoted()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

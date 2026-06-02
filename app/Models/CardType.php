@@ -31,6 +31,16 @@ class CardType extends Model
         return $query->whereNotNull('review_note')->where('review_note', '!=', '');
     }
 
+    public function scopeActivationNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('activation_note')->where('activation_note', '!=', '');
+    }
+
+    public function scopeRolloutNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('rollout_note')->where('rollout_note', '!=', '');
+    }
+
     public function cards(): HasMany
     {
         return $this->hasMany(Card::class);
