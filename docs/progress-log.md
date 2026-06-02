@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role active-state action-gating follow-up checkpoint
+- Updated the roles and permissions catalog action-gating helpers in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-role coverage now reads through the existing `Role::active()` scope instead of being recomputed only through inline `is_active = true` filters.
+- Added a focused feature assertion proving the existing active-role scope still matches the current permissions action-gating baseline.
+
 ### Card blocked-state action-gating follow-up checkpoint
 - Updated the card catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked card coverage now reads through the existing `Card::blocked()` scope instead of being recomputed only through a collection-level `status = blocked` filter.
 - Reused the existing blocked-card focused assertion as the parity check for this helper-level cleanup.

@@ -3466,7 +3466,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsCatalogReviewMatrixDisabledReason(mixed $roles): string
     {
         $permissionLinkedCount = Role::query()->permissionBearing()->count();
-        $activeCount = $roles->where('is_active', true)->count();
+        $activeCount = Role::query()->active()->count();
 
         return match (true) {
             $permissionLinkedCount > 0 => 'Blocked until saved Galaxy foundation permission bundles are verified against legacy staff access.',
@@ -3479,7 +3479,7 @@ class ResourceIndexController extends Controller
     {
         $permissionLinkedCount = Role::query()->permissionBearing()->count();
         $scopedCount = Role::query()->shopScopedAssigned()->count();
-        $activeCount = $roles->where('is_active', true)->count();
+        $activeCount = Role::query()->active()->count();
 
         return match (true) {
             $permissionLinkedCount > 0 && $scopedCount > 0 => 'Blocked until saved live access bundles clear assignment and shop-scope parity.',

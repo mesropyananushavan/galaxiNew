@@ -2341,6 +2341,24 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($activeShop->id, Shop::query()->paused()->pluck('id')->all());
     }
 
+    public function test_role_active_scope_matches_permissions_action_gating_baseline(): void
+    {
+        $activeRole = Role::create([
+            'name' => 'Active Role Scope',
+            'slug' => 'active-role-scope',
+            'is_active' => true,
+        ]);
+
+        $draftRole = Role::create([
+            'name' => 'Draft Role Scope',
+            'slug' => 'draft-role-scope',
+            'is_active' => false,
+        ]);
+
+        $this->assertSame([$activeRole->id], Role::query()->active()->pluck('id')->all());
+        $this->assertNotContains($draftRole->id, Role::query()->active()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
