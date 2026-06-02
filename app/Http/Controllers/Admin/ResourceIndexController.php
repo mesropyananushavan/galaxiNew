@@ -1069,7 +1069,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Active-branch linked holders', 'value' => (string) CardHolder::query()->assignedToActiveShopLinked()->count()],
             ['label' => 'Paused-branch unlinked holders', 'value' => (string) CardHolder::query()->assignedToPausedShopUnlinked()->count()],
             ['label' => 'Review-noted Galaxy holders', 'value' => (string) CardHolder::query()->reviewNoted()->count()],
-            ['label' => 'Linked Galaxy card shells', 'value' => (string) $cardHolders->sum('cards_count')],
+            ['label' => 'Linked Galaxy card shells', 'value' => (string) Card::query()->holderLinked()->count()],
         ];
 
         $page['table']['rows'] = $cardHolders->map(fn (CardHolder $cardHolder): array => [
@@ -2578,7 +2578,7 @@ class ResourceIndexController extends Controller
     private function cardholdersCatalogNewHolderDisabledReason(mixed $cardHolders): string
     {
         $inactiveCount = CardHolder::query()->inactive()->count();
-        $linkedCards = $cardHolders->sum('cards_count');
+        $linkedCards = Card::query()->holderLinked()->count();
 
         return match (true) {
             $inactiveCount > 0 => 'Blocked until saved inactive-holder states are verified against legacy profile and lifecycle parity.',
@@ -2589,7 +2589,7 @@ class ResourceIndexController extends Controller
 
     private function cardholdersCatalogReviewActivityDisabledReason(mixed $cardHolders): string
     {
-        $linkedCards = $cardHolders->sum('cards_count');
+        $linkedCards = Card::query()->holderLinked()->count();
         $activeCount = CardHolder::query()->active()->count();
         $pausedBranchCount = CardHolder::query()->assignedToPausedShop()->count();
 
