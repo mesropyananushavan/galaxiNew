@@ -1440,6 +1440,36 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($draftPlainRole->id, Role::query()->draftPermissionBearing()->pluck('id')->all());
     }
 
+    public function test_shop_role_coverage_scope_matches_roles_catalog_branch_coverage_baseline(): void
+    {
+        $coveredShop = Shop::create([
+            'name' => 'Role Covered Branch',
+            'code' => 'role-covered-branch',
+            'is_active' => true,
+        ]);
+
+        $uncoveredShop = Shop::create([
+            'name' => 'Role Uncovered Branch',
+            'code' => 'role-uncovered-branch',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Role Coverage Access Shell',
+            'slug' => 'role-coverage-access-shell',
+            'is_active' => true,
+        ]);
+
+        $shopUser = User::factory()->create([
+            'shop_id' => $coveredShop->id,
+        ]);
+
+        $shopUser->roles()->attach($role->id);
+
+        $this->assertSame([$coveredShop->id], Shop::query()->roleCovered()->pluck('id')->all());
+        $this->assertNotContains($uncoveredShop->id, Shop::query()->roleCovered()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

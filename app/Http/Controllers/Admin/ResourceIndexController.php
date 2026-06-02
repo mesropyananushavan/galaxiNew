@@ -673,7 +673,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Access-policy Galaxy notes', 'value' => (string) (clone $rolesQuery)->accessNoted()->count()],
             ['label' => 'Role-assignment Galaxy notes', 'value' => (string) (clone $rolesQuery)->assignmentNoted()->count()],
             ['label' => 'Permission-linked Galaxy review notes', 'value' => (string) Permission::query()->assignedToRoles()->reviewNoted()->count()],
-            ['label' => 'Branch-scoped Galaxy coverage', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
+            ['label' => 'Branch-scoped Galaxy coverage', 'value' => (string) Shop::query()->roleCovered()->count()],
         ];
 
         $page['actions'] = $this->foundationCatalogActions(
