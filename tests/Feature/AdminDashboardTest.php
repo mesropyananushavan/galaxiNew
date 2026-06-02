@@ -729,6 +729,38 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($blankNotesRole->id, Role::query()->reviewNoted()->pluck('id')->all());
     }
 
+    public function test_permission_review_note_scope_matches_roles_permissions_catalog_metric_baseline(): void
+    {
+        $linkedRole = Role::create([
+            'name' => 'Permission Scope Link Role',
+            'slug' => 'permission-scope-link-role',
+        ]);
+
+        $reviewNotedPermission = Permission::create([
+            'name' => 'Permission Review Note',
+            'slug' => 'permission-review-note',
+            'review_note' => 'Visible permission parity checkpoint.',
+        ]);
+
+        $blankReviewNotePermission = Permission::create([
+            'name' => 'Blank Permission Review Note',
+            'slug' => 'blank-permission-review-note',
+            'review_note' => '',
+        ]);
+
+        $unassignedReviewNotedPermission = Permission::create([
+            'name' => 'Unassigned Permission Review Note',
+            'slug' => 'unassigned-permission-review-note',
+            'review_note' => 'Should stay out until a role link exists.',
+        ]);
+
+        $linkedRole->permissions()->attach([$reviewNotedPermission->id, $blankReviewNotePermission->id]);
+
+        $this->assertSame([$reviewNotedPermission->id], Permission::query()->assignedToRoles()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($blankReviewNotePermission->id, Permission::query()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($unassignedReviewNotedPermission->id, Permission::query()->assignedToRoles()->reviewNoted()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

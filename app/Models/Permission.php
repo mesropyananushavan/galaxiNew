@@ -18,6 +18,11 @@ class Permission extends Model
         return $query->whereHas('roles');
     }
 
+    public function scopeReviewNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('review_note')->where('review_note', '!=', '');
+    }
+
     public function roles(): BelongsToMany
     {
         return $this->belongsToMany(Role::class);

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Permission review-note scope follow-up checkpoint
+- Added `reviewNoted()` to `app/Models/Permission.php` so saved permission review coverage can be queried from the model layer instead of being recomputed only through inline flattened role collections.
+- Updated the `Roles & Permissions` catalog metric for permission-linked review notes in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Permission::assignedToRoles()->reviewNoted()`, then added a focused feature assertion proving blank or unassigned permission notes stay out of the Phase 1 baseline.
+
 ### Role note-scope baseline checkpoint
 - Added `reviewNoted()`, `accessNoted()`, and `assignmentNoted()` to `app/Models/Role.php` so the current access-shell note coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
 - Updated the `Roles & Permissions` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read role note coverage through the new scopes, then added a focused feature assertion proving the note scopes keep blank note values out of the Phase 1 baseline.

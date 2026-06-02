@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Card;
 use App\Models\CardHolder;
 use App\Models\CardType;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\Shop;
 use App\Models\User;
@@ -671,7 +672,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review-noted Galaxy access shells', 'value' => (string) (clone $rolesQuery)->reviewNoted()->count()],
             ['label' => 'Access-policy Galaxy notes', 'value' => (string) (clone $rolesQuery)->accessNoted()->count()],
             ['label' => 'Role-assignment Galaxy notes', 'value' => (string) (clone $rolesQuery)->assignmentNoted()->count()],
-            ['label' => 'Permission-linked Galaxy review notes', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->permissions->pluck('review_note'))->filter(fn (mixed $note): bool => filled($note))->count()],
+            ['label' => 'Permission-linked Galaxy review notes', 'value' => (string) Permission::query()->assignedToRoles()->reviewNoted()->count()],
             ['label' => 'Branch-scoped Galaxy coverage', 'value' => (string) $roles->flatMap(fn (Role $role) => $role->users->pluck('shop_id'))->filter()->unique()->count()],
         ];
 
