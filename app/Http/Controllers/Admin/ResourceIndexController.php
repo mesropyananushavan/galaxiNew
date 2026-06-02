@@ -4953,9 +4953,19 @@ class ResourceIndexController extends Controller
     private function roleAssignedShopActivityCounts(Role $role): array
     {
         return [
-            'active' => $role->users()->assignedToActiveShop()->count(),
-            'paused' => $role->users()->assignedToPausedShop()->count(),
+            'active' => $this->roleAssignedToActiveShopCount($role),
+            'paused' => $this->roleAssignedToPausedShopCount($role),
         ];
+    }
+
+    private function roleAssignedToActiveShopCount(Role $role): int
+    {
+        return $role->users()->assignedToActiveShop()->count();
+    }
+
+    private function roleAssignedToPausedShopCount(Role $role): int
+    {
+        return $role->users()->assignedToPausedShop()->count();
     }
 
     private function roleAssignedUserCount(Role $role): int

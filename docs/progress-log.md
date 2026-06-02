@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role assigned branch-count helpers follow-up checkpoint
+- Added dedicated `roleAssignedToActiveShopCount()` and `roleAssignedToPausedShopCount()` helpers to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role branch staffing activity reads through named count helpers instead of embedding both query counts inside the aggregate helper.
+- Updated `roleAssignedShopActivityCounts()` to compose those helpers, then re-ran the existing role-detail assignment assertion as the parity check for this structural cleanup.
+
 ### Role scope-count timeline follow-up checkpoint
 - Reused the existing `roleScopeCount()` helper inside the selected-role scope timeline description so role scope messaging no longer mixes helper-backed and raw collection count reads.
 - Re-ran the existing role scope visibility assertion as the parity check for this structural cleanup.
