@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Reports live-source helper follow-up checkpoint
+- Added a dedicated `liveSourceCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so reports source-count logic is defined once instead of being recomputed through repeated inline `collect(...)->filter(...)` blocks.
+- Updated the reports metric and both reports action-gating helpers to read through the shared helper, then added a focused feature assertion covering the current multi-source baseline.
+
 ### Assigned staff scope reuse follow-up checkpoint
 - Updated the roles reports baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so assigned staff coverage now reads through the existing `User::roleAssigned()` scope instead of being recomputed through role collection `users_count` sums.
 - Reused the existing user shop-assignment focused assertion as the parity check for this helper-level cleanup.

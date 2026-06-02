@@ -1417,7 +1417,7 @@ class ResourceIndexController extends Controller
         }
 
         $page['metrics'] = [
-            ['label' => 'Live Galaxy sources', 'value' => (string) collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])->filter(fn (int $count): bool => $count > 0)->count()],
+            ['label' => 'Live Galaxy sources', 'value' => (string) $this->liveSourceCount($shopCount, $cardCount, $cardHolderCount, $roleCount)],
             ['label' => 'Tracked Galaxy branches', 'value' => (string) $shopCount],
             ['label' => 'Tracked Galaxy card shells', 'value' => (string) $cardCount],
             ['label' => 'Tracked Galaxy holders', 'value' => (string) $cardHolderCount],
@@ -2629,7 +2629,7 @@ class ResourceIndexController extends Controller
 
     private function reportsCatalogPresetDisabledReason(int $shopCount, int $cardCount, int $cardHolderCount, int $roleCount): string
     {
-        $liveSourceCount = collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])->filter(fn (int $count): bool => $count > 0)->count();
+        $liveSourceCount = $this->liveSourceCount($shopCount, $cardCount, $cardHolderCount, $roleCount);
 
         return match (true) {
             $liveSourceCount >= 3 => 'Blocked until preset handling is verified against multiple live Galaxy foundation reporting sources.',
@@ -2640,7 +2640,7 @@ class ResourceIndexController extends Controller
 
     private function reportsCatalogExportDisabledReason(int $shopCount, int $cardCount, int $cardHolderCount, int $roleCount): string
     {
-        $liveSourceCount = collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])->filter(fn (int $count): bool => $count > 0)->count();
+        $liveSourceCount = $this->liveSourceCount($shopCount, $cardCount, $cardHolderCount, $roleCount);
         $inventoryCoverageReady = $shopCount > 0 && $cardCount > 0;
 
         return match (true) {
@@ -4897,6 +4897,13 @@ class ResourceIndexController extends Controller
             $defaults['pageRationale'],
             fn (mixed $item): bool => is_string($item)
         ));
+    }
+
+    private function liveSourceCount(int $shopCount, int $cardCount, int $cardHolderCount, int $roleCount): int
+    {
+        return collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])
+            ->filter(fn (int $count): bool => $count > 0)
+            ->count();
     }
 
     private function phase(array $defaults): int

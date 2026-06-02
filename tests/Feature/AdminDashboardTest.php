@@ -2469,6 +2469,33 @@ class AdminDashboardTest extends TestCase
         $this->assertSame([$pausedUser->id], $role->users()->assignedToPausedShop()->pluck('users.id')->all());
     }
 
+    public function test_reports_live_source_metric_matches_multi_source_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Live Source Metric Shop',
+            'code' => 'live-source-metric-shop',
+            'is_active' => true,
+        ]);
+
+        CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Live Source Metric Holder',
+            'phone' => '+37431000001',
+            'email' => 'live-source-metric-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/reports');
+
+        $response->assertOk();
+        $response->assertSee('Live Galaxy sources');
+        $response->assertSee('Tracked Galaxy branches');
+        $response->assertSee('Tracked Galaxy holders');
+        $response->assertSee('2');
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
