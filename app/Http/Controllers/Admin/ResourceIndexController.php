@@ -4799,9 +4799,10 @@ class ResourceIndexController extends Controller
             return $records;
         }
 
-        return $records
-            ->filter(fn (mixed $record): bool => $this->recordIsVisibleToAdmin($adminUser, $record, $shopResolver))
-            ->values();
+        return $this->filterMatching(
+            $records,
+            fn (mixed $record): bool => $this->recordIsVisibleToAdmin($adminUser, $record, $shopResolver)
+        )->values();
     }
 
     private function recordIsVisibleToAdmin(User $adminUser, mixed $record, callable $shopResolver): bool
@@ -4953,7 +4954,7 @@ class ResourceIndexController extends Controller
 
     private function nonEmptyStrings(Collection $values): Collection
     {
-        return $values->filter(fn (mixed $value): bool => $this->isNonEmptyString($value));
+        return $this->filterMatching($values, fn (mixed $value): bool => $this->isNonEmptyString($value));
     }
 
     private function isNonEmptyString(mixed $value): bool
@@ -4968,9 +4969,12 @@ class ResourceIndexController extends Controller
 
     private function countMatching(iterable $values, callable $predicate): int
     {
-        return collect($values)
-            ->filter($predicate)
-            ->count();
+        return $this->filterMatching($values, $predicate)->count();
+    }
+
+    private function filterMatching(iterable $values, callable $predicate): Collection
+    {
+        return collect($values)->filter($predicate);
     }
 
     private function isPositiveCount(int $count): bool

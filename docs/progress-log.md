@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Matching-filter helper follow-up checkpoint
+- Added a dedicated `filterMatching()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so predicate-based collection filtering is defined once instead of repeating raw `collect(...)->filter(...)` chains.
+- Updated shop-scoped record filtering, non-empty string cleanup, and matching-count aggregation to read through the shared helper, then re-ran an existing role review assertion as the parity check for this structural cleanup.
+
 ### Matching-count helper follow-up checkpoint
 - Added a dedicated `countMatching()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so predicate-based collection counts are defined once instead of repeating `collect(...)->filter(...)->count()` blocks.
 - Updated both positive-count and zero-accrual receipt counters to read through the shared helper, then re-ran the existing reports multi-source assertion as the parity check for this structural cleanup.
