@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card draft-state action-gating follow-up checkpoint
+- Updated the card catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft card coverage now reads through the existing `Card::draft()` scope instead of being recomputed only through a collection-level `status = draft` filter.
+- Reused the existing draft-card focused assertion as the parity check for this helper-level cleanup.
+
 ### Draft linked-card report baseline follow-up checkpoint
 - Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft linked-card coverage now reads through the existing `Card::draftHolderLinked()` scope instead of being recomputed through per-holder card collection sums.
 - Reused the existing draft card focused assertion as the parity check for this helper-level cleanup.

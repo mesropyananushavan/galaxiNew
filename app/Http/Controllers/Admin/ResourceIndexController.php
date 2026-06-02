@@ -2553,7 +2553,7 @@ class ResourceIndexController extends Controller
 
     private function cardsCatalogIssueCardDisabledReason(mixed $cards): string
     {
-        $draftCount = $cards->where('status', 'draft')->count();
+        $draftCount = Card::query()->draft()->count();
         $activeCount = $cards->where('status', 'active')->count();
 
         return match (true) {
