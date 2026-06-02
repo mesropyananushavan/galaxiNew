@@ -26,6 +26,11 @@ class CardHolder extends Model
         return $query->where('is_active', true);
     }
 
+    public function scopeInactive(Builder $query): Builder
+    {
+        return $query->where('is_active', false);
+    }
+
     public function scopeReviewNoted(Builder $query): Builder
     {
         return $query->whereNotNull('review_note')->where('review_note', '!=', '');
@@ -53,7 +58,7 @@ class CardHolder extends Model
 
     public function scopeInactiveLinked(Builder $query): Builder
     {
-        return $query->where('is_active', false)->linked();
+        return $query->inactive()->linked();
     }
 
     public function scopeActiveUnlinked(Builder $query): Builder
@@ -63,7 +68,7 @@ class CardHolder extends Model
 
     public function scopeInactiveUnlinked(Builder $query): Builder
     {
-        return $query->where('is_active', false)->doesntHave('cards');
+        return $query->inactive()->doesntHave('cards');
     }
 
     public function scopeBlockedLinked(Builder $query): Builder

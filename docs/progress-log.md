@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Cardholder inactive-state scope follow-up checkpoint
+- Added `inactive()` to `app/Models/CardHolder.php` and reused it inside the existing inactive linked and unlinked scopes so inactive holder coverage is defined once at the model layer.
+- Updated the `Card Holders` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` so inactive-state Galaxy holder coverage now reads through `CardHolder::inactive()`, then added a focused feature assertion proving it matches the current holder-catalog baseline.
+
 ### Shop active-state scope follow-up checkpoint
 - Updated the `Shops` catalog metric and reports inventory branch baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-state Galaxy branch coverage now reads through the existing `Shop::active()` scope instead of being recomputed only through inline `is_active = true` filters.
 - Added a focused feature assertion proving the existing active-branch scope still matches the current branch-catalog baseline.
