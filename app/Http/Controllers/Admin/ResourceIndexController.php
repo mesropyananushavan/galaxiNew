@@ -2591,7 +2591,7 @@ class ResourceIndexController extends Controller
     {
         $linkedCards = $cardHolders->sum('cards_count');
         $activeCount = $cardHolders->where('is_active', true)->count();
-        $pausedBranchCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->shop !== null && ! (bool) $cardHolder->shop->is_active)->count();
+        $pausedBranchCount = CardHolder::query()->assignedToPausedShop()->count();
 
         return match (true) {
             $pausedBranchCount > 0 && $linkedCards > 0 => 'Blocked until paused-branch linked-holder activity is verified against legacy lookup recovery history.',

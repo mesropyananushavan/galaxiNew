@@ -1700,6 +1700,40 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($shopRolelessUser->id, User::query()->roleAssigned()->pluck('id')->all());
     }
 
+    public function test_cardholder_paused_shop_scope_matches_activity_action_gating_baseline(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Activity Active Branch',
+            'code' => 'activity-active-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Activity Paused Branch',
+            'code' => 'activity-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $activeHolder = CardHolder::create([
+            'shop_id' => $activeShop->id,
+            'full_name' => 'Activity Active Holder',
+            'phone' => '+37420000001',
+            'email' => 'activity-active-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $pausedHolder = CardHolder::create([
+            'shop_id' => $pausedShop->id,
+            'full_name' => 'Activity Paused Holder',
+            'phone' => '+37420000002',
+            'email' => 'activity-paused-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $this->assertSame([$pausedHolder->id], CardHolder::query()->assignedToPausedShop()->pluck('id')->all());
+        $this->assertNotContains($activeHolder->id, CardHolder::query()->assignedToPausedShop()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

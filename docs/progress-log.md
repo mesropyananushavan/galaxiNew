@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Cardholder paused-branch activity-gating follow-up checkpoint
+- Updated the cardholder activity review gating in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch holder coverage now reads through `CardHolder::assignedToPausedShop()` instead of being recomputed only through an inline collection filter.
+- Added a focused feature assertion proving the existing paused-shop holder scope still matches the current activity-gating baseline.
+
 ### User role-assignment shop scope follow-up checkpoint
 - Added `assignedToPausedShop()`, `roleAssigned()`, `roleAssignedToActiveShop()`, and `roleAssignedToPausedShop()` to `app/Models/User.php` so branch-linked staffing coverage can be queried from the model layer instead of being recomputed only through inline role-user sums.
 - Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so shop-scoped, active-branch, and paused-branch assigned-staff coverage now reads through the new user scopes, then added a focused feature assertion proving the query-level baseline matches the current Phase 1 staffing semantics.
