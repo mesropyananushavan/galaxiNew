@@ -1223,7 +1223,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Active-state Galaxy branches', 'value' => (string) $shops->where('is_active', true)->count()],
             ['label' => 'Paused-state Galaxy branches', 'value' => (string) $shops->where('is_active', false)->count()],
             ['label' => 'Review-noted Galaxy branches', 'value' => (string) Shop::query()->reviewNoted()->count()],
-            ['label' => 'Assigned branch managers', 'value' => (string) $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count()],
+            ['label' => 'Assigned branch managers', 'value' => (string) Shop::query()->managerAssigned()->count()],
         ];
 
         $page['table']['rows'] = $shops->map(fn (Shop $shop): array => [

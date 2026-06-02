@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Shop manager-assignment scope follow-up checkpoint
+- Added `managerAssigned()` to `app/Models/Shop.php` so branch ownership coverage can be queried from the model layer instead of being recomputed only through inline `users_count > 0` filters.
+- Updated the `Shops` catalog metric for assigned branch managers in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Shop::managerAssigned()`, then added a focused feature assertion proving unmanaged branches stay out of the Phase 1 baseline.
+
 ### Card-type activation and rollout note scope follow-up checkpoint
 - Added `activationNoted()` and `rolloutNoted()` to `app/Models/CardType.php` so saved tier activation and rollout note coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
 - Updated the `Card Types` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read activation and rollout note coverage through the new scopes, then added a focused feature assertion proving blank tier notes stay out of the Phase 1 baseline.

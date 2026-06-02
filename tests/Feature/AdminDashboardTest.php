@@ -948,6 +948,27 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($blankNotesTier->id, CardType::query()->rolloutNoted()->pluck('id')->all());
     }
 
+    public function test_shop_manager_assignment_scope_matches_branch_catalog_metric_baseline(): void
+    {
+        $managedShop = Shop::create([
+            'name' => 'Managed Branch',
+            'code' => 'managed-branch',
+        ]);
+
+        $unmanagedShop = Shop::create([
+            'name' => 'Unmanaged Branch',
+            'code' => 'unmanaged-branch',
+        ]);
+
+        User::factory()->create([
+            'name' => 'Managed Branch User',
+            'shop_id' => $managedShop->id,
+        ]);
+
+        $this->assertSame([$managedShop->id], Shop::query()->managerAssigned()->pluck('id')->all());
+        $this->assertNotContains($unmanagedShop->id, Shop::query()->managerAssigned()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
