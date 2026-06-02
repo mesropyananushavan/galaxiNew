@@ -1935,6 +1935,48 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($unactivatedHolderLinkedCard->id, Card::query()->activatedHolderLinked()->pluck('id')->all());
     }
 
+    public function test_card_blocked_holder_linked_scope_matches_reports_inventory_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Blocked Holder Linked Shop',
+            'code' => 'blocked-holder-linked-shop',
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Blocked Holder Linked Person',
+            'phone' => '+37424000001',
+            'email' => 'blocked-holder-linked@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Blocked Holder Linked Tier',
+            'slug' => 'blocked-holder-linked-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $blockedHolderLinkedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-BLOCKED-LINKED-001',
+            'status' => 'blocked',
+        ]);
+
+        $blockedUnassignedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-BLOCKED-LINKED-002',
+            'status' => 'blocked',
+        ]);
+
+        $this->assertSame([$blockedHolderLinkedCard->id], Card::query()->blockedHolderLinked()->pluck('id')->all());
+        $this->assertNotContains($blockedUnassignedCard->id, Card::query()->blockedHolderLinked()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
