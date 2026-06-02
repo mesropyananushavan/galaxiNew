@@ -40,6 +40,11 @@ class Role extends Model
         return $query->active()->permissionBearing();
     }
 
+    public function scopeActiveAssigned(Builder $query): Builder
+    {
+        return $query->active()->whereHas('users');
+    }
+
     public function permissions(): BelongsToMany
     {
         return $this->belongsToMany(Permission::class);
