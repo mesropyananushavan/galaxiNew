@@ -3491,7 +3491,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsReviewMatrixDisabledReason(Role $selectedRole): string
     {
         $permissionCount = $selectedRole->permissions->count();
-        $assignedUserCount = $selectedRole->users_count ?? $selectedRole->users->count();
+        $assignedUserCount = $this->roleAssignedUserCount($selectedRole);
 
         return match (true) {
             $permissionCount > 0 && $assignedUserCount > 0 => 'Blocked until this assignment-sensitive Galaxy foundation permission bundle is verified against legacy staff access.',
@@ -3504,7 +3504,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsPublishRoleDisabledReason(Role $selectedRole, mixed $scope): string
     {
         $permissionCount = $selectedRole->permissions->count();
-        $assignedUserCount = $selectedRole->users_count ?? $selectedRole->users->count();
+        $assignedUserCount = $this->roleAssignedUserCount($selectedRole);
 
         return match (true) {
             ! $selectedRole->is_active => 'Blocked until this draft role has a verified permission bundle and shop scope parity.',
@@ -4956,6 +4956,11 @@ class ResourceIndexController extends Controller
             'active' => $role->users()->assignedToActiveShop()->count(),
             'paused' => $role->users()->assignedToPausedShop()->count(),
         ];
+    }
+
+    private function roleAssignedUserCount(Role $role): int
+    {
+        return $role->users_count ?? $role->users->count();
     }
 
     private function roleScopeCount(Collection $scope): int
