@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Shop review-note scope follow-up checkpoint
+- Added `reviewNoted()` to `app/Models/Shop.php` so saved branch review coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Shops` catalog metric for review-noted Galaxy branches in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Shop::reviewNoted()`, then added a focused feature assertion proving blank branch notes stay out of the Phase 1 baseline.
+
 ### Permission review-note scope follow-up checkpoint
 - Added `reviewNoted()` to `app/Models/Permission.php` so saved permission review coverage can be queried from the model layer instead of being recomputed only through inline flattened role collections.
 - Updated the `Roles & Permissions` catalog metric for permission-linked review notes in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Permission::assignedToRoles()->reviewNoted()`, then added a focused feature assertion proving blank or unassigned permission notes stay out of the Phase 1 baseline.

@@ -25,6 +25,11 @@ class Shop extends Model
         return $query->where('is_active', true);
     }
 
+    public function scopeReviewNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('review_note')->where('review_note', '!=', '');
+    }
+
     public function users(): HasMany
     {
         return $this->hasMany(User::class);

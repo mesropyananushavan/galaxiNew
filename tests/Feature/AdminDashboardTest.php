@@ -761,6 +761,31 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($unassignedReviewNotedPermission->id, Permission::query()->assignedToRoles()->reviewNoted()->pluck('id')->all());
     }
 
+    public function test_shop_review_note_scope_matches_branch_catalog_metric_baseline(): void
+    {
+        $reviewNotedShop = Shop::create([
+            'name' => 'Review Noted Branch',
+            'code' => 'review-noted-branch',
+            'review_note' => 'Visible branch parity checkpoint.',
+        ]);
+
+        $blankReviewNoteShop = Shop::create([
+            'name' => 'Blank Review Note Branch',
+            'code' => 'blank-review-note-branch',
+            'review_note' => '',
+        ]);
+
+        $nullReviewNoteShop = Shop::create([
+            'name' => 'Null Review Note Branch',
+            'code' => 'null-review-note-branch',
+            'review_note' => null,
+        ]);
+
+        $this->assertSame([$reviewNotedShop->id], Shop::query()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($blankReviewNoteShop->id, Shop::query()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($nullReviewNoteShop->id, Shop::query()->reviewNoted()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
