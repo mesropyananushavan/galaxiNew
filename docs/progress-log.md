@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Cardholder activity-linkage scope follow-up checkpoint
+- Added `activeLinked()`, `inactiveLinked()`, `activeUnlinked()`, and `inactiveUnlinked()` to `app/Models/CardHolder.php` so holder activity/linkage coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Cardholders` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read those four holder slices through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current holder workspace semantics.
+
 ### Role shop-aware permission scope follow-up checkpoint
 - Added `activeShopScopedPermissionBearing()`, `activeAssignedToActiveShopPermissionBearing()`, and `activeAssignedToPausedShopPermissionBearing()` to `app/Models/Role.php` so shop-aware permission-linked access coverage can be queried from the model layer instead of being recomputed only through inline user-collection checks.
 - Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so scoped, active-branch, and paused-branch permission-linked role coverage now read through the new scopes, then added a focused feature assertion proving they match the current Phase 1 access baseline.

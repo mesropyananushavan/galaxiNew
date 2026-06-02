@@ -1507,6 +1507,75 @@ class AdminDashboardTest extends TestCase
         $this->assertSame([$role->id], Role::query()->activeAssignedToPausedShopPermissionBearing()->pluck('id')->all());
     }
 
+    public function test_cardholder_activity_and_linkage_scopes_match_holder_catalog_metrics_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Holder Activity Branch',
+            'code' => 'holder-activity-branch',
+            'is_active' => true,
+        ]);
+
+        $activeLinkedHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Active Linked Holder Scope',
+            'phone' => '+37418000001',
+            'email' => 'active-linked-holder-scope@example.com',
+            'is_active' => true,
+        ]);
+
+        $inactiveLinkedHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Inactive Linked Holder Scope',
+            'phone' => '+37418000002',
+            'email' => 'inactive-linked-holder-scope@example.com',
+            'is_active' => false,
+        ]);
+
+        $activeUnlinkedHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Active Unlinked Holder Scope',
+            'phone' => '+37418000003',
+            'email' => 'active-unlinked-holder-scope@example.com',
+            'is_active' => true,
+        ]);
+
+        $inactiveUnlinkedHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Inactive Unlinked Holder Scope',
+            'phone' => '+37418000004',
+            'email' => 'inactive-unlinked-holder-scope@example.com',
+            'is_active' => false,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Holder Activity Tier',
+            'slug' => 'holder-activity-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $activeLinkedHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-HOLDER-ACTIVE-001',
+            'status' => 'active',
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $inactiveLinkedHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-HOLDER-ACTIVE-002',
+            'status' => 'blocked',
+        ]);
+
+        $this->assertSame([$activeLinkedHolder->id], CardHolder::query()->activeLinked()->pluck('id')->all());
+        $this->assertSame([$inactiveLinkedHolder->id], CardHolder::query()->inactiveLinked()->pluck('id')->all());
+        $this->assertSame([$activeUnlinkedHolder->id], CardHolder::query()->activeUnlinked()->pluck('id')->all());
+        $this->assertSame([$inactiveUnlinkedHolder->id], CardHolder::query()->inactiveUnlinked()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
