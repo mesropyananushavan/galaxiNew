@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role note-scope baseline checkpoint
+- Added `reviewNoted()`, `accessNoted()`, and `assignmentNoted()` to `app/Models/Role.php` so the current access-shell note coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Roles & Permissions` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read role note coverage through the new scopes, then added a focused feature assertion proving the note scopes keep blank note values out of the Phase 1 baseline.
+
 ### Role assigned-permission scope follow-up checkpoint
 - Added `activeAssignedPermissionBearing()` to `app/Models/Role.php` so active permission-linked roles with assigned staff can be queried from the model layer instead of being recomputed only through inline collection filters.
 - Updated the role catalog summary in `app/Http/Controllers/Admin/ResourceIndexController.php` to read assigned permission-linked role coverage through the new scope while keeping the visible roles workspace behavior unchanged.

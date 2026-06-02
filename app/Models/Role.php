@@ -50,6 +50,21 @@ class Role extends Model
         return $query->activePermissionBearing()->whereHas('users');
     }
 
+    public function scopeReviewNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('review_note')->where('review_note', '!=', '');
+    }
+
+    public function scopeAccessNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('access_note')->where('access_note', '!=', '');
+    }
+
+    public function scopeAssignmentNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('assignment_note')->where('assignment_note', '!=', '');
+    }
+
     public function permissions(): BelongsToMany
     {
         return $this->belongsToMany(Permission::class);

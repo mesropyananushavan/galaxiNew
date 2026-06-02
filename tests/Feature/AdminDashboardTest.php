@@ -694,6 +694,41 @@ class AdminDashboardTest extends TestCase
         $this->assertSame([$shopScopedAdmin->id], User::query()->shopScopedAdmins()->pluck('id')->all());
     }
 
+    public function test_role_note_scopes_match_roles_permissions_catalog_metrics_baseline(): void
+    {
+        $roleWithAllNotes = Role::create([
+            'name' => 'Phase One Access Reviewer',
+            'slug' => 'phase-one-access-reviewer',
+            'review_note' => 'Tracked for Phase 1 readiness review.',
+            'access_note' => 'Keep shop-scoped access parity visible.',
+            'assignment_note' => 'Assignments still need parity review.',
+        ]);
+
+        $reviewOnlyRole = Role::create([
+            'name' => 'Review Note Only Role',
+            'slug' => 'review-note-only-role',
+            'review_note' => 'Visible review checkpoint.',
+            'access_note' => '',
+            'assignment_note' => null,
+        ]);
+
+        $blankNotesRole = Role::create([
+            'name' => 'Blank Notes Role',
+            'slug' => 'blank-notes-role',
+            'review_note' => '',
+            'access_note' => null,
+            'assignment_note' => '',
+        ]);
+
+        $this->assertEqualsCanonicalizing(
+            [$roleWithAllNotes->id, $reviewOnlyRole->id],
+            Role::query()->reviewNoted()->pluck('id')->all(),
+        );
+        $this->assertSame([$roleWithAllNotes->id], Role::query()->accessNoted()->pluck('id')->all());
+        $this->assertSame([$roleWithAllNotes->id], Role::query()->assignmentNoted()->pluck('id')->all());
+        $this->assertNotContains($blankNotesRole->id, Role::query()->reviewNoted()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
