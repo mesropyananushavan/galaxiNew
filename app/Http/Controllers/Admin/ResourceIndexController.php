@@ -1364,8 +1364,8 @@ class ResourceIndexController extends Controller
         $draftUnassignedCardCount = Card::query()->draftUnassigned()->count();
         $cardHolders = CardHolder::query()->withCount('cards')->with(['shop:id,is_active', 'cards:id,card_holder_id,status,activated_at'])->get();
         $cardHolderCount = $cardHolders->count();
-        $activeCardHolderCount = $cardHolders->where('is_active', true)->count();
-        $inactiveCardHolderCount = $cardHolders->where('is_active', false)->count();
+        $activeCardHolderCount = CardHolder::query()->active()->count();
+        $inactiveCardHolderCount = CardHolder::query()->inactive()->count();
         $linkedCardHolderCount = CardHolder::query()->linked()->count();
         $unlinkedCardHolderCount = $cardHolderCount - $linkedCardHolderCount;
         $activeShopCardHolderCount = CardHolder::query()->assignedToActiveShop()->count();
@@ -2590,7 +2590,7 @@ class ResourceIndexController extends Controller
     private function cardholdersCatalogReviewActivityDisabledReason(mixed $cardHolders): string
     {
         $linkedCards = $cardHolders->sum('cards_count');
-        $activeCount = $cardHolders->where('is_active', true)->count();
+        $activeCount = CardHolder::query()->active()->count();
         $pausedBranchCount = CardHolder::query()->assignedToPausedShop()->count();
 
         return match (true) {

@@ -2276,6 +2276,33 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($activeHolder->id, CardHolder::query()->inactive()->pluck('id')->all());
     }
 
+    public function test_card_holder_active_scope_matches_reports_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Active Holder Scope Shop',
+            'code' => 'active-holder-scope-shop',
+        ]);
+
+        $activeHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Active Holder Scope Person',
+            'phone' => '+37430000001',
+            'email' => 'active-holder-scope-person@example.com',
+            'is_active' => true,
+        ]);
+
+        $inactiveHolder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Inactive Holder Scope Person',
+            'phone' => '+37430000002',
+            'email' => 'inactive-holder-scope-person@example.com',
+            'is_active' => false,
+        ]);
+
+        $this->assertSame([$activeHolder->id], CardHolder::query()->active()->pluck('id')->all());
+        $this->assertNotContains($inactiveHolder->id, CardHolder::query()->active()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
