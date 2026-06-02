@@ -736,7 +736,7 @@ class ResourceIndexController extends Controller
 
         $scope = $this->roleShopScopeNames($selectedRole);
         $permissionPreview = $selectedRole->permissions->pluck('name');
-        $assignedUserPreview = $selectedRole->users->pluck('name')->filter()->take(3);
+        $assignedUserPreview = $this->roleAssignedUserPreview($selectedRole);
 
         $page['selectedRecordSummary'] = $this->rolesPermissionsSelectedRoleSummary(
             $selectedRole,
@@ -4919,6 +4919,15 @@ class ResourceIndexController extends Controller
             ->pluck('shop.name')
             ->filter()
             ->unique()
+            ->values();
+    }
+
+    private function roleAssignedUserPreview(Role $role): Collection
+    {
+        return $role->users
+            ->pluck('name')
+            ->filter()
+            ->take(3)
             ->values();
     }
 

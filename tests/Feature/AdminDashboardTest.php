@@ -2543,6 +2543,34 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Scope Helper Paused Shop');
     }
 
+    public function test_roles_permissions_page_keeps_assigned_user_preview_after_helper_extraction(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Assigned Preview Shop',
+            'code' => 'assigned-preview-shop',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Assigned Preview Role',
+            'slug' => 'assigned-preview-role',
+            'is_active' => true,
+        ]);
+
+        $users = User::factory()->count(4)->create(['shop_id' => $shop->id]);
+        $role->users()->attach($users->pluck('id')->all());
+
+        $viewer = User::factory()->create();
+
+        $response = $this->actingAs($viewer)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee($users[0]->name)
+            ->assertSee($users[1]->name)
+            ->assertSee($users[2]->name);
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

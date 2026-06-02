@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role assigned-user preview helper follow-up checkpoint
+- Added a dedicated `roleAssignedUserPreview()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role assigned-user previews are defined once instead of being recomputed through inline `pluck(...)->filter()->take(3)` chains.
+- Updated the selected-role detail setup to read through the shared helper, then added a focused feature assertion proving assigned user names still render in the role review page.
+
 ### Role scope-name helper follow-up checkpoint
 - Added a dedicated `roleShopScopeNames()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so role scope-name previews are defined once instead of being recomputed through repeated `pluck(...)->filter()->unique()` chains.
 - Updated both the roles catalog row builder and selected-role detail setup to read through the shared helper, then added a focused feature assertion proving branch scope names still render in the role review page.
