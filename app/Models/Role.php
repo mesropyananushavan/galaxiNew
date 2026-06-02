@@ -20,6 +20,16 @@ class Role extends Model
         ];
     }
 
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeDraft(Builder $query): Builder
+    {
+        return $query->where('is_active', false);
+    }
+
     public function scopePermissionBearing(Builder $query): Builder
     {
         return $query->whereHas('permissions');

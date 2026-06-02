@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role status-scope baseline checkpoint
+- Added `active()` and `draft()` scopes to `app/Models/Role.php` so the Phase 1 access-shell status baseline has a reusable home in the model instead of being inferred only from inline `is_active` filters.
+- Updated the role catalog summary in `app/Http/Controllers/Admin/ResourceIndexController.php` to read active role coverage through the new role scope while leaving the visible roles workspace behavior unchanged.
+
 ### User access-scope baseline checkpoint
 - Added query scopes to `app/Models/User.php` for bootstrap admins, users assigned to active shops, permission-bearing users, and full shop-scoped admins, so the Phase 1 access baseline can be reused at query level instead of living only in per-user helper methods.
 - Reused the new scopes inside the existing user access helpers where it kept the semantics clearer, then added a focused feature assertion proving the new query-level scopes match the current Phase 1 shop-scoped admin rules.

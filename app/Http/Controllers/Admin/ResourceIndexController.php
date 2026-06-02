@@ -1376,9 +1376,10 @@ class ResourceIndexController extends Controller
         $draftLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->status === 'draft'))->count();
         $activeLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->status === 'active'))->count();
         $activatedLinkedHolderCount = $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->cards->contains(fn ($card): bool => $card->activated_at !== null))->count();
-        $roles = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active')->get();
+        $rolesQuery = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active');
+        $roles = $rolesQuery->get();
         $roleCount = $roles->count();
-        $activeRoleCount = $roles->where('is_active', true)->count();
+        $activeRoleCount = (clone $rolesQuery)->active()->count();
         $permissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->permissions_count > 0)->count();
         $permissionlessActiveRoleCount = $activeRoleCount - $permissionLinkedRoleCount;
         $assignedPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->permissions_count > 0 && $role->users_count > 0)->count();
