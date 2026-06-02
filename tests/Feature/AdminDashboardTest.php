@@ -1248,6 +1248,57 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($plainRole->id, Role::query()->permissionBearing()->pluck('id')->all());
     }
 
+    public function test_cardholder_linked_scope_matches_reports_holder_status_baseline(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Reports Holder Active Branch',
+            'code' => 'reports-holder-active-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Reports Holder Paused Branch',
+            'code' => 'reports-holder-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $linkedHolder = CardHolder::create([
+            'shop_id' => $activeShop->id,
+            'full_name' => 'Reports Linked Holder',
+            'phone' => '+37416000001',
+            'email' => 'reports-linked-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $pausedHolder = CardHolder::create([
+            'shop_id' => $pausedShop->id,
+            'full_name' => 'Reports Paused Holder',
+            'phone' => '+37416000002',
+            'email' => 'reports-paused-holder@example.com',
+            'is_active' => false,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Reports Holder Scope Tier',
+            'slug' => 'reports-holder-scope-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $activeShop->id,
+            'card_holder_id' => $linkedHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-REPORT-HOLDER-001',
+            'status' => 'active',
+        ]);
+
+        $this->assertSame([$linkedHolder->id], CardHolder::query()->linked()->pluck('id')->all());
+        $this->assertSame([$linkedHolder->id], CardHolder::query()->assignedToActiveShop()->linked()->pluck('id')->all());
+        $this->assertSame([$linkedHolder->id], CardHolder::query()->assignedToActiveShop()->pluck('id')->all());
+        $this->assertSame([$pausedHolder->id], CardHolder::query()->assignedToPausedShop()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
