@@ -3125,7 +3125,7 @@ class ResourceIndexController extends Controller
             ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
             : 'paused-branch permission-linked staff coverage is still pending for parity review';
         $scopedPermissionSignal = $selectedRole->permissions_count > 0 && $scope->isNotEmpty()
-            ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $scope->count())
+            ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $this->roleScopeCount($scope))
             : 'scoped permission coverage is still pending for parity review';
         $permissionReviewNote = $selectedRole->permissions
             ->pluck('review_note')
@@ -3153,9 +3153,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Backend gap', 'value' => $this->rolesPermissionsBackendGap($selectedRole)],
             ['label' => 'Scope', 'value' => $scope->isNotEmpty() ? $scope->join(', ') : 'Unscoped in Galaxy foundation read slice'],
             ['label' => 'Scope coverage', 'value' => match (true) {
-                $scope->count() === 0 => 'No shop scope linked yet',
-                $scope->count() === 1 => '1 shop visible in Galaxy foundation review',
-                default => sprintf('%d shops visible in Galaxy foundation review', $scope->count()),
+                $this->roleScopeCount($scope) === 0 => 'No shop scope linked yet',
+                $this->roleScopeCount($scope) === 1 => '1 shop visible in Galaxy foundation review',
+                default => sprintf('%d shops visible in Galaxy foundation review', $this->roleScopeCount($scope)),
             }],
             ['label' => 'Scope rollout posture', 'value' => $scope->isNotEmpty()
                 ? 'Shop scope is visible in Galaxy foundation review, but scope writes should stay parity-first until the next thin access slice is ready.'
@@ -3664,7 +3664,7 @@ class ResourceIndexController extends Controller
             ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
             : 'paused-branch permission-linked staff coverage is still pending for parity review';
         $scopedPermissionSignal = $selectedRole->permissions_count > 0 && $scope->isNotEmpty()
-            ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $scope->count())
+            ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $this->roleScopeCount($scope))
             : 'scoped permission coverage is still pending for parity review';
         $permissionReviewNote = $selectedRole->permissions
             ->pluck('review_note')
@@ -3686,9 +3686,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Role status signal', 'value' => $this->rolesPermissionsStatusSignal($selectedRole, $scope)],
             ['label' => 'Scope rollout posture', 'value' => $this->rolesPermissionsScopeRolloutDependencyPosture($scope)],
             ['label' => 'Scope coverage', 'value' => match (true) {
-                $scope->count() >= 3 => sprintf('%d shops currently linked in Galaxy foundation scope', $scope->count()),
-                $scope->count() === 2 => '2 shops currently linked in Galaxy foundation scope',
-                $scope->count() === 1 => sprintf('%s is currently linked in Galaxy foundation scope', $scope->first()),
+                $this->roleScopeCount($scope) >= 3 => sprintf('%d shops currently linked in Galaxy foundation scope', $this->roleScopeCount($scope)),
+                $this->roleScopeCount($scope) === 2 => '2 shops currently linked in Galaxy foundation scope',
+                $this->roleScopeCount($scope) === 1 => sprintf('%s is currently linked in Galaxy foundation scope', $scope->first()),
                 default => 'No shops linked in Galaxy foundation scope yet',
             }],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in the Galaxy foundation layer'],
@@ -4950,6 +4950,11 @@ class ResourceIndexController extends Controller
         return $this->nonEmptyStrings($role->users->pluck('name'))
             ->take(3)
             ->values();
+    }
+
+    private function roleScopeCount(Collection $scope): int
+    {
+        return $scope->count();
     }
 
     private function nonEmptyStrings(Collection $values): Collection
