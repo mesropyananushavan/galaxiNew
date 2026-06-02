@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Foundation-seam seam-source source-truth sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `README seam-source trail` seam now explicitly lists the same source-of-truth anchors already centralized in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the seam note aligned with the config-backed seam-source source-of-truth pattern now used across the repo plus the live admin and public seam-source surfaces.
+
 ### Foundation-seam public-reference source-truth sync checkpoint
 - Updated `docs/phase-1-foundation-seams.md` so the readable `Public landing reference trail` seam now explicitly lists the same source-of-truth anchors already centralized in `config/landing-docs.php`.
 - Kept the step intentionally small and docs-only, but it keeps the seam note aligned with the config-backed public reference source-of-truth pattern now used on the live landing surface.
