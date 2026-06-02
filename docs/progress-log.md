@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role assigned-shop activity helper follow-up checkpoint
+- Added a dedicated `roleAssignedShopActivityCounts()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role active/paused branch staffing counts are defined once instead of being recomputed in multiple role-detail builders.
+- Updated both selected-role summary and dependency-status builders to read through the shared helper, then re-ran the existing user shop-assignment assertion as the parity check for this structural cleanup.
+
 ### Role scope-count helper follow-up checkpoint
 - Added a dedicated `roleScopeCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role scope messaging reads through one named count helper instead of repeating raw `$scope->count()` calls.
 - Updated both selected-role summary and dependency-status builders to read through the shared helper, then re-ran an existing role review assertion as the parity check for this structural cleanup.

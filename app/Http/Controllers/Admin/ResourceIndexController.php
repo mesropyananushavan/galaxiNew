@@ -3119,8 +3119,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsSelectedRoleSummary(Role $selectedRole, mixed $scope, mixed $permissionPreview, mixed $assignedUserPreview): array
     {
-        $activeShopAssignedUserCount = $selectedRole->users()->assignedToActiveShop()->count();
-        $pausedShopAssignedUserCount = $selectedRole->users()->assignedToPausedShop()->count();
+        ['active' => $activeShopAssignedUserCount, 'paused' => $pausedShopAssignedUserCount] = $this->roleAssignedShopActivityCounts($selectedRole);
         $permissionBranchActivitySignal = $selectedRole->permissions_count > 0 && $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
             ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
             : 'paused-branch permission-linked staff coverage is still pending for parity review';
@@ -3658,8 +3657,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsSelectedRoleDependencyStatus(Role $selectedRole, mixed $scope, mixed $permissionPreview): array
     {
-        $activeShopAssignedUserCount = $selectedRole->users()->assignedToActiveShop()->count();
-        $pausedShopAssignedUserCount = $selectedRole->users()->assignedToPausedShop()->count();
+        ['active' => $activeShopAssignedUserCount, 'paused' => $pausedShopAssignedUserCount] = $this->roleAssignedShopActivityCounts($selectedRole);
         $permissionBranchActivitySignal = $selectedRole->permissions_count > 0 && $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
             ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
             : 'paused-branch permission-linked staff coverage is still pending for parity review';
@@ -4950,6 +4948,14 @@ class ResourceIndexController extends Controller
         return $this->nonEmptyStrings($role->users->pluck('name'))
             ->take(3)
             ->values();
+    }
+
+    private function roleAssignedShopActivityCounts(Role $role): array
+    {
+        return [
+            'active' => $role->users()->assignedToActiveShop()->count(),
+            'paused' => $role->users()->assignedToPausedShop()->count(),
+        ];
     }
 
     private function roleScopeCount(Collection $scope): int
