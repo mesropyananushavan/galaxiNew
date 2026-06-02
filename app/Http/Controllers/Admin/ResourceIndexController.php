@@ -1381,7 +1381,7 @@ class ResourceIndexController extends Controller
         $roles = $rolesQuery->get();
         $roleCount = $roles->count();
         $activeRoleCount = (clone $rolesQuery)->active()->count();
-        $permissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->permissions_count > 0)->count();
+        $permissionLinkedRoleCount = (clone $rolesQuery)->activePermissionBearing()->count();
         $permissionlessActiveRoleCount = $activeRoleCount - $permissionLinkedRoleCount;
         $assignedPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active && $role->permissions_count > 0 && $role->users_count > 0)->count();
         $scopedPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => $role->is_active

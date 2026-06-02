@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role permission-link scope follow-up checkpoint
+- Added `activePermissionBearing()` to `app/Models/Role.php` so the current Phase 1 live-access-shell baseline can ask for active permission-linked roles from the model layer instead of rebuilding that combination inline.
+- Updated the role catalog summary in `app/Http/Controllers/Admin/ResourceIndexController.php` to read active permission-linked role coverage through the new scope while keeping the visible roles workspace behavior unchanged.
+
 ### Roles workspace status-scope follow-up checkpoint
 - Updated the `Roles & Permissions` workspace metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` so active and draft access-shell counts now read through `Role::active()` and `Role::draft()` instead of inline collection status filters.
 - Kept the follow-up intentionally small and behavior-preserving, but it applies the new role status baseline to one more live Galaxy access surface.
