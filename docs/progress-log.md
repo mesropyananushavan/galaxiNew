@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Zero-accrual receipt helper follow-up checkpoint
+- Added a dedicated `zeroAccrualReceiptCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so zero-accrual receipt review logic is defined once instead of being recomputed through an inline collection filter.
+- Updated the checks-and-points gap-review helper to read through the shared helper, then added a focused feature assertion proving the current accrual-gap baseline message still renders.
+
 ### Reports live-source helper follow-up checkpoint
 - Added a dedicated `liveSourceCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so reports source-count logic is defined once instead of being recomputed through repeated inline `collect(...)->filter(...)` blocks.
 - Updated the reports metric and both reports action-gating helpers to read through the shared helper, then added a focused feature assertion covering the current multi-source baseline.

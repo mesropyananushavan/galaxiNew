@@ -2496,6 +2496,18 @@ class AdminDashboardTest extends TestCase
         $response->assertSee('2');
     }
 
+    public function test_checks_points_page_keeps_zero_accrual_gap_message_after_helper_extraction(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=chk-90421');
+
+        $response
+            ->assertOk()
+            ->assertSee('Review accrual gaps')
+            ->assertSee('Blocked until accrual-gap review is backed by Galaxy foundation transaction and rule data.');
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

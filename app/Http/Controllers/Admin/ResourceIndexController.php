@@ -2664,7 +2664,7 @@ class ResourceIndexController extends Controller
 
     private function checksPointsCatalogReviewGapsDisabledReason(array $receiptPreviews): string
     {
-        $zeroAccrualCount = collect($receiptPreviews)->filter(fn (array $receipt): bool => $receipt['points'] === '0')->count();
+        $zeroAccrualCount = $this->zeroAccrualReceiptCount($receiptPreviews);
         $shopCount = collect($receiptPreviews)->pluck('shop')->unique()->count();
 
         return match (true) {
@@ -4903,6 +4903,13 @@ class ResourceIndexController extends Controller
     {
         return collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])
             ->filter(fn (int $count): bool => $count > 0)
+            ->count();
+    }
+
+    private function zeroAccrualReceiptCount(array $receiptPreviews): int
+    {
+        return collect($receiptPreviews)
+            ->filter(fn (array $receipt): bool => $receipt['points'] === '0')
             ->count();
     }
 
