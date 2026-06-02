@@ -128,6 +128,11 @@ class Card extends Model
         return $query->draft()->holderLinked();
     }
 
+    public function scopeDraftUnassigned(Builder $query): Builder
+    {
+        return $query->draft()->unassigned();
+    }
+
     public function scopeBlockedUnassigned(Builder $query): Builder
     {
         return $query->blocked()->unassigned();

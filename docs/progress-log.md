@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card draft-unassigned scope follow-up checkpoint
+- Added `draftUnassigned()` to `app/Models/Card.php` so draft unassigned card coverage can be queried from the model layer instead of being recomputed only through inline draft-plus-unassigned filters.
+- Updated the reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft unassigned card coverage now reads through the new scope, then added a focused feature assertion proving it matches the current reports inventory baseline.
+
 ### Card draft catalog-scope follow-up checkpoint
 - Updated the cards catalog metric and reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft-state Galaxy card-shell coverage now reads through the existing `Card::draft()` scope instead of being recomputed only through inline `status = draft` filters.
 - Added a focused feature assertion proving the existing draft scope still matches the current card-catalog baseline.
