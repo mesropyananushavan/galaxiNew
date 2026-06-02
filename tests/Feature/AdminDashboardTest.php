@@ -2323,6 +2323,24 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($draftTier->id, CardType::query()->active()->pluck('id')->all());
     }
 
+    public function test_shop_paused_scope_matches_catalog_action_gating_baseline(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Action Gating Active Branch',
+            'code' => 'action-gating-active-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Action Gating Paused Branch',
+            'code' => 'action-gating-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $this->assertSame([$pausedShop->id], Shop::query()->paused()->pluck('id')->all());
+        $this->assertNotContains($activeShop->id, Shop::query()->paused()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

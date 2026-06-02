@@ -2605,7 +2605,7 @@ class ResourceIndexController extends Controller
     private function shopsCatalogNewShopDisabledReason(mixed $shops): string
     {
         $managerCount = Shop::query()->managerAssigned()->count();
-        $pausedCount = $shops->where('is_active', false)->count();
+        $pausedCount = Shop::query()->paused()->count();
 
         return match (true) {
             $pausedCount > 0 => 'Blocked until paused-branch recovery and manager assignment parity are verified.',

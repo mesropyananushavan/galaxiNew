@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Shop paused-state action-gating follow-up checkpoint
+- Updated the shop catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch coverage now reads through the existing `Shop::paused()` scope instead of being recomputed only through an inline `is_active = false` filter.
+- Added a focused feature assertion proving the existing paused-branch scope still matches the current shop action-gating baseline.
+
 ### Card-type active-state scope follow-up checkpoint
 - Updated card-type catalog action-gating helpers in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-tier coverage now reads through the existing `CardType::active()` scope instead of being recomputed only through inline `is_active = true` filters.
 - Added a focused feature assertion proving the existing active-tier scope still matches the current catalog action-gating baseline.
