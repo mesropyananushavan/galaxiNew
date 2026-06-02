@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Active linked-card report baseline follow-up checkpoint
+- Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so active linked-card coverage now reads through the existing `Card::activeHolderLinked()` scope instead of being recomputed through per-holder card collection sums.
+- Reused the existing active-card focused assertion as the parity check for this helper-level cleanup.
+
 ### Card activated-state scope follow-up checkpoint
 - Added `activated()` to `app/Models/Card.php` and reused it inside the activated holder-linked and activated unassigned scopes so activation coverage is defined once at the model layer.
 - Updated the reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so activated-card coverage now reads through the new scope, then added a focused feature assertion proving it matches the current reports baseline.
