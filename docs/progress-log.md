@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card active-state scope follow-up checkpoint
+- Updated the cards catalog metric and reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-state Galaxy card coverage now reads through the existing `Card::active()` scope instead of being recomputed only through inline `status = active` filters.
+- Added a focused feature assertion proving the existing active-card scope still matches the current card-catalog baseline.
+
 ### Role active-state action-gating follow-up checkpoint
 - Updated the roles and permissions catalog action-gating helpers in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-role coverage now reads through the existing `Role::active()` scope instead of being recomputed only through inline `is_active = true` filters.
 - Added a focused feature assertion proving the existing active-role scope still matches the current permissions action-gating baseline.

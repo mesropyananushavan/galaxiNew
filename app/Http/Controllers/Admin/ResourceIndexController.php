@@ -873,7 +873,7 @@ class ResourceIndexController extends Controller
         );
 
         $page['metrics'] = [
-            ['label' => 'Active-state Galaxy card shells', 'value' => (string) $cards->where('status', 'active')->count()],
+            ['label' => 'Active-state Galaxy card shells', 'value' => (string) Card::query()->active()->count()],
             ['label' => 'Draft-state Galaxy card shells', 'value' => (string) Card::query()->draft()->count()],
             ['label' => 'Blocked Galaxy card shells', 'value' => (string) Card::query()->blocked()->count()],
             ['label' => 'Issued Galaxy card shells', 'value' => (string) Card::query()->issued()->count()],
@@ -1346,7 +1346,7 @@ class ResourceIndexController extends Controller
         $shopCount = Shop::query()->count();
         $activeShopCount = Shop::query()->active()->count();
         $cardCount = Card::query()->count();
-        $activeCardCount = Card::query()->where('status', 'active')->count();
+        $activeCardCount = Card::query()->active()->count();
         $blockedCardCount = Card::query()->blocked()->count();
         $draftCardCount = Card::query()->draft()->count();
         $activatedCardCount = Card::query()->whereNotNull('activated_at')->count();

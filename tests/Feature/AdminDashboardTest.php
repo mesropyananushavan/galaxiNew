@@ -2359,6 +2359,40 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($draftRole->id, Role::query()->active()->pluck('id')->all());
     }
 
+    public function test_card_active_scope_matches_card_catalog_metric_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Active Card Scope Shop',
+            'code' => 'active-card-scope-shop',
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Active Card Scope Tier',
+            'slug' => 'active-card-scope-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $activeCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-ACTIVE-CARD-001',
+            'status' => 'active',
+        ]);
+
+        $draftCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-ACTIVE-CARD-002',
+            'status' => 'draft',
+        ]);
+
+        $this->assertSame([$activeCard->id], Card::query()->active()->pluck('id')->all());
+        $this->assertNotContains($draftCard->id, Card::query()->active()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
