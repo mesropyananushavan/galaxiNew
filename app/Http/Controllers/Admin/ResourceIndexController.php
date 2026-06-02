@@ -3496,7 +3496,7 @@ class ResourceIndexController extends Controller
         return match (true) {
             $permissionCount > 0 && $assignedUserCount > 0 => 'Blocked until this assignment-sensitive Galaxy foundation permission bundle is verified against legacy staff access.',
             $permissionCount > 0 => 'Blocked until the Galaxy foundation permission matrix can be verified against legacy staff access for this live bundle.',
-            $selectedRole->is_active => 'Blocked until this active role has a first verified Galaxy foundation permission bundle to compare against legacy staff access.',
+            $this->roleIsActive($selectedRole) => 'Blocked until this active role has a first verified Galaxy foundation permission bundle to compare against legacy staff access.',
             default => 'Blocked until this draft role has a first verified Galaxy foundation permission bundle to compare against legacy staff access.',
         };
     }
@@ -3507,7 +3507,7 @@ class ResourceIndexController extends Controller
         $assignedUserCount = $this->roleAssignedUserCount($selectedRole);
 
         return match (true) {
-            ! $selectedRole->is_active => 'Blocked until this draft role has a verified permission bundle and shop scope parity.',
+            ! $this->roleIsActive($selectedRole) => 'Blocked until this draft role has a verified permission bundle and shop scope parity.',
             $permissionCount === 0 && $scope->isEmpty() => 'Blocked until this active role has both a verified permission bundle and shop scope parity.',
             $permissionCount === 0 => 'Blocked until this active role has a verified permission bundle to compare against legacy staff access.',
             $scope->isEmpty() => 'Blocked until this live permission bundle also has verified shop scope parity.',
@@ -4976,6 +4976,11 @@ class ResourceIndexController extends Controller
     private function rolePermissionCount(Role $role): int
     {
         return $role->permissions->count();
+    }
+
+    private function roleIsActive(Role $role): bool
+    {
+        return $role->is_active;
     }
 
     private function roleScopeCount(Collection $scope): int
