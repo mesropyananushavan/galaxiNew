@@ -2607,6 +2607,18 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Visible Scope User');
     }
 
+    public function test_checks_points_page_keeps_branch_aware_lookup_message_after_shop_count_helper_extraction(): void
+    {
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get('/admin/checks-points?receipt=chk-90421');
+
+        $response
+            ->assertOk()
+            ->assertSee('Find receipt')
+            ->assertSee('Blocked until receipt lookup is backed by Galaxy foundation transaction reads and fiscal-search parity checks.');
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

@@ -2652,7 +2652,7 @@ class ResourceIndexController extends Controller
 
     private function checksPointsCatalogFindReceiptDisabledReason(array $receiptPreviews): string
     {
-        $shopCount = collect($receiptPreviews)->pluck('shop')->unique()->count();
+        $shopCount = $this->receiptPreviewShopCount($receiptPreviews);
         $receiptCount = count($receiptPreviews);
 
         return match (true) {
@@ -2665,7 +2665,7 @@ class ResourceIndexController extends Controller
     private function checksPointsCatalogReviewGapsDisabledReason(array $receiptPreviews): string
     {
         $zeroAccrualCount = $this->zeroAccrualReceiptCount($receiptPreviews);
-        $shopCount = collect($receiptPreviews)->pluck('shop')->unique()->count();
+        $shopCount = $this->receiptPreviewShopCount($receiptPreviews);
 
         return match (true) {
             $zeroAccrualCount > 0 && $shopCount > 1 => 'Blocked until zero-accrual and branch-aware troubleshooting are backed by Galaxy foundation transaction and rule data.',
@@ -4915,6 +4915,14 @@ class ResourceIndexController extends Controller
     {
         return collect($receiptPreviews)
             ->filter(fn (array $receipt): bool => $receipt['points'] === '0')
+            ->count();
+    }
+
+    private function receiptPreviewShopCount(array $receiptPreviews): int
+    {
+        return collect($receiptPreviews)
+            ->pluck('shop')
+            ->unique()
             ->count();
     }
 
