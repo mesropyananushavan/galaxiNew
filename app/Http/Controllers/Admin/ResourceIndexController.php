@@ -4800,8 +4800,13 @@ class ResourceIndexController extends Controller
         }
 
         return $records
-            ->filter(fn (mixed $record): bool => $this->canAccessRecordShop($adminUser, $shopResolver($record)))
+            ->filter(fn (mixed $record): bool => $this->recordIsVisibleToAdmin($adminUser, $record, $shopResolver))
             ->values();
+    }
+
+    private function recordIsVisibleToAdmin(User $adminUser, mixed $record, callable $shopResolver): bool
+    {
+        return $this->canAccessRecordShop($adminUser, $shopResolver($record));
     }
 
     private function canAccessRecordShop(?User $user, ?Shop $shop): bool

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Record-visibility helper follow-up checkpoint
+- Added a dedicated `recordIsVisibleToAdmin()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so shop-scoped record filtering reads through one named visibility rule instead of an inline collection predicate.
+- Updated the shared shop-scoped record filter to use the new helper, then re-ran an existing role review assertion as the parity check for this structural cleanup.
+
 ### Positive-count predicate follow-up checkpoint
 - Added a dedicated `isPositiveCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so multi-source count filtering reads as a named domain rule instead of an inline `count > 0` predicate.
 - Updated `positiveCountEntries()` to read through the shared helper, then re-ran the existing multi-source reports assertion as the parity check for this structural cleanup.
