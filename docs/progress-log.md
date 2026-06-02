@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Cardholder inactive-state action-gating follow-up checkpoint
+- Updated the cardholder catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so inactive-holder coverage now reads through the existing `CardHolder::inactive()` scope instead of being recomputed only through an inline `is_active = false` filter.
+- Reused the existing inactive-holder focused assertion as the parity check for this helper-level baseline cleanup.
+
 ### Shop paused-state action-gating follow-up checkpoint
 - Updated the shop catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch coverage now reads through the existing `Shop::paused()` scope instead of being recomputed only through an inline `is_active = false` filter.
 - Added a focused feature assertion proving the existing paused-branch scope still matches the current shop action-gating baseline.
