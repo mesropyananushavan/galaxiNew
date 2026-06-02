@@ -4916,9 +4916,7 @@ class ResourceIndexController extends Controller
 
     private function zeroAccrualReceiptCount(array $receiptPreviews): int
     {
-        return collect($receiptPreviews)
-            ->filter(fn (array $receipt): bool => $this->isZeroAccrualReceipt($receipt))
-            ->count();
+        return $this->countMatching($receiptPreviews, fn (array $receipt): bool => $this->isZeroAccrualReceipt($receipt));
     }
 
     private function isZeroAccrualReceipt(array $receipt): bool
@@ -4965,8 +4963,13 @@ class ResourceIndexController extends Controller
 
     private function positiveCountEntries(array $counts): int
     {
-        return collect($counts)
-            ->filter(fn (int $count): bool => $this->isPositiveCount($count))
+        return $this->countMatching($counts, fn (int $count): bool => $this->isPositiveCount($count));
+    }
+
+    private function countMatching(iterable $values, callable $predicate): int
+    {
+        return collect($values)
+            ->filter($predicate)
             ->count();
     }
 

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Matching-count helper follow-up checkpoint
+- Added a dedicated `countMatching()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so predicate-based collection counts are defined once instead of repeating `collect(...)->filter(...)->count()` blocks.
+- Updated both positive-count and zero-accrual receipt counters to read through the shared helper, then re-ran the existing reports multi-source assertion as the parity check for this structural cleanup.
+
 ### Non-empty string predicate follow-up checkpoint
 - Added a dedicated `isNonEmptyString()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so role preview string cleanup reads through one named predicate instead of an inline `is_string(...) && trim(...) !== ''` check.
 - Updated `nonEmptyStrings()` to read through the new helper, then re-ran an existing role review assertion as the parity check for this structural cleanup.
