@@ -1806,6 +1806,49 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($activeCard->id, Card::query()->blocked()->pluck('id')->all());
     }
 
+    public function test_card_draft_scopes_match_inventory_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Draft Scope Shop',
+            'code' => 'draft-scope-shop',
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Draft Scope Holder',
+            'phone' => '+37421000001',
+            'email' => 'draft-scope-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Draft Scope Tier',
+            'slug' => 'draft-scope-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $draftHolderLinkedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DRAFT-SCOPE-001',
+            'status' => 'draft',
+        ]);
+
+        $activeHolderLinkedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DRAFT-SCOPE-002',
+            'status' => 'active',
+        ]);
+
+        $this->assertSame([$draftHolderLinkedCard->id], Card::query()->draft()->pluck('id')->all());
+        $this->assertSame([$draftHolderLinkedCard->id], Card::query()->draftHolderLinked()->pluck('id')->all());
+        $this->assertNotContains($activeHolderLinkedCard->id, Card::query()->draft()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

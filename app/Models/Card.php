@@ -23,6 +23,11 @@ class Card extends Model
         return $query->where('status', 'blocked');
     }
 
+    public function scopeDraft(Builder $query): Builder
+    {
+        return $query->where('status', 'draft');
+    }
+
     public function scopeReviewNoted(Builder $query): Builder
     {
         return $query->whereNotNull('review_note')->where('review_note', '!=', '');
@@ -91,6 +96,11 @@ class Card extends Model
     public function scopeBlockedHolderLinked(Builder $query): Builder
     {
         return $query->blocked()->holderLinked();
+    }
+
+    public function scopeDraftHolderLinked(Builder $query): Builder
+    {
+        return $query->draft()->holderLinked();
     }
 
     public function scopeBlockedUnassigned(Builder $query): Builder

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card draft-state scope follow-up checkpoint
+- Added `draft()` and `draftHolderLinked()` to `app/Models/Card.php` so draft card-shell coverage can be queried from the model layer instead of being recomputed only through inline `status = draft` plus holder filters.
+- Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft holder-linked card coverage now reads through `Card::draftHolderLinked()`, then added a focused feature assertion proving the new scopes match the current draft-state baseline.
+
 ### Card blocked-state scope follow-up checkpoint
 - Added `blocked()` to `app/Models/Card.php` so blocked card-shell coverage can be queried from the model layer instead of being recomputed only through inline `status = blocked` filters.
 - Updated the cards inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` to read blocked coverage through `Card::blocked()`, then added a focused feature assertion proving the new scope matches the current blocked-state baseline.
