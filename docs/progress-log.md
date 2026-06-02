@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Shop manager-assignment action-gating follow-up checkpoint
+- Updated the shops catalog action-gating logic in `app/Http/Controllers/Admin/ResourceIndexController.php` so manager-linked branch coverage now reads through `Shop::managerAssigned()` instead of being recomputed only through inline collection filters.
+- Added a focused feature assertion proving the existing manager-assignment scope still matches the current shops catalog action-gating baseline.
+
 ### Cardholder reports scope follow-up checkpoint
 - Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so linked-holder coverage and active-branch holder coverage now read through `CardHolder::linked()` and `CardHolder::assignedToActiveShop()` instead of being recomputed only through inline collection filters.
 - Added a focused feature assertion proving the existing holder linkage and shop-assignment scopes still match the current reports holder-status baseline.

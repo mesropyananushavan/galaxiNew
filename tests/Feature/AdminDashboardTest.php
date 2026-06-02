@@ -1299,6 +1299,29 @@ class AdminDashboardTest extends TestCase
         $this->assertSame([$pausedHolder->id], CardHolder::query()->assignedToPausedShop()->pluck('id')->all());
     }
 
+    public function test_shop_manager_assignment_scope_matches_catalog_action_gating_baseline(): void
+    {
+        $managedShop = Shop::create([
+            'name' => 'Catalog Managed Branch',
+            'code' => 'catalog-managed-branch',
+            'is_active' => true,
+        ]);
+
+        $unmanagedShop = Shop::create([
+            'name' => 'Catalog Unmanaged Branch',
+            'code' => 'catalog-unmanaged-branch',
+            'is_active' => false,
+        ]);
+
+        User::factory()->create([
+            'name' => 'Catalog Managed User',
+            'shop_id' => $managedShop->id,
+        ]);
+
+        $this->assertSame([$managedShop->id], Shop::query()->managerAssigned()->pluck('id')->all());
+        $this->assertNotContains($unmanagedShop->id, Shop::query()->managerAssigned()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

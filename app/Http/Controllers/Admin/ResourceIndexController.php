@@ -2610,7 +2610,7 @@ class ResourceIndexController extends Controller
 
     private function shopsCatalogNewShopDisabledReason(mixed $shops): string
     {
-        $managerCount = $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count();
+        $managerCount = Shop::query()->managerAssigned()->count();
         $pausedCount = $shops->where('is_active', false)->count();
 
         return match (true) {
@@ -2622,7 +2622,7 @@ class ResourceIndexController extends Controller
 
     private function shopsCatalogReviewScopeDisabledReason(mixed $shops): string
     {
-        $managerCount = $shops->filter(fn (Shop $shop): bool => $shop->users_count > 0)->count();
+        $managerCount = Shop::query()->managerAssigned()->count();
         $coverageCount = $shops->filter(fn (Shop $shop): bool => $shop->card_holders_count > 0 || $shop->cards_count > 0)->count();
 
         return match (true) {
