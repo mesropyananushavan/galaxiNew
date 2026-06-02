@@ -35,6 +35,15 @@ class Shop extends Model
         return $query->whereHas('users');
     }
 
+    public function scopeFoundationCovered(Builder $query): Builder
+    {
+        return $query->where(function (Builder $coverageQuery): void {
+            $coverageQuery
+                ->has('cardHolders')
+                ->orHas('cards');
+        });
+    }
+
     public function users(): HasMany
     {
         return $this->hasMany(User::class);

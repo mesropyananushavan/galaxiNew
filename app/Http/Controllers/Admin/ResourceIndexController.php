@@ -2623,7 +2623,7 @@ class ResourceIndexController extends Controller
     private function shopsCatalogReviewScopeDisabledReason(mixed $shops): string
     {
         $managerCount = Shop::query()->managerAssigned()->count();
-        $coverageCount = $shops->filter(fn (Shop $shop): bool => $shop->card_holders_count > 0 || $shop->cards_count > 0)->count();
+        $coverageCount = Shop::query()->foundationCovered()->count();
 
         return match (true) {
             $managerCount > 0 && $coverageCount > 0 => 'Blocked until saved branch ownership and scope coverage are verified against the legacy Galaxy multi-shop model.',

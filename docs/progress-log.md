@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Shop foundation-coverage action-gating follow-up checkpoint
+- Added `foundationCovered()` to `app/Models/Shop.php` so branch coverage with holder or card records can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the shops catalog action-gating logic in `app/Http/Controllers/Admin/ResourceIndexController.php` so branch coverage now reads through `Shop::foundationCovered()`, then added a focused feature assertion proving the new scope matches the current shops catalog coverage baseline.
+
 ### Shop manager-assignment action-gating follow-up checkpoint
 - Updated the shops catalog action-gating logic in `app/Http/Controllers/Admin/ResourceIndexController.php` so manager-linked branch coverage now reads through `Shop::managerAssigned()` instead of being recomputed only through inline collection filters.
 - Added a focused feature assertion proving the existing manager-assignment scope still matches the current shops catalog action-gating baseline.

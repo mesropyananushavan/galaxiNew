@@ -1322,6 +1322,56 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($unmanagedShop->id, Shop::query()->managerAssigned()->pluck('id')->all());
     }
 
+    public function test_shop_foundation_coverage_scope_matches_catalog_action_gating_baseline(): void
+    {
+        $coveredByHolderShop = Shop::create([
+            'name' => 'Covered By Holder Branch',
+            'code' => 'covered-by-holder-branch',
+            'is_active' => true,
+        ]);
+
+        $coveredByCardShop = Shop::create([
+            'name' => 'Covered By Card Branch',
+            'code' => 'covered-by-card-branch',
+            'is_active' => true,
+        ]);
+
+        $uncoveredShop = Shop::create([
+            'name' => 'Uncovered Branch',
+            'code' => 'uncovered-branch',
+            'is_active' => false,
+        ]);
+
+        CardHolder::create([
+            'shop_id' => $coveredByHolderShop->id,
+            'full_name' => 'Coverage Holder',
+            'phone' => '+37417000001',
+            'email' => 'coverage-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Coverage Tier',
+            'slug' => 'coverage-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $coveredByCardShop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-COVERAGE-001',
+            'status' => 'draft',
+        ]);
+
+        $this->assertEqualsCanonicalizing(
+            [$coveredByHolderShop->id, $coveredByCardShop->id],
+            Shop::query()->foundationCovered()->pluck('id')->all(),
+        );
+        $this->assertNotContains($uncoveredShop->id, Shop::query()->foundationCovered()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
