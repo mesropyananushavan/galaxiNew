@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card blocked-state action-gating follow-up checkpoint
+- Updated the card catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked card coverage now reads through the existing `Card::blocked()` scope instead of being recomputed only through a collection-level `status = blocked` filter.
+- Reused the existing blocked-card focused assertion as the parity check for this helper-level cleanup.
+
 ### Card draft-state action-gating follow-up checkpoint
 - Updated the card catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft card coverage now reads through the existing `Card::draft()` scope instead of being recomputed only through a collection-level `status = draft` filter.
 - Reused the existing draft-card focused assertion as the parity check for this helper-level cleanup.

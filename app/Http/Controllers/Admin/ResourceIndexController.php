@@ -2565,7 +2565,7 @@ class ResourceIndexController extends Controller
 
     private function cardsCatalogReviewBlockedDisabledReason(mixed $cards): string
     {
-        $blockedCount = $cards->where('status', 'blocked')->count();
+        $blockedCount = Card::query()->blocked()->count();
         $activeCount = $cards->where('status', 'active')->count();
 
         return match (true) {
