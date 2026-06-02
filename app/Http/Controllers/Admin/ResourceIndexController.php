@@ -1060,14 +1060,14 @@ class ResourceIndexController extends Controller
         $page['metrics'] = [
             ['label' => 'Active-state Galaxy holders', 'value' => (string) $cardHolders->where('is_active', true)->count()],
             ['label' => 'Inactive-state Galaxy holders', 'value' => (string) $cardHolders->where('is_active', false)->count()],
-            ['label' => 'Active-branch holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => (bool) $cardHolder->shop?->is_active)->count()],
-            ['label' => 'Paused-branch holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->shop !== null && ! (bool) $cardHolder->shop->is_active)->count()],
+            ['label' => 'Active-branch holders', 'value' => (string) CardHolder::query()->assignedToActiveShop()->count()],
+            ['label' => 'Paused-branch holders', 'value' => (string) CardHolder::query()->assignedToPausedShop()->count()],
             ['label' => 'Active linked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->is_active && $cardHolder->cards_count > 0)->count()],
             ['label' => 'Inactive linked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => ! $cardHolder->is_active && $cardHolder->cards_count > 0)->count()],
             ['label' => 'Active unlinked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->is_active && $cardHolder->cards_count === 0)->count()],
             ['label' => 'Inactive unlinked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => ! $cardHolder->is_active && $cardHolder->cards_count === 0)->count()],
-            ['label' => 'Active-branch linked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => (bool) $cardHolder->shop?->is_active && $cardHolder->cards_count > 0)->count()],
-            ['label' => 'Paused-branch unlinked holders', 'value' => (string) $cardHolders->filter(fn (CardHolder $cardHolder): bool => $cardHolder->shop !== null && ! (bool) $cardHolder->shop->is_active && $cardHolder->cards_count === 0)->count()],
+            ['label' => 'Active-branch linked holders', 'value' => (string) CardHolder::query()->assignedToActiveShopLinked()->count()],
+            ['label' => 'Paused-branch unlinked holders', 'value' => (string) CardHolder::query()->assignedToPausedShopUnlinked()->count()],
             ['label' => 'Review-noted Galaxy holders', 'value' => (string) CardHolder::query()->reviewNoted()->count()],
             ['label' => 'Linked Galaxy card shells', 'value' => (string) $cardHolders->sum('cards_count')],
         ];

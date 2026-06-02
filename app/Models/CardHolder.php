@@ -31,6 +31,31 @@ class CardHolder extends Model
         return $query->whereNotNull('review_note')->where('review_note', '!=', '');
     }
 
+    public function scopeAssignedToActiveShop(Builder $query): Builder
+    {
+        return $query->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->active());
+    }
+
+    public function scopeAssignedToPausedShop(Builder $query): Builder
+    {
+        return $query->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->where('is_active', false));
+    }
+
+    public function scopeLinked(Builder $query): Builder
+    {
+        return $query->has('cards');
+    }
+
+    public function scopeAssignedToActiveShopLinked(Builder $query): Builder
+    {
+        return $query->assignedToActiveShop()->linked();
+    }
+
+    public function scopeAssignedToPausedShopUnlinked(Builder $query): Builder
+    {
+        return $query->assignedToPausedShop()->doesntHave('cards');
+    }
+
     public function shop(): BelongsTo
     {
         return $this->belongsTo(Shop::class);

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Cardholder shop-coverage scope follow-up checkpoint
+- Added `assignedToActiveShop()`, `assignedToPausedShop()`, `linked()`, `assignedToActiveShopLinked()`, and `assignedToPausedShopUnlinked()` to `app/Models/CardHolder.php` so shop-aware holder coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Cardholders` catalog metrics for active-branch holders, paused-branch holders, active-branch linked holders, and paused-branch unlinked holders in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current holder workspace semantics.
+
 ### Shop manager-assignment scope follow-up checkpoint
 - Added `managerAssigned()` to `app/Models/Shop.php` so branch ownership coverage can be queried from the model layer instead of being recomputed only through inline `users_count > 0` filters.
 - Updated the `Shops` catalog metric for assigned branch managers in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Shop::managerAssigned()`, then added a focused feature assertion proving unmanaged branches stay out of the Phase 1 baseline.

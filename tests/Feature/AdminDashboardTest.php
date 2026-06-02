@@ -969,6 +969,68 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($unmanagedShop->id, Shop::query()->managerAssigned()->pluck('id')->all());
     }
 
+    public function test_cardholder_shop_and_linkage_scopes_match_holder_catalog_metrics_baseline(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Holder Active Branch',
+            'code' => 'holder-active-branch',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Holder Paused Branch',
+            'code' => 'holder-paused-branch',
+            'is_active' => false,
+        ]);
+
+        $activeLinkedHolder = CardHolder::create([
+            'shop_id' => $activeShop->id,
+            'full_name' => 'Active Linked Holder',
+            'phone' => '+37413000001',
+            'email' => 'active-linked-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $pausedUnlinkedHolder = CardHolder::create([
+            'shop_id' => $pausedShop->id,
+            'full_name' => 'Paused Unlinked Holder',
+            'phone' => '+37413000002',
+            'email' => 'paused-unlinked-holder@example.com',
+            'is_active' => false,
+        ]);
+
+        $activeUnlinkedHolder = CardHolder::create([
+            'shop_id' => $activeShop->id,
+            'full_name' => 'Active Unlinked Holder',
+            'phone' => '+37413000003',
+            'email' => 'active-unlinked-holder@example.com',
+            'is_active' => true,
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Holder Scope Tier',
+            'slug' => 'holder-scope-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $activeShop->id,
+            'card_holder_id' => $activeLinkedHolder->id,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-HOLDER-SCOPE-001',
+            'status' => 'active',
+        ]);
+
+        $this->assertEqualsCanonicalizing(
+            [$activeLinkedHolder->id, $activeUnlinkedHolder->id],
+            CardHolder::query()->assignedToActiveShop()->pluck('id')->all(),
+        );
+        $this->assertSame([$pausedUnlinkedHolder->id], CardHolder::query()->assignedToPausedShop()->pluck('id')->all());
+        $this->assertSame([$activeLinkedHolder->id], CardHolder::query()->assignedToActiveShopLinked()->pluck('id')->all());
+        $this->assertSame([$pausedUnlinkedHolder->id], CardHolder::query()->assignedToPausedShopUnlinked()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();
