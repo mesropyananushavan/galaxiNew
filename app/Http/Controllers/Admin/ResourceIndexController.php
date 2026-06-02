@@ -3528,7 +3528,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsScopeCoverageTimelineDescription(mixed $scope): string
     {
-        $scopeCount = $scope->count();
+        $scopeCount = $this->roleScopeCount($scope);
 
         return match (true) {
             $scopeCount === 0 => 'No shops are currently linked to this role in Galaxy foundation review, so scope coverage remains empty while rollout stays blocked.',

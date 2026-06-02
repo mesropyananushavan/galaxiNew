@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role scope-count timeline follow-up checkpoint
+- Reused the existing `roleScopeCount()` helper inside the selected-role scope timeline description so role scope messaging no longer mixes helper-backed and raw collection count reads.
+- Re-ran the existing role scope visibility assertion as the parity check for this structural cleanup.
+
 ### Role permission-count helper follow-up checkpoint
 - Added a dedicated `rolePermissionCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role gating helpers read permission totals through one named accessor instead of repeating raw relation counts.
 - Updated the review-matrix and publish-role disabled-reason helpers to read through the shared permission-count helper, then re-ran the existing role-detail assertions as the parity check for this structural cleanup.
