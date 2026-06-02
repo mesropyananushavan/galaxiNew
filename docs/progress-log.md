@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Shop paused-state scope follow-up checkpoint
+- Added `paused()` to `app/Models/Shop.php` so paused-branch coverage can be queried from the model layer instead of being recomputed only through inline `is_active = false` filters.
+- Updated the `Shops` catalog metric for paused-state Galaxy branches in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Shop::paused()`, then added a focused feature assertion proving the new scope matches the current branch-state baseline.
+
 ### Cardholder paused-branch activity-gating follow-up checkpoint
 - Updated the cardholder activity review gating in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch holder coverage now reads through `CardHolder::assignedToPausedShop()` instead of being recomputed only through an inline collection filter.
 - Added a focused feature assertion proving the existing paused-shop holder scope still matches the current activity-gating baseline.
