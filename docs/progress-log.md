@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role assigned-permission scope follow-up checkpoint
+- Added `activeAssignedPermissionBearing()` to `app/Models/Role.php` so active permission-linked roles with assigned staff can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the role catalog summary in `app/Http/Controllers/Admin/ResourceIndexController.php` to read assigned permission-linked role coverage through the new scope while keeping the visible roles workspace behavior unchanged.
+
 ### Role assignment scope follow-up checkpoint
 - Added `activeAssigned()` to `app/Models/Role.php` so active roles with linked staff can be queried from the model layer instead of being recomputed only through inline collection filters.
 - Updated the role catalog summary in `app/Http/Controllers/Admin/ResourceIndexController.php` to read assigned active role coverage through the new scope while keeping the visible roles workspace behavior unchanged.
