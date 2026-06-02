@@ -874,7 +874,7 @@ class ResourceIndexController extends Controller
 
         $page['metrics'] = [
             ['label' => 'Active-state Galaxy card shells', 'value' => (string) $cards->where('status', 'active')->count()],
-            ['label' => 'Draft-state Galaxy card shells', 'value' => (string) $cards->where('status', 'draft')->count()],
+            ['label' => 'Draft-state Galaxy card shells', 'value' => (string) Card::query()->draft()->count()],
             ['label' => 'Blocked Galaxy card shells', 'value' => (string) Card::query()->blocked()->count()],
             ['label' => 'Issued Galaxy card shells', 'value' => (string) Card::query()->issued()->count()],
             ['label' => 'Pre-activation cards', 'value' => (string) Card::query()->preActivation()->count()],
@@ -1348,7 +1348,7 @@ class ResourceIndexController extends Controller
         $cardCount = Card::query()->count();
         $activeCardCount = Card::query()->where('status', 'active')->count();
         $blockedCardCount = Card::query()->blocked()->count();
-        $draftCardCount = Card::query()->where('status', 'draft')->count();
+        $draftCardCount = Card::query()->draft()->count();
         $activatedCardCount = Card::query()->whereNotNull('activated_at')->count();
         $holderLinkedCardCount = Card::query()->holderLinked()->count();
         $unassignedCardCount = $cardCount - $holderLinkedCardCount;

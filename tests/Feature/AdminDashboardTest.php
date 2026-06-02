@@ -2075,6 +2075,40 @@ class AdminDashboardTest extends TestCase
         $this->assertCount(1, Card::query()->pausedShopUnassigned()->pluck('id')->all());
     }
 
+    public function test_card_draft_scope_matches_card_catalog_metric_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Draft Catalog Scope Shop',
+            'code' => 'draft-catalog-scope-shop',
+        ]);
+
+        $cardType = CardType::create([
+            'name' => 'Draft Catalog Scope Tier',
+            'slug' => 'draft-catalog-scope-tier',
+            'points_rate' => '1.00',
+            'is_active' => true,
+        ]);
+
+        $draftCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DRAFT-CATALOG-001',
+            'status' => 'draft',
+        ]);
+
+        $blockedCard = Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => null,
+            'card_type_id' => $cardType->id,
+            'number' => 'GX-DRAFT-CATALOG-002',
+            'status' => 'blocked',
+        ]);
+
+        $this->assertSame([$draftCard->id], Card::query()->draft()->pluck('id')->all());
+        $this->assertNotContains($blockedCard->id, Card::query()->draft()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

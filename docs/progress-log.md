@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Card draft catalog-scope follow-up checkpoint
+- Updated the cards catalog metric and reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft-state Galaxy card-shell coverage now reads through the existing `Card::draft()` scope instead of being recomputed only through inline `status = draft` filters.
+- Added a focused feature assertion proving the existing draft scope still matches the current card-catalog baseline.
+
 ### Card shop unassigned scope follow-up checkpoint
 - Added `activeShopUnassigned()` and `pausedShopUnassigned()` to `app/Models/Card.php` so branch-aware unassigned card coverage can be queried from the model layer instead of being recomputed only through inline unassigned-plus-shop filters.
 - Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-branch and paused-branch unassigned card coverage now read through the new scopes, then added a focused feature assertion proving they match the current reports inventory baseline.
