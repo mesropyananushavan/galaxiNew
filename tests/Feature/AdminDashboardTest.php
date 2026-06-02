@@ -1189,6 +1189,40 @@ class AdminDashboardTest extends TestCase
         $this->assertSame([$blockedPreActivationCard->id], Card::query()->blockedPreActivation()->pluck('id')->all());
     }
 
+    public function test_role_assigned_scope_matches_draft_assignment_baseline(): void
+    {
+        $activeRole = Role::create([
+            'name' => 'Assigned Active Role',
+            'slug' => 'assigned-active-role',
+            'is_active' => true,
+        ]);
+
+        $draftAssignedRole = Role::create([
+            'name' => 'Assigned Draft Role',
+            'slug' => 'assigned-draft-role',
+            'is_active' => false,
+        ]);
+
+        $draftUnassignedRole = Role::create([
+            'name' => 'Unassigned Draft Role',
+            'slug' => 'unassigned-draft-role',
+            'is_active' => false,
+        ]);
+
+        $activeUser = User::factory()->create();
+        $draftUser = User::factory()->create();
+
+        $activeUser->roles()->attach($activeRole->id);
+        $draftUser->roles()->attach($draftAssignedRole->id);
+
+        $this->assertEqualsCanonicalizing(
+            [$activeRole->id, $draftAssignedRole->id],
+            Role::query()->assigned()->pluck('id')->all(),
+        );
+        $this->assertSame([$draftAssignedRole->id], Role::query()->draft()->assigned()->pluck('id')->all());
+        $this->assertNotContains($draftUnassignedRole->id, Role::query()->assigned()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role assigned-scope follow-up checkpoint
+- Added `assigned()` to `app/Models/Role.php` so role staffing coverage can be queried from the model layer without coupling every follow-up to status-specific helpers.
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft assigned-role coverage now reads through `Role::draft()->assigned()`, then added a focused feature assertion proving the shared assignment scope matches the current Phase 1 draft-role staffing baseline.
+
 ### Card inventory scope follow-up checkpoint
 - Added `issuedUnassigned()`, `preActivationHolderLinked()`, `preActivationUnassigned()`, `activeHolderLinked()`, `activeUnassigned()`, `blockedPreActivation()`, `blockedActivated()`, and `blockedHolderLinked()` to `app/Models/Card.php` so the remaining core Galaxy card-shell inventory slices can be queried from the model layer instead of being recomputed only through inline collection filters.
 - Updated the `Cards` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read those remaining issued, active, and blocked inventory slices through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current inventory semantics.

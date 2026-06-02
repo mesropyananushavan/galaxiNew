@@ -1397,7 +1397,7 @@ class ResourceIndexController extends Controller
         $draftPermissionLinkedRoleCount = $roles->filter(fn (Role $role): bool => ! $role->is_active && $role->permissions_count > 0)->count();
         $assignedActiveRoleCount = (clone $rolesQuery)->activeAssigned()->count();
         $unassignedActiveRoleCount = $activeRoleCount - $assignedActiveRoleCount;
-        $draftAssignedRoleCount = $roles->filter(fn (Role $role): bool => ! $role->is_active && $role->users_count > 0)->count();
+        $draftAssignedRoleCount = (clone $rolesQuery)->draft()->assigned()->count();
         $assignedStaffCount = (int) $roles->sum('users_count');
         $shopScopedAssignedStaffCount = $roles->sum(fn (Role $role): int => $role->users->filter(fn ($user): bool => $user->shop_id !== null)->count());
         $unscopedAssignedStaffCount = $assignedStaffCount - $shopScopedAssignedStaffCount;
