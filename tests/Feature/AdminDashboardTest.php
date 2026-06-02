@@ -647,6 +647,53 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->can('update', $pausedShop));
     }
 
+    public function test_user_access_scopes_match_phase_one_shop_scoped_admin_helpers(): void
+    {
+        $activeShop = Shop::create([
+            'name' => 'Galaxy Scope Match Shop',
+            'code' => 'galaxy-scope-match-shop',
+            'is_active' => true,
+        ]);
+
+        $pausedShop = Shop::create([
+            'name' => 'Galaxy Scope Match Paused Shop',
+            'code' => 'galaxy-scope-match-paused-shop',
+            'is_active' => false,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Scope Match Manager',
+            'slug' => 'scope-match-manager',
+        ]);
+
+        $permission = Permission::create([
+            'name' => 'Scope match access permission',
+            'slug' => 'scope-match-access-permission',
+        ]);
+
+        $role->permissions()->attach($permission->id);
+
+        $bootstrapAdmin = User::factory()->create();
+        $shopScopedAdmin = User::factory()->create(['shop_id' => $activeShop->id]);
+        $shopScopedAdmin->roles()->attach($role->id);
+
+        $pausedShopUser = User::factory()->create(['shop_id' => $pausedShop->id]);
+        $pausedShopUser->roles()->attach($role->id);
+
+        $rolelessActiveShopUser = User::factory()->create(['shop_id' => $activeShop->id]);
+
+        $this->assertSame([$bootstrapAdmin->id], User::query()->bootstrapAdmins()->pluck('id')->all());
+        $this->assertEqualsCanonicalizing(
+            [$shopScopedAdmin->id, $rolelessActiveShopUser->id],
+            User::query()->assignedToActiveShop()->pluck('id')->all(),
+        );
+        $this->assertEqualsCanonicalizing(
+            [$shopScopedAdmin->id, $pausedShopUser->id],
+            User::query()->permissionBearing()->pluck('id')->all(),
+        );
+        $this->assertSame([$shopScopedAdmin->id], User::query()->shopScopedAdmins()->pluck('id')->all());
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

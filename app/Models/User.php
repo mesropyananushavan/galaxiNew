@@ -6,6 +6,7 @@ namespace App\Models;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Attributes\Hidden;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -29,6 +30,30 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
+    public function scopeBootstrapAdmins(Builder $query): Builder
+    {
+        return $query->whereNull('shop_id');
+    }
+
+    public function scopeAssignedToActiveShop(Builder $query): Builder
+    {
+        return $query
+            ->whereNotNull('shop_id')
+            ->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->active());
+    }
+
+    public function scopePermissionBearing(Builder $query): Builder
+    {
+        return $query->whereHas('roles', fn (Builder $roleQuery): Builder => $roleQuery->permissionBearing());
+    }
+
+    public function scopeShopScopedAdmins(Builder $query): Builder
+    {
+        return $query
+            ->assignedToActiveShop()
+            ->permissionBearing();
+    }
+
     public function hasBootstrapAdminAccess(): bool
     {
         return $this->shop_id === null;
@@ -36,16 +61,12 @@ class User extends Authenticatable
 
     public function belongsToActiveShop(): bool
     {
-        if ($this->shop_id === null) {
-            return false;
-        }
-
-        return (bool) $this->shop()->value('is_active');
+        return $this->shop()->active()->exists();
     }
 
     public function hasPermissionBearingRole(): bool
     {
-        return $this->roles()->whereHas('permissions')->exists();
+        return $this->roles()->permissionBearing()->exists();
     }
 
     public function hasShopScopedAdminAccess(): bool

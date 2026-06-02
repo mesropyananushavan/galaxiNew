@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### User access-scope baseline checkpoint
+- Added query scopes to `app/Models/User.php` for bootstrap admins, users assigned to active shops, permission-bearing users, and full shop-scoped admins, so the Phase 1 access baseline can be reused at query level instead of living only in per-user helper methods.
+- Reused the new scopes inside the existing user access helpers where it kept the semantics clearer, then added a focused feature assertion proving the new query-level scopes match the current Phase 1 shop-scoped admin rules.
+
 ### Access-foundation scope baseline checkpoint
 - Added small Galaxy access scopes to `app/Models/Role.php` and `app/Models/Permission.php` so permission-bearing access shells and assigned permission vocabulary can be queried from the Phase 1 models instead of being implied only by inline dashboard logic.
 - Updated `app/Http/Controllers/Admin/DashboardController.php` to read `Access baseline coverage` through those model scopes while leaving the visible dashboard wording unchanged.
