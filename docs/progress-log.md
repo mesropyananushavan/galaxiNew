@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Foundation-seam admin-reference source-truth sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `Admin reference trail` seam now explicitly lists the same source-of-truth anchors already centralized in `config/phase-1-reference-docs.php`.
+- Kept the step intentionally small and docs-only, but it keeps the seam note aligned with the config-backed admin reference source-of-truth pattern now used on the live dashboard surface.
+
 ### Blueprint seam-source source-truth sync checkpoint
 - Updated `docs/blueprint.md` so its Phase 1 deliverables now explicitly mirror the centralized seam-source source-of-truth anchors already carried in `config/phase-1-seam-sources.php`.
 - Kept the step intentionally small and docs-only, but it keeps the higher-level migration blueprint aligned with the config-backed seam-source source-of-truth language now feeding the live admin and public seam-source surfaces.
