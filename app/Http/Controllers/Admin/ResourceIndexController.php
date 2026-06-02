@@ -3490,7 +3490,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsReviewMatrixDisabledReason(Role $selectedRole): string
     {
-        $permissionCount = $selectedRole->permissions->count();
+        $permissionCount = $this->rolePermissionCount($selectedRole);
         $assignedUserCount = $this->roleAssignedUserCount($selectedRole);
 
         return match (true) {
@@ -3503,7 +3503,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsPublishRoleDisabledReason(Role $selectedRole, mixed $scope): string
     {
-        $permissionCount = $selectedRole->permissions->count();
+        $permissionCount = $this->rolePermissionCount($selectedRole);
         $assignedUserCount = $this->roleAssignedUserCount($selectedRole);
 
         return match (true) {
@@ -4961,6 +4961,11 @@ class ResourceIndexController extends Controller
     private function roleAssignedUserCount(Role $role): int
     {
         return $role->users_count ?? $role->users->count();
+    }
+
+    private function rolePermissionCount(Role $role): int
+    {
+        return $role->permissions->count();
     }
 
     private function roleScopeCount(Collection $scope): int

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role permission-count helper follow-up checkpoint
+- Added a dedicated `rolePermissionCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role gating helpers read permission totals through one named accessor instead of repeating raw relation counts.
+- Updated the review-matrix and publish-role disabled-reason helpers to read through the shared permission-count helper, then re-ran the existing role-detail assertions as the parity check for this structural cleanup.
+
 ### Role assigned-user count helper follow-up checkpoint
 - Added a dedicated `roleAssignedUserCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role gating helpers share one fallback path for `users_count` versus loaded role users.
 - Updated the review-matrix and publish-role disabled-reason helpers to read through the shared count helper, then re-ran the existing role-detail assignment assertion as the parity check for this structural cleanup.
