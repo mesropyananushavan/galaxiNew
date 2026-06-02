@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Positive-count helper follow-up checkpoint
+- Added a dedicated `positiveCountEntries()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so live-source counting is defined once instead of embedding a raw `count > 0` collection filter in the reports helper.
+- Updated `liveSourceCount()` to read through the shared helper, then re-ran the existing multi-source reports assertion as the parity check for this structural cleanup.
+
 ### Receipt count helper follow-up checkpoint
 - Added a dedicated `receiptPreviewCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so receipt-preview volume checks are defined once instead of being recomputed through inline `count($receiptPreviews)` calls.
 - Updated the checks-and-points receipt-lookup action-gating helper to read through the shared helper, then re-ran the existing branch-aware lookup assertion as the parity check for this structural cleanup.

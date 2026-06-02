@@ -4906,9 +4906,7 @@ class ResourceIndexController extends Controller
 
     private function liveSourceCount(int $shopCount, int $cardCount, int $cardHolderCount, int $roleCount): int
     {
-        return collect([$shopCount, $cardCount, $cardHolderCount, $roleCount])
-            ->filter(fn (int $count): bool => $count > 0)
-            ->count();
+        return $this->positiveCountEntries([$shopCount, $cardCount, $cardHolderCount, $roleCount]);
     }
 
     private function zeroAccrualReceiptCount(array $receiptPreviews): int
@@ -4948,6 +4946,13 @@ class ResourceIndexController extends Controller
     private function nonEmptyStrings(Collection $values): Collection
     {
         return $values->filter(fn (mixed $value): bool => is_string($value) && trim($value) !== '');
+    }
+
+    private function positiveCountEntries(array $counts): int
+    {
+        return collect($counts)
+            ->filter(fn (int $count): bool => $count > 0)
+            ->count();
     }
 
     private function phase(array $defaults): int
