@@ -2571,6 +2571,42 @@ class AdminDashboardTest extends TestCase
             ->assertSee($users[2]->name);
     }
 
+    public function test_roles_permissions_page_ignores_blank_scope_and_user_preview_values_after_helper_extraction(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Non Empty Helper Shop',
+            'code' => 'non-empty-helper-shop',
+            'is_active' => true,
+        ]);
+
+        $role = Role::create([
+            'name' => 'Non Empty Helper Role',
+            'slug' => 'non-empty-helper-role',
+            'is_active' => true,
+        ]);
+
+        $namedUser = User::factory()->create([
+            'name' => 'Visible Scope User',
+            'shop_id' => $shop->id,
+        ]);
+
+        $blankNameUser = User::factory()->create([
+            'name' => '',
+            'shop_id' => null,
+        ]);
+
+        $role->users()->attach([$namedUser->id, $blankNameUser->id]);
+
+        $viewer = User::factory()->create();
+
+        $response = $this->actingAs($viewer)->get('/admin/roles-permissions?role='.$role->id);
+
+        $response
+            ->assertOk()
+            ->assertSee('Non Empty Helper Shop')
+            ->assertSee('Visible Scope User');
+    }
+
     public function test_dashboard_shows_live_workspace_fallback_when_no_records_exist(): void
     {
         $user = User::factory()->create();

@@ -4915,20 +4915,21 @@ class ResourceIndexController extends Controller
 
     private function roleShopScopeNames(Role $role): Collection
     {
-        return $role->users
-            ->pluck('shop.name')
-            ->filter()
+        return $this->nonEmptyStrings($role->users->pluck('shop.name'))
             ->unique()
             ->values();
     }
 
     private function roleAssignedUserPreview(Role $role): Collection
     {
-        return $role->users
-            ->pluck('name')
-            ->filter()
+        return $this->nonEmptyStrings($role->users->pluck('name'))
             ->take(3)
             ->values();
+    }
+
+    private function nonEmptyStrings(Collection $values): Collection
+    {
+        return $values->filter(fn (mixed $value): bool => is_string($value) && trim($value) !== '');
     }
 
     private function phase(array $defaults): int

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Non-empty role preview helper follow-up checkpoint
+- Added a dedicated `nonEmptyStrings()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so role scope-name and assigned-user preview cleanup is defined once instead of being repeated through bare `filter()` collection chains.
+- Updated `roleShopScopeNames()` and `roleAssignedUserPreview()` to read through the shared helper, then added a focused feature assertion proving visible scope names and assigned-user previews still render after blank values are ignored.
+
 ### Role assigned-user preview helper follow-up checkpoint
 - Added a dedicated `roleAssignedUserPreview()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role assigned-user previews are defined once instead of being recomputed through inline `pluck(...)->filter()->take(3)` chains.
 - Updated the selected-role detail setup to read through the shared helper, then added a focused feature assertion proving assigned user names still render in the role review page.
