@@ -4367,7 +4367,7 @@ class ResourceIndexController extends Controller
                 $this->shopHasAssignedManagers($selectedShop) => 'Keep current branch manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.',
                 default => 'No branch manager is assigned yet, so ownership expectations should stay parity-first until Galaxy branch ownership-assignment parity is verified.',
             }],
-            ['label' => 'Cardholders', 'value' => (string) $selectedShop->card_holders_count],
+            ['label' => 'Cardholders', 'value' => (string) $this->shopVisibleCardholderCount($selectedShop)],
             ['label' => 'Cards', 'value' => (string) $selectedShop->cards_count],
             ['label' => 'Galaxy status', 'value' => $this->shopStatusValue($selectedShop)],
             [
@@ -5045,6 +5045,11 @@ class ResourceIndexController extends Controller
     private function cardTypeStatusValue(CardType $cardType): string
     {
         return $this->cardTypeIsActive($cardType) ? 'active' : 'draft';
+    }
+
+    private function shopVisibleCardholderCount(Shop $shop): int
+    {
+        return $shop->card_holders_count ?? $shop->cardHolders->count();
     }
 
     private function shopAssignedManagerCount(Shop $shop): int

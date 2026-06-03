@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop visible-cardholder count helper follow-up checkpoint
+- Reused a tiny shop seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-branch cardholder summary row now reads through one named count helper instead of a direct `card_holders_count` access.
+- Added a small `shopVisibleCardholderCount()` helper and routed the selected-shop `Cardholders` summary row through it, then re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this structural cleanup.
+
 ### Dashboard visible-card count helper follow-up checkpoint
 - Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so the assigned-branch card snapshot now reads through one named count helper instead of a direct `cards_count` access.
 - Added a small `shopVisibleCardCount()` helper and routed the dashboard `Visible Galaxy card shells` snapshot row through it, then re-ran the live-work shortcut and partial branch snapshot assertions as the parity check for this structural cleanup.
