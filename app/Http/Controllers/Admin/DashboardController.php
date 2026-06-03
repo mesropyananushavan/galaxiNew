@@ -879,7 +879,7 @@ class DashboardController extends Controller
 
     protected function branchHandoffSignal(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
     {
-        if (! $shop->is_active) {
+        if (! $this->shopIsActive($shop)) {
             return 'Paused branch should stay in handoff-only posture until reopen intent is explicit.';
         }
 
