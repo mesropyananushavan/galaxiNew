@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Card-type toggle active-state helper follow-up checkpoint
+- Reused a tiny card-type seam in `app/Http/Controllers/Admin/CardTypeToggleStatusController.php` so the post-toggle flash label now reads through one named active-state helper instead of a direct `is_active` check.
+- Added a small `cardTypeIsActive()` helper and routed the toggle controller's `cardTypeStatusValue()` through it, then re-ran the header-action and row-action toggle feature assertions as the parity check for this structural cleanup.
+
 ### Card-type active-state helper follow-up checkpoint
 - Reused a tiny card-type seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-tier Galaxy status label now reads through one named active-state helper instead of direct `is_active` checks.
 - Added a small `cardTypeIsActive()` helper and routed `cardTypeStatusValue()` through it, then re-ran the selected-tier edit-mode, live-tier, and draft-tier feature assertions as the parity check for this structural cleanup.

@@ -27,8 +27,13 @@ class CardTypeToggleStatusController extends Controller
         );
     }
 
+    private function cardTypeIsActive(CardType $cardType): bool
+    {
+        return $cardType->is_active;
+    }
+
     private function cardTypeStatusValue(CardType $cardType): string
     {
-        return $cardType->is_active ? 'active' : 'draft';
+        return $this->cardTypeIsActive($cardType) ? 'active' : 'draft';
     }
 }
