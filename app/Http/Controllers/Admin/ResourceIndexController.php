@@ -4467,9 +4467,12 @@ class ResourceIndexController extends Controller
     private function shopsCoverageSignal(Shop $selectedShop): string
     {
         return match (true) {
-            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'manager, holder, and card coverage visible',
-            $this->shopHasAssignedManagers($selectedShop) && ($selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0) => 'manager coverage visible, branch records building out',
-            $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'branch records visible, manager coverage pending',
+            $this->shopHasAssignedManagers($selectedShop)
+                && $this->shopVisibleCardholderCount($selectedShop) > 0
+                && $this->shopVisibleCardCount($selectedShop) > 0 => 'manager, holder, and card coverage visible',
+            $this->shopHasAssignedManagers($selectedShop)
+                && ($this->shopVisibleCardholderCount($selectedShop) > 0 || $this->shopVisibleCardCount($selectedShop) > 0) => 'manager coverage visible, branch records building out',
+            $this->shopVisibleCardholderCount($selectedShop) > 0 || $this->shopVisibleCardCount($selectedShop) > 0 => 'branch records visible, manager coverage pending',
             $this->shopHasAssignedManagers($selectedShop) => 'manager coverage visible, branch records pending',
             default => 'manager and branch coverage pending',
         };
