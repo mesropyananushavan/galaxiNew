@@ -1077,7 +1077,7 @@ class ResourceIndexController extends Controller
             $cardHolder->phone ?? '—',
             filled($cardHolder->review_note) ? str($cardHolder->review_note)->limit(72)->toString() : 'No review note saved yet',
             $cardHolder->shop?->name ?? 'Unassigned',
-            (string) $cardHolder->cards_count,
+            (string) $this->cardholderLinkedCardCount($cardHolder),
             $this->cardholdersGalaxyStatusLabel($cardHolder),
             $cardHolder->updated_at?->format('Y-m-d') ?? '—',
         ])->all();

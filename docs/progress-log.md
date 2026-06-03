@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Cardholder linked-card table reuse checkpoint
+- Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholders table linked-card column now shares the same count helper as the selected-holder summary instead of reading `cards_count` directly.
+- Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
+
 ### Cardholder linked-card count helper follow-up checkpoint
 - Reused a tiny cardholder seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder linked-card label now reads through one named count helper instead of a direct `cards_count` access.
 - Added a small `cardholderLinkedCardCount()` helper and routed `cardholdersLinkedCardsLabel()` through it, then re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this structural cleanup.
