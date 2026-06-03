@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Dashboard card-type-active helper follow-up checkpoint
+- Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so dashboard tier status labels now read through one named card-type-active helper instead of direct `is_active` checks.
+- Added a small `cardTypeIsActive()` helper and routed `cardTypeStatusValue()` through it, then re-ran the live-work shortcut and branch snapshot dashboard assertions as the parity check for this structural cleanup.
+
 ### Dashboard cardholder-active helper follow-up checkpoint
 - Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so dashboard holder status labels now read through one named cardholder-active helper instead of direct `is_active` checks.
 - Added a small `cardHolderIsActive()` helper and routed `cardHolderStatusValue()` through it, then re-ran the live-work shortcut and holder-backfill dashboard assertions as the parity check for this structural cleanup.

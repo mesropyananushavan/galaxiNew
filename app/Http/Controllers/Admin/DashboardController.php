@@ -784,9 +784,14 @@ class DashboardController extends Controller
             : 'stale activity';
     }
 
+    protected function cardTypeIsActive(CardType $cardType): bool
+    {
+        return $cardType->is_active;
+    }
+
     protected function cardTypeStatusValue(CardType $cardType): string
     {
-        return $cardType->is_active ? 'active' : 'draft';
+        return $this->cardTypeIsActive($cardType) ? 'active' : 'draft';
     }
 
     protected function cardHolderIsActive(CardHolder $cardHolder): bool
