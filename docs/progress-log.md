@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Card-type status helper follow-up checkpoint
+- Reused a small card-type helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-tier summary status and the tier status timeline now read the active/draft label through one named helper instead of repeated inline state formatting.
+- Added a tiny `cardTypeStatusValue()` helper, then re-ran the selected-tier edit-mode, live-tier, and draft-tier feature assertions as the parity check for this structural cleanup.
+
 ### Shop review-scope/status helper follow-up checkpoint
 - Reused the existing shop helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-branch status timeline copy and review-scope disabled reason now read branch status and manager ownership through named helpers instead of raw inline state checks.
 - Reused `shopStatusValue()` and `shopHasAssignedManagers()` in those last two selected-shop branches, then re-ran the selected-branch, manager-linked, and manager-only shop assertions as the parity check for this structural cleanup.

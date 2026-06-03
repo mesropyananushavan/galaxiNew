@@ -2106,7 +2106,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected tier', 'value' => $selectedCardType->name],
             ['label' => 'Slug', 'value' => $selectedCardType->slug],
             ['label' => 'Points rate', 'value' => number_format((float) $selectedCardType->points_rate, 2).'x'],
-            ['label' => 'Galaxy status', 'value' => $selectedCardType->is_active ? 'active' : 'draft'],
+            ['label' => 'Galaxy status', 'value' => $this->cardTypeStatusValue($selectedCardType)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
@@ -2176,7 +2176,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesStatusTimelineDescription(CardType $selectedCardType): string
     {
-        return sprintf('This tier is currently marked as %s in the Galaxy foundation layer and the management context card now mirrors that state.', $selectedCardType->is_active ? 'active' : 'draft');
+        return sprintf('This tier is currently marked as %s in the Galaxy foundation layer and the management context card now mirrors that state.', $this->cardTypeStatusValue($selectedCardType));
     }
 
     private function cardTypesLastSavedTimelineTitle(CardType $selectedCardType): string
@@ -5030,6 +5030,11 @@ class ResourceIndexController extends Controller
         return $scope->isNotEmpty()
             ? sprintf('This role is currently linked to %d assigned users across %s in Galaxy foundation review mode.', $this->roleAssignedUserCount($role), $scope->join(', '))
             : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.';
+    }
+
+    private function cardTypeStatusValue(CardType $cardType): string
+    {
+        return $cardType->is_active ? 'active' : 'draft';
     }
 
     private function shopAssignedManagerCount(Shop $shop): int
