@@ -695,9 +695,7 @@ class ResourceIndexController extends Controller
         $page['table']['rows'] = $roles->map(function (Role $role): array {
             $scope = $this->roleShopScopeNames($role);
             $permissionPreview = $role->permissions->pluck('name')->take(3)->implode(', ');
-            $permissionReviewNote = $role->permissions
-                ->pluck('review_note')
-                ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '');
+            $permissionReviewNote = $this->rolePermissionReviewNote($role);
 
             return [
                 $this->linkedTableCell($role->name, 'admin.roles-permissions.index', ['role' => $role->id]),
@@ -3122,9 +3120,7 @@ class ResourceIndexController extends Controller
         ['active' => $activeShopAssignedUserCount, 'paused' => $pausedShopAssignedUserCount] = $this->roleAssignedShopActivityCounts($selectedRole);
         $permissionBranchActivitySignal = $this->rolePermissionBranchActivitySignal($selectedRole, $activeShopAssignedUserCount, $pausedShopAssignedUserCount);
         $scopedPermissionSignal = $this->roleScopedPermissionSignal($selectedRole, $scope);
-        $permissionReviewNote = $selectedRole->permissions
-            ->pluck('review_note')
-            ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '');
+        $permissionReviewNote = $this->rolePermissionReviewNote($selectedRole);
 
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
@@ -3612,9 +3608,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsPermissionReviewNoteTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => ($permissionReviewNote = $selectedRole->permissions
-                    ->pluck('review_note')
-                    ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '')) !== null
+                'description' => ($permissionReviewNote = $this->rolePermissionReviewNote($selectedRole)) !== null
                     ? sprintf('The current Galaxy foundation permission guidance says: %s', $permissionReviewNote)
                     : 'No linked permission review note is saved yet, so permission-bundle guidance still depends on the surrounding workspace cues.',
             ],
@@ -3652,9 +3646,7 @@ class ResourceIndexController extends Controller
         ['active' => $activeShopAssignedUserCount, 'paused' => $pausedShopAssignedUserCount] = $this->roleAssignedShopActivityCounts($selectedRole);
         $permissionBranchActivitySignal = $this->rolePermissionBranchActivitySignal($selectedRole, $activeShopAssignedUserCount, $pausedShopAssignedUserCount);
         $scopedPermissionSignal = $this->roleScopedPermissionSignal($selectedRole, $scope);
-        $permissionReviewNote = $selectedRole->permissions
-            ->pluck('review_note')
-            ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '');
+        $permissionReviewNote = $this->rolePermissionReviewNote($selectedRole);
 
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
@@ -5005,6 +4997,13 @@ class ResourceIndexController extends Controller
         return $this->roleHasPermissions($role) && $scope->isNotEmpty()
             ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $this->roleScopeCount($scope))
             : 'scoped permission coverage is still pending for parity review';
+    }
+
+    private function rolePermissionReviewNote(Role $role): ?string
+    {
+        return $role->permissions
+            ->pluck('review_note')
+            ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '');
     }
 
     private function rolesPermissionsAssignmentScopeTimelineDescription(Role $role, Collection $scope): string

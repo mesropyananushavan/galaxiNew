@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Role permission-review-note helper follow-up checkpoint
+- Reused the existing role helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so catalog, selected-role summary, permission-note timeline, and dependency status now pull the first visible permission review note through one named helper instead of repeating the same collection pluck chain.
+- Added a tiny `rolePermissionReviewNote()` helper, then re-ran the existing selected-role and mixed-branch role-permissions feature assertions as the parity check for this structural cleanup.
+
 ### Role assignment-scope timeline helper follow-up checkpoint
 - Reused the existing role helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-role assignment-scope timeline description now reads assigned-user totals through the shared role count helper instead of a raw `users_count` field read.
 - Added a tiny `rolesPermissionsAssignmentScopeTimelineDescription()` helper, then re-ran the existing selected-role role-permissions feature assertion as the parity check for this structural cleanup.
