@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Card-type toggle-status helper follow-up checkpoint
+- Reused a tiny card-type status seam in `app/Http/Controllers/Admin/CardTypeToggleStatusController.php` so the post-toggle flash message now reads the active/draft label through one named helper instead of inline state formatting.
+- Added a local `cardTypeStatusValue()` helper in the toggle controller, then re-ran the header-action and row-action toggle feature assertions as the parity check for this structural cleanup.
+
 ### Cardholder status helper follow-up checkpoint
 - Reused the existing cardholder status helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholders table status column and selected-holder status timeline now read active/inactive labels through one named helper instead of repeated inline state formatting.
 - Reused `cardholdersGalaxyStatusLabel()` in both places, then re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this structural cleanup.

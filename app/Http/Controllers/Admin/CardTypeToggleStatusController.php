@@ -22,8 +22,13 @@ class CardTypeToggleStatusController extends Controller
             sprintf(
                 'Card type "%s" is now %s.',
                 $cardType->name,
-                $cardType->is_active ? 'active' : 'draft'
+                $this->cardTypeStatusValue($cardType)
             ),
         );
+    }
+
+    private function cardTypeStatusValue(CardType $cardType): string
+    {
+        return $cardType->is_active ? 'active' : 'draft';
     }
 }
