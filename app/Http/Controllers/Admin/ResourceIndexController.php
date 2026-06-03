@@ -4482,9 +4482,11 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Paused branch remains safer for reopening-parity review before any reopening-flow discussion.',
-            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Active branch is already visible with manager and customer coverage for branch coverage parity review.',
+            $this->shopHasAssignedManagers($selectedShop)
+                && $this->shopVisibleCardholderCount($selectedShop) > 0
+                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Active branch is already visible with manager and customer coverage for branch coverage parity review.',
             $this->shopHasAssignedManagers($selectedShop) => 'Active branch is already visible with manager ownership for rollout review.',
-            $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Active branch is already visible with customer coverage while manager ownership is still pending.',
+            $this->shopVisibleCardholderCount($selectedShop) > 0 || $this->shopVisibleCardCount($selectedShop) > 0 => 'Active branch is already visible with customer coverage while manager ownership is still pending.',
             default => 'Active branch shell is visible, but manager and customer coverage are still pending.',
         };
     }
