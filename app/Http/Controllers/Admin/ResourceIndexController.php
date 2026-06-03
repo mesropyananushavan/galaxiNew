@@ -4567,8 +4567,8 @@ class ResourceIndexController extends Controller
                 ? 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'
                 : 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'],
             ['label' => 'Manager posture', 'value' => match (true) {
-                ! $selectedShop->is_active && $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in this paused Galaxy branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
-                ! $selectedShop->is_active => 'No branch manager is assigned yet, which keeps this paused Galaxy branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',
+                ! $this->shopIsActive($selectedShop) && $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in this paused Galaxy branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
+                ! $this->shopIsActive($selectedShop) => 'No branch manager is assigned yet, which keeps this paused Galaxy branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',
                 $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in the Galaxy foundation layer, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.',
                 default => 'No branch manager is assigned yet, which keeps this Galaxy branch safer for ownership-flow parity review before ownership flows are enabled.',
             }],

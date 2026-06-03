@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop manager-posture active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop `Manager posture` copy no longer checks `is_active` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
 ### Shop manager-guidance active-helper checkpoint
 - Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop `Manager guidance` copy no longer checks `is_active` directly.
 - Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
