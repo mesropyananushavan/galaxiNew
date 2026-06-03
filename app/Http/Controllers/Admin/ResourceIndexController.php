@@ -5057,9 +5057,14 @@ class ResourceIndexController extends Controller
         return $this->shopAssignedManagerCount($shop) > 0;
     }
 
+    private function shopIsActive(Shop $shop): bool
+    {
+        return $shop->is_active;
+    }
+
     private function shopStatusValue(Shop $shop): string
     {
-        return $shop->is_active ? 'active' : 'paused';
+        return $this->shopIsActive($shop) ? 'active' : 'paused';
     }
 
     private function roleScopeCount(Collection $scope): int

@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop active-state helper follow-up checkpoint
+- Reused a tiny shop seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the shared shop status label now reads through one named active-state helper instead of a direct `is_active` check.
+- Added a small `shopIsActive()` helper and routed `shopStatusValue()` through it, then re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this structural cleanup.
+
 ### Card-type toggle active-state helper follow-up checkpoint
 - Reused a tiny card-type seam in `app/Http/Controllers/Admin/CardTypeToggleStatusController.php` so the post-toggle flash label now reads through one named active-state helper instead of a direct `is_active` check.
 - Added a small `cardTypeIsActive()` helper and routed the toggle controller's `cardTypeStatusValue()` through it, then re-ran the header-action and row-action toggle feature assertions as the parity check for this structural cleanup.
