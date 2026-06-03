@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role publish-posture helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsPublishPostureValue()` so this selected-role publish classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role backend-gap helper follow-up checkpoint
 - Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsBackendGap()` so this selected-role rollout-gap classifier no longer duplicates raw staffing and permission presence checks.
 - Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.

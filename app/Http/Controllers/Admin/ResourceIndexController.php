@@ -3352,7 +3352,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $this->roleIsActive($selectedRole) => 'draft-only',
-            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'assignment-sensitive',
+            $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) => 'assignment-sensitive',
             default => 'parity-sensitive',
         };
     }
