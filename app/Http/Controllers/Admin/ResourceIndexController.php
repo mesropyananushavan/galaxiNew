@@ -1231,7 +1231,7 @@ class ResourceIndexController extends Controller
             $shop->code,
             filled($shop->review_note) ? str($shop->review_note)->limit(72)->toString() : 'No review note saved yet',
             $shop->users->first()?->name ?? 'Unassigned',
-            (string) $shop->card_holders_count,
+            (string) $this->shopVisibleCardholderCount($shop),
             (string) $shop->cards_count,
             $this->shopStatusValue($shop),
         ])->all();

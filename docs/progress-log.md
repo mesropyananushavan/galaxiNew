@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop cardholder-table helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the shops table cardholder column now shares the same count helper as the selected-shop summary instead of reading `card_holders_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
 ### Cardholder linked-card table reuse checkpoint
 - Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholders table linked-card column now shares the same count helper as the selected-holder summary instead of reading `cards_count` directly.
 - Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
