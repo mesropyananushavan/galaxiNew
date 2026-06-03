@@ -3341,9 +3341,9 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $this->roleIsActive($selectedRole) => 'Draft activation, first permission-bundle wiring, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.',
-            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Role assignment, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.',
-            $selectedRole->permissions_count > 0 => 'Assignment linking, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until bundle-led access parity is verified.',
-            $selectedRole->users_count > 0 => 'Permission-bundle wiring, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until staff-led access parity is verified.',
+            $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) => 'Role assignment, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.',
+            $this->roleHasPermissions($selectedRole) => 'Assignment linking, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until bundle-led access parity is verified.',
+            $this->roleHasAssignedUsers($selectedRole) => 'Permission-bundle wiring, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until staff-led access parity is verified.',
             default => 'Role assignment, permission-bundle wiring, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.',
         };
     }
