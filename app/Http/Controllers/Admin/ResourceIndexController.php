@@ -3172,7 +3172,7 @@ class ResourceIndexController extends Controller
                 ? 'Assigned staff are already linked in the Galaxy foundation layer, so scope and permission changes should be reviewed against real operator impact.'
                 : 'No staff are linked yet, which keeps this role safer for draft access review before assignment parity is confirmed.'],
             ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
-            ['label' => 'Permission coverage', 'value' => $selectedRole->permissions_count > 0
+            ['label' => 'Permission coverage', 'value' => $this->roleHasPermissions($selectedRole)
                 ? 'Live bundle present, review changes as parity-sensitive access coverage.'
                 : 'No bundle linked yet, this role remains safer for draft parity review.'],
             ['label' => 'Scoped permission signal', 'value' => $scopedPermissionSignal],
@@ -3696,7 +3696,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
                 ? sprintf('%d assigned staff are already visible in active branches beside %d assigned staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
                 : 'paused-branch assignment coverage is still pending for parity review'],
-            ['label' => 'Permission posture', 'value' => $permissionPreview->isNotEmpty()
+            ['label' => 'Permission posture', 'value' => $this->roleHasPermissions($selectedRole)
                 ? 'The visible Galaxy foundation permission bundle is reviewable now, but bundle edits should stay blocked until legacy access mapping is verified.'
                 : 'No permissions are linked yet, so this role remains a safer draft shell for parity-first access review.'],
             ['label' => 'Permission review note', 'value' => $permissionReviewNote ?: 'No linked permission review note saved yet'],
@@ -4981,6 +4981,11 @@ class ResourceIndexController extends Controller
     private function rolePermissionCount(Role $role): int
     {
         return $role->permissions->count();
+    }
+
+    private function roleHasPermissions(Role $role): bool
+    {
+        return $role->permissions_count > 0;
     }
 
     private function roleIsActive(Role $role): bool

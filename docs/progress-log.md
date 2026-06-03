@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role permissions helper follow-up checkpoint
+- Added a dedicated `roleHasPermissions()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role permission messaging can read bundle presence through one named accessor instead of repeating raw `permissions_count > 0` checks.
+- Updated the summary permission-coverage and dependency permission-posture labels to use the shared helper, then re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role assigned-users helper follow-up checkpoint
 - Added a dedicated `roleHasAssignedUsers()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role assignment messaging can read linked-staff presence through one named accessor instead of repeating raw `users_count > 0` checks.
 - Updated the summary assignment guidance and dependency assigned-staff posture labels to use the shared helper, then re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
