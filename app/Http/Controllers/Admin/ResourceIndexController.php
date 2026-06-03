@@ -4412,7 +4412,9 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Keep paused-branch review in the live workspace first, then leave reopening, reassignment, and scope-mutation flows gated until recovery parity is proven.',
-            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Keep branch review in the live workspace first, then leave reassignment and scope-mutation flows gated until full branch parity is proven.',
+            $this->shopHasAssignedManagers($selectedShop)
+                && $this->shopVisibleCardholderCount($selectedShop) > 0
+                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Keep branch review in the live workspace first, then leave reassignment and scope-mutation flows gated until full branch parity is proven.',
             $this->shopHasAssignedManagers($selectedShop) => 'Keep manager-owned branch review in the live workspace first, then leave coverage build-out, reassignment, and scope-mutation flows gated until parity is proven.',
             default => 'Keep branch coverage review in the live workspace first, then leave ownership assignment, reassignment, and scope-mutation flows gated until parity is proven.',
         };
