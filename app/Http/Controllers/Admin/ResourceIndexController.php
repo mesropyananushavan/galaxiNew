@@ -3308,7 +3308,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsOperationalReadiness(Role $selectedRole): string
     {
         return match (true) {
-            ! $selectedRole->is_active => 'draft-safe role shell',
+            ! $this->roleIsActive($selectedRole) => 'draft-safe role shell',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'assignment-sensitive live role',
             $selectedRole->permissions_count > 0 => 'permission bundle live, assignment rollout pending',
             $selectedRole->users_count > 0 => 'assignment linked, permission bundle still pending review',
@@ -3318,21 +3318,21 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsAccessFocus(Role $selectedRole): string
     {
-        return $selectedRole->is_active
+        return $this->roleIsActive($selectedRole)
             ? 'Start with visible scope, assigned staff, and permission bundle overlap before discussing any later matrix editing flow.'
             : 'Start with draft status, visible scope gaps, and permission bundle gaps before discussing any later matrix editing flow.';
     }
 
     private function rolesPermissionsAccessPosture(Role $selectedRole): string
     {
-        return $selectedRole->is_active
+        return $this->roleIsActive($selectedRole)
             ? 'Keep access review in the live workspace first, then leave matrix edits and scope writes gated until parity is proven.'
             : 'Keep draft role review in the workspace first, then leave matrix edits, scope writes, and activation flows gated until parity is proven.';
     }
 
     private function rolesPermissionsEvidencePriority(Role $selectedRole): string
     {
-        return $selectedRole->is_active
+        return $this->roleIsActive($selectedRole)
             ? 'Keep shop scope, assigned staff, and visible permission bundle entries together before trusting any later matrix view.'
             : 'Keep draft status, scope gaps, and permission bundle gaps together before trusting any later matrix or publish discussion.';
     }

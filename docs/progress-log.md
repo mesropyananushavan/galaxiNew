@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role active-state messaging follow-up checkpoint
+- Reused the existing `roleIsActive()` helper across selected-role operational-readiness and access-posture messaging so this role-detail cluster no longer mixes helper-backed status reads with raw `is_active` checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role active-state helper follow-up checkpoint
 - Added a dedicated `roleIsActive()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role disabled-reason helpers no longer mix helper-backed counts with raw active-state reads.
 - Updated the review-matrix and publish-role disabled-reason helpers to read through the shared active-state helper, then re-ran the existing role-detail assertions as the parity check for this structural cleanup.
