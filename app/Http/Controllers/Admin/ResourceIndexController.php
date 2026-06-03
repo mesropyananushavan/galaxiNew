@@ -4352,9 +4352,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
             ['label' => 'Manager guidance', 'value' => match (true) {
-                ! $selectedShop->is_active && $selectedShop->users_count > 0 => 'Keep current paused-branch manager ownership visible during review, because Galaxy recovery workflows depended on clear branch responsibility.',
+                ! $selectedShop->is_active && $this->shopHasAssignedManagers($selectedShop) => 'Keep current paused-branch manager ownership visible during review, because Galaxy recovery workflows depended on clear branch responsibility.',
                 ! $selectedShop->is_active => 'No branch manager is assigned yet, so recovery ownership expectations should stay parity-first until paused Galaxy branch ownership-assignment parity is verified.',
-                $selectedShop->users_count > 0 => 'Keep current branch manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.',
+                $this->shopHasAssignedManagers($selectedShop) => 'Keep current branch manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.',
                 default => 'No branch manager is assigned yet, so ownership expectations should stay parity-first until Galaxy branch ownership-assignment parity is verified.',
             }],
             ['label' => 'Cardholders', 'value' => (string) $selectedShop->card_holders_count],
@@ -4373,8 +4373,8 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'paused branch, recovery review only',
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'active branch, operator-visible coverage live',
-            $selectedShop->users_count > 0 => 'active branch, manager assigned and build-out pending',
+            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'active branch, operator-visible coverage live',
+            $this->shopHasAssignedManagers($selectedShop) => 'active branch, manager assigned and build-out pending',
             default => 'active branch shell, ownership still forming',
         };
     }
@@ -4390,8 +4390,8 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Keep paused-branch review in the live workspace first, then leave reopening, reassignment, and scope-mutation flows gated until recovery parity is proven.',
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Keep branch review in the live workspace first, then leave reassignment and scope-mutation flows gated until full branch parity is proven.',
-            $selectedShop->users_count > 0 => 'Keep manager-owned branch review in the live workspace first, then leave coverage build-out, reassignment, and scope-mutation flows gated until parity is proven.',
+            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Keep branch review in the live workspace first, then leave reassignment and scope-mutation flows gated until full branch parity is proven.',
+            $this->shopHasAssignedManagers($selectedShop) => 'Keep manager-owned branch review in the live workspace first, then leave coverage build-out, reassignment, and scope-mutation flows gated until parity is proven.',
             default => 'Keep branch coverage review in the live workspace first, then leave ownership assignment, reassignment, and scope-mutation flows gated until parity is proven.',
         };
     }
@@ -4400,8 +4400,8 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Keep paused status, recovery ownership gaps, and any visible holder or card coverage together before trusting any reopening, reassignment, or scope-recovery discussion.',
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Keep manager ownership, holder coverage, and card coverage together before trusting any later reassignment or branch-scope mutation discussion.',
-            $selectedShop->users_count > 0 => 'Keep manager ownership, branch readiness gaps, and missing holder or card coverage together before trusting any rollout-flow discussion.',
+            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Keep manager ownership, holder coverage, and card coverage together before trusting any later reassignment or branch-scope mutation discussion.',
+            $this->shopHasAssignedManagers($selectedShop) => 'Keep manager ownership, branch readiness gaps, and missing holder or card coverage together before trusting any rollout-flow discussion.',
             default => 'Keep holder coverage, card coverage, and ownership gaps together before trusting any later branch-scope mutation discussion.',
         };
     }
@@ -4410,8 +4410,8 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Branch recovery writes, manager reassignment, ownership repair, and shop-scope mutation flows should stay foundation-preview only until paused-branch parity is verified.',
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until branch parity is verified.',
-            $selectedShop->users_count > 0 => 'Coverage backfill writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until manager-led branch parity is verified.',
+            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until branch parity is verified.',
+            $this->shopHasAssignedManagers($selectedShop) => 'Coverage backfill writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until manager-led branch parity is verified.',
             default => 'Ownership assignment, branch writes, and shop-scope mutation flows should stay foundation-preview only until branch coverage parity is verified.',
         };
     }
@@ -5011,6 +5011,16 @@ class ResourceIndexController extends Controller
         return $scope->isNotEmpty()
             ? sprintf('This role is currently linked to %d assigned users across %s in Galaxy foundation review mode.', $this->roleAssignedUserCount($role), $scope->join(', '))
             : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.';
+    }
+
+    private function shopAssignedManagerCount(Shop $shop): int
+    {
+        return $shop->users_count ?? $shop->users->count();
+    }
+
+    private function shopHasAssignedManagers(Shop $shop): bool
+    {
+        return $this->shopAssignedManagerCount($shop) > 0;
     }
 
     private function roleScopeCount(Collection $scope): int

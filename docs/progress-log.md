@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop manager-ownership helper follow-up checkpoint
+- Reused a new shop helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-branch manager guidance plus the operational-readiness, branch-posture, evidence-priority, and backend-gap messages now read manager ownership through one named helper instead of repeated raw `users_count` checks.
+- Added tiny `shopAssignedManagerCount()` and `shopHasAssignedManagers()` helpers, then re-ran the existing manager-linked and manager-only branch review assertions as the parity check for this structural cleanup.
+
 ### Role permission-review-note helper follow-up checkpoint
 - Reused the existing role helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so catalog, selected-role summary, permission-note timeline, and dependency status now pull the first visible permission review note through one named helper instead of repeating the same collection pluck chain.
 - Added a tiny `rolePermissionReviewNote()` helper, then re-ran the existing selected-role and mixed-branch role-permissions feature assertions as the parity check for this structural cleanup.
