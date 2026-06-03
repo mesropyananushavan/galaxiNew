@@ -1130,7 +1130,7 @@ class ResourceIndexController extends Controller
                 'full_name' => $selectedCardHolder->full_name,
                 'phone' => $selectedCardHolder->phone ?? '',
                 'email' => $selectedCardHolder->email ?? '',
-                'is_active' => $selectedCardHolder->is_active ? '1' : '0',
+                'is_active' => $this->cardholderIsActive($selectedCardHolder) ? '1' : '0',
                 'review_note' => $selectedCardHolder->review_note ?? '',
             ];
         }
