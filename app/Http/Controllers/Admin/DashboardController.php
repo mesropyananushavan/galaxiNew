@@ -667,7 +667,7 @@ class DashboardController extends Controller
                 ['label' => 'Handoff signal', 'value' => $branchHandoffSignal],
                 ['label' => 'Primary manager', 'value' => $shop->users->first()?->name ?? 'Unassigned'],
                 ['label' => 'Galaxy foundation status', 'value' => $this->shopStatusValue($shop)],
-                ['label' => 'Visible Galaxy holders', 'value' => (string) $shop->card_holders_count],
+                ['label' => 'Visible Galaxy holders', 'value' => (string) $this->shopVisibleHolderCount($shop)],
                 ['label' => 'Visible Galaxy card shells', 'value' => (string) $shop->cards_count],
                 ['label' => 'Assigned staff', 'value' => (string) $this->shopAssignedStaffCount($shop)],
                 ['label' => 'Latest Galaxy holder', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->full_name : 'No Galaxy holders in assigned branch yet'],
@@ -802,6 +802,11 @@ class DashboardController extends Controller
     protected function cardHolderStatusValue(CardHolder $cardHolder): string
     {
         return $this->cardHolderIsActive($cardHolder) ? 'active' : 'inactive';
+    }
+
+    protected function shopVisibleHolderCount(Shop $shop): int
+    {
+        return $shop->card_holders_count ?? $shop->cardHolders->count();
     }
 
     protected function shopAssignedStaffCount(Shop $shop): int
