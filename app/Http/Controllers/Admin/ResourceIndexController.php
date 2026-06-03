@@ -1078,7 +1078,7 @@ class ResourceIndexController extends Controller
             filled($cardHolder->review_note) ? str($cardHolder->review_note)->limit(72)->toString() : 'No review note saved yet',
             $cardHolder->shop?->name ?? 'Unassigned',
             (string) $cardHolder->cards_count,
-            $cardHolder->is_active ? 'active' : 'inactive',
+            $this->cardholdersGalaxyStatusLabel($cardHolder),
             $cardHolder->updated_at?->format('Y-m-d') ?? '—',
         ])->all();
 
@@ -1156,7 +1156,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s status reflected from model state', $selectedCardHolder->full_name),
                 'time' => 'Current request',
-                'description' => sprintf('This holder is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $selectedCardHolder->is_active ? 'active' : 'inactive'),
+                'description' => sprintf('This holder is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $this->cardholdersGalaxyStatusLabel($selectedCardHolder)),
             ],
             [
                 'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedCardHolder->full_name),

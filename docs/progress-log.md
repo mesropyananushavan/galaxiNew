@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Cardholder status helper follow-up checkpoint
+- Reused the existing cardholder status helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholders table status column and selected-holder status timeline now read active/inactive labels through one named helper instead of repeated inline state formatting.
+- Reused `cardholdersGalaxyStatusLabel()` in both places, then re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this structural cleanup.
+
 ### Dashboard holder/shop status helper follow-up checkpoint
 - Reused small dashboard helper seams in `app/Http/Controllers/Admin/DashboardController.php` so the latest-branch review shortcut plus latest-holder status values now read active/inactive labels through named helpers instead of repeated inline state formatting.
 - Added tiny `cardHolderStatusValue()` and `shopWorkspaceStatusValue()` helpers, then re-ran the live-work shortcut and partial branch snapshot dashboard assertions as the parity check for this structural cleanup.
