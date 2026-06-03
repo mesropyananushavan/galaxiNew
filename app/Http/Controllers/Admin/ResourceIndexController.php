@@ -705,8 +705,8 @@ class ResourceIndexController extends Controller
                 $permissionPreview !== '' ? $permissionPreview : 'No permissions linked yet',
                 $permissionReviewNote !== null ? str($permissionReviewNote)->limit(72)->toString() : 'No permission review note saved yet',
                 filled($role->assignment_note) ? str($role->assignment_note)->limit(72)->toString() : 'No assignment note saved yet',
-                (string) $role->users_count,
-                $role->is_active ? 'active' : 'draft',
+                (string) $this->roleAssignedUserCount($role),
+                $this->roleStatusValue($role),
             ];
         })->all();
 
@@ -765,7 +765,7 @@ class ResourceIndexController extends Controller
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedRole->name,
                 'slug' => $selectedRole->slug,
-                'is_active' => $selectedRole->is_active ? '1' : '0',
+                'is_active' => $this->roleIsActive($selectedRole) ? '1' : '0',
                 'review_note' => $selectedRole->review_note ?? '',
                 'access_note' => $selectedRole->access_note ?? '',
                 'assignment_note' => $selectedRole->assignment_note ?? '',
@@ -4980,17 +4980,22 @@ class ResourceIndexController extends Controller
 
     private function rolePermissionCount(Role $role): int
     {
-        return $role->permissions->count();
+        return $role->permissions_count ?? $role->permissions->count();
     }
 
     private function roleHasPermissions(Role $role): bool
     {
-        return $role->permissions_count > 0;
+        return $this->rolePermissionCount($role) > 0;
     }
 
     private function roleIsActive(Role $role): bool
     {
         return $role->is_active;
+    }
+
+    private function roleStatusValue(Role $role): string
+    {
+        return $this->roleIsActive($role) ? 'active' : 'draft';
     }
 
     private function roleScopeCount(Collection $scope): int

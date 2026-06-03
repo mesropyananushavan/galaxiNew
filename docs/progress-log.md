@@ -1,5 +1,11 @@
 # Progress Log
 
+## 2026-06-03
+
+### Role catalog/status helper follow-up checkpoint
+- Reused the existing role helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the roles catalog row status, selected-role live-form status value, and permission-presence check no longer fall back to raw role field reads.
+- Added a tiny `roleStatusValue()` helper and aligned permission-count fallback with `permissions_count`, then re-ran the existing selected-role feature assertion as the parity check for this structural cleanup.
+
 ## 2026-06-02
 
 ### Role access-guidance helper follow-up checkpoint
