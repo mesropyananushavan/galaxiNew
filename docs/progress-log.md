@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop operational-readiness active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsOperationalReadiness()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
 ### Dashboard branch-snapshot action helper checkpoint
 - Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so `assignedBranchSnapshotActions()` no longer checks `is_active` directly for its paused-branch gate.
 - Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
