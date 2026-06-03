@@ -3433,7 +3433,7 @@ class ResourceIndexController extends Controller
         return match (true) {
             filled($selectedRole->review_note) && $selectedRole->updated_at !== null && $selectedRole->created_at !== null && $selectedRole->updated_at->equalTo($selectedRole->created_at) => 'First review note is already saved on the initial Galaxy foundation access shell.',
             filled($selectedRole->review_note) => 'Review note is already saved on the current Galaxy foundation access shell.',
-            $selectedRole->is_active => 'Live role still needs a saved review note before access handoff can feel grounded.',
+            $this->roleIsActive($selectedRole) => 'Live role still needs a saved review note before access handoff can feel grounded.',
             default => 'Draft role still needs a saved review note before parity handoff can feel grounded.',
         };
     }
@@ -3453,7 +3453,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsStatusSignal(Role $selectedRole, mixed $scope): string
     {
         return match (true) {
-            ! $selectedRole->is_active => 'Draft role remains safer for access-rollout parity review before any live-access discussion.',
+            ! $this->roleIsActive($selectedRole) => 'Draft role remains safer for access-rollout parity review before any live-access discussion.',
             $scope->isNotEmpty() && $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Active role is already visible with scope, staffing, and permission coverage for live-access parity review.',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Active role is already visible with staffing and permission coverage while scope rollout is still pending.',
             $selectedRole->permissions_count > 0 => 'Active role is already visible with a live permission bundle for matrix parity review.',
@@ -3671,7 +3671,7 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Review posture', 'value' => 'Selected-role review is running in Galaxy foundation-backed read mode only'],
-            ['label' => 'Status posture', 'value' => $selectedRole->is_active
+            ['label' => 'Status posture', 'value' => $this->roleIsActive($selectedRole)
                 ? 'This role is active in the Galaxy foundation layer now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.'
                 : 'This role remains draft in the Galaxy foundation layer, which keeps it safer for parity checks before operators depend on it for live access.'],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedRole)],
@@ -3702,7 +3702,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Permission review note', 'value' => $permissionReviewNote ?: 'No linked permission review note saved yet'],
             ['label' => 'Scoped permission signal', 'value' => $scopedPermissionSignal],
             ['label' => 'Permission branch activity signal', 'value' => $permissionBranchActivitySignal],
-            ['label' => 'Publish posture', 'value' => $selectedRole->is_active
+            ['label' => 'Publish posture', 'value' => $this->roleIsActive($selectedRole)
                 ? 'This live permission bundle still needs assignment parity checks before publish-style role changes are safe.'
                 : 'This draft role should stay unpublished until permission bundle and shop-scope parity are mapped more explicitly.'],
                     ['label' => 'Scope posture', 'value' => $scope->isNotEmpty()
