@@ -1287,7 +1287,7 @@ class ResourceIndexController extends Controller
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedShop->name,
                 'code' => $selectedShop->code,
-                'is_active' => $selectedShop->is_active ? '1' : '0',
+                'is_active' => $this->shopIsActive($selectedShop) ? '1' : '0',
                 'review_note' => $selectedShop->review_note ?? '',
             ];
         }
