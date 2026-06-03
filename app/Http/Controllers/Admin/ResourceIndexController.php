@@ -4374,8 +4374,8 @@ class ResourceIndexController extends Controller
             ['label' => 'Backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
             ['label' => 'Manager guidance', 'value' => match (true) {
-                ! $selectedShop->is_active && $this->shopHasAssignedManagers($selectedShop) => 'Keep current paused-branch manager ownership visible during review, because Galaxy recovery workflows depended on clear branch responsibility.',
-                ! $selectedShop->is_active => 'No branch manager is assigned yet, so recovery ownership expectations should stay parity-first until paused Galaxy branch ownership-assignment parity is verified.',
+                ! $this->shopIsActive($selectedShop) && $this->shopHasAssignedManagers($selectedShop) => 'Keep current paused-branch manager ownership visible during review, because Galaxy recovery workflows depended on clear branch responsibility.',
+                ! $this->shopIsActive($selectedShop) => 'No branch manager is assigned yet, so recovery ownership expectations should stay parity-first until paused Galaxy branch ownership-assignment parity is verified.',
                 $this->shopHasAssignedManagers($selectedShop) => 'Keep current branch manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.',
                 default => 'No branch manager is assigned yet, so ownership expectations should stay parity-first until Galaxy branch ownership-assignment parity is verified.',
             }],
