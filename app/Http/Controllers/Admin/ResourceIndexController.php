@@ -3621,9 +3621,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsAssignmentScopeTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $scope->isNotEmpty()
-                    ? sprintf('This role is currently linked to %d assigned users across %s in Galaxy foundation review mode.', $selectedRole->users_count, $scope->join(', '))
-                    : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.',
+                'description' => $this->rolesPermissionsAssignmentScopeTimelineDescription($selectedRole, $scope),
             ],
             [
                 'title' => $this->rolesPermissionsTimelineHandoffTitle(),
@@ -5007,6 +5005,13 @@ class ResourceIndexController extends Controller
         return $this->roleHasPermissions($role) && $scope->isNotEmpty()
             ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $this->roleScopeCount($scope))
             : 'scoped permission coverage is still pending for parity review';
+    }
+
+    private function rolesPermissionsAssignmentScopeTimelineDescription(Role $role, Collection $scope): string
+    {
+        return $scope->isNotEmpty()
+            ? sprintf('This role is currently linked to %d assigned users across %s in Galaxy foundation review mode.', $this->roleAssignedUserCount($role), $scope->join(', '))
+            : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.';
     }
 
     private function roleScopeCount(Collection $scope): int

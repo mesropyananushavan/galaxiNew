@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Role assignment-scope timeline helper follow-up checkpoint
+- Reused the existing role helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-role assignment-scope timeline description now reads assigned-user totals through the shared role count helper instead of a raw `users_count` field read.
+- Added a tiny `rolesPermissionsAssignmentScopeTimelineDescription()` helper, then re-ran the existing selected-role role-permissions feature assertion as the parity check for this structural cleanup.
+
 ### Role permission-signal helper follow-up checkpoint
 - Reused the existing role helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role review mode, assigned-user count, permission count, status value, and both permission-linked signal messages now read through named role helpers instead of repeating raw field checks.
 - Added tiny `roleReviewMode()`, `rolePermissionBranchActivitySignal()`, and `roleScopedPermissionSignal()` helpers, then re-ran the existing selected-role and mixed-branch role-permissions feature assertions as the parity check for this structural cleanup.
