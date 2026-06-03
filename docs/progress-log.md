@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Dashboard cardholder-active helper follow-up checkpoint
+- Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so dashboard holder status labels now read through one named cardholder-active helper instead of direct `is_active` checks.
+- Added a small `cardHolderIsActive()` helper and routed `cardHolderStatusValue()` through it, then re-ran the live-work shortcut and holder-backfill dashboard assertions as the parity check for this structural cleanup.
+
 ### Dashboard shop-active helper follow-up checkpoint
 - Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so branch status labels and the first branch-operational posture gate now read through one named shop-active helper instead of direct `is_active` checks.
 - Added a small `shopIsActive()` helper and routed both dashboard shop-status label helpers plus the first branch posture gate through it, then re-ran the live-work shortcut and partial branch snapshot assertions as the parity check for this structural cleanup.

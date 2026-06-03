@@ -789,9 +789,14 @@ class DashboardController extends Controller
         return $cardType->is_active ? 'active' : 'draft';
     }
 
+    protected function cardHolderIsActive(CardHolder $cardHolder): bool
+    {
+        return $cardHolder->is_active;
+    }
+
     protected function cardHolderStatusValue(CardHolder $cardHolder): string
     {
-        return $cardHolder->is_active ? 'active' : 'inactive';
+        return $this->cardHolderIsActive($cardHolder) ? 'active' : 'inactive';
     }
 
     protected function shopIsActive(Shop $shop): bool
