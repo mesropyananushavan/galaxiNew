@@ -3441,11 +3441,11 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsCoverageSignal(Role $selectedRole, mixed $scope): string
     {
         return match (true) {
-            $scope->isNotEmpty() && $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'scope, staff, and permission coverage visible',
-            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'staff and permission coverage visible, scope pending',
-            $scope->isNotEmpty() && ($selectedRole->users_count > 0 || $selectedRole->permissions_count > 0) => 'scope visible, access coverage building out',
+            $scope->isNotEmpty() && $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) => 'scope, staff, and permission coverage visible',
+            $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) => 'staff and permission coverage visible, scope pending',
+            $scope->isNotEmpty() && ($this->roleHasAssignedUsers($selectedRole) || $this->roleHasPermissions($selectedRole)) => 'scope visible, access coverage building out',
             $scope->isNotEmpty() => 'scope visible, staff and permission coverage pending',
-            $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0 => 'partial access coverage visible, scope pending',
+            $this->roleHasAssignedUsers($selectedRole) || $this->roleHasPermissions($selectedRole) => 'partial access coverage visible, scope pending',
             default => 'scope, staff, and permission coverage pending',
         };
     }
