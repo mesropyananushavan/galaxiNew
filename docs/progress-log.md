@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role active-state summary follow-up checkpoint
+- Reused the existing `roleIsActive()` helper across selected-role summary status and access-guidance messaging so this role-detail cluster keeps moving away from raw `is_active` reads.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role active-state messaging follow-up checkpoint
 - Reused the existing `roleIsActive()` helper across selected-role operational-readiness and access-posture messaging so this role-detail cluster no longer mixes helper-backed status reads with raw `is_active` checks.
 - Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.

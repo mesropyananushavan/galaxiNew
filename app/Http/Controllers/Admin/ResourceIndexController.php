@@ -3179,12 +3179,12 @@ class ResourceIndexController extends Controller
             ['label' => 'Permission branch activity signal', 'value' => $permissionBranchActivitySignal],
             ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
             ['label' => 'Permission review note', 'value' => $permissionReviewNote ?: 'No linked permission review note saved yet'],
-            ['label' => 'Galaxy status', 'value' => $selectedRole->is_active ? 'active' : 'draft'],
+            ['label' => 'Galaxy status', 'value' => $this->roleIsActive($selectedRole) ? 'active' : 'draft'],
             [
                 'label' => 'Access guidance',
                 'value' => match (true) {
-                    $selectedRole->is_active && $selectedRole->permissions_count > 0 => 'This role already carries a Galaxy foundation permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.',
-                    $selectedRole->is_active => 'This role is active in the Galaxy foundation layer, but permission bundle and assignment follow-up should stay parity-first until the matrix editor is verified.',
+                    $this->roleIsActive($selectedRole) && $selectedRole->permissions_count > 0 => 'This role already carries a Galaxy foundation permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.',
+                    $this->roleIsActive($selectedRole) => 'This role is active in the Galaxy foundation layer, but permission bundle and assignment follow-up should stay parity-first until the matrix editor is verified.',
                     default => 'This role is still a draft shell in the Galaxy foundation layer, which keeps it safe for parity checks before operators rely on it for staff access.',
                 },
             ],
