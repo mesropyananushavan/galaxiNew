@@ -3120,12 +3120,8 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsSelectedRoleSummary(Role $selectedRole, mixed $scope, mixed $permissionPreview, mixed $assignedUserPreview): array
     {
         ['active' => $activeShopAssignedUserCount, 'paused' => $pausedShopAssignedUserCount] = $this->roleAssignedShopActivityCounts($selectedRole);
-        $permissionBranchActivitySignal = $selectedRole->permissions_count > 0 && $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
-            ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
-            : 'paused-branch permission-linked staff coverage is still pending for parity review';
-        $scopedPermissionSignal = $selectedRole->permissions_count > 0 && $scope->isNotEmpty()
-            ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $this->roleScopeCount($scope))
-            : 'scoped permission coverage is still pending for parity review';
+        $permissionBranchActivitySignal = $this->rolePermissionBranchActivitySignal($selectedRole, $activeShopAssignedUserCount, $pausedShopAssignedUserCount);
+        $scopedPermissionSignal = $this->roleScopedPermissionSignal($selectedRole, $scope);
         $permissionReviewNote = $selectedRole->permissions
             ->pluck('review_note')
             ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '');
@@ -3133,9 +3129,7 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Role slug', 'value' => $selectedRole->slug],
-            ['label' => 'Review mode', 'value' => $this->roleIsActive($selectedRole) || $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0
-                ? 'Live-impact review, linked staff or permissions already exist in the Galaxy foundation layer'
-                : 'Draft-safe review, no linked staff or permissions yet in the Galaxy foundation layer'],
+            ['label' => 'Review mode', 'value' => $this->roleReviewMode($selectedRole)],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedRole)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->lastSavedLabel($selectedRole, 'Y-m-d H:i', 'timestamp visibility pending')],
@@ -3163,7 +3157,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Scope guidance', 'value' => $scope->isNotEmpty()
                 ? 'This role already has visible shop scope in the Galaxy foundation layer, so any scope change should be treated as a parity-sensitive access change.'
                 : 'No shop scope is linked yet, which keeps this role safer for draft review before scope parity is confirmed.'],
-            ['label' => 'Assigned users', 'value' => (string) $selectedRole->users_count],
+            ['label' => 'Assigned users', 'value' => (string) $this->roleAssignedUserCount($selectedRole)],
             ['label' => 'Assigned staff preview', 'value' => $assignedUserPreview->isNotEmpty() ? $assignedUserPreview->join(', ') : 'No staff linked yet'],
             ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
                 ? sprintf('%d assigned staff are already visible in active branches beside %d assigned staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
@@ -3171,7 +3165,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Assignment guidance', 'value' => $this->roleHasAssignedUsers($selectedRole)
                 ? 'Assigned staff are already linked in the Galaxy foundation layer, so scope and permission changes should be reviewed against real operator impact.'
                 : 'No staff are linked yet, which keeps this role safer for draft access review before assignment parity is confirmed.'],
-            ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
+            ['label' => 'Permission count', 'value' => (string) $this->rolePermissionCount($selectedRole)],
             ['label' => 'Permission coverage', 'value' => $this->roleHasPermissions($selectedRole)
                 ? 'Live bundle present, review changes as parity-sensitive access coverage.'
                 : 'No bundle linked yet, this role remains safer for draft parity review.'],
@@ -3179,7 +3173,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Permission branch activity signal', 'value' => $permissionBranchActivitySignal],
             ['label' => 'Permission bundle', 'value' => $permissionPreview->isNotEmpty() ? $permissionPreview->take(3)->implode(', ') : 'No permissions linked yet'],
             ['label' => 'Permission review note', 'value' => $permissionReviewNote ?: 'No linked permission review note saved yet'],
-            ['label' => 'Galaxy status', 'value' => $this->roleIsActive($selectedRole) ? 'active' : 'draft'],
+            ['label' => 'Galaxy status', 'value' => $this->roleStatusValue($selectedRole)],
             [
                 'label' => 'Access guidance',
                 'value' => match (true) {
@@ -3658,12 +3652,8 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsSelectedRoleDependencyStatus(Role $selectedRole, mixed $scope, mixed $permissionPreview): array
     {
         ['active' => $activeShopAssignedUserCount, 'paused' => $pausedShopAssignedUserCount] = $this->roleAssignedShopActivityCounts($selectedRole);
-        $permissionBranchActivitySignal = $selectedRole->permissions_count > 0 && $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
-            ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
-            : 'paused-branch permission-linked staff coverage is still pending for parity review';
-        $scopedPermissionSignal = $selectedRole->permissions_count > 0 && $scope->isNotEmpty()
-            ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $this->roleScopeCount($scope))
-            : 'scoped permission coverage is still pending for parity review';
+        $permissionBranchActivitySignal = $this->rolePermissionBranchActivitySignal($selectedRole, $activeShopAssignedUserCount, $pausedShopAssignedUserCount);
+        $scopedPermissionSignal = $this->roleScopedPermissionSignal($selectedRole, $scope);
         $permissionReviewNote = $selectedRole->permissions
             ->pluck('review_note')
             ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '');
@@ -4996,6 +4986,27 @@ class ResourceIndexController extends Controller
     private function roleStatusValue(Role $role): string
     {
         return $this->roleIsActive($role) ? 'active' : 'draft';
+    }
+
+    private function roleReviewMode(Role $role): string
+    {
+        return $this->roleIsActive($role) || $this->roleHasAssignedUsers($role) || $this->roleHasPermissions($role)
+            ? 'Live-impact review, linked staff or permissions already exist in the Galaxy foundation layer'
+            : 'Draft-safe review, no linked staff or permissions yet in the Galaxy foundation layer';
+    }
+
+    private function rolePermissionBranchActivitySignal(Role $role, int $activeShopAssignedUserCount, int $pausedShopAssignedUserCount): string
+    {
+        return $this->roleHasPermissions($role) && $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
+            ? sprintf('%d permission-linked staff are already visible in active branches beside %d permission-linked staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
+            : 'paused-branch permission-linked staff coverage is still pending for parity review';
+    }
+
+    private function roleScopedPermissionSignal(Role $role, Collection $scope): string
+    {
+        return $this->roleHasPermissions($role) && $scope->isNotEmpty()
+            ? sprintf('%d scoped shops are already visible for this permission-linked role in parity review', $this->roleScopeCount($scope))
+            : 'scoped permission coverage is still pending for parity review';
     }
 
     private function roleScopeCount(Collection $scope): int
