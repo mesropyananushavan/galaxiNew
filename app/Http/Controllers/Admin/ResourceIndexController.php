@@ -4338,7 +4338,7 @@ class ResourceIndexController extends Controller
 
     private function cardholdersCardLinkagePosture(CardHolder $selectedCardHolder): string
     {
-        return $selectedCardHolder->cards_count > 0
+        return $this->cardholderLinkedCardCount($selectedCardHolder) > 0
             ? 'Linked cards are visible in the Galaxy foundation layer, but card-to-holder lifecycle changes should stay parity-first until activity sourcing is verified.'
             : 'No linked cards exist yet, which keeps this holder safer for card-link-parity review before card-link flows are enabled.';
     }
