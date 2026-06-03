@@ -357,7 +357,7 @@ class DashboardController extends Controller
         );
 
         return $shop ? $this->workspaceLink(
-            label: sprintf('%s: %s (%s)', $this->latestShopWorkspaceLabel($shop), $shop->name, $shop->is_active ? 'active' : 'inactive'),
+            label: sprintf('%s: %s (%s)', $this->latestShopWorkspaceLabel($shop), $shop->name, $this->shopWorkspaceStatusValue($shop)),
             routeName: 'admin.shops.index',
             parameters: ['shop' => $shop->id],
         ) : null;
@@ -391,7 +391,7 @@ class DashboardController extends Controller
             );
         }
 
-        $status = $cardHolder->status ?? ($cardHolder->is_active ? 'active' : 'inactive');
+        $status = $cardHolder->status ?? $this->cardHolderStatusValue($cardHolder);
 
         return $this->workspaceLink(
             label: sprintf('%s: %s (%s)', $this->latestCardHolderWorkspaceLabel(), $cardHolder->full_name, $status),
@@ -671,7 +671,7 @@ class DashboardController extends Controller
                 ['label' => 'Visible Galaxy card shells', 'value' => (string) $shop->cards_count],
                 ['label' => 'Assigned staff', 'value' => (string) $shop->users_count],
                 ['label' => 'Latest Galaxy holder', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->full_name : 'No Galaxy holders in assigned branch yet'],
-                ['label' => 'Latest Galaxy holder status', 'value' => $latestHolder instanceof CardHolder ? ($latestHolder->is_active ? 'active' : 'inactive') : 'n/a'],
+                ['label' => 'Latest Galaxy holder status', 'value' => $latestHolder instanceof CardHolder ? $this->cardHolderStatusValue($latestHolder) : 'n/a'],
                 ['label' => 'Latest Galaxy holder added', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->created_at?->toDateString() ?? 'unknown' : 'n/a'],
                 ['label' => 'Latest Galaxy card shell', 'value' => $latestCard instanceof Card ? $latestCard->number : 'No Galaxy card shells in assigned branch yet'],
                 ['label' => 'Latest Galaxy card shell status', 'value' => $latestCard instanceof Card ? $latestCard->status : 'n/a'],
@@ -789,9 +789,19 @@ class DashboardController extends Controller
         return $cardType->is_active ? 'active' : 'draft';
     }
 
+    protected function cardHolderStatusValue(CardHolder $cardHolder): string
+    {
+        return $cardHolder->is_active ? 'active' : 'inactive';
+    }
+
     protected function shopStatusValue(Shop $shop): string
     {
         return $shop->is_active ? 'active' : 'paused';
+    }
+
+    protected function shopWorkspaceStatusValue(Shop $shop): string
+    {
+        return $shop->is_active ? 'active' : 'inactive';
     }
 
     protected function branchOperationalPosture(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string

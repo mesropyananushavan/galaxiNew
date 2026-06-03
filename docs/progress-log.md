@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Dashboard holder/shop status helper follow-up checkpoint
+- Reused small dashboard helper seams in `app/Http/Controllers/Admin/DashboardController.php` so the latest-branch review shortcut plus latest-holder status values now read active/inactive labels through named helpers instead of repeated inline state formatting.
+- Added tiny `cardHolderStatusValue()` and `shopWorkspaceStatusValue()` helpers, then re-ran the live-work shortcut and partial branch snapshot dashboard assertions as the parity check for this structural cleanup.
+
 ### Dashboard status-label helper follow-up checkpoint
 - Reused small dashboard helper seams in `app/Http/Controllers/Admin/DashboardController.php` so the latest-tier review shortcut and assigned-branch snapshot now read tier and branch status labels through named helpers instead of repeated inline active/draft and active/paused formatting.
 - Added tiny `cardTypeStatusValue()` and `shopStatusValue()` helpers in the dashboard controller, then re-ran the live-work shortcut and partial branch snapshot dashboard assertions as the parity check for this structural cleanup.
