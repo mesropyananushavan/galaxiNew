@@ -2770,9 +2770,9 @@ class ResourceIndexController extends Controller
         return match (true) {
             (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Blocked until paused-branch linked-card activity is backed by a stable Galaxy foundation event source for recovery-parity review.',
             (bool) $selectedCardHolder->shop?->is_active === false => 'Blocked until paused-branch activity history is backed by a stable Galaxy foundation event source for recovery-parity review.',
-            $this->cardholderLinkedCardCount($selectedCardHolder) > 0 && $selectedCardHolder->is_active => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for active-holder lookup parity.',
+            $this->cardholderLinkedCardCount($selectedCardHolder) > 0 && $this->cardholderIsActive($selectedCardHolder) => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for active-holder lookup parity.',
             $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for holder lookup parity.',
-            ! $selectedCardHolder->is_active => 'Blocked until inactive-holder activity history is backed by a stable Galaxy foundation event source for lifecycle parity.',
+            ! $this->cardholderIsActive($selectedCardHolder) => 'Blocked until inactive-holder activity history is backed by a stable Galaxy foundation event source for lifecycle parity.',
             default => 'Blocked until a stable Galaxy foundation activity source exists for holder lookup parity.',
         };
     }

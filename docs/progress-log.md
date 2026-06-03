@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Cardholder review-activity active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersSelectedReviewActivityDisabledReason()` no longer checks `is_active` directly in its active/inactive holder branches.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
 ### Cardholder active-cast seam checkpoint
 - Tightened the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so it now returns an explicit boolean cast instead of the raw `is_active` attribute value.
 - Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper seam step.
