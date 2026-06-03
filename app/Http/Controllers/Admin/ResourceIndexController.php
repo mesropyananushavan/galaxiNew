@@ -2296,7 +2296,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesCoverageSignal(CardType $selectedCardType): string
     {
-        $cardsCount = $selectedCardType->cards_count ?? 0;
+        $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
             $selectedCardType->is_active && $cardsCount > 0 => 'live tier with visible card coverage',
@@ -2308,7 +2308,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesStatusSignal(CardType $selectedCardType): string
     {
-        $cardsCount = $selectedCardType->cards_count ?? 0;
+        $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
             $selectedCardType->is_active && $cardsCount > 0 => 'Active tier is already visible with saved card coverage for live tier parity review.',
@@ -2443,7 +2443,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesSelectedImportRulesDisabledReason(CardType $selectedCardType): string
     {
-        $cardsCount = $selectedCardType->cards_count ?? 0;
+        $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
             $selectedCardType->is_active && $cardsCount > 0 => 'Blocked until live-tier accrual parity is verified against visible card coverage.',
@@ -2455,7 +2455,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesSelectedPublishTypeDisabledReason(CardType $selectedCardType): string
     {
-        $cardsCount = $selectedCardType->cards_count ?? 0;
+        $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
             $selectedCardType->is_active && $cardsCount > 0 => 'Blocked until live-tier rollout parity is verified across visible card coverage.',
@@ -2486,9 +2486,14 @@ class ResourceIndexController extends Controller
             : 'No Galaxy foundation rollout note is saved yet, so rollout guidance still depends on the surrounding workspace cues.';
     }
 
+    private function cardTypeVisibleCardCount(CardType $selectedCardType): int
+    {
+        return $selectedCardType->cards_count ?? $selectedCardType->cards->count();
+    }
+
     private function cardTypesHasVisibleCoverage(CardType $selectedCardType): bool
     {
-        return ($selectedCardType->cards_count ?? 0) > 0;
+        return $this->cardTypeVisibleCardCount($selectedCardType) > 0;
     }
 
     private function cardTypesLastSavedLabel(CardType $selectedCardType): string
