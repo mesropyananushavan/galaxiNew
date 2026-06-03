@@ -2397,7 +2397,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesCoverageFreshness(CardType $selectedCardType): string
     {
-        $cardsCount = $selectedCardType->cards_count ?? 0;
+        $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
             $selectedCardType->is_active && $cardsCount > 0 => 'Live tier already has saved card coverage anchored in Galaxy foundation data for rollout review.',

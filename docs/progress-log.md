@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Card-type coverage-freshness helper reuse checkpoint
+- Reused the existing `cardTypeVisibleCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-tier coverage-freshness branch now shares the same visible-card count helper instead of repeating direct `cards_count` access.
+- Re-ran the selected-tier card-type assertions as the parity check for this additional helper reuse step.
+
 ### Card-type visible-card count helper follow-up checkpoint
 - Reused a tiny card-type seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so multiple selected-tier coverage and publish/readiness branches now read through one named visible-card count helper instead of repeating direct `cards_count` access.
 - Added a small `cardTypeVisibleCardCount()` helper, routed the first selected-tier coverage/status and publish/import disabled-reason branches through it, and kept `cardTypesHasVisibleCoverage()` aligned with the same seam before re-running the selected-tier card-type assertions.
