@@ -691,7 +691,7 @@ class DashboardController extends Controller
 
     protected function assignedBranchActionPosture(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
     {
-        if (! $shop->is_active) {
+        if (! $this->shopIsActive($shop)) {
             return 'paused branch actions only';
         }
 

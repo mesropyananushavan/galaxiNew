@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Dashboard branch-action posture helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so `assignedBranchActionPosture()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
+
 ### Dashboard branch-readiness active-helper checkpoint
 - Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so `branchReadinessStatus()` no longer checks `is_active` directly for its paused-branch gate.
 - Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
