@@ -4155,9 +4155,14 @@ class ResourceIndexController extends Controller
             : 'No branch is linked yet, so shop-aware lookup behavior should stay in parity review before profile actions are widened.';
     }
 
+    private function cardholderIsActive(CardHolder $selectedCardHolder): bool
+    {
+        return $selectedCardHolder->is_active;
+    }
+
     private function cardholdersGalaxyStatusLabel(CardHolder $selectedCardHolder): string
     {
-        return $selectedCardHolder->is_active ? 'active' : 'inactive';
+        return $this->cardholderIsActive($selectedCardHolder) ? 'active' : 'inactive';
     }
 
     private function cardholdersLinkedCardsLabel(CardHolder $selectedCardHolder): string
