@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Card-type active-state helper follow-up checkpoint
+- Reused a tiny card-type seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-tier Galaxy status label now reads through one named active-state helper instead of direct `is_active` checks.
+- Added a small `cardTypeIsActive()` helper and routed `cardTypeStatusValue()` through it, then re-ran the selected-tier edit-mode, live-tier, and draft-tier feature assertions as the parity check for this structural cleanup.
+
 ### Cardholder active-state helper follow-up checkpoint
 - Reused a tiny cardholder seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholder Galaxy status label now reads through one named active-state helper instead of direct `is_active` checks.
 - Added a small `cardholderIsActive()` helper and routed `cardholdersGalaxyStatusLabel()` through it, then re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this structural cleanup.

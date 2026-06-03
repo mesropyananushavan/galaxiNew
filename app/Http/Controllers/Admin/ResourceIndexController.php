@@ -5037,9 +5037,14 @@ class ResourceIndexController extends Controller
             : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.';
     }
 
+    private function cardTypeIsActive(CardType $cardType): bool
+    {
+        return $cardType->is_active;
+    }
+
     private function cardTypeStatusValue(CardType $cardType): string
     {
-        return $cardType->is_active ? 'active' : 'draft';
+        return $this->cardTypeIsActive($cardType) ? 'active' : 'draft';
     }
 
     private function shopAssignedManagerCount(Shop $shop): int
