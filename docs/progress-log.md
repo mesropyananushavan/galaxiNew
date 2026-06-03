@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop review-mode active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop `Review mode` copy no longer checks `is_active` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
 ### Shop branch-focus active-helper checkpoint
 - Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsBranchFocus()` no longer checks `is_active` directly for its paused-branch branch-focus split.
 - Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.

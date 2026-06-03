@@ -4357,7 +4357,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected shop', 'value' => $selectedShop->name],
-            ['label' => 'Review mode', 'value' => $selectedShop->is_active
+            ['label' => 'Review mode', 'value' => $this->shopIsActive($selectedShop)
                 ? 'Live branch review, this Galaxy foundation shop already carries operational visibility and should stay parity-first.'
                 : 'Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.'],
             ['label' => 'Operational readiness', 'value' => $this->shopsOperationalReadiness($selectedShop)],
