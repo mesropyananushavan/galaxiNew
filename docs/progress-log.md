@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role status helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsStatusSignal()` so this selected-role status classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role coverage helper follow-up checkpoint
 - Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsCoverageSignal()` so this selected-role coverage classifier no longer duplicates raw staffing and permission presence checks.
 - Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.

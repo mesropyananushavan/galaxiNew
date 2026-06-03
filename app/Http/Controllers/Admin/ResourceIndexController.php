@@ -3454,10 +3454,10 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $this->roleIsActive($selectedRole) => 'Draft role remains safer for access-rollout parity review before any live-access discussion.',
-            $scope->isNotEmpty() && $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Active role is already visible with scope, staffing, and permission coverage for live-access parity review.',
-            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Active role is already visible with staffing and permission coverage while scope rollout is still pending.',
-            $selectedRole->permissions_count > 0 => 'Active role is already visible with a live permission bundle for matrix parity review.',
-            $selectedRole->users_count > 0 => 'Active role is already visible with staffing coverage while permission rollout is still pending.',
+            $scope->isNotEmpty() && $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) => 'Active role is already visible with scope, staffing, and permission coverage for live-access parity review.',
+            $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) => 'Active role is already visible with staffing and permission coverage while scope rollout is still pending.',
+            $this->roleHasPermissions($selectedRole) => 'Active role is already visible with a live permission bundle for matrix parity review.',
+            $this->roleHasAssignedUsers($selectedRole) => 'Active role is already visible with staffing coverage while permission rollout is still pending.',
             default => 'Active role shell is visible, but staffing and permission coverage are still pending.',
         };
     }
