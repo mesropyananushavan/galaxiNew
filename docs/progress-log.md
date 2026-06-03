@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Cardholder review-activity helper reuse checkpoint
+- Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder review-activity disabled-reason branch now shares the same linked-card count helper instead of reading `cards_count` directly.
+- Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
+
 ### Cardholder card-linkage helper reuse checkpoint
 - Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder card-linkage posture now shares the same linked-card count helper instead of reading `cards_count` directly.
 - Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
