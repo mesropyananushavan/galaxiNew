@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop selected-form catalog-return helper checkpoint
+- Fixed the selected-branch live-form return label in `app/Http/Controllers/Admin/ResourceIndexController.php` so bootstrap admins again see `Create new Galaxy branch shell` while scoped admins keep the simpler `Back to branch catalog` return without losing editable branch fields.
+- Added a small `selectedFoundationCatalogReturnLabel()` helper and re-used it inside the foundation live-form review path, then re-ran the selected-branch, scoped-admin, manager-linked, and manager-only shop assertions as the parity check for this shell-alignment fix.
+
 ### Shop manager-ownership helper follow-up checkpoint
 - Reused a new shop helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-branch manager guidance plus the operational-readiness, branch-posture, evidence-priority, and backend-gap messages now read manager ownership through one named helper instead of repeated raw `users_count` checks.
 - Added tiny `shopAssignedManagerCount()` and `shopHasAssignedManagers()` helpers, then re-ran the existing manager-linked and manager-only branch review assertions as the parity check for this structural cleanup.

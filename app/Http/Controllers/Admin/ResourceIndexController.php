@@ -1279,6 +1279,11 @@ class ResourceIndexController extends Controller
                 'Back to branch catalog',
                 'Save branch changes',
             );
+            $page['liveForm']['cancelLabel'] = $this->selectedFoundationCatalogReturnLabel(
+                Shop::class,
+                'Create new Galaxy branch shell',
+                'Back to branch catalog',
+            );
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedShop->name,
                 'code' => $selectedShop->code,
@@ -4701,9 +4706,12 @@ class ResourceIndexController extends Controller
     ): array {
         $canManageFoundationCatalog = $this->canManageFoundationCatalog($authorizationTarget, 'update');
 
-        $liveForm['cancelLabel'] = $canManageFoundationCatalog
-            ? $editableCancelLabel
-            : $reviewCancelLabel;
+        $liveForm['cancelLabel'] = $this->selectedFoundationCatalogReturnLabel(
+            $authorizationTarget,
+            $editableCancelLabel,
+            $reviewCancelLabel,
+            'update',
+        );
         if (! $canManageFoundationCatalog && is_string($reviewDescription) && $reviewDescription !== '') {
             $liveForm['description'] = $reviewDescription;
         }
@@ -4712,6 +4720,17 @@ class ResourceIndexController extends Controller
         $liveForm['fields'] = $this->foundationLiveFormFields($liveForm['fields'] ?? [], $authorizationTarget);
 
         return $liveForm;
+    }
+
+    private function selectedFoundationCatalogReturnLabel(
+        mixed $authorizationTarget,
+        string $editableCancelLabel,
+        string $reviewCancelLabel,
+        string $ability = 'create',
+    ): string {
+        return $this->canManageFoundationCatalog($authorizationTarget, $ability)
+            ? $editableCancelLabel
+            : $reviewCancelLabel;
     }
 
     private function foundationLiveFormSubmitAttributes(string $disabledReason, mixed $authorizationTarget): array
