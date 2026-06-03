@@ -669,7 +669,7 @@ class DashboardController extends Controller
                 ['label' => 'Galaxy foundation status', 'value' => $this->shopStatusValue($shop)],
                 ['label' => 'Visible Galaxy holders', 'value' => (string) $shop->card_holders_count],
                 ['label' => 'Visible Galaxy card shells', 'value' => (string) $shop->cards_count],
-                ['label' => 'Assigned staff', 'value' => (string) $shop->users_count],
+                ['label' => 'Assigned staff', 'value' => (string) $this->shopAssignedStaffCount($shop)],
                 ['label' => 'Latest Galaxy holder', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->full_name : 'No Galaxy holders in assigned branch yet'],
                 ['label' => 'Latest Galaxy holder status', 'value' => $latestHolder instanceof CardHolder ? $this->cardHolderStatusValue($latestHolder) : 'n/a'],
                 ['label' => 'Latest Galaxy holder added', 'value' => $latestHolder instanceof CardHolder ? $latestHolder->created_at?->toDateString() ?? 'unknown' : 'n/a'],
@@ -802,6 +802,11 @@ class DashboardController extends Controller
     protected function cardHolderStatusValue(CardHolder $cardHolder): string
     {
         return $this->cardHolderIsActive($cardHolder) ? 'active' : 'inactive';
+    }
+
+    protected function shopAssignedStaffCount(Shop $shop): int
+    {
+        return $shop->users_count ?? $shop->users->count();
     }
 
     protected function shopIsActive(Shop $shop): bool

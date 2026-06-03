@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Dashboard assigned-staff count helper follow-up checkpoint
+- Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so the assigned-branch staff snapshot now reads through one named count helper instead of a direct `users_count` access.
+- Added a small `shopAssignedStaffCount()` helper and routed the dashboard `Assigned staff` snapshot row through it, then re-ran the live-work shortcut and partial branch snapshot assertions as the parity check for this structural cleanup.
+
 ### Shop active-state helper follow-up checkpoint
 - Reused a tiny shop seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the shared shop status label now reads through one named active-state helper instead of a direct `is_active` check.
 - Added a small `shopIsActive()` helper and routed `shopStatusValue()` through it, then re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this structural cleanup.
