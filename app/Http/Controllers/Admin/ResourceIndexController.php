@@ -4148,7 +4148,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedCardHolder->is_active => 'inactive profile, review only',
-            $selectedCardHolder->cards_count > 0 => 'linked profile, operator-visible',
+            $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'linked profile, operator-visible',
             default => 'active profile, linkage build-out pending',
         };
     }
