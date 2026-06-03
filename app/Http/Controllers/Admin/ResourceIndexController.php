@@ -4368,7 +4368,7 @@ class ResourceIndexController extends Controller
                 default => 'No branch manager is assigned yet, so ownership expectations should stay parity-first until Galaxy branch ownership-assignment parity is verified.',
             }],
             ['label' => 'Cardholders', 'value' => (string) $this->shopVisibleCardholderCount($selectedShop)],
-            ['label' => 'Cards', 'value' => (string) $selectedShop->cards_count],
+            ['label' => 'Cards', 'value' => (string) $this->shopVisibleCardCount($selectedShop)],
             ['label' => 'Galaxy status', 'value' => $this->shopStatusValue($selectedShop)],
             [
                 'label' => 'Branch guidance',
@@ -5050,6 +5050,11 @@ class ResourceIndexController extends Controller
     private function shopVisibleCardholderCount(Shop $shop): int
     {
         return $shop->card_holders_count ?? $shop->cardHolders->count();
+    }
+
+    private function shopVisibleCardCount(Shop $shop): int
+    {
+        return $shop->cards_count ?? $shop->cards->count();
     }
 
     private function shopAssignedManagerCount(Shop $shop): int
