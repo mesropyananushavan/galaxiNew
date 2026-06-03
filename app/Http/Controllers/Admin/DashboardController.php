@@ -849,7 +849,7 @@ class DashboardController extends Controller
 
     protected function branchReadinessStatus(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
     {
-        if (! $shop->is_active) {
+        if (! $this->shopIsActive($shop)) {
             return 'paused';
         }
 

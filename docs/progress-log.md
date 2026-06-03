@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Dashboard branch-readiness active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so `branchReadinessStatus()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
+
 ### Dashboard branch-coverage helper reuse checkpoint
 - Reused the existing `shopVisibleHolderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/DashboardController.php` so `branchCoverageStatus()` no longer reads `card_holders_count` and `cards_count` directly.
 - Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
