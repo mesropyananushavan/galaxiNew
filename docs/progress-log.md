@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Cardholder linkage helper reuse checkpoint
+- Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder linkage signal now shares the same linked-card count helper instead of reading `cards_count` directly.
+- Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
+
 ### Cardholder operational-readiness helper reuse checkpoint
 - Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder operational-readiness branch now shares the same linked-card count helper instead of reading `cards_count` directly.
 - Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.

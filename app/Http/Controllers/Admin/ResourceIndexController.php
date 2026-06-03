@@ -4263,9 +4263,9 @@ class ResourceIndexController extends Controller
     private function cardholdersLinkageSignal(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            $selectedCardHolder->shop !== null && $selectedCardHolder->cards_count > 0 => 'branch-linked profile with visible cards',
+            $selectedCardHolder->shop !== null && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'branch-linked profile with visible cards',
             $selectedCardHolder->shop !== null => 'branch-linked profile, card linkage pending',
-            $selectedCardHolder->cards_count > 0 => 'card-linked profile, branch visibility pending',
+            $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'card-linked profile, branch visibility pending',
             default => 'branch and card linkage pending',
         };
     }
