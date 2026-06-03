@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop coverage/status helper follow-up checkpoint
+- Reused the new shop helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-branch coverage, status, manager-posture, scope-handoff, timeline-handoff, and table/status values now lean on named shop helpers instead of repeated raw `users_count` checks and inline active/paused labels.
+- Added a tiny `shopStatusValue()` helper and re-used `shopHasAssignedManagers()` across the remaining selected-shop coverage branches, then re-ran the selected-branch, manager-linked, manager-only, paused-branch, and coverage-without-manager assertions as the parity check for this structural cleanup.
+
 ### Shop selected-form catalog-return helper checkpoint
 - Fixed the selected-branch live-form return label in `app/Http/Controllers/Admin/ResourceIndexController.php` so bootstrap admins again see `Create new Galaxy branch shell` while scoped admins keep the simpler `Back to branch catalog` return without losing editable branch fields.
 - Added a small `selectedFoundationCatalogReturnLabel()` helper and re-used it inside the foundation live-form review path, then re-ran the selected-branch, scoped-admin, manager-linked, and manager-only shop assertions as the parity check for this shell-alignment fix.

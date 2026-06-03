@@ -1233,7 +1233,7 @@ class ResourceIndexController extends Controller
             $shop->users->first()?->name ?? 'Unassigned',
             (string) $shop->card_holders_count,
             (string) $shop->cards_count,
-            $shop->is_active ? 'active' : 'paused',
+            $this->shopStatusValue($shop),
         ])->all();
 
         $latestShop = $accessibleShops->sortByDesc('id')->first();
@@ -4364,7 +4364,7 @@ class ResourceIndexController extends Controller
             }],
             ['label' => 'Cardholders', 'value' => (string) $selectedShop->card_holders_count],
             ['label' => 'Cards', 'value' => (string) $selectedShop->cards_count],
-            ['label' => 'Galaxy status', 'value' => $selectedShop->is_active ? 'active' : 'paused'],
+            ['label' => 'Galaxy status', 'value' => $this->shopStatusValue($selectedShop)],
             [
                 'label' => 'Branch guidance',
                 'value' => $selectedShop->is_active
@@ -4444,10 +4444,10 @@ class ResourceIndexController extends Controller
     private function shopsCoverageSignal(Shop $selectedShop): string
     {
         return match (true) {
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'manager, holder, and card coverage visible',
-            $selectedShop->users_count > 0 && ($selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0) => 'manager coverage visible, branch records building out',
+            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'manager, holder, and card coverage visible',
+            $this->shopHasAssignedManagers($selectedShop) && ($selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0) => 'manager coverage visible, branch records building out',
             $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'branch records visible, manager coverage pending',
-            $selectedShop->users_count > 0 => 'manager coverage visible, branch records pending',
+            $this->shopHasAssignedManagers($selectedShop) => 'manager coverage visible, branch records pending',
             default => 'manager and branch coverage pending',
         };
     }
@@ -4456,8 +4456,8 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Paused branch remains safer for reopening-parity review before any reopening-flow discussion.',
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Active branch is already visible with manager and customer coverage for branch coverage parity review.',
-            $selectedShop->users_count > 0 => 'Active branch is already visible with manager ownership for rollout review.',
+            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Active branch is already visible with manager and customer coverage for branch coverage parity review.',
+            $this->shopHasAssignedManagers($selectedShop) => 'Active branch is already visible with manager ownership for rollout review.',
             $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Active branch is already visible with customer coverage while manager ownership is still pending.',
             default => 'Active branch shell is visible, but manager and customer coverage are still pending.',
         };
@@ -4467,8 +4467,8 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Paused branch should stay in recovery handoff-only posture until ownership and scope approval are explicit.',
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Branch already shows enough ownership and customer coverage for a useful scope handoff review.',
-            $selectedShop->users_count > 0 => 'Manager ownership is visible, but customer coverage still needs to catch up before full scope handoff review.',
+            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Branch already shows enough ownership and customer coverage for a useful scope handoff review.',
+            $this->shopHasAssignedManagers($selectedShop) => 'Manager ownership is visible, but customer coverage still needs to catch up before full scope handoff review.',
             $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Customer coverage is visible, but ownership handoff is still incomplete for branch-scope review.',
             default => 'Branch shell exists, but ownership and customer handoff context are still thin.',
         };
@@ -4478,8 +4478,8 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Operators should carry paused status, recovery ownership gaps, branch coverage, and scope approval context in the live workspace before trusting any recovery or reassignment follow-up.',
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Operators should carry manager ownership, holder coverage, and card coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
-            $selectedShop->users_count > 0 => 'Operators should carry manager ownership, branch readiness gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
+            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Operators should carry manager ownership, holder coverage, and card coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
+            $this->shopHasAssignedManagers($selectedShop) => 'Operators should carry manager ownership, branch readiness gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
             $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Operators should carry customer coverage, ownership gaps, and branch readiness in the live workspace before trusting any scope-mutation or reassignment follow-up.',
             default => 'Operators should carry branch readiness, ownership gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or recovery follow-up.',
         };
@@ -4533,9 +4533,9 @@ class ResourceIndexController extends Controller
                 ? 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'
                 : 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'],
             ['label' => 'Manager posture', 'value' => match (true) {
-                ! $selectedShop->is_active && $selectedShop->users_count > 0 => 'Assigned branch managers are visible in this paused Galaxy branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
+                ! $selectedShop->is_active && $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in this paused Galaxy branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
                 ! $selectedShop->is_active => 'No branch manager is assigned yet, which keeps this paused Galaxy branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',
-                $selectedShop->users_count > 0 => 'Assigned branch managers are visible in the Galaxy foundation layer, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.',
+                $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in the Galaxy foundation layer, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.',
                 default => 'No branch manager is assigned yet, which keeps this Galaxy branch safer for ownership-flow parity review before ownership flows are enabled.',
             }],
             ['label' => 'Coverage posture', 'value' => $selectedShop->is_active
@@ -5040,6 +5040,11 @@ class ResourceIndexController extends Controller
     private function shopHasAssignedManagers(Shop $shop): bool
     {
         return $this->shopAssignedManagerCount($shop) > 0;
+    }
+
+    private function shopStatusValue(Shop $shop): string
+    {
+        return $shop->is_active ? 'active' : 'paused';
     }
 
     private function roleScopeCount(Collection $scope): int
