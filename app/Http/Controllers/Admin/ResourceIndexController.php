@@ -4405,7 +4405,7 @@ class ResourceIndexController extends Controller
 
     private function shopsBranchFocus(Shop $selectedShop): string
     {
-        return $selectedShop->is_active
+        return $this->shopIsActive($selectedShop)
             ? 'Start with manager ownership, holder coverage, and card coverage before discussing any later reassignment or scope-mutation flow.'
             : 'Start with paused status, recovery ownership gaps, and branch coverage before discussing any later reopening, reassignment, or scope-recovery flow.';
     }

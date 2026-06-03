@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop branch-focus active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsBranchFocus()` no longer checks `is_active` directly for its paused-branch branch-focus split.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
 ### Shop scope-timeline active-helper checkpoint
 - Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsScopeTimelineHandoffDescription()` no longer checks `is_active` directly for its paused-branch gate.
 - Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
