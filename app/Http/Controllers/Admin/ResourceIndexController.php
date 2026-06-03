@@ -4393,7 +4393,9 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'paused branch, recovery review only',
-            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'active branch, operator-visible coverage live',
+            $this->shopHasAssignedManagers($selectedShop)
+                && $this->shopVisibleCardholderCount($selectedShop) > 0
+                && $this->shopVisibleCardCount($selectedShop) > 0 => 'active branch, operator-visible coverage live',
             $this->shopHasAssignedManagers($selectedShop) => 'active branch, manager assigned and build-out pending',
             default => 'active branch shell, ownership still forming',
         };

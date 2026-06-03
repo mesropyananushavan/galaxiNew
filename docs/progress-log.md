@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop operational-readiness helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop operational-readiness branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
 ### Cardholder review-activity helper reuse checkpoint
 - Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder review-activity disabled-reason branch now shares the same linked-card count helper instead of reading `cards_count` directly.
 - Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
