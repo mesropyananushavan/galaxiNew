@@ -3361,9 +3361,9 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $this->roleIsActive($selectedRole) => 'Draft role should stay in handoff-only posture until review note, bundle, and scope parity are explicit.',
-            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Live role already carries scope, staffing, and permission coverage for a useful access handoff review.',
-            $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Permission bundle and scope are visible, but staffing impact still needs to catch up before full handoff review.',
-            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Staffing and permission coverage are visible, but shop scope still needs to catch up before full handoff review.',
+            $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) && $scope->isNotEmpty() => 'Live role already carries scope, staffing, and permission coverage for a useful access handoff review.',
+            $this->roleHasPermissions($selectedRole) && $scope->isNotEmpty() => 'Permission bundle and scope are visible, but staffing impact still needs to catch up before full handoff review.',
+            $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) => 'Staffing and permission coverage are visible, but shop scope still needs to catch up before full handoff review.',
             default => 'Access shell is visible, but handoff context is still thin until more live coverage lands.',
         };
     }

@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role handoff helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsHandoffSignal()` so this selected-role handoff classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role readiness helper follow-up checkpoint
 - Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsOperationalReadiness()` so this selected-role readiness classifier no longer duplicates raw staffing and permission presence checks.
 - Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
