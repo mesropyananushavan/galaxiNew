@@ -3648,9 +3648,9 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $this->roleIsActive($selectedRole) => 'Operators should carry draft status, scope gaps, and permission-bundle gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
-            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Operators should carry visible shop scope, assigned staff, and permission-bundle coverage in the live workspace before trusting any publish or matrix-edit follow-up.',
-            $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Operators should carry visible shop scope, permission-bundle coverage, and staffing gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
-            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Operators should carry assigned staff, permission-bundle coverage, and scope gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
+            $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) && $scope->isNotEmpty() => 'Operators should carry visible shop scope, assigned staff, and permission-bundle coverage in the live workspace before trusting any publish or matrix-edit follow-up.',
+            $this->roleHasPermissions($selectedRole) && $scope->isNotEmpty() => 'Operators should carry visible shop scope, permission-bundle coverage, and staffing gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
+            $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) => 'Operators should carry assigned staff, permission-bundle coverage, and scope gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
             default => 'Operators should carry draft access coverage, scope gaps, and staffing gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
         };
     }
