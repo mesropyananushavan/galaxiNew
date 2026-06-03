@@ -866,8 +866,8 @@ class DashboardController extends Controller
 
     protected function branchCoverageStatus(Shop $shop): string
     {
-        $hasCardholders = $shop->card_holders_count > 0;
-        $hasCards = $shop->cards_count > 0;
+        $hasCardholders = $this->shopVisibleHolderCount($shop) > 0;
+        $hasCards = $this->shopVisibleCardCount($shop) > 0;
 
         return match (true) {
             $hasCardholders && $hasCards => 'Galaxy holders and card shells live',
