@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Dashboard status-label helper follow-up checkpoint
+- Reused small dashboard helper seams in `app/Http/Controllers/Admin/DashboardController.php` so the latest-tier review shortcut and assigned-branch snapshot now read tier and branch status labels through named helpers instead of repeated inline active/draft and active/paused formatting.
+- Added tiny `cardTypeStatusValue()` and `shopStatusValue()` helpers in the dashboard controller, then re-ran the live-work shortcut and partial branch snapshot dashboard assertions as the parity check for this structural cleanup.
+
 ### Card-type status helper follow-up checkpoint
 - Reused a small card-type helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-tier summary status and the tier status timeline now read the active/draft label through one named helper instead of repeated inline state formatting.
 - Added a tiny `cardTypeStatusValue()` helper, then re-ran the selected-tier edit-mode, live-tier, and draft-tier feature assertions as the parity check for this structural cleanup.

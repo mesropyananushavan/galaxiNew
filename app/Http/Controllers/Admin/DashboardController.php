@@ -423,7 +423,7 @@ class DashboardController extends Controller
         $cardType = CardType::query()->latest('id')->first();
 
         return $cardType ? $this->workspaceLink(
-            label: sprintf('Open latest Galaxy tier shell review: %s (%s)', $cardType->name, $cardType->is_active ? 'active' : 'draft'),
+            label: sprintf('Open latest Galaxy tier shell review: %s (%s)', $cardType->name, $this->cardTypeStatusValue($cardType)),
             routeName: 'admin.card-types.index',
             parameters: ['cardType' => $cardType->id],
         ) : null;
@@ -666,7 +666,7 @@ class DashboardController extends Controller
                 ['label' => 'Branch coverage', 'value' => $branchCoverage],
                 ['label' => 'Handoff signal', 'value' => $branchHandoffSignal],
                 ['label' => 'Primary manager', 'value' => $shop->users->first()?->name ?? 'Unassigned'],
-                ['label' => 'Galaxy foundation status', 'value' => $shop->is_active ? 'active' : 'paused'],
+                ['label' => 'Galaxy foundation status', 'value' => $this->shopStatusValue($shop)],
                 ['label' => 'Visible Galaxy holders', 'value' => (string) $shop->card_holders_count],
                 ['label' => 'Visible Galaxy card shells', 'value' => (string) $shop->cards_count],
                 ['label' => 'Assigned staff', 'value' => (string) $shop->users_count],
@@ -782,6 +782,16 @@ class DashboardController extends Controller
         return now()->diffInDays($latestTimestamp) <= 1
             ? 'fresh activity'
             : 'stale activity';
+    }
+
+    protected function cardTypeStatusValue(CardType $cardType): string
+    {
+        return $cardType->is_active ? 'active' : 'draft';
+    }
+
+    protected function shopStatusValue(Shop $shop): string
+    {
+        return $shop->is_active ? 'active' : 'paused';
     }
 
     protected function branchOperationalPosture(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
