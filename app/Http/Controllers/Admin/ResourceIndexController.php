@@ -4165,9 +4165,14 @@ class ResourceIndexController extends Controller
         return $this->cardholderIsActive($selectedCardHolder) ? 'active' : 'inactive';
     }
 
+    private function cardholderLinkedCardCount(CardHolder $selectedCardHolder): int
+    {
+        return $selectedCardHolder->cards_count ?? $selectedCardHolder->cards->count();
+    }
+
     private function cardholdersLinkedCardsLabel(CardHolder $selectedCardHolder): string
     {
-        return (string) $selectedCardHolder->cards_count;
+        return (string) $this->cardholderLinkedCardCount($selectedCardHolder);
     }
 
     private function cardholdersReviewNoteLabel(CardHolder $selectedCardHolder): string

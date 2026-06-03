@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Cardholder linked-card count helper follow-up checkpoint
+- Reused a tiny cardholder seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder linked-card label now reads through one named count helper instead of a direct `cards_count` access.
+- Added a small `cardholderLinkedCardCount()` helper and routed `cardholdersLinkedCardsLabel()` through it, then re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this structural cleanup.
+
 ### Shop visible-card count helper follow-up checkpoint
 - Reused a tiny shop seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-branch card summary row now reads through one named count helper instead of a direct `cards_count` access.
 - Added a small `shopVisibleCardCount()` helper and routed the selected-shop `Cards` summary row through it, then re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this structural cleanup.
