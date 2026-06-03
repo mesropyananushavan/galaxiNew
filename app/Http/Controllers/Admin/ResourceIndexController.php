@@ -4563,7 +4563,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
-            ['label' => 'Status posture', 'value' => $selectedShop->is_active
+            ['label' => 'Status posture', 'value' => $this->shopIsActive($selectedShop)
                 ? 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'
                 : 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'],
             ['label' => 'Manager posture', 'value' => match (true) {
