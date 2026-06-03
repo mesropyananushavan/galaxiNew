@@ -3340,7 +3340,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsBackendGap(Role $selectedRole): string
     {
         return match (true) {
-            ! $selectedRole->is_active => 'Draft activation, first permission-bundle wiring, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.',
+            ! $this->roleIsActive($selectedRole) => 'Draft activation, first permission-bundle wiring, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Role assignment, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until access parity is verified.',
             $selectedRole->permissions_count > 0 => 'Assignment linking, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until bundle-led access parity is verified.',
             $selectedRole->users_count > 0 => 'Permission-bundle wiring, matrix editing, and shop-scoped authorization writes should stay foundation-preview only until staff-led access parity is verified.',
@@ -3351,7 +3351,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsPublishPostureValue(Role $selectedRole): string
     {
         return match (true) {
-            ! $selectedRole->is_active => 'draft-only',
+            ! $this->roleIsActive($selectedRole) => 'draft-only',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'assignment-sensitive',
             default => 'parity-sensitive',
         };
@@ -3360,7 +3360,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsHandoffSignal(Role $selectedRole, Collection $scope): string
     {
         return match (true) {
-            ! $selectedRole->is_active => 'Draft role should stay in handoff-only posture until review note, bundle, and scope parity are explicit.',
+            ! $this->roleIsActive($selectedRole) => 'Draft role should stay in handoff-only posture until review note, bundle, and scope parity are explicit.',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Live role already carries scope, staffing, and permission coverage for a useful access handoff review.',
             $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Permission bundle and scope are visible, but staffing impact still needs to catch up before full handoff review.',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Staffing and permission coverage are visible, but shop scope still needs to catch up before full handoff review.',
@@ -3647,7 +3647,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsTimelineHandoffDescription(Role $selectedRole, mixed $scope): string
     {
         return match (true) {
-            ! $selectedRole->is_active => 'Operators should carry draft status, scope gaps, and permission-bundle gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
+            ! $this->roleIsActive($selectedRole) => 'Operators should carry draft status, scope gaps, and permission-bundle gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Operators should carry visible shop scope, assigned staff, and permission-bundle coverage in the live workspace before trusting any publish or matrix-edit follow-up.',
             $selectedRole->permissions_count > 0 && $scope->isNotEmpty() => 'Operators should carry visible shop scope, permission-bundle coverage, and staffing gaps in the live workspace before trusting any publish or matrix-edit follow-up.',
             $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'Operators should carry assigned staff, permission-bundle coverage, and scope gaps in the live workspace before trusting any publish or matrix-edit follow-up.',

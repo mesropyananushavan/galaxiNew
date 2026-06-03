@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role active-state rollout follow-up checkpoint
+- Reused the existing `roleIsActive()` helper across selected-role backend-gap, publish-posture, handoff-signal, and timeline-handoff messaging so more rollout guidance now reads active state through one accessor.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role active-state dependency follow-up checkpoint
 - Reused the existing `roleIsActive()` helper across selected-role dependency status, review freshness, and status-signal messaging so more of the role-detail cluster now reads active state through one accessor.
 - Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
