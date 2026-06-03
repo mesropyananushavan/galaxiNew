@@ -3183,7 +3183,7 @@ class ResourceIndexController extends Controller
             [
                 'label' => 'Access guidance',
                 'value' => match (true) {
-                    $this->roleIsActive($selectedRole) && $selectedRole->permissions_count > 0 => 'This role already carries a Galaxy foundation permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.',
+                    $this->roleIsActive($selectedRole) && $this->roleHasPermissions($selectedRole) => 'This role already carries a Galaxy foundation permission bundle, so assignment and scope changes should stay parity-first until the matrix editor is verified.',
                     $this->roleIsActive($selectedRole) => 'This role is active in the Galaxy foundation layer, but permission bundle and assignment follow-up should stay parity-first until the matrix editor is verified.',
                     default => 'This role is still a draft shell in the Galaxy foundation layer, which keeps it safe for parity checks before operators rely on it for staff access.',
                 },
