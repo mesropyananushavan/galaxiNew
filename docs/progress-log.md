@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Dashboard visible-card count helper follow-up checkpoint
+- Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so the assigned-branch card snapshot now reads through one named count helper instead of a direct `cards_count` access.
+- Added a small `shopVisibleCardCount()` helper and routed the dashboard `Visible Galaxy card shells` snapshot row through it, then re-ran the live-work shortcut and partial branch snapshot assertions as the parity check for this structural cleanup.
+
 ### Dashboard visible-holder count helper follow-up checkpoint
 - Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so the assigned-branch holder snapshot now reads through one named count helper instead of a direct `card_holders_count` access.
 - Added a small `shopVisibleHolderCount()` helper and routed the dashboard `Visible Galaxy holders` snapshot row through it, then re-ran the live-work shortcut and partial branch snapshot assertions as the parity check for this structural cleanup.
