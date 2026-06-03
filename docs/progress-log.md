@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop review-scope/status helper follow-up checkpoint
+- Reused the existing shop helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-branch status timeline copy and review-scope disabled reason now read branch status and manager ownership through named helpers instead of raw inline state checks.
+- Reused `shopStatusValue()` and `shopHasAssignedManagers()` in those last two selected-shop branches, then re-ran the selected-branch, manager-linked, and manager-only shop assertions as the parity check for this structural cleanup.
+
 ### Shop coverage/status helper follow-up checkpoint
 - Reused the new shop helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-branch coverage, status, manager-posture, scope-handoff, timeline-handoff, and table/status values now lean on named shop helpers instead of repeated raw `users_count` checks and inline active/paused labels.
 - Added a tiny `shopStatusValue()` helper and re-used `shopHasAssignedManagers()` across the remaining selected-shop coverage branches, then re-ran the selected-branch, manager-linked, manager-only, paused-branch, and coverage-without-manager assertions as the parity check for this structural cleanup.

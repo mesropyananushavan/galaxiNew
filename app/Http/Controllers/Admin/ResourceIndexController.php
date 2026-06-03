@@ -1313,7 +1313,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s status reflected from model state', $selectedShop->name),
                 'time' => 'Current request',
-                'description' => sprintf('This branch is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $selectedShop->is_active ? 'active' : 'paused'),
+                'description' => sprintf('This branch is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $this->shopStatusValue($selectedShop)),
             ],
             [
                 'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedShop->name),
@@ -2775,8 +2775,8 @@ class ResourceIndexController extends Controller
     private function shopsSelectedReviewScopeDisabledReason(Shop $selectedShop): string
     {
         return match (true) {
-            $selectedShop->users_count > 0 && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.',
-            $selectedShop->users_count > 0 => 'Blocked until manager-linked branch scope is verified against the legacy Galaxy multi-shop model.',
+            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.',
+            $this->shopHasAssignedManagers($selectedShop) => 'Blocked until manager-linked branch scope is verified against the legacy Galaxy multi-shop model.',
             $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Blocked until visible branch coverage is verified against the legacy Galaxy multi-shop model.',
             default => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
         };
