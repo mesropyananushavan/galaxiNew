@@ -4508,9 +4508,11 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Operators should carry paused status, recovery ownership gaps, branch coverage, and scope approval context in the live workspace before trusting any recovery or reassignment follow-up.',
-            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Operators should carry manager ownership, holder coverage, and card coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
+            $this->shopHasAssignedManagers($selectedShop)
+                && $this->shopVisibleCardholderCount($selectedShop) > 0
+                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Operators should carry manager ownership, holder coverage, and card coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
             $this->shopHasAssignedManagers($selectedShop) => 'Operators should carry manager ownership, branch readiness gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
-            $selectedShop->card_holders_count > 0 || $selectedShop->cards_count > 0 => 'Operators should carry customer coverage, ownership gaps, and branch readiness in the live workspace before trusting any scope-mutation or reassignment follow-up.',
+            $this->shopVisibleCardholderCount($selectedShop) > 0 || $this->shopVisibleCardCount($selectedShop) > 0 => 'Operators should carry customer coverage, ownership gaps, and branch readiness in the live workspace before trusting any scope-mutation or reassignment follow-up.',
             default => 'Operators should carry branch readiness, ownership gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or recovery follow-up.',
         };
     }
