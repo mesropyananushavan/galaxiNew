@@ -926,7 +926,7 @@ class DashboardController extends Controller
 
     protected function assignedBranchSnapshotActions(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): array
     {
-        if (! $shop->is_active) {
+        if (! $this->shopIsActive($shop)) {
             return [];
         }
 
