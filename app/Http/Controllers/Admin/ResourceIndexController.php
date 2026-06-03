@@ -3133,7 +3133,7 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected role', 'value' => $selectedRole->name],
             ['label' => 'Role slug', 'value' => $selectedRole->slug],
-            ['label' => 'Review mode', 'value' => $selectedRole->is_active || $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0
+            ['label' => 'Review mode', 'value' => $this->roleIsActive($selectedRole) || $selectedRole->users_count > 0 || $selectedRole->permissions_count > 0
                 ? 'Live-impact review, linked staff or permissions already exist in the Galaxy foundation layer'
                 : 'Draft-safe review, no linked staff or permissions yet in the Galaxy foundation layer'],
             ['label' => 'Operational readiness', 'value' => $this->rolesPermissionsOperationalReadiness($selectedRole)],

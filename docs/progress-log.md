@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role active-state review-mode follow-up checkpoint
+- Reused the existing `roleIsActive()` helper inside the selected-role summary review-mode label so that role-detail status messaging keeps moving away from raw `is_active` reads.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role active-state timeline follow-up checkpoint
 - Reused the existing `roleIsActive()` helper inside the selected-role status timeline description so role timeline messaging stays aligned with the rest of the helper-backed active-state cleanup.
 - Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
