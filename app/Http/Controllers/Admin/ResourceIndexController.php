@@ -3168,7 +3168,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
                 ? sprintf('%d assigned staff are already visible in active branches beside %d assigned staff in paused shops for parity review', $activeShopAssignedUserCount, $pausedShopAssignedUserCount)
                 : 'paused-branch assignment coverage is still pending for parity review'],
-            ['label' => 'Assignment guidance', 'value' => $selectedRole->users_count > 0
+            ['label' => 'Assignment guidance', 'value' => $this->roleHasAssignedUsers($selectedRole)
                 ? 'Assigned staff are already linked in the Galaxy foundation layer, so scope and permission changes should be reviewed against real operator impact.'
                 : 'No staff are linked yet, which keeps this role safer for draft access review before assignment parity is confirmed.'],
             ['label' => 'Permission count', 'value' => (string) $selectedRole->permissions_count],
@@ -3690,7 +3690,7 @@ class ResourceIndexController extends Controller
                 default => 'No shops linked in Galaxy foundation scope yet',
             }],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in the Galaxy foundation layer'],
-            ['label' => 'Assigned staff posture', 'value' => $selectedRole->users_count > 0
+            ['label' => 'Assigned staff posture', 'value' => $this->roleHasAssignedUsers($selectedRole)
                 ? 'Linked staff are already affected by this role in the Galaxy foundation layer, so assignment parity should be checked before any access changes move forward.'
                 : 'No linked staff are affected yet, which keeps this role safer for draft review before assignment parity is confirmed.'],
             ['label' => 'Assignment branch activity signal', 'value' => $activeShopAssignedUserCount > 0 && $pausedShopAssignedUserCount > 0
@@ -4971,6 +4971,11 @@ class ResourceIndexController extends Controller
     private function roleAssignedUserCount(Role $role): int
     {
         return $role->users_count ?? $role->users->count();
+    }
+
+    private function roleHasAssignedUsers(Role $role): bool
+    {
+        return $this->roleAssignedUserCount($role) > 0;
     }
 
     private function rolePermissionCount(Role $role): int

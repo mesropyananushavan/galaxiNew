@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role assigned-users helper follow-up checkpoint
+- Added a dedicated `roleHasAssignedUsers()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role assignment messaging can read linked-staff presence through one named accessor instead of repeating raw `users_count > 0` checks.
+- Updated the summary assignment guidance and dependency assigned-staff posture labels to use the shared helper, then re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role active-state review-mode follow-up checkpoint
 - Reused the existing `roleIsActive()` helper inside the selected-role summary review-mode label so that role-detail status messaging keeps moving away from raw `is_active` reads.
 - Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
