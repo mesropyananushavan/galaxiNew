@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Cardholder operational-readiness active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersOperationalReadiness()` no longer checks `is_active` directly.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
 ### Cardholder live-form active-helper checkpoint
 - Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder live-form `is_active` resolver no longer checks `is_active` directly.
 - Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
