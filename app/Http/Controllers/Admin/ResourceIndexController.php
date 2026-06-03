@@ -3309,9 +3309,9 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $this->roleIsActive($selectedRole) => 'draft-safe role shell',
-            $selectedRole->users_count > 0 && $selectedRole->permissions_count > 0 => 'assignment-sensitive live role',
-            $selectedRole->permissions_count > 0 => 'permission bundle live, assignment rollout pending',
-            $selectedRole->users_count > 0 => 'assignment linked, permission bundle still pending review',
+            $this->roleHasAssignedUsers($selectedRole) && $this->roleHasPermissions($selectedRole) => 'assignment-sensitive live role',
+            $this->roleHasPermissions($selectedRole) => 'permission bundle live, assignment rollout pending',
+            $this->roleHasAssignedUsers($selectedRole) => 'assignment linked, permission bundle still pending review',
             default => 'active role shell, permission bundle still pending review',
         };
     }

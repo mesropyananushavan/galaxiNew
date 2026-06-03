@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role readiness helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsOperationalReadiness()` so this selected-role readiness classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role permissions helper follow-up checkpoint
 - Added a dedicated `roleHasPermissions()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role permission messaging can read bundle presence through one named accessor instead of repeating raw `permissions_count > 0` checks.
 - Updated the summary permission-coverage and dependency permission-posture labels to use the shared helper, then re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
