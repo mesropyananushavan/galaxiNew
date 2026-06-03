@@ -3555,7 +3555,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->rolesPermissionsStatusTimelineTitle($selectedRole),
                 'time' => 'Current request',
-                'description' => $selectedRole->is_active
+                'description' => $this->roleIsActive($selectedRole)
                     ? 'This role is currently marked as active in the Galaxy foundation layer and the management context now treats it as a live access shell.'
                     : 'This role is currently marked as draft in the Galaxy foundation layer, so the management context keeps it in a safer parity-review posture.',
             ],

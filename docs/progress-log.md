@@ -2,6 +2,10 @@
 
 ## 2026-06-02
 
+### Role active-state timeline follow-up checkpoint
+- Reused the existing `roleIsActive()` helper inside the selected-role status timeline description so role timeline messaging stays aligned with the rest of the helper-backed active-state cleanup.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
 ### Role active-state rollout follow-up checkpoint
 - Reused the existing `roleIsActive()` helper across selected-role backend-gap, publish-posture, handoff-signal, and timeline-handoff messaging so more rollout guidance now reads active state through one accessor.
 - Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
