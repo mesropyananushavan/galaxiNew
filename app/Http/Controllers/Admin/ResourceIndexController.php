@@ -4436,7 +4436,9 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             ! $selectedShop->is_active => 'Branch recovery writes, manager reassignment, ownership repair, and shop-scope mutation flows should stay foundation-preview only until paused-branch parity is verified.',
-            $this->shopHasAssignedManagers($selectedShop) && $selectedShop->card_holders_count > 0 && $selectedShop->cards_count > 0 => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until branch parity is verified.',
+            $this->shopHasAssignedManagers($selectedShop)
+                && $this->shopVisibleCardholderCount($selectedShop) > 0
+                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until branch parity is verified.',
             $this->shopHasAssignedManagers($selectedShop) => 'Coverage backfill writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until manager-led branch parity is verified.',
             default => 'Ownership assignment, branch writes, and shop-scope mutation flows should stay foundation-preview only until branch coverage parity is verified.',
         };
