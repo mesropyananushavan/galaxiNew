@@ -4573,8 +4573,8 @@ class ResourceIndexController extends Controller
                 default => 'No branch manager is assigned yet, which keeps this Galaxy branch safer for ownership-flow parity review before ownership flows are enabled.',
             }],
             ['label' => 'Coverage posture', 'value' => $selectedShop->is_active
-                ? sprintf('This branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation review.', $selectedShop->card_holders_count, $selectedShop->cards_count)
-                : sprintf('This paused branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation recovery review.', $selectedShop->card_holders_count, $selectedShop->cards_count)],
+                ? sprintf('This branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation review.', $this->shopVisibleCardholderCount($selectedShop), $this->shopVisibleCardCount($selectedShop))
+                : sprintf('This paused branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation recovery review.', $this->shopVisibleCardholderCount($selectedShop), $this->shopVisibleCardCount($selectedShop))],
             ['label' => 'Remaining backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
         ];
     }

@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Shop coverage-posture helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop coverage-posture copy now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly inside `sprintf` output.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
 ### Shop review-scope helper reuse checkpoint
 - Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop review-scope disabled-reason branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
 - Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
