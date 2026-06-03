@@ -794,19 +794,24 @@ class DashboardController extends Controller
         return $cardHolder->is_active ? 'active' : 'inactive';
     }
 
+    protected function shopIsActive(Shop $shop): bool
+    {
+        return $shop->is_active;
+    }
+
     protected function shopStatusValue(Shop $shop): string
     {
-        return $shop->is_active ? 'active' : 'paused';
+        return $this->shopIsActive($shop) ? 'active' : 'paused';
     }
 
     protected function shopWorkspaceStatusValue(Shop $shop): string
     {
-        return $shop->is_active ? 'active' : 'inactive';
+        return $this->shopIsActive($shop) ? 'active' : 'inactive';
     }
 
     protected function branchOperationalPosture(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard): string
     {
-        if (! $shop->is_active) {
+        if (! $this->shopIsActive($shop)) {
             return 'paused branch';
         }
 
