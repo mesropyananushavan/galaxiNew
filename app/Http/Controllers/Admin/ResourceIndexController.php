@@ -4164,7 +4164,7 @@ class ResourceIndexController extends Controller
 
     private function cardholderIsActive(CardHolder $selectedCardHolder): bool
     {
-        return $selectedCardHolder->is_active;
+        return (bool) $selectedCardHolder->is_active;
     }
 
     private function cardholdersGalaxyStatusLabel(CardHolder $selectedCardHolder): string

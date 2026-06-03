@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Cardholder active-cast seam checkpoint
+- Tightened the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so it now returns an explicit boolean cast instead of the raw `is_active` attribute value.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper seam step.
+
 ### Cardholder status-signal active-helper checkpoint
 - Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersStatusSignal()` no longer checks `is_active` directly.
 - Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
