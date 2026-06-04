@@ -2,6 +2,10 @@
 
 ## 2026-06-04
 
+### Card-type status-signal active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesStatusSignal()` no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
 ### Card-type coverage-signal active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesCoverageSignal()` no longer checks `is_active` directly in its live-tier branches.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
