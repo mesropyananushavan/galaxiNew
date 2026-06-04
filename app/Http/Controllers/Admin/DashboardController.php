@@ -627,18 +627,14 @@ class DashboardController extends Controller
 
     protected function foundationHandoffSummary(): array
     {
-        $shopCount = Shop::query()->count();
-        $cardHolderCount = CardHolder::query()->count();
-        $cardCount = Card::query()->count();
-        $roleCount = $this->savedRoleCount();
-        $permissionCount = $this->savedPermissionCount();
+        $liveDomainCount = $this->liveCoreDomainCount();
 
         return [
             'label' => 'Foundation handoff signal',
             'value' => match (true) {
-                $shopCount === 0 && $cardHolderCount === 0 && $cardCount === 0 && $roleCount === 0 && $permissionCount === 0
+                $liveDomainCount === 0
                     => 'Phase 1 is still in Galaxy foundation setup mode, so the dashboard should keep first live entities visible before any handoff review feels grounded.',
-                $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0 && $roleCount > 0 && $permissionCount > 0
+                $liveDomainCount === 5
                     => 'The dashboard already shows enough live Galaxy entities to support a useful foundation handoff review.',
                 default
                     => 'Some live Galaxy entities are visible, but the dashboard still needs broader Galaxy foundation coverage before foundation handoff review feels complete.',
