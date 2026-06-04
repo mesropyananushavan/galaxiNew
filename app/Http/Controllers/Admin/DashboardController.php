@@ -56,8 +56,8 @@ class DashboardController extends Controller
             'tierBaselineCoverage' => $this->tierBaselineCoverage(),
             'shopCount' => $this->savedShopCount(),
             'activeShopCount' => $this->activeShopCount(),
-            'cardHolderCount' => CardHolder::query()->count(),
-            'activeCardHolderCount' => CardHolder::query()->active()->count(),
+            'cardHolderCount' => $this->savedCardHolderCount(),
+            'activeCardHolderCount' => $this->activeCardHolderCount(),
             'cardCount' => Card::query()->count(),
             'activeCardCount' => Card::query()->active()->count(),
             'cardTypeCount' => $this->savedCardTypeCount(),
@@ -273,8 +273,8 @@ class DashboardController extends Controller
     {
         $shopCount = $this->savedShopCount();
         $activeShopCount = $this->activeShopCount();
-        $cardHolderCount = CardHolder::query()->count();
-        $activeCardHolderCount = CardHolder::query()->active()->count();
+        $cardHolderCount = $this->savedCardHolderCount();
+        $activeCardHolderCount = $this->activeCardHolderCount();
         $cardCount = Card::query()->count();
         $activeCardCount = Card::query()->active()->count();
 
@@ -333,6 +333,16 @@ class DashboardController extends Controller
         return (int) Permission::query()->count();
     }
 
+    protected function savedCardHolderCount(): int
+    {
+        return (int) CardHolder::query()->count();
+    }
+
+    protected function activeCardHolderCount(): int
+    {
+        return (int) CardHolder::query()->active()->count();
+    }
+
     protected function savedCardTypeCount(): int
     {
         return (int) CardType::query()->count();
@@ -346,8 +356,8 @@ class DashboardController extends Controller
     protected function liveCoreDomainCount(): int
     {
         return collect([
-            Shop::query()->count(),
-            CardHolder::query()->count(),
+            $this->savedShopCount(),
+            $this->savedCardHolderCount(),
             Card::query()->count(),
             $this->savedRoleCount(),
             $this->savedPermissionCount(),
@@ -384,7 +394,7 @@ class DashboardController extends Controller
     {
         return [
             ['count' => $this->savedShopCount(), 'label' => 'live Galaxy branches'],
-            ['count' => CardHolder::query()->count(), 'label' => 'live Galaxy holders'],
+            ['count' => $this->savedCardHolderCount(), 'label' => 'live Galaxy holders'],
             ['count' => Card::query()->count(), 'label' => 'live Galaxy card shells'],
         ];
     }
