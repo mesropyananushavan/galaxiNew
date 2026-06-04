@@ -4200,8 +4200,8 @@ class ResourceIndexController extends Controller
     private function cardholdersLookupGuidance(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'This holder is active in the Galaxy foundation layer but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.',
-            $selectedCardHolder->is_active => 'This holder is active in the Galaxy foundation layer, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.',
+            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'This holder is active in the Galaxy foundation layer but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.',
+            $this->cardholderIsActive($selectedCardHolder) => 'This holder is active in the Galaxy foundation layer, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.',
             default => 'This holder is inactive in the Galaxy foundation layer, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
         };
     }

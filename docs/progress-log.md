@@ -2,6 +2,10 @@
 
 ## 2026-06-03
 
+### Cardholder lookup-guidance active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersLookupGuidance()` no longer checks `is_active` directly in its active-holder branches.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
 ### Cardholder review-activity active-helper checkpoint
 - Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersSelectedReviewActivityDisabledReason()` no longer checks `is_active` directly in its active/inactive holder branches.
 - Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
