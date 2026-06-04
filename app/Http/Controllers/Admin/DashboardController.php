@@ -60,8 +60,8 @@ class DashboardController extends Controller
             'activeCardHolderCount' => CardHolder::query()->active()->count(),
             'cardCount' => Card::query()->count(),
             'activeCardCount' => Card::query()->active()->count(),
-            'cardTypeCount' => CardType::query()->count(),
-            'activeCardTypeCount' => CardType::query()->active()->count(),
+            'cardTypeCount' => $this->savedCardTypeCount(),
+            'activeCardTypeCount' => $this->activeCardTypeCount(),
             'roleCount' => $this->savedRoleCount(),
             'permissionCount' => $this->savedPermissionCount(),
             'foundationHandoffSummary' => $this->foundationHandoffSummary(),
@@ -318,6 +318,16 @@ class DashboardController extends Controller
         return (int) Permission::query()->count();
     }
 
+    protected function savedCardTypeCount(): int
+    {
+        return (int) CardType::query()->count();
+    }
+
+    protected function activeCardTypeCount(): int
+    {
+        return (int) CardType::query()->active()->count();
+    }
+
     protected function liveCoreDomainCount(): int
     {
         return collect([
@@ -349,7 +359,7 @@ class DashboardController extends Controller
     {
         return [
             ...$this->liveEntryTargets(),
-            ['count' => CardType::query()->count(), 'label' => 'live Galaxy tiers'],
+            ['count' => $this->savedCardTypeCount(), 'label' => 'live Galaxy tiers'],
             ['count' => $this->savedRoleCount(), 'label' => 'live Galaxy access shells'],
             ['count' => $this->savedPermissionCount(), 'label' => 'live access permissions'],
         ];
@@ -371,8 +381,8 @@ class DashboardController extends Controller
 
     protected function tierBaselineCoverage(): string
     {
-        $cardTypeCount = CardType::query()->count();
-        $activeCardTypeCount = CardType::query()->active()->count();
+        $cardTypeCount = $this->savedCardTypeCount();
+        $activeCardTypeCount = $this->activeCardTypeCount();
 
         return sprintf('%d/%d Galaxy tiers active', $activeCardTypeCount, $cardTypeCount);
     }

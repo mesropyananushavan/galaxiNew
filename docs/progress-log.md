@@ -210,6 +210,10 @@
 - Added `foundationTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so both foundation focus and foundation surface counting now build from one named foundation-target definition instead of maintaining separate inline branch-holder-card-tier-access lists.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard target-definition cleanup.
 
+### Dashboard tier-count seam checkpoint
+- Added `savedCardTypeCount()` and `activeCardTypeCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the dashboard payload, tier baseline summary, and foundation target list no longer reach for raw tier count queries inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard tier-count cleanup.
+
 ### Dashboard live-entry target seam checkpoint
 - Added `liveEntryTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so live entry domain counting, plus the branch-holder-card subset inside foundation targets, now build from one named staged-entry target definition instead of maintaining separate inline lists.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard staged-entry cleanup.
