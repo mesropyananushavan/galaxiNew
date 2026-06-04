@@ -67,7 +67,7 @@ class Role extends Model
 
     public function scopeActiveShopScopedPermissionBearing(Builder $query): Builder
     {
-        return $query->active()->permissionBearing()->shopScopedAssigned();
+        return $query->activeAssignedPermissionBearing()->shopScopedAssigned();
     }
 
     public function scopeActiveAssignedToActiveShopPermissionBearing(Builder $query): Builder

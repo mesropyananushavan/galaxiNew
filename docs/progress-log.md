@@ -82,6 +82,10 @@
 - Added `assignedToScopedShop()` in `app/Models/Card.php`, then reused it so active/paused card shop scopes build on one shared shop-assignment seam instead of repeating direct branch-presence filters.
 - Re-ran the admin dashboard, cards operational index, and selected-card context assertions as the parity check for this card-scope cleanup.
 
+### Role active-scoped permission seam checkpoint
+- Reused the existing `activeAssignedPermissionBearing()` seam in `app/Models/Role.php` so `activeShopScopedPermissionBearing()` now builds on the same shared active permission-bearing chain as the active-branch and paused-branch role scopes.
+- Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this role-scope cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
