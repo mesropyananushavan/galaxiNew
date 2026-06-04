@@ -68,24 +68,34 @@ class Card extends Model
         return $query->activated()->holderLinked();
     }
 
+    public function scopeAssignedToActiveShop(Builder $query): Builder
+    {
+        return $query->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->active());
+    }
+
+    public function scopeAssignedToPausedShop(Builder $query): Builder
+    {
+        return $query->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->paused());
+    }
+
     public function scopeActiveShopHolderLinked(Builder $query): Builder
     {
-        return $query->holderLinked()->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->active());
+        return $query->holderLinked()->assignedToActiveShop();
     }
 
     public function scopePausedShopHolderLinked(Builder $query): Builder
     {
-        return $query->holderLinked()->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->paused());
+        return $query->holderLinked()->assignedToPausedShop();
     }
 
     public function scopeActiveShopUnassigned(Builder $query): Builder
     {
-        return $query->unassigned()->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->active());
+        return $query->unassigned()->assignedToActiveShop();
     }
 
     public function scopePausedShopUnassigned(Builder $query): Builder
     {
-        return $query->unassigned()->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->paused());
+        return $query->unassigned()->assignedToPausedShop();
     }
 
     public function scopeIssuedUnassigned(Builder $query): Builder
