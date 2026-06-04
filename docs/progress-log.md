@@ -66,6 +66,10 @@
 - Added `assignedToActiveShop()` and `assignedToPausedShop()` seams in `app/Models/Role.php`, then reused them so the active permission-bearing role scopes build on shared shop-assignment chains instead of repeating user-level `whereHas` filters.
 - Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this role-scope cleanup.
 
+### User scoped-role assignment checkpoint
+- Added `roleAssignedToScopedShop()` in `app/Models/User.php` and reused it in `app/Http/Controllers/Admin/ResourceIndexController.php` so the roles workspace no longer counts shop-linked staff through an inline `whereNotNull('shop_id')` query.
+- Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this scoped-assignment cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

@@ -1396,7 +1396,7 @@ class ResourceIndexController extends Controller
         $unassignedActiveRoleCount = $activeRoleCount - $assignedActiveRoleCount;
         $draftAssignedRoleCount = (clone $rolesQuery)->draft()->assigned()->count();
         $assignedStaffCount = User::query()->roleAssigned()->count();
-        $shopScopedAssignedStaffCount = User::query()->roleAssigned()->whereNotNull('shop_id')->count();
+        $shopScopedAssignedStaffCount = User::query()->roleAssignedToScopedShop()->count();
         $unscopedAssignedStaffCount = $assignedStaffCount - $shopScopedAssignedStaffCount;
         $activeShopAssignedStaffCount = User::query()->roleAssignedToActiveShop()->count();
         $pausedShopAssignedStaffCount = User::query()->roleAssignedToPausedShop()->count();

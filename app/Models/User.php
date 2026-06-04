@@ -54,14 +54,19 @@ class User extends Authenticatable
         return $query->whereHas('roles');
     }
 
+    public function scopeRoleAssignedToScopedShop(Builder $query): Builder
+    {
+        return $query->roleAssigned()->whereNotNull('shop_id');
+    }
+
     public function scopeRoleAssignedToActiveShop(Builder $query): Builder
     {
-        return $query->roleAssigned()->assignedToActiveShop();
+        return $query->roleAssignedToScopedShop()->assignedToActiveShop();
     }
 
     public function scopeRoleAssignedToPausedShop(Builder $query): Builder
     {
-        return $query->roleAssigned()->assignedToPausedShop();
+        return $query->roleAssignedToScopedShop()->assignedToPausedShop();
     }
 
     public function scopePermissionBearing(Builder $query): Builder
