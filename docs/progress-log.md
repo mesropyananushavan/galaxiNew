@@ -142,6 +142,10 @@
 - Reused the existing `Card::blocked()`, `Card::draft()`, and `Card::active()` scopes inside `app/Models/CardHolder.php` so linked-holder state scopes now compose through shared card status seams instead of repeating raw status filters inside relation queries.
 - Re-ran the focused holder card-state and cardholders operational index assertions as the parity slice for this linkage cleanup.
 
+### User role-assignment branch seam checkpoint
+- Simplified `app/Models/User.php` so `roleAssignedToActiveShop()` and `roleAssignedToPausedShop()` now compose from `roleAssigned()` plus the existing branch state seams, instead of routing through the redundant intermediate scoped-role helper.
+- Re-ran the focused user access-scope, user staffing-scope, and admin dashboard assertions as the parity slice for this user branch-assignment cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

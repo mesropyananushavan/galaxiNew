@@ -66,12 +66,12 @@ class User extends Authenticatable
 
     public function scopeRoleAssignedToActiveShop(Builder $query): Builder
     {
-        return $query->roleAssignedToScopedShop()->assignedToActiveShop();
+        return $query->roleAssigned()->assignedToActiveShop();
     }
 
     public function scopeRoleAssignedToPausedShop(Builder $query): Builder
     {
-        return $query->roleAssignedToScopedShop()->assignedToPausedShop();
+        return $query->roleAssigned()->assignedToPausedShop();
     }
 
     public function scopePermissionBearing(Builder $query): Builder
