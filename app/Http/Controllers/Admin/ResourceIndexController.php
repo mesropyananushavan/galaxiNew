@@ -4191,7 +4191,7 @@ class ResourceIndexController extends Controller
 
     private function cardholderLinkedCardCount(CardHolder $selectedCardHolder): int
     {
-        return $selectedCardHolder->cards_count ?? $selectedCardHolder->cards->count();
+        return (int) ($selectedCardHolder->cards_count ?? $selectedCardHolder->cards->count());
     }
 
     private function cardholdersLinkedCardsLabel(CardHolder $selectedCardHolder): string
@@ -5020,7 +5020,7 @@ class ResourceIndexController extends Controller
 
     private function roleAssignedUserCount(Role $role): int
     {
-        return $role->users_count ?? $role->users->count();
+        return (int) ($role->users_count ?? $role->users->count());
     }
 
     private function roleHasAssignedUsers(Role $role): bool
@@ -5095,17 +5095,17 @@ class ResourceIndexController extends Controller
 
     private function shopVisibleCardholderCount(Shop $shop): int
     {
-        return $shop->card_holders_count ?? $shop->cardHolders->count();
+        return (int) ($shop->card_holders_count ?? $shop->cardHolders->count());
     }
 
     private function shopVisibleCardCount(Shop $shop): int
     {
-        return $shop->cards_count ?? $shop->cards->count();
+        return (int) ($shop->cards_count ?? $shop->cards->count());
     }
 
     private function shopAssignedManagerCount(Shop $shop): int
     {
-        return $shop->users_count ?? $shop->users->count();
+        return (int) ($shop->users_count ?? $shop->users->count());
     }
 
     private function shopHasAssignedManagers(Shop $shop): bool
