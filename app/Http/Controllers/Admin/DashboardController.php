@@ -266,8 +266,8 @@ class DashboardController extends Controller
             CardHolder::query()->count(),
             Card::query()->count(),
             CardType::query()->count(),
-            Role::query()->count(),
-            Permission::query()->count(),
+            $this->savedRoleCount(),
+            $this->savedPermissionCount(),
         ])->filter(fn (int $count): bool => $count > 0)->count();
 
         return match (true) {
@@ -283,8 +283,8 @@ class DashboardController extends Controller
             Shop::query()->count(),
             CardHolder::query()->count(),
             Card::query()->count(),
-            Role::query()->count(),
-            Permission::query()->count(),
+            $this->savedRoleCount(),
+            $this->savedPermissionCount(),
         ])->filter(fn (int $count): bool => $count > 0)->count();
 
         return sprintf('%d/5 core Galaxy domains live', $liveDomainCount);
@@ -296,8 +296,8 @@ class DashboardController extends Controller
             Shop::query()->count(),
             CardHolder::query()->count(),
             Card::query()->count(),
-            Role::query()->count(),
-            Permission::query()->count(),
+            $this->savedRoleCount(),
+            $this->savedPermissionCount(),
         ])->filter(fn (int $count): bool => $count > 0)->count();
 
         return match (true) {
