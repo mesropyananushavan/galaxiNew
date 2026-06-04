@@ -365,13 +365,10 @@ class DashboardController extends Controller
 
     protected function liveCoreDomainCount(): int
     {
-        return collect([
-            $this->savedShopCount(),
-            $this->savedCardHolderCount(),
-            $this->savedCardCount(),
-            $this->savedRoleCount(),
-            $this->savedPermissionCount(),
-        ])->filter(fn (int $count): bool => $count > 0)->count();
+        return collect($this->liveCoreTargets())
+            ->pluck('count')
+            ->filter(fn (int $count): bool => $count > 0)
+            ->count();
     }
 
     protected function liveEntryDomainCount(): int
@@ -395,8 +392,15 @@ class DashboardController extends Controller
         return [
             ...$this->liveEntryTargets(),
             ['count' => $this->savedCardTypeCount(), 'label' => 'live Galaxy tiers'],
-            ['count' => $this->savedRoleCount(), 'label' => 'live Galaxy access shells'],
-            ['count' => $this->savedPermissionCount(), 'label' => 'live access permissions'],
+            ...$this->liveAccessTargets(),
+        ];
+    }
+
+    protected function liveCoreTargets(): array
+    {
+        return [
+            ...$this->liveEntryTargets(),
+            ...$this->liveAccessTargets(),
         ];
     }
 
@@ -406,6 +410,14 @@ class DashboardController extends Controller
             ['count' => $this->savedShopCount(), 'label' => 'live Galaxy branches'],
             ['count' => $this->savedCardHolderCount(), 'label' => 'live Galaxy holders'],
             ['count' => $this->savedCardCount(), 'label' => 'live Galaxy card shells'],
+        ];
+    }
+
+    protected function liveAccessTargets(): array
+    {
+        return [
+            ['count' => $this->savedRoleCount(), 'label' => 'live Galaxy access shells'],
+            ['count' => $this->savedPermissionCount(), 'label' => 'live access permissions'],
         ];
     }
 
