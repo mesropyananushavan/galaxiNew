@@ -592,7 +592,14 @@ class DashboardController extends Controller
 
     protected function rolePermissionCount(Role $role): int
     {
-        return (int) ($role->permissions_count ?? $role->permissions->count());
+        return $this->roleRelationCount($role, 'permissions');
+    }
+
+    protected function roleRelationCount(Role $role, string $relation): int
+    {
+        $countAttribute = sprintf('%s_count', $relation);
+
+        return (int) ($role->{$countAttribute} ?? $role->{$relation}->count());
     }
 
     protected function workspaceLink(string $label, string $routeName, array $parameters = []): array

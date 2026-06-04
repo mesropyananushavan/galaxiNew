@@ -222,6 +222,10 @@
 - Added `shopRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so visible holder, visible card, assigned staff counts, and the shop empty-record check now share one named shop relation-count seam instead of repeating count-attribute fallback logic inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard shop relation-count cleanup.
 
+### Dashboard role-relation count seam checkpoint
+- Added `roleRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so `rolePermissionCount()` now reads through one named role relation-count seam instead of maintaining its own permission-count fallback inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard role relation-count cleanup.
+
 ### Dashboard holder-count seam checkpoint
 - Added `savedCardHolderCount()` and `activeCardHolderCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the dashboard payload, active foundation coverage, live core-domain count, and staged holder target definition no longer duplicate raw holder count queries inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, and cardholders operational index assertions as the parity slice for this dashboard holder-count cleanup.
