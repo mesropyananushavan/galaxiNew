@@ -251,14 +251,7 @@ class DashboardController extends Controller
 
     protected function foundationPosture(): string
     {
-        $visibleFoundationCount = collect([
-            Shop::query()->count(),
-            CardHolder::query()->count(),
-            Card::query()->count(),
-            CardType::query()->count(),
-            $this->savedRoleCount(),
-            $this->savedPermissionCount(),
-        ])->filter(fn (int $count): bool => $count > 0)->count();
+        $visibleFoundationCount = $this->liveFoundationSurfaceCount();
 
         return match (true) {
             $visibleFoundationCount === 0 => 'setup-first foundation baseline',
@@ -351,6 +344,18 @@ class DashboardController extends Controller
             Shop::query()->count(),
             CardHolder::query()->count(),
             Card::query()->count(),
+        ])->filter(fn (int $count): bool => $count > 0)->count();
+    }
+
+    protected function liveFoundationSurfaceCount(): int
+    {
+        return collect([
+            Shop::query()->count(),
+            CardHolder::query()->count(),
+            Card::query()->count(),
+            CardType::query()->count(),
+            $this->savedRoleCount(),
+            $this->savedPermissionCount(),
         ])->filter(fn (int $count): bool => $count > 0)->count();
     }
 

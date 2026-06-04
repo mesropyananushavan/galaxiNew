@@ -202,6 +202,10 @@
 - Reused `liveCoreDomainCount()` again in `app/Http/Controllers/Admin/DashboardController.php` so the foundation handoff summary now reads through the same shared core-domain coverage seam instead of manually comparing five separate live entity counts inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard handoff cleanup.
 
+### Dashboard foundation-surface count seam checkpoint
+- Added `liveFoundationSurfaceCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the foundation posture summary now builds from one shared branch-holder-card-tier-access surface count seam instead of rebuilding the grouped count inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard foundation-surface cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
