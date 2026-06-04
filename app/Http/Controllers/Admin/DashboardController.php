@@ -137,7 +137,12 @@ class DashboardController extends Controller
             return false;
         }
 
-        return $model::query()->count() > 0;
+        return $this->modelClassCount($model) > 0;
+    }
+
+    protected function modelClassCount(string $modelClass): int
+    {
+        return (int) $modelClass::query()->count();
     }
 
     protected function foundationSeams()

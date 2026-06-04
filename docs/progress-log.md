@@ -262,6 +262,10 @@
 - Added `phaseOneEntityHasLiveRecords()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the Phase 1 entity-map live-coverage count now reads through one named model-presence check instead of embedding the class-exists and query-count test inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard entity live-record cleanup.
 
+### Dashboard model-class count seam checkpoint
+- Added `modelClassCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the Phase 1 entity live-record seam no longer performs the raw model-class query count inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard model-class count cleanup.
+
 ### Dashboard phase-one reference collection seam checkpoint
 - Added `foundationSeams()`, `referenceDocs()`, and `seamSources()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the Phase 1 seam, reference-doc, and README-source coverage cards no longer rebuild those config collections inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard Phase 1 reference-collection cleanup.
