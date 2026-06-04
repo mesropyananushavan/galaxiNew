@@ -206,6 +206,10 @@
 - Added `liveFoundationSurfaceCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the foundation posture summary now builds from one shared branch-holder-card-tier-access surface count seam instead of rebuilding the grouped count inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard foundation-surface cleanup.
 
+### Dashboard foundation-target seam checkpoint
+- Added `foundationTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so both foundation focus and foundation surface counting now build from one named foundation-target definition instead of maintaining separate inline branch-holder-card-tier-access lists.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard target-definition cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
