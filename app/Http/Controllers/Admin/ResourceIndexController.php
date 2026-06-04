@@ -1894,9 +1894,9 @@ class ResourceIndexController extends Controller
                 $cardType->slug,
                 number_format((float) $cardType->points_rate, 2).'x',
                 filled($cardType->rollout_note) ? str($cardType->rollout_note)->limit(72)->toString() : 'No rollout note saved yet',
-                $cardType->is_active ? 'Active in Galaxy foundation flow' : 'Draft in Galaxy foundation flow',
+                $this->cardTypeStatusFlowLabel($cardType),
                 [
-                    'label' => $cardType->is_active ? 'Move to draft' : 'Activate tier',
+                    'label' => $this->cardTypesToggleStatusActionLabel($cardType),
                     'href' => route('admin.card-types.toggle-status', $cardType, absolute: false),
                     'method' => 'PATCH',
                 ],
@@ -2091,7 +2091,7 @@ class ResourceIndexController extends Controller
             'name' => $selectedCardType->name,
             'slug' => $selectedCardType->slug,
             'points_rate' => (string) $selectedCardType->points_rate,
-            'is_active' => $selectedCardType->is_active ? '1' : '0',
+            'is_active' => $this->cardTypeIsActive($selectedCardType) ? '1' : '0',
             'review_note' => $selectedCardType->review_note ?? '',
             'activation_note' => $selectedCardType->activation_note ?? '',
             'rollout_note' => $selectedCardType->rollout_note ?? '',
@@ -2136,7 +2136,14 @@ class ResourceIndexController extends Controller
 
     private function cardTypesToggleStatusActionLabel(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active ? 'Move to draft' : 'Activate tier';
+        return $this->cardTypeIsActive($selectedCardType) ? 'Move to draft' : 'Activate tier';
+    }
+
+    private function cardTypeStatusFlowLabel(CardType $cardType): string
+    {
+        return $this->cardTypeIsActive($cardType)
+            ? 'Active in Galaxy foundation flow'
+            : 'Draft in Galaxy foundation flow';
     }
 
     private function cardTypesEditingActionLabel(CardType $selectedCardType): string

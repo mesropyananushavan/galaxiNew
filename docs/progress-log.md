@@ -10,6 +10,10 @@
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-tier posture, evidence, publish/import guidance, and readiness messaging no longer check `is_active` directly.
 - Re-ran the card-types management preview, live edit-mode, and live visible-card coverage assertions as the parity check for this additional helper reuse step.
 
+### Card-type status-flow active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so tier catalog status copy, toggle labels, and selected-tier live-form `is_active` values no longer check `is_active` directly.
+- Added a small `cardTypeStatusFlowLabel()` helper and re-ran the card-types management preview, live edit-mode, and live visible-card coverage assertions as the parity check for this structural cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
