@@ -45,12 +45,22 @@ class Shop extends Model
         return $query->staffAssigned();
     }
 
+    public function scopeCardholderCovered(Builder $query): Builder
+    {
+        return $query->has('cardHolders');
+    }
+
+    public function scopeCardCovered(Builder $query): Builder
+    {
+        return $query->has('cards');
+    }
+
     public function scopeFoundationCovered(Builder $query): Builder
     {
         return $query->where(function (Builder $coverageQuery): void {
             $coverageQuery
-                ->has('cardHolders')
-                ->orHas('cards');
+                ->cardholderCovered()
+                ->orWhere(fn (Builder $orCoverageQuery): Builder => $orCoverageQuery->cardCovered());
         });
     }
 
