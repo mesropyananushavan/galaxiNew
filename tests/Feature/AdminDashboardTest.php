@@ -965,7 +965,9 @@ class AdminDashboardTest extends TestCase
             'shop_id' => $managedShop->id,
         ]);
 
+        $this->assertSame([$managedShop->id], Shop::query()->staffAssigned()->pluck('id')->all());
         $this->assertSame([$managedShop->id], Shop::query()->managerAssigned()->pluck('id')->all());
+        $this->assertNotContains($unmanagedShop->id, Shop::query()->staffAssigned()->pluck('id')->all());
         $this->assertNotContains($unmanagedShop->id, Shop::query()->managerAssigned()->pluck('id')->all());
     }
 
@@ -1365,10 +1367,14 @@ class AdminDashboardTest extends TestCase
             'status' => 'draft',
         ]);
 
+        $this->assertSame([$coveredByHolderShop->id], Shop::query()->cardholderCovered()->pluck('id')->all());
+        $this->assertSame([$coveredByCardShop->id], Shop::query()->cardCovered()->pluck('id')->all());
         $this->assertEqualsCanonicalizing(
             [$coveredByHolderShop->id, $coveredByCardShop->id],
             Shop::query()->foundationCovered()->pluck('id')->all(),
         );
+        $this->assertNotContains($uncoveredShop->id, Shop::query()->cardholderCovered()->pluck('id')->all());
+        $this->assertNotContains($uncoveredShop->id, Shop::query()->cardCovered()->pluck('id')->all());
         $this->assertNotContains($uncoveredShop->id, Shop::query()->foundationCovered()->pluck('id')->all());
     }
 
@@ -1466,7 +1472,9 @@ class AdminDashboardTest extends TestCase
 
         $shopUser->roles()->attach($role->id);
 
+        $this->assertSame([$coveredShop->id], Shop::query()->roleAssigned()->pluck('id')->all());
         $this->assertSame([$coveredShop->id], Shop::query()->roleCovered()->pluck('id')->all());
+        $this->assertNotContains($uncoveredShop->id, Shop::query()->roleAssigned()->pluck('id')->all());
         $this->assertNotContains($uncoveredShop->id, Shop::query()->roleCovered()->pluck('id')->all());
     }
 

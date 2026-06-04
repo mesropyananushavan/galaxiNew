@@ -110,6 +110,10 @@
 - Reused the existing `staffAssigned()` seam in `app/Models/Shop.php` so `roleAssigned()` now builds on the named branch-staff assignment chain instead of standing alone as a raw role-link check.
 - Re-ran the admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity check for this shop role-coverage cleanup.
 
+### Shop seam regression coverage checkpoint
+- Expanded `tests/Feature/AdminDashboardTest.php` so the new `Shop` domain seams are asserted directly: `staffAssigned()`, `cardholderCovered()`, `cardCovered()`, and `roleAssigned()` now each have focused baseline coverage alongside their older wrapper scopes.
+- Re-ran the focused shop scope and shops operational index assertions as the regression slice for the recent shop foundation/access seam cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
