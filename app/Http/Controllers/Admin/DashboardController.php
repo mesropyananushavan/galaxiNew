@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
+use Illuminate\Database\Eloquent\Model;
 
 class DashboardController extends Controller
 {
@@ -597,13 +598,7 @@ class DashboardController extends Controller
 
     protected function roleRelationCount(Role $role, string $relation): int
     {
-        $countAttribute = $this->roleRelationCountAttribute($relation);
-
-        if (! is_string($countAttribute)) {
-            return 0;
-        }
-
-        return (int) ($role->{$countAttribute} ?? $role->{$relation}->count());
+        return $this->modelRelationCount($role, $relation, $this->roleRelationCountAttribute($relation));
     }
 
     protected function roleRelationCountAttribute(string $relation): ?string
@@ -691,13 +686,16 @@ class DashboardController extends Controller
 
     protected function shopRelationCount(Shop $shop, string $relation): int
     {
-        $countAttribute = $this->shopRelationCountAttribute($relation);
+        return $this->modelRelationCount($shop, $relation, $this->shopRelationCountAttribute($relation));
+    }
 
+    protected function modelRelationCount(Model $model, string $relation, ?string $countAttribute): int
+    {
         if (! is_string($countAttribute)) {
             return 0;
         }
 
-        return (int) ($shop->{$countAttribute} ?? $shop->{$relation}->count());
+        return (int) ($model->{$countAttribute} ?? $model->{$relation}->count());
     }
 
     protected function liveReviewEntryPoints(): array
