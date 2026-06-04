@@ -2506,8 +2506,8 @@ class ResourceIndexController extends Controller
         $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
 
         return match (true) {
-            $selectedCardType->is_active && $hasVisibleCoverage => 'Live tier already carries visible card coverage for a useful rollout-parity handoff review.',
-            $selectedCardType->is_active => 'Live tier should stay in handoff-only posture until visible card coverage and rollout parity are explicit.',
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Live tier already carries visible card coverage for a useful rollout-parity handoff review.',
+            $this->cardTypeIsActive($selectedCardType) => 'Live tier should stay in handoff-only posture until visible card coverage and rollout parity are explicit.',
             $hasVisibleCoverage => 'Draft tier already carries visible card coverage for a useful parity handoff review.',
             default => 'Draft tier should stay in handoff-only posture until visible card coverage grounds rollout review.',
         };
