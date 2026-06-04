@@ -2768,8 +2768,8 @@ class ResourceIndexController extends Controller
     private function cardholdersSelectedReviewActivityDisabledReason(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Blocked until paused-branch linked-card activity is backed by a stable Galaxy foundation event source for recovery-parity review.',
-            (bool) $selectedCardHolder->shop?->is_active === false => 'Blocked until paused-branch activity history is backed by a stable Galaxy foundation event source for recovery-parity review.',
+            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Blocked until paused-branch linked-card activity is backed by a stable Galaxy foundation event source for recovery-parity review.',
+            $this->cardholderShopIsPaused($selectedCardHolder) => 'Blocked until paused-branch activity history is backed by a stable Galaxy foundation event source for recovery-parity review.',
             $this->cardholderLinkedCardCount($selectedCardHolder) > 0 && $this->cardholderIsActive($selectedCardHolder) => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for active-holder lookup parity.',
             $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for holder lookup parity.',
             ! $this->cardholderIsActive($selectedCardHolder) => 'Blocked until inactive-holder activity history is backed by a stable Galaxy foundation event source for lifecycle parity.',
@@ -4167,6 +4167,16 @@ class ResourceIndexController extends Controller
         return (bool) $selectedCardHolder->is_active;
     }
 
+    private function cardholderShopIsActive(CardHolder $selectedCardHolder): bool
+    {
+        return (bool) $selectedCardHolder->shop?->is_active;
+    }
+
+    private function cardholderShopIsPaused(CardHolder $selectedCardHolder): bool
+    {
+        return $selectedCardHolder->shop !== null && ! $this->cardholderShopIsActive($selectedCardHolder);
+    }
+
     private function cardholdersGalaxyStatusLabel(CardHolder $selectedCardHolder): string
     {
         return $this->cardholderIsActive($selectedCardHolder) ? 'active' : 'inactive';
@@ -4200,7 +4210,7 @@ class ResourceIndexController extends Controller
     private function cardholdersLookupGuidance(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'This holder is active in the Galaxy foundation layer but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.',
+            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderIsActive($selectedCardHolder) => 'This holder is active in the Galaxy foundation layer but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.',
             $this->cardholderIsActive($selectedCardHolder) => 'This holder is active in the Galaxy foundation layer, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.',
             default => 'This holder is inactive in the Galaxy foundation layer, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
         };
@@ -4209,7 +4219,7 @@ class ResourceIndexController extends Controller
     private function cardholdersHolderFocus(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'Start with paused-branch status, branch linkage, and linked-card visibility before discussing any later recovery, profile merge, or lifecycle-change edge case.',
+            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderIsActive($selectedCardHolder) => 'Start with paused-branch status, branch linkage, and linked-card visibility before discussing any later recovery, profile merge, or lifecycle-change edge case.',
             $this->cardholderIsActive($selectedCardHolder) => 'Start with active status, branch linkage, and linked-card visibility before discussing any later profile merge or reactivation edge case.',
             default => 'Start with inactive status, branch linkage, and linked-card visibility before discussing any later reactivation or profile merge flow.',
         };
@@ -4218,7 +4228,7 @@ class ResourceIndexController extends Controller
     private function cardholdersHolderPosture(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'Keep paused-branch holder review in the workspace first, then leave recovery, merge, and lifecycle-change flows gated until branch parity is proven.',
+            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderIsActive($selectedCardHolder) => 'Keep paused-branch holder review in the workspace first, then leave recovery, merge, and lifecycle-change flows gated until branch parity is proven.',
             $this->cardholderIsActive($selectedCardHolder) => 'Keep live holder review in the workspace first, then leave profile-write, merge, and lifecycle-change flows gated until parity is proven.',
             default => 'Keep inactive holder review in the workspace first, then leave reactivation, merge, and profile-write flows gated until parity is proven.',
         };
@@ -4227,7 +4237,7 @@ class ResourceIndexController extends Controller
     private function cardholdersEvidencePriority(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'Keep paused-branch status, branch linkage, and linked-card visibility together before trusting any later recovery, merge, or lifecycle-change discussion.',
+            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderIsActive($selectedCardHolder) => 'Keep paused-branch status, branch linkage, and linked-card visibility together before trusting any later recovery, merge, or lifecycle-change discussion.',
             $this->cardholderIsActive($selectedCardHolder) => 'Keep active status, branch linkage, and linked-card visibility together before trusting any later profile merge or lifecycle-change discussion.',
             default => 'Keep inactive status, branch linkage, and linked-card visibility together before trusting any later reactivation or merge discussion.',
         };
@@ -4236,7 +4246,7 @@ class ResourceIndexController extends Controller
     private function cardholdersBackendGap(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'Recovery handling, profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until paused-branch holder parity is verified.',
+            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderIsActive($selectedCardHolder) => 'Recovery handling, profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until paused-branch holder parity is verified.',
             $this->cardholderIsActive($selectedCardHolder) => 'Profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.',
             default => 'Reactivation handling, profile writes, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.',
         };
@@ -4276,7 +4286,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $selectedCardHolder->shop === null => 'Branch assignment is still missing, so branch-aware lookup parity remains incomplete.',
-            (bool) $selectedCardHolder->shop->is_active => 'Holder is anchored to an active branch for live lookup review.',
+            $this->cardholderShopIsActive($selectedCardHolder) => 'Holder is anchored to an active branch for live lookup review.',
             default => 'Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.',
         };
     }
@@ -4284,8 +4294,8 @@ class ResourceIndexController extends Controller
     private function cardholdersActivityHandoffSignal(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Paused-branch holder already carries linked-card evidence, so branch-recovery context should stay attached to the activity handoff.',
-            (bool) $selectedCardHolder->shop?->is_active === false => 'Paused-branch holder should carry branch-recovery context forward until lookup and reactivation parity are explicit.',
+            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Paused-branch holder already carries linked-card evidence, so branch-recovery context should stay attached to the activity handoff.',
+            $this->cardholderShopIsPaused($selectedCardHolder) => 'Paused-branch holder should carry branch-recovery context forward until lookup and reactivation parity are explicit.',
             ! $this->cardholderIsActive($selectedCardHolder) && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Dormant holder already carries linked-card evidence for a useful lifecycle handoff review.',
             ! $this->cardholderIsActive($selectedCardHolder) => 'Dormant holder should stay in handoff-only posture until reactivation parity is explicit.',
             $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Active holder already carries linked-card context for a useful activity handoff review.',
@@ -4296,8 +4306,8 @@ class ResourceIndexController extends Controller
     private function cardholdersActivityTimelineHandoffDescription(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Operators should carry paused-branch context, linked-card evidence, and holder status together in the live workspace before trusting any reactivation or merge follow-up.',
-            (bool) $selectedCardHolder->shop?->is_active === false => 'Operators should carry paused-branch context, holder status, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.',
+            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Operators should carry paused-branch context, linked-card evidence, and holder status together in the live workspace before trusting any reactivation or merge follow-up.',
+            $this->cardholderShopIsPaused($selectedCardHolder) => 'Operators should carry paused-branch context, holder status, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.',
             ! $this->cardholderIsActive($selectedCardHolder) && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Operators should carry inactive status, linked-card evidence, and branch context in the live workspace before trusting any reactivation or merge follow-up.',
             ! $this->cardholderIsActive($selectedCardHolder) => 'Operators should carry inactive status, branch context, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.',
             $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Operators should carry active status, linked-card evidence, and branch context in the live workspace before trusting any lifecycle-change or merge follow-up.',
@@ -4332,7 +4342,7 @@ class ResourceIndexController extends Controller
     private function cardholdersStatusPosture(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'This holder is visible in a paused branch, so lifecycle changes should stay blocked until branch-recovery and lookup parity are verified.',
+            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderIsActive($selectedCardHolder) => 'This holder is visible in a paused branch, so lifecycle changes should stay blocked until branch-recovery and lookup parity are verified.',
             $this->cardholderIsActive($selectedCardHolder) => 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.',
             default => 'This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.',
         };
@@ -4348,7 +4358,7 @@ class ResourceIndexController extends Controller
     private function cardholdersActivityPosture(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false => 'Recent activity remains blocked until a stable Galaxy foundation event source preserves paused-branch lookup and recovery parity.',
+            $this->cardholderShopIsPaused($selectedCardHolder) => 'Recent activity remains blocked until a stable Galaxy foundation event source preserves paused-branch lookup and recovery parity.',
             default => 'Recent activity remains blocked until a stable Galaxy foundation event source exists for holder lookup parity.',
         };
     }

@@ -2,6 +2,10 @@
 
 ## 2026-06-04
 
+### Cardholder shop-state helper checkpoint
+- Added `cardholderShopIsActive()` and `cardholderShopIsPaused()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-holder lookup, handoff, activity, and blocker messaging no longer repeat direct branch `is_active` checks.
+- Re-ran the selected-holder, active-linked-holder, active-unlinked-holder, inactive-linked-holder, and paused-branch holder assertions as the parity check for this additional helper reuse step.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
