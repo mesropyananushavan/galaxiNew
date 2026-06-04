@@ -2528,9 +2528,9 @@ class ResourceIndexController extends Controller
     private function cardTypesActivationFreshness(CardType $selectedCardType): string
     {
         return match (true) {
-            filled($selectedCardType->activation_note) && $selectedCardType->is_active => 'Activation note is already saved on this live Galaxy foundation tier shell.',
+            filled($selectedCardType->activation_note) && $this->cardTypeIsActive($selectedCardType) => 'Activation note is already saved on this live Galaxy foundation tier shell.',
             filled($selectedCardType->activation_note) => 'Activation note is already staged on this draft Galaxy foundation tier shell.',
-            $selectedCardType->is_active => 'Live tier still needs a saved activation note before rollout handoff can feel grounded.',
+            $this->cardTypeIsActive($selectedCardType) => 'Live tier still needs a saved activation note before rollout handoff can feel grounded.',
             default => 'Draft tier can stay safe while activation guidance is still being written.',
         };
     }
