@@ -126,6 +126,10 @@
 - Reused the existing `Card::activated()` seam inside `app/Models/CardHolder.php` so `activatedLinked()` now composes through the shared card activation scope instead of repeating a raw activation timestamp filter inside its card relation query.
 - Re-ran the focused holder card-state and cardholders operational index assertions as the parity slice for this linkage cleanup.
 
+### Shop role-assigned user seam checkpoint
+- Reused the existing `User::roleAssigned()` seam inside `app/Models/Shop.php` so `roleAssigned()` now composes through the named user access-assignment chain instead of a raw `users.roles` relation path.
+- Re-ran the focused shop role-coverage, shops operational index, and admin dashboard assertions as the parity slice for this access-chain cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
