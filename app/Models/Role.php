@@ -52,7 +52,7 @@ class Role extends Model
 
     public function scopeShopScopedAssigned(Builder $query): Builder
     {
-        return $query->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->whereNotNull('shop_id'));
+        return $query->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToScopedShop());
     }
 
     public function scopeAssignedToActiveShop(Builder $query): Builder

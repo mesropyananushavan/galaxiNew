@@ -35,17 +35,22 @@ class User extends Authenticatable
         return $query->whereNull('shop_id');
     }
 
+    public function scopeAssignedToScopedShop(Builder $query): Builder
+    {
+        return $query->whereNotNull('shop_id');
+    }
+
     public function scopeAssignedToActiveShop(Builder $query): Builder
     {
         return $query
-            ->whereNotNull('shop_id')
+            ->assignedToScopedShop()
             ->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->active());
     }
 
     public function scopeAssignedToPausedShop(Builder $query): Builder
     {
         return $query
-            ->whereNotNull('shop_id')
+            ->assignedToScopedShop()
             ->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->paused());
     }
 
@@ -56,7 +61,7 @@ class User extends Authenticatable
 
     public function scopeRoleAssignedToScopedShop(Builder $query): Builder
     {
-        return $query->roleAssigned()->whereNotNull('shop_id');
+        return $query->roleAssigned()->assignedToScopedShop();
     }
 
     public function scopeRoleAssignedToActiveShop(Builder $query): Builder
