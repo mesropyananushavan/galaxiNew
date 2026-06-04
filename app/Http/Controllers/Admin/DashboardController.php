@@ -119,9 +119,19 @@ class DashboardController extends Controller
     protected function livePhaseOneEntityCount(): int
     {
         return $this->domainEntities()
-            ->filter(fn (array $entity): bool => filled($entity['model'] ?? null) && class_exists($entity['model']))
-            ->filter(fn (array $entity): bool => $entity['model']::query()->count() > 0)
+            ->filter(fn (array $entity): bool => $this->phaseOneEntityHasLiveRecords($entity))
             ->count();
+    }
+
+    protected function phaseOneEntityHasLiveRecords(array $entity): bool
+    {
+        $model = $entity['model'] ?? null;
+
+        if (! filled($model) || ! class_exists($model)) {
+            return false;
+        }
+
+        return $model::query()->count() > 0;
     }
 
     protected function foundationSeams()
