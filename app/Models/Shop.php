@@ -35,9 +35,14 @@ class Shop extends Model
         return $query->whereNotNull('review_note')->where('review_note', '!=', '');
     }
 
-    public function scopeManagerAssigned(Builder $query): Builder
+    public function scopeStaffAssigned(Builder $query): Builder
     {
         return $query->whereHas('users');
+    }
+
+    public function scopeManagerAssigned(Builder $query): Builder
+    {
+        return $query->staffAssigned();
     }
 
     public function scopeFoundationCovered(Builder $query): Builder
