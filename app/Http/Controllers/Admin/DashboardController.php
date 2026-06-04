@@ -146,7 +146,7 @@ class DashboardController extends Controller
 
     protected function foundationSeamCount(): int
     {
-        return $this->foundationSeams()->count();
+        return $this->countConfigItems($this->foundationSeams());
     }
 
     protected function phaseOneReferenceDocsCoverage(): string
@@ -161,7 +161,7 @@ class DashboardController extends Controller
 
     protected function referenceDocCount(): int
     {
-        return $this->referenceDocs()->count();
+        return $this->countConfigItems($this->referenceDocs());
     }
 
     protected function phaseOneSeamSourcesCoverage(): string
@@ -176,7 +176,12 @@ class DashboardController extends Controller
 
     protected function seamSourceCount(): int
     {
-        return $this->seamSources()->count();
+        return $this->countConfigItems($this->seamSources());
+    }
+
+    protected function countConfigItems($items): int
+    {
+        return $items->count();
     }
 
     protected function liveEntryPointFocus(): string

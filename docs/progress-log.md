@@ -254,6 +254,10 @@
 - Added `foundationSeamCount()`, `referenceDocCount()`, and `seamSourceCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the Phase 1 seam, reference-doc, and README-source coverage summaries no longer call collection counts inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard Phase 1 reference-count cleanup.
 
+### Dashboard config-item count seam checkpoint
+- Added `countConfigItems()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so Phase 1 seam, reference-doc, and README-source count seams now share one named collection-count helper instead of repeating direct `->count()` calls.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard config-item count cleanup.
+
 ### Dashboard latest-workspace collection seam checkpoint
 - Added `latestWorkspaces()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused it so latest-work coverage, focus, posture, handoff summary, and the dashboard payload itself all read from one named latest-work workspace collection instead of rebuilding the same filtered shop-holder-card-tier-role list inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard latest-workspace cleanup.
