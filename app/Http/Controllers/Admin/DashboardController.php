@@ -672,6 +672,17 @@ class DashboardController extends Controller
         };
     }
 
+    protected function shopRelationCount(Shop $shop, string $relation): int
+    {
+        $countAttribute = $this->shopRelationCountAttribute($relation);
+
+        if (! is_string($countAttribute)) {
+            return 0;
+        }
+
+        return (int) ($shop->{$countAttribute} ?? $shop->{$relation}->count());
+    }
+
     protected function liveReviewEntryPoints(): array
     {
         $shop = $this->activeScopedShop();
@@ -934,17 +945,17 @@ class DashboardController extends Controller
 
     protected function shopVisibleHolderCount(Shop $shop): int
     {
-        return (int) ($shop->card_holders_count ?? $shop->cardHolders->count());
+        return $this->shopRelationCount($shop, 'cardHolders');
     }
 
     protected function shopVisibleCardCount(Shop $shop): int
     {
-        return (int) ($shop->cards_count ?? $shop->cards->count());
+        return $this->shopRelationCount($shop, 'cards');
     }
 
     protected function shopAssignedStaffCount(Shop $shop): int
     {
-        return (int) ($shop->users_count ?? $shop->users->count());
+        return $this->shopRelationCount($shop, 'users');
     }
 
     protected function shopIsActive(Shop $shop): bool
