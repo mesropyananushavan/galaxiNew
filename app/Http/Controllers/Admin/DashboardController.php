@@ -108,7 +108,7 @@ class DashboardController extends Controller
 
     protected function phaseOneFoundationSeamsCoverage(): string
     {
-        return sprintf('%d Phase 1 foundation seams currently tracked', $this->foundationSeams()->count());
+        return sprintf('%d Phase 1 foundation seams currently tracked', $this->foundationSeamCount());
     }
 
     protected function domainEntities()
@@ -144,9 +144,14 @@ class DashboardController extends Controller
         return collect(config('phase-1-foundation-seams.items', []));
     }
 
+    protected function foundationSeamCount(): int
+    {
+        return $this->foundationSeams()->count();
+    }
+
     protected function phaseOneReferenceDocsCoverage(): string
     {
-        return sprintf('%d Phase 1 reference docs currently linked', $this->referenceDocs()->count());
+        return sprintf('%d Phase 1 reference docs currently linked', $this->referenceDocCount());
     }
 
     protected function referenceDocs()
@@ -154,14 +159,24 @@ class DashboardController extends Controller
         return collect(config('phase-1-reference-docs.items', []));
     }
 
+    protected function referenceDocCount(): int
+    {
+        return $this->referenceDocs()->count();
+    }
+
     protected function phaseOneSeamSourcesCoverage(): string
     {
-        return sprintf('%d README-level seam sources currently tracked', $this->seamSources()->count());
+        return sprintf('%d README-level seam sources currently tracked', $this->seamSourceCount());
     }
 
     protected function seamSources()
     {
         return collect(config('phase-1-seam-sources.items', []));
+    }
+
+    protected function seamSourceCount(): int
+    {
+        return $this->seamSources()->count();
     }
 
     protected function liveEntryPointFocus(): string
