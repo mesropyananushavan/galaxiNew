@@ -2320,7 +2320,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesFocus(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'Start with saved card coverage, live status, and rollout note clarity before discussing any later publish reversal or rule import step.'
             : 'Start with saved card coverage, draft status, activation readiness, and rollout note clarity before discussing any later rule import step.';
     }
