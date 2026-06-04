@@ -226,6 +226,10 @@
 - Added `roleRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so `rolePermissionCount()` now reads through one named role relation-count seam instead of maintaining its own permission-count fallback inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard role relation-count cleanup.
 
+### Dashboard role-relation attribute seam checkpoint
+- Added `roleRelationCountAttribute()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so role relation counts now resolve their count attribute through one explicit seam instead of rebuilding the permission count attribute inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard role relation-attribute cleanup.
+
 ### Dashboard holder-count seam checkpoint
 - Added `savedCardHolderCount()` and `activeCardHolderCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the dashboard payload, active foundation coverage, live core-domain count, and staged holder target definition no longer duplicate raw holder count queries inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, and cardholders operational index assertions as the parity slice for this dashboard holder-count cleanup.
