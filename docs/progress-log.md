@@ -214,6 +214,10 @@
 - Added `savedCardTypeCount()` and `activeCardTypeCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the dashboard payload, tier baseline summary, and foundation target list no longer reach for raw tier count queries inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard tier-count cleanup.
 
+### Dashboard branch-count seam checkpoint
+- Added `savedShopCount()`, `activeShopCount()`, and `pausedShopCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the dashboard payload, branch pause summary, active foundation coverage, and staged branch target definition no longer duplicate raw branch count queries inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard branch-count cleanup.
+
 ### Dashboard live-entry target seam checkpoint
 - Added `liveEntryTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so live entry domain counting, plus the branch-holder-card subset inside foundation targets, now build from one named staged-entry target definition instead of maintaining separate inline lists.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard staged-entry cleanup.

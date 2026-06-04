@@ -54,8 +54,8 @@ class DashboardController extends Controller
             'branchPauseCoverage' => $this->branchPauseCoverage(),
             'accessBaselineCoverage' => $this->accessBaselineCoverage(),
             'tierBaselineCoverage' => $this->tierBaselineCoverage(),
-            'shopCount' => Shop::query()->count(),
-            'activeShopCount' => Shop::query()->active()->count(),
+            'shopCount' => $this->savedShopCount(),
+            'activeShopCount' => $this->activeShopCount(),
             'cardHolderCount' => CardHolder::query()->count(),
             'activeCardHolderCount' => CardHolder::query()->active()->count(),
             'cardCount' => Card::query()->count(),
@@ -271,8 +271,8 @@ class DashboardController extends Controller
 
     protected function activeFoundationCoverage(): string
     {
-        $shopCount = Shop::query()->count();
-        $activeShopCount = Shop::query()->active()->count();
+        $shopCount = $this->savedShopCount();
+        $activeShopCount = $this->activeShopCount();
         $cardHolderCount = CardHolder::query()->count();
         $activeCardHolderCount = CardHolder::query()->active()->count();
         $cardCount = Card::query()->count();
@@ -289,8 +289,8 @@ class DashboardController extends Controller
 
     protected function branchPauseCoverage(): string
     {
-        $shopCount = Shop::query()->count();
-        $pausedShopCount = Shop::query()->paused()->count();
+        $shopCount = $this->savedShopCount();
+        $pausedShopCount = $this->pausedShopCount();
 
         return sprintf('%d/%d branches paused', $pausedShopCount, $shopCount);
     }
@@ -306,6 +306,21 @@ class DashboardController extends Controller
     protected function permissionBearingRoleCount(): int
     {
         return (int) Role::query()->permissionBearing()->count();
+    }
+
+    protected function savedShopCount(): int
+    {
+        return (int) Shop::query()->count();
+    }
+
+    protected function activeShopCount(): int
+    {
+        return (int) Shop::query()->active()->count();
+    }
+
+    protected function pausedShopCount(): int
+    {
+        return (int) Shop::query()->paused()->count();
     }
 
     protected function savedRoleCount(): int
@@ -368,7 +383,7 @@ class DashboardController extends Controller
     protected function liveEntryTargets(): array
     {
         return [
-            ['count' => Shop::query()->count(), 'label' => 'live Galaxy branches'],
+            ['count' => $this->savedShopCount(), 'label' => 'live Galaxy branches'],
             ['count' => CardHolder::query()->count(), 'label' => 'live Galaxy holders'],
             ['count' => Card::query()->count(), 'label' => 'live Galaxy card shells'],
         ];
