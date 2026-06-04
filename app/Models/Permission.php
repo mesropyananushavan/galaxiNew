@@ -13,9 +13,14 @@ class Permission extends Model
 {
     use HasFactory;
 
-    public function scopeAssignedToRoles(Builder $query): Builder
+    public function scopeRoleLinked(Builder $query): Builder
     {
         return $query->whereHas('roles');
+    }
+
+    public function scopeAssignedToRoles(Builder $query): Builder
+    {
+        return $query->roleLinked();
     }
 
     public function scopeReviewNoted(Builder $query): Builder
