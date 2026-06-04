@@ -76,7 +76,7 @@ class User extends Authenticatable
 
     public function scopePermissionBearing(Builder $query): Builder
     {
-        return $query->whereHas('roles', fn (Builder $roleQuery): Builder => $roleQuery->permissionBearing());
+        return $query->roleAssigned()->whereHas('roles', fn (Builder $roleQuery): Builder => $roleQuery->permissionBearing());
     }
 
     public function scopeShopScopedAdmins(Builder $query): Builder

@@ -134,6 +134,10 @@
 - Expanded `tests/Feature/AdminDashboardTest.php` so `Permission::assignedToRoles()` is asserted directly, not only through the narrower review-note slice, which locks in the existing permission-to-role access seam with a clearer baseline.
 - Re-ran the focused permission catalog and roles-permissions management preview assertions as the regression slice for this access-domain coverage update.
 
+### User permission-bearing role seam checkpoint
+- Reused the existing `roleAssigned()` seam in `app/Models/User.php` so `permissionBearing()` now composes through the named user role-assignment chain instead of standing alone as a raw role relation filter.
+- Re-ran the focused user access-scope and admin dashboard assertions as the parity slice for this user access-chain cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
