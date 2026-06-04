@@ -1030,6 +1030,10 @@ class AdminDashboardTest extends TestCase
         );
         $this->assertSame([$pausedUnlinkedHolder->id], CardHolder::query()->assignedToPausedShop()->pluck('id')->all());
         $this->assertSame([$activeLinkedHolder->id], CardHolder::query()->assignedToActiveShopLinked()->pluck('id')->all());
+        $this->assertEqualsCanonicalizing(
+            [$pausedUnlinkedHolder->id, $activeUnlinkedHolder->id],
+            CardHolder::query()->unlinked()->pluck('id')->all(),
+        );
         $this->assertSame([$pausedUnlinkedHolder->id], CardHolder::query()->assignedToPausedShopUnlinked()->pluck('id')->all());
     }
 

@@ -114,6 +114,10 @@
 - Expanded `tests/Feature/AdminDashboardTest.php` so the new `Shop` domain seams are asserted directly: `staffAssigned()`, `cardholderCovered()`, `cardCovered()`, and `roleAssigned()` now each have focused baseline coverage alongside their older wrapper scopes.
 - Re-ran the focused shop scope and shops operational index assertions as the regression slice for the recent shop foundation/access seam cleanup.
 
+### Cardholder unlinked seam checkpoint
+- Added `unlinked()` in `app/Models/CardHolder.php` and reused it so active, inactive, and paused-branch-unlinked holder scopes now build on one named card-linkage seam instead of repeating raw `doesntHave('cards')` checks.
+- Expanded the holder scope baseline assertions to cover the new `unlinked()` seam directly, then re-ran the focused holder and cardholders operational index tests as the parity slice for this cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

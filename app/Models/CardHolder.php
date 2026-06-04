@@ -66,14 +66,19 @@ class CardHolder extends Model
         return $query->inactive()->linked();
     }
 
+    public function scopeUnlinked(Builder $query): Builder
+    {
+        return $query->doesntHave('cards');
+    }
+
     public function scopeActiveUnlinked(Builder $query): Builder
     {
-        return $query->active()->doesntHave('cards');
+        return $query->active()->unlinked();
     }
 
     public function scopeInactiveUnlinked(Builder $query): Builder
     {
-        return $query->inactive()->doesntHave('cards');
+        return $query->inactive()->unlinked();
     }
 
     public function scopeBlockedLinked(Builder $query): Builder
@@ -103,7 +108,7 @@ class CardHolder extends Model
 
     public function scopeAssignedToPausedShopUnlinked(Builder $query): Builder
     {
-        return $query->assignedToPausedShop()->doesntHave('cards');
+        return $query->assignedToPausedShop()->unlinked();
     }
 
     public function shop(): BelongsTo
