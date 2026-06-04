@@ -351,7 +351,7 @@ class DashboardController extends Controller
 
     protected function savedShopCount(): int
     {
-        return (int) Shop::query()->count();
+        return $this->modelClassCount(Shop::class);
     }
 
     protected function activeShopCount(): int
@@ -366,17 +366,17 @@ class DashboardController extends Controller
 
     protected function savedRoleCount(): int
     {
-        return (int) Role::query()->count();
+        return $this->modelClassCount(Role::class);
     }
 
     protected function savedPermissionCount(): int
     {
-        return (int) Permission::query()->count();
+        return $this->modelClassCount(Permission::class);
     }
 
     protected function savedCardHolderCount(): int
     {
-        return (int) CardHolder::query()->count();
+        return $this->modelClassCount(CardHolder::class);
     }
 
     protected function activeCardHolderCount(): int
@@ -386,7 +386,7 @@ class DashboardController extends Controller
 
     protected function savedCardCount(): int
     {
-        return (int) Card::query()->count();
+        return $this->modelClassCount(Card::class);
     }
 
     protected function activeCardCount(): int
@@ -396,7 +396,7 @@ class DashboardController extends Controller
 
     protected function savedCardTypeCount(): int
     {
-        return (int) CardType::query()->count();
+        return $this->modelClassCount(CardType::class);
     }
 
     protected function activeCardTypeCount(): int
