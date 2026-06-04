@@ -395,26 +395,17 @@ class DashboardController extends Controller
 
     protected function liveCoreDomainCount(): int
     {
-        return collect($this->liveCoreTargets())
-            ->pluck('count')
-            ->filter(fn (int $count): bool => $count > 0)
-            ->count();
+        return $this->countVisibleTargets($this->liveCoreTargets());
     }
 
     protected function liveEntryDomainCount(): int
     {
-        return collect($this->liveEntryTargets())
-            ->pluck('count')
-            ->filter(fn (int $count): bool => $count > 0)
-            ->count();
+        return $this->countVisibleTargets($this->liveEntryTargets());
     }
 
     protected function liveFoundationSurfaceCount(): int
     {
-        return collect($this->foundationTargets())
-            ->pluck('count')
-            ->filter(fn (int $count): bool => $count > 0)
-            ->count();
+        return $this->countVisibleTargets($this->foundationTargets());
     }
 
     protected function foundationTargets(): array
@@ -449,6 +440,14 @@ class DashboardController extends Controller
             ['count' => $this->savedRoleCount(), 'label' => 'live Galaxy access shells'],
             ['count' => $this->savedPermissionCount(), 'label' => 'live access permissions'],
         ];
+    }
+
+    protected function countVisibleTargets(array $targets): int
+    {
+        return collect($targets)
+            ->pluck('count')
+            ->filter(fn (int $count): bool => $count > 0)
+            ->count();
     }
 
     protected function visibleAccessTargets(): array
