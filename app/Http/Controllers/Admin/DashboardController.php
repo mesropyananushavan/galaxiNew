@@ -493,7 +493,7 @@ class DashboardController extends Controller
 
     protected function scopedLatestWorkspaceLabel(Shop $shop, string $reviewLabel, string $setupLabel, array $emptyRelations): string
     {
-        if (! $this->isShopScopedAdmin() || ! $shop->is_active) {
+        if (! $this->isShopScopedAdmin() || ! $this->shopIsActive($shop)) {
             return $reviewLabel;
         }
 
@@ -510,7 +510,7 @@ class DashboardController extends Controller
 
         $shop = $this->adminUser()?->shop;
 
-        return $shop instanceof Shop && $shop->is_active
+        return $shop instanceof Shop && $this->shopIsActive($shop)
             ? $shop
             : null;
     }
@@ -821,7 +821,7 @@ class DashboardController extends Controller
 
     protected function shopIsActive(Shop $shop): bool
     {
-        return $shop->is_active;
+        return (bool) $shop->is_active;
     }
 
     protected function shopStatusValue(Shop $shop): string
@@ -994,7 +994,7 @@ class DashboardController extends Controller
 
     protected function scopedEntryLabel(?Shop $shop, string $liveLabel, string $setupLabel, array $countRelations, callable $isSetupConditionMet): string
     {
-        if (! $shop instanceof Shop || ! $shop->is_active) {
+        if (! $shop instanceof Shop || ! $this->shopIsActive($shop)) {
             return $liveLabel;
         }
 

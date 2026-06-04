@@ -18,6 +18,10 @@
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/CardTypeToggleStatusController.php` so the toggle write path no longer flips `is_active` directly, and tightened the helper to return an explicit boolean cast.
 - Re-ran the header-action, row-action, and selected-record-success toggle assertions as the parity check for this toggle-controller seam cleanup.
 
+### Dashboard scoped-branch active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so scoped latest-work labels, active scoped-shop resolution, and scoped entry labels no longer check branch `is_active` directly.
+- Tightened `shopIsActive()` to return an explicit boolean cast and re-ran the scoped dashboard shortcut assertion as the parity check for this dashboard seam cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
