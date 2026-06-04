@@ -4209,8 +4209,8 @@ class ResourceIndexController extends Controller
     private function cardholdersHolderFocus(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'Start with paused-branch status, branch linkage, and linked-card visibility before discussing any later recovery, profile merge, or lifecycle-change edge case.',
-            $selectedCardHolder->is_active => 'Start with active status, branch linkage, and linked-card visibility before discussing any later profile merge or reactivation edge case.',
+            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'Start with paused-branch status, branch linkage, and linked-card visibility before discussing any later recovery, profile merge, or lifecycle-change edge case.',
+            $this->cardholderIsActive($selectedCardHolder) => 'Start with active status, branch linkage, and linked-card visibility before discussing any later profile merge or reactivation edge case.',
             default => 'Start with inactive status, branch linkage, and linked-card visibility before discussing any later reactivation or profile merge flow.',
         };
     }
