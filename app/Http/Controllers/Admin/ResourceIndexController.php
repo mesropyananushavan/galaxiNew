@@ -2327,70 +2327,70 @@ class ResourceIndexController extends Controller
 
     private function cardTypesPosture(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'Keep live tier review in the workspace first, then leave publish reversal, rule import, and rollout-sensitive moves gated until parity is proven.'
             : 'Keep draft tier review in the workspace first, then leave rule import and publish-style moves gated until parity is proven.';
     }
 
     private function cardTypesEvidencePriority(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'Keep visible card coverage, live status, activation note, and rollout note together before trusting any later publish reversal or rule import discussion.'
             : 'Keep visible card coverage, activation readiness, and rollout note together before trusting any later rule import discussion.';
     }
 
     private function cardTypesCurrentStatusPosture(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'Active tiers should stay stable unless parity checks are complete'
             : 'Draft tiers are the safe place for parity-first validation and copy changes';
     }
 
     private function cardTypesRuleImportPosture(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'Keep imports blocked until active-tier accrual parity is verified'
             : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet';
     }
 
     private function cardTypesPublishPosture(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'Live tiers need parity confirmation before further publish-style changes'
             : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly';
     }
 
     private function cardTypesActionGating(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'Allow small state corrections only, keep publish-like and import actions gated'
             : 'Allow draft-safe edits and validation only, keep live-facing actions gated';
     }
 
     private function cardTypesStatusGuidance(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'This tier is live in the current Galaxy foundation layer, so operators should move it back to draft before parity-sensitive rule changes.'
             : 'This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.';
     }
 
     private function cardTypesRuleImportBlocker(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'Rule import should stay blocked for this live tier until legacy accrual parity is verified against the active behavior.'
             : 'Rule import is still blocked, but draft state keeps this tier safe for parity-first catalog and accrual checks.';
     }
 
     private function cardTypesPublishGuidance(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'Treat this tier as already live in the Galaxy foundation layer, so publish-like changes should wait for rule parity and operator confirmation.'
             : 'Keep this tier in draft until rule import expectations and old Galaxy behavior are mapped clearly enough to publish safely.';
     }
 
     private function cardTypesReadinessSignal(CardType $selectedCardType): string
     {
-        return $selectedCardType->is_active
+        return $this->cardTypeIsActive($selectedCardType)
             ? 'Partially ready: the tier is live in the Galaxy foundation layer, but parity-sensitive follow-up actions should stay gated.'
             : 'Not ready to publish: draft mode is still the holding state for parity validation and rule-import review.';
     }
