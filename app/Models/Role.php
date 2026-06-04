@@ -87,7 +87,7 @@ class Role extends Model
 
     public function scopeActiveAssignedPermissionBearing(Builder $query): Builder
     {
-        return $query->activePermissionBearing()->whereHas('users');
+        return $query->activeAssigned()->permissionBearing();
     }
 
     public function scopeReviewNoted(Builder $query): Builder
