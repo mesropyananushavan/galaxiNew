@@ -4298,8 +4298,8 @@ class ResourceIndexController extends Controller
         return match (true) {
             (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Operators should carry paused-branch context, linked-card evidence, and holder status together in the live workspace before trusting any reactivation or merge follow-up.',
             (bool) $selectedCardHolder->shop?->is_active === false => 'Operators should carry paused-branch context, holder status, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.',
-            ! $selectedCardHolder->is_active && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Operators should carry inactive status, linked-card evidence, and branch context in the live workspace before trusting any reactivation or merge follow-up.',
-            ! $selectedCardHolder->is_active => 'Operators should carry inactive status, branch context, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.',
+            ! $this->cardholderIsActive($selectedCardHolder) && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Operators should carry inactive status, linked-card evidence, and branch context in the live workspace before trusting any reactivation or merge follow-up.',
+            ! $this->cardholderIsActive($selectedCardHolder) => 'Operators should carry inactive status, branch context, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.',
             $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Operators should carry active status, linked-card evidence, and branch context in the live workspace before trusting any lifecycle-change or merge follow-up.',
             default => 'Operators should carry active status, branch context, and card-linkage gaps in the live workspace before trusting any lifecycle-change or merge follow-up.',
         };
