@@ -55,6 +55,16 @@ class Role extends Model
         return $query->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->whereNotNull('shop_id'));
     }
 
+    public function scopeAssignedToActiveShop(Builder $query): Builder
+    {
+        return $query->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToActiveShop());
+    }
+
+    public function scopeAssignedToPausedShop(Builder $query): Builder
+    {
+        return $query->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToPausedShop());
+    }
+
     public function scopeActiveShopScopedPermissionBearing(Builder $query): Builder
     {
         return $query->active()->permissionBearing()->shopScopedAssigned();
@@ -62,12 +72,12 @@ class Role extends Model
 
     public function scopeActiveAssignedToActiveShopPermissionBearing(Builder $query): Builder
     {
-        return $query->activeAssignedPermissionBearing()->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToActiveShop());
+        return $query->activeAssignedPermissionBearing()->assignedToActiveShop();
     }
 
     public function scopeActiveAssignedToPausedShopPermissionBearing(Builder $query): Builder
     {
-        return $query->activeAssignedPermissionBearing()->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToPausedShop());
+        return $query->activeAssignedPermissionBearing()->assignedToPausedShop();
     }
 
     public function scopeActiveAssigned(Builder $query): Builder
