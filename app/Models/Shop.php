@@ -54,9 +54,14 @@ class Shop extends Model
         });
     }
 
-    public function scopeRoleCovered(Builder $query): Builder
+    public function scopeRoleAssigned(Builder $query): Builder
     {
         return $query->whereHas('users.roles');
+    }
+
+    public function scopeRoleCovered(Builder $query): Builder
+    {
+        return $query->roleAssigned();
     }
 
     public function users(): HasMany
