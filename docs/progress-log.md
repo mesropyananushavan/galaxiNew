@@ -14,6 +14,10 @@
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so tier catalog status copy, toggle labels, and selected-tier live-form `is_active` values no longer check `is_active` directly.
 - Added a small `cardTypeStatusFlowLabel()` helper and re-ran the card-types management preview, live edit-mode, and live visible-card coverage assertions as the parity check for this structural cleanup.
 
+### Card-type toggle active-cast checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/CardTypeToggleStatusController.php` so the toggle write path no longer flips `is_active` directly, and tightened the helper to return an explicit boolean cast.
+- Re-ran the header-action, row-action, and selected-record-success toggle assertions as the parity check for this toggle-controller seam cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
