@@ -243,7 +243,7 @@
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard Phase 1 reference-collection cleanup.
 
 ### Dashboard latest-workspace collection seam checkpoint
-- Added `latestWorkspaces()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused it so latest-work coverage, focus, posture, and handoff summary all read from one named latest-work workspace collection instead of rebuilding the same filtered shop-holder-card-tier-role list inline.
+- Added `latestWorkspaces()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused it so latest-work coverage, focus, posture, handoff summary, and the dashboard payload itself all read from one named latest-work workspace collection instead of rebuilding the same filtered shop-holder-card-tier-role list inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard latest-workspace cleanup.
 
 ### Dashboard live-entry target seam checkpoint

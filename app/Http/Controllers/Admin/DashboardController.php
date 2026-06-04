@@ -82,13 +82,7 @@ class DashboardController extends Controller
             'latestWorkspaceCoverage' => $this->latestWorkspaceCoverage(),
             'latestWorkspaceFocus' => $this->latestWorkspaceFocus(),
             'latestWorkspacePosture' => $this->latestWorkspacePosture(),
-            'latestWorkspaces' => array_values(array_filter([
-                $this->latestShopWorkspace(),
-                $this->latestCardHolderWorkspace(),
-                $this->latestCardWorkspace(),
-                $this->latestCardTypeWorkspace(),
-                $this->latestRoleWorkspace(),
-            ])),
+            'latestWorkspaces' => $this->latestWorkspaces(),
         ]);
     }
 
