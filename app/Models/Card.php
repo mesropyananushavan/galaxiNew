@@ -68,14 +68,19 @@ class Card extends Model
         return $query->activated()->holderLinked();
     }
 
+    public function scopeAssignedToScopedShop(Builder $query): Builder
+    {
+        return $query->whereNotNull('shop_id');
+    }
+
     public function scopeAssignedToActiveShop(Builder $query): Builder
     {
-        return $query->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->active());
+        return $query->assignedToScopedShop()->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->active());
     }
 
     public function scopeAssignedToPausedShop(Builder $query): Builder
     {
-        return $query->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->paused());
+        return $query->assignedToScopedShop()->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->paused());
     }
 
     public function scopeActiveShopHolderLinked(Builder $query): Builder
