@@ -2518,8 +2518,8 @@ class ResourceIndexController extends Controller
         $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
 
         return match (true) {
-            $selectedCardType->is_active && $hasVisibleCoverage => 'Publish logic and rule-import parity should stay foundation-preview only until live tier parity is verified.',
-            $selectedCardType->is_active => 'Rollout confirmation, publish logic, and rule-import parity should stay foundation-preview only until live tier coverage is verified.',
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Publish logic and rule-import parity should stay foundation-preview only until live tier parity is verified.',
+            $this->cardTypeIsActive($selectedCardType) => 'Rollout confirmation, publish logic, and rule-import parity should stay foundation-preview only until live tier coverage is verified.',
             $hasVisibleCoverage => 'Draft activation, publish logic, and rule-import parity should stay foundation-preview only until draft tier parity is verified.',
             default => 'Draft activation, publish logic, and rule-import parity should stay foundation-preview only until visible tier coverage is verified.',
         };

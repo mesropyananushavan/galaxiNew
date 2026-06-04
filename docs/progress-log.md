@@ -2,6 +2,10 @@
 
 ## 2026-06-04
 
+### Card-type backend-gap active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the card-type backend-gap matcher no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
 ### Card-type handoff-signal active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesHandoffSignal()` no longer checks `is_active` directly in its live-tier branches.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
