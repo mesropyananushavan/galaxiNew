@@ -83,17 +83,17 @@ class CardHolder extends Model
 
     public function scopeBlockedLinked(Builder $query): Builder
     {
-        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->where('status', 'blocked'));
+        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->blocked());
     }
 
     public function scopeDraftLinked(Builder $query): Builder
     {
-        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->where('status', 'draft'));
+        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->draft());
     }
 
     public function scopeCardActiveLinked(Builder $query): Builder
     {
-        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->where('status', 'active'));
+        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->active());
     }
 
     public function scopeActivatedLinked(Builder $query): Builder

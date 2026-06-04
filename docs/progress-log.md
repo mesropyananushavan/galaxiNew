@@ -138,6 +138,10 @@
 - Reused the existing `roleAssigned()` seam in `app/Models/User.php` so `permissionBearing()` now composes through the named user role-assignment chain instead of standing alone as a raw role relation filter.
 - Re-ran the focused user access-scope and admin dashboard assertions as the parity slice for this user access-chain cleanup.
 
+### Cardholder card-status seam checkpoint
+- Reused the existing `Card::blocked()`, `Card::draft()`, and `Card::active()` scopes inside `app/Models/CardHolder.php` so linked-holder state scopes now compose through shared card status seams instead of repeating raw status filters inside relation queries.
+- Re-ran the focused holder card-state and cardholders operational index assertions as the parity slice for this linkage cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
