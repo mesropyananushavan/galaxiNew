@@ -331,11 +331,10 @@ class DashboardController extends Controller
 
     protected function liveEntryDomainCount(): int
     {
-        return collect([
-            Shop::query()->count(),
-            CardHolder::query()->count(),
-            Card::query()->count(),
-        ])->filter(fn (int $count): bool => $count > 0)->count();
+        return collect($this->liveEntryTargets())
+            ->pluck('count')
+            ->filter(fn (int $count): bool => $count > 0)
+            ->count();
     }
 
     protected function liveFoundationSurfaceCount(): int
@@ -349,12 +348,19 @@ class DashboardController extends Controller
     protected function foundationTargets(): array
     {
         return [
-            ['count' => Shop::query()->count(), 'label' => 'live Galaxy branches'],
-            ['count' => CardHolder::query()->count(), 'label' => 'live Galaxy holders'],
-            ['count' => Card::query()->count(), 'label' => 'live Galaxy card shells'],
+            ...$this->liveEntryTargets(),
             ['count' => CardType::query()->count(), 'label' => 'live Galaxy tiers'],
             ['count' => $this->savedRoleCount(), 'label' => 'live Galaxy access shells'],
             ['count' => $this->savedPermissionCount(), 'label' => 'live access permissions'],
+        ];
+    }
+
+    protected function liveEntryTargets(): array
+    {
+        return [
+            ['count' => Shop::query()->count(), 'label' => 'live Galaxy branches'],
+            ['count' => CardHolder::query()->count(), 'label' => 'live Galaxy holders'],
+            ['count' => Card::query()->count(), 'label' => 'live Galaxy card shells'],
         ];
     }
 

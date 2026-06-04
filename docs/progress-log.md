@@ -210,6 +210,10 @@
 - Added `foundationTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so both foundation focus and foundation surface counting now build from one named foundation-target definition instead of maintaining separate inline branch-holder-card-tier-access lists.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard target-definition cleanup.
 
+### Dashboard live-entry target seam checkpoint
+- Added `liveEntryTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so live entry domain counting, plus the branch-holder-card subset inside foundation targets, now build from one named staged-entry target definition instead of maintaining separate inline lists.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard staged-entry cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
