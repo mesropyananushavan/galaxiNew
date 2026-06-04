@@ -118,6 +118,10 @@
 - Added `unlinked()` in `app/Models/CardHolder.php` and reused it so active, inactive, and paused-branch-unlinked holder scopes now build on one named card-linkage seam instead of repeating raw `doesntHave('cards')` checks.
 - Expanded the holder scope baseline assertions to cover the new `unlinked()` seam directly, then re-ran the focused holder and cardholders operational index tests as the parity slice for this cleanup.
 
+### Card activated seam reuse checkpoint
+- Reused the existing `activated()` seam in `app/Models/Card.php` so `blockedActivated()` now builds on the shared activation chain instead of repeating a raw `whereNotNull('activated_at')` filter.
+- Expanded the extended card inventory baseline assertions to cover `activated()` directly, then re-ran the focused card inventory and cards operational index tests as the regression slice for this cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

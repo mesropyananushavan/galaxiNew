@@ -1185,6 +1185,7 @@ class AdminDashboardTest extends TestCase
             [$preActivationUnassignedCard->id, $blockedPreActivationCard->id],
             Card::query()->preActivationUnassigned()->pluck('id')->all(),
         );
+        $this->assertSame([$blockedActivatedCard->id], Card::query()->activated()->pluck('id')->all());
         $this->assertEqualsCanonicalizing(
             [$preActivationHolderLinkedCard->id],
             Card::query()->activeHolderLinked()->pluck('id')->all(),

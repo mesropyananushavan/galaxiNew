@@ -135,7 +135,7 @@ class Card extends Model
 
     public function scopeBlockedActivated(Builder $query): Builder
     {
-        return $query->blocked()->whereNotNull('activated_at');
+        return $query->blocked()->activated();
     }
 
     public function scopeBlockedHolderLinked(Builder $query): Builder
