@@ -99,19 +99,12 @@ class DashboardController extends Controller
 
     protected function phaseOneDomainCoverage(): string
     {
-        $entities = collect(config('phase-1-domain-map.entities', []));
-
-        $visibleCount = $entities
-            ->filter(fn (array $entity): bool => filled($entity['model'] ?? null) && class_exists($entity['model']))
-            ->filter(fn (array $entity): bool => $entity['model']::query()->count() > 0)
-            ->count();
-
-        return sprintf('%d/%d Phase 1 entities already have live Galaxy records', $visibleCount, $entities->count());
+        return sprintf('%d/%d Phase 1 entities already have live Galaxy records', $this->livePhaseOneEntityCount(), $this->mappedPhaseOneEntityCount());
     }
 
     protected function phaseOneDomainInventory(): string
     {
-        return sprintf('%d Phase 1 entities currently mapped', count(config('phase-1-domain-map.entities', [])));
+        return sprintf('%d Phase 1 entities currently mapped', $this->mappedPhaseOneEntityCount());
     }
 
     protected function phaseOneFoundationSeamsCoverage(): string
@@ -119,6 +112,24 @@ class DashboardController extends Controller
         $seams = collect(config('phase-1-foundation-seams.items', []));
 
         return sprintf('%d Phase 1 foundation seams currently tracked', $seams->count());
+    }
+
+    protected function domainEntities()
+    {
+        return collect(config('phase-1-domain-map.entities', []));
+    }
+
+    protected function mappedPhaseOneEntityCount(): int
+    {
+        return $this->domainEntities()->count();
+    }
+
+    protected function livePhaseOneEntityCount(): int
+    {
+        return $this->domainEntities()
+            ->filter(fn (array $entity): bool => filled($entity['model'] ?? null) && class_exists($entity['model']))
+            ->filter(fn (array $entity): bool => $entity['model']::query()->count() > 0)
+            ->count();
     }
 
     protected function phaseOneReferenceDocsCoverage(): string
