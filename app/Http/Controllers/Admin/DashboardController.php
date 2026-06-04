@@ -806,17 +806,17 @@ class DashboardController extends Controller
 
     protected function shopVisibleHolderCount(Shop $shop): int
     {
-        return $shop->card_holders_count ?? $shop->cardHolders->count();
+        return (int) ($shop->card_holders_count ?? $shop->cardHolders->count());
     }
 
     protected function shopVisibleCardCount(Shop $shop): int
     {
-        return $shop->cards_count ?? $shop->cards->count();
+        return (int) ($shop->cards_count ?? $shop->cards->count());
     }
 
     protected function shopAssignedStaffCount(Shop $shop): int
     {
-        return $shop->users_count ?? $shop->users->count();
+        return (int) ($shop->users_count ?? $shop->users->count());
     }
 
     protected function shopIsActive(Shop $shop): bool

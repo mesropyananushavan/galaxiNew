@@ -30,6 +30,10 @@
 - Tightened the existing `cardTypeIsActive()` and `cardHolderIsActive()` seams in `app/Http/Controllers/Admin/DashboardController.php` so dashboard status helpers now return explicit boolean casts instead of raw model attribute values.
 - Re-ran the admin dashboard, scoped dashboard shortcut, and card-types management preview assertions as the parity check for this dashboard helper-cast cleanup.
 
+### Dashboard count-helper int-cast checkpoint
+- Tightened the existing `shopVisibleHolderCount()`, `shopVisibleCardCount()`, and `shopAssignedStaffCount()` seams in `app/Http/Controllers/Admin/DashboardController.php` so these Phase 1 dashboard count helpers now return explicit integer casts instead of raw attribute values.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity check for this dashboard count-helper cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
