@@ -2,6 +2,10 @@
 
 ## 2026-06-04
 
+### Cardholder status-posture active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersStatusPosture()` no longer checks `is_active` directly in its active-holder branches.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
 ### Cardholder activity-timeline inactive-helper checkpoint
 - Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the inactive-holder branches in `cardholdersActivityTimelineHandoffDescription()` no longer check `is_active` directly.
 - Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.

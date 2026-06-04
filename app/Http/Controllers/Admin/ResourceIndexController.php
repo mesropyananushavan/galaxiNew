@@ -4332,8 +4332,8 @@ class ResourceIndexController extends Controller
     private function cardholdersStatusPosture(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'This holder is visible in a paused branch, so lifecycle changes should stay blocked until branch-recovery and lookup parity are verified.',
-            $selectedCardHolder->is_active => 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.',
+            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'This holder is visible in a paused branch, so lifecycle changes should stay blocked until branch-recovery and lookup parity are verified.',
+            $this->cardholderIsActive($selectedCardHolder) => 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.',
             default => 'This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.',
         };
     }
