@@ -145,6 +145,11 @@ class DashboardController extends Controller
         return (int) $modelClass::query()->count();
     }
 
+    protected function scopedModelCount(string $modelClass, string $scope): int
+    {
+        return (int) $modelClass::query()->{$scope}()->count();
+    }
+
     protected function foundationSeams()
     {
         return collect(config('phase-1-foundation-seams.items', []));
@@ -346,7 +351,7 @@ class DashboardController extends Controller
 
     protected function permissionBearingRoleCount(): int
     {
-        return (int) Role::query()->permissionBearing()->count();
+        return $this->scopedModelCount(Role::class, 'permissionBearing');
     }
 
     protected function savedShopCount(): int
@@ -356,12 +361,12 @@ class DashboardController extends Controller
 
     protected function activeShopCount(): int
     {
-        return (int) Shop::query()->active()->count();
+        return $this->scopedModelCount(Shop::class, 'active');
     }
 
     protected function pausedShopCount(): int
     {
-        return (int) Shop::query()->paused()->count();
+        return $this->scopedModelCount(Shop::class, 'paused');
     }
 
     protected function savedRoleCount(): int
@@ -381,7 +386,7 @@ class DashboardController extends Controller
 
     protected function activeCardHolderCount(): int
     {
-        return (int) CardHolder::query()->active()->count();
+        return $this->scopedModelCount(CardHolder::class, 'active');
     }
 
     protected function savedCardCount(): int
@@ -391,7 +396,7 @@ class DashboardController extends Controller
 
     protected function activeCardCount(): int
     {
-        return (int) Card::query()->active()->count();
+        return $this->scopedModelCount(Card::class, 'active');
     }
 
     protected function savedCardTypeCount(): int
@@ -401,7 +406,7 @@ class DashboardController extends Controller
 
     protected function activeCardTypeCount(): int
     {
-        return (int) CardType::query()->active()->count();
+        return $this->scopedModelCount(CardType::class, 'active');
     }
 
     protected function liveCoreDomainCount(): int
@@ -471,7 +476,7 @@ class DashboardController extends Controller
 
     protected function assignedPermissionCount(): int
     {
-        return (int) Permission::query()->assignedToRoles()->count();
+        return $this->scopedModelCount(Permission::class, 'assignedToRoles');
     }
 
     protected function tierBaselineCoverage(): string

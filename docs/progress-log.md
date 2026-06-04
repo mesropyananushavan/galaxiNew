@@ -270,6 +270,10 @@
 - Reused `modelClassCount()` across `savedShopCount()`, `savedRoleCount()`, `savedPermissionCount()`, `savedCardHolderCount()`, `savedCardCount()`, and `savedCardTypeCount()` in `app/Http/Controllers/Admin/DashboardController.php` so the baseline saved-count seams no longer duplicate raw model query counts inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard saved-model count cleanup.
 
+### Dashboard scoped-model count seam checkpoint
+- Added `scopedModelCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so active, paused, permission-bearing, and assigned-permission count seams no longer duplicate raw scoped query chains inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard scoped-model count cleanup.
+
 ### Dashboard phase-one reference collection seam checkpoint
 - Added `foundationSeams()`, `referenceDocs()`, and `seamSources()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the Phase 1 seam, reference-doc, and README-source coverage cards no longer rebuild those config collections inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard Phase 1 reference-collection cleanup.
