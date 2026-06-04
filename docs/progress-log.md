@@ -106,6 +106,10 @@
 - Added `cardholderCovered()` and `cardCovered()` in `app/Models/Shop.php`, then reused them so `foundationCovered()` now builds on named Galaxy branch coverage seams instead of inline `has/orHas` relation checks.
 - Re-ran the admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity check for this shop foundation-coverage cleanup.
 
+### Shop role-coverage staff-seam checkpoint
+- Reused the existing `staffAssigned()` seam in `app/Models/Shop.php` so `roleAssigned()` now builds on the named branch-staff assignment chain instead of standing alone as a raw role-link check.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity check for this shop role-coverage cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

@@ -66,7 +66,7 @@ class Shop extends Model
 
     public function scopeRoleAssigned(Builder $query): Builder
     {
-        return $query->whereHas('users.roles');
+        return $query->staffAssigned()->whereHas('users.roles');
     }
 
     public function scopeRoleCovered(Builder $query): Builder
