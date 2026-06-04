@@ -148,11 +148,7 @@ class DashboardController extends Controller
 
     protected function liveEntryPointPosture(): string
     {
-        $liveEntryDomainCount = collect([
-            Shop::query()->count(),
-            CardHolder::query()->count(),
-            Card::query()->count(),
-        ])->filter(fn (int $count): bool => $count > 0)->count();
+        $liveEntryDomainCount = $this->liveEntryDomainCount();
 
         return match (true) {
             $liveEntryDomainCount === 0 => 'setup-first staged entry surfaces',
