@@ -42,6 +42,10 @@
 - Tightened the existing `cardTypeVisibleCardCount()` and `rolePermissionCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-tier coverage helpers and roles permission review helpers now return explicit integer casts instead of raw attribute values.
 - Re-ran the roles-permissions management preview, card-types management preview, and live visible-card coverage assertions as the parity check for this resource count-helper follow-up.
 
+### Dashboard paused-branch scope checkpoint
+- Reused the existing `Shop::paused()` scope in `app/Http/Controllers/Admin/DashboardController.php` so branch-pause coverage now reads through the shared shop state seam instead of an inline `where('is_active', false)` query.
+- Re-ran the admin dashboard assertion as the parity check for this dashboard branch-state cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

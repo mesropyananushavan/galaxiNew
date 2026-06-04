@@ -328,7 +328,7 @@ class DashboardController extends Controller
     protected function branchPauseCoverage(): string
     {
         $shopCount = Shop::query()->count();
-        $pausedShopCount = Shop::query()->where('is_active', false)->count();
+        $pausedShopCount = Shop::query()->paused()->count();
 
         return sprintf('%d/%d branches paused', $pausedShopCount, $shopCount);
     }
