@@ -188,14 +188,14 @@ class DashboardController extends Controller
 
     protected function latestWorkspaceCoverage(): string
     {
-        $latestWorkspaceCount = count($this->latestWorkspaces());
+        $latestWorkspaceCount = $this->latestWorkspaceCount();
 
         return sprintf('%d latest-work shortcuts currently available', $latestWorkspaceCount);
     }
 
     protected function latestWorkspaceFocus(): string
     {
-        $latestWorkspace = $this->latestWorkspaces()[0] ?? null;
+        $latestWorkspace = $this->firstLatestWorkspace();
 
         if (! is_array($latestWorkspace) || ! isset($latestWorkspace['label'])) {
             return 'first live Galaxy workspace still needs to be created';
@@ -206,7 +206,7 @@ class DashboardController extends Controller
 
     protected function latestWorkspacePosture(): string
     {
-        $latestWorkspaceCount = count($this->latestWorkspaces());
+        $latestWorkspaceCount = $this->latestWorkspaceCount();
 
         return match (true) {
             $latestWorkspaceCount === 0 => 'setup-first jump-back pending',
@@ -1164,10 +1164,20 @@ class DashboardController extends Controller
         ]));
     }
 
+    protected function latestWorkspaceCount(): int
+    {
+        return count($this->latestWorkspaces());
+    }
+
+    protected function firstLatestWorkspace(): ?array
+    {
+        return $this->latestWorkspaces()[0] ?? null;
+    }
+
     protected function latestWorkspaceHandoffSummary(): array
     {
         $shop = $this->activeScopedShop();
-        $latestWorkspaceCount = count($this->latestWorkspaces());
+        $latestWorkspaceCount = $this->latestWorkspaceCount();
 
         return [
             'label' => 'Latest-work handoff signal',

@@ -250,6 +250,10 @@
 - Added `latestWorkspaces()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused it so latest-work coverage, focus, posture, handoff summary, and the dashboard payload itself all read from one named latest-work workspace collection instead of rebuilding the same filtered shop-holder-card-tier-role list inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard latest-workspace cleanup.
 
+### Dashboard latest-workspace count seam checkpoint
+- Added `latestWorkspaceCount()` and `firstLatestWorkspace()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so latest-work coverage, focus, posture, and handoff summary no longer repeat raw `count($this->latestWorkspaces())` and first-entry selection inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard latest-workspace count cleanup.
+
 ### Dashboard live-entry-point count seam checkpoint
 - Added `liveReviewEntryPointCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the staged live-entry coverage summary no longer counts live review entry points inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard live-entry-point cleanup.
