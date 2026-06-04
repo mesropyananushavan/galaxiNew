@@ -756,7 +756,12 @@ class AdminDashboardTest extends TestCase
 
         $linkedRole->permissions()->attach([$reviewNotedPermission->id, $blankReviewNotePermission->id]);
 
+        $this->assertEqualsCanonicalizing(
+            [$reviewNotedPermission->id, $blankReviewNotePermission->id],
+            Permission::query()->assignedToRoles()->pluck('id')->all(),
+        );
         $this->assertSame([$reviewNotedPermission->id], Permission::query()->assignedToRoles()->reviewNoted()->pluck('id')->all());
+        $this->assertNotContains($unassignedReviewNotedPermission->id, Permission::query()->assignedToRoles()->pluck('id')->all());
         $this->assertNotContains($blankReviewNotePermission->id, Permission::query()->reviewNoted()->pluck('id')->all());
         $this->assertNotContains($unassignedReviewNotedPermission->id, Permission::query()->assignedToRoles()->reviewNoted()->pluck('id')->all());
     }

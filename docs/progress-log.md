@@ -130,6 +130,10 @@
 - Reused the existing `User::roleAssigned()` seam inside `app/Models/Shop.php` so `roleAssigned()` now composes through the named user access-assignment chain instead of a raw `users.roles` relation path.
 - Re-ran the focused shop role-coverage, shops operational index, and admin dashboard assertions as the parity slice for this access-chain cleanup.
 
+### Permission assignment seam regression checkpoint
+- Expanded `tests/Feature/AdminDashboardTest.php` so `Permission::assignedToRoles()` is asserted directly, not only through the narrower review-note slice, which locks in the existing permission-to-role access seam with a clearer baseline.
+- Re-ran the focused permission catalog and roles-permissions management preview assertions as the regression slice for this access-domain coverage update.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
