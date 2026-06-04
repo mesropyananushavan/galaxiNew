@@ -94,7 +94,7 @@ class DashboardController extends Controller
 
     protected function liveReviewEntryPointCount(): int
     {
-        return count($this->liveReviewEntryPoints());
+        return $this->countItems($this->liveReviewEntryPoints());
     }
 
     protected function phaseOneDomainCoverage(): string
@@ -119,14 +119,15 @@ class DashboardController extends Controller
 
     protected function mappedPhaseOneEntityCount(): int
     {
-        return $this->domainEntities()->count();
+        return $this->countItems($this->domainEntities());
     }
 
     protected function livePhaseOneEntityCount(): int
     {
-        return $this->domainEntities()
-            ->filter(fn (array $entity): bool => $this->phaseOneEntityHasLiveRecords($entity))
-            ->count();
+        return $this->countItems(
+            $this->domainEntities()
+                ->filter(fn (array $entity): bool => $this->phaseOneEntityHasLiveRecords($entity))
+        );
     }
 
     protected function phaseOneEntityHasLiveRecords(array $entity): bool
@@ -192,7 +193,12 @@ class DashboardController extends Controller
 
     protected function countConfigItems($items): int
     {
-        return $items->count();
+        return $this->countItems($items);
+    }
+
+    protected function countItems($items): int
+    {
+        return is_array($items) ? count($items) : $items->count();
     }
 
     protected function liveEntryPointFocus(): string
@@ -1226,7 +1232,7 @@ class DashboardController extends Controller
 
     protected function latestWorkspaceCount(): int
     {
-        return count($this->latestWorkspaces());
+        return $this->countItems($this->latestWorkspaces());
     }
 
     protected function firstLatestWorkspace(): ?array
