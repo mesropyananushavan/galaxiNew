@@ -178,6 +178,10 @@
 - Reused `savedRoleCount()` and `savedPermissionCount()` in `app/Http/Controllers/Admin/DashboardController.php` once more so foundation posture, live-domain coverage, and foundation readiness now all compose through the same saved access-count seams instead of repeating raw global role and permission counts.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard foundation-summary cleanup.
 
+### Dashboard migration-map access-count reuse checkpoint
+- Reused `savedRoleCount()` and `savedPermissionCount()` again in `app/Http/Controllers/Admin/DashboardController.php` so the migration-map handoff summary now reads through the same saved access-count seams instead of repeating raw global role and permission counts inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard handoff-summary cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

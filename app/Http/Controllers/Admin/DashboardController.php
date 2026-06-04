@@ -1110,8 +1110,8 @@ class DashboardController extends Controller
             Shop::query()->count(),
             CardHolder::query()->count(),
             Card::query()->count(),
-            Role::query()->count(),
-            Permission::query()->count(),
+            $this->savedRoleCount(),
+            $this->savedPermissionCount(),
         ])->filter(fn (int $count): bool => $count > 0)->count();
 
         return [
