@@ -154,6 +154,10 @@
 - Added `shopManagerCoverageCount()` and `shopFoundationCoverageCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused them so the shops catalog disabled-reason flows no longer repeat raw global manager-assignment and foundation-coverage count queries.
 - Re-ran the focused admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity slice for this controller cleanup.
 
+### Shop catalog metric seam checkpoint
+- Added `shopRoleCoverageCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused the existing shop coverage/staff count helpers so the roles and shops catalog metric cards no longer reach for raw global branch-coverage and manager-assignment counts inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this controller metric cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

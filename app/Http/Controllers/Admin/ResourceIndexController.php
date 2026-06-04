@@ -673,7 +673,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Access-policy Galaxy notes', 'value' => (string) (clone $rolesQuery)->accessNoted()->count()],
             ['label' => 'Role-assignment Galaxy notes', 'value' => (string) (clone $rolesQuery)->assignmentNoted()->count()],
             ['label' => 'Permission-linked Galaxy review notes', 'value' => (string) Permission::query()->assignedToRoles()->reviewNoted()->count()],
-            ['label' => 'Branch-scoped Galaxy coverage', 'value' => (string) Shop::query()->roleCovered()->count()],
+            ['label' => 'Branch-scoped Galaxy coverage', 'value' => (string) $this->shopRoleCoverageCount()],
         ];
 
         $page['actions'] = $this->foundationCatalogActions(
@@ -1221,7 +1221,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Active-state Galaxy branches', 'value' => (string) Shop::query()->active()->count()],
             ['label' => 'Paused-state Galaxy branches', 'value' => (string) Shop::query()->paused()->count()],
             ['label' => 'Review-noted Galaxy branches', 'value' => (string) Shop::query()->reviewNoted()->count()],
-            ['label' => 'Assigned branch managers', 'value' => (string) Shop::query()->managerAssigned()->count()],
+            ['label' => 'Assigned branch managers', 'value' => (string) $this->shopManagerCoverageCount()],
         ];
 
         $page['table']['rows'] = $shops->map(fn (Shop $shop): array => [
@@ -5116,6 +5116,11 @@ class ResourceIndexController extends Controller
     private function shopFoundationCoverageCount(): int
     {
         return (int) Shop::query()->foundationCovered()->count();
+    }
+
+    private function shopRoleCoverageCount(): int
+    {
+        return (int) Shop::query()->roleCovered()->count();
     }
 
     private function shopHasAssignedManagers(Shop $shop): bool
