@@ -4236,8 +4236,8 @@ class ResourceIndexController extends Controller
     private function cardholdersBackendGap(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'Recovery handling, profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until paused-branch holder parity is verified.',
-            $selectedCardHolder->is_active => 'Profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.',
+            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'Recovery handling, profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until paused-branch holder parity is verified.',
+            $this->cardholderIsActive($selectedCardHolder) => 'Profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.',
             default => 'Reactivation handling, profile writes, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.',
         };
     }
