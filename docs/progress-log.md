@@ -122,6 +122,10 @@
 - Reused the existing `activated()` seam in `app/Models/Card.php` so `blockedActivated()` now builds on the shared activation chain instead of repeating a raw `whereNotNull('activated_at')` filter.
 - Expanded the extended card inventory baseline assertions to cover `activated()` directly, then re-ran the focused card inventory and cards operational index tests as the regression slice for this cleanup.
 
+### Cardholder activated-link seam checkpoint
+- Reused the existing `Card::activated()` seam inside `app/Models/CardHolder.php` so `activatedLinked()` now composes through the shared card activation scope instead of repeating a raw activation timestamp filter inside its card relation query.
+- Re-ran the focused holder card-state and cardholders operational index assertions as the parity slice for this linkage cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

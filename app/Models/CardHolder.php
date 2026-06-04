@@ -98,7 +98,7 @@ class CardHolder extends Model
 
     public function scopeActivatedLinked(Builder $query): Builder
     {
-        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->whereNotNull('activated_at'));
+        return $query->whereHas('cards', fn (Builder $cardQuery): Builder => $cardQuery->activated());
     }
 
     public function scopeAssignedToActiveShopLinked(Builder $query): Builder
