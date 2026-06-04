@@ -90,6 +90,10 @@
 - Reused the existing `activeAssigned()` and `permissionBearing()` seams in `app/Models/Role.php` so `activeAssignedPermissionBearing()` now builds from the shared active assignment chain instead of repeating its own user-presence filter.
 - Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this role-scope cleanup.
 
+### Role assigned-base scope checkpoint
+- Reused the existing `assigned()` seam in `app/Models/Role.php` so shop-scoped, active-branch, and paused-branch role assignment scopes now all build on the same base assigned-user chain.
+- Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this role-assignment cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

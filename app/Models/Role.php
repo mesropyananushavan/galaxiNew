@@ -52,17 +52,17 @@ class Role extends Model
 
     public function scopeShopScopedAssigned(Builder $query): Builder
     {
-        return $query->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToScopedShop());
+        return $query->assigned()->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToScopedShop());
     }
 
     public function scopeAssignedToActiveShop(Builder $query): Builder
     {
-        return $query->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToActiveShop());
+        return $query->assigned()->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToActiveShop());
     }
 
     public function scopeAssignedToPausedShop(Builder $query): Builder
     {
-        return $query->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToPausedShop());
+        return $query->assigned()->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->assignedToPausedShop());
     }
 
     public function scopeActiveShopScopedPermissionBearing(Builder $query): Builder
