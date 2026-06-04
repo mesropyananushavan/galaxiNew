@@ -38,6 +38,10 @@
 - Tightened the existing `cardholderLinkedCardCount()`, `roleAssignedUserCount()`, `shopVisibleCardholderCount()`, `shopVisibleCardCount()`, and `shopAssignedManagerCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so these shared Phase 1 review count helpers now return explicit integer casts instead of raw attribute values.
 - Re-ran the roles-permissions management preview, shops operational index, selected-holder context, and card-types management preview assertions as the parity check for this resource count-helper cleanup.
 
+### Resource tier-role count-helper follow-up checkpoint
+- Tightened the existing `cardTypeVisibleCardCount()` and `rolePermissionCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-tier coverage helpers and roles permission review helpers now return explicit integer casts instead of raw attribute values.
+- Re-ran the roles-permissions management preview, card-types management preview, and live visible-card coverage assertions as the parity check for this resource count-helper follow-up.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

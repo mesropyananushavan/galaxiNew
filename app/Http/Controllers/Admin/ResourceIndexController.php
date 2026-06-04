@@ -2495,7 +2495,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypeVisibleCardCount(CardType $selectedCardType): int
     {
-        return $selectedCardType->cards_count ?? $selectedCardType->cards->count();
+        return (int) ($selectedCardType->cards_count ?? $selectedCardType->cards->count());
     }
 
     private function cardTypesHasVisibleCoverage(CardType $selectedCardType): bool
@@ -5030,7 +5030,7 @@ class ResourceIndexController extends Controller
 
     private function rolePermissionCount(Role $role): int
     {
-        return $role->permissions_count ?? $role->permissions->count();
+        return (int) ($role->permissions_count ?? $role->permissions->count());
     }
 
     private function roleHasPermissions(Role $role): bool
