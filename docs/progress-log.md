@@ -190,6 +190,10 @@
 - Added `liveCoreDomainCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so migration-map posture, live-domain coverage, foundation readiness, and migration-map handoff summaries now build from one shared core-domain coverage seam instead of repeating the same grouped count collection inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard domain-coverage cleanup.
 
+### Dashboard live-entry-domain count seam checkpoint
+- Added `liveEntryDomainCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the live entry handoff summary now builds from one shared branch-holder-card coverage seam instead of repeating the same grouped count checks inline.
+- Re-ran the focused admin dashboard, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard entry-coverage cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.

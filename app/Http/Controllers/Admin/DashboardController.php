@@ -349,6 +349,15 @@ class DashboardController extends Controller
         ])->filter(fn (int $count): bool => $count > 0)->count();
     }
 
+    protected function liveEntryDomainCount(): int
+    {
+        return collect([
+            Shop::query()->count(),
+            CardHolder::query()->count(),
+            Card::query()->count(),
+        ])->filter(fn (int $count): bool => $count > 0)->count();
+    }
+
     protected function assignedPermissionCount(): int
     {
         return (int) Permission::query()->assignedToRoles()->count();
@@ -1038,18 +1047,16 @@ class DashboardController extends Controller
     protected function liveEntryHandoffSummary(): array
     {
         $shop = $this->activeScopedShop();
-        $shopCount = Shop::query()->count();
-        $cardHolderCount = CardHolder::query()->count();
-        $cardCount = Card::query()->count();
+        $liveEntryDomainCount = $this->liveEntryDomainCount();
 
         return [
             'label' => 'Entry handoff signal',
             'value' => match (true) {
-                $shop instanceof Shop && $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0
+                $shop instanceof Shop && $liveEntryDomainCount === 3
                     => 'Assigned-branch entry points already have enough live branch, holder, and card-shell coverage to support a useful scoped handoff review.',
                 $shop instanceof Shop
                     => 'Assigned-branch entry points should stay setup-aware until the branch shows live branch, holder, and card-shell coverage together.',
-                $shopCount > 0 && $cardHolderCount > 0 && $cardCount > 0
+                $liveEntryDomainCount === 3
                     => 'Shared entry points already have enough live branch, holder, and card-shell coverage to support a useful foundation handoff review.',
                 default
                     => 'Entry points should stay setup-first until live branch, holder, and card-shell coverage is visible across the Galaxy foundation.',
