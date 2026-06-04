@@ -224,13 +224,7 @@ class DashboardController extends Controller
 
     protected function migrationMapPosture(): string
     {
-        $liveDomainCount = collect([
-            Shop::query()->count(),
-            CardHolder::query()->count(),
-            Card::query()->count(),
-            $this->savedRoleCount(),
-            $this->savedPermissionCount(),
-        ])->filter(fn (int $count): bool => $count > 0)->count();
+        $liveDomainCount = $this->liveCoreDomainCount();
 
         return match (true) {
             $liveDomainCount === 0 => 'map-first parity planning',
@@ -279,26 +273,14 @@ class DashboardController extends Controller
 
     protected function liveDomainCoverage(): string
     {
-        $liveDomainCount = collect([
-            Shop::query()->count(),
-            CardHolder::query()->count(),
-            Card::query()->count(),
-            $this->savedRoleCount(),
-            $this->savedPermissionCount(),
-        ])->filter(fn (int $count): bool => $count > 0)->count();
+        $liveDomainCount = $this->liveCoreDomainCount();
 
         return sprintf('%d/5 core Galaxy domains live', $liveDomainCount);
     }
 
     protected function foundationReadinessSignal(): string
     {
-        $liveDomainCount = collect([
-            Shop::query()->count(),
-            CardHolder::query()->count(),
-            Card::query()->count(),
-            $this->savedRoleCount(),
-            $this->savedPermissionCount(),
-        ])->filter(fn (int $count): bool => $count > 0)->count();
+        $liveDomainCount = $this->liveCoreDomainCount();
 
         return match (true) {
             $liveDomainCount === 5 => 'review-ready foundation',
@@ -354,6 +336,17 @@ class DashboardController extends Controller
     protected function savedPermissionCount(): int
     {
         return (int) Permission::query()->count();
+    }
+
+    protected function liveCoreDomainCount(): int
+    {
+        return collect([
+            Shop::query()->count(),
+            CardHolder::query()->count(),
+            Card::query()->count(),
+            $this->savedRoleCount(),
+            $this->savedPermissionCount(),
+        ])->filter(fn (int $count): bool => $count > 0)->count();
     }
 
     protected function assignedPermissionCount(): int
@@ -1106,13 +1099,7 @@ class DashboardController extends Controller
     {
         $plannedSectionCount = collect($navigation)->sum(fn (array $group): int => count($group['items']));
         $mappedGroupCount = count($navigation);
-        $liveDomainCount = collect([
-            Shop::query()->count(),
-            CardHolder::query()->count(),
-            Card::query()->count(),
-            $this->savedRoleCount(),
-            $this->savedPermissionCount(),
-        ])->filter(fn (int $count): bool => $count > 0)->count();
+        $liveDomainCount = $this->liveCoreDomainCount();
 
         return [
             'label' => 'Migration-map handoff signal',

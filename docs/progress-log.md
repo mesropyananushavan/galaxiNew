@@ -186,6 +186,10 @@
 - Reused `savedRoleCount()` and `savedPermissionCount()` in the main dashboard page payload so the top-level summary data now reads through the same saved access-count seams instead of repeating raw access-entity counts inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard payload cleanup.
 
+### Dashboard live-core-domain count seam checkpoint
+- Added `liveCoreDomainCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so migration-map posture, live-domain coverage, foundation readiness, and migration-map handoff summaries now build from one shared core-domain coverage seam instead of repeating the same grouped count collection inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard domain-coverage cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
