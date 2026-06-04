@@ -43,7 +43,7 @@ class CardHolder extends Model
 
     public function scopeAssignedToPausedShop(Builder $query): Builder
     {
-        return $query->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->where('is_active', false));
+        return $query->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->paused());
     }
 
     public function scopeLinked(Builder $query): Builder

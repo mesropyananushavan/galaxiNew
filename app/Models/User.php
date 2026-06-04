@@ -46,7 +46,7 @@ class User extends Authenticatable
     {
         return $query
             ->whereNotNull('shop_id')
-            ->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->where('is_active', false));
+            ->whereHas('shop', fn (Builder $shopQuery): Builder => $shopQuery->paused());
     }
 
     public function scopeRoleAssigned(Builder $query): Builder

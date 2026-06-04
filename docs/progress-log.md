@@ -46,6 +46,10 @@
 - Reused the existing `Shop::paused()` scope in `app/Http/Controllers/Admin/DashboardController.php` so branch-pause coverage now reads through the shared shop state seam instead of an inline `where('is_active', false)` query.
 - Re-ran the admin dashboard assertion as the parity check for this dashboard branch-state cleanup.
 
+### Paused-branch scope reuse checkpoint
+- Reused the existing `Shop::paused()` and `User::assignedToPausedShop()` seams in `app/Models/User.php`, `app/Models/CardHolder.php`, and `app/Models/Role.php` so paused-branch staff, holder, and permission-bearing role scopes no longer repeat inline `is_active = false` branch filters.
+- Re-ran the scoped dashboard shortcut, roles-permissions management preview, and selected-holder context assertions as the parity check for this shared paused-branch scope cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
