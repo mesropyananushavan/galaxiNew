@@ -228,8 +228,8 @@ class DashboardController extends Controller
             Shop::query()->count(),
             CardHolder::query()->count(),
             Card::query()->count(),
-            Role::query()->count(),
-            Permission::query()->count(),
+            $this->savedRoleCount(),
+            $this->savedPermissionCount(),
         ])->filter(fn (int $count): bool => $count > 0)->count();
 
         return match (true) {
@@ -246,8 +246,8 @@ class DashboardController extends Controller
             ['count' => CardHolder::query()->count(), 'label' => 'live Galaxy holders'],
             ['count' => Card::query()->count(), 'label' => 'live Galaxy card shells'],
             ['count' => CardType::query()->count(), 'label' => 'live Galaxy tiers'],
-            ['count' => Role::query()->count(), 'label' => 'live Galaxy access shells'],
-            ['count' => Permission::query()->count(), 'label' => 'live access permissions'],
+            ['count' => $this->savedRoleCount(), 'label' => 'live Galaxy access shells'],
+            ['count' => $this->savedPermissionCount(), 'label' => 'live access permissions'],
         ];
 
         $firstMissingTarget = collect($foundationTargets)->first(fn (array $target): bool => $target['count'] === 0);
