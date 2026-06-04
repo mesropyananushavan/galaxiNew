@@ -4218,8 +4218,8 @@ class ResourceIndexController extends Controller
     private function cardholdersHolderPosture(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            (bool) $selectedCardHolder->shop?->is_active === false && $selectedCardHolder->is_active => 'Keep paused-branch holder review in the workspace first, then leave recovery, merge, and lifecycle-change flows gated until branch parity is proven.',
-            $selectedCardHolder->is_active => 'Keep live holder review in the workspace first, then leave profile-write, merge, and lifecycle-change flows gated until parity is proven.',
+            (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderIsActive($selectedCardHolder) => 'Keep paused-branch holder review in the workspace first, then leave recovery, merge, and lifecycle-change flows gated until branch parity is proven.',
+            $this->cardholderIsActive($selectedCardHolder) => 'Keep live holder review in the workspace first, then leave profile-write, merge, and lifecycle-change flows gated until parity is proven.',
             default => 'Keep inactive holder review in the workspace first, then leave reactivation, merge, and profile-write flows gated until parity is proven.',
         };
     }
