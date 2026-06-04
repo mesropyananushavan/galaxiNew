@@ -166,13 +166,18 @@ class DashboardController extends Controller
 
     protected function liveEntryPointFocus(): string
     {
-        $entryPoint = $this->liveReviewEntryPoints()[0] ?? null;
+        $entryPoint = $this->firstLiveReviewEntryPoint();
 
         if (! is_array($entryPoint) || ! isset($entryPoint['label'])) {
             return 'first live Galaxy review surface still needs to be staged';
         }
 
         return sprintf('start with %s', mb_strtolower((string) $entryPoint['label']));
+    }
+
+    protected function firstLiveReviewEntryPoint(): ?array
+    {
+        return $this->liveReviewEntryPoints()[0] ?? null;
     }
 
     protected function liveEntryPointPosture(): string
