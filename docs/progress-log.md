@@ -242,6 +242,10 @@
 - Added `foundationSeams()`, `referenceDocs()`, and `seamSources()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the Phase 1 seam, reference-doc, and README-source coverage cards no longer rebuild those config collections inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard Phase 1 reference-collection cleanup.
 
+### Dashboard latest-workspace collection seam checkpoint
+- Added `latestWorkspaces()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused it so latest-work coverage, focus, posture, and handoff summary all read from one named latest-work workspace collection instead of rebuilding the same filtered shop-holder-card-tier-role list inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard latest-workspace cleanup.
+
 ### Dashboard live-entry target seam checkpoint
 - Added `liveEntryTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so live entry domain counting, plus the branch-holder-card subset inside foundation targets, now build from one named staged-entry target definition instead of maintaining separate inline lists.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard staged-entry cleanup.

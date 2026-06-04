@@ -179,26 +179,14 @@ class DashboardController extends Controller
 
     protected function latestWorkspaceCoverage(): string
     {
-        $latestWorkspaceCount = count(array_values(array_filter([
-            $this->latestShopWorkspace(),
-            $this->latestCardHolderWorkspace(),
-            $this->latestCardWorkspace(),
-            $this->latestCardTypeWorkspace(),
-            $this->latestRoleWorkspace(),
-        ])));
+        $latestWorkspaceCount = count($this->latestWorkspaces());
 
         return sprintf('%d latest-work shortcuts currently available', $latestWorkspaceCount);
     }
 
     protected function latestWorkspaceFocus(): string
     {
-        $latestWorkspace = array_values(array_filter([
-            $this->latestShopWorkspace(),
-            $this->latestCardHolderWorkspace(),
-            $this->latestCardWorkspace(),
-            $this->latestCardTypeWorkspace(),
-            $this->latestRoleWorkspace(),
-        ]))[0] ?? null;
+        $latestWorkspace = $this->latestWorkspaces()[0] ?? null;
 
         if (! is_array($latestWorkspace) || ! isset($latestWorkspace['label'])) {
             return 'first live Galaxy workspace still needs to be created';
@@ -209,13 +197,7 @@ class DashboardController extends Controller
 
     protected function latestWorkspacePosture(): string
     {
-        $latestWorkspaceCount = count(array_values(array_filter([
-            $this->latestShopWorkspace(),
-            $this->latestCardHolderWorkspace(),
-            $this->latestCardWorkspace(),
-            $this->latestCardTypeWorkspace(),
-            $this->latestRoleWorkspace(),
-        ])));
+        $latestWorkspaceCount = count($this->latestWorkspaces());
 
         return match (true) {
             $latestWorkspaceCount === 0 => 'setup-first jump-back pending',
@@ -1162,16 +1144,21 @@ class DashboardController extends Controller
         ];
     }
 
-    protected function latestWorkspaceHandoffSummary(): array
+    protected function latestWorkspaces(): array
     {
-        $shop = $this->activeScopedShop();
-        $latestWorkspaceCount = count(array_values(array_filter([
+        return array_values(array_filter([
             $this->latestShopWorkspace(),
             $this->latestCardHolderWorkspace(),
             $this->latestCardWorkspace(),
             $this->latestCardTypeWorkspace(),
             $this->latestRoleWorkspace(),
-        ])));
+        ]));
+    }
+
+    protected function latestWorkspaceHandoffSummary(): array
+    {
+        $shop = $this->activeScopedShop();
+        $latestWorkspaceCount = count($this->latestWorkspaces());
 
         return [
             'label' => 'Latest-work handoff signal',
