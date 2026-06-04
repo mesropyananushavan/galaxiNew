@@ -467,10 +467,15 @@ class DashboardController extends Controller
         $role = Role::query()->latest('id')->first();
 
         return $role ? $this->workspaceLink(
-            label: sprintf('Open latest Galaxy access shell review: %s (%d permissions)', $role->name, $role->permissions()->count()),
+            label: sprintf('Open latest Galaxy access shell review: %s (%d permissions)', $role->name, $this->rolePermissionCount($role)),
             routeName: 'admin.roles-permissions.index',
             parameters: ['role' => $role->id],
         ) : null;
+    }
+
+    protected function rolePermissionCount(Role $role): int
+    {
+        return (int) ($role->permissions_count ?? $role->permissions->count());
     }
 
     protected function workspaceLink(string $label, string $routeName, array $parameters = []): array
