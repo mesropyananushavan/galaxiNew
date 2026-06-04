@@ -2538,9 +2538,9 @@ class ResourceIndexController extends Controller
     private function cardTypesRolloutFreshness(CardType $selectedCardType): string
     {
         return match (true) {
-            filled($selectedCardType->rollout_note) && $selectedCardType->is_active => 'Rollout note is already saved on this live Galaxy foundation tier shell.',
+            filled($selectedCardType->rollout_note) && $this->cardTypeIsActive($selectedCardType) => 'Rollout note is already saved on this live Galaxy foundation tier shell.',
             filled($selectedCardType->rollout_note) => 'Rollout note is already staged on this draft Galaxy foundation tier shell.',
-            $selectedCardType->is_active => 'Live tier still needs a saved rollout note before rollout handoff can feel grounded.',
+            $this->cardTypeIsActive($selectedCardType) => 'Live tier still needs a saved rollout note before rollout handoff can feel grounded.',
             default => 'Draft tier can stay safe while rollout guidance is still being written.',
         };
     }
