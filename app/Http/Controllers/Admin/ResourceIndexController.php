@@ -2619,7 +2619,7 @@ class ResourceIndexController extends Controller
 
     private function shopsCatalogNewShopDisabledReason(mixed $shops): string
     {
-        $managerCount = Shop::query()->managerAssigned()->count();
+        $managerCount = $this->shopManagerCoverageCount();
         $pausedCount = Shop::query()->paused()->count();
 
         return match (true) {
@@ -2631,8 +2631,8 @@ class ResourceIndexController extends Controller
 
     private function shopsCatalogReviewScopeDisabledReason(mixed $shops): string
     {
-        $managerCount = Shop::query()->managerAssigned()->count();
-        $coverageCount = Shop::query()->foundationCovered()->count();
+        $managerCount = $this->shopManagerCoverageCount();
+        $coverageCount = $this->shopFoundationCoverageCount();
 
         return match (true) {
             $managerCount > 0 && $coverageCount > 0 => 'Blocked until saved branch ownership and scope coverage are verified against the legacy Galaxy multi-shop model.',
@@ -5106,6 +5106,16 @@ class ResourceIndexController extends Controller
     private function shopAssignedManagerCount(Shop $shop): int
     {
         return (int) ($shop->users_count ?? $shop->users->count());
+    }
+
+    private function shopManagerCoverageCount(): int
+    {
+        return (int) Shop::query()->managerAssigned()->count();
+    }
+
+    private function shopFoundationCoverageCount(): int
+    {
+        return (int) Shop::query()->foundationCovered()->count();
     }
 
     private function shopHasAssignedManagers(Shop $shop): bool
