@@ -297,10 +297,9 @@ class DashboardController extends Controller
 
     protected function accessBaselineCoverage(): string
     {
-        $roleCount = $this->permissionBearingRoleCount();
-        $permissionCount = $this->assignedPermissionCount();
+        [$roleTarget, $permissionTarget] = $this->visibleAccessTargets();
 
-        return sprintf('%d Galaxy access shells, %d access permissions visible', $roleCount, $permissionCount);
+        return sprintf('%d %s, %d %s visible', $roleTarget['count'], $roleTarget['label'], $permissionTarget['count'], $permissionTarget['label']);
     }
 
     protected function permissionBearingRoleCount(): int
@@ -418,6 +417,14 @@ class DashboardController extends Controller
         return [
             ['count' => $this->savedRoleCount(), 'label' => 'live Galaxy access shells'],
             ['count' => $this->savedPermissionCount(), 'label' => 'live access permissions'],
+        ];
+    }
+
+    protected function visibleAccessTargets(): array
+    {
+        return [
+            ['count' => $this->permissionBearingRoleCount(), 'label' => 'Galaxy access shells'],
+            ['count' => $this->assignedPermissionCount(), 'label' => 'access permissions'],
         ];
     }
 
