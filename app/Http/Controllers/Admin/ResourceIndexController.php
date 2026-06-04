@@ -2400,8 +2400,8 @@ class ResourceIndexController extends Controller
         $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
-            $selectedCardType->is_active && $cardsCount > 0 => 'Live tier already has saved card coverage anchored in Galaxy foundation data for rollout review.',
-            $selectedCardType->is_active => 'Live tier still needs its first saved card coverage before rollout review can feel grounded.',
+            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'Live tier already has saved card coverage anchored in Galaxy foundation data for rollout review.',
+            $this->cardTypeIsActive($selectedCardType) => 'Live tier still needs its first saved card coverage before rollout review can feel grounded.',
             $cardsCount > 0 => 'Draft tier already has saved card coverage anchored in Galaxy foundation data for parity review.',
             default => 'Draft tier is still waiting on its first saved card coverage before parity review can feel grounded.',
         };
