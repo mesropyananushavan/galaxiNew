@@ -1,5 +1,11 @@
 # Progress Log
 
+## 2026-06-04
+
+### Cardholder activity-handoff inactive-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the dormant-holder branches in the cardholder activity handoff matcher no longer check `is_active` directly.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
 ## 2026-06-03
 
 ### Cardholder backend-gap active-helper checkpoint

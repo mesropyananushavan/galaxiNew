@@ -4286,8 +4286,8 @@ class ResourceIndexController extends Controller
         return match (true) {
             (bool) $selectedCardHolder->shop?->is_active === false && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Paused-branch holder already carries linked-card evidence, so branch-recovery context should stay attached to the activity handoff.',
             (bool) $selectedCardHolder->shop?->is_active === false => 'Paused-branch holder should carry branch-recovery context forward until lookup and reactivation parity are explicit.',
-            ! $selectedCardHolder->is_active && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Dormant holder already carries linked-card evidence for a useful lifecycle handoff review.',
-            ! $selectedCardHolder->is_active => 'Dormant holder should stay in handoff-only posture until reactivation parity is explicit.',
+            ! $this->cardholderIsActive($selectedCardHolder) && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Dormant holder already carries linked-card evidence for a useful lifecycle handoff review.',
+            ! $this->cardholderIsActive($selectedCardHolder) => 'Dormant holder should stay in handoff-only posture until reactivation parity is explicit.',
             $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Active holder already carries linked-card context for a useful activity handoff review.',
             default => 'Active holder exists, but linked-card activity context is still thin for handoff review.',
         };
