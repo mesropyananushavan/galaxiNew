@@ -2,6 +2,10 @@
 
 ## 2026-06-04
 
+### Card-type coverage-signal active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesCoverageSignal()` no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
 ### Cardholder status-posture active-helper checkpoint
 - Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersStatusPosture()` no longer checks `is_active` directly in its active-holder branches.
 - Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
