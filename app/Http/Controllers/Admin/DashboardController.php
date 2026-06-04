@@ -786,7 +786,7 @@ class DashboardController extends Controller
 
     protected function cardTypeIsActive(CardType $cardType): bool
     {
-        return $cardType->is_active;
+        return (bool) $cardType->is_active;
     }
 
     protected function cardTypeStatusValue(CardType $cardType): string
@@ -796,7 +796,7 @@ class DashboardController extends Controller
 
     protected function cardHolderIsActive(CardHolder $cardHolder): bool
     {
-        return $cardHolder->is_active;
+        return (bool) $cardHolder->is_active;
     }
 
     protected function cardHolderStatusValue(CardHolder $cardHolder): string

@@ -26,6 +26,10 @@
 - Tightened the existing `roleIsActive()`, `cardTypeIsActive()`, and `shopIsActive()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so these shared Phase 1 review helpers now return explicit boolean casts instead of raw model attribute values.
 - Re-ran the shops operational index plus the card-types management preview, live edit-mode, and live visible-card coverage assertions as the parity check for this shared helper-cast cleanup.
 
+### Dashboard card-type-holder active-cast checkpoint
+- Tightened the existing `cardTypeIsActive()` and `cardHolderIsActive()` seams in `app/Http/Controllers/Admin/DashboardController.php` so dashboard status helpers now return explicit boolean casts instead of raw model attribute values.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and card-types management preview assertions as the parity check for this dashboard helper-cast cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
