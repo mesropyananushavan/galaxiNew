@@ -652,9 +652,7 @@ class DashboardController extends Controller
         $shop->loadCount($relations);
 
         foreach ($relations as $relation) {
-            $countAttribute = $this->shopRelationCountAttribute($relation);
-
-            if (! is_string($countAttribute) || ($shop->{$countAttribute} ?? 0) !== 0) {
+            if ($this->shopRelationCount($shop, $relation) !== 0) {
                 return false;
             }
         }

@@ -219,7 +219,7 @@
 - Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard branch-count cleanup.
 
 ### Dashboard shop-relation count seam checkpoint
-- Added `shopRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so visible holder, visible card, and assigned staff counts now share one named shop relation-count seam instead of repeating the same count-attribute fallback logic inline.
+- Added `shopRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so visible holder, visible card, assigned staff counts, and the shop empty-record check now share one named shop relation-count seam instead of repeating count-attribute fallback logic inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard shop relation-count cleanup.
 
 ### Dashboard holder-count seam checkpoint
