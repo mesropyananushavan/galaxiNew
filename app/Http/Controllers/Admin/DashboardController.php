@@ -346,6 +346,16 @@ class DashboardController extends Controller
         return (int) Role::query()->permissionBearing()->count();
     }
 
+    protected function savedRoleCount(): int
+    {
+        return (int) Role::query()->count();
+    }
+
+    protected function savedPermissionCount(): int
+    {
+        return (int) Permission::query()->count();
+    }
+
     protected function assignedPermissionCount(): int
     {
         return (int) Permission::query()->assignedToRoles()->count();
@@ -622,8 +632,8 @@ class DashboardController extends Controller
         $shopCount = Shop::query()->count();
         $cardHolderCount = CardHolder::query()->count();
         $cardCount = Card::query()->count();
-        $roleCount = Role::query()->count();
-        $permissionCount = Permission::query()->count();
+        $roleCount = $this->savedRoleCount();
+        $permissionCount = $this->savedPermissionCount();
 
         return [
             'label' => 'Foundation handoff signal',

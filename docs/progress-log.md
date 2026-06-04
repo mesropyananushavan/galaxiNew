@@ -166,6 +166,10 @@
 - Added `rolePermissionCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the latest role workspace shortcut no longer reaches for a raw relation count when describing the current Galaxy access shell.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard workspace cleanup.
 
+### Dashboard saved access-count seam checkpoint
+- Added `savedRoleCount()` and `savedPermissionCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the foundation handoff summary no longer reaches for raw saved access-entity counts inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard count cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
