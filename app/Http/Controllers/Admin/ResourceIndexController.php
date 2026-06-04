@@ -5040,7 +5040,7 @@ class ResourceIndexController extends Controller
 
     private function roleIsActive(Role $role): bool
     {
-        return $role->is_active;
+        return (bool) $role->is_active;
     }
 
     private function roleStatusValue(Role $role): string
@@ -5085,7 +5085,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypeIsActive(CardType $cardType): bool
     {
-        return $cardType->is_active;
+        return (bool) $cardType->is_active;
     }
 
     private function cardTypeStatusValue(CardType $cardType): string
@@ -5115,7 +5115,7 @@ class ResourceIndexController extends Controller
 
     private function shopIsActive(Shop $shop): bool
     {
-        return $shop->is_active;
+        return (bool) $shop->is_active;
     }
 
     private function shopStatusValue(Shop $shop): string

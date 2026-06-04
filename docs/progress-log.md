@@ -22,6 +22,10 @@
 - Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so scoped latest-work labels, active scoped-shop resolution, and scoped entry labels no longer check branch `is_active` directly.
 - Tightened `shopIsActive()` to return an explicit boolean cast and re-ran the scoped dashboard shortcut assertion as the parity check for this dashboard seam cleanup.
 
+### Resource helper active-cast checkpoint
+- Tightened the existing `roleIsActive()`, `cardTypeIsActive()`, and `shopIsActive()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so these shared Phase 1 review helpers now return explicit boolean casts instead of raw model attribute values.
+- Re-ran the shops operational index plus the card-types management preview, live edit-mode, and live visible-card coverage assertions as the parity check for this shared helper-cast cleanup.
+
 ### Card-type focus active-helper checkpoint
 - Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
 - Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
