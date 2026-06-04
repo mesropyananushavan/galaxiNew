@@ -88,7 +88,12 @@ class DashboardController extends Controller
 
     protected function liveEntryPointCoverage(): string
     {
-        return sprintf('%d live review entry points staged', count($this->liveReviewEntryPoints()));
+        return sprintf('%d live review entry points staged', $this->liveReviewEntryPointCount());
+    }
+
+    protected function liveReviewEntryPointCount(): int
+    {
+        return count($this->liveReviewEntryPoints());
     }
 
     protected function phaseOneDomainCoverage(): string

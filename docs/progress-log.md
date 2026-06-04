@@ -250,6 +250,10 @@
 - Added `latestWorkspaces()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused it so latest-work coverage, focus, posture, handoff summary, and the dashboard payload itself all read from one named latest-work workspace collection instead of rebuilding the same filtered shop-holder-card-tier-role list inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard latest-workspace cleanup.
 
+### Dashboard live-entry-point count seam checkpoint
+- Added `liveReviewEntryPointCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the staged live-entry coverage summary no longer counts live review entry points inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard live-entry-point cleanup.
+
 ### Dashboard live-entry target seam checkpoint
 - Added `liveEntryTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so live entry domain counting, plus the branch-holder-card subset inside foundation targets, now build from one named staged-entry target definition instead of maintaining separate inline lists.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard staged-entry cleanup.
