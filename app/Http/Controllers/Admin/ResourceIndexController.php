@@ -3079,7 +3079,7 @@ class ResourceIndexController extends Controller
             return null;
         }
 
-        $selectedPreview = collect($previews)->first(
+        $selectedPreview = $this->collectItems($previews)->first(
             fn (array $preview): bool => strtolower((string) ($preview['key'] ?? '')) === $normalizedKey
         );
 

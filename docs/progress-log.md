@@ -10776,3 +10776,8 @@
 - Reused `collectItems()` in the reports preview table row mapping and latest-live-source selection inside `app/Http/Controllers/Admin/ResourceIndexController.php` so those report-source collection seams no longer call `collect(...)` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_authenticated_user_can_access_reports_management_preview'`, `1 passed` (the filter matched the dashboard slice in this run).
 - Kept the change read-only and parity-first, without widening report-source writes, preview routing, or report availability behavior.
+
+### Selected preview collection helper checkpoint
+- Reused `collectItems()` in `selectedPreviewByKey()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so keyed preview selection no longer calls `collect(...)` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening selected-preview routing, catalog writes, or preview matching behavior.
