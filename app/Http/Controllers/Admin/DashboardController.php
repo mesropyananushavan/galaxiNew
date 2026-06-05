@@ -628,14 +628,14 @@ class DashboardController extends Controller
 
     protected function latestSavedCardType(): ?CardType
     {
-        $cardType = CardType::query()->latest('id')->first();
+        $cardType = $this->latestModelRecord(CardType::class);
 
         return $cardType instanceof CardType ? $cardType : null;
     }
 
     protected function latestSavedRole(): ?Role
     {
-        $role = Role::query()->latest('id')->first();
+        $role = $this->latestModelRecord(Role::class);
 
         return $role instanceof Role ? $role : null;
     }
@@ -1030,20 +1030,14 @@ class DashboardController extends Controller
 
     protected function latestShopCardHolder(Shop $shop): ?CardHolder
     {
-        $cardHolder = CardHolder::query()
-            ->where('shop_id', $shop->id)
-            ->latest('id')
-            ->first();
+        $cardHolder = $this->latestModelRecord(CardHolder::class, ['shop_id' => $shop->id]);
 
         return $cardHolder instanceof CardHolder ? $cardHolder : null;
     }
 
     protected function latestShopCard(Shop $shop): ?Card
     {
-        $card = Card::query()
-            ->where('shop_id', $shop->id)
-            ->latest('id')
-            ->first();
+        $card = $this->latestModelRecord(Card::class, ['shop_id' => $shop->id]);
 
         return $card instanceof Card ? $card : null;
     }
@@ -1355,5 +1349,13 @@ class DashboardController extends Controller
     protected function firstIterableItem(iterable $items): mixed
     {
         return collect($items)->first();
+    }
+
+    protected function latestModelRecord(string $modelClass, array $where = []): mixed
+    {
+        return $modelClass::query()
+            ->where($where)
+            ->latest('id')
+            ->first();
     }
 }
