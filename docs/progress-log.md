@@ -10846,3 +10846,8 @@
 - Reused `roleUsersRelation()` in `loadedRoleUsers()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so the loaded role-user seam now reads through the same named relation helper as the scoped role-user query seam.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening role writes, assignment flows, or role preview behavior.
+
+### Role relation return-type checkpoint
+- Imported `Illuminate\Database\Eloquent\Relations\Relation` in `app/Http/Controllers/Admin/ResourceIndexController.php` and added explicit `Relation` return types to both `roleUsersRelation()` and `rolePermissionsRelation()` so those Phase 1 role relation seams are now explicit and type-aligned.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link behavior.

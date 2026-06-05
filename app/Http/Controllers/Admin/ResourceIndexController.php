@@ -15,6 +15,7 @@ use BackedEnum;
 use Illuminate\Contracts\Routing\UrlRoutable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Collection;
 use Stringable;
 use UnitEnum;
@@ -5062,12 +5063,12 @@ class ResourceIndexController extends Controller
         return $this->roleUsersRelation($role)->{$scope}()->count();
     }
 
-    private function roleUsersRelation(Role $role)
+    private function roleUsersRelation(Role $role): Relation
     {
         return $role->users();
     }
 
-    private function rolePermissionsRelation(Role $role)
+    private function rolePermissionsRelation(Role $role): Relation
     {
         return $role->permissions();
     }
