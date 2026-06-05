@@ -10641,3 +10641,8 @@
 - Added `latestSavedCollectionRecord()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for roles, cards, cardholders, and shops so latest saved review actions no longer repeat collection `sortByDesc('id')->first()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_shops_operational_index_shape'`, `4 passed`.
 - Kept the change read-only and parity-first, without widening role, card, holder, or shop write behavior.
+
+### Shop assigned-manager name helper checkpoint
+- Added `shopAssignedManagerName()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for both the shops catalog row and selected-shop review card so branch manager display no longer repeats direct `users->first()?->name` access inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_supports_selected_shop_review_context|test_shops_page_supports_selected_paused_shop_review_context'`, `1 passed` on the current focused match set.
+- Kept the change read-only and parity-first, without widening branch writes, reassignment behavior, or manager persistence.

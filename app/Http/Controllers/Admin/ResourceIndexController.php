@@ -1230,7 +1230,7 @@ class ResourceIndexController extends Controller
                 : $this->linkedTableCell($shop->name, 'admin.shops.index', ['shop' => $shop->id]),
             $shop->code,
             filled($shop->review_note) ? str($shop->review_note)->limit(72)->toString() : 'No review note saved yet',
-            $shop->users->first()?->name ?? 'Unassigned',
+            $this->shopAssignedManagerName($shop),
             (string) $this->shopVisibleCardholderCount($shop),
             (string) $this->shopVisibleCardCount($shop),
             $this->shopStatusValue($shop),
@@ -4389,7 +4389,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Evidence priority', 'value' => $this->shopsEvidencePriority($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
             ['label' => 'Backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
-            ['label' => 'Assigned manager', 'value' => $selectedShop->users->first()?->name ?? 'Unassigned'],
+            ['label' => 'Assigned manager', 'value' => $this->shopAssignedManagerName($selectedShop)],
             ['label' => 'Manager guidance', 'value' => match (true) {
                 ! $this->shopIsActive($selectedShop) && $this->shopHasAssignedManagers($selectedShop) => 'Keep current paused-branch manager ownership visible during review, because Galaxy recovery workflows depended on clear branch responsibility.',
                 ! $this->shopIsActive($selectedShop) => 'No branch manager is assigned yet, so recovery ownership expectations should stay parity-first until paused Galaxy branch ownership-assignment parity is verified.',
@@ -5106,6 +5106,11 @@ class ResourceIndexController extends Controller
     private function shopAssignedManagerCount(Shop $shop): int
     {
         return (int) ($shop->users_count ?? $shop->users->count());
+    }
+
+    private function shopAssignedManagerName(Shop $shop): string
+    {
+        return $shop->users->first()?->name ?? 'Unassigned';
     }
 
     private function shopManagerCoverageCount(): int
