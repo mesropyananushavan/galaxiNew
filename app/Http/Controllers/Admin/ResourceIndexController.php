@@ -5252,6 +5252,11 @@ class ResourceIndexController extends Controller
         return $shop->cardHolders();
     }
 
+    private function shopCardsRelation(Shop $shop): Relation
+    {
+        return $shop->cards();
+    }
+
     private function loadedShopCardholders(Shop $shop): Collection
     {
         return $this->shopCardholdersRelation($shop)->getResults();
@@ -5259,7 +5264,7 @@ class ResourceIndexController extends Controller
 
     private function loadedShopCards(Shop $shop): Collection
     {
-        return $shop->cards;
+        return $this->shopCardsRelation($shop)->getResults();
     }
 
     private function pausedShopCount(): int
