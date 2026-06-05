@@ -10851,3 +10851,8 @@
 - Imported `Illuminate\Database\Eloquent\Relations\Relation` in `app/Http/Controllers/Admin/ResourceIndexController.php` and added explicit `Relation` return types to both `roleUsersRelation()` and `rolePermissionsRelation()` so those Phase 1 role relation seams are now explicit and type-aligned.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link behavior.
+
+### Shop first-loaded-user seam checkpoint
+- Added `firstLoadedShopUser()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `firstLoadedShopManager()` so the first loaded shop-user selection now flows through one named seam instead of calling `first()` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, manager assignment flows, or shop preview behavior.
