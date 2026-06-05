@@ -4152,9 +4152,9 @@ class ResourceIndexController extends Controller
 
     private function cardholdersReviewMode(CardHolder $selectedCardHolder): string
     {
-        return $this->cardholderIsActive($selectedCardHolder)
-            ? 'Live profile review, this holder already participates in the Galaxy foundation lookup surface and should stay parity-first.'
-            : 'Dormant-profile review, this inactive holder stays safer for parity checks before any reactivation path is trusted.';
+        return $this->cardholderIsInactive($selectedCardHolder)
+            ? 'Dormant-profile review, this inactive holder stays safer for parity checks before any reactivation path is trusted.'
+            : 'Live profile review, this holder already participates in the Galaxy foundation lookup surface and should stay parity-first.';
     }
 
     private function cardholdersStatusSignal(CardHolder $selectedCardHolder): string

@@ -10926,3 +10926,8 @@
 - Reused `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersOperationalReadiness()` so that readiness branch no longer repeats its own raw negated active check.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, readiness flows, or cardholder review behavior.
+
+### Cardholder review-mode inactive seam checkpoint
+- Reused `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersReviewMode()` so the selected-holder review-mode branch no longer depends on a raw active/inactive ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, review flows, or cardholder workspace behavior.
