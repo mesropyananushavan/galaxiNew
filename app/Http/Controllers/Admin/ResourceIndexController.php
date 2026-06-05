@@ -5284,12 +5284,12 @@ class ResourceIndexController extends Controller
 
     private function firstCatalogPreview(iterable $previews): mixed
     {
-        return collect($previews)->first();
+        return $this->collectItems($previews)->first();
     }
 
     private function latestSavedCollectionRecord(iterable $records): mixed
     {
-        return collect($records)
+        return $this->collectItems($records)
             ->sortByDesc('id')
             ->first();
     }
@@ -5301,7 +5301,12 @@ class ResourceIndexController extends Controller
 
     private function filterMatching(iterable $values, callable $predicate): Collection
     {
-        return collect($values)->filter($predicate);
+        return $this->collectItems($values)->filter($predicate);
+    }
+
+    private function collectItems(iterable $values): Collection
+    {
+        return collect($values);
     }
 
     private function isPositiveCount(int $count): bool

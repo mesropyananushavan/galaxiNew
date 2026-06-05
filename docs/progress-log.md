@@ -10761,3 +10761,8 @@
 - Added `roleAssignedUserScopeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `roleAssignedToActiveShopCount()` and `roleAssignedToPausedShopCount()` so those role activity counts no longer repeat the same scoped user query-count pattern inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link persistence behavior.
+
+### Resource index collection normalization helper checkpoint
+- Added `collectItems()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `firstCatalogPreview()`, `latestSavedCollectionRecord()`, and `filterMatching()` so those generic collection seams now normalize iterables through one named helper instead of repeating direct `collect(...)` calls.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening preview selection, saved-record ordering, or catalog write behavior.
