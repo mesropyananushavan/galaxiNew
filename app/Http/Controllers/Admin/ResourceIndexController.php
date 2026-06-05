@@ -837,7 +837,7 @@ class ResourceIndexController extends Controller
             ->all();
 
         if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm']['fields'] = collect($page['liveForm']['fields'] ?? [])
+            $page['liveForm']['fields'] = $this->collectItems($page['liveForm']['fields'] ?? [])
                 ->map(function (array $field) use ($shopOptions, $cardTypeOptions): array {
                     if (($field['name'] ?? null) === 'shop_id') {
                         $field['options'] = $shopOptions;
