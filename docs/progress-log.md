@@ -10676,3 +10676,8 @@
 - Added `shopScopedAssignedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the publish-role disabled-reason flow so that access-shell guard no longer repeats the shop-scoped assigned-role query count inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening role writes, assignment behavior, or publish behavior.
+
+### Cards active-count helper checkpoint
+- Added `activeCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both issue-card and review-blocked disabled-reason flows so those inventory guards no longer repeat the active-card query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening card writes, issue behavior, or blocked-state recovery flows.
