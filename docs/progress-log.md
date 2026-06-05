@@ -10726,3 +10726,8 @@
 - Added `shopLoadedCardholderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopVisibleCardholderCount()` so the loaded-relation fallback now reads through one named shop cardholder-count seam instead of calling `cardHolders->count()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, cardholder assignment flows, or coverage persistence behavior.
+
+### Shop loaded-card count helper checkpoint
+- Added `shopLoadedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopVisibleCardCount()` so the loaded-relation fallback now reads through one named shop card-count seam instead of calling `cards->count()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, card assignment flows, or coverage persistence behavior.
