@@ -708,7 +708,7 @@ class ResourceIndexController extends Controller
             ];
         })->all();
 
-        $latestRole = $roles->sortByDesc('id')->first();
+        $latestRole = $this->latestSavedCollectionRecord($roles);
 
         if ($latestRole !== null) {
             $page = $this->appendLatestSavedReviewAction(
@@ -906,7 +906,7 @@ class ResourceIndexController extends Controller
             $card->activated_at?->format('Y-m-d') ?? '—',
         ])->all();
 
-        $latestCard = $accessibleCards->sortByDesc('id')->first();
+        $latestCard = $this->latestSavedCollectionRecord($accessibleCards);
 
         if ($latestCard !== null) {
             $page = $this->appendLatestSavedReviewAction(
@@ -1082,7 +1082,7 @@ class ResourceIndexController extends Controller
             $cardHolder->updated_at?->format('Y-m-d') ?? '—',
         ])->all();
 
-        $latestCardHolder = $accessibleCardHolders->sortByDesc('id')->first();
+        $latestCardHolder = $this->latestSavedCollectionRecord($accessibleCardHolders);
 
         if ($latestCardHolder !== null) {
             $page = $this->appendLatestSavedReviewAction(
@@ -1236,7 +1236,7 @@ class ResourceIndexController extends Controller
             $this->shopStatusValue($shop),
         ])->all();
 
-        $latestShop = $accessibleShops->sortByDesc('id')->first();
+        $latestShop = $this->latestSavedCollectionRecord($accessibleShops);
 
         if ($latestShop !== null) {
             $page = $this->appendLatestSavedReviewAction(
@@ -5161,6 +5161,13 @@ class ResourceIndexController extends Controller
     private function firstCatalogPreview(iterable $previews): mixed
     {
         return collect($previews)->first();
+    }
+
+    private function latestSavedCollectionRecord(iterable $records): mixed
+    {
+        return collect($records)
+            ->sortByDesc('id')
+            ->first();
     }
 
     private function countMatching(iterable $values, callable $predicate): int

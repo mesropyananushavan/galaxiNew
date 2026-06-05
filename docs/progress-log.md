@@ -10636,3 +10636,8 @@
 - Added `firstCatalogPreview()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for receipt, rule, and gift catalog previews so latest preview review actions no longer repeat `collect(...)->first()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_gifts_management_preview'`, `4 passed`.
 - Kept the change read-only and parity-first, without widening receipt, rule, or gift write behavior.
+
+### Catalog latest-saved collection helper checkpoint
+- Added `latestSavedCollectionRecord()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for roles, cards, cardholders, and shops so latest saved review actions no longer repeat collection `sortByDesc('id')->first()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_shops_operational_index_shape'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening role, card, holder, or shop write behavior.
