@@ -4841,7 +4841,7 @@ class ResourceIndexController extends Controller
     private function filterShopScopedRecords(iterable $records, callable $shopResolver)
     {
         $adminUser = $this->adminUser();
-        $records = collect($records);
+        $records = $this->collectItems($records);
 
         if (! $adminUser instanceof User) {
             return $records;

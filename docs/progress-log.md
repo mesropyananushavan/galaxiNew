@@ -10796,3 +10796,8 @@
 - Reused `collectItems()` in the gifts preview table row mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that gifts preview rows no longer call `collect(...)` inline there.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening gift preview routing, table rendering, or reward write behavior.
+
+### Shop-scoped records collection helper checkpoint
+- Reused `collectItems()` in `filterShopScopedRecords()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that scoped record normalization no longer calls `collect(...)` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_cardholders_operational_index_shape'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening shop scoping, record filtering, or admin write behavior.
