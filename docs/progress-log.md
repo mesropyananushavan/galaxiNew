@@ -10651,3 +10651,8 @@
 - Added `latestSavedCardType()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the card-types page so the latest tier review action no longer performs its `latest('id')->first()` query inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `1 passed` on the current focused match set.
 - Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types active-count helper checkpoint
+- Added `activeCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both tier import-rule and publish disabled-reason flows so those card-type catalog guards no longer repeat the active-tier query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `1 passed` on the current focused match set.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.

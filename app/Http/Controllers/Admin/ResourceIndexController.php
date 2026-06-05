@@ -2427,7 +2427,7 @@ class ResourceIndexController extends Controller
     private function cardTypesCatalogImportRulesDisabledReason(mixed $cardTypes): string
     {
         $savedCount = $cardTypes->count();
-        $activeCount = CardType::query()->active()->count();
+        $activeCount = $this->activeCardTypeCount();
 
         return match (true) {
             $savedCount === 0 => 'Blocked until the first Galaxy foundation-backed tier exists for rule parity review.',
@@ -2439,7 +2439,7 @@ class ResourceIndexController extends Controller
     private function cardTypesCatalogPublishTypeDisabledReason(mixed $cardTypes): string
     {
         $savedCount = $cardTypes->count();
-        $activeCount = CardType::query()->active()->count();
+        $activeCount = $this->activeCardTypeCount();
 
         return match (true) {
             $savedCount === 0 => 'Blocked until the first Galaxy foundation-backed tier exists before any publish-style rollout.',
@@ -5088,6 +5088,11 @@ class ResourceIndexController extends Controller
         $cardType = CardType::query()->latest('id')->first();
 
         return $cardType instanceof CardType ? $cardType : null;
+    }
+
+    private function activeCardTypeCount(): int
+    {
+        return (int) CardType::query()->active()->count();
     }
 
     private function cardTypeIsActive(CardType $cardType): bool
