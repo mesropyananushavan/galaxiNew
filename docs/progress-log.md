@@ -10711,3 +10711,8 @@
 - Added `firstLoadedShopManager()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopAssignedManagerName()` so manager-name lookup no longer calls `users->first()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, reassignment flows, or manager persistence behavior.
+
+### Role loaded-user count helper checkpoint
+- Added `roleLoadedUserCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `roleAssignedUserCount()` so the loaded-relation fallback now reads through one named role user-count seam instead of calling `users->count()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link persistence behavior.

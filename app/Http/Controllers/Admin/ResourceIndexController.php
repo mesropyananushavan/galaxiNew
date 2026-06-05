@@ -5020,7 +5020,7 @@ class ResourceIndexController extends Controller
 
     private function roleAssignedUserCount(Role $role): int
     {
-        return (int) ($role->users_count ?? $role->users->count());
+        return (int) ($role->users_count ?? $this->roleLoadedUserCount($role));
     }
 
     private function roleHasAssignedUsers(Role $role): bool
@@ -5031,6 +5031,11 @@ class ResourceIndexController extends Controller
     private function rolePermissionCount(Role $role): int
     {
         return (int) ($role->permissions_count ?? $role->permissions->count());
+    }
+
+    private function roleLoadedUserCount(Role $role): int
+    {
+        return $role->users->count();
     }
 
     private function permissionLinkedRoleCount(): int
