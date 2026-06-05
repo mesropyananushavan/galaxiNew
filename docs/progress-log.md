@@ -10971,3 +10971,8 @@
 - Reused `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholderShopIsPaused()` so the paused-branch holder seam no longer repeats a raw shop-presence check before its active-branch guard.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder active-shop seam checkpoint
+- Reused `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholderShopIsActive()` so the active-branch holder seam now follows the same explicit shop-presence gate as the paused-branch helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.

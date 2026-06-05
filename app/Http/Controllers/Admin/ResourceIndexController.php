@@ -4187,7 +4187,7 @@ class ResourceIndexController extends Controller
 
     private function cardholderShopIsActive(CardHolder $selectedCardHolder): bool
     {
-        return (bool) $selectedCardHolder->shop?->is_active;
+        return $this->cardholderHasShop($selectedCardHolder) && (bool) $selectedCardHolder->shop?->is_active;
     }
 
     private function cardholderShopIsPaused(CardHolder $selectedCardHolder): bool
