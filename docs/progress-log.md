@@ -10656,3 +10656,8 @@
 - Added `activeCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both tier import-rule and publish disabled-reason flows so those card-type catalog guards no longer repeat the active-tier query count inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `1 passed` on the current focused match set.
 - Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Shops paused-count helper checkpoint
+- Added `pausedShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both the shops catalog metrics and new-shop disabled-reason flow so paused-branch count lookup no longer repeats the paused-shop query inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager assignment behavior.

@@ -1219,7 +1219,7 @@ class ResourceIndexController extends Controller
 
         $page['metrics'] = [
             ['label' => 'Active-state Galaxy branches', 'value' => (string) Shop::query()->active()->count()],
-            ['label' => 'Paused-state Galaxy branches', 'value' => (string) Shop::query()->paused()->count()],
+            ['label' => 'Paused-state Galaxy branches', 'value' => (string) $this->pausedShopCount()],
             ['label' => 'Review-noted Galaxy branches', 'value' => (string) Shop::query()->reviewNoted()->count()],
             ['label' => 'Assigned branch managers', 'value' => (string) $this->shopManagerCoverageCount()],
         ];
@@ -2620,7 +2620,7 @@ class ResourceIndexController extends Controller
     private function shopsCatalogNewShopDisabledReason(mixed $shops): string
     {
         $managerCount = $this->shopManagerCoverageCount();
-        $pausedCount = Shop::query()->paused()->count();
+        $pausedCount = $this->pausedShopCount();
 
         return match (true) {
             $pausedCount > 0 => 'Blocked until paused-branch recovery and manager assignment parity are verified.',
@@ -5128,6 +5128,11 @@ class ResourceIndexController extends Controller
     private function shopManagerCoverageCount(): int
     {
         return (int) Shop::query()->managerAssigned()->count();
+    }
+
+    private function pausedShopCount(): int
+    {
+        return (int) Shop::query()->paused()->count();
     }
 
     private function shopFoundationCoverageCount(): int
