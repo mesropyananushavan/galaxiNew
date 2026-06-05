@@ -5040,12 +5040,17 @@ class ResourceIndexController extends Controller
 
     private function roleLoadedPermissionCount(Role $role): int
     {
-        return $role->permissions->count();
+        return $this->loadedRolePermissions($role)->count();
     }
 
     private function loadedRoleUsers(Role $role): Collection
     {
         return $role->users;
+    }
+
+    private function loadedRolePermissions(Role $role): Collection
+    {
+        return $role->permissions;
     }
 
     private function permissionLinkedRoleCount(): int
