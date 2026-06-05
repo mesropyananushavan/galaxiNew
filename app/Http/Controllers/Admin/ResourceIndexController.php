@@ -4975,7 +4975,7 @@ class ResourceIndexController extends Controller
 
     private function receiptPreviewShopCount(array $receiptPreviews): int
     {
-        return collect($receiptPreviews)
+        return $this->collectItems($receiptPreviews)
             ->pluck('shop')
             ->unique()
             ->count();
