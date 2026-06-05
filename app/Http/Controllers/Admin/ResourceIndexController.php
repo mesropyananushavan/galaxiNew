@@ -423,7 +423,7 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        $page['table']['rows'] = collect($rulePreviews)->map(fn (array $rule): array => [
+        $page['table']['rows'] = $this->collectItems($rulePreviews)->map(fn (array $rule): array => [
             $this->linkedTableCell($rule['label'], 'admin.services-rules.index', ['rule' => $rule['key']]),
             $rule['scope'],
             $rule['condition'],
