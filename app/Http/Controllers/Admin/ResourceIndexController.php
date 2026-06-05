@@ -1132,7 +1132,7 @@ class ResourceIndexController extends Controller
                 'phone' => $this->cardholderPhoneValue($selectedCardHolder),
                 'email' => $selectedCardHolder->email ?? '',
                 'is_active' => $this->cardholderIsActive($selectedCardHolder) ? '1' : '0',
-                'review_note' => $selectedCardHolder->review_note ?? '',
+                'review_note' => $this->cardholderReviewNoteValue($selectedCardHolder),
             ];
         }
 
@@ -4255,7 +4255,12 @@ class ResourceIndexController extends Controller
 
     private function cardholdersReviewNoteLabel(CardHolder $selectedCardHolder): string
     {
-        return $selectedCardHolder->review_note ?: 'No review note saved yet';
+        return $this->cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet');
+    }
+
+    private function cardholderReviewNoteValue(CardHolder $selectedCardHolder, string $fallback = ''): string
+    {
+        return $selectedCardHolder->review_note ?? $fallback;
     }
 
     private function cardholdersReviewNoteReflection(CardHolder $selectedCardHolder): string

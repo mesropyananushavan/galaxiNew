@@ -10986,3 +10986,8 @@
 - Added `cardholderPhoneValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `cardholdersPhoneLabel()` and the selected-holder live-form values so holder phone fallback handling no longer repeats inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, contact flows, or cardholder workspace behavior.
+
+### Cardholder review-note value seam checkpoint
+- Added `cardholderReviewNoteValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `cardholdersReviewNoteLabel()` and the selected-holder live-form values so holder review-note fallback handling no longer repeats inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, note flows, or cardholder workspace behavior.
