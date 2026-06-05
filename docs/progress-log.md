@@ -10771,3 +10771,8 @@
 - Reused `collectItems()` in `receiptPreviewShopCount()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that receipt preview normalization no longer calls `collect(...)` inline there.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening receipt parsing, preview aggregation, or check-point write behavior.
+
+### Report sources collection helper checkpoint
+- Reused `collectItems()` in the reports preview table row mapping and latest-live-source selection inside `app/Http/Controllers/Admin/ResourceIndexController.php` so those report-source collection seams no longer call `collect(...)` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_authenticated_user_can_access_reports_management_preview'`, `1 passed` (the filter matched the dashboard slice in this run).
+- Kept the change read-only and parity-first, without widening report-source writes, preview routing, or report availability behavior.

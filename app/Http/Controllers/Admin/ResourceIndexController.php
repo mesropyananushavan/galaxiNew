@@ -1812,7 +1812,7 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        $page['table']['rows'] = collect($reportSources)->map(fn (array $source): array => [
+        $page['table']['rows'] = $this->collectItems($reportSources)->map(fn (array $source): array => [
             $this->linkedTableCell($source['label'], 'admin.reports.index', ['source' => $source['key']]),
             $source['scope'],
             'Current snapshot',
@@ -1820,7 +1820,7 @@ class ResourceIndexController extends Controller
             $source['status'],
         ])->all();
 
-        $latestLiveSource = collect($reportSources)->first(fn (array $source): bool => $source['status'] === 'live');
+        $latestLiveSource = $this->collectItems($reportSources)->first(fn (array $source): bool => $source['status'] === 'live');
 
         if (is_array($latestLiveSource)) {
             $page = $this->appendLatestPreviewReviewAction(
