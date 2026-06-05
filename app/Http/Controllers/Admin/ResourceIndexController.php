@@ -1141,38 +1141,7 @@ class ResourceIndexController extends Controller
             ],
         );
 
-        $page['activityTimeline'] = [
-            [
-                'title' => sprintf('%s selected for Galaxy review', $selectedCardHolder->full_name),
-                'time' => 'Current request',
-                'description' => 'The shared cardholders workspace is now loading this saved holder from the Galaxy foundation layer instead of only static preview rows.',
-            ],
-            [
-                'title' => sprintf('%s status reflected from model state', $selectedCardHolder->full_name),
-                'time' => 'Current request',
-                'description' => sprintf('This holder is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $this->cardholdersGalaxyStatusLabel($selectedCardHolder)),
-            ],
-            [
-                'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedCardHolder->full_name),
-                'time' => 'Current request',
-                'description' => $this->cardholdersLifecycleFreshnessDescription($selectedCardHolder),
-            ],
-            [
-                'title' => sprintf('%s last saved timestamp reflected from model state', $selectedCardHolder->full_name),
-                'time' => 'Current request',
-                'description' => sprintf('The latest saved Galaxy foundation timestamp for this holder is %s, giving operators a concrete checkpoint for the current profile shell.', $this->cardholdersLastSavedLabel($selectedCardHolder)),
-            ],
-            [
-                'title' => sprintf('%s review note reflected from model state', $selectedCardHolder->full_name),
-                'time' => 'Current request',
-                'description' => $this->cardholdersReviewNoteReflection($selectedCardHolder),
-            ],
-            [
-                'title' => 'Holder activity handoff stays visible in the workspace',
-                'time' => 'Current request',
-                'description' => $this->cardholdersActivityTimelineHandoffDescription($selectedCardHolder),
-            ],
-        ];
+        $page['activityTimeline'] = $this->cardholdersActivityTimeline($selectedCardHolder);
 
         $page['dependencyStatus'] = $this->cardholdersSelectedHolderDependencyStatus($selectedCardHolder);
 
@@ -4302,6 +4271,42 @@ class ResourceIndexController extends Controller
             'email' => $this->cardholderEmailValue($selectedCardHolder),
             'is_active' => $this->cardholderActiveValue($selectedCardHolder),
             'review_note' => $this->cardholderReviewNoteValue($selectedCardHolder),
+        ];
+    }
+
+    private function cardholdersActivityTimeline(CardHolder $selectedCardHolder): array
+    {
+        return [
+            [
+                'title' => sprintf('%s selected for Galaxy review', $this->cardholderFullNameValue($selectedCardHolder)),
+                'time' => 'Current request',
+                'description' => 'The shared cardholders workspace is now loading this saved holder from the Galaxy foundation layer instead of only static preview rows.',
+            ],
+            [
+                'title' => sprintf('%s status reflected from model state', $this->cardholderFullNameValue($selectedCardHolder)),
+                'time' => 'Current request',
+                'description' => sprintf('This holder is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $this->cardholdersGalaxyStatusLabel($selectedCardHolder)),
+            ],
+            [
+                'title' => sprintf('%s lifecycle freshness reflected from model state', $this->cardholderFullNameValue($selectedCardHolder)),
+                'time' => 'Current request',
+                'description' => $this->cardholdersLifecycleFreshnessDescription($selectedCardHolder),
+            ],
+            [
+                'title' => sprintf('%s last saved timestamp reflected from model state', $this->cardholderFullNameValue($selectedCardHolder)),
+                'time' => 'Current request',
+                'description' => sprintf('The latest saved Galaxy foundation timestamp for this holder is %s, giving operators a concrete checkpoint for the current profile shell.', $this->cardholdersLastSavedLabel($selectedCardHolder)),
+            ],
+            [
+                'title' => sprintf('%s review note reflected from model state', $this->cardholderFullNameValue($selectedCardHolder)),
+                'time' => 'Current request',
+                'description' => $this->cardholdersReviewNoteReflection($selectedCardHolder),
+            ],
+            [
+                'title' => 'Holder activity handoff stays visible in the workspace',
+                'time' => 'Current request',
+                'description' => $this->cardholdersActivityTimelineHandoffDescription($selectedCardHolder),
+            ],
         ];
     }
 
