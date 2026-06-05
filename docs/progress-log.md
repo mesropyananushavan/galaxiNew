@@ -10861,3 +10861,8 @@
 - Tightened `firstLoadedShopUser()` in `app/Http/Controllers/Admin/ResourceIndexController.php` to return `?User`, and simplified `firstLoadedShopManager()` to reuse that typed seam directly instead of repeating its own `instanceof` guard.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, manager assignment flows, or shop preview behavior.
+
+### Shop users-relation helper checkpoint
+- Added `shopUsersRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `loadedShopManagers()` so the loaded shop-manager seam now reads through a named relation helper instead of touching the users relation directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, manager assignment flows, or shop preview behavior.

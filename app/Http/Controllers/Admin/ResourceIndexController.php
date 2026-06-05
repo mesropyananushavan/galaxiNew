@@ -5232,7 +5232,7 @@ class ResourceIndexController extends Controller
 
     private function loadedShopManagers(Shop $shop): Collection
     {
-        return $shop->users;
+        return $this->shopUsersRelation($shop)->getResults();
     }
 
     private function firstLoadedShopUser(Shop $shop): ?User
@@ -5240,6 +5240,11 @@ class ResourceIndexController extends Controller
         $user = $this->loadedShopManagers($shop)->first();
 
         return $user instanceof User ? $user : null;
+    }
+
+    private function shopUsersRelation(Shop $shop): Relation
+    {
+        return $shop->users();
     }
 
     private function loadedShopCardholders(Shop $shop): Collection
