@@ -959,13 +959,10 @@ class DashboardController extends Controller
             return 'setup stage';
         }
 
-        $latestTimestamp = collect([
+        $latestTimestamp = $this->latestKnownTimestamp([
             $latestHolder?->created_at,
             $latestCard?->created_at,
-        ])
-            ->filter()
-            ->sortDesc()
-            ->first();
+        ]);
 
         if ($latestTimestamp === null) {
             return 'unknown';
@@ -974,6 +971,14 @@ class DashboardController extends Controller
         return now()->diffInDays($latestTimestamp) <= 1
             ? 'fresh activity'
             : 'stale activity';
+    }
+
+    protected function latestKnownTimestamp(array $timestamps): mixed
+    {
+        return collect($timestamps)
+            ->filter()
+            ->sortDesc()
+            ->first();
     }
 
     protected function cardTypeIsActive(CardType $cardType): bool
