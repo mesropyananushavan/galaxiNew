@@ -1129,7 +1129,7 @@ class ResourceIndexController extends Controller
             $page['liveForm']['valuesResolver'] = [
                 'shop_id' => $selectedCardHolder->shop_id !== null ? (string) $selectedCardHolder->shop_id : '',
                 'full_name' => $selectedCardHolder->full_name,
-                'phone' => $selectedCardHolder->phone ?? '',
+                'phone' => $this->cardholderPhoneValue($selectedCardHolder),
                 'email' => $selectedCardHolder->email ?? '',
                 'is_active' => $this->cardholderIsActive($selectedCardHolder) ? '1' : '0',
                 'review_note' => $selectedCardHolder->review_note ?? '',
@@ -4267,7 +4267,12 @@ class ResourceIndexController extends Controller
 
     private function cardholdersPhoneLabel(CardHolder $selectedCardHolder): string
     {
-        return $selectedCardHolder->phone ?? '—';
+        return $this->cardholderPhoneValue($selectedCardHolder, '—');
+    }
+
+    private function cardholderPhoneValue(CardHolder $selectedCardHolder, string $fallback = ''): string
+    {
+        return $selectedCardHolder->phone ?? $fallback;
     }
 
     private function cardholdersShopLabel(CardHolder $selectedCardHolder): string
