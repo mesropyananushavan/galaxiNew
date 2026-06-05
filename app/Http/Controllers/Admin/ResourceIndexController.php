@@ -3473,7 +3473,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsCatalogReviewMatrixDisabledReason(mixed $roles): string
     {
-        $permissionLinkedCount = Role::query()->permissionBearing()->count();
+        $permissionLinkedCount = $this->permissionLinkedRoleCount();
         $activeCount = Role::query()->active()->count();
 
         return match (true) {
@@ -3485,7 +3485,7 @@ class ResourceIndexController extends Controller
 
     private function rolesPermissionsCatalogPublishRoleDisabledReason(mixed $roles): string
     {
-        $permissionLinkedCount = Role::query()->permissionBearing()->count();
+        $permissionLinkedCount = $this->permissionLinkedRoleCount();
         $scopedCount = Role::query()->shopScopedAssigned()->count();
         $activeCount = Role::query()->active()->count();
 
@@ -5031,6 +5031,11 @@ class ResourceIndexController extends Controller
     private function rolePermissionCount(Role $role): int
     {
         return (int) ($role->permissions_count ?? $role->permissions->count());
+    }
+
+    private function permissionLinkedRoleCount(): int
+    {
+        return (int) Role::query()->permissionBearing()->count();
     }
 
     private function roleHasPermissions(Role $role): bool
