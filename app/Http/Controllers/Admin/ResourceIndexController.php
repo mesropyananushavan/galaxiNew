@@ -2786,11 +2786,11 @@ class ResourceIndexController extends Controller
     private function cardholdersSelectedReviewActivityDisabledReason(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Blocked until paused-branch linked-card activity is backed by a stable Galaxy foundation event source for recovery-parity review.',
+            $this->cardholderIsPausedWithLinkedCards($selectedCardHolder) => 'Blocked until paused-branch linked-card activity is backed by a stable Galaxy foundation event source for recovery-parity review.',
             $this->cardholderShopIsPaused($selectedCardHolder) => 'Blocked until paused-branch activity history is backed by a stable Galaxy foundation event source for recovery-parity review.',
-            $this->cardholderLinkedCardCount($selectedCardHolder) > 0 && $this->cardholderIsActive($selectedCardHolder) => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for active-holder lookup parity.',
-            $this->cardholderLinkedCardCount($selectedCardHolder) > 0 => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for holder lookup parity.',
-            ! $this->cardholderIsActive($selectedCardHolder) => 'Blocked until inactive-holder activity history is backed by a stable Galaxy foundation event source for lifecycle parity.',
+            $this->cardholderIsActiveWithLinkedCards($selectedCardHolder) => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for active-holder lookup parity.',
+            $this->cardholderHasLinkedCards($selectedCardHolder) => 'Blocked until linked-card activity is backed by a stable Galaxy foundation event source for holder lookup parity.',
+            $this->cardholderIsInactive($selectedCardHolder) => 'Blocked until inactive-holder activity history is backed by a stable Galaxy foundation event source for lifecycle parity.',
             default => 'Blocked until a stable Galaxy foundation activity source exists for holder lookup parity.',
         };
     }
