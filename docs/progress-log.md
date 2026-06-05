@@ -10916,3 +10916,8 @@
 - Added `cardholderIsPausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across cardholder lookup, focus, posture, evidence, backend-gap, and status-posture messaging so the paused-branch active-holder review branch no longer repeats that combined condition inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, recovery flows, or cardholder review behavior.
+
+### Cardholder inactive-state seam checkpoint
+- Added `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in cardholder activity-handoff and timeline-handoff messaging so the plain inactive-holder review branch no longer repeats a raw negated active check inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, reactivation flows, or cardholder review behavior.
