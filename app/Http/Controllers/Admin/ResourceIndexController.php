@@ -4210,6 +4210,11 @@ class ResourceIndexController extends Controller
         return $this->cardholderLinkedCardCount($selectedCardHolder) > 0;
     }
 
+    private function cardholderIsPausedWithLinkedCards(CardHolder $selectedCardHolder): bool
+    {
+        return $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderHasLinkedCards($selectedCardHolder);
+    }
+
     private function loadedCardholderCards(CardHolder $selectedCardHolder): Collection
     {
         return $this->cardholderCardsRelation($selectedCardHolder)->getResults();
@@ -4327,7 +4332,7 @@ class ResourceIndexController extends Controller
     private function cardholdersActivityHandoffSignal(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderHasLinkedCards($selectedCardHolder) => 'Paused-branch holder already carries linked-card evidence, so branch-recovery context should stay attached to the activity handoff.',
+            $this->cardholderIsPausedWithLinkedCards($selectedCardHolder) => 'Paused-branch holder already carries linked-card evidence, so branch-recovery context should stay attached to the activity handoff.',
             $this->cardholderShopIsPaused($selectedCardHolder) => 'Paused-branch holder should carry branch-recovery context forward until lookup and reactivation parity are explicit.',
             ! $this->cardholderIsActive($selectedCardHolder) && $this->cardholderHasLinkedCards($selectedCardHolder) => 'Dormant holder already carries linked-card evidence for a useful lifecycle handoff review.',
             ! $this->cardholderIsActive($selectedCardHolder) => 'Dormant holder should stay in handoff-only posture until reactivation parity is explicit.',
@@ -4339,7 +4344,7 @@ class ResourceIndexController extends Controller
     private function cardholdersActivityTimelineHandoffDescription(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderHasLinkedCards($selectedCardHolder) => 'Operators should carry paused-branch context, linked-card evidence, and holder status together in the live workspace before trusting any reactivation or merge follow-up.',
+            $this->cardholderIsPausedWithLinkedCards($selectedCardHolder) => 'Operators should carry paused-branch context, linked-card evidence, and holder status together in the live workspace before trusting any reactivation or merge follow-up.',
             $this->cardholderShopIsPaused($selectedCardHolder) => 'Operators should carry paused-branch context, holder status, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.',
             ! $this->cardholderIsActive($selectedCardHolder) && $this->cardholderHasLinkedCards($selectedCardHolder) => 'Operators should carry inactive status, linked-card evidence, and branch context in the live workspace before trusting any reactivation or merge follow-up.',
             ! $this->cardholderIsActive($selectedCardHolder) => 'Operators should carry inactive status, branch context, and card-linkage gaps in the live workspace before trusting any reactivation or merge follow-up.',

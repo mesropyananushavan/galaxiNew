@@ -10896,3 +10896,8 @@
 - Added `cardholderHasLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across cardholder operational-readiness, linkage, activity-handoff, timeline-handoff, and card-linkage-posture messaging so those review branches no longer repeat raw `cardholderLinkedCardCount(...) > 0` checks inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder review behavior.
+
+### Cardholder paused-linked seam checkpoint
+- Added `cardholderIsPausedWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in cardholder activity-handoff and timeline-handoff messaging so the paused-branch plus linked-card review branch no longer repeats that combined condition inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or cardholder review behavior.
