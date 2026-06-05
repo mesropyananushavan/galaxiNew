@@ -1126,14 +1126,7 @@ class ResourceIndexController extends Controller
                 'Back to holder catalog',
                 'Save holder changes',
             );
-            $page['liveForm']['valuesResolver'] = [
-                'shop_id' => $this->cardholderShopIdValue($selectedCardHolder),
-                'full_name' => $this->cardholderFullNameValue($selectedCardHolder),
-                'phone' => $this->cardholderPhoneValue($selectedCardHolder),
-                'email' => $this->cardholderEmailValue($selectedCardHolder),
-                'is_active' => $this->cardholderActiveValue($selectedCardHolder),
-                'review_note' => $this->cardholderReviewNoteValue($selectedCardHolder),
-            ];
+            $page['liveForm']['valuesResolver'] = $this->cardholdersLiveFormValues($selectedCardHolder);
         }
 
         $page['actions'] = $this->selectedReadContextWithDisabledActions(
@@ -4298,6 +4291,18 @@ class ResourceIndexController extends Controller
     private function cardholderFullNameValue(CardHolder $selectedCardHolder): string
     {
         return $selectedCardHolder->full_name;
+    }
+
+    private function cardholdersLiveFormValues(CardHolder $selectedCardHolder): array
+    {
+        return [
+            'shop_id' => $this->cardholderShopIdValue($selectedCardHolder),
+            'full_name' => $this->cardholderFullNameValue($selectedCardHolder),
+            'phone' => $this->cardholderPhoneValue($selectedCardHolder),
+            'email' => $this->cardholderEmailValue($selectedCardHolder),
+            'is_active' => $this->cardholderActiveValue($selectedCardHolder),
+            'review_note' => $this->cardholderReviewNoteValue($selectedCardHolder),
+        ];
     }
 
     private function cardholdersShopLabel(CardHolder $selectedCardHolder): string
