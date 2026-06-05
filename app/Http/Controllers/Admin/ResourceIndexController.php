@@ -607,7 +607,7 @@ class ResourceIndexController extends Controller
             ],
         ];
 
-        $page['table']['rows'] = collect($giftPreviews)->map(fn (array $gift): array => [
+        $page['table']['rows'] = $this->collectItems($giftPreviews)->map(fn (array $gift): array => [
             $this->linkedTableCell($gift['label'], 'admin.gifts.index', ['gift' => $gift['key']]),
             $gift['pointsCost'],
             $gift['scope'],

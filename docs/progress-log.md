@@ -10791,3 +10791,8 @@
 - Reused `collectItems()` in the rules preview table row mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that services/rules preview rows no longer call `collect(...)` inline there.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening rule preview routing, table rendering, or rule write behavior.
+
+### Gifts table collection helper checkpoint
+- Reused `collectItems()` in the gifts preview table row mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that gifts preview rows no longer call `collect(...)` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening gift preview routing, table rendering, or reward write behavior.
