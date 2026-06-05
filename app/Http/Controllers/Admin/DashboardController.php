@@ -818,15 +818,9 @@ class DashboardController extends Controller
         $shop->loadCount(['cardHolders', 'cards', 'users']);
         $shop->loadMissing(['users' => fn ($query) => $query->orderBy('name')]);
 
-        $latestHolder = CardHolder::query()
-            ->where('shop_id', $shop->id)
-            ->latest('id')
-            ->first();
+        $latestHolder = $this->latestShopCardHolder($shop);
 
-        $latestCard = Card::query()
-            ->where('shop_id', $shop->id)
-            ->latest('id')
-            ->first();
+        $latestCard = $this->latestShopCard($shop);
 
         $latestActivity = $this->latestBranchActivitySummary($latestHolder, $latestCard);
         $activityFreshness = $this->latestBranchActivityFreshness($latestHolder, $latestCard);
@@ -1006,6 +1000,26 @@ class DashboardController extends Controller
     protected function shopPrimaryManagerName(Shop $shop): string
     {
         return $shop->users->first()?->name ?? 'Unassigned';
+    }
+
+    protected function latestShopCardHolder(Shop $shop): ?CardHolder
+    {
+        $cardHolder = CardHolder::query()
+            ->where('shop_id', $shop->id)
+            ->latest('id')
+            ->first();
+
+        return $cardHolder instanceof CardHolder ? $cardHolder : null;
+    }
+
+    protected function latestShopCard(Shop $shop): ?Card
+    {
+        $card = Card::query()
+            ->where('shop_id', $shop->id)
+            ->latest('id')
+            ->first();
+
+        return $card instanceof Card ? $card : null;
     }
 
     protected function shopIsActive(Shop $shop): bool
