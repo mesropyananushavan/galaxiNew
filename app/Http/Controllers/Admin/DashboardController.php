@@ -201,6 +201,11 @@ class DashboardController extends Controller
         return is_array($items) ? count($items) : $items->count();
     }
 
+    protected function firstItem($items): mixed
+    {
+        return is_array($items) ? ($items[0] ?? null) : $items->first();
+    }
+
     protected function liveEntryPointFocus(): string
     {
         $entryPoint = $this->firstLiveReviewEntryPoint();
@@ -214,7 +219,9 @@ class DashboardController extends Controller
 
     protected function firstLiveReviewEntryPoint(): ?array
     {
-        return $this->liveReviewEntryPoints()[0] ?? null;
+        $entryPoint = $this->firstItem($this->liveReviewEntryPoints());
+
+        return is_array($entryPoint) ? $entryPoint : null;
     }
 
     protected function liveEntryPointPosture(): string
@@ -1237,7 +1244,9 @@ class DashboardController extends Controller
 
     protected function firstLatestWorkspace(): ?array
     {
-        return $this->latestWorkspaces()[0] ?? null;
+        $workspace = $this->firstItem($this->latestWorkspaces());
+
+        return is_array($workspace) ? $workspace : null;
     }
 
     protected function latestWorkspaceHandoffSummary(): array

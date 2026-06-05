@@ -290,6 +290,10 @@
 - Added `countItems()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so mapped/live Phase 1 entity counts, staged live-entry count, latest-workspace count, and config-backed count seams now share one small array-or-collection counter instead of mixing raw `count(...)` and `->count()` calls inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard generic item-count cleanup.
 
+### Dashboard first-item seam checkpoint
+- Added `firstItem()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so both first live-entry selection and first latest-workspace selection now share one small array-or-collection first-item seam instead of repeating direct `[0] ?? null` access.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard first-item cleanup.
+
 ### Dashboard latest-workspace collection seam checkpoint
 - Added `latestWorkspaces()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused it so latest-work coverage, focus, posture, handoff summary, and the dashboard payload itself all read from one named latest-work workspace collection instead of rebuilding the same filtered shop-holder-card-tier-role list inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard latest-workspace cleanup.
