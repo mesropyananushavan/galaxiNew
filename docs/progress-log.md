@@ -341,6 +341,7 @@
 ### Dashboard first-iterable-item seam checkpoint
 - Added `firstIterableItem()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so `latestAccessibleRecord()` no longer performs its unauthenticated iterable-first access inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard first-iterable-item cleanup.
+- Later added `iterableItems()` and moved both `latestAccessibleRecord()` plus `firstIterableItem()` onto that normalization seam so iterable-to-collection conversion now happens in one place.
 
 ### Dashboard latest-workspace collection seam checkpoint
 - Added `latestWorkspaces()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused it so latest-work coverage, focus, posture, handoff summary, and the dashboard payload itself all read from one named latest-work workspace collection instead of rebuilding the same filtered shop-holder-card-tier-role list inline.
