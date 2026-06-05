@@ -222,6 +222,10 @@
 - Added `shopRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so visible holder, visible card, assigned staff counts, and the shop empty-record check now share one named shop relation-count seam instead of repeating count-attribute fallback logic inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard shop relation-count cleanup.
 
+### Dashboard shop-primary-manager seam checkpoint
+- Added `shopPrimaryManagerName()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the assigned-branch snapshot no longer reaches into `users->first()?->name` inline for the primary manager label.
+- Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard primary-manager cleanup.
+
 ### Dashboard model-relation count seam checkpoint
 - Added `modelRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php`, imported `Illuminate\Database\Eloquent\Model`, and reused the helper so both role and shop relation-count seams now share one generic count-attribute fallback path instead of duplicating that logic.
 - Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard model relation-count cleanup.

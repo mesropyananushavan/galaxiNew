@@ -849,7 +849,7 @@ class DashboardController extends Controller
                 ['label' => 'Branch readiness', 'value' => $branchReadiness],
                 ['label' => 'Branch coverage', 'value' => $branchCoverage],
                 ['label' => 'Handoff signal', 'value' => $branchHandoffSignal],
-                ['label' => 'Primary manager', 'value' => $shop->users->first()?->name ?? 'Unassigned'],
+                ['label' => 'Primary manager', 'value' => $this->shopPrimaryManagerName($shop)],
                 ['label' => 'Galaxy foundation status', 'value' => $this->shopStatusValue($shop)],
                 ['label' => 'Visible Galaxy holders', 'value' => (string) $this->shopVisibleHolderCount($shop)],
                 ['label' => 'Visible Galaxy card shells', 'value' => (string) $this->shopVisibleCardCount($shop)],
@@ -1001,6 +1001,11 @@ class DashboardController extends Controller
     protected function shopAssignedStaffCount(Shop $shop): int
     {
         return $this->shopRelationCount($shop, 'users');
+    }
+
+    protected function shopPrimaryManagerName(Shop $shop): string
+    {
+        return $shop->users->first()?->name ?? 'Unassigned';
     }
 
     protected function shopIsActive(Shop $shop): bool
