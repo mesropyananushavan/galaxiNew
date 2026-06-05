@@ -10881,3 +10881,8 @@
 - Reused `loadedRolePermissions()` in the roles-permissions table permission preview, selected-role permission preview, and `rolePermissionReviewNote()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so those access-review reads no longer touch the permissions collection inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening role writes, permission-link flows, or access preview behavior.
+
+### Card-type cards relation seam checkpoint
+- Added `loadedCardTypeCards()` and `cardTypeCardsRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused them in `cardTypeVisibleCardCount()` so tier card-coverage reads no longer touch the cards relation inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+- Kept the change read-only and parity-first, without widening tier writes, rollout flows, or card-type preview behavior.

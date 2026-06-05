@@ -2496,7 +2496,17 @@ class ResourceIndexController extends Controller
 
     private function cardTypeVisibleCardCount(CardType $selectedCardType): int
     {
-        return (int) ($selectedCardType->cards_count ?? $selectedCardType->cards->count());
+        return (int) ($selectedCardType->cards_count ?? $this->loadedCardTypeCards($selectedCardType)->count());
+    }
+
+    private function loadedCardTypeCards(CardType $selectedCardType): Collection
+    {
+        return $this->cardTypeCardsRelation($selectedCardType)->getResults();
+    }
+
+    private function cardTypeCardsRelation(CardType $selectedCardType): Relation
+    {
+        return $selectedCardType->cards();
     }
 
     private function cardTypesHasVisibleCoverage(CardType $selectedCardType): bool
