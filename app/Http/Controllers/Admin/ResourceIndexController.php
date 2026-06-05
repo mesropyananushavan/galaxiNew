@@ -4270,6 +4270,11 @@ class ResourceIndexController extends Controller
         return $selectedCardHolder->shop?->name ?? 'Unassigned';
     }
 
+    private function cardholderHasShop(CardHolder $selectedCardHolder): bool
+    {
+        return $selectedCardHolder->shop !== null;
+    }
+
     private function cardholdersLookupGuidance(CardHolder $selectedCardHolder): string
     {
         return match (true) {
@@ -4338,8 +4343,8 @@ class ResourceIndexController extends Controller
     private function cardholdersLinkageSignal(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            $selectedCardHolder->shop !== null && $this->cardholderHasLinkedCards($selectedCardHolder) => 'branch-linked profile with visible cards',
-            $selectedCardHolder->shop !== null => 'branch-linked profile, card linkage pending',
+            $this->cardholderHasShop($selectedCardHolder) && $this->cardholderHasLinkedCards($selectedCardHolder) => 'branch-linked profile with visible cards',
+            $this->cardholderHasShop($selectedCardHolder) => 'branch-linked profile, card linkage pending',
             $this->cardholderHasLinkedCards($selectedCardHolder) => 'card-linked profile, branch visibility pending',
             default => 'branch and card linkage pending',
         };
