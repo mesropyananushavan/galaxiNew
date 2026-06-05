@@ -10721,3 +10721,8 @@
 - Added `roleLoadedPermissionCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `rolePermissionCount()` so the loaded-relation fallback now reads through one named role permission-count seam instead of calling `permissions->count()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link persistence behavior.
+
+### Shop loaded-cardholder count helper checkpoint
+- Added `shopLoadedCardholderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopVisibleCardholderCount()` so the loaded-relation fallback now reads through one named shop cardholder-count seam instead of calling `cardHolders->count()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, cardholder assignment flows, or coverage persistence behavior.
