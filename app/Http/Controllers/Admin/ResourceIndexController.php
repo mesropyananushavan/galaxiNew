@@ -1871,7 +1871,7 @@ class ResourceIndexController extends Controller
 
     private function enrichCardTypesPage(array $page): array
     {
-        $latestCardType = CardType::query()->latest('id')->first();
+        $latestCardType = $this->latestSavedCardType();
         $cardTypes = CardType::query()->orderBy('name')->get();
 
         if ($cardTypes->isNotEmpty()) {
@@ -5081,6 +5081,13 @@ class ResourceIndexController extends Controller
         return $scope->isNotEmpty()
             ? sprintf('This role is currently linked to %d assigned users across %s in Galaxy foundation review mode.', $this->roleAssignedUserCount($role), $scope->join(', '))
             : 'This role is not linked to any scoped shops yet, so it remains a safer draft target for access-parity review.';
+    }
+
+    private function latestSavedCardType(): ?CardType
+    {
+        $cardType = CardType::query()->latest('id')->first();
+
+        return $cardType instanceof CardType ? $cardType : null;
     }
 
     private function cardTypeIsActive(CardType $cardType): bool

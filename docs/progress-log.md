@@ -10646,3 +10646,8 @@
 - Added `shopAssignedManagerName()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for both the shops catalog row and selected-shop review card so branch manager display no longer repeats direct `users->first()?->name` access inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_supports_selected_shop_review_context|test_shops_page_supports_selected_paused_shop_review_context'`, `1 passed` on the current focused match set.
 - Kept the change read-only and parity-first, without widening branch writes, reassignment behavior, or manager persistence.
+
+### Card types latest-saved helper checkpoint
+- Added `latestSavedCardType()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the card-types page so the latest tier review action no longer performs its `latest('id')->first()` query inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `1 passed` on the current focused match set.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
