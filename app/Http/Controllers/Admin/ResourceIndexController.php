@@ -5054,7 +5054,7 @@ class ResourceIndexController extends Controller
 
     private function loadedRolePermissions(Role $role): Collection
     {
-        return $role->permissions;
+        return $this->rolePermissionsRelation($role)->getResults();
     }
 
     private function roleAssignedUserScopeCount(Role $role, string $scope): int
@@ -5065,6 +5065,11 @@ class ResourceIndexController extends Controller
     private function roleUsersRelation(Role $role)
     {
         return $role->users();
+    }
+
+    private function rolePermissionsRelation(Role $role)
+    {
+        return $role->permissions();
     }
 
     private function permissionLinkedRoleCount(): int
