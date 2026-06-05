@@ -10956,3 +10956,8 @@
 - Added `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `cardholdersLinkageSignal()` so selected-holder branch-linkage messaging no longer repeats raw shop-presence checks inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-linkage flows, or cardholder workspace behavior.
+
+### Cardholder shop-guidance seam checkpoint
+- Reused `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersShopGuidance()` so selected-holder branch-guidance messaging no longer depends on a raw shop-presence ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-guidance flows, or cardholder workspace behavior.

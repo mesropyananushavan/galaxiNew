@@ -4175,7 +4175,7 @@ class ResourceIndexController extends Controller
 
     private function cardholdersShopGuidance(CardHolder $selectedCardHolder): string
     {
-        return $selectedCardHolder->shop !== null
+        return $this->cardholderHasShop($selectedCardHolder)
             ? 'Keep this holder anchored to the current branch during review, because old Galaxy lookup flows depended on branch-aware identity context.'
             : 'No branch is linked yet, so shop-aware lookup behavior should stay in parity review before profile actions are widened.';
     }
