@@ -4167,7 +4167,7 @@ class ResourceIndexController extends Controller
     private function cardholdersOperationalReadiness(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            ! $this->cardholderIsActive($selectedCardHolder) => 'inactive profile, review only',
+            $this->cardholderIsInactive($selectedCardHolder) => 'inactive profile, review only',
             $this->cardholderHasLinkedCards($selectedCardHolder) => 'linked profile, operator-visible',
             default => 'active profile, linkage build-out pending',
         };

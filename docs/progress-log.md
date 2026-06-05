@@ -10921,3 +10921,8 @@
 - Added `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in cardholder activity-handoff and timeline-handoff messaging so the plain inactive-holder review branch no longer repeats a raw negated active check inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, reactivation flows, or cardholder review behavior.
+
+### Cardholder operational-readiness inactive seam checkpoint
+- Reused `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersOperationalReadiness()` so that readiness branch no longer repeats its own raw negated active check.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, readiness flows, or cardholder review behavior.
