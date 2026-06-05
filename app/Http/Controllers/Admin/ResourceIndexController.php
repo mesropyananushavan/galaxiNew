@@ -5049,7 +5049,7 @@ class ResourceIndexController extends Controller
 
     private function loadedRoleUsers(Role $role): Collection
     {
-        return $role->users;
+        return $this->roleUsersRelation($role)->getResults();
     }
 
     private function loadedRolePermissions(Role $role): Collection
