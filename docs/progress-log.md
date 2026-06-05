@@ -11001,3 +11001,8 @@
 - Added `cardholderShopIdValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder live-form values so holder shop-id fallback handling no longer repeats inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-assignment flows, or cardholder workspace behavior.
+
+### Cardholder active-value seam checkpoint
+- Added `cardholderActiveValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder live-form values so the holder active-flag string mapping no longer repeats inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, activation flows, or cardholder workspace behavior.

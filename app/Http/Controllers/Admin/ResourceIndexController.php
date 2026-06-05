@@ -1131,7 +1131,7 @@ class ResourceIndexController extends Controller
                 'full_name' => $selectedCardHolder->full_name,
                 'phone' => $this->cardholderPhoneValue($selectedCardHolder),
                 'email' => $this->cardholderEmailValue($selectedCardHolder),
-                'is_active' => $this->cardholderIsActive($selectedCardHolder) ? '1' : '0',
+                'is_active' => $this->cardholderActiveValue($selectedCardHolder),
                 'review_note' => $this->cardholderReviewNoteValue($selectedCardHolder),
             ];
         }
@@ -4288,6 +4288,11 @@ class ResourceIndexController extends Controller
     private function cardholderShopIdValue(CardHolder $selectedCardHolder, string $fallback = ''): string
     {
         return $selectedCardHolder->shop_id !== null ? (string) $selectedCardHolder->shop_id : $fallback;
+    }
+
+    private function cardholderActiveValue(CardHolder $selectedCardHolder): string
+    {
+        return $this->cardholderIsActive($selectedCardHolder) ? '1' : '0';
     }
 
     private function cardholdersShopLabel(CardHolder $selectedCardHolder): string
