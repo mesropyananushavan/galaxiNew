@@ -10826,3 +10826,8 @@
 - Reused `iterableCount()` in `countMatching()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so generic predicate-based counts now share the same named iterable counter instead of calling filtered collection `->count()` directly.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `4 passed`.
 - Kept the change read-only and parity-first, without widening preview counting, predicate matching, or catalog write behavior.
+
+### Role loaded-users preview helper checkpoint
+- Reused `loadedRoleUsers()` in both `roleShopScopeNames()` and `roleAssignedUserPreview()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so those role preview seams no longer reach into the loaded `users` relation directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or preview rendering behavior.

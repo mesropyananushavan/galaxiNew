@@ -4992,14 +4992,14 @@ class ResourceIndexController extends Controller
 
     private function roleShopScopeNames(Role $role): Collection
     {
-        return $this->nonEmptyStrings($role->users->pluck('shop.name'))
+        return $this->nonEmptyStrings($this->loadedRoleUsers($role)->pluck('shop.name'))
             ->unique()
             ->values();
     }
 
     private function roleAssignedUserPreview(Role $role): Collection
     {
-        return $this->nonEmptyStrings($role->users->pluck('name'))
+        return $this->nonEmptyStrings($this->loadedRoleUsers($role)->pluck('name'))
             ->take(3)
             ->values();
     }
