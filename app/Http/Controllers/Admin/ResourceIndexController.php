@@ -2593,7 +2593,7 @@ class ResourceIndexController extends Controller
     private function cardholdersCatalogNewHolderDisabledReason(mixed $cardHolders): string
     {
         $inactiveCount = CardHolder::query()->inactive()->count();
-        $linkedCards = Card::query()->holderLinked()->count();
+        $linkedCards = $this->holderLinkedCardCount();
 
         return match (true) {
             $inactiveCount > 0 => 'Blocked until saved inactive-holder states are verified against legacy profile and lifecycle parity.',
@@ -2604,7 +2604,7 @@ class ResourceIndexController extends Controller
 
     private function cardholdersCatalogReviewActivityDisabledReason(mixed $cardHolders): string
     {
-        $linkedCards = Card::query()->holderLinked()->count();
+        $linkedCards = $this->holderLinkedCardCount();
         $activeCount = $this->activeCardHolderCount();
         $pausedBranchCount = $this->pausedCardHolderCount();
 
@@ -5123,6 +5123,11 @@ class ResourceIndexController extends Controller
     private function pausedCardHolderCount(): int
     {
         return (int) CardHolder::query()->assignedToPausedShop()->count();
+    }
+
+    private function holderLinkedCardCount(): int
+    {
+        return (int) Card::query()->holderLinked()->count();
     }
 
     private function cardTypeIsActive(CardType $cardType): bool
