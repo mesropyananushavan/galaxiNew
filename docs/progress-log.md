@@ -10806,3 +10806,8 @@
 - Reused `collectItems()` in the card live-form field mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that the shop/card-type field enrichment path no longer calls `collect(...)` inline there.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening card issuance, live-form writes, or option-selection behavior.
+
+### Cardholder live-form collection helper checkpoint
+- Reused `collectItems()` in the shop-scoped live-form field mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that this live-form enrichment path no longer calls `collect(...)` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening cardholder profile writes, live-form writes, or option-selection behavior.
