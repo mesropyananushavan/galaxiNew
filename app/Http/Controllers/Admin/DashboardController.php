@@ -1372,15 +1372,21 @@ class DashboardController extends Controller
     protected function latestModelRecord(string $modelClass, array $where = []): mixed
     {
         return $this->firstIterableItem(
-            $modelClass::query()
-                ->where($where)
-                ->latest('id')
-                ->get()
+            $this->queryItems(
+                $modelClass::query()
+                    ->where($where)
+                    ->latest('id')
+            )
         );
     }
 
     protected function queryCount(mixed $query): int
     {
-        return (int) $query->count();
+        return $this->countItems($this->queryItems($query));
+    }
+
+    protected function queryItems(mixed $query): iterable
+    {
+        return $query->get();
     }
 }

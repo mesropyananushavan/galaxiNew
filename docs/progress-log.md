@@ -255,6 +255,7 @@
 - Added `latestModelRecord()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so latest saved tier/access records plus latest branch holder/card records now share one named latest-record query seam instead of duplicating `latest('id')->first()` patterns inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard latest-model-record cleanup.
 - Later tightened `latestModelRecord()` again so its final fetch now reads through `firstIterableItem()` instead of calling `->first()` directly inside the latest-record seam.
+- Later moved its query materialization onto `queryItems()` as well, so latest-record fetching now composes from the shared query-to-items seam.
 
 ### Dashboard model-relation count seam checkpoint
 - Added `modelRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php`, imported `Illuminate\Database\Eloquent\Model`, and reused the helper so both role and shop relation-count seams now share one generic count-attribute fallback path instead of duplicating that logic.
@@ -308,6 +309,11 @@
 ### Dashboard query-count seam checkpoint
 - Added `queryCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so `modelClassCount()` plus `scopedModelCount()` now share one explicit query-count seam instead of each calling `->count()` directly.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard query-count cleanup.
+- Later tightened `queryCount()` so it now counts through `queryItems()` plus `countItems()` instead of issuing a direct `->count()` call inside the helper.
+
+### Dashboard query-items seam checkpoint
+- Added `queryItems()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so query materialization for both latest-record selection and generic query counting now passes through one shared query-to-items seam.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard query-items cleanup.
 
 ### Dashboard saved-model count seam checkpoint
 - Reused `modelClassCount()` across `savedShopCount()`, `savedRoleCount()`, `savedPermissionCount()`, `savedCardHolderCount()`, `savedCardCount()`, and `savedCardTypeCount()` in `app/Http/Controllers/Admin/DashboardController.php` so the baseline saved-count seams no longer duplicate raw model query counts inline.
