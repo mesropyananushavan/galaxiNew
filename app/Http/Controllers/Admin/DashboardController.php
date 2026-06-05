@@ -143,12 +143,12 @@ class DashboardController extends Controller
 
     protected function modelClassCount(string $modelClass): int
     {
-        return (int) $modelClass::query()->count();
+        return $this->queryCount($modelClass::query());
     }
 
     protected function scopedModelCount(string $modelClass, string $scope): int
     {
-        return (int) $modelClass::query()->{$scope}()->count();
+        return $this->queryCount($modelClass::query()->{$scope}());
     }
 
     protected function foundationSeams()
@@ -1367,5 +1367,10 @@ class DashboardController extends Controller
                 ->latest('id')
                 ->get()
         );
+    }
+
+    protected function queryCount(mixed $query): int
+    {
+        return (int) $query->count();
     }
 }
