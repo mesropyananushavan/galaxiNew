@@ -5162,7 +5162,7 @@ class ResourceIndexController extends Controller
 
     private function shopAssignedManagerName(Shop $shop): string
     {
-        return $shop->users->first()?->name ?? 'Unassigned';
+        return $this->firstLoadedShopManager($shop)?->name ?? 'Unassigned';
     }
 
     private function shopManagerCoverageCount(): int
@@ -5173,6 +5173,13 @@ class ResourceIndexController extends Controller
     private function shopLoadedManagerCount(Shop $shop): int
     {
         return $shop->users->count();
+    }
+
+    private function firstLoadedShopManager(Shop $shop): ?User
+    {
+        $manager = $shop->users->first();
+
+        return $manager instanceof User ? $manager : null;
     }
 
     private function pausedShopCount(): int
