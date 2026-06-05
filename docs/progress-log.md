@@ -10816,3 +10816,8 @@
 - Added `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `receiptPreviewCount()` and `roleScopeCount()` so those generic count seams now flow through one named iterable counter instead of mixing raw `count(...)` and collection `->count()` calls.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `4 passed`.
 - Kept the change read-only and parity-first, without widening preview counting, role scope messaging, or catalog write behavior.
+
+### Receipt preview shops helper checkpoint
+- Added `receiptPreviewShops()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `receiptPreviewShopCount()` so that receipt shop-count logic now flows through a named preview-shop collection seam plus `iterableCount()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening receipt parsing, preview aggregation, or check-point write behavior.
