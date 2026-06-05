@@ -1013,7 +1013,9 @@ class DashboardController extends Controller
 
     protected function shopPrimaryManagerName(Shop $shop): string
     {
-        return $shop->users->first()?->name ?? 'Unassigned';
+        $manager = $this->firstItem($shop->users);
+
+        return $manager instanceof User ? $manager->name : 'Unassigned';
     }
 
     protected function latestShopCardHolder(Shop $shop): ?CardHolder

@@ -225,6 +225,7 @@
 ### Dashboard shop-primary-manager seam checkpoint
 - Added `shopPrimaryManagerName()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the assigned-branch snapshot no longer reaches into `users->first()?->name` inline for the primary manager label.
 - Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard primary-manager cleanup.
+- Later tightened `shopPrimaryManagerName()` again to read through `firstItem()` so the dashboard first-item seam also covers the assigned branch manager label.
 
 ### Dashboard latest-branch-record seam checkpoint
 - Added `latestShopCardHolder()` and `latestShopCard()` in `app/Http/Controllers/Admin/DashboardController.php` and reused them so the assigned-branch snapshot no longer builds its latest branch holder and latest branch card queries inline.
