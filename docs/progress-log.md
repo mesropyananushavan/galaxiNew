@@ -10751,3 +10751,8 @@
 - Added `loadedShopCardholders()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopLoadedCardholderCount()` so the loaded shop-cardholder collection now flows through one named seam instead of reading `cardHolders` directly inside the count helper.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, cardholder assignment flows, or coverage persistence behavior.
+
+### Shop loaded-cards collection helper checkpoint
+- Added `loadedShopCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopLoadedCardCount()` so the loaded shop-card collection now flows through one named seam instead of reading `cards` directly inside the count helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, card assignment flows, or coverage persistence behavior.

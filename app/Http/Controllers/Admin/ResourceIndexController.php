@@ -5202,7 +5202,7 @@ class ResourceIndexController extends Controller
 
     private function shopLoadedCardCount(Shop $shop): int
     {
-        return $shop->cards->count();
+        return $this->loadedShopCards($shop)->count();
     }
 
     private function firstLoadedShopManager(Shop $shop): ?User
@@ -5220,6 +5220,11 @@ class ResourceIndexController extends Controller
     private function loadedShopCardholders(Shop $shop): Collection
     {
         return $shop->cardHolders;
+    }
+
+    private function loadedShopCards(Shop $shop): Collection
+    {
+        return $shop->cards;
     }
 
     private function pausedShopCount(): int
