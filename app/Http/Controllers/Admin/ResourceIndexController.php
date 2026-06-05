@@ -5157,7 +5157,7 @@ class ResourceIndexController extends Controller
 
     private function shopAssignedManagerCount(Shop $shop): int
     {
-        return (int) ($shop->users_count ?? $shop->users->count());
+        return (int) ($shop->users_count ?? $this->shopLoadedManagerCount($shop));
     }
 
     private function shopAssignedManagerName(Shop $shop): string
@@ -5168,6 +5168,11 @@ class ResourceIndexController extends Controller
     private function shopManagerCoverageCount(): int
     {
         return (int) Shop::query()->managerAssigned()->count();
+    }
+
+    private function shopLoadedManagerCount(Shop $shop): int
+    {
+        return $shop->users->count();
     }
 
     private function pausedShopCount(): int

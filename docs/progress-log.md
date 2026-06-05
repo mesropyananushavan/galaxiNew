@@ -10701,3 +10701,8 @@
 - Added `inactiveCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the holder new-profile disabled-reason flow so that cardholder guard no longer repeats the inactive-holder query count inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, lifecycle recovery behavior, or profile setup flows.
+
+### Shop loaded-manager count helper checkpoint
+- Added `shopLoadedManagerCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopAssignedManagerCount()` so the loaded-relation fallback now reads through one named shop manager-count seam instead of calling `users->count()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, reassignment flows, or manager persistence behavior.
