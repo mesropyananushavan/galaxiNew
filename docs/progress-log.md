@@ -10831,3 +10831,8 @@
 - Reused `loadedRoleUsers()` in both `roleShopScopeNames()` and `roleAssignedUserPreview()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so those role preview seams no longer reach into the loaded `users` relation directly.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening role writes, assignment flows, or preview rendering behavior.
+
+### Role users-relation helper checkpoint
+- Added `roleUsersRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `roleAssignedUserScopeCount()` so the scoped role-user query seam no longer reaches directly for `$role->users()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or role preview behavior.
