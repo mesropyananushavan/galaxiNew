@@ -254,6 +254,7 @@
 ### Dashboard latest-model-record seam checkpoint
 - Added `latestModelRecord()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so latest saved tier/access records plus latest branch holder/card records now share one named latest-record query seam instead of duplicating `latest('id')->first()` patterns inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard latest-model-record cleanup.
+- Later tightened `latestModelRecord()` again so its final fetch now reads through `firstIterableItem()` instead of calling `->first()` directly inside the latest-record seam.
 
 ### Dashboard model-relation count seam checkpoint
 - Added `modelRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php`, imported `Illuminate\Database\Eloquent\Model`, and reused the helper so both role and shop relation-count seams now share one generic count-attribute fallback path instead of duplicating that logic.
