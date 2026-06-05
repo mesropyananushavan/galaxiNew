@@ -203,7 +203,7 @@ class DashboardController extends Controller
 
     protected function firstItem($items): mixed
     {
-        return is_array($items) ? ($items[0] ?? null) : $items->first();
+        return is_array($items) ? ($items[0] ?? null) : $this->firstIterableItem($items);
     }
 
     protected function liveEntryPointFocus(): string

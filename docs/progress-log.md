@@ -335,6 +335,7 @@
 ### Dashboard first-item seam checkpoint
 - Added `firstItem()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so both first live-entry selection and first latest-workspace selection now share one small array-or-collection first-item seam instead of repeating direct `[0] ?? null` access.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard first-item cleanup.
+- Later tightened `firstItem()` again so its non-array branch now reuses `firstIterableItem()` instead of calling collection `->first()` directly.
 
 ### Dashboard first-iterable-item seam checkpoint
 - Added `firstIterableItem()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so `latestAccessibleRecord()` no longer performs its unauthenticated iterable-first access inline.
