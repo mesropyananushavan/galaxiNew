@@ -10736,3 +10736,8 @@
 - Added `loadedShopManagers()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `shopLoadedManagerCount()` and `firstLoadedShopManager()` so the loaded shop-manager collection now flows through one named seam instead of repeating direct `users` access.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, reassignment flows, or manager persistence behavior.
+
+### Role loaded-users collection helper checkpoint
+- Added `loadedRoleUsers()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `roleLoadedUserCount()` so the loaded role-user collection now flows through one named seam instead of reading `users` directly inside the count helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link persistence behavior.
