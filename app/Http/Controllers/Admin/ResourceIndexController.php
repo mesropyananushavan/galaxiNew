@@ -260,7 +260,7 @@ class ResourceIndexController extends Controller
             ],
         );
 
-        $page['table']['rows'] = collect($receiptPreviews)->map(fn (array $receipt): array => [
+        $page['table']['rows'] = $this->collectItems($receiptPreviews)->map(fn (array $receipt): array => [
             $this->linkedTableCell($receipt['label'], 'admin.checks-points.index', ['receipt' => $receipt['key']]),
             $receipt['card'],
             $receipt['shop'],
