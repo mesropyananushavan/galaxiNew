@@ -259,6 +259,7 @@
 ### Dashboard model-relation count seam checkpoint
 - Added `modelRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php`, imported `Illuminate\Database\Eloquent\Model`, and reused the helper so both role and shop relation-count seams now share one generic count-attribute fallback path instead of duplicating that logic.
 - Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard model relation-count cleanup.
+- Later tightened the same seam with `loadedRelationCount()` so the loaded-relation fallback now reads through one named relation-count helper instead of calling relation `->count()` directly.
 
 ### Dashboard role-relation count seam checkpoint
 - Added `roleRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so `rolePermissionCount()` now reads through one named role relation-count seam instead of maintaining its own permission-count fallback inline.

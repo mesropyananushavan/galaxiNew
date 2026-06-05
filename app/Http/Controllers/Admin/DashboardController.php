@@ -748,7 +748,12 @@ class DashboardController extends Controller
             return 0;
         }
 
-        return (int) ($model->{$countAttribute} ?? $model->{$relation}->count());
+        return (int) ($model->{$countAttribute} ?? $this->loadedRelationCount($model->{$relation}));
+    }
+
+    protected function loadedRelationCount(iterable $items): int
+    {
+        return $this->countItems($items);
     }
 
     protected function liveReviewEntryPoints(): array
