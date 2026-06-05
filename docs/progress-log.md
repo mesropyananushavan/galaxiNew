@@ -10746,3 +10746,8 @@
 - Added `loadedRolePermissions()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `roleLoadedPermissionCount()` so the loaded role-permission collection now flows through one named seam instead of reading `permissions` directly inside the count helper.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link persistence behavior.
+
+### Shop loaded-cardholders collection helper checkpoint
+- Added `loadedShopCardholders()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopLoadedCardholderCount()` so the loaded shop-cardholder collection now flows through one named seam instead of reading `cardHolders` directly inside the count helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, cardholder assignment flows, or coverage persistence behavior.
