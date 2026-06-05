@@ -10876,3 +10876,8 @@
 - Added `shopCardsRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `loadedShopCards()` so the loaded shop-card seam now reads through a named relation helper instead of touching the cards relation directly.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, card assignment flows, or shop preview behavior.
+
+### Role permission preview seam reuse checkpoint
+- Reused `loadedRolePermissions()` in the roles-permissions table permission preview, selected-role permission preview, and `rolePermissionReviewNote()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so those access-review reads no longer touch the permissions collection inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, permission-link flows, or access preview behavior.

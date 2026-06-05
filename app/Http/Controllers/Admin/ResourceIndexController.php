@@ -695,7 +695,7 @@ class ResourceIndexController extends Controller
 
         $page['table']['rows'] = $roles->map(function (Role $role): array {
             $scope = $this->roleShopScopeNames($role);
-            $permissionPreview = $role->permissions->pluck('name')->take(3)->implode(', ');
+            $permissionPreview = $this->loadedRolePermissions($role)->pluck('name')->take(3)->implode(', ');
             $permissionReviewNote = $this->rolePermissionReviewNote($role);
 
             return [
@@ -734,7 +734,7 @@ class ResourceIndexController extends Controller
         }
 
         $scope = $this->roleShopScopeNames($selectedRole);
-        $permissionPreview = $selectedRole->permissions->pluck('name');
+        $permissionPreview = $this->loadedRolePermissions($selectedRole)->pluck('name');
         $assignedUserPreview = $this->roleAssignedUserPreview($selectedRole);
 
         $page['selectedRecordSummary'] = $this->rolesPermissionsSelectedRoleSummary(
@@ -5126,7 +5126,7 @@ class ResourceIndexController extends Controller
 
     private function rolePermissionReviewNote(Role $role): ?string
     {
-        return $role->permissions
+        return $this->loadedRolePermissions($role)
             ->pluck('review_note')
             ->first(fn (?string $note): bool => is_string($note) && trim($note) !== '');
     }
