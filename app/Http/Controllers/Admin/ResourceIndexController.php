@@ -2592,7 +2592,7 @@ class ResourceIndexController extends Controller
 
     private function cardholdersCatalogNewHolderDisabledReason(mixed $cardHolders): string
     {
-        $inactiveCount = CardHolder::query()->inactive()->count();
+        $inactiveCount = $this->inactiveCardHolderCount();
         $linkedCards = $this->holderLinkedCardCount();
 
         return match (true) {
@@ -5118,6 +5118,11 @@ class ResourceIndexController extends Controller
     private function activeCardHolderCount(): int
     {
         return (int) CardHolder::query()->active()->count();
+    }
+
+    private function inactiveCardHolderCount(): int
+    {
+        return (int) CardHolder::query()->inactive()->count();
     }
 
     private function pausedCardHolderCount(): int

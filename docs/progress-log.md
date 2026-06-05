@@ -10696,3 +10696,8 @@
 - Added `holderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both holder new-profile and activity disabled-reason flows so those cardholder guards no longer repeat the holder-linked card query count inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, card assignment behavior, or activity-history behavior.
+
+### Cardholders inactive-count helper checkpoint
+- Added `inactiveCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the holder new-profile disabled-reason flow so that cardholder guard no longer repeats the inactive-holder query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle recovery behavior, or profile setup flows.
