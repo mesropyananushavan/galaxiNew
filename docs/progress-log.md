@@ -11021,3 +11021,8 @@
 - Added `cardholdersActivityTimeline()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for the selected-holder activity timeline so the holder review timeline now flows through one named seam instead of being assembled inline in the page block.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, timeline flows, or cardholder workspace behavior.
+
+### Cardholder selected-actions seam checkpoint
+- Added `cardholdersSelectedActions()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for the selected-holder actions block so the holder review action state now flows through a named seam instead of being assembled inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, action flows, or cardholder workspace behavior.
