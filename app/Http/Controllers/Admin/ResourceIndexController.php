@@ -4353,7 +4353,7 @@ class ResourceIndexController extends Controller
     private function cardholdersShopActivitySignal(CardHolder $selectedCardHolder): string
     {
         return match (true) {
-            $selectedCardHolder->shop === null => 'Branch assignment is still missing, so branch-aware lookup parity remains incomplete.',
+            ! $this->cardholderHasShop($selectedCardHolder) => 'Branch assignment is still missing, so branch-aware lookup parity remains incomplete.',
             $this->cardholderShopIsActive($selectedCardHolder) => 'Holder is anchored to an active branch for live lookup review.',
             default => 'Holder is anchored to a paused branch, so branch-recovery context should stay visible during lookup review.',
         };
