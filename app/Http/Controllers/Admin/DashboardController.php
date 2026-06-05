@@ -266,16 +266,21 @@ class DashboardController extends Controller
 
     protected function migrationMapFocus(array $navigation): string
     {
-        $firstItem = collect($navigation)
-            ->pluck('items')
-            ->flatten(1)
-            ->first();
+        $firstItem = $this->firstMappedNavigationItem($navigation);
 
         if (! is_array($firstItem) || ! isset($firstItem['label'])) {
             return 'first parity target still needs to be mapped';
         }
 
         return sprintf('start with %s', mb_strtolower((string) $firstItem['label']));
+    }
+
+    protected function firstMappedNavigationItem(array $navigation): mixed
+    {
+        return collect($navigation)
+            ->pluck('items')
+            ->flatten(1)
+            ->first();
     }
 
     protected function migrationMapPosture(): string
