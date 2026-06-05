@@ -1172,9 +1172,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s review note reflected from model state', $selectedCardHolder->full_name),
                 'time' => 'Current request',
-                'description' => $selectedCardHolder->review_note !== null && trim($selectedCardHolder->review_note) !== ''
-                    ? sprintf('The current Galaxy foundation holder review note says: %s', $selectedCardHolder->review_note)
-                    : 'No Galaxy foundation holder review note is saved yet, so lifecycle handoff context still depends on the surrounding workspace cues.',
+                'description' => $this->cardholdersReviewNoteReflection($selectedCardHolder),
             ],
             [
                 'title' => 'Holder activity handoff stays visible in the workspace',
@@ -4258,6 +4256,13 @@ class ResourceIndexController extends Controller
     private function cardholdersReviewNoteLabel(CardHolder $selectedCardHolder): string
     {
         return $selectedCardHolder->review_note ?: 'No review note saved yet';
+    }
+
+    private function cardholdersReviewNoteReflection(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->review_note !== null && trim($selectedCardHolder->review_note) !== ''
+            ? sprintf('The current Galaxy foundation holder review note says: %s', $selectedCardHolder->review_note)
+            : 'No Galaxy foundation holder review note is saved yet, so lifecycle handoff context still depends on the surrounding workspace cues.';
     }
 
     private function cardholdersPhoneLabel(CardHolder $selectedCardHolder): string
