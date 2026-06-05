@@ -10811,3 +10811,8 @@
 - Reused `collectItems()` in the shop-scoped live-form field mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that this live-form enrichment path no longer calls `collect(...)` inline there.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening cardholder profile writes, live-form writes, or option-selection behavior.
+
+### Resource index iterable count helper checkpoint
+- Added `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `receiptPreviewCount()` and `roleScopeCount()` so those generic count seams now flow through one named iterable counter instead of mixing raw `count(...)` and collection `->count()` calls.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening preview counting, role scope messaging, or catalog write behavior.

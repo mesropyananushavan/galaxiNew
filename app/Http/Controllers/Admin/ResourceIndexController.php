@@ -4983,7 +4983,7 @@ class ResourceIndexController extends Controller
 
     private function receiptPreviewCount(array $receiptPreviews): int
     {
-        return count($receiptPreviews);
+        return $this->iterableCount($receiptPreviews);
     }
 
     private function roleShopScopeNames(Role $role): Collection
@@ -5264,7 +5264,7 @@ class ResourceIndexController extends Controller
 
     private function roleScopeCount(Collection $scope): int
     {
-        return $scope->count();
+        return $this->iterableCount($scope);
     }
 
     private function nonEmptyStrings(Collection $values): Collection
@@ -5297,6 +5297,11 @@ class ResourceIndexController extends Controller
     private function countMatching(iterable $values, callable $predicate): int
     {
         return $this->filterMatching($values, $predicate)->count();
+    }
+
+    private function iterableCount(iterable $values): int
+    {
+        return $this->collectItems($values)->count();
     }
 
     private function filterMatching(iterable $values, callable $predicate): Collection
