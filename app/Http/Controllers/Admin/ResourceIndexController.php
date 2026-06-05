@@ -4235,6 +4235,11 @@ class ResourceIndexController extends Controller
         return $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderIsActive($selectedCardHolder);
     }
 
+    private function cardholderIsUnpausedAndActive(CardHolder $selectedCardHolder): bool
+    {
+        return ! $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderIsActive($selectedCardHolder);
+    }
+
     private function loadedCardholderCards(CardHolder $selectedCardHolder): Collection
     {
         return $this->cardholderCardsRelation($selectedCardHolder)->getResults();
@@ -4269,7 +4274,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $this->cardholderIsPausedAndActive($selectedCardHolder) => 'This holder is active in the Galaxy foundation layer but anchored to a paused branch, so identity, linkage, and recovery review should stay parity-first until recent-activity sourcing is verified.',
-            $this->cardholderIsActive($selectedCardHolder) => 'This holder is active in the Galaxy foundation layer, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.',
+            $this->cardholderIsUnpausedAndActive($selectedCardHolder) => 'This holder is active in the Galaxy foundation layer, so identity and linkage review should stay parity-first until recent-activity sourcing is verified.',
             default => 'This holder is inactive in the Galaxy foundation layer, which keeps the record safe for parity checks before operators treat it as fully reactivated.',
         };
     }
@@ -4278,7 +4283,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $this->cardholderIsPausedAndActive($selectedCardHolder) => 'Start with paused-branch status, branch linkage, and linked-card visibility before discussing any later recovery, profile merge, or lifecycle-change edge case.',
-            $this->cardholderIsActive($selectedCardHolder) => 'Start with active status, branch linkage, and linked-card visibility before discussing any later profile merge or reactivation edge case.',
+            $this->cardholderIsUnpausedAndActive($selectedCardHolder) => 'Start with active status, branch linkage, and linked-card visibility before discussing any later profile merge or reactivation edge case.',
             default => 'Start with inactive status, branch linkage, and linked-card visibility before discussing any later reactivation or profile merge flow.',
         };
     }
@@ -4287,7 +4292,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $this->cardholderIsPausedAndActive($selectedCardHolder) => 'Keep paused-branch holder review in the workspace first, then leave recovery, merge, and lifecycle-change flows gated until branch parity is proven.',
-            $this->cardholderIsActive($selectedCardHolder) => 'Keep live holder review in the workspace first, then leave profile-write, merge, and lifecycle-change flows gated until parity is proven.',
+            $this->cardholderIsUnpausedAndActive($selectedCardHolder) => 'Keep live holder review in the workspace first, then leave profile-write, merge, and lifecycle-change flows gated until parity is proven.',
             default => 'Keep inactive holder review in the workspace first, then leave reactivation, merge, and profile-write flows gated until parity is proven.',
         };
     }
@@ -4296,7 +4301,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $this->cardholderIsPausedAndActive($selectedCardHolder) => 'Keep paused-branch status, branch linkage, and linked-card visibility together before trusting any later recovery, merge, or lifecycle-change discussion.',
-            $this->cardholderIsActive($selectedCardHolder) => 'Keep active status, branch linkage, and linked-card visibility together before trusting any later profile merge or lifecycle-change discussion.',
+            $this->cardholderIsUnpausedAndActive($selectedCardHolder) => 'Keep active status, branch linkage, and linked-card visibility together before trusting any later profile merge or lifecycle-change discussion.',
             default => 'Keep inactive status, branch linkage, and linked-card visibility together before trusting any later reactivation or merge discussion.',
         };
     }
@@ -4305,7 +4310,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $this->cardholderIsPausedAndActive($selectedCardHolder) => 'Recovery handling, profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until paused-branch holder parity is verified.',
-            $this->cardholderIsActive($selectedCardHolder) => 'Profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.',
+            $this->cardholderIsUnpausedAndActive($selectedCardHolder) => 'Profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.',
             default => 'Reactivation handling, profile writes, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.',
         };
     }
@@ -4401,7 +4406,7 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $this->cardholderIsPausedAndActive($selectedCardHolder) => 'This holder is visible in a paused branch, so lifecycle changes should stay blocked until branch-recovery and lookup parity are verified.',
-            $this->cardholderIsActive($selectedCardHolder) => 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.',
+            $this->cardholderIsUnpausedAndActive($selectedCardHolder) => 'This active holder is visible for review now, but lifecycle changes should stay blocked until search and profile parity are verified.',
             default => 'This inactive holder should stay review-only until reactivation and duplicate-profile rules are verified.',
         };
     }

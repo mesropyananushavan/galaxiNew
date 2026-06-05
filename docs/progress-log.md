@@ -10941,3 +10941,8 @@
 - Reused `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersGalaxyStatusLabel()` so the selected-holder Galaxy-status label no longer depends on a raw active/inactive ternary.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, status-label flows, or cardholder workspace behavior.
+
+### Cardholder unpaused-active seam checkpoint
+- Added `cardholderIsUnpausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across cardholder lookup, focus, posture, evidence, backend-gap, and status-posture messaging so the active non-paused holder review branch no longer repeats that combined condition inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder review behavior.
