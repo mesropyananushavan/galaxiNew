@@ -239,6 +239,10 @@
 - Added `firstMappedNavigationItem()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so migration-map focus no longer selects the first mapped navigation target inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard migration-map focus cleanup.
 
+### Dashboard mapped-navigation-items seam checkpoint
+- Added `mappedNavigationItems()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so first mapped navigation selection now reads through one explicit flattened navigation-item seam instead of rebuilding the pluck-and-flatten chain inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard navigation-item cleanup.
+
 ### Dashboard latest-saved-record seam checkpoint
 - Added `latestSavedCardType()` and `latestSavedRole()` in `app/Http/Controllers/Admin/DashboardController.php` and reused them so the latest tier and latest access-shell workspace entries no longer build their latest-record queries inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard latest-saved-record cleanup.

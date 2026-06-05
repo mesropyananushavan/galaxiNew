@@ -277,10 +277,14 @@ class DashboardController extends Controller
 
     protected function firstMappedNavigationItem(array $navigation): mixed
     {
+        return $this->firstIterableItem($this->mappedNavigationItems($navigation));
+    }
+
+    protected function mappedNavigationItems(array $navigation): iterable
+    {
         return collect($navigation)
             ->pluck('items')
-            ->flatten(1)
-            ->first();
+            ->flatten(1);
     }
 
     protected function migrationMapPosture(): string
