@@ -984,10 +984,14 @@ class DashboardController extends Controller
 
     protected function latestKnownTimestamp(array $timestamps): mixed
     {
+        return $this->firstIterableItem($this->sortedKnownTimestamps($timestamps));
+    }
+
+    protected function sortedKnownTimestamps(array $timestamps): iterable
+    {
         return collect($timestamps)
             ->filter()
-            ->sortDesc()
-            ->first();
+            ->sortDesc();
     }
 
     protected function cardTypeIsActive(CardType $cardType): bool

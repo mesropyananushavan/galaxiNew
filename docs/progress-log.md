@@ -235,6 +235,10 @@
 - Added `latestKnownTimestamp()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so branch activity freshness now reads through one named timestamp-selection seam instead of rebuilding the filter-sort-first chain inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard latest-timestamp cleanup.
 
+### Dashboard sorted-known-timestamp seam checkpoint
+- Added `sortedKnownTimestamps()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so latest timestamp selection now reads through one explicit filtered-and-sorted timestamp list seam before taking the first known value.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard sorted-timestamp cleanup.
+
 ### Dashboard first-mapped-navigation-item seam checkpoint
 - Added `firstMappedNavigationItem()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so migration-map focus no longer selects the first mapped navigation target inline.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard migration-map focus cleanup.
