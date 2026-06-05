@@ -5247,9 +5247,14 @@ class ResourceIndexController extends Controller
         return $shop->users();
     }
 
+    private function shopCardholdersRelation(Shop $shop): Relation
+    {
+        return $shop->cardHolders();
+    }
+
     private function loadedShopCardholders(Shop $shop): Collection
     {
-        return $shop->cardHolders;
+        return $this->shopCardholdersRelation($shop)->getResults();
     }
 
     private function loadedShopCards(Shop $shop): Collection

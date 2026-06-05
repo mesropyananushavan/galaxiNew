@@ -10866,3 +10866,8 @@
 - Added `shopUsersRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `loadedShopManagers()` so the loaded shop-manager seam now reads through a named relation helper instead of touching the users relation directly.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, manager assignment flows, or shop preview behavior.
+
+### Shop cardholders-relation helper checkpoint
+- Added `shopCardholdersRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `loadedShopCardholders()` so the loaded shop-cardholder seam now reads through a named relation helper instead of touching the cardholders relation directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, cardholder assignment flows, or shop preview behavior.
