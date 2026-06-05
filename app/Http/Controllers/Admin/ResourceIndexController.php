@@ -269,7 +269,7 @@ class ResourceIndexController extends Controller
             $receipt['created'],
         ])->all();
 
-        $latestReceiptPreview = collect($receiptPreviews)->first();
+        $latestReceiptPreview = $this->firstCatalogPreview($receiptPreviews);
 
         if (is_array($latestReceiptPreview)) {
             $page = $this->appendLatestPreviewReviewAction(
@@ -432,7 +432,7 @@ class ResourceIndexController extends Controller
             $rule['status'],
         ])->all();
 
-        $latestRulePreview = collect($rulePreviews)->first();
+        $latestRulePreview = $this->firstCatalogPreview($rulePreviews);
 
         if (is_array($latestRulePreview)) {
             $page = $this->appendLatestPreviewReviewAction(
@@ -615,7 +615,7 @@ class ResourceIndexController extends Controller
             $gift['status'],
         ])->all();
 
-        $latestGiftPreview = collect($giftPreviews)->first();
+        $latestGiftPreview = $this->firstCatalogPreview($giftPreviews);
 
         if (is_array($latestGiftPreview)) {
             $page = $this->appendLatestPreviewReviewAction(
@@ -5156,6 +5156,11 @@ class ResourceIndexController extends Controller
     private function positiveCountEntries(array $counts): int
     {
         return $this->countMatching($counts, fn (int $count): bool => $this->isPositiveCount($count));
+    }
+
+    private function firstCatalogPreview(iterable $previews): mixed
+    {
+        return collect($previews)->first();
     }
 
     private function countMatching(iterable $values, callable $predicate): int

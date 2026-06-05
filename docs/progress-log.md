@@ -10631,3 +10631,8 @@
 - Refined `cardTypesHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so live tiers with visible card coverage now call out rollout parity explicitly instead of using a broader rollout handoff note.
 - Extended the focused live card-type coverage test in `tests/Feature/AdminDashboardTest.php` to assert the updated live-tier `Handoff signal` text renders in the selected-tier review context.
 - Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Catalog latest-preview helper checkpoint
+- Added `firstCatalogPreview()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for receipt, rule, and gift catalog previews so latest preview review actions no longer repeat `collect(...)->first()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_gifts_management_preview'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening receipt, rule, or gift write behavior.
