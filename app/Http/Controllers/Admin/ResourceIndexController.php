@@ -3486,7 +3486,7 @@ class ResourceIndexController extends Controller
     private function rolesPermissionsCatalogPublishRoleDisabledReason(mixed $roles): string
     {
         $permissionLinkedCount = $this->permissionLinkedRoleCount();
-        $scopedCount = Role::query()->shopScopedAssigned()->count();
+        $scopedCount = $this->shopScopedAssignedRoleCount();
         $activeCount = $this->activeRoleCount();
 
         return match (true) {
@@ -5041,6 +5041,11 @@ class ResourceIndexController extends Controller
     private function activeRoleCount(): int
     {
         return (int) Role::query()->active()->count();
+    }
+
+    private function shopScopedAssignedRoleCount(): int
+    {
+        return (int) Role::query()->shopScopedAssigned()->count();
     }
 
     private function roleHasPermissions(Role $role): bool

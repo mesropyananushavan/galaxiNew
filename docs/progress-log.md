@@ -10671,3 +10671,8 @@
 - Added `activeRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both role-matrix and publish-role disabled-reason flows so those access-shell guards no longer repeat the active-role query count inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening role writes, permission edits, or publish behavior.
+
+### Roles scoped-assignment count helper checkpoint
+- Added `shopScopedAssignedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the publish-role disabled-reason flow so that access-shell guard no longer repeats the shop-scoped assigned-role query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment behavior, or publish behavior.
