@@ -10891,3 +10891,8 @@
 - Added `loadedCardholderCards()` and `cardholderCardsRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused them in `cardholderLinkedCardCount()` so holder-linked card coverage reads no longer touch the cards relation inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, card-linking flows, or cardholder preview behavior.
+
+### Cardholder linked-card boolean seam checkpoint
+- Added `cardholderHasLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across cardholder operational-readiness, linkage, activity-handoff, timeline-handoff, and card-linkage-posture messaging so those review branches no longer repeat raw `cardholderLinkedCardCount(...) > 0` checks inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder review behavior.
