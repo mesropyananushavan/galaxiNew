@@ -250,6 +250,10 @@
 - Added `countVisibleTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so live core-domain, live-entry, and foundation-surface counts now share one named non-zero target counter instead of repeating the same pluck-filter-count chain inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard visible-target count cleanup.
 
+### Dashboard target-count list seam checkpoint
+- Added `targetCounts()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so visible-target counting now reads through one explicit count-list seam before applying the non-zero filter.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard target-count list cleanup.
+
 ### Dashboard visible-access target seam checkpoint
 - Added `visibleAccessTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the access baseline summary now builds from one named visible-access target definition instead of separate inline role and permission count variables.
 - Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard visible-access cleanup.

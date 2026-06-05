@@ -473,10 +473,17 @@ class DashboardController extends Controller
 
     protected function countVisibleTargets(array $targets): int
     {
+        return $this->countItems(
+            collect($this->targetCounts($targets))
+                ->filter(fn (int $count): bool => $count > 0)
+        );
+    }
+
+    protected function targetCounts(array $targets): array
+    {
         return collect($targets)
             ->pluck('count')
-            ->filter(fn (int $count): bool => $count > 0)
-            ->count();
+            ->all();
     }
 
     protected function visibleAccessTargets(): array
