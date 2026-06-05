@@ -230,6 +230,10 @@
 - Added `latestShopCardHolder()` and `latestShopCard()` in `app/Http/Controllers/Admin/DashboardController.php` and reused them so the assigned-branch snapshot no longer builds its latest branch holder and latest branch card queries inline.
 - Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard latest-branch-record cleanup.
 
+### Dashboard latest-saved-record seam checkpoint
+- Added `latestSavedCardType()` and `latestSavedRole()` in `app/Http/Controllers/Admin/DashboardController.php` and reused them so the latest tier and latest access-shell workspace entries no longer build their latest-record queries inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard latest-saved-record cleanup.
+
 ### Dashboard model-relation count seam checkpoint
 - Added `modelRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php`, imported `Illuminate\Database\Eloquent\Model`, and reused the helper so both role and shop relation-count seams now share one generic count-attribute fallback path instead of duplicating that logic.
 - Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard model relation-count cleanup.

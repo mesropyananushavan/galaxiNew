@@ -578,7 +578,7 @@ class DashboardController extends Controller
 
     protected function latestCardTypeWorkspace(): ?array
     {
-        $cardType = CardType::query()->latest('id')->first();
+        $cardType = $this->latestSavedCardType();
 
         return $cardType ? $this->workspaceLink(
             label: sprintf('Open latest Galaxy tier shell review: %s (%s)', $cardType->name, $this->cardTypeStatusValue($cardType)),
@@ -612,13 +612,27 @@ class DashboardController extends Controller
 
     protected function latestRoleWorkspace(): ?array
     {
-        $role = Role::query()->latest('id')->first();
+        $role = $this->latestSavedRole();
 
         return $role ? $this->workspaceLink(
             label: sprintf('Open latest Galaxy access shell review: %s (%d permissions)', $role->name, $this->rolePermissionCount($role)),
             routeName: 'admin.roles-permissions.index',
             parameters: ['role' => $role->id],
         ) : null;
+    }
+
+    protected function latestSavedCardType(): ?CardType
+    {
+        $cardType = CardType::query()->latest('id')->first();
+
+        return $cardType instanceof CardType ? $cardType : null;
+    }
+
+    protected function latestSavedRole(): ?Role
+    {
+        $role = Role::query()->latest('id')->first();
+
+        return $role instanceof Role ? $role : null;
     }
 
     protected function rolePermissionCount(Role $role): int
