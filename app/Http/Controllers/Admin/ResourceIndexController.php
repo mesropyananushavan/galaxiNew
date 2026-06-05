@@ -4159,9 +4159,9 @@ class ResourceIndexController extends Controller
 
     private function cardholdersStatusSignal(CardHolder $selectedCardHolder): string
     {
-        return $this->cardholderIsActive($selectedCardHolder)
-            ? 'Active holder is already visible for live profile parity review.'
-            : 'Inactive holder remains safer for reactivation-flow-parity review before any reactivation-flow discussion.';
+        return $this->cardholderIsInactive($selectedCardHolder)
+            ? 'Inactive holder remains safer for reactivation-flow-parity review before any reactivation-flow discussion.'
+            : 'Active holder is already visible for live profile parity review.';
     }
 
     private function cardholdersOperationalReadiness(CardHolder $selectedCardHolder): string

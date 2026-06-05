@@ -10931,3 +10931,8 @@
 - Reused `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersReviewMode()` so the selected-holder review-mode branch no longer depends on a raw active/inactive ternary.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, review flows, or cardholder workspace behavior.
+
+### Cardholder status-signal inactive seam checkpoint
+- Reused `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersStatusSignal()` so the selected-holder status branch no longer depends on a raw active/inactive ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, status flows, or cardholder workspace behavior.
