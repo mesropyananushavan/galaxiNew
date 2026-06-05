@@ -5010,12 +5010,12 @@ class ResourceIndexController extends Controller
 
     private function roleAssignedToActiveShopCount(Role $role): int
     {
-        return $role->users()->assignedToActiveShop()->count();
+        return $this->roleAssignedUserScopeCount($role, 'assignedToActiveShop');
     }
 
     private function roleAssignedToPausedShopCount(Role $role): int
     {
-        return $role->users()->assignedToPausedShop()->count();
+        return $this->roleAssignedUserScopeCount($role, 'assignedToPausedShop');
     }
 
     private function roleAssignedUserCount(Role $role): int
@@ -5051,6 +5051,11 @@ class ResourceIndexController extends Controller
     private function loadedRolePermissions(Role $role): Collection
     {
         return $role->permissions;
+    }
+
+    private function roleAssignedUserScopeCount(Role $role, string $scope): int
+    {
+        return $role->users()->{$scope}()->count();
     }
 
     private function permissionLinkedRoleCount(): int
