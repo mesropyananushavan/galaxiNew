@@ -1343,12 +1343,17 @@ class DashboardController extends Controller
     protected function latestAccessibleRecord(iterable $records, callable $shopResolver): mixed
     {
         $adminUser = $this->adminUser();
+        $records = collect($records);
 
         if (! $adminUser instanceof User) {
-            return collect($records)->first();
+            return $this->firstIterableItem($records);
         }
 
-        return collect($records)
-            ->first(fn (mixed $record): bool => $adminUser->can('view', $shopResolver($record)));
+        return $records->first(fn (mixed $record): bool => $adminUser->can('view', $shopResolver($record)));
+    }
+
+    protected function firstIterableItem(iterable $items): mixed
+    {
+        return collect($items)->first();
     }
 }
