@@ -5300,7 +5300,7 @@ class ResourceIndexController extends Controller
 
     private function countMatching(iterable $values, callable $predicate): int
     {
-        return $this->filterMatching($values, $predicate)->count();
+        return $this->iterableCount($this->filterMatching($values, $predicate));
     }
 
     private function iterableCount(iterable $values): int
