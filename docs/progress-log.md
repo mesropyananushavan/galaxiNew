@@ -11006,3 +11006,8 @@
 - Added `cardholderActiveValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder live-form values so the holder active-flag string mapping no longer repeats inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, activation flows, or cardholder workspace behavior.
+
+### Cardholder full-name value seam checkpoint
+- Added `cardholderFullNameValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder live-form values so the holder full-name mapping now follows the same named-value seam pattern as the adjacent form fields.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, identity flows, or cardholder workspace behavior.

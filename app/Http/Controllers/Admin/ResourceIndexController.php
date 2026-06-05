@@ -1128,7 +1128,7 @@ class ResourceIndexController extends Controller
             );
             $page['liveForm']['valuesResolver'] = [
                 'shop_id' => $this->cardholderShopIdValue($selectedCardHolder),
-                'full_name' => $selectedCardHolder->full_name,
+                'full_name' => $this->cardholderFullNameValue($selectedCardHolder),
                 'phone' => $this->cardholderPhoneValue($selectedCardHolder),
                 'email' => $this->cardholderEmailValue($selectedCardHolder),
                 'is_active' => $this->cardholderActiveValue($selectedCardHolder),
@@ -4293,6 +4293,11 @@ class ResourceIndexController extends Controller
     private function cardholderActiveValue(CardHolder $selectedCardHolder): string
     {
         return $this->cardholderIsActive($selectedCardHolder) ? '1' : '0';
+    }
+
+    private function cardholderFullNameValue(CardHolder $selectedCardHolder): string
+    {
+        return $selectedCardHolder->full_name;
     }
 
     private function cardholdersShopLabel(CardHolder $selectedCardHolder): string
