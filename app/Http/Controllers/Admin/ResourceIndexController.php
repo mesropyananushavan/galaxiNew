@@ -1127,7 +1127,7 @@ class ResourceIndexController extends Controller
                 'Save holder changes',
             );
             $page['liveForm']['valuesResolver'] = [
-                'shop_id' => $selectedCardHolder->shop_id !== null ? (string) $selectedCardHolder->shop_id : '',
+                'shop_id' => $this->cardholderShopIdValue($selectedCardHolder),
                 'full_name' => $selectedCardHolder->full_name,
                 'phone' => $this->cardholderPhoneValue($selectedCardHolder),
                 'email' => $this->cardholderEmailValue($selectedCardHolder),
@@ -4283,6 +4283,11 @@ class ResourceIndexController extends Controller
     private function cardholderEmailValue(CardHolder $selectedCardHolder, string $fallback = ''): string
     {
         return $selectedCardHolder->email ?? $fallback;
+    }
+
+    private function cardholderShopIdValue(CardHolder $selectedCardHolder, string $fallback = ''): string
+    {
+        return $selectedCardHolder->shop_id !== null ? (string) $selectedCardHolder->shop_id : $fallback;
     }
 
     private function cardholdersShopLabel(CardHolder $selectedCardHolder): string
