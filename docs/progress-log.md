@@ -11501,3 +11501,8 @@
 - Added `shopsSelectedDependencyScopeHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency scope-handoff signal now flows through an explicit selected-shop seam instead of calling the shared scope-handoff helper inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening scope writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-status-posture seam checkpoint
+- Added `shopsSelectedDependencyStatusPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency status posture now flows through an explicit selected-shop seam instead of calling the shared status-posture helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status writes, dependency flows, or selected-shop review behavior.
