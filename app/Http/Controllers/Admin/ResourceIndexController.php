@@ -4252,6 +4252,11 @@ class ResourceIndexController extends Controller
 
     private function cardholderFullNameValue(CardHolder $selectedCardHolder): string
     {
+        return $this->cardholderFullName($selectedCardHolder);
+    }
+
+    private function cardholderFullName(CardHolder $selectedCardHolder): string
+    {
         return $selectedCardHolder->full_name;
     }
 
