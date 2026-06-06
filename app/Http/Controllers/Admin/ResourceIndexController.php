@@ -4128,7 +4128,7 @@ class ResourceIndexController extends Controller
 
     private function cardholderShopIsPaused(CardHolder $selectedCardHolder): bool
     {
-        return ! $this->cardholderShopIsUnassigned($selectedCardHolder) && ! $this->cardholderShopActiveFlag($selectedCardHolder);
+        return $this->cardholderShopIsAssigned($selectedCardHolder) && ! $this->cardholderShopActiveFlag($selectedCardHolder);
     }
 
     private function cardholderShopIsUnassigned(CardHolder $selectedCardHolder): bool
