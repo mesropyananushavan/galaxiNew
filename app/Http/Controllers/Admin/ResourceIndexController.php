@@ -1107,7 +1107,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        if ($this->cannotAccessRecordShop($adminUser, $selectedCardHolder->shop)) {
+        if ($this->cannotAccessRecordShop($adminUser, $this->cardholderShop($selectedCardHolder))) {
             return $page;
         }
 
@@ -4320,12 +4320,17 @@ class ResourceIndexController extends Controller
 
     private function cardholdersShopLabel(CardHolder $selectedCardHolder): string
     {
-        return $selectedCardHolder->shop?->name ?? 'Unassigned';
+        return $this->cardholderShop($selectedCardHolder)?->name ?? 'Unassigned';
     }
 
     private function cardholderHasShop(CardHolder $selectedCardHolder): bool
     {
-        return $selectedCardHolder->shop !== null;
+        return $this->cardholderShop($selectedCardHolder) !== null;
+    }
+
+    private function cardholderShop(CardHolder $selectedCardHolder): ?Shop
+    {
+        return $selectedCardHolder->shop;
     }
 
     private function cardholdersLookupGuidance(CardHolder $selectedCardHolder): string
