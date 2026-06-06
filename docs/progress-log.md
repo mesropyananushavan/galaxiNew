@@ -11116,3 +11116,8 @@
 - Added `cardholderCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderCardsRelation()` so the holder cards relation path now builds on a dedicated named relation seam instead of calling the relation inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, card-linkage flows, or cardholder workspace behavior.
+
+### Cardholder unlinked seam checkpoint
+- Added `cardholderIsUnlinked()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderHasLinkedCards()` so the holder linkage boolean path now flows through an explicit linked/unlinked seam pair instead of repeating the count comparison inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder workspace behavior.

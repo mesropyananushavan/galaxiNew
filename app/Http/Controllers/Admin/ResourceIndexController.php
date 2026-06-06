@@ -4148,7 +4148,12 @@ class ResourceIndexController extends Controller
 
     private function cardholderHasLinkedCards(CardHolder $selectedCardHolder): bool
     {
-        return $this->cardholderLinkedCardCount($selectedCardHolder) > 0;
+        return ! $this->cardholderIsUnlinked($selectedCardHolder);
+    }
+
+    private function cardholderIsUnlinked(CardHolder $selectedCardHolder): bool
+    {
+        return $this->cardholderLinkedCardCount($selectedCardHolder) === 0;
     }
 
     private function cardholderIsPausedWithLinkedCards(CardHolder $selectedCardHolder): bool
