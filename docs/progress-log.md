@@ -11221,3 +11221,8 @@
 - Reused `cardholderHasLinkedCards()` inside `cardholderIsPausedWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused+linked holder state helper now builds on the shared linked-card seam instead of reaching past it to `cardholderIsLinked()` directly.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder workspace behavior.
+
+### Cardholder active-linked seam reuse checkpoint
+- Reused `cardholderHasLinkedCards()` inside `cardholderIsActiveWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active+linked holder state helper now builds on the shared linked-card seam instead of reaching past it to `cardholderIsLinked()` directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder workspace behavior.
