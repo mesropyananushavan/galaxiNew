@@ -4073,7 +4073,7 @@ class ResourceIndexController extends Controller
 
     private function cardholdersSelectedHolderLabel(CardHolder $selectedCardHolder): string
     {
-        return $selectedCardHolder->full_name;
+        return $this->cardholderFullNameValue($selectedCardHolder);
     }
 
     private function cardholdersReviewMode(CardHolder $selectedCardHolder): string
