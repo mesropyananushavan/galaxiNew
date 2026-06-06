@@ -11276,3 +11276,8 @@
 - Reused `shopIsPaused()` inside `shopsScopeHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch scope-handoff path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, recovery flows, or selected-shop lifecycle behavior.
+
+### Shop paused-scope-timeline seam checkpoint
+- Reused `shopIsPaused()` inside `shopsScopeTimelineHandoffDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch scope-timeline path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or selected-shop lifecycle behavior.
