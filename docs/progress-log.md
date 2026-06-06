@@ -11051,3 +11051,8 @@
 - Reused `cardholderReviewNoteValue()` inside `cardholdersReviewNoteReflection()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so holder review-note reflection now follows the same named note-value seam as the selected-holder label and live-form helpers.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, note flows, or cardholder workspace behavior.
+
+### Cardholder shop-id seam checkpoint
+- Added `cardholderShopId()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIdValue()` so the holder shop-id string mapping now builds on a dedicated named id seam instead of reading the field inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-assignment flows, or cardholder workspace behavior.

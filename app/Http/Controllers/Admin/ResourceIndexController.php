@@ -4217,7 +4217,12 @@ class ResourceIndexController extends Controller
 
     private function cardholderShopIdValue(CardHolder $selectedCardHolder, string $fallback = ''): string
     {
-        return $selectedCardHolder->shop_id !== null ? (string) $selectedCardHolder->shop_id : $fallback;
+        return $this->cardholderShopId($selectedCardHolder) !== null ? (string) $this->cardholderShopId($selectedCardHolder) : $fallback;
+    }
+
+    private function cardholderShopId(CardHolder $selectedCardHolder): ?int
+    {
+        return $selectedCardHolder->shop_id;
     }
 
     private function cardholderActiveValue(CardHolder $selectedCardHolder): string
