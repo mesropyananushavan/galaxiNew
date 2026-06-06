@@ -11426,3 +11426,8 @@
 - Added `shopsSelectedStatusValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop Galaxy status value now flows through an explicit review seam instead of calling `shopStatusValue()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening status writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-cardholder-count seam checkpoint
+- Added `shopsSelectedCardholderCountValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop cardholder count now flows through an explicit review seam instead of calling the shared visible-count helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening count writes, summary flows, or selected-shop review behavior.

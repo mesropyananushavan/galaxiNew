@@ -4631,7 +4631,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Backend gap', 'value' => $this->shopsSelectedBackendGap($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $this->shopsSelectedManagerName($selectedShop)],
             ['label' => 'Manager guidance', 'value' => $this->shopsManagerGuidance($selectedShop)],
-            ['label' => 'Cardholders', 'value' => $this->shopVisibleCardholderCountValue($selectedShop)],
+            ['label' => 'Cardholders', 'value' => $this->shopsSelectedCardholderCountValue($selectedShop)],
             ['label' => 'Cards', 'value' => $this->shopVisibleCardCountValue($selectedShop)],
             ['label' => 'Galaxy status', 'value' => $this->shopsSelectedStatusValue($selectedShop)],
             [
@@ -4690,6 +4690,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedStatusValue(Shop $selectedShop): string
     {
         return $this->shopStatusValue($selectedShop);
+    }
+
+    private function shopsSelectedCardholderCountValue(Shop $selectedShop): string
+    {
+        return $this->shopVisibleCardholderCountValue($selectedShop);
     }
 
     private function shopsReviewMode(Shop $selectedShop): string
