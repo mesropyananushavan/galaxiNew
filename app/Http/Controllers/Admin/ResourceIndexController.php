@@ -4568,9 +4568,9 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected shop', 'value' => $this->shopNameValue($selectedShop)],
-            ['label' => 'Review mode', 'value' => $this->shopIsActive($selectedShop)
-                ? 'Live branch review, this Galaxy foundation shop already carries operational visibility and should stay parity-first.'
-                : 'Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.'],
+            ['label' => 'Review mode', 'value' => $this->shopIsPaused($selectedShop)
+                ? 'Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.'
+                : 'Live branch review, this Galaxy foundation shop already carries operational visibility and should stay parity-first.'],
             ['label' => 'Operational readiness', 'value' => $this->shopsOperationalReadiness($selectedShop)],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
