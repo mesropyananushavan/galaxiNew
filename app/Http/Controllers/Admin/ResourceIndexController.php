@@ -4616,7 +4616,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected shop', 'value' => $this->shopsSelectedLabel($selectedShop)],
-            ['label' => 'Review mode', 'value' => $this->shopsReviewMode($selectedShop)],
+            ['label' => 'Review mode', 'value' => $this->shopsSelectedReviewMode($selectedShop)],
             ['label' => 'Operational readiness', 'value' => $this->shopsSelectedOperationalReadiness($selectedShop)],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsSelectedLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsSelectedLastSavedLabel($selectedShop)],
@@ -4655,6 +4655,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedLabel(Shop $selectedShop): string
     {
         return $this->shopNameValue($selectedShop);
+    }
+
+    private function shopsSelectedReviewMode(Shop $selectedShop): string
+    {
+        return $this->shopsReviewMode($selectedShop);
     }
 
     private function shopsSelectedOperationalReadiness(Shop $selectedShop): string

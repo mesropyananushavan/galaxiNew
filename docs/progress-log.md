@@ -11481,3 +11481,8 @@
 - Added `shopsSelectedOperationalReadiness()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop operational readiness value now flows through an explicit review seam instead of calling `shopsOperationalReadiness()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening readiness writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-review-mode seam checkpoint
+- Added `shopsSelectedReviewMode()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop review mode now flows through an explicit review seam instead of calling `shopsReviewMode()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening review-mode writes, summary flows, or selected-shop review behavior.
