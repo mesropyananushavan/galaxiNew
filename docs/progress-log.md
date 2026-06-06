@@ -11206,3 +11206,8 @@
 - Added `cardholderShopIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIsPaused()` so the shop-state lattice now has an explicit active/inactive seam pair instead of embedding the negated shop-active flag directly in the paused helper.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder shop-unassigned id reuse checkpoint
+- Reused `cardholderShopId()` inside `cardholderShopIsUnassigned()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the unassigned-branch helper now mirrors `cardholderShopIsAssigned()` on the same base id seam instead of only negating the assigned helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
