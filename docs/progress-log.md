@@ -11361,3 +11361,8 @@
 - Added `shopsManagerPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the manager-ownership posture match now lives behind an explicit shop review seam instead of an inline branch-state matrix.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening manager writes, ownership flows, or selected-shop review behavior.
+
+### Shop branch-review-posture seam checkpoint
+- Added `shopsBranchReviewPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the branch review posture copy now lives behind an explicit shop review seam instead of a raw inline string.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, review flows, or selected-shop review behavior.

@@ -2754,6 +2754,11 @@ class ResourceIndexController extends Controller
         };
     }
 
+    private function shopsBranchReviewPosture(): string
+    {
+        return 'Selected-shop review is running in Galaxy foundation-backed read mode only';
+    }
+
     private function resolveLiveFormRouteParameterValue(mixed $value): mixed
     {
         if ($value instanceof BackedEnum) {
@@ -4794,7 +4799,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected shop', 'value' => $this->shopNameValue($selectedShop)],
-            ['label' => 'Branch posture', 'value' => 'Selected-shop review is running in Galaxy foundation-backed read mode only'],
+            ['label' => 'Branch posture', 'value' => $this->shopsBranchReviewPosture()],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopReviewNoteValue($selectedShop, 'No review note saved yet')],
