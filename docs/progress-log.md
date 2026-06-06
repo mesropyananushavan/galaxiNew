@@ -11376,3 +11376,8 @@
 - Added `shopsManagerGuidance()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the manager guidance branch-state match now lives behind an explicit shop review seam instead of an inline matrix.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening manager writes, guidance flows, or selected-shop review behavior.
+
+### Shop branch-guidance seam checkpoint
+- Added `shopsBranchGuidance()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the paused-vs-active branch guidance copy now lives behind an explicit shop review seam instead of an inline ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, guidance flows, or selected-shop review behavior.

@@ -4626,9 +4626,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Galaxy status', 'value' => $this->shopStatusValue($selectedShop)],
             [
                 'label' => 'Branch guidance',
-                'value' => $this->shopIsPaused($selectedShop)
-                    ? 'This branch is still paused, so recovery, ownership, and scope review should stay parity-first before operators treat it as fully live.'
-                    : 'This branch is already active in the Galaxy foundation layer, so scope and manager changes should stay parity-first until branch ownership rules are verified.',
+                'value' => $this->shopsBranchGuidance($selectedShop),
             ],
         ];
     }
@@ -4649,6 +4647,13 @@ class ResourceIndexController extends Controller
         return $this->shopIsPaused($selectedShop)
             ? 'Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.'
             : 'Live branch review, this Galaxy foundation shop already carries operational visibility and should stay parity-first.';
+    }
+
+    private function shopsBranchGuidance(Shop $selectedShop): string
+    {
+        return $this->shopIsPaused($selectedShop)
+            ? 'This branch is still paused, so recovery, ownership, and scope review should stay parity-first before operators treat it as fully live.'
+            : 'This branch is already active in the Galaxy foundation layer, so scope and manager changes should stay parity-first until branch ownership rules are verified.';
     }
 
     private function shopsBranchFocus(Shop $selectedShop): string
