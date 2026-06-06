@@ -4659,6 +4659,12 @@ class ResourceIndexController extends Controller
             && $this->shopVisibleCardCount($selectedShop) > 0;
     }
 
+    private function shopHasVisibleCoverage(Shop $selectedShop): bool
+    {
+        return $this->shopVisibleCardholderCount($selectedShop) > 0
+            || $this->shopVisibleCardCount($selectedShop) > 0;
+    }
+
     private function shopsLifecycleFreshnessLabel(Shop $selectedShop): string
     {
         return $this->lifecycleFreshnessLabel($selectedShop);
@@ -4683,11 +4689,10 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $this->shopHasAssignedManagers($selectedShop)
-                && $this->shopVisibleCardholderCount($selectedShop) > 0
-                && $this->shopVisibleCardCount($selectedShop) > 0 => 'manager, holder, and card coverage visible',
+                && $this->shopHasVisibleHolderAndCardCoverage($selectedShop) => 'manager, holder, and card coverage visible',
             $this->shopHasAssignedManagers($selectedShop)
-                && ($this->shopVisibleCardholderCount($selectedShop) > 0 || $this->shopVisibleCardCount($selectedShop) > 0) => 'manager coverage visible, branch records building out',
-            $this->shopVisibleCardholderCount($selectedShop) > 0 || $this->shopVisibleCardCount($selectedShop) > 0 => 'branch records visible, manager coverage pending',
+                && $this->shopHasVisibleCoverage($selectedShop) => 'manager coverage visible, branch records building out',
+            $this->shopHasVisibleCoverage($selectedShop) => 'branch records visible, manager coverage pending',
             $this->shopHasAssignedManagers($selectedShop) => 'manager coverage visible, branch records pending',
             default => 'manager and branch coverage pending',
         };
@@ -4698,10 +4703,9 @@ class ResourceIndexController extends Controller
         return match (true) {
             $this->shopIsPaused($selectedShop) => 'Paused branch remains safer for reopening-parity review before any reopening-flow discussion.',
             $this->shopHasAssignedManagers($selectedShop)
-                && $this->shopVisibleCardholderCount($selectedShop) > 0
-                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Active branch is already visible with manager and customer coverage for branch coverage parity review.',
+                && $this->shopHasVisibleHolderAndCardCoverage($selectedShop) => 'Active branch is already visible with manager and customer coverage for branch coverage parity review.',
             $this->shopHasAssignedManagers($selectedShop) => 'Active branch is already visible with manager ownership for rollout review.',
-            $this->shopVisibleCardholderCount($selectedShop) > 0 || $this->shopVisibleCardCount($selectedShop) > 0 => 'Active branch is already visible with customer coverage while manager ownership is still pending.',
+            $this->shopHasVisibleCoverage($selectedShop) => 'Active branch is already visible with customer coverage while manager ownership is still pending.',
             default => 'Active branch shell is visible, but manager and customer coverage are still pending.',
         };
     }
@@ -4711,10 +4715,9 @@ class ResourceIndexController extends Controller
         return match (true) {
             $this->shopIsPaused($selectedShop) => 'Paused branch should stay in recovery handoff-only posture until ownership and scope approval are explicit.',
             $this->shopHasAssignedManagers($selectedShop)
-                && $this->shopVisibleCardholderCount($selectedShop) > 0
-                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Branch already shows enough ownership and customer coverage for a useful scope handoff review.',
+                && $this->shopHasVisibleHolderAndCardCoverage($selectedShop) => 'Branch already shows enough ownership and customer coverage for a useful scope handoff review.',
             $this->shopHasAssignedManagers($selectedShop) => 'Manager ownership is visible, but customer coverage still needs to catch up before full scope handoff review.',
-            $this->shopVisibleCardholderCount($selectedShop) > 0 || $this->shopVisibleCardCount($selectedShop) > 0 => 'Customer coverage is visible, but ownership handoff is still incomplete for branch-scope review.',
+            $this->shopHasVisibleCoverage($selectedShop) => 'Customer coverage is visible, but ownership handoff is still incomplete for branch-scope review.',
             default => 'Branch shell exists, but ownership and customer handoff context are still thin.',
         };
     }
@@ -4724,10 +4727,9 @@ class ResourceIndexController extends Controller
         return match (true) {
             $this->shopIsPaused($selectedShop) => 'Operators should carry paused status, recovery ownership gaps, branch coverage, and scope approval context in the live workspace before trusting any recovery or reassignment follow-up.',
             $this->shopHasAssignedManagers($selectedShop)
-                && $this->shopVisibleCardholderCount($selectedShop) > 0
-                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Operators should carry manager ownership, holder coverage, and card coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
+                && $this->shopHasVisibleHolderAndCardCoverage($selectedShop) => 'Operators should carry manager ownership, holder coverage, and card coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
             $this->shopHasAssignedManagers($selectedShop) => 'Operators should carry manager ownership, branch readiness gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or reassignment follow-up.',
-            $this->shopVisibleCardholderCount($selectedShop) > 0 || $this->shopVisibleCardCount($selectedShop) > 0 => 'Operators should carry customer coverage, ownership gaps, and branch readiness in the live workspace before trusting any scope-mutation or reassignment follow-up.',
+            $this->shopHasVisibleCoverage($selectedShop) => 'Operators should carry customer coverage, ownership gaps, and branch readiness in the live workspace before trusting any scope-mutation or reassignment follow-up.',
             default => 'Operators should carry branch readiness, ownership gaps, and missing customer coverage in the live workspace before trusting any scope-mutation or recovery follow-up.',
         };
     }

@@ -11336,3 +11336,8 @@
 - Added `shopHasVisibleHolderAndCardCoverage()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across `shopsOperationalReadiness()`, `shopsBranchPosture()`, `shopsEvidencePriority()`, and `shopsBackendGap()` so the repeated branch-ready holder+card coverage check now builds on an explicit coverage seam instead of repeating paired count comparisons inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, coverage flows, or selected-shop review behavior.
+
+### Shop visible any-coverage seam checkpoint
+- Added `shopHasVisibleCoverage()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across `shopsCoverageSignal()`, `shopsStatusSignal()`, `shopsScopeHandoffSignal()`, and `shopsScopeTimelineHandoffDescription()` so the repeated any-visible-coverage check now builds on an explicit seam instead of repeating paired fallback count comparisons inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, coverage flows, or selected-shop review behavior.
