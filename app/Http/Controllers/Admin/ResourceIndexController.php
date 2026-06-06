@@ -4595,9 +4595,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Galaxy status', 'value' => $this->shopStatusValue($selectedShop)],
             [
                 'label' => 'Branch guidance',
-                'value' => $this->shopIsActive($selectedShop)
-                    ? 'This branch is already active in the Galaxy foundation layer, so scope and manager changes should stay parity-first until branch ownership rules are verified.'
-                    : 'This branch is still paused, so recovery, ownership, and scope review should stay parity-first before operators treat it as fully live.',
+                'value' => $this->shopIsPaused($selectedShop)
+                    ? 'This branch is still paused, so recovery, ownership, and scope review should stay parity-first before operators treat it as fully live.'
+                    : 'This branch is already active in the Galaxy foundation layer, so scope and manager changes should stay parity-first until branch ownership rules are verified.',
             ],
         ];
     }
