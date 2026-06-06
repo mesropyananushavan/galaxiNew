@@ -4352,7 +4352,12 @@ class ResourceIndexController extends Controller
 
     private function cardholdersShopLabel(CardHolder $selectedCardHolder): string
     {
-        return $this->cardholderShop($selectedCardHolder)?->name ?? 'Unassigned';
+        return $this->cardholderShopName($selectedCardHolder) ?? 'Unassigned';
+    }
+
+    private function cardholderShopName(CardHolder $selectedCardHolder): ?string
+    {
+        return $this->cardholderShop($selectedCardHolder)?->name;
     }
 
     private function cardholderHasShop(CardHolder $selectedCardHolder): bool
