@@ -11446,3 +11446,8 @@
 - Added `shopsSelectedStatusSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop status signal now flows through an explicit review seam instead of calling `shopsStatusSignal()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening status writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-branch-focus seam checkpoint
+- Added `shopsSelectedBranchFocus()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop branch focus now flows through an explicit review seam instead of calling `shopsBranchFocus()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, summary flows, or selected-shop review behavior.
