@@ -2744,6 +2744,16 @@ class ResourceIndexController extends Controller
             : 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.';
     }
 
+    private function shopsManagerPosture(Shop $selectedShop): string
+    {
+        return match (true) {
+            $this->shopIsPaused($selectedShop) && $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in this paused Galaxy branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
+            $this->shopIsPaused($selectedShop) => 'No branch manager is assigned yet, which keeps this paused Galaxy branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',
+            $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in the Galaxy foundation layer, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.',
+            default => 'No branch manager is assigned yet, which keeps this Galaxy branch safer for ownership-flow parity review before ownership flows are enabled.',
+        };
+    }
+
     private function resolveLiveFormRouteParameterValue(mixed $value): mixed
     {
         if ($value instanceof BackedEnum) {
@@ -4792,12 +4802,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
             ['label' => 'Status posture', 'value' => $this->shopsStatusPosture($selectedShop)],
-            ['label' => 'Manager posture', 'value' => match (true) {
-                $this->shopIsPaused($selectedShop) && $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in this paused Galaxy branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
-                $this->shopIsPaused($selectedShop) => 'No branch manager is assigned yet, which keeps this paused Galaxy branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',
-                $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in the Galaxy foundation layer, but reassignment should stay blocked until Galaxy branch ownership parity is confirmed.',
-                default => 'No branch manager is assigned yet, which keeps this Galaxy branch safer for ownership-flow parity review before ownership flows are enabled.',
-            }],
+            ['label' => 'Manager posture', 'value' => $this->shopsManagerPosture($selectedShop)],
             ['label' => 'Coverage posture', 'value' => $this->shopsCoveragePosture($selectedShop)],
             ['label' => 'Remaining backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
         ];
