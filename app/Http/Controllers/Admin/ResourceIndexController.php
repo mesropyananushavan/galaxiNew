@@ -4627,7 +4627,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Branch focus', 'value' => $this->shopsSelectedBranchFocus($selectedShop)],
             ['label' => 'Branch posture', 'value' => $this->shopsSelectedBranchPosture($selectedShop)],
             ['label' => 'Evidence priority', 'value' => $this->shopsSelectedEvidencePriority($selectedShop)],
-            ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
+            ['label' => 'Scope handoff signal', 'value' => $this->shopsSelectedScopeHandoffSignal($selectedShop)],
             ['label' => 'Backend gap', 'value' => $this->shopsSelectedBackendGap($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $this->shopsSelectedManagerName($selectedShop)],
             ['label' => 'Manager guidance', 'value' => $this->shopsManagerGuidance($selectedShop)],
@@ -4705,6 +4705,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedEvidencePriority(Shop $selectedShop): string
     {
         return $this->shopsEvidencePriority($selectedShop);
+    }
+
+    private function shopsSelectedScopeHandoffSignal(Shop $selectedShop): string
+    {
+        return $this->shopsScopeHandoffSignal($selectedShop);
     }
 
     private function shopsSelectedManagerName(Shop $selectedShop): string
