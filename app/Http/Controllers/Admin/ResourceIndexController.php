@@ -2759,6 +2759,16 @@ class ResourceIndexController extends Controller
         return 'Selected-shop review is running in Galaxy foundation-backed read mode only';
     }
 
+    private function shopsManagerGuidance(Shop $selectedShop): string
+    {
+        return match (true) {
+            $this->shopIsPaused($selectedShop) && $this->shopHasAssignedManagers($selectedShop) => 'Keep current paused-branch manager ownership visible during review, because Galaxy recovery workflows depended on clear branch responsibility.',
+            $this->shopIsPaused($selectedShop) => 'No branch manager is assigned yet, so recovery ownership expectations should stay parity-first until paused Galaxy branch ownership-assignment parity is verified.',
+            $this->shopHasAssignedManagers($selectedShop) => 'Keep current branch manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.',
+            default => 'No branch manager is assigned yet, so ownership expectations should stay parity-first until Galaxy branch ownership-assignment parity is verified.',
+        };
+    }
+
     private function resolveLiveFormRouteParameterValue(mixed $value): mixed
     {
         if ($value instanceof BackedEnum) {
@@ -4610,12 +4620,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
             ['label' => 'Backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $this->shopAssignedManagerName($selectedShop)],
-            ['label' => 'Manager guidance', 'value' => match (true) {
-                $this->shopIsPaused($selectedShop) && $this->shopHasAssignedManagers($selectedShop) => 'Keep current paused-branch manager ownership visible during review, because Galaxy recovery workflows depended on clear branch responsibility.',
-                $this->shopIsPaused($selectedShop) => 'No branch manager is assigned yet, so recovery ownership expectations should stay parity-first until paused Galaxy branch ownership-assignment parity is verified.',
-                $this->shopHasAssignedManagers($selectedShop) => 'Keep current branch manager ownership visible during review, because legacy Galaxy branch administration depended on clear branch responsibility.',
-                default => 'No branch manager is assigned yet, so ownership expectations should stay parity-first until Galaxy branch ownership-assignment parity is verified.',
-            }],
+            ['label' => 'Manager guidance', 'value' => $this->shopsManagerGuidance($selectedShop)],
             ['label' => 'Cardholders', 'value' => (string) $this->shopVisibleCardholderCount($selectedShop)],
             ['label' => 'Cards', 'value' => (string) $this->shopVisibleCardCount($selectedShop)],
             ['label' => 'Galaxy status', 'value' => $this->shopStatusValue($selectedShop)],
