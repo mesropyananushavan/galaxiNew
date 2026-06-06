@@ -11241,3 +11241,8 @@
 - Added `shopReviewNoteValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop live form plus both selected-shop review summary blocks, so branch review-note presentation now builds on an explicit value seam instead of repeating raw `review_note` fallback logic.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, review workflows, or selected-shop lifecycle behavior.
+
+### Shop code value seam checkpoint
+- Added `shopCodeValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop live form plus selected-shop review summary, so branch code presentation now builds on an explicit value seam alongside the new review-note helper instead of reaching directly into the model field.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, code workflows, or selected-shop lifecycle behavior.

@@ -1213,7 +1213,7 @@ class ResourceIndexController extends Controller
             );
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedShop->name,
-                'code' => $selectedShop->code,
+                'code' => $this->shopCodeValue($selectedShop),
                 'is_active' => $this->shopIsActive($selectedShop) ? '1' : '0',
                 'review_note' => $this->shopReviewNoteValue($selectedShop),
             ];
@@ -4577,7 +4577,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopReviewNoteValue($selectedShop, 'No review note saved yet')],
-            ['label' => 'Code', 'value' => $selectedShop->code],
+            ['label' => 'Code', 'value' => $this->shopCodeValue($selectedShop)],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Branch focus', 'value' => $this->shopsBranchFocus($selectedShop)],
@@ -5495,6 +5495,11 @@ class ResourceIndexController extends Controller
     private function shopReviewNoteValue(Shop $shop, string $fallback = ''): string
     {
         return $shop->review_note ?? $fallback;
+    }
+
+    private function shopCodeValue(Shop $shop): string
+    {
+        return $shop->code;
     }
 
     private function roleScopeCount(Collection $scope): int
