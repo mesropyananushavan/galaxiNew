@@ -4636,7 +4636,7 @@ class ResourceIndexController extends Controller
     private function shopsEvidencePriority(Shop $selectedShop): string
     {
         return match (true) {
-            ! $this->shopIsActive($selectedShop) => 'Keep paused status, recovery ownership gaps, and any visible holder or card coverage together before trusting any reopening, reassignment, or scope-recovery discussion.',
+            $this->shopIsPaused($selectedShop) => 'Keep paused status, recovery ownership gaps, and any visible holder or card coverage together before trusting any reopening, reassignment, or scope-recovery discussion.',
             $this->shopHasAssignedManagers($selectedShop)
                 && $this->shopVisibleCardholderCount($selectedShop) > 0
                 && $this->shopVisibleCardCount($selectedShop) > 0 => 'Keep manager ownership, holder coverage, and card coverage together before trusting any later reassignment or branch-scope mutation discussion.',
