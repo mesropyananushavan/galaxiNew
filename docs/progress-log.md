@@ -11306,3 +11306,8 @@
 - Reused `shopIsPaused()` inside the selected-shop dependency-status manager posture match in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch ownership posture path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, ownership flows, or selected-shop lifecycle behavior.
+
+### Shop paused-status-posture seam checkpoint
+- Reused `shopIsPaused()` inside the selected-shop dependency-status status posture branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch lifecycle posture path now builds on the explicit paused-state seam instead of checking `shopIsActive()` in a direct ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, lifecycle flows, or selected-shop review behavior.

@@ -4774,9 +4774,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
-            ['label' => 'Status posture', 'value' => $this->shopIsActive($selectedShop)
-                ? 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'
-                : 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'],
+            ['label' => 'Status posture', 'value' => $this->shopIsPaused($selectedShop)
+                ? 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'
+                : 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'],
             ['label' => 'Manager posture', 'value' => match (true) {
                 $this->shopIsPaused($selectedShop) && $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in this paused Galaxy branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
                 $this->shopIsPaused($selectedShop) => 'No branch manager is assigned yet, which keeps this paused Galaxy branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',
