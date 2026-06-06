@@ -11161,3 +11161,8 @@
 - Reused `cardholderActiveFlag()` inside `cardholdersGalaxyStatusLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the holder Galaxy status label now builds directly on the base active-flag seam instead of going through an inverted inactive-state branch.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, status flows, or cardholder workspace behavior.
+
+### Cardholder shop-active simplification checkpoint
+- Simplified `cardholderShopIsActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` to return `cardholderShopActiveFlag()` directly, since the named shop-state seam already safely resolves false when no branch is linked.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
