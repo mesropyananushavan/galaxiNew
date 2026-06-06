@@ -11466,3 +11466,8 @@
 - Added `shopsSelectedScopeHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop scope handoff signal now flows through an explicit review seam instead of calling `shopsScopeHandoffSignal()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening scope writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-manager-guidance seam checkpoint
+- Added `shopsSelectedManagerGuidance()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop manager guidance now flows through an explicit review seam instead of calling `shopsManagerGuidance()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening manager writes, summary flows, or selected-shop review behavior.
