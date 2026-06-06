@@ -4188,7 +4188,12 @@ class ResourceIndexController extends Controller
 
     private function cardholderReviewNoteValue(CardHolder $selectedCardHolder, string $fallback = ''): string
     {
-        return $selectedCardHolder->review_note ?? $fallback;
+        return $this->cardholderReviewNote($selectedCardHolder) ?? $fallback;
+    }
+
+    private function cardholderReviewNote(CardHolder $selectedCardHolder): ?string
+    {
+        return $selectedCardHolder->review_note;
     }
 
     private function cardholdersReviewNoteReflection(CardHolder $selectedCardHolder): string
