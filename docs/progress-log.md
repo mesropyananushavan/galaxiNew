@@ -11341,3 +11341,8 @@
 - Added `shopHasVisibleCoverage()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across `shopsCoverageSignal()`, `shopsStatusSignal()`, `shopsScopeHandoffSignal()`, and `shopsScopeTimelineHandoffDescription()` so the repeated any-visible-coverage check now builds on an explicit seam instead of repeating paired fallback count comparisons inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, coverage flows, or selected-shop review behavior.
+
+### Shop selected-scope coverage seam checkpoint
+- Reused `shopHasVisibleHolderAndCardCoverage()` and `shopHasVisibleCoverage()` inside `shopsSelectedReviewScopeDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop scope gate now builds on the same explicit coverage seams as nearby shop review helpers instead of repeating inline count comparisons.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening scope writes, access flows, or selected-shop review behavior.

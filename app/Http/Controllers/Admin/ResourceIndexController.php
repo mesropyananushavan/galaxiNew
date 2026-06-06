@@ -2723,10 +2723,9 @@ class ResourceIndexController extends Controller
     {
         return match (true) {
             $this->shopHasAssignedManagers($selectedShop)
-                && $this->shopVisibleCardholderCount($selectedShop) > 0
-                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.',
+                && $this->shopHasVisibleHolderAndCardCoverage($selectedShop) => 'Blocked until manager-linked branch scope is verified against live holder/card coverage and the legacy Galaxy multi-shop model.',
             $this->shopHasAssignedManagers($selectedShop) => 'Blocked until manager-linked branch scope is verified against the legacy Galaxy multi-shop model.',
-            $this->shopVisibleCardholderCount($selectedShop) > 0 || $this->shopVisibleCardCount($selectedShop) > 0 => 'Blocked until visible branch coverage is verified against the legacy Galaxy multi-shop model.',
+            $this->shopHasVisibleCoverage($selectedShop) => 'Blocked until visible branch coverage is verified against the legacy Galaxy multi-shop model.',
             default => 'Blocked until branch ownership rules are confirmed against the legacy Galaxy multi-shop access model.',
         };
     }
