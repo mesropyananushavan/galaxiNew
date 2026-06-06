@@ -11236,3 +11236,8 @@
 - Reused `cardholderHasLinkedCards()` inside `cardholderIsLinked()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the linked-state helper now resolves through the shared linked-card seam instead of negating `cardholderIsUnlinked()` directly.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder workspace behavior.
+
+### Shop review-note value seam checkpoint
+- Added `shopReviewNoteValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop live form plus both selected-shop review summary blocks, so branch review-note presentation now builds on an explicit value seam instead of repeating raw `review_note` fallback logic.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, review workflows, or selected-shop lifecycle behavior.

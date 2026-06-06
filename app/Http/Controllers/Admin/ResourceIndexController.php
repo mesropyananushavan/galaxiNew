@@ -1215,7 +1215,7 @@ class ResourceIndexController extends Controller
                 'name' => $selectedShop->name,
                 'code' => $selectedShop->code,
                 'is_active' => $this->shopIsActive($selectedShop) ? '1' : '0',
-                'review_note' => $selectedShop->review_note ?? '',
+                'review_note' => $this->shopReviewNoteValue($selectedShop),
             ];
         }
 
@@ -4576,7 +4576,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Operational readiness', 'value' => $this->shopsOperationalReadiness($selectedShop)],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
-            ['label' => 'Review note', 'value' => $selectedShop->review_note ?: 'No review note saved yet'],
+            ['label' => 'Review note', 'value' => $this->shopReviewNoteValue($selectedShop, 'No review note saved yet')],
             ['label' => 'Code', 'value' => $selectedShop->code],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
@@ -4772,7 +4772,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Branch posture', 'value' => 'Selected-shop review is running in Galaxy foundation-backed read mode only'],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
-            ['label' => 'Review note', 'value' => $selectedShop->review_note ?: 'No review note saved yet'],
+            ['label' => 'Review note', 'value' => $this->shopReviewNoteValue($selectedShop, 'No review note saved yet')],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
@@ -5490,6 +5490,11 @@ class ResourceIndexController extends Controller
     private function shopStatusValue(Shop $shop): string
     {
         return $this->shopIsActive($shop) ? 'active' : 'paused';
+    }
+
+    private function shopReviewNoteValue(Shop $shop, string $fallback = ''): string
+    {
+        return $shop->review_note ?? $fallback;
     }
 
     private function roleScopeCount(Collection $scope): int
