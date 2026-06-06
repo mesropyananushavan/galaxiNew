@@ -11331,3 +11331,8 @@
 - Reused `shopIsPaused()` inside the selected-shop summary review-mode branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch review-mode path now builds on the explicit paused-state seam instead of checking `shopIsActive()` in a direct ternary.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, review flows, or selected-shop review behavior.
+
+### Shop visible holder-card coverage seam checkpoint
+- Added `shopHasVisibleHolderAndCardCoverage()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across `shopsOperationalReadiness()`, `shopsBranchPosture()`, `shopsEvidencePriority()`, and `shopsBackendGap()` so the repeated branch-ready holder+card coverage check now builds on an explicit coverage seam instead of repeating paired count comparisons inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, coverage flows, or selected-shop review behavior.

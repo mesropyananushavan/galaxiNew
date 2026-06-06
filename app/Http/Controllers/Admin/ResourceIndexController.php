@@ -4607,8 +4607,7 @@ class ResourceIndexController extends Controller
         return match (true) {
             $this->shopIsPaused($selectedShop) => 'paused branch, recovery review only',
             $this->shopHasAssignedManagers($selectedShop)
-                && $this->shopVisibleCardholderCount($selectedShop) > 0
-                && $this->shopVisibleCardCount($selectedShop) > 0 => 'active branch, operator-visible coverage live',
+                && $this->shopHasVisibleHolderAndCardCoverage($selectedShop) => 'active branch, operator-visible coverage live',
             $this->shopHasAssignedManagers($selectedShop) => 'active branch, manager assigned and build-out pending',
             default => 'active branch shell, ownership still forming',
         };
@@ -4626,8 +4625,7 @@ class ResourceIndexController extends Controller
         return match (true) {
             $this->shopIsPaused($selectedShop) => 'Keep paused-branch review in the live workspace first, then leave reopening, reassignment, and scope-mutation flows gated until recovery parity is proven.',
             $this->shopHasAssignedManagers($selectedShop)
-                && $this->shopVisibleCardholderCount($selectedShop) > 0
-                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Keep branch review in the live workspace first, then leave reassignment and scope-mutation flows gated until full branch parity is proven.',
+                && $this->shopHasVisibleHolderAndCardCoverage($selectedShop) => 'Keep branch review in the live workspace first, then leave reassignment and scope-mutation flows gated until full branch parity is proven.',
             $this->shopHasAssignedManagers($selectedShop) => 'Keep manager-owned branch review in the live workspace first, then leave coverage build-out, reassignment, and scope-mutation flows gated until parity is proven.',
             default => 'Keep branch coverage review in the live workspace first, then leave ownership assignment, reassignment, and scope-mutation flows gated until parity is proven.',
         };
@@ -4638,8 +4636,7 @@ class ResourceIndexController extends Controller
         return match (true) {
             $this->shopIsPaused($selectedShop) => 'Keep paused status, recovery ownership gaps, and any visible holder or card coverage together before trusting any reopening, reassignment, or scope-recovery discussion.',
             $this->shopHasAssignedManagers($selectedShop)
-                && $this->shopVisibleCardholderCount($selectedShop) > 0
-                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Keep manager ownership, holder coverage, and card coverage together before trusting any later reassignment or branch-scope mutation discussion.',
+                && $this->shopHasVisibleHolderAndCardCoverage($selectedShop) => 'Keep manager ownership, holder coverage, and card coverage together before trusting any later reassignment or branch-scope mutation discussion.',
             $this->shopHasAssignedManagers($selectedShop) => 'Keep manager ownership, branch readiness gaps, and missing holder or card coverage together before trusting any rollout-flow discussion.',
             default => 'Keep holder coverage, card coverage, and ownership gaps together before trusting any later branch-scope mutation discussion.',
         };
@@ -4650,11 +4647,16 @@ class ResourceIndexController extends Controller
         return match (true) {
             $this->shopIsPaused($selectedShop) => 'Branch recovery writes, manager reassignment, ownership repair, and shop-scope mutation flows should stay foundation-preview only until paused-branch parity is verified.',
             $this->shopHasAssignedManagers($selectedShop)
-                && $this->shopVisibleCardholderCount($selectedShop) > 0
-                && $this->shopVisibleCardCount($selectedShop) > 0 => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until branch parity is verified.',
+                && $this->shopHasVisibleHolderAndCardCoverage($selectedShop) => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until branch parity is verified.',
             $this->shopHasAssignedManagers($selectedShop) => 'Coverage backfill writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until manager-led branch parity is verified.',
             default => 'Ownership assignment, branch writes, and shop-scope mutation flows should stay foundation-preview only until branch coverage parity is verified.',
         };
+    }
+
+    private function shopHasVisibleHolderAndCardCoverage(Shop $selectedShop): bool
+    {
+        return $this->shopVisibleCardholderCount($selectedShop) > 0
+            && $this->shopVisibleCardCount($selectedShop) > 0;
     }
 
     private function shopsLifecycleFreshnessLabel(Shop $selectedShop): string
