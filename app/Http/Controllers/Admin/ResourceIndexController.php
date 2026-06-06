@@ -1111,31 +1111,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $page['selectedRecordSummary'] = $this->cardholdersSelectedHolderSummary($selectedCardHolder);
-
-        if (is_array($page['liveForm'] ?? null)) {
-            $page['liveForm'] = $this->applySelectedEditLiveForm(
-                $page['liveForm'],
-                'Edit Galaxy holder in Galaxy foundation',
-                'Update the selected Galaxy cardholder through the shared live form while card linkage and activity history remain review-only.',
-                'admin.cardholders.update',
-                [
-                    'cardholder' => $selectedCardHolder,
-                ],
-                'admin.cardholders.index',
-                'Back to holder catalog',
-                'Save holder changes',
-            );
-            $page['liveForm']['valuesResolver'] = $this->cardholdersLiveFormValues($selectedCardHolder);
-        }
-
-        $page['actions'] = $this->cardholdersSelectedActions($selectedCardHolder);
-
-        $page['activityTimeline'] = $this->cardholdersActivityTimeline($selectedCardHolder);
-
-        $page['dependencyStatus'] = $this->cardholdersSelectedHolderDependencyStatus($selectedCardHolder);
-
-        return $page;
+        return $this->cardholdersSelectedPageState($page, $selectedCardHolder);
     }
 
     private function enrichShopsPage(array $page): array
@@ -4250,6 +4226,33 @@ class ResourceIndexController extends Controller
     private function cardholderFullNameValue(CardHolder $selectedCardHolder): string
     {
         return $selectedCardHolder->full_name;
+    }
+
+    private function cardholdersSelectedPageState(array $page, CardHolder $selectedCardHolder): array
+    {
+        $page['selectedRecordSummary'] = $this->cardholdersSelectedHolderSummary($selectedCardHolder);
+
+        if (is_array($page['liveForm'] ?? null)) {
+            $page['liveForm'] = $this->applySelectedEditLiveForm(
+                $page['liveForm'],
+                'Edit Galaxy holder in Galaxy foundation',
+                'Update the selected Galaxy cardholder through the shared live form while card linkage and activity history remain review-only.',
+                'admin.cardholders.update',
+                [
+                    'cardholder' => $selectedCardHolder,
+                ],
+                'admin.cardholders.index',
+                'Back to holder catalog',
+                'Save holder changes',
+            );
+            $page['liveForm']['valuesResolver'] = $this->cardholdersLiveFormValues($selectedCardHolder);
+        }
+
+        $page['actions'] = $this->cardholdersSelectedActions($selectedCardHolder);
+        $page['activityTimeline'] = $this->cardholdersActivityTimeline($selectedCardHolder);
+        $page['dependencyStatus'] = $this->cardholdersSelectedHolderDependencyStatus($selectedCardHolder);
+
+        return $page;
     }
 
     private function cardholdersLiveFormValues(CardHolder $selectedCardHolder): array
