@@ -4207,7 +4207,12 @@ class ResourceIndexController extends Controller
 
     private function cardholderPhoneValue(CardHolder $selectedCardHolder, string $fallback = ''): string
     {
-        return $selectedCardHolder->phone ?? $fallback;
+        return $this->cardholderPhone($selectedCardHolder) ?? $fallback;
+    }
+
+    private function cardholderPhone(CardHolder $selectedCardHolder): ?string
+    {
+        return $selectedCardHolder->phone;
     }
 
     private function cardholderEmailValue(CardHolder $selectedCardHolder, string $fallback = ''): string
