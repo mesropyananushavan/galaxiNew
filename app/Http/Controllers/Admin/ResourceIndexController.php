@@ -1222,7 +1222,7 @@ class ResourceIndexController extends Controller
         $page['actions'] = $this->selectedReadContextWithDisabledActions(
             'admin.shops.index',
             'Back to branch catalog',
-            $selectedShop->name,
+            $this->shopNameValue($selectedShop),
             [
                 [
                     'label' => 'Review branch scope',
@@ -1233,27 +1233,27 @@ class ResourceIndexController extends Controller
 
         $page['activityTimeline'] = [
             [
-                'title' => sprintf('%s selected for Galaxy review', $selectedShop->name),
+                'title' => sprintf('%s selected for Galaxy review', $this->shopNameValue($selectedShop)),
                 'time' => 'Current request',
                 'description' => 'The shared shops workspace is now loading this saved branch from the Galaxy foundation layer instead of only static preview rows.',
             ],
             [
-                'title' => sprintf('%s status reflected from model state', $selectedShop->name),
+                'title' => sprintf('%s status reflected from model state', $this->shopNameValue($selectedShop)),
                 'time' => 'Current request',
                 'description' => sprintf('This branch is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $this->shopStatusValue($selectedShop)),
             ],
             [
-                'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedShop->name),
+                'title' => sprintf('%s lifecycle freshness reflected from model state', $this->shopNameValue($selectedShop)),
                 'time' => 'Current request',
                 'description' => $this->shopsLifecycleFreshnessDescription($selectedShop),
             ],
             [
-                'title' => sprintf('%s last saved timestamp reflected from model state', $selectedShop->name),
+                'title' => sprintf('%s last saved timestamp reflected from model state', $this->shopNameValue($selectedShop)),
                 'time' => 'Current request',
                 'description' => sprintf('The latest saved Galaxy foundation timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.', $this->shopsLastSavedLabel($selectedShop)),
             ],
             [
-                'title' => sprintf('%s review note reflected from model state', $selectedShop->name),
+                'title' => sprintf('%s review note reflected from model state', $this->shopNameValue($selectedShop)),
                 'time' => 'Current request',
                 'description' => $selectedShop->review_note !== null && trim($selectedShop->review_note) !== ''
                     ? sprintf('The current Galaxy foundation branch review note says: %s', $selectedShop->review_note)
@@ -4569,7 +4569,7 @@ class ResourceIndexController extends Controller
     private function shopsSelectedShopSummary(Shop $selectedShop): array
     {
         return [
-            ['label' => 'Selected shop', 'value' => $selectedShop->name],
+            ['label' => 'Selected shop', 'value' => $this->shopNameValue($selectedShop)],
             ['label' => 'Review mode', 'value' => $this->shopIsActive($selectedShop)
                 ? 'Live branch review, this Galaxy foundation shop already carries operational visibility and should stay parity-first.'
                 : 'Paused-branch review, this shop remains safer for parity checks before operators treat it as fully reopened.'],
@@ -4768,7 +4768,7 @@ class ResourceIndexController extends Controller
     private function shopsSelectedShopDependencyStatus(Shop $selectedShop): array
     {
         return [
-            ['label' => 'Selected shop', 'value' => $selectedShop->name],
+            ['label' => 'Selected shop', 'value' => $this->shopNameValue($selectedShop)],
             ['label' => 'Branch posture', 'value' => 'Selected-shop review is running in Galaxy foundation-backed read mode only'],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
@@ -5500,6 +5500,11 @@ class ResourceIndexController extends Controller
     private function shopCodeValue(Shop $shop): string
     {
         return $shop->code;
+    }
+
+    private function shopNameValue(Shop $shop): string
+    {
+        return $shop->name;
     }
 
     private function roleScopeCount(Collection $scope): int
