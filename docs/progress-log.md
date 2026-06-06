@@ -11141,3 +11141,8 @@
 - Reused `cardholderIsInactive()` inside `cardholderIsUnpausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the unpaused+active holder state helper now builds directly on the existing named state seams instead of recomposing the positive active check inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder paused-linked seam checkpoint
+- Reused `cardholderIsUnlinked()` inside `cardholderIsPausedWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused+linked holder state helper now builds directly on the existing named linkage seams instead of recomposing the linked-card check inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
