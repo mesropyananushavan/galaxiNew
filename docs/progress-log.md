@@ -11256,3 +11256,8 @@
 - Added `shopReviewNoteReflection()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline, so branch review-note handoff copy now builds on an explicit seam instead of repeating inline presence and message formatting logic.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, review workflows, or selected-shop lifecycle behavior.
+
+### Shop active value seam checkpoint
+- Added `shopActiveValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop live form, so the branch active-flag form value now builds on an explicit value seam instead of inline string formatting.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, activation flows, or selected-shop lifecycle behavior.
