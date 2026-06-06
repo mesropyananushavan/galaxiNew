@@ -4193,8 +4193,10 @@ class ResourceIndexController extends Controller
 
     private function cardholdersReviewNoteReflection(CardHolder $selectedCardHolder): string
     {
-        return $selectedCardHolder->review_note !== null && trim($selectedCardHolder->review_note) !== ''
-            ? sprintf('The current Galaxy foundation holder review note says: %s', $selectedCardHolder->review_note)
+        $reviewNote = $this->cardholderReviewNoteValue($selectedCardHolder);
+
+        return $reviewNote !== ''
+            ? sprintf('The current Galaxy foundation holder review note says: %s', $reviewNote)
             : 'No Galaxy foundation holder review note is saved yet, so lifecycle handoff context still depends on the surrounding workspace cues.';
     }
 

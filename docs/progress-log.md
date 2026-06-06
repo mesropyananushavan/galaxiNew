@@ -11046,3 +11046,8 @@
 - Reused `cardholderShop()` inside `cardholderShopIsActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the nearby holder branch-activity helper now follows the same named shop seam as the access gate and shop label helpers.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder review-note reflection reuse checkpoint
+- Reused `cardholderReviewNoteValue()` inside `cardholdersReviewNoteReflection()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so holder review-note reflection now follows the same named note-value seam as the selected-holder label and live-form helpers.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, note flows, or cardholder workspace behavior.
