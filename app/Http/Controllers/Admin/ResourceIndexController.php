@@ -4133,7 +4133,7 @@ class ResourceIndexController extends Controller
 
     private function cardholdersGalaxyStatusLabel(CardHolder $selectedCardHolder): string
     {
-        return $this->cardholderIsInactive($selectedCardHolder) ? 'inactive' : 'active';
+        return $this->cardholderActiveFlag($selectedCardHolder) ? 'active' : 'inactive';
     }
 
     private function cardholderLinkedCardCount(CardHolder $selectedCardHolder): int
