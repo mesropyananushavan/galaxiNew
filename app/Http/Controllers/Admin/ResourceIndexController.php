@@ -4133,7 +4133,12 @@ class ResourceIndexController extends Controller
 
     private function cardholderShopIsUnassigned(CardHolder $selectedCardHolder): bool
     {
-        return ! $this->cardholderHasShop($selectedCardHolder);
+        return ! $this->cardholderShopIsAssigned($selectedCardHolder);
+    }
+
+    private function cardholderShopIsAssigned(CardHolder $selectedCardHolder): bool
+    {
+        return $this->cardholderHasShop($selectedCardHolder);
     }
 
     private function cardholdersGalaxyStatusLabel(CardHolder $selectedCardHolder): string

@@ -11171,3 +11171,8 @@
 - Added `cardholderShopIsUnassigned()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIsPaused()` so the branch-state lattice now has an explicit assigned/unassigned seam instead of embedding the negated presence check inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-linkage flows, or cardholder workspace behavior.
+
+### Cardholder shop-assigned seam checkpoint
+- Added `cardholderShopIsAssigned()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIsUnassigned()` so the branch-assignment lattice now has an explicit assigned/unassigned seam pair instead of relying on a direct negation of `cardholderHasShop()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-linkage flows, or cardholder workspace behavior.
