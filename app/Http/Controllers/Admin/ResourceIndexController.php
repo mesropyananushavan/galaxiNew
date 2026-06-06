@@ -4188,6 +4188,11 @@ class ResourceIndexController extends Controller
 
     private function cardholderCardsRelation(CardHolder $selectedCardHolder): Relation
     {
+        return $this->cardholderCards($selectedCardHolder);
+    }
+
+    private function cardholderCards(CardHolder $selectedCardHolder): Relation
+    {
         return $selectedCardHolder->cards();
     }
 
