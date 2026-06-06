@@ -11351,3 +11351,8 @@
 - Added `shopsCoveragePosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the paused-vs-active coverage copy and count formatting now live behind an explicit shop review seam instead of an inline `sprintf` ternary.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening coverage writes, review flows, or selected-shop review behavior.
+
+### Shop status-posture seam checkpoint
+- Added `shopsStatusPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the paused-vs-active status posture copy now lives behind an explicit shop review seam instead of an inline ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status writes, review flows, or selected-shop review behavior.

@@ -2737,6 +2737,13 @@ class ResourceIndexController extends Controller
             : sprintf('This branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation review.', $this->shopVisibleCardholderCount($selectedShop), $this->shopVisibleCardCount($selectedShop));
     }
 
+    private function shopsStatusPosture(Shop $selectedShop): string
+    {
+        return $this->shopIsPaused($selectedShop)
+            ? 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'
+            : 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.';
+    }
+
     private function resolveLiveFormRouteParameterValue(mixed $value): mixed
     {
         if ($value instanceof BackedEnum) {
@@ -4784,9 +4791,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
-            ['label' => 'Status posture', 'value' => $this->shopIsPaused($selectedShop)
-                ? 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'
-                : 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'],
+            ['label' => 'Status posture', 'value' => $this->shopsStatusPosture($selectedShop)],
             ['label' => 'Manager posture', 'value' => match (true) {
                 $this->shopIsPaused($selectedShop) && $this->shopHasAssignedManagers($selectedShop) => 'Assigned branch managers are visible in this paused Galaxy branch, but reassignment and recovery follow-up should stay blocked until ownership parity is confirmed.',
                 $this->shopIsPaused($selectedShop) => 'No branch manager is assigned yet, which keeps this paused Galaxy branch safer for recovery and ownership-flow parity review before ownership flows are enabled.',
