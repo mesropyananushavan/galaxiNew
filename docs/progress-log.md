@@ -11251,3 +11251,8 @@
 - Added `shopNameValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across selected-shop action labels, timeline titles, and both selected-shop summary blocks, so branch-name presentation now builds on an explicit value seam alongside the newer shop code and review-note helpers.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, review workflows, or selected-shop lifecycle behavior.
+
+### Shop review-note reflection seam checkpoint
+- Added `shopReviewNoteReflection()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline, so branch review-note handoff copy now builds on an explicit seam instead of repeating inline presence and message formatting logic.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, review workflows, or selected-shop lifecycle behavior.

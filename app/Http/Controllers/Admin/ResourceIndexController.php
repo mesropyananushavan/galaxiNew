@@ -1255,9 +1255,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s review note reflected from model state', $this->shopNameValue($selectedShop)),
                 'time' => 'Current request',
-                'description' => $selectedShop->review_note !== null && trim($selectedShop->review_note) !== ''
-                    ? sprintf('The current Galaxy foundation branch review note says: %s', $selectedShop->review_note)
-                    : 'No Galaxy foundation branch review note is saved yet, so scope handoff context still depends on the surrounding workspace cues.',
+                'description' => $this->shopReviewNoteReflection($selectedShop),
             ],
             [
                 'title' => 'Branch scope handoff stays visible in the workspace',
@@ -5505,6 +5503,13 @@ class ResourceIndexController extends Controller
     private function shopNameValue(Shop $shop): string
     {
         return $shop->name;
+    }
+
+    private function shopReviewNoteReflection(Shop $shop): string
+    {
+        return $this->shopReviewNoteValue($shop) !== ''
+            ? sprintf('The current Galaxy foundation branch review note says: %s', $this->shopReviewNoteValue($shop))
+            : 'No Galaxy foundation branch review note is saved yet, so scope handoff context still depends on the surrounding workspace cues.';
     }
 
     private function roleScopeCount(Collection $scope): int
