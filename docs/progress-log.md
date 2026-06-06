@@ -11406,3 +11406,8 @@
 - Added `shopsSelectedLifecycleFreshnessLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both selected-shop summary and dependency-status blocks so the shared lifecycle-freshness review label now flows through one explicit seam instead of repeating `shopsLifecycleFreshnessLabel()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening lifecycle writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-backend-gap seam checkpoint
+- Added `shopsSelectedBackendGap()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both selected-shop summary and dependency-status blocks so the shared backend-gap review path now flows through one explicit seam instead of repeating `shopsBackendGap()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening backend writes, summary flows, or selected-shop review behavior.

@@ -4628,7 +4628,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Branch posture', 'value' => $this->shopsBranchPosture($selectedShop)],
             ['label' => 'Evidence priority', 'value' => $this->shopsEvidencePriority($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
-            ['label' => 'Backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
+            ['label' => 'Backend gap', 'value' => $this->shopsSelectedBackendGap($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $this->shopAssignedManagerName($selectedShop)],
             ['label' => 'Manager guidance', 'value' => $this->shopsManagerGuidance($selectedShop)],
             ['label' => 'Cardholders', 'value' => $this->shopVisibleCardholderCountValue($selectedShop)],
@@ -4665,6 +4665,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedLastSavedLabel(Shop $selectedShop): string
     {
         return $this->shopsLastSavedLabel($selectedShop);
+    }
+
+    private function shopsSelectedBackendGap(Shop $selectedShop): string
+    {
+        return $this->shopsBackendGap($selectedShop);
     }
 
     private function shopsSelectedReviewNoteValue(Shop $selectedShop): string
@@ -4854,7 +4859,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Status posture', 'value' => $this->shopsStatusPosture($selectedShop)],
             ['label' => 'Manager posture', 'value' => $this->shopsManagerPosture($selectedShop)],
             ['label' => 'Coverage posture', 'value' => $this->shopsCoveragePosture($selectedShop)],
-            ['label' => 'Remaining backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
+            ['label' => 'Remaining backend gap', 'value' => $this->shopsSelectedBackendGap($selectedShop)],
         ];
     }
 
