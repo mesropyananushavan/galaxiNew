@@ -11416,3 +11416,8 @@
 - Added `shopsSelectedCodeValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop code field now flows through an explicit review seam instead of calling `shopCodeValue()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening code writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-manager seam checkpoint
+- Added `shopsSelectedManagerName()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop assigned-manager value now flows through an explicit review seam instead of calling `shopAssignedManagerName()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening manager writes, summary flows, or selected-shop review behavior.

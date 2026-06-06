@@ -4629,7 +4629,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Evidence priority', 'value' => $this->shopsEvidencePriority($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
             ['label' => 'Backend gap', 'value' => $this->shopsSelectedBackendGap($selectedShop)],
-            ['label' => 'Assigned manager', 'value' => $this->shopAssignedManagerName($selectedShop)],
+            ['label' => 'Assigned manager', 'value' => $this->shopsSelectedManagerName($selectedShop)],
             ['label' => 'Manager guidance', 'value' => $this->shopsManagerGuidance($selectedShop)],
             ['label' => 'Cardholders', 'value' => $this->shopVisibleCardholderCountValue($selectedShop)],
             ['label' => 'Cards', 'value' => $this->shopVisibleCardCountValue($selectedShop)],
@@ -4680,6 +4680,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedCodeValue(Shop $selectedShop): string
     {
         return $this->shopCodeValue($selectedShop);
+    }
+
+    private function shopsSelectedManagerName(Shop $selectedShop): string
+    {
+        return $this->shopAssignedManagerName($selectedShop);
     }
 
     private function shopsReviewMode(Shop $selectedShop): string
