@@ -4247,7 +4247,7 @@ class ResourceIndexController extends Controller
 
     private function cardholderActiveValue(CardHolder $selectedCardHolder): string
     {
-        return $this->cardholderIsActive($selectedCardHolder) ? '1' : '0';
+        return $this->cardholderActiveFlag($selectedCardHolder) ? '1' : '0';
     }
 
     private function cardholderFullNameValue(CardHolder $selectedCardHolder): string
