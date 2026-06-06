@@ -4148,6 +4148,11 @@ class ResourceIndexController extends Controller
 
     private function cardholderHasLinkedCards(CardHolder $selectedCardHolder): bool
     {
+        return $this->cardholderIsLinked($selectedCardHolder);
+    }
+
+    private function cardholderIsLinked(CardHolder $selectedCardHolder): bool
+    {
         return ! $this->cardholderIsUnlinked($selectedCardHolder);
     }
 
@@ -4158,17 +4163,17 @@ class ResourceIndexController extends Controller
 
     private function cardholderIsPausedWithLinkedCards(CardHolder $selectedCardHolder): bool
     {
-        return $this->cardholderShopIsPaused($selectedCardHolder) && ! $this->cardholderIsUnlinked($selectedCardHolder);
+        return $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderIsLinked($selectedCardHolder);
     }
 
     private function cardholderIsInactiveWithLinkedCards(CardHolder $selectedCardHolder): bool
     {
-        return $this->cardholderIsInactive($selectedCardHolder) && ! $this->cardholderIsUnlinked($selectedCardHolder);
+        return $this->cardholderIsInactive($selectedCardHolder) && $this->cardholderIsLinked($selectedCardHolder);
     }
 
     private function cardholderIsActiveWithLinkedCards(CardHolder $selectedCardHolder): bool
     {
-        return ! $this->cardholderIsInactive($selectedCardHolder) && ! $this->cardholderIsUnlinked($selectedCardHolder);
+        return ! $this->cardholderIsInactive($selectedCardHolder) && $this->cardholderIsLinked($selectedCardHolder);
     }
 
     private function cardholderIsInactive(CardHolder $selectedCardHolder): bool

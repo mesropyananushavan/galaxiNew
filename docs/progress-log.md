@@ -11146,3 +11146,8 @@
 - Reused `cardholderIsUnlinked()` inside `cardholderIsPausedWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused+linked holder state helper now builds directly on the existing named linkage seams instead of recomposing the linked-card check inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder linked seam checkpoint
+- Added `cardholderIsLinked()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `cardholderHasLinkedCards()`, `cardholderIsPausedWithLinkedCards()`, `cardholderIsInactiveWithLinkedCards()`, and `cardholderIsActiveWithLinkedCards()` so the holder linkage lattice now has an explicit linked/unlinked seam pair.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder workspace behavior.
