@@ -11091,3 +11091,8 @@
 - Added `cardholderShopName()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholdersShopLabel()` so the holder shop label path now builds on a dedicated named shop-name seam instead of reaching through the shop relation inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-label flows, or cardholder workspace behavior.
+
+### Cardholder shop-active-flag seam checkpoint
+- Added `cardholderShopActiveFlag()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIsActive()` so the holder branch-activity check now builds on a dedicated named shop-state seam instead of casting the relation field inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
