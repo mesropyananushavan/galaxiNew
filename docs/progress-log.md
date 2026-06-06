@@ -11071,3 +11071,8 @@
 - Added `cardholderReviewNote()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderReviewNoteValue()` so the holder note fallback path now builds on a dedicated named note seam instead of reading the field inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, note flows, or cardholder workspace behavior.
+
+### Cardholder active-flag seam checkpoint
+- Added `cardholderActiveFlag()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderIsActive()` so the holder active-state boolean path now builds on a dedicated named flag seam instead of reading the field inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, activation flows, or cardholder workspace behavior.

@@ -4108,6 +4108,11 @@ class ResourceIndexController extends Controller
 
     private function cardholderIsActive(CardHolder $selectedCardHolder): bool
     {
+        return (bool) $this->cardholderActiveFlag($selectedCardHolder);
+    }
+
+    private function cardholderActiveFlag(CardHolder $selectedCardHolder): bool
+    {
         return (bool) $selectedCardHolder->is_active;
     }
 
