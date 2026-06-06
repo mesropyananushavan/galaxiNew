@@ -4636,7 +4636,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Galaxy status', 'value' => $this->shopsSelectedStatusValue($selectedShop)],
             [
                 'label' => 'Branch guidance',
-                'value' => $this->shopsBranchGuidance($selectedShop),
+                'value' => $this->shopsSelectedBranchGuidance($selectedShop),
             ],
         ];
     }
@@ -4700,6 +4700,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedBranchPosture(Shop $selectedShop): string
     {
         return $this->shopsBranchPosture($selectedShop);
+    }
+
+    private function shopsSelectedBranchGuidance(Shop $selectedShop): string
+    {
+        return $this->shopsBranchGuidance($selectedShop);
     }
 
     private function shopsSelectedEvidencePriority(Shop $selectedShop): string
