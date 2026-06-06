@@ -11261,3 +11261,8 @@
 - Added `shopActiveValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop live form, so the branch active-flag form value now builds on an explicit value seam instead of inline string formatting.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, activation flows, or selected-shop lifecycle behavior.
+
+### Shop paused-state seam checkpoint
+- Added `shopIsPaused()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopsOperationalReadiness()`, so the paused-branch readiness path now builds on an explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, reopening flows, or selected-shop lifecycle behavior.

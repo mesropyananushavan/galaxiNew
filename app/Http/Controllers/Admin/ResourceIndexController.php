@@ -4605,7 +4605,7 @@ class ResourceIndexController extends Controller
     private function shopsOperationalReadiness(Shop $selectedShop): string
     {
         return match (true) {
-            ! $this->shopIsActive($selectedShop) => 'paused branch, recovery review only',
+            $this->shopIsPaused($selectedShop) => 'paused branch, recovery review only',
             $this->shopHasAssignedManagers($selectedShop)
                 && $this->shopVisibleCardholderCount($selectedShop) > 0
                 && $this->shopVisibleCardCount($selectedShop) > 0 => 'active branch, operator-visible coverage live',
@@ -5488,6 +5488,11 @@ class ResourceIndexController extends Controller
     private function shopStatusValue(Shop $shop): string
     {
         return $this->shopIsActive($shop) ? 'active' : 'paused';
+    }
+
+    private function shopIsPaused(Shop $shop): bool
+    {
+        return ! $this->shopIsActive($shop);
     }
 
     private function shopActiveValue(Shop $shop): string
