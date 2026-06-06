@@ -11191,3 +11191,8 @@
 - Reused `cardholderActiveFlag()` inside `cardholderIsPausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused+active holder state helper now builds directly on the base active-flag seam instead of negating the inactive wrapper.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder unpaused-active flag reuse checkpoint
+- Reused `cardholderActiveFlag()` inside `cardholderIsUnpausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the unpaused+active holder state helper now builds directly on the base active-flag seam instead of negating the inactive wrapper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
