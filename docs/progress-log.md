@@ -11346,3 +11346,8 @@
 - Reused `shopHasVisibleHolderAndCardCoverage()` and `shopHasVisibleCoverage()` inside `shopsSelectedReviewScopeDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop scope gate now builds on the same explicit coverage seams as nearby shop review helpers instead of repeating inline count comparisons.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening scope writes, access flows, or selected-shop review behavior.
+
+### Shop coverage-posture seam checkpoint
+- Added `shopsCoveragePosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the paused-vs-active coverage copy and count formatting now live behind an explicit shop review seam instead of an inline `sprintf` ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening coverage writes, review flows, or selected-shop review behavior.
