@@ -4367,7 +4367,7 @@ class ResourceIndexController extends Controller
 
     private function cardholderHasShop(CardHolder $selectedCardHolder): bool
     {
-        return $this->cardholderShop($selectedCardHolder) !== null;
+        return $this->cardholderShopId($selectedCardHolder) !== null;
     }
 
     private function cardholderShop(CardHolder $selectedCardHolder): ?Shop
