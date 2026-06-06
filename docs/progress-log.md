@@ -11491,3 +11491,8 @@
 - Added `shopsSelectedDependencyCoverageSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency coverage signal now flows through an explicit selected-shop seam instead of calling the shared coverage helper inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening coverage writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-status seam checkpoint
+- Added `shopsSelectedDependencyStatusSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency status signal now flows through an explicit selected-shop seam instead of calling the shared status helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status writes, dependency flows, or selected-shop review behavior.
