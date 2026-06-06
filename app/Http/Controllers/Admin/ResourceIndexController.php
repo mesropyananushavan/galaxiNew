@@ -4621,7 +4621,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsSelectedLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsSelectedLastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopsSelectedReviewNoteValue($selectedShop)],
-            ['label' => 'Code', 'value' => $this->shopCodeValue($selectedShop)],
+            ['label' => 'Code', 'value' => $this->shopsSelectedCodeValue($selectedShop)],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Branch focus', 'value' => $this->shopsBranchFocus($selectedShop)],
@@ -4675,6 +4675,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedReviewNoteValue(Shop $selectedShop): string
     {
         return $this->shopReviewNoteValue($selectedShop, 'No review note saved yet');
+    }
+
+    private function shopsSelectedCodeValue(Shop $selectedShop): string
+    {
+        return $this->shopCodeValue($selectedShop);
     }
 
     private function shopsReviewMode(Shop $selectedShop): string
