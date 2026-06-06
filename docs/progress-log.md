@@ -11166,3 +11166,8 @@
 - Simplified `cardholderShopIsActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` to return `cardholderShopActiveFlag()` directly, since the named shop-state seam already safely resolves false when no branch is linked.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder shop-unassigned seam checkpoint
+- Added `cardholderShopIsUnassigned()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIsPaused()` so the branch-state lattice now has an explicit assigned/unassigned seam instead of embedding the negated presence check inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-linkage flows, or cardholder workspace behavior.
