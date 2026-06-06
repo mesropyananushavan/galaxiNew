@@ -4193,7 +4193,7 @@ class ResourceIndexController extends Controller
 
     private function cardholderIsPausedAndActive(CardHolder $selectedCardHolder): bool
     {
-        return $this->cardholderShopIsPaused($selectedCardHolder) && ! $this->cardholderIsInactive($selectedCardHolder);
+        return $this->cardholderShopIsPaused($selectedCardHolder) && $this->cardholderActiveFlag($selectedCardHolder);
     }
 
     private function cardholderIsUnpausedAndActive(CardHolder $selectedCardHolder): bool
