@@ -4622,7 +4622,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsSelectedLastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopsSelectedReviewNoteValue($selectedShop)],
             ['label' => 'Code', 'value' => $this->shopsSelectedCodeValue($selectedShop)],
-            ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
+            ['label' => 'Coverage signal', 'value' => $this->shopsSelectedCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Branch focus', 'value' => $this->shopsBranchFocus($selectedShop)],
             ['label' => 'Branch posture', 'value' => $this->shopsBranchPosture($selectedShop)],
@@ -4680,6 +4680,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedCodeValue(Shop $selectedShop): string
     {
         return $this->shopCodeValue($selectedShop);
+    }
+
+    private function shopsSelectedCoverageSignal(Shop $selectedShop): string
+    {
+        return $this->shopsCoverageSignal($selectedShop);
     }
 
     private function shopsSelectedManagerName(Shop $selectedShop): string
