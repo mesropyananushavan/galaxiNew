@@ -11476,3 +11476,8 @@
 - Added `shopsSelectedBranchGuidance()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop branch guidance now flows through an explicit review seam instead of calling `shopsBranchGuidance()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-operational-readiness seam checkpoint
+- Added `shopsSelectedOperationalReadiness()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop operational readiness value now flows through an explicit review seam instead of calling `shopsOperationalReadiness()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening readiness writes, summary flows, or selected-shop review behavior.
