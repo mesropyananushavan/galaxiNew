@@ -11041,3 +11041,8 @@
 - Added `cardholderShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder access gate plus `cardholdersShopLabel()` and `cardholderHasShop()` so nearby holder shop reads now flow through one named seam.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-access flows, or cardholder workspace behavior.
+
+### Cardholder shop-active seam checkpoint
+- Reused `cardholderShop()` inside `cardholderShopIsActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the nearby holder branch-activity helper now follows the same named shop seam as the access gate and shop label helpers.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
