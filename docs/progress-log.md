@@ -11231,3 +11231,8 @@
 - Reused `cardholderLinkedCardCount()` inside `cardholderHasLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the shared linked-card seam now builds directly on the base count seam instead of routing through `cardholderIsLinked()` first.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder workspace behavior.
+
+### Cardholder linked seam reuse checkpoint
+- Reused `cardholderHasLinkedCards()` inside `cardholderIsLinked()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the linked-state helper now resolves through the shared linked-card seam instead of negating `cardholderIsUnlinked()` directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder workspace behavior.
