@@ -11321,3 +11321,8 @@
 - Reused `shopIsPaused()` inside the selected-shop summary branch-guidance branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch guidance path now builds on the explicit paused-state seam instead of checking `shopIsActive()` in a direct ternary.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, guidance flows, or selected-shop review behavior.
+
+### Shop paused-branch-focus seam checkpoint
+- Reused `shopIsPaused()` inside `shopsBranchFocus()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch focus path now builds on the explicit paused-state seam instead of checking `shopIsActive()` in a direct ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, focus flows, or selected-shop review behavior.
