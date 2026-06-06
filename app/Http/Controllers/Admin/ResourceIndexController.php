@@ -4624,7 +4624,7 @@ class ResourceIndexController extends Controller
     private function shopsBranchPosture(Shop $selectedShop): string
     {
         return match (true) {
-            ! $this->shopIsActive($selectedShop) => 'Keep paused-branch review in the live workspace first, then leave reopening, reassignment, and scope-mutation flows gated until recovery parity is proven.',
+            $this->shopIsPaused($selectedShop) => 'Keep paused-branch review in the live workspace first, then leave reopening, reassignment, and scope-mutation flows gated until recovery parity is proven.',
             $this->shopHasAssignedManagers($selectedShop)
                 && $this->shopVisibleCardholderCount($selectedShop) > 0
                 && $this->shopVisibleCardCount($selectedShop) > 0 => 'Keep branch review in the live workspace first, then leave reassignment and scope-mutation flows gated until full branch parity is proven.',
