@@ -11456,3 +11456,8 @@
 - Added `shopsSelectedBranchPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop branch posture now flows through an explicit review seam instead of calling `shopsBranchPosture()` inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening branch writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-evidence-priority seam checkpoint
+- Added `shopsSelectedEvidencePriority()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop evidence priority now flows through an explicit review seam instead of calling `shopsEvidencePriority()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening evidence writes, summary flows, or selected-shop review behavior.
