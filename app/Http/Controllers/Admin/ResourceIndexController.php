@@ -4615,7 +4615,7 @@ class ResourceIndexController extends Controller
     private function shopsSelectedShopSummary(Shop $selectedShop): array
     {
         return [
-            ['label' => 'Selected shop', 'value' => $this->shopNameValue($selectedShop)],
+            ['label' => 'Selected shop', 'value' => $this->shopsSelectedLabel($selectedShop)],
             ['label' => 'Review mode', 'value' => $this->shopsReviewMode($selectedShop)],
             ['label' => 'Operational readiness', 'value' => $this->shopsOperationalReadiness($selectedShop)],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
@@ -4650,6 +4650,11 @@ class ResourceIndexController extends Controller
             $this->shopHasAssignedManagers($selectedShop) => 'active branch, manager assigned and build-out pending',
             default => 'active branch shell, ownership still forming',
         };
+    }
+
+    private function shopsSelectedLabel(Shop $selectedShop): string
+    {
+        return $this->shopNameValue($selectedShop);
     }
 
     private function shopsSelectedReviewNoteValue(Shop $selectedShop): string
@@ -4828,7 +4833,7 @@ class ResourceIndexController extends Controller
     private function shopsSelectedShopDependencyStatus(Shop $selectedShop): array
     {
         return [
-            ['label' => 'Selected shop', 'value' => $this->shopNameValue($selectedShop)],
+            ['label' => 'Selected shop', 'value' => $this->shopsSelectedLabel($selectedShop)],
             ['label' => 'Branch posture', 'value' => $this->shopsBranchReviewPosture()],
             ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],

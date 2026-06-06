@@ -11391,3 +11391,8 @@
 - Added `shopsSelectedReviewNoteValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both selected-shop summary and dependency-status blocks so the shared review-note fallback path now flows through one explicit shop review seam instead of repeating the same helper call inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening review-note writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-label seam checkpoint
+- Added `shopsSelectedLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both selected-shop summary and dependency-status blocks so the shared selected-shop label path now flows through one explicit seam instead of repeating `shopNameValue()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening label writes, summary flows, or selected-shop review behavior.
