@@ -11101,3 +11101,8 @@
 - Reused `cardholderShopId()` inside `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the holder shop-presence check now follows the same id seam as the selected-holder live-form value path instead of depending on the loaded relation object.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening holder writes, branch-linkage flows, or cardholder workspace behavior.
+
+### Cardholder paused-shop flag reuse checkpoint
+- Reused `cardholderShopActiveFlag()` inside `cardholderShopIsPaused()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch helper now builds directly on the same named shop-state seam as `cardholderShopIsActive()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
