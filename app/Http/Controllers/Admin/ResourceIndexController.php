@@ -4648,7 +4648,7 @@ class ResourceIndexController extends Controller
     private function shopsBackendGap(Shop $selectedShop): string
     {
         return match (true) {
-            ! $this->shopIsActive($selectedShop) => 'Branch recovery writes, manager reassignment, ownership repair, and shop-scope mutation flows should stay foundation-preview only until paused-branch parity is verified.',
+            $this->shopIsPaused($selectedShop) => 'Branch recovery writes, manager reassignment, ownership repair, and shop-scope mutation flows should stay foundation-preview only until paused-branch parity is verified.',
             $this->shopHasAssignedManagers($selectedShop)
                 && $this->shopVisibleCardholderCount($selectedShop) > 0
                 && $this->shopVisibleCardCount($selectedShop) > 0 => 'Branch writes, manager reassignment, and shop-scope mutation flows should stay foundation-preview only until branch parity is verified.',
