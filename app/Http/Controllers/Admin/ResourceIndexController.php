@@ -4694,7 +4694,7 @@ class ResourceIndexController extends Controller
     private function shopsStatusSignal(Shop $selectedShop): string
     {
         return match (true) {
-            ! $this->shopIsActive($selectedShop) => 'Paused branch remains safer for reopening-parity review before any reopening-flow discussion.',
+            $this->shopIsPaused($selectedShop) => 'Paused branch remains safer for reopening-parity review before any reopening-flow discussion.',
             $this->shopHasAssignedManagers($selectedShop)
                 && $this->shopVisibleCardholderCount($selectedShop) > 0
                 && $this->shopVisibleCardCount($selectedShop) > 0 => 'Active branch is already visible with manager and customer coverage for branch coverage parity review.',
