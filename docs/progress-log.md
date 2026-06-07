@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource review-noted card metric helper checkpoint
+- Added `reviewNotedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted card metric no longer reaches for an inline review-noted card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
 ### Resource blocked unassigned card metric helper checkpoint
 - Added `blockedUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the blocked unassigned card metric no longer reaches for an inline blocked unassigned card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
