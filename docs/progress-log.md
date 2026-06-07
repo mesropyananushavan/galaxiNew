@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource activated linked card summary metric helper checkpoint
+- Reused `activatedHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level activated linked card count no longer reaches for an inline activated-holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource draft linked card summary metric helper checkpoint
 - Reused `draftHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level draft linked card count no longer reaches for an inline draft-holder-linked card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.

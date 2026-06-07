@@ -1301,7 +1301,7 @@ class ResourceIndexController extends Controller
         $activeLinkedCardCount = $this->activeHolderLinkedCardCount();
         $blockedLinkedCardCount = $this->blockedHolderLinkedCardCount();
         $draftLinkedCardCount = $this->draftHolderLinkedCardCount();
-        $activatedLinkedCardCount = Card::query()->activatedHolderLinked()->count();
+        $activatedLinkedCardCount = $this->activatedHolderLinkedCardCount();
         $blockedLinkedHolderCount = CardHolder::query()->blockedLinked()->count();
         $draftLinkedHolderCount = CardHolder::query()->draftLinked()->count();
         $activeLinkedHolderCount = CardHolder::query()->cardActiveLinked()->count();
