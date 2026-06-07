@@ -1292,7 +1292,7 @@ class ResourceIndexController extends Controller
         $draftUnassignedCardCount = $this->draftUnassignedCardCount();
         $cardHolders = CardHolder::query()->withCount('cards')->with(['shop:id,is_active', 'cards:id,card_holder_id,status,activated_at'])->get();
         $cardHolderCount = $cardHolders->count();
-        $activeCardHolderCount = CardHolder::query()->active()->count();
+        $activeCardHolderCount = $this->activeCardHolderCount();
         $inactiveCardHolderCount = CardHolder::query()->inactive()->count();
         $linkedCardHolderCount = CardHolder::query()->linked()->count();
         $unlinkedCardHolderCount = $cardHolderCount - $linkedCardHolderCount;
