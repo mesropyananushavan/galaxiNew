@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource card-type metric saved-count seam checkpoint
+- Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the saved tier metric no longer calls collection `count()` inline.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
 ### Resource card-type saved-count iterable seam checkpoint
 - Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so card-type import and publish disabled-state checks no longer call collection `count()` inline.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-catalog cleanup.
