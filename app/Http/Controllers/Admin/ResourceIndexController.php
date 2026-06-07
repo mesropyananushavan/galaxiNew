@@ -1802,7 +1802,7 @@ class ResourceIndexController extends Controller
         if ($cardTypes->isNotEmpty()) {
             $page['metrics'] = [
                 ['label' => 'Active-state Galaxy tiers', 'value' => (string) $this->activeCardTypeCount()],
-                ['label' => 'Draft-state Galaxy tiers', 'value' => (string) CardType::query()->draft()->count()],
+                ['label' => 'Draft-state Galaxy tiers', 'value' => (string) $this->draftCardTypeCount()],
                 ['label' => 'Review-noted Galaxy tiers', 'value' => (string) CardType::query()->reviewNoted()->count()],
                 ['label' => 'Tier activation notes', 'value' => (string) CardType::query()->activationNoted()->count()],
                 ['label' => 'Tier rollout notes', 'value' => (string) CardType::query()->rolloutNoted()->count()],
@@ -5605,6 +5605,11 @@ class ResourceIndexController extends Controller
     private function activeCardTypeCount(): int
     {
         return (int) CardType::query()->active()->count();
+    }
+
+    private function draftCardTypeCount(): int
+    {
+        return (int) CardType::query()->draft()->count();
     }
 
     private function activeCardCount(): int
