@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource blocked pre-activation card metric helper checkpoint
+- Added `blockedPreActivationCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the blocked pre-activation card metric no longer reaches for an inline blocked pre-activation card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
 ### Resource active unassigned card metric helper checkpoint
 - Added `activeUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active unassigned card metric no longer reaches for an inline active unassigned card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
