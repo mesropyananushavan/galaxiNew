@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource inactive holder summary metric helper checkpoint
+- Reused `inactiveCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level inactive holder count no longer reaches for an inline inactive-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource active holder summary metric helper checkpoint
 - Reused `activeCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active holder count no longer reaches for an inline active-holder count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
