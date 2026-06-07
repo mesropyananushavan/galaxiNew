@@ -1248,7 +1248,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->shopsSelectedLifecycleTimelineDescription($selectedShop),
             ],
             [
-                'title' => sprintf('%s last saved timestamp reflected from model state', $this->shopNameValue($selectedShop)),
+                'title' => $this->shopsSelectedLastSavedTimelineTitle($selectedShop),
                 'time' => 'Current request',
                 'description' => $this->shopsSelectedLastSavedTimelineDescription($selectedShop),
             ],
@@ -4743,6 +4743,11 @@ class ResourceIndexController extends Controller
             'The latest saved Galaxy foundation timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.',
             $this->shopsSelectedLastSavedLabel($selectedShop),
         );
+    }
+
+    private function shopsSelectedLastSavedTimelineTitle(Shop $selectedShop): string
+    {
+        return sprintf('%s last saved timestamp reflected from model state', $this->shopNameValue($selectedShop));
     }
 
     private function shopsSelectedStatusTimelineDescription(Shop $selectedShop): string
