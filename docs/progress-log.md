@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource blocked holder-linked card metric helper checkpoint
+- Added `blockedHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the blocked holder-linked card metric no longer reaches for an inline blocked holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
 ### Resource blocked activated card metric helper checkpoint
 - Added `blockedActivatedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the blocked activated card metric no longer reaches for an inline blocked activated card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
