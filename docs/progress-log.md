@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource role loaded-count iterable seam checkpoint
+- Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so loaded role user and permission counts no longer call collection `count()` inline.
+- Re-ran the dedicated roles resource shell assertion as the parity check for this small ResourceIndexController count-seam cleanup.
+
 ### Resource shop loaded-count iterable seam checkpoint
 - Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so loaded shop manager, holder, and card counts no longer call collection `count()` inline.
 - Re-ran the dedicated shops resource shell assertion as the parity check for this small ResourceIndexController count-seam cleanup.
