@@ -11536,3 +11536,8 @@
 - Added `shopsSelectedDependencyLastSavedLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency last-saved label now flows through an explicit selected-shop seam instead of calling the broader selected-shop last-saved helper inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening save behavior, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-review-note seam checkpoint
+- Added `shopsSelectedDependencyReviewNoteValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency review-note value now flows through an explicit selected-shop seam instead of calling the broader selected-shop review-note helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening review-note writes, dependency flows, or selected-shop review behavior.
