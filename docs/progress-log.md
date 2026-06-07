@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource review-noted assigned permission metric helper checkpoint
+- Added `reviewNotedAssignedPermissionCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the permission-linked review-note metric no longer reaches for an inline assigned-permission review-note count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
+
 ### Resource assignment-noted role metric helper checkpoint
 - Added `assignmentNotedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the role-assignment note metric no longer reaches for an inline assignment-noted role count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
