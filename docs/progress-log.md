@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource role first-scope label seam checkpoint
+- Added `firstRoleScopeLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so single-scope role coverage messaging no longer calls collection `first()` inline.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController scope-message cleanup.
+
 ### Resource role loaded-count iterable seam checkpoint
 - Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so loaded role user and permission counts no longer call collection `count()` inline.
 - Re-ran the dedicated roles resource shell assertion as the parity check for this small ResourceIndexController count-seam cleanup.

@@ -3668,7 +3668,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Scope coverage', 'value' => match (true) {
                 $this->roleScopeCount($scope) >= 3 => sprintf('%d shops currently linked in Galaxy foundation scope', $this->roleScopeCount($scope)),
                 $this->roleScopeCount($scope) === 2 => '2 shops currently linked in Galaxy foundation scope',
-                $this->roleScopeCount($scope) === 1 => sprintf('%s is currently linked in Galaxy foundation scope', $scope->first()),
+                $this->roleScopeCount($scope) === 1 => sprintf('%s is currently linked in Galaxy foundation scope', $this->firstRoleScopeLabel($scope)),
                 default => 'No shops linked in Galaxy foundation scope yet',
             }],
             ['label' => 'Matrix posture', 'value' => 'Keep matrix editing blocked until legacy staff-access parity is verified in the Galaxy foundation layer'],
@@ -5779,6 +5779,13 @@ class ResourceIndexController extends Controller
     private function roleScopeCount(Collection $scope): int
     {
         return $this->iterableCount($scope);
+    }
+
+    private function firstRoleScopeLabel(Collection $scope): string
+    {
+        $label = $this->firstCollectedItem($scope);
+
+        return is_string($label) ? $label : 'Unknown shop';
     }
 
     private function nonEmptyStrings(Collection $values): Collection
