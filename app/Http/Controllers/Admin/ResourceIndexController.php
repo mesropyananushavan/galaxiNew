@@ -1274,7 +1274,7 @@ class ResourceIndexController extends Controller
         $shopCount = Shop::query()->count();
         $activeShopCount = $this->activeShopCount();
         $cardCount = Card::query()->count();
-        $activeCardCount = Card::query()->active()->count();
+        $activeCardCount = $this->activeCardCount();
         $blockedCardCount = Card::query()->blocked()->count();
         $draftCardCount = Card::query()->draft()->count();
         $activatedCardCount = Card::query()->activated()->count();

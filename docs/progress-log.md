@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource active card summary metric helper checkpoint
+- Reused `activeCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active card count no longer reaches for an inline active-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource active branch summary metric helper checkpoint
 - Reused `activeShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active branch count no longer reaches for an inline active-branch count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
