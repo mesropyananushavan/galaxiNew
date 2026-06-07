@@ -2351,7 +2351,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesCatalogImportRulesDisabledReason(mixed $cardTypes): string
     {
-        $savedCount = $cardTypes->count();
+        $savedCount = $this->iterableCount($cardTypes);
         $activeCount = $this->activeCardTypeCount();
 
         return match (true) {
@@ -2363,7 +2363,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesCatalogPublishTypeDisabledReason(mixed $cardTypes): string
     {
-        $savedCount = $cardTypes->count();
+        $savedCount = $this->iterableCount($cardTypes);
         $activeCount = $this->activeCardTypeCount();
 
         return match (true) {
