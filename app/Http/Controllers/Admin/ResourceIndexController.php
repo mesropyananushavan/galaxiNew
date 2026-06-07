@@ -5808,9 +5808,9 @@ class ResourceIndexController extends Controller
 
     private function latestSavedCollectionRecord(iterable $records): mixed
     {
-        return $this->collectItems($records)
-            ->sortByDesc('id')
-            ->first();
+        return $this->firstCollectedItem(
+            $this->collectItems($records)->sortByDesc('id')
+        );
     }
 
     private function latestSavedModelRecord(string $modelClass): mixed
