@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource rollout-noted card-type metric helper checkpoint
+- Added `rolloutNotedCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the tier rollout-note metric no longer reaches for an inline rollout-note count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
 ### Resource activation-noted card-type metric helper checkpoint
 - Added `activationNotedCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the tier activation-note metric no longer reaches for an inline activation-note count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
