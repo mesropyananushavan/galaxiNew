@@ -1286,7 +1286,7 @@ class ResourceIndexController extends Controller
         $activeShopHolderLinkedCardCount = $this->activeShopHolderLinkedCardCount();
         $pausedShopHolderLinkedCardCount = $this->pausedShopHolderLinkedCardCount();
         $activeShopUnassignedCardCount = $this->activeShopUnassignedCardCount();
-        $pausedShopUnassignedCardCount = Card::query()->pausedShopUnassigned()->count();
+        $pausedShopUnassignedCardCount = $this->pausedShopUnassignedCardCount();
         $activatedUnassignedCardCount = Card::query()->activatedUnassigned()->count();
         $blockedUnassignedCardCount = Card::query()->blockedUnassigned()->count();
         $draftUnassignedCardCount = Card::query()->draftUnassigned()->count();
@@ -5695,6 +5695,11 @@ class ResourceIndexController extends Controller
     private function activeShopUnassignedCardCount(): int
     {
         return (int) Card::query()->activeShopUnassigned()->count();
+    }
+
+    private function pausedShopUnassignedCardCount(): int
+    {
+        return (int) Card::query()->pausedShopUnassigned()->count();
     }
 
     private function issuedCardCount(): int
