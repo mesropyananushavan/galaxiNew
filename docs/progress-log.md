@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource draft card summary metric helper checkpoint
+- Reused `draftCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level draft card count no longer reaches for an inline draft-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource blocked card summary metric helper checkpoint
 - Reused `blockedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level blocked card count no longer reaches for an inline blocked-card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
