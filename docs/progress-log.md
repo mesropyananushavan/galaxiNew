@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource shop loaded-count iterable seam checkpoint
+- Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so loaded shop manager, holder, and card counts no longer call collection `count()` inline.
+- Re-ran the dedicated shops resource shell assertion as the parity check for this small ResourceIndexController count-seam cleanup.
+
 ### Resource latest saved collection seam follow-up checkpoint
 - Reused `firstCollectedItem()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so latest saved collection record selection no longer calls collection `first()` inline after sorting.
 - Re-ran the dedicated resource shell composition assertion as the parity check for this small ResourceIndexController collection-seam follow-up.
