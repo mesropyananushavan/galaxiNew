@@ -884,7 +884,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Issued unassigned cards', 'value' => (string) Card::query()->issuedUnassigned()->count()],
             ['label' => 'Pre-activation holder-linked cards', 'value' => (string) Card::query()->preActivationHolderLinked()->count()],
             ['label' => 'Pre-activation unassigned cards', 'value' => (string) Card::query()->preActivationUnassigned()->count()],
-            ['label' => 'Unassigned cards', 'value' => (string) Card::query()->unassigned()->count()],
+            ['label' => 'Unassigned cards', 'value' => (string) $this->unassignedCardCount()],
             ['label' => 'Active holder-linked cards', 'value' => (string) Card::query()->activeHolderLinked()->count()],
             ['label' => 'Active unassigned cards', 'value' => (string) Card::query()->activeUnassigned()->count()],
             ['label' => 'Blocked pre-activation cards', 'value' => (string) Card::query()->blockedPreActivation()->count()],

@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource unassigned card metric helper checkpoint
+- Reused `unassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the unassigned-card metric no longer reaches for an inline unassigned-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
 ### Resource assignment-pending card metric helper checkpoint
 - Added `unassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the assignment-pending card metric no longer reaches for an inline unassigned-card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
