@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource review-noted holder metric helper checkpoint
+- Added `reviewNotedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted holder metric no longer reaches for an inline review-noted holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
 ### Resource paused-branch unlinked holder metric helper checkpoint
 - Added `pausedShopUnlinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the paused-branch unlinked holder metric no longer reaches for an inline paused-branch unlinked holder count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
