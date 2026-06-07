@@ -5587,7 +5587,7 @@ class ResourceIndexController extends Controller
 
     private function latestSavedCardType(): ?CardType
     {
-        $cardType = CardType::query()->latest('id')->first();
+        $cardType = $this->latestSavedModelRecord(CardType::class);
 
         return $cardType instanceof CardType ? $cardType : null;
     }
@@ -5805,6 +5805,13 @@ class ResourceIndexController extends Controller
     {
         return $this->collectItems($records)
             ->sortByDesc('id')
+            ->first();
+    }
+
+    private function latestSavedModelRecord(string $modelClass): mixed
+    {
+        return $modelClass::query()
+            ->latest('id')
             ->first();
     }
 

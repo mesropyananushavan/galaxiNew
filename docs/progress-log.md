@@ -1,5 +1,11 @@
 # Progress Log
 
+## 2026-06-07
+
+### Resource latest saved model seam checkpoint
+- Added `latestSavedModelRecord()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so latest saved tier lookup no longer reaches for an inline `latest('id')->first()` query.
+- Re-ran a focused card-types resource shell assertion as the parity check for this small ResourceIndexController seam cleanup.
+
 ## 2026-06-04
 
 ### Cardholder shop-state helper checkpoint
