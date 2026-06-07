@@ -1061,7 +1061,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Inactive-state Galaxy holders', 'value' => (string) $this->inactiveCardHolderCount()],
             ['label' => 'Active-branch holders', 'value' => (string) $this->activeShopCardHolderCount()],
             ['label' => 'Paused-branch holders', 'value' => (string) $this->pausedCardHolderCount()],
-            ['label' => 'Active linked holders', 'value' => (string) CardHolder::query()->activeLinked()->count()],
+            ['label' => 'Active linked holders', 'value' => (string) $this->activeLinkedCardHolderCount()],
             ['label' => 'Inactive linked holders', 'value' => (string) CardHolder::query()->inactiveLinked()->count()],
             ['label' => 'Active unlinked holders', 'value' => (string) CardHolder::query()->activeUnlinked()->count()],
             ['label' => 'Inactive unlinked holders', 'value' => (string) CardHolder::query()->inactiveUnlinked()->count()],
@@ -5735,6 +5735,11 @@ class ResourceIndexController extends Controller
     private function reviewNotedCardCount(): int
     {
         return (int) Card::query()->reviewNoted()->count();
+    }
+
+    private function activeLinkedCardHolderCount(): int
+    {
+        return (int) CardHolder::query()->activeLinked()->count();
     }
 
     private function cardTypeIsActive(CardType $cardType): bool

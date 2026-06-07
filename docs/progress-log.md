@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource active linked holder metric helper checkpoint
+- Added `activeLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active linked holder metric no longer reaches for an inline active-linked holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
 ### Resource review-noted card metric helper checkpoint
 - Added `reviewNotedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted card metric no longer reaches for an inline review-noted card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
