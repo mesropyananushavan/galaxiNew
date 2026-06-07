@@ -1260,7 +1260,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => 'Branch scope handoff stays visible in the workspace',
                 'time' => 'Current request',
-                'description' => $this->shopsScopeTimelineHandoffDescription($selectedShop),
+                'description' => $this->shopsSelectedScopeTimelineDescription($selectedShop),
             ],
         ];
 
@@ -4761,6 +4761,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedReviewNoteTimelineDescription(Shop $selectedShop): string
     {
         return $this->shopReviewNoteReflection($selectedShop);
+    }
+
+    private function shopsSelectedScopeTimelineDescription(Shop $selectedShop): string
+    {
+        return $this->shopsScopeTimelineHandoffDescription($selectedShop);
     }
 
     private function shopsSelectedBackendGap(Shop $selectedShop): string
