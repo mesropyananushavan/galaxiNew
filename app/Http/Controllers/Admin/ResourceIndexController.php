@@ -5684,7 +5684,7 @@ class ResourceIndexController extends Controller
 
     private function firstLoadedShopUser(Shop $shop): ?User
     {
-        $user = $this->loadedShopManagers($shop)->first();
+        $user = $this->firstCollectedItem($this->loadedShopManagers($shop));
 
         return $user instanceof User ? $user : null;
     }
@@ -5798,7 +5798,12 @@ class ResourceIndexController extends Controller
 
     private function firstCatalogPreview(iterable $previews): mixed
     {
-        return $this->collectItems($previews)->first();
+        return $this->firstCollectedItem($previews);
+    }
+
+    private function firstCollectedItem(iterable $values): mixed
+    {
+        return $this->collectItems($values)->first();
     }
 
     private function latestSavedCollectionRecord(iterable $records): mixed

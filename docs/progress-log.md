@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource first collected item seam checkpoint
+- Added `firstCollectedItem()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so first catalog preview selection and first loaded shop-manager lookup no longer call collection `first()` inline.
+- Re-ran a focused shops resource shell assertion as the parity check for this small ResourceIndexController collection-seam cleanup.
+
 ### Resource latest saved model seam checkpoint
 - Added `latestSavedModelRecord()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so latest saved tier lookup no longer reaches for an inline `latest('id')->first()` query.
 - Re-ran a focused card-types resource shell assertion as the parity check for this small ResourceIndexController seam cleanup.
