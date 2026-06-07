@@ -1245,7 +1245,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s lifecycle freshness reflected from model state', $this->shopNameValue($selectedShop)),
                 'time' => 'Current request',
-                'description' => $this->shopsLifecycleFreshnessDescription($selectedShop),
+                'description' => $this->shopsSelectedLifecycleTimelineDescription($selectedShop),
             ],
             [
                 'title' => sprintf('%s last saved timestamp reflected from model state', $this->shopNameValue($selectedShop)),
@@ -4751,6 +4751,11 @@ class ResourceIndexController extends Controller
             'This branch is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.',
             $this->shopStatusValue($selectedShop),
         );
+    }
+
+    private function shopsSelectedLifecycleTimelineDescription(Shop $selectedShop): string
+    {
+        return $this->shopsLifecycleFreshnessDescription($selectedShop);
     }
 
     private function shopsSelectedBackendGap(Shop $selectedShop): string

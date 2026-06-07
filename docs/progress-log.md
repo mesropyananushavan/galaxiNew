@@ -11556,3 +11556,8 @@
 - Added `shopsSelectedStatusTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the status timeline copy now flows through an explicit selected-shop seam instead of formatting the status message inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening status behavior, timeline flows, or selected-shop review behavior.
+
+### Shop selected-lifecycle timeline seam checkpoint
+- Added `shopsSelectedLifecycleTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the lifecycle-freshness timeline copy now flows through an explicit selected-shop seam instead of calling the broader lifecycle description helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening lifecycle behavior, timeline flows, or selected-shop review behavior.
