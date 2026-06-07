@@ -11551,3 +11551,8 @@
 - Added `shopsSelectedLastSavedTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the last-saved timeline copy now flows through an explicit selected-shop seam instead of formatting the timestamp inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening persistence behavior, timeline flows, or selected-shop review behavior.
+
+### Shop selected-status timeline seam checkpoint
+- Added `shopsSelectedStatusTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the status timeline copy now flows through an explicit selected-shop seam instead of formatting the status message inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status behavior, timeline flows, or selected-shop review behavior.

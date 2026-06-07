@@ -1240,7 +1240,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s status reflected from model state', $this->shopNameValue($selectedShop)),
                 'time' => 'Current request',
-                'description' => sprintf('This branch is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.', $this->shopStatusValue($selectedShop)),
+                'description' => $this->shopsSelectedStatusTimelineDescription($selectedShop),
             ],
             [
                 'title' => sprintf('%s lifecycle freshness reflected from model state', $this->shopNameValue($selectedShop)),
@@ -4742,6 +4742,14 @@ class ResourceIndexController extends Controller
         return sprintf(
             'The latest saved Galaxy foundation timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.',
             $this->shopsSelectedLastSavedLabel($selectedShop),
+        );
+    }
+
+    private function shopsSelectedStatusTimelineDescription(Shop $selectedShop): string
+    {
+        return sprintf(
+            'This branch is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.',
+            $this->shopStatusValue($selectedShop),
         );
     }
 
