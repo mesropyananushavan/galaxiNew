@@ -876,7 +876,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Draft-state Galaxy card shells', 'value' => (string) $this->draftCardCount()],
             ['label' => 'Blocked Galaxy card shells', 'value' => (string) $this->blockedCardCount()],
             ['label' => 'Issued Galaxy card shells', 'value' => (string) $this->issuedCardCount()],
-            ['label' => 'Pre-activation cards', 'value' => (string) Card::query()->preActivation()->count()],
+            ['label' => 'Pre-activation cards', 'value' => (string) $this->preActivationCardCount()],
             ['label' => 'Holder-linked cards', 'value' => (string) $this->holderLinkedCardCount()],
             ['label' => 'Assignment-ready cards', 'value' => (string) $this->holderLinkedCardCount()],
             ['label' => 'Assignment-pending cards', 'value' => (string) $this->unassignedCardCount()],
@@ -5675,6 +5675,11 @@ class ResourceIndexController extends Controller
     private function unassignedCardCount(): int
     {
         return (int) Card::query()->unassigned()->count();
+    }
+
+    private function preActivationCardCount(): int
+    {
+        return (int) Card::query()->preActivation()->count();
     }
 
     private function cardTypeIsActive(CardType $cardType): bool

@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource pre-activation card metric helper checkpoint
+- Added `preActivationCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the pre-activation card metric no longer reaches for an inline pre-activation card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
 ### Resource unassigned card metric helper checkpoint
 - Reused `unassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the unassigned-card metric no longer reaches for an inline unassigned-card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
