@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource access-noted role metric helper checkpoint
+- Added `accessNotedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the access-policy role metric no longer reaches for an inline access-noted role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
+
 ### Resource review-noted role metric helper checkpoint
 - Added `reviewNotedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted access-shell metric no longer reaches for an inline review-noted role count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
