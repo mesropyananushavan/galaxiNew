@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource active holder-linked card metric helper checkpoint
+- Added `activeHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active holder-linked card metric no longer reaches for an inline active holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
 ### Resource pre-activation unassigned card metric helper checkpoint
 - Added `preActivationUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the pre-activation unassigned card metric no longer reaches for an inline pre-activation unassigned card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
