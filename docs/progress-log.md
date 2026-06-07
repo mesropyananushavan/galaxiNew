@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource draft card metric helper checkpoint
+- Added `draftCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the draft card-shell metric no longer reaches for an inline draft-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
 ### Resource active branch metric helper checkpoint
 - Added `activeShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active branch metric no longer reaches for an inline active-branch count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController branch-metric cleanup.

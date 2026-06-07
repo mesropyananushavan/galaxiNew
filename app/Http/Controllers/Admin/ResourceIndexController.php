@@ -873,7 +873,7 @@ class ResourceIndexController extends Controller
 
         $page['metrics'] = [
             ['label' => 'Active-state Galaxy card shells', 'value' => (string) $this->activeCardCount()],
-            ['label' => 'Draft-state Galaxy card shells', 'value' => (string) Card::query()->draft()->count()],
+            ['label' => 'Draft-state Galaxy card shells', 'value' => (string) $this->draftCardCount()],
             ['label' => 'Blocked Galaxy card shells', 'value' => (string) Card::query()->blocked()->count()],
             ['label' => 'Issued Galaxy card shells', 'value' => (string) Card::query()->issued()->count()],
             ['label' => 'Pre-activation cards', 'value' => (string) Card::query()->preActivation()->count()],
@@ -5630,6 +5630,11 @@ class ResourceIndexController extends Controller
     private function activeCardCount(): int
     {
         return (int) Card::query()->active()->count();
+    }
+
+    private function draftCardCount(): int
+    {
+        return (int) Card::query()->draft()->count();
     }
 
     private function activeCardHolderCount(): int
