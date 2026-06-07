@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource first query item seam checkpoint
+- Added `firstQueryItem()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so latest saved model lookup no longer calls query `first()` inline.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController query-seam cleanup.
+
 ### Resource role first-scope label seam checkpoint
 - Added `firstRoleScopeLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so single-scope role coverage messaging no longer calls collection `first()` inline.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController scope-message cleanup.

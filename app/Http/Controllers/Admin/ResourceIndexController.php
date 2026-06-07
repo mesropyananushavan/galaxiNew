@@ -5822,9 +5822,14 @@ class ResourceIndexController extends Controller
 
     private function latestSavedModelRecord(string $modelClass): mixed
     {
-        return $modelClass::query()
-            ->latest('id')
-            ->first();
+        return $this->firstQueryItem(
+            $modelClass::query()->latest('id')
+        );
+    }
+
+    private function firstQueryItem(mixed $query): mixed
+    {
+        return $query->first();
     }
 
     private function countMatching(iterable $values, callable $predicate): int
