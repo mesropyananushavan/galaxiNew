@@ -1068,7 +1068,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Active-branch linked holders', 'value' => (string) CardHolder::query()->assignedToActiveShopLinked()->count()],
             ['label' => 'Paused-branch unlinked holders', 'value' => (string) CardHolder::query()->assignedToPausedShopUnlinked()->count()],
             ['label' => 'Review-noted Galaxy holders', 'value' => (string) CardHolder::query()->reviewNoted()->count()],
-            ['label' => 'Linked Galaxy card shells', 'value' => (string) Card::query()->holderLinked()->count()],
+            ['label' => 'Linked Galaxy card shells', 'value' => (string) $this->holderLinkedCardCount()],
         ];
 
         $page['table']['rows'] = $cardHolders->map(fn (CardHolder $cardHolder): array => [

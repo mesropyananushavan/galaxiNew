@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource linked card metric helper checkpoint
+- Reused `holderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the linked card-shell metric no longer reaches for an inline holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
 ### Resource paused-branch holder metric helper checkpoint
 - Reused `pausedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch holder metric no longer reaches for an inline paused-branch holder count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
