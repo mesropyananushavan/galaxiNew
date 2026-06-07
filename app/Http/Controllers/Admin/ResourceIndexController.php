@@ -1145,7 +1145,7 @@ class ResourceIndexController extends Controller
         );
 
         $page['metrics'] = [
-            ['label' => 'Active-state Galaxy branches', 'value' => (string) Shop::query()->active()->count()],
+            ['label' => 'Active-state Galaxy branches', 'value' => (string) $this->activeShopCount()],
             ['label' => 'Paused-state Galaxy branches', 'value' => (string) $this->pausedShopCount()],
             ['label' => 'Review-noted Galaxy branches', 'value' => (string) Shop::query()->reviewNoted()->count()],
             ['label' => 'Assigned branch managers', 'value' => (string) $this->shopManagerCoverageCount()],
@@ -5747,6 +5747,11 @@ class ResourceIndexController extends Controller
     private function loadedShopCards(Shop $shop): Collection
     {
         return $this->shopCardsRelation($shop)->getResults();
+    }
+
+    private function activeShopCount(): int
+    {
+        return (int) Shop::query()->active()->count();
     }
 
     private function pausedShopCount(): int
