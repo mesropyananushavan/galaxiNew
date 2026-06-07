@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource draft role metric helper checkpoint
+- Added `draftRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the draft access-shell metric no longer reaches for an inline draft-role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
+
 ### Resource review-noted branch metric helper checkpoint
 - Added `reviewNotedShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted branch metric no longer reaches for an inline review-noted branch count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController branch-metric cleanup.
