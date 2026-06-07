@@ -670,7 +670,7 @@ class ResourceIndexController extends Controller
         $page['metrics'] = [
             ['label' => 'Active-state Galaxy access shells', 'value' => (string) $this->activeRoleCount()],
             ['label' => 'Draft-state Galaxy access shells', 'value' => (string) $this->draftRoleCount()],
-            ['label' => 'Review-noted Galaxy access shells', 'value' => (string) (clone $rolesQuery)->reviewNoted()->count()],
+            ['label' => 'Review-noted Galaxy access shells', 'value' => (string) $this->reviewNotedRoleCount()],
             ['label' => 'Access-policy Galaxy notes', 'value' => (string) (clone $rolesQuery)->accessNoted()->count()],
             ['label' => 'Role-assignment Galaxy notes', 'value' => (string) (clone $rolesQuery)->assignmentNoted()->count()],
             ['label' => 'Permission-linked Galaxy review notes', 'value' => (string) Permission::query()->assignedToRoles()->reviewNoted()->count()],
@@ -5543,6 +5543,11 @@ class ResourceIndexController extends Controller
     private function draftRoleCount(): int
     {
         return (int) Role::query()->draft()->count();
+    }
+
+    private function reviewNotedRoleCount(): int
+    {
+        return (int) Role::query()->reviewNoted()->count();
     }
 
     private function shopScopedAssignedRoleCount(): int
