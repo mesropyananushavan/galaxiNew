@@ -1294,7 +1294,7 @@ class ResourceIndexController extends Controller
         $cardHolderCount = $cardHolders->count();
         $activeCardHolderCount = $this->activeCardHolderCount();
         $inactiveCardHolderCount = $this->inactiveCardHolderCount();
-        $linkedCardHolderCount = CardHolder::query()->linked()->count();
+        $linkedCardHolderCount = $this->linkedCardHolderCount();
         $unlinkedCardHolderCount = $cardHolderCount - $linkedCardHolderCount;
         $activeShopCardHolderCount = CardHolder::query()->assignedToActiveShop()->count();
         $pausedShopCardHolderCount = $cardHolderCount - $activeShopCardHolderCount;
@@ -5725,6 +5725,11 @@ class ResourceIndexController extends Controller
     private function inactiveCardHolderCount(): int
     {
         return (int) CardHolder::query()->inactive()->count();
+    }
+
+    private function linkedCardHolderCount(): int
+    {
+        return (int) CardHolder::query()->linked()->count();
     }
 
     private function activeShopCardHolderCount(): int

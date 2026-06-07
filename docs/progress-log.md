@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource linked holder summary metric helper checkpoint
+- Added `linkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level linked holder count no longer reaches for an inline linked-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource inactive holder summary metric helper checkpoint
 - Reused `inactiveCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level inactive holder count no longer reaches for an inline inactive-holder count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
