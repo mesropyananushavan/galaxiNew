@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource active-branch holder-linked card summary helper checkpoint
+- Added `activeShopHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active-branch holder-linked card count no longer reaches for an inline active-branch holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource draft holder-linked card summary helper checkpoint
 - Added `draftHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level draft holder-linked card count no longer reaches for an inline draft holder-linked card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
