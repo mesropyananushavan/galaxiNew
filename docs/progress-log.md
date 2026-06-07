@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource paused-branch holder metric helper checkpoint
+- Reused `pausedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch holder metric no longer reaches for an inline paused-branch holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
 ### Resource active-branch holder metric helper checkpoint
 - Added `activeShopCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active-branch holder metric no longer reaches for an inline active-branch holder count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
