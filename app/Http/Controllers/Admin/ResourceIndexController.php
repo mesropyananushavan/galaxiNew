@@ -1255,7 +1255,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s review note reflected from model state', $this->shopNameValue($selectedShop)),
                 'time' => 'Current request',
-                'description' => $this->shopReviewNoteReflection($selectedShop),
+                'description' => $this->shopsSelectedReviewNoteTimelineDescription($selectedShop),
             ],
             [
                 'title' => 'Branch scope handoff stays visible in the workspace',
@@ -4756,6 +4756,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedLifecycleTimelineDescription(Shop $selectedShop): string
     {
         return $this->shopsLifecycleFreshnessDescription($selectedShop);
+    }
+
+    private function shopsSelectedReviewNoteTimelineDescription(Shop $selectedShop): string
+    {
+        return $this->shopReviewNoteReflection($selectedShop);
     }
 
     private function shopsSelectedBackendGap(Shop $selectedShop): string
