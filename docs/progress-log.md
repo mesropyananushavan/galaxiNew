@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource loaded cardholder count seam checkpoint
+- Added `loadedCardholderCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so linked cardholder card counting no longer calls collection `count()` inline.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-count cleanup.
+
 ### Resource first query item seam checkpoint
 - Added `firstQueryItem()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so latest saved model lookup no longer calls query `first()` inline.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController query-seam cleanup.
