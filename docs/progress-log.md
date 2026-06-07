@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource draft linked card summary metric helper checkpoint
+- Reused `draftHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level draft linked card count no longer reaches for an inline draft-holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource blocked linked card summary metric helper checkpoint
 - Reused `blockedHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level blocked linked card count no longer reaches for an inline blocked-holder-linked card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
