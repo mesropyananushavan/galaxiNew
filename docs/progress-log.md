@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource active-branch linked holder metric helper checkpoint
+- Added `activeShopLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active-branch linked holder metric no longer reaches for an inline active-branch linked holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
 ### Resource inactive unlinked holder metric helper checkpoint
 - Added `inactiveUnlinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the inactive unlinked holder metric no longer reaches for an inline inactive-unlinked holder count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
