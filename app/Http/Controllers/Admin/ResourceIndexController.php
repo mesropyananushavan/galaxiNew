@@ -877,7 +877,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Blocked Galaxy card shells', 'value' => (string) $this->blockedCardCount()],
             ['label' => 'Issued Galaxy card shells', 'value' => (string) $this->issuedCardCount()],
             ['label' => 'Pre-activation cards', 'value' => (string) Card::query()->preActivation()->count()],
-            ['label' => 'Holder-linked cards', 'value' => (string) Card::query()->holderLinked()->count()],
+            ['label' => 'Holder-linked cards', 'value' => (string) $this->holderLinkedCardCount()],
             ['label' => 'Assignment-ready cards', 'value' => (string) Card::query()->holderLinked()->count()],
             ['label' => 'Assignment-pending cards', 'value' => (string) Card::query()->unassigned()->count()],
             ['label' => 'Issued holder-linked cards', 'value' => (string) Card::query()->issuedHolderLinked()->count()],
