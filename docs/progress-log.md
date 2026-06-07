@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource active card metric helper checkpoint
+- Reused `activeCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active card-shell metric no longer reaches for an inline active-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
 ### Resource active role metric helper checkpoint
 - Reused `activeRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active access-shell metric no longer reaches for an inline active-role count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
