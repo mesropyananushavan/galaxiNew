@@ -1243,7 +1243,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->shopsSelectedStatusTimelineDescription($selectedShop),
             ],
             [
-                'title' => sprintf('%s lifecycle freshness reflected from model state', $this->shopNameValue($selectedShop)),
+                'title' => $this->shopsSelectedLifecycleTimelineTitle($selectedShop),
                 'time' => 'Current request',
                 'description' => $this->shopsSelectedLifecycleTimelineDescription($selectedShop),
             ],
@@ -4761,6 +4761,11 @@ class ResourceIndexController extends Controller
     private function shopsSelectedLifecycleTimelineDescription(Shop $selectedShop): string
     {
         return $this->shopsLifecycleFreshnessDescription($selectedShop);
+    }
+
+    private function shopsSelectedLifecycleTimelineTitle(Shop $selectedShop): string
+    {
+        return sprintf('%s lifecycle freshness reflected from model state', $this->shopNameValue($selectedShop));
     }
 
     private function shopsSelectedReviewNoteTimelineDescription(Shop $selectedShop): string
