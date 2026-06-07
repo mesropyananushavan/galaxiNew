@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource active branch summary metric helper checkpoint
+- Reused `activeShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active branch count no longer reaches for an inline active-branch count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource review-noted assigned permission metric helper checkpoint
 - Added `reviewNotedAssignedPermissionCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the permission-linked review-note metric no longer reaches for an inline assigned-permission review-note count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.

@@ -1272,7 +1272,7 @@ class ResourceIndexController extends Controller
     private function enrichReportsPage(array $page): array
     {
         $shopCount = Shop::query()->count();
-        $activeShopCount = Shop::query()->active()->count();
+        $activeShopCount = $this->activeShopCount();
         $cardCount = Card::query()->count();
         $activeCardCount = Card::query()->active()->count();
         $blockedCardCount = Card::query()->blocked()->count();
