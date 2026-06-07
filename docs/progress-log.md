@@ -11571,3 +11571,8 @@
 - Added `shopsSelectedScopeTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the scope-handoff timeline copy now flows through an explicit selected-shop seam instead of calling the broader scope-timeline helper inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening scope behavior, timeline flows, or selected-shop review behavior.
+
+### Shop selected-status timeline title seam checkpoint
+- Added `shopsSelectedStatusTimelineTitle()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the status timeline title now flows through an explicit selected-shop seam instead of formatting the title inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status behavior, timeline flows, or selected-shop review behavior.

@@ -1238,7 +1238,7 @@ class ResourceIndexController extends Controller
                 'description' => 'The shared shops workspace is now loading this saved branch from the Galaxy foundation layer instead of only static preview rows.',
             ],
             [
-                'title' => sprintf('%s status reflected from model state', $this->shopNameValue($selectedShop)),
+                'title' => $this->shopsSelectedStatusTimelineTitle($selectedShop),
                 'time' => 'Current request',
                 'description' => $this->shopsSelectedStatusTimelineDescription($selectedShop),
             ],
@@ -4751,6 +4751,11 @@ class ResourceIndexController extends Controller
             'This branch is currently marked as %s in the Galaxy foundation layer and the management context now mirrors that state.',
             $this->shopStatusValue($selectedShop),
         );
+    }
+
+    private function shopsSelectedStatusTimelineTitle(Shop $selectedShop): string
+    {
+        return sprintf('%s status reflected from model state', $this->shopNameValue($selectedShop));
     }
 
     private function shopsSelectedLifecycleTimelineDescription(Shop $selectedShop): string
