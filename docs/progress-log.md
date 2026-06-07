@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource active card-type metric helper checkpoint
+- Reused `activeCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active tier metric no longer reaches for an inline active-tier count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
 ### Resource card-type metric saved-count seam checkpoint
 - Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the saved tier metric no longer calls collection `count()` inline.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.

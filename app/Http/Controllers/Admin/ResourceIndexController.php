@@ -1801,7 +1801,7 @@ class ResourceIndexController extends Controller
 
         if ($cardTypes->isNotEmpty()) {
             $page['metrics'] = [
-                ['label' => 'Active-state Galaxy tiers', 'value' => (string) CardType::query()->active()->count()],
+                ['label' => 'Active-state Galaxy tiers', 'value' => (string) $this->activeCardTypeCount()],
                 ['label' => 'Draft-state Galaxy tiers', 'value' => (string) CardType::query()->draft()->count()],
                 ['label' => 'Review-noted Galaxy tiers', 'value' => (string) CardType::query()->reviewNoted()->count()],
                 ['label' => 'Tier activation notes', 'value' => (string) CardType::query()->activationNoted()->count()],
