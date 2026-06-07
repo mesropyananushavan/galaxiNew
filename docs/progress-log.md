@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource review-noted card-type metric helper checkpoint
+- Added `reviewNotedCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted tier metric no longer reaches for an inline tier review-note count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
 ### Resource draft card-type metric helper checkpoint
 - Added `draftCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the draft tier metric no longer reaches for an inline draft-tier count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
