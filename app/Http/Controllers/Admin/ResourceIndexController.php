@@ -1059,7 +1059,7 @@ class ResourceIndexController extends Controller
         $page['metrics'] = [
             ['label' => 'Active-state Galaxy holders', 'value' => (string) $this->activeCardHolderCount()],
             ['label' => 'Inactive-state Galaxy holders', 'value' => (string) $this->inactiveCardHolderCount()],
-            ['label' => 'Active-branch holders', 'value' => (string) CardHolder::query()->assignedToActiveShop()->count()],
+            ['label' => 'Active-branch holders', 'value' => (string) $this->activeShopCardHolderCount()],
             ['label' => 'Paused-branch holders', 'value' => (string) CardHolder::query()->assignedToPausedShop()->count()],
             ['label' => 'Active linked holders', 'value' => (string) CardHolder::query()->activeLinked()->count()],
             ['label' => 'Inactive linked holders', 'value' => (string) CardHolder::query()->inactiveLinked()->count()],
@@ -5640,6 +5640,11 @@ class ResourceIndexController extends Controller
     private function inactiveCardHolderCount(): int
     {
         return (int) CardHolder::query()->inactive()->count();
+    }
+
+    private function activeShopCardHolderCount(): int
+    {
+        return (int) CardHolder::query()->assignedToActiveShop()->count();
     }
 
     private function pausedCardHolderCount(): int
