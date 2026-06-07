@@ -11546,3 +11546,8 @@
 - Added `shopsSelectedDependencyLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency selected-shop label now flows through an explicit selected-shop seam instead of calling the broader selected-shop label helper inline.
 - Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
 - Kept the change read-only and parity-first, without widening label writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-last-saved timeline seam checkpoint
+- Added `shopsSelectedLastSavedTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the last-saved timeline copy now flows through an explicit selected-shop seam instead of formatting the timestamp inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening persistence behavior, timeline flows, or selected-shop review behavior.

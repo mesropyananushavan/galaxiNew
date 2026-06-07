@@ -1250,7 +1250,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s last saved timestamp reflected from model state', $this->shopNameValue($selectedShop)),
                 'time' => 'Current request',
-                'description' => sprintf('The latest saved Galaxy foundation timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.', $this->shopsLastSavedLabel($selectedShop)),
+                'description' => $this->shopsSelectedLastSavedTimelineDescription($selectedShop),
             ],
             [
                 'title' => sprintf('%s review note reflected from model state', $this->shopNameValue($selectedShop)),
@@ -4735,6 +4735,14 @@ class ResourceIndexController extends Controller
     private function shopsSelectedLastSavedLabel(Shop $selectedShop): string
     {
         return $this->shopsLastSavedLabel($selectedShop);
+    }
+
+    private function shopsSelectedLastSavedTimelineDescription(Shop $selectedShop): string
+    {
+        return sprintf(
+            'The latest saved Galaxy foundation timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.',
+            $this->shopsSelectedLastSavedLabel($selectedShop),
+        );
     }
 
     private function shopsSelectedBackendGap(Shop $selectedShop): string
