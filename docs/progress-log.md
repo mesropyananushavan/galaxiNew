@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource issued card metric helper checkpoint
+- Added `issuedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the issued card-shell metric no longer reaches for an inline issued-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
 ### Resource blocked card metric helper checkpoint
 - Added `blockedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the blocked card-shell metric no longer reaches for an inline blocked-card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
