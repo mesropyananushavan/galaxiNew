@@ -2,6 +2,10 @@
 
 ## 2026-06-07
 
+### Resource blocked unassigned card summary helper checkpoint
+- Reused `blockedUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level blocked unassigned card count no longer reaches for an inline blocked unassigned card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource activated unassigned card summary helper checkpoint
 - Added `activatedUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level activated unassigned card count no longer reaches for an inline activated unassigned card count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
