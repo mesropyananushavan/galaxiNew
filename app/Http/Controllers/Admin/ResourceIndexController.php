@@ -879,7 +879,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Pre-activation cards', 'value' => (string) Card::query()->preActivation()->count()],
             ['label' => 'Holder-linked cards', 'value' => (string) $this->holderLinkedCardCount()],
             ['label' => 'Assignment-ready cards', 'value' => (string) $this->holderLinkedCardCount()],
-            ['label' => 'Assignment-pending cards', 'value' => (string) Card::query()->unassigned()->count()],
+            ['label' => 'Assignment-pending cards', 'value' => (string) $this->unassignedCardCount()],
             ['label' => 'Issued holder-linked cards', 'value' => (string) Card::query()->issuedHolderLinked()->count()],
             ['label' => 'Issued unassigned cards', 'value' => (string) Card::query()->issuedUnassigned()->count()],
             ['label' => 'Pre-activation holder-linked cards', 'value' => (string) Card::query()->preActivationHolderLinked()->count()],
@@ -5670,6 +5670,11 @@ class ResourceIndexController extends Controller
     private function holderLinkedCardCount(): int
     {
         return (int) Card::query()->holderLinked()->count();
+    }
+
+    private function unassignedCardCount(): int
+    {
+        return (int) Card::query()->unassigned()->count();
     }
 
     private function cardTypeIsActive(CardType $cardType): bool
