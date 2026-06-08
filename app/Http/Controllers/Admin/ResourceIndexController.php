@@ -3326,11 +3326,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function rolesPermissionsLifecycleFreshness(Role $selectedRole): string
-    {
-        return $this->lifecycleFreshnessLabel($selectedRole);
-    }
-
     private function rolesPermissionsSelectedForReviewTimelineTitle(Role $selectedRole): string
     {
         return sprintf('%s selected for Galaxy review', $selectedRole->name);
@@ -4146,11 +4141,6 @@ class ResourceIndexController extends Controller
     private function cardholderShopIsPaused(CardHolder $selectedCardHolder): bool
     {
         return $this->cardholderShopIsAssigned($selectedCardHolder) && $this->cardholderShopIsInactive($selectedCardHolder);
-    }
-
-    private function cardholderShopIsUnassigned(CardHolder $selectedCardHolder): bool
-    {
-        return $this->cardholderShopId($selectedCardHolder) === null;
     }
 
     private function cardholderShopIsAssigned(CardHolder $selectedCardHolder): bool

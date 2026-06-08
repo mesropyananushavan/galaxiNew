@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Unused role and holder shop helper removal checkpoint
+- Removed the now-unused `rolesPermissionsLifecycleFreshness()` and `cardholderShopIsUnassigned()` methods from `app/Http/Controllers/Admin/ResourceIndexController.php` after the surrounding Galaxy preview flows stopped depending on them.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController dead-code cleanup.
+
 ### Unused cardholder linkage helper removal checkpoint
 - Removed the now-unused `cardholderIsLinked()` and `cardholderIsUnlinked()` methods from `app/Http/Controllers/Admin/ResourceIndexController.php` after the surrounding Galaxy holder preview flow standardized on `cardholderHasLinkedCards()` and direct linked-card counts.
 - Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController dead-code cleanup.
