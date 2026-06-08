@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Resource active permission-linked role summary helper checkpoint
+- Added `activePermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active permission-linked role count no longer reaches for an inline active permission-bearing role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource paused-branch assigned staff summary helper checkpoint
 - Added `pausedShopAssignedStaffCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level paused-branch assigned staff count no longer reaches for an inline paused-branch role-assigned user count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
