@@ -684,11 +684,11 @@ class ResourceIndexController extends Controller
             [
                 [
                     'label' => 'Review matrix',
-                    'disabledReason' => $this->rolesPermissionsCatalogReviewMatrixDisabledReason($roles),
+                    'disabledReason' => $this->rolesPermissionsCatalogReviewMatrixDisabledReason(),
                 ],
                 [
                     'label' => 'Publish access',
-                    'disabledReason' => $this->rolesPermissionsCatalogPublishRoleDisabledReason($roles),
+                    'disabledReason' => $this->rolesPermissionsCatalogPublishRoleDisabledReason(),
                 ],
             ],
         );
@@ -3456,7 +3456,7 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function rolesPermissionsCatalogReviewMatrixDisabledReason(mixed $roles): string
+    private function rolesPermissionsCatalogReviewMatrixDisabledReason(): string
     {
         $permissionLinkedCount = $this->permissionLinkedRoleCount();
         $activeCount = $this->activeRoleCount();
@@ -3468,7 +3468,7 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function rolesPermissionsCatalogPublishRoleDisabledReason(mixed $roles): string
+    private function rolesPermissionsCatalogPublishRoleDisabledReason(): string
     {
         $permissionLinkedCount = $this->permissionLinkedRoleCount();
         $scopedCount = $this->shopScopedAssignedRoleCount();

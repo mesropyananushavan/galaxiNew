@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Roles catalog dead-parameter cleanup checkpoint
+- Removed the unused `$roles` parameter from `rolesPermissionsCatalogReviewMatrixDisabledReason()` and `rolesPermissionsCatalogPublishRoleDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the catalog calls to match.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController access-catalog cleanup.
+
 ### Card-types saved-count helper reuse checkpoint
 - Reused `cardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so card-types catalog disabled-state messaging no longer derives saved Galaxy tier totals from the loaded collection.
 - Re-ran the dedicated card-types management preview assertion as the parity check for this small ResourceIndexController tier-catalog cleanup.
