@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Latest model lookup wrapper cleanup checkpoint
+- Removed the redundant `firstQueryItem()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and switched `latestSavedModelRecord()` to call `->first()` directly on the latest-id query.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Catalog preview wrapper cleanup checkpoint
 - Removed the redundant `firstCatalogPreview()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and switched the receipt, rules, and gifts preview paths to call `firstCollectedItem()` directly.
 - Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController preview-helper cleanup.
