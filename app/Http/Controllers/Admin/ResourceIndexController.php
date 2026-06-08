@@ -4645,11 +4645,6 @@ class ResourceIndexController extends Controller
         return $this->shopsCoveragePosture($selectedShop);
     }
 
-    private function shopsSelectedDependencyBackendGap(Shop $selectedShop): string
-    {
-        return $this->shopsSelectedBackendGap($selectedShop);
-    }
-
     private function shopsSelectedDependencyBranchPosture(): string
     {
         return $this->shopsBranchReviewPosture();
@@ -4938,7 +4933,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Status posture', 'value' => $this->shopsSelectedDependencyStatusPosture($selectedShop)],
             ['label' => 'Manager posture', 'value' => $this->shopsSelectedDependencyManagerPosture($selectedShop)],
             ['label' => 'Coverage posture', 'value' => $this->shopsSelectedDependencyCoveragePosture($selectedShop)],
-            ['label' => 'Remaining backend gap', 'value' => $this->shopsSelectedDependencyBackendGap($selectedShop)],
+            ['label' => 'Remaining backend gap', 'value' => $this->shopsSelectedBackendGap($selectedShop)],
         ];
     }
 
