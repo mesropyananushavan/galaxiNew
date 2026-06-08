@@ -5379,7 +5379,7 @@ class ResourceIndexController extends Controller
 
     private function receiptPreviewCount(array $receiptPreviews): int
     {
-        return $this->iterableCount($receiptPreviews);
+        return count($receiptPreviews);
     }
 
     private function roleShopScopeNames(Role $role): Collection

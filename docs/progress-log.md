@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Checks receipt total-count seam checkpoint
+- Replaced `iterableCount()` with direct `count()` inside `receiptPreviewCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because the checks receipt preview helper already receives a plain preview array.
+- Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.
+
 ### Loaded shop and scope collection seam checkpoint
 - Replaced `iterableCount()` with direct collection `count()` inside `shopLoadedManagerCount()`, `shopLoadedCardholderCount()`, `shopLoadedCardCount()`, and `roleScopeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because each helper already operates on loaded Galaxy collections.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController collection-count cleanup.
