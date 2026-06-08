@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Unused cardholder linkage helper removal checkpoint
+- Removed the now-unused `cardholderIsLinked()` and `cardholderIsUnlinked()` methods from `app/Http/Controllers/Admin/ResourceIndexController.php` after the surrounding Galaxy holder preview flow standardized on `cardholderHasLinkedCards()` and direct linked-card counts.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController dead-code cleanup.
+
 ### Unused cards helper removal checkpoint
 - Removed the now-unused `cardsCatalogIssueCardDisabledReason()` method from `app/Http/Controllers/Admin/ResourceIndexController.php` after the surrounding Galaxy cards catalog flow stopped calling it.
 - Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController dead-code cleanup.
