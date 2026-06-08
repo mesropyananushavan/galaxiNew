@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop dependency-branch-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyBranchPosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsBranchReviewPosture()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop dependency-coverage-posture wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedDependencyCoveragePosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsCoveragePosture()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
