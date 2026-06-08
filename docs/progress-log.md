@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop review-note-value wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedReviewNoteValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopReviewNoteValue($selectedShop, 'No review note saved yet')`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop lifecycle-description wrapper cleanup checkpoint
 - Removed the single-use `shopsLifecycleFreshnessDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its shared lifecycle description call at the selected-shop timeline entry.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
