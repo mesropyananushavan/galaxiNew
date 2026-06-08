@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Roles dependency dead-parameter cleanup checkpoint
+- Removed the unused `$permissionPreview` parameter from `rolesPermissionsSelectedRoleDependencyStatus()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the selected-role dependency call to match.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController access-review cleanup.
+
 ### Unused role and holder shop helper removal checkpoint
 - Removed the now-unused `rolesPermissionsLifecycleFreshness()` and `cardholderShopIsUnassigned()` methods from `app/Http/Controllers/Admin/ResourceIndexController.php` after the surrounding Galaxy preview flows stopped depending on them.
 - Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController dead-code cleanup.

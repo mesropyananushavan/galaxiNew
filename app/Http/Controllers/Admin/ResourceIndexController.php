@@ -810,7 +810,6 @@ class ResourceIndexController extends Controller
         $page['dependencyStatus'] = $this->rolesPermissionsSelectedRoleDependencyStatus(
             $selectedRole,
             $scope,
-            $permissionPreview,
         );
 
         $page = $this->appendLatestBackendWriteDependencyStatus($page);
@@ -3604,7 +3603,7 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function rolesPermissionsSelectedRoleDependencyStatus(Role $selectedRole, mixed $scope, mixed $permissionPreview): array
+    private function rolesPermissionsSelectedRoleDependencyStatus(Role $selectedRole, mixed $scope): array
     {
         ['active' => $activeShopAssignedUserCount, 'paused' => $pausedShopAssignedUserCount] = $this->roleAssignedShopActivityCounts($selectedRole);
         $permissionBranchActivitySignal = $this->rolePermissionBranchActivitySignal($selectedRole, $activeShopAssignedUserCount, $pausedShopAssignedUserCount);
