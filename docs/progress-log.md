@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Unused iterable helper removal checkpoint
+- Removed the now-unused `iterableCount()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` after the recent count cleanups switched remaining callers to direct collection or array counting.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController dead-code cleanup.
+
 ### Loaded shop user wrapper cleanup checkpoint
 - Removed the now-single-use `firstLoadedShopUser()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its safe first-manager lookup inside `shopAssignedManagerName()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
