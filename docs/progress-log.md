@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop selected-manager-guidance wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedManagerGuidance()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsManagerGuidance()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop selected-manager wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedManagerName()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopAssignedManagerName()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
