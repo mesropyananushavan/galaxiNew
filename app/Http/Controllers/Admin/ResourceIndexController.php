@@ -1324,7 +1324,7 @@ class ResourceIndexController extends Controller
         $shopScopedAssignedStaffCount = $this->shopScopedAssignedStaffCount();
         $unscopedAssignedStaffCount = $assignedStaffCount - $shopScopedAssignedStaffCount;
         $activeShopAssignedStaffCount = $this->activeShopAssignedStaffCount();
-        $pausedShopAssignedStaffCount = User::query()->roleAssignedToPausedShop()->count();
+        $pausedShopAssignedStaffCount = $this->pausedShopAssignedStaffCount();
 
         $page['actions'] = $this->catalogPrimaryWithSecondaryReviewActions(
             'Open Galaxy reporting catalog',
@@ -5598,6 +5598,11 @@ class ResourceIndexController extends Controller
     private function activeShopAssignedStaffCount(): int
     {
         return (int) User::query()->roleAssignedToActiveShop()->count();
+    }
+
+    private function pausedShopAssignedStaffCount(): int
+    {
+        return (int) User::query()->roleAssignedToPausedShop()->count();
     }
 
     private function roleHasPermissions(Role $role): bool
