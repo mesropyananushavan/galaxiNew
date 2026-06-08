@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Reports unlinked holder helper seam checkpoint
+- Added `unlinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer derives unlinked Galaxy holder totals by subtracting linked-holder counts inline.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController holder-summary cleanup.
+
 ### Reports paused-branch holder helper seam checkpoint
 - Reused `pausedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the reports workspace no longer derives paused-branch Galaxy holder totals by subtracting active-branch counts inline.
 - Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController holder-summary cleanup.
