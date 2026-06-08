@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop lifecycle-freshness wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedLifecycleFreshnessLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopsLifecycleFreshnessLabel()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop branch-guidance wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedBranchGuidance()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsBranchGuidance()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
