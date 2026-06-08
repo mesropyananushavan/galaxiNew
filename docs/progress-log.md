@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Resource assigned staff summary helper checkpoint
+- Added `assignedStaffCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level assigned staff count no longer reaches for an inline role-assigned user count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource draft assigned role summary helper checkpoint
 - Added `draftAssignedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level draft assigned role count no longer reaches for an inline draft-assigned role count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
