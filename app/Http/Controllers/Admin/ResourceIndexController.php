@@ -1297,7 +1297,7 @@ class ResourceIndexController extends Controller
         $linkedCardHolderCount = $this->linkedCardHolderCount();
         $unlinkedCardHolderCount = $cardHolderCount - $linkedCardHolderCount;
         $activeShopCardHolderCount = $this->activeShopCardHolderCount();
-        $pausedShopCardHolderCount = $cardHolderCount - $activeShopCardHolderCount;
+        $pausedShopCardHolderCount = $this->pausedCardHolderCount();
         $activeLinkedCardCount = $this->activeHolderLinkedCardCount();
         $blockedLinkedCardCount = $this->blockedHolderLinkedCardCount();
         $draftLinkedCardCount = $this->draftHolderLinkedCardCount();
