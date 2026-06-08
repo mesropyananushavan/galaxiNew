@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Card-types catalog dead-parameter cleanup checkpoint
+- Removed the unused `$cardTypes` parameter from `cardTypesCatalogImportRulesDisabledReason()` and `cardTypesCatalogPublishTypeDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the catalog calls to match.
+- Re-ran the dedicated card-types management preview assertion as the parity check for this small ResourceIndexController tier-catalog cleanup.
+
 ### Roles catalog dead-parameter cleanup checkpoint
 - Removed the unused `$roles` parameter from `rolesPermissionsCatalogReviewMatrixDisabledReason()` and `rolesPermissionsCatalogPublishRoleDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the catalog calls to match.
 - Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController access-catalog cleanup.
