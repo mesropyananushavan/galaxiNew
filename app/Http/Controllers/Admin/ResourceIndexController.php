@@ -4655,11 +4655,6 @@ class ResourceIndexController extends Controller
         return $this->shopsBranchReviewPosture();
     }
 
-    private function shopsSelectedDependencyLifecycleFreshnessLabel(Shop $selectedShop): string
-    {
-        return $this->shopsSelectedLifecycleFreshnessLabel($selectedShop);
-    }
-
     private function shopsSelectedLifecycleFreshnessLabel(Shop $selectedShop): string
     {
         return $this->shopsLifecycleFreshnessLabel($selectedShop);
@@ -4934,7 +4929,7 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected shop', 'value' => $this->shopsSelectedLabel($selectedShop)],
             ['label' => 'Branch posture', 'value' => $this->shopsSelectedDependencyBranchPosture()],
-            ['label' => 'Lifecycle freshness', 'value' => $this->shopsSelectedDependencyLifecycleFreshnessLabel($selectedShop)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->shopsSelectedLifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsSelectedLastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopsSelectedReviewNoteValue($selectedShop)],
             ['label' => 'Coverage signal', 'value' => $this->shopsSelectedDependencyCoverageSignal($selectedShop)],
