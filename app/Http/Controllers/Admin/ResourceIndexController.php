@@ -4575,7 +4575,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Branch focus', 'value' => $this->shopsSelectedBranchFocus($selectedShop)],
             ['label' => 'Branch posture', 'value' => $this->shopsSelectedBranchPosture($selectedShop)],
             ['label' => 'Evidence priority', 'value' => $this->shopsSelectedEvidencePriority($selectedShop)],
-            ['label' => 'Scope handoff signal', 'value' => $this->shopsSelectedScopeHandoffSignal($selectedShop)],
+            ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
             ['label' => 'Backend gap', 'value' => $this->shopsSelectedBackendGap($selectedShop)],
             ['label' => 'Assigned manager', 'value' => $this->shopAssignedManagerName($selectedShop)],
             ['label' => 'Manager guidance', 'value' => $this->shopsManagerGuidance($selectedShop)],
@@ -4684,11 +4684,6 @@ class ResourceIndexController extends Controller
     private function shopsSelectedEvidencePriority(Shop $selectedShop): string
     {
         return $this->shopsEvidencePriority($selectedShop);
-    }
-
-    private function shopsSelectedScopeHandoffSignal(Shop $selectedShop): string
-    {
-        return $this->shopsScopeHandoffSignal($selectedShop);
     }
 
     private function shopsReviewMode(Shop $selectedShop): string
@@ -4869,7 +4864,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review note', 'value' => $this->shopsSelectedReviewNoteValue($selectedShop)],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
-            ['label' => 'Scope handoff signal', 'value' => $this->shopsSelectedScopeHandoffSignal($selectedShop)],
+            ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
             ['label' => 'Status posture', 'value' => $this->shopsStatusPosture($selectedShop)],
             ['label' => 'Manager posture', 'value' => $this->shopsManagerPosture($selectedShop)],
             ['label' => 'Coverage posture', 'value' => $this->shopsCoveragePosture($selectedShop)],
