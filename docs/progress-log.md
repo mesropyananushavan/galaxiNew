@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Resource active role summary metric helper checkpoint
+- Reused `activeRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active role count no longer reaches for an inline active-role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource activated linked holder summary metric helper checkpoint
 - Added `activatedLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level activated linked holder count no longer reaches for an inline activated-linked-holder count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.

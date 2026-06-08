@@ -1309,7 +1309,7 @@ class ResourceIndexController extends Controller
         $rolesQuery = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active');
         $roles = $rolesQuery->get();
         $roleCount = $roles->count();
-        $activeRoleCount = (clone $rolesQuery)->active()->count();
+        $activeRoleCount = $this->activeRoleCount();
         $permissionLinkedRoleCount = (clone $rolesQuery)->activePermissionBearing()->count();
         $permissionlessActiveRoleCount = $activeRoleCount - $permissionLinkedRoleCount;
         $assignedPermissionLinkedRoleCount = (clone $rolesQuery)->activeAssignedPermissionBearing()->count();
