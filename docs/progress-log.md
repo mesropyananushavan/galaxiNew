@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Loaded shop user wrapper cleanup checkpoint
+- Removed the now-single-use `firstLoadedShopUser()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its safe first-manager lookup inside `shopAssignedManagerName()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop manager wrapper cleanup checkpoint
 - Removed the redundant `firstLoadedShopManager()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and switched `shopAssignedManagerName()` to read directly from `firstLoadedShopUser()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

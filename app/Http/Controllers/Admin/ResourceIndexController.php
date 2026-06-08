@@ -5925,7 +5925,9 @@ class ResourceIndexController extends Controller
 
     private function shopAssignedManagerName(Shop $shop): string
     {
-        return $this->firstLoadedShopUser($shop)?->name ?? 'Unassigned';
+        $user = $this->firstCollectedItem($this->loadedShopManagers($shop));
+
+        return $user instanceof User ? $user->name : 'Unassigned';
     }
 
     private function shopManagerCoverageCount(): int
@@ -5951,13 +5953,6 @@ class ResourceIndexController extends Controller
     private function loadedShopManagers(Shop $shop): Collection
     {
         return $this->shopUsersRelation($shop)->getResults();
-    }
-
-    private function firstLoadedShopUser(Shop $shop): ?User
-    {
-        $user = $this->firstCollectedItem($this->loadedShopManagers($shop));
-
-        return $user instanceof User ? $user : null;
     }
 
     private function shopUsersRelation(Shop $shop): Relation
