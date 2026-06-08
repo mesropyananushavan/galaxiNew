@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Loaded card coverage collection seam checkpoint
+- Replaced `iterableCount()` with direct collection `count()` inside `loadedCardTypeCardCount()` and `loadedCardholderCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because both helpers already operate on loaded Galaxy card collections.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController card-coverage cleanup.
+
 ### Roles loaded-count collection seam checkpoint
 - Replaced `iterableCount()` with direct collection `count()` inside `roleLoadedUserCount()` and `roleLoadedPermissionCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because both helpers already operate on loaded role collections.
 - Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController role-count cleanup.

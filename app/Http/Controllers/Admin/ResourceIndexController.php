@@ -2430,7 +2430,7 @@ class ResourceIndexController extends Controller
 
     private function loadedCardTypeCardCount(CardType $selectedCardType): int
     {
-        return $this->iterableCount($this->loadedCardTypeCards($selectedCardType));
+        return $this->loadedCardTypeCards($selectedCardType)->count();
     }
 
     private function cardTypeCardsRelation(CardType $selectedCardType): Relation
@@ -4202,7 +4202,7 @@ class ResourceIndexController extends Controller
 
     private function loadedCardholderCardCount(CardHolder $selectedCardHolder): int
     {
-        return $this->iterableCount($this->loadedCardholderCards($selectedCardHolder));
+        return $this->loadedCardholderCards($selectedCardHolder)->count();
     }
 
     private function cardholderCardsRelation(CardHolder $selectedCardHolder): Relation
