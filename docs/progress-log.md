@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop review-mode wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedReviewMode()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsReviewMode()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop selected-label wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-shop call sites directly to `shopNameValue()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
