@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Positive-count helper seam checkpoint
+- Replaced the generic `countMatching()` path inside `positiveCountEntries()` with a direct collection filter and `count()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, making the shared Galaxy preview-count helper more explicit.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Checks zero-accrual count seam checkpoint
 - Replaced the generic `countMatching()` path inside `zeroAccrualReceiptCount()` with a direct preview-collection filter and `count()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, keeping the checks receipt metrics flow explicit and local to the Galaxy checks preview.
 - Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.

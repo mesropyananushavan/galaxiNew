@@ -6091,7 +6091,9 @@ class ResourceIndexController extends Controller
 
     private function positiveCountEntries(array $counts): int
     {
-        return $this->countMatching($counts, fn (int $count): bool => $this->isPositiveCount($count));
+        return $this->collectItems($counts)
+            ->filter(fn (int $count): bool => $this->isPositiveCount($count))
+            ->count();
     }
 
     private function firstCatalogPreview(iterable $previews): mixed
