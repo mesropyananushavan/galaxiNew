@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop lifecycle timeline wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedLifecycleTimelineDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop timeline directly to `shopsLifecycleFreshnessDescription()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop dependency-branch-posture wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedDependencyBranchPosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsBranchReviewPosture()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

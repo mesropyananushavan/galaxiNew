@@ -1248,7 +1248,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->shopsSelectedLifecycleTimelineTitle($selectedShop),
                 'time' => 'Current request',
-                'description' => $this->shopsSelectedLifecycleTimelineDescription($selectedShop),
+                'description' => $this->shopsLifecycleFreshnessDescription($selectedShop),
             ],
             [
                 'title' => $this->shopsSelectedLastSavedTimelineTitle($selectedShop),
@@ -4649,11 +4649,6 @@ class ResourceIndexController extends Controller
     private function shopsSelectedStatusTimelineTitle(Shop $selectedShop): string
     {
         return sprintf('%s status reflected from model state', $this->shopNameValue($selectedShop));
-    }
-
-    private function shopsSelectedLifecycleTimelineDescription(Shop $selectedShop): string
-    {
-        return $this->shopsLifecycleFreshnessDescription($selectedShop);
     }
 
     private function shopsSelectedLifecycleTimelineTitle(Shop $selectedShop): string
