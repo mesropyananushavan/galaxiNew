@@ -1323,7 +1323,7 @@ class ResourceIndexController extends Controller
         $assignedStaffCount = $this->assignedStaffCount();
         $shopScopedAssignedStaffCount = $this->shopScopedAssignedStaffCount();
         $unscopedAssignedStaffCount = $assignedStaffCount - $shopScopedAssignedStaffCount;
-        $activeShopAssignedStaffCount = User::query()->roleAssignedToActiveShop()->count();
+        $activeShopAssignedStaffCount = $this->activeShopAssignedStaffCount();
         $pausedShopAssignedStaffCount = User::query()->roleAssignedToPausedShop()->count();
 
         $page['actions'] = $this->catalogPrimaryWithSecondaryReviewActions(
@@ -5593,6 +5593,11 @@ class ResourceIndexController extends Controller
     private function shopScopedAssignedStaffCount(): int
     {
         return (int) User::query()->roleAssignedToScopedShop()->count();
+    }
+
+    private function activeShopAssignedStaffCount(): int
+    {
+        return (int) User::query()->roleAssignedToActiveShop()->count();
     }
 
     private function roleHasPermissions(Role $role): bool

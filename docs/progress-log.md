@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Resource active-branch assigned staff summary helper checkpoint
+- Added `activeShopAssignedStaffCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active-branch assigned staff count no longer reaches for an inline active-branch role-assigned user count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource shop-scoped assigned staff summary helper checkpoint
 - Added `shopScopedAssignedStaffCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level shop-scoped assigned staff count no longer reaches for an inline scoped role-assigned user count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
