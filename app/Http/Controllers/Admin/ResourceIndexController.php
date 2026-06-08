@@ -1043,7 +1043,7 @@ class ResourceIndexController extends Controller
         $page['actions'] = $this->catalogLiveFormReviewActions(
             'New Galaxy holder',
             'Review recent activity',
-            $this->cardholdersCatalogReviewActivityDisabledReason($cardHolders),
+            $this->cardholdersCatalogReviewActivityDisabledReason(),
         );
 
         if ($cardHolders->isEmpty()) {
@@ -2539,7 +2539,7 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function cardholdersCatalogReviewActivityDisabledReason(mixed $cardHolders): string
+    private function cardholdersCatalogReviewActivityDisabledReason(): string
     {
         $linkedCards = $this->holderLinkedCardCount();
         $activeCount = $this->activeCardHolderCount();
