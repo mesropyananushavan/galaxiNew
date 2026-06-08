@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Checks receipt shop-count seam cleanup checkpoint
+- Inlined the unique-shop counting flow inside `receiptPreviewShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then removed the extra `receiptPreviewShops()` wrapper because it no longer added useful Phase 1 reporting structure.
+- Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.
+
 ### Checks catalog receipt-metric precompute checkpoint
 - Precomputed receipt preview shop, total, and zero-accrual counts in `app/Http/Controllers/Admin/ResourceIndexController.php`, then passed those explicit metrics into the checks catalog disabled-state helpers instead of making each helper recalculate from the full preview array.
 - Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.

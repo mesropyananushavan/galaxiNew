@@ -5371,19 +5371,15 @@ class ResourceIndexController extends Controller
 
     private function receiptPreviewShopCount(array $receiptPreviews): int
     {
-        return $this->iterableCount($this->receiptPreviewShops($receiptPreviews));
+        return $this->collectItems($receiptPreviews)
+            ->pluck('shop')
+            ->unique()
+            ->count();
     }
 
     private function receiptPreviewCount(array $receiptPreviews): int
     {
         return $this->iterableCount($receiptPreviews);
-    }
-
-    private function receiptPreviewShops(array $receiptPreviews): Collection
-    {
-        return $this->collectItems($receiptPreviews)
-            ->pluck('shop')
-            ->unique();
     }
 
     private function roleShopScopeNames(Role $role): Collection
