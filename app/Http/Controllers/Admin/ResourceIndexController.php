@@ -1313,7 +1313,7 @@ class ResourceIndexController extends Controller
         $permissionLinkedRoleCount = $this->activePermissionLinkedRoleCount();
         $permissionlessActiveRoleCount = $activeRoleCount - $permissionLinkedRoleCount;
         $assignedPermissionLinkedRoleCount = $this->activeAssignedPermissionLinkedRoleCount();
-        $scopedPermissionLinkedRoleCount = (clone $rolesQuery)->activeShopScopedPermissionBearing()->count();
+        $scopedPermissionLinkedRoleCount = $this->shopScopedPermissionLinkedRoleCount();
         $activeBranchPermissionLinkedRoleCount = (clone $rolesQuery)->activeAssignedToActiveShopPermissionBearing()->count();
         $pausedBranchPermissionLinkedRoleCount = (clone $rolesQuery)->activeAssignedToPausedShopPermissionBearing()->count();
         $draftPermissionLinkedRoleCount = $this->draftPermissionLinkedRoleCount();
@@ -5578,6 +5578,11 @@ class ResourceIndexController extends Controller
     private function activeAssignedPermissionLinkedRoleCount(): int
     {
         return (int) Role::query()->activeAssignedPermissionBearing()->count();
+    }
+
+    private function shopScopedPermissionLinkedRoleCount(): int
+    {
+        return (int) Role::query()->activeShopScopedPermissionBearing()->count();
     }
 
     private function shopScopedAssignedRoleCount(): int
