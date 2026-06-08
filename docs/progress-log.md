@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Resource draft assigned role summary helper checkpoint
+- Added `draftAssignedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level draft assigned role count no longer reaches for an inline draft-assigned role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource active assigned role summary helper checkpoint
 - Added `activeAssignedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active assigned role count no longer reaches for an inline active-assigned role count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
