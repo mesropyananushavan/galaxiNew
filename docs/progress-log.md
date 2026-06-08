@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Reports permissionless role helper seam checkpoint
+- Added `activePermissionlessRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer derives active permissionless Galaxy access roles by subtracting permission-linked role totals inline.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController access-summary cleanup.
+
 ### Reports unlinked holder helper seam checkpoint
 - Added `unlinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer derives unlinked Galaxy holder totals by subtracting linked-holder counts inline.
 - Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController holder-summary cleanup.
