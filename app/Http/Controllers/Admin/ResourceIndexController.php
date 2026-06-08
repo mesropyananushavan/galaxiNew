@@ -4571,7 +4571,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review note', 'value' => $this->shopsSelectedReviewNoteValue($selectedShop)],
             ['label' => 'Code', 'value' => $this->shopCodeValue($selectedShop)],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
-            ['label' => 'Shop status signal', 'value' => $this->shopsSelectedStatusSignal($selectedShop)],
+            ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Branch focus', 'value' => $this->shopsSelectedBranchFocus($selectedShop)],
             ['label' => 'Branch posture', 'value' => $this->shopsSelectedBranchPosture($selectedShop)],
             ['label' => 'Evidence priority', 'value' => $this->shopsSelectedEvidencePriority($selectedShop)],
@@ -4664,11 +4664,6 @@ class ResourceIndexController extends Controller
     private function shopsSelectedReviewNoteValue(Shop $selectedShop): string
     {
         return $this->shopReviewNoteValue($selectedShop, 'No review note saved yet');
-    }
-
-    private function shopsSelectedStatusSignal(Shop $selectedShop): string
-    {
-        return $this->shopsStatusSignal($selectedShop);
     }
 
     private function shopsSelectedBranchFocus(Shop $selectedShop): string
@@ -4873,7 +4868,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsSelectedLastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopsSelectedReviewNoteValue($selectedShop)],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
-            ['label' => 'Shop status signal', 'value' => $this->shopsSelectedStatusSignal($selectedShop)],
+            ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsSelectedScopeHandoffSignal($selectedShop)],
             ['label' => 'Status posture', 'value' => $this->shopsStatusPosture($selectedShop)],
             ['label' => 'Manager posture', 'value' => $this->shopsManagerPosture($selectedShop)],
