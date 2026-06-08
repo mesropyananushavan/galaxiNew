@@ -1217,7 +1217,7 @@ class ResourceIndexController extends Controller
             $page['liveForm']['valuesResolver'] = [
                 'name' => $selectedShop->name,
                 'code' => $this->shopCodeValue($selectedShop),
-                'is_active' => $this->shopActiveValue($selectedShop),
+                'is_active' => $this->shopIsActive($selectedShop) ? '1' : '0',
                 'review_note' => $this->shopReviewNoteValue($selectedShop),
             ];
         }
@@ -6034,11 +6034,6 @@ class ResourceIndexController extends Controller
     private function shopIsPaused(Shop $shop): bool
     {
         return ! $this->shopIsActive($shop);
-    }
-
-    private function shopActiveValue(Shop $shop): string
-    {
-        return $this->shopIsActive($shop) ? '1' : '0';
     }
 
     private function shopReviewNoteValue(Shop $shop, string $fallback = ''): string

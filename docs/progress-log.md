@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop active-value wrapper cleanup checkpoint
+- Removed the single-use `shopActiveValue()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its explicit `'1'` / `'0'` mapping at the selected-shop live-form value seam.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Non-empty string wrapper cleanup checkpoint
 - Removed the small `nonEmptyStrings()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its explicit filter path inside the role scope-name and assigned-user preview helpers.
 - Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController helper cleanup.
