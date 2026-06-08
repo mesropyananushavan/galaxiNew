@@ -1248,7 +1248,12 @@ class ResourceIndexController extends Controller
             [
                 'title' => $this->shopsSelectedLifecycleTimelineTitle($selectedShop),
                 'time' => 'Current request',
-                'description' => $this->shopsLifecycleFreshnessDescription($selectedShop),
+                'description' => $this->lifecycleFreshnessDescription(
+                    $selectedShop,
+                    'This branch does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.',
+                    'This branch was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved branch shell.',
+                    'This branch was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing a branch shell that has already changed after initial setup.',
+                ),
             ],
             [
                 'title' => $this->shopsSelectedLastSavedTimelineTitle($selectedShop),
@@ -4700,16 +4705,6 @@ class ResourceIndexController extends Controller
     {
         return $this->shopVisibleCardholderCount($selectedShop) > 0
             || $this->shopVisibleCardCount($selectedShop) > 0;
-    }
-
-    private function shopsLifecycleFreshnessDescription(Shop $selectedShop): string
-    {
-        return $this->lifecycleFreshnessDescription(
-            $selectedShop,
-            'This branch does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.',
-            'This branch was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved branch shell.',
-            'This branch was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing a branch shell that has already changed after initial setup.',
-        );
     }
 
     private function shopsCoverageSignal(Shop $selectedShop): string

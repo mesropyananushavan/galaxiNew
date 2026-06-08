@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop lifecycle-description wrapper cleanup checkpoint
+- Removed the single-use `shopsLifecycleFreshnessDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its shared lifecycle description call at the selected-shop timeline entry.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop last-saved-label wrapper cleanup checkpoint
 - Removed the single-use `shopsLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-shop call sites directly to the shared `lastSavedLabel()` helper.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
