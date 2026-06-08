@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop evidence-priority wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedEvidencePriority()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsEvidencePriority()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop branch-posture wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedBranchPosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsBranchPosture()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
