@@ -1303,7 +1303,7 @@ class ResourceIndexController extends Controller
         $draftLinkedCardCount = $this->draftHolderLinkedCardCount();
         $activatedLinkedCardCount = $this->activatedHolderLinkedCardCount();
         $blockedLinkedHolderCount = $this->blockedLinkedCardHolderCount();
-        $draftLinkedHolderCount = CardHolder::query()->draftLinked()->count();
+        $draftLinkedHolderCount = $this->draftLinkedCardHolderCount();
         $activeLinkedHolderCount = $this->activeLinkedCardHolderCount();
         $activatedLinkedHolderCount = CardHolder::query()->activatedLinked()->count();
         $rolesQuery = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active');
@@ -5825,6 +5825,11 @@ class ResourceIndexController extends Controller
     private function blockedLinkedCardHolderCount(): int
     {
         return (int) CardHolder::query()->blockedLinked()->count();
+    }
+
+    private function draftLinkedCardHolderCount(): int
+    {
+        return (int) CardHolder::query()->draftLinked()->count();
     }
 
     private function activeUnlinkedCardHolderCount(): int
