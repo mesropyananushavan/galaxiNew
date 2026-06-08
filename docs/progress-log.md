@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Card-types saved-count helper reuse checkpoint
+- Reused `cardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so card-types catalog disabled-state messaging no longer derives saved Galaxy tier totals from the loaded collection.
+- Re-ran the dedicated card-types management preview assertion as the parity check for this small ResourceIndexController tier-catalog cleanup.
+
 ### Card-types total count helper seam checkpoint
 - Added `cardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the card-types workspace metrics no longer derive the saved Galaxy tier total from the already loaded collection.
 - Re-ran the dedicated card-types management preview assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
