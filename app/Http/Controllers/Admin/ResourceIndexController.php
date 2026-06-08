@@ -4567,7 +4567,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review mode', 'value' => $this->shopsReviewMode($selectedShop)],
             ['label' => 'Operational readiness', 'value' => $this->shopsOperationalReadiness($selectedShop)],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedShop)],
-            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
+            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->lastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopsSelectedReviewNoteValue($selectedShop)],
             ['label' => 'Code', 'value' => $this->shopCodeValue($selectedShop)],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
@@ -4604,7 +4604,7 @@ class ResourceIndexController extends Controller
     {
         return sprintf(
             'The latest saved Galaxy foundation timestamp for this branch is %s, giving operators a concrete checkpoint for the current branch shell.',
-            $this->shopsLastSavedLabel($selectedShop),
+            $this->lastSavedLabel($selectedShop),
         );
     }
 
@@ -4712,11 +4712,6 @@ class ResourceIndexController extends Controller
         );
     }
 
-    private function shopsLastSavedLabel(Shop $selectedShop): string
-    {
-        return $this->lastSavedLabel($selectedShop);
-    }
-
     private function shopsCoverageSignal(Shop $selectedShop): string
     {
         return match (true) {
@@ -4805,7 +4800,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected shop', 'value' => $this->shopNameValue($selectedShop)],
             ['label' => 'Branch posture', 'value' => $this->shopsBranchReviewPosture()],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedShop)],
-            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
+            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->lastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopsSelectedReviewNoteValue($selectedShop)],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
