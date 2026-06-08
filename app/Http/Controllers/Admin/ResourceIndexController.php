@@ -858,7 +858,7 @@ class ResourceIndexController extends Controller
         $page['actions'] = $this->catalogLiveFormReviewActions(
             'New Galaxy card',
             'Review blocked cards',
-            $this->cardsCatalogReviewBlockedDisabledReason($cards),
+            $this->cardsCatalogReviewBlockedDisabledReason(),
         );
 
         if ($cards->isEmpty()) {
@@ -2503,7 +2503,7 @@ class ResourceIndexController extends Controller
         );
     }
 
-    private function cardsCatalogIssueCardDisabledReason(mixed $cards): string
+    private function cardsCatalogIssueCardDisabledReason(): string
     {
         $draftCount = $this->draftCardCount();
         $activeCount = $this->activeCardCount();
@@ -2515,7 +2515,7 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function cardsCatalogReviewBlockedDisabledReason(mixed $cards): string
+    private function cardsCatalogReviewBlockedDisabledReason(): string
     {
         $blockedCount = $this->blockedCardCount();
         $activeCount = $this->activeCardCount();

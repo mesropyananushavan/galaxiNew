@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Cards catalog dead-parameter cleanup checkpoint
+- Removed the unused `$cards` parameter from `cardsCatalogIssueCardDisabledReason()` and `cardsCatalogReviewBlockedDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the live catalog call to match.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController card-catalog cleanup.
+
 ### Card-types catalog dead-parameter cleanup checkpoint
 - Removed the unused `$cardTypes` parameter from `cardTypesCatalogImportRulesDisabledReason()` and `cardTypesCatalogPublishTypeDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the catalog calls to match.
 - Re-ran the dedicated card-types management preview assertion as the parity check for this small ResourceIndexController tier-catalog cleanup.
