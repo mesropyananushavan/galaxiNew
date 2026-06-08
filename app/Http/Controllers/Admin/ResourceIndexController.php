@@ -1322,7 +1322,7 @@ class ResourceIndexController extends Controller
         $draftAssignedRoleCount = $this->draftAssignedRoleCount();
         $assignedStaffCount = $this->assignedStaffCount();
         $shopScopedAssignedStaffCount = $this->shopScopedAssignedStaffCount();
-        $unscopedAssignedStaffCount = $assignedStaffCount - $shopScopedAssignedStaffCount;
+        $unscopedAssignedStaffCount = $this->unscopedAssignedStaffCount();
         $activeShopAssignedStaffCount = $this->activeShopAssignedStaffCount();
         $pausedShopAssignedStaffCount = $this->pausedShopAssignedStaffCount();
 
@@ -5628,6 +5628,11 @@ class ResourceIndexController extends Controller
     private function shopScopedAssignedStaffCount(): int
     {
         return (int) User::query()->roleAssignedToScopedShop()->count();
+    }
+
+    private function unscopedAssignedStaffCount(): int
+    {
+        return (int) User::query()->roleAssigned()->whereDoesntHave('shop')->count();
     }
 
     private function activeShopAssignedStaffCount(): int
