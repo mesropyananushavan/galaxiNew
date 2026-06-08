@@ -6113,11 +6113,6 @@ class ResourceIndexController extends Controller
         return $modelClass::query()->latest('id')->first();
     }
 
-    private function countMatching(iterable $values, callable $predicate): int
-    {
-        return $this->iterableCount($this->filterMatching($values, $predicate));
-    }
-
     private function iterableCount(iterable $values): int
     {
         return $this->collectItems($values)->count();

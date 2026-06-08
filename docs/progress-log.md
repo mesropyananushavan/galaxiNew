@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Unused count helper removal checkpoint
+- Removed the now-unused `countMatching()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` after the recent checks and preview count simplifications stopped calling it.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Latest model lookup wrapper cleanup checkpoint
 - Removed the redundant `firstQueryItem()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and switched `latestSavedModelRecord()` to call `->first()` directly on the latest-id query.
 - Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
