@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shops catalog dead-parameter cleanup checkpoint
+- Removed the unused `$shops` parameter from `shopsCatalogReviewScopeDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the catalog call to match.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController branch-catalog cleanup.
+
 ### Cardholders catalog dead-parameter cleanup checkpoint
 - Removed the unused `$cardHolders` parameter from `cardholdersCatalogReviewActivityDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the live catalog call to match.
 - Re-ran the dedicated cardholders management preview assertion as the parity check for this small ResourceIndexController holder-catalog cleanup.

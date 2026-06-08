@@ -1129,7 +1129,7 @@ class ResourceIndexController extends Controller
             [
                 [
                     'label' => 'Review branch scope',
-                    'disabledReason' => $this->shopsCatalogReviewScopeDisabledReason($shops),
+                    'disabledReason' => $this->shopsCatalogReviewScopeDisabledReason(),
                 ],
             ],
         );
@@ -2566,7 +2566,7 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function shopsCatalogReviewScopeDisabledReason(mixed $shops): string
+    private function shopsCatalogReviewScopeDisabledReason(): string
     {
         $managerCount = $this->shopManagerCoverageCount();
         $coverageCount = $this->shopFoundationCoverageCount();
