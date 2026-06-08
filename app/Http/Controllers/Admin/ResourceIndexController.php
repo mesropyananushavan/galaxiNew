@@ -1291,7 +1291,7 @@ class ResourceIndexController extends Controller
         $blockedUnassignedCardCount = $this->blockedUnassignedCardCount();
         $draftUnassignedCardCount = $this->draftUnassignedCardCount();
         $cardHolders = CardHolder::query()->withCount('cards')->with(['shop:id,is_active', 'cards:id,card_holder_id,status,activated_at'])->get();
-        $cardHolderCount = $cardHolders->count();
+        $cardHolderCount = $this->iterableCount($cardHolders);
         $activeCardHolderCount = $this->activeCardHolderCount();
         $inactiveCardHolderCount = $this->inactiveCardHolderCount();
         $linkedCardHolderCount = $this->linkedCardHolderCount();
@@ -1308,7 +1308,7 @@ class ResourceIndexController extends Controller
         $activatedLinkedHolderCount = $this->activatedLinkedCardHolderCount();
         $rolesQuery = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active');
         $roles = $rolesQuery->get();
-        $roleCount = $roles->count();
+        $roleCount = $this->iterableCount($roles);
         $activeRoleCount = $this->activeRoleCount();
         $permissionLinkedRoleCount = $this->activePermissionLinkedRoleCount();
         $permissionlessActiveRoleCount = $activeRoleCount - $permissionLinkedRoleCount;

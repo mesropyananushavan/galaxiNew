@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Resource catalog iterable count seam follow-up checkpoint
+- Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so loaded cardholder and role catalog totals no longer call collection `count()` inline while building the Galaxy Phase 1 admin preview workspace.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController count-seam cleanup.
+
 ### Resource paused-branch permission-linked role summary helper checkpoint
 - Added `pausedShopPermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level paused-branch permission-linked role count no longer reaches for an inline paused-branch permission-bearing role count query.
 - Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController access-summary cleanup.
