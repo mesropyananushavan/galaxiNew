@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Resource active-branch permission-linked role summary helper checkpoint
+- Added `activeShopPermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active-branch permission-linked role count no longer reaches for an inline active assigned-to-active-shop permission-bearing role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource shop-scoped permission-linked role summary helper checkpoint
 - Added `shopScopedPermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level shop-scoped permission-linked role count no longer reaches for an inline active shop-scoped permission-bearing role count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
