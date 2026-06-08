@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Unused catalog helper removal checkpoint
+- Removed the now-unused `cardholdersCatalogNewHolderDisabledReason()` and `shopsCatalogNewShopDisabledReason()` methods from `app/Http/Controllers/Admin/ResourceIndexController.php` after the surrounding Galaxy catalog actions stopped depending on them.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController dead-code cleanup.
+
 ### Unused catalog helper dead-parameter cleanup checkpoint
 - Removed the unused `$cardHolders` parameter from `cardholdersCatalogNewHolderDisabledReason()` and the unused `$shops` parameter from `shopsCatalogNewShopDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController catalog cleanup.

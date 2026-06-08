@@ -2527,18 +2527,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function cardholdersCatalogNewHolderDisabledReason(): string
-    {
-        $inactiveCount = $this->inactiveCardHolderCount();
-        $linkedCards = $this->holderLinkedCardCount();
-
-        return match (true) {
-            $inactiveCount > 0 => 'Blocked until saved inactive-holder states are verified against legacy profile and lifecycle parity.',
-            $linkedCards > 0 => 'Blocked until linked-holder coverage is verified against the old Galaxy profile flow.',
-            default => 'Blocked until the first Galaxy foundation-backed cardholder slice exists for profile parity review.',
-        };
-    }
-
     private function cardholdersCatalogReviewActivityDisabledReason(): string
     {
         $linkedCards = $this->holderLinkedCardCount();
@@ -2551,18 +2539,6 @@ class ResourceIndexController extends Controller
             $linkedCards > 0 => 'Blocked until linked-holder activity coverage is verified against legacy lookup history.',
             $activeCount > 0 => 'Blocked until active-holder coverage has a stable Galaxy foundation activity source for parity review.',
             default => 'Blocked until the first Galaxy foundation-backed cardholder slice exists for activity-history parity review.',
-        };
-    }
-
-    private function shopsCatalogNewShopDisabledReason(): string
-    {
-        $managerCount = $this->shopManagerCoverageCount();
-        $pausedCount = $this->pausedShopCount();
-
-        return match (true) {
-            $pausedCount > 0 => 'Blocked until paused-branch recovery and manager assignment parity are verified.',
-            $managerCount > 0 => 'Blocked until saved branch ownership and manager assignment parity are verified.',
-            default => 'Blocked until the first Galaxy foundation-backed shops index and manager assignment parity checks are verified.',
         };
     }
 
