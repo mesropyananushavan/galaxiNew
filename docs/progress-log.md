@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop dependency-status-signal wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyStatusSignal()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedStatusSignal()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop dependency-coverage-signal wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedDependencyCoverageSignal()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedCoverageSignal()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
