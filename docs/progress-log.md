@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Card lifecycle-label wrapper cleanup checkpoint
+- Removed the single-use `cardsLifecycleFreshnessLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-card summaries directly to the shared `lifecycleFreshnessLabel()` helper.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop review-note-value wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedReviewNoteValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopReviewNoteValue($selectedShop, 'No review note saved yet')`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

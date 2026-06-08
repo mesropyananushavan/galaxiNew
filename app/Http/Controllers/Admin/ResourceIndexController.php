@@ -3666,7 +3666,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Card status signal', 'value' => $this->cardsStatusSignal($selectedCard)],
             ['label' => 'Operational readiness', 'value' => $this->cardsOperationalReadiness($selectedCard)],
             ['label' => 'Lifecycle stage', 'value' => $this->cardsLifecycleStage($selectedCard)],
-            ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardsLastSavedLabel($selectedCard)],
             ['label' => 'Review note', 'value' => $this->cardsReviewNoteLabel($selectedCard)],
             ['label' => 'Holder', 'value' => $this->cardsHolderLabel($selectedCard)],
@@ -3952,11 +3952,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function cardsLifecycleFreshnessLabel(Card $selectedCard): string
-    {
-        return $this->lifecycleFreshnessLabel($selectedCard);
-    }
-
     private function cardsLifecycleFreshnessDescription(Card $selectedCard): string
     {
         return $this->lifecycleFreshnessDescription(
@@ -4010,7 +4005,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected card', 'value' => $this->cardsSelectedCardLabel($selectedCard)],
             ['label' => 'Inventory posture', 'value' => $this->cardsInventoryDependencyPosture()],
             ['label' => 'Card status signal', 'value' => $this->cardsStatusSignal($selectedCard)],
-            ['label' => 'Lifecycle freshness', 'value' => $this->cardsLifecycleFreshnessLabel($selectedCard)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedCard)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardsLastSavedLabel($selectedCard)],
             ['label' => 'Issued', 'value' => $this->cardsIssuedLabel($selectedCard)],
             ['label' => 'Review note', 'value' => $this->cardsReviewNoteLabel($selectedCard)],
