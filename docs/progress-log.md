@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop manager wrapper cleanup checkpoint
+- Removed the redundant `firstLoadedShopManager()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and switched `shopAssignedManagerName()` to read directly from `firstLoadedShopUser()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Unused count helper removal checkpoint
 - Removed the now-unused `countMatching()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` after the recent checks and preview count simplifications stopped calling it.
 - Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
