@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Reports total inventory helper seam checkpoint
+- Added `shopCount()` and `cardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused them so the reports workspace no longer reaches for inline total branch and total card count queries while building the Galaxy Phase 1 reporting preview.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController reporting cleanup.
+
 ### Cards catalog disabled-state helper seam checkpoint
 - Reused `draftCardCount()` and `blockedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so cards catalog disabled-state messaging no longer reaches for inline draft and blocked inventory count queries.
 - Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController card-catalog cleanup.

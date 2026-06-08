@@ -1271,9 +1271,9 @@ class ResourceIndexController extends Controller
 
     private function enrichReportsPage(array $page): array
     {
-        $shopCount = Shop::query()->count();
+        $shopCount = $this->shopCount();
         $activeShopCount = $this->activeShopCount();
-        $cardCount = Card::query()->count();
+        $cardCount = $this->cardCount();
         $activeCardCount = $this->activeCardCount();
         $blockedCardCount = $this->blockedCardCount();
         $draftCardCount = $this->draftCardCount();
@@ -5712,6 +5712,11 @@ class ResourceIndexController extends Controller
         return (int) CardType::query()->rolloutNoted()->count();
     }
 
+    private function cardCount(): int
+    {
+        return (int) Card::query()->count();
+    }
+
     private function activeCardCount(): int
     {
         return (int) Card::query()->active()->count();
@@ -6012,6 +6017,11 @@ class ResourceIndexController extends Controller
     private function loadedShopCards(Shop $shop): Collection
     {
         return $this->shopCardsRelation($shop)->getResults();
+    }
+
+    private function shopCount(): int
+    {
+        return (int) Shop::query()->count();
     }
 
     private function activeShopCount(): int
