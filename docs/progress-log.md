@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Checks catalog receipt-metric precompute checkpoint
+- Precomputed receipt preview shop, total, and zero-accrual counts in `app/Http/Controllers/Admin/ResourceIndexController.php`, then passed those explicit metrics into the checks catalog disabled-state helpers instead of making each helper recalculate from the full preview array.
+- Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.
+
 ### Roles dependency dead-parameter cleanup checkpoint
 - Removed the unused `$permissionPreview` parameter from `rolesPermissionsSelectedRoleDependencyStatus()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the selected-role dependency call to match.
 - Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController access-review cleanup.

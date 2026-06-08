@@ -250,13 +250,17 @@ class ResourceIndexController extends Controller
             ],
         ];
 
+        $receiptPreviewShopCount = $this->receiptPreviewShopCount($receiptPreviews);
+        $receiptPreviewCount = $this->receiptPreviewCount($receiptPreviews);
+        $zeroAccrualReceiptCount = $this->zeroAccrualReceiptCount($receiptPreviews);
+
         $page['actions'] = $this->catalogDisabledPrimaryWithSecondaryReviewActions(
             'Find receipt',
-            $this->checksPointsCatalogFindReceiptDisabledReason($receiptPreviews),
+            $this->checksPointsCatalogFindReceiptDisabledReason($receiptPreviewShopCount, $receiptPreviewCount),
             [
                 [
                     'label' => 'Review accrual gaps',
-                    'disabledReason' => $this->checksPointsCatalogReviewGapsDisabledReason($receiptPreviews),
+                    'disabledReason' => $this->checksPointsCatalogReviewGapsDisabledReason($receiptPreviewShopCount, $zeroAccrualReceiptCount),
                 ],
             ],
         );
@@ -2565,11 +2569,8 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function checksPointsCatalogFindReceiptDisabledReason(array $receiptPreviews): string
+    private function checksPointsCatalogFindReceiptDisabledReason(int $shopCount, int $receiptCount): string
     {
-        $shopCount = $this->receiptPreviewShopCount($receiptPreviews);
-        $receiptCount = $this->receiptPreviewCount($receiptPreviews);
-
         return match (true) {
             $receiptCount > 0 && $shopCount > 1 => 'Blocked until fiscal receipt lookup is verified against branch-aware transaction history and legacy search habits.',
             $receiptCount > 0 => 'Blocked until fiscal receipt lookup is backed by Galaxy foundation transaction reads and receipt-history parity checks.',
@@ -2577,11 +2578,8 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function checksPointsCatalogReviewGapsDisabledReason(array $receiptPreviews): string
+    private function checksPointsCatalogReviewGapsDisabledReason(int $shopCount, int $zeroAccrualCount): string
     {
-        $zeroAccrualCount = $this->zeroAccrualReceiptCount($receiptPreviews);
-        $shopCount = $this->receiptPreviewShopCount($receiptPreviews);
-
         return match (true) {
             $zeroAccrualCount > 0 && $shopCount > 1 => 'Blocked until zero-accrual and branch-aware troubleshooting are backed by Galaxy foundation transaction and rule data.',
             $zeroAccrualCount > 0 => 'Blocked until zero-accrual troubleshooting is backed by Galaxy foundation transaction and rule data.',
