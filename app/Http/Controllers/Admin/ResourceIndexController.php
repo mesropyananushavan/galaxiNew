@@ -4581,7 +4581,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Manager guidance', 'value' => $this->shopsSelectedManagerGuidance($selectedShop)],
             ['label' => 'Cardholders', 'value' => $this->shopsSelectedCardholderCountValue($selectedShop)],
             ['label' => 'Cards', 'value' => $this->shopsSelectedCardCountValue($selectedShop)],
-            ['label' => 'Galaxy status', 'value' => $this->shopsSelectedStatusValue($selectedShop)],
+            ['label' => 'Galaxy status', 'value' => $this->shopStatusValue($selectedShop)],
             [
                 'label' => 'Branch guidance',
                 'value' => $this->shopsSelectedBranchGuidance($selectedShop),
@@ -4784,11 +4784,6 @@ class ResourceIndexController extends Controller
     private function shopsSelectedManagerGuidance(Shop $selectedShop): string
     {
         return $this->shopsManagerGuidance($selectedShop);
-    }
-
-    private function shopsSelectedStatusValue(Shop $selectedShop): string
-    {
-        return $this->shopStatusValue($selectedShop);
     }
 
     private function shopsSelectedCardholderCountValue(Shop $selectedShop): string

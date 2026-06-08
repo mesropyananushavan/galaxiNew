@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop selected-status wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedStatusValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopStatusValue()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop selected-code wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedCodeValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopCodeValue()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
