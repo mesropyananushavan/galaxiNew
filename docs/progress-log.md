@@ -1,5 +1,11 @@
 # Progress Log
 
+## 2026-06-08
+
+### Resource active linked holder summary metric helper checkpoint
+- Reused `activeLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active linked holder count no longer reaches for an inline active-linked-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ## 2026-06-07
 
 ### Resource activated linked card summary metric helper checkpoint
