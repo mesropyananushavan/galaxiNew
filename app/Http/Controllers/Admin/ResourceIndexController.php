@@ -274,7 +274,7 @@ class ResourceIndexController extends Controller
             $receipt['created'],
         ])->all();
 
-        $latestReceiptPreview = $this->firstCatalogPreview($receiptPreviews);
+        $latestReceiptPreview = $this->firstCollectedItem($receiptPreviews);
 
         if (is_array($latestReceiptPreview)) {
             $page = $this->appendLatestPreviewReviewAction(
@@ -437,7 +437,7 @@ class ResourceIndexController extends Controller
             $rule['status'],
         ])->all();
 
-        $latestRulePreview = $this->firstCatalogPreview($rulePreviews);
+        $latestRulePreview = $this->firstCollectedItem($rulePreviews);
 
         if (is_array($latestRulePreview)) {
             $page = $this->appendLatestPreviewReviewAction(
@@ -620,7 +620,7 @@ class ResourceIndexController extends Controller
             $gift['status'],
         ])->all();
 
-        $latestGiftPreview = $this->firstCatalogPreview($giftPreviews);
+        $latestGiftPreview = $this->firstCollectedItem($giftPreviews);
 
         if (is_array($latestGiftPreview)) {
             $page = $this->appendLatestPreviewReviewAction(
@@ -6094,11 +6094,6 @@ class ResourceIndexController extends Controller
         return $this->collectItems($counts)
             ->filter(fn (int $count): bool => $this->isPositiveCount($count))
             ->count();
-    }
-
-    private function firstCatalogPreview(iterable $previews): mixed
-    {
-        return $this->firstCollectedItem($previews);
     }
 
     private function firstCollectedItem(iterable $values): mixed
