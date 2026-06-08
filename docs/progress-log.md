@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop operational-readiness wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedOperationalReadiness()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsOperationalReadiness()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop review-mode wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedReviewMode()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsReviewMode()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
