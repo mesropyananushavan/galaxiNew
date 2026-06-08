@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop dependency-label wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedLabel()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop selected-card-count wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedCardCountValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopVisibleCardCountValue()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
