@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop branch-focus wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedBranchFocus()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsBranchFocus()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop backend-gap wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedBackendGap()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopsBackendGap()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
