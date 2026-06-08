@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Roles loaded-count collection seam checkpoint
+- Replaced `iterableCount()` with direct collection `count()` inside `roleLoadedUserCount()` and `roleLoadedPermissionCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because both helpers already operate on loaded role collections.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController role-count cleanup.
+
 ### Checks receipt shop-count seam cleanup checkpoint
 - Inlined the unique-shop counting flow inside `receiptPreviewShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then removed the extra `receiptPreviewShops()` wrapper because it no longer added useful Phase 1 reporting structure.
 - Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.
