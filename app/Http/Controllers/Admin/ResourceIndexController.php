@@ -5361,7 +5361,9 @@ class ResourceIndexController extends Controller
 
     private function zeroAccrualReceiptCount(array $receiptPreviews): int
     {
-        return $this->countMatching($receiptPreviews, fn (array $receipt): bool => $this->isZeroAccrualReceipt($receipt));
+        return $this->collectItems($receiptPreviews)
+            ->filter(fn (array $receipt): bool => $this->isZeroAccrualReceipt($receipt))
+            ->count();
     }
 
     private function isZeroAccrualReceipt(array $receipt): bool

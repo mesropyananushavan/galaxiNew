@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Checks zero-accrual count seam checkpoint
+- Replaced the generic `countMatching()` path inside `zeroAccrualReceiptCount()` with a direct preview-collection filter and `count()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, keeping the checks receipt metrics flow explicit and local to the Galaxy checks preview.
+- Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.
+
 ### Checks receipt total-count seam checkpoint
 - Replaced `iterableCount()` with direct `count()` inside `receiptPreviewCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because the checks receipt preview helper already receives a plain preview array.
 - Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.
