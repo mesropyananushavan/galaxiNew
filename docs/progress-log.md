@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Reports total role helper seam checkpoint
+- Added `roleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer loads the full Galaxy access role collection just to derive the total role count.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController reporting cleanup.
+
 ### Reports unscoped assigned staff helper seam checkpoint
 - Added `unscopedAssignedStaffCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer derives assigned staff without shop scope by subtracting scoped-assignment totals inline.
 - Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController access-staffing cleanup.

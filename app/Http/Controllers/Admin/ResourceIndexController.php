@@ -1306,9 +1306,7 @@ class ResourceIndexController extends Controller
         $draftLinkedHolderCount = $this->draftLinkedCardHolderCount();
         $activeLinkedHolderCount = $this->activeLinkedCardHolderCount();
         $activatedLinkedHolderCount = $this->activatedLinkedCardHolderCount();
-        $rolesQuery = Role::query()->withCount(['permissions', 'users'])->with('users.shop:id,is_active');
-        $roles = $rolesQuery->get();
-        $roleCount = $this->iterableCount($roles);
+        $roleCount = $this->roleCount();
         $activeRoleCount = $this->activeRoleCount();
         $permissionLinkedRoleCount = $this->activePermissionLinkedRoleCount();
         $permissionlessActiveRoleCount = $this->activePermissionlessRoleCount();
@@ -5528,6 +5526,11 @@ class ResourceIndexController extends Controller
     private function rolePermissionsRelation(Role $role): Relation
     {
         return $role->permissions();
+    }
+
+    private function roleCount(): int
+    {
+        return (int) Role::query()->count();
     }
 
     private function permissionLinkedRoleCount(): int
