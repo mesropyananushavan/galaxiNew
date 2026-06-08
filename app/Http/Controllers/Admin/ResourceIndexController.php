@@ -4566,7 +4566,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected shop', 'value' => $this->shopNameValue($selectedShop)],
             ['label' => 'Review mode', 'value' => $this->shopsReviewMode($selectedShop)],
             ['label' => 'Operational readiness', 'value' => $this->shopsOperationalReadiness($selectedShop)],
-            ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopsSelectedReviewNoteValue($selectedShop)],
             ['label' => 'Code', 'value' => $this->shopCodeValue($selectedShop)],
@@ -4702,11 +4702,6 @@ class ResourceIndexController extends Controller
             || $this->shopVisibleCardCount($selectedShop) > 0;
     }
 
-    private function shopsLifecycleFreshnessLabel(Shop $selectedShop): string
-    {
-        return $this->lifecycleFreshnessLabel($selectedShop);
-    }
-
     private function shopsLifecycleFreshnessDescription(Shop $selectedShop): string
     {
         return $this->lifecycleFreshnessDescription(
@@ -4809,7 +4804,7 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected shop', 'value' => $this->shopNameValue($selectedShop)],
             ['label' => 'Branch posture', 'value' => $this->shopsBranchReviewPosture()],
-            ['label' => 'Lifecycle freshness', 'value' => $this->shopsLifecycleFreshnessLabel($selectedShop)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->shopsLastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopsSelectedReviewNoteValue($selectedShop)],
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
