@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Reports unassigned inventory helper seam checkpoint
+- Reused `unassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the reports workspace no longer derives unassigned Galaxy card inventory by subtracting linked-card totals inline.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController inventory-summary cleanup.
+
 ### Reports total inventory helper seam checkpoint
 - Added `shopCount()` and `cardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused them so the reports workspace no longer reaches for inline total branch and total card count queries while building the Galaxy Phase 1 reporting preview.
 - Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController reporting cleanup.

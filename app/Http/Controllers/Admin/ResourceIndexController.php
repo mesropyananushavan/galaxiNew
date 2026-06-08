@@ -1279,7 +1279,7 @@ class ResourceIndexController extends Controller
         $draftCardCount = $this->draftCardCount();
         $activatedCardCount = $this->activatedCardCount();
         $holderLinkedCardCount = $this->holderLinkedCardCount();
-        $unassignedCardCount = $cardCount - $holderLinkedCardCount;
+        $unassignedCardCount = $this->unassignedCardCount();
         $activatedHolderLinkedCardCount = $this->activatedHolderLinkedCardCount();
         $blockedHolderLinkedCardCount = $this->blockedHolderLinkedCardCount();
         $draftHolderLinkedCardCount = $this->draftHolderLinkedCardCount();
