@@ -1318,7 +1318,7 @@ class ResourceIndexController extends Controller
         $pausedBranchPermissionLinkedRoleCount = $this->pausedShopPermissionLinkedRoleCount();
         $draftPermissionLinkedRoleCount = $this->draftPermissionLinkedRoleCount();
         $assignedActiveRoleCount = $this->activeAssignedRoleCount();
-        $unassignedActiveRoleCount = $activeRoleCount - $assignedActiveRoleCount;
+        $unassignedActiveRoleCount = $this->activeUnassignedRoleCount();
         $draftAssignedRoleCount = $this->draftAssignedRoleCount();
         $assignedStaffCount = $this->assignedStaffCount();
         $shopScopedAssignedStaffCount = $this->shopScopedAssignedStaffCount();
@@ -5608,6 +5608,11 @@ class ResourceIndexController extends Controller
     private function activeAssignedRoleCount(): int
     {
         return (int) Role::query()->activeAssigned()->count();
+    }
+
+    private function activeUnassignedRoleCount(): int
+    {
+        return (int) Role::query()->active()->whereDoesntHave('users')->count();
     }
 
     private function draftAssignedRoleCount(): int

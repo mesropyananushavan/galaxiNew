@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Reports unassigned active role helper seam checkpoint
+- Added `activeUnassignedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer derives active Galaxy access roles without assigned staff by subtracting assigned-role totals inline.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController access-staffing cleanup.
+
 ### Reports permissionless role helper seam checkpoint
 - Added `activePermissionlessRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer derives active permissionless Galaxy access roles by subtracting permission-linked role totals inline.
 - Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController access-summary cleanup.
