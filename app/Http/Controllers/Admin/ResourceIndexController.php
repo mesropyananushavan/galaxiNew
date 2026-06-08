@@ -5933,17 +5933,17 @@ class ResourceIndexController extends Controller
 
     private function shopLoadedManagerCount(Shop $shop): int
     {
-        return $this->iterableCount($this->loadedShopManagers($shop));
+        return $this->loadedShopManagers($shop)->count();
     }
 
     private function shopLoadedCardholderCount(Shop $shop): int
     {
-        return $this->iterableCount($this->loadedShopCardholders($shop));
+        return $this->loadedShopCardholders($shop)->count();
     }
 
     private function shopLoadedCardCount(Shop $shop): int
     {
-        return $this->iterableCount($this->loadedShopCards($shop));
+        return $this->loadedShopCards($shop)->count();
     }
 
     private function firstLoadedShopManager(Shop $shop): ?User
@@ -6067,7 +6067,7 @@ class ResourceIndexController extends Controller
 
     private function roleScopeCount(Collection $scope): int
     {
-        return $this->iterableCount($scope);
+        return $scope->count();
     }
 
     private function firstRoleScopeLabel(Collection $scope): string

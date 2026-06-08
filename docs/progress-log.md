@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Loaded shop and scope collection seam checkpoint
+- Replaced `iterableCount()` with direct collection `count()` inside `shopLoadedManagerCount()`, `shopLoadedCardholderCount()`, `shopLoadedCardCount()`, and `roleScopeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because each helper already operates on loaded Galaxy collections.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController collection-count cleanup.
+
 ### Loaded card coverage collection seam checkpoint
 - Replaced `iterableCount()` with direct collection `count()` inside `loadedCardTypeCardCount()` and `loadedCardholderCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because both helpers already operate on loaded Galaxy card collections.
 - Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController card-coverage cleanup.
