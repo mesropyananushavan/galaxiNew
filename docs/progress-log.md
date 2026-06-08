@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop review-note timeline wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedReviewNoteTimelineDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop timeline directly to `shopReviewNoteReflection()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop lifecycle timeline wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedLifecycleTimelineDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop timeline directly to `shopsLifecycleFreshnessDescription()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
