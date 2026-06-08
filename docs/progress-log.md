@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Card-types total count helper seam checkpoint
+- Added `cardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the card-types workspace metrics no longer derive the saved Galaxy tier total from the already loaded collection.
+- Re-ran the dedicated card-types management preview assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
 ### Reports total holder helper seam checkpoint
 - Added `cardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer loads the full Galaxy holder collection just to derive the total holder count.
 - Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController reporting cleanup.

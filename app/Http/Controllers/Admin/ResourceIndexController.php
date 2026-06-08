@@ -1803,7 +1803,7 @@ class ResourceIndexController extends Controller
                 ['label' => 'Review-noted Galaxy tiers', 'value' => (string) $this->reviewNotedCardTypeCount()],
                 ['label' => 'Tier activation notes', 'value' => (string) $this->activationNotedCardTypeCount()],
                 ['label' => 'Tier rollout notes', 'value' => (string) $this->rolloutNotedCardTypeCount()],
-                ['label' => 'Saved Galaxy tiers', 'value' => (string) $this->iterableCount($cardTypes)],
+                ['label' => 'Saved Galaxy tiers', 'value' => (string) $this->cardTypeCount()],
             ];
         }
 
@@ -5702,6 +5702,11 @@ class ResourceIndexController extends Controller
         $cardType = $this->latestSavedModelRecord(CardType::class);
 
         return $cardType instanceof CardType ? $cardType : null;
+    }
+
+    private function cardTypeCount(): int
+    {
+        return (int) CardType::query()->count();
     }
 
     private function activeCardTypeCount(): int
