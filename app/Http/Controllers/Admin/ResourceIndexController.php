@@ -2527,7 +2527,7 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function cardholdersCatalogNewHolderDisabledReason(mixed $cardHolders): string
+    private function cardholdersCatalogNewHolderDisabledReason(): string
     {
         $inactiveCount = $this->inactiveCardHolderCount();
         $linkedCards = $this->holderLinkedCardCount();
@@ -2554,7 +2554,7 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function shopsCatalogNewShopDisabledReason(mixed $shops): string
+    private function shopsCatalogNewShopDisabledReason(): string
     {
         $managerCount = $this->shopManagerCoverageCount();
         $pausedCount = $this->pausedShopCount();
