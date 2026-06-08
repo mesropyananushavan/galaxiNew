@@ -2503,18 +2503,6 @@ class ResourceIndexController extends Controller
         );
     }
 
-    private function cardsCatalogIssueCardDisabledReason(): string
-    {
-        $draftCount = $this->draftCardCount();
-        $activeCount = $this->activeCardCount();
-
-        return match (true) {
-            $draftCount > 0 => 'Blocked until saved draft inventory is verified against legacy issue-flow parity.',
-            $activeCount > 0 => 'Blocked until active inventory and issuance parity are verified against the old Galaxy card flow.',
-            default => 'Blocked until the first Galaxy foundation-backed card inventory slice exists for issue-flow parity review.',
-        };
-    }
-
     private function cardsCatalogReviewBlockedDisabledReason(): string
     {
         $blockedCount = $this->blockedCardCount();
