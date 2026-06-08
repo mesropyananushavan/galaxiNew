@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop coverage-signal wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedCoverageSignal()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopsCoverageSignal()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop scope timeline wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedScopeTimelineDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop timeline directly to `shopsScopeTimelineHandoffDescription()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
