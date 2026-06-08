@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Cards catalog disabled-state helper seam checkpoint
+- Reused `draftCardCount()` and `blockedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so cards catalog disabled-state messaging no longer reaches for inline draft and blocked inventory count queries.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController card-catalog cleanup.
+
 ### Resource catalog iterable count seam follow-up checkpoint
 - Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so loaded cardholder and role catalog totals no longer call collection `count()` inline while building the Galaxy Phase 1 admin preview workspace.
 - Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController count-seam cleanup.

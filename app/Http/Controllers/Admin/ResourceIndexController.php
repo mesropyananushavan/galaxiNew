@@ -2508,7 +2508,7 @@ class ResourceIndexController extends Controller
 
     private function cardsCatalogIssueCardDisabledReason(mixed $cards): string
     {
-        $draftCount = Card::query()->draft()->count();
+        $draftCount = $this->draftCardCount();
         $activeCount = $this->activeCardCount();
 
         return match (true) {
@@ -2520,7 +2520,7 @@ class ResourceIndexController extends Controller
 
     private function cardsCatalogReviewBlockedDisabledReason(mixed $cards): string
     {
-        $blockedCount = Card::query()->blocked()->count();
+        $blockedCount = $this->blockedCardCount();
         $activeCount = $this->activeCardCount();
 
         return match (true) {
