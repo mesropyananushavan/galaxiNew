@@ -5386,14 +5386,20 @@ class ResourceIndexController extends Controller
 
     private function roleShopScopeNames(Role $role): Collection
     {
-        return $this->nonEmptyStrings($this->loadedRoleUsers($role)->pluck('shop.name'))
+        return $this->filterMatching(
+            $this->loadedRoleUsers($role)->pluck('shop.name'),
+            fn (mixed $value): bool => $this->isNonEmptyString($value)
+        )
             ->unique()
             ->values();
     }
 
     private function roleAssignedUserPreview(Role $role): Collection
     {
-        return $this->nonEmptyStrings($this->loadedRoleUsers($role)->pluck('name'))
+        return $this->filterMatching(
+            $this->loadedRoleUsers($role)->pluck('name'),
+            fn (mixed $value): bool => $this->isNonEmptyString($value)
+        )
             ->take(3)
             ->values();
     }
@@ -6067,11 +6073,6 @@ class ResourceIndexController extends Controller
         $label = $this->firstCollectedItem($scope);
 
         return is_string($label) ? $label : 'Unknown shop';
-    }
-
-    private function nonEmptyStrings(Collection $values): Collection
-    {
-        return $this->filterMatching($values, fn (mixed $value): bool => $this->isNonEmptyString($value));
     }
 
     private function isNonEmptyString(mixed $value): bool

@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Non-empty string wrapper cleanup checkpoint
+- Removed the small `nonEmptyStrings()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its explicit filter path inside the role scope-name and assigned-user preview helpers.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Unused iterable helper removal checkpoint
 - Removed the now-unused `iterableCount()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` after the recent count cleanups switched remaining callers to direct collection or array counting.
 - Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController dead-code cleanup.
