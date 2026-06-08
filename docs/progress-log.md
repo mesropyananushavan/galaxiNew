@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop dependency-last-saved wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedLastSavedLabel()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop dependency-review-note wrapper cleanup checkpoint
 - Removed the single-use `shopsSelectedDependencyReviewNoteValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedReviewNoteValue()`.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
