@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Resource active assigned permission-linked role summary helper checkpoint
+- Added `activeAssignedPermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active assigned permission-linked role count no longer reaches for an inline active assigned permission-bearing role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
 ### Resource active permission-linked role summary helper checkpoint
 - Added `activePermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active permission-linked role count no longer reaches for an inline active permission-bearing role count query.
 - Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
