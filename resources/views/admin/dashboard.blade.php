@@ -145,7 +145,7 @@
         </p>
         <ul class="list">
             @foreach ($phaseOneSeamSources as $seamSource)
-                <li><code>{{ $seamSource['label'] }}</code></li>
+                <li>{!! $seamSource['displayLabel'] !!}</li>
             @endforeach
         </ul>
     </section>

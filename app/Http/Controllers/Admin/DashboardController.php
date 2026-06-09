@@ -288,7 +288,10 @@ class DashboardController extends Controller
     {
         return collect($items)
             ->filter(fn ($item): bool => filled($item))
-            ->map(fn ($item): array => ['label' => (string) $item])
+            ->map(fn ($item): array => [
+                'label' => (string) $item,
+                'displayLabel' => sprintf('<code>%s</code>', e((string) $item)),
+            ])
             ->values()
             ->all();
     }

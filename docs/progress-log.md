@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard seam-source inventory display payload checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each seam-source inventory item now carries a prepared `displayLabel`, letting the Galaxy dashboard render that inventory without wrapping raw labels in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin seam-source inventory handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
 ### Dashboard reference-doc inventory display payload checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so each reference-doc inventory item now carries a prepared `displayLabel`, letting the Galaxy dashboard render that inventory without wrapping raw labels in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin reference-doc inventory handoff visible in the Phase 1 seam map.
