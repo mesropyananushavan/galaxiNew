@@ -214,23 +214,16 @@
         </section>
 
         <section class="cards">
-            <article class="card">
-                <h3>{{ data_get($landingFoundation, 'live_surfaces_title') }}</h3>
-                <ul>
-                    @foreach (data_get($landingFoundation, 'live_surfaces', []) as $surface)
-                        <li>{{ $surface }}</li>
-                    @endforeach
-                </ul>
-            </article>
-
-            <article class="card">
-                <h3>{{ data_get($landingFoundation, 'working_rules_title') }}</h3>
-                <ul>
-                    @foreach (data_get($landingFoundation, 'working_rules', []) as $rule)
-                        <li>{{ $rule }}</li>
-                    @endforeach
-                </ul>
-            </article>
+            @foreach ($landingFoundationCards as $card)
+                <article class="card">
+                    <h3>{{ $card['title'] }}</h3>
+                    <ul>
+                        @foreach ($card['items'] as $item)
+                            <li>{{ $item }}</li>
+                        @endforeach
+                    </ul>
+                </article>
+            @endforeach
 
             <article class="card">
                 <h3>{{ data_get($landingDocs, 'title') }}</h3>

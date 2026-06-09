@@ -22,6 +22,7 @@ class LandingPageController extends Controller
             ),
             'landingHeroActions' => $this->preparedHeroActions(data_get($landingFoundation, 'hero.actions', [])),
             'landingSnapshotRows' => $this->preparedLandingSnapshotRows($landingFoundation),
+            'landingFoundationCards' => $this->preparedFoundationCards($landingFoundation),
             'landingDocCount' => count(data_get($landingDocs, 'items', [])),
             'landingSeamSourceCount' => count(data_get($phaseOneSeamSources, 'items', [])),
             'landingDocGuideText' => $this->inlineCodeList(data_get($landingDocs, 'guide', [])),
@@ -68,6 +69,31 @@ class LandingPageController extends Controller
                 'label' => (string) $row['label'],
                 'value' => (string) $row['value'],
                 'accent' => filled($row['accent'] ?? null) ? (string) $row['accent'] : null,
+            ])
+            ->values()
+            ->all();
+    }
+
+    protected function preparedFoundationCards(array $landingFoundation): array
+    {
+        return collect([
+            [
+                'title' => (string) data_get($landingFoundation, 'live_surfaces_title', ''),
+                'items' => data_get($landingFoundation, 'live_surfaces', []),
+            ],
+            [
+                'title' => (string) data_get($landingFoundation, 'working_rules_title', ''),
+                'items' => data_get($landingFoundation, 'working_rules', []),
+            ],
+        ])
+            ->filter(fn (array $card): bool => filled($card['title']) && is_array($card['items']))
+            ->map(fn (array $card): array => [
+                'title' => $card['title'],
+                'items' => collect($card['items'])
+                    ->filter(fn ($item): bool => filled($item))
+                    ->map(fn ($item): string => (string) $item)
+                    ->values()
+                    ->all(),
             ])
             ->values()
             ->all();

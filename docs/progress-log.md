@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing foundation card payload checkpoint
+- Moved the public landing live-surface and working-rule list assembly into `App\Http\Controllers\LandingPageController`, so those Galaxy-specific cards now render from one controller-shaped foundation-card payload instead of direct list reads in Blade.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing card handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
 ### Landing snapshot payload checkpoint
 - Moved public landing snapshot row assembly into `App\Http\Controllers\LandingPageController`, so the Galaxy home surface now renders focus plus status rows from one controller-shaped payload instead of mixing direct config reads and row assembly inside Blade.
 - Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing runtime handoff visible in the Phase 1 seam map.
