@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard planned-section handoff cleanup checkpoint
+- Removed the now-unused raw `plannedSectionCount` view variable from `App\Http\Controllers\Admin\DashboardController`, because the Galaxy migration-map card already renders its counters through controller-shaped metrics and prepared navigation payloads.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this admin runtime cleanup visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface cleanup slice.
+
 ### Landing raw-config handoff cleanup checkpoint
 - Removed the now-unused raw `landingFoundation` view context from `App\Http\Controllers\LandingPageController`, because the public Galaxy landing surface now reads its hero frame, snapshot rows, foundation cards, and docs card entirely from controller-shaped payloads.
 - Updated `docs/phase-1-foundation-seams.md`, keeping this public landing raw-config cleanup visible in the Phase 1 seam map.

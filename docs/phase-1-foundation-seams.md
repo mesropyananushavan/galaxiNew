@@ -8,7 +8,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - implementation baseline anchor: `config/phase-1-foundation-seams.php`
 - seam-source baseline bridge: `config/phase-1-seam-sources.php`
 - live runtime surface: `resources/views/admin/dashboard.blade.php`
-- admin runtime note: `App\Http\Controllers\Admin\DashboardController` now formats seam-source and foundation-seam reference strings before they reach the dashboard surface, routes review-entry, latest-work, and assigned-branch action link collections through prepared workspace-link payloads, prepares migration-map navigation links before render, and shapes the foundation snapshot, assigned-branch, live-entry, latest-work, and migration-map metric payloads before render
+- admin runtime note: `App\Http\Controllers\Admin\DashboardController` now formats seam-source and foundation-seam reference strings before they reach the dashboard surface, routes review-entry, latest-work, and assigned-branch action link collections through prepared workspace-link payloads, prepares migration-map navigation links before render, shapes the foundation snapshot, assigned-branch, live-entry, latest-work, and migration-map metric payloads before render, and no longer hands the old raw planned-section counter directly to Blade
 
 ## Current seams
 

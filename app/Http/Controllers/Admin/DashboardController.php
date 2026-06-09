@@ -55,7 +55,6 @@ class DashboardController extends Controller
             'phaseOneFoundationSeamsSourceOfTruthText' => $this->inlineCodeList(config('phase-1-foundation-seams.source_of_truth', ['docs/phase-1-foundation-seams.md', 'config/phase-1-foundation-seams.php'])),
             'phaseOneFoundationSeamsPosture' => (string) config('phase-1-foundation-seams.posture', 'small config-backed and doc-backed foundation seams stay explicit'),
             'phaseOneFoundationSeamsCoverage' => $this->phaseOneFoundationSeamsCoverage(),
-            'plannedSectionCount' => collect($navigation)->sum(fn (array $group): int => count($group['items'])),
             'liveDomainCoverage' => $this->liveDomainCoverage(),
             'foundationFocus' => $this->foundationFocus(),
             'foundationPosture' => $this->foundationPosture(),
