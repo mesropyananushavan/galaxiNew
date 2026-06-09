@@ -6,6 +6,10 @@ return [
         'eyebrow' => 'Galaxi migration foundation',
         'title' => 'Galaxy-specific foundation, not generic scaffolding.',
         'description' => 'This Phase 1 shell is turning galaxiNew into the Galaxy foundation home for admin flows, beginning with branch, cardholder, card, card type, access, and reporting foundations.',
+        'actions' => [
+            ['label' => 'Open admin workspace', 'href' => '/admin', 'style' => 'button-primary'],
+            ['label' => 'Admin login', 'route' => 'login', 'style' => 'button-secondary'],
+        ],
     ],
     'status_rows' => [
         ['label' => 'Target posture', 'value' => 'Galaxy foundation monolith with Blade-first admin'],

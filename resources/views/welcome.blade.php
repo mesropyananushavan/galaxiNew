@@ -188,8 +188,12 @@
                     </p>
 
                     <div class="actions">
-                        <a class="button button-primary" href="{{ url('/admin') }}">Open admin workspace</a>
-                        <a class="button button-secondary" href="{{ route('login') }}">Admin login</a>
+                        @foreach (config('landing-foundation.hero.actions', []) as $action)
+                            <a
+                                class="button {{ $action['style'] ?? 'button-secondary' }}"
+                                href="{{ filled($action['route'] ?? null) ? route($action['route']) : url($action['href'] ?? '/') }}"
+                            >{{ $action['label'] }}</a>
+                        @endforeach
                     </div>
                 </div>
 

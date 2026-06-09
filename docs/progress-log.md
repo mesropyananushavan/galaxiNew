@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing CTA config seam checkpoint
+- Extended `config/landing-foundation.php` so the public Galaxy landing hero now owns its CTA action labels, targets, and button styles instead of leaving those links inline in `resources/views/welcome.blade.php`.
+- Updated the landing-shell seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer welcome-page config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing-shell config slice.
+
 ### Landing-foundation seam-source checkpoint
 - Added `config/landing-foundation.php` to `config/phase-1-seam-sources.php`, so the README-level seam-source inventory now tracks the public Galaxy landing-shell baseline alongside the other explicit Phase 1 config seams.
 - Updated `README.md` plus the focused admin dashboard and landing feature assertions so seam-source coverage and visible reference copy include the landing-shell seam.
