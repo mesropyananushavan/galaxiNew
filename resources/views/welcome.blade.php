@@ -231,9 +231,9 @@
                     <p>{!! e($row['prefix']) !!} {!! $row['html'] !!}</p>
                 @endforeach
                 <ul>
-                    @foreach (data_get($landingDocs, 'items', []) as $doc)
+                    @foreach ($landingDocItems as $doc)
                         <li>
-                            @if (($doc['external'] ?? false) && filled($doc['href'] ?? null))
+                            @if ($doc['external'] && filled($doc['href'] ?? null))
                                 <a href="{{ $doc['href'] }}" target="_blank" rel="noreferrer">{{ $doc['label'] }}</a>
                             @else
                                 <code>{{ $doc['label'] }}</code>

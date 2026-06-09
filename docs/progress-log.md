@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing docs inventory payload checkpoint
+- Moved the public landing docs inventory assembly into `App\Http\Controllers\LandingPageController`, so the Galaxy reference card now renders its link/code item list from a controller-prepared payload instead of direct config iteration in Blade.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing docs-inventory handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
 ### Landing docs summary payload checkpoint
 - Moved the public landing docs-card summary row assembly into `App\Http\Controllers\LandingPageController`, so the Galaxy reference trail card now renders its focus, coverage, baseline, seam-source, and bridge copy from one controller-shaped payload instead of many direct `data_get(...)` reads in Blade.
 - Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing reference-trail handoff visible in the Phase 1 seam map.

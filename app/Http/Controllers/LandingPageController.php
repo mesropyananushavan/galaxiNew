@@ -29,6 +29,7 @@ class LandingPageController extends Controller
             'landingDocSourceOfTruthText' => $this->inlineCodeList(data_get($landingDocs, 'source_of_truth', [])),
             'landingSeamSourceOfTruthText' => $this->inlineCodeList(data_get($phaseOneSeamSources, 'source_of_truth', [])),
             'landingDocSummaryRows' => $this->preparedLandingDocSummaryRows($landingDocs, $phaseOneSeamSources),
+            'landingDocItems' => $this->preparedLandingDocItems(data_get($landingDocs, 'items', [])),
         ]);
     }
 
@@ -116,6 +117,19 @@ class LandingPageController extends Controller
             ['prefix' => (string) data_get($landingDocs, 'labels.source_of_truth', ''), 'html' => trim($this->inlineCodeList(data_get($landingDocs, 'source_of_truth', [])).' '.e((string) data_get($landingDocs, 'copy.source_of_truth_note', '')))],
             ['prefix' => (string) data_get($landingDocs, 'labels.reference_seam_bridge', ''), 'html' => sprintf('<code>%s</code> %s', e((string) data_get($landingDocs, 'copy.reference_seam_bridge_label_path', '')), e((string) data_get($landingDocs, 'copy.reference_seam_bridge', '')))],
         ];
+    }
+
+    protected function preparedLandingDocItems(array $items): array
+    {
+        return collect($items)
+            ->filter(fn ($item): bool => is_array($item) && filled($item['label'] ?? null))
+            ->map(fn (array $item): array => [
+                'label' => (string) $item['label'],
+                'external' => (bool) ($item['external'] ?? false),
+                'href' => filled($item['href'] ?? null) ? (string) $item['href'] : null,
+            ])
+            ->values()
+            ->all();
     }
 
     protected function inlineCodeList(array $items): string

@@ -40,14 +40,14 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - source-of-truth anchors: `README.md`, `config/landing-docs.php`
 - seam-source bridge: `config/phase-1-seam-sources.php`
 - visible runtime surface: `resources/views/welcome.blade.php`
-- current role: keeps the public Galaxy migration doc trail, docs-card heading, metric labels, explanatory notes, config-path callouts, and seam-source bridge references aligned, with the landing controller now preparing the docs-card summary row payload before render
+- current role: keeps the public Galaxy migration doc trail, docs-card heading, metric labels, explanatory notes, config-path callouts, and seam-source bridge references aligned, with the landing controller now preparing both the docs-card summary row payload and docs inventory payload before render
 
 ### Public landing shell baseline
 - readable summary anchor: this file
 - implementation baseline: `config/landing-foundation.php`
 - source-of-truth anchors: `config/landing-foundation.php`, `resources/views/welcome.blade.php`
 - visible runtime surface: `resources/views/welcome.blade.php`
-- current role: keeps the public Galaxy landing hero copy, focus note, emphasis tokens, CTA actions, snapshot framing, live-surface headings, working-rule copy, and named route/controller handoff explicit through one config-backed Phase 1 seam, with the controller now passing prepared hero description HTML, prepared hero actions, controller-shaped landing snapshot rows, controller-shaped landing foundation cards, landing config, landing metrics, and controller-shaped reference-trail summary rows into the runtime surface
+- current role: keeps the public Galaxy landing hero copy, focus note, emphasis tokens, CTA actions, snapshot framing, live-surface headings, working-rule copy, and named route/controller handoff explicit through one config-backed Phase 1 seam, with the controller now passing prepared hero description HTML, prepared hero actions, controller-shaped landing snapshot rows, controller-shaped landing foundation cards, landing config, landing metrics, controller-shaped docs inventory, and controller-shaped reference-trail summary rows into the runtime surface
 
 ### Top-level repo guidance
 - readable summary anchor: this file
