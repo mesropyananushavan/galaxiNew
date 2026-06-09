@@ -38,7 +38,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - implementation baseline: `config/landing-foundation.php`
 - source-of-truth anchors: `config/landing-foundation.php`, `resources/views/welcome.blade.php`
 - visible runtime surface: `resources/views/welcome.blade.php`
-- current role: keeps the public Galaxy landing hero copy, focus note, emphasis tokens, CTA actions, snapshot framing, live-surface headings, working-rule copy, and named route/controller handoff explicit through one config-backed Phase 1 seam, with the controller now passing prepared hero actions, landing config, landing metrics, and formatted reference-trail strings into the runtime surface
+- current role: keeps the public Galaxy landing hero copy, focus note, emphasis tokens, CTA actions, snapshot framing, live-surface headings, working-rule copy, and named route/controller handoff explicit through one config-backed Phase 1 seam, with the controller now passing prepared hero description HTML, prepared hero actions, landing config, landing metrics, and formatted reference-trail strings into the runtime surface
 
 ### Top-level repo guidance
 - readable summary anchor: this file

@@ -16,6 +16,10 @@ class LandingPageController extends Controller
             'landingFoundation' => $landingFoundation,
             'landingDocs' => $landingDocs,
             'phaseOneSeamSources' => $phaseOneSeamSources,
+            'landingHeroDescriptionHtml' => $this->preparedHeroDescriptionHtml(
+                (string) data_get($landingFoundation, 'hero.description', ''),
+                (array) data_get($landingFoundation, 'hero.description_tokens', [])
+            ),
             'landingHeroActions' => $this->preparedHeroActions(data_get($landingFoundation, 'hero.actions', [])),
             'landingDocCount' => count(data_get($landingDocs, 'items', [])),
             'landingSeamSourceCount' => count(data_get($phaseOneSeamSources, 'items', [])),
@@ -23,6 +27,11 @@ class LandingPageController extends Controller
             'landingDocSourceOfTruthText' => $this->inlineCodeList(data_get($landingDocs, 'source_of_truth', [])),
             'landingSeamSourceOfTruthText' => $this->inlineCodeList(data_get($phaseOneSeamSources, 'source_of_truth', [])),
         ]);
+    }
+
+    protected function preparedHeroDescriptionHtml(string $description, array $tokens): string
+    {
+        return strtr(e($description), $tokens);
     }
 
     protected function preparedHeroActions(array $actions): array

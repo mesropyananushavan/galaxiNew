@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing controller hero-copy seam checkpoint
+- Moved public hero description token replacement into `App\Http\Controllers\LandingPageController`, so the welcome surface now renders controller-prepared Galaxy landing hero HTML instead of assembling emphasized product copy inline in Blade.
+- Updated `resources/views/welcome.blade.php` plus the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the hero-copy preparation handoff visible in the Phase 1 seam map.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
 ### Landing controller action-prep seam checkpoint
 - Moved public hero CTA href resolution into `App\Http\Controllers\LandingPageController`, so the welcome surface now renders controller-prepared Galaxy landing actions instead of deciding route-vs-url targets inline in Blade.
 - Updated `resources/views/welcome.blade.php` plus the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the action-preparation handoff visible in the Phase 1 seam map.

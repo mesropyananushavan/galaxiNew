@@ -184,7 +184,7 @@
                 <div>
                     <h1>{{ data_get($landingFoundation, 'hero.title') }}</h1>
                     <p>
-                        {!! strtr(e(data_get($landingFoundation, 'hero.description')), data_get($landingFoundation, 'hero.description_tokens', [])) !!}
+                        {!! $landingHeroDescriptionHtml !!}
                     </p>
 
                     <div class="actions">
