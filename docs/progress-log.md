@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Roles-permissions write-guardrail inventory checkpoint
+- Expanded `config/phase-1-access-baseline.php` so the new access route-guardrail inventory now tracks the full first live `roles-permissions` route trio: review, create, and update.
+- Updated the dashboard access metrics/copy plus the access seam docs so the live Phase 1 baseline now shows both the shared dual-policy read route and the bootstrap-only write entry points for the current access shell.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-entrypoint follow-up.
+
 ### Access route-guardrail inventory checkpoint
 - Extended `config/phase-1-access-baseline.php`, `App\Http\Controllers\Admin\DashboardController`, and `resources/views/admin/dashboard.blade.php` so the access-baseline card now tracks shared admin review route guardrails as a first-class inventory, not just gates and policies.
 - Added the `admin.roles-permissions.index` dual-policy contract as the first explicit route-guardrail item, keeping the permission-vocabulary seam visible in the live dashboard runtime as well as in `routes/admin.php`.

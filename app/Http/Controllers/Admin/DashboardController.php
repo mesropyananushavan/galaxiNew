@@ -152,7 +152,7 @@ class DashboardController extends Controller
     {
         return [
             ['label' => 'Gate coverage', 'value' => sprintf('%d Phase 1 admin access gates currently tracked.', $this->accessGateCount())],
-            ['label' => 'Route guardrails', 'value' => sprintf('%d shared admin review route guardrails currently tracked.', $this->accessRouteGuardrailCount())],
+            ['label' => 'Route guardrails', 'value' => sprintf('%d Phase 1 admin route guardrails currently tracked.', $this->accessRouteGuardrailCount())],
             ['label' => 'Policy coverage', 'value' => sprintf('%d model policies currently mapped for Phase 1 admin resources.', $this->accessPolicyCount())],
             ['label' => 'Admin guardrail', 'value' => '<code>routes/admin.php</code> keeps the Galaxy admin shell behind <code>auth</code> and <code>can:access-admin</code>.', 'html' => true],
         ];

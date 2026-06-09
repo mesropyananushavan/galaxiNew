@@ -24,6 +24,18 @@ return [
             'guard' => 'can:viewAny,Role + can:viewAny,Permission',
             'coverage' => 'Keeps shared access-shell review and permission-vocabulary review behind both Phase 1 read policies.',
         ],
+        [
+            'label' => 'Roles & permissions create route',
+            'route' => 'admin.roles-permissions.store',
+            'guard' => 'can:create,Role',
+            'coverage' => 'Keeps the first live Galaxy access-shell creation path behind the bootstrap-only role creation guard.',
+        ],
+        [
+            'label' => 'Roles & permissions update route',
+            'route' => 'admin.roles-permissions.update',
+            'guard' => 'can:update,role',
+            'coverage' => 'Keeps live access-shell identity updates behind the same bootstrap-only role update guardrail used by the shared admin form.',
+        ],
     ],
     'policies' => [
         [

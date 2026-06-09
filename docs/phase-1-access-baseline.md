@@ -17,8 +17,9 @@ Keep the first Galaxy authorization gates and policy mappings explicit while Pha
 - `access-shop` keeps shop-scoped access explicit for branch-aware review and later writes.
 - The current mapped policies cover `Shop`, `CardHolder`, `Card`, `Role`, `Permission`, and `CardType`.
 - `routes/admin.php` applies the `auth` and `can:access-admin` guardrail before policy-specific resource routes run.
-- The access baseline now also tracks the shared `admin.roles-permissions.index` review route as an explicit guardrail entry.
-- That shared `roles-permissions` review route requires both `RolePolicy::viewAny` and `PermissionPolicy::viewAny`, so access-shell review and permission-vocabulary review stay under the same explicit Phase 1 guardrail.
+- The access baseline now also tracks the first live `roles-permissions` route trio as explicit guardrail entries: `admin.roles-permissions.index`, `admin.roles-permissions.store`, and `admin.roles-permissions.update`.
+- The shared `roles-permissions` review route requires both `RolePolicy::viewAny` and `PermissionPolicy::viewAny`, so access-shell review and permission-vocabulary review stay under the same explicit Phase 1 guardrail.
+- The create and update routes keep the first live access-shell write entry points behind the same bootstrap-only role creation and update guards already enforced in `routes/admin.php`.
 
 ## Current posture
 - Authorization is present in code today, but this document and `config/phase-1-access-baseline.php` keep the baseline visible while richer roles, permission matrices, and stricter shop scoping are still landing.
