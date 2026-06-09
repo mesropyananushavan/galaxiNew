@@ -8,7 +8,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - implementation baseline anchor: `config/phase-1-foundation-seams.php`
 - seam-source baseline bridge: `config/phase-1-seam-sources.php`
 - live runtime surface: `resources/views/admin/dashboard.blade.php`
-- admin runtime note: `App\Http\Controllers\Admin\DashboardController` now formats seam-source and foundation-seam reference strings before they reach the dashboard surface, routes review-entry, latest-work, and assigned-branch action link collections through prepared workspace-link payloads, prepares migration-map navigation links before render, shapes the foundation snapshot, assigned-branch, live-entry, latest-work, and migration-map metric payloads before render, and no longer hands the old raw planned-section counter or raw live-entry/latest-work summary strings directly to Blade
+- admin runtime note: `App\Http\Controllers\Admin\DashboardController` now formats seam-source and foundation-seam reference strings before they reach the dashboard surface, routes review-entry, latest-work, and assigned-branch action link collections through prepared workspace-link payloads, prepares migration-map navigation links before render, shapes the foundation snapshot, assigned-branch, domain, live-entry, latest-work, and migration-map metric payloads before render, and no longer hands the old raw planned-section counter or raw live-entry/latest-work summary strings directly to Blade
 
 ## Current seams
 
@@ -31,6 +31,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - implementation baseline: `config/phase-1-domain-map.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 - current role: keeps the dashboard controller responsible for formatting the entity-map guide and source-of-truth reference strings before they reach the admin runtime surface
+- related runtime shaping: the dashboard controller now also prepares the entity coverage and inventory metric payload before render, so the admin domain baseline stays less tied to raw summary strings inside Blade
 - related runtime shaping: the dashboard controller now also prepares the entity inventory payload before render, so the admin domain baseline stays less tied to raw config structure inside Blade
 - related runtime shaping: the dashboard controller now also prepares the foundation-seam source trail text before render so the admin seam inventory stays less Blade-assembled
 

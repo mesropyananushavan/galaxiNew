@@ -87,14 +87,12 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneDomainFocus }}
         </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Entity coverage:</strong>
-            {{ $phaseOneDomainCoverage }}.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Entity inventory:</strong>
-            {{ $phaseOneDomainInventory }}.
-        </p>
+        @foreach ($phaseOneDomainMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                {{ $metric['value'] }}
+            </p>
+        @endforeach
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Entity baseline:</strong>
             <code>config/phase-1-domain-map.php</code> keeps this mapped Galaxy entity inventory aligned.

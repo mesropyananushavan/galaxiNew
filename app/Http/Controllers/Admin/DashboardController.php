@@ -87,7 +87,7 @@ class DashboardController extends Controller
             'migrationMapHandoffSummary' => $this->migrationMapHandoffSummary($navigation),
             'migrationMapFocus' => $this->migrationMapFocus($navigation),
             'migrationMapPosture' => $this->migrationMapPosture(),
-            'phaseOneDomainCoverage' => $this->phaseOneDomainCoverage(),
+            'phaseOneDomainMetrics' => $this->phaseOneDomainMetrics(),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
             'latestWorkspaces' => $this->latestWorkspaces(),
         ]);
@@ -998,6 +998,14 @@ class DashboardController extends Controller
             ['label' => 'Latest-work coverage', 'value' => $this->latestWorkspaceCoverage().'.'],
             ['label' => 'Latest-work focus', 'value' => $this->latestWorkspaceFocus().'.'],
             ['label' => 'Latest-work posture', 'value' => $this->latestWorkspacePosture().'.'],
+        ];
+    }
+
+    protected function phaseOneDomainMetrics(): array
+    {
+        return [
+            ['label' => 'Entity coverage', 'value' => $this->phaseOneDomainCoverage().'.'],
+            ['label' => 'Entity inventory', 'value' => $this->phaseOneDomainInventory().'.'],
         ];
     }
 
