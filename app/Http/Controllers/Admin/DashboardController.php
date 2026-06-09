@@ -317,38 +317,8 @@ class DashboardController extends Controller
                 })
                 ->values()
                 ->all(),
-            'routeGuardrails' => collect($routeGuardrails)
-                ->filter(fn ($guardrail): bool => is_array($guardrail) && filled($guardrail['label'] ?? null) && filled($guardrail['route'] ?? null) && filled($guardrail['guard'] ?? null))
-                ->map(function (array $guardrail): array {
-                    $label = (string) ($guardrail['label'] ?? '');
-                    $route = (string) ($guardrail['route'] ?? '');
-                    $guard = (string) ($guardrail['guard'] ?? '');
-                    $coverage = (string) ($guardrail['coverage'] ?? '');
-                    $routeDefinition = Route::getRoutes()->getByName($route);
-                    $methods = collect($routeDefinition?->methods() ?? [])
-                        ->reject(fn (string $method): bool => $method === 'HEAD')
-                        ->values()
-                        ->implode(', ');
-                    $path = $routeDefinition !== null ? '/'.$routeDefinition->uri() : null;
-                    $routeContract = $methods !== '' && filled($path)
-                        ? sprintf('%s %s', $methods, $path)
-                        : null;
-
-                    return [
-                        'label' => $label,
-                        'route' => $route,
-                        'guard' => $guard,
-                        'coverage' => $coverage,
-                        'path' => $path,
-                        'methods' => $methods,
-                        'routeContract' => $routeContract,
-                        'displaySummary' => filled($routeContract)
-                            ? sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($routeContract), e($guard), e($coverage))
-                            : sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($guard), e($coverage)),
-                    ];
-                })
-                ->values()
-                ->all(),
+            'routeGuardrails' => $this->preparedAccessRouteGuardrails($routeGuardrails),
+            'routeGuardrailGroups' => $this->preparedAccessRouteGuardrailGroups($routeGuardrails),
             'policies' => collect($policies)
                 ->filter(fn ($policy): bool => is_array($policy) && filled($policy['label'] ?? null) && filled($policy['policy'] ?? null))
                 ->map(function (array $policy): array {
@@ -368,6 +338,85 @@ class DashboardController extends Controller
                 ->values()
                 ->all(),
         ];
+    }
+
+    protected function preparedAccessRouteGuardrails(array $routeGuardrails): array
+    {
+        return collect($routeGuardrails)
+            ->filter(fn ($guardrail): bool => is_array($guardrail) && filled($guardrail['label'] ?? null) && filled($guardrail['route'] ?? null) && filled($guardrail['guard'] ?? null))
+            ->map(function (array $guardrail): array {
+                $label = (string) ($guardrail['label'] ?? '');
+                $route = (string) ($guardrail['route'] ?? '');
+                $guard = (string) ($guardrail['guard'] ?? '');
+                $coverage = (string) ($guardrail['coverage'] ?? '');
+                $routeDefinition = Route::getRoutes()->getByName($route);
+                $methods = collect($routeDefinition?->methods() ?? [])
+                    ->reject(fn (string $method): bool => $method === 'HEAD')
+                    ->values()
+                    ->implode(', ');
+                $path = $routeDefinition !== null ? '/'.$routeDefinition->uri() : null;
+                $routeContract = $methods !== '' && filled($path)
+                    ? sprintf('%s %s', $methods, $path)
+                    : null;
+
+                return [
+                    'label' => $label,
+                    'route' => $route,
+                    'guard' => $guard,
+                    'coverage' => $coverage,
+                    'path' => $path,
+                    'methods' => $methods,
+                    'routeContract' => $routeContract,
+                    'family' => $this->accessRouteGuardrailFamily($route),
+                    'familyLabel' => $this->accessRouteGuardrailFamilyLabel($route),
+                    'displaySummary' => filled($routeContract)
+                        ? sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($routeContract), e($guard), e($coverage))
+                        : sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($guard), e($coverage)),
+                ];
+            })
+            ->values()
+            ->all();
+    }
+
+    protected function preparedAccessRouteGuardrailGroups(array $routeGuardrails): array
+    {
+        return collect($this->preparedAccessRouteGuardrails($routeGuardrails))
+            ->groupBy('family')
+            ->map(function ($items, $family): array {
+                $first = $items->first();
+
+                return [
+                    'family' => (string) $family,
+                    'label' => (string) ($first['familyLabel'] ?? 'Route guardrail group'),
+                    'items' => $items->values()->all(),
+                ];
+            })
+            ->values()
+            ->all();
+    }
+
+    protected function accessRouteGuardrailFamily(string $route): string
+    {
+        return match (true) {
+            str_starts_with($route, 'admin.shops.') => 'shops',
+            str_starts_with($route, 'admin.cardholders.') => 'cardholders',
+            str_starts_with($route, 'admin.cards.') => 'cards',
+            str_starts_with($route, 'admin.card-types.') => 'card-types',
+            str_starts_with($route, 'admin.roles-permissions.') => 'roles-permissions',
+            default => 'other',
+        };
+    }
+
+    protected function accessRouteGuardrailFamilyLabel(string $route): string
+    {
+        return match ($this->accessRouteGuardrailFamily($route)) {
+            'shops' => 'Galaxy branches',
+            'cardholders' => 'Galaxy holders',
+            'cards' => 'Galaxy card shells',
+            'card-types' => 'Galaxy tiers',
+            'roles-permissions' => 'Galaxy access shells',
+            default => 'Other access guardrails',
+        };
     }
 
     protected function preparedShopAccessBaseline(array $rules): array

@@ -19,6 +19,7 @@ Keep the first Galaxy authorization gates and policy mappings explicit while Pha
 - `routes/admin.php` applies the `auth` and `can:access-admin` guardrail before policy-specific resource routes run.
 - The access baseline now also tracks five first-live Phase 1 admin route trios as explicit guardrail entries plus the dedicated `admin.card-types.toggle-status` action route: `admin.shops.index` / `store` / `update`, `admin.cardholders.index` / `store` / `update`, `admin.cards.index` / `store` / `update`, `admin.card-types.index` / `store` / `update`, and `admin.roles-permissions.index` / `store` / `update`.
 - The dashboard access card resolves those guardrails through Laravel's router so the live baseline shows the current HTTP method and URI contract, not only route names.
+- That dashboard card now groups the live guardrails by workflow family so branch, holder, card, tier, and access-shell entry points stay readable as separate Galaxy foundation lanes.
 - The shop routes keep branch-catalog review and first-write entry points behind the same `ShopPolicy` read/create/update checks already enforced in `routes/admin.php`.
 - The cardholder routes keep holder-catalog review and first-write entry points behind the same `CardHolderPolicy` read/create/update checks already enforced in `routes/admin.php`.
 - The card routes keep card-catalog review and first-write entry points behind the same `CardPolicy` read/create/update checks already enforced in `routes/admin.php`.

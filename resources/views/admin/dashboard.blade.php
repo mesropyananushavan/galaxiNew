@@ -219,8 +219,15 @@
         </ul>
         <p style="{{ $dashboardNoteStyle }}"><strong>Tracked route guardrails:</strong></p>
         <ul class="list">
-            @foreach (($phaseOneAccessBaseline['routeGuardrails'] ?? []) as $guardrail)
-                <li>{!! $guardrail['displaySummary'] !!}</li>
+            @foreach (($phaseOneAccessBaseline['routeGuardrailGroups'] ?? []) as $guardrailGroup)
+                <li>
+                    <strong>{{ $guardrailGroup['label'] }}:</strong>
+                    <ul class="list">
+                        @foreach (($guardrailGroup['items'] ?? []) as $guardrail)
+                            <li>{!! $guardrail['displaySummary'] !!}</li>
+                        @endforeach
+                    </ul>
+                </li>
             @endforeach
         </ul>
         <p style="{{ $dashboardNoteStyle }}"><strong>Tracked policies:</strong></p>

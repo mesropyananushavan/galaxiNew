@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Access route-guardrail family grouping checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so the access-baseline card now groups tracked route guardrails into workflow families for Galaxy branches, holders, card shells, tiers, and access shells.
+- Updated `resources/views/admin/dashboard.blade.php` so the live access card renders those controller-prepared guardrail groups instead of one flat route list, keeping the Phase 1 access map easier to scan as the inventory grows.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small runtime readability follow-up.
+
 ### Card-type toggle route-guardrail checkpoint
 - Expanded `config/phase-1-access-baseline.php` so the access route-guardrail inventory now includes the dedicated `admin.card-types.toggle-status` action alongside the already-tracked tier review/create/update routes.
 - Updated the access seam docs and focused dashboard assertions so the Phase 1 access card now shows the live tier status-toggle endpoint as a router-derived method-plus-path contract too.
