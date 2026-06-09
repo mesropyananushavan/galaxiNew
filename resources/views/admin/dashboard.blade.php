@@ -211,7 +211,7 @@
         </p>
         <ul class="list">
             @foreach ($phaseOneReferenceDocs as $referenceDoc)
-                <li><code>{{ $referenceDoc['label'] }}</code></li>
+                <li>{!! $referenceDoc['displayLabel'] !!}</li>
             @endforeach
         </ul>
         <p style="{{ $dashboardNoteStyle }}">
