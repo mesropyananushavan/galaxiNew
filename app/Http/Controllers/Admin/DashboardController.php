@@ -175,10 +175,15 @@ class DashboardController extends Controller
         return collect($entities)
             ->filter(fn ($entity): bool => is_array($entity) && filled($entity['label'] ?? null))
             ->map(function (array $entity): array {
+                $label = (string) ($entity['label'] ?? '');
+                $table = (string) ($entity['table'] ?? '');
+                $coverage = (string) ($entity['coverage'] ?? '');
+
                 return [
-                    'label' => (string) ($entity['label'] ?? ''),
-                    'table' => (string) ($entity['table'] ?? ''),
-                    'coverage' => (string) ($entity['coverage'] ?? ''),
+                    'label' => $label,
+                    'table' => $table,
+                    'coverage' => $coverage,
+                    'displaySummary' => sprintf('<strong>%s</strong> (<code>%s</code>), %s', e($label), e($table), e($coverage)),
                 ];
             })
             ->values()

@@ -111,11 +111,7 @@
         </p>
         <ul class="list">
             @foreach ($phaseOneDomainMap as $entity)
-                <li>
-                    <strong>{{ $entity['label'] }}</strong>
-                    (<code>{{ $entity['table'] }}</code>)
-                    , {{ $entity['coverage'] }}
-                </li>
+                <li>{!! $entity['displaySummary'] !!}</li>
             @endforeach
         </ul>
     </section>
