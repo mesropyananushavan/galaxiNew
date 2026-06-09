@@ -31,6 +31,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - implementation baseline: `config/phase-1-domain-map.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 - current role: keeps the dashboard controller responsible for formatting the entity-map guide and source-of-truth reference strings before they reach the admin runtime surface
+- related runtime shaping: the dashboard controller now also prepares the foundation-seam source trail text before render so the admin seam inventory stays less Blade-assembled
 
 ### Public landing reference trail
 - readable summary anchor: this file

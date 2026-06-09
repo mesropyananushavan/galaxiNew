@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard foundation-source-list checkpoint
+- Moved the admin dashboard foundation-seam source-list assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy seam inventory now renders controller-prepared source trail text instead of calling `implode()` inline in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side source-list handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard domain-map controller-string checkpoint
 - Moved the admin dashboard entity-map guide and source-of-truth string assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy admin entry surface now renders controller-prepared Phase 1 domain reference prose instead of stitching those inline lists together in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` plus `docs/phase-1-foundation-seams.md`, keeping this dashboard-side domain-reference handoff visible in the Phase 1 seam map.

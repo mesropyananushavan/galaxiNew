@@ -261,9 +261,9 @@
             @foreach ($phaseOneFoundationSeams as $seam)
                 <li>
                     <strong>{{ $seam['label'] }}</strong>, {{ $seam['summary'] }}
-                    @if (is_array($seam['sources'] ?? null) && $seam['sources'] !== [])
+                    @if (filled($seam['sourcesText'] ?? null))
                         <br>
-                        <span style="color: var(--text-muted);">Sources: {{ implode(', ', $seam['sources']) }}</span>
+                        <span style="color: var(--text-muted);">Sources: {{ $seam['sourcesText'] }}</span>
                     @endif
                 </li>
             @endforeach

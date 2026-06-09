@@ -46,7 +46,7 @@ class DashboardController extends Controller
             'phaseOneSeamSourcesSourceOfTruthText' => $this->inlineCodeList(config('phase-1-seam-sources.source_of_truth', ['README.md', 'config/phase-1-seam-sources.php'])),
             'phaseOneSeamSourcesPosture' => (string) config('phase-1-seam-sources.posture', 'README-backed seam-source baseline stays explicit across the live Galaxy reference trail'),
             'phaseOneSeamSourcesCoverage' => $this->phaseOneSeamSourcesCoverage(),
-            'phaseOneFoundationSeams' => config('phase-1-foundation-seams.items', []),
+            'phaseOneFoundationSeams' => $this->preparedFoundationSeams(config('phase-1-foundation-seams.items', [])),
             'phaseOneFoundationSeamsFocus' => (string) config('phase-1-foundation-seams.focus', 'Keep the new Galaxy-specific Phase 1 seams visible where contributors review the live foundation shell.'),
             'phaseOneFoundationSeamsGuide' => config('phase-1-foundation-seams.guide', ['docs/phase-1-foundation-seams.md', 'config/phase-1-foundation-seams.php']),
             'phaseOneFoundationSeamsGuideText' => $this->inlineCodeList(config('phase-1-foundation-seams.guide', ['docs/phase-1-foundation-seams.md', 'config/phase-1-foundation-seams.php'])),
@@ -164,6 +164,19 @@ class DashboardController extends Controller
         return collect(config('phase-1-foundation-seams.items', []));
     }
 
+    protected function preparedFoundationSeams(array $seams): array
+    {
+        return collect($seams)
+            ->filter(fn ($seam): bool => is_array($seam) && filled($seam['label'] ?? null))
+            ->map(function (array $seam): array {
+                $seam['sourcesText'] = $this->plainList(array_map('strval', array_filter($seam['sources'] ?? [], fn ($source) => filled($source))));
+
+                return $seam;
+            })
+            ->values()
+            ->all();
+    }
+
     protected function foundationSeamCount(): int
     {
         return $this->countConfigItems($this->foundationSeams());
@@ -209,6 +222,14 @@ class DashboardController extends Controller
         return collect($items)
             ->filter(fn ($item): bool => filled($item))
             ->map(fn ($item): string => sprintf('<code>%s</code>', e((string) $item)))
+            ->implode(', ');
+    }
+
+    protected function plainList(array $items): string
+    {
+        return collect($items)
+            ->filter(fn ($item): bool => filled($item))
+            ->map(fn ($item): string => e((string) $item))
             ->implode(', ');
     }
 
