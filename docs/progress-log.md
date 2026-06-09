@@ -2,6 +2,10 @@
 
 ## 2026-06-09
 
+### README seam-source baseline expansion checkpoint
+- Expanded `config/phase-1-seam-sources.php` and the README seam-source inventory so the newer access, shop-scope, model-skeleton, and migration baselines are now visible in top-level repo guidance instead of only on the admin and landing surfaces.
+- Kept the README-level seam-source trail aligned with the newer Galaxy Phase 1 foundation map and re-ran the focused admin dashboard plus landing checks to confirm the surfaced seam counts stayed in sync.
+
 ### Reference-trail baseline expansion checkpoint
 - Added the new access, shop-scope, model-skeleton, and migration-baseline docs/config anchors to `config/phase-1-reference-docs.php` and `config/landing-docs.php`, so both admin and public reference trails now reflect the fuller Galaxy Phase 1 foundation map.
 - Updated the focused dashboard and landing feature assertions to match the expanded reference counts and newly visible baseline anchors.
