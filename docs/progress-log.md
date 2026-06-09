@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Cardholder lifecycle-label wrapper cleanup checkpoint
+- Removed the single-use `cardholdersLifecycleFreshnessLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-holder summaries directly to the shared `lifecycleFreshnessLabel()` helper.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Cardholder phone-label wrapper cleanup checkpoint
 - Removed the single-use `cardholdersPhoneLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-holder summary directly to `cardholderPhoneValue($selectedCardHolder, '—')`.
 - Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

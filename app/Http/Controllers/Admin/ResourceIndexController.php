@@ -4043,7 +4043,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Review mode', 'value' => $this->cardholdersReviewMode($selectedCardHolder)],
             ['label' => 'Holder status signal', 'value' => $this->cardholdersStatusSignal($selectedCardHolder)],
             ['label' => 'Operational readiness', 'value' => $this->cardholdersOperationalReadiness($selectedCardHolder)],
-            ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Review note', 'value' => $this->cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet')],
             ['label' => 'Phone', 'value' => $this->cardholderPhoneValue($selectedCardHolder, '—')],
@@ -4424,11 +4424,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function cardholdersLifecycleFreshnessLabel(CardHolder $selectedCardHolder): string
-    {
-        return $this->lifecycleFreshnessLabel($selectedCardHolder);
-    }
-
     private function cardholdersLifecycleFreshnessDescription(CardHolder $selectedCardHolder): string
     {
         return $this->lifecycleFreshnessDescription(
@@ -4493,7 +4488,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Selected holder', 'value' => $this->cardholderFullNameValue($selectedCardHolder)],
             ['label' => 'Lookup posture', 'value' => $this->cardholdersLookupDependencyPosture()],
             ['label' => 'Holder status signal', 'value' => $this->cardholdersStatusSignal($selectedCardHolder)],
-            ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Review note', 'value' => $this->cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet')],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
