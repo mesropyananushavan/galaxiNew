@@ -5,7 +5,10 @@ return [
     'hero' => [
         'eyebrow' => 'Galaxi migration foundation',
         'title' => 'Galaxy-specific foundation, not generic scaffolding.',
-        'description' => 'This Phase 1 shell is turning galaxiNew into the Galaxy foundation home for admin flows, beginning with branch, cardholder, card, card type, access, and reporting foundations.',
+        'description' => 'This Phase 1 shell is turning :product into the Galaxy foundation home for admin flows, beginning with branch, cardholder, card, card type, access, and reporting foundations.',
+        'description_tokens' => [
+            'product' => '<strong>galaxiNew</strong>',
+        ],
         'actions' => [
             ['label' => 'Open admin workspace', 'href' => '/admin', 'style' => 'button-primary'],
             ['label' => 'Admin login', 'route' => 'login', 'style' => 'button-secondary'],

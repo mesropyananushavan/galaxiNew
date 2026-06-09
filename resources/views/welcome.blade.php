@@ -184,7 +184,7 @@
                 <div>
                     <h1>{{ config('landing-foundation.hero.title') }}</h1>
                     <p>
-                        {!! str_replace('galaxiNew', '<strong>galaxiNew</strong>', e(config('landing-foundation.hero.description'))) !!}
+                        {!! strtr(e(config('landing-foundation.hero.description')), config('landing-foundation.hero.description_tokens', [])) !!}
                     </p>
 
                     <div class="actions">
