@@ -2,11 +2,22 @@
 
 namespace Tests\Feature;
 
+use App\Http\Controllers\LandingPageController;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 // use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
+    public function test_root_route_uses_galaxy_landing_page_controller(): void
+    {
+        $this->assertSame(
+            LandingPageController::class,
+            Route::getRoutes()->match(Request::create('/', 'GET'))->getActionName()
+        );
+    }
+
     public function test_the_home_page_surfaces_the_galaxy_foundation_landing_page(): void
     {
         $response = $this->get('/');

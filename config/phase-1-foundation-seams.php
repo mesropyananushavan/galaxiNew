@@ -37,10 +37,12 @@ return [
         ],
         [
             'label' => 'Public landing shell baseline',
-            'summary' => 'The welcome-page hero copy, focus note, emphasis tokens, CTA actions, status snapshot framing, live-surface headings, and working-rule copy stay aligned through one Galaxy-specific landing config instead of drifting back into starter-era inline Blade text.',
+            'summary' => 'The welcome-page hero copy, focus note, emphasis tokens, CTA actions, status snapshot framing, live-surface headings, working-rule copy, and route/controller handoff stay aligned through one Galaxy-specific landing config instead of drifting back into starter-era inline Blade text.',
             'sources' => [
                 'docs/phase-1-foundation-seams.md',
                 'config/landing-foundation.php',
+                'app/Http/Controllers/LandingPageController.php',
+                'routes/web.php',
                 'resources/views/welcome.blade.php',
             ],
         ],
