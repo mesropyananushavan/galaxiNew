@@ -178,14 +178,13 @@
 <body>
     <main class="shell">
         <section class="hero">
-            <div class="eyebrow">Galaxi migration foundation</div>
+            <div class="eyebrow">{{ config('landing-foundation.hero.eyebrow') }}</div>
 
             <div class="hero-grid">
                 <div>
-                    <h1>Galaxy-specific foundation, not generic scaffolding.</h1>
+                    <h1>{{ config('landing-foundation.hero.title') }}</h1>
                     <p>
-                        This Phase 1 shell is turning <strong>galaxiNew</strong> into the Galaxy foundation home for admin flows,
-                        beginning with branch, cardholder, card, card type, access, and reporting foundations.
+                        {!! str_replace('galaxiNew', '<strong>galaxiNew</strong>', e(config('landing-foundation.hero.description'))) !!}
                     </p>
 
                     <div class="actions">
@@ -200,34 +199,12 @@
                         <p>Parity first, redesign later. The current foundation layer is focused on replacing scaffold defaults with Galaxy operational context.</p>
                     </div>
 
-                    <div class="status-row">
-                        <span class="status-label">Target posture</span>
-                        <span class="status-value">Galaxy foundation monolith with Blade-first admin</span>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-label">Primary route</span>
-                        <span class="status-value">/admin</span>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-label">Current focus</span>
-                        <span class="status-value">Galaxy-specific admin IA and first live foundations</span>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-label">Reference trail</span>
-                        <span class="status-value">Blueprint, Phase 1 plan, checkpoints, progress log</span>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-label">QA rhythm</span>
-                        <span class="status-value">Focused checks after each safe slice</span>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-label">Commit trail</span>
-                        <span class="status-value">Every safe slice leaves a visible Git checkpoint</span>
-                    </div>
-                    <div class="status-row">
-                        <span class="status-label">Migration mode</span>
-                        <span class="status-value success">Phase 1 active</span>
-                    </div>
+                    @foreach (config('landing-foundation.status_rows', []) as $row)
+                        <div class="status-row">
+                            <span class="status-label">{{ $row['label'] }}</span>
+                            <span class="status-value{{ filled($row['accent'] ?? null) ? ' '.$row['accent'] : '' }}">{{ $row['value'] }}</span>
+                        </div>
+                    @endforeach
                 </aside>
             </div>
         </section>
@@ -236,19 +213,18 @@
             <article class="card">
                 <h3>Live management surfaces</h3>
                 <ul>
-                    <li>Shops and branch scope review</li>
-                    <li>Cardholders and card inventory foundations</li>
-                    <li>Card types, roles, reports, gifts, and rules previews</li>
+                    @foreach (config('landing-foundation.live_surfaces', []) as $surface)
+                        <li>{{ $surface }}</li>
+                    @endforeach
                 </ul>
             </article>
 
             <article class="card">
                 <h3>Working rules</h3>
                 <ul>
-                    <li>Preserve Galaxy admin information architecture</li>
-                    <li>Keep shop-aware access and parity-sensitive flows explicit</li>
-                    <li>Land small safe foundation slices with visible Git history</li>
-                    <li>Keep checkpoints, analysis notes, and QA references close to the work</li>
+                    @foreach (config('landing-foundation.working_rules', []) as $rule)
+                        <li>{{ $rule }}</li>
+                    @endforeach
                 </ul>
             </article>
 

@@ -36,6 +36,15 @@ return [
             ],
         ],
         [
+            'label' => 'Public landing shell baseline',
+            'summary' => 'The welcome-page hero, status snapshot, live surfaces, and working-rule copy stay aligned through one Galaxy-specific landing config instead of drifting back into starter-era inline Blade text.',
+            'sources' => [
+                'docs/phase-1-foundation-seams.md',
+                'config/landing-foundation.php',
+                'resources/views/welcome.blade.php',
+            ],
+        ],
+        [
             'label' => 'Top-level repo guidance',
             'summary' => 'Top-level contributor guidance stays aligned across the seam note and README reference trail.',
             'sources' => [

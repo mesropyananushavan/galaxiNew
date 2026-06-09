@@ -33,6 +33,13 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - visible runtime surface: `resources/views/welcome.blade.php`
 - current role: keeps the public Galaxy migration doc trail plus seam-source baseline aligned
 
+### Public landing shell baseline
+- readable summary anchor: this file
+- implementation baseline: `config/landing-foundation.php`
+- source-of-truth anchors: `config/landing-foundation.php`, `resources/views/welcome.blade.php`
+- visible runtime surface: `resources/views/welcome.blade.php`
+- current role: keeps the public Galaxy landing hero, snapshot, live-surface, and working-rule copy explicit through one config-backed Phase 1 seam
+
 ### Top-level repo guidance
 - readable summary anchor: this file
 - source-of-truth anchors: `README.md`, `docs/blueprint.md`, `docs/phase-1-plan.md`, `config/phase-1-reference-docs.php`
