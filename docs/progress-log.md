@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Reference-trail baseline expansion checkpoint
+- Added the new access, shop-scope, model-skeleton, and migration-baseline docs/config anchors to `config/phase-1-reference-docs.php` and `config/landing-docs.php`, so both admin and public reference trails now reflect the fuller Galaxy Phase 1 foundation map.
+- Updated the focused dashboard and landing feature assertions to match the expanded reference counts and newly visible baseline anchors.
+- Kept this slice small and structural: no new runtime behavior changed beyond the reference inventories and their surfaced coverage counts.
+
 ### Dashboard migration baseline checkpoint
 - Added `docs/phase-1-migration-baseline.md` and `config/phase-1-migration-baseline.php` so the existing Galaxy schema checkpoints now have an explicit Phase 1 baseline instead of living only inside `database/migrations`.
 - Extended `App\Http\Controllers\Admin\DashboardController` and `resources/views/admin/dashboard.blade.php` with a new Phase 1 migration-baseline card that renders controller-shaped schema checkpoint inventory plus focused migration-layer metrics.
