@@ -4039,7 +4039,7 @@ class ResourceIndexController extends Controller
     private function cardholdersSelectedHolderSummary(CardHolder $selectedCardHolder): array
     {
         return [
-            ['label' => 'Selected holder', 'value' => $this->cardholdersSelectedHolderLabel($selectedCardHolder)],
+            ['label' => 'Selected holder', 'value' => $this->cardholderFullNameValue($selectedCardHolder)],
             ['label' => 'Review mode', 'value' => $this->cardholdersReviewMode($selectedCardHolder)],
             ['label' => 'Holder status signal', 'value' => $this->cardholdersStatusSignal($selectedCardHolder)],
             ['label' => 'Operational readiness', 'value' => $this->cardholdersOperationalReadiness($selectedCardHolder)],
@@ -4063,11 +4063,6 @@ class ResourceIndexController extends Controller
                 'value' => $this->cardholdersLookupGuidance($selectedCardHolder),
             ],
         ];
-    }
-
-    private function cardholdersSelectedHolderLabel(CardHolder $selectedCardHolder): string
-    {
-        return $this->cardholderFullNameValue($selectedCardHolder);
     }
 
     private function cardholdersReviewMode(CardHolder $selectedCardHolder): string
@@ -4505,7 +4500,7 @@ class ResourceIndexController extends Controller
     private function cardholdersSelectedHolderDependencyStatus(CardHolder $selectedCardHolder): array
     {
         return [
-            ['label' => 'Selected holder', 'value' => $this->cardholdersSelectedHolderLabel($selectedCardHolder)],
+            ['label' => 'Selected holder', 'value' => $this->cardholderFullNameValue($selectedCardHolder)],
             ['label' => 'Lookup posture', 'value' => $this->cardholdersLookupDependencyPosture()],
             ['label' => 'Holder status signal', 'value' => $this->cardholdersStatusSignal($selectedCardHolder)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],

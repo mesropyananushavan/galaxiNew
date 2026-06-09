@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Cardholder selected-label wrapper cleanup checkpoint
+- Removed the single-use `cardholdersSelectedHolderLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-holder summaries directly to `cardholderFullNameValue()`.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Card last-saved-label wrapper cleanup checkpoint
 - Removed the single-use `cardsLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-card call sites directly to the shared `lastSavedLabel()` helper.
 - Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
