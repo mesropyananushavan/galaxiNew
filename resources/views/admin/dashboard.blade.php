@@ -326,18 +326,12 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             These grouped sections mark the Galaxy admin surfaces that still need parity work, so each Phase 1 slice can land against a visible target map.
         </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Mapped surfaces:</strong>
-            {{ $plannedSectionCount }} planned admin surfaces are currently staged in the Phase 1 target map.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Mapped groups:</strong>
-            {{ count($navigationGroups) }} top-level admin groups are currently staged in the Phase 1 target map.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Mapped routes:</strong>
-            {{ $plannedSectionCount }} Galaxy foundation route targets are currently linked from the Phase 1 target map.
-        </p>
+        @foreach ($migrationMapMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                {{ $metric['value'] }}
+            </p>
+        @endforeach
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Migration-map focus:</strong>
             {{ $migrationMapFocus }}.

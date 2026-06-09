@@ -82,6 +82,7 @@ class DashboardController extends Controller
             'liveEntryScopeNote' => $this->liveEntryScopeNote(),
             'latestWorkspaceHandoffSummary' => $this->latestWorkspaceHandoffSummary(),
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
+            'migrationMapMetrics' => $this->migrationMapMetrics($preparedNavigationGroups),
             'migrationMapHandoffSummary' => $this->migrationMapHandoffSummary($navigation),
             'migrationMapFocus' => $this->migrationMapFocus($navigation),
             'migrationMapPosture' => $this->migrationMapPosture(),
@@ -972,6 +973,18 @@ class DashboardController extends Controller
             ['label' => 'Active-state Galaxy tiers', 'value' => (string) $this->activeCardTypeCount()],
             ['label' => 'Live Galaxy access shells', 'value' => (string) $this->savedRoleCount()],
             ['label' => 'Live Galaxy access permissions', 'value' => (string) $this->savedPermissionCount()],
+        ];
+    }
+
+    protected function migrationMapMetrics(array $navigationGroups): array
+    {
+        $mappedSurfaceCount = collect($navigationGroups)->sum(fn (array $group): int => count($group['items'] ?? []));
+        $mappedGroupCount = count($navigationGroups);
+
+        return [
+            ['label' => 'Mapped surfaces', 'value' => sprintf('%d planned admin surfaces are currently staged in the Phase 1 target map.', $mappedSurfaceCount)],
+            ['label' => 'Mapped groups', 'value' => sprintf('%d top-level admin groups are currently staged in the Phase 1 target map.', $mappedGroupCount)],
+            ['label' => 'Mapped routes', 'value' => sprintf('%d Galaxy foundation route targets are currently linked from the Phase 1 target map.', $mappedSurfaceCount)],
         ];
     }
 

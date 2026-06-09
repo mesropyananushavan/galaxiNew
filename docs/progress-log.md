@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard migration-map metric payload checkpoint
+- Moved the migration-map summary counter assembly into `App\Http\Controllers\Admin\DashboardController`, so the Galaxy admin map now renders a controller-prepared metric payload instead of keeping separate inline counter paragraphs in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side migration-map metric handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard assigned-branch action payload checkpoint
 - Routed assigned-branch snapshot actions through the reusable workspace-link shaping helper in `App\Http\Controllers\Admin\DashboardController`, so that scoped branch action list now shares the same normalized link payload contract as the other dashboard workspace surfaces.
 - Updated `docs/phase-1-foundation-seams.md`, keeping this dashboard-side assigned-branch action handoff visible in the Phase 1 seam map.
