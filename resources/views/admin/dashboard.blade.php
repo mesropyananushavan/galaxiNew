@@ -117,6 +117,47 @@
     </section>
 
     <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 access baseline</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneAccessBaselineFocus }}
+        </p>
+        @foreach ($phaseOneAccessBaselineMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Access posture:</strong>
+            {{ $phaseOneAccessBaselinePosture }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Access guide:</strong>
+            {!! $phaseOneAccessBaselineGuideText !!} remain the readable and implementation anchors for this Galaxy authorization baseline.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneAccessBaselineSourceOfTruthText !!} remain the readable and implementation anchors for this Galaxy authorization baseline.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}"><strong>Tracked gates:</strong></p>
+        <ul class="list">
+            @foreach (($phaseOneAccessBaseline['gates'] ?? []) as $gate)
+                <li>{!! $gate['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+        <p style="{{ $dashboardNoteStyle }}"><strong>Tracked policies:</strong></p>
+        <ul class="list">
+            @foreach (($phaseOneAccessBaseline['policies'] ?? []) as $policy)
+                <li>{!! $policy['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 seam-source inventory</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneSeamSourcesFocus }}

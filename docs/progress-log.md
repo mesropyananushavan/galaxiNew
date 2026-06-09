@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard access-baseline seam checkpoint
+- Added `docs/phase-1-access-baseline.md` and `config/phase-1-access-baseline.php` so the existing Galaxy authorization gates, policy mappings, and admin-route guardrail now have an explicit Phase 1 baseline instead of staying implicit inside provider code.
+- Extended `App\Http\Controllers\Admin\DashboardController` and `resources/views/admin/dashboard.blade.php` with a new Phase 1 access-baseline card that renders controller-shaped gate and policy inventory plus focused access metrics.
+- Updated `docs/phase-1-foundation-seams.md`, `config/phase-1-foundation-seams.php`, and the focused authenticated admin dashboard feature check to keep this new Galaxy access seam visible and verified.
+
 ### Dashboard migration-map item summary payload checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so each migration-map item now carries a prepared `displaySummary`, letting the Galaxy dashboard render each navigation target without assembling label, description, and route text in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin migration-map item handoff visible in the Phase 1 seam map.

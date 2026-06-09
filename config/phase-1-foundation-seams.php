@@ -26,6 +26,18 @@ return [
             ],
         ],
         [
+            'label' => 'Admin access baseline',
+            'summary' => 'The first Galaxy authorization gates, policy mappings, and admin-route guardrail stay aligned across readable docs, implementation config, provider registration, and the live admin runtime surface.',
+            'sources' => [
+                'docs/phase-1-access-baseline.md',
+                'config/phase-1-access-baseline.php',
+                'app/Providers/Concerns/RegistersAdminAccessGates.php',
+                'app/Providers/Concerns/RegistersAdminPolicies.php',
+                'routes/admin.php',
+                'resources/views/admin/dashboard.blade.php',
+            ],
+        ],
+        [
             'label' => 'Public landing reference trail',
             'summary' => 'Public Galaxy migration references, docs-card heading, metric labels, explanatory notes, config-path callouts, and seam-source bridge references stay aligned across the seam note, landing-page doc config, seam-source baseline, and the live public runtime surface.',
             'sources' => [

@@ -31,6 +31,12 @@ class DashboardController extends Controller
             'phaseOneDomainSourceOfTruthText' => $this->inlineCodeList(config('phase-1-domain-map.source_of_truth', ['docs/phase-1-domain-map.md', 'config/phase-1-domain-map.php'])),
             'phaseOneDomainPosture' => (string) config('phase-1-domain-map.posture', 'documented entity baseline for live foundation work'),
             'phaseOneDomainInventory' => $this->phaseOneDomainInventory(),
+            'phaseOneAccessBaseline' => $this->preparedAccessBaseline(config('phase-1-access-baseline.gates', []), config('phase-1-access-baseline.policies', [])),
+            'phaseOneAccessBaselineFocus' => (string) config('phase-1-access-baseline.focus', 'Keep the first Galaxy authorization gates and policy mappings explicit while Phase 1 access work is still landing.'),
+            'phaseOneAccessBaselineGuideText' => $this->inlineCodeList(config('phase-1-access-baseline.guide', ['docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php'])),
+            'phaseOneAccessBaselineSourceOfTruthText' => $this->inlineCodeList(config('phase-1-access-baseline.source_of_truth', ['docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php', 'app/Providers/Concerns/RegistersAdminAccessGates.php', 'app/Providers/Concerns/RegistersAdminPolicies.php', 'routes/admin.php'])),
+            'phaseOneAccessBaselinePosture' => (string) config('phase-1-access-baseline.posture', 'documented authorization baseline for live Galaxy admin access'),
+            'phaseOneAccessBaselineMetrics' => $this->phaseOneAccessBaselineMetrics(),
             'phaseOneReferenceDocs' => $this->preparedReferenceDocs(config('phase-1-reference-docs.items', [])),
             'phaseOneReferenceDocsFocus' => (string) config('phase-1-reference-docs.focus', 'Keep the current Galaxy admin map, shell layering, checkpoint trail, and seam-source baseline close while Phase 1 slices are still moving.'),
             'phaseOneReferenceDocsGuide' => config('phase-1-reference-docs.guide', ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md']),
@@ -124,6 +130,15 @@ class DashboardController extends Controller
         ];
     }
 
+    protected function phaseOneAccessBaselineMetrics(): array
+    {
+        return [
+            ['label' => 'Gate coverage', 'value' => sprintf('%d Phase 1 admin access gates currently tracked.', $this->accessGateCount())],
+            ['label' => 'Policy coverage', 'value' => sprintf('%d model policies currently mapped for Phase 1 admin resources.', $this->accessPolicyCount())],
+            ['label' => 'Admin guardrail', 'value' => '<code>routes/admin.php</code> keeps the Galaxy admin shell behind <code>auth</code> and <code>can:access-admin</code>.', 'html' => true],
+        ];
+    }
+
     protected function phaseOneSeamSourceMetrics(): array
     {
         return [
@@ -194,9 +209,69 @@ class DashboardController extends Controller
             ->all();
     }
 
+    protected function preparedAccessBaseline(array $gates, array $policies): array
+    {
+        return [
+            'gates' => collect($gates)
+                ->filter(fn ($gate): bool => is_array($gate) && filled($gate['label'] ?? null) && filled($gate['ability'] ?? null))
+                ->map(function (array $gate): array {
+                    $label = (string) ($gate['label'] ?? '');
+                    $ability = (string) ($gate['ability'] ?? '');
+                    $coverage = (string) ($gate['coverage'] ?? '');
+
+                    return [
+                        'label' => $label,
+                        'ability' => $ability,
+                        'coverage' => $coverage,
+                        'displaySummary' => sprintf('<strong>%s</strong> (<code>%s</code>), %s', e($label), e($ability), e($coverage)),
+                    ];
+                })
+                ->values()
+                ->all(),
+            'policies' => collect($policies)
+                ->filter(fn ($policy): bool => is_array($policy) && filled($policy['label'] ?? null) && filled($policy['policy'] ?? null))
+                ->map(function (array $policy): array {
+                    $label = (string) ($policy['label'] ?? '');
+                    $model = (string) ($policy['model'] ?? '');
+                    $policyClass = (string) ($policy['policy'] ?? '');
+                    $coverage = (string) ($policy['coverage'] ?? '');
+
+                    return [
+                        'label' => $label,
+                        'model' => $model,
+                        'policy' => $policyClass,
+                        'coverage' => $coverage,
+                        'displaySummary' => sprintf('<strong>%s</strong> (<code>%s</code> → <code>%s</code>), %s', e($label), e($model), e($policyClass), e($coverage)),
+                    ];
+                })
+                ->values()
+                ->all(),
+        ];
+    }
+
     protected function domainEntities()
     {
         return collect(config('phase-1-domain-map.entities', []));
+    }
+
+    protected function accessGates()
+    {
+        return collect(config('phase-1-access-baseline.gates', []));
+    }
+
+    protected function accessGateCount(): int
+    {
+        return $this->countConfigItems($this->accessGates());
+    }
+
+    protected function accessPolicies()
+    {
+        return collect(config('phase-1-access-baseline.policies', []));
+    }
+
+    protected function accessPolicyCount(): int
+    {
+        return $this->countConfigItems($this->accessPolicies());
     }
 
     protected function mappedPhaseOneEntityCount(): int

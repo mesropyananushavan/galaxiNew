@@ -8,7 +8,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - implementation baseline anchor: `config/phase-1-foundation-seams.php`
 - seam-source baseline bridge: `config/phase-1-seam-sources.php`
 - live runtime surface: `resources/views/admin/dashboard.blade.php`
-- admin runtime note: `App\Http\Controllers\Admin\DashboardController` now formats seam-source and foundation-seam reference strings before they reach the dashboard surface, routes review-entry, latest-work, and assigned-branch action link collections through prepared workspace-link payloads, prepares migration-map navigation and item summary payloads before render, shapes the foundation snapshot, assigned-branch, domain, live-entry, latest-work, migration-map, reference-doc, seam-source, and foundation-seam metric payloads before render, and no longer hands the old raw planned-section counter or raw live-entry/latest-work summary strings directly to Blade
+- admin runtime note: `App\Http\Controllers\Admin\DashboardController` now formats seam-source, access-baseline, and foundation-seam reference strings before they reach the dashboard surface, routes review-entry, latest-work, and assigned-branch action link collections through prepared workspace-link payloads, prepares migration-map navigation and item summary payloads before render, shapes the foundation snapshot, assigned-branch, domain, access-baseline, live-entry, latest-work, migration-map, reference-doc, seam-source, and foundation-seam metric payloads before render, and no longer hands the old raw planned-section counter or raw live-entry/latest-work summary strings directly to Blade
 
 ## Current seams
 
@@ -34,6 +34,13 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - related runtime shaping: the dashboard controller now also prepares the entity coverage and inventory metric payload before render, so the admin domain baseline stays less tied to raw summary strings inside Blade
 - related runtime shaping: the dashboard controller now also prepares the entity inventory display payload before render, so the admin domain baseline stays less tied to raw config structure and line assembly inside Blade
 - related runtime shaping: the dashboard controller now also prepares the foundation-seam primary summary line plus the source trail text and secondary sources note before render so the admin seam inventory stays less Blade-assembled
+
+### Admin access baseline
+- readable summary anchor: `docs/phase-1-access-baseline.md`
+- implementation baseline: `config/phase-1-access-baseline.php`
+- source-of-truth anchors: `docs/phase-1-access-baseline.md`, `config/phase-1-access-baseline.php`, `app/Providers/Concerns/RegistersAdminAccessGates.php`, `app/Providers/Concerns/RegistersAdminPolicies.php`, `routes/admin.php`
+- visible runtime surface: `resources/views/admin/dashboard.blade.php`
+- current role: keeps the first Galaxy authorization gates and policy mappings explicit while Phase 1 admin access and shop scope are still landing, with the dashboard controller now shaping both the access metrics and the tracked gate/policy inventory before render
 
 ### Public landing reference trail
 - readable summary anchor: this file
