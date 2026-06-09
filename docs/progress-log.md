@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing reference source-of-truth expansion checkpoint
+- Expanded `config/landing-docs.php` so the public landing source-of-truth trail now includes the newer access, shop-scope, model-skeleton, and migration baselines instead of pointing only at the older README-plus-config pair.
+- Updated `docs/phase-1-foundation-seams.md` and the focused landing assertion so this richer public reference prose stays aligned with the expanded Phase 1 foundation map.
+- Re-ran the focused landing check as the parity guard for this small Galaxy public reference-trail follow-up.
+
 ### Admin reference source-of-truth expansion checkpoint
 - Expanded `config/phase-1-reference-docs.php` so the admin dashboard source-of-truth trail now includes the newer access, shop-scope, model-skeleton, and migration baselines instead of pointing only at the older high-level planning anchors.
 - Updated `docs/phase-1-foundation-seams.md` and the focused authenticated dashboard assertion so this richer admin reference prose stays aligned with the now-expanded Phase 1 inventory.

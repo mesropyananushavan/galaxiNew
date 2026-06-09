@@ -34,7 +34,7 @@ return [
     ],
     'focus' => 'Keep the public Galaxy migration reference trail visible from the landing surface while repo guidance and Phase 1 seams are still moving.',
     'guide' => ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md'],
-    'source_of_truth' => ['README.md', 'config/landing-docs.php'],
+    'source_of_truth' => ['README.md', 'docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php', 'docs/phase-1-shop-access-baseline.md', 'config/phase-1-shop-access-baseline.php', 'docs/phase-1-model-skeletons.md', 'config/phase-1-model-skeletons.php', 'docs/phase-1-migration-baseline.md', 'config/phase-1-migration-baseline.php', 'config/landing-docs.php'],
     'posture' => 'public reference inventory stays explicit across the live Galaxy landing trail',
     'items' => [
         [
