@@ -89,12 +89,6 @@ class DashboardController extends Controller
             'migrationMapPosture' => $this->migrationMapPosture(),
             'phaseOneDomainCoverage' => $this->phaseOneDomainCoverage(),
             'liveReviewEntryPoints' => $this->liveReviewEntryPoints(),
-            'liveEntryPointCoverage' => $this->liveEntryPointCoverage(),
-            'liveEntryPointFocus' => $this->liveEntryPointFocus(),
-            'liveEntryPointPosture' => $this->liveEntryPointPosture(),
-            'latestWorkspaceCoverage' => $this->latestWorkspaceCoverage(),
-            'latestWorkspaceFocus' => $this->latestWorkspaceFocus(),
-            'latestWorkspacePosture' => $this->latestWorkspacePosture(),
             'latestWorkspaces' => $this->latestWorkspaces(),
         ]);
     }
