@@ -731,6 +731,15 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->canAccessShop(null));
     }
 
+    public function test_roles_permissions_route_requires_role_and_permission_view_policies(): void
+    {
+        $route = Route::getRoutes()->getByName('admin.roles-permissions.index');
+
+        $this->assertNotNull($route);
+        $this->assertContains('can:viewAny,'.Role::class, $route->gatherMiddleware());
+        $this->assertContains('can:viewAny,'.Permission::class, $route->gatherMiddleware());
+    }
+
     public function test_shop_scoped_admin_access_helper_denies_paused_shop_users_even_for_their_assigned_shop(): void
     {
         $pausedShop = Shop::create([

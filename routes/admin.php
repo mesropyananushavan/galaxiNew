@@ -16,6 +16,7 @@ use App\Http\Controllers\Admin\ShopUpdateController;
 use App\Models\Card;
 use App\Models\CardHolder;
 use App\Models\CardType;
+use App\Models\Permission;
 use App\Models\Role;
 use App\Models\Shop;
 use Illuminate\Support\Facades\Route;
@@ -72,7 +73,7 @@ Route::prefix('admin')
         Route::get('/services-rules', ResourceIndexController::class)->defaults('resource', 'services-rules')->name('services-rules.index');
         Route::get('/gifts', ResourceIndexController::class)->defaults('resource', 'gifts')->name('gifts.index');
         Route::get('/roles-permissions', ResourceIndexController::class)
-            ->middleware('can:viewAny,'.Role::class)
+            ->middleware(['can:viewAny,'.Role::class, 'can:viewAny,'.Permission::class])
             ->defaults('resource', 'roles-permissions')
             ->name('roles-permissions.index');
         Route::post('/roles-permissions', RoleStoreController::class)

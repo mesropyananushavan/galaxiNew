@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Roles-permissions route guardrail checkpoint
+- Tightened `routes/admin.php` so the shared `admin.roles-permissions.index` review route now requires both `Role::viewAny` and `Permission::viewAny` instead of only the role-side policy check.
+- Updated `docs/phase-1-access-baseline.md` and `docs/phase-1-foundation-seams.md` so the live access baseline now documents that the permission-vocabulary seam participates in a real endpoint guard, not just the dashboard inventory.
+- Re-ran focused dashboard and route-contract assertions as the parity guard for this small access-enforcement follow-up.
+
 ### Permission policy source-of-truth sync checkpoint
 - Added `app/Policies/PermissionPolicy.php` to the access baseline source-of-truth trails in `config/phase-1-access-baseline.php`, `docs/phase-1-access-baseline.md`, `config/phase-1-foundation-seams.php`, and `docs/phase-1-foundation-seams.md`.
 - This keeps the newer permission policy seam visible not just in the tracked policy inventory, but also in the explicit anchor lists contributors use to find the live Phase 1 access baseline.
