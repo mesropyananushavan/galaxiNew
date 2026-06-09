@@ -10,6 +10,7 @@ return [
         'config/phase-1-foundation-seams.php',
         'config/phase-1-reference-docs.php',
         'config/landing-docs.php',
+        'config/landing-foundation.php',
         'config/phase-1-seam-sources.php',
     ],
 ];

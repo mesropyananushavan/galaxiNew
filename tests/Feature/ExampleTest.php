@@ -47,7 +47,7 @@ class ExampleTest extends TestCase
             ->assertSee('Seam-source focus:')
             ->assertSee('Keep the README-level seam-source inventory visible across repo guidance plus the admin and public Phase 1 entry surfaces.')
             ->assertSee('Seam-source coverage:')
-            ->assertSee('5 Phase 1 seam sources currently documented in')
+            ->assertSee('6 Phase 1 seam sources currently documented in')
             ->assertSee('README.md')
             ->assertSee('Seam-source baseline:')
             ->assertSee('config/phase-1-seam-sources.php')

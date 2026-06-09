@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing-foundation seam-source checkpoint
+- Added `config/landing-foundation.php` to `config/phase-1-seam-sources.php`, so the README-level seam-source inventory now tracks the public Galaxy landing-shell baseline alongside the other explicit Phase 1 config seams.
+- Updated `README.md` plus the focused admin dashboard and landing feature assertions so seam-source coverage and visible reference copy include the landing-shell seam.
+- Re-ran the focused admin dashboard and public landing feature assertions as the parity check for this small seam-source alignment slice.
+
 ### Landing-foundation reference trail checkpoint
 - Added `config/landing-foundation.php` to the Phase 1 admin reference inventory in `config/phase-1-reference-docs.php` and to the public landing reference list in `config/landing-docs.php`, so the new Galaxy landing shell seam stays visible in both reference trails.
 - Updated `README.md` plus the focused dashboard and landing feature assertions to treat the landing-shell config as part of the explicit Phase 1 foundation trail.
