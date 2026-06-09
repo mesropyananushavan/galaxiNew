@@ -734,9 +734,12 @@ class DashboardController extends Controller
 
     protected function workspaceLink(string $label, string $routeName, array $parameters = []): array
     {
+        $route = route($routeName, $parameters);
+
         return [
             'label' => $label,
-            'route' => route($routeName, $parameters),
+            'route' => $route,
+            'path' => parse_url($route, PHP_URL_PATH) ?: $route,
         ];
     }
 

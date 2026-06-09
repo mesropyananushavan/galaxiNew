@@ -56,7 +56,7 @@
                 @if (is_array($assignedBranchSnapshot['actions'] ?? null) && $assignedBranchSnapshot['actions'] !== [])
                     <ul class="list" style="margin-top: 12px;">
                         @foreach ($assignedBranchSnapshot['actions'] as $action)
-                            <li><a href="{{ $action['route'] }}">{{ $action['label'] }}</a> (Route: {{ parse_url($action['route'], PHP_URL_PATH) ?? $action['route'] }})</li>
+                            <li><a href="{{ $action['route'] }}">{{ $action['label'] }}</a> (Route: {{ $action['path'] ?? $action['route'] }})</li>
                         @endforeach
                     </ul>
                 @endif
@@ -337,7 +337,7 @@
         @endif
         <ul class="list">
             @foreach ($liveReviewEntryPoints as $entryPoint)
-                <li><a href="{{ $entryPoint['route'] }}">{{ $entryPoint['label'] }}</a> (Route: {{ parse_url($entryPoint['route'], PHP_URL_PATH) ?? $entryPoint['route'] }})</li>
+                <li><a href="{{ $entryPoint['route'] }}">{{ $entryPoint['label'] }}</a> (Route: {{ $entryPoint['path'] ?? $entryPoint['route'] }})</li>
             @endforeach
         </ul>
     </section>
@@ -374,7 +374,7 @@
         @if ($latestWorkspaces !== [])
             <ul class="list">
                 @foreach ($latestWorkspaces as $workspace)
-                    <li><a href="{{ $workspace['route'] }}">{{ $workspace['label'] }}</a> (Route: {{ parse_url($workspace['route'], PHP_URL_PATH) ?? $workspace['route'] }})</li>
+                    <li><a href="{{ $workspace['route'] }}">{{ $workspace['label'] }}</a> (Route: {{ $workspace['path'] ?? $workspace['route'] }})</li>
                 @endforeach
             </ul>
         @else
