@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Cardholder review-note wrapper cleanup checkpoint
+- Removed the single-use `cardholdersReviewNoteLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-holder summaries directly to `cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet')`.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Cardholder selected-label wrapper cleanup checkpoint
 - Removed the single-use `cardholdersSelectedHolderLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-holder summaries directly to `cardholderFullNameValue()`.
 - Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

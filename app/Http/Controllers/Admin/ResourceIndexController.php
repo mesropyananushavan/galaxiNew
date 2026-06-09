@@ -4045,7 +4045,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Operational readiness', 'value' => $this->cardholdersOperationalReadiness($selectedCardHolder)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
-            ['label' => 'Review note', 'value' => $this->cardholdersReviewNoteLabel($selectedCardHolder)],
+            ['label' => 'Review note', 'value' => $this->cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet')],
             ['label' => 'Phone', 'value' => $this->cardholdersPhoneLabel($selectedCardHolder)],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Shop activity signal', 'value' => $this->cardholdersShopActivitySignal($selectedCardHolder)],
@@ -4203,11 +4203,6 @@ class ResourceIndexController extends Controller
     private function cardholdersLinkedCardsLabel(CardHolder $selectedCardHolder): string
     {
         return (string) $this->cardholderLinkedCardCount($selectedCardHolder);
-    }
-
-    private function cardholdersReviewNoteLabel(CardHolder $selectedCardHolder): string
-    {
-        return $this->cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet');
     }
 
     private function cardholderReviewNoteValue(CardHolder $selectedCardHolder, string $fallback = ''): string
@@ -4505,7 +4500,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Holder status signal', 'value' => $this->cardholdersStatusSignal($selectedCardHolder)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
-            ['label' => 'Review note', 'value' => $this->cardholdersReviewNoteLabel($selectedCardHolder)],
+            ['label' => 'Review note', 'value' => $this->cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet')],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Shop activity signal', 'value' => $this->cardholdersShopActivitySignal($selectedCardHolder)],
             ['label' => 'Activity handoff signal', 'value' => $this->cardholdersActivityHandoffSignal($selectedCardHolder)],
