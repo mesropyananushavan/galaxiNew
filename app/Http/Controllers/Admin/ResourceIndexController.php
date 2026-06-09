@@ -2742,13 +2742,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function shopsStatusPosture(Shop $selectedShop): string
-    {
-        return $this->shopIsPaused($selectedShop)
-            ? 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'
-            : 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.';
-    }
-
     private function shopsManagerPosture(Shop $selectedShop): string
     {
         return match (true) {
@@ -4723,7 +4716,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Coverage signal', 'value' => $this->shopsCoverageSignal($selectedShop)],
             ['label' => 'Shop status signal', 'value' => $this->shopsStatusSignal($selectedShop)],
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
-            ['label' => 'Status posture', 'value' => $this->shopsStatusPosture($selectedShop)],
+            ['label' => 'Status posture', 'value' => $this->shopIsPaused($selectedShop)
+                ? 'This paused branch should stay review-only until recovery, ownership, and scope parity are verified.'
+                : 'This active branch is visible for review now, but manager and scope changes should stay blocked until legacy ownership rules are verified.'],
             ['label' => 'Manager posture', 'value' => $this->shopsManagerPosture($selectedShop)],
             ['label' => 'Coverage posture', 'value' => $this->shopIsPaused($selectedShop)
                 ? sprintf('This paused branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation recovery review.', $this->shopVisibleCardholderCount($selectedShop), $this->shopVisibleCardCount($selectedShop))
