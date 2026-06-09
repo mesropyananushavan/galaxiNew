@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing-foundation reference trail checkpoint
+- Added `config/landing-foundation.php` to the Phase 1 admin reference inventory in `config/phase-1-reference-docs.php` and to the public landing reference list in `config/landing-docs.php`, so the new Galaxy landing shell seam stays visible in both reference trails.
+- Updated `README.md` plus the focused dashboard and landing feature assertions to treat the landing-shell config as part of the explicit Phase 1 foundation trail.
+- Re-ran the focused admin dashboard and public landing feature assertions as the parity check for this small reference-trail alignment slice.
+
 ### Admin dashboard landing-seam parity checkpoint
 - Updated `tests/Feature/AdminDashboardTest.php` so the Phase 1 dashboard assertions now expect the new public landing shell seam in the foundation seam inventory.
 - Added dashboard coverage for the `Public landing shell baseline` row plus `config/landing-foundation.php`, keeping the admin-side seam inventory aligned with the new welcome-page Galaxy foundation config.

@@ -32,6 +32,7 @@ Posture: admin reference inventory stays explicit across the live Galaxy dashboa
 - `docs/phase-1-plan.md`
 - `docs/phase-1-domain-map.md`
 - `docs/phase-1-foundation-seams.md`
+- `config/landing-foundation.php`
 - `config/phase-1-seam-sources.php`
 - `docs/admin-information-architecture.md`
 - `docs/admin-shell-layering.md`
@@ -53,6 +54,7 @@ Posture: README-backed seam-source baseline stays explicit across the live Galax
 - `config/phase-1-foundation-seams.php` keeps the seam inventory aligned with the dashboard
 - `config/phase-1-reference-docs.php` keeps the admin-side Phase 1 reference trail aligned
 - `config/landing-docs.php` keeps the public Galaxy migration doc trail aligned
+- `config/landing-foundation.php` keeps the public Galaxy landing shell baseline aligned
 - `config/phase-1-seam-sources.php` keeps this README-level seam-source inventory aligned
 
 ## Local development
