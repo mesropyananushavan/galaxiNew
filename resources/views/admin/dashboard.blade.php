@@ -84,78 +84,12 @@
             {{ $foundationPosture }}.
         </p>
         <div class="placeholder-grid">
-            <article class="metric">
-                <p class="metric-label">Route namespace</p>
-                <p class="metric-value">/admin</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Planned sections</p>
-                <p class="metric-value">{{ $plannedSectionCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live domain coverage</p>
-                <p class="metric-value">{{ $liveDomainCoverage }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Foundation readiness</p>
-                <p class="metric-value">{{ $foundationReadinessSignal }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Active foundation coverage</p>
-                <p class="metric-value">{{ $activeFoundationCoverage }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Branch pause coverage</p>
-                <p class="metric-value">{{ $branchPauseCoverage }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Access baseline coverage</p>
-                <p class="metric-value">{{ $accessBaselineCoverage }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Tier baseline coverage</p>
-                <p class="metric-value">{{ $tierBaselineCoverage }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live Galaxy branches</p>
-                <p class="metric-value">{{ $shopCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Active-state Galaxy branches</p>
-                <p class="metric-value">{{ $activeShopCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live Galaxy holders</p>
-                <p class="metric-value">{{ $cardHolderCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Active-state Galaxy holders</p>
-                <p class="metric-value">{{ $activeCardHolderCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live Galaxy card shells</p>
-                <p class="metric-value">{{ $cardCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Active-state Galaxy card shells</p>
-                <p class="metric-value">{{ $activeCardCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live Galaxy tiers</p>
-                <p class="metric-value">{{ $cardTypeCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Active-state Galaxy tiers</p>
-                <p class="metric-value">{{ $activeCardTypeCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live Galaxy access shells</p>
-                <p class="metric-value">{{ $roleCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live Galaxy access permissions</p>
-                <p class="metric-value">{{ $permissionCount }}</p>
-            </article>
+            @foreach ($foundationSnapshotMetrics as $metric)
+                <article class="metric">
+                    <p class="metric-label">{{ $metric['label'] }}</p>
+                    <p class="metric-value">{{ $metric['value'] }}</p>
+                </article>
+            @endforeach
         </div>
         </div>
     </section>

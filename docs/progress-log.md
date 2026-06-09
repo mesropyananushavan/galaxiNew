@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard foundation-metric payload checkpoint
+- Moved the live foundation snapshot metric assembly into `App\Http\Controllers\Admin\DashboardController`, so the main Galaxy dashboard metric grid now renders one controller-prepared payload instead of keeping a long inline metric block in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side foundation-metric handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard workspace-path seam checkpoint
 - Moved dashboard workspace-link path parsing into `App\Http\Controllers\Admin\DashboardController` by extending the shared workspace-link payload with a prepared `path`, so the live Galaxy admin review/workspace cards no longer call `parse_url()` inline in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side workspace-path handoff visible in the Phase 1 seam map.

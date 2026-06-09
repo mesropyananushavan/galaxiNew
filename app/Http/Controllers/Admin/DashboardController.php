@@ -74,6 +74,7 @@ class DashboardController extends Controller
             'roleCount' => $this->savedRoleCount(),
             'permissionCount' => $this->savedPermissionCount(),
             'foundationHandoffSummary' => $this->foundationHandoffSummary(),
+            'foundationSnapshotMetrics' => $this->foundationSnapshotMetrics($navigation),
             'dashboardScopeSummary' => $this->dashboardScopeSummary(),
             'assignedBranchSnapshot' => $this->assignedBranchSnapshot(),
             'liveEntryHandoffSummary' => $this->liveEntryHandoffSummary(),
@@ -905,6 +906,30 @@ class DashboardController extends Controller
                 default
                     => 'Some live Galaxy entities are visible, but the dashboard still needs broader Galaxy foundation coverage before foundation handoff review feels complete.',
             },
+        ];
+    }
+
+    protected function foundationSnapshotMetrics(array $navigation): array
+    {
+        return [
+            ['label' => 'Route namespace', 'value' => '/admin'],
+            ['label' => 'Planned sections', 'value' => (string) collect($navigation)->sum(fn (array $group): int => count($group['items']))],
+            ['label' => 'Live domain coverage', 'value' => $this->liveDomainCoverage()],
+            ['label' => 'Foundation readiness', 'value' => $this->foundationReadinessSignal()],
+            ['label' => 'Active foundation coverage', 'value' => $this->activeFoundationCoverage()],
+            ['label' => 'Branch pause coverage', 'value' => $this->branchPauseCoverage()],
+            ['label' => 'Access baseline coverage', 'value' => $this->accessBaselineCoverage()],
+            ['label' => 'Tier baseline coverage', 'value' => $this->tierBaselineCoverage()],
+            ['label' => 'Live Galaxy branches', 'value' => (string) $this->savedShopCount()],
+            ['label' => 'Active-state Galaxy branches', 'value' => (string) $this->activeShopCount()],
+            ['label' => 'Live Galaxy holders', 'value' => (string) $this->savedCardHolderCount()],
+            ['label' => 'Active-state Galaxy holders', 'value' => (string) $this->activeCardHolderCount()],
+            ['label' => 'Live Galaxy card shells', 'value' => (string) $this->savedCardCount()],
+            ['label' => 'Active-state Galaxy card shells', 'value' => (string) $this->activeCardCount()],
+            ['label' => 'Live Galaxy tiers', 'value' => (string) $this->savedCardTypeCount()],
+            ['label' => 'Active-state Galaxy tiers', 'value' => (string) $this->activeCardTypeCount()],
+            ['label' => 'Live Galaxy access shells', 'value' => (string) $this->savedRoleCount()],
+            ['label' => 'Live Galaxy access permissions', 'value' => (string) $this->savedPermissionCount()],
         ];
     }
 
