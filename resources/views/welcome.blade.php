@@ -245,7 +245,7 @@
                 <p>{{ config('landing-docs.labels.doc_guide') }} @foreach (config('landing-docs.guide', []) as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach {{ config('landing-docs.copy.guide_note') }}</p>
                 <p>{{ config('landing-docs.labels.doc_posture') }} {{ config('landing-docs.posture') }}.</p>
                 <p>{{ config('landing-docs.labels.source_of_truth') }} @foreach (config('landing-docs.source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach {{ config('landing-docs.copy.source_of_truth_note') }}</p>
-                <p>{{ config('landing-docs.labels.reference_seam_bridge') }} <code>{{ config('landing-docs.copy.reference_seam_bridge_path') }}</code> {{ config('landing-docs.copy.reference_seam_bridge') }}</p>
+                <p>{{ config('landing-docs.labels.reference_seam_bridge') }} <code>{{ config('landing-docs.copy.reference_seam_bridge_label_path') }}</code> {{ config('landing-docs.copy.reference_seam_bridge') }}</p>
                 <ul>
                     @foreach (config('landing-docs.items', []) as $doc)
                         <li>

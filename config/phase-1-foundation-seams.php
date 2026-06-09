@@ -27,7 +27,7 @@ return [
         ],
         [
             'label' => 'Public landing reference trail',
-            'summary' => 'Public Galaxy migration references, docs-card heading, metric labels, explanatory notes, config-path callouts, and seam-source bridge copy stay aligned across the seam note, landing-page doc config, seam-source baseline, and the live public runtime surface.',
+            'summary' => 'Public Galaxy migration references, docs-card heading, metric labels, explanatory notes, config-path callouts, and seam-source bridge references stay aligned across the seam note, landing-page doc config, seam-source baseline, and the live public runtime surface.',
             'sources' => [
                 'docs/phase-1-foundation-seams.md',
                 'config/landing-docs.php',
