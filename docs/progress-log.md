@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Access route-guardrail family count checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each grouped access guardrail family now carries a controller-prepared item count alongside its family label.
+- Updated `resources/views/admin/dashboard.blade.php` so the live access card shows those per-family counts directly in the grouped headings, making the growing Phase 1 access map easier to scan.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-readability follow-up.
+
 ### Access route-guardrail family grouping checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so the access-baseline card now groups tracked route guardrails into workflow families for Galaxy branches, holders, card shells, tiers, and access shells.
 - Updated `resources/views/admin/dashboard.blade.php` so the live access card renders those controller-prepared guardrail groups instead of one flat route list, keeping the Phase 1 access map easier to scan as the inventory grows.

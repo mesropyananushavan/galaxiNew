@@ -388,6 +388,8 @@ class DashboardController extends Controller
                 return [
                     'family' => (string) $family,
                     'label' => (string) ($first['familyLabel'] ?? 'Route guardrail group'),
+                    'count' => $items->count(),
+                    'displayLabel' => sprintf('%s (%d)', (string) ($first['familyLabel'] ?? 'Route guardrail group'), $items->count()),
                     'items' => $items->values()->all(),
                 ];
             })

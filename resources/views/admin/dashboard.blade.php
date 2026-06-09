@@ -221,7 +221,7 @@
         <ul class="list">
             @foreach (($phaseOneAccessBaseline['routeGuardrailGroups'] ?? []) as $guardrailGroup)
                 <li>
-                    <strong>{{ $guardrailGroup['label'] }}:</strong>
+                    <strong>{{ $guardrailGroup['displayLabel'] ?? $guardrailGroup['label'] }}:</strong>
                     <ul class="list">
                         @foreach (($guardrailGroup['items'] ?? []) as $guardrail)
                             <li>{!! $guardrail['displaySummary'] !!}</li>
