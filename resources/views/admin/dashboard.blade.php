@@ -217,6 +217,12 @@
                 <li>{!! $gate['displaySummary'] !!}</li>
             @endforeach
         </ul>
+        <p style="{{ $dashboardNoteStyle }}"><strong>Tracked route guardrails:</strong></p>
+        <ul class="list">
+            @foreach (($phaseOneAccessBaseline['routeGuardrails'] ?? []) as $guardrail)
+                <li>{!! $guardrail['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
         <p style="{{ $dashboardNoteStyle }}"><strong>Tracked policies:</strong></p>
         <ul class="list">
             @foreach (($phaseOneAccessBaseline['policies'] ?? []) as $policy)

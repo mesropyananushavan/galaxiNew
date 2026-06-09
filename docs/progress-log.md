@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Access route-guardrail inventory checkpoint
+- Extended `config/phase-1-access-baseline.php`, `App\Http\Controllers\Admin\DashboardController`, and `resources/views/admin/dashboard.blade.php` so the access-baseline card now tracks shared admin review route guardrails as a first-class inventory, not just gates and policies.
+- Added the `admin.roles-permissions.index` dual-policy contract as the first explicit route-guardrail item, keeping the permission-vocabulary seam visible in the live dashboard runtime as well as in `routes/admin.php`.
+- Updated the access-baseline seam docs and focused dashboard assertions, then re-ran the narrow dashboard check as the parity guard for this small runtime-facing access slice.
+
 ### Roles-permissions route guardrail checkpoint
 - Tightened `routes/admin.php` so the shared `admin.roles-permissions.index` review route now requires both `Role::viewAny` and `Permission::viewAny` instead of only the role-side policy check.
 - Updated `docs/phase-1-access-baseline.md` and `docs/phase-1-foundation-seams.md` so the live access baseline now documents that the permission-vocabulary seam participates in a real endpoint guard, not just the dashboard inventory.

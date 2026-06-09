@@ -43,7 +43,7 @@ class DashboardController extends Controller
             'phaseOneMigrationBaselineSourceOfTruthText' => $this->inlineCodeList(config('phase-1-migration-baseline.source_of_truth', ['docs/phase-1-migration-baseline.md', 'config/phase-1-migration-baseline.php', 'database/migrations'])),
             'phaseOneMigrationBaselinePosture' => (string) config('phase-1-migration-baseline.posture', 'documented migration baseline for the live Galaxy schema layer'),
             'phaseOneMigrationBaselineMetrics' => $this->phaseOneMigrationBaselineMetrics(),
-            'phaseOneAccessBaseline' => $this->preparedAccessBaseline(config('phase-1-access-baseline.gates', []), config('phase-1-access-baseline.policies', [])),
+            'phaseOneAccessBaseline' => $this->preparedAccessBaseline(config('phase-1-access-baseline.gates', []), config('phase-1-access-baseline.route_guardrails', []), config('phase-1-access-baseline.policies', [])),
             'phaseOneAccessBaselineFocus' => (string) config('phase-1-access-baseline.focus', 'Keep the first Galaxy authorization gates and policy mappings explicit while Phase 1 access work is still landing.'),
             'phaseOneAccessBaselineGuideText' => $this->inlineCodeList(config('phase-1-access-baseline.guide', ['docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php'])),
             'phaseOneAccessBaselineSourceOfTruthText' => $this->inlineCodeList(config('phase-1-access-baseline.source_of_truth', ['docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php', 'app/Providers/Concerns/RegistersAdminAccessGates.php', 'app/Providers/Concerns/RegistersAdminPolicies.php', 'routes/admin.php'])),
@@ -152,6 +152,7 @@ class DashboardController extends Controller
     {
         return [
             ['label' => 'Gate coverage', 'value' => sprintf('%d Phase 1 admin access gates currently tracked.', $this->accessGateCount())],
+            ['label' => 'Route guardrails', 'value' => sprintf('%d shared admin review route guardrails currently tracked.', $this->accessRouteGuardrailCount())],
             ['label' => 'Policy coverage', 'value' => sprintf('%d model policies currently mapped for Phase 1 admin resources.', $this->accessPolicyCount())],
             ['label' => 'Admin guardrail', 'value' => '<code>routes/admin.php</code> keeps the Galaxy admin shell behind <code>auth</code> and <code>can:access-admin</code>.', 'html' => true],
         ];
@@ -296,7 +297,7 @@ class DashboardController extends Controller
             ->all();
     }
 
-    protected function preparedAccessBaseline(array $gates, array $policies): array
+    protected function preparedAccessBaseline(array $gates, array $routeGuardrails, array $policies): array
     {
         return [
             'gates' => collect($gates)
@@ -311,6 +312,24 @@ class DashboardController extends Controller
                         'ability' => $ability,
                         'coverage' => $coverage,
                         'displaySummary' => sprintf('<strong>%s</strong> (<code>%s</code>), %s', e($label), e($ability), e($coverage)),
+                    ];
+                })
+                ->values()
+                ->all(),
+            'routeGuardrails' => collect($routeGuardrails)
+                ->filter(fn ($guardrail): bool => is_array($guardrail) && filled($guardrail['label'] ?? null) && filled($guardrail['route'] ?? null) && filled($guardrail['guard'] ?? null))
+                ->map(function (array $guardrail): array {
+                    $label = (string) ($guardrail['label'] ?? '');
+                    $route = (string) ($guardrail['route'] ?? '');
+                    $guard = (string) ($guardrail['guard'] ?? '');
+                    $coverage = (string) ($guardrail['coverage'] ?? '');
+
+                    return [
+                        'label' => $label,
+                        'route' => $route,
+                        'guard' => $guard,
+                        'coverage' => $coverage,
+                        'displaySummary' => sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($guard), e($coverage)),
                     ];
                 })
                 ->values()
@@ -399,6 +418,16 @@ class DashboardController extends Controller
     protected function accessGateCount(): int
     {
         return $this->countConfigItems($this->accessGates());
+    }
+
+    protected function accessRouteGuardrails()
+    {
+        return collect(config('phase-1-access-baseline.route_guardrails', []));
+    }
+
+    protected function accessRouteGuardrailCount(): int
+    {
+        return $this->countConfigItems($this->accessRouteGuardrails());
     }
 
     protected function accessPolicies()

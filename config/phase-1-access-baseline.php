@@ -17,6 +17,14 @@ return [
             'coverage' => 'Keeps branch-aware visibility tied to the selected Galaxy shop context.',
         ],
     ],
+    'route_guardrails' => [
+        [
+            'label' => 'Roles & permissions review route',
+            'route' => 'admin.roles-permissions.index',
+            'guard' => 'can:viewAny,Role + can:viewAny,Permission',
+            'coverage' => 'Keeps shared access-shell review and permission-vocabulary review behind both Phase 1 read policies.',
+        ],
+    ],
     'policies' => [
         [
             'label' => 'Shop policy',
