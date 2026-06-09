@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard foundation-seam metric payload checkpoint
+- Moved the foundation-seam coverage, baseline, and posture rows into a controller-shaped `phaseOneFoundationSeamMetrics` payload in `App\Http\Controllers\Admin\DashboardController`, so that Galaxy foundation-seam card follows the same prepared-metrics pattern as the other dashboard summary surfaces.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin foundation-seam metric handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
 ### Dashboard seam-source metric payload checkpoint
 - Moved the seam-source coverage, baseline, and posture rows into a controller-shaped `phaseOneSeamSourceMetrics` payload in `App\Http\Controllers\Admin\DashboardController`, so that Galaxy seam-source card follows the same prepared-metrics pattern as the other dashboard summary surfaces.
 - Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin seam-source metric handoff visible in the Phase 1 seam map.

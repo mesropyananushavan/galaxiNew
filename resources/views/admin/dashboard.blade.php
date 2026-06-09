@@ -155,18 +155,16 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneFoundationSeamsFocus }}
         </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Seam coverage:</strong>
-            {{ $phaseOneFoundationSeamsCoverage }}.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Seam baseline:</strong>
-            <code>config/phase-1-foundation-seams.php</code> keeps this mapped seam inventory aligned.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Seam posture:</strong>
-            {{ $phaseOneFoundationSeamsPosture }}.
-        </p>
+        @foreach ($phaseOneFoundationSeamMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Seam guide:</strong>
             {!! $phaseOneFoundationSeamsGuideText !!} remain the readable and implementation anchors for this mapped seam inventory.

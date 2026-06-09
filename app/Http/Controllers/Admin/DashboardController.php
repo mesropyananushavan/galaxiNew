@@ -51,8 +51,7 @@ class DashboardController extends Controller
             'phaseOneFoundationSeamsGuideText' => $this->inlineCodeList(config('phase-1-foundation-seams.guide', ['docs/phase-1-foundation-seams.md', 'config/phase-1-foundation-seams.php'])),
             'phaseOneFoundationSeamsSourceOfTruth' => config('phase-1-foundation-seams.source_of_truth', ['docs/phase-1-foundation-seams.md', 'config/phase-1-foundation-seams.php']),
             'phaseOneFoundationSeamsSourceOfTruthText' => $this->inlineCodeList(config('phase-1-foundation-seams.source_of_truth', ['docs/phase-1-foundation-seams.md', 'config/phase-1-foundation-seams.php'])),
-            'phaseOneFoundationSeamsPosture' => (string) config('phase-1-foundation-seams.posture', 'small config-backed and doc-backed foundation seams stay explicit'),
-            'phaseOneFoundationSeamsCoverage' => $this->phaseOneFoundationSeamsCoverage(),
+            'phaseOneFoundationSeamMetrics' => $this->phaseOneFoundationSeamMetrics(),
             'liveDomainCoverage' => $this->liveDomainCoverage(),
             'foundationFocus' => $this->foundationFocus(),
             'foundationPosture' => $this->foundationPosture(),
@@ -131,6 +130,15 @@ class DashboardController extends Controller
             ['label' => 'Seam-source coverage', 'value' => $this->phaseOneSeamSourcesCoverage().'.'],
             ['label' => 'Seam-source baseline', 'value' => '<code>config/phase-1-seam-sources.php</code> keeps this README-level seam-source inventory aligned.', 'html' => true],
             ['label' => 'Seam-source posture', 'value' => e((string) config('phase-1-seam-sources.posture', 'README-backed seam-source baseline stays explicit across the live Galaxy reference trail')).'.', 'html' => true],
+        ];
+    }
+
+    protected function phaseOneFoundationSeamMetrics(): array
+    {
+        return [
+            ['label' => 'Seam coverage', 'value' => $this->phaseOneFoundationSeamsCoverage().'.'],
+            ['label' => 'Seam baseline', 'value' => '<code>config/phase-1-foundation-seams.php</code> keeps this mapped seam inventory aligned.', 'html' => true],
+            ['label' => 'Seam posture', 'value' => e((string) config('phase-1-foundation-seams.posture', 'small config-backed and doc-backed foundation seams stay explicit')).'.', 'html' => true],
         ];
     }
 
