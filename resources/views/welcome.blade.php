@@ -178,17 +178,17 @@
 <body>
     <main class="shell">
         <section class="hero">
-            <div class="eyebrow">{{ config('landing-foundation.hero.eyebrow') }}</div>
+            <div class="eyebrow">{{ data_get($landingFoundation, 'hero.eyebrow') }}</div>
 
             <div class="hero-grid">
                 <div>
-                    <h1>{{ config('landing-foundation.hero.title') }}</h1>
+                    <h1>{{ data_get($landingFoundation, 'hero.title') }}</h1>
                     <p>
-                        {!! strtr(e(config('landing-foundation.hero.description')), config('landing-foundation.hero.description_tokens', [])) !!}
+                        {!! strtr(e(data_get($landingFoundation, 'hero.description')), data_get($landingFoundation, 'hero.description_tokens', [])) !!}
                     </p>
 
                     <div class="actions">
-                        @foreach (config('landing-foundation.hero.actions', []) as $action)
+                        @foreach (data_get($landingFoundation, 'hero.actions', []) as $action)
                             <a
                                 class="button {{ $action['style'] ?? 'button-secondary' }}"
                                 href="{{ filled($action['route'] ?? null) ? route($action['route']) : url($action['href'] ?? '/') }}"
@@ -199,16 +199,16 @@
 
                 <aside class="card status">
                     <div>
-                        <h2>{{ config('landing-foundation.snapshot.title') }}</h2>
-                        <p>{{ config('landing-foundation.snapshot.description') }}</p>
+                        <h2>{{ data_get($landingFoundation, 'snapshot.title') }}</h2>
+                        <p>{{ data_get($landingFoundation, 'snapshot.description') }}</p>
                     </div>
 
                     <div class="status-row">
-                        <span class="status-label">{{ config('landing-foundation.labels.focus') }}</span>
-                        <span class="status-value">{{ config('landing-foundation.focus') }}</span>
+                        <span class="status-label">{{ data_get($landingFoundation, 'labels.focus') }}</span>
+                        <span class="status-value">{{ data_get($landingFoundation, 'focus') }}</span>
                     </div>
 
-                    @foreach (config('landing-foundation.status_rows', []) as $row)
+                    @foreach (data_get($landingFoundation, 'status_rows', []) as $row)
                         <div class="status-row">
                             <span class="status-label">{{ $row['label'] }}</span>
                             <span class="status-value{{ filled($row['accent'] ?? null) ? ' '.$row['accent'] : '' }}">{{ $row['value'] }}</span>
@@ -220,39 +220,39 @@
 
         <section class="cards">
             <article class="card">
-                <h3>{{ config('landing-foundation.live_surfaces_title') }}</h3>
+                <h3>{{ data_get($landingFoundation, 'live_surfaces_title') }}</h3>
                 <ul>
-                    @foreach (config('landing-foundation.live_surfaces', []) as $surface)
+                    @foreach (data_get($landingFoundation, 'live_surfaces', []) as $surface)
                         <li>{{ $surface }}</li>
                     @endforeach
                 </ul>
             </article>
 
             <article class="card">
-                <h3>{{ config('landing-foundation.working_rules_title') }}</h3>
+                <h3>{{ data_get($landingFoundation, 'working_rules_title') }}</h3>
                 <ul>
-                    @foreach (config('landing-foundation.working_rules', []) as $rule)
+                    @foreach (data_get($landingFoundation, 'working_rules', []) as $rule)
                         <li>{{ $rule }}</li>
                     @endforeach
                 </ul>
             </article>
 
             <article class="card">
-                <h3>{{ config('landing-docs.title') }}</h3>
-                <p>{{ config('landing-docs.labels.doc_focus') }} {{ config('landing-docs.focus') }}</p>
-                <p>{{ config('landing-docs.labels.doc_coverage') }} {{ count(config('landing-docs.items', [])) }} {{ config('landing-docs.copy.coverage_suffix') }}</p>
-                <p>{{ config('landing-docs.labels.doc_baseline') }} <code>{{ config('landing-docs.copy.baseline_path') }}</code> {{ config('landing-docs.copy.baseline_note') }}</p>
-                <p>{{ config('landing-docs.labels.seam_source_focus') }} {{ config('phase-1-seam-sources.focus') }}</p>
-                <p>{{ config('landing-docs.labels.seam_source_coverage') }} {{ count(config('phase-1-seam-sources.items', [])) }} {{ config('landing-docs.copy.seam_source_coverage_suffix') }} <code>{{ config('landing-docs.copy.seam_source_source_doc') }}</code>.</p>
-                <p>{{ config('landing-docs.labels.seam_source_baseline') }} <code>{{ config('landing-docs.copy.seam_source_baseline_path') }}</code> {{ config('landing-docs.copy.seam_source_baseline_note') }}</p>
-                <p>{{ config('landing-docs.labels.seam_source_posture') }} {{ config('phase-1-seam-sources.posture') }}.</p>
-                <p>{{ config('landing-docs.labels.seam_source_source_of_truth') }} @foreach (config('phase-1-seam-sources.source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach {{ config('landing-docs.copy.seam_source_source_of_truth_note') }}</p>
-                <p>{{ config('landing-docs.labels.doc_guide') }} @foreach (config('landing-docs.guide', []) as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach {{ config('landing-docs.copy.guide_note') }}</p>
-                <p>{{ config('landing-docs.labels.doc_posture') }} {{ config('landing-docs.posture') }}.</p>
-                <p>{{ config('landing-docs.labels.source_of_truth') }} @foreach (config('landing-docs.source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach {{ config('landing-docs.copy.source_of_truth_note') }}</p>
-                <p>{{ config('landing-docs.labels.reference_seam_bridge') }} <code>{{ config('landing-docs.copy.reference_seam_bridge_label_path') }}</code> {{ config('landing-docs.copy.reference_seam_bridge') }}</p>
+                <h3>{{ data_get($landingDocs, 'title') }}</h3>
+                <p>{{ data_get($landingDocs, 'labels.doc_focus') }} {{ data_get($landingDocs, 'focus') }}</p>
+                <p>{{ data_get($landingDocs, 'labels.doc_coverage') }} {{ count(data_get($landingDocs, 'items', [])) }} {{ data_get($landingDocs, 'copy.coverage_suffix') }}</p>
+                <p>{{ data_get($landingDocs, 'labels.doc_baseline') }} <code>{{ data_get($landingDocs, 'copy.baseline_path') }}</code> {{ data_get($landingDocs, 'copy.baseline_note') }}</p>
+                <p>{{ data_get($landingDocs, 'labels.seam_source_focus') }} {{ data_get($phaseOneSeamSources, 'focus') }}</p>
+                <p>{{ data_get($landingDocs, 'labels.seam_source_coverage') }} {{ count(data_get($phaseOneSeamSources, 'items', [])) }} {{ data_get($landingDocs, 'copy.seam_source_coverage_suffix') }} <code>{{ data_get($landingDocs, 'copy.seam_source_source_doc') }}</code>.</p>
+                <p>{{ data_get($landingDocs, 'labels.seam_source_baseline') }} <code>{{ data_get($landingDocs, 'copy.seam_source_baseline_path') }}</code> {{ data_get($landingDocs, 'copy.seam_source_baseline_note') }}</p>
+                <p>{{ data_get($landingDocs, 'labels.seam_source_posture') }} {{ data_get($phaseOneSeamSources, 'posture') }}.</p>
+                <p>{{ data_get($landingDocs, 'labels.seam_source_source_of_truth') }} @foreach (data_get($phaseOneSeamSources, 'source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach {{ data_get($landingDocs, 'copy.seam_source_source_of_truth_note') }}</p>
+                <p>{{ data_get($landingDocs, 'labels.doc_guide') }} @foreach (data_get($landingDocs, 'guide', []) as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach {{ data_get($landingDocs, 'copy.guide_note') }}</p>
+                <p>{{ data_get($landingDocs, 'labels.doc_posture') }} {{ data_get($landingDocs, 'posture') }}.</p>
+                <p>{{ data_get($landingDocs, 'labels.source_of_truth') }} @foreach (data_get($landingDocs, 'source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach {{ data_get($landingDocs, 'copy.source_of_truth_note') }}</p>
+                <p>{{ data_get($landingDocs, 'labels.reference_seam_bridge') }} <code>{{ data_get($landingDocs, 'copy.reference_seam_bridge_label_path') }}</code> {{ data_get($landingDocs, 'copy.reference_seam_bridge') }}</p>
                 <ul>
-                    @foreach (config('landing-docs.items', []) as $doc)
+                    @foreach (data_get($landingDocs, 'items', []) as $doc)
                         <li>
                             @if (($doc['external'] ?? false) && filled($doc['href'] ?? null))
                                 <a href="{{ $doc['href'] }}" target="_blank" rel="noreferrer">{{ $doc['label'] }}</a>

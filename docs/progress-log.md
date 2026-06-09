@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing controller-view data seam checkpoint
+- Updated `App\Http\Controllers\LandingPageController` to pass `landing-foundation`, `landing-docs`, and `phase-1-seam-sources` config into the public welcome view, so the live Galaxy landing surface now depends on an explicit controller-backed data seam instead of reaching straight into config from every Blade block.
+- Refactored `resources/views/welcome.blade.php` to read from the injected landing data arrays, then updated the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so this backend handoff stays visible in the Phase 1 map.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
 ### Landing route-name seam checkpoint
 - Named the public root route `landing` in `routes/web.php`, so the new Galaxy landing controller seam now exposes an explicit routable identity instead of relying only on `/` plus controller binding.
 - Updated `tests/Feature/ExampleTest.php` plus the landing-shell seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping that named-route anchor visible in QA and Phase 1 documentation.

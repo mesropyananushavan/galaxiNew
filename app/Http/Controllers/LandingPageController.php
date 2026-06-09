@@ -8,6 +8,10 @@ class LandingPageController extends Controller
 {
     public function __invoke(): View
     {
-        return view('welcome');
+        return view('welcome', [
+            'landingFoundation' => config('landing-foundation', []),
+            'landingDocs' => config('landing-docs', []),
+            'phaseOneSeamSources' => config('phase-1-seam-sources', []),
+        ]);
     }
 }
