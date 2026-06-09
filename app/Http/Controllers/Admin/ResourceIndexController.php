@@ -4339,7 +4339,12 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s lifecycle freshness reflected from model state', $this->cardholderFullNameValue($selectedCardHolder)),
                 'time' => 'Current request',
-                'description' => $this->cardholdersLifecycleFreshnessDescription($selectedCardHolder),
+                'description' => $this->lifecycleFreshnessDescription(
+                    $selectedCardHolder,
+                    'This holder does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.',
+                    'This holder was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved profile shell.',
+                    'This holder was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing a profile shell that has already changed after initial setup.',
+                ),
             ],
             [
                 'title' => sprintf('%s last saved timestamp reflected from model state', $this->cardholderFullNameValue($selectedCardHolder)),
@@ -4422,16 +4427,6 @@ class ResourceIndexController extends Controller
             $this->cardholderIsUnpausedAndActive($selectedCardHolder) => 'Profile writes, merge handling, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.',
             default => 'Reactivation handling, profile writes, and recent-activity sourcing should stay foundation-preview only until holder parity is verified.',
         };
-    }
-
-    private function cardholdersLifecycleFreshnessDescription(CardHolder $selectedCardHolder): string
-    {
-        return $this->lifecycleFreshnessDescription(
-            $selectedCardHolder,
-            'This holder does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.',
-            'This holder was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved profile shell.',
-            'This holder was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing a profile shell that has already changed after initial setup.',
-        );
     }
 
     private function cardholdersLastSavedLabel(CardHolder $selectedCardHolder): string
