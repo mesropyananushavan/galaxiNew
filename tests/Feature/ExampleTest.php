@@ -82,6 +82,8 @@ class ExampleTest extends TestCase
             ->assertSee('docs/progress-log.md')
             ->assertSee('Open admin workspace')
             ->assertSee('Admin login')
+            ->assertSee('Live management surfaces')
+            ->assertSee('Working rules')
             ->assertSee('Phase 1 snapshot');
     }
 }

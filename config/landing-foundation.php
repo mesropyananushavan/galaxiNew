@@ -11,6 +11,10 @@ return [
             ['label' => 'Admin login', 'route' => 'login', 'style' => 'button-secondary'],
         ],
     ],
+    'snapshot' => [
+        'title' => 'Phase 1 snapshot',
+        'description' => 'Parity first, redesign later. The current foundation layer is focused on replacing scaffold defaults with Galaxy operational context.',
+    ],
     'status_rows' => [
         ['label' => 'Target posture', 'value' => 'Galaxy foundation monolith with Blade-first admin'],
         ['label' => 'Primary route', 'value' => '/admin'],
@@ -20,11 +24,13 @@ return [
         ['label' => 'Commit trail', 'value' => 'Every safe slice leaves a visible Git checkpoint'],
         ['label' => 'Migration mode', 'value' => 'Phase 1 active', 'accent' => 'success'],
     ],
+    'live_surfaces_title' => 'Live management surfaces',
     'live_surfaces' => [
         'Shops and branch scope review',
         'Cardholders and card inventory foundations',
         'Card types, roles, reports, gifts, and rules previews',
     ],
+    'working_rules_title' => 'Working rules',
     'working_rules' => [
         'Preserve Galaxy admin information architecture',
         'Keep shop-aware access and parity-sensitive flows explicit',

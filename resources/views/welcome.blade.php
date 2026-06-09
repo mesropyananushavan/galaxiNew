@@ -199,8 +199,8 @@
 
                 <aside class="card status">
                     <div>
-                        <h2>Phase 1 snapshot</h2>
-                        <p>Parity first, redesign later. The current foundation layer is focused on replacing scaffold defaults with Galaxy operational context.</p>
+                        <h2>{{ config('landing-foundation.snapshot.title') }}</h2>
+                        <p>{{ config('landing-foundation.snapshot.description') }}</p>
                     </div>
 
                     @foreach (config('landing-foundation.status_rows', []) as $row)
@@ -215,7 +215,7 @@
 
         <section class="cards">
             <article class="card">
-                <h3>Live management surfaces</h3>
+                <h3>{{ config('landing-foundation.live_surfaces_title') }}</h3>
                 <ul>
                     @foreach (config('landing-foundation.live_surfaces', []) as $surface)
                         <li>{{ $surface }}</li>
@@ -224,7 +224,7 @@
             </article>
 
             <article class="card">
-                <h3>Working rules</h3>
+                <h3>{{ config('landing-foundation.working_rules_title') }}</h3>
                 <ul>
                     @foreach (config('landing-foundation.working_rules', []) as $rule)
                         <li>{{ $rule }}</li>
