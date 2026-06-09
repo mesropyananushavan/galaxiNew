@@ -240,10 +240,10 @@
             <article class="card">
                 <h3>{{ data_get($landingDocs, 'title') }}</h3>
                 <p>{{ data_get($landingDocs, 'labels.doc_focus') }} {{ data_get($landingDocs, 'focus') }}</p>
-                <p>{{ data_get($landingDocs, 'labels.doc_coverage') }} {{ count(data_get($landingDocs, 'items', [])) }} {{ data_get($landingDocs, 'copy.coverage_suffix') }}</p>
+                <p>{{ data_get($landingDocs, 'labels.doc_coverage') }} {{ $landingDocCount }} {{ data_get($landingDocs, 'copy.coverage_suffix') }}</p>
                 <p>{{ data_get($landingDocs, 'labels.doc_baseline') }} <code>{{ data_get($landingDocs, 'copy.baseline_path') }}</code> {{ data_get($landingDocs, 'copy.baseline_note') }}</p>
                 <p>{{ data_get($landingDocs, 'labels.seam_source_focus') }} {{ data_get($phaseOneSeamSources, 'focus') }}</p>
-                <p>{{ data_get($landingDocs, 'labels.seam_source_coverage') }} {{ count(data_get($phaseOneSeamSources, 'items', [])) }} {{ data_get($landingDocs, 'copy.seam_source_coverage_suffix') }} <code>{{ data_get($landingDocs, 'copy.seam_source_source_doc') }}</code>.</p>
+                <p>{{ data_get($landingDocs, 'labels.seam_source_coverage') }} {{ $landingSeamSourceCount }} {{ data_get($landingDocs, 'copy.seam_source_coverage_suffix') }} <code>{{ data_get($landingDocs, 'copy.seam_source_source_doc') }}</code>.</p>
                 <p>{{ data_get($landingDocs, 'labels.seam_source_baseline') }} <code>{{ data_get($landingDocs, 'copy.seam_source_baseline_path') }}</code> {{ data_get($landingDocs, 'copy.seam_source_baseline_note') }}</p>
                 <p>{{ data_get($landingDocs, 'labels.seam_source_posture') }} {{ data_get($phaseOneSeamSources, 'posture') }}.</p>
                 <p>{{ data_get($landingDocs, 'labels.seam_source_source_of_truth') }} @foreach (data_get($phaseOneSeamSources, 'source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach {{ data_get($landingDocs, 'copy.seam_source_source_of_truth_note') }}</p>

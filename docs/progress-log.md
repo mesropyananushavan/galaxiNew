@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing controller metric seam checkpoint
+- Moved the public landing doc-count and seam-source-count calculations into `App\Http\Controllers\LandingPageController`, so the welcome surface now reads those small Phase 1 metrics from controller-owned data instead of counting config arrays inline in Blade.
+- Updated `resources/views/welcome.blade.php` plus the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the landing metric handoff visible in the Phase 1 seam map.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
 ### Landing controller-view data seam checkpoint
 - Updated `App\Http\Controllers\LandingPageController` to pass `landing-foundation`, `landing-docs`, and `phase-1-seam-sources` config into the public welcome view, so the live Galaxy landing surface now depends on an explicit controller-backed data seam instead of reaching straight into config from every Blade block.
 - Refactored `resources/views/welcome.blade.php` to read from the injected landing data arrays, then updated the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so this backend handoff stays visible in the Phase 1 map.
