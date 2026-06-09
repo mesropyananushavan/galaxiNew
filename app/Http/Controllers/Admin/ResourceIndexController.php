@@ -2759,11 +2759,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function shopsBranchReviewPosture(): string
-    {
-        return 'Selected-shop review is running in Galaxy foundation-backed read mode only';
-    }
-
     private function shopsManagerGuidance(Shop $selectedShop): string
     {
         return match (true) {
@@ -4721,7 +4716,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected shop', 'value' => $this->shopNameValue($selectedShop)],
-            ['label' => 'Branch posture', 'value' => $this->shopsBranchReviewPosture()],
+            ['label' => 'Branch posture', 'value' => 'Selected-shop review is running in Galaxy foundation-backed read mode only'],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedShop)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->lastSavedLabel($selectedShop)],
             ['label' => 'Review note', 'value' => $this->shopReviewNoteValue($selectedShop, 'No review note saved yet')],

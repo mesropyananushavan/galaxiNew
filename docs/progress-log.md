@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop branch-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsBranchReviewPosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its read-only Galaxy foundation copy directly into the selected-shop dependency summary.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop coverage-posture wrapper cleanup checkpoint
 - Removed the single-use `shopsCoveragePosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its paused-vs-active coverage copy directly into the selected-shop dependency summary.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
