@@ -153,13 +153,17 @@ class DashboardController extends Controller
                         ->filter(fn ($item): bool => is_array($item) && filled($item['label'] ?? null) && filled($item['route'] ?? null))
                         ->map(function (array $item): array {
                             $route = route((string) $item['route']);
+                            $label = (string) $item['label'];
+                            $description = (string) ($item['description'] ?? '');
+                            $path = parse_url($route, PHP_URL_PATH) ?: $route;
 
                             return [
-                                'label' => (string) $item['label'],
-                                'description' => (string) ($item['description'] ?? ''),
+                                'label' => $label,
+                                'description' => $description,
                                 'route' => (string) $item['route'],
                                 'href' => $route,
-                                'path' => parse_url($route, PHP_URL_PATH) ?: $route,
+                                'path' => $path,
+                                'displaySummary' => sprintf('<a href="%s">%s</a> (%s Route: %s)', e($route), e($label), e($description), e((string) $path)),
                             ];
                         })
                         ->values()
