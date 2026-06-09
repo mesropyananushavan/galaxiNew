@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Cardholder selected-actions wrapper cleanup checkpoint
+- Removed the single-use `cardholdersSelectedActions()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its `selectedReadContextWithDisabledActions()` call at the selected-holder page builder.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Cardholder last-saved-label wrapper cleanup checkpoint
 - Removed the single-use `cardholdersLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-holder call sites directly to the shared `lastSavedLabel()` helper.
 - Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

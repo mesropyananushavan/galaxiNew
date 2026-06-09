@@ -4289,7 +4289,17 @@ class ResourceIndexController extends Controller
             $page['liveForm']['valuesResolver'] = $this->cardholdersLiveFormValues($selectedCardHolder);
         }
 
-        $page['actions'] = $this->cardholdersSelectedActions($selectedCardHolder);
+        $page['actions'] = $this->selectedReadContextWithDisabledActions(
+            'admin.cardholders.index',
+            'Back to holder catalog',
+            $this->cardholderFullNameValue($selectedCardHolder),
+            [
+                [
+                    'label' => 'Review recent activity',
+                    'disabledReason' => $this->cardholdersSelectedReviewActivityDisabledReason($selectedCardHolder),
+                ],
+            ],
+        );
         $page['activityTimeline'] = $this->cardholdersActivityTimeline($selectedCardHolder);
         $page['dependencyStatus'] = $this->cardholdersSelectedHolderDependencyStatus($selectedCardHolder);
 
@@ -4306,21 +4316,6 @@ class ResourceIndexController extends Controller
             'is_active' => $this->cardholderActiveValue($selectedCardHolder),
             'review_note' => $this->cardholderReviewNoteValue($selectedCardHolder),
         ];
-    }
-
-    private function cardholdersSelectedActions(CardHolder $selectedCardHolder): array
-    {
-        return $this->selectedReadContextWithDisabledActions(
-            'admin.cardholders.index',
-            'Back to holder catalog',
-            $this->cardholderFullNameValue($selectedCardHolder),
-            [
-                [
-                    'label' => 'Review recent activity',
-                    'disabledReason' => $this->cardholdersSelectedReviewActivityDisabledReason($selectedCardHolder),
-                ],
-            ],
-        );
     }
 
     private function cardholdersActivityTimeline(CardHolder $selectedCardHolder): array
