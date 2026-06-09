@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard domain-map controller-string checkpoint
+- Moved the admin dashboard entity-map guide and source-of-truth string assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy admin entry surface now renders controller-prepared Phase 1 domain reference prose instead of stitching those inline lists together in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus `docs/phase-1-foundation-seams.md`, keeping this dashboard-side domain-reference handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard reference-doc controller-string checkpoint
 - Moved the admin dashboard reference-doc guide and source-of-truth string assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy admin entry surface now renders another slice of controller-prepared Phase 1 reference prose instead of stitching those inline lists together in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` plus the admin-reference seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping this dashboard-side reference-string handoff visible in the Phase 1 seam map.

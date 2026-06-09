@@ -26,6 +26,12 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 - current role: keeps the admin-side Phase 1 blueprint, plan, IA, shell, checkpoint, progress-log, and seam-source baseline trail aligned, with the dashboard controller now formatting more of that runtime reference prose before render
 
+### Admin domain baseline runtime handoff
+- readable summary anchor: this file
+- implementation baseline: `config/phase-1-domain-map.php`
+- visible runtime surface: `resources/views/admin/dashboard.blade.php`
+- current role: keeps the dashboard controller responsible for formatting the entity-map guide and source-of-truth reference strings before they reach the admin runtime surface
+
 ### Public landing reference trail
 - readable summary anchor: this file
 - implementation baseline: `config/landing-docs.php`
