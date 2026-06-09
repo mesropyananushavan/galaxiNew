@@ -28,6 +28,7 @@ class LandingPageController extends Controller
             'landingDocGuideText' => $this->inlineCodeList(data_get($landingDocs, 'guide', [])),
             'landingDocSourceOfTruthText' => $this->inlineCodeList(data_get($landingDocs, 'source_of_truth', [])),
             'landingSeamSourceOfTruthText' => $this->inlineCodeList(data_get($phaseOneSeamSources, 'source_of_truth', [])),
+            'landingDocSummaryRows' => $this->preparedLandingDocSummaryRows($landingDocs, $phaseOneSeamSources),
         ]);
     }
 
@@ -97,6 +98,24 @@ class LandingPageController extends Controller
             ])
             ->values()
             ->all();
+    }
+
+    protected function preparedLandingDocSummaryRows(array $landingDocs, array $phaseOneSeamSources): array
+    {
+        return [
+            ['prefix' => (string) data_get($landingDocs, 'labels.doc_focus', ''), 'html' => e((string) data_get($landingDocs, 'focus', ''))],
+            ['prefix' => (string) data_get($landingDocs, 'labels.doc_coverage', ''), 'html' => e(sprintf('%d %s', count(data_get($landingDocs, 'items', [])), (string) data_get($landingDocs, 'copy.coverage_suffix', '')))],
+            ['prefix' => (string) data_get($landingDocs, 'labels.doc_baseline', ''), 'html' => sprintf('<code>%s</code> %s', e((string) data_get($landingDocs, 'copy.baseline_path', '')), e((string) data_get($landingDocs, 'copy.baseline_note', '')))],
+            ['prefix' => (string) data_get($landingDocs, 'labels.seam_source_focus', ''), 'html' => e((string) data_get($phaseOneSeamSources, 'focus', ''))],
+            ['prefix' => (string) data_get($landingDocs, 'labels.seam_source_coverage', ''), 'html' => sprintf('%s <code>%s</code>.', e(sprintf('%d %s', count(data_get($phaseOneSeamSources, 'items', [])), (string) data_get($landingDocs, 'copy.seam_source_coverage_suffix', ''))), e((string) data_get($landingDocs, 'copy.seam_source_source_doc', '')))],
+            ['prefix' => (string) data_get($landingDocs, 'labels.seam_source_baseline', ''), 'html' => sprintf('<code>%s</code> %s', e((string) data_get($landingDocs, 'copy.seam_source_baseline_path', '')), e((string) data_get($landingDocs, 'copy.seam_source_baseline_note', '')))],
+            ['prefix' => (string) data_get($landingDocs, 'labels.seam_source_posture', ''), 'html' => e((string) data_get($phaseOneSeamSources, 'posture', '')).'.'],
+            ['prefix' => (string) data_get($landingDocs, 'labels.seam_source_source_of_truth', ''), 'html' => trim($this->inlineCodeList(data_get($phaseOneSeamSources, 'source_of_truth', [])).' '.e((string) data_get($landingDocs, 'copy.seam_source_source_of_truth_note', '')))],
+            ['prefix' => (string) data_get($landingDocs, 'labels.doc_guide', ''), 'html' => trim($this->inlineCodeList(data_get($landingDocs, 'guide', [])).' '.e((string) data_get($landingDocs, 'copy.guide_note', '')))],
+            ['prefix' => (string) data_get($landingDocs, 'labels.doc_posture', ''), 'html' => e((string) data_get($landingDocs, 'posture', '')).'.'],
+            ['prefix' => (string) data_get($landingDocs, 'labels.source_of_truth', ''), 'html' => trim($this->inlineCodeList(data_get($landingDocs, 'source_of_truth', [])).' '.e((string) data_get($landingDocs, 'copy.source_of_truth_note', '')))],
+            ['prefix' => (string) data_get($landingDocs, 'labels.reference_seam_bridge', ''), 'html' => sprintf('<code>%s</code> %s', e((string) data_get($landingDocs, 'copy.reference_seam_bridge_label_path', '')), e((string) data_get($landingDocs, 'copy.reference_seam_bridge', '')))],
+        ];
     }
 
     protected function inlineCodeList(array $items): string

@@ -227,18 +227,9 @@
 
             <article class="card">
                 <h3>{{ data_get($landingDocs, 'title') }}</h3>
-                <p>{{ data_get($landingDocs, 'labels.doc_focus') }} {{ data_get($landingDocs, 'focus') }}</p>
-                <p>{{ data_get($landingDocs, 'labels.doc_coverage') }} {{ $landingDocCount }} {{ data_get($landingDocs, 'copy.coverage_suffix') }}</p>
-                <p>{{ data_get($landingDocs, 'labels.doc_baseline') }} <code>{{ data_get($landingDocs, 'copy.baseline_path') }}</code> {{ data_get($landingDocs, 'copy.baseline_note') }}</p>
-                <p>{{ data_get($landingDocs, 'labels.seam_source_focus') }} {{ data_get($phaseOneSeamSources, 'focus') }}</p>
-                <p>{{ data_get($landingDocs, 'labels.seam_source_coverage') }} {{ $landingSeamSourceCount }} {{ data_get($landingDocs, 'copy.seam_source_coverage_suffix') }} <code>{{ data_get($landingDocs, 'copy.seam_source_source_doc') }}</code>.</p>
-                <p>{{ data_get($landingDocs, 'labels.seam_source_baseline') }} <code>{{ data_get($landingDocs, 'copy.seam_source_baseline_path') }}</code> {{ data_get($landingDocs, 'copy.seam_source_baseline_note') }}</p>
-                <p>{{ data_get($landingDocs, 'labels.seam_source_posture') }} {{ data_get($phaseOneSeamSources, 'posture') }}.</p>
-                <p>{!! data_get($landingDocs, 'labels.seam_source_source_of_truth') !!} {!! $landingSeamSourceOfTruthText !!} {{ data_get($landingDocs, 'copy.seam_source_source_of_truth_note') }}</p>
-                <p>{!! data_get($landingDocs, 'labels.doc_guide') !!} {!! $landingDocGuideText !!} {{ data_get($landingDocs, 'copy.guide_note') }}</p>
-                <p>{{ data_get($landingDocs, 'labels.doc_posture') }} {{ data_get($landingDocs, 'posture') }}.</p>
-                <p>{!! data_get($landingDocs, 'labels.source_of_truth') !!} {!! $landingDocSourceOfTruthText !!} {{ data_get($landingDocs, 'copy.source_of_truth_note') }}</p>
-                <p>{{ data_get($landingDocs, 'labels.reference_seam_bridge') }} <code>{{ data_get($landingDocs, 'copy.reference_seam_bridge_label_path') }}</code> {{ data_get($landingDocs, 'copy.reference_seam_bridge') }}</p>
+                @foreach ($landingDocSummaryRows as $row)
+                    <p>{!! e($row['prefix']) !!} {!! $row['html'] !!}</p>
+                @endforeach
                 <ul>
                     @foreach (data_get($landingDocs, 'items', []) as $doc)
                         <li>
