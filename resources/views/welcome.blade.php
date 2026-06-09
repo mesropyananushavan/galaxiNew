@@ -246,10 +246,10 @@
                 <p>{{ data_get($landingDocs, 'labels.seam_source_coverage') }} {{ $landingSeamSourceCount }} {{ data_get($landingDocs, 'copy.seam_source_coverage_suffix') }} <code>{{ data_get($landingDocs, 'copy.seam_source_source_doc') }}</code>.</p>
                 <p>{{ data_get($landingDocs, 'labels.seam_source_baseline') }} <code>{{ data_get($landingDocs, 'copy.seam_source_baseline_path') }}</code> {{ data_get($landingDocs, 'copy.seam_source_baseline_note') }}</p>
                 <p>{{ data_get($landingDocs, 'labels.seam_source_posture') }} {{ data_get($phaseOneSeamSources, 'posture') }}.</p>
-                <p>{{ data_get($landingDocs, 'labels.seam_source_source_of_truth') }} @foreach (data_get($phaseOneSeamSources, 'source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach {{ data_get($landingDocs, 'copy.seam_source_source_of_truth_note') }}</p>
-                <p>{{ data_get($landingDocs, 'labels.doc_guide') }} @foreach (data_get($landingDocs, 'guide', []) as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach {{ data_get($landingDocs, 'copy.guide_note') }}</p>
+                <p>{!! data_get($landingDocs, 'labels.seam_source_source_of_truth') !!} {!! $landingSeamSourceOfTruthText !!} {{ data_get($landingDocs, 'copy.seam_source_source_of_truth_note') }}</p>
+                <p>{!! data_get($landingDocs, 'labels.doc_guide') !!} {!! $landingDocGuideText !!} {{ data_get($landingDocs, 'copy.guide_note') }}</p>
                 <p>{{ data_get($landingDocs, 'labels.doc_posture') }} {{ data_get($landingDocs, 'posture') }}.</p>
-                <p>{{ data_get($landingDocs, 'labels.source_of_truth') }} @foreach (data_get($landingDocs, 'source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach {{ data_get($landingDocs, 'copy.source_of_truth_note') }}</p>
+                <p>{!! data_get($landingDocs, 'labels.source_of_truth') !!} {!! $landingDocSourceOfTruthText !!} {{ data_get($landingDocs, 'copy.source_of_truth_note') }}</p>
                 <p>{{ data_get($landingDocs, 'labels.reference_seam_bridge') }} <code>{{ data_get($landingDocs, 'copy.reference_seam_bridge_label_path') }}</code> {{ data_get($landingDocs, 'copy.reference_seam_bridge') }}</p>
                 <ul>
                     @foreach (data_get($landingDocs, 'items', []) as $doc)
