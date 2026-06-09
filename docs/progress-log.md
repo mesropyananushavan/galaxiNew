@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard live-entry payload shaping checkpoint
+- Routed the live review entry-point list through the reusable workspace-link shaping helper in `App\Http\Controllers\Admin\DashboardController`, so both major dashboard link collections now normalize through one backend payload path instead of mixing prepared and ad-hoc arrays.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this dashboard-side live-entry payload handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard latest-work payload shaping checkpoint
 - Routed the latest-work shortcut list through a reusable workspace-link shaping helper in `App\Http\Controllers\Admin\DashboardController`, so the Galaxy dashboard now normalizes latest workspace payloads through one backend path instead of relying on an ad-hoc filtered array.
 - Updated `docs/phase-1-foundation-seams.md`, keeping this dashboard-side workspace payload handoff visible in the Phase 1 seam map.

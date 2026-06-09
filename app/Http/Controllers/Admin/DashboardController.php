@@ -848,28 +848,28 @@ class DashboardController extends Controller
         $shop = $this->activeScopedShop();
 
         if (! $shop instanceof Shop) {
-            return [
+            return $this->preparedWorkspaceLinks([
                 $this->workspaceLink('Review live Galaxy branches', 'admin.shops.index'),
                 $this->workspaceLink('Review live Galaxy holders', 'admin.cardholders.index'),
                 $this->workspaceLink('Review live Galaxy card shells', 'admin.cards.index'),
                 $this->workspaceLink('Review live Galaxy tiers', 'admin.card-types.index'),
                 $this->workspaceLink('Review live Galaxy access shells', 'admin.roles-permissions.index'),
                 $this->workspaceLink('Review Galaxy reporting sources', 'admin.reports.index'),
-            ];
+            ]);
         }
 
         $primaryScopedShopEntryLabel = $this->scopedShopEntryLabel($shop);
         $primaryScopedCardholderEntryLabel = $this->scopedCardholderEntryLabel($shop);
         $primaryScopedCardEntryLabel = $this->scopedCardEntryLabel($shop);
 
-        return [
+        return $this->preparedWorkspaceLinks([
             $this->workspaceLink($primaryScopedShopEntryLabel, 'admin.shops.index'),
             $this->workspaceLink($primaryScopedCardholderEntryLabel, 'admin.cardholders.index'),
             $this->workspaceLink($primaryScopedCardEntryLabel, 'admin.cards.index'),
             $this->scopedSharedLiveEntryPoint('Review shared Galaxy tiers', 'admin.card-types.index'),
             $this->scopedSharedLiveEntryPoint('Review shared Galaxy access shells', 'admin.roles-permissions.index'),
             $this->scopedSharedLiveEntryPoint('Review shared Galaxy reporting sources', 'admin.reports.index'),
-        ];
+        ]);
     }
 
     protected function scopedSharedLiveEntryPoint(string $label, string $routeName): array
