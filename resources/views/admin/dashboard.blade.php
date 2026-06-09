@@ -195,21 +195,19 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneReferenceDocsFocus }}
         </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Reference coverage:</strong>
-            {{ $phaseOneReferenceDocsCoverage }}.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Reference baseline:</strong>
-            <code>config/phase-1-reference-docs.php</code> keeps this admin-side Phase 1 reference inventory aligned.
-        </p>
+        @foreach ($phaseOneReferenceDocMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Reference guide:</strong>
             {!! $phaseOneReferenceDocsGuideText !!} remain the readable anchors for this admin-side Phase 1 reference trail.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Reference posture:</strong>
-            {{ $phaseOneReferenceDocsPosture }}.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>

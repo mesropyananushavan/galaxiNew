@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard reference-doc metric payload checkpoint
+- Moved the admin reference-doc coverage, baseline, and posture rows into a controller-shaped `phaseOneReferenceDocMetrics` payload in `App\Http\Controllers\Admin\DashboardController`, so that Galaxy reference trail card follows the same prepared-metrics pattern as the other dashboard summary surfaces.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin reference-doc metric handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
 ### Dashboard domain metric payload checkpoint
 - Moved the core entity map coverage and inventory rows into a controller-shaped `phaseOneDomainMetrics` payload in `App\Http\Controllers\Admin\DashboardController`, so that Galaxy domain baseline card now follows the same prepared-metrics pattern as the other dashboard summary surfaces.
 - Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin domain metric handoff visible in the Phase 1 seam map.

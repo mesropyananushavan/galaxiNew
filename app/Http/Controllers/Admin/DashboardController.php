@@ -37,8 +37,7 @@ class DashboardController extends Controller
             'phaseOneReferenceDocsGuideText' => $this->inlineCodeList(config('phase-1-reference-docs.guide', ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md'])),
             'phaseOneReferenceDocsSourceOfTruth' => config('phase-1-reference-docs.source_of_truth', ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md', 'config/phase-1-reference-docs.php']),
             'phaseOneReferenceDocsSourceOfTruthText' => $this->inlineCodeList(config('phase-1-reference-docs.source_of_truth', ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md', 'config/phase-1-reference-docs.php'])),
-            'phaseOneReferenceDocsPosture' => (string) config('phase-1-reference-docs.posture', 'admin reference inventory stays explicit across the live Galaxy dashboard trail'),
-            'phaseOneReferenceDocsCoverage' => $this->phaseOneReferenceDocsCoverage(),
+            'phaseOneReferenceDocMetrics' => $this->phaseOneReferenceDocMetrics(),
             'phaseOneSeamSources' => $this->preparedSeamSources(config('phase-1-seam-sources.items', [])),
             'phaseOneSeamSourcesFocus' => (string) config('phase-1-seam-sources.focus', 'Keep the README-level seam-source inventory visible inside the admin workspace, so contributors can trace which small config seams are currently carrying the Galaxy-specific Phase 1 foundation.'),
             'phaseOneSeamSourcesGuide' => config('phase-1-seam-sources.guide', ['README.md', 'config/phase-1-seam-sources.php']),
@@ -116,6 +115,15 @@ class DashboardController extends Controller
     protected function phaseOneFoundationSeamsCoverage(): string
     {
         return sprintf('%d Phase 1 foundation seams currently tracked', $this->foundationSeamCount());
+    }
+
+    protected function phaseOneReferenceDocMetrics(): array
+    {
+        return [
+            ['label' => 'Reference coverage', 'value' => $this->phaseOneReferenceDocsCoverage().'.'],
+            ['label' => 'Reference baseline', 'value' => '<code>config/phase-1-reference-docs.php</code> keeps this admin-side Phase 1 reference inventory aligned.', 'html' => true],
+            ['label' => 'Reference posture', 'value' => e((string) config('phase-1-reference-docs.posture', 'admin reference inventory stays explicit across the live Galaxy dashboard trail')).'.', 'html' => true],
+        ];
     }
 
     protected function preparedNavigationGroups(array $groups): array
