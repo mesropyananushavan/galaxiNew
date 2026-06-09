@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing docs-card payload checkpoint
+- Consolidated the public landing reference card into one `landingDocsCard` payload in `App\Http\Controllers\LandingPageController`, so the Galaxy landing docs surface now receives its title, summary rows, and docs inventory through one backend-shaped contract instead of several separate view variables.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing docs-card handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
 ### Landing docs heading payload checkpoint
 - Moved the public landing docs-card heading into `App\Http\Controllers\LandingPageController`, so the Galaxy reference card now reads its title from the same controller-prepared payload contract as the rest of that landing docs surface.
 - Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing docs-heading handoff visible in the Phase 1 seam map.

@@ -14,8 +14,6 @@ class LandingPageController extends Controller
 
         return view('welcome', [
             'landingFoundation' => $landingFoundation,
-            'landingDocs' => $landingDocs,
-            'phaseOneSeamSources' => $phaseOneSeamSources,
             'landingHeroFrame' => $this->preparedLandingHeroFrame($landingFoundation),
             'landingHeroDescriptionHtml' => $this->preparedHeroDescriptionHtml(
                 (string) data_get($landingFoundation, 'hero.description', ''),
@@ -24,14 +22,7 @@ class LandingPageController extends Controller
             'landingHeroActions' => $this->preparedHeroActions(data_get($landingFoundation, 'hero.actions', [])),
             'landingSnapshotRows' => $this->preparedLandingSnapshotRows($landingFoundation),
             'landingFoundationCards' => $this->preparedFoundationCards($landingFoundation),
-            'landingDocsTitle' => (string) data_get($landingDocs, 'title', ''),
-            'landingDocCount' => count(data_get($landingDocs, 'items', [])),
-            'landingSeamSourceCount' => count(data_get($phaseOneSeamSources, 'items', [])),
-            'landingDocGuideText' => $this->inlineCodeList(data_get($landingDocs, 'guide', [])),
-            'landingDocSourceOfTruthText' => $this->inlineCodeList(data_get($landingDocs, 'source_of_truth', [])),
-            'landingSeamSourceOfTruthText' => $this->inlineCodeList(data_get($phaseOneSeamSources, 'source_of_truth', [])),
-            'landingDocSummaryRows' => $this->preparedLandingDocSummaryRows($landingDocs, $phaseOneSeamSources),
-            'landingDocItems' => $this->preparedLandingDocItems(data_get($landingDocs, 'items', [])),
+            'landingDocsCard' => $this->preparedLandingDocsCard($landingDocs, $phaseOneSeamSources),
         ]);
     }
 
@@ -111,6 +102,15 @@ class LandingPageController extends Controller
             ])
             ->values()
             ->all();
+    }
+
+    protected function preparedLandingDocsCard(array $landingDocs, array $phaseOneSeamSources): array
+    {
+        return [
+            'title' => (string) data_get($landingDocs, 'title', ''),
+            'summaryRows' => $this->preparedLandingDocSummaryRows($landingDocs, $phaseOneSeamSources),
+            'items' => $this->preparedLandingDocItems(data_get($landingDocs, 'items', [])),
+        ];
     }
 
     protected function preparedLandingDocSummaryRows(array $landingDocs, array $phaseOneSeamSources): array

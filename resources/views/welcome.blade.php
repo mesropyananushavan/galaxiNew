@@ -226,12 +226,12 @@
             @endforeach
 
             <article class="card">
-                <h3>{{ $landingDocsTitle }}</h3>
-                @foreach ($landingDocSummaryRows as $row)
+                <h3>{{ $landingDocsCard['title'] }}</h3>
+                @foreach ($landingDocsCard['summaryRows'] as $row)
                     <p>{!! e($row['prefix']) !!} {!! $row['html'] !!}</p>
                 @endforeach
                 <ul>
-                    @foreach ($landingDocItems as $doc)
+                    @foreach ($landingDocsCard['items'] as $doc)
                         <li>
                             @if ($doc['external'] && filled($doc['href'] ?? null))
                                 <a href="{{ $doc['href'] }}" target="_blank" rel="noreferrer">{{ $doc['label'] }}</a>
