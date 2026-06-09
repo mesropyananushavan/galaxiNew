@@ -235,17 +235,17 @@
             <article class="card">
                 <h3>{{ config('landing-docs.title') }}</h3>
                 <p>{{ config('landing-docs.labels.doc_focus') }} {{ config('landing-docs.focus') }}</p>
-                <p>{{ config('landing-docs.labels.doc_coverage') }} {{ count(config('landing-docs.items', [])) }} public Galaxy migration references currently linked.</p>
-                <p>{{ config('landing-docs.labels.doc_baseline') }} <code>config/landing-docs.php</code> keeps this public Galaxy migration reference inventory aligned.</p>
+                <p>{{ config('landing-docs.labels.doc_coverage') }} {{ count(config('landing-docs.items', [])) }} {{ config('landing-docs.copy.coverage_suffix') }}</p>
+                <p>{{ config('landing-docs.labels.doc_baseline') }} <code>config/landing-docs.php</code> {{ config('landing-docs.copy.baseline_note') }}</p>
                 <p>{{ config('landing-docs.labels.seam_source_focus') }} {{ config('phase-1-seam-sources.focus') }}</p>
-                <p>{{ config('landing-docs.labels.seam_source_coverage') }} {{ count(config('phase-1-seam-sources.items', [])) }} Phase 1 seam sources currently documented in <code>README.md</code>.</p>
-                <p>{{ config('landing-docs.labels.seam_source_baseline') }} <code>config/phase-1-seam-sources.php</code> keeps that README-level seam-source inventory aligned.</p>
+                <p>{{ config('landing-docs.labels.seam_source_coverage') }} {{ count(config('phase-1-seam-sources.items', [])) }} {{ config('landing-docs.copy.seam_source_coverage_suffix') }} <code>README.md</code>.</p>
+                <p>{{ config('landing-docs.labels.seam_source_baseline') }} <code>config/phase-1-seam-sources.php</code> {{ config('landing-docs.copy.seam_source_baseline_note') }}</p>
                 <p>{{ config('landing-docs.labels.seam_source_posture') }} {{ config('phase-1-seam-sources.posture') }}.</p>
-                <p>{{ config('landing-docs.labels.seam_source_source_of_truth') }} @foreach (config('phase-1-seam-sources.source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach remain the readable and implementation anchors for those Phase 1 seam sources.</p>
-                <p>{{ config('landing-docs.labels.doc_guide') }} @foreach (config('landing-docs.guide', []) as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach remain the readable anchors for this public Galaxy migration reference trail.</p>
+                <p>{{ config('landing-docs.labels.seam_source_source_of_truth') }} @foreach (config('phase-1-seam-sources.source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach {{ config('landing-docs.copy.seam_source_source_of_truth_note') }}</p>
+                <p>{{ config('landing-docs.labels.doc_guide') }} @foreach (config('landing-docs.guide', []) as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach {{ config('landing-docs.copy.guide_note') }}</p>
                 <p>{{ config('landing-docs.labels.doc_posture') }} {{ config('landing-docs.posture') }}.</p>
-                <p>{{ config('landing-docs.labels.source_of_truth') }} @foreach (config('landing-docs.source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach remain the readable and implementation anchors for this public Galaxy migration reference trail.</p>
-                <p>{{ config('landing-docs.labels.reference_seam_bridge') }} <code>config/phase-1-seam-sources.php</code> {{ config('landing-docs.reference_seam_bridge') }}</p>
+                <p>{{ config('landing-docs.labels.source_of_truth') }} @foreach (config('landing-docs.source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach {{ config('landing-docs.copy.source_of_truth_note') }}</p>
+                <p>{{ config('landing-docs.labels.reference_seam_bridge') }} <code>config/phase-1-seam-sources.php</code> {{ config('landing-docs.copy.reference_seam_bridge') }}</p>
                 <ul>
                     @foreach (config('landing-docs.items', []) as $doc)
                         <li>
