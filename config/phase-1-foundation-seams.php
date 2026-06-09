@@ -17,7 +17,7 @@ return [
         ],
         [
             'label' => 'Admin reference trail',
-            'summary' => 'Admin-side Phase 1 references stay aligned across the seam note, dashboard-focused config, seam-source baseline, and the live admin runtime surface.',
+            'summary' => 'Admin-side Phase 1 references stay aligned across the seam note, dashboard-focused config, seam-source baseline, and the live admin runtime surface, with the dashboard controller now formatting more of that runtime reference prose before render.',
             'sources' => [
                 'docs/phase-1-foundation-seams.md',
                 'config/phase-1-reference-docs.php',

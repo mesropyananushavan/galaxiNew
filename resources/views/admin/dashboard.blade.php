@@ -285,7 +285,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Reference guide:</strong>
-            @foreach ($phaseOneReferenceDocsGuide as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach remain the readable anchors for this admin-side Phase 1 reference trail.
+            {!! $phaseOneReferenceDocsGuideText !!} remain the readable anchors for this admin-side Phase 1 reference trail.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Reference posture:</strong>
@@ -293,7 +293,7 @@
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>
-            @foreach ($phaseOneReferenceDocsSourceOfTruth as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach remain the readable and implementation anchors for this admin-side Phase 1 reference trail.
+            {!! $phaseOneReferenceDocsSourceOfTruthText !!} remain the readable and implementation anchors for this admin-side Phase 1 reference trail.
         </p>
         <ul class="list">
             @foreach ($phaseOneReferenceDocs as $referenceDoc)

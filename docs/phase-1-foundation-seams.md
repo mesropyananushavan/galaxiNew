@@ -24,7 +24,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - source-of-truth anchors: `README.md`, `docs/blueprint.md`, `docs/phase-1-plan.md`, `config/phase-1-reference-docs.php`
 - seam-source bridge: `config/phase-1-seam-sources.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
-- current role: keeps the admin-side Phase 1 blueprint, plan, IA, shell, checkpoint, progress-log, and seam-source baseline trail aligned
+- current role: keeps the admin-side Phase 1 blueprint, plan, IA, shell, checkpoint, progress-log, and seam-source baseline trail aligned, with the dashboard controller now formatting more of that runtime reference prose before render
 
 ### Public landing reference trail
 - readable summary anchor: this file
