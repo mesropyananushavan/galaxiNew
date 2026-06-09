@@ -2,6 +2,9 @@
 
 return [
     'focus' => 'Keep the public landing page anchored to Galaxy-specific Phase 1 posture instead of drifting back toward starter copy.',
+    'labels' => [
+        'focus' => 'Landing focus',
+    ],
     'hero' => [
         'eyebrow' => 'Galaxi migration foundation',
         'title' => 'Galaxy-specific foundation, not generic scaffolding.',

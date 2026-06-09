@@ -203,6 +203,11 @@
                         <p>{{ config('landing-foundation.snapshot.description') }}</p>
                     </div>
 
+                    <div class="status-row">
+                        <span class="status-label">{{ config('landing-foundation.labels.focus') }}</span>
+                        <span class="status-value">{{ config('landing-foundation.focus') }}</span>
+                    </div>
+
                     @foreach (config('landing-foundation.status_rows', []) as $row)
                         <div class="status-row">
                             <span class="status-label">{{ $row['label'] }}</span>

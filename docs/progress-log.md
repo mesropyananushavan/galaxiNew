@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing focus note seam checkpoint
+- Surfaced `config/landing-foundation.php` focus copy on the live welcome-page snapshot, so the public Galaxy landing surface now shows its explicit Phase 1 posture instead of keeping that guidance only in config.
+- Updated the landing-shell seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer landing-shell config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing-shell config slice.
+
 ### Landing docs-card bridge-reference seam checkpoint
 - Extended `config/landing-docs.php` so the public Galaxy docs card now owns its seam-bridge reference path metadata instead of leaving that bridge callout partially hardcoded in `resources/views/welcome.blade.php`.
 - Updated the public landing reference seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer docs-card config baseline.

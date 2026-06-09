@@ -24,6 +24,8 @@ class ExampleTest extends TestCase
             ->assertSee('Land small safe foundation slices with visible Git history')
             ->assertSee('Keep checkpoints, analysis notes, and QA references close to the work')
             ->assertSee('Galaxi migration foundation')
+            ->assertSee('Landing focus')
+            ->assertSee('Keep the public landing page anchored to Galaxy-specific Phase 1 posture instead of drifting back toward starter copy.')
             ->assertSee('Target posture')
             ->assertSee('Primary route')
             ->assertSee('Current focus')
