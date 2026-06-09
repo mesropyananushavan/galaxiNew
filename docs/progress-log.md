@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Cardholder route-guardrail inventory checkpoint
+- Expanded `config/phase-1-access-baseline.php` so the access route-guardrail inventory now includes the live `cardholders` review/create/update trio alongside the already-tracked `shops` and `roles-permissions` trios.
+- Updated the access seam docs and focused dashboard assertions so the Phase 1 access card now shows holder-catalog entry points as router-derived method-plus-path contracts as well.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small holder-access follow-up.
+
 ### Shop route-guardrail inventory checkpoint
 - Expanded `config/phase-1-access-baseline.php` so the access route-guardrail inventory now includes the live `shops` review/create/update trio alongside the already-tracked `roles-permissions` trio.
 - Updated the access seam docs and focused dashboard assertions so the Phase 1 access card now shows both branch-boundary and access-shell entry points as router-derived method-plus-path contracts.
