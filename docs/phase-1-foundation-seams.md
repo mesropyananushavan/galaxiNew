@@ -8,7 +8,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - implementation baseline anchor: `config/phase-1-foundation-seams.php`
 - seam-source baseline bridge: `config/phase-1-seam-sources.php`
 - live runtime surface: `resources/views/admin/dashboard.blade.php`
-- admin runtime note: `App\Http\Controllers\Admin\DashboardController` now formats seam-source, access-baseline, and foundation-seam reference strings before they reach the dashboard surface, routes review-entry, latest-work, and assigned-branch action link collections through prepared workspace-link payloads, prepares migration-map navigation and item summary payloads before render, shapes the foundation snapshot, assigned-branch, domain, access-baseline, live-entry, latest-work, migration-map, reference-doc, seam-source, and foundation-seam metric payloads before render, and no longer hands the old raw planned-section counter or raw live-entry/latest-work summary strings directly to Blade
+- admin runtime note: `App\Http\Controllers\Admin\DashboardController` now formats seam-source, access-baseline, shop-scope baseline, and foundation-seam reference strings before they reach the dashboard surface, routes review-entry, latest-work, and assigned-branch action link collections through prepared workspace-link payloads, prepares migration-map navigation and item summary payloads before render, shapes the foundation snapshot, assigned-branch, domain, access-baseline, shop-scope baseline, live-entry, latest-work, migration-map, reference-doc, seam-source, and foundation-seam metric payloads before render, and no longer hands the old raw planned-section counter or raw live-entry/latest-work summary strings directly to Blade
 
 ## Current seams
 
@@ -41,6 +41,13 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - source-of-truth anchors: `docs/phase-1-access-baseline.md`, `config/phase-1-access-baseline.php`, `app/Providers/Concerns/RegistersAdminAccessGates.php`, `app/Providers/Concerns/RegistersAdminPolicies.php`, `routes/admin.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 - current role: keeps the first Galaxy authorization gates and policy mappings explicit while Phase 1 admin access and shop scope are still landing, with the dashboard controller now shaping both the access metrics and the tracked gate/policy inventory before render
+
+### Shop-scoped access baseline
+- readable summary anchor: `docs/phase-1-shop-access-baseline.md`
+- implementation baseline: `config/phase-1-shop-access-baseline.php`
+- source-of-truth anchors: `docs/phase-1-shop-access-baseline.md`, `config/phase-1-shop-access-baseline.php`, `app/Models/User.php`, `app/Policies/ShopPolicy.php`, `app/Providers/Concerns/RegistersAdminAccessGates.php`
+- visible runtime surface: `resources/views/admin/dashboard.blade.php`
+- current role: keeps the first Galaxy branch-scoped access rules explicit while Phase 1 shop visibility is still landing, with the dashboard controller now shaping both the shop-scope metrics and the tracked branch-boundary rules before render
 
 ### Public landing reference trail
 - readable summary anchor: this file

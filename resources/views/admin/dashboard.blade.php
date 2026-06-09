@@ -158,6 +158,40 @@
     </section>
 
     <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 shop-scoped access baseline</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneShopAccessBaselineFocus }}
+        </p>
+        @foreach ($phaseOneShopAccessBaselineMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Scope posture:</strong>
+            {{ $phaseOneShopAccessBaselinePosture }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Scope guide:</strong>
+            {!! $phaseOneShopAccessBaselineGuideText !!} remain the readable and implementation anchors for this Galaxy branch boundary.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneShopAccessBaselineSourceOfTruthText !!} remain the readable and implementation anchors for this Galaxy branch boundary.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneShopAccessBaseline as $rule)
+                <li>{!! $rule['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 seam-source inventory</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneSeamSourcesFocus }}

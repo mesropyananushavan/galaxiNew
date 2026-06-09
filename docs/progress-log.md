@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard shop-scoped access baseline checkpoint
+- Added `docs/phase-1-shop-access-baseline.md` and `config/phase-1-shop-access-baseline.php` so the existing Galaxy branch-boundary rules now have an explicit Phase 1 baseline instead of staying implicit inside `User::canAccessShop(...)`, `ShopPolicy`, and the `access-shop` gate.
+- Extended `App\Http\Controllers\Admin\DashboardController` and `resources/views/admin/dashboard.blade.php` with a new Phase 1 shop-scoped access card that renders controller-shaped branch-boundary rule inventory plus focused scope metrics.
+- Updated `docs/phase-1-foundation-seams.md`, `config/phase-1-foundation-seams.php`, and the focused authenticated admin dashboard feature check to keep this new Galaxy scope seam visible and verified.
+
 ### Dashboard access-baseline seam checkpoint
 - Added `docs/phase-1-access-baseline.md` and `config/phase-1-access-baseline.php` so the existing Galaxy authorization gates, policy mappings, and admin-route guardrail now have an explicit Phase 1 baseline instead of staying implicit inside provider code.
 - Extended `App\Http\Controllers\Admin\DashboardController` and `resources/views/admin/dashboard.blade.php` with a new Phase 1 access-baseline card that renders controller-shaped gate and policy inventory plus focused access metrics.

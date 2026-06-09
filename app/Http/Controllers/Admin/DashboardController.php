@@ -37,6 +37,12 @@ class DashboardController extends Controller
             'phaseOneAccessBaselineSourceOfTruthText' => $this->inlineCodeList(config('phase-1-access-baseline.source_of_truth', ['docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php', 'app/Providers/Concerns/RegistersAdminAccessGates.php', 'app/Providers/Concerns/RegistersAdminPolicies.php', 'routes/admin.php'])),
             'phaseOneAccessBaselinePosture' => (string) config('phase-1-access-baseline.posture', 'documented authorization baseline for live Galaxy admin access'),
             'phaseOneAccessBaselineMetrics' => $this->phaseOneAccessBaselineMetrics(),
+            'phaseOneShopAccessBaseline' => $this->preparedShopAccessBaseline(config('phase-1-shop-access-baseline.rules', [])),
+            'phaseOneShopAccessBaselineFocus' => (string) config('phase-1-shop-access-baseline.focus', 'Keep the first Galaxy branch-scoped access rules explicit while Phase 1 shop visibility is still landing.'),
+            'phaseOneShopAccessBaselineGuideText' => $this->inlineCodeList(config('phase-1-shop-access-baseline.guide', ['docs/phase-1-shop-access-baseline.md', 'config/phase-1-shop-access-baseline.php'])),
+            'phaseOneShopAccessBaselineSourceOfTruthText' => $this->inlineCodeList(config('phase-1-shop-access-baseline.source_of_truth', ['docs/phase-1-shop-access-baseline.md', 'config/phase-1-shop-access-baseline.php', 'app/Models/User.php', 'app/Policies/ShopPolicy.php', 'app/Providers/Concerns/RegistersAdminAccessGates.php'])),
+            'phaseOneShopAccessBaselinePosture' => (string) config('phase-1-shop-access-baseline.posture', 'documented shop-scoped access baseline for branch-aware Galaxy review'),
+            'phaseOneShopAccessBaselineMetrics' => $this->phaseOneShopAccessBaselineMetrics(),
             'phaseOneReferenceDocs' => $this->preparedReferenceDocs(config('phase-1-reference-docs.items', [])),
             'phaseOneReferenceDocsFocus' => (string) config('phase-1-reference-docs.focus', 'Keep the current Galaxy admin map, shell layering, checkpoint trail, and seam-source baseline close while Phase 1 slices are still moving.'),
             'phaseOneReferenceDocsGuide' => config('phase-1-reference-docs.guide', ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md']),
@@ -148,6 +154,15 @@ class DashboardController extends Controller
         ];
     }
 
+    protected function phaseOneShopAccessBaselineMetrics(): array
+    {
+        return [
+            ['label' => 'Scope rule coverage', 'value' => sprintf('%d branch-scope rules currently tracked.', $this->shopAccessRuleCount())],
+            ['label' => 'Scope gate anchor', 'value' => '<code>access-shop</code> keeps branch-aware visibility explicit at the Laravel gate layer.', 'html' => true],
+            ['label' => 'Policy reuse', 'value' => '<code>ShopPolicy</code> currently reuses the same branch-access seam for both <code>view</code> and <code>update</code>.', 'html' => true],
+        ];
+    }
+
     protected function phaseOneFoundationSeamMetrics(): array
     {
         return [
@@ -249,9 +264,39 @@ class DashboardController extends Controller
         ];
     }
 
+    protected function preparedShopAccessBaseline(array $rules): array
+    {
+        return collect($rules)
+            ->filter(fn ($rule): bool => is_array($rule) && filled($rule['label'] ?? null) && filled($rule['rule'] ?? null))
+            ->map(function (array $rule): array {
+                $label = (string) ($rule['label'] ?? '');
+                $statement = (string) ($rule['rule'] ?? '');
+                $coverage = (string) ($rule['coverage'] ?? '');
+
+                return [
+                    'label' => $label,
+                    'rule' => $statement,
+                    'coverage' => $coverage,
+                    'displaySummary' => sprintf('<strong>%s</strong>, %s %s', e($label), e($statement), e($coverage)),
+                ];
+            })
+            ->values()
+            ->all();
+    }
+
     protected function domainEntities()
     {
         return collect(config('phase-1-domain-map.entities', []));
+    }
+
+    protected function shopAccessRules()
+    {
+        return collect(config('phase-1-shop-access-baseline.rules', []));
+    }
+
+    protected function shopAccessRuleCount(): int
+    {
+        return $this->countConfigItems($this->shopAccessRules());
     }
 
     protected function accessGates()
