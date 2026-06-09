@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Access route-contract payload checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so tracked access route guardrails now resolve their live HTTP methods and URI paths from Laravel's router before rendering on the dashboard.
+- This keeps the Phase 1 access-baseline card closer to a real runtime contract, so the `roles-permissions` read/write entry points are visible as method-plus-path guardrails instead of route-name-only inventory.
+- Updated the access seam docs and focused dashboard assertion, then re-ran the narrow dashboard slice as the parity guard for this small runtime-contract follow-up.
+
 ### Roles-permissions write-guardrail inventory checkpoint
 - Expanded `config/phase-1-access-baseline.php` so the new access route-guardrail inventory now tracks the full first live `roles-permissions` route trio: review, create, and update.
 - Updated the dashboard access metrics/copy plus the access seam docs so the live Phase 1 baseline now shows both the shared dual-policy read route and the bootstrap-only write entry points for the current access shell.

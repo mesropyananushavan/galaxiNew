@@ -12,6 +12,7 @@ use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Route;
 
 class DashboardController extends Controller
 {
@@ -323,13 +324,27 @@ class DashboardController extends Controller
                     $route = (string) ($guardrail['route'] ?? '');
                     $guard = (string) ($guardrail['guard'] ?? '');
                     $coverage = (string) ($guardrail['coverage'] ?? '');
+                    $routeDefinition = Route::getRoutes()->getByName($route);
+                    $methods = collect($routeDefinition?->methods() ?? [])
+                        ->reject(fn (string $method): bool => $method === 'HEAD')
+                        ->values()
+                        ->implode(', ');
+                    $path = $routeDefinition !== null ? '/'.$routeDefinition->uri() : null;
+                    $routeContract = $methods !== '' && filled($path)
+                        ? sprintf('%s %s', $methods, $path)
+                        : null;
 
                     return [
                         'label' => $label,
                         'route' => $route,
                         'guard' => $guard,
                         'coverage' => $coverage,
-                        'displaySummary' => sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($guard), e($coverage)),
+                        'path' => $path,
+                        'methods' => $methods,
+                        'routeContract' => $routeContract,
+                        'displaySummary' => filled($routeContract)
+                            ? sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($routeContract), e($guard), e($coverage))
+                            : sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($guard), e($coverage)),
                     ];
                 })
                 ->values()

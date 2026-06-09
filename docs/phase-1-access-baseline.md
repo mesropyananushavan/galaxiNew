@@ -18,6 +18,7 @@ Keep the first Galaxy authorization gates and policy mappings explicit while Pha
 - The current mapped policies cover `Shop`, `CardHolder`, `Card`, `Role`, `Permission`, and `CardType`.
 - `routes/admin.php` applies the `auth` and `can:access-admin` guardrail before policy-specific resource routes run.
 - The access baseline now also tracks the first live `roles-permissions` route trio as explicit guardrail entries: `admin.roles-permissions.index`, `admin.roles-permissions.store`, and `admin.roles-permissions.update`.
+- The dashboard access card now resolves those guardrails through Laravel's router so the live baseline shows the current HTTP method and URI contract, not only route names.
 - The shared `roles-permissions` review route requires both `RolePolicy::viewAny` and `PermissionPolicy::viewAny`, so access-shell review and permission-vocabulary review stay under the same explicit Phase 1 guardrail.
 - The create and update routes keep the first live access-shell write entry points behind the same bootstrap-only role creation and update guards already enforced in `routes/admin.php`.
 
