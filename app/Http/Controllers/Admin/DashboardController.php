@@ -733,6 +733,19 @@ class DashboardController extends Controller
         };
     }
 
+    protected function preparedWorkspaceLinks(array $links): array
+    {
+        return collect($links)
+            ->filter(fn ($link): bool => is_array($link) && filled($link['label'] ?? null) && filled($link['route'] ?? null))
+            ->map(fn (array $link): array => [
+                'label' => (string) $link['label'],
+                'route' => (string) $link['route'],
+                'path' => (string) ($link['path'] ?? parse_url((string) $link['route'], PHP_URL_PATH) ?: (string) $link['route']),
+            ])
+            ->values()
+            ->all();
+    }
+
     protected function workspaceLink(string $label, string $routeName, array $parameters = []): array
     {
         $route = route($routeName, $parameters);
@@ -1385,13 +1398,13 @@ class DashboardController extends Controller
 
     protected function latestWorkspaces(): array
     {
-        return array_values(array_filter([
+        return $this->preparedWorkspaceLinks([
             $this->latestShopWorkspace(),
             $this->latestCardHolderWorkspace(),
             $this->latestCardWorkspace(),
             $this->latestCardTypeWorkspace(),
             $this->latestRoleWorkspace(),
-        ]));
+        ]);
     }
 
     protected function latestWorkspaceCount(): int

@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard latest-work payload shaping checkpoint
+- Routed the latest-work shortcut list through a reusable workspace-link shaping helper in `App\Http\Controllers\Admin\DashboardController`, so the Galaxy dashboard now normalizes latest workspace payloads through one backend path instead of relying on an ad-hoc filtered array.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this dashboard-side workspace payload handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard foundation-metric payload checkpoint
 - Moved the live foundation snapshot metric assembly into `App\Http\Controllers\Admin\DashboardController`, so the main Galaxy dashboard metric grid now renders one controller-prepared payload instead of keeping a long inline metric block in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side foundation-metric handoff visible in the Phase 1 seam map.
