@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing docs-card path-callout seam checkpoint
+- Extended `config/landing-docs.php` so the public Galaxy docs card now owns its config-path callouts for baseline and seam-bridge notes instead of leaving those file references inline in `resources/views/welcome.blade.php`.
+- Updated the public landing reference seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer docs-card config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing reference-surface slice.
+
 ### Landing hero emphasis-token seam checkpoint
 - Extended `config/landing-foundation.php` so the public Galaxy landing hero now owns its emphasized product-token rendering instead of leaving the `galaxiNew` highlight rule hardcoded in `resources/views/welcome.blade.php`.
 - Updated the landing-shell seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer hero config baseline.
