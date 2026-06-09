@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Admin reference source-of-truth expansion checkpoint
+- Expanded `config/phase-1-reference-docs.php` so the admin dashboard source-of-truth trail now includes the newer access, shop-scope, model-skeleton, and migration baselines instead of pointing only at the older high-level planning anchors.
+- Updated `docs/phase-1-foundation-seams.md` and the focused authenticated dashboard assertion so this richer admin reference prose stays aligned with the now-expanded Phase 1 inventory.
+- Re-ran the focused admin dashboard check as the parity guard for this small Galaxy reference-trail follow-up.
+
 ### README seam-source baseline expansion checkpoint
 - Expanded `config/phase-1-seam-sources.php` and the README seam-source inventory so the newer access, shop-scope, model-skeleton, and migration baselines are now visible in top-level repo guidance instead of only on the admin and landing surfaces.
 - Kept the README-level seam-source trail aligned with the newer Galaxy Phase 1 foundation map and re-ran the focused admin dashboard plus landing checks to confirm the surfaced seam counts stayed in sync.
