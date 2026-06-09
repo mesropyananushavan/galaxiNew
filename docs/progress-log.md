@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing docs-card config seam checkpoint
+- Extended `config/landing-docs.php` so the public Galaxy docs card now owns its heading plus the seam-bridge copy instead of leaving those strings inline in `resources/views/welcome.blade.php`.
+- Updated the public landing reference seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer docs-card config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing reference-surface slice.
+
 ### Landing section-heading config seam checkpoint
 - Extended `config/landing-foundation.php` so the public Galaxy landing shell now owns the snapshot framing copy plus the live-surface and working-rule section headings instead of leaving those strings inline in `resources/views/welcome.blade.php`.
 - Updated the landing-shell seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer welcome-page config baseline.

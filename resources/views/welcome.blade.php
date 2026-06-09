@@ -233,7 +233,7 @@
             </article>
 
             <article class="card">
-                <h3>Helpful project docs</h3>
+                <h3>{{ config('landing-docs.title') }}</h3>
                 <p>Doc focus: {{ config('landing-docs.focus') }}</p>
                 <p>Doc coverage: {{ count(config('landing-docs.items', [])) }} public Galaxy migration references currently linked.</p>
                 <p>Doc baseline: <code>config/landing-docs.php</code> keeps this public Galaxy migration reference inventory aligned.</p>
@@ -245,7 +245,7 @@
                 <p>Doc guide: @foreach (config('landing-docs.guide', []) as $guideDoc)@if (! $loop->first), @endif<code>{{ $guideDoc }}</code>@endforeach remain the readable anchors for this public Galaxy migration reference trail.</p>
                 <p>Doc posture: {{ config('landing-docs.posture') }}.</p>
                 <p>Source of truth: @foreach (config('landing-docs.source_of_truth', []) as $sourceDoc)@if (! $loop->first), @endif<code>{{ $sourceDoc }}</code>@endforeach remain the readable and implementation anchors for this public Galaxy migration reference trail.</p>
-                <p>Reference seam bridge: <code>config/phase-1-seam-sources.php</code> keeps the README-level seam-source inventory tied into this broader public Phase 1 reference trail.</p>
+                <p>Reference seam bridge: <code>config/phase-1-seam-sources.php</code> {{ config('landing-docs.reference_seam_bridge') }}</p>
                 <ul>
                     @foreach (config('landing-docs.items', []) as $doc)
                         <li>

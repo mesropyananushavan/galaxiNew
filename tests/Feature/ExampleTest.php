@@ -84,6 +84,7 @@ class ExampleTest extends TestCase
             ->assertSee('Admin login')
             ->assertSee('Live management surfaces')
             ->assertSee('Working rules')
-            ->assertSee('Phase 1 snapshot');
+            ->assertSee('Phase 1 snapshot')
+            ->assertSee('Reference seam bridge:');
     }
 }
