@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing controller action-prep seam checkpoint
+- Moved public hero CTA href resolution into `App\Http\Controllers\LandingPageController`, so the welcome surface now renders controller-prepared Galaxy landing actions instead of deciding route-vs-url targets inline in Blade.
+- Updated `resources/views/welcome.blade.php` plus the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the action-preparation handoff visible in the Phase 1 seam map.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
 ### Landing controller reference-string seam checkpoint
 - Moved the public landing doc-guide, source-of-truth, and seam-source source-of-truth string assembly into `App\Http\Controllers\LandingPageController`, so the welcome surface now renders controller-prepared Galaxy reference trails instead of stitching those inline lists together in Blade.
 - Updated `resources/views/welcome.blade.php` plus the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the reference-string handoff visible in the Phase 1 seam map.

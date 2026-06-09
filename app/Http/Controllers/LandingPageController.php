@@ -16,12 +16,32 @@ class LandingPageController extends Controller
             'landingFoundation' => $landingFoundation,
             'landingDocs' => $landingDocs,
             'phaseOneSeamSources' => $phaseOneSeamSources,
+            'landingHeroActions' => $this->preparedHeroActions(data_get($landingFoundation, 'hero.actions', [])),
             'landingDocCount' => count(data_get($landingDocs, 'items', [])),
             'landingSeamSourceCount' => count(data_get($phaseOneSeamSources, 'items', [])),
             'landingDocGuideText' => $this->inlineCodeList(data_get($landingDocs, 'guide', [])),
             'landingDocSourceOfTruthText' => $this->inlineCodeList(data_get($landingDocs, 'source_of_truth', [])),
             'landingSeamSourceOfTruthText' => $this->inlineCodeList(data_get($phaseOneSeamSources, 'source_of_truth', [])),
         ]);
+    }
+
+    protected function preparedHeroActions(array $actions): array
+    {
+        return collect($actions)
+            ->filter(fn ($action): bool => is_array($action) && filled($action['label'] ?? null))
+            ->map(function (array $action): array {
+                $href = filled($action['route'] ?? null)
+                    ? route($action['route'])
+                    : url($action['href'] ?? '/');
+
+                return [
+                    'label' => (string) $action['label'],
+                    'style' => (string) ($action['style'] ?? 'button-secondary'),
+                    'href' => $href,
+                ];
+            })
+            ->values()
+            ->all();
     }
 
     protected function inlineCodeList(array $items): string

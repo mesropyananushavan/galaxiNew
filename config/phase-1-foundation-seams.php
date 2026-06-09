@@ -37,7 +37,7 @@ return [
         ],
         [
             'label' => 'Public landing shell baseline',
-            'summary' => 'The welcome-page hero copy, focus note, emphasis tokens, CTA actions, status snapshot framing, live-surface headings, working-rule copy, named route/controller handoff, controller-passed landing config, controller-owned landing metrics, and controller-formatted reference trails stay aligned through one Galaxy-specific landing config instead of drifting back into starter-era inline Blade text.',
+            'summary' => 'The welcome-page hero copy, focus note, emphasis tokens, CTA actions, status snapshot framing, live-surface headings, working-rule copy, named route/controller handoff, controller-passed landing config, controller-prepared hero actions, controller-owned landing metrics, and controller-formatted reference trails stay aligned through one Galaxy-specific landing config instead of drifting back into starter-era inline Blade text.',
             'sources' => [
                 'docs/phase-1-foundation-seams.md',
                 'config/landing-foundation.php',

@@ -188,10 +188,10 @@
                     </p>
 
                     <div class="actions">
-                        @foreach (data_get($landingFoundation, 'hero.actions', []) as $action)
+                        @foreach ($landingHeroActions as $action)
                             <a
-                                class="button {{ $action['style'] ?? 'button-secondary' }}"
-                                href="{{ filled($action['route'] ?? null) ? route($action['route']) : url($action['href'] ?? '/') }}"
+                                class="button {{ $action['style'] }}"
+                                href="{{ $action['href'] }}"
                             >{{ $action['label'] }}</a>
                         @endforeach
                     </div>
