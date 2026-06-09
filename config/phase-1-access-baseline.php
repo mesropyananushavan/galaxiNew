@@ -73,6 +73,24 @@ return [
             'coverage' => 'Keeps live card-shell updates behind the same card update guardrail used by the shared admin form.',
         ],
         [
+            'label' => 'Card types review route',
+            'route' => 'admin.card-types.index',
+            'guard' => 'can:viewAny,CardType',
+            'coverage' => 'Keeps tier-catalog review behind the Phase 1 card-type policy read guard.',
+        ],
+        [
+            'label' => 'Card types create route',
+            'route' => 'admin.card-types.store',
+            'guard' => 'can:create,CardType',
+            'coverage' => 'Keeps the first live Galaxy tier creation path behind the bootstrap-only card-type creation guard.',
+        ],
+        [
+            'label' => 'Card types update route',
+            'route' => 'admin.card-types.update',
+            'guard' => 'can:update,cardType',
+            'coverage' => 'Keeps live tier updates behind the same card-type update guardrail used by the shared admin form.',
+        ],
+        [
             'label' => 'Roles & permissions review route',
             'route' => 'admin.roles-permissions.index',
             'guard' => 'can:viewAny,Role + can:viewAny,Permission',

@@ -285,7 +285,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gate coverage:')
             ->assertSee('2 Phase 1 admin access gates currently tracked.')
             ->assertSee('Route guardrails:')
-            ->assertSee('12 Phase 1 admin route guardrails currently tracked.')
+            ->assertSee('15 Phase 1 admin route guardrails currently tracked.')
             ->assertSee('Policy coverage:')
             ->assertSee('6 model policies currently mapped for Phase 1 admin resources.')
             ->assertSee('Admin guardrail:')
@@ -336,6 +336,15 @@ class AdminDashboardTest extends TestCase
             ->assertSee('<strong>Cards update route</strong>', false)
             ->assertSee('<code>admin.cards.update</code>; <code>PATCH /admin/cards/{card}</code>; <code>can:update,card</code>', false)
             ->assertSee('Keeps live card-shell updates behind the same card update guardrail used by the shared admin form.')
+            ->assertSee('<strong>Card types review route</strong>', false)
+            ->assertSee('<code>admin.card-types.index</code>; <code>GET /admin/card-types</code>; <code>can:viewAny,CardType</code>', false)
+            ->assertSee('Keeps tier-catalog review behind the Phase 1 card-type policy read guard.')
+            ->assertSee('<strong>Card types create route</strong>', false)
+            ->assertSee('<code>admin.card-types.store</code>; <code>POST /admin/card-types</code>; <code>can:create,CardType</code>', false)
+            ->assertSee('Keeps the first live Galaxy tier creation path behind the bootstrap-only card-type creation guard.')
+            ->assertSee('<strong>Card types update route</strong>', false)
+            ->assertSee('<code>admin.card-types.update</code>; <code>PATCH /admin/card-types/{cardType}</code>; <code>can:update,cardType</code>', false)
+            ->assertSee('Keeps live tier updates behind the same card-type update guardrail used by the shared admin form.')
             ->assertSee('<strong>Roles &amp; permissions review route</strong>', false)
             ->assertSee('<code>admin.roles-permissions.index</code>; <code>GET /admin/roles-permissions</code>; <code>can:viewAny,Role + can:viewAny,Permission</code>', false)
             ->assertSee('Keeps shared access-shell review and permission-vocabulary review behind both Phase 1 read policies.')
@@ -770,7 +779,7 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->canAccessShop(null));
     }
 
-    public function test_phase_one_admin_route_guardrails_stay_wired_for_shops_cardholders_cards_and_roles_permissions(): void
+    public function test_phase_one_admin_route_guardrails_stay_wired_for_shops_cardholders_cards_card_types_and_roles_permissions(): void
     {
         $shopsRoute = Route::getRoutes()->getByName('admin.shops.index');
         $shopStoreRoute = Route::getRoutes()->getByName('admin.shops.store');
@@ -781,6 +790,9 @@ class AdminDashboardTest extends TestCase
         $cardsRoute = Route::getRoutes()->getByName('admin.cards.index');
         $cardStoreRoute = Route::getRoutes()->getByName('admin.cards.store');
         $cardUpdateRoute = Route::getRoutes()->getByName('admin.cards.update');
+        $cardTypesRoute = Route::getRoutes()->getByName('admin.card-types.index');
+        $cardTypeStoreRoute = Route::getRoutes()->getByName('admin.card-types.store');
+        $cardTypeUpdateRoute = Route::getRoutes()->getByName('admin.card-types.update');
         $rolesRoute = Route::getRoutes()->getByName('admin.roles-permissions.index');
         $roleStoreRoute = Route::getRoutes()->getByName('admin.roles-permissions.store');
         $roleUpdateRoute = Route::getRoutes()->getByName('admin.roles-permissions.update');
@@ -794,6 +806,9 @@ class AdminDashboardTest extends TestCase
         $this->assertNotNull($cardsRoute);
         $this->assertNotNull($cardStoreRoute);
         $this->assertNotNull($cardUpdateRoute);
+        $this->assertNotNull($cardTypesRoute);
+        $this->assertNotNull($cardTypeStoreRoute);
+        $this->assertNotNull($cardTypeUpdateRoute);
         $this->assertNotNull($rolesRoute);
         $this->assertNotNull($roleStoreRoute);
         $this->assertNotNull($roleUpdateRoute);
@@ -807,6 +822,9 @@ class AdminDashboardTest extends TestCase
         $this->assertContains('can:viewAny,'.Card::class, $cardsRoute->gatherMiddleware());
         $this->assertContains('can:create,'.Card::class, $cardStoreRoute->gatherMiddleware());
         $this->assertContains('can:update,card', $cardUpdateRoute->gatherMiddleware());
+        $this->assertContains('can:viewAny,'.CardType::class, $cardTypesRoute->gatherMiddleware());
+        $this->assertContains('can:create,'.CardType::class, $cardTypeStoreRoute->gatherMiddleware());
+        $this->assertContains('can:update,cardType', $cardTypeUpdateRoute->gatherMiddleware());
         $this->assertContains('can:viewAny,'.Role::class, $rolesRoute->gatherMiddleware());
         $this->assertContains('can:viewAny,'.Permission::class, $rolesRoute->gatherMiddleware());
         $this->assertContains('can:create,'.Role::class, $roleStoreRoute->gatherMiddleware());
