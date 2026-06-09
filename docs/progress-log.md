@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop coverage-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsCoveragePosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its paused-vs-active coverage copy directly into the selected-shop dependency summary.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Cardholder selected-page-state wrapper cleanup checkpoint
 - Removed the single-use `cardholdersSelectedPageState()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its selected-holder page assembly directly into the cardholders page builder.
 - Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

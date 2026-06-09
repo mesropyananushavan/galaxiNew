@@ -2742,13 +2742,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function shopsCoveragePosture(Shop $selectedShop): string
-    {
-        return $this->shopIsPaused($selectedShop)
-            ? sprintf('This paused branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation recovery review.', $this->shopVisibleCardholderCount($selectedShop), $this->shopVisibleCardCount($selectedShop))
-            : sprintf('This branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation review.', $this->shopVisibleCardholderCount($selectedShop), $this->shopVisibleCardCount($selectedShop));
-    }
-
     private function shopsStatusPosture(Shop $selectedShop): string
     {
         return $this->shopIsPaused($selectedShop)
@@ -4737,7 +4730,9 @@ class ResourceIndexController extends Controller
             ['label' => 'Scope handoff signal', 'value' => $this->shopsScopeHandoffSignal($selectedShop)],
             ['label' => 'Status posture', 'value' => $this->shopsStatusPosture($selectedShop)],
             ['label' => 'Manager posture', 'value' => $this->shopsManagerPosture($selectedShop)],
-            ['label' => 'Coverage posture', 'value' => $this->shopsCoveragePosture($selectedShop)],
+            ['label' => 'Coverage posture', 'value' => $this->shopIsPaused($selectedShop)
+                ? sprintf('This paused branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation recovery review.', $this->shopVisibleCardholderCount($selectedShop), $this->shopVisibleCardCount($selectedShop))
+                : sprintf('This branch currently exposes %d cardholders and %d cards for read-only Galaxy foundation review.', $this->shopVisibleCardholderCount($selectedShop), $this->shopVisibleCardCount($selectedShop))],
             ['label' => 'Remaining backend gap', 'value' => $this->shopsBackendGap($selectedShop)],
         ];
     }
