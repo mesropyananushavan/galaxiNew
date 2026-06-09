@@ -55,6 +55,24 @@ return [
             'coverage' => 'Keeps live holder updates behind the same cardholder update guardrail used by the shared admin form.',
         ],
         [
+            'label' => 'Cards review route',
+            'route' => 'admin.cards.index',
+            'guard' => 'can:viewAny,Card',
+            'coverage' => 'Keeps card-catalog review behind the Phase 1 card policy read guard.',
+        ],
+        [
+            'label' => 'Cards create route',
+            'route' => 'admin.cards.store',
+            'guard' => 'can:create,Card',
+            'coverage' => 'Keeps the first live Galaxy card-shell creation path behind the scoped card creation guard.',
+        ],
+        [
+            'label' => 'Cards update route',
+            'route' => 'admin.cards.update',
+            'guard' => 'can:update,card',
+            'coverage' => 'Keeps live card-shell updates behind the same card update guardrail used by the shared admin form.',
+        ],
+        [
             'label' => 'Roles & permissions review route',
             'route' => 'admin.roles-permissions.index',
             'guard' => 'can:viewAny,Role + can:viewAny,Permission',
