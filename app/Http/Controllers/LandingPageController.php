@@ -13,7 +13,6 @@ class LandingPageController extends Controller
         $phaseOneSeamSources = config('phase-1-seam-sources', []);
 
         return view('welcome', [
-            'landingFoundation' => $landingFoundation,
             'landingHeroFrame' => $this->preparedLandingHeroFrame($landingFoundation),
             'landingHeroDescriptionHtml' => $this->preparedHeroDescriptionHtml(
                 (string) data_get($landingFoundation, 'hero.description', ''),

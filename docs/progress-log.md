@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing raw-config handoff cleanup checkpoint
+- Removed the now-unused raw `landingFoundation` view context from `App\Http\Controllers\LandingPageController`, because the public Galaxy landing surface now reads its hero frame, snapshot rows, foundation cards, and docs card entirely from controller-shaped payloads.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this public landing raw-config cleanup visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface cleanup slice.
+
 ### Landing docs-card payload checkpoint
 - Consolidated the public landing reference card into one `landingDocsCard` payload in `App\Http\Controllers\LandingPageController`, so the Galaxy landing docs surface now receives its title, summary rows, and docs inventory through one backend-shaped contract instead of several separate view variables.
 - Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing docs-card handoff visible in the Phase 1 seam map.
