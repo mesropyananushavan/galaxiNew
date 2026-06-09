@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Shop visible-card-count wrapper cleanup checkpoint
+- Removed the single-use `shopVisibleCardCountValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its string-cast count directly into the selected-shop summary.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Shop visible-cardholder-count wrapper cleanup checkpoint
 - Removed the single-use `shopVisibleCardholderCountValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its string-cast count directly into the selected-shop summary.
 - Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

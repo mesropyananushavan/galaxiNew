@@ -2762,11 +2762,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function shopVisibleCardCountValue(Shop $selectedShop): string
-    {
-        return (string) $this->shopVisibleCardCount($selectedShop);
-    }
-
     private function resolveLiveFormRouteParameterValue(mixed $value): mixed
     {
         if ($value instanceof BackedEnum) {
@@ -4501,7 +4496,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Assigned manager', 'value' => $this->shopAssignedManagerName($selectedShop)],
             ['label' => 'Manager guidance', 'value' => $this->shopsManagerGuidance($selectedShop)],
             ['label' => 'Cardholders', 'value' => (string) $this->shopVisibleCardholderCount($selectedShop)],
-            ['label' => 'Cards', 'value' => $this->shopVisibleCardCountValue($selectedShop)],
+            ['label' => 'Cards', 'value' => (string) $this->shopVisibleCardCount($selectedShop)],
             ['label' => 'Galaxy status', 'value' => $this->shopStatusValue($selectedShop)],
             [
                 'label' => 'Branch guidance',
