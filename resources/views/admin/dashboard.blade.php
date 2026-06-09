@@ -125,21 +125,19 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneSeamSourcesFocus }}
         </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Seam-source coverage:</strong>
-            {{ $phaseOneSeamSourcesCoverage }}.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Seam-source baseline:</strong>
-            <code>config/phase-1-seam-sources.php</code> keeps this README-level seam-source inventory aligned.
-        </p>
+        @foreach ($phaseOneSeamSourceMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Seam-source guide:</strong>
             {!! $phaseOneSeamSourcesGuideText !!} remain the readable and implementation anchors for this Phase 1 seam-source trail.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Seam-source posture:</strong>
-            {{ $phaseOneSeamSourcesPosture }}.
         </p>
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Source of truth:</strong>

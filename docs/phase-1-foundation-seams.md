@@ -8,7 +8,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - implementation baseline anchor: `config/phase-1-foundation-seams.php`
 - seam-source baseline bridge: `config/phase-1-seam-sources.php`
 - live runtime surface: `resources/views/admin/dashboard.blade.php`
-- admin runtime note: `App\Http\Controllers\Admin\DashboardController` now formats seam-source and foundation-seam reference strings before they reach the dashboard surface, routes review-entry, latest-work, and assigned-branch action link collections through prepared workspace-link payloads, prepares migration-map navigation links before render, shapes the foundation snapshot, assigned-branch, domain, live-entry, latest-work, migration-map, and reference-doc metric payloads before render, and no longer hands the old raw planned-section counter or raw live-entry/latest-work summary strings directly to Blade
+- admin runtime note: `App\Http\Controllers\Admin\DashboardController` now formats seam-source and foundation-seam reference strings before they reach the dashboard surface, routes review-entry, latest-work, and assigned-branch action link collections through prepared workspace-link payloads, prepares migration-map navigation links before render, shapes the foundation snapshot, assigned-branch, domain, live-entry, latest-work, migration-map, reference-doc, and seam-source metric payloads before render, and no longer hands the old raw planned-section counter or raw live-entry/latest-work summary strings directly to Blade
 
 ## Current seams
 
@@ -63,7 +63,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - seam focus: keep the README-level seam-source inventory visible across repo guidance plus the admin and public Phase 1 entry surfaces
 - seam posture: README-backed seam-source baseline stays explicit across the live Galaxy reference trail
 - visible runtime surfaces: `README.md`, `resources/views/admin/dashboard.blade.php`, `resources/views/welcome.blade.php`
-- current role: keeps the README-level config seam inventory aligned across repo guidance plus the admin and public entry surfaces, with both entry controllers now formatting parts of that runtime reference trail and the dashboard controller shaping the admin seam-source inventory before render
+- current role: keeps the README-level config seam inventory aligned across repo guidance plus the admin and public entry surfaces, with both entry controllers now formatting parts of that runtime reference trail and the dashboard controller shaping both the admin seam-source inventory and seam-source summary metrics before render
 
 ## Phase 1 posture
 - prefer small config-backed seams over new inline Blade lists when the goal is stable Galaxy migration structure

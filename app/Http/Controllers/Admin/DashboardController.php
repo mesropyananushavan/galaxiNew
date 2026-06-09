@@ -44,8 +44,7 @@ class DashboardController extends Controller
             'phaseOneSeamSourcesGuideText' => $this->inlineCodeList(config('phase-1-seam-sources.guide', ['README.md', 'config/phase-1-seam-sources.php'])),
             'phaseOneSeamSourcesSourceOfTruth' => config('phase-1-seam-sources.source_of_truth', ['README.md', 'config/phase-1-seam-sources.php']),
             'phaseOneSeamSourcesSourceOfTruthText' => $this->inlineCodeList(config('phase-1-seam-sources.source_of_truth', ['README.md', 'config/phase-1-seam-sources.php'])),
-            'phaseOneSeamSourcesPosture' => (string) config('phase-1-seam-sources.posture', 'README-backed seam-source baseline stays explicit across the live Galaxy reference trail'),
-            'phaseOneSeamSourcesCoverage' => $this->phaseOneSeamSourcesCoverage(),
+            'phaseOneSeamSourceMetrics' => $this->phaseOneSeamSourceMetrics(),
             'phaseOneFoundationSeams' => $this->preparedFoundationSeams(config('phase-1-foundation-seams.items', [])),
             'phaseOneFoundationSeamsFocus' => (string) config('phase-1-foundation-seams.focus', 'Keep the new Galaxy-specific Phase 1 seams visible where contributors review the live foundation shell.'),
             'phaseOneFoundationSeamsGuide' => config('phase-1-foundation-seams.guide', ['docs/phase-1-foundation-seams.md', 'config/phase-1-foundation-seams.php']),
@@ -123,6 +122,15 @@ class DashboardController extends Controller
             ['label' => 'Reference coverage', 'value' => $this->phaseOneReferenceDocsCoverage().'.'],
             ['label' => 'Reference baseline', 'value' => '<code>config/phase-1-reference-docs.php</code> keeps this admin-side Phase 1 reference inventory aligned.', 'html' => true],
             ['label' => 'Reference posture', 'value' => e((string) config('phase-1-reference-docs.posture', 'admin reference inventory stays explicit across the live Galaxy dashboard trail')).'.', 'html' => true],
+        ];
+    }
+
+    protected function phaseOneSeamSourceMetrics(): array
+    {
+        return [
+            ['label' => 'Seam-source coverage', 'value' => $this->phaseOneSeamSourcesCoverage().'.'],
+            ['label' => 'Seam-source baseline', 'value' => '<code>config/phase-1-seam-sources.php</code> keeps this README-level seam-source inventory aligned.', 'html' => true],
+            ['label' => 'Seam-source posture', 'value' => e((string) config('phase-1-seam-sources.posture', 'README-backed seam-source baseline stays explicit across the live Galaxy reference trail')).'.', 'html' => true],
         ];
     }
 
