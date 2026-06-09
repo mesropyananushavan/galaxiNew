@@ -5,6 +5,7 @@
 ### Permission policy baseline checkpoint
 - Added `app/Policies/PermissionPolicy.php` and registered it through `RegistersAdminPolicies`, so `Permission` now has an explicit policy-shaped seam alongside the other core Phase 1 access entities.
 - Updated `config/phase-1-access-baseline.php`, `docs/phase-1-access-baseline.md`, `docs/phase-1-foundation-seams.md`, and the focused authenticated dashboard assertion so the access baseline now reflects six mapped policy anchors instead of five.
+- Extended the focused bootstrap, scoped, and paused-shop access-helper assertions so `PermissionPolicy` now participates in the same regression coverage as the other Phase 1 policy seams.
 - Re-ran the focused admin dashboard check as the parity guard for this small Galaxy access-layer follow-up.
 
 ### README reference source-of-truth wording checkpoint
