@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard domain inventory shaping checkpoint
+- Moved the admin dashboard Phase 1 domain inventory shaping into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy entity card now renders controller-prepared entity items instead of reading the raw domain-map config structure directly in Blade.
+- Updated `docs/phase-1-foundation-seams.md` to keep that admin-side domain payload handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard seam-source inventory shaping checkpoint
 - Moved the admin dashboard seam-source inventory shaping into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy seam-source card now renders controller-prepared items instead of reading the raw config list directly in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` plus the seam-source notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping this dashboard-side data-shaping handoff visible in the Phase 1 seam map.

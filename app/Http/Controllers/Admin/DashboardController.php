@@ -22,7 +22,7 @@ class DashboardController extends Controller
         return view('admin.dashboard', [
             'pageTitle' => 'Dashboard',
             'navigationGroups' => $navigation,
-            'phaseOneDomainMap' => config('phase-1-domain-map.entities', []),
+            'phaseOneDomainMap' => $this->preparedDomainMap(config('phase-1-domain-map.entities', [])),
             'phaseOneDomainFocus' => (string) config('phase-1-domain-map.focus', 'Keep the first Galaxy foundation entities explicit while Phase 1 work is still landing.'),
             'phaseOneDomainGuide' => config('phase-1-domain-map.guide', ['docs/phase-1-domain-map.md', 'config/phase-1-domain-map.php']),
             'phaseOneDomainGuideText' => $this->inlineCodeList(config('phase-1-domain-map.guide', ['docs/phase-1-domain-map.md', 'config/phase-1-domain-map.php'])),
@@ -118,6 +118,21 @@ class DashboardController extends Controller
     protected function phaseOneFoundationSeamsCoverage(): string
     {
         return sprintf('%d Phase 1 foundation seams currently tracked', $this->foundationSeamCount());
+    }
+
+    protected function preparedDomainMap(array $entities): array
+    {
+        return collect($entities)
+            ->filter(fn ($entity): bool => is_array($entity) && filled($entity['label'] ?? null))
+            ->map(function (array $entity): array {
+                return [
+                    'label' => (string) ($entity['label'] ?? ''),
+                    'table' => (string) ($entity['table'] ?? ''),
+                    'coverage' => (string) ($entity['coverage'] ?? ''),
+                ];
+            })
+            ->values()
+            ->all();
     }
 
     protected function domainEntities()
