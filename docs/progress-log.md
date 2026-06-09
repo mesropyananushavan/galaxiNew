@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Card lifecycle-description wrapper cleanup checkpoint
+- Removed the single-use `cardsLifecycleFreshnessDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its shared lifecycle description call at the selected-card timeline entry.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Card lifecycle-label wrapper cleanup checkpoint
 - Removed the single-use `cardsLifecycleFreshnessLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-card summaries directly to the shared `lifecycleFreshnessLabel()` helper.
 - Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

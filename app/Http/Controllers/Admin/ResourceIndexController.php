@@ -990,7 +990,12 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s lifecycle freshness reflected from model state', $selectedCard->number),
                 'time' => 'Current request',
-                'description' => $this->cardsLifecycleFreshnessDescription($selectedCard),
+                'description' => $this->lifecycleFreshnessDescription(
+                    $selectedCard,
+                    'This card does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.',
+                    'This card was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved inventory shell.',
+                    'This card was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing inventory that has already changed after initial setup.',
+                ),
             ],
             [
                 'title' => sprintf('%s last saved timestamp reflected from model state', $selectedCard->number),
@@ -3950,16 +3955,6 @@ class ResourceIndexController extends Controller
             'active' => 'Card lifecycle writes, blocked-card handling, and replacement flows should stay foundation-preview only until inventory parity is verified.',
             default => 'Card issuance, activation, and lifecycle writes should stay foundation-preview only until inventory parity is verified.',
         };
-    }
-
-    private function cardsLifecycleFreshnessDescription(Card $selectedCard): string
-    {
-        return $this->lifecycleFreshnessDescription(
-            $selectedCard,
-            'This card does not expose complete Galaxy foundation timestamps yet, so lifecycle freshness should stay in review-only posture.',
-            'This card was created in the Galaxy foundation layer on %s and has not been updated since, so operators are still reviewing the first saved inventory shell.',
-            'This card was first created in the Galaxy foundation layer on %s and last updated on %s, so operators are reviewing inventory that has already changed after initial setup.',
-        );
     }
 
     private function cardsLastSavedLabel(Card $selectedCard): string
