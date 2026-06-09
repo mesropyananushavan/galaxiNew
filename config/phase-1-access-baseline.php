@@ -43,6 +43,12 @@ return [
             'coverage' => 'Covers Galaxy access-shell listing, creation, and role updates.',
         ],
         [
+            'label' => 'Permission policy',
+            'model' => 'Permission',
+            'policy' => 'PermissionPolicy',
+            'coverage' => 'Covers permission-vocabulary review under the same central Phase 1 access baseline.',
+        ],
+        [
             'label' => 'CardType policy',
             'model' => 'CardType',
             'policy' => 'CardTypePolicy',

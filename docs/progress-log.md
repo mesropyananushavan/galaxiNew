@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Permission policy baseline checkpoint
+- Added `app/Policies/PermissionPolicy.php` and registered it through `RegistersAdminPolicies`, so `Permission` now has an explicit policy-shaped seam alongside the other core Phase 1 access entities.
+- Updated `config/phase-1-access-baseline.php`, `docs/phase-1-access-baseline.md`, `docs/phase-1-foundation-seams.md`, and the focused authenticated dashboard assertion so the access baseline now reflects six mapped policy anchors instead of five.
+- Re-ran the focused admin dashboard check as the parity guard for this small Galaxy access-layer follow-up.
+
 ### README reference source-of-truth wording checkpoint
 - Tightened the README top-level Phase 1 reference prose so the repo entrypoint now explicitly names the newer access, shop-scope, model-skeleton, and migration baselines in its source-of-truth wording instead of leaving them implied by the bullet inventory alone.
 - Also clarified the README seam-source source-of-truth note so it explicitly covers those newer seams now tied into the README-level inventory.

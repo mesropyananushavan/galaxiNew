@@ -54,7 +54,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - implementation baseline: `config/phase-1-access-baseline.php`
 - source-of-truth anchors: `docs/phase-1-access-baseline.md`, `config/phase-1-access-baseline.php`, `app/Providers/Concerns/RegistersAdminAccessGates.php`, `app/Providers/Concerns/RegistersAdminPolicies.php`, `routes/admin.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
-- current role: keeps the first Galaxy authorization gates and policy mappings explicit while Phase 1 admin access and shop scope are still landing, with the dashboard controller now shaping both the access metrics and the tracked gate/policy inventory before render
+- current role: keeps the first Galaxy authorization gates and policy mappings explicit while Phase 1 admin access and shop scope are still landing, with the dashboard controller now shaping both the access metrics and the tracked gate/policy inventory, now including the permission-vocabulary policy seam, before render
 
 ### Shop-scoped access baseline
 - readable summary anchor: `docs/phase-1-shop-access-baseline.md`

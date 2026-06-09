@@ -14,7 +14,7 @@ Keep the first Galaxy authorization gates and policy mappings explicit while Pha
 ## Current baseline
 - `access-admin` keeps the Phase 1 admin workspace behind authenticated Galaxy staff access.
 - `access-shop` keeps shop-scoped access explicit for branch-aware review and later writes.
-- The current mapped policies cover `Shop`, `CardHolder`, `Card`, `Role`, and `CardType`.
+- The current mapped policies cover `Shop`, `CardHolder`, `Card`, `Role`, `Permission`, and `CardType`.
 - `routes/admin.php` applies the `auth` and `can:access-admin` guardrail before policy-specific resource routes run.
 
 ## Current posture
