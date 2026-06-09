@@ -236,9 +236,13 @@ class DashboardController extends Controller
             ->map(function (array $seam): array {
                 $sourcesText = $this->plainList(array_map('strval', array_filter($seam['sources'] ?? [], fn ($source) => filled($source))));
 
+                $label = (string) ($seam['label'] ?? '');
+                $summary = (string) ($seam['summary'] ?? '');
+
                 return [
-                    'label' => (string) ($seam['label'] ?? ''),
-                    'summary' => (string) ($seam['summary'] ?? ''),
+                    'label' => $label,
+                    'summary' => $summary,
+                    'displaySummary' => sprintf('<strong>%s</strong>, %s', e($label), e($summary)),
                     'sourcesText' => $sourcesText,
                     'sourcesNote' => filled($sourcesText) ? sprintf('Sources: %s', $sourcesText) : null,
                 ];

@@ -176,7 +176,7 @@
         <ul class="list">
             @foreach ($phaseOneFoundationSeams as $seam)
                 <li>
-                    <strong>{{ $seam['label'] }}</strong>, {{ $seam['summary'] }}
+                    {!! $seam['displaySummary'] !!}
                     @if (filled($seam['sourcesNote'] ?? null))
                         <br>
                         <span style="color: var(--text-muted);">{{ $seam['sourcesNote'] }}</span>
