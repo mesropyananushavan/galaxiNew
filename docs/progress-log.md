@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard live-entry metric payload checkpoint
+- Moved the live review entry summary metric assembly into `App\Http\Controllers\Admin\DashboardController`, so the Galaxy dashboard now renders that card’s coverage/focus/posture rows from one controller-prepared payload instead of separate inline paragraphs in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side live-entry metric handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard migration-map metric payload checkpoint
 - Moved the migration-map summary counter assembly into `App\Http\Controllers\Admin\DashboardController`, so the Galaxy admin map now renders a controller-prepared metric payload instead of keeping separate inline counter paragraphs in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side migration-map metric handoff visible in the Phase 1 seam map.

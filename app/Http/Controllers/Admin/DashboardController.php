@@ -78,6 +78,7 @@ class DashboardController extends Controller
             'foundationSnapshotMetrics' => $this->foundationSnapshotMetrics($navigation),
             'dashboardScopeSummary' => $this->dashboardScopeSummary(),
             'assignedBranchSnapshot' => $this->assignedBranchSnapshot(),
+            'liveEntryMetrics' => $this->liveEntryMetrics(),
             'liveEntryHandoffSummary' => $this->liveEntryHandoffSummary(),
             'liveEntryScopeNote' => $this->liveEntryScopeNote(),
             'latestWorkspaceHandoffSummary' => $this->latestWorkspaceHandoffSummary(),
@@ -985,6 +986,15 @@ class DashboardController extends Controller
             ['label' => 'Mapped surfaces', 'value' => sprintf('%d planned admin surfaces are currently staged in the Phase 1 target map.', $mappedSurfaceCount)],
             ['label' => 'Mapped groups', 'value' => sprintf('%d top-level admin groups are currently staged in the Phase 1 target map.', $mappedGroupCount)],
             ['label' => 'Mapped routes', 'value' => sprintf('%d Galaxy foundation route targets are currently linked from the Phase 1 target map.', $mappedSurfaceCount)],
+        ];
+    }
+
+    protected function liveEntryMetrics(): array
+    {
+        return [
+            ['label' => 'Entry coverage', 'value' => $this->liveEntryPointCoverage().'.'],
+            ['label' => 'Entry focus', 'value' => $this->liveEntryPointFocus().'.'],
+            ['label' => 'Entry posture', 'value' => $this->liveEntryPointPosture().'.'],
         ];
     }
 
