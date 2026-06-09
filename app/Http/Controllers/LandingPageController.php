@@ -16,6 +16,7 @@ class LandingPageController extends Controller
             'landingFoundation' => $landingFoundation,
             'landingDocs' => $landingDocs,
             'phaseOneSeamSources' => $phaseOneSeamSources,
+            'landingHeroFrame' => $this->preparedLandingHeroFrame($landingFoundation),
             'landingHeroDescriptionHtml' => $this->preparedHeroDescriptionHtml(
                 (string) data_get($landingFoundation, 'hero.description', ''),
                 (array) data_get($landingFoundation, 'hero.description_tokens', [])
@@ -31,6 +32,16 @@ class LandingPageController extends Controller
             'landingDocSummaryRows' => $this->preparedLandingDocSummaryRows($landingDocs, $phaseOneSeamSources),
             'landingDocItems' => $this->preparedLandingDocItems(data_get($landingDocs, 'items', [])),
         ]);
+    }
+
+    protected function preparedLandingHeroFrame(array $landingFoundation): array
+    {
+        return [
+            'eyebrow' => (string) data_get($landingFoundation, 'hero.eyebrow', ''),
+            'title' => (string) data_get($landingFoundation, 'hero.title', ''),
+            'snapshotTitle' => (string) data_get($landingFoundation, 'snapshot.title', ''),
+            'snapshotDescription' => (string) data_get($landingFoundation, 'snapshot.description', ''),
+        ];
     }
 
     protected function preparedHeroDescriptionHtml(string $description, array $tokens): string

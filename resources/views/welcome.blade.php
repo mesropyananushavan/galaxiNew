@@ -178,11 +178,11 @@
 <body>
     <main class="shell">
         <section class="hero">
-            <div class="eyebrow">{{ data_get($landingFoundation, 'hero.eyebrow') }}</div>
+            <div class="eyebrow">{{ $landingHeroFrame['eyebrow'] }}</div>
 
             <div class="hero-grid">
                 <div>
-                    <h1>{{ data_get($landingFoundation, 'hero.title') }}</h1>
+                    <h1>{{ $landingHeroFrame['title'] }}</h1>
                     <p>
                         {!! $landingHeroDescriptionHtml !!}
                     </p>
@@ -199,8 +199,8 @@
 
                 <aside class="card status">
                     <div>
-                        <h2>{{ data_get($landingFoundation, 'snapshot.title') }}</h2>
-                        <p>{{ data_get($landingFoundation, 'snapshot.description') }}</p>
+                        <h2>{{ $landingHeroFrame['snapshotTitle'] }}</h2>
+                        <p>{{ $landingHeroFrame['snapshotDescription'] }}</p>
                     </div>
 
                     @foreach ($landingSnapshotRows as $row)
