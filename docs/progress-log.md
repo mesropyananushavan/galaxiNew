@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard migration baseline checkpoint
+- Added `docs/phase-1-migration-baseline.md` and `config/phase-1-migration-baseline.php` so the existing Galaxy schema checkpoints now have an explicit Phase 1 baseline instead of living only inside `database/migrations`.
+- Extended `App\Http\Controllers\Admin\DashboardController` and `resources/views/admin/dashboard.blade.php` with a new Phase 1 migration-baseline card that renders controller-shaped schema checkpoint inventory plus focused migration-layer metrics.
+- Updated `docs/phase-1-foundation-seams.md`, `config/phase-1-foundation-seams.php`, and the focused authenticated admin dashboard feature check to keep this new Galaxy schema seam visible and verified.
+
 ### Dashboard model-skeleton baseline checkpoint
 - Added `docs/phase-1-model-skeletons.md` and `config/phase-1-model-skeletons.php` so the existing Galaxy Eloquent models and their first migration anchors now have an explicit Phase 1 baseline instead of living only as implicit file structure.
 - Extended `App\Http\Controllers\Admin\DashboardController` and `resources/views/admin/dashboard.blade.php` with a new Phase 1 model-skeleton card that renders controller-shaped skeleton inventory plus focused model/migration anchor metrics.

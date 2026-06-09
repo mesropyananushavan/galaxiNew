@@ -26,6 +26,16 @@ return [
             ],
         ],
         [
+            'label' => 'Migration baseline',
+            'summary' => 'The first Galaxy schema checkpoints stay aligned across readable docs, implementation config, the migration directory, and the live admin runtime surface.',
+            'sources' => [
+                'docs/phase-1-migration-baseline.md',
+                'config/phase-1-migration-baseline.php',
+                'database/migrations',
+                'resources/views/admin/dashboard.blade.php',
+            ],
+        ],
+        [
             'label' => 'Model skeleton baseline',
             'summary' => 'The first Galaxy Eloquent models and migration anchors stay aligned across readable docs, implementation config, model files, migration files, and the live admin runtime surface.',
             'sources' => [

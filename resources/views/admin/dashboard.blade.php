@@ -151,6 +151,40 @@
     </section>
 
     <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 migration baseline</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneMigrationBaselineFocus }}
+        </p>
+        @foreach ($phaseOneMigrationBaselineMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Schema posture:</strong>
+            {{ $phaseOneMigrationBaselinePosture }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Schema guide:</strong>
+            {!! $phaseOneMigrationBaselineGuideText !!} remain the readable and implementation anchors for this Galaxy schema layer.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneMigrationBaselineSourceOfTruthText !!} remain the readable and implementation anchors for this Galaxy schema layer.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneMigrationBaseline as $migrationCheckpoint)
+                <li>{!! $migrationCheckpoint['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 access baseline</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneAccessBaselineFocus }}

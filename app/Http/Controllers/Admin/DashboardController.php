@@ -37,6 +37,12 @@ class DashboardController extends Controller
             'phaseOneModelSkeletonsSourceOfTruthText' => $this->inlineCodeList(config('phase-1-model-skeletons.source_of_truth', ['docs/phase-1-model-skeletons.md', 'config/phase-1-model-skeletons.php', 'app/Models', 'database/migrations'])),
             'phaseOneModelSkeletonsPosture' => (string) config('phase-1-model-skeletons.posture', 'documented model-and-migration baseline for the live Galaxy foundation layer'),
             'phaseOneModelSkeletonMetrics' => $this->phaseOneModelSkeletonMetrics(),
+            'phaseOneMigrationBaseline' => $this->preparedMigrationBaseline(config('phase-1-migration-baseline.items', [])),
+            'phaseOneMigrationBaselineFocus' => (string) config('phase-1-migration-baseline.focus', 'Keep the first Galaxy schema anchors explicit while Phase 1 migration work is still landing.'),
+            'phaseOneMigrationBaselineGuideText' => $this->inlineCodeList(config('phase-1-migration-baseline.guide', ['docs/phase-1-migration-baseline.md', 'config/phase-1-migration-baseline.php'])),
+            'phaseOneMigrationBaselineSourceOfTruthText' => $this->inlineCodeList(config('phase-1-migration-baseline.source_of_truth', ['docs/phase-1-migration-baseline.md', 'config/phase-1-migration-baseline.php', 'database/migrations'])),
+            'phaseOneMigrationBaselinePosture' => (string) config('phase-1-migration-baseline.posture', 'documented migration baseline for the live Galaxy schema layer'),
+            'phaseOneMigrationBaselineMetrics' => $this->phaseOneMigrationBaselineMetrics(),
             'phaseOneAccessBaseline' => $this->preparedAccessBaseline(config('phase-1-access-baseline.gates', []), config('phase-1-access-baseline.policies', [])),
             'phaseOneAccessBaselineFocus' => (string) config('phase-1-access-baseline.focus', 'Keep the first Galaxy authorization gates and policy mappings explicit while Phase 1 access work is still landing.'),
             'phaseOneAccessBaselineGuideText' => $this->inlineCodeList(config('phase-1-access-baseline.guide', ['docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php'])),
@@ -160,6 +166,15 @@ class DashboardController extends Controller
         ];
     }
 
+    protected function phaseOneMigrationBaselineMetrics(): array
+    {
+        return [
+            ['label' => 'Migration coverage', 'value' => sprintf('%d migration checkpoints currently tracked.', $this->migrationBaselineCount())],
+            ['label' => 'Schema anchor', 'value' => '<code>database/migrations</code> keeps the first Galaxy schema checkpoints visible.', 'html' => true],
+            ['label' => 'Layer split', 'value' => 'Access schema, card-domain schema, and later review follow-ups remain visible as separate Phase 1 migration checkpoints.'],
+        ];
+    }
+
     protected function phaseOneSeamSourceMetrics(): array
     {
         return [
@@ -261,6 +276,26 @@ class DashboardController extends Controller
             ->all();
     }
 
+    protected function preparedMigrationBaseline(array $items): array
+    {
+        return collect($items)
+            ->filter(fn ($item): bool => is_array($item) && filled($item['label'] ?? null) && filled($item['migration'] ?? null))
+            ->map(function (array $item): array {
+                $label = (string) ($item['label'] ?? '');
+                $migration = (string) ($item['migration'] ?? '');
+                $coverage = (string) ($item['coverage'] ?? '');
+
+                return [
+                    'label' => $label,
+                    'migration' => $migration,
+                    'coverage' => $coverage,
+                    'displaySummary' => sprintf('<strong>%s</strong> (<code>%s</code>), %s', e($label), e($migration), e($coverage)),
+                ];
+            })
+            ->values()
+            ->all();
+    }
+
     protected function preparedAccessBaseline(array $gates, array $policies): array
     {
         return [
@@ -334,6 +369,16 @@ class DashboardController extends Controller
     protected function modelSkeletonCount(): int
     {
         return $this->countConfigItems($this->modelSkeletons());
+    }
+
+    protected function migrationBaselines()
+    {
+        return collect(config('phase-1-migration-baseline.items', []));
+    }
+
+    protected function migrationBaselineCount(): int
+    {
+        return $this->countConfigItems($this->migrationBaselines());
     }
 
     protected function shopAccessRules()
