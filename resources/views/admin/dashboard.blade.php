@@ -275,18 +275,12 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             Jump back into the latest Galaxy workspace for the branch, holder, card shell, or access shell that most recently changed.
         </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Latest-work coverage:</strong>
-            {{ $latestWorkspaceCoverage }}.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Latest-work focus:</strong>
-            {{ $latestWorkspaceFocus }}.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Latest-work posture:</strong>
-            {{ $latestWorkspacePosture }}.
-        </p>
+        @foreach ($latestWorkspaceMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                {{ $metric['value'] }}
+            </p>
+        @endforeach
         @if (is_array($latestWorkspaceHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $latestWorkspaceHandoffSummary['label'] }}:</strong>

@@ -81,6 +81,7 @@ class DashboardController extends Controller
             'liveEntryMetrics' => $this->liveEntryMetrics(),
             'liveEntryHandoffSummary' => $this->liveEntryHandoffSummary(),
             'liveEntryScopeNote' => $this->liveEntryScopeNote(),
+            'latestWorkspaceMetrics' => $this->latestWorkspaceMetrics(),
             'latestWorkspaceHandoffSummary' => $this->latestWorkspaceHandoffSummary(),
             'latestWorkspaceScopeNote' => $this->latestWorkspaceScopeNote(),
             'migrationMapMetrics' => $this->migrationMapMetrics($preparedNavigationGroups),
@@ -995,6 +996,15 @@ class DashboardController extends Controller
             ['label' => 'Entry coverage', 'value' => $this->liveEntryPointCoverage().'.'],
             ['label' => 'Entry focus', 'value' => $this->liveEntryPointFocus().'.'],
             ['label' => 'Entry posture', 'value' => $this->liveEntryPointPosture().'.'],
+        ];
+    }
+
+    protected function latestWorkspaceMetrics(): array
+    {
+        return [
+            ['label' => 'Latest-work coverage', 'value' => $this->latestWorkspaceCoverage().'.'],
+            ['label' => 'Latest-work focus', 'value' => $this->latestWorkspaceFocus().'.'],
+            ['label' => 'Latest-work posture', 'value' => $this->latestWorkspacePosture().'.'],
         ];
     }
 
