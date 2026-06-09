@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing snapshot payload checkpoint
+- Moved public landing snapshot row assembly into `App\Http\Controllers\LandingPageController`, so the Galaxy home surface now renders focus plus status rows from one controller-shaped payload instead of mixing direct config reads and row assembly inside Blade.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing runtime handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
 ### Dashboard assigned-branch metric payload checkpoint
 - Moved the assigned-branch action summary row assembly into `App\Http\Controllers\Admin\DashboardController`, so the scoped branch snapshot now renders those coverage/posture/focus rows from one controller-prepared payload instead of separate inline paragraphs in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side assigned-branch metric handoff visible in the Phase 1 seam map.

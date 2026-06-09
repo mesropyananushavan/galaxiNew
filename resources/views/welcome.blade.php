@@ -203,12 +203,7 @@
                         <p>{{ data_get($landingFoundation, 'snapshot.description') }}</p>
                     </div>
 
-                    <div class="status-row">
-                        <span class="status-label">{{ data_get($landingFoundation, 'labels.focus') }}</span>
-                        <span class="status-value">{{ data_get($landingFoundation, 'focus') }}</span>
-                    </div>
-
-                    @foreach (data_get($landingFoundation, 'status_rows', []) as $row)
+                    @foreach ($landingSnapshotRows as $row)
                         <div class="status-row">
                             <span class="status-label">{{ $row['label'] }}</span>
                             <span class="status-value{{ filled($row['accent'] ?? null) ? ' '.$row['accent'] : '' }}">{{ $row['value'] }}</span>

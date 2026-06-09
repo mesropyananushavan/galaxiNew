@@ -21,6 +21,7 @@ class LandingPageController extends Controller
                 (array) data_get($landingFoundation, 'hero.description_tokens', [])
             ),
             'landingHeroActions' => $this->preparedHeroActions(data_get($landingFoundation, 'hero.actions', [])),
+            'landingSnapshotRows' => $this->preparedLandingSnapshotRows($landingFoundation),
             'landingDocCount' => count(data_get($landingDocs, 'items', [])),
             'landingSeamSourceCount' => count(data_get($phaseOneSeamSources, 'items', [])),
             'landingDocGuideText' => $this->inlineCodeList(data_get($landingDocs, 'guide', [])),
@@ -49,6 +50,25 @@ class LandingPageController extends Controller
                     'href' => $href,
                 ];
             })
+            ->values()
+            ->all();
+    }
+
+    protected function preparedLandingSnapshotRows(array $landingFoundation): array
+    {
+        $rows = [[
+            'label' => (string) data_get($landingFoundation, 'labels.focus', 'Landing focus'),
+            'value' => (string) data_get($landingFoundation, 'focus', ''),
+            'accent' => null,
+        ]];
+
+        return collect(array_merge($rows, data_get($landingFoundation, 'status_rows', [])))
+            ->filter(fn ($row): bool => is_array($row) && filled($row['label'] ?? null) && filled($row['value'] ?? null))
+            ->map(fn (array $row): array => [
+                'label' => (string) $row['label'],
+                'value' => (string) $row['value'],
+                'accent' => filled($row['accent'] ?? null) ? (string) $row['accent'] : null,
+            ])
             ->values()
             ->all();
     }
