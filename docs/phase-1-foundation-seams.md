@@ -53,7 +53,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - seam focus: keep the README-level seam-source inventory visible across repo guidance plus the admin and public Phase 1 entry surfaces
 - seam posture: README-backed seam-source baseline stays explicit across the live Galaxy reference trail
 - visible runtime surfaces: `README.md`, `resources/views/admin/dashboard.blade.php`, `resources/views/welcome.blade.php`
-- current role: keeps the README-level config seam inventory aligned across repo guidance plus the admin and public entry surfaces
+- current role: keeps the README-level config seam inventory aligned across repo guidance plus the admin and public entry surfaces, with both entry controllers now formatting parts of that runtime reference trail
 
 ## Phase 1 posture
 - prefer small config-backed seams over new inline Blade lists when the goal is stable Galaxy migration structure

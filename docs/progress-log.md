@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard seam-source controller-string checkpoint
+- Moved the admin dashboard seam-source guide and source-of-truth string assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy admin entry surface now renders controller-prepared seam-source reference trails instead of stitching those inline lists together in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the seam-source notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping this admin-side reference-string handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Landing controller hero-copy seam checkpoint
 - Moved public hero description token replacement into `App\Http\Controllers\LandingPageController`, so the welcome surface now renders controller-prepared Galaxy landing hero HTML instead of assembling emphasized product copy inline in Blade.
 - Updated `resources/views/welcome.blade.php` plus the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the hero-copy preparation handoff visible in the Phase 1 seam map.
