@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Admin dashboard landing-seam parity checkpoint
+- Updated `tests/Feature/AdminDashboardTest.php` so the Phase 1 dashboard assertions now expect the new public landing shell seam in the foundation seam inventory.
+- Added dashboard coverage for the `Public landing shell baseline` row plus `config/landing-foundation.php`, keeping the admin-side seam inventory aligned with the new welcome-page Galaxy foundation config.
+- Re-ran the focused admin dashboard feature assertion as the parity check for this small Phase 1 dashboard alignment slice.
+
 ### Public landing shell config seam checkpoint
 - Added `config/landing-foundation.php` to hold the Galaxy-specific public landing hero, Phase 1 snapshot rows, live management surfaces, and working rules instead of keeping that copy inline in `resources/views/welcome.blade.php`.
 - Updated `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php` so the new welcome-page seam is tracked alongside the existing Phase 1 config-backed structure.
