@@ -285,7 +285,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gate coverage:')
             ->assertSee('2 Phase 1 admin access gates currently tracked.')
             ->assertSee('Route guardrails:')
-            ->assertSee('15 Phase 1 admin route guardrails currently tracked.')
+            ->assertSee('16 Phase 1 admin route guardrails currently tracked.')
             ->assertSee('Policy coverage:')
             ->assertSee('6 model policies currently mapped for Phase 1 admin resources.')
             ->assertSee('Admin guardrail:')
@@ -345,6 +345,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('<strong>Card types update route</strong>', false)
             ->assertSee('<code>admin.card-types.update</code>; <code>PATCH /admin/card-types/{cardType}</code>; <code>can:update,cardType</code>', false)
             ->assertSee('Keeps live tier updates behind the same card-type update guardrail used by the shared admin form.')
+            ->assertSee('<strong>Card types toggle-status route</strong>', false)
+            ->assertSee('<code>admin.card-types.toggle-status</code>; <code>PATCH /admin/card-types/{cardType}/toggle-status</code>; <code>can:update,cardType</code>', false)
+            ->assertSee('Keeps live tier activation toggles behind the same card-type update guardrail used by the dedicated status action.')
             ->assertSee('<strong>Roles &amp; permissions review route</strong>', false)
             ->assertSee('<code>admin.roles-permissions.index</code>; <code>GET /admin/roles-permissions</code>; <code>can:viewAny,Role + can:viewAny,Permission</code>', false)
             ->assertSee('Keeps shared access-shell review and permission-vocabulary review behind both Phase 1 read policies.')
@@ -793,6 +796,7 @@ class AdminDashboardTest extends TestCase
         $cardTypesRoute = Route::getRoutes()->getByName('admin.card-types.index');
         $cardTypeStoreRoute = Route::getRoutes()->getByName('admin.card-types.store');
         $cardTypeUpdateRoute = Route::getRoutes()->getByName('admin.card-types.update');
+        $cardTypeToggleStatusRoute = Route::getRoutes()->getByName('admin.card-types.toggle-status');
         $rolesRoute = Route::getRoutes()->getByName('admin.roles-permissions.index');
         $roleStoreRoute = Route::getRoutes()->getByName('admin.roles-permissions.store');
         $roleUpdateRoute = Route::getRoutes()->getByName('admin.roles-permissions.update');
@@ -809,6 +813,7 @@ class AdminDashboardTest extends TestCase
         $this->assertNotNull($cardTypesRoute);
         $this->assertNotNull($cardTypeStoreRoute);
         $this->assertNotNull($cardTypeUpdateRoute);
+        $this->assertNotNull($cardTypeToggleStatusRoute);
         $this->assertNotNull($rolesRoute);
         $this->assertNotNull($roleStoreRoute);
         $this->assertNotNull($roleUpdateRoute);
@@ -825,6 +830,7 @@ class AdminDashboardTest extends TestCase
         $this->assertContains('can:viewAny,'.CardType::class, $cardTypesRoute->gatherMiddleware());
         $this->assertContains('can:create,'.CardType::class, $cardTypeStoreRoute->gatherMiddleware());
         $this->assertContains('can:update,cardType', $cardTypeUpdateRoute->gatherMiddleware());
+        $this->assertContains('can:update,cardType', $cardTypeToggleStatusRoute->gatherMiddleware());
         $this->assertContains('can:viewAny,'.Role::class, $rolesRoute->gatherMiddleware());
         $this->assertContains('can:viewAny,'.Permission::class, $rolesRoute->gatherMiddleware());
         $this->assertContains('can:create,'.Role::class, $roleStoreRoute->gatherMiddleware());

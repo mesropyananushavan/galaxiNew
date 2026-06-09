@@ -91,6 +91,12 @@ return [
             'coverage' => 'Keeps live tier updates behind the same card-type update guardrail used by the shared admin form.',
         ],
         [
+            'label' => 'Card types toggle-status route',
+            'route' => 'admin.card-types.toggle-status',
+            'guard' => 'can:update,cardType',
+            'coverage' => 'Keeps live tier activation toggles behind the same card-type update guardrail used by the dedicated status action.',
+        ],
+        [
             'label' => 'Roles & permissions review route',
             'route' => 'admin.roles-permissions.index',
             'guard' => 'can:viewAny,Role + can:viewAny,Permission',

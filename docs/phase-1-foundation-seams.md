@@ -56,7 +56,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 - current role: keeps the first Galaxy authorization gates and policy mappings explicit while Phase 1 admin access and shop scope are still landing, with the dashboard controller now shaping both the access metrics and the tracked gate/policy inventory, now including the permission-vocabulary policy seam, before render
 - runtime note: the shared `roles-permissions` admin review route now requires both the role and permission `viewAny` policy checks so the permission-vocabulary seam participates in a real endpoint guard instead of staying dashboard-only
-- runtime note: the dashboard access-baseline card now tracks the first live `shops`, `cardholders`, `cards`, `card-types`, and `roles-permissions` route trios as first-class guardrail entries alongside the broader gate and policy inventories, now with controller-prepared HTTP method and URI contract text from Laravel's router
+- runtime note: the dashboard access-baseline card now tracks the first live `shops`, `cardholders`, `cards`, `card-types`, and `roles-permissions` route trios plus the dedicated `card-types` status-toggle action as first-class guardrail entries alongside the broader gate and policy inventories, now with controller-prepared HTTP method and URI contract text from Laravel's router
 
 ### Shop-scoped access baseline
 - readable summary anchor: `docs/phase-1-shop-access-baseline.md`

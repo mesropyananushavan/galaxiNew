@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Card-type toggle route-guardrail checkpoint
+- Expanded `config/phase-1-access-baseline.php` so the access route-guardrail inventory now includes the dedicated `admin.card-types.toggle-status` action alongside the already-tracked tier review/create/update routes.
+- Updated the access seam docs and focused dashboard assertions so the Phase 1 access card now shows the live tier status-toggle endpoint as a router-derived method-plus-path contract too.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small tier-action follow-up.
+
 ### Card-type route-guardrail inventory checkpoint
 - Expanded `config/phase-1-access-baseline.php` so the access route-guardrail inventory now includes the live `card-types` review/create/update trio alongside the already-tracked `shops`, `cardholders`, `cards`, and `roles-permissions` trios.
 - Updated the access seam docs and focused dashboard assertions so the Phase 1 access card now shows tier-catalog entry points as router-derived method-plus-path contracts as well.
