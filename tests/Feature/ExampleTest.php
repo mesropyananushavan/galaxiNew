@@ -12,10 +12,11 @@ class ExampleTest extends TestCase
 {
     public function test_root_route_uses_galaxy_landing_page_controller(): void
     {
-        $this->assertSame(
-            LandingPageController::class,
-            Route::getRoutes()->match(Request::create('/', 'GET'))->getActionName()
-        );
+        $route = Route::getRoutes()->match(Request::create('/', 'GET'));
+
+        $this->assertSame(LandingPageController::class, $route->getActionName());
+        $this->assertSame('landing', $route->getName());
+        $this->assertSame(url('/'), route('landing'));
     }
 
     public function test_the_home_page_surfaces_the_galaxy_foundation_landing_page(): void

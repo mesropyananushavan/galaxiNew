@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Landing route-name seam checkpoint
+- Named the public root route `landing` in `routes/web.php`, so the new Galaxy landing controller seam now exposes an explicit routable identity instead of relying only on `/` plus controller binding.
+- Updated `tests/Feature/ExampleTest.php` plus the landing-shell seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping that named-route anchor visible in QA and Phase 1 documentation.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
 ### Landing route-controller seam checkpoint
 - Replaced the default root-route closure in `routes/web.php` with a dedicated `App\Http\Controllers\LandingPageController`, so the public Galaxy landing surface now has an explicit Phase 1 backend handoff instead of starter-style inline routing.
 - Updated `tests/Feature/ExampleTest.php` plus the landing-shell seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the landing controller seam visible in both QA and Phase 1 documentation.
