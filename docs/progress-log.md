@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Cardholder selected-page-state wrapper cleanup checkpoint
+- Removed the single-use `cardholdersSelectedPageState()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its selected-holder page assembly directly into the cardholders page builder.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Cardholder live-form-values wrapper cleanup checkpoint
 - Removed the single-use `cardholdersLiveFormValues()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its selected-holder live-form value array at the page builder.
 - Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
