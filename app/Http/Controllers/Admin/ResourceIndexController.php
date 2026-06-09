@@ -4044,7 +4044,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Holder status signal', 'value' => $this->cardholdersStatusSignal($selectedCardHolder)],
             ['label' => 'Operational readiness', 'value' => $this->cardholdersOperationalReadiness($selectedCardHolder)],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedCardHolder)],
-            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
+            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->lastSavedLabel($selectedCardHolder)],
             ['label' => 'Review note', 'value' => $this->cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet')],
             ['label' => 'Phone', 'value' => $this->cardholderPhoneValue($selectedCardHolder, '—')],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
@@ -4349,7 +4349,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s last saved timestamp reflected from model state', $this->cardholderFullNameValue($selectedCardHolder)),
                 'time' => 'Current request',
-                'description' => sprintf('The latest saved Galaxy foundation timestamp for this holder is %s, giving operators a concrete checkpoint for the current profile shell.', $this->cardholdersLastSavedLabel($selectedCardHolder)),
+                'description' => sprintf('The latest saved Galaxy foundation timestamp for this holder is %s, giving operators a concrete checkpoint for the current profile shell.', $this->lastSavedLabel($selectedCardHolder)),
             ],
             [
                 'title' => sprintf('%s review note reflected from model state', $this->cardholderFullNameValue($selectedCardHolder)),
@@ -4429,11 +4429,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function cardholdersLastSavedLabel(CardHolder $selectedCardHolder): string
-    {
-        return $this->lastSavedLabel($selectedCardHolder);
-    }
-
     private function cardholdersLinkageSignal(CardHolder $selectedCardHolder): string
     {
         return match (true) {
@@ -4484,7 +4479,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lookup posture', 'value' => $this->cardholdersLookupDependencyPosture()],
             ['label' => 'Holder status signal', 'value' => $this->cardholdersStatusSignal($selectedCardHolder)],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedCardHolder)],
-            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
+            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->lastSavedLabel($selectedCardHolder)],
             ['label' => 'Review note', 'value' => $this->cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet')],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Shop activity signal', 'value' => $this->cardholdersShopActivitySignal($selectedCardHolder)],

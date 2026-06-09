@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Cardholder last-saved-label wrapper cleanup checkpoint
+- Removed the single-use `cardholdersLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-holder call sites directly to the shared `lastSavedLabel()` helper.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Cardholder lifecycle-description wrapper cleanup checkpoint
 - Removed the single-use `cardholdersLifecycleFreshnessDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its shared lifecycle description call at the selected-holder timeline entry.
 - Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
