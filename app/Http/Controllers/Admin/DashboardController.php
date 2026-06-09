@@ -38,7 +38,7 @@ class DashboardController extends Controller
             'phaseOneReferenceDocsSourceOfTruthText' => $this->inlineCodeList(config('phase-1-reference-docs.source_of_truth', ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md', 'config/phase-1-reference-docs.php'])),
             'phaseOneReferenceDocsPosture' => (string) config('phase-1-reference-docs.posture', 'admin reference inventory stays explicit across the live Galaxy dashboard trail'),
             'phaseOneReferenceDocsCoverage' => $this->phaseOneReferenceDocsCoverage(),
-            'phaseOneSeamSources' => config('phase-1-seam-sources.items', []),
+            'phaseOneSeamSources' => $this->preparedSeamSources(config('phase-1-seam-sources.items', [])),
             'phaseOneSeamSourcesFocus' => (string) config('phase-1-seam-sources.focus', 'Keep the README-level seam-source inventory visible inside the admin workspace, so contributors can trace which small config seams are currently carrying the Galaxy-specific Phase 1 foundation.'),
             'phaseOneSeamSourcesGuide' => config('phase-1-seam-sources.guide', ['README.md', 'config/phase-1-seam-sources.php']),
             'phaseOneSeamSourcesGuideText' => $this->inlineCodeList(config('phase-1-seam-sources.guide', ['README.md', 'config/phase-1-seam-sources.php'])),
@@ -209,6 +209,15 @@ class DashboardController extends Controller
     protected function phaseOneSeamSourcesCoverage(): string
     {
         return sprintf('%d README-level seam sources currently tracked', $this->seamSourceCount());
+    }
+
+    protected function preparedSeamSources(array $items): array
+    {
+        return collect($items)
+            ->filter(fn ($item): bool => filled($item))
+            ->map(fn ($item): array => ['label' => (string) $item])
+            ->values()
+            ->all();
     }
 
     protected function seamSources()

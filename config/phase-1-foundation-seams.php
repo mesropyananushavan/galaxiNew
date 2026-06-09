@@ -56,7 +56,7 @@ return [
         ],
         [
             'label' => 'README seam-source trail',
-            'summary' => 'README-level config seam inventory stays aligned across repo guidance plus the admin and public entry surfaces, with both entry controllers formatting parts of that runtime reference trail.',
+            'summary' => 'README-level config seam inventory stays aligned across repo guidance plus the admin and public entry surfaces, with both entry controllers formatting parts of that runtime reference trail and the dashboard controller shaping the admin seam-source inventory before render.',
             'sources' => [
                 'docs/phase-1-foundation-seams.md',
                 'config/phase-1-seam-sources.php',

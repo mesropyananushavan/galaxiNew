@@ -290,7 +290,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Top-level contributor guidance stays aligned across the seam note and README reference trail.')
             ->assertSee('README.md')
             ->assertSee('README seam-source trail')
-            ->assertSee('README-level config seam inventory stays aligned across repo guidance plus the admin and public entry surfaces, with both entry controllers formatting parts of that runtime reference trail.')
+            ->assertSee('README-level config seam inventory stays aligned across repo guidance plus the admin and public entry surfaces, with both entry controllers formatting parts of that runtime reference trail and the dashboard controller shaping the admin seam-source inventory before render.')
             ->assertSee('config/phase-1-seam-sources.php')
             ->assertSee('app/Http/Controllers/Admin/DashboardController.php')
             ->assertSee('resources/views/admin/dashboard.blade.php')
