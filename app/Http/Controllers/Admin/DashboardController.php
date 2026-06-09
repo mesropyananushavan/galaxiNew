@@ -1034,9 +1034,7 @@ class DashboardController extends Controller
 
         return [
             'label' => 'Assigned branch snapshot',
-            'actionCoverage' => $this->assignedBranchActionCoverage($actions),
-            'actionPosture' => $this->assignedBranchActionPosture($shop, $latestHolder, $latestCard),
-            'actionFocus' => $this->assignedBranchActionFocus($shop, $latestHolder, $latestCard),
+            'actionMetrics' => $this->assignedBranchActionMetrics($shop, $latestHolder, $latestCard, $actions),
             'items' => [
                 ['label' => 'Branch', 'value' => $shop->name],
                 ['label' => 'Branch code', 'value' => $shop->code],
@@ -1060,6 +1058,15 @@ class DashboardController extends Controller
                 ['label' => 'Suggested follow-up', 'value' => $suggestedFollowUp],
             ],
             'actions' => $actions,
+        ];
+    }
+
+    protected function assignedBranchActionMetrics(Shop $shop, ?CardHolder $latestHolder, ?Card $latestCard, array $actions): array
+    {
+        return [
+            ['label' => 'Scoped action coverage', 'value' => $this->assignedBranchActionCoverage($actions).'.'],
+            ['label' => 'Scoped action posture', 'value' => $this->assignedBranchActionPosture($shop, $latestHolder, $latestCard).'.'],
+            ['label' => 'Scoped action focus', 'value' => $this->assignedBranchActionFocus($shop, $latestHolder, $latestCard).'.'],
         ];
     }
 
