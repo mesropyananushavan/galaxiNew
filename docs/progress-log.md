@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### README reference source-of-truth wording checkpoint
+- Tightened the README top-level Phase 1 reference prose so the repo entrypoint now explicitly names the newer access, shop-scope, model-skeleton, and migration baselines in its source-of-truth wording instead of leaving them implied by the bullet inventory alone.
+- Also clarified the README seam-source source-of-truth note so it explicitly covers those newer seams now tied into the README-level inventory.
+- Re-ran the focused landing check as a lightweight parity guard after this repo-guidance wording follow-up.
+
 ### Landing reference source-of-truth expansion checkpoint
 - Expanded `config/landing-docs.php` so the public landing source-of-truth trail now includes the newer access, shop-scope, model-skeleton, and migration baselines instead of pointing only at the older README-plus-config pair.
 - Updated `docs/phase-1-foundation-seams.md` and the focused landing assertion so this richer public reference prose stays aligned with the expanded Phase 1 foundation map.

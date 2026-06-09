@@ -24,7 +24,7 @@ Focus: keep the current Galaxy admin map, shell layering, checkpoint trail, and 
 
 Guide: `README.md`, `docs/blueprint.md`, and `docs/phase-1-plan.md` remain the readable anchors for this top-level Phase 1 reference trail.
 
-Source of truth: `README.md`, `docs/blueprint.md`, and `docs/phase-1-plan.md` for the readable guides, `config/phase-1-reference-docs.php` for the implementation baseline.
+Source of truth: `README.md`, `docs/blueprint.md`, `docs/phase-1-plan.md`, `docs/phase-1-access-baseline.md`, `config/phase-1-access-baseline.php`, `docs/phase-1-shop-access-baseline.md`, `config/phase-1-shop-access-baseline.php`, `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, `docs/phase-1-migration-baseline.md`, `config/phase-1-migration-baseline.php` for the readable and implementation anchors around the newer Phase 1 baselines, plus `config/phase-1-reference-docs.php` for the broader admin reference inventory.
 
 Posture: admin reference inventory stays explicit across the live Galaxy dashboard trail.
 
@@ -54,7 +54,7 @@ Focus: keep the README-level seam-source inventory visible across repo guidance 
 
 Guide: `README.md` and `config/phase-1-seam-sources.php` remain the readable and implementation anchors for this seam-source trail.
 
-Source of truth: `README.md` and `config/phase-1-seam-sources.php` remain the readable and implementation anchors for this seam-source trail.
+Source of truth: `README.md` and `config/phase-1-seam-sources.php` remain the readable and implementation anchors for this seam-source trail, including the newer access, shop-scope, model-skeleton, and migration seams now tied into it.
 
 Posture: README-backed seam-source baseline stays explicit across the live Galaxy reference trail.
 
