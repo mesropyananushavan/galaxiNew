@@ -117,6 +117,40 @@
     </section>
 
     <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 model skeleton baseline</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneModelSkeletonsFocus }}
+        </p>
+        @foreach ($phaseOneModelSkeletonMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Model posture:</strong>
+            {{ $phaseOneModelSkeletonsPosture }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Model guide:</strong>
+            {!! $phaseOneModelSkeletonsGuideText !!} remain the readable and implementation anchors for this Galaxy foundation data layer.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneModelSkeletonsSourceOfTruthText !!} remain the readable and implementation anchors for this Galaxy foundation data layer.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneModelSkeletons as $skeleton)
+                <li>{!! $skeleton['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 access baseline</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
             {{ $phaseOneAccessBaselineFocus }}

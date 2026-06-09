@@ -31,6 +31,12 @@ class DashboardController extends Controller
             'phaseOneDomainSourceOfTruthText' => $this->inlineCodeList(config('phase-1-domain-map.source_of_truth', ['docs/phase-1-domain-map.md', 'config/phase-1-domain-map.php'])),
             'phaseOneDomainPosture' => (string) config('phase-1-domain-map.posture', 'documented entity baseline for live foundation work'),
             'phaseOneDomainInventory' => $this->phaseOneDomainInventory(),
+            'phaseOneModelSkeletons' => $this->preparedModelSkeletons(config('phase-1-model-skeletons.items', [])),
+            'phaseOneModelSkeletonsFocus' => (string) config('phase-1-model-skeletons.focus', 'Keep the first Galaxy Eloquent models and migration anchors explicit while Phase 1 model work is still landing.'),
+            'phaseOneModelSkeletonsGuideText' => $this->inlineCodeList(config('phase-1-model-skeletons.guide', ['docs/phase-1-model-skeletons.md', 'config/phase-1-model-skeletons.php'])),
+            'phaseOneModelSkeletonsSourceOfTruthText' => $this->inlineCodeList(config('phase-1-model-skeletons.source_of_truth', ['docs/phase-1-model-skeletons.md', 'config/phase-1-model-skeletons.php', 'app/Models', 'database/migrations'])),
+            'phaseOneModelSkeletonsPosture' => (string) config('phase-1-model-skeletons.posture', 'documented model-and-migration baseline for the live Galaxy foundation layer'),
+            'phaseOneModelSkeletonMetrics' => $this->phaseOneModelSkeletonMetrics(),
             'phaseOneAccessBaseline' => $this->preparedAccessBaseline(config('phase-1-access-baseline.gates', []), config('phase-1-access-baseline.policies', [])),
             'phaseOneAccessBaselineFocus' => (string) config('phase-1-access-baseline.focus', 'Keep the first Galaxy authorization gates and policy mappings explicit while Phase 1 access work is still landing.'),
             'phaseOneAccessBaselineGuideText' => $this->inlineCodeList(config('phase-1-access-baseline.guide', ['docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php'])),
@@ -145,6 +151,15 @@ class DashboardController extends Controller
         ];
     }
 
+    protected function phaseOneModelSkeletonMetrics(): array
+    {
+        return [
+            ['label' => 'Skeleton coverage', 'value' => sprintf('%d model skeleton checkpoints currently tracked.', $this->modelSkeletonCount())],
+            ['label' => 'Model anchor', 'value' => '<code>app/Models</code> keeps the first Galaxy Eloquent layer visible.', 'html' => true],
+            ['label' => 'Migration anchor', 'value' => '<code>database/migrations</code> keeps the first Galaxy schema layer visible.', 'html' => true],
+        ];
+    }
+
     protected function phaseOneSeamSourceMetrics(): array
     {
         return [
@@ -224,6 +239,28 @@ class DashboardController extends Controller
             ->all();
     }
 
+    protected function preparedModelSkeletons(array $items): array
+    {
+        return collect($items)
+            ->filter(fn ($item): bool => is_array($item) && filled($item['label'] ?? null) && filled($item['model'] ?? null) && filled($item['migration'] ?? null))
+            ->map(function (array $item): array {
+                $label = (string) ($item['label'] ?? '');
+                $model = (string) ($item['model'] ?? '');
+                $migration = (string) ($item['migration'] ?? '');
+                $coverage = (string) ($item['coverage'] ?? '');
+
+                return [
+                    'label' => $label,
+                    'model' => $model,
+                    'migration' => $migration,
+                    'coverage' => $coverage,
+                    'displaySummary' => sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>), %s', e($label), e($model), e($migration), e($coverage)),
+                ];
+            })
+            ->values()
+            ->all();
+    }
+
     protected function preparedAccessBaseline(array $gates, array $policies): array
     {
         return [
@@ -287,6 +324,16 @@ class DashboardController extends Controller
     protected function domainEntities()
     {
         return collect(config('phase-1-domain-map.entities', []));
+    }
+
+    protected function modelSkeletons()
+    {
+        return collect(config('phase-1-model-skeletons.items', []));
+    }
+
+    protected function modelSkeletonCount(): int
+    {
+        return $this->countConfigItems($this->modelSkeletons());
     }
 
     protected function shopAccessRules()

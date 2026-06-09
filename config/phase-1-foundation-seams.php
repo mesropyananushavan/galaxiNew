@@ -26,6 +26,17 @@ return [
             ],
         ],
         [
+            'label' => 'Model skeleton baseline',
+            'summary' => 'The first Galaxy Eloquent models and migration anchors stay aligned across readable docs, implementation config, model files, migration files, and the live admin runtime surface.',
+            'sources' => [
+                'docs/phase-1-model-skeletons.md',
+                'config/phase-1-model-skeletons.php',
+                'app/Models',
+                'database/migrations',
+                'resources/views/admin/dashboard.blade.php',
+            ],
+        ],
+        [
             'label' => 'Admin access baseline',
             'summary' => 'The first Galaxy authorization gates, policy mappings, and admin-route guardrail stay aligned across readable docs, implementation config, provider registration, and the live admin runtime surface.',
             'sources' => [
