@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Cardholder phone-label wrapper cleanup checkpoint
+- Removed the single-use `cardholdersPhoneLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-holder summary directly to `cardholderPhoneValue($selectedCardHolder, '—')`.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Cardholder review-note wrapper cleanup checkpoint
 - Removed the single-use `cardholdersReviewNoteLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-holder summaries directly to `cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet')`.
 - Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

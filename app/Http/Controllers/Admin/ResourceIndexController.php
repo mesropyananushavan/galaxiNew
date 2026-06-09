@@ -4046,7 +4046,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Lifecycle freshness', 'value' => $this->cardholdersLifecycleFreshnessLabel($selectedCardHolder)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardholdersLastSavedLabel($selectedCardHolder)],
             ['label' => 'Review note', 'value' => $this->cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet')],
-            ['label' => 'Phone', 'value' => $this->cardholdersPhoneLabel($selectedCardHolder)],
+            ['label' => 'Phone', 'value' => $this->cardholderPhoneValue($selectedCardHolder, '—')],
             ['label' => 'Linkage signal', 'value' => $this->cardholdersLinkageSignal($selectedCardHolder)],
             ['label' => 'Shop activity signal', 'value' => $this->cardholdersShopActivitySignal($selectedCardHolder)],
             ['label' => 'Holder focus', 'value' => $this->cardholdersHolderFocus($selectedCardHolder)],
@@ -4222,11 +4222,6 @@ class ResourceIndexController extends Controller
         return $reviewNote !== ''
             ? sprintf('The current Galaxy foundation holder review note says: %s', $reviewNote)
             : 'No Galaxy foundation holder review note is saved yet, so lifecycle handoff context still depends on the surrounding workspace cues.';
-    }
-
-    private function cardholdersPhoneLabel(CardHolder $selectedCardHolder): string
-    {
-        return $this->cardholderPhoneValue($selectedCardHolder, '—');
     }
 
     private function cardholderPhoneValue(CardHolder $selectedCardHolder, string $fallback = ''): string
