@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard migration-map payload shaping checkpoint
+- Moved migration-map navigation link preparation into `App\Http\Controllers\Admin\DashboardController`, so the Galaxy admin map now renders controller-prepared route hrefs instead of resolving route URLs inline in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side migration-map payload handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard live-entry payload shaping checkpoint
 - Routed the live review entry-point list through the reusable workspace-link shaping helper in `App\Http\Controllers\Admin\DashboardController`, so both major dashboard link collections now normalize through one backend payload path instead of mixing prepared and ad-hoc arrays.
 - Updated `docs/phase-1-foundation-seams.md`, keeping this dashboard-side live-entry payload handoff visible in the Phase 1 seam map.

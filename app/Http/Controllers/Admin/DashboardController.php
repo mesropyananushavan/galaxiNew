@@ -18,10 +18,11 @@ class DashboardController extends Controller
     public function __invoke(): View
     {
         $navigation = config('admin-navigation');
+        $preparedNavigationGroups = $this->preparedNavigationGroups($navigation);
 
         return view('admin.dashboard', [
             'pageTitle' => 'Dashboard',
-            'navigationGroups' => $navigation,
+            'navigationGroups' => $preparedNavigationGroups,
             'phaseOneDomainMap' => $this->preparedDomainMap(config('phase-1-domain-map.entities', [])),
             'phaseOneDomainFocus' => (string) config('phase-1-domain-map.focus', 'Keep the first Galaxy foundation entities explicit while Phase 1 work is still landing.'),
             'phaseOneDomainGuide' => config('phase-1-domain-map.guide', ['docs/phase-1-domain-map.md', 'config/phase-1-domain-map.php']),
@@ -119,6 +120,34 @@ class DashboardController extends Controller
     protected function phaseOneFoundationSeamsCoverage(): string
     {
         return sprintf('%d Phase 1 foundation seams currently tracked', $this->foundationSeamCount());
+    }
+
+    protected function preparedNavigationGroups(array $groups): array
+    {
+        return collect($groups)
+            ->filter(fn ($group): bool => is_array($group) && filled($group['group'] ?? null))
+            ->map(function (array $group): array {
+                return [
+                    'group' => (string) $group['group'],
+                    'items' => collect($group['items'] ?? [])
+                        ->filter(fn ($item): bool => is_array($item) && filled($item['label'] ?? null) && filled($item['route'] ?? null))
+                        ->map(function (array $item): array {
+                            $route = route((string) $item['route']);
+
+                            return [
+                                'label' => (string) $item['label'],
+                                'description' => (string) ($item['description'] ?? ''),
+                                'route' => (string) $item['route'],
+                                'href' => $route,
+                                'path' => parse_url($route, PHP_URL_PATH) ?: $route,
+                            ];
+                        })
+                        ->values()
+                        ->all(),
+                ];
+            })
+            ->values()
+            ->all();
     }
 
     protected function preparedDomainMap(array $entities): array
