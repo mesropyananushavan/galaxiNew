@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard assigned-branch action payload checkpoint
+- Routed assigned-branch snapshot actions through the reusable workspace-link shaping helper in `App\Http\Controllers\Admin\DashboardController`, so that scoped branch action list now shares the same normalized link payload contract as the other dashboard workspace surfaces.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this dashboard-side assigned-branch action handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard migration-map payload shaping checkpoint
 - Moved migration-map navigation link preparation into `App\Http\Controllers\Admin\DashboardController`, so the Galaxy admin map now renders controller-prepared route hrefs instead of resolving route URLs inline in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side migration-map payload handoff visible in the Phase 1 seam map.

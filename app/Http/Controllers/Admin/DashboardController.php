@@ -1325,7 +1325,7 @@ class DashboardController extends Controller
             ];
         }
 
-        return $actions;
+        return $this->preparedWorkspaceLinks($actions);
     }
 
     protected function assignedBranchPrimaryActionLabel(?CardHolder $latestHolder, ?Card $latestCard): string
