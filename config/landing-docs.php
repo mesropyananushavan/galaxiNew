@@ -2,6 +2,20 @@
 
 return [
     'title' => 'Helpful project docs',
+    'labels' => [
+        'doc_focus' => 'Doc focus:',
+        'doc_coverage' => 'Doc coverage:',
+        'doc_baseline' => 'Doc baseline:',
+        'seam_source_focus' => 'Seam-source focus:',
+        'seam_source_coverage' => 'Seam-source coverage:',
+        'seam_source_baseline' => 'Seam-source baseline:',
+        'seam_source_posture' => 'Seam-source posture:',
+        'seam_source_source_of_truth' => 'Seam-source source of truth:',
+        'doc_guide' => 'Doc guide:',
+        'doc_posture' => 'Doc posture:',
+        'source_of_truth' => 'Source of truth:',
+        'reference_seam_bridge' => 'Reference seam bridge:',
+    ],
     'reference_seam_bridge' => 'keeps the README-level seam-source inventory tied into this broader public Phase 1 reference trail.',
     'focus' => 'Keep the public Galaxy migration reference trail visible from the landing surface while repo guidance and Phase 1 seams are still moving.',
     'guide' => ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md'],

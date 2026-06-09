@@ -31,7 +31,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - source-of-truth anchors: `README.md`, `config/landing-docs.php`
 - seam-source bridge: `config/phase-1-seam-sources.php`
 - visible runtime surface: `resources/views/welcome.blade.php`
-- current role: keeps the public Galaxy migration doc trail, docs-card heading, and seam-source bridge copy aligned
+- current role: keeps the public Galaxy migration doc trail, docs-card heading, metric labels, and seam-source bridge copy aligned
 
 ### Public landing shell baseline
 - readable summary anchor: this file
