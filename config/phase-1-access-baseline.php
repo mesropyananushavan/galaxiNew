@@ -19,6 +19,24 @@ return [
     ],
     'route_guardrails' => [
         [
+            'label' => 'Shops review route',
+            'route' => 'admin.shops.index',
+            'guard' => 'can:viewAny,Shop',
+            'coverage' => 'Keeps branch-catalog review behind the Phase 1 shop policy read guard.',
+        ],
+        [
+            'label' => 'Shops create route',
+            'route' => 'admin.shops.store',
+            'guard' => 'can:create,Shop',
+            'coverage' => 'Keeps the first live Galaxy branch creation path behind the bootstrap-only shop creation guard.',
+        ],
+        [
+            'label' => 'Shops update route',
+            'route' => 'admin.shops.update',
+            'guard' => 'can:update,shop',
+            'coverage' => 'Keeps live branch updates behind the same shop update guardrail used by the shared admin form.',
+        ],
+        [
             'label' => 'Roles & permissions review route',
             'route' => 'admin.roles-permissions.index',
             'guard' => 'can:viewAny,Role + can:viewAny,Permission',

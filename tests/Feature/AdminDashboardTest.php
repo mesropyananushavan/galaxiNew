@@ -285,7 +285,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gate coverage:')
             ->assertSee('2 Phase 1 admin access gates currently tracked.')
             ->assertSee('Route guardrails:')
-            ->assertSee('3 Phase 1 admin route guardrails currently tracked.')
+            ->assertSee('6 Phase 1 admin route guardrails currently tracked.')
             ->assertSee('Policy coverage:')
             ->assertSee('6 model policies currently mapped for Phase 1 admin resources.')
             ->assertSee('Admin guardrail:')
@@ -309,6 +309,15 @@ class AdminDashboardTest extends TestCase
             ->assertSee('<code>access-shop</code>', false)
             ->assertSee('Keeps branch-aware visibility tied to the selected Galaxy shop context.')
             ->assertSee('Tracked route guardrails:')
+            ->assertSee('<strong>Shops review route</strong>', false)
+            ->assertSee('<code>admin.shops.index</code>; <code>GET /admin/shops</code>; <code>can:viewAny,Shop</code>', false)
+            ->assertSee('Keeps branch-catalog review behind the Phase 1 shop policy read guard.')
+            ->assertSee('<strong>Shops create route</strong>', false)
+            ->assertSee('<code>admin.shops.store</code>; <code>POST /admin/shops</code>; <code>can:create,Shop</code>', false)
+            ->assertSee('Keeps the first live Galaxy branch creation path behind the bootstrap-only shop creation guard.')
+            ->assertSee('<strong>Shops update route</strong>', false)
+            ->assertSee('<code>admin.shops.update</code>; <code>PATCH /admin/shops/{shop}</code>; <code>can:update,shop</code>', false)
+            ->assertSee('Keeps live branch updates behind the same shop update guardrail used by the shared admin form.')
             ->assertSee('<strong>Roles &amp; permissions review route</strong>', false)
             ->assertSee('<code>admin.roles-permissions.index</code>; <code>GET /admin/roles-permissions</code>; <code>can:viewAny,Role + can:viewAny,Permission</code>', false)
             ->assertSee('Keeps shared access-shell review and permission-vocabulary review behind both Phase 1 read policies.')
@@ -743,21 +752,29 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->canAccessShop(null));
     }
 
-    public function test_roles_permissions_route_requires_role_and_permission_view_policies(): void
+    public function test_phase_one_admin_route_guardrails_stay_wired_for_shops_and_roles_permissions(): void
     {
-        $route = Route::getRoutes()->getByName('admin.roles-permissions.index');
+        $shopsRoute = Route::getRoutes()->getByName('admin.shops.index');
+        $shopStoreRoute = Route::getRoutes()->getByName('admin.shops.store');
+        $shopUpdateRoute = Route::getRoutes()->getByName('admin.shops.update');
+        $rolesRoute = Route::getRoutes()->getByName('admin.roles-permissions.index');
+        $roleStoreRoute = Route::getRoutes()->getByName('admin.roles-permissions.store');
+        $roleUpdateRoute = Route::getRoutes()->getByName('admin.roles-permissions.update');
 
-        $this->assertNotNull($route);
-        $this->assertContains('can:viewAny,'.Role::class, $route->gatherMiddleware());
-        $this->assertContains('can:viewAny,'.Permission::class, $route->gatherMiddleware());
+        $this->assertNotNull($shopsRoute);
+        $this->assertNotNull($shopStoreRoute);
+        $this->assertNotNull($shopUpdateRoute);
+        $this->assertNotNull($rolesRoute);
+        $this->assertNotNull($roleStoreRoute);
+        $this->assertNotNull($roleUpdateRoute);
 
-        $storeRoute = Route::getRoutes()->getByName('admin.roles-permissions.store');
-        $updateRoute = Route::getRoutes()->getByName('admin.roles-permissions.update');
-
-        $this->assertNotNull($storeRoute);
-        $this->assertNotNull($updateRoute);
-        $this->assertContains('can:create,'.Role::class, $storeRoute->gatherMiddleware());
-        $this->assertContains('can:update,role', $updateRoute->gatherMiddleware());
+        $this->assertContains('can:viewAny,'.Shop::class, $shopsRoute->gatherMiddleware());
+        $this->assertContains('can:create,'.Shop::class, $shopStoreRoute->gatherMiddleware());
+        $this->assertContains('can:update,shop', $shopUpdateRoute->gatherMiddleware());
+        $this->assertContains('can:viewAny,'.Role::class, $rolesRoute->gatherMiddleware());
+        $this->assertContains('can:viewAny,'.Permission::class, $rolesRoute->gatherMiddleware());
+        $this->assertContains('can:create,'.Role::class, $roleStoreRoute->gatherMiddleware());
+        $this->assertContains('can:update,role', $roleUpdateRoute->gatherMiddleware());
     }
 
     public function test_shop_scoped_admin_access_helper_denies_paused_shop_users_even_for_their_assigned_shop(): void

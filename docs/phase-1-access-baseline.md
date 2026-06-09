@@ -17,10 +17,11 @@ Keep the first Galaxy authorization gates and policy mappings explicit while Pha
 - `access-shop` keeps shop-scoped access explicit for branch-aware review and later writes.
 - The current mapped policies cover `Shop`, `CardHolder`, `Card`, `Role`, `Permission`, and `CardType`.
 - `routes/admin.php` applies the `auth` and `can:access-admin` guardrail before policy-specific resource routes run.
-- The access baseline now also tracks the first live `roles-permissions` route trio as explicit guardrail entries: `admin.roles-permissions.index`, `admin.roles-permissions.store`, and `admin.roles-permissions.update`.
-- The dashboard access card now resolves those guardrails through Laravel's router so the live baseline shows the current HTTP method and URI contract, not only route names.
+- The access baseline now also tracks two first-live Phase 1 admin route trios as explicit guardrail entries: `admin.shops.index` / `store` / `update` and `admin.roles-permissions.index` / `store` / `update`.
+- The dashboard access card resolves those guardrails through Laravel's router so the live baseline shows the current HTTP method and URI contract, not only route names.
+- The shop routes keep branch-catalog review and first-write entry points behind the same `ShopPolicy` read/create/update checks already enforced in `routes/admin.php`.
 - The shared `roles-permissions` review route requires both `RolePolicy::viewAny` and `PermissionPolicy::viewAny`, so access-shell review and permission-vocabulary review stay under the same explicit Phase 1 guardrail.
-- The create and update routes keep the first live access-shell write entry points behind the same bootstrap-only role creation and update guards already enforced in `routes/admin.php`.
+- The access-shell create and update routes keep the first live access-shell write entry points behind the same bootstrap-only role creation and update guards already enforced in `routes/admin.php`.
 
 ## Current posture
 - Authorization is present in code today, but this document and `config/phase-1-access-baseline.php` keep the baseline visible while richer roles, permission matrices, and stricter shop scoping are still landing.
