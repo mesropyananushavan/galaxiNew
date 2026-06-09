@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Permission policy source-of-truth sync checkpoint
+- Added `app/Policies/PermissionPolicy.php` to the access baseline source-of-truth trails in `config/phase-1-access-baseline.php`, `docs/phase-1-access-baseline.md`, `config/phase-1-foundation-seams.php`, and `docs/phase-1-foundation-seams.md`.
+- This keeps the newer permission policy seam visible not just in the tracked policy inventory, but also in the explicit anchor lists contributors use to find the live Phase 1 access baseline.
+- Re-ran the focused admin dashboard check as the parity guard for this small access-doc sync slice.
+
 ### Permission policy baseline checkpoint
 - Added `app/Policies/PermissionPolicy.php` and registered it through `RegistersAdminPolicies`, so `Permission` now has an explicit policy-shaped seam alongside the other core Phase 1 access entities.
 - Updated `config/phase-1-access-baseline.php`, `docs/phase-1-access-baseline.md`, `docs/phase-1-foundation-seams.md`, and the focused authenticated dashboard assertion so the access baseline now reflects six mapped policy anchors instead of five.

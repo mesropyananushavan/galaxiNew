@@ -3,7 +3,7 @@
 return [
     'focus' => 'Keep the first Galaxy authorization gates and policy mappings explicit while Phase 1 moves admin access and shop scope away from starter-era assumptions.',
     'guide' => ['docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php'],
-    'source_of_truth' => ['docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php', 'app/Providers/Concerns/RegistersAdminAccessGates.php', 'app/Providers/Concerns/RegistersAdminPolicies.php', 'routes/admin.php'],
+    'source_of_truth' => ['docs/phase-1-access-baseline.md', 'config/phase-1-access-baseline.php', 'app/Providers/Concerns/RegistersAdminAccessGates.php', 'app/Providers/Concerns/RegistersAdminPolicies.php', 'app/Policies/PermissionPolicy.php', 'routes/admin.php'],
     'posture' => 'documented authorization baseline for live Galaxy admin access',
     'gates' => [
         [

@@ -8,6 +8,7 @@ Keep the first Galaxy authorization gates and policy mappings explicit while Pha
 - implementation baseline anchor: `config/phase-1-access-baseline.php`
 - gate registration: `app/Providers/Concerns/RegistersAdminAccessGates.php`
 - policy registration: `app/Providers/Concerns/RegistersAdminPolicies.php`
+- permission policy seam: `app/Policies/PermissionPolicy.php`
 - admin route enforcement: `routes/admin.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 

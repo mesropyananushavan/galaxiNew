@@ -299,6 +299,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('config/phase-1-migration-baseline.php')
             ->assertSee('app/Providers/Concerns/RegistersAdminAccessGates.php')
             ->assertSee('app/Providers/Concerns/RegistersAdminPolicies.php')
+            ->assertSee('app/Policies/PermissionPolicy.php')
             ->assertSee('<strong>Admin workspace gate</strong>', false)
             ->assertSee('<code>access-admin</code>', false)
             ->assertSee('Protects the Galaxy admin shell behind authenticated permission-bearing staff access.')

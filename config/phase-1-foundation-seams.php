@@ -54,6 +54,7 @@ return [
                 'config/phase-1-access-baseline.php',
                 'app/Providers/Concerns/RegistersAdminAccessGates.php',
                 'app/Providers/Concerns/RegistersAdminPolicies.php',
+                'app/Policies/PermissionPolicy.php',
                 'routes/admin.php',
                 'resources/views/admin/dashboard.blade.php',
             ],
