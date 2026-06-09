@@ -234,9 +234,14 @@ class DashboardController extends Controller
         return collect($seams)
             ->filter(fn ($seam): bool => is_array($seam) && filled($seam['label'] ?? null))
             ->map(function (array $seam): array {
-                $seam['sourcesText'] = $this->plainList(array_map('strval', array_filter($seam['sources'] ?? [], fn ($source) => filled($source))));
+                $sourcesText = $this->plainList(array_map('strval', array_filter($seam['sources'] ?? [], fn ($source) => filled($source))));
 
-                return $seam;
+                return [
+                    'label' => (string) ($seam['label'] ?? ''),
+                    'summary' => (string) ($seam['summary'] ?? ''),
+                    'sourcesText' => $sourcesText,
+                    'sourcesNote' => filled($sourcesText) ? sprintf('Sources: %s', $sourcesText) : null,
+                ];
             })
             ->values()
             ->all();

@@ -33,7 +33,7 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - current role: keeps the dashboard controller responsible for formatting the entity-map guide and source-of-truth reference strings before they reach the admin runtime surface
 - related runtime shaping: the dashboard controller now also prepares the entity coverage and inventory metric payload before render, so the admin domain baseline stays less tied to raw summary strings inside Blade
 - related runtime shaping: the dashboard controller now also prepares the entity inventory payload before render, so the admin domain baseline stays less tied to raw config structure inside Blade
-- related runtime shaping: the dashboard controller now also prepares the foundation-seam source trail text before render so the admin seam inventory stays less Blade-assembled
+- related runtime shaping: the dashboard controller now also prepares the foundation-seam source trail text and secondary sources note before render so the admin seam inventory stays less Blade-assembled
 
 ### Public landing reference trail
 - readable summary anchor: this file
