@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Dashboard reference-doc inventory shaping checkpoint
+- Moved the admin dashboard reference-doc inventory shaping into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy reference card now renders controller-prepared doc items instead of reading the raw config list directly in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin-reference seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping this dashboard-side data-shaping handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
 ### Dashboard foundation-source-list checkpoint
 - Moved the admin dashboard foundation-seam source-list assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy seam inventory now renders controller-prepared source trail text instead of calling `implode()` inline in Blade.
 - Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side source-list handoff visible in the Phase 1 seam map.

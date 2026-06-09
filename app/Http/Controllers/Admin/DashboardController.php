@@ -30,7 +30,7 @@ class DashboardController extends Controller
             'phaseOneDomainSourceOfTruthText' => $this->inlineCodeList(config('phase-1-domain-map.source_of_truth', ['docs/phase-1-domain-map.md', 'config/phase-1-domain-map.php'])),
             'phaseOneDomainPosture' => (string) config('phase-1-domain-map.posture', 'documented entity baseline for live foundation work'),
             'phaseOneDomainInventory' => $this->phaseOneDomainInventory(),
-            'phaseOneReferenceDocs' => config('phase-1-reference-docs.items', []),
+            'phaseOneReferenceDocs' => $this->preparedReferenceDocs(config('phase-1-reference-docs.items', [])),
             'phaseOneReferenceDocsFocus' => (string) config('phase-1-reference-docs.focus', 'Keep the current Galaxy admin map, shell layering, checkpoint trail, and seam-source baseline close while Phase 1 slices are still moving.'),
             'phaseOneReferenceDocsGuide' => config('phase-1-reference-docs.guide', ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md']),
             'phaseOneReferenceDocsGuideText' => $this->inlineCodeList(config('phase-1-reference-docs.guide', ['README.md', 'docs/blueprint.md', 'docs/phase-1-plan.md'])),
@@ -185,6 +185,15 @@ class DashboardController extends Controller
     protected function phaseOneReferenceDocsCoverage(): string
     {
         return sprintf('%d Phase 1 reference docs currently linked', $this->referenceDocCount());
+    }
+
+    protected function preparedReferenceDocs(array $items): array
+    {
+        return collect($items)
+            ->filter(fn ($item): bool => filled($item))
+            ->map(fn ($item): array => ['label' => (string) $item])
+            ->values()
+            ->all();
     }
 
     protected function referenceDocs()

@@ -297,7 +297,7 @@
         </p>
         <ul class="list">
             @foreach ($phaseOneReferenceDocs as $referenceDoc)
-                <li><code>{{ $referenceDoc }}</code></li>
+                <li><code>{{ $referenceDoc['label'] }}</code></li>
             @endforeach
         </ul>
         <p style="{{ $dashboardNoteStyle }}">

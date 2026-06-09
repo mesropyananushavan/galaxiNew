@@ -277,7 +277,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('docs/phase-1-domain-map.md')
             ->assertSee('config/phase-1-domain-map.php')
             ->assertSee('Admin reference trail')
-            ->assertSee('Admin-side Phase 1 references stay aligned across the seam note, dashboard-focused config, seam-source baseline, and the live admin runtime surface, with the dashboard controller now formatting more of that runtime reference prose before render.')
+            ->assertSee('Admin-side Phase 1 references stay aligned across the seam note, dashboard-focused config, seam-source baseline, and the live admin runtime surface, with the dashboard controller now formatting more of that runtime reference prose and shaping the linked reference-doc inventory before render.')
             ->assertSee('config/phase-1-reference-docs.php')
             ->assertSee('config/phase-1-seam-sources.php')
             ->assertSee('Public landing reference trail')
