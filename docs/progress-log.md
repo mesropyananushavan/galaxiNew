@@ -2,6 +2,10 @@
 
 ## 2026-06-08
 
+### Card last-saved-label wrapper cleanup checkpoint
+- Removed the single-use `cardsLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-card call sites directly to the shared `lastSavedLabel()` helper.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
 ### Card lifecycle-description wrapper cleanup checkpoint
 - Removed the single-use `cardsLifecycleFreshnessDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its shared lifecycle description call at the selected-card timeline entry.
 - Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController helper cleanup.

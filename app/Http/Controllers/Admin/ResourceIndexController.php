@@ -1000,7 +1000,7 @@ class ResourceIndexController extends Controller
             [
                 'title' => sprintf('%s last saved timestamp reflected from model state', $selectedCard->number),
                 'time' => 'Current request',
-                'description' => sprintf('The latest saved Galaxy foundation timestamp for this card is %s, giving operators a concrete checkpoint for the current inventory shell.', $this->cardsLastSavedLabel($selectedCard)),
+                'description' => sprintf('The latest saved Galaxy foundation timestamp for this card is %s, giving operators a concrete checkpoint for the current inventory shell.', $this->lastSavedLabel($selectedCard)),
             ],
             [
                 'title' => sprintf('%s review note reflected from model state', $selectedCard->number),
@@ -3672,7 +3672,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Operational readiness', 'value' => $this->cardsOperationalReadiness($selectedCard)],
             ['label' => 'Lifecycle stage', 'value' => $this->cardsLifecycleStage($selectedCard)],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedCard)],
-            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardsLastSavedLabel($selectedCard)],
+            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->lastSavedLabel($selectedCard)],
             ['label' => 'Review note', 'value' => $this->cardsReviewNoteLabel($selectedCard)],
             ['label' => 'Holder', 'value' => $this->cardsHolderLabel($selectedCard)],
             ['label' => 'Card type', 'value' => $this->cardsTypeLabel($selectedCard)],
@@ -3957,11 +3957,6 @@ class ResourceIndexController extends Controller
         };
     }
 
-    private function cardsLastSavedLabel(Card $selectedCard): string
-    {
-        return $this->lastSavedLabel($selectedCard);
-    }
-
     private function cardsLinkageSignal(Card $selectedCard): string
     {
         return match (true) {
@@ -4001,7 +3996,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Inventory posture', 'value' => $this->cardsInventoryDependencyPosture()],
             ['label' => 'Card status signal', 'value' => $this->cardsStatusSignal($selectedCard)],
             ['label' => 'Lifecycle freshness', 'value' => $this->lifecycleFreshnessLabel($selectedCard)],
-            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardsLastSavedLabel($selectedCard)],
+            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->lastSavedLabel($selectedCard)],
             ['label' => 'Issued', 'value' => $this->cardsIssuedLabel($selectedCard)],
             ['label' => 'Review note', 'value' => $this->cardsReviewNoteLabel($selectedCard)],
             ['label' => 'Linkage signal', 'value' => $this->cardsLinkageSignal($selectedCard)],
