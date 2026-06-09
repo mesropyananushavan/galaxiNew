@@ -226,7 +226,7 @@
             @endforeach
 
             <article class="card">
-                <h3>{{ data_get($landingDocs, 'title') }}</h3>
+                <h3>{{ $landingDocsTitle }}</h3>
                 @foreach ($landingDocSummaryRows as $row)
                     <p>{!! e($row['prefix']) !!} {!! $row['html'] !!}</p>
                 @endforeach

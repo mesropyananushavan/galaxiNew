@@ -24,6 +24,7 @@ class LandingPageController extends Controller
             'landingHeroActions' => $this->preparedHeroActions(data_get($landingFoundation, 'hero.actions', [])),
             'landingSnapshotRows' => $this->preparedLandingSnapshotRows($landingFoundation),
             'landingFoundationCards' => $this->preparedFoundationCards($landingFoundation),
+            'landingDocsTitle' => (string) data_get($landingDocs, 'title', ''),
             'landingDocCount' => count(data_get($landingDocs, 'items', [])),
             'landingSeamSourceCount' => count(data_get($phaseOneSeamSources, 'items', [])),
             'landingDocGuideText' => $this->inlineCodeList(data_get($landingDocs, 'guide', [])),
