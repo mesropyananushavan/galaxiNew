@@ -659,6 +659,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('create', Shop::class));
         $this->assertTrue($user->can('viewAny', Role::class));
         $this->assertTrue($user->can('create', Role::class));
+        $this->assertTrue($user->can('viewAny', Permission::class));
+        $this->assertTrue($user->can('create', Permission::class));
         $this->assertTrue($user->can('viewAny', CardType::class));
         $this->assertTrue($user->can('create', CardType::class));
         $this->assertTrue($user->can('viewAny', CardHolder::class));
@@ -709,6 +711,8 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->can('create', Shop::class));
         $this->assertTrue($user->can('viewAny', Role::class));
         $this->assertFalse($user->can('create', Role::class));
+        $this->assertTrue($user->can('viewAny', Permission::class));
+        $this->assertFalse($user->can('create', Permission::class));
         $this->assertTrue($user->can('viewAny', CardType::class));
         $this->assertFalse($user->can('create', CardType::class));
         $this->assertTrue($user->can('viewAny', CardHolder::class));
@@ -757,6 +761,8 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->can('create', Shop::class));
         $this->assertFalse($user->can('viewAny', Role::class));
         $this->assertFalse($user->can('create', Role::class));
+        $this->assertFalse($user->can('viewAny', Permission::class));
+        $this->assertFalse($user->can('create', Permission::class));
         $this->assertFalse($user->can('viewAny', CardType::class));
         $this->assertFalse($user->can('create', CardType::class));
         $this->assertFalse($user->can('viewAny', CardHolder::class));
