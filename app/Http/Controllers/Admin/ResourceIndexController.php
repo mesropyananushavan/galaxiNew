@@ -2009,17 +2009,22 @@ class ResourceIndexController extends Controller
             $this->cardTypesCreateCatalogActionLabel(),
             $this->cardTypesFoundationMutationDisabledReason(),
             CardType::class,
-            [
-                [
-                    'label' => $this->cardTypesImportRulesActionLabel(),
-                    'disabledReason' => $this->cardTypesCatalogImportRulesDisabledReason(),
-                ],
-                [
-                    'label' => $this->cardTypesPublishActionLabel(),
-                    'disabledReason' => $this->cardTypesCatalogPublishTypeDisabledReason(),
-                ],
-            ],
+            $this->cardTypesCatalogSecondaryActions(),
         );
+    }
+
+    private function cardTypesCatalogSecondaryActions(): array
+    {
+        return [
+            [
+                'label' => $this->cardTypesImportRulesActionLabel(),
+                'disabledReason' => $this->cardTypesCatalogImportRulesDisabledReason(),
+            ],
+            [
+                'label' => $this->cardTypesPublishActionLabel(),
+                'disabledReason' => $this->cardTypesCatalogPublishTypeDisabledReason(),
+            ],
+        ];
     }
 
     private function appendCardTypesLatestSavedEditAction(array $page, CardType $latestCardType): array

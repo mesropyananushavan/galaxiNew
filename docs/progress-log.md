@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type catalog secondary-action checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds its secondary import and publish review actions through a dedicated helper instead of assembling that Galaxy-tier secondary action stack inline inside the catalog action composer.
+- Kept the rendered catalog action output unchanged while trimming another small piece of duplicated action wiring out of the card-types workspace.
+- Re-ran focused card-types preview, catalog readiness, draft-readiness, and selected-tier edit assertions as the parity guard for this small structural cleanup.
+
 ### Card-type toggle-status href helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves its shared Galaxy-tier toggle-status href through one helper instead of repeating the same route wiring across catalog action cells and selected-tier primary actions.
 - Kept the rendered toggle-action output unchanged while trimming another small piece of duplicated Galaxy-tier navigation wiring out of the card-types workspace.
