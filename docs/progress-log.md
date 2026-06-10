@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected-summary flow label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected tier's record-summary feedback now uses a tier-specific `...latest flow result from selected tier` label instead of the broader generic `Latest flow result` wording.
+- Updated the focused selected-tier post-toggle assertions so the card-types workspace now locks that more explicit selected-summary flow label alongside the live-form dependency and timeline labels.
+- Re-ran the focused selected-tier and header-toggle assertions as the parity guard for this small selected-summary wording follow-up.
+
 ### Card-type live-form flow label checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected tier's backend-flow summary now uses a tier-specific `...latest flow result from live form` label instead of the broader generic `Latest flow result` wording.
 - Updated the focused selected-tier post-toggle assertions so the card-types workspace now locks that more explicit live-form flow label alongside the selected-tier backend-write timeline title.

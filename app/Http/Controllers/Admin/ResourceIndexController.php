@@ -1927,6 +1927,7 @@ class ResourceIndexController extends Controller
         $page['selectedRecordSummary'] = $this->cardTypesSelectedTypeSummary($selectedCardType);
 
         $page = $this->appendCardTypeLatestFlowFeedback($page);
+        $page = $this->renameCardTypeLatestFlowSummaryLabel($page, sprintf('%s latest flow result from selected tier', $selectedCardType->name));
 
         $page['actions'] = $this->cardTypesSelectedActions($selectedCardType);
 
@@ -3231,6 +3232,26 @@ class ResourceIndexController extends Controller
             'label' => 'Latest flow result',
             'value' => $status,
         ];
+        $page['selectedRecordSummary'] = $summary;
+
+        return $page;
+    }
+
+    private function renameCardTypeLatestFlowSummaryLabel(array $page, string $label): array
+    {
+        $summary = is_array($page['selectedRecordSummary'] ?? null) ? $page['selectedRecordSummary'] : [];
+
+        if ($summary === []) {
+            return $page;
+        }
+
+        $lastIndex = array_key_last($summary);
+
+        if ($lastIndex === null || ($summary[$lastIndex]['label'] ?? null) !== 'Latest flow result') {
+            return $page;
+        }
+
+        $summary[$lastIndex]['label'] = $label;
         $page['selectedRecordSummary'] = $summary;
 
         return $page;

@@ -12866,7 +12866,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Backend flow checkpoint')
             ->assertSee('Card type "Galaxy Prime" is now draft.')
             ->assertSee('Selected record summary')
-            ->assertSee('Galaxy Prime latest flow result from live form:')
+            ->assertSee('Galaxy Prime latest flow result from selected tier:')
             ->assertSee('Card type "Galaxy Prime" is now draft.')
             ->assertSee('Recent activity preview')
             ->assertSee('Galaxy Prime latest backend write reflected from live form')
@@ -12889,7 +12889,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft unlinked tiers should stay unpublished until legacy behavior and first card coverage both exist')
             ->assertSee('Action gating:')
             ->assertSee('Allow draft-unlinked edits and validation only, keep live-facing actions gated until card coverage exists')
-            ->assertSee('Galaxy Prime latest flow result from live form:')
+            ->assertSee('Galaxy Prime latest flow result from selected tier:')
             ->assertSee('Card type "Galaxy Prime" is now draft.');
     }
 
