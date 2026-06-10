@@ -2074,6 +2074,7 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
             ],
         ];
+        $page['activityTimelineTitle'] = 'Galaxy tier activity trail';
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
 

@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type timeline block title checkpoint
+- Extended `resources/views/admin/partials/resource-activity-timeline.blade.php` to accept an overridable title, then set the selected card-type workspace to render that block as `Galaxy tier activity trail` instead of the broader generic `Recent activity preview` heading.
+- Updated the focused selected-tier assertions so the card-types workspace now locks the new timeline block title across draft-linked and active-linked scenarios.
+- Re-ran the focused selected-tier assertions after aligning one stale expectation that still referenced the old generic heading.
+
 ### Card-type summary block title checkpoint
 - Extended `resources/views/admin/partials/resource-selected-record-summary.blade.php` to accept an overridable title, then set the selected card-type workspace to render that block as `Selected Galaxy tier summary` instead of the broader generic `Selected record summary` heading.
 - Updated the focused selected-tier assertions so the card-types workspace now locks the new summary block title across draft-linked and active-linked scenarios.

@@ -1,5 +1,5 @@
 <section class="card">
-    <h3 style="margin: 0 0 12px; font-size: 1.1rem;">Recent activity preview</h3>
+    <h3 style="margin: 0 0 12px; font-size: 1.1rem;">{{ $activityTimelineTitle ?? 'Recent activity preview' }}</h3>
     <div style="display: grid; gap: 12px;">
         @foreach ($activityTimeline as $item)
             <article style="padding: 12px 14px; border: 1px solid var(--border-color); border-radius: 12px; background: rgba(15, 23, 42, 0.35);">
