@@ -309,6 +309,13 @@ class AdminDashboardTest extends TestCase
             ->assertSee('<code>access-shop</code>', false)
             ->assertSee('Keeps branch-aware visibility tied to the selected Galaxy shop context.')
             ->assertSee('Tracked route guardrails:')
+            ->assertSeeInOrder([
+                'Galaxy branches:',
+                'Galaxy holders:',
+                'Galaxy card shells:',
+                'Galaxy tiers:',
+                'Galaxy access shells:',
+            ])
             ->assertSee('Galaxy branches:')
             ->assertSee('Galaxy branches (3), Branch review and write entry points stay visible through 3 guarded Galaxy branch routes.')
             ->assertSee('<strong>Shops review route</strong>', false)

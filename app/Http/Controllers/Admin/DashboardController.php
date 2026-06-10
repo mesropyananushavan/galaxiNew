@@ -395,6 +395,7 @@ class DashboardController extends Controller
                     'items' => $items->values()->all(),
                 ];
             })
+            ->sortBy(fn (array $group): int => $this->accessRouteGuardrailFamilyOrder($group['family'] ?? 'other'))
             ->values()
             ->all();
     }
@@ -420,6 +421,18 @@ class DashboardController extends Controller
             'card-types' => 'Galaxy tiers',
             'roles-permissions' => 'Galaxy access shells',
             default => 'Other access guardrails',
+        };
+    }
+
+    protected function accessRouteGuardrailFamilyOrder(string $family): int
+    {
+        return match ($family) {
+            'shops' => 10,
+            'cardholders' => 20,
+            'cards' => 30,
+            'card-types' => 40,
+            'roles-permissions' => 50,
+            default => 999,
         };
     }
 
