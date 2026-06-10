@@ -414,6 +414,7 @@ class DashboardController extends Controller
                     'count' => $items->count(),
                     'displayLabel' => sprintf('%s (%d)', (string) ($first['familyLabel'] ?? 'Route guardrail group'), $items->count()),
                     'summary' => $this->accessRouteGuardrailFamilySummary((string) $family, $items->count()),
+                    'maturityNote' => $this->accessRouteGuardrailFamilyMaturityNote((string) $family),
                     'displaySummary' => $this->accessRouteGuardrailFamilyDisplaySummary((string) ($first['familyLabel'] ?? 'Route guardrail group'), $items->count(), (string) $family),
                     'items' => $items->values()->all(),
                 ];
@@ -489,7 +490,15 @@ class DashboardController extends Controller
 
     protected function accessRouteGuardrailFamilyDisplaySummary(string $label, int $count, string $family): string
     {
-        return sprintf('%s (%d), %s', $label, $count, $this->accessRouteGuardrailFamilySummary($family, $count));
+        return sprintf('%s (%d), %s %s', $label, $count, $this->accessRouteGuardrailFamilySummary($family, $count), $this->accessRouteGuardrailFamilyMaturityNote($family));
+    }
+
+    protected function accessRouteGuardrailFamilyMaturityNote(string $family): string
+    {
+        return match ($family) {
+            'checks-points', 'services-rules', 'gifts', 'reports' => 'This lane is still guarded only by the shared Galaxy admin shell.',
+            default => 'This lane already runs through explicit Phase 1 policy checks.',
+        };
     }
 
     protected function accessRouteGuardrailIntro(array $routeGuardrails): string

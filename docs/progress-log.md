@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Access guardrail lane-maturity checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each grouped access lane now also carries a controller-owned maturity note, making it explicit which lanes already run through policy checks and which still rely only on the shared shell guard.
+- Kept the access seam docs aligned so the dashboard now surfaces maturity not only in the top summary metrics but also directly inside each grouped lane summary.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map maturity follow-up.
+
 ### Access guardrail maturity-metrics checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so the access-baseline metrics now also report the policy-backed versus shared-shell route split, not just the grouped intro paragraph.
 - Kept the access seam docs aligned so the dashboard now surfaces that maturity split in both the summary metrics and the grouped access-lane narrative.
