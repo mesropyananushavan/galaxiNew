@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected action assembly checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its action set through a tiny assembly helper instead of assigning selected-tier actions inline inside the broader surface composer.
+- Kept the rendered action output unchanged while making the selected-tier surface assembly fully symmetric across summary, actions, timeline, and dependencies.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected timeline/dependency assembly checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its timeline enrichment and dependency enrichment through two small helpers instead of doing those post-processing steps inline.
 - Kept the rendered selected-tier output unchanged while tightening the remaining assembly seams around the now more Galaxy-specific card-type workspace.

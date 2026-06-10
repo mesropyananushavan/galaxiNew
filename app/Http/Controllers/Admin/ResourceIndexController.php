@@ -1989,12 +1989,17 @@ class ResourceIndexController extends Controller
     private function applyCardTypesSelectedSurfaceData(array $page, CardType $selectedCardType): array
     {
         $page = $this->applyCardTypesSelectedSummaryData($page, $selectedCardType);
-
-        $page['actions'] = $this->cardTypesSelectedActions($selectedCardType);
-
+        $page = $this->applyCardTypesSelectedActionData($page, $selectedCardType);
         $page = $this->applyCardTypesSelectedTimelineData($page, $selectedCardType);
         $page = $this->applyCardTypesSelectedDependencyData($page, $selectedCardType);
         $page = $this->applyCardTypesSelectedSurfaceTitles($page);
+
+        return $page;
+    }
+
+    private function applyCardTypesSelectedActionData(array $page, CardType $selectedCardType): array
+    {
+        $page['actions'] = $this->cardTypesSelectedActions($selectedCardType);
 
         return $page;
     }
