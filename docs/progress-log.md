@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type status-signal and backend-gap wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Tier status signal` and backend-gap copy now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving the final review cues on broader live/draft wording.
+- Extended the focused selected-tier assertions so both the management context card and the edit-shell detail card now lock those linkage-aware status and backend-gap phrases across all four active/draft and linked/unlinked scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
 ### Card-type guidance and action-gating wording checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Status guidance`, `Rule-import blocker`, `Publish guidance`, and `Action gating` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaning on broader live/draft wording.
 - Extended the focused selected-tier assertions so the card-types edit shell now locks those linkage-aware guidance and gating phrases across all four active/draft and linked/unlinked scenarios.

@@ -2298,10 +2298,10 @@ class ResourceIndexController extends Controller
         $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
-            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'Active tier is already visible with saved card coverage for live tier parity review.',
-            $this->cardTypeIsActive($selectedCardType) => 'Active tier is already visible, but card coverage still needs rollout-parity review before any rollout discussion.',
-            $cardsCount > 0 => 'Draft tier remains safer for parity review while saved card coverage is already visible.',
-            default => 'Draft tier remains safer for visible-card-coverage parity-review before any rollout discussion lands.',
+            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'Active linked tier is already visible with saved card coverage for rollout-parity review.',
+            $this->cardTypeIsActive($selectedCardType) => 'Active unlinked tier is already visible, but card coverage still needs rollout-parity review before any rollout discussion.',
+            $cardsCount > 0 => 'Draft linked tier remains safer for parity review while saved card coverage is already visible.',
+            default => 'Draft unlinked tier remains safer for visible-card-coverage parity-review before any rollout discussion lands.',
         };
     }
 
@@ -2560,10 +2560,10 @@ class ResourceIndexController extends Controller
         $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
 
         return match (true) {
-            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Publish logic and rule-import parity should stay foundation-preview only until live tier parity is verified.',
-            $this->cardTypeIsActive($selectedCardType) => 'Rollout confirmation, publish logic, and rule-import parity should stay foundation-preview only until live tier coverage is verified.',
-            $hasVisibleCoverage => 'Draft activation, publish logic, and rule-import parity should stay foundation-preview only until draft tier parity is verified.',
-            default => 'Draft activation, publish logic, and rule-import parity should stay foundation-preview only until visible tier coverage is verified.',
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Publish logic and rule-import parity should stay foundation-preview only until active linked-tier parity is verified.',
+            $this->cardTypeIsActive($selectedCardType) => 'Rollout confirmation, publish logic, and rule-import parity should stay foundation-preview only until active unlinked-tier coverage is verified.',
+            $hasVisibleCoverage => 'Draft activation, publish logic, and rule-import parity should stay foundation-preview only until draft linked-tier parity is verified.',
+            default => 'Draft activation, publish logic, and rule-import parity should stay foundation-preview only until draft unlinked-tier coverage is verified.',
         };
     }
 
