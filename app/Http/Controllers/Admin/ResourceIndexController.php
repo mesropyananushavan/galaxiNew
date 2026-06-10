@@ -2131,14 +2131,14 @@ class ResourceIndexController extends Controller
             $page['liveForm'],
             $liveFormCopy['title'],
             $liveFormCopy['description'],
-            'admin.card-types.update',
+            $this->cardTypesUpdateRouteName(),
             [
                 'cardType' => $selectedCardType,
             ],
-            'admin.card-types.index',
+            $this->cardTypesIndexRouteName(),
             $liveFormCopy['submitLabel'],
             $liveFormCopy['cancelLabel'],
-            'Back to tier catalog',
+            $this->cardTypesCatalogReturnLabel(),
             $this->cardTypesFoundationMutationDisabledReason(),
             $selectedCardType,
             $liveFormCopy['reviewCue'],
@@ -2159,6 +2159,21 @@ class ResourceIndexController extends Controller
             'activation_note' => $selectedCardType->activation_note ?? '',
             'rollout_note' => $selectedCardType->rollout_note ?? '',
         ];
+    }
+
+    private function cardTypesUpdateRouteName(): string
+    {
+        return 'admin.card-types.update';
+    }
+
+    private function cardTypesIndexRouteName(): string
+    {
+        return 'admin.card-types.index';
+    }
+
+    private function cardTypesCatalogReturnLabel(): string
+    {
+        return 'Back to tier catalog';
     }
 
     private function cardTypesSelectedActivityTimeline(CardType $selectedCardType): array
