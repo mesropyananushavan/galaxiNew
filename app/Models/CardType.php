@@ -61,9 +61,19 @@ class CardType extends Model
         return $query->active()->linked();
     }
 
+    public function scopeActiveUnlinked(Builder $query): Builder
+    {
+        return $query->active()->unlinked();
+    }
+
     public function scopeDraftLinked(Builder $query): Builder
     {
         return $query->draft()->linked();
+    }
+
+    public function scopeDraftUnlinked(Builder $query): Builder
+    {
+        return $query->draft()->unlinked();
     }
 
     public function cards(): HasMany

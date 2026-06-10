@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type unlinked scope symmetry checkpoint
+- Added explicit `activeUnlinked` and `draftUnlinked` scopes to `app/Models/CardType.php`, completing the first small active-vs-draft linkage matrix for Galaxy tiers instead of leaving unlinked tier review to ad hoc chained filters.
+- Extended the focused tier-linkage assertion in `tests/Feature/AdminDashboardTest.php` so both the linked and unlinked sides of the tier foundation query surface stay locked to one real Galaxy shop, holder, and card context.
+- Re-ran the focused tier-scope assertions as the parity guard for this small model-foundation symmetry follow-up.
+
 ### Card-type linkage scopes checkpoint
 - Added explicit `linked`, `unlinked`, `activeLinked`, and `draftLinked` scopes to `app/Models/CardType.php`, so the Phase 1 tier foundation now names card-assignment coverage directly instead of leaving future tier workflow queries to ad hoc relationship filters.
 - Added focused scope coverage in `tests/Feature/AdminDashboardTest.php` to lock those tier-linkage queries to a real Galaxy shop, holder, and card context.

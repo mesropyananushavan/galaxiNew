@@ -2173,6 +2173,8 @@ class AdminDashboardTest extends TestCase
         $this->assertSame([$unlinkedTier->id], CardType::query()->unlinked()->pluck('id')->all());
         $this->assertSame([$activeLinkedTier->id], CardType::query()->activeLinked()->pluck('id')->all());
         $this->assertSame([$draftLinkedTier->id], CardType::query()->draftLinked()->pluck('id')->all());
+        $this->assertSame([$unlinkedTier->id], CardType::query()->activeUnlinked()->pluck('id')->all());
+        $this->assertSame([], CardType::query()->draftUnlinked()->pluck('id')->all());
         $this->assertNotContains($unlinkedTier->id, CardType::query()->linked()->pluck('id')->all());
     }
 
