@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type unlinked-state metrics checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the live `card-types` management snapshot now also exposes `Active unlinked Galaxy tiers` and `Draft unlinked Galaxy tiers`, completing the first visible active-vs-draft linkage matrix for Galaxy tiers on the admin surface.
+- Updated the focused model-backed card-types metrics assertion so it now also locks the unlinked side of that matrix to one active unlinked tier and zero draft unlinked tiers in the same real Galaxy shop, holder, and card context.
+- Re-ran the focused card-types metrics assertion as the parity guard for this small tier-runtime symmetry follow-up.
+
 ### Card-type linked-state metrics checkpoint
 - Extended `App\Http\Controllers\Admin\ResourceIndexController` so the live `card-types` management snapshot now also exposes `Active linked Galaxy tiers` and `Draft linked Galaxy tiers`, making the new tier-linkage foundation less generic and more rollout-aware on the visible admin surface.
 - Updated the focused model-backed card-types metrics assertion so it now covers one active linked tier, one draft linked tier, and one still-unlinked tier inside a real Galaxy shop and holder context.

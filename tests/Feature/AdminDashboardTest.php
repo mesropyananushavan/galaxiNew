@@ -12875,6 +12875,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Unlinked Galaxy tiers')
             ->assertSee('Active linked Galaxy tiers')
             ->assertSee('Draft linked Galaxy tiers')
+            ->assertSee('Active unlinked Galaxy tiers')
+            ->assertSee('Draft unlinked Galaxy tiers')
             ->assertSee('Review-noted Galaxy tiers')
             ->assertSee('Tier activation notes')
             ->assertSee('Tier rollout notes')
@@ -12888,6 +12890,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('>1<', false)
             ->assertSee('>1<', false)
             ->assertSee('>1<', false)
+            ->assertSee('>1<', false)
+            ->assertSee('>0<', false)
             ->assertSee('>3<', false);
     }
 

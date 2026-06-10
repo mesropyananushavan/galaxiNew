@@ -1856,6 +1856,8 @@ class ResourceIndexController extends Controller
                 ['label' => 'Unlinked Galaxy tiers', 'value' => (string) $this->unlinkedCardTypeCount()],
                 ['label' => 'Active linked Galaxy tiers', 'value' => (string) $this->activeLinkedCardTypeCount()],
                 ['label' => 'Draft linked Galaxy tiers', 'value' => (string) $this->draftLinkedCardTypeCount()],
+                ['label' => 'Active unlinked Galaxy tiers', 'value' => (string) $this->activeUnlinkedCardTypeCount()],
+                ['label' => 'Draft unlinked Galaxy tiers', 'value' => (string) $this->draftUnlinkedCardTypeCount()],
                 ['label' => 'Review-noted Galaxy tiers', 'value' => (string) $this->reviewNotedCardTypeCount()],
                 ['label' => 'Tier activation notes', 'value' => (string) $this->activationNotedCardTypeCount()],
                 ['label' => 'Tier rollout notes', 'value' => (string) $this->rolloutNotedCardTypeCount()],
@@ -5411,6 +5413,16 @@ class ResourceIndexController extends Controller
     private function draftLinkedCardTypeCount(): int
     {
         return (int) CardType::query()->draftLinked()->count();
+    }
+
+    private function activeUnlinkedCardTypeCount(): int
+    {
+        return (int) CardType::query()->activeUnlinked()->count();
+    }
+
+    private function draftUnlinkedCardTypeCount(): int
+    {
+        return (int) CardType::query()->draftUnlinked()->count();
     }
 
     private function reviewNotedCardTypeCount(): int
