@@ -366,7 +366,7 @@ class DashboardController extends Controller
     protected function preparedAccessRouteGuardrails(array $routeGuardrails): array
     {
         return collect($routeGuardrails)
-            ->filter(fn ($guardrail): bool => is_array($guardrail) && filled($guardrail['label'] ?? null) && filled($guardrail['route'] ?? null) && filled($guardrail['guard'] ?? null))
+            ->filter(fn ($guardrail): bool => is_array($guardrail) && filled($guardrail['label'] ?? null) && filled($guardrail['route'] ?? null) && filled($guardrail['guard'] ?? null) && filled($guardrail['maturity'] ?? null))
             ->map(function (array $guardrail): array {
                 $label = (string) ($guardrail['label'] ?? '');
                 $route = (string) ($guardrail['route'] ?? '');
@@ -382,7 +382,7 @@ class DashboardController extends Controller
                     ? sprintf('%s %s', $methods, $path)
                     : null;
 
-                $maturityLabel = $this->accessRouteGuardrailMaturityLabel($guard);
+                $maturityLabel = (string) ($guardrail['maturity'] ?? 'policy-backed');
 
                 return [
                     'label' => $label,
@@ -494,13 +494,6 @@ class DashboardController extends Controller
     protected function accessRouteGuardrailFamilyDisplaySummary(string $label, int $count, string $family): string
     {
         return sprintf('%s (%d), %s %s', $label, $count, $this->accessRouteGuardrailFamilySummary($family, $count), $this->accessRouteGuardrailFamilyMaturityNote($family));
-    }
-
-    protected function accessRouteGuardrailMaturityLabel(string $guard): string
-    {
-        return str_contains($guard, 'auth + can:access-admin')
-            ? 'shared-shell'
-            : 'policy-backed';
     }
 
     protected function accessRouteGuardrailFamilyMaturityNote(string $family): string

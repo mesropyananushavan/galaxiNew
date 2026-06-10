@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Access guardrail config-maturity checkpoint
+- Extended `config/phase-1-access-baseline.php` so each tracked route guardrail now declares its maturity explicitly, and updated `App\Http\Controllers\Admin\DashboardController` to read that config-owned contract instead of inferring maturity from the guard string.
+- Kept the access seam docs aligned so the dashboard now surfaces access maturity across the top metrics, grouped lane summaries, and individual route contracts from one explicit Phase 1 source of truth.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map contract-hardening follow-up.
+
 ### Access guardrail route-maturity checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so each tracked route guardrail now also carries a controller-owned maturity label, making the policy-backed versus shared-shell split visible at the individual route level instead of only in grouped summaries.
 - Kept the access seam docs aligned so the dashboard now surfaces access maturity across the top metrics, the grouped lane summaries, and the individual route contracts.
