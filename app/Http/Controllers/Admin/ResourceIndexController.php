@@ -2116,7 +2116,7 @@ class ResourceIndexController extends Controller
             'Back to tier catalog',
             $this->cardTypesFoundationMutationDisabledReason(),
             $selectedCardType,
-            'Review the selected Galaxy tier in the shared live form while Phase 1 keeps tier-shell changes under bootstrap control.',
+            'Review the selected Galaxy tier in the live Galaxy tier form while Phase 1 keeps tier-shell changes under bootstrap control.',
         );
         $page['liveForm']['valuesResolver'] = [
             'name' => $selectedCardType->name,

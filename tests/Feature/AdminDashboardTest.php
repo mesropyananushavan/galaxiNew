@@ -12134,7 +12134,7 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Only bootstrap admins can reshape Galaxy tier shells while Phase 1 keeps the tier foundation under central control.')
-            ->assertSee('Review the selected Galaxy tier in the shared live form while Phase 1 keeps tier-shell changes under bootstrap control.')
+            ->assertSee('Review the selected Galaxy tier in the live Galaxy tier form while Phase 1 keeps tier-shell changes under bootstrap control.')
             ->assertSee('Back to tier catalog')
             ->assertSee('Move to draft')
             ->assertSee('>Save tier changes<', false)

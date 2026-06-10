@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type live-form review cue checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review cue now says `live Galaxy tier form` instead of the broader generic `shared live form` wording.
+- Updated the focused card-types preview/edit assertion so the workspace now locks that more Galaxy-specific review cue while leaving explicit live-form config overrides untouched.
+- Re-ran focused card-types preview, selected-tier edit, and live-form callback assertions as the parity guard for this small card-type form-copy follow-up.
+
 ### Card-type live-form description checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the default selected-tier edit description now says `live Galaxy tier form` instead of the broader generic `shared live form` wording.
 - Updated the focused selected-tier assertion so the card-types workspace now locks that more Galaxy-specific edit-form description while leaving the explicit config override path untouched.
