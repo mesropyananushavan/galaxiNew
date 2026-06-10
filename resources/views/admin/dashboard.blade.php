@@ -212,6 +212,9 @@
             {!! $phaseOneAccessBaselineSourceOfTruthText !!} remain the readable and implementation anchors for this Galaxy authorization baseline.
         </p>
         <p style="{{ $dashboardNoteStyle }}"><strong>Tracked gates:</strong></p>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneAccessBaseline['gateIntro'] ?? '' }}
+        </p>
         <ul class="list">
             @foreach (($phaseOneAccessBaseline['gates'] ?? []) as $gate)
                 <li>{!! $gate['displaySummary'] !!}</li>
@@ -238,6 +241,9 @@
             @endforeach
         </ul>
         <p style="{{ $dashboardNoteStyle }}"><strong>Tracked policies:</strong></p>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneAccessBaseline['policyIntro'] ?? '' }}
+        </p>
         <ul class="list">
             @foreach (($phaseOneAccessBaseline['policies'] ?? []) as $policy)
                 <li>{!! $policy['displaySummary'] !!}</li>

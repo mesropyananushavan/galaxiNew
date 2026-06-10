@@ -317,6 +317,7 @@ class DashboardController extends Controller
                 })
                 ->values()
                 ->all(),
+            'gateIntro' => $this->accessGateIntro($gates),
             'routeGuardrails' => $this->preparedAccessRouteGuardrails($routeGuardrails),
             'routeGuardrailGroups' => $this->preparedAccessRouteGuardrailGroups($routeGuardrails),
             'routeGuardrailIntro' => $this->accessRouteGuardrailIntro($routeGuardrails),
@@ -338,7 +339,24 @@ class DashboardController extends Controller
                 })
                 ->values()
                 ->all(),
+            'policyIntro' => $this->accessPolicyIntro($policies),
         ];
+    }
+
+    protected function accessGateIntro(array $gates): string
+    {
+        return sprintf(
+            'These %d controller-tracked admin gates keep the Galaxy workspace shell and selected branch scope explicit before deeper Phase 1 role matrices land.',
+            count($gates),
+        );
+    }
+
+    protected function accessPolicyIntro(array $policies): string
+    {
+        return sprintf(
+            'These %d mapped model policies keep the first live Galaxy admin resources tied to explicit review and write rules while richer Phase 1 access behavior is still landing.',
+            count($policies),
+        );
     }
 
     protected function preparedAccessRouteGuardrails(array $routeGuardrails): array
