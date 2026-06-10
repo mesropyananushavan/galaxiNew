@@ -2488,10 +2488,10 @@ class ResourceIndexController extends Controller
         $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
-            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'Blocked until live-tier accrual parity is verified against visible card coverage.',
-            $this->cardTypeIsActive($selectedCardType) => 'Blocked until this live tier has visible card coverage for accrual parity review.',
-            $cardsCount > 0 => 'Blocked until draft tier accrual parity is verified against visible card coverage.',
-            default => 'Blocked until draft parity review has visible card coverage to compare against.',
+            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'Blocked until active linked-tier accrual parity is verified against visible card coverage.',
+            $this->cardTypeIsActive($selectedCardType) => 'Blocked until this active unlinked tier has visible card coverage for accrual parity review.',
+            $cardsCount > 0 => 'Blocked until draft linked-tier accrual parity is verified against visible card coverage.',
+            default => 'Blocked until draft unlinked-tier parity review has visible card coverage to compare against.',
         };
     }
 
@@ -2500,10 +2500,10 @@ class ResourceIndexController extends Controller
         $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
-            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'Blocked until live-tier rollout parity is verified across visible card coverage.',
-            $this->cardTypeIsActive($selectedCardType) => 'Blocked until this live tier has visible card coverage and Galaxy tier rollout parity review.',
-            $cardsCount > 0 => 'Blocked until this draft tier clears rule and rollout parity review against visible card coverage.',
-            default => 'Blocked until this draft tier clears rule-and-rollout parity review before any publish-like move.',
+            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'Blocked until active linked-tier rollout parity is verified across visible card coverage.',
+            $this->cardTypeIsActive($selectedCardType) => 'Blocked until this active unlinked tier has visible card coverage and Galaxy tier rollout parity review.',
+            $cardsCount > 0 => 'Blocked until this draft linked tier clears rule and rollout parity review against visible card coverage.',
+            default => 'Blocked until this draft unlinked tier clears rule-and-rollout parity review before any publish-like move.',
         };
     }
 

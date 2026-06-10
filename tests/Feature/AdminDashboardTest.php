@@ -12297,9 +12297,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Editing: Galaxy Prime')
             ->assertSee('Import rules')
             ->assertSee('aria-disabled="true"', false)
-            ->assertSee('Blocked until draft tier accrual parity is verified against visible card coverage.')
+            ->assertSee('Blocked until draft linked-tier accrual parity is verified against visible card coverage.')
             ->assertSee('Publish tier')
-            ->assertSee('Blocked until this draft tier clears rule and rollout parity review against visible card coverage.')
+            ->assertSee('Blocked until this draft linked tier clears rule and rollout parity review against visible card coverage.')
             ->assertSee('Selected record summary')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
@@ -12445,9 +12445,9 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Editing: Galaxy Platinum')
             ->assertSee('Import rules')
-            ->assertSee('Blocked until this live tier has visible card coverage for accrual parity review.')
+            ->assertSee('Blocked until this active unlinked tier has visible card coverage for accrual parity review.')
             ->assertSee('Publish tier')
-            ->assertSee('Blocked until this live tier has visible card coverage and Galaxy tier rollout parity review.');
+            ->assertSee('Blocked until this active unlinked tier has visible card coverage and Galaxy tier rollout parity review.');
     }
 
     public function test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal(): void
@@ -12504,6 +12504,10 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Active linked tiers need parity confirmation before further publish-style changes')
             ->assertSee('Action gating:')
             ->assertSee('Allow small linked-tier state corrections only, keep publish-like and import actions gated')
+            ->assertSee('Import rules')
+            ->assertSee('Blocked until active linked-tier accrual parity is verified against visible card coverage.')
+            ->assertSee('Publish tier')
+            ->assertSee('Blocked until active linked-tier rollout parity is verified across visible card coverage.')
             ->assertSee('Backend gap:')
             ->assertSee('Publish logic and rule-import parity should stay foundation-preview only until active linked-tier parity is verified.');
     }
@@ -12569,9 +12573,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Backend gap:')
             ->assertSee('Rollout confirmation, publish logic, and rule-import parity should stay foundation-preview only until active unlinked-tier coverage is verified.')
             ->assertSee('Import rules')
-            ->assertSee('Blocked until this live tier has visible card coverage for accrual parity review.')
+            ->assertSee('Blocked until this active unlinked tier has visible card coverage for accrual parity review.')
             ->assertSee('Publish tier')
-            ->assertSee('Blocked until this live tier has visible card coverage and Galaxy tier rollout parity review.');
+            ->assertSee('Blocked until this active unlinked tier has visible card coverage and Galaxy tier rollout parity review.');
     }
 
     public function test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons(): void
@@ -12616,9 +12620,9 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Backend gap:')
             ->assertSee('Draft activation, publish logic, and rule-import parity should stay foundation-preview only until draft unlinked-tier coverage is verified.')
             ->assertSee('Import rules')
-            ->assertSee('Blocked until draft parity review has visible card coverage to compare against.')
+            ->assertSee('Blocked until draft unlinked-tier parity review has visible card coverage to compare against.')
             ->assertSee('Publish tier')
-            ->assertSee('Blocked until this draft tier clears rule-and-rollout parity review before any publish-like move.');
+            ->assertSee('Blocked until this draft unlinked tier clears rule-and-rollout parity review before any publish-like move.');
     }
 
     public function test_card_types_page_ignores_unknown_selected_card_type_query(): void

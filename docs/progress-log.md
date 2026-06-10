@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected action-blocker wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier import and publish blocker copy now also distinguishes `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving those action blockers on broader live/draft wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks those linkage-aware import and publish blocker phrases across all four selected tier scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
 ### Card-type focus and posture wording checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Tier focus`, `Tier posture`, and `Evidence priority` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving those planning cues on broader live/draft wording.
 - Updated the focused selected-tier assertions so the card-types management context and edit-shell detail now lock those linkage-aware focus and posture phrases across linked and unlinked active/draft scenarios.
