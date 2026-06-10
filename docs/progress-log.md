@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected dependency helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its Galaxy-specific dependency rows through one helper instead of assembling that dependency block inline.
+- Kept the rendered dependency copy unchanged while tightening the selected-tier review seam, so later Phase 1 dependency-copy changes can stay localized.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected live-form copy helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type edit flow now sources its live-form title, description, submit/cancel labels, and review cue from one small helper instead of passing those card-type-specific strings inline.
 - Kept the rendered copy unchanged while tightening the selected-tier edit assembly seam, so later Phase 1 card-type form-copy changes can stay localized.
