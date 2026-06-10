@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type live-form description checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the default selected-tier edit description now says `live Galaxy tier form` instead of the broader generic `shared live form` wording.
+- Updated the focused selected-tier assertion so the card-types workspace now locks that more Galaxy-specific edit-form description while leaving the explicit config override path untouched.
+- Re-ran focused selected-tier UI and live-form callback assertions as the parity guard for this small card-type form-copy follow-up.
+
 ### Card-type success summary label checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected row in card-type success summaries now renders as `Selected Galaxy tier` instead of the broader generic `Selected tier` wording.
 - Updated the focused card-types success-path assertions so create, toggle, and live-update flows now lock that more Galaxy-specific selected-tier summary label while neighboring non-card-type success banners keep their prior wording.

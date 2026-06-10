@@ -2364,7 +2364,7 @@ class ResourceIndexController extends Controller
 
     private function cardTypesLiveFormDescription(): string
     {
-        return 'Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.';
+        return 'Update the selected Galaxy tier through the live Galaxy tier form without leaving the card-types workspace.';
     }
 
     private function cardTypesLiveFormCancelLabel(): string

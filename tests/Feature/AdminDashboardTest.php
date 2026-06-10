@@ -12455,7 +12455,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Remaining backend gap:')
             ->assertSee('Draft activation, publish logic, and rule-import parity should stay foundation-preview only until draft linked-tier parity is verified.')
             ->assertSee('Edit Galaxy tier in Galaxy foundation')
-            ->assertSee('Update the selected Galaxy tier through the shared live form without leaving the card-types workspace.')
+            ->assertSee('Update the selected Galaxy tier through the live Galaxy tier form without leaving the card-types workspace.')
             ->assertSee('>Save tier changes<', false)
             ->assertSee('action="/admin/card-types/'.$cardType->id.'"', false)
             ->assertSee('name="_method"', false)
