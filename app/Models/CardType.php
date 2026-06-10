@@ -46,6 +46,26 @@ class CardType extends Model
         return $query->whereNotNull('rollout_note')->where('rollout_note', '!=', '');
     }
 
+    public function scopeLinked(Builder $query): Builder
+    {
+        return $query->has('cards');
+    }
+
+    public function scopeUnlinked(Builder $query): Builder
+    {
+        return $query->doesntHave('cards');
+    }
+
+    public function scopeActiveLinked(Builder $query): Builder
+    {
+        return $query->active()->linked();
+    }
+
+    public function scopeDraftLinked(Builder $query): Builder
+    {
+        return $query->draft()->linked();
+    }
+
     public function cards(): HasMany
     {
         return $this->hasMany(Card::class);

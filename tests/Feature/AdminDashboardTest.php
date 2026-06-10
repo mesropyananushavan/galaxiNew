@@ -2114,6 +2114,68 @@ class AdminDashboardTest extends TestCase
         $this->assertNotContains($activeTier->id, CardType::query()->draft()->pluck('id')->all());
     }
 
+    public function test_card_type_linkage_scopes_match_tier_foundation_baseline(): void
+    {
+        $shop = Shop::create([
+            'name' => 'Tier Linkage Scope Shop',
+            'code' => 'tier-linkage-scope-shop',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Tier Linkage Holder',
+            'phone' => '+37493000001',
+            'is_active' => true,
+        ]);
+
+        $activeLinkedTier = CardType::create([
+            'name' => 'Active Linked Tier',
+            'slug' => 'active-linked-tier',
+            'points_rate' => '1.30',
+            'is_active' => true,
+        ]);
+
+        $draftLinkedTier = CardType::create([
+            'name' => 'Draft Linked Tier',
+            'slug' => 'draft-linked-tier',
+            'points_rate' => '0.70',
+            'is_active' => false,
+        ]);
+
+        $unlinkedTier = CardType::create([
+            'name' => 'Unlinked Tier',
+            'slug' => 'unlinked-tier',
+            'points_rate' => '0.95',
+            'is_active' => true,
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $activeLinkedTier->id,
+            'number' => 'GLX-TIER-LINK-1001',
+            'status' => 'active',
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $draftLinkedTier->id,
+            'number' => 'GLX-TIER-LINK-1002',
+            'status' => 'draft',
+        ]);
+
+        $this->assertEqualsCanonicalizing(
+            [$activeLinkedTier->id, $draftLinkedTier->id],
+            CardType::query()->linked()->pluck('id')->all(),
+        );
+        $this->assertSame([$unlinkedTier->id], CardType::query()->unlinked()->pluck('id')->all());
+        $this->assertSame([$activeLinkedTier->id], CardType::query()->activeLinked()->pluck('id')->all());
+        $this->assertSame([$draftLinkedTier->id], CardType::query()->draftLinked()->pluck('id')->all());
+        $this->assertNotContains($unlinkedTier->id, CardType::query()->linked()->pluck('id')->all());
+    }
+
     public function test_card_blocked_scope_matches_inventory_baseline(): void
     {
         $shop = Shop::create([

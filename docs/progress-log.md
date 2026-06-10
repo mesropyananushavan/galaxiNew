@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type linkage scopes checkpoint
+- Added explicit `linked`, `unlinked`, `activeLinked`, and `draftLinked` scopes to `app/Models/CardType.php`, so the Phase 1 tier foundation now names card-assignment coverage directly instead of leaving future tier workflow queries to ad hoc relationship filters.
+- Added focused scope coverage in `tests/Feature/AdminDashboardTest.php` to lock those tier-linkage queries to a real Galaxy shop, holder, and card context.
+- Re-ran the focused tier-scope assertions as the parity guard for this small model-foundation follow-up.
+
 ### Checks and rules gates checkpoint
 - Added explicit `view-checks-points` and `view-services-rules` gates in `app/Providers/Concerns/RegistersAdminAccessGates.php` and wired `admin.checks-points.index` plus `admin.services-rules.index` through them in `routes/admin.php`, so those two operational review lanes are no longer only implied by the shared admin shell guard.
 - Updated the Phase 1 access baseline, seam docs, and focused dashboard assertions so the receipt and rules route contracts now name their dedicated review gates while still truthfully staying in the shared-shell maturity bucket until deeper receipt and rule policies land.
