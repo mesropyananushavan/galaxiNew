@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type readiness timeline checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review timeline now also includes an explicit `readiness signal` entry instead of leaving that model-backed readiness cue only inside the detail card.
+- Updated the focused selected-tier assertions so the card-types management context now locks the new readiness timeline title and description for draft-linked and active-unlinked tier scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small timeline-symmetry follow-up.
+
 ### Card-type guidance timeline checkpoint
 - Extended `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review timeline now also includes explicit `status guidance`, `rule-import blocker`, and `publish guidance` entries instead of leaving those model-backed guidance cues only inside the detail card.
 - Updated the focused selected-tier assertions so the card-types management context now locks the new guidance timeline titles and descriptions for draft-linked and active-unlinked tier scenarios.

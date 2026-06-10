@@ -2035,6 +2035,11 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesActionGating($selectedCardType),
             ],
             [
+                'title' => $this->cardTypesReadinessSignalTimelineTitle($selectedCardType),
+                'time' => 'Current request',
+                'description' => $this->cardTypesReadinessSignal($selectedCardType),
+            ],
+            [
                 'title' => $this->cardTypesStatusGuidanceTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesStatusGuidance($selectedCardType),
@@ -2284,6 +2289,11 @@ class ResourceIndexController extends Controller
     private function cardTypesActionGatingTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s action gating reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesReadinessSignalTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s readiness signal reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesStatusGuidanceTimelineTitle(CardType $selectedCardType): string
