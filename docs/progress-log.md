@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type edit-flow dependency cue checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier dependency block now says `Live Galaxy tier form is running in request-driven PATCH mode` instead of the broader generic `Shared live form...` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific edit-flow dependency cue alongside the matching review and edit-form descriptions.
+- Re-ran focused card-types preview and selected-tier UI assertions as the parity guard for this small dependency-copy follow-up.
+
 ### Card-type live-form review cue checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review cue now says `live Galaxy tier form` instead of the broader generic `shared live form` wording.
 - Updated the focused card-types preview/edit assertion so the workspace now locks that more Galaxy-specific review cue while leaving explicit live-form config overrides untouched.

@@ -12422,7 +12422,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy tier dependencies')
             ->assertSee('Selected Galaxy tier:')
             ->assertSee('Galaxy tier edit flow state:')
-            ->assertSee('Shared live form is running in request-driven PATCH mode')
+            ->assertSee('Live Galaxy tier form is running in request-driven PATCH mode')
             ->assertSee('Galaxy tier lifecycle freshness:')
             ->assertSee('newly created in Galaxy foundation review')
             ->assertSee('Last saved in Galaxy foundation:')

@@ -2080,7 +2080,7 @@ class ResourceIndexController extends Controller
 
         $page['dependencyStatus'] = [
             ['label' => 'Selected Galaxy tier', 'value' => $selectedCardType->name],
-            ['label' => 'Galaxy tier edit flow state', 'value' => 'Shared live form is running in request-driven PATCH mode'],
+            ['label' => 'Galaxy tier edit flow state', 'value' => 'Live Galaxy tier form is running in request-driven PATCH mode'],
             ['label' => 'Galaxy tier lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
             ['label' => 'Galaxy tier last saved in foundation', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
             ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
