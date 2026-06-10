@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type coverage dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the coverage row as `Galaxy tier coverage signal` instead of the broader generic `Coverage signal` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
 ### Card-type last-saved dependency label checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the timestamp row as `Galaxy tier last saved in foundation` instead of the broader generic `Last saved in Galaxy foundation` wording.
 - Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.

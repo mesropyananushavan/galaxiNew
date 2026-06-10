@@ -4043,7 +4043,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Confirm branch access handoff before operators rely on this live role shell.')
             ->assertSee('Assignment note:')
             ->assertSee('Keep assignment rollout review-only until branch staff mapping is verified.')
-            ->assertSee('Coverage signal:')
+            ->assertSee('Galaxy tier coverage signal:')
             ->assertSee('scope, staff, and permission coverage visible')
             ->assertSee('Role status signal')
             ->assertSee('Active role is already visible with scope, staffing, and permission coverage for live-access parity review.')
