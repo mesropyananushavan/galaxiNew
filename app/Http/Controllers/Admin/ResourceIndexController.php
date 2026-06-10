@@ -1924,20 +1924,7 @@ class ResourceIndexController extends Controller
             return $page;
         }
 
-        $page['selectedRecordSummary'] = $this->cardTypesSelectedTypeSummary($selectedCardType);
-
-        $page = $this->appendCardTypeLatestFlowFeedback($page);
-        $page = $this->renameCardTypeLatestFlowSummaryLabel($page, sprintf('%s latest flow result from selected tier', $selectedCardType->name));
-
-        $page['actions'] = $this->cardTypesSelectedActions($selectedCardType);
-
-        $page['activityTimeline'] = $this->cardTypesSelectedActivityTimeline($selectedCardType);
-        $page = $this->prependLatestBackendWriteTimelineItem($page);
-
-        $page['dependencyStatus'] = $this->cardTypesSelectedDependencyStatus($selectedCardType);
-        $page = $this->applyCardTypesSelectedSurfaceTitles($page);
-
-        $page = $this->appendLatestBackendWriteDependencyStatus($page);
+        $page = $this->applyCardTypesSelectedSurfaceData($page, $selectedCardType);
 
         $liveFormCopy = $this->cardTypesSelectedLiveFormCopy();
 
@@ -1997,6 +1984,24 @@ class ResourceIndexController extends Controller
             ['label' => 'Publish guidance', 'value' => $this->cardTypesPublishGuidance($selectedCardType)],
             ['label' => 'Readiness signal', 'value' => $this->cardTypesReadinessSignal($selectedCardType)],
         ];
+    }
+
+    private function applyCardTypesSelectedSurfaceData(array $page, CardType $selectedCardType): array
+    {
+        $page['selectedRecordSummary'] = $this->cardTypesSelectedTypeSummary($selectedCardType);
+        $page = $this->appendCardTypeLatestFlowFeedback($page);
+        $page = $this->renameCardTypeLatestFlowSummaryLabel($page, sprintf('%s latest flow result from selected tier', $selectedCardType->name));
+
+        $page['actions'] = $this->cardTypesSelectedActions($selectedCardType);
+
+        $page['activityTimeline'] = $this->cardTypesSelectedActivityTimeline($selectedCardType);
+        $page = $this->prependLatestBackendWriteTimelineItem($page);
+
+        $page['dependencyStatus'] = $this->cardTypesSelectedDependencyStatus($selectedCardType);
+        $page = $this->applyCardTypesSelectedSurfaceTitles($page);
+        $page = $this->appendLatestBackendWriteDependencyStatus($page);
+
+        return $page;
     }
 
     private function cardTypesSelectedActivityTimeline(CardType $selectedCardType): array
