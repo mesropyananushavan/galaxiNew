@@ -3042,11 +3042,16 @@ class ResourceIndexController extends Controller
     {
         return [
             ...$this->cardTypesSelectedPrimaryActions($selectedCardType),
-            [
-                'label' => $this->cardTypesEditingActionLabel($selectedCardType),
-                'tone' => 'secondary',
-            ],
+            $this->cardTypesSelectedEditingAction($selectedCardType),
             ...$this->cardTypesSelectedSecondaryActions($selectedCardType),
+        ];
+    }
+
+    private function cardTypesSelectedEditingAction(CardType $selectedCardType): array
+    {
+        return [
+            'label' => $this->cardTypesEditingActionLabel($selectedCardType),
+            'tone' => 'secondary',
         ];
     }
 

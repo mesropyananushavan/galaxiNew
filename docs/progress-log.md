@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected editing-action helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its current `Editing: ...` review action through a tiny helper instead of leaving that middle action inline between the primary and secondary action helpers.
+- Kept the rendered selected-tier action output unchanged while finishing the local helper split for the selected card-type action seam.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected primary action helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its primary mutation actions through a small helper instead of assembling the create-shell and toggle-status actions inline.
 - Kept the rendered selected-tier action output unchanged while fully splitting the selected action set into primary and secondary helper seams.
