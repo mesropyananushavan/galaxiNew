@@ -1930,15 +1930,20 @@ class ResourceIndexController extends Controller
     private function cardTypesCatalogRow(CardType $cardType): array
     {
         return [
-            [
-                'label' => $cardType->name,
-                'href' => route('admin.card-types.index', ['cardType' => $cardType->id], absolute: false).'#live-form',
-            ],
+            $this->cardTypesCatalogNameLink($cardType),
             $cardType->slug,
             $this->cardTypesPointsRateLabel($cardType),
             $this->cardTypesCatalogRolloutNotePreview($cardType),
             $this->cardTypeStatusFlowLabel($cardType),
             $this->cardTypesCatalogToggleStatusAction($cardType),
+        ];
+    }
+
+    private function cardTypesCatalogNameLink(CardType $cardType): array
+    {
+        return [
+            'label' => $cardType->name,
+            'href' => route('admin.card-types.index', ['cardType' => $cardType->id], absolute: false).'#live-form',
         ];
     }
 
