@@ -2105,17 +2105,22 @@ class ResourceIndexController extends Controller
 
     private function cardTypesSelectedLatestFlowSummaryLabel(CardType $cardType): string
     {
-        return sprintf('%s latest flow result from selected tier', $cardType->name);
+        return sprintf('%s latest flow result from selected tier', $this->cardTypesTierLabelPrefix($cardType));
     }
 
     private function cardTypesLatestBackendWriteTimelineTitle(CardType $cardType): string
     {
-        return sprintf('%s latest backend write reflected from live form', $cardType->name);
+        return sprintf('%s latest backend write reflected from live form', $this->cardTypesTierLabelPrefix($cardType));
     }
 
     private function cardTypesLatestFlowDependencyLabel(CardType $cardType): string
     {
-        return sprintf('%s latest flow result from live form', $cardType->name);
+        return sprintf('%s latest flow result from live form', $this->cardTypesTierLabelPrefix($cardType));
+    }
+
+    private function cardTypesTierLabelPrefix(CardType $cardType): string
+    {
+        return $cardType->name;
     }
 
     private function applyCardTypesSelectedLiveFormData(array $page, CardType $selectedCardType): array

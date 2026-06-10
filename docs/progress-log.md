@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type tier-label prefix checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier workspace now resolves the shared Galaxy-tier name prefix for its latest-flow and latest-backend-write labels through one helper instead of repeating the same tier-name access across multiple `sprintf` label builders.
+- Kept the rendered selected-tier output unchanged while trimming another small piece of duplicated Galaxy-tier label wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected latest-flow label checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier workspace now resolves its tier-name latest-flow summary label, latest backend-write timeline title, and latest-flow dependency label through named helpers instead of repeating the same `sprintf` string assembly inline.
 - Kept the rendered selected-tier output unchanged while trimming another small piece of duplicated Galaxy-tier label wiring out of the card-types workspace.
