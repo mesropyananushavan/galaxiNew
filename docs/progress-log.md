@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type guidance and action-gating wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Status guidance`, `Rule-import blocker`, `Publish guidance`, and `Action gating` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaning on broader live/draft wording.
+- Extended the focused selected-tier assertions so the card-types edit shell now locks those linkage-aware guidance and gating phrases across all four active/draft and linked/unlinked scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
 ### Card-type readiness and posture wording checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Readiness signal`, `Current status posture`, `Rule-import posture`, and `Publish posture` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of using broader live/draft-only wording.
 - Extended the focused selected-tier assertions so the card-types edit shell now locks those linkage-aware readiness and posture phrases across active-linked, active-unlinked, draft-linked, and draft-unlinked scenarios.

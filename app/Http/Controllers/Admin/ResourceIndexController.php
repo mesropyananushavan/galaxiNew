@@ -2364,30 +2364,50 @@ class ResourceIndexController extends Controller
 
     private function cardTypesActionGating(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'Allow small state corrections only, keep publish-like and import actions gated'
-            : 'Allow draft-safe edits and validation only, keep live-facing actions gated';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Allow small linked-tier state corrections only, keep publish-like and import actions gated',
+            $this->cardTypeIsActive($selectedCardType) => 'Allow only coverage-building state corrections on this active unlinked tier, keep publish-like and import actions gated',
+            $hasVisibleCoverage => 'Allow draft-linked edits and validation only, keep live-facing actions gated',
+            default => 'Allow draft-unlinked edits and validation only, keep live-facing actions gated until card coverage exists',
+        };
     }
 
     private function cardTypesStatusGuidance(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'This tier is live in the current Galaxy foundation layer, so operators should move it back to draft before parity-sensitive rule changes.'
-            : 'This tier is still in draft, which keeps it safe for parity checks before operators treat it as live loyalty behavior.';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'This tier is active and linked in the current Galaxy foundation layer, so operators should keep it stable while rollout parity is reviewed.',
+            $this->cardTypeIsActive($selectedCardType) => 'This tier is active but still unlinked in visible card coverage, so operators should avoid treating it as a stable rollout baseline yet.',
+            $hasVisibleCoverage => 'This tier is still draft-linked, which keeps it safer for parity checks before operators treat it as live loyalty behavior.',
+            default => 'This tier is still draft-unlinked, which keeps it safe for parity checks before operators treat it as live loyalty behavior.',
+        };
     }
 
     private function cardTypesRuleImportBlocker(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'Rule import should stay blocked for this live tier until legacy accrual parity is verified against the active behavior.'
-            : 'Rule import is still blocked, but draft state keeps this tier safe for parity-first catalog and accrual checks.';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Rule import should stay blocked for this active linked tier until legacy accrual parity is verified against linked card behavior.',
+            $this->cardTypeIsActive($selectedCardType) => 'Rule import should stay blocked for this active unlinked tier until visible card coverage exists for accrual parity review.',
+            $hasVisibleCoverage => 'Rule import is still blocked, but draft-linked state keeps this tier safe for parity-first catalog and accrual checks.',
+            default => 'Rule import is still blocked, and draft-unlinked state keeps this tier in parity-first catalog review only.',
+        };
     }
 
     private function cardTypesPublishGuidance(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'Treat this tier as already live in the Galaxy foundation layer, so publish-like changes should wait for rule parity and operator confirmation.'
-            : 'Keep this tier in draft until rule import expectations and old Galaxy behavior are mapped clearly enough to publish safely.';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Treat this active linked tier as already live in the Galaxy foundation layer, so publish-like changes should wait for rule parity and operator confirmation.',
+            $this->cardTypeIsActive($selectedCardType) => 'Keep this active unlinked tier out of further publish-like changes until visible card coverage makes rollout parity review concrete.',
+            $hasVisibleCoverage => 'Keep this draft-linked tier in review until rule import expectations and old Galaxy behavior are mapped clearly enough to publish safely.',
+            default => 'Keep this draft-unlinked tier in review until both rule expectations and first card coverage exist clearly enough to publish safely.',
+        };
     }
 
     private function cardTypesReadinessSignal(CardType $selectedCardType): string
