@@ -1988,9 +1988,7 @@ class ResourceIndexController extends Controller
 
     private function applyCardTypesSelectedSurfaceData(array $page, CardType $selectedCardType): array
     {
-        $page['selectedRecordSummary'] = $this->cardTypesSelectedTypeSummary($selectedCardType);
-        $page = $this->appendCardTypeLatestFlowFeedback($page);
-        $page = $this->renameCardTypeLatestFlowSummaryLabel($page, sprintf('%s latest flow result from selected tier', $selectedCardType->name));
+        $page = $this->applyCardTypesSelectedSummaryData($page, $selectedCardType);
 
         $page['actions'] = $this->cardTypesSelectedActions($selectedCardType);
 
@@ -2000,6 +1998,15 @@ class ResourceIndexController extends Controller
         $page['dependencyStatus'] = $this->cardTypesSelectedDependencyStatus($selectedCardType);
         $page = $this->applyCardTypesSelectedSurfaceTitles($page);
         $page = $this->appendLatestBackendWriteDependencyStatus($page);
+
+        return $page;
+    }
+
+    private function applyCardTypesSelectedSummaryData(array $page, CardType $selectedCardType): array
+    {
+        $page['selectedRecordSummary'] = $this->cardTypesSelectedTypeSummary($selectedCardType);
+        $page = $this->appendCardTypeLatestFlowFeedback($page);
+        $page = $this->renameCardTypeLatestFlowSummaryLabel($page, sprintf('%s latest flow result from selected tier', $selectedCardType->name));
 
         return $page;
     }
