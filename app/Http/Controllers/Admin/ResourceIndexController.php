@@ -2093,7 +2093,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Galaxy tier status posture', 'value' => $this->cardTypesCurrentStatusPosture($selectedCardType)],
             ['label' => 'Galaxy tier rule-import posture', 'value' => $this->cardTypesRuleImportPosture($selectedCardType)],
             ['label' => 'Galaxy tier publish posture', 'value' => $this->cardTypesPublishPosture($selectedCardType)],
-            ['label' => 'Action gating', 'value' => $this->cardTypesActionGating($selectedCardType)],
+            ['label' => 'Galaxy tier action gating', 'value' => $this->cardTypesActionGating($selectedCardType)],
             ['label' => 'Remaining backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
         ];
 

@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type action-gating dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the gating row as `Galaxy tier action gating` instead of the broader generic `Action gating` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
 ### Card-type publish dependency label checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the publish row as `Galaxy tier publish posture` instead of the broader generic `Publish posture` wording.
 - Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.

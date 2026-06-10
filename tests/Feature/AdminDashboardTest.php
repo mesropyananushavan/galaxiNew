@@ -12450,7 +12450,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Imports can be reviewed in draft linked mode, but they are still not safe to enable yet')
             ->assertSee('Galaxy tier publish posture:')
             ->assertSee('Draft linked tiers should stay unpublished until legacy behavior is mapped more explicitly')
-            ->assertSee('Action gating:')
+            ->assertSee('Galaxy tier action gating:')
             ->assertSee('Allow draft-linked edits and validation only, keep live-facing actions gated')
             ->assertSee('Remaining backend gap:')
             ->assertSee('Draft activation, publish logic, and rule-import parity should stay foundation-preview only until draft linked-tier parity is verified.')
