@@ -389,8 +389,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy reward operations:')
             ->assertSee('Galaxy reward operations (1), Reward review stays visible through 1 shared-shell Galaxy rewards route. This lane is still guarded only by the shared Galaxy admin shell.')
             ->assertSee('<strong>Gifts review route</strong>', false)
-            ->assertSee('<code>admin.gifts.index</code>; <code>GET /admin/gifts</code>; <code>auth + can:access-admin</code>; <code>shared-shell</code>', false)
-            ->assertSee('Keeps the live Galaxy rewards workspace behind the shared admin shell guard while reward-specific write access is still preview-only.')
+            ->assertSee('<code>admin.gifts.index</code>; <code>GET /admin/gifts</code>; <code>can:view-gifts</code>; <code>shared-shell</code>', false)
+            ->assertSee('Keeps the live Galaxy rewards workspace behind an explicit rewards gate while reward-specific write access is still preview-only.')
             ->assertSee('Galaxy reporting operations:')
             ->assertSee('Galaxy reporting operations (1), Reporting review stays visible through 1 shared-shell Galaxy reporting route. This lane is still guarded only by the shared Galaxy admin shell.')
             ->assertSee('<strong>Reports review route</strong>', false)
@@ -771,6 +771,7 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('create', Card::class));
         $this->assertTrue($user->canAccessShop($shop));
         $this->assertTrue($user->can('access-shop', $shop));
+        $this->assertTrue($user->can('view-gifts'));
         $this->assertTrue($user->can('view-reports'));
         $this->assertTrue($user->can('view', $shop));
         $this->assertTrue($user->can('update', $shop));
@@ -824,6 +825,7 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('create', Card::class));
         $this->assertTrue($user->canAccessShop($assignedShop));
         $this->assertTrue($user->can('access-shop', $assignedShop));
+        $this->assertTrue($user->can('view-gifts'));
         $this->assertTrue($user->can('view-reports'));
         $this->assertTrue($user->can('view', $assignedShop));
         $this->assertTrue($user->can('update', $assignedShop));
@@ -901,6 +903,7 @@ class AdminDashboardTest extends TestCase
         $this->assertContains('can:access-admin', $servicesRulesRoute->gatherMiddleware());
         $this->assertContains('auth', $giftsRoute->gatherMiddleware());
         $this->assertContains('can:access-admin', $giftsRoute->gatherMiddleware());
+        $this->assertContains('can:view-gifts', $giftsRoute->gatherMiddleware());
         $this->assertContains('auth', $reportsRoute->gatherMiddleware());
         $this->assertContains('can:access-admin', $reportsRoute->gatherMiddleware());
         $this->assertContains('can:view-reports', $reportsRoute->gatherMiddleware());

@@ -147,9 +147,9 @@ return [
         [
             'label' => 'Gifts review route',
             'route' => 'admin.gifts.index',
-            'guard' => 'auth + can:access-admin',
+            'guard' => 'can:view-gifts',
             'maturity' => 'shared-shell',
-            'coverage' => 'Keeps the live Galaxy rewards workspace behind the shared admin shell guard while reward-specific write access is still preview-only.',
+            'coverage' => 'Keeps the live Galaxy rewards workspace behind an explicit rewards gate while reward-specific write access is still preview-only.',
         ],
         [
             'label' => 'Reports review route',

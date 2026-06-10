@@ -71,7 +71,10 @@ Route::prefix('admin')
             ->middleware('can:update,cardType')
             ->name('card-types.toggle-status');
         Route::get('/services-rules', ResourceIndexController::class)->defaults('resource', 'services-rules')->name('services-rules.index');
-        Route::get('/gifts', ResourceIndexController::class)->defaults('resource', 'gifts')->name('gifts.index');
+        Route::get('/gifts', ResourceIndexController::class)
+            ->middleware('can:view-gifts')
+            ->defaults('resource', 'gifts')
+            ->name('gifts.index');
         Route::get('/roles-permissions', ResourceIndexController::class)
             ->middleware(['can:viewAny,'.Role::class, 'can:viewAny,'.Permission::class])
             ->defaults('resource', 'roles-permissions')

@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Gifts gate checkpoint
+- Added an explicit `view-gifts` gate in `app/Providers/Concerns/RegistersAdminAccessGates.php` and wired `admin.gifts.index` through it in `routes/admin.php`, so rewards review is no longer only an unnamed shared-shell lane.
+- Updated the Phase 1 access baseline and seam docs so the gifts route contract now names its dedicated gate while still truthfully staying in the shared-shell maturity bucket until reward-specific policies land.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this next operational-lane access follow-up.
+
 ### Reports gate checkpoint
 - Added an explicit `view-reports` gate in `app/Providers/Concerns/RegistersAdminAccessGates.php` and wired `admin.reports.index` through it in `routes/admin.php`, so reporting is no longer only an unnamed shared-shell review lane.
 - Updated the Phase 1 access baseline and seam docs so the reporting route contract now names its dedicated gate while still truthfully staying in the shared-shell maturity bucket until report-source policies land.
