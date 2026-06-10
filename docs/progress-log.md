@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Access route-guardrail display-contract checkpoint
+- Updated `resources/views/admin/dashboard.blade.php` to render the grouped access-lane summary from the controller-owned `displaySummary` payload instead of rebuilding the heading/count/summary presentation out of separate view pieces.
+- Kept the access seam docs aligned so the Phase 1 access card remains an explicitly controller-shaped runtime contract rather than drifting back toward Blade-side assembly.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small controller-contract follow-up.
+
 ### Access route-guardrail family display-summary checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so each grouped access guardrail family now also exposes a controller-owned display summary contract, keeping the heading/count/summary payload shaped in one place.
 - The current Blade render still uses the separate heading and muted summary lines, but this follow-up keeps the grouped access-lane presentation owned by the controller-side access map contract instead of drifting back toward view assembly.
