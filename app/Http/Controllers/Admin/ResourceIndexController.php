@@ -810,7 +810,7 @@ class ResourceIndexController extends Controller
         );
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
-        $page = $this->renameLatestBackendWriteTimelineTitle($page, sprintf('%s latest backend write reflected from live form', $selectedCardType->name));
+        $page = $this->renameLatestBackendWriteTimelineTitle($page, $this->cardTypesLatestBackendWriteTimelineTitle($selectedCardType));
 
         $page['dependencyStatus'] = $this->rolesPermissionsSelectedRoleDependencyStatus(
             $selectedRole,
@@ -818,7 +818,7 @@ class ResourceIndexController extends Controller
         );
 
         $page = $this->appendLatestBackendWriteDependencyStatus($page);
-        $page = $this->renameLatestBackendWriteDependencyLabel($page, sprintf('%s latest flow result from live form', $selectedCardType->name));
+        $page = $this->renameLatestBackendWriteDependencyLabel($page, $this->cardTypesLatestFlowDependencyLabel($selectedCardType));
 
         return $page;
     }
@@ -2084,7 +2084,7 @@ class ResourceIndexController extends Controller
     {
         $page['selectedRecordSummary'] = $this->cardTypesSelectedTypeSummary($selectedCardType);
         $page = $this->appendCardTypeLatestFlowFeedback($page);
-        $page = $this->renameCardTypeLatestFlowSummaryLabel($page, sprintf('%s latest flow result from selected tier', $selectedCardType->name));
+        $page = $this->renameCardTypeLatestFlowSummaryLabel($page, $this->cardTypesSelectedLatestFlowSummaryLabel($selectedCardType));
 
         return $page;
     }
@@ -2101,6 +2101,21 @@ class ResourceIndexController extends Controller
         $page['dependencyStatus'] = $this->cardTypesSelectedDependencyStatus($selectedCardType);
 
         return $this->appendLatestBackendWriteDependencyStatus($page);
+    }
+
+    private function cardTypesSelectedLatestFlowSummaryLabel(CardType $cardType): string
+    {
+        return sprintf('%s latest flow result from selected tier', $cardType->name);
+    }
+
+    private function cardTypesLatestBackendWriteTimelineTitle(CardType $cardType): string
+    {
+        return sprintf('%s latest backend write reflected from live form', $cardType->name);
+    }
+
+    private function cardTypesLatestFlowDependencyLabel(CardType $cardType): string
+    {
+        return sprintf('%s latest flow result from live form', $cardType->name);
     }
 
     private function applyCardTypesSelectedLiveFormData(array $page, CardType $selectedCardType): array
