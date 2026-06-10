@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type backend-write timeline title checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so a selected tier's latest backend-write timeline item now uses a tier-specific `...latest backend write reflected from live form` title instead of the broader generic label.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more explicit post-write timeline title in the selected draft-tier review flow.
+- Re-ran the focused selected-tier assertions as the parity guard for this small post-write timeline follow-up.
+
 ### Card-type edit-flow timeline checkpoint
 - Extended `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review timeline now also includes an explicit `edit flow state reflected from live form` entry instead of leaving the live PATCH-mode cue only inside the dependency/detail card.
 - Updated the focused selected-tier assertions so the card-types management context now locks that new edit-flow timeline title and description for draft-linked and active-unlinked tier scenarios.

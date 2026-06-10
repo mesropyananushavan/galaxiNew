@@ -12869,7 +12869,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Latest flow result:')
             ->assertSee('Card type "Galaxy Prime" is now draft.')
             ->assertSee('Recent activity preview')
-            ->assertSee('Latest backend write result')
+            ->assertSee('Galaxy Prime latest backend write reflected from live form')
             ->assertSee('Card type "Galaxy Prime" is now draft.')
             ->assertSee('Import rules')
             ->assertSee('Blocked until draft parity review has visible card coverage to compare against.')

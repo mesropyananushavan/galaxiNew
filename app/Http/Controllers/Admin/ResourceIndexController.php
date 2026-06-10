@@ -810,6 +810,7 @@ class ResourceIndexController extends Controller
         );
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
+        $page = $this->renameLatestBackendWriteTimelineTitle($page, sprintf('%s latest backend write reflected from live form', $selectedCardType->name));
 
         $page['dependencyStatus'] = $this->rolesPermissionsSelectedRoleDependencyStatus(
             $selectedRole,
@@ -4895,6 +4896,24 @@ class ResourceIndexController extends Controller
             'time' => 'Current request',
             'description' => $status,
         ]);
+        $page['activityTimeline'] = $timeline;
+
+        return $page;
+    }
+
+    private function renameLatestBackendWriteTimelineTitle(array $page, string $title): array
+    {
+        $timeline = is_array($page['activityTimeline'] ?? null) ? $page['activityTimeline'] : [];
+
+        if ($timeline === []) {
+            return $page;
+        }
+
+        if (($timeline[0]['title'] ?? null) !== 'Latest backend write result') {
+            return $page;
+        }
+
+        $timeline[0]['title'] = $title;
         $page['activityTimeline'] = $timeline;
 
         return $page;
