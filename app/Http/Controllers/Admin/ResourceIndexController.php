@@ -2307,23 +2307,38 @@ class ResourceIndexController extends Controller
 
     private function cardTypesFocus(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'Start with saved card coverage, live status, and rollout note clarity before discussing any later publish reversal or rule import step.'
-            : 'Start with saved card coverage, draft status, activation readiness, and rollout note clarity before discussing any later rule import step.';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Start with saved card coverage, active linked status, and rollout note clarity before discussing any later publish reversal or rule import step.',
+            $this->cardTypeIsActive($selectedCardType) => 'Start with first visible card coverage, active unlinked status, and rollout note clarity before discussing any later publish reversal or rule import step.',
+            $hasVisibleCoverage => 'Start with saved card coverage, draft linked status, activation readiness, and rollout note clarity before discussing any later rule import step.',
+            default => 'Start with first visible card coverage, draft unlinked status, activation readiness, and rollout note clarity before discussing any later rule import step.',
+        };
     }
 
     private function cardTypesPosture(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'Keep live tier review in the workspace first, then leave publish reversal, rule import, and rollout-sensitive moves gated until parity is proven.'
-            : 'Keep draft tier review in the workspace first, then leave rule import and publish-style moves gated until parity is proven.';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Keep active linked-tier review in the workspace first, then leave publish reversal, rule import, and rollout-sensitive moves gated until parity is proven.',
+            $this->cardTypeIsActive($selectedCardType) => 'Keep active unlinked-tier review in the workspace first, then leave publish reversal, rule import, and rollout-sensitive moves gated until parity is proven.',
+            $hasVisibleCoverage => 'Keep draft linked-tier review in the workspace first, then leave rule import and publish-style moves gated until parity is proven.',
+            default => 'Keep draft unlinked-tier review in the workspace first, then leave rule import and publish-style moves gated until parity is proven.',
+        };
     }
 
     private function cardTypesEvidencePriority(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'Keep visible card coverage, live status, activation note, and rollout note together before trusting any later publish reversal or rule import discussion.'
-            : 'Keep visible card coverage, activation readiness, and rollout note together before trusting any later rule import discussion.';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Keep visible card coverage, active linked status, activation note, and rollout note together before trusting any later publish reversal or rule import discussion.',
+            $this->cardTypeIsActive($selectedCardType) => 'Keep first visible card coverage, active unlinked status, activation note, and rollout note together before trusting any later publish reversal or rule import discussion.',
+            $hasVisibleCoverage => 'Keep visible card coverage, draft linked activation readiness, and rollout note together before trusting any later rule import discussion.',
+            default => 'Keep first visible card coverage, draft unlinked activation readiness, and rollout note together before trusting any later rule import discussion.',
+        };
     }
 
     private function cardTypesCurrentStatusPosture(CardType $selectedCardType): string

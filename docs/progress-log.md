@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type focus and posture wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Tier focus`, `Tier posture`, and `Evidence priority` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving those planning cues on broader live/draft wording.
+- Updated the focused selected-tier assertions so the card-types management context and edit-shell detail now lock those linkage-aware focus and posture phrases across linked and unlinked active/draft scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
 ### Card-type status-signal and backend-gap wording checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Tier status signal` and backend-gap copy now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving the final review cues on broader live/draft wording.
 - Extended the focused selected-tier assertions so both the management context card and the edit-shell detail card now lock those linkage-aware status and backend-gap phrases across all four active/draft and linked/unlinked scenarios.
