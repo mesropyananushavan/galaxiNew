@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type success summary label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected row in card-type success summaries now renders as `Selected Galaxy tier` instead of the broader generic `Selected tier` wording.
+- Updated the focused card-types success-path assertions so create, toggle, and live-update flows now lock that more Galaxy-specific selected-tier summary label while neighboring non-card-type success banners keep their prior wording.
+- Re-ran focused card-types and adjacent cards success-banner assertions as the parity guard for this small post-write wording follow-up.
+
 ### Card-type backend-flow summary checkpoint
 - Tightened `resources/views/admin/resource-index.blade.php` so the card-types success banner now uses the more explicit summary line `Galaxy tier changes are now visible in the Galaxy foundation-backed workspace.` instead of the broader generic `Tier changes...` wording.
 - Updated the focused card-types success-path assertions so create and live-update flows now lock that more Galaxy-specific post-write summary line while neighboring non-card-type banners keep their prior wording.

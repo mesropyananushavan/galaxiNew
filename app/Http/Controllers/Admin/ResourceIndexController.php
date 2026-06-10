@@ -2134,7 +2134,7 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedTypeSummary(CardType $selectedCardType): array
     {
         return [
-            ['label' => 'Selected tier', 'value' => $selectedCardType->name],
+            ['label' => 'Selected Galaxy tier', 'value' => $selectedCardType->name],
             ['label' => 'Slug', 'value' => $selectedCardType->slug],
             ['label' => 'Points rate', 'value' => number_format((float) $selectedCardType->points_rate, 2).'x'],
             ['label' => 'Galaxy status', 'value' => $this->cardTypeStatusValue($selectedCardType)],
