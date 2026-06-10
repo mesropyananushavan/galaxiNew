@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type edit-flow dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the PATCH-mode row as `Galaxy tier edit flow state` instead of the broader generic `Edit flow state` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
 ### Card-type selected-tier label checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the primary item as `Selected Galaxy tier` instead of the broader generic `Selected record` wording.
 - Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the existing tier-specific flow and timeline wording.

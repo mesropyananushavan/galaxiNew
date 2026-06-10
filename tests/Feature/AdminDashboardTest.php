@@ -12421,7 +12421,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Blocked until this draft linked tier clears rule and rollout parity review against visible card coverage.')
             ->assertSee('Implementation dependencies')
             ->assertSee('Selected Galaxy tier:')
-            ->assertSee('Edit flow state:')
+            ->assertSee('Galaxy tier edit flow state:')
             ->assertSee('Shared live form is running in request-driven PATCH mode')
             ->assertSee('Lifecycle freshness:')
             ->assertSee('newly created in Galaxy foundation review')
