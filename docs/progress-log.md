@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type coverage-signal wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier coverage wording now explicitly says `active linked`, `active unlinked`, `draft linked`, or `draft unlinked` instead of falling back to broader `live` or generic `draft` card-coverage labels.
+- Updated the focused selected-tier assertions so the visible card-types review surface now checks those more explicit Galaxy linkage phrases across both linked and unlinked draft/live states.
+- Re-ran the focused selected-tier coverage assertions as the parity guard for this small tier-runtime wording follow-up.
+
 ### Card-type unlinked-state metrics checkpoint
 - Extended `App\Http\Controllers\Admin\ResourceIndexController` so the live `card-types` management snapshot now also exposes `Active unlinked Galaxy tiers` and `Draft unlinked Galaxy tiers`, completing the first visible active-vs-draft linkage matrix for Galaxy tiers on the admin surface.
 - Updated the focused model-backed card-types metrics assertion so it now also locks the unlinked side of that matrix to one active unlinked tier and zero draft unlinked tiers in the same real Galaxy shop, holder, and card context.

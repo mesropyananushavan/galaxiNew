@@ -2286,10 +2286,10 @@ class ResourceIndexController extends Controller
         $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
-            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'live tier with visible card coverage',
-            $this->cardTypeIsActive($selectedCardType) => 'live tier, card coverage still building out',
-            $cardsCount > 0 => 'draft tier with visible card coverage',
-            default => 'draft tier, card coverage pending',
+            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'active linked tier with visible card coverage',
+            $this->cardTypeIsActive($selectedCardType) => 'active unlinked tier, card coverage still building out',
+            $cardsCount > 0 => 'draft linked tier with visible card coverage',
+            default => 'draft unlinked tier, card coverage pending',
         };
     }
 
