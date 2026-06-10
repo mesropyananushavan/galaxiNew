@@ -1931,7 +1931,7 @@ class ResourceIndexController extends Controller
     {
         return [
             $this->cardTypesCatalogNameLink($cardType),
-            $this->cardTypesCatalogSlug($cardType),
+            $this->cardTypesTierSlugValue($cardType),
             $this->cardTypesPointsRateLabel($cardType),
             $this->cardTypesCatalogRolloutNotePreview($cardType),
             $this->cardTypesCatalogStatusFlowLabel($cardType),
@@ -1939,17 +1939,22 @@ class ResourceIndexController extends Controller
         ];
     }
 
-    private function cardTypesCatalogSlug(CardType $cardType): string
+    private function cardTypesSelectedTierName(CardType $cardType): string
     {
-        return $cardType->slug;
+        return $this->cardTypesTierNameValue($cardType);
     }
 
-    private function cardTypesSelectedTierName(CardType $cardType): string
+    private function cardTypesSelectedTierSlug(CardType $cardType): string
+    {
+        return $this->cardTypesTierSlugValue($cardType);
+    }
+
+    private function cardTypesTierNameValue(CardType $cardType): string
     {
         return $cardType->name;
     }
 
-    private function cardTypesSelectedTierSlug(CardType $cardType): string
+    private function cardTypesTierSlugValue(CardType $cardType): string
     {
         return $cardType->slug;
     }
@@ -1972,7 +1977,7 @@ class ResourceIndexController extends Controller
     private function cardTypesCatalogNameLink(CardType $cardType): array
     {
         return [
-            'label' => $cardType->name,
+            'label' => $this->cardTypesTierNameValue($cardType),
             'href' => route('admin.card-types.index', ['cardType' => $cardType->id], absolute: false).'#live-form',
         ];
     }
