@@ -319,6 +319,7 @@ class DashboardController extends Controller
                 ->all(),
             'routeGuardrails' => $this->preparedAccessRouteGuardrails($routeGuardrails),
             'routeGuardrailGroups' => $this->preparedAccessRouteGuardrailGroups($routeGuardrails),
+            'routeGuardrailIntro' => $this->accessRouteGuardrailIntro($routeGuardrails),
             'policies' => collect($policies)
                 ->filter(fn ($policy): bool => is_array($policy) && filled($policy['label'] ?? null) && filled($policy['policy'] ?? null))
                 ->map(function (array $policy): array {
@@ -451,6 +452,17 @@ class DashboardController extends Controller
     protected function accessRouteGuardrailFamilyDisplaySummary(string $label, int $count, string $family): string
     {
         return sprintf('%s (%d), %s', $label, $count, $this->accessRouteGuardrailFamilySummary($family, $count));
+    }
+
+    protected function accessRouteGuardrailIntro(array $routeGuardrails): string
+    {
+        $groups = $this->preparedAccessRouteGuardrailGroups($routeGuardrails);
+
+        return sprintf(
+            'These %d live Phase 1 route guardrails are grouped into %d controller-shaped Galaxy access lanes so review and first-write coverage stays readable on the admin dashboard.',
+            $this->accessRouteGuardrailCount(),
+            count($groups),
+        );
     }
 
     protected function preparedShopAccessBaseline(array $rules): array

@@ -218,6 +218,9 @@
             @endforeach
         </ul>
         <p style="{{ $dashboardNoteStyle }}"><strong>Tracked route guardrails:</strong></p>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneAccessBaseline['routeGuardrailIntro'] ?? '' }}
+        </p>
         <ul class="list">
             @foreach (($phaseOneAccessBaseline['routeGuardrailGroups'] ?? []) as $guardrailGroup)
                 <li>

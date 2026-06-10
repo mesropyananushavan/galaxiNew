@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Access route-guardrail intro-note checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so the grouped route-guardrail inventory now also exposes a controller-shaped intro note summarizing the live guardrail count and family-lane count before the grouped list renders.
+- Updated the dashboard access card and seam docs so this small bit of grouped access-lane framing no longer lives as an implicit view concern.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small controller-contract follow-up.
+
 ### Access route-guardrail family order checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so grouped access guardrail families now sort through a controller-owned branch → holder → card → tier → access-shell order instead of relying on incidental config ordering.
 - Updated the access seam docs and added a focused dashboard order assertion so the live Phase 1 access map stays stable as new guardrails are added later.
