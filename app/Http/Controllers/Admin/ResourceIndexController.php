@@ -1931,12 +1931,17 @@ class ResourceIndexController extends Controller
     {
         return [
             $this->cardTypesCatalogNameLink($cardType),
-            $cardType->slug,
+            $this->cardTypesCatalogSlug($cardType),
             $this->cardTypesPointsRateLabel($cardType),
             $this->cardTypesCatalogRolloutNotePreview($cardType),
             $this->cardTypesCatalogStatusFlowLabel($cardType),
             $this->cardTypesCatalogToggleStatusAction($cardType),
         ];
+    }
+
+    private function cardTypesCatalogSlug(CardType $cardType): string
+    {
+        return $cardType->slug;
     }
 
     private function cardTypesCatalogStatusFlowLabel(CardType $cardType): string
