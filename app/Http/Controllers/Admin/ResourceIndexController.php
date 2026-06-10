@@ -2151,8 +2151,8 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormValues(CardType $selectedCardType): array
     {
         return [
-            'name' => $selectedCardType->name,
-            'slug' => $selectedCardType->slug,
+            'name' => $this->cardTypesTierNameValue($selectedCardType),
+            'slug' => $this->cardTypesTierSlugValue($selectedCardType),
             'points_rate' => (string) $selectedCardType->points_rate,
             'is_active' => $this->cardTypeIsActive($selectedCardType) ? '1' : '0',
             'review_note' => $selectedCardType->review_note ?? '',
