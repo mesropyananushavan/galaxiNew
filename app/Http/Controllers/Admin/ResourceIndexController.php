@@ -2155,10 +2155,25 @@ class ResourceIndexController extends Controller
             'slug' => $this->cardTypesTierSlugValue($selectedCardType),
             'points_rate' => (string) $selectedCardType->points_rate,
             'is_active' => $this->cardTypeIsActive($selectedCardType) ? '1' : '0',
-            'review_note' => $selectedCardType->review_note ?? '',
-            'activation_note' => $selectedCardType->activation_note ?? '',
-            'rollout_note' => $selectedCardType->rollout_note ?? '',
+            'review_note' => $this->cardTypesEditReviewNoteValue($selectedCardType),
+            'activation_note' => $this->cardTypesEditActivationNoteValue($selectedCardType),
+            'rollout_note' => $this->cardTypesEditRolloutNoteValue($selectedCardType),
         ];
+    }
+
+    private function cardTypesEditReviewNoteValue(CardType $cardType): string
+    {
+        return $cardType->review_note ?? '';
+    }
+
+    private function cardTypesEditActivationNoteValue(CardType $cardType): string
+    {
+        return $cardType->activation_note ?? '';
+    }
+
+    private function cardTypesEditRolloutNoteValue(CardType $cardType): string
+    {
+        return $cardType->rollout_note ?? '';
     }
 
     private function cardTypesUpdateRouteName(): string

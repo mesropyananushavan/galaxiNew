@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type live-form note values checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now resolves its raw review, activation, and rollout note values through dedicated edit-form helpers instead of reading those nullable fields inline again inside the values payload.
+- Kept the rendered selected-tier edit-form output unchanged while trimming another small piece of duplicated Galaxy-tier live-form wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
 ### Card-type live-form identity values checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now reuses the shared Galaxy-tier name and slug helpers when preparing prefilled form values instead of reading those raw identity fields inline again.
 - Kept the rendered selected-tier edit-form output unchanged while trimming another small piece of duplicated Galaxy-tier identity wiring out of the card-types workspace.
