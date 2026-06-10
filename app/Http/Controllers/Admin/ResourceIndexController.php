@@ -1868,21 +1868,9 @@ class ResourceIndexController extends Controller
         }
 
         if ($cardTypes->isNotEmpty()) {
-            $page['table']['rows'] = $cardTypes->map(fn (CardType $cardType): array => [
-                [
-                    'label' => $cardType->name,
-                    'href' => route('admin.card-types.index', ['cardType' => $cardType->id], absolute: false).'#live-form',
-                ],
-                $cardType->slug,
-                number_format((float) $cardType->points_rate, 2).'x',
-                filled($cardType->rollout_note) ? str($cardType->rollout_note)->limit(72)->toString() : 'No rollout note saved yet',
-                $this->cardTypeStatusFlowLabel($cardType),
-                [
-                    'label' => $this->cardTypesToggleStatusActionLabel($cardType),
-                    'href' => route('admin.card-types.toggle-status', $cardType, absolute: false),
-                    'method' => 'PATCH',
-                ],
-            ])->all();
+            $page['table']['rows'] = $cardTypes->map(
+                fn (CardType $cardType): array => $this->cardTypesCatalogRow($cardType)
+            )->all();
         }
 
         $page['actions'] = $this->cardTypesCatalogActions();
@@ -1936,6 +1924,25 @@ class ResourceIndexController extends Controller
             ['label' => 'Rule-import blocker', 'value' => $this->cardTypesRuleImportBlocker($selectedCardType)],
             ['label' => 'Publish guidance', 'value' => $this->cardTypesPublishGuidance($selectedCardType)],
             ['label' => 'Readiness signal', 'value' => $this->cardTypesReadinessSignal($selectedCardType)],
+        ];
+    }
+
+    private function cardTypesCatalogRow(CardType $cardType): array
+    {
+        return [
+            [
+                'label' => $cardType->name,
+                'href' => route('admin.card-types.index', ['cardType' => $cardType->id], absolute: false).'#live-form',
+            ],
+            $cardType->slug,
+            number_format((float) $cardType->points_rate, 2).'x',
+            filled($cardType->rollout_note) ? str($cardType->rollout_note)->limit(72)->toString() : 'No rollout note saved yet',
+            $this->cardTypeStatusFlowLabel($cardType),
+            [
+                'label' => $this->cardTypesToggleStatusActionLabel($cardType),
+                'href' => route('admin.card-types.toggle-status', $cardType, absolute: false),
+                'method' => 'PATCH',
+            ],
         ];
     }
 
