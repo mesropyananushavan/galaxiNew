@@ -1888,14 +1888,7 @@ class ResourceIndexController extends Controller
         $page['actions'] = $this->cardTypesCatalogActions();
 
         if ($latestCardType !== null) {
-            $page = $this->appendLatestSavedEditAction(
-                $page,
-                'Edit latest saved tier shell',
-                'admin.card-types.index',
-                'cardType',
-                $latestCardType->id,
-                '#live-form',
-            );
+            $page = $this->appendCardTypesLatestSavedEditAction($page, $latestCardType);
         }
 
         $selectedCardTypeId = $this->selectedRecordId('cardType');
@@ -1962,6 +1955,18 @@ class ResourceIndexController extends Controller
                     'disabledReason' => $this->cardTypesCatalogPublishTypeDisabledReason(),
                 ],
             ],
+        );
+    }
+
+    private function appendCardTypesLatestSavedEditAction(array $page, CardType $latestCardType): array
+    {
+        return $this->appendLatestSavedEditAction(
+            $page,
+            $this->cardTypesLatestSavedEditActionLabel(),
+            'admin.card-types.index',
+            'cardType',
+            $latestCardType->id,
+            '#live-form',
         );
     }
 
@@ -2086,6 +2091,11 @@ class ResourceIndexController extends Controller
     private function cardTypesCreateCatalogActionLabel(): string
     {
         return 'New Galaxy tier';
+    }
+
+    private function cardTypesLatestSavedEditActionLabel(): string
+    {
+        return 'Edit latest saved tier shell';
     }
 
     private function cardTypesToggleStatusActionLabel(CardType $selectedCardType): string

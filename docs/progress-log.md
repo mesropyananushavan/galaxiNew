@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type latest-saved catalog action checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now appends its latest-saved Galaxy-tier edit action through a dedicated helper instead of wiring that return-to-live-form action inline inside the main page enricher.
+- Added an explicit label helper for the latest saved tier-shell edit action so the catalog surface keeps its Galaxy-specific wording through a named seam.
+- Re-ran focused card-types preview, selected-tier edit, and catalog readiness assertions as the parity guard for this small structural cleanup.
+
 ### Card-type catalog action helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds its catalog action set through a dedicated helper instead of assembling the Galaxy-tier create/import/publish action stack inline inside the main page enricher.
 - Added an explicit catalog-only `New Galaxy tier` label helper so the catalog surface can stay Galaxy-specific without reusing the selected-tier shell-creation wording.
