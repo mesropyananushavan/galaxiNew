@@ -2466,8 +2466,8 @@ class ResourceIndexController extends Controller
 
         return match (true) {
             $savedCount === 0 => 'Blocked until the first Galaxy foundation-backed tier exists for rule parity review.',
-            $activeCount > 0 => 'Blocked until saved tier accrual parity is verified before importing legacy rules.',
-            default => 'Blocked until a saved draft tier is ready for parity-first rule review.',
+            $activeCount > 0 => 'Blocked until saved active Galaxy tiers clear accrual parity before importing legacy rules.',
+            default => 'Blocked until a saved draft Galaxy tier is ready for parity-first rule review.',
         };
     }
 
@@ -2478,8 +2478,8 @@ class ResourceIndexController extends Controller
 
         return match (true) {
             $savedCount === 0 => 'Blocked until the first Galaxy foundation-backed tier exists before any publish-style rollout.',
-            $activeCount > 0 => 'Blocked until saved live tiers clear Galaxy tier rollout parity before any broader catalog move.',
-            default => 'Blocked until a saved draft tier clears rollout parity before any publish-like move.',
+            $activeCount > 0 => 'Blocked until saved active Galaxy tiers clear rollout parity before any broader catalog move.',
+            default => 'Blocked until a saved draft Galaxy tier clears rollout parity before any publish-like move.',
         };
     }
 

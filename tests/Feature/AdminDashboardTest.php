@@ -12226,9 +12226,30 @@ class AdminDashboardTest extends TestCase
         $response
             ->assertOk()
             ->assertSee('Import rules')
-            ->assertSee('Blocked until saved tier accrual parity is verified before importing legacy rules.')
+            ->assertSee('Blocked until saved active Galaxy tiers clear accrual parity before importing legacy rules.')
             ->assertSee('Publish tier')
-            ->assertSee('Blocked until saved live tiers clear Galaxy tier rollout parity before any broader catalog move.');
+            ->assertSee('Blocked until saved active Galaxy tiers clear rollout parity before any broader catalog move.');
+    }
+
+    public function test_card_types_catalog_actions_reflect_saved_draft_tier_readiness(): void
+    {
+        CardType::create([
+            'name' => 'Galaxy Draft Catalog Tier',
+            'slug' => 'galaxy-draft-catalog-tier',
+            'points_rate' => '1.35',
+            'is_active' => false,
+        ]);
+
+        $user = User::factory()->create();
+
+        $response = $this->actingAs($user)->get(route('admin.card-types.index'));
+
+        $response
+            ->assertOk()
+            ->assertSee('Import rules')
+            ->assertSee('Blocked until a saved draft Galaxy tier is ready for parity-first rule review.')
+            ->assertSee('Publish tier')
+            ->assertSee('Blocked until a saved draft Galaxy tier clears rollout parity before any publish-like move.');
     }
 
     public function test_card_types_page_exposes_edit_link_for_latest_saved_type(): void
