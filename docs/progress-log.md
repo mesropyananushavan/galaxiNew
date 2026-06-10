@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected live-form values checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now sources its prefilled live-form values through a dedicated helper instead of building that values payload inline during edit-form wiring.
+- Kept the rendered selected-tier edit form unchanged while tightening another small seam around the now more Galaxy-specific card-type workspace.
+- Re-ran focused card-types preview, selected-tier edit, and live-form callback assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected live-form wiring checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its edit-form wiring and prefilled values through one helper instead of leaving that live-form setup inline beside the broader surface composer.
 - Kept the rendered selected-tier edit form unchanged while tightening one more controller seam around the now more Galaxy-specific card-type workspace.

@@ -2021,7 +2021,14 @@ class ResourceIndexController extends Controller
             $selectedCardType,
             $liveFormCopy['reviewCue'],
         );
-        $page['liveForm']['valuesResolver'] = [
+        $page['liveForm']['valuesResolver'] = $this->cardTypesSelectedLiveFormValues($selectedCardType);
+
+        return $page;
+    }
+
+    private function cardTypesSelectedLiveFormValues(CardType $selectedCardType): array
+    {
+        return [
             'name' => $selectedCardType->name,
             'slug' => $selectedCardType->slug,
             'points_rate' => (string) $selectedCardType->points_rate,
@@ -2030,8 +2037,6 @@ class ResourceIndexController extends Controller
             'activation_note' => $selectedCardType->activation_note ?? '',
             'rollout_note' => $selectedCardType->rollout_note ?? '',
         ];
-
-        return $page;
     }
 
     private function cardTypesSelectedActivityTimeline(CardType $selectedCardType): array
