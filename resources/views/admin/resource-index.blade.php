@@ -12,7 +12,7 @@
                 'shops' => 'Branch changes are now visible in the Galaxy foundation-backed workspace.',
                 'cardholders' => 'Holder changes are now visible in the Galaxy foundation-backed workspace.',
                 'cards' => 'Inventory changes are now visible in the Galaxy foundation-backed workspace.',
-                'card-types' => 'Tier changes are now visible in the Galaxy foundation-backed workspace.',
+                'card-types' => 'Galaxy tier changes are now visible in the Galaxy foundation-backed workspace.',
                 'roles-permissions' => 'Access-shell changes are now visible in the Galaxy foundation-backed workspace.',
                 default => 'Latest Galaxy foundation-backed admin changes are now visible in the workspace.',
             };

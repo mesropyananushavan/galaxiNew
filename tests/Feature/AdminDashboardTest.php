@@ -13068,7 +13068,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('role="status"', false)
             ->assertSee('aria-live="polite"', false)
             ->assertSee('Galaxy tier flow checkpoint')
-            ->assertSee('Tier changes are now visible in the Galaxy foundation-backed workspace.')
+            ->assertSee('Galaxy tier changes are now visible in the Galaxy foundation-backed workspace.')
             ->assertSee('Card type "Galaxy Prime" was created.')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime')
