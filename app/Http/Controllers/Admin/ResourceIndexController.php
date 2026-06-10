@@ -1938,11 +1938,16 @@ class ResourceIndexController extends Controller
             $this->cardTypesPointsRateLabel($cardType),
             $this->cardTypesCatalogRolloutNotePreview($cardType),
             $this->cardTypeStatusFlowLabel($cardType),
-            [
-                'label' => $this->cardTypesToggleStatusActionLabel($cardType),
-                'href' => route('admin.card-types.toggle-status', $cardType, absolute: false),
-                'method' => 'PATCH',
-            ],
+            $this->cardTypesCatalogToggleStatusAction($cardType),
+        ];
+    }
+
+    private function cardTypesCatalogToggleStatusAction(CardType $cardType): array
+    {
+        return [
+            'label' => $this->cardTypesToggleStatusActionLabel($cardType),
+            'href' => route('admin.card-types.toggle-status', $cardType, absolute: false),
+            'method' => 'PATCH',
         ];
     }
 

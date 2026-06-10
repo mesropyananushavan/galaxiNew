@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type catalog toggle-action checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds each Galaxy-tier toggle-status action cell through a dedicated helper instead of wiring that PATCH action inline inside the catalog row builder.
+- Kept the rendered catalog row output unchanged while tightening another small neighboring seam around the Galaxy-tier review surface.
+- Re-ran focused card-types preview, selected-tier edit, toggle-status, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
 ### Card-type points-rate label checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now formats Galaxy-tier points-rate labels through a dedicated helper instead of repeating the same inline numeric formatting in both the catalog row and selected-tier summary surfaces.
 - Kept the rendered points-rate output unchanged while tightening another small neighboring seam around the Galaxy-tier review workspace.
