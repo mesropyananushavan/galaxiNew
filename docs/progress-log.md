@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type summary block title checkpoint
+- Extended `resources/views/admin/partials/resource-selected-record-summary.blade.php` to accept an overridable title, then set the selected card-type workspace to render that block as `Selected Galaxy tier summary` instead of the broader generic `Selected record summary` heading.
+- Updated the focused selected-tier assertions so the card-types workspace now locks the new summary block title across draft-linked and active-linked scenarios.
+- Re-ran the focused selected-tier assertions as the parity guard for this small selected-summary heading follow-up.
+
 ### Card-type dependency block title checkpoint
 - Extended `resources/views/admin/partials/resource-dependency-status.blade.php` to accept an overridable title, then set the selected card-type workspace to render that block as `Galaxy tier dependencies` instead of the broader generic `Implementation dependencies` heading.
 - Updated the focused selected-tier assertions so the card-types workspace now locks the new block title and the already-renamed tier-specific dependency labels across draft-linked and active-linked scenarios.

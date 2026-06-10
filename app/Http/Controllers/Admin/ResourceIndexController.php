@@ -1925,6 +1925,7 @@ class ResourceIndexController extends Controller
         }
 
         $page['selectedRecordSummary'] = $this->cardTypesSelectedTypeSummary($selectedCardType);
+        $page['selectedRecordSummaryTitle'] = 'Selected Galaxy tier summary';
 
         $page = $this->appendCardTypeLatestFlowFeedback($page);
         $page = $this->renameCardTypeLatestFlowSummaryLabel($page, sprintf('%s latest flow result from selected tier', $selectedCardType->name));
