@@ -1986,7 +1986,7 @@ class ResourceIndexController extends Controller
     {
         return [
             'label' => $this->cardTypesToggleStatusActionLabel($cardType),
-            'href' => route('admin.card-types.toggle-status', $cardType, absolute: false),
+            'href' => $this->cardTypesToggleStatusHref($cardType),
             'method' => 'PATCH',
         ];
     }
@@ -2042,6 +2042,11 @@ class ResourceIndexController extends Controller
     private function cardTypesCatalogLiveFormHref(): string
     {
         return route('admin.card-types.index', absolute: false).'#live-form';
+    }
+
+    private function cardTypesToggleStatusHref(CardType $cardType): string
+    {
+        return route('admin.card-types.toggle-status', $cardType, absolute: false);
     }
 
     private function applyCardTypesSelectedSurfaceData(array $page, CardType $selectedCardType): array
@@ -3177,7 +3182,7 @@ class ResourceIndexController extends Controller
             ),
             $this->foundationMutationAction(
                 $this->cardTypesToggleStatusActionLabel($selectedCardType),
-                route('admin.card-types.toggle-status', $selectedCardType, absolute: false),
+                $this->cardTypesToggleStatusHref($selectedCardType),
                 $disabledReason,
                 $selectedCardType,
                 'update',
