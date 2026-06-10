@@ -3025,17 +3025,22 @@ class ResourceIndexController extends Controller
                 'label' => $this->cardTypesEditingActionLabel($selectedCardType),
                 'tone' => 'secondary',
             ],
-            ...$this->secondaryDisabledActions([
-                [
-                    'label' => $this->cardTypesImportRulesActionLabel(),
-                    'disabledReason' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
-                ],
-                [
-                    'label' => $this->cardTypesPublishActionLabel(),
-                    'disabledReason' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
-                ],
-            ]),
+            ...$this->cardTypesSelectedSecondaryActions($selectedCardType),
         ];
+    }
+
+    private function cardTypesSelectedSecondaryActions(CardType $selectedCardType): array
+    {
+        return $this->secondaryDisabledActions([
+            [
+                'label' => $this->cardTypesImportRulesActionLabel(),
+                'disabledReason' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
+            ],
+            [
+                'label' => $this->cardTypesPublishActionLabel(),
+                'disabledReason' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
+            ],
+        ]);
     }
 
     private function secondaryDisabledActions(array $actions): array

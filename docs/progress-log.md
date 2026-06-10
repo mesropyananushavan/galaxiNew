@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected action helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its disabled secondary review actions through a small helper instead of assembling those import/publish review actions inline.
+- Kept the rendered action set unchanged while tightening one more seam around the now more Galaxy-specific selected-tier workspace.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected-surface assembly helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its summary feedback, action set, activity trail, dependency rows, and block-title enrichments through one small assembly helper instead of scattering those post-processing steps inline.
 - Kept the rendered selected-tier output unchanged while tightening the controller seam around the now more Galaxy-specific card-type workspace.
