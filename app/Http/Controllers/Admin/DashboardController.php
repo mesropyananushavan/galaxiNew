@@ -533,14 +533,14 @@ class DashboardController extends Controller
     protected function policyBackedAccessRouteGuardrailCount(array $routeGuardrails): int
     {
         return collect($routeGuardrails)
-            ->filter(fn (array $guardrail): bool => ! str_contains((string) ($guardrail['guard'] ?? ''), 'auth + can:access-admin'))
+            ->filter(fn (array $guardrail): bool => ($guardrail['maturity'] ?? null) === 'policy-backed')
             ->count();
     }
 
     protected function sharedShellAccessRouteGuardrailCount(array $routeGuardrails): int
     {
         return collect($routeGuardrails)
-            ->filter(fn (array $guardrail): bool => str_contains((string) ($guardrail['guard'] ?? ''), 'auth + can:access-admin'))
+            ->filter(fn (array $guardrail): bool => ($guardrail['maturity'] ?? null) === 'shared-shell')
             ->count();
     }
 

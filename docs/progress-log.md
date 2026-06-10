@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Access guardrail maturity-count checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so the policy-backed versus shared-shell maturity split now counts tracked route guardrails by their explicit config-owned `maturity` contract instead of by guard-string heuristics.
+- Kept the access seam docs aligned so route-level labels, grouped lane maturity notes, and top-level maturity counts now all flow from the same Phase 1 access baseline source of truth.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map contract-hardening follow-up.
+
 ### Access guardrail grouped-maturity checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so grouped lane maturity notes now derive from the tracked route items inside each family instead of relying on a separate hardcoded family-to-maturity match.
 - Kept the access seam docs aligned so both route-level and lane-level maturity now flow from the same config-owned route contract rather than from parallel controller heuristics.
