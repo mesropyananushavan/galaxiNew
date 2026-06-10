@@ -2034,6 +2034,21 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $this->cardTypesActionGating($selectedCardType),
             ],
+            [
+                'title' => $this->cardTypesStatusGuidanceTimelineTitle($selectedCardType),
+                'time' => 'Current request',
+                'description' => $this->cardTypesStatusGuidance($selectedCardType),
+            ],
+            [
+                'title' => $this->cardTypesRuleImportBlockerTimelineTitle($selectedCardType),
+                'time' => 'Current request',
+                'description' => $this->cardTypesRuleImportBlocker($selectedCardType),
+            ],
+            [
+                'title' => $this->cardTypesPublishGuidanceTimelineTitle($selectedCardType),
+                'time' => 'Current request',
+                'description' => $this->cardTypesPublishGuidance($selectedCardType),
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
@@ -2269,6 +2284,21 @@ class ResourceIndexController extends Controller
     private function cardTypesActionGatingTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s action gating reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesStatusGuidanceTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s status guidance reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesRuleImportBlockerTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s rule-import blocker reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesPublishGuidanceTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s publish guidance reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
