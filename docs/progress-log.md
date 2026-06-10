@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected shared-value helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier summary and dependency surfaces now resolve their shared tier name, slug, lifecycle-freshness, and last-saved values through small helpers instead of repeating those same Galaxy-tier lookups inline.
+- Kept the rendered selected-tier output unchanged while trimming another small piece of duplicated Galaxy-tier review logic out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type note-value helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves Galaxy-tier review, activation, and rollout note fallbacks through dedicated helpers instead of repeating the same fallback strings across the selected summary, dependency status, and catalog preview surfaces.
 - Kept the rendered note output unchanged while trimming a small piece of duplicated Galaxy-tier review logic out of the card-types workspace.
