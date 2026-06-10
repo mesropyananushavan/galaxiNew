@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type backend-flow title checkpoint
+- Tightened `resources/views/admin/resource-index.blade.php` so the success banner now renders a card-type-specific `Galaxy tier flow checkpoint` title while leaving other resource banners on the existing generic `Backend flow checkpoint` heading.
+- Updated the focused card-types success-path assertions so the selected-tier workspace now locks that more Galaxy-specific post-write banner title across create, toggle, and live update flows.
+- Re-ran focused card-types success-path assertions, and corrected one accidental non-card-type assertion drift before confirming the card-type-only specialization stayed isolated.
+
 ### Card-type timeline block title checkpoint
 - Extended `resources/views/admin/partials/resource-activity-timeline.blade.php` to accept an overridable title, then set the selected card-type workspace to render that block as `Galaxy tier activity trail` instead of the broader generic `Recent activity preview` heading.
 - Updated the focused selected-tier assertions so the card-types workspace now locks the new timeline block title across draft-linked and active-linked scenarios.

@@ -12863,7 +12863,7 @@ class AdminDashboardTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSee('Backend flow checkpoint')
+            ->assertSee('Galaxy tier flow checkpoint')
             ->assertSee('Card type "Galaxy Prime" is now draft.')
             ->assertSee('Selected Galaxy tier summary')
             ->assertSee('Galaxy Prime latest flow result from selected tier:')
@@ -13067,7 +13067,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('tabindex="-1"', false)
             ->assertSee('role="status"', false)
             ->assertSee('aria-live="polite"', false)
-            ->assertSee('Backend flow checkpoint')
+            ->assertSee('Galaxy tier flow checkpoint')
             ->assertSee('Tier changes are now visible in the Galaxy foundation-backed workspace.')
             ->assertSee('Card type "Galaxy Prime" was created.')
             ->assertSee('Selected tier:')
@@ -14702,7 +14702,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('tabindex="-1"', false)
             ->assertSee('role="status"', false)
             ->assertSee('aria-live="polite"', false)
-            ->assertSee('Backend flow checkpoint')
+            ->assertSee('Galaxy tier flow checkpoint')
             ->assertSee('Card type "Galaxy Prime Plus" was updated.')
             ->assertSee('Selected tier:')
             ->assertSee('Galaxy Prime Plus')

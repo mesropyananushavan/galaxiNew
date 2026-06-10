@@ -3,6 +3,11 @@
 @section('content')
     @if (session('status'))
         @php
+            $backendFlowTitle = match ($resourceKey ?? null) {
+                'card-types' => 'Galaxy tier flow checkpoint',
+                default => 'Backend flow checkpoint',
+            };
+
             $backendFlowSummary = match ($resourceKey ?? null) {
                 'shops' => 'Branch changes are now visible in the Galaxy foundation-backed workspace.',
                 'cardholders' => 'Holder changes are now visible in the Galaxy foundation-backed workspace.',
@@ -13,7 +18,7 @@
             };
         @endphp
         <section class="card" id="backend-flow-status" tabindex="-1" role="status" aria-live="polite" style="border-color: rgba(34, 197, 94, 0.35); background: rgba(34, 197, 94, 0.08);">
-            <strong style="display: block; margin-bottom: 6px;">Backend flow checkpoint</strong>
+            <strong style="display: block; margin-bottom: 6px;">{{ $backendFlowTitle }}</strong>
             <p style="margin: 0 0 6px; color: var(--text-muted); line-height: 1.5;">{{ $backendFlowSummary }}</p>
             <span>{{ session('status') }}</span>
         </section>
