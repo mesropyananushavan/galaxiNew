@@ -1885,21 +1885,7 @@ class ResourceIndexController extends Controller
             ])->all();
         }
 
-        $page['actions'] = $this->foundationCatalogActions(
-            'New Galaxy tier',
-            $this->cardTypesFoundationMutationDisabledReason(),
-            CardType::class,
-            [
-                [
-                    'label' => 'Import rules',
-                    'disabledReason' => $this->cardTypesCatalogImportRulesDisabledReason(),
-                ],
-                [
-                    'label' => 'Publish tier',
-                    'disabledReason' => $this->cardTypesCatalogPublishTypeDisabledReason(),
-                ],
-            ],
-        );
+        $page['actions'] = $this->cardTypesCatalogActions();
 
         if ($latestCardType !== null) {
             $page = $this->appendLatestSavedEditAction(
@@ -1958,6 +1944,25 @@ class ResourceIndexController extends Controller
             ['label' => 'Publish guidance', 'value' => $this->cardTypesPublishGuidance($selectedCardType)],
             ['label' => 'Readiness signal', 'value' => $this->cardTypesReadinessSignal($selectedCardType)],
         ];
+    }
+
+    private function cardTypesCatalogActions(): array
+    {
+        return $this->foundationCatalogActions(
+            $this->cardTypesCreateCatalogActionLabel(),
+            $this->cardTypesFoundationMutationDisabledReason(),
+            CardType::class,
+            [
+                [
+                    'label' => $this->cardTypesImportRulesActionLabel(),
+                    'disabledReason' => $this->cardTypesCatalogImportRulesDisabledReason(),
+                ],
+                [
+                    'label' => $this->cardTypesPublishActionLabel(),
+                    'disabledReason' => $this->cardTypesCatalogPublishTypeDisabledReason(),
+                ],
+            ],
+        );
     }
 
     private function applyCardTypesSelectedSurfaceData(array $page, CardType $selectedCardType): array
@@ -2076,6 +2081,11 @@ class ResourceIndexController extends Controller
     private function cardTypesCreateShellActionLabel(): string
     {
         return 'Create new Galaxy tier shell';
+    }
+
+    private function cardTypesCreateCatalogActionLabel(): string
+    {
+        return 'New Galaxy tier';
     }
 
     private function cardTypesToggleStatusActionLabel(CardType $selectedCardType): string

@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type catalog action helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds its catalog action set through a dedicated helper instead of assembling the Galaxy-tier create/import/publish action stack inline inside the main page enricher.
+- Added an explicit catalog-only `New Galaxy tier` label helper so the catalog surface can stay Galaxy-specific without reusing the selected-tier shell-creation wording.
+- Re-ran focused card-types preview, selected-tier edit, and catalog readiness assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected primary-action disabled-reason checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now resolves its shared foundation-mutation disabled reason once inside the primary-action helper instead of recalculating the same Phase 1 guard for both primary actions.
 - Kept the rendered selected-tier action output unchanged while tightening one more tiny seam inside the Galaxy-tier action assembly.
