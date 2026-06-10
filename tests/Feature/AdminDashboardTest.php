@@ -12823,7 +12823,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
         ]);
 
-        CardType::create([
+        $goldTier = CardType::create([
             'name' => 'Gold',
             'slug' => 'gold',
             'points_rate' => '1.50',
@@ -12840,7 +12840,7 @@ class AdminDashboardTest extends TestCase
             'is_active' => true,
         ]);
 
-        CardType::create([
+        $partnerTier = CardType::create([
             'name' => 'Partner',
             'slug' => 'partner',
             'points_rate' => '1.20',
@@ -12850,9 +12850,17 @@ class AdminDashboardTest extends TestCase
         Card::create([
             'shop_id' => $shop->id,
             'card_holder_id' => $holder->id,
-            'card_type_id' => 1,
+            'card_type_id' => $goldTier->id,
             'number' => 'GLX-TIER-METRIC-1001',
             'status' => 'active',
+        ]);
+
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => $partnerTier->id,
+            'number' => 'GLX-TIER-METRIC-1002',
+            'status' => 'draft',
         ]);
 
         $user = User::factory()->create();
@@ -12865,6 +12873,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft-state Galaxy tiers')
             ->assertSee('Linked Galaxy tiers')
             ->assertSee('Unlinked Galaxy tiers')
+            ->assertSee('Active linked Galaxy tiers')
+            ->assertSee('Draft linked Galaxy tiers')
             ->assertSee('Review-noted Galaxy tiers')
             ->assertSee('Tier activation notes')
             ->assertSee('Tier rollout notes')
@@ -12872,8 +12882,11 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Imported rules')
             ->assertSee('>2<', false)
             ->assertSee('>1<', false)
+            ->assertSee('>2<', false)
             ->assertSee('>1<', false)
             ->assertSee('>2<', false)
+            ->assertSee('>1<', false)
+            ->assertSee('>1<', false)
             ->assertSee('>1<', false)
             ->assertSee('>3<', false);
     }
