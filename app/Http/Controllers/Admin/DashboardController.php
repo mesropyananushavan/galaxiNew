@@ -391,6 +391,7 @@ class DashboardController extends Controller
                     'count' => $items->count(),
                     'displayLabel' => sprintf('%s (%d)', (string) ($first['familyLabel'] ?? 'Route guardrail group'), $items->count()),
                     'summary' => $this->accessRouteGuardrailFamilySummary((string) $family, $items->count()),
+                    'displaySummary' => $this->accessRouteGuardrailFamilyDisplaySummary((string) ($first['familyLabel'] ?? 'Route guardrail group'), $items->count(), (string) $family),
                     'items' => $items->values()->all(),
                 ];
             })
@@ -432,6 +433,11 @@ class DashboardController extends Controller
             'roles-permissions' => sprintf('Access-shell review and write entry points stay visible through %d guarded Galaxy access routes.', $count),
             default => sprintf('This guardrail family currently tracks %d Phase 1 admin routes.', $count),
         };
+    }
+
+    protected function accessRouteGuardrailFamilyDisplaySummary(string $label, int $count, string $family): string
+    {
+        return sprintf('%s (%d), %s', $label, $count, $this->accessRouteGuardrailFamilySummary($family, $count));
     }
 
     protected function preparedShopAccessBaseline(array $rules): array
