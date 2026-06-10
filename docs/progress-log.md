@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type live-form note-payload checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now groups its review, activation, and rollout note payload into one dedicated helper instead of appending those Galaxy-tier note fields one by one inside the main values array.
+- Kept the rendered selected-tier edit-form output unchanged while trimming another small piece of duplicated live-form payload wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
 ### Card-type live-form route-parameter checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now resolves its update-route parameter payload through a dedicated helper instead of building the selected `cardType` parameter array inline inside the live-form wiring block.
 - Kept the rendered selected-tier edit-form output unchanged while trimming another small piece of duplicated Galaxy-tier route wiring out of the card-types workspace.
