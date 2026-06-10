@@ -2328,23 +2328,38 @@ class ResourceIndexController extends Controller
 
     private function cardTypesCurrentStatusPosture(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'Active tiers should stay stable unless parity checks are complete'
-            : 'Draft tiers are the safe place for parity-first validation and copy changes';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Active linked tiers should stay stable unless rollout parity checks are complete',
+            $this->cardTypeIsActive($selectedCardType) => 'Active unlinked tiers still need visible card coverage before operators treat them as stable rollout candidates',
+            $hasVisibleCoverage => 'Draft linked tiers are the safe place for parity-first validation with visible card coverage already attached',
+            default => 'Draft unlinked tiers are the safe place for parity-first validation before visible card coverage lands',
+        };
     }
 
     private function cardTypesRuleImportPosture(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'Keep imports blocked until active-tier accrual parity is verified'
-            : 'Imports can be reviewed in draft mode, but they are still not safe to enable yet';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Keep imports blocked until active linked-tier accrual parity is verified',
+            $this->cardTypeIsActive($selectedCardType) => 'Keep imports blocked until active unlinked-tier accrual parity is grounded by visible card coverage',
+            $hasVisibleCoverage => 'Imports can be reviewed in draft linked mode, but they are still not safe to enable yet',
+            default => 'Imports should stay in draft unlinked review mode until visible card coverage exists',
+        };
     }
 
     private function cardTypesPublishPosture(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'Live tiers need parity confirmation before further publish-style changes'
-            : 'Draft tiers should stay unpublished until legacy behavior is mapped more explicitly';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Active linked tiers need parity confirmation before further publish-style changes',
+            $this->cardTypeIsActive($selectedCardType) => 'Active unlinked tiers need visible card coverage before further publish-style changes feel safe',
+            $hasVisibleCoverage => 'Draft linked tiers should stay unpublished until legacy behavior is mapped more explicitly',
+            default => 'Draft unlinked tiers should stay unpublished until legacy behavior and first card coverage both exist',
+        };
     }
 
     private function cardTypesActionGating(CardType $selectedCardType): string
@@ -2377,9 +2392,14 @@ class ResourceIndexController extends Controller
 
     private function cardTypesReadinessSignal(CardType $selectedCardType): string
     {
-        return $this->cardTypeIsActive($selectedCardType)
-            ? 'Partially ready: the tier is live in the Galaxy foundation layer, but parity-sensitive follow-up actions should stay gated.'
-            : 'Not ready to publish: draft mode is still the holding state for parity validation and rule-import review.';
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
+        return match (true) {
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Partially ready: this active linked tier has visible card coverage, but parity-sensitive follow-up actions should stay gated.',
+            $this->cardTypeIsActive($selectedCardType) => 'Not ready for rollout: this active unlinked tier still needs visible card coverage before parity-sensitive follow-up actions can soften.',
+            $hasVisibleCoverage => 'Not ready to publish: this draft linked tier is still the holding state for parity validation and rule-import review.',
+            default => 'Not ready to publish: this draft unlinked tier still needs visible card coverage before parity validation can feel grounded.',
+        };
     }
 
     private function cardTypesCoverageFreshness(CardType $selectedCardType): string

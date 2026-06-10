@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type readiness and posture wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Readiness signal`, `Current status posture`, `Rule-import posture`, and `Publish posture` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of using broader live/draft-only wording.
+- Extended the focused selected-tier assertions so the card-types edit shell now locks those linkage-aware readiness and posture phrases across active-linked, active-unlinked, draft-linked, and draft-unlinked scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
 ### Card-type coverage-freshness and handoff wording checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Coverage freshness` and `Handoff signal` strings now use the same explicit `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier language as the newer coverage signal wording.
 - Updated the focused selected-tier assertions so both the edit-shell detail card and the surrounding management context now lock those linkage-aware freshness and handoff phrases across draft and active tier states.
