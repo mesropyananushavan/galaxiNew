@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Access guardrail grouped-maturity checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so grouped lane maturity notes now derive from the tracked route items inside each family instead of relying on a separate hardcoded family-to-maturity match.
+- Kept the access seam docs aligned so both route-level and lane-level maturity now flow from the same config-owned route contract rather than from parallel controller heuristics.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map contract-hardening follow-up.
+
 ### Access guardrail config-maturity checkpoint
 - Extended `config/phase-1-access-baseline.php` so each tracked route guardrail now declares its maturity explicitly, and updated `App\Http\Controllers\Admin\DashboardController` to read that config-owned contract instead of inferring maturity from the guard string.
 - Kept the access seam docs aligned so the dashboard now surfaces access maturity across the top metrics, grouped lane summaries, and individual route contracts from one explicit Phase 1 source of truth.

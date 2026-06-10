@@ -417,8 +417,8 @@ class DashboardController extends Controller
                     'count' => $items->count(),
                     'displayLabel' => sprintf('%s (%d)', (string) ($first['familyLabel'] ?? 'Route guardrail group'), $items->count()),
                     'summary' => $this->accessRouteGuardrailFamilySummary((string) $family, $items->count()),
-                    'maturityNote' => $this->accessRouteGuardrailFamilyMaturityNote((string) $family),
-                    'displaySummary' => $this->accessRouteGuardrailFamilyDisplaySummary((string) ($first['familyLabel'] ?? 'Route guardrail group'), $items->count(), (string) $family),
+                    'maturityNote' => $this->accessRouteGuardrailFamilyMaturityNote($items->all()),
+                    'displaySummary' => $this->accessRouteGuardrailFamilyDisplaySummary((string) ($first['familyLabel'] ?? 'Route guardrail group'), $items->count(), (string) $family, $items->all()),
                     'items' => $items->values()->all(),
                 ];
             })
@@ -491,17 +491,28 @@ class DashboardController extends Controller
         };
     }
 
-    protected function accessRouteGuardrailFamilyDisplaySummary(string $label, int $count, string $family): string
+    protected function accessRouteGuardrailFamilyDisplaySummary(string $label, int $count, string $family, array $items): string
     {
-        return sprintf('%s (%d), %s %s', $label, $count, $this->accessRouteGuardrailFamilySummary($family, $count), $this->accessRouteGuardrailFamilyMaturityNote($family));
+        return sprintf('%s (%d), %s %s', $label, $count, $this->accessRouteGuardrailFamilySummary($family, $count), $this->accessRouteGuardrailFamilyMaturityNote($items));
     }
 
-    protected function accessRouteGuardrailFamilyMaturityNote(string $family): string
+    protected function accessRouteGuardrailFamilyMaturityNote(array $items): string
     {
-        return match ($family) {
-            'checks-points', 'services-rules', 'gifts', 'reports' => 'This lane is still guarded only by the shared Galaxy admin shell.',
-            default => 'This lane already runs through explicit Phase 1 policy checks.',
-        };
+        $maturities = collect($items)
+            ->pluck('maturityLabel')
+            ->filter(fn ($maturity): bool => filled($maturity))
+            ->unique()
+            ->values();
+
+        if ($maturities->count() === 1 && $maturities->first() === 'shared-shell') {
+            return 'This lane is still guarded only by the shared Galaxy admin shell.';
+        }
+
+        if ($maturities->count() === 1 && $maturities->first() === 'policy-backed') {
+            return 'This lane already runs through explicit Phase 1 policy checks.';
+        }
+
+        return 'This lane currently mixes policy-backed and shared-shell guardrails.';
     }
 
     protected function accessRouteGuardrailIntro(array $routeGuardrails): string
