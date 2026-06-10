@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Access guardrail maturity-split checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so the grouped route-guardrail intro now also reports how many live access routes are already policy-backed versus still only guarded by the shared admin shell.
+- Kept the access seam docs aligned so the dashboard now shows not only route volume but also the current maturity split between deeper Phase 1 access seams and shell-only operational coverage.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map maturity follow-up.
+
 ### Access shell-route guardrail checkpoint
 - Expanded `config/phase-1-access-baseline.php` and the dashboard access-map shaping so the live `checks-points`, `services-rules`, `gifts`, and `reports` review routes now appear as explicit shared-shell guardrails alongside the already tracked policy-backed branch, holder, card, tier, and access-shell lanes.
 - Updated the grouped access-lane ordering and summaries in `App\Http\Controllers\Admin\DashboardController` so the admin dashboard now shows a fuller Phase 1 access picture, including the still-shell-guarded operational surfaces that have not reached deeper policy seams yet.

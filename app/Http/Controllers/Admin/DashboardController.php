@@ -491,12 +491,30 @@ class DashboardController extends Controller
     protected function accessRouteGuardrailIntro(array $routeGuardrails): string
     {
         $groups = $this->preparedAccessRouteGuardrailGroups($routeGuardrails);
+        $policyBackedCount = $this->policyBackedAccessRouteGuardrailCount($routeGuardrails);
+        $sharedShellCount = $this->sharedShellAccessRouteGuardrailCount($routeGuardrails);
 
         return sprintf(
-            'These %d live Phase 1 route guardrails are grouped into %d controller-shaped Galaxy access lanes so review and first-write coverage stays readable on the admin dashboard.',
+            'These %d live Phase 1 route guardrails are grouped into %d controller-shaped Galaxy access lanes, with %d policy-backed resource guardrails and %d shared-shell operational guardrails so access maturity stays readable on the admin dashboard.',
             $this->accessRouteGuardrailCount(),
             count($groups),
+            $policyBackedCount,
+            $sharedShellCount,
         );
+    }
+
+    protected function policyBackedAccessRouteGuardrailCount(array $routeGuardrails): int
+    {
+        return collect($routeGuardrails)
+            ->filter(fn (array $guardrail): bool => ! str_contains((string) ($guardrail['guard'] ?? ''), 'auth + can:access-admin'))
+            ->count();
+    }
+
+    protected function sharedShellAccessRouteGuardrailCount(array $routeGuardrails): int
+    {
+        return collect($routeGuardrails)
+            ->filter(fn (array $guardrail): bool => str_contains((string) ($guardrail['guard'] ?? ''), 'auth + can:access-admin'))
+            ->count();
     }
 
     protected function preparedShopAccessBaseline(array $rules): array

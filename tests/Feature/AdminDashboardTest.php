@@ -311,7 +311,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('<code>access-shop</code>', false)
             ->assertSee('Keeps branch-aware visibility tied to the selected Galaxy shop context.')
             ->assertSee('Tracked route guardrails:')
-            ->assertSee('These 20 live Phase 1 route guardrails are grouped into 9 controller-shaped Galaxy access lanes so review and first-write coverage stays readable on the admin dashboard.')
+            ->assertSee('These 20 live Phase 1 route guardrails are grouped into 9 controller-shaped Galaxy access lanes, with 16 policy-backed resource guardrails and 4 shared-shell operational guardrails so access maturity stays readable on the admin dashboard.')
             ->assertSeeInOrder([
                 'Galaxy branches:',
                 'Galaxy holders:',
