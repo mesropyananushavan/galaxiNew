@@ -390,6 +390,7 @@ class DashboardController extends Controller
                     'label' => (string) ($first['familyLabel'] ?? 'Route guardrail group'),
                     'count' => $items->count(),
                     'displayLabel' => sprintf('%s (%d)', (string) ($first['familyLabel'] ?? 'Route guardrail group'), $items->count()),
+                    'summary' => $this->accessRouteGuardrailFamilySummary((string) $family, $items->count()),
                     'items' => $items->values()->all(),
                 ];
             })
@@ -418,6 +419,18 @@ class DashboardController extends Controller
             'card-types' => 'Galaxy tiers',
             'roles-permissions' => 'Galaxy access shells',
             default => 'Other access guardrails',
+        };
+    }
+
+    protected function accessRouteGuardrailFamilySummary(string $family, int $count): string
+    {
+        return match ($family) {
+            'shops' => sprintf('Branch review and write entry points stay visible through %d guarded Galaxy branch routes.', $count),
+            'cardholders' => sprintf('Holder review and write entry points stay visible through %d guarded Galaxy holder routes.', $count),
+            'cards' => sprintf('Card-shell review and write entry points stay visible through %d guarded Galaxy card routes.', $count),
+            'card-types' => sprintf('Tier review, writes, and status activation stay visible through %d guarded Galaxy tier routes.', $count),
+            'roles-permissions' => sprintf('Access-shell review and write entry points stay visible through %d guarded Galaxy access routes.', $count),
+            default => sprintf('This guardrail family currently tracks %d Phase 1 admin routes.', $count),
         };
     }
 

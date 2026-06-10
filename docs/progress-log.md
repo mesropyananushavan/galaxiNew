@@ -2,6 +2,11 @@
 
 ## 2026-06-09
 
+### Access route-guardrail family summary checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each grouped access guardrail family now carries a short controller-shaped summary in addition to its count and label.
+- Updated `resources/views/admin/dashboard.blade.php` so the live access card shows those family summaries under the grouped headings, making the larger Phase 1 guardrail map easier to scan without reading every route first.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-readability follow-up.
+
 ### Access route-guardrail family count checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so each grouped access guardrail family now carries a controller-prepared item count alongside its family label.
 - Updated `resources/views/admin/dashboard.blade.php` so the live access card shows those per-family counts directly in the grouped headings, making the growing Phase 1 access map easier to scan.
