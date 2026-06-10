@@ -12420,7 +12420,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy Prime publish tier blocker reflected from model state')
             ->assertSee('Blocked until this draft linked tier clears rule and rollout parity review against visible card coverage.')
             ->assertSee('Implementation dependencies')
-            ->assertSee('Selected record:')
+            ->assertSee('Selected Galaxy tier:')
             ->assertSee('Edit flow state:')
             ->assertSee('Shared live form is running in request-driven PATCH mode')
             ->assertSee('Lifecycle freshness:')

@@ -2077,7 +2077,7 @@ class ResourceIndexController extends Controller
         $page = $this->prependLatestBackendWriteTimelineItem($page);
 
         $page['dependencyStatus'] = [
-            ['label' => 'Selected record', 'value' => $selectedCardType->name],
+            ['label' => 'Selected Galaxy tier', 'value' => $selectedCardType->name],
             ['label' => 'Edit flow state', 'value' => 'Shared live form is running in request-driven PATCH mode'],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],

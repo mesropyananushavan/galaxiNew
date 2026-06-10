@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected-tier label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the primary item as `Selected Galaxy tier` instead of the broader generic `Selected record` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the existing tier-specific flow and timeline wording.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
 ### Card-type selected-summary flow label checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected tier's record-summary feedback now uses a tier-specific `...latest flow result from selected tier` label instead of the broader generic `Latest flow result` wording.
 - Updated the focused selected-tier post-toggle assertions so the card-types workspace now locks that more explicit selected-summary flow label alongside the live-form dependency and timeline labels.
