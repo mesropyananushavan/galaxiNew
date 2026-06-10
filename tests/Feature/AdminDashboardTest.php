@@ -12810,6 +12810,19 @@ class AdminDashboardTest extends TestCase
 
     public function test_card_types_page_replaces_preview_metrics_with_model_backed_counts(): void
     {
+        $shop = Shop::create([
+            'name' => 'Tier Metrics Shop',
+            'code' => 'tier-metrics-shop',
+            'is_active' => true,
+        ]);
+
+        $holder = CardHolder::create([
+            'shop_id' => $shop->id,
+            'full_name' => 'Tier Metrics Holder',
+            'phone' => '+37493000099',
+            'is_active' => true,
+        ]);
+
         CardType::create([
             'name' => 'Gold',
             'slug' => 'gold',
@@ -12834,6 +12847,14 @@ class AdminDashboardTest extends TestCase
             'is_active' => false,
         ]);
 
+        Card::create([
+            'shop_id' => $shop->id,
+            'card_holder_id' => $holder->id,
+            'card_type_id' => 1,
+            'number' => 'GLX-TIER-METRIC-1001',
+            'status' => 'active',
+        ]);
+
         $user = User::factory()->create();
 
         $response = $this->actingAs($user)->get(route('admin.card-types.index'));
@@ -12842,6 +12863,8 @@ class AdminDashboardTest extends TestCase
             ->assertOk()
             ->assertSee('Active-state Galaxy tiers')
             ->assertSee('Draft-state Galaxy tiers')
+            ->assertSee('Linked Galaxy tiers')
+            ->assertSee('Unlinked Galaxy tiers')
             ->assertSee('Review-noted Galaxy tiers')
             ->assertSee('Tier activation notes')
             ->assertSee('Tier rollout notes')
@@ -12849,6 +12872,8 @@ class AdminDashboardTest extends TestCase
             ->assertDontSee('Imported rules')
             ->assertSee('>2<', false)
             ->assertSee('>1<', false)
+            ->assertSee('>1<', false)
+            ->assertSee('>2<', false)
             ->assertSee('>1<', false)
             ->assertSee('>3<', false);
     }

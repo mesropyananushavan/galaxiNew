@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type linkage metrics checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the live `card-types` management snapshot now exposes `Linked Galaxy tiers` and `Unlinked Galaxy tiers` metrics directly from the newer `CardType` linkage scopes.
+- Updated the focused card-types management preview assertion so this runtime surface stays tied to a real Galaxy shop, holder, card, and tier linkage context instead of leaving the new tier-foundation coverage model-only.
+- Re-ran the focused card-types management preview assertion as the parity guard for this small tier-runtime follow-up.
+
 ### Card-type unlinked scope symmetry checkpoint
 - Added explicit `activeUnlinked` and `draftUnlinked` scopes to `app/Models/CardType.php`, completing the first small active-vs-draft linkage matrix for Galaxy tiers instead of leaving unlinked tier review to ad hoc chained filters.
 - Extended the focused tier-linkage assertion in `tests/Feature/AdminDashboardTest.php` so both the linked and unlinked sides of the tier foundation query surface stay locked to one real Galaxy shop, holder, and card context.
