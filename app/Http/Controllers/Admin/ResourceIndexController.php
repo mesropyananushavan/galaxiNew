@@ -1925,7 +1925,6 @@ class ResourceIndexController extends Controller
         }
 
         $page['selectedRecordSummary'] = $this->cardTypesSelectedTypeSummary($selectedCardType);
-        $page['selectedRecordSummaryTitle'] = 'Selected Galaxy tier summary';
 
         $page = $this->appendCardTypeLatestFlowFeedback($page);
         $page = $this->renameCardTypeLatestFlowSummaryLabel($page, sprintf('%s latest flow result from selected tier', $selectedCardType->name));
@@ -2074,8 +2073,6 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
             ],
         ];
-        $page['activityTimelineTitle'] = 'Galaxy tier activity trail';
-
         $page = $this->prependLatestBackendWriteTimelineItem($page);
 
         $page['dependencyStatus'] = [
@@ -2098,7 +2095,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Galaxy tier action gating', 'value' => $this->cardTypesActionGating($selectedCardType)],
             ['label' => 'Remaining backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
         ];
-        $page['dependencyStatusTitle'] = 'Galaxy tier dependencies';
+        $page = $this->applyCardTypesSelectedSurfaceTitles($page);
 
         $page = $this->appendLatestBackendWriteDependencyStatus($page);
 
@@ -2200,6 +2197,15 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedForEditFlowDescription(): string
     {
         return 'The shared card-type form is now loading this saved tier directly from Galaxy foundation data instead of foundation-preview defaults.';
+    }
+
+    private function applyCardTypesSelectedSurfaceTitles(array $page): array
+    {
+        $page['selectedRecordSummaryTitle'] = 'Selected Galaxy tier summary';
+        $page['activityTimelineTitle'] = 'Galaxy tier activity trail';
+        $page['dependencyStatusTitle'] = 'Galaxy tier dependencies';
+
+        return $page;
     }
 
     private function cardTypesEditFlowStateTimelineTitle(CardType $selectedCardType): string

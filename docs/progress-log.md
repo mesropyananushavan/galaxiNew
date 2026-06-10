@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected-surface title helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its three specialized block titles (`Selected Galaxy tier summary`, `Galaxy tier activity trail`, `Galaxy tier dependencies`) through a single helper instead of scattering those overrides inline.
+- Kept the rendered copy unchanged while tightening the selected-tier assembly seam, so later card-type-specific surface work can stay localized to one place.
+- Re-ran the focused selected-tier assertions as the parity guard for this small structural cleanup.
+
 ### Card-type edit-flow dependency cue checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier dependency block now says `Live Galaxy tier form is running in request-driven PATCH mode` instead of the broader generic `Shared live form...` wording.
 - Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific edit-flow dependency cue alongside the matching review and edit-form descriptions.
