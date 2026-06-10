@@ -818,6 +818,7 @@ class ResourceIndexController extends Controller
         );
 
         $page = $this->appendLatestBackendWriteDependencyStatus($page);
+        $page = $this->renameLatestBackendWriteDependencyLabel($page, sprintf('%s latest flow result from live form', $selectedCardType->name));
 
         return $page;
     }
@@ -4932,6 +4933,26 @@ class ResourceIndexController extends Controller
             'label' => 'Latest flow result',
             'value' => $status,
         ];
+        $page['dependencyStatus'] = $dependencyStatus;
+
+        return $page;
+    }
+
+    private function renameLatestBackendWriteDependencyLabel(array $page, string $label): array
+    {
+        $dependencyStatus = is_array($page['dependencyStatus'] ?? null) ? $page['dependencyStatus'] : [];
+
+        if ($dependencyStatus === []) {
+            return $page;
+        }
+
+        $lastIndex = array_key_last($dependencyStatus);
+
+        if ($lastIndex === null || ($dependencyStatus[$lastIndex]['label'] ?? null) !== 'Latest flow result') {
+            return $page;
+        }
+
+        $dependencyStatus[$lastIndex]['label'] = $label;
         $page['dependencyStatus'] = $dependencyStatus;
 
         return $page;

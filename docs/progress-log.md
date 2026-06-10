@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type live-form flow label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected tier's backend-flow summary now uses a tier-specific `...latest flow result from live form` label instead of the broader generic `Latest flow result` wording.
+- Updated the focused selected-tier post-toggle assertions so the card-types workspace now locks that more explicit live-form flow label alongside the selected-tier backend-write timeline title.
+- Re-ran the focused selected-tier and header-toggle assertions as the parity guard for this small post-write wording follow-up.
+
 ### Card-type backend-write timeline title checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so a selected tier's latest backend-write timeline item now uses a tier-specific `...latest backend write reflected from live form` title instead of the broader generic label.
 - Updated the focused selected-tier assertions so the card-types workspace now locks that more explicit post-write timeline title in the selected draft-tier review flow.
