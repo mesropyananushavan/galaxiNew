@@ -2015,14 +2015,22 @@ class ResourceIndexController extends Controller
 
     private function cardTypesCatalogSecondaryActions(): array
     {
+        return $this->cardTypesSecondaryActionSpecs(
+            $this->cardTypesCatalogImportRulesDisabledReason(),
+            $this->cardTypesCatalogPublishTypeDisabledReason(),
+        );
+    }
+
+    private function cardTypesSecondaryActionSpecs(string $importRulesDisabledReason, string $publishDisabledReason): array
+    {
         return [
             [
                 'label' => $this->cardTypesImportRulesActionLabel(),
-                'disabledReason' => $this->cardTypesCatalogImportRulesDisabledReason(),
+                'disabledReason' => $importRulesDisabledReason,
             ],
             [
                 'label' => $this->cardTypesPublishActionLabel(),
-                'disabledReason' => $this->cardTypesCatalogPublishTypeDisabledReason(),
+                'disabledReason' => $publishDisabledReason,
             ],
         ];
     }
@@ -3199,16 +3207,10 @@ class ResourceIndexController extends Controller
 
     private function cardTypesSelectedSecondaryActions(CardType $selectedCardType): array
     {
-        return $this->secondaryDisabledActions([
-            [
-                'label' => $this->cardTypesImportRulesActionLabel(),
-                'disabledReason' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
-            ],
-            [
-                'label' => $this->cardTypesPublishActionLabel(),
-                'disabledReason' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
-            ],
-        ]);
+        return $this->secondaryDisabledActions($this->cardTypesSecondaryActionSpecs(
+            $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
+            $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
+        ));
     }
 
     private function secondaryDisabledActions(array $actions): array

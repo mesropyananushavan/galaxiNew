@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type shared secondary-action spec checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now builds its import-rules and publish review action specs through one shared helper instead of repeating the same Galaxy-tier secondary action labels separately for catalog and selected-tier surfaces.
+- Kept the rendered secondary action output unchanged while trimming another small piece of duplicated action wiring out of the card-types workspace.
+- Re-ran focused card-types preview, catalog readiness, draft-readiness, and selected-tier readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type catalog secondary-action checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds its secondary import and publish review actions through a dedicated helper instead of assembling that Galaxy-tier secondary action stack inline inside the catalog action composer.
 - Kept the rendered catalog action output unchanged while trimming another small piece of duplicated action wiring out of the card-types workspace.
