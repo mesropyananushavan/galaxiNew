@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type shared tier-state value checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves shared Galaxy-tier lifecycle-freshness, last-saved, and status-flow values through common tier-value helpers instead of keeping thin selected-only and catalog-only proxy helpers around those same lookups.
+- Kept the rendered selected-tier and catalog output unchanged while trimming another small piece of duplicated Galaxy-tier value wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type tier identity helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves shared Galaxy-tier identity values through common name and slug helpers instead of splitting the same raw values across separate selected-surface and catalog-row helpers.
 - Kept the rendered selected-tier and catalog output unchanged while trimming another small piece of duplicated Galaxy-tier identity wiring out of the card-types workspace.

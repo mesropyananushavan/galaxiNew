@@ -1905,8 +1905,8 @@ class ResourceIndexController extends Controller
             ['label' => 'Slug', 'value' => $this->cardTypesSelectedTierSlug($selectedCardType)],
             ['label' => 'Points rate', 'value' => $this->cardTypesPointsRateLabel($selectedCardType)],
             ['label' => 'Galaxy status', 'value' => $this->cardTypeStatusValue($selectedCardType)],
-            ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesSelectedLifecycleFreshnessValue($selectedCardType)],
-            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardTypesSelectedLastSavedValue($selectedCardType)],
+            ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesTierLifecycleFreshnessValue($selectedCardType)],
+            ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardTypesTierLastSavedValue($selectedCardType)],
             ['label' => 'Review note', 'value' => $this->cardTypesReviewNoteValue($selectedCardType)],
             ['label' => 'Activation note', 'value' => $this->cardTypesActivationNoteValue($selectedCardType)],
             ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
@@ -1934,7 +1934,7 @@ class ResourceIndexController extends Controller
             $this->cardTypesTierSlugValue($cardType),
             $this->cardTypesPointsRateLabel($cardType),
             $this->cardTypesCatalogRolloutNotePreview($cardType),
-            $this->cardTypesCatalogStatusFlowLabel($cardType),
+            $this->cardTypesTierStatusFlowValue($cardType),
             $this->cardTypesCatalogToggleStatusAction($cardType),
         ];
     }
@@ -1959,17 +1959,17 @@ class ResourceIndexController extends Controller
         return $cardType->slug;
     }
 
-    private function cardTypesSelectedLifecycleFreshnessValue(CardType $cardType): string
+    private function cardTypesTierLifecycleFreshnessValue(CardType $cardType): string
     {
         return $this->cardTypesLifecycleFreshnessLabel($cardType);
     }
 
-    private function cardTypesSelectedLastSavedValue(CardType $cardType): string
+    private function cardTypesTierLastSavedValue(CardType $cardType): string
     {
         return $this->cardTypesLastSavedLabel($cardType);
     }
 
-    private function cardTypesCatalogStatusFlowLabel(CardType $cardType): string
+    private function cardTypesTierStatusFlowValue(CardType $cardType): string
     {
         return $this->cardTypeStatusFlowLabel($cardType);
     }
@@ -2224,8 +2224,8 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected Galaxy tier', 'value' => $this->cardTypesSelectedTierName($selectedCardType)],
             ['label' => 'Galaxy tier edit flow state', 'value' => 'Live Galaxy tier form is running in request-driven PATCH mode'],
-            ['label' => 'Galaxy tier lifecycle freshness', 'value' => $this->cardTypesSelectedLifecycleFreshnessValue($selectedCardType)],
-            ['label' => 'Galaxy tier last saved in foundation', 'value' => $this->cardTypesSelectedLastSavedValue($selectedCardType)],
+            ['label' => 'Galaxy tier lifecycle freshness', 'value' => $this->cardTypesTierLifecycleFreshnessValue($selectedCardType)],
+            ['label' => 'Galaxy tier last saved in foundation', 'value' => $this->cardTypesTierLastSavedValue($selectedCardType)],
             ['label' => 'Review note', 'value' => $this->cardTypesReviewNoteValue($selectedCardType)],
             ['label' => 'Activation note', 'value' => $this->cardTypesActivationNoteValue($selectedCardType)],
             ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
