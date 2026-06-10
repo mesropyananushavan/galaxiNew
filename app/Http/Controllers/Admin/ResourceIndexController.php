@@ -1992,12 +1992,9 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = $this->cardTypesSelectedActions($selectedCardType);
 
-        $page['activityTimeline'] = $this->cardTypesSelectedActivityTimeline($selectedCardType);
-        $page = $this->prependLatestBackendWriteTimelineItem($page);
-
-        $page['dependencyStatus'] = $this->cardTypesSelectedDependencyStatus($selectedCardType);
+        $page = $this->applyCardTypesSelectedTimelineData($page, $selectedCardType);
+        $page = $this->applyCardTypesSelectedDependencyData($page, $selectedCardType);
         $page = $this->applyCardTypesSelectedSurfaceTitles($page);
-        $page = $this->appendLatestBackendWriteDependencyStatus($page);
 
         return $page;
     }
@@ -2009,6 +2006,20 @@ class ResourceIndexController extends Controller
         $page = $this->renameCardTypeLatestFlowSummaryLabel($page, sprintf('%s latest flow result from selected tier', $selectedCardType->name));
 
         return $page;
+    }
+
+    private function applyCardTypesSelectedTimelineData(array $page, CardType $selectedCardType): array
+    {
+        $page['activityTimeline'] = $this->cardTypesSelectedActivityTimeline($selectedCardType);
+
+        return $this->prependLatestBackendWriteTimelineItem($page);
+    }
+
+    private function applyCardTypesSelectedDependencyData(array $page, CardType $selectedCardType): array
+    {
+        $page['dependencyStatus'] = $this->cardTypesSelectedDependencyStatus($selectedCardType);
+
+        return $this->appendLatestBackendWriteDependencyStatus($page);
     }
 
     private function cardTypesSelectedActivityTimeline(CardType $selectedCardType): array
