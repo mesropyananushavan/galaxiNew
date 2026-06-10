@@ -1903,7 +1903,7 @@ class ResourceIndexController extends Controller
         return [
             ['label' => 'Selected Galaxy tier', 'value' => $selectedCardType->name],
             ['label' => 'Slug', 'value' => $selectedCardType->slug],
-            ['label' => 'Points rate', 'value' => number_format((float) $selectedCardType->points_rate, 2).'x'],
+            ['label' => 'Points rate', 'value' => $this->cardTypesPointsRateLabel($selectedCardType)],
             ['label' => 'Galaxy status', 'value' => $this->cardTypeStatusValue($selectedCardType)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
@@ -1935,7 +1935,7 @@ class ResourceIndexController extends Controller
                 'href' => route('admin.card-types.index', ['cardType' => $cardType->id], absolute: false).'#live-form',
             ],
             $cardType->slug,
-            number_format((float) $cardType->points_rate, 2).'x',
+            $this->cardTypesPointsRateLabel($cardType),
             $this->cardTypesCatalogRolloutNotePreview($cardType),
             $this->cardTypeStatusFlowLabel($cardType),
             [
@@ -1951,6 +1951,11 @@ class ResourceIndexController extends Controller
         return filled($cardType->rollout_note)
             ? str($cardType->rollout_note)->limit(72)->toString()
             : 'No rollout note saved yet';
+    }
+
+    private function cardTypesPointsRateLabel(CardType $cardType): string
+    {
+        return number_format((float) $cardType->points_rate, 2).'x';
     }
 
     private function cardTypesCatalogActions(): array
