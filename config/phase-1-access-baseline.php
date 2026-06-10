@@ -16,6 +16,16 @@ return [
             'ability' => 'access-shop',
             'coverage' => 'Keeps branch-aware visibility tied to the selected Galaxy shop context.',
         ],
+        [
+            'label' => 'Checks & points review gate',
+            'ability' => 'view-checks-points',
+            'coverage' => 'Keeps the receipt and accrual review workspace behind an explicit Galaxy operations gate while deeper receipt policies are still landing.',
+        ],
+        [
+            'label' => 'Services & rules review gate',
+            'ability' => 'view-services-rules',
+            'coverage' => 'Keeps the rules workspace behind an explicit Galaxy rules gate while richer rule-write access seams are still landing.',
+        ],
     ],
     'route_guardrails' => [
         [
@@ -133,16 +143,16 @@ return [
         [
             'label' => 'Checks & points review route',
             'route' => 'admin.checks-points.index',
-            'guard' => 'auth + can:access-admin',
+            'guard' => 'can:view-checks-points',
             'maturity' => 'shared-shell',
-            'coverage' => 'Keeps the live receipt and accrual workspace behind the shared Galaxy admin shell guard while deeper receipt policies are still landing.',
+            'coverage' => 'Keeps the live receipt and accrual workspace behind an explicit Galaxy operations gate while deeper receipt policies are still landing.',
         ],
         [
             'label' => 'Services & rules review route',
             'route' => 'admin.services-rules.index',
-            'guard' => 'auth + can:access-admin',
+            'guard' => 'can:view-services-rules',
             'maturity' => 'shared-shell',
-            'coverage' => 'Keeps the live Galaxy rules workspace behind the shared admin shell guard while richer rule-write access seams are still landing.',
+            'coverage' => 'Keeps the live Galaxy rules workspace behind an explicit rules gate while richer rule-write access seams are still landing.',
         ],
         [
             'label' => 'Gifts review route',

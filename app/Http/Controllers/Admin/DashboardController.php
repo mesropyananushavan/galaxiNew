@@ -157,7 +157,7 @@ class DashboardController extends Controller
             ['label' => 'Gate coverage', 'value' => sprintf('%d Phase 1 admin access gates currently tracked.', $this->accessGateCount())],
             ['label' => 'Route guardrails', 'value' => sprintf('%d Phase 1 admin route guardrails currently tracked.', $this->accessRouteGuardrailCount())],
             ['label' => 'Policy-backed guardrails', 'value' => sprintf('%d live resource guardrails already run through model policy checks.', $this->policyBackedAccessRouteGuardrailCount($routeGuardrails))],
-            ['label' => 'Shared-shell guardrails', 'value' => sprintf('%d live operational routes still rely on the shared admin shell guard.', $this->sharedShellAccessRouteGuardrailCount($routeGuardrails))],
+            ['label' => 'Shared-shell guardrails', 'value' => sprintf('%d live operational routes still stay in the shared-shell maturity bucket.', $this->sharedShellAccessRouteGuardrailCount($routeGuardrails))],
             ['label' => 'Policy coverage', 'value' => sprintf('%d model policies currently mapped for Phase 1 admin resources.', $this->accessPolicyCount())],
             ['label' => 'Admin guardrail', 'value' => '<code>routes/admin.php</code> keeps the Galaxy admin shell behind <code>auth</code> and <code>can:access-admin</code>.', 'html' => true],
         ];
@@ -350,7 +350,7 @@ class DashboardController extends Controller
     protected function accessGateIntro(array $gates): string
     {
         return sprintf(
-            'These %d controller-tracked admin gates keep the Galaxy workspace shell and selected branch scope explicit before deeper Phase 1 role matrices land.',
+            'These %d controller-tracked admin gates keep the Galaxy workspace shell, selected branch scope, and the first operational review lanes explicit before deeper Phase 1 role matrices land.',
             count($gates),
         );
     }
@@ -505,7 +505,7 @@ class DashboardController extends Controller
             ->values();
 
         if ($maturities->count() === 1 && $maturities->first() === 'shared-shell') {
-            return 'This lane is still guarded only by the shared Galaxy admin shell.';
+            return 'This lane still sits in the shared-shell maturity bucket while deeper policy seams are pending.';
         }
 
         if ($maturities->count() === 1 && $maturities->first() === 'policy-backed') {

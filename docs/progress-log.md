@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Checks and rules gates checkpoint
+- Added explicit `view-checks-points` and `view-services-rules` gates in `app/Providers/Concerns/RegistersAdminAccessGates.php` and wired `admin.checks-points.index` plus `admin.services-rules.index` through them in `routes/admin.php`, so those two operational review lanes are no longer only implied by the shared admin shell guard.
+- Updated the Phase 1 access baseline, seam docs, and focused dashboard assertions so the receipt and rules route contracts now name their dedicated review gates while still truthfully staying in the shared-shell maturity bucket until deeper receipt and rule policies land.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this next operational-lane access follow-up.
+
 ### Gifts gate checkpoint
 - Added an explicit `view-gifts` gate in `app/Providers/Concerns/RegistersAdminAccessGates.php` and wired `admin.gifts.index` through it in `routes/admin.php`, so rewards review is no longer only an unnamed shared-shell lane.
 - Updated the Phase 1 access baseline and seam docs so the gifts route contract now names its dedicated gate while still truthfully staying in the shared-shell maturity bucket until reward-specific policies land.

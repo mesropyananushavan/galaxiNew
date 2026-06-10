@@ -283,13 +283,13 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Phase 1 access baseline')
             ->assertSee('Keep the first Galaxy authorization gates and policy mappings explicit while Phase 1 moves admin access and shop scope away from starter-era assumptions.')
             ->assertSee('Gate coverage:')
-            ->assertSee('2 Phase 1 admin access gates currently tracked.')
+            ->assertSee('4 Phase 1 admin access gates currently tracked.')
             ->assertSee('Route guardrails:')
             ->assertSee('20 Phase 1 admin route guardrails currently tracked.')
             ->assertSee('Policy-backed guardrails:')
             ->assertSee('16 live resource guardrails already run through model policy checks.')
             ->assertSee('Shared-shell guardrails:')
-            ->assertSee('4 live operational routes still rely on the shared admin shell guard.')
+            ->assertSee('4 live operational routes still stay in the shared-shell maturity bucket.')
             ->assertSee('Policy coverage:')
             ->assertSee('6 model policies currently mapped for Phase 1 admin resources.')
             ->assertSee('Admin guardrail:')
@@ -307,13 +307,19 @@ class AdminDashboardTest extends TestCase
             ->assertSee('app/Providers/Concerns/RegistersAdminPolicies.php')
             ->assertSee('app/Policies/PermissionPolicy.php')
             ->assertSee('Tracked gates:')
-            ->assertSee('These 2 controller-tracked admin gates keep the Galaxy workspace shell and selected branch scope explicit before deeper Phase 1 role matrices land.')
+            ->assertSee('These 4 controller-tracked admin gates keep the Galaxy workspace shell, selected branch scope, and the first operational review lanes explicit before deeper Phase 1 role matrices land.')
             ->assertSee('<strong>Admin workspace gate</strong>', false)
             ->assertSee('<code>access-admin</code>', false)
             ->assertSee('Protects the Galaxy admin shell behind authenticated permission-bearing staff access.')
             ->assertSee('<strong>Shop scope gate</strong>', false)
             ->assertSee('<code>access-shop</code>', false)
             ->assertSee('Keeps branch-aware visibility tied to the selected Galaxy shop context.')
+            ->assertSee('<strong>Checks &amp; points review gate</strong>', false)
+            ->assertSee('<code>view-checks-points</code>', false)
+            ->assertSee('Keeps the receipt and accrual review workspace behind an explicit Galaxy operations gate while deeper receipt policies are still landing.')
+            ->assertSee('<strong>Services &amp; rules review gate</strong>', false)
+            ->assertSee('<code>view-services-rules</code>', false)
+            ->assertSee('Keeps the rules workspace behind an explicit Galaxy rules gate while richer rule-write access seams are still landing.')
             ->assertSee('Tracked route guardrails:')
             ->assertSee('These 20 live Phase 1 route guardrails are grouped into 9 controller-shaped Galaxy access lanes, with 16 policy-backed resource guardrails and 4 shared-shell operational guardrails so access maturity stays readable on the admin dashboard.')
             ->assertSeeInOrder([
@@ -377,22 +383,22 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy access shells:')
             ->assertSee('Galaxy access shells (3), Access-shell review and write entry points stay visible through 3 guarded Galaxy access routes. This lane already runs through explicit Phase 1 policy checks.')
             ->assertSee('Galaxy receipt operations:')
-            ->assertSee('Galaxy receipt operations (1), Receipt and accrual review stays visible through 1 shared-shell Galaxy operations route. This lane is still guarded only by the shared Galaxy admin shell.')
+            ->assertSee('Galaxy receipt operations (1), Receipt and accrual review stays visible through 1 shared-shell Galaxy operations route. This lane still sits in the shared-shell maturity bucket while deeper policy seams are pending.')
             ->assertSee('<strong>Checks &amp; points review route</strong>', false)
-            ->assertSee('<code>admin.checks-points.index</code>; <code>GET /admin/checks-points</code>; <code>auth + can:access-admin</code>; <code>shared-shell</code>', false)
-            ->assertSee('Keeps the live receipt and accrual workspace behind the shared Galaxy admin shell guard while deeper receipt policies are still landing.')
+            ->assertSee('<code>admin.checks-points.index</code>; <code>GET /admin/checks-points</code>; <code>can:view-checks-points</code>; <code>shared-shell</code>', false)
+            ->assertSee('Keeps the live receipt and accrual workspace behind an explicit Galaxy operations gate while deeper receipt policies are still landing.')
             ->assertSee('Galaxy rule operations:')
-            ->assertSee('Galaxy rule operations (1), Rule review stays visible through 1 shared-shell Galaxy rules route. This lane is still guarded only by the shared Galaxy admin shell.')
+            ->assertSee('Galaxy rule operations (1), Rule review stays visible through 1 shared-shell Galaxy rules route. This lane still sits in the shared-shell maturity bucket while deeper policy seams are pending.')
             ->assertSee('<strong>Services &amp; rules review route</strong>', false)
-            ->assertSee('<code>admin.services-rules.index</code>; <code>GET /admin/services-rules</code>; <code>auth + can:access-admin</code>; <code>shared-shell</code>', false)
-            ->assertSee('Keeps the live Galaxy rules workspace behind the shared admin shell guard while richer rule-write access seams are still landing.')
+            ->assertSee('<code>admin.services-rules.index</code>; <code>GET /admin/services-rules</code>; <code>can:view-services-rules</code>; <code>shared-shell</code>', false)
+            ->assertSee('Keeps the live Galaxy rules workspace behind an explicit rules gate while richer rule-write access seams are still landing.')
             ->assertSee('Galaxy reward operations:')
-            ->assertSee('Galaxy reward operations (1), Reward review stays visible through 1 shared-shell Galaxy rewards route. This lane is still guarded only by the shared Galaxy admin shell.')
+            ->assertSee('Galaxy reward operations (1), Reward review stays visible through 1 shared-shell Galaxy rewards route. This lane still sits in the shared-shell maturity bucket while deeper policy seams are pending.')
             ->assertSee('<strong>Gifts review route</strong>', false)
             ->assertSee('<code>admin.gifts.index</code>; <code>GET /admin/gifts</code>; <code>can:view-gifts</code>; <code>shared-shell</code>', false)
             ->assertSee('Keeps the live Galaxy rewards workspace behind an explicit rewards gate while reward-specific write access is still preview-only.')
             ->assertSee('Galaxy reporting operations:')
-            ->assertSee('Galaxy reporting operations (1), Reporting review stays visible through 1 shared-shell Galaxy reporting route. This lane is still guarded only by the shared Galaxy admin shell.')
+            ->assertSee('Galaxy reporting operations (1), Reporting review stays visible through 1 shared-shell Galaxy reporting route. This lane still sits in the shared-shell maturity bucket while deeper policy seams are pending.')
             ->assertSee('<strong>Reports review route</strong>', false)
             ->assertSee('<code>admin.reports.index</code>; <code>GET /admin/reports</code>; <code>can:view-reports</code>; <code>shared-shell</code>', false)
             ->assertSee('Keeps the live Galaxy reporting workspace behind an explicit reporting gate while report-source policy seams are still pending.')
@@ -771,6 +777,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('create', Card::class));
         $this->assertTrue($user->canAccessShop($shop));
         $this->assertTrue($user->can('access-shop', $shop));
+        $this->assertTrue($user->can('view-checks-points'));
+        $this->assertTrue($user->can('view-services-rules'));
         $this->assertTrue($user->can('view-gifts'));
         $this->assertTrue($user->can('view-reports'));
         $this->assertTrue($user->can('view', $shop));
@@ -825,6 +833,8 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('create', Card::class));
         $this->assertTrue($user->canAccessShop($assignedShop));
         $this->assertTrue($user->can('access-shop', $assignedShop));
+        $this->assertTrue($user->can('view-checks-points'));
+        $this->assertTrue($user->can('view-services-rules'));
         $this->assertTrue($user->can('view-gifts'));
         $this->assertTrue($user->can('view-reports'));
         $this->assertTrue($user->can('view', $assignedShop));
@@ -899,8 +909,10 @@ class AdminDashboardTest extends TestCase
         $this->assertContains('can:update,role', $roleUpdateRoute->gatherMiddleware());
         $this->assertContains('auth', $checksPointsRoute->gatherMiddleware());
         $this->assertContains('can:access-admin', $checksPointsRoute->gatherMiddleware());
+        $this->assertContains('can:view-checks-points', $checksPointsRoute->gatherMiddleware());
         $this->assertContains('auth', $servicesRulesRoute->gatherMiddleware());
         $this->assertContains('can:access-admin', $servicesRulesRoute->gatherMiddleware());
+        $this->assertContains('can:view-services-rules', $servicesRulesRoute->gatherMiddleware());
         $this->assertContains('auth', $giftsRoute->gatherMiddleware());
         $this->assertContains('can:access-admin', $giftsRoute->gatherMiddleware());
         $this->assertContains('can:view-gifts', $giftsRoute->gatherMiddleware());

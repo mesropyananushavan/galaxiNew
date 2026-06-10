@@ -56,7 +56,10 @@ Route::prefix('admin')
         Route::patch('/cards/{card}', CardUpdateController::class)
             ->middleware('can:update,card')
             ->name('cards.update');
-        Route::get('/checks-points', ResourceIndexController::class)->defaults('resource', 'checks-points')->name('checks-points.index');
+        Route::get('/checks-points', ResourceIndexController::class)
+            ->middleware('can:view-checks-points')
+            ->defaults('resource', 'checks-points')
+            ->name('checks-points.index');
         Route::get('/card-types', ResourceIndexController::class)
             ->middleware('can:viewAny,'.CardType::class)
             ->defaults('resource', 'card-types')
@@ -70,7 +73,10 @@ Route::prefix('admin')
         Route::patch('/card-types/{cardType}/toggle-status', CardTypeToggleStatusController::class)
             ->middleware('can:update,cardType')
             ->name('card-types.toggle-status');
-        Route::get('/services-rules', ResourceIndexController::class)->defaults('resource', 'services-rules')->name('services-rules.index');
+        Route::get('/services-rules', ResourceIndexController::class)
+            ->middleware('can:view-services-rules')
+            ->defaults('resource', 'services-rules')
+            ->name('services-rules.index');
         Route::get('/gifts', ResourceIndexController::class)
             ->middleware('can:view-gifts')
             ->defaults('resource', 'gifts')
