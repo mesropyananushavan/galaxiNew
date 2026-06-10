@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type dependency block title checkpoint
+- Extended `resources/views/admin/partials/resource-dependency-status.blade.php` to accept an overridable title, then set the selected card-type workspace to render that block as `Galaxy tier dependencies` instead of the broader generic `Implementation dependencies` heading.
+- Updated the focused selected-tier assertions so the card-types workspace now locks the new block title and the already-renamed tier-specific dependency labels across draft-linked and active-linked scenarios.
+- Re-ran the focused selected-tier assertions after aligning a few stale expectations that still referenced the old generic dependency labels.
+
 ### Card-type action-gating dependency label checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the gating row as `Galaxy tier action gating` instead of the broader generic `Action gating` wording.
 - Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.

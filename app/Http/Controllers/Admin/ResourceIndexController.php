@@ -2096,6 +2096,7 @@ class ResourceIndexController extends Controller
             ['label' => 'Galaxy tier action gating', 'value' => $this->cardTypesActionGating($selectedCardType)],
             ['label' => 'Remaining backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
         ];
+        $page['dependencyStatusTitle'] = 'Galaxy tier dependencies';
 
         $page = $this->appendLatestBackendWriteDependencyStatus($page);
 
