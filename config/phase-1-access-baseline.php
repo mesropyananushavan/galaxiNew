@@ -114,6 +114,30 @@ return [
             'guard' => 'can:update,role',
             'coverage' => 'Keeps live access-shell identity updates behind the same bootstrap-only role update guardrail used by the shared admin form.',
         ],
+        [
+            'label' => 'Checks & points review route',
+            'route' => 'admin.checks-points.index',
+            'guard' => 'auth + can:access-admin',
+            'coverage' => 'Keeps the live receipt and accrual workspace behind the shared Galaxy admin shell guard while deeper receipt policies are still landing.',
+        ],
+        [
+            'label' => 'Services & rules review route',
+            'route' => 'admin.services-rules.index',
+            'guard' => 'auth + can:access-admin',
+            'coverage' => 'Keeps the live Galaxy rules workspace behind the shared admin shell guard while richer rule-write access seams are still landing.',
+        ],
+        [
+            'label' => 'Gifts review route',
+            'route' => 'admin.gifts.index',
+            'guard' => 'auth + can:access-admin',
+            'coverage' => 'Keeps the live Galaxy rewards workspace behind the shared admin shell guard while reward-specific write access is still preview-only.',
+        ],
+        [
+            'label' => 'Reports review route',
+            'route' => 'admin.reports.index',
+            'guard' => 'auth + can:access-admin',
+            'coverage' => 'Keeps the live Galaxy reporting workspace behind the shared admin shell guard while report-source policy seams are still pending.',
+        ],
     ],
     'policies' => [
         [

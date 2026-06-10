@@ -285,7 +285,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Gate coverage:')
             ->assertSee('2 Phase 1 admin access gates currently tracked.')
             ->assertSee('Route guardrails:')
-            ->assertSee('16 Phase 1 admin route guardrails currently tracked.')
+            ->assertSee('20 Phase 1 admin route guardrails currently tracked.')
             ->assertSee('Policy coverage:')
             ->assertSee('6 model policies currently mapped for Phase 1 admin resources.')
             ->assertSee('Admin guardrail:')
@@ -311,13 +311,17 @@ class AdminDashboardTest extends TestCase
             ->assertSee('<code>access-shop</code>', false)
             ->assertSee('Keeps branch-aware visibility tied to the selected Galaxy shop context.')
             ->assertSee('Tracked route guardrails:')
-            ->assertSee('These 16 live Phase 1 route guardrails are grouped into 5 controller-shaped Galaxy access lanes so review and first-write coverage stays readable on the admin dashboard.')
+            ->assertSee('These 20 live Phase 1 route guardrails are grouped into 9 controller-shaped Galaxy access lanes so review and first-write coverage stays readable on the admin dashboard.')
             ->assertSeeInOrder([
                 'Galaxy branches:',
                 'Galaxy holders:',
                 'Galaxy card shells:',
                 'Galaxy tiers:',
                 'Galaxy access shells:',
+                'Galaxy receipt operations:',
+                'Galaxy rule operations:',
+                'Galaxy reward operations:',
+                'Galaxy reporting operations:',
             ])
             ->assertSee('Galaxy branches:')
             ->assertSee('Galaxy branches (3), Branch review and write entry points stay visible through 3 guarded Galaxy branch routes.')
@@ -368,6 +372,26 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Keeps live tier activation toggles behind the same card-type update guardrail used by the dedicated status action.')
             ->assertSee('Galaxy access shells:')
             ->assertSee('Galaxy access shells (3), Access-shell review and write entry points stay visible through 3 guarded Galaxy access routes.')
+            ->assertSee('Galaxy receipt operations:')
+            ->assertSee('Galaxy receipt operations (1), Receipt and accrual review stays visible through 1 shared-shell Galaxy operations route.')
+            ->assertSee('<strong>Checks &amp; points review route</strong>', false)
+            ->assertSee('<code>admin.checks-points.index</code>; <code>GET /admin/checks-points</code>; <code>auth + can:access-admin</code>', false)
+            ->assertSee('Keeps the live receipt and accrual workspace behind the shared Galaxy admin shell guard while deeper receipt policies are still landing.')
+            ->assertSee('Galaxy rule operations:')
+            ->assertSee('Galaxy rule operations (1), Rule review stays visible through 1 shared-shell Galaxy rules route.')
+            ->assertSee('<strong>Services &amp; rules review route</strong>', false)
+            ->assertSee('<code>admin.services-rules.index</code>; <code>GET /admin/services-rules</code>; <code>auth + can:access-admin</code>', false)
+            ->assertSee('Keeps the live Galaxy rules workspace behind the shared admin shell guard while richer rule-write access seams are still landing.')
+            ->assertSee('Galaxy reward operations:')
+            ->assertSee('Galaxy reward operations (1), Reward review stays visible through 1 shared-shell Galaxy rewards route.')
+            ->assertSee('<strong>Gifts review route</strong>', false)
+            ->assertSee('<code>admin.gifts.index</code>; <code>GET /admin/gifts</code>; <code>auth + can:access-admin</code>', false)
+            ->assertSee('Keeps the live Galaxy rewards workspace behind the shared admin shell guard while reward-specific write access is still preview-only.')
+            ->assertSee('Galaxy reporting operations:')
+            ->assertSee('Galaxy reporting operations (1), Reporting review stays visible through 1 shared-shell Galaxy reporting route.')
+            ->assertSee('<strong>Reports review route</strong>', false)
+            ->assertSee('<code>admin.reports.index</code>; <code>GET /admin/reports</code>; <code>auth + can:access-admin</code>', false)
+            ->assertSee('Keeps the live Galaxy reporting workspace behind the shared admin shell guard while report-source policy seams are still pending.')
             ->assertSee('<strong>Roles &amp; permissions review route</strong>', false)
             ->assertSee('<code>admin.roles-permissions.index</code>; <code>GET /admin/roles-permissions</code>; <code>can:viewAny,Role + can:viewAny,Permission</code>', false)
             ->assertSee('Keeps shared access-shell review and permission-vocabulary review behind both Phase 1 read policies.')
@@ -804,7 +828,7 @@ class AdminDashboardTest extends TestCase
         $this->assertFalse($user->canAccessShop(null));
     }
 
-    public function test_phase_one_admin_route_guardrails_stay_wired_for_shops_cardholders_cards_card_types_and_roles_permissions(): void
+    public function test_phase_one_admin_route_guardrails_stay_wired_for_shops_cardholders_cards_card_types_roles_permissions_and_shell_routes(): void
     {
         $shopsRoute = Route::getRoutes()->getByName('admin.shops.index');
         $shopStoreRoute = Route::getRoutes()->getByName('admin.shops.store');
@@ -822,6 +846,10 @@ class AdminDashboardTest extends TestCase
         $rolesRoute = Route::getRoutes()->getByName('admin.roles-permissions.index');
         $roleStoreRoute = Route::getRoutes()->getByName('admin.roles-permissions.store');
         $roleUpdateRoute = Route::getRoutes()->getByName('admin.roles-permissions.update');
+        $checksPointsRoute = Route::getRoutes()->getByName('admin.checks-points.index');
+        $servicesRulesRoute = Route::getRoutes()->getByName('admin.services-rules.index');
+        $giftsRoute = Route::getRoutes()->getByName('admin.gifts.index');
+        $reportsRoute = Route::getRoutes()->getByName('admin.reports.index');
 
         $this->assertNotNull($shopsRoute);
         $this->assertNotNull($shopStoreRoute);
@@ -839,6 +867,10 @@ class AdminDashboardTest extends TestCase
         $this->assertNotNull($rolesRoute);
         $this->assertNotNull($roleStoreRoute);
         $this->assertNotNull($roleUpdateRoute);
+        $this->assertNotNull($checksPointsRoute);
+        $this->assertNotNull($servicesRulesRoute);
+        $this->assertNotNull($giftsRoute);
+        $this->assertNotNull($reportsRoute);
 
         $this->assertContains('can:viewAny,'.Shop::class, $shopsRoute->gatherMiddleware());
         $this->assertContains('can:create,'.Shop::class, $shopStoreRoute->gatherMiddleware());
@@ -857,6 +889,14 @@ class AdminDashboardTest extends TestCase
         $this->assertContains('can:viewAny,'.Permission::class, $rolesRoute->gatherMiddleware());
         $this->assertContains('can:create,'.Role::class, $roleStoreRoute->gatherMiddleware());
         $this->assertContains('can:update,role', $roleUpdateRoute->gatherMiddleware());
+        $this->assertContains('auth', $checksPointsRoute->gatherMiddleware());
+        $this->assertContains('can:access-admin', $checksPointsRoute->gatherMiddleware());
+        $this->assertContains('auth', $servicesRulesRoute->gatherMiddleware());
+        $this->assertContains('can:access-admin', $servicesRulesRoute->gatherMiddleware());
+        $this->assertContains('auth', $giftsRoute->gatherMiddleware());
+        $this->assertContains('can:access-admin', $giftsRoute->gatherMiddleware());
+        $this->assertContains('auth', $reportsRoute->gatherMiddleware());
+        $this->assertContains('can:access-admin', $reportsRoute->gatherMiddleware());
     }
 
     public function test_shop_scoped_admin_access_helper_denies_paused_shop_users_even_for_their_assigned_shop(): void

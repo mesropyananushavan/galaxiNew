@@ -427,6 +427,10 @@ class DashboardController extends Controller
             str_starts_with($route, 'admin.cards.') => 'cards',
             str_starts_with($route, 'admin.card-types.') => 'card-types',
             str_starts_with($route, 'admin.roles-permissions.') => 'roles-permissions',
+            str_starts_with($route, 'admin.checks-points.') => 'checks-points',
+            str_starts_with($route, 'admin.services-rules.') => 'services-rules',
+            str_starts_with($route, 'admin.gifts.') => 'gifts',
+            str_starts_with($route, 'admin.reports.') => 'reports',
             default => 'other',
         };
     }
@@ -439,6 +443,10 @@ class DashboardController extends Controller
             'cards' => 'Galaxy card shells',
             'card-types' => 'Galaxy tiers',
             'roles-permissions' => 'Galaxy access shells',
+            'checks-points' => 'Galaxy receipt operations',
+            'services-rules' => 'Galaxy rule operations',
+            'gifts' => 'Galaxy reward operations',
+            'reports' => 'Galaxy reporting operations',
             default => 'Other access guardrails',
         };
     }
@@ -451,6 +459,10 @@ class DashboardController extends Controller
             'cards' => 30,
             'card-types' => 40,
             'roles-permissions' => 50,
+            'checks-points' => 60,
+            'services-rules' => 70,
+            'gifts' => 80,
+            'reports' => 90,
             default => 999,
         };
     }
@@ -463,6 +475,10 @@ class DashboardController extends Controller
             'cards' => sprintf('Card-shell review and write entry points stay visible through %d guarded Galaxy card routes.', $count),
             'card-types' => sprintf('Tier review, writes, and status activation stay visible through %d guarded Galaxy tier routes.', $count),
             'roles-permissions' => sprintf('Access-shell review and write entry points stay visible through %d guarded Galaxy access routes.', $count),
+            'checks-points' => sprintf('Receipt and accrual review stays visible through %d shared-shell Galaxy operations route.', $count),
+            'services-rules' => sprintf('Rule review stays visible through %d shared-shell Galaxy rules route.', $count),
+            'gifts' => sprintf('Reward review stays visible through %d shared-shell Galaxy rewards route.', $count),
+            'reports' => sprintf('Reporting review stays visible through %d shared-shell Galaxy reporting route.', $count),
             default => sprintf('This guardrail family currently tracks %d Phase 1 admin routes.', $count),
         };
     }

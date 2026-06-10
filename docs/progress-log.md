@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Access shell-route guardrail checkpoint
+- Expanded `config/phase-1-access-baseline.php` and the dashboard access-map shaping so the live `checks-points`, `services-rules`, `gifts`, and `reports` review routes now appear as explicit shared-shell guardrails alongside the already tracked policy-backed branch, holder, card, tier, and access-shell lanes.
+- Updated the grouped access-lane ordering and summaries in `App\Http\Controllers\Admin\DashboardController` so the admin dashboard now shows a fuller Phase 1 access picture, including the still-shell-guarded operational surfaces that have not reached deeper policy seams yet.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small live-access inventory expansion.
+
 ### Access gate-and-policy intro checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so the access baseline now also exposes controller-shaped intro notes for the tracked gate and tracked policy sections, keeping those small framing sentences alongside the already-shaped grouped route-lane intro.
 - Updated the dashboard access card and seam docs so the access-baseline section framing stays progressively more controller-owned instead of drifting back toward Blade-side assembly.
