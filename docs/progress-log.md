@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type catalog status-flow checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now resolves each Galaxy-tier status-flow cell through a dedicated catalog helper instead of leaving that row slot wired directly to the shared status label method.
+- Kept the rendered catalog row output unchanged while tightening another small neighboring seam around the Galaxy-tier review surface.
+- Re-ran focused card-types preview, selected-tier edit, toggle-status, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
 ### Card-type catalog name-link checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds each Galaxy-tier name link cell through a dedicated helper instead of wiring that selected-tier return link inline inside the catalog row builder.
 - Kept the rendered catalog row output unchanged while tightening another small neighboring seam around the Galaxy-tier review surface.
