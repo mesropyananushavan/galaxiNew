@@ -1936,7 +1936,7 @@ class ResourceIndexController extends Controller
             ],
             $cardType->slug,
             number_format((float) $cardType->points_rate, 2).'x',
-            filled($cardType->rollout_note) ? str($cardType->rollout_note)->limit(72)->toString() : 'No rollout note saved yet',
+            $this->cardTypesCatalogRolloutNotePreview($cardType),
             $this->cardTypeStatusFlowLabel($cardType),
             [
                 'label' => $this->cardTypesToggleStatusActionLabel($cardType),
@@ -1944,6 +1944,13 @@ class ResourceIndexController extends Controller
                 'method' => 'PATCH',
             ],
         ];
+    }
+
+    private function cardTypesCatalogRolloutNotePreview(CardType $cardType): string
+    {
+        return filled($cardType->rollout_note)
+            ? str($cardType->rollout_note)->limit(72)->toString()
+            : 'No rollout note saved yet';
     }
 
     private function cardTypesCatalogActions(): array

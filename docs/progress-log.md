@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type catalog rollout-note preview checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now resolves each Galaxy-tier rollout-note preview through a dedicated helper instead of truncating that preview inline inside the catalog row builder.
+- Kept the rendered catalog row output unchanged while tightening another small neighboring seam around the Galaxy-tier review surface.
+- Re-ran focused card-types preview, selected-tier edit, toggle-status, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
 ### Card-type catalog row helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds each Galaxy-tier table row through a dedicated helper instead of assembling catalog row cells inline inside the main page enricher.
 - Kept the rendered card-types catalog output unchanged while tightening one more neighboring Phase 1 seam around the Galaxy-tier review workspace.
