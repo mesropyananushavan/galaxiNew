@@ -2054,6 +2054,16 @@ class ResourceIndexController extends Controller
                 'time' => 'Current request',
                 'description' => $this->cardTypesPublishGuidance($selectedCardType),
             ],
+            [
+                'title' => $this->cardTypesImportRulesBlockerTimelineTitle($selectedCardType),
+                'time' => 'Current request',
+                'description' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
+            ],
+            [
+                'title' => $this->cardTypesPublishTierBlockerTimelineTitle($selectedCardType),
+                'time' => 'Current request',
+                'description' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
+            ],
         ];
 
         $page = $this->prependLatestBackendWriteTimelineItem($page);
@@ -2309,6 +2319,16 @@ class ResourceIndexController extends Controller
     private function cardTypesPublishGuidanceTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s publish guidance reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesImportRulesBlockerTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s import rules blocker reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesPublishTierBlockerTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s publish tier blocker reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineDescription(CardType $selectedCardType): string
