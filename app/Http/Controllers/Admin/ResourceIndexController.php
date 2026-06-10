@@ -2387,10 +2387,10 @@ class ResourceIndexController extends Controller
         $cardsCount = $this->cardTypeVisibleCardCount($selectedCardType);
 
         return match (true) {
-            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'Live tier already has saved card coverage anchored in Galaxy foundation data for rollout review.',
-            $this->cardTypeIsActive($selectedCardType) => 'Live tier still needs its first saved card coverage before rollout review can feel grounded.',
-            $cardsCount > 0 => 'Draft tier already has saved card coverage anchored in Galaxy foundation data for parity review.',
-            default => 'Draft tier is still waiting on its first saved card coverage before parity review can feel grounded.',
+            $this->cardTypeIsActive($selectedCardType) && $cardsCount > 0 => 'Active linked tier already has saved card coverage anchored in Galaxy foundation data for rollout review.',
+            $this->cardTypeIsActive($selectedCardType) => 'Active unlinked tier still needs its first saved card coverage before rollout review can feel grounded.',
+            $cardsCount > 0 => 'Draft linked tier already has saved card coverage anchored in Galaxy foundation data for parity review.',
+            default => 'Draft unlinked tier is still waiting on its first saved card coverage before parity review can feel grounded.',
         };
     }
 
@@ -2508,10 +2508,10 @@ class ResourceIndexController extends Controller
         $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
 
         return match (true) {
-            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Live tier already carries visible card coverage for a useful rollout-parity handoff review.',
-            $this->cardTypeIsActive($selectedCardType) => 'Live tier should stay in handoff-only posture until visible card coverage and rollout parity are explicit.',
-            $hasVisibleCoverage => 'Draft tier already carries visible card coverage for a useful parity handoff review.',
-            default => 'Draft tier should stay in handoff-only posture until visible card coverage grounds rollout review.',
+            $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Active linked tier already carries visible card coverage for a useful rollout-parity handoff review.',
+            $this->cardTypeIsActive($selectedCardType) => 'Active unlinked tier should stay in handoff-only posture until visible card coverage and rollout parity are explicit.',
+            $hasVisibleCoverage => 'Draft linked tier already carries visible card coverage for a useful parity handoff review.',
+            default => 'Draft unlinked tier should stay in handoff-only posture until visible card coverage grounds rollout review.',
         };
     }
 

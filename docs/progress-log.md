@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type coverage-freshness and handoff wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Coverage freshness` and `Handoff signal` strings now use the same explicit `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier language as the newer coverage signal wording.
+- Updated the focused selected-tier assertions so both the edit-shell detail card and the surrounding management context now lock those linkage-aware freshness and handoff phrases across draft and active tier states.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
 ### Card-type coverage-signal wording checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier coverage wording now explicitly says `active linked`, `active unlinked`, `draft linked`, or `draft unlinked` instead of falling back to broader `live` or generic `draft` card-coverage labels.
 - Updated the focused selected-tier assertions so the visible card-types review surface now checks those more explicit Galaxy linkage phrases across both linked and unlinked draft/live states.
