@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type rule-import dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the import row as `Galaxy tier rule-import posture` instead of the broader generic `Rule-import posture` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
 ### Card-type status-posture dependency label checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the posture row as `Galaxy tier status posture` instead of the broader generic `Current status posture` wording.
 - Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
