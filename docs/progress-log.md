@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type freshness timeline checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review timeline now includes explicit `activation freshness` and `rollout freshness` entries instead of leaving those model-backed freshness cues only inside the detail card.
+- Updated the focused selected-tier assertions so the card-types management context now locks the new timeline titles and freshness descriptions for draft-linked and active-unlinked tier scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small timeline-symmetry follow-up.
+
 ### Card-type activation and rollout freshness wording checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Activation freshness` and `Rollout freshness` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving those note-freshness cues on broader live/draft wording.
 - Updated the focused selected-tier assertions so the card-types edit shell now locks the new draft-linked and active-unlinked freshness phrases in the real selected-tier review flow.

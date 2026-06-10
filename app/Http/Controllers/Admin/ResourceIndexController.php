@@ -1960,9 +1960,19 @@ class ResourceIndexController extends Controller
                 'description' => $this->cardTypesActivationNoteReflection($selectedCardType),
             ],
             [
+                'title' => $this->cardTypesActivationFreshnessTimelineTitle($selectedCardType),
+                'time' => 'Current request',
+                'description' => $this->cardTypesActivationFreshness($selectedCardType),
+            ],
+            [
                 'title' => $this->cardTypesRolloutNoteTimelineTitle($selectedCardType),
                 'time' => 'Current request',
                 'description' => $this->cardTypesRolloutNoteReflection($selectedCardType),
+            ],
+            [
+                'title' => $this->cardTypesRolloutFreshnessTimelineTitle($selectedCardType),
+                'time' => 'Current request',
+                'description' => $this->cardTypesRolloutFreshness($selectedCardType),
             ],
             [
                 'title' => $this->cardTypesCoverageSignalTimelineTitle($selectedCardType),
@@ -2189,6 +2199,16 @@ class ResourceIndexController extends Controller
     private function cardTypesRolloutNoteTimelineTitle(CardType $selectedCardType): string
     {
         return sprintf('%s rollout note reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesActivationFreshnessTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s activation freshness reflected from model state', $selectedCardType->name);
+    }
+
+    private function cardTypesRolloutFreshnessTimelineTitle(CardType $selectedCardType): string
+    {
+        return sprintf('%s rollout freshness reflected from model state', $selectedCardType->name);
     }
 
     private function cardTypesCoverageSignalTimelineTitle(CardType $selectedCardType): string
