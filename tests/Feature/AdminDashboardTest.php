@@ -394,8 +394,8 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Galaxy reporting operations:')
             ->assertSee('Galaxy reporting operations (1), Reporting review stays visible through 1 shared-shell Galaxy reporting route. This lane is still guarded only by the shared Galaxy admin shell.')
             ->assertSee('<strong>Reports review route</strong>', false)
-            ->assertSee('<code>admin.reports.index</code>; <code>GET /admin/reports</code>; <code>auth + can:access-admin</code>; <code>shared-shell</code>', false)
-            ->assertSee('Keeps the live Galaxy reporting workspace behind the shared admin shell guard while report-source policy seams are still pending.')
+            ->assertSee('<code>admin.reports.index</code>; <code>GET /admin/reports</code>; <code>can:view-reports</code>; <code>shared-shell</code>', false)
+            ->assertSee('Keeps the live Galaxy reporting workspace behind an explicit reporting gate while report-source policy seams are still pending.')
             ->assertSee('<strong>Roles &amp; permissions review route</strong>', false)
             ->assertSee('<code>admin.roles-permissions.index</code>; <code>GET /admin/roles-permissions</code>; <code>can:viewAny,Role + can:viewAny,Permission</code>; <code>policy-backed</code>', false)
             ->assertSee('Keeps shared access-shell review and permission-vocabulary review behind both Phase 1 read policies.')
@@ -771,6 +771,7 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('create', Card::class));
         $this->assertTrue($user->canAccessShop($shop));
         $this->assertTrue($user->can('access-shop', $shop));
+        $this->assertTrue($user->can('view-reports'));
         $this->assertTrue($user->can('view', $shop));
         $this->assertTrue($user->can('update', $shop));
         $this->assertFalse($user->canAccessShop(null));
@@ -823,6 +824,7 @@ class AdminDashboardTest extends TestCase
         $this->assertTrue($user->can('create', Card::class));
         $this->assertTrue($user->canAccessShop($assignedShop));
         $this->assertTrue($user->can('access-shop', $assignedShop));
+        $this->assertTrue($user->can('view-reports'));
         $this->assertTrue($user->can('view', $assignedShop));
         $this->assertTrue($user->can('update', $assignedShop));
         $this->assertFalse($user->canAccessShop($otherShop));
@@ -901,6 +903,7 @@ class AdminDashboardTest extends TestCase
         $this->assertContains('can:access-admin', $giftsRoute->gatherMiddleware());
         $this->assertContains('auth', $reportsRoute->gatherMiddleware());
         $this->assertContains('can:access-admin', $reportsRoute->gatherMiddleware());
+        $this->assertContains('can:view-reports', $reportsRoute->gatherMiddleware());
     }
 
     public function test_shop_scoped_admin_access_helper_denies_paused_shop_users_even_for_their_assigned_shop(): void

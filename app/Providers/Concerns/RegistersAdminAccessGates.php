@@ -17,5 +17,9 @@ trait RegistersAdminAccessGates
         Gate::define('access-shop', static function (User $user, Shop $shop): bool {
             return $user->canAccessShop($shop);
         });
+
+        Gate::define('view-reports', static function (User $user): bool {
+            return $user->canAccessAdminPanel();
+        });
     }
 }

@@ -154,9 +154,9 @@ return [
         [
             'label' => 'Reports review route',
             'route' => 'admin.reports.index',
-            'guard' => 'auth + can:access-admin',
+            'guard' => 'can:view-reports',
             'maturity' => 'shared-shell',
-            'coverage' => 'Keeps the live Galaxy reporting workspace behind the shared admin shell guard while report-source policy seams are still pending.',
+            'coverage' => 'Keeps the live Galaxy reporting workspace behind an explicit reporting gate while report-source policy seams are still pending.',
         ],
     ],
     'policies' => [

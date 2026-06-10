@@ -82,5 +82,8 @@ Route::prefix('admin')
         Route::patch('/roles-permissions/{role}', RoleUpdateController::class)
             ->middleware('can:update,role')
             ->name('roles-permissions.update');
-        Route::get('/reports', ResourceIndexController::class)->defaults('resource', 'reports')->name('reports.index');
+        Route::get('/reports', ResourceIndexController::class)
+            ->middleware('can:view-reports')
+            ->defaults('resource', 'reports')
+            ->name('reports.index');
     });

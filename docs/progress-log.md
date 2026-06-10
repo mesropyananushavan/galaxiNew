@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Reports gate checkpoint
+- Added an explicit `view-reports` gate in `app/Providers/Concerns/RegistersAdminAccessGates.php` and wired `admin.reports.index` through it in `routes/admin.php`, so reporting is no longer only an unnamed shared-shell review lane.
+- Updated the Phase 1 access baseline and seam docs so the reporting route contract now names its dedicated gate while still truthfully staying in the shared-shell maturity bucket until report-source policies land.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this first operational-lane access follow-up.
+
 ### Access guardrail maturity-count checkpoint
 - Extended `App\Http\Controllers\Admin\DashboardController` so the policy-backed versus shared-shell maturity split now counts tracked route guardrails by their explicit config-owned `maturity` contract instead of by guard-string heuristics.
 - Kept the access seam docs aligned so route-level labels, grouped lane maturity notes, and top-level maturity counts now all flow from the same Phase 1 access baseline source of truth.
