@@ -1907,10 +1907,10 @@ class ResourceIndexController extends Controller
             ['label' => 'Galaxy status', 'value' => $this->cardTypeStatusValue($selectedCardType)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
             ['label' => 'Last saved in Galaxy foundation', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
-            ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
-            ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
+            ['label' => 'Review note', 'value' => $this->cardTypesReviewNoteValue($selectedCardType)],
+            ['label' => 'Activation note', 'value' => $this->cardTypesActivationNoteValue($selectedCardType)],
             ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
-            ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
+            ['label' => 'Rollout note', 'value' => $this->cardTypesRolloutNoteValue($selectedCardType)],
             ['label' => 'Rollout freshness', 'value' => $this->cardTypesRolloutFreshness($selectedCardType)],
             ['label' => 'Coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Coverage freshness', 'value' => $this->cardTypesCoverageFreshness($selectedCardType)],
@@ -1970,7 +1970,7 @@ class ResourceIndexController extends Controller
     {
         return filled($cardType->rollout_note)
             ? str($cardType->rollout_note)->limit(72)->toString()
-            : 'No rollout note saved yet';
+            : $this->cardTypesRolloutNoteValue($cardType);
     }
 
     private function cardTypesPointsRateLabel(CardType $cardType): string
@@ -2201,10 +2201,10 @@ class ResourceIndexController extends Controller
             ['label' => 'Galaxy tier edit flow state', 'value' => 'Live Galaxy tier form is running in request-driven PATCH mode'],
             ['label' => 'Galaxy tier lifecycle freshness', 'value' => $this->cardTypesLifecycleFreshnessLabel($selectedCardType)],
             ['label' => 'Galaxy tier last saved in foundation', 'value' => $this->cardTypesLastSavedLabel($selectedCardType)],
-            ['label' => 'Review note', 'value' => $selectedCardType->review_note ?: 'No review note saved yet'],
-            ['label' => 'Activation note', 'value' => $selectedCardType->activation_note ?: 'No activation note saved yet'],
+            ['label' => 'Review note', 'value' => $this->cardTypesReviewNoteValue($selectedCardType)],
+            ['label' => 'Activation note', 'value' => $this->cardTypesActivationNoteValue($selectedCardType)],
             ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
-            ['label' => 'Rollout note', 'value' => $selectedCardType->rollout_note ?: 'No rollout note saved yet'],
+            ['label' => 'Rollout note', 'value' => $this->cardTypesRolloutNoteValue($selectedCardType)],
             ['label' => 'Rollout freshness', 'value' => $this->cardTypesRolloutFreshness($selectedCardType)],
             ['label' => 'Galaxy tier coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
             ['label' => 'Coverage freshness', 'value' => $this->cardTypesCoverageFreshness($selectedCardType)],
@@ -2216,6 +2216,21 @@ class ResourceIndexController extends Controller
             ['label' => 'Galaxy tier action gating', 'value' => $this->cardTypesActionGating($selectedCardType)],
             ['label' => 'Remaining backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
         ];
+    }
+
+    private function cardTypesReviewNoteValue(CardType $cardType): string
+    {
+        return $cardType->review_note ?: 'No review note saved yet';
+    }
+
+    private function cardTypesActivationNoteValue(CardType $cardType): string
+    {
+        return $cardType->activation_note ?: 'No activation note saved yet';
+    }
+
+    private function cardTypesRolloutNoteValue(CardType $cardType): string
+    {
+        return $cardType->rollout_note ?: 'No rollout note saved yet';
     }
 
     private function cardTypesEditFlowStateTimelineTitle(CardType $selectedCardType): string

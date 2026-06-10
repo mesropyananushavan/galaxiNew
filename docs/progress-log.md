@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type note-value helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves Galaxy-tier review, activation, and rollout note fallbacks through dedicated helpers instead of repeating the same fallback strings across the selected summary, dependency status, and catalog preview surfaces.
+- Kept the rendered note output unchanged while trimming a small piece of duplicated Galaxy-tier review logic out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, readiness-gating, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
 ### Card-type catalog slug checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now resolves each Galaxy-tier slug cell through a dedicated helper instead of leaving that row slot inline inside the catalog row builder.
 - Kept the rendered catalog row output unchanged while tightening another small neighboring seam around the Galaxy-tier review surface.
