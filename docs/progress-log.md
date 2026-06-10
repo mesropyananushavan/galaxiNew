@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type live-form href helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves its selected-tier review href and catalog live-form href through named helpers instead of repeating the same `card-types` route-plus-anchor wiring inline across catalog links and create-shell actions.
+- Kept the rendered selected-tier and catalog link output unchanged while trimming another small piece of duplicated Galaxy-tier navigation wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, catalog readiness, and live-form route-resolution assertions as the parity guard for this small structural cleanup.
+
 ### Card-type shared tier-state value checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves shared Galaxy-tier lifecycle-freshness, last-saved, and status-flow values through common tier-value helpers instead of keeping thin selected-only and catalog-only proxy helpers around those same lookups.
 - Kept the rendered selected-tier and catalog output unchanged while trimming another small piece of duplicated Galaxy-tier value wiring out of the card-types workspace.

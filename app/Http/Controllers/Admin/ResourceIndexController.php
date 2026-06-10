@@ -1978,7 +1978,7 @@ class ResourceIndexController extends Controller
     {
         return [
             'label' => $this->cardTypesTierNameValue($cardType),
-            'href' => route('admin.card-types.index', ['cardType' => $cardType->id], absolute: false).'#live-form',
+            'href' => $this->cardTypesSelectedTierHref($cardType),
         ];
     }
 
@@ -2032,6 +2032,16 @@ class ResourceIndexController extends Controller
             $latestCardType->id,
             '#live-form',
         );
+    }
+
+    private function cardTypesSelectedTierHref(CardType $cardType): string
+    {
+        return route('admin.card-types.index', ['cardType' => $cardType->id], absolute: false).'#live-form';
+    }
+
+    private function cardTypesCatalogLiveFormHref(): string
+    {
+        return route('admin.card-types.index', absolute: false).'#live-form';
     }
 
     private function applyCardTypesSelectedSurfaceData(array $page, CardType $selectedCardType): array
@@ -3161,7 +3171,7 @@ class ResourceIndexController extends Controller
         return [
             $this->foundationMutationAction(
                 $this->cardTypesCreateShellActionLabel(),
-                route('admin.card-types.index', absolute: false).'#live-form',
+                $this->cardTypesCatalogLiveFormHref(),
                 $disabledReason,
                 CardType::class,
             ),
