@@ -382,6 +382,8 @@ class DashboardController extends Controller
                     ? sprintf('%s %s', $methods, $path)
                     : null;
 
+                $maturityLabel = $this->accessRouteGuardrailMaturityLabel($guard);
+
                 return [
                     'label' => $label,
                     'route' => $route,
@@ -392,9 +394,10 @@ class DashboardController extends Controller
                     'routeContract' => $routeContract,
                     'family' => $this->accessRouteGuardrailFamily($route),
                     'familyLabel' => $this->accessRouteGuardrailFamilyLabel($route),
+                    'maturityLabel' => $maturityLabel,
                     'displaySummary' => filled($routeContract)
-                        ? sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($routeContract), e($guard), e($coverage))
-                        : sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($guard), e($coverage)),
+                        ? sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>; <code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($routeContract), e($guard), e($maturityLabel), e($coverage))
+                        : sprintf('<strong>%s</strong> (<code>%s</code>; <code>%s</code>; <code>%s</code>), %s', e($label), e($route), e($guard), e($maturityLabel), e($coverage)),
                 ];
             })
             ->values()
@@ -491,6 +494,13 @@ class DashboardController extends Controller
     protected function accessRouteGuardrailFamilyDisplaySummary(string $label, int $count, string $family): string
     {
         return sprintf('%s (%d), %s %s', $label, $count, $this->accessRouteGuardrailFamilySummary($family, $count), $this->accessRouteGuardrailFamilyMaturityNote($family));
+    }
+
+    protected function accessRouteGuardrailMaturityLabel(string $guard): string
+    {
+        return str_contains($guard, 'auth + can:access-admin')
+            ? 'shared-shell'
+            : 'policy-backed';
     }
 
     protected function accessRouteGuardrailFamilyMaturityNote(string $family): string
