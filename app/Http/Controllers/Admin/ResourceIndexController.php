@@ -2099,21 +2099,23 @@ class ResourceIndexController extends Controller
 
         $page = $this->appendLatestBackendWriteDependencyStatus($page);
 
+        $liveFormCopy = $this->cardTypesSelectedLiveFormCopy();
+
         $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
             $page['liveForm'],
-            $this->cardTypesLiveFormTitle(),
-            $this->cardTypesLiveFormDescription(),
+            $liveFormCopy['title'],
+            $liveFormCopy['description'],
             'admin.card-types.update',
             [
                 'cardType' => $selectedCardType,
             ],
             'admin.card-types.index',
-            $this->cardTypesLiveFormSubmitLabel(),
-            $this->cardTypesLiveFormCancelLabel(),
+            $liveFormCopy['submitLabel'],
+            $liveFormCopy['cancelLabel'],
             'Back to tier catalog',
             $this->cardTypesFoundationMutationDisabledReason(),
             $selectedCardType,
-            'Review the selected Galaxy tier in the live Galaxy tier form while Phase 1 keeps tier-shell changes under bootstrap control.',
+            $liveFormCopy['reviewCue'],
         );
         $page['liveForm']['valuesResolver'] = [
             'name' => $selectedCardType->name,
@@ -2206,6 +2208,17 @@ class ResourceIndexController extends Controller
         $page['dependencyStatusTitle'] = 'Galaxy tier dependencies';
 
         return $page;
+    }
+
+    private function cardTypesSelectedLiveFormCopy(): array
+    {
+        return [
+            'title' => $this->cardTypesLiveFormTitle(),
+            'description' => $this->cardTypesLiveFormDescription(),
+            'submitLabel' => $this->cardTypesLiveFormSubmitLabel(),
+            'cancelLabel' => $this->cardTypesLiveFormCancelLabel(),
+            'reviewCue' => 'Review the selected Galaxy tier in the live Galaxy tier form while Phase 1 keeps tier-shell changes under bootstrap control.',
+        ];
     }
 
     private function cardTypesEditFlowStateTimelineTitle(CardType $selectedCardType): string

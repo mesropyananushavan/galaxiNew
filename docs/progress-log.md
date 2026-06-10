@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected live-form copy helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type edit flow now sources its live-form title, description, submit/cancel labels, and review cue from one small helper instead of passing those card-type-specific strings inline.
+- Kept the rendered copy unchanged while tightening the selected-tier edit assembly seam, so later Phase 1 card-type form-copy changes can stay localized.
+- Re-ran focused card-types preview, selected-tier edit, and live-form callback assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected-surface title helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its three specialized block titles (`Selected Galaxy tier summary`, `Galaxy tier activity trail`, `Galaxy tier dependencies`) through a single helper instead of scattering those overrides inline.
 - Kept the rendered copy unchanged while tightening the selected-tier assembly seam, so later card-type-specific surface work can stay localized to one place.
