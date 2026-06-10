@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected primary-action disabled-reason checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now resolves its shared foundation-mutation disabled reason once inside the primary-action helper instead of recalculating the same Phase 1 guard for both primary actions.
+- Kept the rendered selected-tier action output unchanged while tightening one more tiny seam inside the Galaxy-tier action assembly.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected editing-action helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its current `Editing: ...` review action through a tiny helper instead of leaving that middle action inline between the primary and secondary action helpers.
 - Kept the rendered selected-tier action output unchanged while finishing the local helper split for the selected card-type action seam.

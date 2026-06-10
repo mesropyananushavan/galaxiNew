@@ -3057,17 +3057,19 @@ class ResourceIndexController extends Controller
 
     private function cardTypesSelectedPrimaryActions(CardType $selectedCardType): array
     {
+        $disabledReason = $this->cardTypesFoundationMutationDisabledReason();
+
         return [
             $this->foundationMutationAction(
                 $this->cardTypesCreateShellActionLabel(),
                 route('admin.card-types.index', absolute: false).'#live-form',
-                $this->cardTypesFoundationMutationDisabledReason(),
+                $disabledReason,
                 CardType::class,
             ),
             $this->foundationMutationAction(
                 $this->cardTypesToggleStatusActionLabel($selectedCardType),
                 route('admin.card-types.toggle-status', $selectedCardType, absolute: false),
-                $this->cardTypesFoundationMutationDisabledReason(),
+                $disabledReason,
                 $selectedCardType,
                 'update',
                 'secondary',
