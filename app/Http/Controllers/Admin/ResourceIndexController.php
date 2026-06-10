@@ -2132,9 +2132,7 @@ class ResourceIndexController extends Controller
             $liveFormCopy['title'],
             $liveFormCopy['description'],
             $this->cardTypesUpdateRouteName(),
-            [
-                'cardType' => $selectedCardType,
-            ],
+            $this->cardTypesUpdateRouteParameters($selectedCardType),
             $this->cardTypesIndexRouteName(),
             $liveFormCopy['submitLabel'],
             $liveFormCopy['cancelLabel'],
@@ -2146,6 +2144,13 @@ class ResourceIndexController extends Controller
         $page['liveForm']['valuesResolver'] = $this->cardTypesSelectedLiveFormValues($selectedCardType);
 
         return $page;
+    }
+
+    private function cardTypesUpdateRouteParameters(CardType $cardType): array
+    {
+        return [
+            'cardType' => $cardType,
+        ];
     }
 
     private function cardTypesSelectedLiveFormValues(CardType $selectedCardType): array
