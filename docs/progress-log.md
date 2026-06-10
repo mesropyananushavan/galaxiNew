@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected timeline helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its Galaxy-specific activity trail through one helper instead of assembling that long timeline inline.
+- Kept the rendered timeline copy unchanged while tightening the selected-tier review seam, so later Phase 1 timeline-copy changes can stay localized.
+- Re-ran the focused selected-tier assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected dependency helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its Galaxy-specific dependency rows through one helper instead of assembling that dependency block inline.
 - Kept the rendered dependency copy unchanged while tightening the selected-tier review seam, so later Phase 1 dependency-copy changes can stay localized.

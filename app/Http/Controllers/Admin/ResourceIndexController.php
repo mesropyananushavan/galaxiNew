@@ -1931,148 +1931,7 @@ class ResourceIndexController extends Controller
 
         $page['actions'] = $this->cardTypesSelectedActions($selectedCardType);
 
-        $page['activityTimeline'] = [
-            [
-                'title' => $this->cardTypesSelectedForEditFlowTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesSelectedForEditFlowDescription(),
-            ],
-            [
-                'title' => $this->cardTypesEditFlowStateTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesEditFlowStateTimelineDescription(),
-            ],
-            [
-                'title' => $this->cardTypesStatusTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesStatusTimelineDescription($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesLifecycleFreshnessTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesLifecycleFreshnessDescription($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesLastSavedTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesLastSavedTimelineDescription($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesReviewNoteTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesReviewNoteReflection($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesActivationNoteTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesActivationNoteReflection($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesActivationFreshnessTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesActivationFreshness($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesRolloutNoteTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesRolloutNoteReflection($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesRolloutFreshnessTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesRolloutFreshness($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesCoverageSignalTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesCoverageSignalTimelineDescription($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesCoverageFreshnessTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesCoverageFreshness($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesStatusSignalTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesStatusSignal($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesFocusTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesFocus($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesPostureTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesPosture($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesEvidencePriorityTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesEvidencePriority($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesCurrentStatusPostureTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesCurrentStatusPosture($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesHandoffSignalTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesHandoffSignal($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesBackendGapTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesBackendGap($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesRuleImportPostureTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesRuleImportPosture($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesPublishPostureTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesPublishPosture($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesActionGatingTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesActionGating($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesReadinessSignalTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesReadinessSignal($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesStatusGuidanceTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesStatusGuidance($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesRuleImportBlockerTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesRuleImportBlocker($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesPublishGuidanceTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesPublishGuidance($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesImportRulesBlockerTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType),
-            ],
-            [
-                'title' => $this->cardTypesPublishTierBlockerTimelineTitle($selectedCardType),
-                'time' => 'Current request',
-                'description' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType),
-            ],
-        ];
+        $page['activityTimeline'] = $this->cardTypesSelectedActivityTimeline($selectedCardType);
         $page = $this->prependLatestBackendWriteTimelineItem($page);
 
         $page['dependencyStatus'] = $this->cardTypesSelectedDependencyStatus($selectedCardType);
@@ -2137,6 +1996,40 @@ class ResourceIndexController extends Controller
             ['label' => 'Rule-import blocker', 'value' => $this->cardTypesRuleImportBlocker($selectedCardType)],
             ['label' => 'Publish guidance', 'value' => $this->cardTypesPublishGuidance($selectedCardType)],
             ['label' => 'Readiness signal', 'value' => $this->cardTypesReadinessSignal($selectedCardType)],
+        ];
+    }
+
+    private function cardTypesSelectedActivityTimeline(CardType $selectedCardType): array
+    {
+        return [
+            ['title' => $this->cardTypesSelectedForEditFlowTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesSelectedForEditFlowDescription()],
+            ['title' => $this->cardTypesEditFlowStateTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesEditFlowStateTimelineDescription()],
+            ['title' => $this->cardTypesStatusTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesStatusTimelineDescription($selectedCardType)],
+            ['title' => $this->cardTypesLifecycleFreshnessTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesLifecycleFreshnessDescription($selectedCardType)],
+            ['title' => $this->cardTypesLastSavedTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesLastSavedTimelineDescription($selectedCardType)],
+            ['title' => $this->cardTypesReviewNoteTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesReviewNoteReflection($selectedCardType)],
+            ['title' => $this->cardTypesActivationNoteTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesActivationNoteReflection($selectedCardType)],
+            ['title' => $this->cardTypesActivationFreshnessTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesActivationFreshness($selectedCardType)],
+            ['title' => $this->cardTypesRolloutNoteTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesRolloutNoteReflection($selectedCardType)],
+            ['title' => $this->cardTypesRolloutFreshnessTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesRolloutFreshness($selectedCardType)],
+            ['title' => $this->cardTypesCoverageSignalTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesCoverageSignalTimelineDescription($selectedCardType)],
+            ['title' => $this->cardTypesCoverageFreshnessTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesCoverageFreshness($selectedCardType)],
+            ['title' => $this->cardTypesStatusSignalTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesStatusSignal($selectedCardType)],
+            ['title' => $this->cardTypesFocusTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesFocus($selectedCardType)],
+            ['title' => $this->cardTypesPostureTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesPosture($selectedCardType)],
+            ['title' => $this->cardTypesEvidencePriorityTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesEvidencePriority($selectedCardType)],
+            ['title' => $this->cardTypesCurrentStatusPostureTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesCurrentStatusPosture($selectedCardType)],
+            ['title' => $this->cardTypesHandoffSignalTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesHandoffSignal($selectedCardType)],
+            ['title' => $this->cardTypesBackendGapTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesBackendGap($selectedCardType)],
+            ['title' => $this->cardTypesRuleImportPostureTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesRuleImportPosture($selectedCardType)],
+            ['title' => $this->cardTypesPublishPostureTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesPublishPosture($selectedCardType)],
+            ['title' => $this->cardTypesActionGatingTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesActionGating($selectedCardType)],
+            ['title' => $this->cardTypesReadinessSignalTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesReadinessSignal($selectedCardType)],
+            ['title' => $this->cardTypesStatusGuidanceTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesStatusGuidance($selectedCardType)],
+            ['title' => $this->cardTypesRuleImportBlockerTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesRuleImportBlocker($selectedCardType)],
+            ['title' => $this->cardTypesPublishGuidanceTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesPublishGuidance($selectedCardType)],
+            ['title' => $this->cardTypesImportRulesBlockerTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesSelectedImportRulesDisabledReason($selectedCardType)],
+            ['title' => $this->cardTypesPublishTierBlockerTimelineTitle($selectedCardType), 'time' => 'Current request', 'description' => $this->cardTypesSelectedPublishTypeDisabledReason($selectedCardType)],
         ];
     }
 
