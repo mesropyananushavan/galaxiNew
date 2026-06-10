@@ -3041,6 +3041,18 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedActions(CardType $selectedCardType): array
     {
         return [
+            ...$this->cardTypesSelectedPrimaryActions($selectedCardType),
+            [
+                'label' => $this->cardTypesEditingActionLabel($selectedCardType),
+                'tone' => 'secondary',
+            ],
+            ...$this->cardTypesSelectedSecondaryActions($selectedCardType),
+        ];
+    }
+
+    private function cardTypesSelectedPrimaryActions(CardType $selectedCardType): array
+    {
+        return [
             $this->foundationMutationAction(
                 $this->cardTypesCreateShellActionLabel(),
                 route('admin.card-types.index', absolute: false).'#live-form',
@@ -3056,11 +3068,6 @@ class ResourceIndexController extends Controller
                 'secondary',
                 'PATCH',
             ),
-            [
-                'label' => $this->cardTypesEditingActionLabel($selectedCardType),
-                'tone' => 'secondary',
-            ],
-            ...$this->cardTypesSelectedSecondaryActions($selectedCardType),
         ];
     }
 

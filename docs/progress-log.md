@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected primary action helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its primary mutation actions through a small helper instead of assembling the create-shell and toggle-status actions inline.
+- Kept the rendered selected-tier action output unchanged while fully splitting the selected action set into primary and secondary helper seams.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected live-form values checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now sources its prefilled live-form values through a dedicated helper instead of building that values payload inline during edit-form wiring.
 - Kept the rendered selected-tier edit form unchanged while tightening another small seam around the now more Galaxy-specific card-type workspace.
