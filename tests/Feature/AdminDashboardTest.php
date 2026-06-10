@@ -4034,7 +4034,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('This role is active in the Galaxy foundation layer now, but live-facing access changes should still stay parity-first until assignment and matrix flows are verified.')
             ->assertSee('Galaxy tier lifecycle freshness:')
             ->assertSee('newly created in Galaxy foundation review')
-            ->assertSee('Last saved in Galaxy foundation:')
+            ->assertSee('Galaxy tier last saved in foundation:')
             ->assertSee('Review note:')
             ->assertSee('Keep this role aligned with the legacy branch manager workflow during parity review.')
             ->assertSee('Review freshness:')
