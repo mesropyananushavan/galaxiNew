@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type activation and rollout freshness wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Activation freshness` and `Rollout freshness` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving those note-freshness cues on broader live/draft wording.
+- Updated the focused selected-tier assertions so the card-types edit shell now locks the new draft-linked and active-unlinked freshness phrases in the real selected-tier review flow.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
 ### Card-type catalog action-blocker wording checkpoint
 - Tightened `App\Http\Controllers\Admin\ResourceIndexController` so catalog-level card-type import and publish blocker copy now distinguishes saved active Galaxy tiers from saved draft Galaxy tiers instead of leaning on broader saved/live wording.
 - Updated the existing catalog-readiness assertion and added a focused draft-only catalog-readiness assertion so the card-types workspace now locks both active-catalog and draft-catalog blocker phrasing.

@@ -2584,21 +2584,29 @@ class ResourceIndexController extends Controller
 
     private function cardTypesActivationFreshness(CardType $selectedCardType): string
     {
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
         return match (true) {
-            filled($selectedCardType->activation_note) && $this->cardTypeIsActive($selectedCardType) => 'Activation note is already saved on this live Galaxy foundation tier shell.',
-            filled($selectedCardType->activation_note) => 'Activation note is already staged on this draft Galaxy foundation tier shell.',
-            $this->cardTypeIsActive($selectedCardType) => 'Live tier still needs a saved activation note before rollout handoff can feel grounded.',
-            default => 'Draft tier can stay safe while activation guidance is still being written.',
+            filled($selectedCardType->activation_note) && $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Activation note is already saved on this active linked Galaxy foundation tier shell.',
+            filled($selectedCardType->activation_note) && $this->cardTypeIsActive($selectedCardType) => 'Activation note is already saved on this active unlinked Galaxy foundation tier shell.',
+            filled($selectedCardType->activation_note) && $hasVisibleCoverage => 'Activation note is already staged on this draft linked Galaxy foundation tier shell.',
+            filled($selectedCardType->activation_note) => 'Activation note is already staged on this draft unlinked Galaxy foundation tier shell.',
+            $this->cardTypeIsActive($selectedCardType) => 'Active unlinked tier still needs a saved activation note before rollout handoff can feel grounded.',
+            default => 'Draft unlinked tier can stay safe while activation guidance is still being written.',
         };
     }
 
     private function cardTypesRolloutFreshness(CardType $selectedCardType): string
     {
+        $hasVisibleCoverage = $this->cardTypesHasVisibleCoverage($selectedCardType);
+
         return match (true) {
-            filled($selectedCardType->rollout_note) && $this->cardTypeIsActive($selectedCardType) => 'Rollout note is already saved on this live Galaxy foundation tier shell.',
-            filled($selectedCardType->rollout_note) => 'Rollout note is already staged on this draft Galaxy foundation tier shell.',
-            $this->cardTypeIsActive($selectedCardType) => 'Live tier still needs a saved rollout note before rollout handoff can feel grounded.',
-            default => 'Draft tier can stay safe while rollout guidance is still being written.',
+            filled($selectedCardType->rollout_note) && $this->cardTypeIsActive($selectedCardType) && $hasVisibleCoverage => 'Rollout note is already saved on this active linked Galaxy foundation tier shell.',
+            filled($selectedCardType->rollout_note) && $this->cardTypeIsActive($selectedCardType) => 'Rollout note is already saved on this active unlinked Galaxy foundation tier shell.',
+            filled($selectedCardType->rollout_note) && $hasVisibleCoverage => 'Rollout note is already staged on this draft linked Galaxy foundation tier shell.',
+            filled($selectedCardType->rollout_note) => 'Rollout note is already staged on this draft unlinked Galaxy foundation tier shell.',
+            $this->cardTypeIsActive($selectedCardType) => 'Active unlinked tier still needs a saved rollout note before rollout handoff can feel grounded.',
+            default => 'Draft unlinked tier can stay safe while rollout guidance is still being written.',
         };
     }
 
