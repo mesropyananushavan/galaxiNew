@@ -12444,7 +12444,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Draft linked tier remains safer for parity review while saved card coverage is already visible.')
             ->assertSee('Handoff signal:')
             ->assertSee('Draft linked tier already carries visible card coverage for a useful parity handoff review.')
-            ->assertSee('Current status posture:')
+            ->assertSee('Galaxy tier status posture:')
             ->assertSee('Draft linked tiers are the safe place for parity-first validation with visible card coverage already attached')
             ->assertSee('Rule-import posture:')
             ->assertSee('Imports can be reviewed in draft linked mode, but they are still not safe to enable yet')
