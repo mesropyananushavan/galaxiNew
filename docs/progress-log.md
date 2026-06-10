@@ -2,6 +2,11 @@
 
 ## 2026-06-10
 
+### Card-type selected live-form wiring checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its edit-form wiring and prefilled values through one helper instead of leaving that live-form setup inline beside the broader surface composer.
+- Kept the rendered selected-tier edit form unchanged while tightening one more controller seam around the now more Galaxy-specific card-type workspace.
+- Re-ran focused card-types preview, selected-tier edit, and live-form callback assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected action assembly checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its action set through a tiny assembly helper instead of assigning selected-tier actions inline inside the broader surface composer.
 - Kept the rendered action output unchanged while making the selected-tier surface assembly fully symmetric across summary, actions, timeline, and dependencies.

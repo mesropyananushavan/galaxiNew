@@ -1926,33 +1926,7 @@ class ResourceIndexController extends Controller
 
         $page = $this->applyCardTypesSelectedSurfaceData($page, $selectedCardType);
 
-        $liveFormCopy = $this->cardTypesSelectedLiveFormCopy();
-
-        $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
-            $page['liveForm'],
-            $liveFormCopy['title'],
-            $liveFormCopy['description'],
-            'admin.card-types.update',
-            [
-                'cardType' => $selectedCardType,
-            ],
-            'admin.card-types.index',
-            $liveFormCopy['submitLabel'],
-            $liveFormCopy['cancelLabel'],
-            'Back to tier catalog',
-            $this->cardTypesFoundationMutationDisabledReason(),
-            $selectedCardType,
-            $liveFormCopy['reviewCue'],
-        );
-        $page['liveForm']['valuesResolver'] = [
-            'name' => $selectedCardType->name,
-            'slug' => $selectedCardType->slug,
-            'points_rate' => (string) $selectedCardType->points_rate,
-            'is_active' => $this->cardTypeIsActive($selectedCardType) ? '1' : '0',
-            'review_note' => $selectedCardType->review_note ?? '',
-            'activation_note' => $selectedCardType->activation_note ?? '',
-            'rollout_note' => $selectedCardType->rollout_note ?? '',
-        ];
+        $page = $this->applyCardTypesSelectedLiveFormData($page, $selectedCardType);
 
         return $page;
     }
@@ -2025,6 +1999,39 @@ class ResourceIndexController extends Controller
         $page['dependencyStatus'] = $this->cardTypesSelectedDependencyStatus($selectedCardType);
 
         return $this->appendLatestBackendWriteDependencyStatus($page);
+    }
+
+    private function applyCardTypesSelectedLiveFormData(array $page, CardType $selectedCardType): array
+    {
+        $liveFormCopy = $this->cardTypesSelectedLiveFormCopy();
+
+        $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
+            $page['liveForm'],
+            $liveFormCopy['title'],
+            $liveFormCopy['description'],
+            'admin.card-types.update',
+            [
+                'cardType' => $selectedCardType,
+            ],
+            'admin.card-types.index',
+            $liveFormCopy['submitLabel'],
+            $liveFormCopy['cancelLabel'],
+            'Back to tier catalog',
+            $this->cardTypesFoundationMutationDisabledReason(),
+            $selectedCardType,
+            $liveFormCopy['reviewCue'],
+        );
+        $page['liveForm']['valuesResolver'] = [
+            'name' => $selectedCardType->name,
+            'slug' => $selectedCardType->slug,
+            'points_rate' => (string) $selectedCardType->points_rate,
+            'is_active' => $this->cardTypeIsActive($selectedCardType) ? '1' : '0',
+            'review_note' => $selectedCardType->review_note ?? '',
+            'activation_note' => $selectedCardType->activation_note ?? '',
+            'rollout_note' => $selectedCardType->rollout_note ?? '',
+        ];
+
+        return $page;
     }
 
     private function cardTypesSelectedActivityTimeline(CardType $selectedCardType): array
