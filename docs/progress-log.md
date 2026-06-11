@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Dashboard reference-bridge baseline checkpoint
+- Updated `config/phase-1-reference-docs.php` so the live admin reference baseline now explicitly mirrors the landing-doc bridge wording already present in README-level Phase 1 guidance.
+- Kept the dashboard-facing reference card aligned with the broader repo guidance by extending its `focus` and `posture` text to mention the public landing-doc bridge instead of only the admin/dashboard side.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 reference-baseline refresh.
+
 ### README reference-bridge alignment checkpoint
 - Updated `README.md` so the top-level Phase 1 reference trail now explicitly includes the landing-doc bridge and seam-source bridge alongside the newer access, shop-scope, model-skeleton, migration, and foundation-seam baselines.
 - Kept repo guidance aligned with the live admin reference inventory by adding `config/landing-docs.php` to the README reference list and by making the Phase 1 reference posture describe the public landing-doc bridge instead of only the dashboard-facing side.
