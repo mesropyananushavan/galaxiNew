@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type selected timeline item helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier activity trail now builds each `Current request` entry through one tiny helper instead of repeating the same timeline item array shape inline across the Galaxy-tier review surface.
+- Kept the rendered selected-tier timeline output unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type note fallback checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier review, activation, and rollout note values now share one small fallback helper instead of repeating the same Galaxy-tier empty-note pattern across three adjacent methods.
 - Kept the rendered selected-tier output unchanged while tightening one more small Phase 1 seam in the Galaxy-specific review surface.
