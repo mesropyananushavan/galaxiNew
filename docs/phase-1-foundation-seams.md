@@ -49,7 +49,8 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - source-of-truth anchors: `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, `app/Models`, `database/migrations`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 - current role: keeps the first Galaxy Eloquent models and migration anchors explicit while Phase 1 data-layer work is still landing, with the dashboard controller now shaping both the model-skeleton metrics and the tracked skeleton inventory before render
-- current focus: keeps branch, access, holder, tier, and card skeletons tied to their live review, handoff, rollout, and issuance anchors so the dashboard inventory reads like a Galaxy foundation instead of a generic Laravel shell list
+- current focus: keeps branch, access, holder, tier, and card skeletons tied to their live review, access-hand-off, rollout, and issuance anchors so the dashboard inventory reads like a Galaxy foundation instead of a generic Laravel shell list
+- current focus: keeps the `Role`, `Permission`, `Shop`, `CardHolder`, `CardType`, and `Card` skeletons readable as one Phase 1 model layer with explicit review-note, access-note, assignment-note, activation-note, rollout-note, and issued-at coverage instead of leaving those anchors implicit in follow-up migrations alone
 
 ### Admin access baseline
 - readable summary anchor: `docs/phase-1-access-baseline.md`

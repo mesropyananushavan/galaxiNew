@@ -496,7 +496,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Migration baseline')
             ->assertSee('The first Galaxy access and card-domain schema checkpoints stay aligned across readable docs, implementation config, the migration directory, and the live admin runtime surface, with follow-up review, handoff, rollout, and issuance anchors kept visible as one named Phase 1 schema checkpoint chain.')
             ->assertSee('Model skeleton baseline')
-            ->assertSee('The first Galaxy Eloquent models and migration anchors stay aligned across readable docs, implementation config, model files, migration files, and the live admin runtime surface, with branch, access, holder, tier, and card skeletons tied to their live review, handoff, rollout, and issuance anchors.')
+            ->assertSee('The first Galaxy Eloquent models and migration anchors stay aligned across readable docs, implementation config, model files, migration files, and the live admin runtime surface, with branch, access, holder, tier, and card skeletons tied to their live review, access-hand-off, rollout, and issuance anchors plus explicit review-note, access-note, assignment-note, activation-note, rollout-note, and issued-at coverage.')
             ->assertSee('Admin access baseline')
             ->assertSee('The first Galaxy authorization gates, operational review gates, policy mappings, and admin-route guardrails stay aligned across readable docs, implementation config, provider registration, and the live admin runtime surface.')
             ->assertSee('Admin access baseline')

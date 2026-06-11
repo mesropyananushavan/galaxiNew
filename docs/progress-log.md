@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Foundation seam model-layer alignment checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level model-skeleton seam inventory now explicitly reflects the already-documented review-note, access-note, assignment-note, activation-note, rollout-note, and issued-at anchors around the first Galaxy model layer.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the model-skeleton seam summary reflect both the entity set and the follow-up anchor coverage already called out in the dedicated Phase 1 skeleton baseline.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
 ### Foundation seam migration-chain alignment checkpoint
 - Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level migration seam inventory now explicitly treats the first access and card-domain migrations plus their follow-up review, rollout, and issuance anchors as one live Phase 1 schema checkpoint chain.
 - Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the migration-baseline seam summary reflect both the initial schema anchors and the already-tracked follow-up checkpoint inventory instead of describing them as a looser generic schema layer.

@@ -37,7 +37,7 @@ return [
         ],
         [
             'label' => 'Model skeleton baseline',
-            'summary' => 'The first Galaxy Eloquent models and migration anchors stay aligned across readable docs, implementation config, model files, migration files, and the live admin runtime surface, with branch, access, holder, tier, and card skeletons tied to their live review, handoff, rollout, and issuance anchors.',
+            'summary' => 'The first Galaxy Eloquent models and migration anchors stay aligned across readable docs, implementation config, model files, migration files, and the live admin runtime surface, with branch, access, holder, tier, and card skeletons tied to their live review, access-hand-off, rollout, and issuance anchors plus explicit review-note, access-note, assignment-note, activation-note, rollout-note, and issued-at coverage.',
             'sources' => [
                 'docs/phase-1-model-skeletons.md',
                 'config/phase-1-model-skeletons.php',
