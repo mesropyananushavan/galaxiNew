@@ -2150,7 +2150,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ...$this->cardTypesSelectedLiveFormConfig($cardType),
-            'valuesResolver' => $this->cardTypesSelectedLiveFormValuesResolver($cardType),
+            'valuesResolver' => $this->cardTypesSelectedLiveFormValues($cardType),
         ];
     }
 
@@ -2185,11 +2185,6 @@ class ResourceIndexController extends Controller
             ...$this->cardTypesSelectedLiveFormIdentityValues($selectedCardType),
             ...$this->cardTypesSelectedLiveFormMutableValues($selectedCardType),
         ];
-    }
-
-    private function cardTypesSelectedLiveFormValuesResolver(CardType $cardType): array
-    {
-        return $this->cardTypesSelectedLiveFormValues($cardType);
     }
 
     private function cardTypesSelectedLiveFormIdentityValues(CardType $cardType): array
