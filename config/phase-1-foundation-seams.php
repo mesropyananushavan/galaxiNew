@@ -27,7 +27,7 @@ return [
         ],
         [
             'label' => 'Migration baseline',
-            'summary' => 'The first Galaxy schema checkpoints stay aligned across readable docs, implementation config, the migration directory, and the live admin runtime surface.',
+            'summary' => 'The first Galaxy schema checkpoints stay aligned across readable docs, implementation config, the migration directory, and the live admin runtime surface, with follow-up review, handoff, rollout, and issuance anchors kept visible as named Phase 1 schema checkpoints.',
             'sources' => [
                 'docs/phase-1-migration-baseline.md',
                 'config/phase-1-migration-baseline.php',
@@ -37,7 +37,7 @@ return [
         ],
         [
             'label' => 'Model skeleton baseline',
-            'summary' => 'The first Galaxy Eloquent models and migration anchors stay aligned across readable docs, implementation config, model files, migration files, and the live admin runtime surface.',
+            'summary' => 'The first Galaxy Eloquent models and migration anchors stay aligned across readable docs, implementation config, model files, migration files, and the live admin runtime surface, with branch, access, holder, tier, and card skeletons tied to their live review, handoff, rollout, and issuance anchors.',
             'sources' => [
                 'docs/phase-1-model-skeletons.md',
                 'config/phase-1-model-skeletons.php',

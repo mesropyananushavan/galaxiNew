@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Foundation seam baseline alignment checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level seam inventory now reflects the more explicit Phase 1 model and migration baselines around review, handoff, rollout, and issuance anchors.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the migration-baseline and model-skeleton seam summaries describe named Galaxy review-state checkpoints instead of generic starter-era shells.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
 ### Access and inventory baseline detail refresh checkpoint
 - Updated `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, and `docs/phase-1-migration-baseline.md` so the Phase 1 baseline now names the already-present Galaxy-specific review, handoff, and issuance anchors around roles, permissions, shops, holders, and cards more explicitly.
 - Kept the model and migration baseline story closer to the live Galaxy foundation layer by naming review-note, access-note, assignment-note, and issued-at coverage directly instead of leaving those follow-up anchors implied.
