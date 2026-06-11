@@ -2126,17 +2126,18 @@ class ResourceIndexController extends Controller
     private function applyCardTypesSelectedLiveFormData(array $page, CardType $selectedCardType): array
     {
         $liveFormCopy = $this->cardTypesSelectedLiveFormCopy();
+        $routeConfig = $this->cardTypesSelectedLiveFormRouteConfig($selectedCardType);
 
         $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
             $page['liveForm'],
             $liveFormCopy['title'],
             $liveFormCopy['description'],
-            $this->cardTypesUpdateRouteName(),
-            $this->cardTypesUpdateRouteParameters($selectedCardType),
-            $this->cardTypesIndexRouteName(),
+            $routeConfig['updateRoute'],
+            $routeConfig['updateParameters'],
+            $routeConfig['indexRoute'],
             $liveFormCopy['submitLabel'],
             $liveFormCopy['cancelLabel'],
-            $this->cardTypesCatalogReturnLabel(),
+            $routeConfig['catalogReturnLabel'],
             $this->cardTypesFoundationMutationDisabledReason(),
             $selectedCardType,
             $liveFormCopy['reviewCue'],
@@ -2144,6 +2145,16 @@ class ResourceIndexController extends Controller
         $page['liveForm']['valuesResolver'] = $this->cardTypesSelectedLiveFormValues($selectedCardType);
 
         return $page;
+    }
+
+    private function cardTypesSelectedLiveFormRouteConfig(CardType $cardType): array
+    {
+        return [
+            'updateRoute' => $this->cardTypesUpdateRouteName(),
+            'updateParameters' => $this->cardTypesUpdateRouteParameters($cardType),
+            'indexRoute' => $this->cardTypesIndexRouteName(),
+            'catalogReturnLabel' => $this->cardTypesCatalogReturnLabel(),
+        ];
     }
 
     private function cardTypesUpdateRouteParameters(CardType $cardType): array
