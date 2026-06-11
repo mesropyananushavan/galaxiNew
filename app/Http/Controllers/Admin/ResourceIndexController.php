@@ -1901,8 +1901,8 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedTypeSummary(CardType $selectedCardType): array
     {
         return [
-            ['label' => 'Selected Galaxy tier', 'value' => $this->cardTypesSelectedTierName($selectedCardType)],
-            ['label' => 'Slug', 'value' => $this->cardTypesSelectedTierSlug($selectedCardType)],
+            ['label' => 'Selected Galaxy tier', 'value' => $this->cardTypesTierNameValue($selectedCardType)],
+            ['label' => 'Slug', 'value' => $this->cardTypesTierSlugValue($selectedCardType)],
             ['label' => 'Points rate', 'value' => $this->cardTypesPointsRateLabel($selectedCardType)],
             ['label' => 'Galaxy status', 'value' => $this->cardTypeStatusValue($selectedCardType)],
             ['label' => 'Lifecycle freshness', 'value' => $this->cardTypesTierLifecycleFreshnessValue($selectedCardType)],
@@ -1937,16 +1937,6 @@ class ResourceIndexController extends Controller
             $this->cardTypesTierStatusFlowValue($cardType),
             $this->cardTypesCatalogToggleStatusAction($cardType),
         ];
-    }
-
-    private function cardTypesSelectedTierName(CardType $cardType): string
-    {
-        return $this->cardTypesTierNameValue($cardType);
-    }
-
-    private function cardTypesSelectedTierSlug(CardType $cardType): string
-    {
-        return $this->cardTypesTierSlugValue($cardType);
     }
 
     private function cardTypesTierNameValue(CardType $cardType): string
@@ -2385,7 +2375,7 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedDependencyStatus(CardType $selectedCardType): array
     {
         return [
-            ['label' => 'Selected Galaxy tier', 'value' => $this->cardTypesSelectedTierName($selectedCardType)],
+            ['label' => 'Selected Galaxy tier', 'value' => $this->cardTypesTierNameValue($selectedCardType)],
             ['label' => 'Galaxy tier edit flow state', 'value' => 'Live Galaxy tier form is running in request-driven PATCH mode'],
             ['label' => 'Galaxy tier lifecycle freshness', 'value' => $this->cardTypesTierLifecycleFreshnessValue($selectedCardType)],
             ['label' => 'Galaxy tier last saved in foundation', 'value' => $this->cardTypesTierLastSavedValue($selectedCardType)],

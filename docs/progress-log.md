@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type selected-tier value-source checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier summary and dependency surfaces now read the Galaxy tier name and slug from the shared base value helpers instead of routing those fields through extra selected-tier passthrough methods.
+- Caught and fixed one leftover dependency-status call site during validation, then re-ran the same focused parity slice to confirm the selected-tier contract stayed intact.
+- Re-ran focused card-types preview, selected-tier edit, linked-tier status, and draft-tier readiness assertions as the parity guard for this small structural cleanup.
+
 ### Card-type live-form value-application checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now applies its preassembled `valuesResolver` through a tiny helper instead of mutating that Galaxy-tier form field inline immediately after the foundation edit-form wiring call.
 - Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload application path.
