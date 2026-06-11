@@ -2154,8 +2154,15 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormValueConfig(CardType $cardType): array
     {
         return [
-            'disabledReason' => $this->cardTypesFoundationMutationDisabledReason(),
-            'valuesResolver' => $this->cardTypesSelectedLiveFormValues($cardType),
+            ...$this->cardTypesSelectedLiveFormValueConfigField('disabledReason', $this->cardTypesFoundationMutationDisabledReason()),
+            ...$this->cardTypesSelectedLiveFormValueConfigField('valuesResolver', $this->cardTypesSelectedLiveFormValues($cardType)),
+        ];
+    }
+
+    private function cardTypesSelectedLiveFormValueConfigField(string $field, string|array $value): array
+    {
+        return [
+            $field => $value,
         ];
     }
 
