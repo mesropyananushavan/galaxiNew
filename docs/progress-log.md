@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type live-form values-payload checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now merges its identity and mutable form values through a dedicated payload helper instead of spreading those two Galaxy-tier arrays directly inside the values builder.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload structure.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
 ### Card-type live-form value-config checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form payload now exposes its `valuesResolver` through a tiny dedicated value-config helper instead of appending that value inline inside the broader payload builder.
 - Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload structure.

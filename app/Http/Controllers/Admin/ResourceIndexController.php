@@ -2188,9 +2188,17 @@ class ResourceIndexController extends Controller
 
     private function cardTypesSelectedLiveFormValues(CardType $selectedCardType): array
     {
+        return $this->cardTypesSelectedLiveFormValuesPayload(
+            $this->cardTypesSelectedLiveFormIdentityValues($selectedCardType),
+            $this->cardTypesSelectedLiveFormMutableValues($selectedCardType),
+        );
+    }
+
+    private function cardTypesSelectedLiveFormValuesPayload(array $identityValues, array $mutableValues): array
+    {
         return [
-            ...$this->cardTypesSelectedLiveFormIdentityValues($selectedCardType),
-            ...$this->cardTypesSelectedLiveFormMutableValues($selectedCardType),
+            ...$identityValues,
+            ...$mutableValues,
         ];
     }
 
