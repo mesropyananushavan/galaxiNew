@@ -2125,7 +2125,7 @@ class ResourceIndexController extends Controller
 
     private function applyCardTypesSelectedLiveFormData(array $page, CardType $selectedCardType): array
     {
-        $liveFormConfig = $this->cardTypesSelectedLiveFormConfig($selectedCardType);
+        $liveFormConfig = $this->cardTypesSelectedLiveFormPayload($selectedCardType);
 
         $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
             $page['liveForm'],
@@ -2144,6 +2144,14 @@ class ResourceIndexController extends Controller
         $page['liveForm']['valuesResolver'] = $this->cardTypesSelectedLiveFormValuesResolver($selectedCardType);
 
         return $page;
+    }
+
+    private function cardTypesSelectedLiveFormPayload(CardType $cardType): array
+    {
+        return [
+            ...$this->cardTypesSelectedLiveFormConfig($cardType),
+            'valuesResolver' => $this->cardTypesSelectedLiveFormValuesResolver($cardType),
+        ];
     }
 
     private function cardTypesSelectedLiveFormConfig(CardType $cardType): array
