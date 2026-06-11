@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### README seam-source bridge refresh checkpoint
+- Updated `config/phase-1-seam-sources.php` and `README.md` so the README-level seam-source trail now explicitly treats `config/phase-1-foundation-seams.php` and `config/phase-1-reference-docs.php` as bridge anchors for the dashboard-facing Phase 1 reference chain.
+- Kept top-level repo guidance closer to the live Galaxy foundation layer by naming the foundation-seam baseline alongside the seam-source trail in the README Phase 1 reference posture.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 repo-guidance refresh.
+
 ### Shop-scope route-enforcement checkpoint
 - Updated `docs/phase-1-shop-access-baseline.md` and `config/phase-1-shop-access-baseline.php` so the branch-scope baseline now treats `routes/admin.php` as a first-class source-of-truth and explicitly names the live shop review/update route enforcement seam.
 - Kept the dashboard-facing shop-scope story closer to the live Galaxy foundation layer by tying bootstrap and scoped branch visibility rules back to the real admin route guardrails that already reuse `ShopPolicy` and `User::canAccessShop(...)`.

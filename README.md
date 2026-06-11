@@ -20,11 +20,11 @@ The current goal is Phase 1: turn this repo from scaffold defaults into a Galaxy
 
 ## Core Phase 1 references
 
-Focus: keep the current Galaxy admin map, shell layering, checkpoint trail, and seam-source baseline close while Phase 1 slices are still moving.
+Focus: keep the current Galaxy admin map, shell layering, checkpoint trail, foundation-seam baseline, and seam-source baseline close while Phase 1 slices are still moving.
 
 Guide: `README.md`, `docs/blueprint.md`, and `docs/phase-1-plan.md` remain the readable anchors for this top-level Phase 1 reference trail.
 
-Source of truth: `README.md`, `docs/blueprint.md`, `docs/phase-1-plan.md`, `docs/phase-1-access-baseline.md`, `config/phase-1-access-baseline.php`, `docs/phase-1-shop-access-baseline.md`, `config/phase-1-shop-access-baseline.php`, `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, `docs/phase-1-migration-baseline.md`, `config/phase-1-migration-baseline.php` for the readable and implementation anchors around the newer Phase 1 baselines, plus `config/phase-1-reference-docs.php` for the broader admin reference inventory.
+Source of truth: `README.md`, `docs/blueprint.md`, `docs/phase-1-plan.md`, `docs/phase-1-foundation-seams.md`, `config/phase-1-foundation-seams.php`, `docs/phase-1-access-baseline.md`, `config/phase-1-access-baseline.php`, `docs/phase-1-shop-access-baseline.md`, `config/phase-1-shop-access-baseline.php`, `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, `docs/phase-1-migration-baseline.md`, `config/phase-1-migration-baseline.php` for the readable and implementation anchors around the newer Phase 1 baselines, plus `config/phase-1-reference-docs.php` for the broader admin reference inventory.
 
 Posture: admin reference inventory stays explicit across the live Galaxy dashboard trail.
 
@@ -50,13 +50,13 @@ Posture: admin reference inventory stays explicit across the live Galaxy dashboa
 
 ### Phase 1 seam sources
 
-Focus: keep the README-level seam-source inventory visible across repo guidance plus the admin and public Phase 1 entry surfaces.
+Focus: keep the README-level seam-source inventory visible across repo guidance plus the admin and public Phase 1 entry surfaces, with the foundation-seam and reference-doc baselines acting as explicit bridge anchors.
 
 Guide: `README.md` and `config/phase-1-seam-sources.php` remain the readable and implementation anchors for this seam-source trail.
 
-Source of truth: `README.md` and `config/phase-1-seam-sources.php` remain the readable and implementation anchors for this seam-source trail, including the newer access, shop-scope, model-skeleton, and migration seams now tied into it.
+Source of truth: `README.md`, `config/phase-1-seam-sources.php`, `config/phase-1-foundation-seams.php`, and `config/phase-1-reference-docs.php` remain the readable and implementation bridge anchors for this seam-source trail, including the newer access, shop-scope, model-skeleton, migration, and dashboard reference seams now tied into it.
 
-Posture: README-backed seam-source baseline stays explicit across the live Galaxy reference trail.
+Posture: README-backed seam-source baseline stays explicit across the live Galaxy reference trail and its dashboard-facing bridge configs.
 
 - `config/phase-1-domain-map.php` keeps the entity baseline aligned with the dashboard
 - `config/phase-1-foundation-seams.php` keeps the seam inventory aligned with the dashboard
