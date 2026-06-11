@@ -2220,9 +2220,16 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormNoteValues(CardType $cardType): array
     {
         return [
-            'review_note' => $this->cardTypesEditReviewNoteValue($cardType),
-            'activation_note' => $this->cardTypesEditActivationNoteValue($cardType),
-            'rollout_note' => $this->cardTypesEditRolloutNoteValue($cardType),
+            ...$this->cardTypesSelectedLiveFormNoteValue('review_note', $this->cardTypesEditReviewNoteValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormNoteValue('activation_note', $this->cardTypesEditActivationNoteValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormNoteValue('rollout_note', $this->cardTypesEditRolloutNoteValue($cardType)),
+        ];
+    }
+
+    private function cardTypesSelectedLiveFormNoteValue(string $field, string $value): array
+    {
+        return [
+            $field => $value,
         ];
     }
 
