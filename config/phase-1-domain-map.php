@@ -10,19 +10,19 @@ return [
             'label' => 'Shop',
             'table' => 'shops',
             'model' => \App\Models\Shop::class,
-            'coverage' => 'Branch scope, activation state, and operator anchoring.',
+            'coverage' => 'Branch scope, activation state, review-note coverage, and operator anchoring.',
         ],
         [
             'label' => 'Role',
             'table' => 'roles',
             'model' => \App\Models\Role::class,
-            'coverage' => 'Access shell identity for Galaxy staff flows.',
+            'coverage' => 'Access shell identity plus review, access-note, and assignment-note anchors for Galaxy staff flows.',
         ],
         [
             'label' => 'Permission',
             'table' => 'permissions',
             'model' => \App\Models\Permission::class,
-            'coverage' => 'Permission vocabulary attached to live access shells.',
+            'coverage' => 'Permission vocabulary plus review-note coverage attached to live access shells.',
         ],
         [
             'label' => 'CardHolder',
@@ -34,13 +34,13 @@ return [
             'label' => 'CardType',
             'table' => 'card_types',
             'model' => \App\Models\CardType::class,
-            'coverage' => 'Tier catalog identity and active-state baseline.',
+            'coverage' => 'Tier catalog identity, active-state baseline, and review, activation, and rollout anchors.',
         ],
         [
             'label' => 'Card',
             'table' => 'cards',
             'model' => \App\Models\Card::class,
-            'coverage' => 'Card shell inventory linked to holders, tiers, and branches.',
+            'coverage' => 'Card shell inventory linked to holders, tiers, and branches, with review and issuance anchors.',
         ],
     ],
 ];

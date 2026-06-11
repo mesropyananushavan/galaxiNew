@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Domain map foundation-anchor refresh checkpoint
+- Updated `docs/phase-1-domain-map.md` and `config/phase-1-domain-map.php` so the entity baseline now names already-live Galaxy review, handoff, rollout, and issuance anchors around shops, roles, permissions, card types, and cards instead of describing them only as generic shells.
+- Kept the dashboard-facing entity map closer to the current Phase 1 foundation layer by making the first six entities read like explicit Galaxy operational anchors rather than starter-era placeholders.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 domain-baseline refresh.
+
 ### Admin reference trail foundation-seam checkpoint
 - Updated `config/phase-1-reference-docs.php` so the dashboard reference inventory now treats `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` as first-class Phase 1 source-of-truth anchors instead of only carrying the seam map indirectly.
 - Updated `docs/phase-1-foundation-seams.md` so the admin reference trail now explicitly names the higher-level foundation-seam baseline as part of the dashboard-facing Galaxy reference chain.

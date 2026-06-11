@@ -12,15 +12,15 @@ Keep the first Galaxy foundation entities explicit while Phase 1 replaces scaffo
 
 ### Shop
 - table: `shops`
-- role in foundation: branch scope, activation state, and operator anchoring
+- role in foundation: branch scope, activation state, review-note coverage, and operator anchoring
 
 ### Role
 - table: `roles`
-- role in foundation: access shell identity for Galaxy staff flows
+- role in foundation: access shell identity plus review, access-note, and assignment-note anchors for Galaxy staff flows
 
 ### Permission
 - table: `permissions`
-- role in foundation: permission vocabulary attached to live access shells
+- role in foundation: permission vocabulary plus review-note coverage attached to live access shells
 
 ### CardHolder
 - table: `card_holders`
@@ -28,11 +28,11 @@ Keep the first Galaxy foundation entities explicit while Phase 1 replaces scaffo
 
 ### CardType
 - table: `card_types`
-- role in foundation: tier catalog identity and active-state baseline
+- role in foundation: tier catalog identity, active-state baseline, and review, activation, and rollout anchors
 
 ### Card
 - table: `cards`
-- role in foundation: card shell inventory linked to holders, tiers, and branches
+- role in foundation: card shell inventory linked to holders, tiers, and branches, with review and issuance anchors
 
 ## Phase 1 posture
 - this map is intentionally small and stable
