@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type edit-note value helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now normalizes review, activation, and rollout edit-note values through one shared helper instead of repeating the same nullable-to-empty-string pattern across three adjacent methods.
+- Kept the rendered selected-tier live-form values unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type live-form identity-field helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now routes its identity fields through the same shared value-field helper already used for mutable scalar and note fields.
 - Kept the rendered selected-tier live-form values unchanged while making the Galaxy-tier `valuesResolver` path more uniform and seam-driven.

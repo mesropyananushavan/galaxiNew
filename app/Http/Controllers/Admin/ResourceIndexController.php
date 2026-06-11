@@ -2245,17 +2245,22 @@ class ResourceIndexController extends Controller
 
     private function cardTypesEditReviewNoteValue(CardType $cardType): string
     {
-        return $cardType->review_note ?? '';
+        return $this->cardTypesEditNoteValue($cardType->review_note);
     }
 
     private function cardTypesEditActivationNoteValue(CardType $cardType): string
     {
-        return $cardType->activation_note ?? '';
+        return $this->cardTypesEditNoteValue($cardType->activation_note);
     }
 
     private function cardTypesEditRolloutNoteValue(CardType $cardType): string
     {
-        return $cardType->rollout_note ?? '';
+        return $this->cardTypesEditNoteValue($cardType->rollout_note);
+    }
+
+    private function cardTypesEditNoteValue(?string $note): string
+    {
+        return $note ?? '';
     }
 
     private function cardTypesUpdateRouteName(): string
