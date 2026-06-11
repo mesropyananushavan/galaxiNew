@@ -17,6 +17,8 @@ Keep the first Galaxy authorization gates and policy mappings explicit while Pha
 - `access-shop` keeps shop-scoped access explicit for branch-aware review and later writes.
 - `view-checks-points` keeps receipt and accrual review behind an explicit operations gate while deeper checks policies are still pending.
 - `view-services-rules` keeps rule review behind an explicit rules gate while richer rule-write access seams are still pending.
+- `view-gifts` keeps rewards review behind an explicit rewards gate while reward-specific write seams are still preview-only.
+- `view-reports` keeps reporting review behind an explicit reporting gate while report-source policy seams are still pending.
 - The current mapped policies cover `Shop`, `CardHolder`, `Card`, `Role`, `Permission`, and `CardType`.
 - `routes/admin.php` applies the `auth` and `can:access-admin` guardrail before policy-specific resource routes run.
 - The access baseline now also tracks five first-live Phase 1 admin route trios as explicit policy-backed guardrail entries plus the dedicated `admin.card-types.toggle-status` action route: `admin.shops.index` / `store` / `update`, `admin.cardholders.index` / `store` / `update`, `admin.cards.index` / `store` / `update`, `admin.card-types.index` / `store` / `update`, and `admin.roles-permissions.index` / `store` / `update`.

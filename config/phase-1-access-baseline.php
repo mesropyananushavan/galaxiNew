@@ -26,6 +26,16 @@ return [
             'ability' => 'view-services-rules',
             'coverage' => 'Keeps the rules workspace behind an explicit Galaxy rules gate while richer rule-write access seams are still landing.',
         ],
+        [
+            'label' => 'Gifts review gate',
+            'ability' => 'view-gifts',
+            'coverage' => 'Keeps the rewards workspace behind an explicit Galaxy rewards gate while reward-specific write access is still preview-only.',
+        ],
+        [
+            'label' => 'Reports review gate',
+            'ability' => 'view-reports',
+            'coverage' => 'Keeps the reporting workspace behind an explicit Galaxy reporting gate while report-source policy seams are still pending.',
+        ],
     ],
     'route_guardrails' => [
         [

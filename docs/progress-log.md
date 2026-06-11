@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Access gate inventory completion checkpoint
+- Updated `docs/phase-1-access-baseline.md` and `config/phase-1-access-baseline.php` so the top-level gate inventory now explicitly includes the already-live `view-gifts` and `view-reports` review gates instead of only mentioning them later in the route-guardrail section.
+- Kept the dashboard-facing access baseline closer to the live Galaxy foundation layer by making rewards and reporting review gates first-class entries alongside admin, shop, checks, and rules access anchors.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 access-baseline completion step.
+
 ### Domain map foundation-anchor refresh checkpoint
 - Updated `docs/phase-1-domain-map.md` and `config/phase-1-domain-map.php` so the entity baseline now names already-live Galaxy review, handoff, rollout, and issuance anchors around shops, roles, permissions, card types, and cards instead of describing them only as generic shells.
 - Kept the dashboard-facing entity map closer to the current Phase 1 foundation layer by making the first six entities read like explicit Galaxy operational anchors rather than starter-era placeholders.
