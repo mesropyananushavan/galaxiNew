@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type live-form review-cue helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now reads its Galaxy-specific review cue through a dedicated helper instead of keeping that Phase 1 operator guidance string inline inside the copy payload array.
+- Kept the rendered selected-tier live-form output unchanged while tightening one more small copy seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type dependency status item helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier dependency surface now builds each `label`/`value` row through one tiny helper instead of repeating the same dependency item array shape inline across the Galaxy-tier review surface.
 - Kept the rendered selected-tier dependency output unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.

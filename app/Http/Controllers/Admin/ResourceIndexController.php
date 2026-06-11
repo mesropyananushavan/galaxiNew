@@ -2377,8 +2377,13 @@ class ResourceIndexController extends Controller
             'description' => $this->cardTypesLiveFormDescription(),
             'submitLabel' => $this->cardTypesLiveFormSubmitLabel(),
             'cancelLabel' => $this->cardTypesLiveFormCancelLabel(),
-            'reviewCue' => 'Review the selected Galaxy tier in the live Galaxy tier form while Phase 1 keeps tier-shell changes under bootstrap control.',
+            'reviewCue' => $this->cardTypesLiveFormReviewCue(),
         ];
+    }
+
+    private function cardTypesLiveFormReviewCue(): string
+    {
+        return 'Review the selected Galaxy tier in the live Galaxy tier form while Phase 1 keeps tier-shell changes under bootstrap control.';
     }
 
     private function cardTypesSelectedDependencyStatus(CardType $selectedCardType): array
