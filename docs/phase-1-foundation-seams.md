@@ -85,16 +85,16 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 
 ### Top-level repo guidance
 - readable summary anchor: this file
-- source-of-truth anchors: `README.md`, `docs/blueprint.md`, `docs/phase-1-plan.md`, `config/phase-1-reference-docs.php`
+- source-of-truth anchors: `README.md`, `docs/blueprint.md`, `docs/phase-1-plan.md`, `docs/phase-1-foundation-seams.md`, `config/phase-1-foundation-seams.php`, `config/phase-1-reference-docs.php`
 - visible runtime surface: `README.md`
-- current role: keeps top-level Phase 1 references and seam-source guidance aligned for contributors before they open the live surfaces
+- current role: keeps top-level Phase 1 references, foundation-seam guidance, and seam-source guidance aligned for contributors before they open the live surfaces
 
 ### README seam-source trail
 - readable summary anchor: this file
 - implementation baseline: `config/phase-1-seam-sources.php`
-- source-of-truth anchors: `README.md`, `config/phase-1-seam-sources.php`
-- seam focus: keep the README-level seam-source inventory visible across repo guidance plus the admin and public Phase 1 entry surfaces
-- seam posture: README-backed seam-source baseline stays explicit across the live Galaxy reference trail
+- source-of-truth anchors: `README.md`, `config/phase-1-seam-sources.php`, `config/phase-1-foundation-seams.php`, `config/phase-1-reference-docs.php`
+- seam focus: keep the README-level seam-source inventory visible across repo guidance plus the admin and public Phase 1 entry surfaces, with the foundation-seam and reference-doc baselines acting as explicit bridge anchors
+- seam posture: README-backed seam-source baseline stays explicit across the live Galaxy reference trail and its dashboard-facing bridge configs
 - visible runtime surfaces: `README.md`, `resources/views/admin/dashboard.blade.php`, `resources/views/welcome.blade.php`
 - current role: keeps the README-level config seam inventory aligned across repo guidance plus the admin and public entry surfaces, with both entry controllers now formatting parts of that runtime reference trail and the dashboard controller shaping both the admin seam-source inventory display payload and seam-source summary metrics before render
 

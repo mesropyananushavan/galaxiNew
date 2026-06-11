@@ -95,18 +95,22 @@ return [
         ],
         [
             'label' => 'Top-level repo guidance',
-            'summary' => 'Top-level contributor guidance stays aligned across the seam note and README reference trail.',
+            'summary' => 'Top-level contributor guidance stays aligned across the seam note, the foundation-seam baseline, and the README reference trail.',
             'sources' => [
                 'docs/phase-1-foundation-seams.md',
                 'README.md',
+                'config/phase-1-foundation-seams.php',
+                'config/phase-1-reference-docs.php',
             ],
         ],
         [
             'label' => 'README seam-source trail',
-            'summary' => 'README-level config seam inventory stays aligned across repo guidance plus the admin and public entry surfaces, with both entry controllers formatting parts of that runtime reference trail and the dashboard controller shaping the admin seam-source inventory before render.',
+            'summary' => 'README-level config seam inventory stays aligned across repo guidance plus the admin and public entry surfaces, with the foundation-seam and reference-doc baselines acting as bridge anchors while both entry controllers format parts of that runtime reference trail and the dashboard controller shapes the admin seam-source inventory before render.',
             'sources' => [
                 'docs/phase-1-foundation-seams.md',
                 'config/phase-1-seam-sources.php',
+                'config/phase-1-foundation-seams.php',
+                'config/phase-1-reference-docs.php',
                 'README.md',
                 'app/Http/Controllers/Admin/DashboardController.php',
                 'resources/views/admin/dashboard.blade.php',
