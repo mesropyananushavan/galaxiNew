@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Foundation seam migration-chain alignment checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level migration seam inventory now explicitly treats the first access and card-domain migrations plus their follow-up review, rollout, and issuance anchors as one live Phase 1 schema checkpoint chain.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the migration-baseline seam summary reflect both the initial schema anchors and the already-tracked follow-up checkpoint inventory instead of describing them as a looser generic schema layer.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
 ### Foundation seam access-contract alignment checkpoint
 - Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level access seam inventory now explicitly treats operational review gates and policy-backed route guardrails as part of the same live Phase 1 access contract.
 - Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the access-baseline seam summary reflect the already-tracked `checks-points`, `services-rules`, `gifts`, and `reports` gates alongside the first policy-backed resource lanes.

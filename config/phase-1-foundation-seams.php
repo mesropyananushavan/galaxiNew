@@ -27,7 +27,7 @@ return [
         ],
         [
             'label' => 'Migration baseline',
-            'summary' => 'The first Galaxy schema checkpoints stay aligned across readable docs, implementation config, the migration directory, and the live admin runtime surface, with follow-up review, handoff, rollout, and issuance anchors kept visible as named Phase 1 schema checkpoints.',
+            'summary' => 'The first Galaxy access and card-domain schema checkpoints stay aligned across readable docs, implementation config, the migration directory, and the live admin runtime surface, with follow-up review, handoff, rollout, and issuance anchors kept visible as one named Phase 1 schema checkpoint chain.',
             'sources' => [
                 'docs/phase-1-migration-baseline.md',
                 'config/phase-1-migration-baseline.php',

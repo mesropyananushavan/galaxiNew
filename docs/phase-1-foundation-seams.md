@@ -40,8 +40,8 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 - implementation baseline: `config/phase-1-migration-baseline.php`
 - source-of-truth anchors: `docs/phase-1-migration-baseline.md`, `config/phase-1-migration-baseline.php`, `database/migrations`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
-- current role: keeps the first Galaxy schema anchors explicit while Phase 1 migration work is still landing, with the dashboard controller now shaping both the migration metrics and the tracked schema checkpoint inventory before render
-- current focus: keeps access review notes, tier review and rollout notes, branch and holder review notes, permission review notes, and card issuance and review anchors visible as named Phase 1 schema checkpoints instead of leaving them implied inside follow-up migrations
+- current role: keeps the first Galaxy access and card-domain schema anchors explicit while Phase 1 migration work is still landing, with the dashboard controller now shaping both the migration metrics and the tracked schema checkpoint inventory before render
+- current focus: keeps the first access/card-domain migrations plus access review notes, tier review and rollout notes, branch and holder review notes, permission review notes, and card issuance and review anchors visible as one named Phase 1 schema checkpoint chain instead of leaving them implied inside follow-up migrations
 
 ### Model skeleton baseline
 - readable summary anchor: `docs/phase-1-model-skeletons.md`
