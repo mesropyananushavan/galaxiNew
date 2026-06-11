@@ -1,5 +1,12 @@
 # Progress Log
 
+## 2026-06-11
+
+### Card-type live-form mutable-values checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now groups its editable scalar and note fields through one dedicated mutable-values helper instead of appending those mutable Galaxy-tier payload fields directly inside the top-level values array.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
 ## 2026-06-10
 
 ### Card-type live-form note-payload checkpoint
