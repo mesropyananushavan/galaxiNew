@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Foundation seam public-reference bridge checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level `Public landing reference trail` seam now explicitly names `config/phase-1-reference-docs.php` as an admin reference bridge instead of only talking about the public doc config and seam-source baseline.
+- Kept the dashboard-facing seam inventory aligned with the richer landing-doc baseline by making the public-reference seam summary reflect admin-reference bridge notes alongside the existing seam-source bridge notes and config-path callouts.
+- Re-ran focused dashboard, landing-page, and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
 ### Public reference admin-bridge checkpoint
 - Updated `config/landing-docs.php` so the public landing reference baseline now explicitly includes the admin reference bridge in its focus, posture, source-of-truth trail, and linked doc inventory.
 - Kept the landing-page doc card closer to the broader Phase 1 reference story by adding `config/phase-1-reference-docs.php` as a first-class public reference item instead of leaving that admin bridge only implicit.

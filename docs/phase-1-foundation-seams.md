@@ -73,10 +73,11 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 ### Public landing reference trail
 - readable summary anchor: this file
 - implementation baseline: `config/landing-docs.php`
-- source-of-truth anchors: `README.md`, `config/landing-docs.php`
+- source-of-truth anchors: `README.md`, `config/landing-docs.php`, `config/phase-1-reference-docs.php`
 - seam-source bridge: `config/phase-1-seam-sources.php`
+- admin reference bridge: `config/phase-1-reference-docs.php`
 - visible runtime surface: `resources/views/welcome.blade.php`
-- current role: keeps the public Galaxy migration doc trail, docs-card heading, metric labels, explanatory notes, config-path callouts, newer access/data-layer source-of-truth anchors, and seam-source bridge references aligned, with the landing controller now preparing the full docs-card payload, including heading, summary rows, and docs inventory, before render
+- current role: keeps the public Galaxy migration doc trail, docs-card heading, metric labels, explanatory notes, config-path callouts, newer access/data-layer source-of-truth anchors, the admin reference bridge, and seam-source bridge references aligned, with the landing controller now preparing the full docs-card payload, including heading, summary rows, and docs inventory, before render
 
 ### Public landing shell baseline
 - readable summary anchor: this file
