@@ -2125,26 +2125,33 @@ class ResourceIndexController extends Controller
 
     private function applyCardTypesSelectedLiveFormData(array $page, CardType $selectedCardType): array
     {
-        $liveFormCopy = $this->cardTypesSelectedLiveFormCopy();
-        $routeConfig = $this->cardTypesSelectedLiveFormRouteConfig($selectedCardType);
+        $liveFormConfig = $this->cardTypesSelectedLiveFormConfig($selectedCardType);
 
         $page['liveForm'] = $this->applySelectedFoundationEditLiveForm(
             $page['liveForm'],
-            $liveFormCopy['title'],
-            $liveFormCopy['description'],
-            $routeConfig['updateRoute'],
-            $routeConfig['updateParameters'],
-            $routeConfig['indexRoute'],
-            $liveFormCopy['submitLabel'],
-            $liveFormCopy['cancelLabel'],
-            $routeConfig['catalogReturnLabel'],
+            $liveFormConfig['title'],
+            $liveFormConfig['description'],
+            $liveFormConfig['updateRoute'],
+            $liveFormConfig['updateParameters'],
+            $liveFormConfig['indexRoute'],
+            $liveFormConfig['submitLabel'],
+            $liveFormConfig['cancelLabel'],
+            $liveFormConfig['catalogReturnLabel'],
             $this->cardTypesFoundationMutationDisabledReason(),
             $selectedCardType,
-            $liveFormCopy['reviewCue'],
+            $liveFormConfig['reviewCue'],
         );
         $page['liveForm']['valuesResolver'] = $this->cardTypesSelectedLiveFormValues($selectedCardType);
 
         return $page;
+    }
+
+    private function cardTypesSelectedLiveFormConfig(CardType $cardType): array
+    {
+        return [
+            ...$this->cardTypesSelectedLiveFormCopy(),
+            ...$this->cardTypesSelectedLiveFormRouteConfig($cardType),
+        ];
     }
 
     private function cardTypesSelectedLiveFormRouteConfig(CardType $cardType): array
