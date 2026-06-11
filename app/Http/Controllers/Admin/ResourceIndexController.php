@@ -2398,6 +2398,11 @@ class ResourceIndexController extends Controller
 
     private function cardTypesEditFlowStateValue(): string
     {
+        return $this->cardTypesEditFlowStateCopy();
+    }
+
+    private function cardTypesEditFlowStateCopy(): string
+    {
         return 'Live Galaxy tier form is running in request-driven PATCH mode';
     }
 

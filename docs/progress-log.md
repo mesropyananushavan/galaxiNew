@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type dependency edit-flow copy checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier dependency surface now reads its PATCH-mode edit-flow text through a dedicated shared value helper instead of keeping that Galaxy-tier copy inline inside the dependency row array.
+- Caught and reverted an accidental timeline copy drift during validation, then re-ran the same focused parity slice to keep the rendered selected-tier contract unchanged.
+- Re-ran focused card-types preview, selected-tier edit, linked-tier status, and draft-tier readiness assertions as the parity guard for this small structural cleanup.
+
 ### Card-type dependency edit-flow value checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier dependency surface now reads its Galaxy-tier edit-flow state from a dedicated value helper instead of keeping that PATCH-mode text inline inside the dependency row array.
 - Kept the rendered selected-tier dependency output unchanged while tightening one more small Phase 1 seam around the Galaxy-specific review surface.
