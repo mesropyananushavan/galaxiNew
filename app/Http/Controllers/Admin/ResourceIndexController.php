@@ -2150,6 +2150,13 @@ class ResourceIndexController extends Controller
     {
         return [
             ...$this->cardTypesSelectedLiveFormConfig($cardType),
+            ...$this->cardTypesSelectedLiveFormValueConfig($cardType),
+        ];
+    }
+
+    private function cardTypesSelectedLiveFormValueConfig(CardType $cardType): array
+    {
+        return [
             'valuesResolver' => $this->cardTypesSelectedLiveFormValues($cardType),
         ];
     }
