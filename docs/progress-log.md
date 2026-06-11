@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### README reference-bridge alignment checkpoint
+- Updated `README.md` so the top-level Phase 1 reference trail now explicitly includes the landing-doc bridge and seam-source bridge alongside the newer access, shop-scope, model-skeleton, migration, and foundation-seam baselines.
+- Kept repo guidance aligned with the live admin reference inventory by adding `config/landing-docs.php` to the README reference list and by making the Phase 1 reference posture describe the public landing-doc bridge instead of only the dashboard-facing side.
+- Re-ran focused dashboard and card-types assertions as a parity guard after tightening this repo-guidance seam.
+
 ### Admin reference landing-doc bridge checkpoint
 - Updated `config/phase-1-reference-docs.php` so the dashboard reference inventory now treats `config/landing-docs.php` as a first-class Phase 1 reference item and includes both the landing-doc bridge and seam-source bridge in the broader source-of-truth chain.
 - Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level admin reference seam now explicitly names that landing-doc bridge instead of treating the public docs layer as only an indirect neighbor.
