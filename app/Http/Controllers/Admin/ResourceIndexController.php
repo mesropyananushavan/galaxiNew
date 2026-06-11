@@ -2408,17 +2408,22 @@ class ResourceIndexController extends Controller
 
     private function cardTypesReviewNoteValue(CardType $cardType): string
     {
-        return $cardType->review_note ?: 'No review note saved yet';
+        return $this->cardTypesNoteFallbackValue($cardType->review_note, 'No review note saved yet');
     }
 
     private function cardTypesActivationNoteValue(CardType $cardType): string
     {
-        return $cardType->activation_note ?: 'No activation note saved yet';
+        return $this->cardTypesNoteFallbackValue($cardType->activation_note, 'No activation note saved yet');
     }
 
     private function cardTypesRolloutNoteValue(CardType $cardType): string
     {
-        return $cardType->rollout_note ?: 'No rollout note saved yet';
+        return $this->cardTypesNoteFallbackValue($cardType->rollout_note, 'No rollout note saved yet');
+    }
+
+    private function cardTypesNoteFallbackValue(?string $note, string $fallback): string
+    {
+        return $note ?: $fallback;
     }
 
     private function cardTypesEditFlowStateTimelineTitle(CardType $selectedCardType): string

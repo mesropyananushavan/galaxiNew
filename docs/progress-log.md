@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type note fallback checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier review, activation, and rollout note values now share one small fallback helper instead of repeating the same Galaxy-tier empty-note pattern across three adjacent methods.
+- Kept the rendered selected-tier output unchanged while tightening one more small Phase 1 seam in the Galaxy-specific review surface.
+- Re-ran focused card-types preview, selected-tier edit, linked-tier status, and draft-tier readiness assertions as the parity guard for this small structural cleanup.
+
 ### Card-type dependency edit-flow copy checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier dependency surface now reads its PATCH-mode edit-flow text through a dedicated shared value helper instead of keeping that Galaxy-tier copy inline inside the dependency row array.
 - Caught and reverted an accidental timeline copy drift during validation, then re-ran the same focused parity slice to keep the rendered selected-tier contract unchanged.
