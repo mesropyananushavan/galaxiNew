@@ -17,10 +17,11 @@ return [
         ],
         [
             'label' => 'Admin reference trail',
-            'summary' => 'Admin-side Phase 1 references stay aligned across the seam note, dashboard-focused config, seam-source baseline, and the live admin runtime surface, with the dashboard controller now formatting more of that runtime reference prose and shaping the linked reference-doc inventory before render.',
+            'summary' => 'Admin-side Phase 1 references stay aligned across the seam note, dashboard-focused config, the landing-doc bridge, the seam-source baseline, and the live admin runtime surface, with the dashboard controller now formatting more of that runtime reference prose and shaping the linked reference-doc inventory before render.',
             'sources' => [
                 'docs/phase-1-foundation-seams.md',
                 'config/phase-1-reference-docs.php',
+                'config/landing-docs.php',
                 'config/phase-1-seam-sources.php',
                 'resources/views/admin/dashboard.blade.php',
             ],

@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Admin reference landing-doc bridge checkpoint
+- Updated `config/phase-1-reference-docs.php` so the dashboard reference inventory now treats `config/landing-docs.php` as a first-class Phase 1 reference item and includes both the landing-doc bridge and seam-source bridge in the broader source-of-truth chain.
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level admin reference seam now explicitly names that landing-doc bridge instead of treating the public docs layer as only an indirect neighbor.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 reference-layer refresh.
+
 ### Foundation seam model-layer alignment checkpoint
 - Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level model-skeleton seam inventory now explicitly reflects the already-documented review-note, access-note, assignment-note, activation-note, rollout-note, and issued-at anchors around the first Galaxy model layer.
 - Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the model-skeleton seam summary reflect both the entity set and the follow-up anchor coverage already called out in the dedicated Phase 1 skeleton baseline.
