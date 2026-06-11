@@ -2141,7 +2141,7 @@ class ResourceIndexController extends Controller
             $selectedCardType,
             $liveFormConfig['reviewCue'],
         );
-        $page['liveForm']['valuesResolver'] = $this->cardTypesSelectedLiveFormValues($selectedCardType);
+        $page['liveForm']['valuesResolver'] = $this->cardTypesSelectedLiveFormValuesResolver($selectedCardType);
 
         return $page;
     }
@@ -2177,6 +2177,11 @@ class ResourceIndexController extends Controller
             ...$this->cardTypesSelectedLiveFormIdentityValues($selectedCardType),
             ...$this->cardTypesSelectedLiveFormMutableValues($selectedCardType),
         ];
+    }
+
+    private function cardTypesSelectedLiveFormValuesResolver(CardType $cardType): array
+    {
+        return $this->cardTypesSelectedLiveFormValues($cardType);
     }
 
     private function cardTypesSelectedLiveFormIdentityValues(CardType $cardType): array
