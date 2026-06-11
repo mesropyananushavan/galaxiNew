@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type live-form shared field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now routes config fields and value fields through one shared helper instead of keeping two identical field mappers in the Galaxy-tier payload path.
+- Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type live-form config-field helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now routes both value-config entries and route-config entries through one shared config-field helper instead of keeping two identical config mappers in the Galaxy-tier payload path.
 - Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.

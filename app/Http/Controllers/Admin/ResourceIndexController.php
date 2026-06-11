@@ -2154,8 +2154,8 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormValueConfig(CardType $cardType): array
     {
         return [
-            ...$this->cardTypesSelectedLiveFormConfigField('disabledReason', $this->cardTypesFoundationMutationDisabledReason()),
-            ...$this->cardTypesSelectedLiveFormConfigField('valuesResolver', $this->cardTypesSelectedLiveFormValues($cardType)),
+            ...$this->cardTypesSelectedLiveFormField('disabledReason', $this->cardTypesFoundationMutationDisabledReason()),
+            ...$this->cardTypesSelectedLiveFormField('valuesResolver', $this->cardTypesSelectedLiveFormValues($cardType)),
         ];
     }
 
@@ -2170,17 +2170,10 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormRouteConfig(CardType $cardType): array
     {
         return [
-            ...$this->cardTypesSelectedLiveFormConfigField('updateRoute', $this->cardTypesUpdateRouteName()),
-            ...$this->cardTypesSelectedLiveFormConfigField('updateParameters', $this->cardTypesUpdateRouteParameters($cardType)),
-            ...$this->cardTypesSelectedLiveFormConfigField('indexRoute', $this->cardTypesIndexRouteName()),
-            ...$this->cardTypesSelectedLiveFormConfigField('catalogReturnLabel', $this->cardTypesCatalogReturnLabel()),
-        ];
-    }
-
-    private function cardTypesSelectedLiveFormConfigField(string $field, string|array $value): array
-    {
-        return [
-            $field => $value,
+            ...$this->cardTypesSelectedLiveFormField('updateRoute', $this->cardTypesUpdateRouteName()),
+            ...$this->cardTypesSelectedLiveFormField('updateParameters', $this->cardTypesUpdateRouteParameters($cardType)),
+            ...$this->cardTypesSelectedLiveFormField('indexRoute', $this->cardTypesIndexRouteName()),
+            ...$this->cardTypesSelectedLiveFormField('catalogReturnLabel', $this->cardTypesCatalogReturnLabel()),
         ];
     }
 
@@ -2210,16 +2203,16 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormIdentityValues(CardType $cardType): array
     {
         return [
-            ...$this->cardTypesSelectedLiveFormValueField('name', $this->cardTypesTierNameValue($cardType)),
-            ...$this->cardTypesSelectedLiveFormValueField('slug', $this->cardTypesTierSlugValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormField('name', $this->cardTypesTierNameValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormField('slug', $this->cardTypesTierSlugValue($cardType)),
         ];
     }
 
     private function cardTypesSelectedLiveFormMutableValues(CardType $cardType): array
     {
         return [
-            ...$this->cardTypesSelectedLiveFormValueField('points_rate', $this->cardTypesEditPointsRateValue($cardType)),
-            ...$this->cardTypesSelectedLiveFormValueField('is_active', $this->cardTypesEditActiveValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormField('points_rate', $this->cardTypesEditPointsRateValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormField('is_active', $this->cardTypesEditActiveValue($cardType)),
             ...$this->cardTypesSelectedLiveFormNoteValues($cardType),
         ];
     }
@@ -2227,13 +2220,13 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormNoteValues(CardType $cardType): array
     {
         return [
-            ...$this->cardTypesSelectedLiveFormValueField('review_note', $this->cardTypesEditReviewNoteValue($cardType)),
-            ...$this->cardTypesSelectedLiveFormValueField('activation_note', $this->cardTypesEditActivationNoteValue($cardType)),
-            ...$this->cardTypesSelectedLiveFormValueField('rollout_note', $this->cardTypesEditRolloutNoteValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormField('review_note', $this->cardTypesEditReviewNoteValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormField('activation_note', $this->cardTypesEditActivationNoteValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormField('rollout_note', $this->cardTypesEditRolloutNoteValue($cardType)),
         ];
     }
 
-    private function cardTypesSelectedLiveFormValueField(string $field, string $value): array
+    private function cardTypesSelectedLiveFormField(string $field, string|array $value): array
     {
         return [
             $field => $value,
