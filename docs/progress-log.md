@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Public reference admin-bridge checkpoint
+- Updated `config/landing-docs.php` so the public landing reference baseline now explicitly includes the admin reference bridge in its focus, posture, source-of-truth trail, and linked doc inventory.
+- Kept the landing-page doc card closer to the broader Phase 1 reference story by adding `config/phase-1-reference-docs.php` as a first-class public reference item instead of leaving that admin bridge only implicit.
+- Re-ran focused dashboard, landing-page, and card-types assertions as the parity guard for this small Phase 1 public-reference refresh.
+
 ### Dashboard reference-bridge baseline checkpoint
 - Updated `config/phase-1-reference-docs.php` so the live admin reference baseline now explicitly mirrors the landing-doc bridge wording already present in README-level Phase 1 guidance.
 - Kept the dashboard-facing reference card aligned with the broader repo guidance by extending its `focus` and `posture` text to mention the public landing-doc bridge instead of only the admin/dashboard side.
