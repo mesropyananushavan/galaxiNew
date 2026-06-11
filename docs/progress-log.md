@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Admin reference trail foundation-seam checkpoint
+- Updated `config/phase-1-reference-docs.php` so the dashboard reference inventory now treats `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` as first-class Phase 1 source-of-truth anchors instead of only carrying the seam map indirectly.
+- Updated `docs/phase-1-foundation-seams.md` so the admin reference trail now explicitly names the higher-level foundation-seam baseline as part of the dashboard-facing Galaxy reference chain.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 reference-trail refresh.
+
 ### Foundation seam baseline alignment checkpoint
 - Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level seam inventory now reflects the more explicit Phase 1 model and migration baselines around review, handoff, rollout, and issuance anchors.
 - Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the migration-baseline and model-skeleton seam summaries describe named Galaxy review-state checkpoints instead of generic starter-era shells.
