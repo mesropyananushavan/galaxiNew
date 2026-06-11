@@ -9,6 +9,7 @@ Keep the first Galaxy branch-scoped access rules explicit while Phase 1 turns sh
 - user access seam: `app/Models/User.php`
 - shop policy seam: `app/Policies/ShopPolicy.php`
 - gate registration seam: `app/Providers/Concerns/RegistersAdminAccessGates.php`
+- admin route enforcement seam: `routes/admin.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 
 ## Current baseline
@@ -16,6 +17,7 @@ Keep the first Galaxy branch-scoped access rules explicit while Phase 1 turns sh
 - Scoped admins can access only their assigned active branch.
 - Users assigned to paused branches do not gain scoped admin access.
 - `ShopPolicy::view()` and `ShopPolicy::update()` currently read through that same branch-access seam.
+- `routes/admin.php` keeps the first live branch review and update entry points behind that same `ShopPolicy` seam instead of letting shop scope drift into controller-only checks.
 - The `access-shop` gate keeps the same branch-aware rule available at the framework gate layer.
 
 ## Current posture

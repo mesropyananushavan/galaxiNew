@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Shop-scope route-enforcement checkpoint
+- Updated `docs/phase-1-shop-access-baseline.md` and `config/phase-1-shop-access-baseline.php` so the branch-scope baseline now treats `routes/admin.php` as a first-class source-of-truth and explicitly names the live shop review/update route enforcement seam.
+- Kept the dashboard-facing shop-scope story closer to the live Galaxy foundation layer by tying bootstrap and scoped branch visibility rules back to the real admin route guardrails that already reuse `ShopPolicy` and `User::canAccessShop(...)`.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 shop-scope baseline refresh.
+
 ### Access gate inventory completion checkpoint
 - Updated `docs/phase-1-access-baseline.md` and `config/phase-1-access-baseline.php` so the top-level gate inventory now explicitly includes the already-live `view-gifts` and `view-reports` review gates instead of only mentioning them later in the route-guardrail section.
 - Kept the dashboard-facing access baseline closer to the live Galaxy foundation layer by making rewards and reporting review gates first-class entries alongside admin, shop, checks, and rules access anchors.

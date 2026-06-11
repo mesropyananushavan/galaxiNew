@@ -443,6 +443,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('config/phase-1-shop-access-baseline.php')
             ->assertSee('app/Models/User.php')
             ->assertSee('app/Policies/ShopPolicy.php')
+            ->assertSee('routes/admin.php')
             ->assertSee('<strong>Bootstrap branch visibility</strong>', false)
             ->assertSee('Bootstrap admins can access any Galaxy branch.')
             ->assertSee('<strong>Scoped branch visibility</strong>', false)
