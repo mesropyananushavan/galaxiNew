@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Foundation seam access-contract alignment checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level access seam inventory now explicitly treats operational review gates and policy-backed route guardrails as part of the same live Phase 1 access contract.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the access-baseline seam summary reflect the already-tracked `checks-points`, `services-rules`, `gifts`, and `reports` gates alongside the first policy-backed resource lanes.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
 ### Foundation seam repo-guidance bridge checkpoint
 - Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level seam inventory now reflects the newer foundation-seam and reference-doc bridge anchors already carried by the README-level Phase 1 guidance.
 - Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the top-level repo-guidance and README seam-source summaries describe those bridge configs explicitly instead of treating the trail as a looser README-only note.

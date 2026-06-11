@@ -48,7 +48,7 @@ return [
         ],
         [
             'label' => 'Admin access baseline',
-            'summary' => 'The first Galaxy authorization gates, policy mappings, and admin-route guardrail stay aligned across readable docs, implementation config, provider registration, and the live admin runtime surface.',
+            'summary' => 'The first Galaxy authorization gates, operational review gates, policy mappings, and admin-route guardrails stay aligned across readable docs, implementation config, provider registration, and the live admin runtime surface.',
             'sources' => [
                 'docs/phase-1-access-baseline.md',
                 'config/phase-1-access-baseline.php',

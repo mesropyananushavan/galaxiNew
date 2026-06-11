@@ -498,7 +498,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('Model skeleton baseline')
             ->assertSee('The first Galaxy Eloquent models and migration anchors stay aligned across readable docs, implementation config, model files, migration files, and the live admin runtime surface, with branch, access, holder, tier, and card skeletons tied to their live review, handoff, rollout, and issuance anchors.')
             ->assertSee('Admin access baseline')
-            ->assertSee('The first Galaxy authorization gates, policy mappings, and admin-route guardrail stay aligned across readable docs, implementation config, provider registration, and the live admin runtime surface.')
+            ->assertSee('The first Galaxy authorization gates, operational review gates, policy mappings, and admin-route guardrails stay aligned across readable docs, implementation config, provider registration, and the live admin runtime surface.')
             ->assertSee('Admin access baseline')
             ->assertSee('Shop-scoped access baseline')
             ->assertSee('The first Galaxy branch-boundary rules stay aligned across readable docs, implementation config, user access helpers, the shop policy seam, live admin route enforcement, and the live admin runtime surface.')
