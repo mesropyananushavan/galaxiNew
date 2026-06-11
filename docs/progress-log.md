@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type live-form mutable-field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now builds its mutable scalar entries through one tiny field helper instead of repeating the same scalar key mapping inline beside the Galaxy-tier note payload.
+- Kept the rendered selected-tier live-form values unchanged while tightening one more small payload seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type live-form note-field helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now builds each review, activation, and rollout note entry through one tiny field helper instead of repeating the same note-key mapping inline inside the Galaxy-tier values payload.
 - Kept the rendered selected-tier live-form values unchanged while tightening one more small payload seam around the Galaxy-specific card-types workspace.

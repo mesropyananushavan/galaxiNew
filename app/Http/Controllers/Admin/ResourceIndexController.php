@@ -2211,9 +2211,16 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormMutableValues(CardType $cardType): array
     {
         return [
-            'points_rate' => $this->cardTypesEditPointsRateValue($cardType),
-            'is_active' => $this->cardTypesEditActiveValue($cardType),
+            ...$this->cardTypesSelectedLiveFormMutableField('points_rate', $this->cardTypesEditPointsRateValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormMutableField('is_active', $this->cardTypesEditActiveValue($cardType)),
             ...$this->cardTypesSelectedLiveFormNoteValues($cardType),
+        ];
+    }
+
+    private function cardTypesSelectedLiveFormMutableField(string $field, string $value): array
+    {
+        return [
+            $field => $value,
         ];
     }
 
