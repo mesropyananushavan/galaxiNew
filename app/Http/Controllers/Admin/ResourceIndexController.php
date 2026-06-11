@@ -2235,12 +2235,17 @@ class ResourceIndexController extends Controller
 
     private function cardTypesEditPointsRateValue(CardType $cardType): string
     {
-        return (string) $cardType->points_rate;
+        return $this->cardTypesEditScalarValue($cardType->points_rate);
     }
 
     private function cardTypesEditActiveValue(CardType $cardType): string
     {
-        return $this->cardTypeIsActive($cardType) ? '1' : '0';
+        return $this->cardTypesEditScalarValue($this->cardTypeIsActive($cardType) ? '1' : '0');
+    }
+
+    private function cardTypesEditScalarValue(string|int|float $value): string
+    {
+        return (string) $value;
     }
 
     private function cardTypesEditReviewNoteValue(CardType $cardType): string

@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type edit-scalar value helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now normalizes scalar edit values through one shared helper instead of keeping separate one-line string-cast helpers for points-rate and active-state payload values.
+- Kept the rendered selected-tier live-form values unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type edit-note value helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now normalizes review, activation, and rollout edit-note values through one shared helper instead of repeating the same nullable-to-empty-string pattern across three adjacent methods.
 - Kept the rendered selected-tier live-form values unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
