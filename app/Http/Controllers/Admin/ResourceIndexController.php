@@ -2137,7 +2137,7 @@ class ResourceIndexController extends Controller
             $liveFormConfig['submitLabel'],
             $liveFormConfig['cancelLabel'],
             $liveFormConfig['catalogReturnLabel'],
-            $this->cardTypesFoundationMutationDisabledReason(),
+            $liveFormConfig['disabledReason'],
             $selectedCardType,
             $liveFormConfig['reviewCue'],
         );
@@ -2157,6 +2157,7 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormValueConfig(CardType $cardType): array
     {
         return [
+            'disabledReason' => $this->cardTypesFoundationMutationDisabledReason(),
             'valuesResolver' => $this->cardTypesSelectedLiveFormValues($cardType),
         ];
     }
