@@ -63,9 +63,10 @@ Track the small Galaxy-specific config and documentation seams that keep Phase 1
 ### Shop-scoped access baseline
 - readable summary anchor: `docs/phase-1-shop-access-baseline.md`
 - implementation baseline: `config/phase-1-shop-access-baseline.php`
-- source-of-truth anchors: `docs/phase-1-shop-access-baseline.md`, `config/phase-1-shop-access-baseline.php`, `app/Models/User.php`, `app/Policies/ShopPolicy.php`, `app/Providers/Concerns/RegistersAdminAccessGates.php`
+- source-of-truth anchors: `docs/phase-1-shop-access-baseline.md`, `config/phase-1-shop-access-baseline.php`, `app/Models/User.php`, `app/Policies/ShopPolicy.php`, `app/Providers/Concerns/RegistersAdminAccessGates.php`, `routes/admin.php`
 - visible runtime surface: `resources/views/admin/dashboard.blade.php`
 - current role: keeps the first Galaxy branch-scoped access rules explicit while Phase 1 shop visibility is still landing, with the dashboard controller now shaping both the shop-scope metrics and the tracked branch-boundary rules before render
+- current focus: keeps the live shop review and update route guardrails tied back to the same `User::canAccessShop(...)`, `ShopPolicy`, and `access-shop` boundary contract instead of letting branch scope drift into controller-local checks
 
 ### Public landing reference trail
 - readable summary anchor: this file

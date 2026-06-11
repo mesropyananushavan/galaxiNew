@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Foundation seam shop-scope route alignment checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level shop-scope seam inventory now includes `routes/admin.php` and explicitly names live admin route enforcement as part of the branch-boundary contract.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by tying the shop-scope seam summary back to the same `User::canAccessShop(...)`, `ShopPolicy`, and `access-shop` enforcement chain already documented in the dedicated baseline.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
 ### README seam-source bridge refresh checkpoint
 - Updated `config/phase-1-seam-sources.php` and `README.md` so the README-level seam-source trail now explicitly treats `config/phase-1-foundation-seams.php` and `config/phase-1-reference-docs.php` as bridge anchors for the dashboard-facing Phase 1 reference chain.
 - Kept top-level repo guidance closer to the live Galaxy foundation layer by naming the foundation-seam baseline alongside the seam-source trail in the README Phase 1 reference posture.

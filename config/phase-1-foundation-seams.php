@@ -61,13 +61,14 @@ return [
         ],
         [
             'label' => 'Shop-scoped access baseline',
-            'summary' => 'The first Galaxy branch-boundary rules stay aligned across readable docs, implementation config, user access helpers, the shop policy seam, and the live admin runtime surface.',
+            'summary' => 'The first Galaxy branch-boundary rules stay aligned across readable docs, implementation config, user access helpers, the shop policy seam, live admin route enforcement, and the live admin runtime surface.',
             'sources' => [
                 'docs/phase-1-shop-access-baseline.md',
                 'config/phase-1-shop-access-baseline.php',
                 'app/Models/User.php',
                 'app/Policies/ShopPolicy.php',
                 'app/Providers/Concerns/RegistersAdminAccessGates.php',
+                'routes/admin.php',
                 'resources/views/admin/dashboard.blade.php',
             ],
         ],

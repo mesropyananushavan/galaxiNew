@@ -501,7 +501,7 @@ class AdminDashboardTest extends TestCase
             ->assertSee('The first Galaxy authorization gates, policy mappings, and admin-route guardrail stay aligned across readable docs, implementation config, provider registration, and the live admin runtime surface.')
             ->assertSee('Admin access baseline')
             ->assertSee('Shop-scoped access baseline')
-            ->assertSee('The first Galaxy branch-boundary rules stay aligned across readable docs, implementation config, user access helpers, the shop policy seam, and the live admin runtime surface.')
+            ->assertSee('The first Galaxy branch-boundary rules stay aligned across readable docs, implementation config, user access helpers, the shop policy seam, live admin route enforcement, and the live admin runtime surface.')
             ->assertSee('Public landing reference trail')
             ->assertSee('Public Galaxy migration references, docs-card heading, metric labels, explanatory notes, config-path callouts, and seam-source bridge references stay aligned across the seam note, landing-page doc config, seam-source baseline, and the live public runtime surface.')
             ->assertSee('config/landing-docs.php')
