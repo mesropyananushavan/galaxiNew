@@ -2180,7 +2180,14 @@ class ResourceIndexController extends Controller
     private function cardTypesUpdateRouteParameters(CardType $cardType): array
     {
         return [
-            'cardType' => $cardType,
+            ...$this->cardTypesUpdateRouteParameter('cardType', $cardType),
+        ];
+    }
+
+    private function cardTypesUpdateRouteParameter(string $parameter, mixed $value): array
+    {
+        return [
+            $parameter => $value,
         ];
     }
 
