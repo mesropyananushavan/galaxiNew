@@ -2384,24 +2384,32 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedDependencyStatus(CardType $selectedCardType): array
     {
         return [
-            ['label' => 'Selected Galaxy tier', 'value' => $this->cardTypesTierNameValue($selectedCardType)],
-            ['label' => 'Galaxy tier edit flow state', 'value' => $this->cardTypesEditFlowStateValue()],
-            ['label' => 'Galaxy tier lifecycle freshness', 'value' => $this->cardTypesTierLifecycleFreshnessValue($selectedCardType)],
-            ['label' => 'Galaxy tier last saved in foundation', 'value' => $this->cardTypesTierLastSavedValue($selectedCardType)],
-            ['label' => 'Review note', 'value' => $this->cardTypesReviewNoteValue($selectedCardType)],
-            ['label' => 'Activation note', 'value' => $this->cardTypesActivationNoteValue($selectedCardType)],
-            ['label' => 'Activation freshness', 'value' => $this->cardTypesActivationFreshness($selectedCardType)],
-            ['label' => 'Rollout note', 'value' => $this->cardTypesRolloutNoteValue($selectedCardType)],
-            ['label' => 'Rollout freshness', 'value' => $this->cardTypesRolloutFreshness($selectedCardType)],
-            ['label' => 'Galaxy tier coverage signal', 'value' => $this->cardTypesCoverageSignal($selectedCardType)],
-            ['label' => 'Coverage freshness', 'value' => $this->cardTypesCoverageFreshness($selectedCardType)],
-            ['label' => 'Tier status signal', 'value' => $this->cardTypesStatusSignal($selectedCardType)],
-            ['label' => 'Handoff signal', 'value' => $this->cardTypesHandoffSignal($selectedCardType)],
-            ['label' => 'Galaxy tier status posture', 'value' => $this->cardTypesCurrentStatusPosture($selectedCardType)],
-            ['label' => 'Galaxy tier rule-import posture', 'value' => $this->cardTypesRuleImportPosture($selectedCardType)],
-            ['label' => 'Galaxy tier publish posture', 'value' => $this->cardTypesPublishPosture($selectedCardType)],
-            ['label' => 'Galaxy tier action gating', 'value' => $this->cardTypesActionGating($selectedCardType)],
-            ['label' => 'Remaining backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
+            $this->cardTypesDependencyStatusItem('Selected Galaxy tier', $this->cardTypesTierNameValue($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Galaxy tier edit flow state', $this->cardTypesEditFlowStateValue()),
+            $this->cardTypesDependencyStatusItem('Galaxy tier lifecycle freshness', $this->cardTypesTierLifecycleFreshnessValue($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Galaxy tier last saved in foundation', $this->cardTypesTierLastSavedValue($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Review note', $this->cardTypesReviewNoteValue($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Activation note', $this->cardTypesActivationNoteValue($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Activation freshness', $this->cardTypesActivationFreshness($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Rollout note', $this->cardTypesRolloutNoteValue($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Rollout freshness', $this->cardTypesRolloutFreshness($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Galaxy tier coverage signal', $this->cardTypesCoverageSignal($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Coverage freshness', $this->cardTypesCoverageFreshness($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Tier status signal', $this->cardTypesStatusSignal($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Handoff signal', $this->cardTypesHandoffSignal($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Galaxy tier status posture', $this->cardTypesCurrentStatusPosture($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Galaxy tier rule-import posture', $this->cardTypesRuleImportPosture($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Galaxy tier publish posture', $this->cardTypesPublishPosture($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Galaxy tier action gating', $this->cardTypesActionGating($selectedCardType)),
+            $this->cardTypesDependencyStatusItem('Remaining backend gap', $this->cardTypesBackendGap($selectedCardType)),
+        ];
+    }
+
+    private function cardTypesDependencyStatusItem(string $label, string $value): array
+    {
+        return [
+            'label' => $label,
+            'value' => $value,
         ];
     }
 
