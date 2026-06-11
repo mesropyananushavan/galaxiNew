@@ -2,23 +2,34 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
+use App\Http\Requests\Admin\Concerns\ValidatesAccessibleShop;
+use App\Models\Card;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 class StoreCardRequest extends FormRequest
 {
+    use AuthorizesPolicyActions;
+    use NormalizesTextFormInputs;
+    use ResolvesAdminLiveFormRedirects;
+    use ValidatesAccessibleShop;
+
     protected $redirectRoute = 'admin.cards.index';
 
     public function authorize(): bool
     {
-        return $this->user()?->can('access-admin') ?? false;
+        return $this->authorizeCreate(Card::class);
     }
 
     public function rules(): array
     {
         return [
             'shop_id' => ['required', 'integer', 'exists:shops,id'],
+            'card_holder_id' => ['nullable', 'integer', Rule::exists('card_holders', 'id')->where(fn ($query) => $query->where('shop_id', $this->input('shop_id')))],
             'card_type_id' => ['required', 'integer', 'exists:card_types,id'],
             'number' => ['required', 'string', 'max:255', Rule::unique('cards', 'number')],
             'status' => ['required', 'string', Rule::in(['draft', 'active', 'blocked'])],
@@ -31,11 +42,11 @@ class StoreCardRequest extends FormRequest
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'number' => is_string($this->input('number')) ? strtoupper(trim($this->input('number'))) : $this->input('number'),
-            'status' => is_string($this->input('status')) ? strtolower(trim($this->input('status'))) : $this->input('status'),
+            'number' => $this->normalizeUpperTrimmedString($this->input('number')),
+            'status' => $this->normalizeLowerTrimmedString($this->input('status')),
             'issued_at' => blank($this->input('issued_at')) ? null : $this->input('issued_at'),
             'activated_at' => blank($this->input('activated_at')) ? null : $this->input('activated_at'),
-            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
+            'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
         ]);
     }
 
@@ -43,6 +54,7 @@ class StoreCardRequest extends FormRequest
     {
         return [
             'shop_id' => 'shop',
+            'card_holder_id' => 'cardholder',
             'card_type_id' => 'card type',
             'number' => 'card number',
             'status' => 'card status',
@@ -55,7 +67,8 @@ class StoreCardRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'number.unique' => 'This card number is already in use in the Laravel inventory shell.',
+            'card_holder_id.exists' => 'Choose a cardholder from the same shop so the Galaxy inventory shell keeps holder linkage scoped correctly.',
+            'number.unique' => 'This card number is already in use in the Galaxy foundation inventory shell.',
             'issued_at.date' => 'Use a real issue timestamp so the Galaxy inventory lifecycle stays operator-friendly.',
             'issued_at.required_with' => 'Add an issue timestamp before activation so the Galaxy lifecycle timeline stays operator-friendly.',
             'issued_at.required_if' => 'Add an issue timestamp before blocking this card so the Galaxy lifecycle timeline stays operator-friendly.',
@@ -68,23 +81,12 @@ class StoreCardRequest extends FormRequest
         ];
     }
 
-    protected function getRedirectUrl(): string
+    public function withValidator(Validator $validator): void
     {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-
-        if ($this->redirect) {
-            return $url->to($this->redirect).'#live-form';
-        }
-
-        if ($this->redirectRoute) {
-            return $url->route($this->redirectRoute).'#live-form';
-        }
-
-        if ($this->redirectAction) {
-            return $url->action($this->redirectAction).'#live-form';
-        }
-
-        return $url->previous().'#live-form';
+        $this->validateAccessibleShop(
+            $validator,
+            'Choose a shop you can access so the Galaxy inventory shell stays scoped to your assigned branch.',
+        );
     }
+
 }

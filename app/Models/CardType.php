@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -18,6 +19,61 @@ class CardType extends Model
             'points_rate' => 'decimal:2',
             'is_active' => 'boolean',
         ];
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopeDraft(Builder $query): Builder
+    {
+        return $query->where('is_active', false);
+    }
+
+    public function scopeReviewNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('review_note')->where('review_note', '!=', '');
+    }
+
+    public function scopeActivationNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('activation_note')->where('activation_note', '!=', '');
+    }
+
+    public function scopeRolloutNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('rollout_note')->where('rollout_note', '!=', '');
+    }
+
+    public function scopeLinked(Builder $query): Builder
+    {
+        return $query->has('cards');
+    }
+
+    public function scopeUnlinked(Builder $query): Builder
+    {
+        return $query->doesntHave('cards');
+    }
+
+    public function scopeActiveLinked(Builder $query): Builder
+    {
+        return $query->active()->linked();
+    }
+
+    public function scopeActiveUnlinked(Builder $query): Builder
+    {
+        return $query->active()->unlinked();
+    }
+
+    public function scopeDraftLinked(Builder $query): Builder
+    {
+        return $query->draft()->linked();
+    }
+
+    public function scopeDraftUnlinked(Builder $query): Builder
+    {
+        return $query->draft()->unlinked();
     }
 
     public function cards(): HasMany

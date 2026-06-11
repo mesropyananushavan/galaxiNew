@@ -2,12 +2,14 @@
 
 namespace App\Providers;
 
-use App\Models\User;
-use Illuminate\Support\Facades\Gate;
+use App\Providers\Concerns\RegistersAdminAccessGates;
+use App\Providers\Concerns\RegistersAdminPolicies;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
 {
+    use RegistersAdminAccessGates;
+    use RegistersAdminPolicies;
     /**
      * Register any application services.
      */
@@ -21,8 +23,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Gate::define('access-admin', static function (User $user): bool {
-            return $user->canAccessAdminPanel();
-        });
+        $this->registerAdminPolicies();
+        $this->registerAdminAccessGates();
     }
 }

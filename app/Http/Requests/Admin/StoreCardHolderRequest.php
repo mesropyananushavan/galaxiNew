@@ -2,16 +2,28 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
+use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
+use App\Http\Requests\Admin\Concerns\ValidatesAccessibleShop;
+use App\Models\CardHolder;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Routing\UrlGenerator;
+use Illuminate\Validation\Validator;
 
 class StoreCardHolderRequest extends FormRequest
 {
+    use AuthorizesPolicyActions;
+    use NormalizesBooleanFormInputs;
+    use NormalizesTextFormInputs;
+    use ResolvesAdminLiveFormRedirects;
+    use ValidatesAccessibleShop;
+
     protected $redirectRoute = 'admin.cardholders.index';
 
     public function authorize(): bool
     {
-        return $this->user()?->can('access-admin') ?? false;
+        return $this->authorizeCreate(CardHolder::class);
     }
 
     public function rules(): array
@@ -31,16 +43,11 @@ class StoreCardHolderRequest extends FormRequest
         $status = $this->input('is_active');
 
         $this->merge([
-            'full_name' => is_string($this->input('full_name')) ? trim($this->input('full_name')) : $this->input('full_name'),
-            'phone' => is_string($this->input('phone')) ? (trim($this->input('phone')) !== '' ? trim($this->input('phone')) : null) : $this->input('phone'),
-            'email' => is_string($this->input('email')) ? (trim($this->input('email')) !== '' ? strtolower(trim($this->input('email'))) : null) : $this->input('email'),
-            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
-            'is_active' => match (true) {
-                is_bool($status) => $status,
-                is_string($status) => in_array(strtolower($status), ['1', 'true', 'on', 'yes'], true),
-                is_int($status) => $status === 1,
-                default => false,
-            },
+            'full_name' => $this->normalizeTrimmedString($this->input('full_name')),
+            'phone' => $this->normalizeNullableTrimmedString($this->input('phone')),
+            'email' => $this->normalizeNullableLowerTrimmedString($this->input('email')),
+            'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
+            'is_active' => $this->normalizeBooleanInput($status),
         ]);
     }
 
@@ -63,23 +70,12 @@ class StoreCardHolderRequest extends FormRequest
         ];
     }
 
-    protected function getRedirectUrl(): string
+    public function withValidator(Validator $validator): void
     {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-
-        if ($this->redirect) {
-            return $url->to($this->redirect).'#live-form';
-        }
-
-        if ($this->redirectRoute) {
-            return $url->route($this->redirectRoute).'#live-form';
-        }
-
-        if ($this->redirectAction) {
-            return $url->action($this->redirectAction).'#live-form';
-        }
-
-        return $url->previous().'#live-form';
+        $this->validateAccessibleShop(
+            $validator,
+            'Choose a shop you can access so the Galaxy holder shell stays scoped to your assigned branch.',
+        );
     }
+
 }

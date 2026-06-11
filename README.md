@@ -1,57 +1,93 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Galaxi Foundation
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+`galaxiNew` is the Galaxy foundation target for the migration.
 
-## About Laravel
+The current goal is Phase 1: turn this repo from scaffold defaults into a Galaxy-specific application foundation with visible admin information architecture, first live domain entities, and parity-first operational workflows.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Migration posture
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- `galaxiOld` remains the source of truth for business behavior and operator UX
+- `galaxiNew` is the Galaxy-focused Laravel monolith replacing it
+- parity first, redesign later
+- Blade-first admin shell, thin controllers, domain-oriented backend wiring
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Current Phase 1 focus
 
-## Learning Laravel
+- make the admin shell visibly Galaxy-specific
+- keep branch, cardholder, card, card type, role, reward, rule, and reporting surfaces aligned to the migration map
+- land the first safe Galaxy foundation-backed read and write slices without breaking parity-sensitive workflows
+- leave a clear checkpoint trail in docs and Git history
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Core Phase 1 references
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Focus: keep the current Galaxy admin map, shell layering, checkpoint trail, foundation-seam baseline, landing-doc bridge, and seam-source baseline close while Phase 1 slices are still moving.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Guide: `README.md`, `docs/blueprint.md`, and `docs/phase-1-plan.md` remain the readable anchors for this top-level Phase 1 reference trail.
 
-## Agentic Development
+Source of truth: `README.md`, `docs/blueprint.md`, `docs/phase-1-plan.md`, `docs/phase-1-foundation-seams.md`, `config/phase-1-foundation-seams.php`, `docs/phase-1-access-baseline.md`, `config/phase-1-access-baseline.php`, `docs/phase-1-shop-access-baseline.md`, `config/phase-1-shop-access-baseline.php`, `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, `docs/phase-1-migration-baseline.md`, `config/phase-1-migration-baseline.php`, `config/landing-docs.php`, and `config/phase-1-seam-sources.php` for the readable and implementation anchors around the newer Phase 1 baselines, plus `config/phase-1-reference-docs.php` for the broader admin reference inventory.
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Posture: admin reference inventory stays explicit across the live Galaxy dashboard trail and its public landing-doc bridge.
+
+- `docs/blueprint.md`
+- `docs/phase-1-plan.md`
+- `docs/phase-1-domain-map.md`
+- `docs/phase-1-foundation-seams.md`
+- `docs/phase-1-access-baseline.md`
+- `config/phase-1-access-baseline.php`
+- `docs/phase-1-shop-access-baseline.md`
+- `config/phase-1-shop-access-baseline.php`
+- `docs/phase-1-model-skeletons.md`
+- `config/phase-1-model-skeletons.php`
+- `docs/phase-1-migration-baseline.md`
+- `config/phase-1-migration-baseline.php`
+- `config/landing-docs.php`
+- `config/landing-foundation.php`
+- `config/phase-1-seam-sources.php`
+- `docs/admin-information-architecture.md`
+- `docs/admin-shell-layering.md`
+- `docs/admin-shell-config-map.md`
+- `docs/progress-log.md`
+- `docs/checkpoints/`
+
+### Phase 1 seam sources
+
+Focus: keep the README-level seam-source inventory visible across repo guidance plus the admin and public Phase 1 entry surfaces, with the foundation-seam and reference-doc baselines acting as explicit bridge anchors.
+
+Guide: `README.md` and `config/phase-1-seam-sources.php` remain the readable and implementation anchors for this seam-source trail.
+
+Source of truth: `README.md`, `config/phase-1-seam-sources.php`, `config/phase-1-foundation-seams.php`, and `config/phase-1-reference-docs.php` remain the readable and implementation bridge anchors for this seam-source trail, including the newer access, shop-scope, model-skeleton, migration, and dashboard reference seams now tied into it.
+
+Posture: README-backed seam-source baseline stays explicit across the live Galaxy reference trail and its dashboard-facing bridge configs.
+
+- `config/phase-1-domain-map.php` keeps the entity baseline aligned with the dashboard
+- `config/phase-1-foundation-seams.php` keeps the seam inventory aligned with the dashboard
+- `config/phase-1-reference-docs.php` keeps the admin-side Phase 1 reference trail aligned
+- `config/phase-1-access-baseline.php` keeps the Phase 1 admin access baseline aligned
+- `config/phase-1-shop-access-baseline.php` keeps the Phase 1 branch-boundary baseline aligned
+- `config/phase-1-model-skeletons.php` keeps the Phase 1 model skeleton baseline aligned
+- `config/phase-1-migration-baseline.php` keeps the Phase 1 schema checkpoint baseline aligned
+- `config/landing-docs.php` keeps the public Galaxy migration doc trail aligned
+- `config/landing-foundation.php` keeps the public Galaxy landing shell baseline aligned
+- `config/phase-1-seam-sources.php` keeps this README-level seam-source inventory aligned, including the newer access, model, migration, and landing-shell baseline seams
+
+## Local development
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+cd /home/openclaw/.openclaw/workspace/repos/galaxiNew
+cp .env.example .env
+composer install
+php artisan key:generate
+php artisan migrate
+php artisan test
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Why this repo exists
 
-## Contributing
+This repository is not meant to stay polished scaffold. Each small Phase 1 step should make the project feel more like Galaxy's future operational console and less like default framework structure.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Laravel note
 
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Laravel is the implementation framework here, but the product shape, workflow language, and admin priorities should follow Galaxy migration needs rather than default starter conventions.
 
 ## Admin baseline
 
@@ -67,10 +103,11 @@ A minimal admin shell is available as the first post-foundation vertical slice:
 ### Current access behavior
 
 - guests hitting `/admin` are redirected to `/login`
-- authenticated users can access `/admin`
-- `access-admin` is currently an explicit stub gate that returns `true` for any authenticated user
+- bootstrap admins without a shop assignment can access `/admin`
+- shop-scoped users can access `/admin` only when their assigned branch is active and they hold at least one permission-bearing role
+- shop-scoped access to branch-bound writes still flows through explicit policy and request validation seams
 
-This is an intentional baseline step, not a full roles / permissions system yet.
+This is still a Phase 1 baseline, but it is no longer a blanket authenticated-user stub.
 
 ## QA / test bootstrap
 
@@ -98,6 +135,25 @@ php artisan test
 
 Скрипт валидирует `shared/PROJECT_STATUS.json` и показывает, остались ли `docs/progress-log.md` или `shared/PROJECT_STATUS.json` незакоммиченными.
 Если checkpoint-файлы dirty, скрипт завершается с non-zero exit code, чтобы его можно было использовать как простой guard перед commit/push.
+
+## Contributing
+
+Keep changes small, safe, and migration-oriented. Prefer visible improvements to Galaxy foundation posture over generic cleanup.
+
+## Upstream framework references
+
+- https://laravel.com/docs
+- https://laracasts.com
+- https://laravel.com/learn
+
+The Galaxy foundation structure should still keep this repo friendly to coding agents, but agent work should stay anchored to the Galaxy migration blueprint rather than scaffold-era tasks.
+
+```bash
+composer require laravel/boost --dev
+php artisan boost:install
+```
+
+Use Boost only when it helps Laravel implementation work inside the migration plan.
 
 ## License
 

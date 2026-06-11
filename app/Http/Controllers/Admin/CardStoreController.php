@@ -18,6 +18,7 @@ class CardStoreController extends Controller
 
         $card = Card::create([
             'shop_id' => $validated['shop_id'],
+            'card_holder_id' => $validated['card_holder_id'] ?? null,
             'card_type_id' => $validated['card_type_id'],
             'number' => $validated['number'],
             'status' => $validated['status'],

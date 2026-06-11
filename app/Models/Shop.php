@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Attributes\Fillable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -17,6 +18,60 @@ class Shop extends Model
         return [
             'is_active' => 'boolean',
         ];
+    }
+
+    public function scopeActive(Builder $query): Builder
+    {
+        return $query->where('is_active', true);
+    }
+
+    public function scopePaused(Builder $query): Builder
+    {
+        return $query->where('is_active', false);
+    }
+
+    public function scopeReviewNoted(Builder $query): Builder
+    {
+        return $query->whereNotNull('review_note')->where('review_note', '!=', '');
+    }
+
+    public function scopeStaffAssigned(Builder $query): Builder
+    {
+        return $query->whereHas('users');
+    }
+
+    public function scopeManagerAssigned(Builder $query): Builder
+    {
+        return $query->staffAssigned();
+    }
+
+    public function scopeCardholderCovered(Builder $query): Builder
+    {
+        return $query->has('cardHolders');
+    }
+
+    public function scopeCardCovered(Builder $query): Builder
+    {
+        return $query->has('cards');
+    }
+
+    public function scopeFoundationCovered(Builder $query): Builder
+    {
+        return $query->where(function (Builder $coverageQuery): void {
+            $coverageQuery
+                ->cardholderCovered()
+                ->orWhere(fn (Builder $orCoverageQuery): Builder => $orCoverageQuery->cardCovered());
+        });
+    }
+
+    public function scopeRoleAssigned(Builder $query): Builder
+    {
+        return $query->staffAssigned()->whereHas('users', fn (Builder $userQuery): Builder => $userQuery->roleAssigned());
+    }
+
+    public function scopeRoleCovered(Builder $query): Builder
+    {
+        return $query->roleAssigned();
     }
 
     public function users(): HasMany

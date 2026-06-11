@@ -1,6 +1,6 @@
 <?php
 
-// Preview shell blocks keep preview-only CRUD structure visible before real handlers exist.
+// Preview shell blocks keep foundation-preview CRUD structure visible before real handlers exist.
 return [
     ['key' => 'selectedRecordSummary', 'partial' => 'admin.partials.resource-selected-record-summary', 'prop' => 'selectedRecordSummary'],
     ['key' => 'liveForm', 'partial' => 'admin.partials.resource-live-form', 'prop' => 'liveForm'],

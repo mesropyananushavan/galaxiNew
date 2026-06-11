@@ -52,17 +52,17 @@ return [
             [
                 'label' => 'Shops',
                 'route' => 'admin.shops.index',
-                'description' => 'Shop list and scope boundaries.',
+                'description' => 'Galaxy branch catalog and scope boundaries.',
             ],
             [
                 'label' => 'Roles & Permissions',
                 'route' => 'admin.roles-permissions.index',
-                'description' => 'Admin roles, permissions, and access baseline.',
+                'description' => 'Galaxy access shells, permissions, and access baseline.',
             ],
             [
                 'label' => 'Reports',
                 'route' => 'admin.reports.index',
-                'description' => 'Operational analytics and histories.',
+                'description' => 'Galaxy reporting analytics and source histories.',
             ],
         ],
     ],

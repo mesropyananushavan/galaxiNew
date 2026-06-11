@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Http\Requests\Admin\Concerns;
+
+use App\Models\Shop;
+use Illuminate\Routing\UrlGenerator;
+use Illuminate\Validation\Rules\Unique;
+use Illuminate\Validation\Rule;
+
+trait ResolvesAdminSelectedResourceRedirects
+{
+    protected function selectedResourceRouteParameter(): string
+    {
+        return static::SELECTED_RESOURCE_ROUTE_PARAMETER;
+    }
+
+    protected function selectedResource(): mixed
+    {
+        return $this->route($this->selectedResourceRouteParameter());
+    }
+
+    protected function selectedResourceShop(): ?Shop
+    {
+        $resource = $this->selectedResource();
+
+        return is_object($resource) && $resource->shop instanceof Shop
+            ? $resource->shop
+            : null;
+    }
+
+    protected function uniqueRuleIgnoringSelectedResource(string $table, ?string $column = null): Unique
+    {
+        return Rule::unique($table, $column)->ignore($this->selectedResource());
+    }
+
+    protected function getRedirectUrl(): string
+    {
+        /** @var UrlGenerator $url */
+        $url = $this->redirector->getUrlGenerator();
+        $routeParameter = $this->selectedResourceRouteParameter();
+        $resource = $this->selectedResource();
+
+        if ($resource !== null) {
+            return $url->route(
+                static::SELECTED_RESOURCE_ROUTE_NAME,
+                [$routeParameter => $resource],
+                absolute: false,
+            ).'#live-form';
+        }
+
+        return parent::getRedirectUrl();
+    }
+}

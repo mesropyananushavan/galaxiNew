@@ -2,36 +2,32 @@
 
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Routing\UrlGenerator;
-use Illuminate\Validation\Rule;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
+use App\Models\CardType;
 
 class UpdateCardTypeRequest extends StoreCardTypeRequest
 {
+    use ResolvesAdminSelectedResourceRedirects;
+
+    protected const SELECTED_RESOURCE_ROUTE_PARAMETER = 'cardType';
+    protected const SELECTED_RESOURCE_ROUTE_NAME = 'admin.card-types.index';
+
+    public function authorize(): bool
+    {
+        return $this->authorizeSelectedResourceUpdate(CardType::class);
+    }
+
     public function rules(): array
     {
-        $cardType = $this->route('cardType');
-
         return array_merge(parent::rules(), [
             'slug' => [
                 'required',
                 'string',
                 'max:255',
                 'alpha_dash',
-                Rule::unique('card_types', 'slug')->ignore($cardType),
+                $this->uniqueRuleIgnoringSelectedResource('card_types', 'slug'),
             ],
         ]);
     }
 
-    protected function getRedirectUrl(): string
-    {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-        $cardType = $this->route('cardType');
-
-        if ($cardType !== null) {
-            return $url->route('admin.card-types.index', ['cardType' => $cardType], absolute: false).'#live-form';
-        }
-
-        return parent::getRedirectUrl();
-    }
 }

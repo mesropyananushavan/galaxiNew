@@ -1,9 +1,9 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "galaxi/foundation",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "Galaxy migration foundation built on Laravel.",
+    "keywords": ["galaxy", "galaxi", "laravel", "migration", "admin"],
     "license": "MIT",
     "require": {
         "php": "^8.3",

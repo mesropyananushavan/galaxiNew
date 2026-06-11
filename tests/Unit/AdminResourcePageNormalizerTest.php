@@ -180,7 +180,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Create card type in Laravel',
+                'title' => 'Create card type in Galaxy foundation',
                 'action' => '/admin/card-types',
                 'submitLabel' => 'Create card type',
                 'fields' => [
@@ -190,7 +190,7 @@ class AdminResourcePageNormalizerTest extends TestCase
             ],
         ]);
 
-        $this->assertSame('Create card type in Laravel', $normalized['liveForm']['title']);
+        $this->assertSame('Create card type in Galaxy foundation', $normalized['liveForm']['title']);
         $this->assertSame('POST', $normalized['liveForm']['method']);
         $this->assertSame('/admin/card-types', $normalized['liveForm']['action']);
         $this->assertNull($normalized['liveForm']['cancelAction']);
@@ -204,7 +204,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Create card type in Laravel',
+                'title' => 'Create card type in Galaxy foundation',
                 'action' => '/admin/card-types',
                 'submitLabel' => 'Create card type',
                 'fields' => [
@@ -248,7 +248,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Update card type in Laravel',
+                'title' => 'Update card type in Galaxy foundation',
                 'method' => 'trace',
                 'action' => '/admin/card-types/gold',
                 'submitLabel' => 'Update card type',
@@ -267,7 +267,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Create card type in Laravel',
+                'title' => 'Create card type in Galaxy foundation',
                 'action' => '/admin/card-types',
                 'submitLabel' => 'Create card type',
                 'cancelAction' => [
@@ -292,7 +292,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Create card type in Laravel',
+                'title' => 'Create card type in Galaxy foundation',
                 'action' => '/admin/card-types',
                 'submitLabel' => 'Create card type',
                 'submitAttributes' => [
@@ -320,7 +320,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Create card type in Laravel',
+                'title' => 'Create card type in Galaxy foundation',
                 'action' => '/admin/card-types',
                 'submitLabel' => 'Create card type',
                 'formAttributes' => [
@@ -348,7 +348,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Create card type in Laravel',
+                'title' => 'Create card type in Galaxy foundation',
                 'action' => '/admin/card-types',
                 'submitLabel' => 'Create card type',
                 'cancelAction' => [
@@ -380,7 +380,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Create card type in Laravel',
+                'title' => 'Create card type in Galaxy foundation',
                 'action' => '/admin/card-types',
                 'submitLabel' => 'Create card type',
                 'fields' => [
@@ -413,7 +413,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Create card type in Laravel',
+                'title' => 'Create card type in Galaxy foundation',
                 'action' => '/admin/card-types',
                 'submitLabel' => 'Create card type',
                 'fields' => [
@@ -447,7 +447,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Update card type in Laravel',
+                'title' => 'Update card type in Galaxy foundation',
                 'action' => '/admin/card-types/1',
                 'submitLabel' => 'Update card type',
                 'fields' => [
@@ -478,7 +478,7 @@ class AdminResourcePageNormalizerTest extends TestCase
 
         $normalized = $normalizer->normalize([
             'liveForm' => [
-                'title' => 'Update card type in Laravel',
+                'title' => 'Update card type in Galaxy foundation',
                 'action' => '/admin/card-types/1',
                 'submitLabel' => 'Update card type',
                 'fields' => [
@@ -619,8 +619,8 @@ class AdminResourcePageNormalizerTest extends TestCase
                 'invalid-action-entry',
             ],
             'notice' => [
-                'title' => 'Role publishing is still preview-only',
-                'description' => 'Preview actions remain structural until Laravel handlers exist.',
+                'title' => 'Role publishing is still foundation-preview only',
+                'description' => 'Preview actions remain structural until Galaxy foundation handlers exist.',
             ],
             'readinessChecklist' => [
                 ['status' => 'ready', 'label' => 'Legacy role boundaries mapped'],
@@ -663,7 +663,7 @@ class AdminResourcePageNormalizerTest extends TestCase
                 'sections' => [
                     [
                         'title' => 'Role identity',
-                        'help' => 'Keep legacy naming visible while migration is preview-only.',
+                        'help' => 'Keep legacy naming visible while migration is foundation-preview only.',
                         'actions' => [
                             ['label' => 'Compare staff roles', 'tone' => 'secondary'],
                             'invalid-section-action',
@@ -682,7 +682,7 @@ class AdminResourcePageNormalizerTest extends TestCase
             ['label' => 'Publish role', 'tone' => 'primary'],
         ], $normalized['actions']);
 
-        $this->assertSame('Role publishing is still preview-only', $normalized['notice']['title']);
+        $this->assertSame('Role publishing is still foundation-preview only', $normalized['notice']['title']);
         $this->assertCount(1, $normalized['readinessChecklist']);
         $this->assertCount(1, $normalized['activityTimeline']);
         $this->assertCount(1, $normalized['dependencyStatus']);

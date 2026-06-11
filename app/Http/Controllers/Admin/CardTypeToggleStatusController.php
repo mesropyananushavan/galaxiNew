@@ -14,7 +14,7 @@ class CardTypeToggleStatusController extends Controller
     public function __invoke(CardType $cardType): RedirectResponse
     {
         $cardType->update([
-            'is_active' => ! $cardType->is_active,
+            'is_active' => ! $this->cardTypeIsActive($cardType),
         ]);
 
         return $this->redirectToSelectedCardType(
@@ -22,8 +22,18 @@ class CardTypeToggleStatusController extends Controller
             sprintf(
                 'Card type "%s" is now %s.',
                 $cardType->name,
-                $cardType->is_active ? 'active' : 'draft'
+                $this->cardTypeStatusValue($cardType)
             ),
         );
+    }
+
+    private function cardTypeIsActive(CardType $cardType): bool
+    {
+        return (bool) $cardType->is_active;
+    }
+
+    private function cardTypeStatusValue(CardType $cardType): string
+    {
+        return $this->cardTypeIsActive($cardType) ? 'active' : 'draft';
     }
 }

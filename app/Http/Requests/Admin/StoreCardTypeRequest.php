@@ -2,17 +2,27 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
+use App\Http\Requests\Admin\Concerns\NormalizesSlugInputs;
+use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
+use App\Models\CardType;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Routing\UrlGenerator;
-use Illuminate\Support\Str;
 
 class StoreCardTypeRequest extends FormRequest
 {
+    use AuthorizesPolicyActions;
+    use NormalizesBooleanFormInputs;
+    use NormalizesSlugInputs;
+    use NormalizesTextFormInputs;
+    use ResolvesAdminLiveFormRedirects;
+
     protected $redirectRoute = 'admin.card-types.index';
 
     public function authorize(): bool
     {
-        return $this->user()?->can('access-admin') ?? false;
+        return $this->authorizeCreate(CardType::class);
     }
 
     public function rules(): array
@@ -30,14 +40,15 @@ class StoreCardTypeRequest extends FormRequest
 
     protected function prepareForValidation(): void
     {
+        $status = $this->input('is_active');
+
         $this->merge([
-            'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
-            'slug' => is_string($this->input('slug')) ? Str::slug($this->input('slug')) : $this->input('slug'),
-            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
-            'activation_note' => is_string($this->input('activation_note')) ? (trim($this->input('activation_note')) !== '' ? trim($this->input('activation_note')) : null) : $this->input('activation_note'),
-            'rollout_note' => is_string($this->input('rollout_note')) ? (trim($this->input('rollout_note')) !== '' ? trim($this->input('rollout_note')) : null) : $this->input('rollout_note'),
-            'is_active' => filter_var($this->input('is_active'), FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE)
-                ?? $this->input('is_active'),
+            'name' => $this->normalizeTrimmedString($this->input('name')),
+            'slug' => $this->normalizeSlugInput($this->input('slug')),
+            'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
+            'activation_note' => $this->normalizeNullableTrimmedString($this->input('activation_note')),
+            'rollout_note' => $this->normalizeNullableTrimmedString($this->input('rollout_note')),
+            'is_active' => $this->normalizeFilterBooleanInput($status),
         ]);
     }
 
@@ -65,23 +76,4 @@ class StoreCardTypeRequest extends FormRequest
         ];
     }
 
-    protected function getRedirectUrl(): string
-    {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-
-        if ($this->redirect) {
-            return $url->to($this->redirect).'#live-form';
-        }
-
-        if ($this->redirectRoute) {
-            return $url->route($this->redirectRoute).'#live-form';
-        }
-
-        if ($this->redirectAction) {
-            return $url->action($this->redirectAction).'#live-form';
-        }
-
-        return $url->previous().'#live-form';
-    }
 }

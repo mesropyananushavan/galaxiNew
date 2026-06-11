@@ -4,7 +4,7 @@ return [
     'shops' => [
         'pageTitle' => 'Shops',
         'eyebrow' => 'Administration / Shops',
-        'summary' => 'Baseline operational index for shop scope boundaries, activation state, and future access rules.',
+        'summary' => 'Galaxy branch workspace for scope boundaries, activation review, and future access checks.',
         'nextStep' => 'Replace sample rows with real shop records, manager info, and scoped access actions.',
         'actions' => [
             [
@@ -20,10 +20,10 @@ return [
             ],
         ],
         'metrics' => [
-            ['label' => 'Active shops', 'value' => '2'],
-            ['label' => 'Paused shops', 'value' => '1'],
-            ['label' => 'Reviewed shops', 'value' => '2'],
-            ['label' => 'Assigned managers', 'value' => '2'],
+            ['label' => 'Active-state Galaxy branches', 'value' => '2'],
+            ['label' => 'Paused-state Galaxy branches', 'value' => '1'],
+            ['label' => 'Review-noted Galaxy branches', 'value' => '2'],
+            ['label' => 'Assigned branch managers', 'value' => '2'],
         ],
         'table' => [
             'columns' => ['Shop', 'Code', 'Review note', 'Manager', 'Cardholders', 'Cards', 'Status'],
@@ -60,13 +60,13 @@ return [
             'Manager ownership rules still need parity verification against the old Galaxy branch model.',
         ],
         'notice' => [
-            'title' => 'Shop operations are still preview-only',
-            'description' => 'Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Laravel queries or handlers yet.',
+            'title' => 'Shop operations are still foundation-preview only',
+            'description' => 'Branch actions, metrics, and filters are shaping the final Galaxy workspace, but they are not wired to Galaxy foundation queries or handlers yet.',
         ],
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Preview shop rows and branch actions defined'],
             ['status' => 'ready', 'label' => 'Operational parity cues for scope and manager ownership are visible'],
-            ['status' => 'pending', 'label' => 'Real shop queries and branch mutations still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 'Real shop queries and branch mutations still need PHP-backed Galaxy foundation wiring'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Shop model and user-to-shop linkage baseline exist'],
@@ -123,35 +123,35 @@ return [
             ],
         ],
         'liveForm' => [
-            'title' => 'Create Galaxy branch in Laravel',
-            'description' => 'This is the first minimal Laravel-backed shop write path. Keep it limited to branch identity and review notes while manager reassignment and scope changes remain parity-first review surfaces.',
+            'title' => 'Create Galaxy branch in Galaxy foundation',
+            'description' => 'This is the first minimal Galaxy foundation-backed shop write path. Keep it limited to branch identity and review notes while manager reassignment and scope changes remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.shops.store',
             'cancelRoute' => 'admin.shops.index',
-            'cancelLabel' => 'Back to shops',
+            'cancelLabel' => 'Back to branch catalog',
             'submitLabel' => 'Create branch shell',
             'fields' => [
                 ['name' => 'name', 'label' => 'Shop name', 'type' => 'text', 'value' => 'Central Shop', 'required' => true, 'autofocus' => true, 'placeholder' => 'Galaxy South', 'help' => 'Use the operator-facing branch name that should mirror the old Galaxy ownership map.', 'attributes' => ['autocomplete' => 'organization']],
-                ['name' => 'code', 'label' => 'Code', 'type' => 'text', 'value' => 'central-shop', 'required' => true, 'placeholder' => 'galaxy-south', 'help' => 'Lowercase identifier for the minimal Laravel branch record.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
-                ['name' => 'is_active', 'label' => 'Laravel status', 'type' => 'select', 'value' => '0', 'required' => true, 'help' => 'Paused shops stay safer for parity review. Active status is persistable, but scope and manager changes should still stay parity-first.', 'options' => [['value' => '0', 'label' => 'Paused'], ['value' => '1', 'label' => 'Active']]],
-                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep branch ownership parity visible before widening scope changes.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Laravel branch shell.', 'help' => 'Use this safe Phase 1 note to record branch review context without opening manager or scope writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'code', 'label' => 'Code', 'type' => 'text', 'value' => 'central-shop', 'required' => true, 'placeholder' => 'galaxy-south', 'help' => 'Lowercase identifier for the minimal Galaxy foundation branch record.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
+                ['name' => 'is_active', 'label' => 'Galaxy foundation status', 'type' => 'select', 'value' => '0', 'required' => true, 'help' => 'Paused shops stay safer for parity review. Active status is persistable, but scope and manager changes should still stay parity-first.', 'options' => [['value' => '0', 'label' => 'Paused'], ['value' => '1', 'label' => 'Active']]],
+                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep branch ownership parity visible before widening scope changes.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Galaxy foundation branch shell.', 'help' => 'Use this safe Phase 1 note to record branch review context without opening manager or scope writes.', 'attributes' => ['maxlength' => '1000']],
             ],
         ],
     ],
     'cardholders' => [
         'pageTitle' => 'Cardholders',
         'eyebrow' => 'Operations / Cardholders',
-        'summary' => 'Baseline operational index for workers, clients, holder history, and future lifecycle actions.',
+        'summary' => 'Galaxy holder workspace for worker and client lookup, holder history, and lifecycle review.',
         'nextStep' => 'Replace sample rows with real holder search, profile links, and status actions.',
         'actions' => [
             ['label' => 'New Galaxy holder', 'tone' => 'primary', 'href' => '#live-form'],
             ['label' => 'Review recent activity', 'tone' => 'secondary'],
         ],
         'metrics' => [
-            ['label' => 'Active holders', 'value' => '2'],
-            ['label' => 'Inactive holders', 'value' => '1'],
-            ['label' => 'Reviewed holders', 'value' => '2'],
-            ['label' => 'Linked cards', 'value' => '3'],
+            ['label' => 'Active-state Galaxy holders', 'value' => '2'],
+            ['label' => 'Inactive-state Galaxy holders', 'value' => '1'],
+            ['label' => 'Review-noted Galaxy holders', 'value' => '2'],
+            ['label' => 'Linked Galaxy card shells', 'value' => '3'],
         ],
         'table' => [
             'columns' => ['Name', 'Phone', 'Review note', 'Shop', 'Cards', 'Status', 'Last activity'],
@@ -188,13 +188,13 @@ return [
             'Recent activity still needs a stable event source before the preview can become a real index.',
         ],
         'notice' => [
-            'title' => 'Cardholder operations are still preview-only',
-            'description' => 'Search actions, metrics, and lifecycle cues are shaping the target Galaxy flow, but they are not backed by Laravel reads or writes yet.',
+            'title' => 'Cardholder operations are still foundation-preview only',
+            'description' => 'Search actions, metrics, and lifecycle cues are shaping the target Galaxy flow, but they are not backed by Galaxy foundation reads or writes yet.',
         ],
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Preview holder search surface and activity cues are defined'],
             ['status' => 'ready', 'label' => 'Operational parity notes for lookup speed and linkage are visible'],
-            ['status' => 'pending', 'label' => 'Search, profile reads, and activity history still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 'Search, profile reads, and activity history still need PHP-backed Galaxy foundation wiring'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'CardHolder model and shop linkage baseline exist'],
@@ -251,53 +251,53 @@ return [
             ],
         ],
         'liveForm' => [
-            'title' => 'Create Galaxy holder in Laravel',
-            'description' => 'This is the first minimal Laravel-backed cardholder write path. Keep it limited to profile identity, status, and review notes while card linkage and activity history remain parity-first review surfaces.',
+            'title' => 'Create Galaxy holder in Galaxy foundation',
+            'description' => 'This is the first minimal Galaxy foundation-backed cardholder write path. Keep it limited to profile identity, status, and review notes while card linkage and activity history remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.cardholders.store',
             'cancelRoute' => 'admin.cardholders.index',
-            'cancelLabel' => 'Back to cardholders',
+            'cancelLabel' => 'Back to holder catalog',
             'submitLabel' => 'Create holder shell',
             'fields' => [
                 ['name' => 'shop_id', 'label' => 'Shop', 'type' => 'select', 'value' => '', 'required' => true, 'help' => 'Keep the holder anchored to a branch, because Galaxy lookup and lifecycle review were branch-aware.', 'options' => []],
                 ['name' => 'full_name', 'label' => 'Cardholder name', 'type' => 'text', 'value' => 'Anna Petrova', 'required' => true, 'autofocus' => true, 'placeholder' => 'Mariam Sargsyan', 'help' => 'Use the operator-facing name that should match the legacy holder lookup flow.', 'attributes' => ['autocomplete' => 'name']],
                 ['name' => 'phone', 'label' => 'Phone', 'type' => 'text', 'value' => '+37491100001', 'required' => false, 'placeholder' => '+37491100002', 'help' => 'Keep the first holder slice simple, name and contact identity only.', 'attributes' => ['autocomplete' => 'tel']],
                 ['name' => 'email', 'label' => 'Email', 'type' => 'email', 'value' => 'anna@example.com', 'required' => false, 'placeholder' => 'mariam@example.com', 'help' => 'Optional contact detail for parity-first holder lookup context.', 'attributes' => ['autocomplete' => 'email']],
-                ['name' => 'is_active', 'label' => 'Laravel status', 'type' => 'select', 'value' => '1', 'required' => true, 'help' => 'Inactive holders stay safer for lifecycle review. Active status is persistable, but card linkage and activity flows should still stay parity-first.', 'options' => [['value' => '0', 'label' => 'Inactive'], ['value' => '1', 'label' => 'Active']]],
-                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep duplicate-holder parity visible before widening lifecycle changes.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Laravel holder shell.', 'help' => 'Use this safe Phase 1 note to record holder review context without opening card-linkage or activity-history writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'is_active', 'label' => 'Galaxy foundation status', 'type' => 'select', 'value' => '1', 'required' => true, 'help' => 'Inactive holders stay safer for lifecycle review. Active status is persistable, but card linkage and activity flows should still stay parity-first.', 'options' => [['value' => '0', 'label' => 'Inactive'], ['value' => '1', 'label' => 'Active']]],
+                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep duplicate-holder parity visible before widening lifecycle changes.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Galaxy foundation holder shell.', 'help' => 'Use this safe Phase 1 note to record holder review context without opening card-linkage or activity-history writes.', 'attributes' => ['maxlength' => '1000']],
             ],
         ],
     ],
     'cards' => [
         'pageTitle' => 'Cards',
         'eyebrow' => 'Operations / Cards',
-        'summary' => 'Baseline operational index for card inventory, assignments, statuses, and activation tracking.',
+        'summary' => 'Galaxy card-shell workspace for inventory, assignment review, status triage, and activation tracking.',
         'nextStep' => 'Replace sample rows with real query-backed inventory and status filters.',
         'actions' => [
             ['label' => 'New Galaxy card', 'tone' => 'primary'],
             ['label' => 'Review blocked cards', 'tone' => 'secondary'],
         ],
         'metrics' => [
-            ['label' => 'Active cards', 'value' => '1'],
-            ['label' => 'Draft cards', 'value' => '1'],
-            ['label' => 'Blocked cards', 'value' => '1'],
-            ['label' => 'Issued cards', 'value' => '2'],
+            ['label' => 'Active-state Galaxy card shells', 'value' => '1'],
+            ['label' => 'Draft-state Galaxy card shells', 'value' => '1'],
+            ['label' => 'Blocked Galaxy card shells', 'value' => '1'],
+            ['label' => 'Issued Galaxy card shells', 'value' => '2'],
             ['label' => 'Pre-activation cards', 'value' => '1'],
             ['label' => 'Holder-linked cards', 'value' => '2'],
             ['label' => 'Assignment-ready cards', 'value' => '2'],
             ['label' => 'Assignment-pending cards', 'value' => '1'],
-            ['label' => 'Issued holder-linked cards', 'value' => '2'],
-            ['label' => 'Issued unassigned cards', 'value' => '0'],
-            ['label' => 'Pre-activation holder-linked cards', 'value' => '1'],
-            ['label' => 'Pre-activation unassigned cards', 'value' => '0'],
+            ['label' => 'Issued holder-linked Galaxy card shells', 'value' => '2'],
+            ['label' => 'Issued unassigned Galaxy card shells', 'value' => '0'],
+            ['label' => 'Pre-activation holder-linked Galaxy card shells', 'value' => '1'],
+            ['label' => 'Pre-activation unassigned Galaxy card shells', 'value' => '0'],
             ['label' => 'Unassigned cards', 'value' => '1'],
-            ['label' => 'Active holder-linked cards', 'value' => '1'],
-            ['label' => 'Active unassigned cards', 'value' => '0'],
-            ['label' => 'Blocked pre-activation cards', 'value' => '0'],
-            ['label' => 'Blocked activated cards', 'value' => '1'],
-            ['label' => 'Blocked cards with holders', 'value' => '1'],
-            ['label' => 'Blocked unassigned cards', 'value' => '0'],
-            ['label' => 'Reviewed cards', 'value' => '1'],
+            ['label' => 'Active holder-linked Galaxy card shells', 'value' => '1'],
+            ['label' => 'Active unassigned Galaxy card shells', 'value' => '0'],
+            ['label' => 'Blocked pre-activation Galaxy card shells', 'value' => '0'],
+            ['label' => 'Blocked activated Galaxy card shells', 'value' => '1'],
+            ['label' => 'Blocked Galaxy card shells with holders', 'value' => '1'],
+            ['label' => 'Blocked unassigned Galaxy card shells', 'value' => '0'],
+            ['label' => 'Review-noted Galaxy card shells', 'value' => '1'],
         ],
         'table' => [
             'columns' => ['Number', 'Holder', 'Type', 'Review note', 'Shop', 'Status', 'Issued', 'Activated'],
@@ -335,13 +335,13 @@ return [
             'Status semantics still need verification against legacy blocked and draft card behavior.',
         ],
         'notice' => [
-            'title' => 'Card operations are still preview-only',
-            'description' => 'Inventory actions, status metrics, and filters are laid out for Galaxy parity, but they are not connected to Laravel handlers yet.',
+            'title' => 'Card operations are still foundation-preview only',
+            'description' => 'Inventory actions, status metrics, and filters are laid out for Galaxy parity, but they are not connected to Galaxy foundation handlers yet.',
         ],
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Preview inventory statuses and card-type filters are defined'],
             ['status' => 'ready', 'label' => 'Operational parity cues for blocked and draft cards are visible'],
-            ['status' => 'pending', 'label' => 'Inventory queries and card lifecycle handlers still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 'Inventory queries and card lifecycle handlers still need PHP-backed Galaxy foundation wiring'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Card and CardType models plus migration skeletons exist'],
@@ -358,7 +358,7 @@ return [
         ],
         'activityTimeline' => [
             ['title' => 'Blocked card state kept visible', 'time' => 'Today, 18:20', 'description' => 'The blocked preview row remains in place to preserve old Galaxy card-state visibility.'],
-            ['title' => 'Draft card review deferred', 'time' => 'Yesterday, 12:10', 'description' => 'Draft issuance behavior stays preview-only until real inventory reads can be verified.'],
+            ['title' => 'Draft card review deferred', 'time' => 'Yesterday, 12:10', 'description' => 'Draft issuance behavior stays foundation-preview only until real inventory reads can be verified.'],
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy card inventory screen'],
@@ -398,28 +398,28 @@ return [
             ],
         ],
         'liveForm' => [
-            'title' => 'Create Galaxy card in Laravel',
-            'description' => 'This is the first minimal Laravel-backed card write path. Keep it limited to branch anchoring, type, inventory status, issue timing, activation timing, and review notes while holder assignment and replacement handling remain parity-first review surfaces.',
+            'title' => 'Create Galaxy card in Galaxy foundation',
+            'description' => 'This is the first minimal Galaxy foundation-backed card write path. Keep it limited to branch anchoring, type, inventory status, issue timing, activation timing, and review notes while holder assignment and replacement handling remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.cards.store',
             'cancelRoute' => 'admin.cards.index',
-            'cancelLabel' => 'Back to cards',
+            'cancelLabel' => 'Back to card catalog',
             'submitLabel' => 'Create inventory shell',
             'fields' => [
                 ['name' => 'shop_id', 'label' => 'Shop', 'type' => 'select', 'value' => '', 'required' => true, 'help' => 'Keep the card anchored to its branch because stock review and blocked-card parity were branch-sensitive in Galaxy.', 'options' => []],
-                ['name' => 'card_type_id', 'label' => 'Card type', 'type' => 'select', 'value' => '', 'required' => true, 'help' => 'Use the saved Laravel tier that matches the old Galaxy accrual and activation behavior.', 'options' => []],
+                ['name' => 'card_type_id', 'label' => 'Card type', 'type' => 'select', 'value' => '', 'required' => true, 'help' => 'Use the saved Galaxy foundation tier that matches the old Galaxy accrual and activation behavior.', 'options' => []],
                 ['name' => 'number', 'label' => 'Card number', 'type' => 'text', 'value' => 'GX-100004', 'required' => true, 'autofocus' => true, 'placeholder' => 'GX-910004', 'help' => 'Persist only the operator-facing inventory identifier in this first write slice.', 'attributes' => ['autocomplete' => 'off']],
-                ['name' => 'status', 'label' => 'Laravel status', 'type' => 'select', 'value' => 'draft', 'required' => true, 'help' => 'Draft and blocked states remain safer while replacement and holder assignment flows are still review-only.', 'options' => [['value' => 'draft', 'label' => 'Draft'], ['value' => 'active', 'label' => 'Active'], ['value' => 'blocked', 'label' => 'Blocked']]],
+                ['name' => 'status', 'label' => 'Galaxy foundation status', 'type' => 'select', 'value' => 'draft', 'required' => true, 'help' => 'Draft and blocked states remain safer while replacement and holder assignment flows are still review-only.', 'options' => [['value' => 'draft', 'label' => 'Draft'], ['value' => 'active', 'label' => 'Active'], ['value' => 'blocked', 'label' => 'Blocked']]],
                 ['name' => 'issued_at', 'label' => 'Issued at', 'type' => 'text', 'value' => '', 'required' => false, 'placeholder' => '2026-05-05 09:00:00', 'help' => 'Optional first-pass issue timestamp for Galaxy inventory lifecycle parity before or alongside activation timing.', 'attributes' => ['autocomplete' => 'off']],
                 ['name' => 'activated_at', 'label' => 'Activated at', 'type' => 'text', 'value' => '', 'required' => false, 'placeholder' => '2026-05-05 12:00:00', 'help' => 'Optional first-pass activation timestamp for an already issued card shell. Leave blank for draft stock or pre-activation inventory.', 'attributes' => ['autocomplete' => 'off']],
-                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep blocked-card and draft-stock parity visible before widening replacement actions.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Laravel card shell.', 'help' => 'Use this safe Phase 1 note to record inventory review context without opening holder reassignment or replacement writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep blocked-card and draft-stock parity visible before widening replacement actions.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Galaxy foundation card shell.', 'help' => 'Use this safe Phase 1 note to record inventory review context without opening holder reassignment or replacement writes.', 'attributes' => ['maxlength' => '1000']],
             ],
         ],
     ],
     'checks-points' => [
         'pageTitle' => 'Checks & Points',
         'eyebrow' => 'Operations / Checks & Points',
-        'summary' => 'Operational placeholder for purchases, accrual events, fiscal search, and point adjustments.',
+        'summary' => 'Galaxy receipt and accrual workspace for purchases, fiscal search, and point adjustments.',
         'nextStep' => 'Add fiscal lookup, accrual history, and shop/date filters.',
         'actions' => [
             ['label' => 'Find receipt', 'tone' => 'primary'],
@@ -465,13 +465,13 @@ return [
             'Transaction domain tables do not exist yet, so accrual parity remains structural only.',
         ],
         'notice' => [
-            'title' => 'Checks and points operations are still preview-only',
-            'description' => 'Receipt lookup actions, accrual metrics, and troubleshooting cues are shaping the final Galaxy flow, but real Laravel transaction reads do not exist yet.',
+            'title' => 'Checks and points operations are still foundation-preview only',
+            'description' => 'Receipt lookup actions, accrual metrics, and troubleshooting cues are shaping the final Galaxy flow, but real Galaxy foundation transaction reads do not exist yet.',
         ],
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Preview receipt lookup surface and accrual metrics are defined'],
             ['status' => 'ready', 'label' => 'Operational parity cues for receipt-first troubleshooting are visible'],
-            ['status' => 'pending', 'label' => 'Transaction tables, receipt reads, and adjustment flows still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 'Transaction tables, receipt reads, and adjustment flows still need PHP-backed Galaxy foundation wiring'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Transaction domain tables do not exist yet'],
@@ -531,18 +531,18 @@ return [
     'card-types' => [
         'pageTitle' => 'Card Types',
         'eyebrow' => 'Catalog / Card Types',
-        'summary' => 'Baseline management screen for Galaxy card tiers, points rules, and activation settings.',
+        'summary' => 'Galaxy tier workspace for card-tier identities, points rules, and activation review.',
         'nextStep' => 'Replace sample controls with real CRUD handlers and validation.',
         'actions' => [
             ['label' => 'New Galaxy tier', 'tone' => 'primary', 'href' => '#live-form'],
             ['label' => 'Import rules', 'tone' => 'secondary'],
         ],
         'metrics' => [
-            ['label' => 'Active tiers', 'value' => '2'],
-            ['label' => 'Draft tiers', 'value' => '1'],
-            ['label' => 'Reviewed tiers', 'value' => '1'],
-            ['label' => 'Activation notes', 'value' => '1'],
-            ['label' => 'Rollout notes', 'value' => '1'],
+            ['label' => 'Active-state Galaxy tiers', 'value' => '2'],
+            ['label' => 'Draft-state Galaxy tiers', 'value' => '1'],
+            ['label' => 'Review-noted Galaxy tiers', 'value' => '1'],
+            ['label' => 'Tier activation notes', 'value' => '1'],
+            ['label' => 'Tier rollout notes', 'value' => '1'],
             ['label' => 'Imported rules', 'value' => '0'],
         ],
         'table' => [
@@ -555,12 +555,12 @@ return [
             'filters' => ['Status', 'Activation mode', 'Points rate'],
         ],
         'liveForm' => [
-            'title' => 'Create Galaxy tier in Laravel',
+            'title' => 'Create Galaxy tier in Galaxy foundation',
             'description' => 'This is the first real write-oriented Phase 1 form path. Keep it minimal and parity-first while preview controls still cover the richer future workflow.',
             'method' => 'POST',
             'actionRoute' => 'admin.card-types.store',
             'cancelRoute' => 'admin.card-types.index',
-            'cancelLabel' => 'Back to catalog',
+            'cancelLabel' => 'Back to tier catalog',
             'submitLabel' => 'Create tier shell',
             'fields' => [
                 ['name' => 'name', 'label' => 'Type name', 'type' => 'text', 'value' => 'Gold', 'required' => true, 'autofocus' => true, 'placeholder' => 'Galaxy Prime', 'help' => 'Use the operator-facing tier name from the Galaxy catalog.', 'attributes' => ['autocomplete' => 'organization-title']],
@@ -570,8 +570,8 @@ return [
                     ['label' => 'Active', 'value' => '1'],
                     ['label' => 'Draft', 'value' => '0'],
                 ]],
-                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep the tier aligned with the legacy accrual workflow before widening rule imports.', 'required' => false, 'placeholder' => 'Capture parity-sensitive tier notes for the current Laravel card type.', 'help' => 'Use this safe Phase 1 note to track tier parity context without opening rule-import writes.', 'attributes' => ['maxlength' => '1000']],
-                ['name' => 'activation_note', 'label' => 'Activation note', 'type' => 'textarea', 'value' => 'Confirm the legacy activation handoff before operators treat this tier as fully live.', 'required' => false, 'placeholder' => 'Capture operator-facing activation handoff notes for this Laravel card type.', 'help' => 'Keep activation guidance visible here without opening publish or rule-import writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Keep the tier aligned with the legacy accrual workflow before widening rule imports.', 'required' => false, 'placeholder' => 'Capture parity-sensitive tier notes for the current Galaxy foundation card type.', 'help' => 'Use this safe Phase 1 note to track tier parity context without opening rule-import writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'activation_note', 'label' => 'Activation note', 'type' => 'textarea', 'value' => 'Confirm the legacy activation handoff before operators treat this tier as fully live.', 'required' => false, 'placeholder' => 'Capture operator-facing activation handoff notes for this Galaxy foundation card type.', 'help' => 'Keep activation guidance visible here without opening publish or rule-import writes.', 'attributes' => ['maxlength' => '1000']],
                 ['name' => 'rollout_note', 'label' => 'Rollout note', 'type' => 'textarea', 'value' => 'Keep rollout review-only until legacy tier behavior is verified branch by branch.', 'required' => false, 'placeholder' => 'Capture rollout handoff notes without opening publish or import writes.', 'help' => 'Use this safe Phase 1 note to document rollout context while publish and import flows stay blocked.', 'attributes' => ['maxlength' => '1000']],
             ],
         ],
@@ -615,7 +615,7 @@ return [
         ],
         'notice' => [
             'title' => 'Card type workflow is partially live',
-            'description' => 'A minimal Laravel create path now exists for card types, while the richer tier rules and publish workflow remain preview-only.',
+            'description' => 'A minimal Galaxy foundation create path now exists for card types, while the richer tier rules and publish workflow remain foundation-preview only.',
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy card tier catalog'],
@@ -629,7 +629,7 @@ return [
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Legacy tier names mapped'],
             ['status' => 'ready', 'label' => 'Preview actions and grouped fields defined'],
-            ['status' => 'ready', 'label' => 'Minimal Laravel create path is now wired for card types'],
+            ['status' => 'ready', 'label' => 'Minimal Galaxy foundation create path is now wired for card types'],
             ['status' => 'pending', 'label' => 'Tier rule publishing and richer workflow handlers still need PHP-backed follow-through'],
         ],
         'dependencyStatus' => [
@@ -663,7 +663,7 @@ return [
             'summary' => 'Known card-type migration gaps that still block safe rollout.',
             'items' => [
                 'Partner tier approval flow parity is still unresolved against the legacy workflow.',
-                'Rule import behavior is still undefined for the first Laravel write slice.',
+                'Rule import behavior is still undefined for the first Galaxy foundation write slice.',
             ],
         ],
         'implementationHandoff' => [
@@ -678,21 +678,21 @@ return [
     'services-rules' => [
         'pageTitle' => 'Services & Rules',
         'eyebrow' => 'Catalog / Services & Rules',
-        'summary' => 'Baseline management screen for service groups, eligibility rules, and business conditions that drive loyalty behavior.',
+        'summary' => 'Galaxy rule workspace for service groups, eligibility review, and loyalty behavior conditions.',
         'nextStep' => 'Replace sample controls with real rule CRUD, priority ordering, and condition editing.',
         'actions' => [
             [
                 'label' => 'New Galaxy rule',
                 'tone' => 'primary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until the first Laravel-backed service-rule write flow exists for group, scope, effect, and priority.',
+                'disabledReason' => 'Blocked until the first Galaxy foundation-backed service-rule write flow exists for group, scope, effect, and priority.',
             ],
-            ['label' => 'Review priorities', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until rule priority resolution is verified in Laravel.'],
+            ['label' => 'Review priorities', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until rule priority resolution is verified in the Galaxy foundation.'],
         ],
         'metrics' => [
-            ['label' => 'Active rules', 'value' => '2'],
-            ['label' => 'Draft rules', 'value' => '1'],
-            ['label' => 'Shop scopes', 'value' => '3'],
+            ['label' => 'Active-state Galaxy rules', 'value' => '2'],
+            ['label' => 'Draft-state Galaxy rules', 'value' => '1'],
+            ['label' => 'Galaxy branch scopes', 'value' => '3'],
         ],
         'table' => [
             'columns' => ['Rule group', 'Scope', 'Condition', 'Effect', 'Priority', 'Status'],
@@ -742,8 +742,8 @@ return [
             ],
         ],
         'notice' => [
-            'title' => 'Rule editing is still preview-only',
-            'description' => 'This screen outlines the target Galaxy rule workflow, but save and publish actions are not wired to Laravel handlers yet.',
+            'title' => 'Rule editing is still foundation-preview only',
+            'description' => 'This screen outlines the target Galaxy rule workflow, but save and publish actions are not wired to Galaxy foundation handlers yet.',
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy services and business rules'],
@@ -757,7 +757,7 @@ return [
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Legacy rule groups identified'],
             ['status' => 'ready', 'label' => 'Priority preview and parity metadata added'],
-            ['status' => 'pending', 'label' => 'Rule persistence still blocked until Laravel handlers can run'],
+            ['status' => 'pending', 'label' => 'Rule persistence still blocked until Galaxy foundation handlers can run'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Service/rule domain is still preview-config only'],
@@ -796,7 +796,7 @@ return [
         'implementationHandoff' => [
             'summary' => 'When backend work starts, introduce the smallest rule persistence path before attempting full condition-builder parity.',
             'steps' => [
-                'Define a first Laravel model and migration for service rules.',
+                'Define a first Galaxy foundation model and migration for service rules.',
                 'Wire a simple store action for rule group, scope, effect, and priority.',
                 'Keep advanced condition syntax out of the first implementation slice.',
             ],
@@ -805,21 +805,21 @@ return [
     'gifts' => [
         'pageTitle' => 'Gifts',
         'eyebrow' => 'Catalog / Gifts',
-        'summary' => 'Baseline management screen for gift catalog, redemption settings, and stock-aware reward management.',
+        'summary' => 'Galaxy reward workspace for catalog scope, redemption settings, and stock-aware reward review.',
         'nextStep' => 'Replace sample controls with real gift CRUD, stock tracking, and redemption flows.',
         'actions' => [
             [
                 'label' => 'New Galaxy reward',
                 'tone' => 'primary',
                 'disabled' => true,
-                'disabledReason' => 'Blocked until the first Laravel-backed gift write flow exists for catalog, scope, cost, and stock state.',
+                'disabledReason' => 'Blocked until the first Galaxy foundation-backed gift write flow exists for catalog, scope, cost, and stock state.',
             ],
-            ['label' => 'Stock audit', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until stock checks are backed by Laravel inventory data.'],
+            ['label' => 'Stock audit', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until stock checks are backed by Galaxy foundation inventory data.'],
         ],
         'metrics' => [
-            ['label' => 'Active gifts', 'value' => '2'],
-            ['label' => 'Paused gifts', 'value' => '1'],
-            ['label' => 'Low stock items', 'value' => '1'],
+            ['label' => 'Active-state Galaxy rewards', 'value' => '2'],
+            ['label' => 'Paused-state Galaxy rewards', 'value' => '1'],
+            ['label' => 'Low-stock Galaxy rewards', 'value' => '1'],
         ],
         'table' => [
             'columns' => ['Gift', 'Points cost', 'Shop scope', 'Stock', 'Status'],
@@ -869,7 +869,7 @@ return [
             ],
         ],
         'notice' => [
-            'title' => 'Gift redemption controls are still preview-only',
+            'title' => 'Gift redemption controls are still foundation-preview only',
             'description' => 'This shell defines the target Galaxy workflow, but inventory and publishing actions are not wired to backend requests yet.',
         ],
         'legacyMapping' => [
@@ -878,7 +878,7 @@ return [
             ['label' => 'Migration note', 'value' => 'Preserve the existing reward catalog shape before expanding campaign logic'],
         ],
         'activityTimeline' => [
-            ['title' => 'Coffee voucher stock policy checked', 'time' => 'Today, 11:10', 'description' => 'Unlimited stock remains the baseline until real warehouse sync is wired in Laravel.'],
+            ['title' => 'Coffee voucher stock policy checked', 'time' => 'Today, 11:10', 'description' => 'Unlimited stock remains the baseline until real warehouse sync is wired in the Galaxy foundation.'],
             ['title' => 'Premium dessert set paused', 'time' => 'Yesterday, 15:45', 'description' => 'Reward stayed paused to mirror zero-stock behavior from the legacy catalog.'],
         ],
         'readinessChecklist' => [
@@ -892,7 +892,7 @@ return [
             ['label' => 'Operational dependency', 'value' => 'Warehouse and loyalty parity checks are needed before enabling publish flow'],
         ],
         'operatorChecklist' => [
-            'summary' => 'Keep the gift catalog aligned with redemption reality while the workflow is still preview-only.',
+            'summary' => 'Keep the gift catalog aligned with redemption reality while the workflow is still foundation-preview only.',
             'items' => [
                 'Review zero-stock rewards before reopening a paused gift.',
                 'Confirm shop scope against the legacy reward catalog before publishing changes.',
@@ -917,14 +917,14 @@ return [
             'summary' => 'Known gift migration gaps that still block safe rollout.',
             'items' => [
                 'Premium dessert set remains paused until zero-stock parity is confirmed.',
-                'Warehouse synchronization is still undefined for the first Laravel write slice.',
+                'Warehouse synchronization is still undefined for the first Galaxy foundation write slice.',
             ],
         ],
         'implementationHandoff' => [
             'summary' => 'When PHP is available, begin with basic gift CRUD and defer stock synchronization until after the first write path works.',
             'steps' => [
                 'Create a gift model and migration with name, cost, scope, and stock fields.',
-                'Wire a minimal create and edit form flow through Laravel validation.',
+                'Wire a minimal create and edit form flow through Galaxy foundation validation.',
                 'Treat warehouse sync and redemption logs as a later follow-up slice.',
             ],
         ],
@@ -932,7 +932,7 @@ return [
     'roles-permissions' => [
         'pageTitle' => 'Roles & Permissions',
         'eyebrow' => 'Administration / Roles & Permissions',
-        'summary' => 'Baseline management screen for admin roles, permission bundles, and future shop-scoped access rules.',
+        'summary' => 'Galaxy access-shell workspace for role identities, permission bundles, and future shop-scoped access review.',
         'nextStep' => 'Keep the new minimal role identity flow narrow, then layer role assignment, permission matrix, and shop-aware policy flows on top of it.',
         'actions' => [
             [
@@ -940,16 +940,16 @@ return [
                 'tone' => 'primary',
                 'href' => '#live-form',
             ],
-            ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Laravel permission matrix can be verified against legacy staff access.'],
+            ['label' => 'Review matrix', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until the Galaxy foundation permission matrix can be verified against legacy staff access.'],
         ],
         'metrics' => [
-            ['label' => 'Active roles', 'value' => '2'],
-            ['label' => 'Draft roles', 'value' => '1'],
-            ['label' => 'Reviewed roles', 'value' => '2'],
-            ['label' => 'Access notes', 'value' => '1'],
-            ['label' => 'Assignment notes', 'value' => '1'],
-            ['label' => 'Permission review notes', 'value' => '2'],
-            ['label' => 'Scoped shops', 'value' => '3'],
+            ['label' => 'Active-state Galaxy access shells', 'value' => '2'],
+            ['label' => 'Draft-state Galaxy access shells', 'value' => '1'],
+            ['label' => 'Review-noted Galaxy access shells', 'value' => '2'],
+            ['label' => 'Access-policy Galaxy notes', 'value' => '1'],
+            ['label' => 'Role-assignment Galaxy notes', 'value' => '1'],
+            ['label' => 'Permission-linked Galaxy review notes', 'value' => '2'],
+            ['label' => 'Branch-scoped Galaxy coverage', 'value' => '3'],
         ],
         'table' => [
             'columns' => ['Role', 'Scope', 'Key permissions', 'Permission review note', 'Assignment note', 'Users', 'Status'],
@@ -961,22 +961,22 @@ return [
             'filters' => ['Scope', 'Status', 'Permission set'],
         ],
         'liveForm' => [
-            'title' => 'Create Galaxy role in Laravel',
-            'description' => 'This is the first minimal Laravel-backed role write path. Keep it limited to role identity while permission bundles and shop scope remain parity-first review surfaces.',
+            'title' => 'Create Galaxy role in Galaxy foundation',
+            'description' => 'This is the first minimal Galaxy foundation-backed role write path. Keep it limited to role identity while permission bundles and shop scope remain parity-first review surfaces.',
             'method' => 'POST',
             'actionRoute' => 'admin.roles-permissions.store',
             'cancelRoute' => 'admin.roles-permissions.index',
-            'cancelLabel' => 'Back to roles',
+            'cancelLabel' => 'Back to access shell catalog',
             'submitLabel' => 'Create access shell',
             'fields' => [
                 ['name' => 'name', 'label' => 'Role name', 'type' => 'text', 'value' => 'Shop Manager', 'required' => true, 'autofocus' => true, 'placeholder' => 'Branch Supervisor', 'help' => 'Use the operator-facing role name that should mirror the legacy Galaxy staff model.', 'attributes' => ['autocomplete' => 'organization-title']],
-                ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'shop-manager', 'required' => true, 'placeholder' => 'branch-supervisor', 'help' => 'Lowercase identifier for the minimal Laravel role record.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
-                ['name' => 'is_active', 'label' => 'Laravel status', 'type' => 'select', 'value' => '0', 'required' => true, 'help' => 'Draft roles stay safer for parity review. Active status is now persistable, but publish-style access changes should still stay parity-first.', 'options' => [['value' => '0', 'label' => 'Draft'], ['value' => '1', 'label' => 'Active']]],
-                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Mirror the legacy manager workflow first, then widen access only after parity review.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Laravel role shell.', 'help' => 'Use this safe Phase 1 note to record review context without opening assignment or permission-matrix writes.', 'attributes' => ['maxlength' => '1000']],
-                ['name' => 'access_note', 'label' => 'Access note', 'type' => 'textarea', 'value' => 'Confirm the branch access handoff before operators rely on this live role shell.', 'required' => false, 'placeholder' => 'Capture operator-facing access handoff notes for this Laravel role shell.', 'help' => 'Keep access guidance visible here without opening assignment or permission-matrix writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'slug', 'label' => 'Slug', 'type' => 'text', 'value' => 'shop-manager', 'required' => true, 'placeholder' => 'branch-supervisor', 'help' => 'Lowercase identifier for the minimal Galaxy foundation role record.', 'attributes' => ['autocomplete' => 'off', 'spellcheck' => 'false']],
+                ['name' => 'is_active', 'label' => 'Galaxy foundation status', 'type' => 'select', 'value' => '0', 'required' => true, 'help' => 'Draft roles stay safer for parity review. Active status is now persistable, but publish-style access changes should still stay parity-first.', 'options' => [['value' => '0', 'label' => 'Draft'], ['value' => '1', 'label' => 'Active']]],
+                ['name' => 'review_note', 'label' => 'Review note', 'type' => 'textarea', 'value' => 'Mirror the legacy manager workflow first, then widen access only after parity review.', 'required' => false, 'placeholder' => 'Capture parity-sensitive notes for the current Galaxy foundation role shell.', 'help' => 'Use this safe Phase 1 note to record review context without opening assignment or permission-matrix writes.', 'attributes' => ['maxlength' => '1000']],
+                ['name' => 'access_note', 'label' => 'Access note', 'type' => 'textarea', 'value' => 'Confirm the branch access handoff before operators rely on this live role shell.', 'required' => false, 'placeholder' => 'Capture operator-facing access handoff notes for this Galaxy foundation role shell.', 'help' => 'Keep access guidance visible here without opening assignment or permission-matrix writes.', 'attributes' => ['maxlength' => '1000']],
                 ['name' => 'assignment_note', 'label' => 'Assignment note', 'type' => 'textarea', 'value' => 'Keep assignment rollout review-only until legacy staff mapping is verified.', 'required' => false, 'placeholder' => 'Capture assignment handoff notes without opening staff assignment writes.', 'help' => 'Use this safe Phase 1 note to document assignment review context while assignment flows stay blocked.', 'attributes' => ['maxlength' => '1000']],
                 ['name' => 'scope_rollout', 'label' => 'Scope rollout', 'type' => 'select', 'value' => 'shop-scope-pending', 'required' => false, 'help' => 'Phase 1 keeps shop scope review-only until the next thin write slice is ready.', 'attributes' => ['disabled' => true], 'options' => [['value' => 'shop-scope-pending', 'label' => 'Shop scope still pending'], ['value' => 'shop-scope-visible', 'label' => 'Shop scope visible in review'], ['value' => 'global-review', 'label' => 'Global review only']]],
-                ['name' => 'publish_posture', 'label' => 'Publish posture', 'type' => 'select', 'value' => 'draft-only', 'required' => false, 'help' => 'Publishing remains blocked even though role identity and status can already be saved in Laravel.', 'attributes' => ['disabled' => true], 'options' => [['value' => 'draft-only', 'label' => 'Draft-safe only'], ['value' => 'parity-sensitive', 'label' => 'Parity-sensitive live bundle'], ['value' => 'assignment-sensitive', 'label' => 'Assignment-sensitive live bundle']]],
+                ['name' => 'publish_posture', 'label' => 'Publish posture', 'type' => 'select', 'value' => 'draft-only', 'required' => false, 'help' => 'Publishing remains blocked even though role identity and status can already be saved in the Galaxy foundation layer.', 'attributes' => ['disabled' => true], 'options' => [['value' => 'draft-only', 'label' => 'Draft-safe only'], ['value' => 'parity-sensitive', 'label' => 'Parity-sensitive live bundle'], ['value' => 'assignment-sensitive', 'label' => 'Assignment-sensitive live bundle']]],
             ],
         ],
         'form' => [
@@ -1018,8 +1018,8 @@ return [
             ],
         ],
         'notice' => [
-            'title' => 'Role identity writes are live, publishing is still preview-only',
-            'description' => 'The first Laravel-backed role form now saves role identity, but permission persistence, publishing controls, and assignment flows still need implementation.',
+            'title' => 'Role identity writes are live, publishing is still foundation-preview only',
+            'description' => 'The first Galaxy foundation-backed role form now saves role identity, but permission persistence, publishing controls, and assignment flows still need implementation.',
         ],
         'legacyMapping' => [
             ['label' => 'Legacy source', 'value' => 'Old Galaxy staff and access matrix'],
@@ -1066,7 +1066,7 @@ return [
             'summary' => 'Known access-control migration gaps that still block safe rollout.',
             'items' => [
                 'Cashier assignment rules remain unverified against legacy shop-scoped behavior.',
-                'Permission matrix editing is still undefined for the first Laravel write slice.',
+                'Permission matrix editing is still undefined for the first Galaxy foundation write slice.',
             ],
         ],
         'implementationHandoff' => [
@@ -1081,11 +1081,11 @@ return [
     'reports' => [
         'pageTitle' => 'Reports',
         'eyebrow' => 'Administration / Reports',
-        'summary' => 'Operational placeholder for analytics, histories, and export-oriented admin reporting.',
+        'summary' => 'Galaxy reporting workspace for analytics, histories, and export-oriented admin review.',
         'nextStep' => 'Add report catalog, date-range presets, and export entry points.',
         'actions' => [
             ['label' => 'Open live report catalog', 'tone' => 'primary'],
-            ['label' => 'Review export presets', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until preset handling is backed by Laravel reporting flow validation.'],
+            ['label' => 'Review export presets', 'tone' => 'secondary', 'disabled' => true, 'disabledReason' => 'Blocked until preset handling is backed by Galaxy foundation reporting flow validation.'],
         ],
         'metrics' => [
             ['label' => 'Planned reports', 'value' => '3'],
@@ -1127,13 +1127,13 @@ return [
             'Underlying analytics sources do not exist yet, so reports remain catalog-only previews.',
         ],
         'notice' => [
-            'title' => 'Reporting operations are still preview-only',
-            'description' => 'Catalog actions, summary metrics, and export cues are outlining the Galaxy reporting workspace, but no Laravel reporting pipeline is wired yet.',
+            'title' => 'Reporting operations are still foundation-preview only',
+            'description' => 'Catalog actions, summary metrics, and export cues are outlining the Galaxy reporting workspace, but no Galaxy foundation reporting pipeline is wired yet.',
         ],
         'readinessChecklist' => [
             ['status' => 'ready', 'label' => 'Preview report catalog actions and preset metrics are defined'],
             ['status' => 'ready', 'label' => 'Operational parity cues for export-first reporting are visible'],
-            ['status' => 'pending', 'label' => 'Real report sources, presets, and exports still need PHP-backed Laravel wiring'],
+            ['status' => 'pending', 'label' => 'Real report sources, presets, and exports still need PHP-backed Galaxy foundation wiring'],
         ],
         'dependencyStatus' => [
             ['label' => 'Domain model', 'value' => 'Report catalog is still config-backed with no reporting domain service yet'],

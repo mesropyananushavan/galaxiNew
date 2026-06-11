@@ -10,7 +10,7 @@
         <span class="eyebrow">Admin / Dashboard</span>
         <h2 style="margin: 16px 0 12px; font-size: 1.75rem;">Phase 1 admin information architecture baseline</h2>
         <p style="margin: 0; color: var(--text-muted); max-width: 780px; line-height: 1.6;">
-            The shell now reflects the Galaxy-specific admin map instead of a generic starter dashboard,
+            The shell now reflects the Galaxy-specific admin map instead of a generic baseline dashboard,
             so the next vertical slices can attach to the sections we actually need to migrate.
         </p>
 
@@ -27,24 +27,12 @@
                 <p style="margin: 0 0 12px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
                     This branch snapshot keeps the assigned Galaxy location in view, so setup gaps and fresh activity are visible before you jump into review.
                 </p>
-                @if (is_string($assignedBranchSnapshot['actionCoverage'] ?? null))
+                @foreach (($assignedBranchSnapshot['actionMetrics'] ?? []) as $metric)
                     <p style="{{ $dashboardNoteStyle }}">
-                        <strong>Scoped action coverage:</strong>
-                        {{ $assignedBranchSnapshot['actionCoverage'] }}.
+                        <strong>{{ $metric['label'] }}:</strong>
+                        {{ $metric['value'] }}
                     </p>
-                @endif
-                @if (is_string($assignedBranchSnapshot['actionPosture'] ?? null))
-                    <p style="{{ $dashboardNoteStyle }}">
-                        <strong>Scoped action posture:</strong>
-                        {{ $assignedBranchSnapshot['actionPosture'] }}.
-                    </p>
-                @endif
-                @if (is_string($assignedBranchSnapshot['actionFocus'] ?? null))
-                    <p style="{{ $dashboardNoteStyle }}">
-                        <strong>Scoped action focus:</strong>
-                        {{ $assignedBranchSnapshot['actionFocus'] }}.
-                    </p>
-                @endif
+                @endforeach
                 <div class="placeholder-grid" style="margin-top: 0;">
                     @foreach ($assignedBranchSnapshot['items'] as $item)
                         <article class="metric">
@@ -56,7 +44,7 @@
                 @if (is_array($assignedBranchSnapshot['actions'] ?? null) && $assignedBranchSnapshot['actions'] !== [])
                     <ul class="list" style="margin-top: 12px;">
                         @foreach ($assignedBranchSnapshot['actions'] as $action)
-                            <li><a href="{{ $action['route'] }}">{{ $action['label'] }}</a> (Route: {{ parse_url($action['route'], PHP_URL_PATH) ?? $action['route'] }})</li>
+                            <li><a href="{{ $action['route'] }}">{{ $action['label'] }}</a> (Route: {{ $action['path'] ?? $action['route'] }})</li>
                         @endforeach
                     </ul>
                 @endif
@@ -67,7 +55,7 @@
             <h3 style="margin: 0 0 8px; font-size: 1.1rem;">Galaxy live foundation snapshot</h3>
             <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
                 These counters track the first live Galaxy surfaces already present in Phase 1,
-                so branch setup and review work can move through real operational entities instead of starter placeholders.
+                so branch setup and review work can move through real operational entities instead of scaffold-era placeholders.
             </p>
             @if (is_array($foundationHandoffSummary ?? null))
             <p style="margin: 0 0 16px; color: var(--text-muted); line-height: 1.6; max-width: 780px;">
@@ -84,80 +72,317 @@
             {{ $foundationPosture }}.
         </p>
         <div class="placeholder-grid">
-            <article class="metric">
-                <p class="metric-label">Route namespace</p>
-                <p class="metric-value">/admin</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Planned sections</p>
-                <p class="metric-value">{{ $plannedSectionCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live domain coverage</p>
-                <p class="metric-value">{{ $liveDomainCoverage }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Foundation readiness</p>
-                <p class="metric-value">{{ $foundationReadinessSignal }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Active foundation coverage</p>
-                <p class="metric-value">{{ $activeFoundationCoverage }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Branch pause coverage</p>
-                <p class="metric-value">{{ $branchPauseCoverage }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Access baseline coverage</p>
-                <p class="metric-value">{{ $accessBaselineCoverage }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Tier baseline coverage</p>
-                <p class="metric-value">{{ $tierBaselineCoverage }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live shops</p>
-                <p class="metric-value">{{ $shopCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Active shops</p>
-                <p class="metric-value">{{ $activeShopCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live cardholders</p>
-                <p class="metric-value">{{ $cardHolderCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Active cardholders</p>
-                <p class="metric-value">{{ $activeCardHolderCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live cards</p>
-                <p class="metric-value">{{ $cardCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Active cards</p>
-                <p class="metric-value">{{ $activeCardCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live card types</p>
-                <p class="metric-value">{{ $cardTypeCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Active card types</p>
-                <p class="metric-value">{{ $activeCardTypeCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live roles</p>
-                <p class="metric-value">{{ $roleCount }}</p>
-            </article>
-            <article class="metric">
-                <p class="metric-label">Live permissions</p>
-                <p class="metric-value">{{ $permissionCount }}</p>
-            </article>
+            @foreach ($foundationSnapshotMetrics as $metric)
+                <article class="metric">
+                    <p class="metric-label">{{ $metric['label'] }}</p>
+                    <p class="metric-value">{{ $metric['value'] }}</p>
+                </article>
+            @endforeach
         </div>
         </div>
+    </section>
+
+    <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 core entity map</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneDomainFocus }}
+        </p>
+        @foreach ($phaseOneDomainMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                {{ $metric['value'] }}
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Entity baseline:</strong>
+            <code>config/phase-1-domain-map.php</code> keeps this mapped Galaxy entity inventory aligned.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Entity posture:</strong>
+            {{ $phaseOneDomainPosture }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Entity guide:</strong>
+            {!! $phaseOneDomainGuideText !!} remain the readable and implementation anchors for this mapped Galaxy entity inventory.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneDomainSourceOfTruthText !!} remain the readable and implementation anchors for this mapped Galaxy entity inventory.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneDomainMap as $entity)
+                <li>{!! $entity['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 model skeleton baseline</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneModelSkeletonsFocus }}
+        </p>
+        @foreach ($phaseOneModelSkeletonMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Model posture:</strong>
+            {{ $phaseOneModelSkeletonsPosture }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Model guide:</strong>
+            {!! $phaseOneModelSkeletonsGuideText !!} remain the readable and implementation anchors for this Galaxy foundation data layer.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneModelSkeletonsSourceOfTruthText !!} remain the readable and implementation anchors for this Galaxy foundation data layer.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneModelSkeletons as $skeleton)
+                <li>{!! $skeleton['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 migration baseline</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneMigrationBaselineFocus }}
+        </p>
+        @foreach ($phaseOneMigrationBaselineMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Schema posture:</strong>
+            {{ $phaseOneMigrationBaselinePosture }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Schema guide:</strong>
+            {!! $phaseOneMigrationBaselineGuideText !!} remain the readable and implementation anchors for this Galaxy schema layer.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneMigrationBaselineSourceOfTruthText !!} remain the readable and implementation anchors for this Galaxy schema layer.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneMigrationBaseline as $migrationCheckpoint)
+                <li>{!! $migrationCheckpoint['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 access baseline</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneAccessBaselineFocus }}
+        </p>
+        @foreach ($phaseOneAccessBaselineMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Access posture:</strong>
+            {{ $phaseOneAccessBaselinePosture }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Access guide:</strong>
+            {!! $phaseOneAccessBaselineGuideText !!} remain the readable and implementation anchors for this Galaxy authorization baseline.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneAccessBaselineSourceOfTruthText !!} remain the readable and implementation anchors for this Galaxy authorization baseline.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}"><strong>Tracked gates:</strong></p>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneAccessBaseline['gateIntro'] ?? '' }}
+        </p>
+        <ul class="list">
+            @foreach (($phaseOneAccessBaseline['gates'] ?? []) as $gate)
+                <li>{!! $gate['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+        <p style="{{ $dashboardNoteStyle }}"><strong>Tracked route guardrails:</strong></p>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneAccessBaseline['routeGuardrailIntro'] ?? '' }}
+        </p>
+        <ul class="list">
+            @foreach (($phaseOneAccessBaseline['routeGuardrailGroups'] ?? []) as $guardrailGroup)
+                <li>
+                    <strong>{{ $guardrailGroup['label'] }}:</strong>
+                    @if (filled($guardrailGroup['displaySummary'] ?? null))
+                        <br>
+                        <span style="color: var(--text-muted);">{{ $guardrailGroup['displaySummary'] }}</span>
+                    @endif
+                    <ul class="list">
+                        @foreach (($guardrailGroup['items'] ?? []) as $guardrail)
+                            <li>{!! $guardrail['displaySummary'] !!}</li>
+                        @endforeach
+                    </ul>
+                </li>
+            @endforeach
+        </ul>
+        <p style="{{ $dashboardNoteStyle }}"><strong>Tracked policies:</strong></p>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneAccessBaseline['policyIntro'] ?? '' }}
+        </p>
+        <ul class="list">
+            @foreach (($phaseOneAccessBaseline['policies'] ?? []) as $policy)
+                <li>{!! $policy['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 shop-scoped access baseline</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneShopAccessBaselineFocus }}
+        </p>
+        @foreach ($phaseOneShopAccessBaselineMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Scope posture:</strong>
+            {{ $phaseOneShopAccessBaselinePosture }}.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Scope guide:</strong>
+            {!! $phaseOneShopAccessBaselineGuideText !!} remain the readable and implementation anchors for this Galaxy branch boundary.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneShopAccessBaselineSourceOfTruthText !!} remain the readable and implementation anchors for this Galaxy branch boundary.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneShopAccessBaseline as $rule)
+                <li>{!! $rule['displaySummary'] !!}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 seam-source inventory</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneSeamSourcesFocus }}
+        </p>
+        @foreach ($phaseOneSeamSourceMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Seam-source guide:</strong>
+            {!! $phaseOneSeamSourcesGuideText !!} remain the readable and implementation anchors for this Phase 1 seam-source trail.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneSeamSourcesSourceOfTruthText !!} remain the readable and implementation anchors for this Phase 1 seam-source trail.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneSeamSources as $seamSource)
+                <li>{!! $seamSource['displayLabel'] !!}</li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 foundation seams</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneFoundationSeamsFocus }}
+        </p>
+        @foreach ($phaseOneFoundationSeamMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Seam guide:</strong>
+            {!! $phaseOneFoundationSeamsGuideText !!} remain the readable and implementation anchors for this mapped seam inventory.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneFoundationSeamsSourceOfTruthText !!} remain the readable and implementation anchors for this mapped seam inventory.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneFoundationSeams as $seam)
+                <li>
+                    {!! $seam['displaySummary'] !!}
+                    @if (filled($seam['sourcesNote'] ?? null))
+                        <br>
+                        <span style="color: var(--text-muted);">{{ $seam['sourcesNote'] }}</span>
+                    @endif
+                </li>
+            @endforeach
+        </ul>
+    </section>
+
+    <section class="card">
+        <h3 style="margin: 0; font-size: 1.1rem;">Phase 1 reference docs</h3>
+        <p style="{{ $dashboardWideNoteStyle }}">
+            {{ $phaseOneReferenceDocsFocus }}
+        </p>
+        @foreach ($phaseOneReferenceDocMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                @if ($metric['html'] ?? false)
+                    {!! $metric['value'] !!}
+                @else
+                    {{ $metric['value'] }}
+                @endif
+            </p>
+        @endforeach
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Reference guide:</strong>
+            {!! $phaseOneReferenceDocsGuideText !!} remain the readable anchors for this admin-side Phase 1 reference trail.
+        </p>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Source of truth:</strong>
+            {!! $phaseOneReferenceDocsSourceOfTruthText !!} remain the readable and implementation anchors for this admin-side Phase 1 reference trail.
+        </p>
+        <ul class="list">
+            @foreach ($phaseOneReferenceDocs as $referenceDoc)
+                <li>{!! $referenceDoc['displayLabel'] !!}</li>
+            @endforeach
+        </ul>
+        <p style="{{ $dashboardNoteStyle }}">
+            <strong>Reference seam bridge:</strong>
+            <code>config/phase-1-seam-sources.php</code> keeps the README-level seam-source inventory tied into this broader Phase 1 reference trail.
+        </p>
     </section>
 
     <section class="card">
@@ -165,18 +390,12 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             Use these Galaxy review surfaces to move from branch setup into live operational checks once records start landing.
         </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Entry coverage:</strong>
-            {{ $liveEntryPointCoverage }}.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Entry focus:</strong>
-            {{ $liveEntryPointFocus }}.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Entry posture:</strong>
-            {{ $liveEntryPointPosture }}.
-        </p>
+        @foreach ($liveEntryMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                {{ $metric['value'] }}
+            </p>
+        @endforeach
         @if (is_array($liveEntryHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $liveEntryHandoffSummary['label'] }}:</strong>
@@ -191,7 +410,7 @@
         @endif
         <ul class="list">
             @foreach ($liveReviewEntryPoints as $entryPoint)
-                <li><a href="{{ $entryPoint['route'] }}">{{ $entryPoint['label'] }}</a> (Route: {{ parse_url($entryPoint['route'], PHP_URL_PATH) ?? $entryPoint['route'] }})</li>
+                <li><a href="{{ $entryPoint['route'] }}">{{ $entryPoint['label'] }}</a> (Route: {{ $entryPoint['path'] ?? $entryPoint['route'] }})</li>
             @endforeach
         </ul>
     </section>
@@ -199,20 +418,14 @@
     <section class="card">
         <h3 style="margin: 0; font-size: 1.1rem;">Resume latest live work</h3>
         <p style="{{ $dashboardWideNoteStyle }}">
-            Jump back into the latest Galaxy workspace for the branch, cardholder, card, or access item that most recently changed.
+            Jump back into the latest Galaxy workspace for the branch, holder, card shell, or access shell that most recently changed.
         </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Latest-work coverage:</strong>
-            {{ $latestWorkspaceCoverage }}.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Latest-work focus:</strong>
-            {{ $latestWorkspaceFocus }}.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Latest-work posture:</strong>
-            {{ $latestWorkspacePosture }}.
-        </p>
+        @foreach ($latestWorkspaceMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                {{ $metric['value'] }}
+            </p>
+        @endforeach
         @if (is_array($latestWorkspaceHandoffSummary ?? null))
             <p style="{{ $dashboardNoteStyle }}">
                 <strong>{{ $latestWorkspaceHandoffSummary['label'] }}:</strong>
@@ -228,7 +441,7 @@
         @if ($latestWorkspaces !== [])
             <ul class="list">
                 @foreach ($latestWorkspaces as $workspace)
-                    <li><a href="{{ $workspace['route'] }}">{{ $workspace['label'] }}</a> (Route: {{ parse_url($workspace['route'], PHP_URL_PATH) ?? $workspace['route'] }})</li>
+                    <li><a href="{{ $workspace['route'] }}">{{ $workspace['label'] }}</a> (Route: {{ $workspace['path'] ?? $workspace['route'] }})</li>
                 @endforeach
             </ul>
         @else
@@ -236,7 +449,7 @@
                 No live records have been created yet. Start in the live review entry points above to open the first Galaxy-backed workspace.
             </p>
             <p style="{{ $dashboardWideNoteStyle }}">
-                In Phase 1, this usually means the branch is still moving through first-pass setup for shops, cardholders, cards, or access structure.
+                In Phase 1, this usually means the branch is still moving through first-pass setup for Galaxy branches, Galaxy holders, Galaxy card shells, or access structure.
             </p>
         @endif
     </section>
@@ -246,18 +459,12 @@
         <p style="{{ $dashboardWideNoteStyle }}">
             These grouped sections mark the Galaxy admin surfaces that still need parity work, so each Phase 1 slice can land against a visible target map.
         </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Mapped surfaces:</strong>
-            {{ $plannedSectionCount }} planned admin surfaces are currently staged in the Phase 1 target map.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Mapped groups:</strong>
-            {{ count($navigationGroups) }} top-level admin groups are currently staged in the Phase 1 target map.
-        </p>
-        <p style="{{ $dashboardNoteStyle }}">
-            <strong>Mapped routes:</strong>
-            {{ $plannedSectionCount }} Laravel route targets are currently linked from the Phase 1 target map.
-        </p>
+        @foreach ($migrationMapMetrics as $metric)
+            <p style="{{ $dashboardNoteStyle }}">
+                <strong>{{ $metric['label'] }}:</strong>
+                {{ $metric['value'] }}
+            </p>
+        @endforeach
         <p style="{{ $dashboardNoteStyle }}">
             <strong>Migration-map focus:</strong>
             {{ $migrationMapFocus }}.
@@ -277,7 +484,7 @@
                 <li>
                     <strong>{{ $group['group'] }} ({{ count($group['items']) }} surfaces):</strong>
                     @foreach ($group['items'] as $item)
-                        <a href="{{ route($item['route']) }}">{{ $item['label'] }}</a> ({{ $item['description'] }} Route: {{ route($item['route']) }})@if (! $loop->last), @else.@endif
+                        {!! $item['displaySummary'] !!}@if (! $loop->last), @else.@endif
                     @endforeach
                 </li>
             @endforeach

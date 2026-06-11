@@ -2,20 +2,30 @@
 
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Routing\UrlGenerator;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
+use App\Models\CardHolder;
+use Illuminate\Validation\Validator;
 
 class UpdateCardHolderRequest extends StoreCardHolderRequest
 {
-    protected function getRedirectUrl(): string
+    use ResolvesAdminSelectedResourceRedirects;
+
+    protected const SELECTED_RESOURCE_ROUTE_PARAMETER = 'cardholder';
+    protected const SELECTED_RESOURCE_ROUTE_NAME = 'admin.cardholders.index';
+
+    public function authorize(): bool
     {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-        $cardholder = $this->route('cardholder');
-
-        if ($cardholder !== null) {
-            return $url->route('admin.cardholders.index', ['cardholder' => $cardholder], absolute: false).'#live-form';
-        }
-
-        return parent::getRedirectUrl();
+        return $this->authorizeSelectedResourceUpdate(CardHolder::class);
     }
+
+    public function withValidator(Validator $validator): void
+    {
+        parent::withValidator($validator);
+
+        $this->validateSelectedResourceShopAccess(
+            $validator,
+            'Choose a cardholder from a shop you can access before changing holder details in the Galaxy workspace.',
+        );
+    }
+
 }

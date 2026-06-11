@@ -2,36 +2,32 @@
 
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Routing\UrlGenerator;
-use Illuminate\Validation\Rule;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
+use App\Models\Role;
 
 class UpdateRoleRequest extends StoreRoleRequest
 {
+    use ResolvesAdminSelectedResourceRedirects;
+
+    protected const SELECTED_RESOURCE_ROUTE_PARAMETER = 'role';
+    protected const SELECTED_RESOURCE_ROUTE_NAME = 'admin.roles-permissions.index';
+
+    public function authorize(): bool
+    {
+        return $this->authorizeSelectedResourceUpdate(Role::class);
+    }
+
     public function rules(): array
     {
-        $role = $this->route('role');
-
         return array_merge(parent::rules(), [
             'slug' => [
                 'required',
                 'string',
                 'max:255',
                 'alpha_dash',
-                Rule::unique('roles', 'slug')->ignore($role),
+                $this->uniqueRuleIgnoringSelectedResource('roles', 'slug'),
             ],
         ]);
     }
 
-    protected function getRedirectUrl(): string
-    {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-        $role = $this->route('role');
-
-        if ($role !== null) {
-            return $url->route('admin.roles-permissions.index', ['role' => $role], absolute: false).'#live-form';
-        }
-
-        return parent::getRedirectUrl();
-    }
 }

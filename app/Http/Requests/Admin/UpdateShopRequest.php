@@ -2,36 +2,32 @@
 
 namespace App\Http\Requests\Admin;
 
-use Illuminate\Routing\UrlGenerator;
-use Illuminate\Validation\Rule;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminSelectedResourceRedirects;
+use App\Models\Shop;
 
 class UpdateShopRequest extends StoreShopRequest
 {
+    use ResolvesAdminSelectedResourceRedirects;
+
+    protected const SELECTED_RESOURCE_ROUTE_PARAMETER = 'shop';
+    protected const SELECTED_RESOURCE_ROUTE_NAME = 'admin.shops.index';
+
+    public function authorize(): bool
+    {
+        return $this->authorizeSelectedResourceUpdate(Shop::class);
+    }
+
     public function rules(): array
     {
-        $shop = $this->route('shop');
-
         return array_merge(parent::rules(), [
             'code' => [
                 'required',
                 'string',
                 'max:255',
                 'alpha_dash',
-                Rule::unique('shops', 'code')->ignore($shop),
+                $this->uniqueRuleIgnoringSelectedResource('shops', 'code'),
             ],
         ]);
     }
 
-    protected function getRedirectUrl(): string
-    {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-        $shop = $this->route('shop');
-
-        if ($shop !== null) {
-            return $url->route('admin.shops.index', ['shop' => $shop], absolute: false).'#live-form';
-        }
-
-        return parent::getRedirectUrl();
-    }
 }

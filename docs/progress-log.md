@@ -1,6 +1,6071 @@
 # Progress Log
 
+## 2026-06-11
+
+### Foundation seam public-reference bridge checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level `Public landing reference trail` seam now explicitly names `config/phase-1-reference-docs.php` as an admin reference bridge instead of only talking about the public doc config and seam-source baseline.
+- Kept the dashboard-facing seam inventory aligned with the richer landing-doc baseline by making the public-reference seam summary reflect admin-reference bridge notes alongside the existing seam-source bridge notes and config-path callouts.
+- Re-ran focused dashboard, landing-page, and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
+### Public reference admin-bridge checkpoint
+- Updated `config/landing-docs.php` so the public landing reference baseline now explicitly includes the admin reference bridge in its focus, posture, source-of-truth trail, and linked doc inventory.
+- Kept the landing-page doc card closer to the broader Phase 1 reference story by adding `config/phase-1-reference-docs.php` as a first-class public reference item instead of leaving that admin bridge only implicit.
+- Re-ran focused dashboard, landing-page, and card-types assertions as the parity guard for this small Phase 1 public-reference refresh.
+
+### Dashboard reference-bridge baseline checkpoint
+- Updated `config/phase-1-reference-docs.php` so the live admin reference baseline now explicitly mirrors the landing-doc bridge wording already present in README-level Phase 1 guidance.
+- Kept the dashboard-facing reference card aligned with the broader repo guidance by extending its `focus` and `posture` text to mention the public landing-doc bridge instead of only the admin/dashboard side.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 reference-baseline refresh.
+
+### README reference-bridge alignment checkpoint
+- Updated `README.md` so the top-level Phase 1 reference trail now explicitly includes the landing-doc bridge and seam-source bridge alongside the newer access, shop-scope, model-skeleton, migration, and foundation-seam baselines.
+- Kept repo guidance aligned with the live admin reference inventory by adding `config/landing-docs.php` to the README reference list and by making the Phase 1 reference posture describe the public landing-doc bridge instead of only the dashboard-facing side.
+- Re-ran focused dashboard and card-types assertions as a parity guard after tightening this repo-guidance seam.
+
+### Admin reference landing-doc bridge checkpoint
+- Updated `config/phase-1-reference-docs.php` so the dashboard reference inventory now treats `config/landing-docs.php` as a first-class Phase 1 reference item and includes both the landing-doc bridge and seam-source bridge in the broader source-of-truth chain.
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level admin reference seam now explicitly names that landing-doc bridge instead of treating the public docs layer as only an indirect neighbor.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 reference-layer refresh.
+
+### Foundation seam model-layer alignment checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level model-skeleton seam inventory now explicitly reflects the already-documented review-note, access-note, assignment-note, activation-note, rollout-note, and issued-at anchors around the first Galaxy model layer.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the model-skeleton seam summary reflect both the entity set and the follow-up anchor coverage already called out in the dedicated Phase 1 skeleton baseline.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
+### Foundation seam migration-chain alignment checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level migration seam inventory now explicitly treats the first access and card-domain migrations plus their follow-up review, rollout, and issuance anchors as one live Phase 1 schema checkpoint chain.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the migration-baseline seam summary reflect both the initial schema anchors and the already-tracked follow-up checkpoint inventory instead of describing them as a looser generic schema layer.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
+### Foundation seam access-contract alignment checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level access seam inventory now explicitly treats operational review gates and policy-backed route guardrails as part of the same live Phase 1 access contract.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the access-baseline seam summary reflect the already-tracked `checks-points`, `services-rules`, `gifts`, and `reports` gates alongside the first policy-backed resource lanes.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
+### Foundation seam repo-guidance bridge checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level seam inventory now reflects the newer foundation-seam and reference-doc bridge anchors already carried by the README-level Phase 1 guidance.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the top-level repo-guidance and README seam-source summaries describe those bridge configs explicitly instead of treating the trail as a looser README-only note.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
+### Foundation seam shop-scope route alignment checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level shop-scope seam inventory now includes `routes/admin.php` and explicitly names live admin route enforcement as part of the branch-boundary contract.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by tying the shop-scope seam summary back to the same `User::canAccessShop(...)`, `ShopPolicy`, and `access-shop` enforcement chain already documented in the dedicated baseline.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
+### README seam-source bridge refresh checkpoint
+- Updated `config/phase-1-seam-sources.php` and `README.md` so the README-level seam-source trail now explicitly treats `config/phase-1-foundation-seams.php` and `config/phase-1-reference-docs.php` as bridge anchors for the dashboard-facing Phase 1 reference chain.
+- Kept top-level repo guidance closer to the live Galaxy foundation layer by naming the foundation-seam baseline alongside the seam-source trail in the README Phase 1 reference posture.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 repo-guidance refresh.
+
+### Shop-scope route-enforcement checkpoint
+- Updated `docs/phase-1-shop-access-baseline.md` and `config/phase-1-shop-access-baseline.php` so the branch-scope baseline now treats `routes/admin.php` as a first-class source-of-truth and explicitly names the live shop review/update route enforcement seam.
+- Kept the dashboard-facing shop-scope story closer to the live Galaxy foundation layer by tying bootstrap and scoped branch visibility rules back to the real admin route guardrails that already reuse `ShopPolicy` and `User::canAccessShop(...)`.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 shop-scope baseline refresh.
+
+### Access gate inventory completion checkpoint
+- Updated `docs/phase-1-access-baseline.md` and `config/phase-1-access-baseline.php` so the top-level gate inventory now explicitly includes the already-live `view-gifts` and `view-reports` review gates instead of only mentioning them later in the route-guardrail section.
+- Kept the dashboard-facing access baseline closer to the live Galaxy foundation layer by making rewards and reporting review gates first-class entries alongside admin, shop, checks, and rules access anchors.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 access-baseline completion step.
+
+### Domain map foundation-anchor refresh checkpoint
+- Updated `docs/phase-1-domain-map.md` and `config/phase-1-domain-map.php` so the entity baseline now names already-live Galaxy review, handoff, rollout, and issuance anchors around shops, roles, permissions, card types, and cards instead of describing them only as generic shells.
+- Kept the dashboard-facing entity map closer to the current Phase 1 foundation layer by making the first six entities read like explicit Galaxy operational anchors rather than starter-era placeholders.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 domain-baseline refresh.
+
+### Admin reference trail foundation-seam checkpoint
+- Updated `config/phase-1-reference-docs.php` so the dashboard reference inventory now treats `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` as first-class Phase 1 source-of-truth anchors instead of only carrying the seam map indirectly.
+- Updated `docs/phase-1-foundation-seams.md` so the admin reference trail now explicitly names the higher-level foundation-seam baseline as part of the dashboard-facing Galaxy reference chain.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 reference-trail refresh.
+
+### Foundation seam baseline alignment checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the higher-level seam inventory now reflects the more explicit Phase 1 model and migration baselines around review, handoff, rollout, and issuance anchors.
+- Kept the dashboard-facing seam narrative closer to the live Galaxy foundation layer by making the migration-baseline and model-skeleton seam summaries describe named Galaxy review-state checkpoints instead of generic starter-era shells.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 seam-alignment refresh.
+
+### Access and inventory baseline detail refresh checkpoint
+- Updated `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, and `docs/phase-1-migration-baseline.md` so the Phase 1 baseline now names the already-present Galaxy-specific review, handoff, and issuance anchors around roles, permissions, shops, holders, and cards more explicitly.
+- Kept the model and migration baseline story closer to the live Galaxy foundation layer by naming review-note, access-note, assignment-note, and issued-at coverage directly instead of leaving those follow-up anchors implied.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 baseline refresh.
+
+### Card-type model and migration baseline refresh checkpoint
+- Updated `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, and `config/phase-1-migration-baseline.php` so the Phase 1 baseline now explicitly calls out the live Galaxy tier review fields already present around `CardType`, instead of describing tiers only as generic identity and relationship shells.
+- Kept the dashboard-facing Phase 1 foundation story aligned with the current Galaxy-specific card-type review surface by naming the points-rate, active-state, review-note, activation-note, and rollout-note anchors more directly.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 baseline refresh.
+
+### Card-type applied live-form field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now applies its `valuesResolver` through one tiny field-assignment helper instead of mutating that field inline during the final live-form config pass.
+- Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form route-parameter helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now assembles its update-route parameter payload through one tiny helper instead of keeping that parameter array inline in the Galaxy-tier route path.
+- Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form shared field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now routes config fields and value fields through one shared helper instead of keeping two identical field mappers in the Galaxy-tier payload path.
+- Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form config-field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now routes both value-config entries and route-config entries through one shared config-field helper instead of keeping two identical config mappers in the Galaxy-tier payload path.
+- Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form route-config field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now assembles its route-config entries through one tiny helper instead of keeping those route-config keys inline in the Galaxy-tier payload path.
+- Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form value-config field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now assembles its `disabledReason` and `valuesResolver` config entries through one tiny helper instead of keeping those value-config keys inline in the Galaxy-tier payload path.
+- Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type edit-scalar value helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now normalizes scalar edit values through one shared helper instead of keeping separate one-line string-cast helpers for points-rate and active-state payload values.
+- Kept the rendered selected-tier live-form values unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type edit-note value helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now normalizes review, activation, and rollout edit-note values through one shared helper instead of repeating the same nullable-to-empty-string pattern across three adjacent methods.
+- Kept the rendered selected-tier live-form values unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form identity-field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now routes its identity fields through the same shared value-field helper already used for mutable scalar and note fields.
+- Kept the rendered selected-tier live-form values unchanged while making the Galaxy-tier `valuesResolver` path more uniform and seam-driven.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form value-field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now routes both mutable scalar fields and note fields through one shared value-field helper instead of keeping two identical one-line field mappers in the Galaxy-tier payload path.
+- Kept the rendered selected-tier live-form values unchanged while tightening one more small payload seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form mutable-field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now builds its mutable scalar entries through one tiny field helper instead of repeating the same scalar key mapping inline beside the Galaxy-tier note payload.
+- Kept the rendered selected-tier live-form values unchanged while tightening one more small payload seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form note-field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now builds each review, activation, and rollout note entry through one tiny field helper instead of repeating the same note-key mapping inline inside the Galaxy-tier values payload.
+- Kept the rendered selected-tier live-form values unchanged while tightening one more small payload seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form review-cue helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now reads its Galaxy-specific review cue through a dedicated helper instead of keeping that Phase 1 operator guidance string inline inside the copy payload array.
+- Kept the rendered selected-tier live-form output unchanged while tightening one more small copy seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type dependency status item helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier dependency surface now builds each `label`/`value` row through one tiny helper instead of repeating the same dependency item array shape inline across the Galaxy-tier review surface.
+- Kept the rendered selected-tier dependency output unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected timeline item helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier activity trail now builds each `Current request` entry through one tiny helper instead of repeating the same timeline item array shape inline across the Galaxy-tier review surface.
+- Kept the rendered selected-tier timeline output unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type note fallback checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier review, activation, and rollout note values now share one small fallback helper instead of repeating the same Galaxy-tier empty-note pattern across three adjacent methods.
+- Kept the rendered selected-tier output unchanged while tightening one more small Phase 1 seam in the Galaxy-specific review surface.
+- Re-ran focused card-types preview, selected-tier edit, linked-tier status, and draft-tier readiness assertions as the parity guard for this small structural cleanup.
+
+### Card-type dependency edit-flow copy checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier dependency surface now reads its PATCH-mode edit-flow text through a dedicated shared value helper instead of keeping that Galaxy-tier copy inline inside the dependency row array.
+- Caught and reverted an accidental timeline copy drift during validation, then re-ran the same focused parity slice to keep the rendered selected-tier contract unchanged.
+- Re-ran focused card-types preview, selected-tier edit, linked-tier status, and draft-tier readiness assertions as the parity guard for this small structural cleanup.
+
+### Card-type dependency edit-flow value checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier dependency surface now reads its Galaxy-tier edit-flow state from a dedicated value helper instead of keeping that PATCH-mode text inline inside the dependency row array.
+- Kept the rendered selected-tier dependency output unchanged while tightening one more small Phase 1 seam around the Galaxy-specific review surface.
+- Re-ran focused card-types preview, selected-tier edit, linked-tier status, and draft-tier readiness assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected-tier value-source checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier summary and dependency surfaces now read the Galaxy tier name and slug from the shared base value helpers instead of routing those fields through extra selected-tier passthrough methods.
+- Caught and fixed one leftover dependency-status call site during validation, then re-ran the same focused parity slice to confirm the selected-tier contract stayed intact.
+- Re-ran focused card-types preview, selected-tier edit, linked-tier status, and draft-tier readiness assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form value-application checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now applies its preassembled `valuesResolver` through a tiny helper instead of mutating that Galaxy-tier form field inline immediately after the foundation edit-form wiring call.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload application path.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form disabled-reason payload checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form payload now carries its shared foundation-mutation disabled reason instead of recalculating that Galaxy-tier guard inline during the final edit-form wiring call.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload setup.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form values-payload checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now merges its identity and mutable form values through a dedicated payload helper instead of spreading those two Galaxy-tier arrays directly inside the values builder.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload structure.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form value-config checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form payload now exposes its `valuesResolver` through a tiny dedicated value-config helper instead of appending that value inline inside the broader payload builder.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload structure.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form values wrapper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form payload now uses the underlying Galaxy-tier values array directly instead of routing that same data through an extra values-resolver wrapper helper.
+- Kept the rendered selected-tier edit-form output unchanged while trimming one more tiny layer of indirection out of the live Galaxy-tier form payload setup.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form payload reuse checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now reuses the preassembled `valuesResolver` from its payload helper instead of recalculating that same Galaxy-tier form payload again after the edit-form wiring call.
+- Kept the rendered selected-tier edit-form output unchanged while trimming one more small piece of duplicated live-form payload setup out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form payload checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now merges its wiring config and values-resolver payload through one dedicated helper before the edit-form assembly step.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload setup.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form values-resolver checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now resolves its values-resolver payload through a tiny helper instead of assigning that Galaxy-tier form payload inline after the edit-form wiring call.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload setup.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form config assembly checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now merges its copy and route settings through one dedicated config helper before wiring the edit form, instead of threading those two small config blocks separately through the assembly step.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form wiring.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form route-config checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now resolves its update-route name, route parameters, index route, and catalog-return label through one dedicated route-config helper instead of threading those Galaxy-tier route values individually through the live-form wiring call.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form wiring.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form identity-payload checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now groups its top-level Galaxy-tier identity payload through one dedicated helper instead of appending the `name` and `slug` fields directly inside the main values array.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form mutable-values checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now groups its editable scalar and note fields through one dedicated mutable-values helper instead of appending those mutable Galaxy-tier payload fields directly inside the top-level values array.
+- Kept the rendered selected-tier edit-form output unchanged while tightening one more small seam around the live Galaxy-tier form payload.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+## 2026-06-10
+
+### Card-type live-form note-payload checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now groups its review, activation, and rollout note payload into one dedicated helper instead of appending those Galaxy-tier note fields one by one inside the main values array.
+- Kept the rendered selected-tier edit-form output unchanged while trimming another small piece of duplicated live-form payload wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form route-parameter checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now resolves its update-route parameter payload through a dedicated helper instead of building the selected `cardType` parameter array inline inside the live-form wiring block.
+- Kept the rendered selected-tier edit-form output unchanged while trimming another small piece of duplicated Galaxy-tier route wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form scalar values checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now resolves its scalar points-rate and active-state values through dedicated edit-form helpers instead of formatting those values inline inside the live-form payload.
+- Kept the rendered selected-tier edit-form output unchanged while trimming another small piece of duplicated Galaxy-tier live-form wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form note values checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now resolves its raw review, activation, and rollout note values through dedicated edit-form helpers instead of reading those nullable fields inline again inside the values payload.
+- Kept the rendered selected-tier edit-form output unchanged while trimming another small piece of duplicated Galaxy-tier live-form wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form identity values checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now reuses the shared Galaxy-tier name and slug helpers when preparing prefilled form values instead of reading those raw identity fields inline again.
+- Kept the rendered selected-tier edit-form output unchanged while trimming another small piece of duplicated Galaxy-tier identity wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form route-name checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now resolves its update route name, index route name, and catalog-return label through tiny helpers instead of leaving those Galaxy-tier edit-flow strings inline inside the live-form wiring block.
+- Kept the rendered selected-tier edit-form output unchanged while trimming another small piece of duplicated route-label wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-form route-resolution, and live-form values assertions as the parity guard for this small structural cleanup.
+
+### Card-type tier-label prefix checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier workspace now resolves the shared Galaxy-tier name prefix for its latest-flow and latest-backend-write labels through one helper instead of repeating the same tier-name access across multiple `sprintf` label builders.
+- Kept the rendered selected-tier output unchanged while trimming another small piece of duplicated Galaxy-tier label wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected latest-flow label checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier workspace now resolves its tier-name latest-flow summary label, latest backend-write timeline title, and latest-flow dependency label through named helpers instead of repeating the same `sprintf` string assembly inline.
+- Kept the rendered selected-tier output unchanged while trimming another small piece of duplicated Galaxy-tier label wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type shared secondary-action spec checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now builds its import-rules and publish review action specs through one shared helper instead of repeating the same Galaxy-tier secondary action labels separately for catalog and selected-tier surfaces.
+- Kept the rendered secondary action output unchanged while trimming another small piece of duplicated action wiring out of the card-types workspace.
+- Re-ran focused card-types preview, catalog readiness, draft-readiness, and selected-tier readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type catalog secondary-action checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds its secondary import and publish review actions through a dedicated helper instead of assembling that Galaxy-tier secondary action stack inline inside the catalog action composer.
+- Kept the rendered catalog action output unchanged while trimming another small piece of duplicated action wiring out of the card-types workspace.
+- Re-ran focused card-types preview, catalog readiness, draft-readiness, and selected-tier edit assertions as the parity guard for this small structural cleanup.
+
+### Card-type toggle-status href helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves its shared Galaxy-tier toggle-status href through one helper instead of repeating the same route wiring across catalog action cells and selected-tier primary actions.
+- Kept the rendered toggle-action output unchanged while trimming another small piece of duplicated Galaxy-tier navigation wiring out of the card-types workspace.
+- Re-ran focused card-types preview, catalog readiness, selected-tier edit, and header toggle-status assertions as the parity guard for this small structural cleanup.
+
+### Card-type live-form href helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves its selected-tier review href and catalog live-form href through named helpers instead of repeating the same `card-types` route-plus-anchor wiring inline across catalog links and create-shell actions.
+- Kept the rendered selected-tier and catalog link output unchanged while trimming another small piece of duplicated Galaxy-tier navigation wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, catalog readiness, and live-form route-resolution assertions as the parity guard for this small structural cleanup.
+
+### Card-type shared tier-state value checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves shared Galaxy-tier lifecycle-freshness, last-saved, and status-flow values through common tier-value helpers instead of keeping thin selected-only and catalog-only proxy helpers around those same lookups.
+- Kept the rendered selected-tier and catalog output unchanged while trimming another small piece of duplicated Galaxy-tier value wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type tier identity helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves shared Galaxy-tier identity values through common name and slug helpers instead of splitting the same raw values across separate selected-surface and catalog-row helpers.
+- Kept the rendered selected-tier and catalog output unchanged while trimming another small piece of duplicated Galaxy-tier identity wiring out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected shared-value helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier summary and dependency surfaces now resolve their shared tier name, slug, lifecycle-freshness, and last-saved values through small helpers instead of repeating those same Galaxy-tier lookups inline.
+- Kept the rendered selected-tier output unchanged while trimming another small piece of duplicated Galaxy-tier review logic out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
+### Card-type note-value helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now resolves Galaxy-tier review, activation, and rollout note fallbacks through dedicated helpers instead of repeating the same fallback strings across the selected summary, dependency status, and catalog preview surfaces.
+- Kept the rendered note output unchanged while trimming a small piece of duplicated Galaxy-tier review logic out of the card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, readiness-gating, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
+### Card-type catalog slug checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now resolves each Galaxy-tier slug cell through a dedicated helper instead of leaving that row slot inline inside the catalog row builder.
+- Kept the rendered catalog row output unchanged while tightening another small neighboring seam around the Galaxy-tier review surface.
+- Re-ran focused card-types preview, selected-tier edit, toggle-status, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
+### Card-type catalog status-flow checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now resolves each Galaxy-tier status-flow cell through a dedicated catalog helper instead of leaving that row slot wired directly to the shared status label method.
+- Kept the rendered catalog row output unchanged while tightening another small neighboring seam around the Galaxy-tier review surface.
+- Re-ran focused card-types preview, selected-tier edit, toggle-status, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
+### Card-type catalog name-link checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds each Galaxy-tier name link cell through a dedicated helper instead of wiring that selected-tier return link inline inside the catalog row builder.
+- Kept the rendered catalog row output unchanged while tightening another small neighboring seam around the Galaxy-tier review surface.
+- Re-ran focused card-types preview, selected-tier edit, toggle-status, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
+### Card-type catalog toggle-action checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds each Galaxy-tier toggle-status action cell through a dedicated helper instead of wiring that PATCH action inline inside the catalog row builder.
+- Kept the rendered catalog row output unchanged while tightening another small neighboring seam around the Galaxy-tier review surface.
+- Re-ran focused card-types preview, selected-tier edit, toggle-status, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
+### Card-type points-rate label checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types workspace now formats Galaxy-tier points-rate labels through a dedicated helper instead of repeating the same inline numeric formatting in both the catalog row and selected-tier summary surfaces.
+- Kept the rendered points-rate output unchanged while tightening another small neighboring seam around the Galaxy-tier review workspace.
+- Re-ran focused card-types preview, selected-tier edit, toggle-status, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
+### Card-type catalog rollout-note preview checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now resolves each Galaxy-tier rollout-note preview through a dedicated helper instead of truncating that preview inline inside the catalog row builder.
+- Kept the rendered catalog row output unchanged while tightening another small neighboring seam around the Galaxy-tier review surface.
+- Re-ran focused card-types preview, selected-tier edit, toggle-status, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
+### Card-type catalog row helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds each Galaxy-tier table row through a dedicated helper instead of assembling catalog row cells inline inside the main page enricher.
+- Kept the rendered card-types catalog output unchanged while tightening one more neighboring Phase 1 seam around the Galaxy-tier review workspace.
+- Re-ran focused card-types preview, selected-tier edit, toggle-status, and model-backed metric assertions as the parity guard for this small structural cleanup.
+
+### Card-type latest-saved catalog action checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now appends its latest-saved Galaxy-tier edit action through a dedicated helper instead of wiring that return-to-live-form action inline inside the main page enricher.
+- Added an explicit label helper for the latest saved tier-shell edit action so the catalog surface keeps its Galaxy-specific wording through a named seam.
+- Re-ran focused card-types preview, selected-tier edit, and catalog readiness assertions as the parity guard for this small structural cleanup.
+
+### Card-type catalog action helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types catalog workspace now builds its catalog action set through a dedicated helper instead of assembling the Galaxy-tier create/import/publish action stack inline inside the main page enricher.
+- Added an explicit catalog-only `New Galaxy tier` label helper so the catalog surface can stay Galaxy-specific without reusing the selected-tier shell-creation wording.
+- Re-ran focused card-types preview, selected-tier edit, and catalog readiness assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected primary-action disabled-reason checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now resolves its shared foundation-mutation disabled reason once inside the primary-action helper instead of recalculating the same Phase 1 guard for both primary actions.
+- Kept the rendered selected-tier action output unchanged while tightening one more tiny seam inside the Galaxy-tier action assembly.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected editing-action helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its current `Editing: ...` review action through a tiny helper instead of leaving that middle action inline between the primary and secondary action helpers.
+- Kept the rendered selected-tier action output unchanged while finishing the local helper split for the selected card-type action seam.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected primary action helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its primary mutation actions through a small helper instead of assembling the create-shell and toggle-status actions inline.
+- Kept the rendered selected-tier action output unchanged while fully splitting the selected action set into primary and secondary helper seams.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected live-form values checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now sources its prefilled live-form values through a dedicated helper instead of building that values payload inline during edit-form wiring.
+- Kept the rendered selected-tier edit form unchanged while tightening another small seam around the now more Galaxy-specific card-type workspace.
+- Re-ran focused card-types preview, selected-tier edit, and live-form callback assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected live-form wiring checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its edit-form wiring and prefilled values through one helper instead of leaving that live-form setup inline beside the broader surface composer.
+- Kept the rendered selected-tier edit form unchanged while tightening one more controller seam around the now more Galaxy-specific card-type workspace.
+- Re-ran focused card-types preview, selected-tier edit, and live-form callback assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected action assembly checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its action set through a tiny assembly helper instead of assigning selected-tier actions inline inside the broader surface composer.
+- Kept the rendered action output unchanged while making the selected-tier surface assembly fully symmetric across summary, actions, timeline, and dependencies.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected timeline/dependency assembly checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its timeline enrichment and dependency enrichment through two small helpers instead of doing those post-processing steps inline.
+- Kept the rendered selected-tier output unchanged while tightening the remaining assembly seams around the now more Galaxy-specific card-type workspace.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected summary helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its summary rows and post-write latest-flow feedback through a dedicated helper instead of doing that enrichment inline.
+- Kept the rendered selected-tier summary output unchanged while tightening one more seam around the now more Galaxy-specific card-type workspace.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected action helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its disabled secondary review actions through a small helper instead of assembling those import/publish review actions inline.
+- Kept the rendered action set unchanged while tightening one more seam around the now more Galaxy-specific selected-tier workspace.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected-surface assembly helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its summary feedback, action set, activity trail, dependency rows, and block-title enrichments through one small assembly helper instead of scattering those post-processing steps inline.
+- Kept the rendered selected-tier output unchanged while tightening the controller seam around the now more Galaxy-specific card-type workspace.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected timeline helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its Galaxy-specific activity trail through one helper instead of assembling that long timeline inline.
+- Kept the rendered timeline copy unchanged while tightening the selected-tier review seam, so later Phase 1 timeline-copy changes can stay localized.
+- Re-ran the focused selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected dependency helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now builds its Galaxy-specific dependency rows through one helper instead of assembling that dependency block inline.
+- Kept the rendered dependency copy unchanged while tightening the selected-tier review seam, so later Phase 1 dependency-copy changes can stay localized.
+- Re-ran focused card-types preview and selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected live-form copy helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type edit flow now sources its live-form title, description, submit/cancel labels, and review cue from one small helper instead of passing those card-type-specific strings inline.
+- Kept the rendered copy unchanged while tightening the selected-tier edit assembly seam, so later Phase 1 card-type form-copy changes can stay localized.
+- Re-ran focused card-types preview, selected-tier edit, and live-form callback assertions as the parity guard for this small structural cleanup.
+
+### Card-type selected-surface title helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type workspace now applies its three specialized block titles (`Selected Galaxy tier summary`, `Galaxy tier activity trail`, `Galaxy tier dependencies`) through a single helper instead of scattering those overrides inline.
+- Kept the rendered copy unchanged while tightening the selected-tier assembly seam, so later card-type-specific surface work can stay localized to one place.
+- Re-ran the focused selected-tier assertions as the parity guard for this small structural cleanup.
+
+### Card-type edit-flow dependency cue checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier dependency block now says `Live Galaxy tier form is running in request-driven PATCH mode` instead of the broader generic `Shared live form...` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific edit-flow dependency cue alongside the matching review and edit-form descriptions.
+- Re-ran focused card-types preview and selected-tier UI assertions as the parity guard for this small dependency-copy follow-up.
+
+### Card-type live-form review cue checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review cue now says `live Galaxy tier form` instead of the broader generic `shared live form` wording.
+- Updated the focused card-types preview/edit assertion so the workspace now locks that more Galaxy-specific review cue while leaving explicit live-form config overrides untouched.
+- Re-ran focused card-types preview, selected-tier edit, and live-form callback assertions as the parity guard for this small card-type form-copy follow-up.
+
+### Card-type live-form description checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the default selected-tier edit description now says `live Galaxy tier form` instead of the broader generic `shared live form` wording.
+- Updated the focused selected-tier assertion so the card-types workspace now locks that more Galaxy-specific edit-form description while leaving the explicit config override path untouched.
+- Re-ran focused selected-tier UI and live-form callback assertions as the parity guard for this small card-type form-copy follow-up.
+
+### Card-type success summary label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected row in card-type success summaries now renders as `Selected Galaxy tier` instead of the broader generic `Selected tier` wording.
+- Updated the focused card-types success-path assertions so create, toggle, and live-update flows now lock that more Galaxy-specific selected-tier summary label while neighboring non-card-type success banners keep their prior wording.
+- Re-ran focused card-types and adjacent cards success-banner assertions as the parity guard for this small post-write wording follow-up.
+
+### Card-type backend-flow summary checkpoint
+- Tightened `resources/views/admin/resource-index.blade.php` so the card-types success banner now uses the more explicit summary line `Galaxy tier changes are now visible in the Galaxy foundation-backed workspace.` instead of the broader generic `Tier changes...` wording.
+- Updated the focused card-types success-path assertions so create and live-update flows now lock that more Galaxy-specific post-write summary line while neighboring non-card-type banners keep their prior wording.
+- Re-ran focused card-types and adjacent cards success-banner assertions as the parity guard for this small post-write wording follow-up.
+
+### Card-type backend-flow title checkpoint
+- Tightened `resources/views/admin/resource-index.blade.php` so the success banner now renders a card-type-specific `Galaxy tier flow checkpoint` title while leaving other resource banners on the existing generic `Backend flow checkpoint` heading.
+- Updated the focused card-types success-path assertions so the selected-tier workspace now locks that more Galaxy-specific post-write banner title across create, toggle, and live update flows.
+- Re-ran focused card-types success-path assertions, and corrected one accidental non-card-type assertion drift before confirming the card-type-only specialization stayed isolated.
+
+### Card-type timeline block title checkpoint
+- Extended `resources/views/admin/partials/resource-activity-timeline.blade.php` to accept an overridable title, then set the selected card-type workspace to render that block as `Galaxy tier activity trail` instead of the broader generic `Recent activity preview` heading.
+- Updated the focused selected-tier assertions so the card-types workspace now locks the new timeline block title across draft-linked and active-linked scenarios.
+- Re-ran the focused selected-tier assertions after aligning one stale expectation that still referenced the old generic heading.
+
+### Card-type summary block title checkpoint
+- Extended `resources/views/admin/partials/resource-selected-record-summary.blade.php` to accept an overridable title, then set the selected card-type workspace to render that block as `Selected Galaxy tier summary` instead of the broader generic `Selected record summary` heading.
+- Updated the focused selected-tier assertions so the card-types workspace now locks the new summary block title across draft-linked and active-linked scenarios.
+- Re-ran the focused selected-tier assertions as the parity guard for this small selected-summary heading follow-up.
+
+### Card-type dependency block title checkpoint
+- Extended `resources/views/admin/partials/resource-dependency-status.blade.php` to accept an overridable title, then set the selected card-type workspace to render that block as `Galaxy tier dependencies` instead of the broader generic `Implementation dependencies` heading.
+- Updated the focused selected-tier assertions so the card-types workspace now locks the new block title and the already-renamed tier-specific dependency labels across draft-linked and active-linked scenarios.
+- Re-ran the focused selected-tier assertions after aligning a few stale expectations that still referenced the old generic dependency labels.
+
+### Card-type action-gating dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the gating row as `Galaxy tier action gating` instead of the broader generic `Action gating` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
+### Card-type publish dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the publish row as `Galaxy tier publish posture` instead of the broader generic `Publish posture` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions after aligning one stale assertion that still expected the old generic label.
+
+### Card-type rule-import dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the import row as `Galaxy tier rule-import posture` instead of the broader generic `Rule-import posture` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
+### Card-type status-posture dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the posture row as `Galaxy tier status posture` instead of the broader generic `Current status posture` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
+### Card-type coverage dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the coverage row as `Galaxy tier coverage signal` instead of the broader generic `Coverage signal` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
+### Card-type last-saved dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the timestamp row as `Galaxy tier last saved in foundation` instead of the broader generic `Last saved in Galaxy foundation` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
+### Card-type lifecycle dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the freshness row as `Galaxy tier lifecycle freshness` instead of the broader generic `Lifecycle freshness` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
+### Card-type edit-flow dependency label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the PATCH-mode row as `Galaxy tier edit flow state` instead of the broader generic `Edit flow state` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the other tier-specific review and feedback cues.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
+### Card-type selected-tier label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected card-type dependency block now labels the primary item as `Selected Galaxy tier` instead of the broader generic `Selected record` wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more Galaxy-specific dependency label alongside the existing tier-specific flow and timeline wording.
+- Re-ran the focused selected-tier assertions as the parity guard for this small dependency-label follow-up.
+
+### Card-type selected-summary flow label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected tier's record-summary feedback now uses a tier-specific `...latest flow result from selected tier` label instead of the broader generic `Latest flow result` wording.
+- Updated the focused selected-tier post-toggle assertions so the card-types workspace now locks that more explicit selected-summary flow label alongside the live-form dependency and timeline labels.
+- Re-ran the focused selected-tier and header-toggle assertions as the parity guard for this small selected-summary wording follow-up.
+
+### Card-type live-form flow label checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so the selected tier's backend-flow summary now uses a tier-specific `...latest flow result from live form` label instead of the broader generic `Latest flow result` wording.
+- Updated the focused selected-tier post-toggle assertions so the card-types workspace now locks that more explicit live-form flow label alongside the selected-tier backend-write timeline title.
+- Re-ran the focused selected-tier and header-toggle assertions as the parity guard for this small post-write wording follow-up.
+
+### Card-type backend-write timeline title checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so a selected tier's latest backend-write timeline item now uses a tier-specific `...latest backend write reflected from live form` title instead of the broader generic label.
+- Updated the focused selected-tier assertions so the card-types workspace now locks that more explicit post-write timeline title in the selected draft-tier review flow.
+- Re-ran the focused selected-tier assertions as the parity guard for this small post-write timeline follow-up.
+
+### Card-type edit-flow timeline checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review timeline now also includes an explicit `edit flow state reflected from live form` entry instead of leaving the live PATCH-mode cue only inside the dependency/detail card.
+- Updated the focused selected-tier assertions so the card-types management context now locks that new edit-flow timeline title and description for draft-linked and active-unlinked tier scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small timeline-symmetry follow-up.
+
+### Card-type blocker timeline checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review timeline now also includes explicit `import rules blocker` and `publish tier blocker` entries instead of leaving those action-disabled reasons only on the buttons and detail card.
+- Updated the focused selected-tier assertions so the card-types management context now locks the new blocker timeline titles and descriptions for draft-linked and active-unlinked tier scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small timeline-symmetry follow-up.
+
+### Card-type readiness timeline checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review timeline now also includes an explicit `readiness signal` entry instead of leaving that model-backed readiness cue only inside the detail card.
+- Updated the focused selected-tier assertions so the card-types management context now locks the new readiness timeline title and description for draft-linked and active-unlinked tier scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small timeline-symmetry follow-up.
+
+### Card-type guidance timeline checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review timeline now also includes explicit `status guidance`, `rule-import blocker`, and `publish guidance` entries instead of leaving those model-backed guidance cues only inside the detail card.
+- Updated the focused selected-tier assertions so the card-types management context now locks the new guidance timeline titles and descriptions for draft-linked and active-unlinked tier scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small timeline-symmetry follow-up.
+
+### Card-type freshness timeline checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the selected-tier review timeline now includes explicit `activation freshness` and `rollout freshness` entries instead of leaving those model-backed freshness cues only inside the detail card.
+- Updated the focused selected-tier assertions so the card-types management context now locks the new timeline titles and freshness descriptions for draft-linked and active-unlinked tier scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small timeline-symmetry follow-up.
+
+### Card-type activation and rollout freshness wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Activation freshness` and `Rollout freshness` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving those note-freshness cues on broader live/draft wording.
+- Updated the focused selected-tier assertions so the card-types edit shell now locks the new draft-linked and active-unlinked freshness phrases in the real selected-tier review flow.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
+### Card-type catalog action-blocker wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so catalog-level card-type import and publish blocker copy now distinguishes saved active Galaxy tiers from saved draft Galaxy tiers instead of leaning on broader saved/live wording.
+- Updated the existing catalog-readiness assertion and added a focused draft-only catalog-readiness assertion so the card-types workspace now locks both active-catalog and draft-catalog blocker phrasing.
+- Re-ran the focused card-types catalog readiness assertions as the parity guard for this small catalog-surface wording follow-up.
+
+### Card-type selected action-blocker wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier import and publish blocker copy now also distinguishes `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving those action blockers on broader live/draft wording.
+- Updated the focused selected-tier assertions so the card-types workspace now locks those linkage-aware import and publish blocker phrases across all four selected tier scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
+### Card-type focus and posture wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Tier focus`, `Tier posture`, and `Evidence priority` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving those planning cues on broader live/draft wording.
+- Updated the focused selected-tier assertions so the card-types management context and edit-shell detail now lock those linkage-aware focus and posture phrases across linked and unlinked active/draft scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
+### Card-type status-signal and backend-gap wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Tier status signal` and backend-gap copy now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaving the final review cues on broader live/draft wording.
+- Extended the focused selected-tier assertions so both the management context card and the edit-shell detail card now lock those linkage-aware status and backend-gap phrases across all four active/draft and linked/unlinked scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
+### Card-type guidance and action-gating wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Status guidance`, `Rule-import blocker`, `Publish guidance`, and `Action gating` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of leaning on broader live/draft wording.
+- Extended the focused selected-tier assertions so the card-types edit shell now locks those linkage-aware guidance and gating phrases across all four active/draft and linked/unlinked scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
+### Card-type readiness and posture wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Readiness signal`, `Current status posture`, `Rule-import posture`, and `Publish posture` strings now also distinguish `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier states instead of using broader live/draft-only wording.
+- Extended the focused selected-tier assertions so the card-types edit shell now locks those linkage-aware readiness and posture phrases across active-linked, active-unlinked, draft-linked, and draft-unlinked scenarios.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
+### Card-type coverage-freshness and handoff wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier `Coverage freshness` and `Handoff signal` strings now use the same explicit `active linked`, `active unlinked`, `draft linked`, and `draft unlinked` Galaxy tier language as the newer coverage signal wording.
+- Updated the focused selected-tier assertions so both the edit-shell detail card and the surrounding management context now lock those linkage-aware freshness and handoff phrases across draft and active tier states.
+- Re-ran the focused selected-tier card-types assertions as the parity guard for this small wording-consistency follow-up.
+
+### Card-type coverage-signal wording checkpoint
+- Tightened `App\Http\Controllers\Admin\ResourceIndexController` so selected tier coverage wording now explicitly says `active linked`, `active unlinked`, `draft linked`, or `draft unlinked` instead of falling back to broader `live` or generic `draft` card-coverage labels.
+- Updated the focused selected-tier assertions so the visible card-types review surface now checks those more explicit Galaxy linkage phrases across both linked and unlinked draft/live states.
+- Re-ran the focused selected-tier coverage assertions as the parity guard for this small tier-runtime wording follow-up.
+
+### Card-type unlinked-state metrics checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the live `card-types` management snapshot now also exposes `Active unlinked Galaxy tiers` and `Draft unlinked Galaxy tiers`, completing the first visible active-vs-draft linkage matrix for Galaxy tiers on the admin surface.
+- Updated the focused model-backed card-types metrics assertion so it now also locks the unlinked side of that matrix to one active unlinked tier and zero draft unlinked tiers in the same real Galaxy shop, holder, and card context.
+- Re-ran the focused card-types metrics assertion as the parity guard for this small tier-runtime symmetry follow-up.
+
+### Card-type linked-state metrics checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the live `card-types` management snapshot now also exposes `Active linked Galaxy tiers` and `Draft linked Galaxy tiers`, making the new tier-linkage foundation less generic and more rollout-aware on the visible admin surface.
+- Updated the focused model-backed card-types metrics assertion so it now covers one active linked tier, one draft linked tier, and one still-unlinked tier inside a real Galaxy shop and holder context.
+- Re-ran the focused card-types metrics assertion as the parity guard for this small tier-runtime follow-up.
+
+### Card-type linkage metrics checkpoint
+- Extended `App\Http\Controllers\Admin\ResourceIndexController` so the live `card-types` management snapshot now exposes `Linked Galaxy tiers` and `Unlinked Galaxy tiers` metrics directly from the newer `CardType` linkage scopes.
+- Updated the focused card-types management preview assertion so this runtime surface stays tied to a real Galaxy shop, holder, card, and tier linkage context instead of leaving the new tier-foundation coverage model-only.
+- Re-ran the focused card-types management preview assertion as the parity guard for this small tier-runtime follow-up.
+
+### Card-type unlinked scope symmetry checkpoint
+- Added explicit `activeUnlinked` and `draftUnlinked` scopes to `app/Models/CardType.php`, completing the first small active-vs-draft linkage matrix for Galaxy tiers instead of leaving unlinked tier review to ad hoc chained filters.
+- Extended the focused tier-linkage assertion in `tests/Feature/AdminDashboardTest.php` so both the linked and unlinked sides of the tier foundation query surface stay locked to one real Galaxy shop, holder, and card context.
+- Re-ran the focused tier-scope assertions as the parity guard for this small model-foundation symmetry follow-up.
+
+### Card-type linkage scopes checkpoint
+- Added explicit `linked`, `unlinked`, `activeLinked`, and `draftLinked` scopes to `app/Models/CardType.php`, so the Phase 1 tier foundation now names card-assignment coverage directly instead of leaving future tier workflow queries to ad hoc relationship filters.
+- Added focused scope coverage in `tests/Feature/AdminDashboardTest.php` to lock those tier-linkage queries to a real Galaxy shop, holder, and card context.
+- Re-ran the focused tier-scope assertions as the parity guard for this small model-foundation follow-up.
+
+### Checks and rules gates checkpoint
+- Added explicit `view-checks-points` and `view-services-rules` gates in `app/Providers/Concerns/RegistersAdminAccessGates.php` and wired `admin.checks-points.index` plus `admin.services-rules.index` through them in `routes/admin.php`, so those two operational review lanes are no longer only implied by the shared admin shell guard.
+- Updated the Phase 1 access baseline, seam docs, and focused dashboard assertions so the receipt and rules route contracts now name their dedicated review gates while still truthfully staying in the shared-shell maturity bucket until deeper receipt and rule policies land.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this next operational-lane access follow-up.
+
+### Gifts gate checkpoint
+- Added an explicit `view-gifts` gate in `app/Providers/Concerns/RegistersAdminAccessGates.php` and wired `admin.gifts.index` through it in `routes/admin.php`, so rewards review is no longer only an unnamed shared-shell lane.
+- Updated the Phase 1 access baseline and seam docs so the gifts route contract now names its dedicated gate while still truthfully staying in the shared-shell maturity bucket until reward-specific policies land.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this next operational-lane access follow-up.
+
+### Reports gate checkpoint
+- Added an explicit `view-reports` gate in `app/Providers/Concerns/RegistersAdminAccessGates.php` and wired `admin.reports.index` through it in `routes/admin.php`, so reporting is no longer only an unnamed shared-shell review lane.
+- Updated the Phase 1 access baseline and seam docs so the reporting route contract now names its dedicated gate while still truthfully staying in the shared-shell maturity bucket until report-source policies land.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this first operational-lane access follow-up.
+
+### Access guardrail maturity-count checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so the policy-backed versus shared-shell maturity split now counts tracked route guardrails by their explicit config-owned `maturity` contract instead of by guard-string heuristics.
+- Kept the access seam docs aligned so route-level labels, grouped lane maturity notes, and top-level maturity counts now all flow from the same Phase 1 access baseline source of truth.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map contract-hardening follow-up.
+
+### Access guardrail grouped-maturity checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so grouped lane maturity notes now derive from the tracked route items inside each family instead of relying on a separate hardcoded family-to-maturity match.
+- Kept the access seam docs aligned so both route-level and lane-level maturity now flow from the same config-owned route contract rather than from parallel controller heuristics.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map contract-hardening follow-up.
+
+### Access guardrail config-maturity checkpoint
+- Extended `config/phase-1-access-baseline.php` so each tracked route guardrail now declares its maturity explicitly, and updated `App\Http\Controllers\Admin\DashboardController` to read that config-owned contract instead of inferring maturity from the guard string.
+- Kept the access seam docs aligned so the dashboard now surfaces access maturity across the top metrics, grouped lane summaries, and individual route contracts from one explicit Phase 1 source of truth.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map contract-hardening follow-up.
+
+### Access guardrail route-maturity checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each tracked route guardrail now also carries a controller-owned maturity label, making the policy-backed versus shared-shell split visible at the individual route level instead of only in grouped summaries.
+- Kept the access seam docs aligned so the dashboard now surfaces access maturity across the top metrics, the grouped lane summaries, and the individual route contracts.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map maturity follow-up.
+
+### Access guardrail lane-maturity checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each grouped access lane now also carries a controller-owned maturity note, making it explicit which lanes already run through policy checks and which still rely only on the shared shell guard.
+- Kept the access seam docs aligned so the dashboard now surfaces maturity not only in the top summary metrics but also directly inside each grouped lane summary.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map maturity follow-up.
+
+### Access guardrail maturity-metrics checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so the access-baseline metrics now also report the policy-backed versus shared-shell route split, not just the grouped intro paragraph.
+- Kept the access seam docs aligned so the dashboard now surfaces that maturity split in both the summary metrics and the grouped access-lane narrative.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map maturity follow-up.
+
+### Access guardrail maturity-split checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so the grouped route-guardrail intro now also reports how many live access routes are already policy-backed versus still only guarded by the shared admin shell.
+- Kept the access seam docs aligned so the dashboard now shows not only route volume but also the current maturity split between deeper Phase 1 access seams and shell-only operational coverage.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-map maturity follow-up.
+
+### Access shell-route guardrail checkpoint
+- Expanded `config/phase-1-access-baseline.php` and the dashboard access-map shaping so the live `checks-points`, `services-rules`, `gifts`, and `reports` review routes now appear as explicit shared-shell guardrails alongside the already tracked policy-backed branch, holder, card, tier, and access-shell lanes.
+- Updated the grouped access-lane ordering and summaries in `App\Http\Controllers\Admin\DashboardController` so the admin dashboard now shows a fuller Phase 1 access picture, including the still-shell-guarded operational surfaces that have not reached deeper policy seams yet.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small live-access inventory expansion.
+
+### Access gate-and-policy intro checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so the access baseline now also exposes controller-shaped intro notes for the tracked gate and tracked policy sections, keeping those small framing sentences alongside the already-shaped grouped route-lane intro.
+- Updated the dashboard access card and seam docs so the access-baseline section framing stays progressively more controller-owned instead of drifting back toward Blade-side assembly.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small controller-contract follow-up.
+
+### Access route-guardrail intro-note checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so the grouped route-guardrail inventory now also exposes a controller-shaped intro note summarizing the live guardrail count and family-lane count before the grouped list renders.
+- Updated the dashboard access card and seam docs so this small bit of grouped access-lane framing no longer lives as an implicit view concern.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small controller-contract follow-up.
+
+### Access route-guardrail family order checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so grouped access guardrail families now sort through a controller-owned branch → holder → card → tier → access-shell order instead of relying on incidental config ordering.
+- Updated the access seam docs and added a focused dashboard order assertion so the live Phase 1 access map stays stable as new guardrails are added later.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small controller-ordering follow-up.
+
+## 2026-06-09
+
+### Access route-guardrail display-contract checkpoint
+- Updated `resources/views/admin/dashboard.blade.php` to render the grouped access-lane summary from the controller-owned `displaySummary` payload instead of rebuilding the heading/count/summary presentation out of separate view pieces.
+- Kept the access seam docs aligned so the Phase 1 access card remains an explicitly controller-shaped runtime contract rather than drifting back toward Blade-side assembly.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small controller-contract follow-up.
+
+### Access route-guardrail family display-summary checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each grouped access guardrail family now also exposes a controller-owned display summary contract, keeping the heading/count/summary payload shaped in one place.
+- The current Blade render still uses the separate heading and muted summary lines, but this follow-up keeps the grouped access-lane presentation owned by the controller-side access map contract instead of drifting back toward view assembly.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small controller-contract follow-up.
+
+### Access route-guardrail family summary checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each grouped access guardrail family now carries a short controller-shaped summary in addition to its count and label.
+- Updated `resources/views/admin/dashboard.blade.php` so the live access card shows those family summaries under the grouped headings, making the larger Phase 1 guardrail map easier to scan without reading every route first.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-readability follow-up.
+
+### Access route-guardrail family count checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each grouped access guardrail family now carries a controller-prepared item count alongside its family label.
+- Updated `resources/views/admin/dashboard.blade.php` so the live access card shows those per-family counts directly in the grouped headings, making the growing Phase 1 access map easier to scan.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-readability follow-up.
+
+### Access route-guardrail family grouping checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so the access-baseline card now groups tracked route guardrails into workflow families for Galaxy branches, holders, card shells, tiers, and access shells.
+- Updated `resources/views/admin/dashboard.blade.php` so the live access card renders those controller-prepared guardrail groups instead of one flat route list, keeping the Phase 1 access map easier to scan as the inventory grows.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small runtime readability follow-up.
+
+### Card-type toggle route-guardrail checkpoint
+- Expanded `config/phase-1-access-baseline.php` so the access route-guardrail inventory now includes the dedicated `admin.card-types.toggle-status` action alongside the already-tracked tier review/create/update routes.
+- Updated the access seam docs and focused dashboard assertions so the Phase 1 access card now shows the live tier status-toggle endpoint as a router-derived method-plus-path contract too.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small tier-action follow-up.
+
+### Card-type route-guardrail inventory checkpoint
+- Expanded `config/phase-1-access-baseline.php` so the access route-guardrail inventory now includes the live `card-types` review/create/update trio alongside the already-tracked `shops`, `cardholders`, `cards`, and `roles-permissions` trios.
+- Updated the access seam docs and focused dashboard assertions so the Phase 1 access card now shows tier-catalog entry points as router-derived method-plus-path contracts as well.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small tier-access follow-up.
+
+### Card route-guardrail inventory checkpoint
+- Expanded `config/phase-1-access-baseline.php` so the access route-guardrail inventory now includes the live `cards` review/create/update trio alongside the already-tracked `shops`, `cardholders`, and `roles-permissions` trios.
+- Updated the access seam docs and focused dashboard assertions so the Phase 1 access card now shows card-catalog entry points as router-derived method-plus-path contracts as well.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small card-access follow-up.
+
+### Cardholder route-guardrail inventory checkpoint
+- Expanded `config/phase-1-access-baseline.php` so the access route-guardrail inventory now includes the live `cardholders` review/create/update trio alongside the already-tracked `shops` and `roles-permissions` trios.
+- Updated the access seam docs and focused dashboard assertions so the Phase 1 access card now shows holder-catalog entry points as router-derived method-plus-path contracts as well.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small holder-access follow-up.
+
+### Shop route-guardrail inventory checkpoint
+- Expanded `config/phase-1-access-baseline.php` so the access route-guardrail inventory now includes the live `shops` review/create/update trio alongside the already-tracked `roles-permissions` trio.
+- Updated the access seam docs and focused dashboard assertions so the Phase 1 access card now shows both branch-boundary and access-shell entry points as router-derived method-plus-path contracts.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small branch-access follow-up.
+
+### Access route-contract payload checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so tracked access route guardrails now resolve their live HTTP methods and URI paths from Laravel's router before rendering on the dashboard.
+- This keeps the Phase 1 access-baseline card closer to a real runtime contract, so the `roles-permissions` read/write entry points are visible as method-plus-path guardrails instead of route-name-only inventory.
+- Updated the access seam docs and focused dashboard assertion, then re-ran the narrow dashboard slice as the parity guard for this small runtime-contract follow-up.
+
+### Roles-permissions write-guardrail inventory checkpoint
+- Expanded `config/phase-1-access-baseline.php` so the new access route-guardrail inventory now tracks the full first live `roles-permissions` route trio: review, create, and update.
+- Updated the dashboard access metrics/copy plus the access seam docs so the live Phase 1 baseline now shows both the shared dual-policy read route and the bootstrap-only write entry points for the current access shell.
+- Re-ran the focused dashboard and route-contract assertions as the parity guard for this small access-entrypoint follow-up.
+
+### Access route-guardrail inventory checkpoint
+- Extended `config/phase-1-access-baseline.php`, `App\Http\Controllers\Admin\DashboardController`, and `resources/views/admin/dashboard.blade.php` so the access-baseline card now tracks shared admin review route guardrails as a first-class inventory, not just gates and policies.
+- Added the `admin.roles-permissions.index` dual-policy contract as the first explicit route-guardrail item, keeping the permission-vocabulary seam visible in the live dashboard runtime as well as in `routes/admin.php`.
+- Updated the access-baseline seam docs and focused dashboard assertions, then re-ran the narrow dashboard check as the parity guard for this small runtime-facing access slice.
+
+### Roles-permissions route guardrail checkpoint
+- Tightened `routes/admin.php` so the shared `admin.roles-permissions.index` review route now requires both `Role::viewAny` and `Permission::viewAny` instead of only the role-side policy check.
+- Updated `docs/phase-1-access-baseline.md` and `docs/phase-1-foundation-seams.md` so the live access baseline now documents that the permission-vocabulary seam participates in a real endpoint guard, not just the dashboard inventory.
+- Re-ran focused dashboard and route-contract assertions as the parity guard for this small access-enforcement follow-up.
+
+### Permission policy source-of-truth sync checkpoint
+- Added `app/Policies/PermissionPolicy.php` to the access baseline source-of-truth trails in `config/phase-1-access-baseline.php`, `docs/phase-1-access-baseline.md`, `config/phase-1-foundation-seams.php`, and `docs/phase-1-foundation-seams.md`.
+- This keeps the newer permission policy seam visible not just in the tracked policy inventory, but also in the explicit anchor lists contributors use to find the live Phase 1 access baseline.
+- Re-ran the focused admin dashboard check as the parity guard for this small access-doc sync slice.
+
+### Permission policy baseline checkpoint
+- Added `app/Policies/PermissionPolicy.php` and registered it through `RegistersAdminPolicies`, so `Permission` now has an explicit policy-shaped seam alongside the other core Phase 1 access entities.
+- Updated `config/phase-1-access-baseline.php`, `docs/phase-1-access-baseline.md`, `docs/phase-1-foundation-seams.md`, and the focused authenticated dashboard assertion so the access baseline now reflects six mapped policy anchors instead of five.
+- Extended the focused bootstrap, scoped, and paused-shop access-helper assertions so `PermissionPolicy` now participates in the same regression coverage as the other Phase 1 policy seams.
+- Re-ran the focused admin dashboard check as the parity guard for this small Galaxy access-layer follow-up.
+
+### README reference source-of-truth wording checkpoint
+- Tightened the README top-level Phase 1 reference prose so the repo entrypoint now explicitly names the newer access, shop-scope, model-skeleton, and migration baselines in its source-of-truth wording instead of leaving them implied by the bullet inventory alone.
+- Also clarified the README seam-source source-of-truth note so it explicitly covers those newer seams now tied into the README-level inventory.
+- Re-ran the focused landing check as a lightweight parity guard after this repo-guidance wording follow-up.
+
+### Landing reference source-of-truth expansion checkpoint
+- Expanded `config/landing-docs.php` so the public landing source-of-truth trail now includes the newer access, shop-scope, model-skeleton, and migration baselines instead of pointing only at the older README-plus-config pair.
+- Updated `docs/phase-1-foundation-seams.md` and the focused landing assertion so this richer public reference prose stays aligned with the expanded Phase 1 foundation map.
+- Re-ran the focused landing check as the parity guard for this small Galaxy public reference-trail follow-up.
+
+### Admin reference source-of-truth expansion checkpoint
+- Expanded `config/phase-1-reference-docs.php` so the admin dashboard source-of-truth trail now includes the newer access, shop-scope, model-skeleton, and migration baselines instead of pointing only at the older high-level planning anchors.
+- Updated `docs/phase-1-foundation-seams.md` and the focused authenticated dashboard assertion so this richer admin reference prose stays aligned with the now-expanded Phase 1 inventory.
+- Re-ran the focused admin dashboard check as the parity guard for this small Galaxy reference-trail follow-up.
+
+### README seam-source baseline expansion checkpoint
+- Expanded `config/phase-1-seam-sources.php` and the README seam-source inventory so the newer access, shop-scope, model-skeleton, and migration baselines are now visible in top-level repo guidance instead of only on the admin and landing surfaces.
+- Kept the README-level seam-source trail aligned with the newer Galaxy Phase 1 foundation map and re-ran the focused admin dashboard plus landing checks to confirm the surfaced seam counts stayed in sync.
+
+### Reference-trail baseline expansion checkpoint
+- Added the new access, shop-scope, model-skeleton, and migration-baseline docs/config anchors to `config/phase-1-reference-docs.php` and `config/landing-docs.php`, so both admin and public reference trails now reflect the fuller Galaxy Phase 1 foundation map.
+- Updated the focused dashboard and landing feature assertions to match the expanded reference counts and newly visible baseline anchors.
+- Kept this slice small and structural: no new runtime behavior changed beyond the reference inventories and their surfaced coverage counts.
+
+### Dashboard migration baseline checkpoint
+- Added `docs/phase-1-migration-baseline.md` and `config/phase-1-migration-baseline.php` so the existing Galaxy schema checkpoints now have an explicit Phase 1 baseline instead of living only inside `database/migrations`.
+- Extended `App\Http\Controllers\Admin\DashboardController` and `resources/views/admin/dashboard.blade.php` with a new Phase 1 migration-baseline card that renders controller-shaped schema checkpoint inventory plus focused migration-layer metrics.
+- Updated `docs/phase-1-foundation-seams.md`, `config/phase-1-foundation-seams.php`, and the focused authenticated admin dashboard feature check to keep this new Galaxy schema seam visible and verified.
+
+### Dashboard model-skeleton baseline checkpoint
+- Added `docs/phase-1-model-skeletons.md` and `config/phase-1-model-skeletons.php` so the existing Galaxy Eloquent models and their first migration anchors now have an explicit Phase 1 baseline instead of living only as implicit file structure.
+- Extended `App\Http\Controllers\Admin\DashboardController` and `resources/views/admin/dashboard.blade.php` with a new Phase 1 model-skeleton card that renders controller-shaped skeleton inventory plus focused model/migration anchor metrics.
+- Updated `docs/phase-1-foundation-seams.md`, `config/phase-1-foundation-seams.php`, and the focused authenticated admin dashboard feature check to keep this new Galaxy data-layer seam visible and verified.
+
+### Dashboard shop-scoped access baseline checkpoint
+- Added `docs/phase-1-shop-access-baseline.md` and `config/phase-1-shop-access-baseline.php` so the existing Galaxy branch-boundary rules now have an explicit Phase 1 baseline instead of staying implicit inside `User::canAccessShop(...)`, `ShopPolicy`, and the `access-shop` gate.
+- Extended `App\Http\Controllers\Admin\DashboardController` and `resources/views/admin/dashboard.blade.php` with a new Phase 1 shop-scoped access card that renders controller-shaped branch-boundary rule inventory plus focused scope metrics.
+- Updated `docs/phase-1-foundation-seams.md`, `config/phase-1-foundation-seams.php`, and the focused authenticated admin dashboard feature check to keep this new Galaxy scope seam visible and verified.
+
+### Dashboard access-baseline seam checkpoint
+- Added `docs/phase-1-access-baseline.md` and `config/phase-1-access-baseline.php` so the existing Galaxy authorization gates, policy mappings, and admin-route guardrail now have an explicit Phase 1 baseline instead of staying implicit inside provider code.
+- Extended `App\Http\Controllers\Admin\DashboardController` and `resources/views/admin/dashboard.blade.php` with a new Phase 1 access-baseline card that renders controller-shaped gate and policy inventory plus focused access metrics.
+- Updated `docs/phase-1-foundation-seams.md`, `config/phase-1-foundation-seams.php`, and the focused authenticated admin dashboard feature check to keep this new Galaxy access seam visible and verified.
+
+### Dashboard migration-map item summary payload checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each migration-map item now carries a prepared `displaySummary`, letting the Galaxy dashboard render each navigation target without assembling label, description, and route text in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin migration-map item handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
+### Dashboard domain inventory display payload checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each mapped core entity now carries a prepared `displaySummary`, letting the Galaxy dashboard render that inventory without assembling label, table, and coverage in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin domain inventory handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
+### Dashboard foundation-seam summary payload checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each foundation-seam inventory item now carries a prepared `displaySummary`, letting the Galaxy dashboard render the primary seam line without assembling label plus summary in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin foundation-seam summary handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
+### Dashboard seam-source inventory display payload checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each seam-source inventory item now carries a prepared `displayLabel`, letting the Galaxy dashboard render that inventory without wrapping raw labels in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin seam-source inventory handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
+### Dashboard reference-doc inventory display payload checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each reference-doc inventory item now carries a prepared `displayLabel`, letting the Galaxy dashboard render that inventory without wrapping raw labels in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin reference-doc inventory handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
+### Dashboard foundation-seam inventory note payload checkpoint
+- Extended `App\Http\Controllers\Admin\DashboardController` so each foundation-seam inventory item now carries a prepared secondary `sourcesNote`, letting the Galaxy dashboard render that muted follow-up line without assembling the label in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin foundation-seam inventory handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
+### Dashboard foundation-seam metric payload checkpoint
+- Moved the foundation-seam coverage, baseline, and posture rows into a controller-shaped `phaseOneFoundationSeamMetrics` payload in `App\Http\Controllers\Admin\DashboardController`, so that Galaxy foundation-seam card follows the same prepared-metrics pattern as the other dashboard summary surfaces.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin foundation-seam metric handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
+### Dashboard seam-source metric payload checkpoint
+- Moved the seam-source coverage, baseline, and posture rows into a controller-shaped `phaseOneSeamSourceMetrics` payload in `App\Http\Controllers\Admin\DashboardController`, so that Galaxy seam-source card follows the same prepared-metrics pattern as the other dashboard summary surfaces.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin seam-source metric handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
+### Dashboard reference-doc metric payload checkpoint
+- Moved the admin reference-doc coverage, baseline, and posture rows into a controller-shaped `phaseOneReferenceDocMetrics` payload in `App\Http\Controllers\Admin\DashboardController`, so that Galaxy reference trail card follows the same prepared-metrics pattern as the other dashboard summary surfaces.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin reference-doc metric handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
+### Dashboard domain metric payload checkpoint
+- Moved the core entity map coverage and inventory rows into a controller-shaped `phaseOneDomainMetrics` payload in `App\Http\Controllers\Admin\DashboardController`, so that Galaxy domain baseline card now follows the same prepared-metrics pattern as the other dashboard summary surfaces.
+- Updated `resources/views/admin/dashboard.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this admin domain metric handoff visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface backend slice.
+
+### Dashboard entry-summary handoff cleanup checkpoint
+- Removed the now-unused raw live-entry and latest-work summary string variables from `App\Http\Controllers\Admin\DashboardController`, because those Galaxy dashboard cards already render through controller-shaped metric payloads.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this admin runtime cleanup visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface cleanup slice.
+
+### Dashboard planned-section handoff cleanup checkpoint
+- Removed the now-unused raw `plannedSectionCount` view variable from `App\Http\Controllers\Admin\DashboardController`, because the Galaxy migration-map card already renders its counters through controller-shaped metrics and prepared navigation payloads.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this admin runtime cleanup visible in the Phase 1 seam map.
+- Re-ran the focused authenticated admin dashboard feature check as the parity guard for this small Galaxy admin-surface cleanup slice.
+
+### Landing raw-config handoff cleanup checkpoint
+- Removed the now-unused raw `landingFoundation` view context from `App\Http\Controllers\LandingPageController`, because the public Galaxy landing surface now reads its hero frame, snapshot rows, foundation cards, and docs card entirely from controller-shaped payloads.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this public landing raw-config cleanup visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface cleanup slice.
+
+### Landing docs-card payload checkpoint
+- Consolidated the public landing reference card into one `landingDocsCard` payload in `App\Http\Controllers\LandingPageController`, so the Galaxy landing docs surface now receives its title, summary rows, and docs inventory through one backend-shaped contract instead of several separate view variables.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing docs-card handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
+### Landing docs heading payload checkpoint
+- Moved the public landing docs-card heading into `App\Http\Controllers\LandingPageController`, so the Galaxy reference card now reads its title from the same controller-prepared payload contract as the rest of that landing docs surface.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing docs-heading handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
+### Landing hero frame payload checkpoint
+- Moved the public landing eyebrow, hero title, and snapshot heading/description handoff into `App\Http\Controllers\LandingPageController`, so the Galaxy home surface now renders that framing copy from one controller-shaped hero-frame payload instead of direct config reads in Blade.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing hero-frame handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
+### Landing docs inventory payload checkpoint
+- Moved the public landing docs inventory assembly into `App\Http\Controllers\LandingPageController`, so the Galaxy reference card now renders its link/code item list from a controller-prepared payload instead of direct config iteration in Blade.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing docs-inventory handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
+### Landing docs summary payload checkpoint
+- Moved the public landing docs-card summary row assembly into `App\Http\Controllers\LandingPageController`, so the Galaxy reference trail card now renders its focus, coverage, baseline, seam-source, and bridge copy from one controller-shaped payload instead of many direct `data_get(...)` reads in Blade.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing reference-trail handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
+### Landing foundation card payload checkpoint
+- Moved the public landing live-surface and working-rule list assembly into `App\Http\Controllers\LandingPageController`, so those Galaxy-specific cards now render from one controller-shaped foundation-card payload instead of direct list reads in Blade.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing card handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
+### Landing snapshot payload checkpoint
+- Moved public landing snapshot row assembly into `App\Http\Controllers\LandingPageController`, so the Galaxy home surface now renders focus plus status rows from one controller-shaped payload instead of mixing direct config reads and row assembly inside Blade.
+- Updated `resources/views/welcome.blade.php` and `docs/phase-1-foundation-seams.md`, keeping this public landing runtime handoff visible in the Phase 1 seam map.
+- Re-ran the focused landing feature test as the parity guard for this small Galaxy public-surface backend slice.
+
+### Dashboard assigned-branch metric payload checkpoint
+- Moved the assigned-branch action summary row assembly into `App\Http\Controllers\Admin\DashboardController`, so the scoped branch snapshot now renders those coverage/posture/focus rows from one controller-prepared payload instead of separate inline paragraphs in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side assigned-branch metric handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard latest-work metric payload checkpoint
+- Moved the latest-work summary metric assembly into `App\Http\Controllers\Admin\DashboardController`, so the Galaxy dashboard now renders that card’s coverage/focus/posture rows from one controller-prepared payload instead of separate inline paragraphs in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side latest-work metric handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard live-entry metric payload checkpoint
+- Moved the live review entry summary metric assembly into `App\Http\Controllers\Admin\DashboardController`, so the Galaxy dashboard now renders that card’s coverage/focus/posture rows from one controller-prepared payload instead of separate inline paragraphs in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side live-entry metric handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard migration-map metric payload checkpoint
+- Moved the migration-map summary counter assembly into `App\Http\Controllers\Admin\DashboardController`, so the Galaxy admin map now renders a controller-prepared metric payload instead of keeping separate inline counter paragraphs in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side migration-map metric handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard assigned-branch action payload checkpoint
+- Routed assigned-branch snapshot actions through the reusable workspace-link shaping helper in `App\Http\Controllers\Admin\DashboardController`, so that scoped branch action list now shares the same normalized link payload contract as the other dashboard workspace surfaces.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this dashboard-side assigned-branch action handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard migration-map payload shaping checkpoint
+- Moved migration-map navigation link preparation into `App\Http\Controllers\Admin\DashboardController`, so the Galaxy admin map now renders controller-prepared route hrefs instead of resolving route URLs inline in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side migration-map payload handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard live-entry payload shaping checkpoint
+- Routed the live review entry-point list through the reusable workspace-link shaping helper in `App\Http\Controllers\Admin\DashboardController`, so both major dashboard link collections now normalize through one backend payload path instead of mixing prepared and ad-hoc arrays.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this dashboard-side live-entry payload handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard latest-work payload shaping checkpoint
+- Routed the latest-work shortcut list through a reusable workspace-link shaping helper in `App\Http\Controllers\Admin\DashboardController`, so the Galaxy dashboard now normalizes latest workspace payloads through one backend path instead of relying on an ad-hoc filtered array.
+- Updated `docs/phase-1-foundation-seams.md`, keeping this dashboard-side workspace payload handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard foundation-metric payload checkpoint
+- Moved the live foundation snapshot metric assembly into `App\Http\Controllers\Admin\DashboardController`, so the main Galaxy dashboard metric grid now renders one controller-prepared payload instead of keeping a long inline metric block in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side foundation-metric handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard workspace-path seam checkpoint
+- Moved dashboard workspace-link path parsing into `App\Http\Controllers\Admin\DashboardController` by extending the shared workspace-link payload with a prepared `path`, so the live Galaxy admin review/workspace cards no longer call `parse_url()` inline in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side workspace-path handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard domain inventory shaping checkpoint
+- Moved the admin dashboard Phase 1 domain inventory shaping into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy entity card now renders controller-prepared entity items instead of reading the raw domain-map config structure directly in Blade.
+- Updated `docs/phase-1-foundation-seams.md` to keep that admin-side domain payload handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard seam-source inventory shaping checkpoint
+- Moved the admin dashboard seam-source inventory shaping into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy seam-source card now renders controller-prepared items instead of reading the raw config list directly in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the seam-source notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping this dashboard-side data-shaping handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard reference-doc inventory shaping checkpoint
+- Moved the admin dashboard reference-doc inventory shaping into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy reference card now renders controller-prepared doc items instead of reading the raw config list directly in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin-reference seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping this dashboard-side data-shaping handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard foundation-source-list checkpoint
+- Moved the admin dashboard foundation-seam source-list assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy seam inventory now renders controller-prepared source trail text instead of calling `implode()` inline in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side source-list handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard domain-map controller-string checkpoint
+- Moved the admin dashboard entity-map guide and source-of-truth string assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy admin entry surface now renders controller-prepared Phase 1 domain reference prose instead of stitching those inline lists together in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus `docs/phase-1-foundation-seams.md`, keeping this dashboard-side domain-reference handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard reference-doc controller-string checkpoint
+- Moved the admin dashboard reference-doc guide and source-of-truth string assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy admin entry surface now renders another slice of controller-prepared Phase 1 reference prose instead of stitching those inline lists together in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin-reference seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping this dashboard-side reference-string handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard foundation-seam controller-string checkpoint
+- Moved the admin dashboard foundation-seam guide and source-of-truth string assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy admin entry surface now renders another slice of controller-prepared seam reference prose instead of stitching those inline lists together in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the admin runtime note in `docs/phase-1-foundation-seams.md`, keeping this dashboard-side seam-string handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Dashboard seam-source controller-string checkpoint
+- Moved the admin dashboard seam-source guide and source-of-truth string assembly into `App\Http\Controllers\Admin\DashboardController`, so the live Galaxy admin entry surface now renders controller-prepared seam-source reference trails instead of stitching those inline lists together in Blade.
+- Updated `resources/views/admin/dashboard.blade.php` plus the seam-source notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping this admin-side reference-string handoff visible in the Phase 1 seam map.
+- Re-ran a focused authenticated admin dashboard feature check as the parity guard for this small Galaxy dashboard backend slice.
+
+### Landing controller hero-copy seam checkpoint
+- Moved public hero description token replacement into `App\Http\Controllers\LandingPageController`, so the welcome surface now renders controller-prepared Galaxy landing hero HTML instead of assembling emphasized product copy inline in Blade.
+- Updated `resources/views/welcome.blade.php` plus the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the hero-copy preparation handoff visible in the Phase 1 seam map.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
+### Landing controller action-prep seam checkpoint
+- Moved public hero CTA href resolution into `App\Http\Controllers\LandingPageController`, so the welcome surface now renders controller-prepared Galaxy landing actions instead of deciding route-vs-url targets inline in Blade.
+- Updated `resources/views/welcome.blade.php` plus the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the action-preparation handoff visible in the Phase 1 seam map.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
+### Landing controller reference-string seam checkpoint
+- Moved the public landing doc-guide, source-of-truth, and seam-source source-of-truth string assembly into `App\Http\Controllers\LandingPageController`, so the welcome surface now renders controller-prepared Galaxy reference trails instead of stitching those inline lists together in Blade.
+- Updated `resources/views/welcome.blade.php` plus the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the reference-string handoff visible in the Phase 1 seam map.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
+### Landing controller metric seam checkpoint
+- Moved the public landing doc-count and seam-source-count calculations into `App\Http\Controllers\LandingPageController`, so the welcome surface now reads those small Phase 1 metrics from controller-owned data instead of counting config arrays inline in Blade.
+- Updated `resources/views/welcome.blade.php` plus the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the landing metric handoff visible in the Phase 1 seam map.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
+### Landing controller-view data seam checkpoint
+- Updated `App\Http\Controllers\LandingPageController` to pass `landing-foundation`, `landing-docs`, and `phase-1-seam-sources` config into the public welcome view, so the live Galaxy landing surface now depends on an explicit controller-backed data seam instead of reaching straight into config from every Blade block.
+- Refactored `resources/views/welcome.blade.php` to read from the injected landing data arrays, then updated the landing seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so this backend handoff stays visible in the Phase 1 map.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
+### Landing route-name seam checkpoint
+- Named the public root route `landing` in `routes/web.php`, so the new Galaxy landing controller seam now exposes an explicit routable identity instead of relying only on `/` plus controller binding.
+- Updated `tests/Feature/ExampleTest.php` plus the landing-shell seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping that named-route anchor visible in QA and Phase 1 documentation.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
+### Landing route-controller seam checkpoint
+- Replaced the default root-route closure in `routes/web.php` with a dedicated `App\Http\Controllers\LandingPageController`, so the public Galaxy landing surface now has an explicit Phase 1 backend handoff instead of starter-style inline routing.
+- Updated `tests/Feature/ExampleTest.php` plus the landing-shell seam notes in `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, keeping the landing controller seam visible in both QA and Phase 1 documentation.
+- Re-ran the focused public landing feature assertions as the parity check for this small Galaxy landing backend slice.
+
+### Landing focus note seam checkpoint
+- Surfaced `config/landing-foundation.php` focus copy on the live welcome-page snapshot, so the public Galaxy landing surface now shows its explicit Phase 1 posture instead of keeping that guidance only in config.
+- Updated the landing-shell seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer landing-shell config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing-shell config slice.
+
+### Landing docs-card bridge-reference seam checkpoint
+- Extended `config/landing-docs.php` so the public Galaxy docs card now owns its seam-bridge reference path metadata instead of leaving that bridge callout partially hardcoded in `resources/views/welcome.blade.php`.
+- Updated the public landing reference seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer docs-card config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing reference-surface slice.
+
+### Landing docs-card path-callout seam checkpoint
+- Extended `config/landing-docs.php` so the public Galaxy docs card now owns its config-path callouts for baseline and seam-bridge notes instead of leaving those file references inline in `resources/views/welcome.blade.php`.
+- Updated the public landing reference seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer docs-card config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing reference-surface slice.
+
+### Landing hero emphasis-token seam checkpoint
+- Extended `config/landing-foundation.php` so the public Galaxy landing hero now owns its emphasized product-token rendering instead of leaving the `galaxiNew` highlight rule hardcoded in `resources/views/welcome.blade.php`.
+- Updated the landing-shell seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer hero config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing-shell config slice.
+
+### Landing docs-card note seam checkpoint
+- Extended `config/landing-docs.php` so the public Galaxy docs card now owns its explanatory note copy and coverage suffixes instead of leaving those phrases inline in `resources/views/welcome.blade.php`.
+- Updated the public landing reference seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer docs-card config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing reference-surface slice.
+
+### Landing docs-card label seam checkpoint
+- Extended `config/landing-docs.php` so the public Galaxy docs card now owns its metric and note labels instead of leaving that surface copy inline in `resources/views/welcome.blade.php`.
+- Updated the public landing reference seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer docs-card config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing reference-surface slice.
+
+### Landing docs-card config seam checkpoint
+- Extended `config/landing-docs.php` so the public Galaxy docs card now owns its heading plus the seam-bridge copy instead of leaving those strings inline in `resources/views/welcome.blade.php`.
+- Updated the public landing reference seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer docs-card config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing reference-surface slice.
+
+### Landing section-heading config seam checkpoint
+- Extended `config/landing-foundation.php` so the public Galaxy landing shell now owns the snapshot framing copy plus the live-surface and working-rule section headings instead of leaving those strings inline in `resources/views/welcome.blade.php`.
+- Updated the landing-shell seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer welcome-page config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing-shell config slice.
+
+### Landing CTA config seam checkpoint
+- Extended `config/landing-foundation.php` so the public Galaxy landing hero now owns its CTA action labels, targets, and button styles instead of leaving those links inline in `resources/views/welcome.blade.php`.
+- Updated the landing-shell seam notes in `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php`, keeping the readable and implementation seam map aligned with the richer welcome-page config baseline.
+- Re-ran the focused public landing feature assertion as the parity check for this small Galaxy landing-shell config slice.
+
+### Landing-foundation seam-source checkpoint
+- Added `config/landing-foundation.php` to `config/phase-1-seam-sources.php`, so the README-level seam-source inventory now tracks the public Galaxy landing-shell baseline alongside the other explicit Phase 1 config seams.
+- Updated `README.md` plus the focused admin dashboard and landing feature assertions so seam-source coverage and visible reference copy include the landing-shell seam.
+- Re-ran the focused admin dashboard and public landing feature assertions as the parity check for this small seam-source alignment slice.
+
+### Landing-foundation reference trail checkpoint
+- Added `config/landing-foundation.php` to the Phase 1 admin reference inventory in `config/phase-1-reference-docs.php` and to the public landing reference list in `config/landing-docs.php`, so the new Galaxy landing shell seam stays visible in both reference trails.
+- Updated `README.md` plus the focused dashboard and landing feature assertions to treat the landing-shell config as part of the explicit Phase 1 foundation trail.
+- Re-ran the focused admin dashboard and public landing feature assertions as the parity check for this small reference-trail alignment slice.
+
+### Admin dashboard landing-seam parity checkpoint
+- Updated `tests/Feature/AdminDashboardTest.php` so the Phase 1 dashboard assertions now expect the new public landing shell seam in the foundation seam inventory.
+- Added dashboard coverage for the `Public landing shell baseline` row plus `config/landing-foundation.php`, keeping the admin-side seam inventory aligned with the new welcome-page Galaxy foundation config.
+- Re-ran the focused admin dashboard feature assertion as the parity check for this small Phase 1 dashboard alignment slice.
+
+### Public landing shell config seam checkpoint
+- Added `config/landing-foundation.php` to hold the Galaxy-specific public landing hero, Phase 1 snapshot rows, live management surfaces, and working rules instead of keeping that copy inline in `resources/views/welcome.blade.php`.
+- Updated `docs/phase-1-foundation-seams.md` plus `config/phase-1-foundation-seams.php` so the new welcome-page seam is tracked alongside the existing Phase 1 config-backed structure.
+- Re-ran the public landing feature assertion as the parity check for this small Phase 1 foundation seam.
+
+## 2026-06-08
+
+### Shop visible-card-count wrapper cleanup checkpoint
+- Removed the single-use `shopVisibleCardCountValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its string-cast count directly into the selected-shop summary.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop visible-cardholder-count wrapper cleanup checkpoint
+- Removed the single-use `shopVisibleCardholderCountValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its string-cast count directly into the selected-shop summary.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop status-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsStatusPosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its paused-vs-active review posture copy directly into the selected-shop dependency summary.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop branch-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsBranchReviewPosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its read-only Galaxy foundation copy directly into the selected-shop dependency summary.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop coverage-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsCoveragePosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its paused-vs-active coverage copy directly into the selected-shop dependency summary.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Cardholder selected-page-state wrapper cleanup checkpoint
+- Removed the single-use `cardholdersSelectedPageState()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its selected-holder page assembly directly into the cardholders page builder.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Cardholder live-form-values wrapper cleanup checkpoint
+- Removed the single-use `cardholdersLiveFormValues()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its selected-holder live-form value array at the page builder.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Cardholder selected-actions wrapper cleanup checkpoint
+- Removed the single-use `cardholdersSelectedActions()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its `selectedReadContextWithDisabledActions()` call at the selected-holder page builder.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Cardholder last-saved-label wrapper cleanup checkpoint
+- Removed the single-use `cardholdersLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-holder call sites directly to the shared `lastSavedLabel()` helper.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Cardholder lifecycle-description wrapper cleanup checkpoint
+- Removed the single-use `cardholdersLifecycleFreshnessDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its shared lifecycle description call at the selected-holder timeline entry.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Cardholder lifecycle-label wrapper cleanup checkpoint
+- Removed the single-use `cardholdersLifecycleFreshnessLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-holder summaries directly to the shared `lifecycleFreshnessLabel()` helper.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Cardholder phone-label wrapper cleanup checkpoint
+- Removed the single-use `cardholdersPhoneLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-holder summary directly to `cardholderPhoneValue($selectedCardHolder, '—')`.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Cardholder review-note wrapper cleanup checkpoint
+- Removed the single-use `cardholdersReviewNoteLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-holder summaries directly to `cardholderReviewNoteValue($selectedCardHolder, 'No review note saved yet')`.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Cardholder selected-label wrapper cleanup checkpoint
+- Removed the single-use `cardholdersSelectedHolderLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-holder summaries directly to `cardholderFullNameValue()`.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Card last-saved-label wrapper cleanup checkpoint
+- Removed the single-use `cardsLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-card call sites directly to the shared `lastSavedLabel()` helper.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Card lifecycle-description wrapper cleanup checkpoint
+- Removed the single-use `cardsLifecycleFreshnessDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its shared lifecycle description call at the selected-card timeline entry.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Card lifecycle-label wrapper cleanup checkpoint
+- Removed the single-use `cardsLifecycleFreshnessLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-card summaries directly to the shared `lifecycleFreshnessLabel()` helper.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop review-note-value wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedReviewNoteValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopReviewNoteValue($selectedShop, 'No review note saved yet')`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop lifecycle-description wrapper cleanup checkpoint
+- Removed the single-use `shopsLifecycleFreshnessDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its shared lifecycle description call at the selected-shop timeline entry.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop last-saved-label wrapper cleanup checkpoint
+- Removed the single-use `shopsLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-shop call sites directly to the shared `lastSavedLabel()` helper.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop lifecycle-label wrapper cleanup checkpoint
+- Removed the single-use `shopsLifecycleFreshnessLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to the shared `lifecycleFreshnessLabel()` helper.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop operational-readiness wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedOperationalReadiness()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsOperationalReadiness()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop review-mode wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedReviewMode()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsReviewMode()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop selected-label wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-shop call sites directly to `shopNameValue()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop last-saved wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired its remaining selected-shop call sites directly to `shopsLastSavedLabel()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop lifecycle-freshness wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedLifecycleFreshnessLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopsLifecycleFreshnessLabel()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop branch-guidance wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedBranchGuidance()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsBranchGuidance()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop evidence-priority wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedEvidencePriority()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsEvidencePriority()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop branch-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedBranchPosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsBranchPosture()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop branch-focus wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedBranchFocus()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsBranchFocus()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop backend-gap wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedBackendGap()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopsBackendGap()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop scope-handoff-signal wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedScopeHandoffSignal()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopsScopeHandoffSignal()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop status-signal wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedStatusSignal()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopsStatusSignal()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop coverage-signal wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedCoverageSignal()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired both selected-shop summaries directly to `shopsCoverageSignal()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop scope timeline wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedScopeTimelineDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop timeline directly to `shopsScopeTimelineHandoffDescription()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop review-note timeline wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedReviewNoteTimelineDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop timeline directly to `shopReviewNoteReflection()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop lifecycle timeline wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedLifecycleTimelineDescription()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop timeline directly to `shopsLifecycleFreshnessDescription()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-branch-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyBranchPosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsBranchReviewPosture()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-coverage-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyCoveragePosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsCoveragePosture()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-manager-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyManagerPosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsManagerPosture()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-status-posture wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyStatusPosture()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsStatusPosture()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-scope-handoff wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyScopeHandoffSignal()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedScopeHandoffSignal()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-status-signal wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyStatusSignal()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedStatusSignal()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-coverage-signal wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyCoverageSignal()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedCoverageSignal()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-backend-gap wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyBackendGap()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedBackendGap()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-lifecycle wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyLifecycleFreshnessLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedLifecycleFreshnessLabel()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-last-saved wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyLastSavedLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedLastSavedLabel()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-review-note wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyReviewNoteValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedReviewNoteValue()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop dependency-label wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedDependencyLabel()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the dependency summary directly to `shopsSelectedLabel()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop selected-card-count wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedCardCountValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopVisibleCardCountValue()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop selected-cardholder-count wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedCardholderCountValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopVisibleCardholderCountValue()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop selected-manager-guidance wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedManagerGuidance()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopsManagerGuidance()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop selected-manager wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedManagerName()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopAssignedManagerName()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop selected-status wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedStatusValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopStatusValue()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop selected-code wrapper cleanup checkpoint
+- Removed the single-use `shopsSelectedCodeValue()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and wired the selected-shop summary directly to `shopCodeValue()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop active-value wrapper cleanup checkpoint
+- Removed the single-use `shopActiveValue()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its explicit `'1'` / `'0'` mapping at the selected-shop live-form value seam.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Non-empty string wrapper cleanup checkpoint
+- Removed the small `nonEmptyStrings()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its explicit filter path inside the role scope-name and assigned-user preview helpers.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Unused iterable helper removal checkpoint
+- Removed the now-unused `iterableCount()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` after the recent count cleanups switched remaining callers to direct collection or array counting.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController dead-code cleanup.
+
+### Loaded shop user wrapper cleanup checkpoint
+- Removed the now-single-use `firstLoadedShopUser()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` and inlined its safe first-manager lookup inside `shopAssignedManagerName()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Shop manager wrapper cleanup checkpoint
+- Removed the redundant `firstLoadedShopManager()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and switched `shopAssignedManagerName()` to read directly from `firstLoadedShopUser()`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Unused count helper removal checkpoint
+- Removed the now-unused `countMatching()` helper from `app/Http/Controllers/Admin/ResourceIndexController.php` after the recent checks and preview count simplifications stopped calling it.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Latest model lookup wrapper cleanup checkpoint
+- Removed the redundant `firstQueryItem()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and switched `latestSavedModelRecord()` to call `->first()` directly on the latest-id query.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Catalog preview wrapper cleanup checkpoint
+- Removed the redundant `firstCatalogPreview()` wrapper from `app/Http/Controllers/Admin/ResourceIndexController.php` and switched the receipt, rules, and gifts preview paths to call `firstCollectedItem()` directly.
+- Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController preview-helper cleanup.
+
+### Positive-count helper seam checkpoint
+- Replaced the generic `countMatching()` path inside `positiveCountEntries()` with a direct collection filter and `count()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, making the shared Galaxy preview-count helper more explicit.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController helper cleanup.
+
+### Checks zero-accrual count seam checkpoint
+- Replaced the generic `countMatching()` path inside `zeroAccrualReceiptCount()` with a direct preview-collection filter and `count()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, keeping the checks receipt metrics flow explicit and local to the Galaxy checks preview.
+- Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.
+
+### Checks receipt total-count seam checkpoint
+- Replaced `iterableCount()` with direct `count()` inside `receiptPreviewCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because the checks receipt preview helper already receives a plain preview array.
+- Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.
+
+### Loaded shop and scope collection seam checkpoint
+- Replaced `iterableCount()` with direct collection `count()` inside `shopLoadedManagerCount()`, `shopLoadedCardholderCount()`, `shopLoadedCardCount()`, and `roleScopeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because each helper already operates on loaded Galaxy collections.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController collection-count cleanup.
+
+### Loaded card coverage collection seam checkpoint
+- Replaced `iterableCount()` with direct collection `count()` inside `loadedCardTypeCardCount()` and `loadedCardholderCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because both helpers already operate on loaded Galaxy card collections.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController card-coverage cleanup.
+
+### Roles loaded-count collection seam checkpoint
+- Replaced `iterableCount()` with direct collection `count()` inside `roleLoadedUserCount()` and `roleLoadedPermissionCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, because both helpers already operate on loaded role collections.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController role-count cleanup.
+
+### Checks receipt shop-count seam cleanup checkpoint
+- Inlined the unique-shop counting flow inside `receiptPreviewShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then removed the extra `receiptPreviewShops()` wrapper because it no longer added useful Phase 1 reporting structure.
+- Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.
+
+### Checks catalog receipt-metric precompute checkpoint
+- Precomputed receipt preview shop, total, and zero-accrual counts in `app/Http/Controllers/Admin/ResourceIndexController.php`, then passed those explicit metrics into the checks catalog disabled-state helpers instead of making each helper recalculate from the full preview array.
+- Re-ran the dedicated checks-points operational index assertion as the parity check for this small ResourceIndexController checks-preview cleanup.
+
+### Roles dependency dead-parameter cleanup checkpoint
+- Removed the unused `$permissionPreview` parameter from `rolesPermissionsSelectedRoleDependencyStatus()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the selected-role dependency call to match.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController access-review cleanup.
+
+### Unused role and holder shop helper removal checkpoint
+- Removed the now-unused `rolesPermissionsLifecycleFreshness()` and `cardholderShopIsUnassigned()` methods from `app/Http/Controllers/Admin/ResourceIndexController.php` after the surrounding Galaxy preview flows stopped depending on them.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController dead-code cleanup.
+
+### Unused cardholder linkage helper removal checkpoint
+- Removed the now-unused `cardholderIsLinked()` and `cardholderIsUnlinked()` methods from `app/Http/Controllers/Admin/ResourceIndexController.php` after the surrounding Galaxy holder preview flow standardized on `cardholderHasLinkedCards()` and direct linked-card counts.
+- Re-ran the dedicated cardholders operational index assertion as the parity check for this small ResourceIndexController dead-code cleanup.
+
+### Unused cards helper removal checkpoint
+- Removed the now-unused `cardsCatalogIssueCardDisabledReason()` method from `app/Http/Controllers/Admin/ResourceIndexController.php` after the surrounding Galaxy cards catalog flow stopped calling it.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController dead-code cleanup.
+
+### Unused catalog helper removal checkpoint
+- Removed the now-unused `cardholdersCatalogNewHolderDisabledReason()` and `shopsCatalogNewShopDisabledReason()` methods from `app/Http/Controllers/Admin/ResourceIndexController.php` after the surrounding Galaxy catalog actions stopped depending on them.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController dead-code cleanup.
+
+### Unused catalog helper dead-parameter cleanup checkpoint
+- Removed the unused `$cardHolders` parameter from `cardholdersCatalogNewHolderDisabledReason()` and the unused `$shops` parameter from `shopsCatalogNewShopDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController catalog cleanup.
+
+### Shops catalog dead-parameter cleanup checkpoint
+- Removed the unused `$shops` parameter from `shopsCatalogReviewScopeDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the catalog call to match.
+- Re-ran the dedicated shops operational index assertion as the parity check for this small ResourceIndexController branch-catalog cleanup.
+
+### Cardholders catalog dead-parameter cleanup checkpoint
+- Removed the unused `$cardHolders` parameter from `cardholdersCatalogReviewActivityDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the live catalog call to match.
+- Re-ran the dedicated cardholders management preview assertion as the parity check for this small ResourceIndexController holder-catalog cleanup.
+
+### Cards catalog dead-parameter cleanup checkpoint
+- Removed the unused `$cards` parameter from `cardsCatalogIssueCardDisabledReason()` and `cardsCatalogReviewBlockedDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the live catalog call to match.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController card-catalog cleanup.
+
+### Card-types catalog dead-parameter cleanup checkpoint
+- Removed the unused `$cardTypes` parameter from `cardTypesCatalogImportRulesDisabledReason()` and `cardTypesCatalogPublishTypeDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the catalog calls to match.
+- Re-ran the dedicated card-types management preview assertion as the parity check for this small ResourceIndexController tier-catalog cleanup.
+
+### Roles catalog dead-parameter cleanup checkpoint
+- Removed the unused `$roles` parameter from `rolesPermissionsCatalogReviewMatrixDisabledReason()` and `rolesPermissionsCatalogPublishRoleDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then updated the catalog calls to match.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController access-catalog cleanup.
+
+### Card-types saved-count helper reuse checkpoint
+- Reused `cardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so card-types catalog disabled-state messaging no longer derives saved Galaxy tier totals from the loaded collection.
+- Re-ran the dedicated card-types management preview assertion as the parity check for this small ResourceIndexController tier-catalog cleanup.
+
+### Card-types total count helper seam checkpoint
+- Added `cardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the card-types workspace metrics no longer derive the saved Galaxy tier total from the already loaded collection.
+- Re-ran the dedicated card-types management preview assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
+### Reports total holder helper seam checkpoint
+- Added `cardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer loads the full Galaxy holder collection just to derive the total holder count.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController reporting cleanup.
+
+### Reports total role helper seam checkpoint
+- Added `roleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer loads the full Galaxy access role collection just to derive the total role count.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController reporting cleanup.
+
+### Reports unscoped assigned staff helper seam checkpoint
+- Added `unscopedAssignedStaffCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer derives assigned staff without shop scope by subtracting scoped-assignment totals inline.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController access-staffing cleanup.
+
+### Reports unassigned active role helper seam checkpoint
+- Added `activeUnassignedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer derives active Galaxy access roles without assigned staff by subtracting assigned-role totals inline.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController access-staffing cleanup.
+
+### Reports permissionless role helper seam checkpoint
+- Added `activePermissionlessRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer derives active permissionless Galaxy access roles by subtracting permission-linked role totals inline.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController access-summary cleanup.
+
+### Reports unlinked holder helper seam checkpoint
+- Added `unlinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the reports workspace no longer derives unlinked Galaxy holder totals by subtracting linked-holder counts inline.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController holder-summary cleanup.
+
+### Reports paused-branch holder helper seam checkpoint
+- Reused `pausedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the reports workspace no longer derives paused-branch Galaxy holder totals by subtracting active-branch counts inline.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController holder-summary cleanup.
+
+### Reports unassigned inventory helper seam checkpoint
+- Reused `unassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the reports workspace no longer derives unassigned Galaxy card inventory by subtracting linked-card totals inline.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController inventory-summary cleanup.
+
+### Reports total inventory helper seam checkpoint
+- Added `shopCount()` and `cardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused them so the reports workspace no longer reaches for inline total branch and total card count queries while building the Galaxy Phase 1 reporting preview.
+- Re-ran the dedicated reports operational index assertion as the parity check for this small ResourceIndexController reporting cleanup.
+
+### Cards catalog disabled-state helper seam checkpoint
+- Reused `draftCardCount()` and `blockedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so cards catalog disabled-state messaging no longer reaches for inline draft and blocked inventory count queries.
+- Re-ran the dedicated cards operational index assertion as the parity check for this small ResourceIndexController card-catalog cleanup.
+
+### Resource catalog iterable count seam follow-up checkpoint
+- Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so loaded cardholder and role catalog totals no longer call collection `count()` inline while building the Galaxy Phase 1 admin preview workspace.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController count-seam cleanup.
+
+### Resource paused-branch permission-linked role summary helper checkpoint
+- Added `pausedShopPermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level paused-branch permission-linked role count no longer reaches for an inline paused-branch permission-bearing role count query.
+- Re-ran the dedicated roles-permissions management preview assertion as the parity check for this small ResourceIndexController access-summary cleanup.
+
+### Resource active-branch permission-linked role summary helper checkpoint
+- Added `activeShopPermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active-branch permission-linked role count no longer reaches for an inline active assigned-to-active-shop permission-bearing role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource shop-scoped permission-linked role summary helper checkpoint
+- Added `shopScopedPermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level shop-scoped permission-linked role count no longer reaches for an inline active shop-scoped permission-bearing role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active assigned permission-linked role summary helper checkpoint
+- Added `activeAssignedPermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active assigned permission-linked role count no longer reaches for an inline active assigned permission-bearing role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active permission-linked role summary helper checkpoint
+- Added `activePermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active permission-linked role count no longer reaches for an inline active permission-bearing role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource paused-branch assigned staff summary helper checkpoint
+- Added `pausedShopAssignedStaffCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level paused-branch assigned staff count no longer reaches for an inline paused-branch role-assigned user count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active-branch assigned staff summary helper checkpoint
+- Added `activeShopAssignedStaffCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active-branch assigned staff count no longer reaches for an inline active-branch role-assigned user count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource shop-scoped assigned staff summary helper checkpoint
+- Added `shopScopedAssignedStaffCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level shop-scoped assigned staff count no longer reaches for an inline scoped role-assigned user count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource assigned staff summary helper checkpoint
+- Added `assignedStaffCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level assigned staff count no longer reaches for an inline role-assigned user count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource draft assigned role summary helper checkpoint
+- Added `draftAssignedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level draft assigned role count no longer reaches for an inline draft-assigned role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active assigned role summary helper checkpoint
+- Added `activeAssignedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active assigned role count no longer reaches for an inline active-assigned role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource draft permission-linked role summary helper checkpoint
+- Added `draftPermissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level draft permission-linked role count no longer reaches for an inline draft-permission-bearing role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active role summary metric helper checkpoint
+- Reused `activeRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active role count no longer reaches for an inline active-role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource activated linked holder summary metric helper checkpoint
+- Added `activatedLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level activated linked holder count no longer reaches for an inline activated-linked-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource draft linked holder summary metric helper checkpoint
+- Added `draftLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level draft linked holder count no longer reaches for an inline draft-linked-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource blocked linked holder summary metric helper checkpoint
+- Added `blockedLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level blocked linked holder count no longer reaches for an inline blocked-linked-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active linked holder summary metric helper checkpoint
+- Reused `activeLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active linked holder count no longer reaches for an inline active-linked-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+## 2026-06-07
+
+### Resource activated linked card summary metric helper checkpoint
+- Reused `activatedHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level activated linked card count no longer reaches for an inline activated-holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource draft linked card summary metric helper checkpoint
+- Reused `draftHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level draft linked card count no longer reaches for an inline draft-holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource blocked linked card summary metric helper checkpoint
+- Reused `blockedHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level blocked linked card count no longer reaches for an inline blocked-holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active linked card summary metric helper checkpoint
+- Reused `activeHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active linked card count no longer reaches for an inline active-holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active-branch holder summary metric helper checkpoint
+- Reused `activeShopCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active-branch holder count no longer reaches for an inline active-branch holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource linked holder summary metric helper checkpoint
+- Added `linkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level linked holder count no longer reaches for an inline linked-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource inactive holder summary metric helper checkpoint
+- Reused `inactiveCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level inactive holder count no longer reaches for an inline inactive-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active holder summary metric helper checkpoint
+- Reused `activeCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active holder count no longer reaches for an inline active-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource draft unassigned card summary helper checkpoint
+- Added `draftUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level draft unassigned card count no longer reaches for an inline draft unassigned card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource blocked unassigned card summary helper checkpoint
+- Reused `blockedUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level blocked unassigned card count no longer reaches for an inline blocked unassigned card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource activated unassigned card summary helper checkpoint
+- Added `activatedUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level activated unassigned card count no longer reaches for an inline activated unassigned card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource paused-branch unassigned card summary helper checkpoint
+- Added `pausedShopUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level paused-branch unassigned card count no longer reaches for an inline paused-branch unassigned card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active-branch unassigned card summary helper checkpoint
+- Added `activeShopUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active-branch unassigned card count no longer reaches for an inline active-branch unassigned card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource paused-branch holder-linked card summary helper checkpoint
+- Added `pausedShopHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level paused-branch holder-linked card count no longer reaches for an inline paused-branch holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active-branch holder-linked card summary helper checkpoint
+- Added `activeShopHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level active-branch holder-linked card count no longer reaches for an inline active-branch holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource draft holder-linked card summary helper checkpoint
+- Added `draftHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level draft holder-linked card count no longer reaches for an inline draft holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource blocked holder-linked card summary helper checkpoint
+- Reused `blockedHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level blocked holder-linked card count no longer reaches for an inline blocked holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource activated holder-linked card summary helper checkpoint
+- Added `activatedHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level activated holder-linked card count no longer reaches for an inline activated holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource activated card summary metric helper checkpoint
+- Added `activatedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the summary-level activated card count no longer reaches for an inline activated-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource linked card summary metric helper checkpoint
+- Reused `holderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level linked card count no longer reaches for an inline holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource draft card summary metric helper checkpoint
+- Reused `draftCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level draft card count no longer reaches for an inline draft-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource blocked card summary metric helper checkpoint
+- Reused `blockedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level blocked card count no longer reaches for an inline blocked-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active card summary metric helper checkpoint
+- Reused `activeCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active card count no longer reaches for an inline active-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource active branch summary metric helper checkpoint
+- Reused `activeShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the summary-level active branch count no longer reaches for an inline active-branch count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController summary cleanup.
+
+### Resource review-noted assigned permission metric helper checkpoint
+- Added `reviewNotedAssignedPermissionCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the permission-linked review-note metric no longer reaches for an inline assigned-permission review-note count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
+
+### Resource assignment-noted role metric helper checkpoint
+- Added `assignmentNotedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the role-assignment note metric no longer reaches for an inline assignment-noted role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
+
+### Resource access-noted role metric helper checkpoint
+- Added `accessNotedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the access-policy role metric no longer reaches for an inline access-noted role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
+
+### Resource review-noted role metric helper checkpoint
+- Added `reviewNotedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted access-shell metric no longer reaches for an inline review-noted role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
+
+### Resource draft role metric helper checkpoint
+- Added `draftRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the draft access-shell metric no longer reaches for an inline draft-role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
+
+### Resource review-noted branch metric helper checkpoint
+- Added `reviewNotedShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted branch metric no longer reaches for an inline review-noted branch count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController branch-metric cleanup.
+
+### Resource review-noted holder metric helper checkpoint
+- Added `reviewNotedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted holder metric no longer reaches for an inline review-noted holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource paused-branch unlinked holder metric helper checkpoint
+- Added `pausedShopUnlinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the paused-branch unlinked holder metric no longer reaches for an inline paused-branch unlinked holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource active-branch linked holder metric helper checkpoint
+- Added `activeShopLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active-branch linked holder metric no longer reaches for an inline active-branch linked holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource inactive unlinked holder metric helper checkpoint
+- Added `inactiveUnlinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the inactive unlinked holder metric no longer reaches for an inline inactive-unlinked holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource active unlinked holder metric helper checkpoint
+- Added `activeUnlinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active unlinked holder metric no longer reaches for an inline active-unlinked holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource inactive linked holder metric helper checkpoint
+- Added `inactiveLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the inactive linked holder metric no longer reaches for an inline inactive-linked holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource active linked holder metric helper checkpoint
+- Added `activeLinkedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active linked holder metric no longer reaches for an inline active-linked holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource review-noted card metric helper checkpoint
+- Added `reviewNotedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted card metric no longer reaches for an inline review-noted card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource blocked unassigned card metric helper checkpoint
+- Added `blockedUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the blocked unassigned card metric no longer reaches for an inline blocked unassigned card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource blocked holder-linked card metric helper checkpoint
+- Added `blockedHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the blocked holder-linked card metric no longer reaches for an inline blocked holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource blocked activated card metric helper checkpoint
+- Added `blockedActivatedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the blocked activated card metric no longer reaches for an inline blocked activated card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource blocked pre-activation card metric helper checkpoint
+- Added `blockedPreActivationCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the blocked pre-activation card metric no longer reaches for an inline blocked pre-activation card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource active unassigned card metric helper checkpoint
+- Added `activeUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active unassigned card metric no longer reaches for an inline active unassigned card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource active holder-linked card metric helper checkpoint
+- Added `activeHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active holder-linked card metric no longer reaches for an inline active holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource pre-activation unassigned card metric helper checkpoint
+- Added `preActivationUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the pre-activation unassigned card metric no longer reaches for an inline pre-activation unassigned card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource pre-activation holder-linked card metric helper checkpoint
+- Added `preActivationHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the pre-activation holder-linked card metric no longer reaches for an inline pre-activation holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource issued unassigned card metric helper checkpoint
+- Added `issuedUnassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the issued unassigned card metric no longer reaches for an inline issued unassigned card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource issued holder-linked card metric helper checkpoint
+- Added `issuedHolderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the issued holder-linked card metric no longer reaches for an inline issued holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource pre-activation card metric helper checkpoint
+- Added `preActivationCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the pre-activation card metric no longer reaches for an inline pre-activation card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource unassigned card metric helper checkpoint
+- Reused `unassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the unassigned-card metric no longer reaches for an inline unassigned-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource assignment-pending card metric helper checkpoint
+- Added `unassignedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the assignment-pending card metric no longer reaches for an inline unassigned-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource assignment-ready card metric helper checkpoint
+- Reused `holderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the assignment-ready card metric no longer reaches for an inline holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource holder-linked card metric helper checkpoint
+- Reused `holderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the holder-linked card metric no longer reaches for an inline holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource issued card metric helper checkpoint
+- Added `issuedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the issued card-shell metric no longer reaches for an inline issued-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource blocked card metric helper checkpoint
+- Added `blockedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the blocked card-shell metric no longer reaches for an inline blocked-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource draft card metric helper checkpoint
+- Added `draftCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the draft card-shell metric no longer reaches for an inline draft-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource active branch metric helper checkpoint
+- Added `activeShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active branch metric no longer reaches for an inline active-branch count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController branch-metric cleanup.
+
+### Resource linked card metric helper checkpoint
+- Reused `holderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the linked card-shell metric no longer reaches for an inline holder-linked card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource paused-branch holder metric helper checkpoint
+- Reused `pausedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch holder metric no longer reaches for an inline paused-branch holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource active-branch holder metric helper checkpoint
+- Added `activeShopCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the active-branch holder metric no longer reaches for an inline active-branch holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource inactive holder metric helper checkpoint
+- Reused `inactiveCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the inactive holder metric no longer reaches for an inline inactive-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource active holder metric helper checkpoint
+- Reused `activeCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active holder metric no longer reaches for an inline active-holder count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-metric cleanup.
+
+### Resource active card metric helper checkpoint
+- Reused `activeCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active card-shell metric no longer reaches for an inline active-card count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController card-metric cleanup.
+
+### Resource active role metric helper checkpoint
+- Reused `activeRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active access-shell metric no longer reaches for an inline active-role count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController access-metric cleanup.
+
+### Resource rollout-noted card-type metric helper checkpoint
+- Added `rolloutNotedCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the tier rollout-note metric no longer reaches for an inline rollout-note count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
+### Resource activation-noted card-type metric helper checkpoint
+- Added `activationNotedCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the tier activation-note metric no longer reaches for an inline activation-note count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
+### Resource review-noted card-type metric helper checkpoint
+- Added `reviewNotedCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the review-noted tier metric no longer reaches for an inline tier review-note count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
+### Resource draft card-type metric helper checkpoint
+- Added `draftCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so the draft tier metric no longer reaches for an inline draft-tier count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
+### Resource active card-type metric helper checkpoint
+- Reused `activeCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active tier metric no longer reaches for an inline active-tier count query.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
+### Resource card-type metric saved-count seam checkpoint
+- Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the saved tier metric no longer calls collection `count()` inline.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-metric cleanup.
+
+### Resource card-type saved-count iterable seam checkpoint
+- Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so card-type import and publish disabled-state checks no longer call collection `count()` inline.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-catalog cleanup.
+
+### Resource loaded card-type count seam checkpoint
+- Added `loadedCardTypeCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so visible tier card counting no longer calls collection `count()` inline.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController tier-count cleanup.
+
+### Resource loaded cardholder count seam checkpoint
+- Added `loadedCardholderCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so linked cardholder card counting no longer calls collection `count()` inline.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController holder-count cleanup.
+
+### Resource first query item seam checkpoint
+- Added `firstQueryItem()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so latest saved model lookup no longer calls query `first()` inline.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController query-seam cleanup.
+
+### Resource role first-scope label seam checkpoint
+- Added `firstRoleScopeLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so single-scope role coverage messaging no longer calls collection `first()` inline.
+- Re-ran the dedicated preview-shell resource assertion as the parity check for this small ResourceIndexController scope-message cleanup.
+
+### Resource role loaded-count iterable seam checkpoint
+- Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so loaded role user and permission counts no longer call collection `count()` inline.
+- Re-ran the dedicated roles resource shell assertion as the parity check for this small ResourceIndexController count-seam cleanup.
+
+### Resource shop loaded-count iterable seam checkpoint
+- Reused `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so loaded shop manager, holder, and card counts no longer call collection `count()` inline.
+- Re-ran the dedicated shops resource shell assertion as the parity check for this small ResourceIndexController count-seam cleanup.
+
+### Resource latest saved collection seam follow-up checkpoint
+- Reused `firstCollectedItem()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so latest saved collection record selection no longer calls collection `first()` inline after sorting.
+- Re-ran the dedicated resource shell composition assertion as the parity check for this small ResourceIndexController collection-seam follow-up.
+
+### Resource first collected item seam checkpoint
+- Added `firstCollectedItem()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so first catalog preview selection and first loaded shop-manager lookup no longer call collection `first()` inline.
+- Re-ran a focused shops resource shell assertion as the parity check for this small ResourceIndexController collection-seam cleanup.
+
+### Resource latest saved model seam checkpoint
+- Added `latestSavedModelRecord()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused it so latest saved tier lookup no longer reaches for an inline `latest('id')->first()` query.
+- Re-ran a focused card-types resource shell assertion as the parity check for this small ResourceIndexController seam cleanup.
+
+## 2026-06-04
+
+### Cardholder shop-state helper checkpoint
+- Added `cardholderShopIsActive()` and `cardholderShopIsPaused()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-holder lookup, handoff, activity, and blocker messaging no longer repeat direct branch `is_active` checks.
+- Re-ran the selected-holder, active-linked-holder, active-unlinked-holder, inactive-linked-holder, and paused-branch holder assertions as the parity check for this additional helper reuse step.
+
+### Card-type posture active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-tier posture, evidence, publish/import guidance, and readiness messaging no longer check `is_active` directly.
+- Re-ran the card-types management preview, live edit-mode, and live visible-card coverage assertions as the parity check for this additional helper reuse step.
+
+### Card-type status-flow active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so tier catalog status copy, toggle labels, and selected-tier live-form `is_active` values no longer check `is_active` directly.
+- Added a small `cardTypeStatusFlowLabel()` helper and re-ran the card-types management preview, live edit-mode, and live visible-card coverage assertions as the parity check for this structural cleanup.
+
+### Card-type toggle active-cast checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/CardTypeToggleStatusController.php` so the toggle write path no longer flips `is_active` directly, and tightened the helper to return an explicit boolean cast.
+- Re-ran the header-action, row-action, and selected-record-success toggle assertions as the parity check for this toggle-controller seam cleanup.
+
+### Dashboard scoped-branch active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so scoped latest-work labels, active scoped-shop resolution, and scoped entry labels no longer check branch `is_active` directly.
+- Tightened `shopIsActive()` to return an explicit boolean cast and re-ran the scoped dashboard shortcut assertion as the parity check for this dashboard seam cleanup.
+
+### Resource helper active-cast checkpoint
+- Tightened the existing `roleIsActive()`, `cardTypeIsActive()`, and `shopIsActive()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so these shared Phase 1 review helpers now return explicit boolean casts instead of raw model attribute values.
+- Re-ran the shops operational index plus the card-types management preview, live edit-mode, and live visible-card coverage assertions as the parity check for this shared helper-cast cleanup.
+
+### Dashboard card-type-holder active-cast checkpoint
+- Tightened the existing `cardTypeIsActive()` and `cardHolderIsActive()` seams in `app/Http/Controllers/Admin/DashboardController.php` so dashboard status helpers now return explicit boolean casts instead of raw model attribute values.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and card-types management preview assertions as the parity check for this dashboard helper-cast cleanup.
+
+### Dashboard count-helper int-cast checkpoint
+- Tightened the existing `shopVisibleHolderCount()`, `shopVisibleCardCount()`, and `shopAssignedStaffCount()` seams in `app/Http/Controllers/Admin/DashboardController.php` so these Phase 1 dashboard count helpers now return explicit integer casts instead of raw attribute values.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity check for this dashboard count-helper cleanup.
+
+### Resource count-helper int-cast checkpoint
+- Tightened the existing `cardholderLinkedCardCount()`, `roleAssignedUserCount()`, `shopVisibleCardholderCount()`, `shopVisibleCardCount()`, and `shopAssignedManagerCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so these shared Phase 1 review count helpers now return explicit integer casts instead of raw attribute values.
+- Re-ran the roles-permissions management preview, shops operational index, selected-holder context, and card-types management preview assertions as the parity check for this resource count-helper cleanup.
+
+### Resource tier-role count-helper follow-up checkpoint
+- Tightened the existing `cardTypeVisibleCardCount()` and `rolePermissionCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-tier coverage helpers and roles permission review helpers now return explicit integer casts instead of raw attribute values.
+- Re-ran the roles-permissions management preview, card-types management preview, and live visible-card coverage assertions as the parity check for this resource count-helper follow-up.
+
+### Dashboard paused-branch scope checkpoint
+- Reused the existing `Shop::paused()` scope in `app/Http/Controllers/Admin/DashboardController.php` so branch-pause coverage now reads through the shared shop state seam instead of an inline `where('is_active', false)` query.
+- Re-ran the admin dashboard assertion as the parity check for this dashboard branch-state cleanup.
+
+### Paused-branch scope reuse checkpoint
+- Reused the existing `Shop::paused()` and `User::assignedToPausedShop()` seams in `app/Models/User.php`, `app/Models/CardHolder.php`, and `app/Models/Role.php` so paused-branch staff, holder, and permission-bearing role scopes no longer repeat inline `is_active = false` branch filters.
+- Re-ran the scoped dashboard shortcut, roles-permissions management preview, and selected-holder context assertions as the parity check for this shared paused-branch scope cleanup.
+
+### Active-branch role scope reuse checkpoint
+- Reused the existing `activeAssignedPermissionBearing()` and `User::assignedToActiveShop()` seams in `app/Models/Role.php` so the active-branch permission-bearing role scope now builds on the shared active assignment chain instead of repeating the longer inline composition.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and roles-permissions management preview assertions as the parity check for this role-scope cleanup.
+
+### Paused-branch role scope reuse checkpoint
+- Reused the existing `activeAssignedPermissionBearing()` and `User::assignedToPausedShop()` seams in `app/Models/Role.php` so the paused-branch permission-bearing role scope now builds on the same shared active assignment chain instead of repeating its own longer inline composition.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and roles-permissions management preview assertions as the parity check for this matching role-scope cleanup.
+
+### Card shop-assignment scope checkpoint
+- Added `assignedToActiveShop()` and `assignedToPausedShop()` seams in `app/Models/Card.php`, then reused them so the holder-linked and unassigned branch-scoped card scopes no longer repeat inline shop-state filters.
+- Re-ran the scoped dashboard shortcut, cards operational index, selected-card context, and active-card review assertions as the parity check for this card-scope cleanup.
+
+### Role shop-assignment scope checkpoint
+- Added `assignedToActiveShop()` and `assignedToPausedShop()` seams in `app/Models/Role.php`, then reused them so the active permission-bearing role scopes build on shared shop-assignment chains instead of repeating user-level `whereHas` filters.
+- Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this role-scope cleanup.
+
+### User scoped-role assignment checkpoint
+- Added `roleAssignedToScopedShop()` in `app/Models/User.php` and reused it in `app/Http/Controllers/Admin/ResourceIndexController.php` so the roles workspace no longer counts shop-linked staff through an inline `whereNotNull('shop_id')` query.
+- Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this scoped-assignment cleanup.
+
+### User shop-assignment base scope checkpoint
+- Added `assignedToScopedShop()` in `app/Models/User.php`, then reused it so active/paused user shop scopes and `Role::shopScopedAssigned()` now build on one shared shop-assignment seam instead of repeating raw `shop_id` presence checks.
+- Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this user/role scope cleanup.
+
+### Cardholder shop-assignment base scope checkpoint
+- Added `assignedToScopedShop()` in `app/Models/CardHolder.php`, then reused it so active/paused holder shop scopes build on one shared shop-assignment seam instead of repeating direct branch-presence filters.
+- Re-ran the admin dashboard, cardholders operational index, and selected-holder context assertions as the parity check for this holder-scope cleanup.
+
+### Card shop-assignment base scope checkpoint
+- Added `assignedToScopedShop()` in `app/Models/Card.php`, then reused it so active/paused card shop scopes build on one shared shop-assignment seam instead of repeating direct branch-presence filters.
+- Re-ran the admin dashboard, cards operational index, and selected-card context assertions as the parity check for this card-scope cleanup.
+
+### Role active-scoped permission seam checkpoint
+- Reused the existing `activeAssignedPermissionBearing()` seam in `app/Models/Role.php` so `activeShopScopedPermissionBearing()` now builds on the same shared active permission-bearing chain as the active-branch and paused-branch role scopes.
+- Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this role-scope cleanup.
+
+### Role active-assigned permission seam checkpoint
+- Reused the existing `activeAssigned()` and `permissionBearing()` seams in `app/Models/Role.php` so `activeAssignedPermissionBearing()` now builds from the shared active assignment chain instead of repeating its own user-presence filter.
+- Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this role-scope cleanup.
+
+### Role assigned-base scope checkpoint
+- Reused the existing `assigned()` seam in `app/Models/Role.php` so shop-scoped, active-branch, and paused-branch role assignment scopes now all build on the same base assigned-user chain.
+- Re-ran the admin dashboard and roles-permissions management preview assertions as the parity check for this role-assignment cleanup.
+
+### Shop staff-assignment seam checkpoint
+- Added `staffAssigned()` in `app/Models/Shop.php` and reused it so `managerAssigned()` now builds on a named branch-staff assignment seam instead of a raw `whereHas('users')` query.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity check for this shop-staff seam cleanup.
+
+### Shop role-assignment seam checkpoint
+- Added `roleAssigned()` in `app/Models/Shop.php` and reused it so `roleCovered()` now builds on a named branch access-coverage seam instead of a raw `users.roles` relation chain.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity check for this shop access-coverage cleanup.
+
+### Shop foundation-coverage seam checkpoint
+- Added `cardholderCovered()` and `cardCovered()` in `app/Models/Shop.php`, then reused them so `foundationCovered()` now builds on named Galaxy branch coverage seams instead of inline `has/orHas` relation checks.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity check for this shop foundation-coverage cleanup.
+
+### Shop role-coverage staff-seam checkpoint
+- Reused the existing `staffAssigned()` seam in `app/Models/Shop.php` so `roleAssigned()` now builds on the named branch-staff assignment chain instead of standing alone as a raw role-link check.
+- Re-ran the admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity check for this shop role-coverage cleanup.
+
+### Shop seam regression coverage checkpoint
+- Expanded `tests/Feature/AdminDashboardTest.php` so the new `Shop` domain seams are asserted directly: `staffAssigned()`, `cardholderCovered()`, `cardCovered()`, and `roleAssigned()` now each have focused baseline coverage alongside their older wrapper scopes.
+- Re-ran the focused shop scope and shops operational index assertions as the regression slice for the recent shop foundation/access seam cleanup.
+
+### Cardholder unlinked seam checkpoint
+- Added `unlinked()` in `app/Models/CardHolder.php` and reused it so active, inactive, and paused-branch-unlinked holder scopes now build on one named card-linkage seam instead of repeating raw `doesntHave('cards')` checks.
+- Expanded the holder scope baseline assertions to cover the new `unlinked()` seam directly, then re-ran the focused holder and cardholders operational index tests as the parity slice for this cleanup.
+
+### Card activated seam reuse checkpoint
+- Reused the existing `activated()` seam in `app/Models/Card.php` so `blockedActivated()` now builds on the shared activation chain instead of repeating a raw `whereNotNull('activated_at')` filter.
+- Expanded the extended card inventory baseline assertions to cover `activated()` directly, then re-ran the focused card inventory and cards operational index tests as the regression slice for this cleanup.
+
+### Cardholder activated-link seam checkpoint
+- Reused the existing `Card::activated()` seam inside `app/Models/CardHolder.php` so `activatedLinked()` now composes through the shared card activation scope instead of repeating a raw activation timestamp filter inside its card relation query.
+- Re-ran the focused holder card-state and cardholders operational index assertions as the parity slice for this linkage cleanup.
+
+### Shop role-assigned user seam checkpoint
+- Reused the existing `User::roleAssigned()` seam inside `app/Models/Shop.php` so `roleAssigned()` now composes through the named user access-assignment chain instead of a raw `users.roles` relation path.
+- Re-ran the focused shop role-coverage, shops operational index, and admin dashboard assertions as the parity slice for this access-chain cleanup.
+
+### Permission assignment seam regression checkpoint
+- Expanded `tests/Feature/AdminDashboardTest.php` so `Permission::assignedToRoles()` is asserted directly, not only through the narrower review-note slice, which locks in the existing permission-to-role access seam with a clearer baseline.
+- Re-ran the focused permission catalog and roles-permissions management preview assertions as the regression slice for this access-domain coverage update.
+
+### User permission-bearing role seam checkpoint
+- Reused the existing `roleAssigned()` seam in `app/Models/User.php` so `permissionBearing()` now composes through the named user role-assignment chain instead of standing alone as a raw role relation filter.
+- Re-ran the focused user access-scope and admin dashboard assertions as the parity slice for this user access-chain cleanup.
+
+### Cardholder card-status seam checkpoint
+- Reused the existing `Card::blocked()`, `Card::draft()`, and `Card::active()` scopes inside `app/Models/CardHolder.php` so linked-holder state scopes now compose through shared card status seams instead of repeating raw status filters inside relation queries.
+- Re-ran the focused holder card-state and cardholders operational index assertions as the parity slice for this linkage cleanup.
+
+### User role-assignment branch seam checkpoint
+- Simplified `app/Models/User.php` so `roleAssignedToActiveShop()` and `roleAssignedToPausedShop()` now compose from `roleAssigned()` plus the existing branch state seams, instead of routing through the redundant intermediate scoped-role helper.
+- Re-ran the focused user access-scope, user staffing-scope, and admin dashboard assertions as the parity slice for this user branch-assignment cleanup.
+
+### Permission role-link seam checkpoint
+- Added `roleLinked()` in `app/Models/Permission.php` and reused it so `assignedToRoles()` now builds on a named permission-to-role access seam instead of a raw relation-presence check.
+- Expanded the permission scope baseline assertions to cover `roleLinked()` directly, then re-ran the focused permission catalog and roles-permissions management preview tests as the regression slice for this access-domain cleanup.
+
+### Shop catalog controller coverage-count seam checkpoint
+- Added `shopManagerCoverageCount()` and `shopFoundationCoverageCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused them so the shops catalog disabled-reason flows no longer repeat raw global manager-assignment and foundation-coverage count queries.
+- Re-ran the focused admin dashboard, scoped dashboard shortcut, and shops operational index assertions as the parity slice for this controller cleanup.
+
+### Shop catalog metric seam checkpoint
+- Added `shopRoleCoverageCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused the existing shop coverage/staff count helpers so the roles and shops catalog metric cards no longer reach for raw global branch-coverage and manager-assignment counts inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this controller metric cleanup.
+
+### Dashboard access coverage count seam checkpoint
+- Added `permissionBearingRoleCount()` and `assignedPermissionCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the dashboard access-baseline summary no longer reaches for raw global role and permission coverage counts inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard cleanup.
+
+### Dashboard role permission-count seam checkpoint
+- Added `rolePermissionCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the latest role workspace shortcut no longer reaches for a raw relation count when describing the current Galaxy access shell.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard workspace cleanup.
+
+### Dashboard saved access-count seam checkpoint
+- Added `savedRoleCount()` and `savedPermissionCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the foundation handoff summary no longer reaches for raw saved access-entity counts inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard count cleanup.
+
+### Dashboard saved access-count reuse checkpoint
+- Reused `savedRoleCount()` and `savedPermissionCount()` again in `app/Http/Controllers/Admin/DashboardController.php` so the migration-map posture and foundation-focus summaries now read through the same named saved access-count seams instead of repeating raw global access-entity counts.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard summary cleanup.
+
+### Dashboard foundation access-count reuse checkpoint
+- Reused `savedRoleCount()` and `savedPermissionCount()` in `app/Http/Controllers/Admin/DashboardController.php` once more so foundation posture, live-domain coverage, and foundation readiness now all compose through the same saved access-count seams instead of repeating raw global role and permission counts.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard foundation-summary cleanup.
+
+### Dashboard migration-map access-count reuse checkpoint
+- Reused `savedRoleCount()` and `savedPermissionCount()` again in `app/Http/Controllers/Admin/DashboardController.php` so the migration-map handoff summary now reads through the same saved access-count seams instead of repeating raw global role and permission counts inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard handoff-summary cleanup.
+
+### Dashboard summary payload access-count reuse checkpoint
+- Reused `savedRoleCount()` and `savedPermissionCount()` in the main dashboard page payload so the top-level summary data now reads through the same saved access-count seams instead of repeating raw access-entity counts inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard payload cleanup.
+
+### Dashboard live-core-domain count seam checkpoint
+- Added `liveCoreDomainCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so migration-map posture, live-domain coverage, foundation readiness, and migration-map handoff summaries now build from one shared core-domain coverage seam instead of repeating the same grouped count collection inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard domain-coverage cleanup.
+
+### Dashboard live-entry-domain count seam checkpoint
+- Added `liveEntryDomainCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the live entry handoff summary now builds from one shared branch-holder-card coverage seam instead of repeating the same grouped count checks inline.
+- Re-ran the focused admin dashboard, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard entry-coverage cleanup.
+
+### Dashboard live-entry posture seam checkpoint
+- Reused `liveEntryDomainCount()` again in `app/Http/Controllers/Admin/DashboardController.php` so the staged live-entry posture summary now reads through the same shared branch-holder-card coverage seam instead of rebuilding the grouped count inline.
+- Re-ran the focused admin dashboard, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard posture cleanup.
+
+### Dashboard foundation handoff seam checkpoint
+- Reused `liveCoreDomainCount()` again in `app/Http/Controllers/Admin/DashboardController.php` so the foundation handoff summary now reads through the same shared core-domain coverage seam instead of manually comparing five separate live entity counts inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard handoff cleanup.
+
+### Dashboard foundation-surface count seam checkpoint
+- Added `liveFoundationSurfaceCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the foundation posture summary now builds from one shared branch-holder-card-tier-access surface count seam instead of rebuilding the grouped count inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard foundation-surface cleanup.
+
+### Dashboard foundation-target seam checkpoint
+- Added `foundationTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so both foundation focus and foundation surface counting now build from one named foundation-target definition instead of maintaining separate inline branch-holder-card-tier-access lists.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard target-definition cleanup.
+
+### Dashboard tier-count seam checkpoint
+- Added `savedCardTypeCount()` and `activeCardTypeCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the dashboard payload, tier baseline summary, and foundation target list no longer reach for raw tier count queries inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard tier-count cleanup.
+
+### Dashboard branch-count seam checkpoint
+- Added `savedShopCount()`, `activeShopCount()`, and `pausedShopCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the dashboard payload, branch pause summary, active foundation coverage, and staged branch target definition no longer duplicate raw branch count queries inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard branch-count cleanup.
+
+### Dashboard shop-relation count seam checkpoint
+- Added `shopRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so visible holder, visible card, assigned staff counts, and the shop empty-record check now share one named shop relation-count seam instead of repeating count-attribute fallback logic inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard shop relation-count cleanup.
+
+### Dashboard shop-primary-manager seam checkpoint
+- Added `shopPrimaryManagerName()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the assigned-branch snapshot no longer reaches into `users->first()?->name` inline for the primary manager label.
+- Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard primary-manager cleanup.
+- Later tightened `shopPrimaryManagerName()` again to read through `firstItem()` so the dashboard first-item seam also covers the assigned branch manager label.
+
+### Dashboard latest-branch-record seam checkpoint
+- Added `latestShopCardHolder()` and `latestShopCard()` in `app/Http/Controllers/Admin/DashboardController.php` and reused them so the assigned-branch snapshot no longer builds its latest branch holder and latest branch card queries inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard latest-branch-record cleanup.
+
+### Dashboard latest-known-timestamp seam checkpoint
+- Added `latestKnownTimestamp()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so branch activity freshness now reads through one named timestamp-selection seam instead of rebuilding the filter-sort-first chain inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard latest-timestamp cleanup.
+
+### Dashboard sorted-known-timestamp seam checkpoint
+- Added `sortedKnownTimestamps()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so latest timestamp selection now reads through one explicit filtered-and-sorted timestamp list seam before taking the first known value.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard sorted-timestamp cleanup.
+
+### Dashboard first-mapped-navigation-item seam checkpoint
+- Added `firstMappedNavigationItem()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so migration-map focus no longer selects the first mapped navigation target inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard migration-map focus cleanup.
+
+### Dashboard mapped-navigation-items seam checkpoint
+- Added `mappedNavigationItems()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so first mapped navigation selection now reads through one explicit flattened navigation-item seam instead of rebuilding the pluck-and-flatten chain inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard navigation-item cleanup.
+
+### Dashboard latest-saved-record seam checkpoint
+- Added `latestSavedCardType()` and `latestSavedRole()` in `app/Http/Controllers/Admin/DashboardController.php` and reused them so the latest tier and latest access-shell workspace entries no longer build their latest-record queries inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard latest-saved-record cleanup.
+
+### Dashboard latest-model-record seam checkpoint
+- Added `latestModelRecord()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so latest saved tier/access records plus latest branch holder/card records now share one named latest-record query seam instead of duplicating `latest('id')->first()` patterns inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard latest-model-record cleanup.
+- Later tightened `latestModelRecord()` again so its final fetch now reads through `firstIterableItem()` instead of calling `->first()` directly inside the latest-record seam.
+- Later moved its query materialization onto `queryItems()` as well, so latest-record fetching now composes from the shared query-to-items seam.
+
+### Dashboard model-relation count seam checkpoint
+- Added `modelRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php`, imported `Illuminate\Database\Eloquent\Model`, and reused the helper so both role and shop relation-count seams now share one generic count-attribute fallback path instead of duplicating that logic.
+- Re-ran the focused admin dashboard, roles-permissions preview, and shops operational index assertions as the parity slice for this dashboard model relation-count cleanup.
+- Later tightened the same seam with `loadedRelationCount()` so the loaded-relation fallback now reads through one named relation-count helper instead of calling relation `->count()` directly.
+
+### Dashboard role-relation count seam checkpoint
+- Added `roleRelationCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so `rolePermissionCount()` now reads through one named role relation-count seam instead of maintaining its own permission-count fallback inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard role relation-count cleanup.
+
+### Dashboard role-relation attribute seam checkpoint
+- Added `roleRelationCountAttribute()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so role relation counts now resolve their count attribute through one explicit seam instead of rebuilding the permission count attribute inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard role relation-attribute cleanup.
+
+### Dashboard holder-count seam checkpoint
+- Added `savedCardHolderCount()` and `activeCardHolderCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the dashboard payload, active foundation coverage, live core-domain count, and staged holder target definition no longer duplicate raw holder count queries inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, and cardholders operational index assertions as the parity slice for this dashboard holder-count cleanup.
+
+### Dashboard card-count seam checkpoint
+- Added `savedCardCount()` and `activeCardCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the dashboard payload, active foundation coverage, live core-domain count, and staged card target definition no longer duplicate raw card count queries inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, and cards operational index assertions as the parity slice for this dashboard card-count cleanup.
+
+### Dashboard core-target seam checkpoint
+- Added `liveCoreTargets()` and `liveAccessTargets()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so live core-domain counting and the access subset inside foundation targets now build from named target definitions instead of maintaining another inline branch-holder-card-access list.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard core-target cleanup.
+
+### Dashboard visible-target count seam checkpoint
+- Added `countVisibleTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so live core-domain, live-entry, and foundation-surface counts now share one named non-zero target counter instead of repeating the same pluck-filter-count chain inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard visible-target count cleanup.
+
+### Dashboard target-count list seam checkpoint
+- Added `targetCounts()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so visible-target counting now reads through one explicit count-list seam before applying the non-zero filter.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard target-count list cleanup.
+
+### Dashboard visible-access target seam checkpoint
+- Added `visibleAccessTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the access baseline summary now builds from one named visible-access target definition instead of separate inline role and permission count variables.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard visible-access cleanup.
+
+### Dashboard phase-one entity count seam checkpoint
+- Added `domainEntities()`, `mappedPhaseOneEntityCount()`, and `livePhaseOneEntityCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the Phase 1 entity-map coverage and inventory summaries no longer rebuild the domain-map config traversal inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard entity-map cleanup.
+
+### Dashboard phase-one entity live-record seam checkpoint
+- Added `phaseOneEntityHasLiveRecords()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the Phase 1 entity-map live-coverage count now reads through one named model-presence check instead of embedding the class-exists and query-count test inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard entity live-record cleanup.
+
+### Dashboard model-class count seam checkpoint
+- Added `modelClassCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the Phase 1 entity live-record seam no longer performs the raw model-class query count inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard model-class count cleanup.
+
+### Dashboard query-count seam checkpoint
+- Added `queryCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so `modelClassCount()` plus `scopedModelCount()` now share one explicit query-count seam instead of each calling `->count()` directly.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard query-count cleanup.
+- Later tightened `queryCount()` so it now counts through `queryItems()` plus `countItems()` instead of issuing a direct `->count()` call inside the helper.
+
+### Dashboard query-items seam checkpoint
+- Added `queryItems()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so query materialization for both latest-record selection and generic query counting now passes through one shared query-to-items seam.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard query-items cleanup.
+
+### Dashboard saved-model count seam checkpoint
+- Reused `modelClassCount()` across `savedShopCount()`, `savedRoleCount()`, `savedPermissionCount()`, `savedCardHolderCount()`, `savedCardCount()`, and `savedCardTypeCount()` in `app/Http/Controllers/Admin/DashboardController.php` so the baseline saved-count seams no longer duplicate raw model query counts inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard saved-model count cleanup.
+
+### Dashboard scoped-model count seam checkpoint
+- Added `scopedModelCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so active, paused, permission-bearing, and assigned-permission count seams no longer duplicate raw scoped query chains inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard scoped-model count cleanup.
+
+### Dashboard phase-one reference collection seam checkpoint
+- Added `foundationSeams()`, `referenceDocs()`, and `seamSources()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the Phase 1 seam, reference-doc, and README-source coverage cards no longer rebuild those config collections inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard Phase 1 reference-collection cleanup.
+
+### Dashboard phase-one reference count seam checkpoint
+- Added `foundationSeamCount()`, `referenceDocCount()`, and `seamSourceCount()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so the Phase 1 seam, reference-doc, and README-source coverage summaries no longer call collection counts inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard Phase 1 reference-count cleanup.
+
+### Dashboard config-item count seam checkpoint
+- Added `countConfigItems()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so Phase 1 seam, reference-doc, and README-source count seams now share one named collection-count helper instead of repeating direct `->count()` calls.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard config-item count cleanup.
+
+### Dashboard generic item-count seam checkpoint
+- Added `countItems()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so mapped/live Phase 1 entity counts, staged live-entry count, latest-workspace count, and config-backed count seams now share one small array-or-collection counter instead of mixing raw `count(...)` and `->count()` calls inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard generic item-count cleanup.
+
+### Dashboard first-item seam checkpoint
+- Added `firstItem()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so both first live-entry selection and first latest-workspace selection now share one small array-or-collection first-item seam instead of repeating direct `[0] ?? null` access.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard first-item cleanup.
+- Later tightened `firstItem()` again so its non-array branch now reuses `firstIterableItem()` instead of calling collection `->first()` directly.
+
+### Dashboard first-iterable-item seam checkpoint
+- Added `firstIterableItem()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so `latestAccessibleRecord()` no longer performs its unauthenticated iterable-first access inline.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, cardholders operational index, and shops operational index assertions as the parity slice for this dashboard first-iterable-item cleanup.
+- Later added `iterableItems()` and moved both `latestAccessibleRecord()` plus `firstIterableItem()` onto that normalization seam so iterable-to-collection conversion now happens in one place.
+
+### Dashboard latest-workspace collection seam checkpoint
+- Added `latestWorkspaces()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused it so latest-work coverage, focus, posture, handoff summary, and the dashboard payload itself all read from one named latest-work workspace collection instead of rebuilding the same filtered shop-holder-card-tier-role list inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard latest-workspace cleanup.
+
+### Dashboard latest-workspace count seam checkpoint
+- Added `latestWorkspaceCount()` and `firstLatestWorkspace()` in `app/Http/Controllers/Admin/DashboardController.php`, then reused them so latest-work coverage, focus, posture, and handoff summary no longer repeat raw `count($this->latestWorkspaces())` and first-entry selection inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard latest-workspace count cleanup.
+
+### Dashboard live-entry-point count seam checkpoint
+- Added `liveReviewEntryPointCount()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the staged live-entry coverage summary no longer counts live review entry points inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard live-entry-point cleanup.
+
+### Dashboard first-live-entry seam checkpoint
+- Added `firstLiveReviewEntryPoint()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so the staged live-entry focus summary no longer selects the first review entry inline.
+- Re-ran the focused admin dashboard and roles-permissions preview assertions as the parity slice for this dashboard first-live-entry cleanup.
+
+### Dashboard live-entry target seam checkpoint
+- Added `liveEntryTargets()` in `app/Http/Controllers/Admin/DashboardController.php` and reused it so live entry domain counting, plus the branch-holder-card subset inside foundation targets, now build from one named staged-entry target definition instead of maintaining separate inline lists.
+- Re-ran the focused admin dashboard, roles-permissions preview, cards operational index, and cardholders operational index assertions as the parity slice for this dashboard staged-entry cleanup.
+
+### Card-type focus active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesFocus()` no longer checks `is_active` directly.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
+### Card-type rollout-freshness active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesRolloutFreshness()` no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
+### Card-type activation-freshness active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesActivationFreshness()` no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
+### Card-type backend-gap active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the card-type backend-gap matcher no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
+### Card-type handoff-signal active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesHandoffSignal()` no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
+### Card-type publish-gating active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesSelectedPublishTypeDisabledReason()` no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
+### Card-type import-rules active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesSelectedImportRulesDisabledReason()` no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
+### Card-type coverage-freshness active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesCoverageFreshness()` no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
+### Card-type status-signal active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesStatusSignal()` no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
+### Card-type coverage-signal active-helper checkpoint
+- Reused the existing `cardTypeIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardTypesCoverageSignal()` no longer checks `is_active` directly in its live-tier branches.
+- Re-ran the selected-card-type parity assertions for live edit mode, live visible-card coverage, and draft readiness gating.
+
+### Cardholder status-posture active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersStatusPosture()` no longer checks `is_active` directly in its active-holder branches.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder activity-timeline inactive-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the inactive-holder branches in `cardholdersActivityTimelineHandoffDescription()` no longer check `is_active` directly.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder activity-handoff inactive-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the dormant-holder branches in the cardholder activity handoff matcher no longer check `is_active` directly.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+## 2026-06-03
+
+### Cardholder backend-gap active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersBackendGap()` no longer checks `is_active` directly in its active-holder branches.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder evidence-priority active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersEvidencePriority()` no longer checks `is_active` directly in its active-holder branches.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder holder-posture active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersHolderPosture()` no longer checks `is_active` directly in its active-holder branches.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder holder-focus active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersHolderFocus()` no longer checks `is_active` directly in its active-holder branches.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder lookup-guidance active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersLookupGuidance()` no longer checks `is_active` directly in its active-holder branches.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder review-activity active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersSelectedReviewActivityDisabledReason()` no longer checks `is_active` directly in its active/inactive holder branches.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder active-cast seam checkpoint
+- Tightened the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so it now returns an explicit boolean cast instead of the raw `is_active` attribute value.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper seam step.
+
+### Cardholder status-signal active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersStatusSignal()` no longer checks `is_active` directly.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder review-mode active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersReviewMode()` no longer checks `is_active` directly.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder operational-readiness active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `cardholdersOperationalReadiness()` no longer checks `is_active` directly.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder live-form active-helper checkpoint
+- Reused the existing `cardholderIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder live-form `is_active` resolver no longer checks `is_active` directly.
+- Re-ran the selected-holder, active-linked-holder, and inactive-linked-holder assertions as the parity check for this additional helper reuse step.
+
+### Shop live-form active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop live-form `is_active` resolver no longer checks `is_active` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop manager-posture active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop `Manager posture` copy no longer checks `is_active` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop manager-guidance active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop `Manager guidance` copy no longer checks `is_active` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop coverage-posture active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop `Coverage posture` copy no longer checks `is_active` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop status-posture active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop `Status posture` copy no longer checks `is_active` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop branch-guidance active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop `Branch guidance` copy no longer checks `is_active` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop review-mode active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop `Review mode` copy no longer checks `is_active` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop branch-focus active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsBranchFocus()` no longer checks `is_active` directly for its paused-branch branch-focus split.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop scope-timeline active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsScopeTimelineHandoffDescription()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop scope-handoff active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsScopeHandoffSignal()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop status-signal active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsStatusSignal()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop backend-gap active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsBackendGap()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop evidence-priority active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsEvidencePriority()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop branch-posture active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsBranchPosture()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop operational-readiness active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so `shopsOperationalReadiness()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Dashboard branch-snapshot action helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so `assignedBranchSnapshotActions()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
+
+### Dashboard branch-follow-up helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so `branchSuggestedFollowUp()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
+
+### Dashboard branch-handoff helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so `branchHandoffSignal()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
+
+### Dashboard branch-action focus helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so `assignedBranchActionFocus()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
+
+### Dashboard branch-action posture helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so `assignedBranchActionPosture()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
+
+### Dashboard branch-readiness active-helper checkpoint
+- Reused the existing `shopIsActive()` seam in `app/Http/Controllers/Admin/DashboardController.php` so `branchReadinessStatus()` no longer checks `is_active` directly for its paused-branch gate.
+- Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
+
+### Dashboard branch-coverage helper reuse checkpoint
+- Reused the existing `shopVisibleHolderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/DashboardController.php` so `branchCoverageStatus()` no longer reads `card_holders_count` and `cards_count` directly.
+- Re-ran the scoped dashboard shortcut and partial-branch snapshot assertions as the parity check for this dashboard helper reuse step.
+
+### Shop coverage-posture helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop coverage-posture copy now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly inside `sprintf` output.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop review-scope helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop review-scope disabled-reason branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop scope-timeline helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop scope-timeline handoff branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop scope-handoff helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop scope-handoff branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop status-signal helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop status-signal branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop coverage-signal helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop coverage-signal branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop backend-gap helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop backend-gap branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop evidence-priority helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop evidence-priority branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop branch-posture helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop branch-posture branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop operational-readiness helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` and `shopVisibleCardCount()` seams in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop operational-readiness branch now shares the same coverage helpers instead of reading `card_holders_count` and `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Cardholder review-activity helper reuse checkpoint
+- Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder review-activity disabled-reason branch now shares the same linked-card count helper instead of reading `cards_count` directly.
+- Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder card-linkage helper reuse checkpoint
+- Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder card-linkage posture now shares the same linked-card count helper instead of reading `cards_count` directly.
+- Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder timeline-handoff helper reuse checkpoint
+- Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder activity timeline handoff branch now shares the same linked-card count helper instead of reading `cards_count` directly.
+- Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder activity-handoff helper reuse checkpoint
+- Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder activity-handoff signal now shares the same linked-card count helper instead of reading `cards_count` directly.
+- Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder linkage helper reuse checkpoint
+- Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder linkage signal now shares the same linked-card count helper instead of reading `cards_count` directly.
+- Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder operational-readiness helper reuse checkpoint
+- Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder operational-readiness branch now shares the same linked-card count helper instead of reading `cards_count` directly.
+- Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
+
+### Card-type coverage-freshness helper reuse checkpoint
+- Reused the existing `cardTypeVisibleCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-tier coverage-freshness branch now shares the same visible-card count helper instead of repeating direct `cards_count` access.
+- Re-ran the selected-tier card-type assertions as the parity check for this additional helper reuse step.
+
+### Card-type visible-card count helper follow-up checkpoint
+- Reused a tiny card-type seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so multiple selected-tier coverage and publish/readiness branches now read through one named visible-card count helper instead of repeating direct `cards_count` access.
+- Added a small `cardTypeVisibleCardCount()` helper, routed the first selected-tier coverage/status and publish/import disabled-reason branches through it, and kept `cardTypesHasVisibleCoverage()` aligned with the same seam before re-running the selected-tier card-type assertions.
+
+### Shop card-table helper reuse checkpoint
+- Reused the existing `shopVisibleCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the shops table card column now shares the same count helper as the selected-shop summary instead of reading `cards_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Shop cardholder-table helper reuse checkpoint
+- Reused the existing `shopVisibleCardholderCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the shops table cardholder column now shares the same count helper as the selected-shop summary instead of reading `card_holders_count` directly.
+- Re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this additional helper reuse step.
+
+### Cardholder linked-card table reuse checkpoint
+- Reused the existing `cardholderLinkedCardCount()` seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholders table linked-card column now shares the same count helper as the selected-holder summary instead of reading `cards_count` directly.
+- Re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this additional helper reuse step.
+
+### Cardholder linked-card count helper follow-up checkpoint
+- Reused a tiny cardholder seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-holder linked-card label now reads through one named count helper instead of a direct `cards_count` access.
+- Added a small `cardholderLinkedCardCount()` helper and routed `cardholdersLinkedCardsLabel()` through it, then re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this structural cleanup.
+
+### Shop visible-card count helper follow-up checkpoint
+- Reused a tiny shop seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-branch card summary row now reads through one named count helper instead of a direct `cards_count` access.
+- Added a small `shopVisibleCardCount()` helper and routed the selected-shop `Cards` summary row through it, then re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this structural cleanup.
+
+### Shop visible-cardholder count helper follow-up checkpoint
+- Reused a tiny shop seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-branch cardholder summary row now reads through one named count helper instead of a direct `card_holders_count` access.
+- Added a small `shopVisibleCardholderCount()` helper and routed the selected-shop `Cardholders` summary row through it, then re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this structural cleanup.
+
+### Dashboard visible-card count helper follow-up checkpoint
+- Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so the assigned-branch card snapshot now reads through one named count helper instead of a direct `cards_count` access.
+- Added a small `shopVisibleCardCount()` helper and routed the dashboard `Visible Galaxy card shells` snapshot row through it, then re-ran the live-work shortcut and partial branch snapshot assertions as the parity check for this structural cleanup.
+
+### Dashboard visible-holder count helper follow-up checkpoint
+- Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so the assigned-branch holder snapshot now reads through one named count helper instead of a direct `card_holders_count` access.
+- Added a small `shopVisibleHolderCount()` helper and routed the dashboard `Visible Galaxy holders` snapshot row through it, then re-ran the live-work shortcut and partial branch snapshot assertions as the parity check for this structural cleanup.
+
+### Dashboard assigned-staff count helper follow-up checkpoint
+- Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so the assigned-branch staff snapshot now reads through one named count helper instead of a direct `users_count` access.
+- Added a small `shopAssignedStaffCount()` helper and routed the dashboard `Assigned staff` snapshot row through it, then re-ran the live-work shortcut and partial branch snapshot assertions as the parity check for this structural cleanup.
+
+### Shop active-state helper follow-up checkpoint
+- Reused a tiny shop seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the shared shop status label now reads through one named active-state helper instead of a direct `is_active` check.
+- Added a small `shopIsActive()` helper and routed `shopStatusValue()` through it, then re-ran the selected-branch, manager-linked, and paused-branch shop assertions as the parity check for this structural cleanup.
+
+### Card-type toggle active-state helper follow-up checkpoint
+- Reused a tiny card-type seam in `app/Http/Controllers/Admin/CardTypeToggleStatusController.php` so the post-toggle flash label now reads through one named active-state helper instead of a direct `is_active` check.
+- Added a small `cardTypeIsActive()` helper and routed the toggle controller's `cardTypeStatusValue()` through it, then re-ran the header-action and row-action toggle feature assertions as the parity check for this structural cleanup.
+
+### Card-type active-state helper follow-up checkpoint
+- Reused a tiny card-type seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-tier Galaxy status label now reads through one named active-state helper instead of direct `is_active` checks.
+- Added a small `cardTypeIsActive()` helper and routed `cardTypeStatusValue()` through it, then re-ran the selected-tier edit-mode, live-tier, and draft-tier feature assertions as the parity check for this structural cleanup.
+
+### Cardholder active-state helper follow-up checkpoint
+- Reused a tiny cardholder seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholder Galaxy status label now reads through one named active-state helper instead of direct `is_active` checks.
+- Added a small `cardholderIsActive()` helper and routed `cardholdersGalaxyStatusLabel()` through it, then re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this structural cleanup.
+
+### Dashboard card-type-active helper follow-up checkpoint
+- Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so dashboard tier status labels now read through one named card-type-active helper instead of direct `is_active` checks.
+- Added a small `cardTypeIsActive()` helper and routed `cardTypeStatusValue()` through it, then re-ran the live-work shortcut and branch snapshot dashboard assertions as the parity check for this structural cleanup.
+
+### Dashboard cardholder-active helper follow-up checkpoint
+- Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so dashboard holder status labels now read through one named cardholder-active helper instead of direct `is_active` checks.
+- Added a small `cardHolderIsActive()` helper and routed `cardHolderStatusValue()` through it, then re-ran the live-work shortcut and holder-backfill dashboard assertions as the parity check for this structural cleanup.
+
+### Dashboard shop-active helper follow-up checkpoint
+- Reused a tiny dashboard seam in `app/Http/Controllers/Admin/DashboardController.php` so branch status labels and the first branch-operational posture gate now read through one named shop-active helper instead of direct `is_active` checks.
+- Added a small `shopIsActive()` helper and routed both dashboard shop-status label helpers plus the first branch posture gate through it, then re-ran the live-work shortcut and partial branch snapshot assertions as the parity check for this structural cleanup.
+
+### Card-type toggle-status helper follow-up checkpoint
+- Reused a tiny card-type status seam in `app/Http/Controllers/Admin/CardTypeToggleStatusController.php` so the post-toggle flash message now reads the active/draft label through one named helper instead of inline state formatting.
+- Added a local `cardTypeStatusValue()` helper in the toggle controller, then re-ran the header-action and row-action toggle feature assertions as the parity check for this structural cleanup.
+
+### Cardholder status helper follow-up checkpoint
+- Reused the existing cardholder status helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the cardholders table status column and selected-holder status timeline now read active/inactive labels through one named helper instead of repeated inline state formatting.
+- Reused `cardholdersGalaxyStatusLabel()` in both places, then re-ran the selected-holder, active-linked, and inactive-linked cardholder assertions as the parity check for this structural cleanup.
+
+### Dashboard holder/shop status helper follow-up checkpoint
+- Reused small dashboard helper seams in `app/Http/Controllers/Admin/DashboardController.php` so the latest-branch review shortcut plus latest-holder status values now read active/inactive labels through named helpers instead of repeated inline state formatting.
+- Added tiny `cardHolderStatusValue()` and `shopWorkspaceStatusValue()` helpers, then re-ran the live-work shortcut and partial branch snapshot dashboard assertions as the parity check for this structural cleanup.
+
+### Dashboard status-label helper follow-up checkpoint
+- Reused small dashboard helper seams in `app/Http/Controllers/Admin/DashboardController.php` so the latest-tier review shortcut and assigned-branch snapshot now read tier and branch status labels through named helpers instead of repeated inline active/draft and active/paused formatting.
+- Added tiny `cardTypeStatusValue()` and `shopStatusValue()` helpers in the dashboard controller, then re-ran the live-work shortcut and partial branch snapshot dashboard assertions as the parity check for this structural cleanup.
+
+### Card-type status helper follow-up checkpoint
+- Reused a small card-type helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-tier summary status and the tier status timeline now read the active/draft label through one named helper instead of repeated inline state formatting.
+- Added a tiny `cardTypeStatusValue()` helper, then re-ran the selected-tier edit-mode, live-tier, and draft-tier feature assertions as the parity check for this structural cleanup.
+
+### Shop review-scope/status helper follow-up checkpoint
+- Reused the existing shop helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-branch status timeline copy and review-scope disabled reason now read branch status and manager ownership through named helpers instead of raw inline state checks.
+- Reused `shopStatusValue()` and `shopHasAssignedManagers()` in those last two selected-shop branches, then re-ran the selected-branch, manager-linked, and manager-only shop assertions as the parity check for this structural cleanup.
+
+### Shop coverage/status helper follow-up checkpoint
+- Reused the new shop helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-branch coverage, status, manager-posture, scope-handoff, timeline-handoff, and table/status values now lean on named shop helpers instead of repeated raw `users_count` checks and inline active/paused labels.
+- Added a tiny `shopStatusValue()` helper and re-used `shopHasAssignedManagers()` across the remaining selected-shop coverage branches, then re-ran the selected-branch, manager-linked, manager-only, paused-branch, and coverage-without-manager assertions as the parity check for this structural cleanup.
+
+### Shop selected-form catalog-return helper checkpoint
+- Fixed the selected-branch live-form return label in `app/Http/Controllers/Admin/ResourceIndexController.php` so bootstrap admins again see `Create new Galaxy branch shell` while scoped admins keep the simpler `Back to branch catalog` return without losing editable branch fields.
+- Added a small `selectedFoundationCatalogReturnLabel()` helper and re-used it inside the foundation live-form review path, then re-ran the selected-branch, scoped-admin, manager-linked, and manager-only shop assertions as the parity check for this shell-alignment fix.
+
+### Shop manager-ownership helper follow-up checkpoint
+- Reused a new shop helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-branch manager guidance plus the operational-readiness, branch-posture, evidence-priority, and backend-gap messages now read manager ownership through one named helper instead of repeated raw `users_count` checks.
+- Added tiny `shopAssignedManagerCount()` and `shopHasAssignedManagers()` helpers, then re-ran the existing manager-linked and manager-only branch review assertions as the parity check for this structural cleanup.
+
+### Role permission-review-note helper follow-up checkpoint
+- Reused the existing role helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so catalog, selected-role summary, permission-note timeline, and dependency status now pull the first visible permission review note through one named helper instead of repeating the same collection pluck chain.
+- Added a tiny `rolePermissionReviewNote()` helper, then re-ran the existing selected-role and mixed-branch role-permissions feature assertions as the parity check for this structural cleanup.
+
+### Role assignment-scope timeline helper follow-up checkpoint
+- Reused the existing role helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-role assignment-scope timeline description now reads assigned-user totals through the shared role count helper instead of a raw `users_count` field read.
+- Added a tiny `rolesPermissionsAssignmentScopeTimelineDescription()` helper, then re-ran the existing selected-role role-permissions feature assertion as the parity check for this structural cleanup.
+
+### Role permission-signal helper follow-up checkpoint
+- Reused the existing role helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role review mode, assigned-user count, permission count, status value, and both permission-linked signal messages now read through named role helpers instead of repeating raw field checks.
+- Added tiny `roleReviewMode()`, `rolePermissionBranchActivitySignal()`, and `roleScopedPermissionSignal()` helpers, then re-ran the existing selected-role and mixed-branch role-permissions feature assertions as the parity check for this structural cleanup.
+
+### Role catalog/status helper follow-up checkpoint
+- Reused the existing role helper seam in `app/Http/Controllers/Admin/ResourceIndexController.php` so the roles catalog row status, selected-role live-form status value, and permission-presence check no longer fall back to raw role field reads.
+- Added a tiny `roleStatusValue()` helper and aligned permission-count fallback with `permissions_count`, then re-ran the existing selected-role feature assertion as the parity check for this structural cleanup.
+
+## 2026-06-02
+
+### Role access-guidance helper follow-up checkpoint
+- Reused the existing `roleHasPermissions()` helper inside the selected-role `Access guidance` summary message so this role-detail branch no longer duplicates the raw permission presence check.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role timeline-handoff helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsTimelineHandoffDescription()` so this selected-role timeline handoff classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role publish-posture helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsPublishPostureValue()` so this selected-role publish classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role backend-gap helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsBackendGap()` so this selected-role rollout-gap classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role status helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsStatusSignal()` so this selected-role status classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role coverage helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsCoverageSignal()` so this selected-role coverage classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role handoff helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsHandoffSignal()` so this selected-role handoff classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role readiness helper follow-up checkpoint
+- Reused the existing `roleHasAssignedUsers()` and `roleHasPermissions()` helpers inside `rolesPermissionsOperationalReadiness()` so this selected-role readiness classifier no longer duplicates raw staffing and permission presence checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role permissions helper follow-up checkpoint
+- Added a dedicated `roleHasPermissions()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role permission messaging can read bundle presence through one named accessor instead of repeating raw `permissions_count > 0` checks.
+- Updated the summary permission-coverage and dependency permission-posture labels to use the shared helper, then re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role assigned-users helper follow-up checkpoint
+- Added a dedicated `roleHasAssignedUsers()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role assignment messaging can read linked-staff presence through one named accessor instead of repeating raw `users_count > 0` checks.
+- Updated the summary assignment guidance and dependency assigned-staff posture labels to use the shared helper, then re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role active-state review-mode follow-up checkpoint
+- Reused the existing `roleIsActive()` helper inside the selected-role summary review-mode label so that role-detail status messaging keeps moving away from raw `is_active` reads.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role active-state timeline follow-up checkpoint
+- Reused the existing `roleIsActive()` helper inside the selected-role status timeline description so role timeline messaging stays aligned with the rest of the helper-backed active-state cleanup.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role active-state rollout follow-up checkpoint
+- Reused the existing `roleIsActive()` helper across selected-role backend-gap, publish-posture, handoff-signal, and timeline-handoff messaging so more rollout guidance now reads active state through one accessor.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role active-state dependency follow-up checkpoint
+- Reused the existing `roleIsActive()` helper across selected-role dependency status, review freshness, and status-signal messaging so more of the role-detail cluster now reads active state through one accessor.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role active-state summary follow-up checkpoint
+- Reused the existing `roleIsActive()` helper across selected-role summary status and access-guidance messaging so this role-detail cluster keeps moving away from raw `is_active` reads.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role active-state messaging follow-up checkpoint
+- Reused the existing `roleIsActive()` helper across selected-role operational-readiness and access-posture messaging so this role-detail cluster no longer mixes helper-backed status reads with raw `is_active` checks.
+- Re-ran the existing role permissions page assertion as the parity check for this structural cleanup.
+
+### Role active-state helper follow-up checkpoint
+- Added a dedicated `roleIsActive()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role disabled-reason helpers no longer mix helper-backed counts with raw active-state reads.
+- Updated the review-matrix and publish-role disabled-reason helpers to read through the shared active-state helper, then re-ran the existing role-detail assertions as the parity check for this structural cleanup.
+
+### Role assigned branch-count helpers follow-up checkpoint
+- Added dedicated `roleAssignedToActiveShopCount()` and `roleAssignedToPausedShopCount()` helpers to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role branch staffing activity reads through named count helpers instead of embedding both query counts inside the aggregate helper.
+- Updated `roleAssignedShopActivityCounts()` to compose those helpers, then re-ran the existing role-detail assignment assertion as the parity check for this structural cleanup.
+
+### Role scope-count timeline follow-up checkpoint
+- Reused the existing `roleScopeCount()` helper inside the selected-role scope timeline description so role scope messaging no longer mixes helper-backed and raw collection count reads.
+- Re-ran the existing role scope visibility assertion as the parity check for this structural cleanup.
+
+### Role permission-count helper follow-up checkpoint
+- Added a dedicated `rolePermissionCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role gating helpers read permission totals through one named accessor instead of repeating raw relation counts.
+- Updated the review-matrix and publish-role disabled-reason helpers to read through the shared permission-count helper, then re-ran the existing role-detail assertions as the parity check for this structural cleanup.
+
+### Role assigned-user count helper follow-up checkpoint
+- Added a dedicated `roleAssignedUserCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role gating helpers share one fallback path for `users_count` versus loaded role users.
+- Updated the review-matrix and publish-role disabled-reason helpers to read through the shared count helper, then re-ran the existing role-detail assignment assertion as the parity check for this structural cleanup.
+
+### Role assigned-shop activity helper follow-up checkpoint
+- Added a dedicated `roleAssignedShopActivityCounts()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role active/paused branch staffing counts are defined once instead of being recomputed in multiple role-detail builders.
+- Updated both selected-role summary and dependency-status builders to read through the shared helper, then re-ran the existing user shop-assignment assertion as the parity check for this structural cleanup.
+
+### Role scope-count helper follow-up checkpoint
+- Added a dedicated `roleScopeCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role scope messaging reads through one named count helper instead of repeating raw `$scope->count()` calls.
+- Updated both selected-role summary and dependency-status builders to read through the shared helper, then re-ran an existing role review assertion as the parity check for this structural cleanup.
+
+### Matching-filter helper follow-up checkpoint
+- Added a dedicated `filterMatching()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so predicate-based collection filtering is defined once instead of repeating raw `collect(...)->filter(...)` chains.
+- Updated shop-scoped record filtering, non-empty string cleanup, and matching-count aggregation to read through the shared helper, then re-ran an existing role review assertion as the parity check for this structural cleanup.
+
+### Matching-count helper follow-up checkpoint
+- Added a dedicated `countMatching()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so predicate-based collection counts are defined once instead of repeating `collect(...)->filter(...)->count()` blocks.
+- Updated both positive-count and zero-accrual receipt counters to read through the shared helper, then re-ran the existing reports multi-source assertion as the parity check for this structural cleanup.
+
+### Non-empty string predicate follow-up checkpoint
+- Added a dedicated `isNonEmptyString()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so role preview string cleanup reads through one named predicate instead of an inline `is_string(...) && trim(...) !== ''` check.
+- Updated `nonEmptyStrings()` to read through the new helper, then re-ran an existing role review assertion as the parity check for this structural cleanup.
+
+### Record-visibility helper follow-up checkpoint
+- Added a dedicated `recordIsVisibleToAdmin()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so shop-scoped record filtering reads through one named visibility rule instead of an inline collection predicate.
+- Updated the shared shop-scoped record filter to use the new helper, then re-ran an existing role review assertion as the parity check for this structural cleanup.
+
+### Positive-count predicate follow-up checkpoint
+- Added a dedicated `isPositiveCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so multi-source count filtering reads as a named domain rule instead of an inline `count > 0` predicate.
+- Updated `positiveCountEntries()` to read through the shared helper, then re-ran the existing multi-source reports assertion as the parity check for this structural cleanup.
+
+### Zero-accrual receipt predicate follow-up checkpoint
+- Added a dedicated `isZeroAccrualReceipt()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so zero-accrual receipt detection reads as a named domain rule instead of an inline `points === '0'` predicate.
+- Updated `zeroAccrualReceiptCount()` to read through the shared helper, then re-ran the existing accrual-gap assertion as the parity check for this structural cleanup.
+
+### Positive-count helper follow-up checkpoint
+- Added a dedicated `positiveCountEntries()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so live-source counting is defined once instead of embedding a raw `count > 0` collection filter in the reports helper.
+- Updated `liveSourceCount()` to read through the shared helper, then re-ran the existing multi-source reports assertion as the parity check for this structural cleanup.
+
+### Receipt count helper follow-up checkpoint
+- Added a dedicated `receiptPreviewCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so receipt-preview volume checks are defined once instead of being recomputed through inline `count($receiptPreviews)` calls.
+- Updated the checks-and-points receipt-lookup action-gating helper to read through the shared helper, then re-ran the existing branch-aware lookup assertion as the parity check for this structural cleanup.
+
+### Receipt shop-count helper follow-up checkpoint
+- Added a dedicated `receiptPreviewShopCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so branch-aware receipt coverage is defined once instead of being recomputed through repeated `pluck('shop')->unique()->count()` chains.
+- Updated both checks-and-points action-gating helpers to read through the shared helper, then added a focused feature assertion proving the receipt lookup baseline message still renders.
+
+### Shop-access predicate helper follow-up checkpoint
+- Added a dedicated `canAccessRecordShop()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so shop-scoped record visibility reads through one positive access predicate instead of repeating an inline negated `cannotAccessRecordShop()` filter.
+- Updated the shared shop-scoped record filter to use the new helper, then re-ran an existing role review feature assertion as the parity check for this structural cleanup.
+
+### Non-empty role preview helper follow-up checkpoint
+- Added a dedicated `nonEmptyStrings()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so role scope-name and assigned-user preview cleanup is defined once instead of being repeated through bare `filter()` collection chains.
+- Updated `roleShopScopeNames()` and `roleAssignedUserPreview()` to read through the shared helper, then added a focused feature assertion proving visible scope names and assigned-user previews still render after blank values are ignored.
+
+### Role assigned-user preview helper follow-up checkpoint
+- Added a dedicated `roleAssignedUserPreview()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-role assigned-user previews are defined once instead of being recomputed through inline `pluck(...)->filter()->take(3)` chains.
+- Updated the selected-role detail setup to read through the shared helper, then added a focused feature assertion proving assigned user names still render in the role review page.
+
+### Role scope-name helper follow-up checkpoint
+- Added a dedicated `roleShopScopeNames()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so role scope-name previews are defined once instead of being recomputed through repeated `pluck(...)->filter()->unique()` chains.
+- Updated both the roles catalog row builder and selected-role detail setup to read through the shared helper, then added a focused feature assertion proving branch scope names still render in the role review page.
+
+### Zero-accrual receipt helper follow-up checkpoint
+- Added a dedicated `zeroAccrualReceiptCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so zero-accrual receipt review logic is defined once instead of being recomputed through an inline collection filter.
+- Updated the checks-and-points gap-review helper to read through the shared helper, then added a focused feature assertion proving the current accrual-gap baseline message still renders.
+
+### Reports live-source helper follow-up checkpoint
+- Added a dedicated `liveSourceCount()` helper to `app/Http/Controllers/Admin/ResourceIndexController.php` so reports source-count logic is defined once instead of being recomputed through repeated inline `collect(...)->filter(...)` blocks.
+- Updated the reports metric and both reports action-gating helpers to read through the shared helper, then added a focused feature assertion covering the current multi-source baseline.
+
+### Assigned staff scope reuse follow-up checkpoint
+- Updated the roles reports baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so assigned staff coverage now reads through the existing `User::roleAssigned()` scope instead of being recomputed through role collection `users_count` sums.
+- Reused the existing user shop-assignment focused assertion as the parity check for this helper-level cleanup.
+
+### Activated linked-card report baseline follow-up checkpoint
+- Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so activated linked-card coverage now reads through the existing `Card::activatedHolderLinked()` scope instead of being recomputed through per-holder activation filters.
+- Reused the existing activated-holder-linked focused assertion as the parity check for this helper-level cleanup.
+
+### Holder-linked card coverage follow-up checkpoint
+- Updated cardholder catalog and helper baselines in `app/Http/Controllers/Admin/ResourceIndexController.php` so linked Galaxy card-shell coverage now reads through the existing `Card::holderLinked()` scope instead of being recomputed through `cards_count` sums.
+- Reused the existing holder-linked card focused assertion as the parity check for this helper-level cleanup.
+
+### User shop-assignment scope reuse follow-up checkpoint
+- Updated role detail summaries in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-shop and paused-shop assigned staff coverage now read through the existing `User::assignedToActiveShop()` and `User::assignedToPausedShop()` scopes instead of being recomputed through relation collection filters.
+- Added a focused feature assertion proving the existing user shop-assignment scopes still match the current role-detail baseline.
+
+### Active linked-card report baseline follow-up checkpoint
+- Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so active linked-card coverage now reads through the existing `Card::activeHolderLinked()` scope instead of being recomputed through per-holder card collection sums.
+- Reused the existing active-card focused assertion as the parity check for this helper-level cleanup.
+
+### Card activated-state scope follow-up checkpoint
+- Added `activated()` to `app/Models/Card.php` and reused it inside the activated holder-linked and activated unassigned scopes so activation coverage is defined once at the model layer.
+- Updated the reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so activated-card coverage now reads through the new scope, then added a focused feature assertion proving it matches the current reports baseline.
+
+### Card active-state action-gating follow-up checkpoint
+- Updated card catalog action-gating helpers in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-card coverage now reads through the existing `Card::active()` scope instead of being recomputed only through collection-level `status = active` filters.
+- Reused the existing active-card focused assertion as the parity check for this helper-level cleanup.
+
+### Card active-state scope follow-up checkpoint
+- Updated the cards catalog metric and reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-state Galaxy card coverage now reads through the existing `Card::active()` scope instead of being recomputed only through inline `status = active` filters.
+- Added a focused feature assertion proving the existing active-card scope still matches the current card-catalog baseline.
+
+### Role active-state action-gating follow-up checkpoint
+- Updated the roles and permissions catalog action-gating helpers in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-role coverage now reads through the existing `Role::active()` scope instead of being recomputed only through inline `is_active = true` filters.
+- Added a focused feature assertion proving the existing active-role scope still matches the current permissions action-gating baseline.
+
+### Card blocked-state action-gating follow-up checkpoint
+- Updated the card catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked card coverage now reads through the existing `Card::blocked()` scope instead of being recomputed only through a collection-level `status = blocked` filter.
+- Reused the existing blocked-card focused assertion as the parity check for this helper-level cleanup.
+
+### Card draft-state action-gating follow-up checkpoint
+- Updated the card catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft card coverage now reads through the existing `Card::draft()` scope instead of being recomputed only through a collection-level `status = draft` filter.
+- Reused the existing draft-card focused assertion as the parity check for this helper-level cleanup.
+
+### Draft linked-card report baseline follow-up checkpoint
+- Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft linked-card coverage now reads through the existing `Card::draftHolderLinked()` scope instead of being recomputed through per-holder card collection sums.
+- Reused the existing draft card focused assertion as the parity check for this helper-level cleanup.
+
+### Blocked linked-card report baseline follow-up checkpoint
+- Updated the cardholder reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked linked-card coverage now reads through the existing `Card::blockedHolderLinked()` scope instead of being recomputed through per-holder card collection sums.
+- Reused the existing blocked-holder-linked focused assertion as the parity check for this helper-level cleanup.
+
+### Cardholder inactive-state action-gating follow-up checkpoint
+- Updated the cardholder catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so inactive-holder coverage now reads through the existing `CardHolder::inactive()` scope instead of being recomputed only through an inline `is_active = false` filter.
+- Reused the existing inactive-holder focused assertion as the parity check for this helper-level baseline cleanup.
+
+### Shop paused-state action-gating follow-up checkpoint
+- Updated the shop catalog action-gating helper in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch coverage now reads through the existing `Shop::paused()` scope instead of being recomputed only through an inline `is_active = false` filter.
+- Added a focused feature assertion proving the existing paused-branch scope still matches the current shop action-gating baseline.
+
+### Card-type active-state scope follow-up checkpoint
+- Updated card-type catalog action-gating helpers in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-tier coverage now reads through the existing `CardType::active()` scope instead of being recomputed only through inline `is_active = true` filters.
+- Added a focused feature assertion proving the existing active-tier scope still matches the current catalog action-gating baseline.
+
+### Cardholder active-state scope follow-up checkpoint
+- Updated the reports and card-holder catalog baselines in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-state Galaxy holder coverage now reads through the existing `CardHolder::active()` scope instead of being recomputed only through inline `is_active = true` filters.
+- Added a focused feature assertion proving the existing active holder scope still matches the current holder baseline.
+
+### Cardholder inactive-state scope follow-up checkpoint
+- Added `inactive()` to `app/Models/CardHolder.php` and reused it inside the existing inactive linked and unlinked scopes so inactive holder coverage is defined once at the model layer.
+- Updated the `Card Holders` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` so inactive-state Galaxy holder coverage now reads through `CardHolder::inactive()`, then added a focused feature assertion proving it matches the current holder-catalog baseline.
+
+### Shop active-state scope follow-up checkpoint
+- Updated the `Shops` catalog metric and reports inventory branch baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-state Galaxy branch coverage now reads through the existing `Shop::active()` scope instead of being recomputed only through inline `is_active = true` filters.
+- Added a focused feature assertion proving the existing active-branch scope still matches the current branch-catalog baseline.
+
+### Card activated-unassigned scope follow-up checkpoint
+- Added `activatedUnassigned()` to `app/Models/Card.php` so activated unassigned card coverage can be queried from the model layer instead of being recomputed only through inline activated-plus-unassigned filters.
+- Updated the reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so activated unassigned card coverage now reads through the new scope, then added a focused feature assertion proving it matches the current reports inventory baseline.
+
+### Card blocked-unassigned scope follow-up checkpoint
+- Updated the reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked unassigned card coverage now reads through the existing `Card::blockedUnassigned()` scope instead of being recomputed only through inline blocked-plus-unassigned filters.
+- Added a focused feature assertion proving the existing blocked-unassigned scope still matches the current reports inventory baseline.
+
+### Card draft-unassigned scope follow-up checkpoint
+- Added `draftUnassigned()` to `app/Models/Card.php` so draft unassigned card coverage can be queried from the model layer instead of being recomputed only through inline draft-plus-unassigned filters.
+- Updated the reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft unassigned card coverage now reads through the new scope, then added a focused feature assertion proving it matches the current reports inventory baseline.
+
+### Card draft catalog-scope follow-up checkpoint
+- Updated the cards catalog metric and reports inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft-state Galaxy card-shell coverage now reads through the existing `Card::draft()` scope instead of being recomputed only through inline `status = draft` filters.
+- Added a focused feature assertion proving the existing draft scope still matches the current card-catalog baseline.
+
+### Card shop unassigned scope follow-up checkpoint
+- Added `activeShopUnassigned()` and `pausedShopUnassigned()` to `app/Models/Card.php` so branch-aware unassigned card coverage can be queried from the model layer instead of being recomputed only through inline unassigned-plus-shop filters.
+- Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-branch and paused-branch unassigned card coverage now read through the new scopes, then added a focused feature assertion proving they match the current reports inventory baseline.
+
+### Card shop holder-linked scope follow-up checkpoint
+- Added `activeShopHolderLinked()` and `pausedShopHolderLinked()` to `app/Models/Card.php` so branch-aware holder-linked card coverage can be queried from the model layer instead of being recomputed only through inline holder-plus-shop filters.
+- Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so active-branch and paused-branch holder-linked card coverage now read through the new scopes, then added a focused feature assertion proving they match the current reports inventory baseline.
+
+### Card blocked-holder-linked scope follow-up checkpoint
+- Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked holder-linked card coverage now reads through the existing `Card::blockedHolderLinked()` scope instead of being recomputed only through inline blocked plus holder filters.
+- Added a focused feature assertion proving the existing blocked holder-linked scope still matches the current reports inventory baseline.
+
+### Card activated-holder-linked scope follow-up checkpoint
+- Added `activatedHolderLinked()` to `app/Models/Card.php` so activated holder-linked card coverage can be queried from the model layer instead of being recomputed only through inline `activated_at` plus holder filters.
+- Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so activated holder-linked card coverage now reads through the new scope, then added a focused feature assertion proving it matches the current reports inventory baseline.
+
+### Card holder-linked scope follow-up checkpoint
+- Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so holder-linked card coverage now reads through the existing `Card::holderLinked()` scope instead of being recomputed only through an inline `card_holder_id` filter.
+- Added a focused feature assertion proving the existing holder-linked scope still matches the current reports inventory baseline.
+
+### Card draft-state scope follow-up checkpoint
+- Added `draft()` and `draftHolderLinked()` to `app/Models/Card.php` so draft card-shell coverage can be queried from the model layer instead of being recomputed only through inline `status = draft` plus holder filters.
+- Updated the reports inventory setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft holder-linked card coverage now reads through `Card::draftHolderLinked()`, then added a focused feature assertion proving the new scopes match the current draft-state baseline.
+
+### Card blocked-state scope follow-up checkpoint
+- Added `blocked()` to `app/Models/Card.php` so blocked card-shell coverage can be queried from the model layer instead of being recomputed only through inline `status = blocked` filters.
+- Updated the cards inventory baseline in `app/Http/Controllers/Admin/ResourceIndexController.php` to read blocked coverage through `Card::blocked()`, then added a focused feature assertion proving the new scope matches the current blocked-state baseline.
+
+### Card-type draft-state scope follow-up checkpoint
+- Added `draft()` to `app/Models/CardType.php` so draft tier coverage can be queried from the model layer instead of being recomputed only through inline `is_active = false` filters.
+- Updated the `Card Types` catalog metric for draft-state Galaxy tiers in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `CardType::draft()`, then added a focused feature assertion proving the new scope matches the current tier-state baseline.
+
+### Shop paused-state scope follow-up checkpoint
+- Added `paused()` to `app/Models/Shop.php` so paused-branch coverage can be queried from the model layer instead of being recomputed only through inline `is_active = false` filters.
+- Updated the `Shops` catalog metric for paused-state Galaxy branches in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Shop::paused()`, then added a focused feature assertion proving the new scope matches the current branch-state baseline.
+
+### Cardholder paused-branch activity-gating follow-up checkpoint
+- Updated the cardholder activity review gating in `app/Http/Controllers/Admin/ResourceIndexController.php` so paused-branch holder coverage now reads through `CardHolder::assignedToPausedShop()` instead of being recomputed only through an inline collection filter.
+- Added a focused feature assertion proving the existing paused-shop holder scope still matches the current activity-gating baseline.
+
+### User role-assignment shop scope follow-up checkpoint
+- Added `assignedToPausedShop()`, `roleAssigned()`, `roleAssignedToActiveShop()`, and `roleAssignedToPausedShop()` to `app/Models/User.php` so branch-linked staffing coverage can be queried from the model layer instead of being recomputed only through inline role-user sums.
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so shop-scoped, active-branch, and paused-branch assigned-staff coverage now reads through the new user scopes, then added a focused feature assertion proving the query-level baseline matches the current Phase 1 staffing semantics.
+
+### Cardholder linked-card-state scope follow-up checkpoint
+- Added `blockedLinked()`, `draftLinked()`, `cardActiveLinked()`, and `activatedLinked()` to `app/Models/CardHolder.php` so holder coverage across linked card states can be queried from the model layer instead of being recomputed only through inline per-holder card collection checks.
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so blocked, draft, active, and activated linked-holder coverage now reads through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current holder-status semantics.
+
+### Cardholder activity-linkage scope follow-up checkpoint
+- Added `activeLinked()`, `inactiveLinked()`, `activeUnlinked()`, and `inactiveUnlinked()` to `app/Models/CardHolder.php` so holder activity/linkage coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Cardholders` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read those four holder slices through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current holder workspace semantics.
+
+### Role shop-aware permission scope follow-up checkpoint
+- Added `activeShopScopedPermissionBearing()`, `activeAssignedToActiveShopPermissionBearing()`, and `activeAssignedToPausedShopPermissionBearing()` to `app/Models/Role.php` so shop-aware permission-linked access coverage can be queried from the model layer instead of being recomputed only through inline user-collection checks.
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so scoped, active-branch, and paused-branch permission-linked role coverage now read through the new scopes, then added a focused feature assertion proving they match the current Phase 1 access baseline.
+
+### Shop role-coverage follow-up checkpoint
+- Added `roleCovered()` to `app/Models/Shop.php` so branch coverage with staff-to-role assignments can be queried from the model layer instead of being recomputed only through inline role-user flattening.
+- Updated the `Roles & Permissions` catalog metric for branch-scoped Galaxy coverage in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Shop::roleCovered()`, then added a focused feature assertion proving the new scope matches the current branch-coverage baseline.
+
+### Role draft permission-bearing follow-up checkpoint
+- Added `draftPermissionBearing()` to `app/Models/Role.php` so draft permission-linked access coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft permission-linked role coverage now reads through `Role::draftPermissionBearing()`, then added a focused feature assertion proving the new scope matches the current Phase 1 access baseline.
+
+### Role shop-scoped assignment action-gating follow-up checkpoint
+- Added `shopScopedAssigned()` to `app/Models/Role.php` so branch-linked role coverage can be queried from the model layer instead of being recomputed only through inline user collection flattening.
+- Updated the roles catalog publish-action gating in `app/Http/Controllers/Admin/ResourceIndexController.php` so scoped role coverage now reads through `Role::shopScopedAssigned()`, then added a focused feature assertion proving the new scope matches the current publish-gating baseline.
+
+### Shop foundation-coverage action-gating follow-up checkpoint
+- Added `foundationCovered()` to `app/Models/Shop.php` so branch coverage with holder or card records can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the shops catalog action-gating logic in `app/Http/Controllers/Admin/ResourceIndexController.php` so branch coverage now reads through `Shop::foundationCovered()`, then added a focused feature assertion proving the new scope matches the current shops catalog coverage baseline.
+
+### Shop manager-assignment action-gating follow-up checkpoint
+- Updated the shops catalog action-gating logic in `app/Http/Controllers/Admin/ResourceIndexController.php` so manager-linked branch coverage now reads through `Shop::managerAssigned()` instead of being recomputed only through inline collection filters.
+- Added a focused feature assertion proving the existing manager-assignment scope still matches the current shops catalog action-gating baseline.
+
+### Cardholder reports scope follow-up checkpoint
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so linked-holder coverage and active-branch holder coverage now read through `CardHolder::linked()` and `CardHolder::assignedToActiveShop()` instead of being recomputed only through inline collection filters.
+- Added a focused feature assertion proving the existing holder linkage and shop-assignment scopes still match the current reports holder-status baseline.
+
+### Role permission-bearing action-gating follow-up checkpoint
+- Updated the roles catalog action-gating logic in `app/Http/Controllers/Admin/ResourceIndexController.php` so permission-linked coverage now reads through `Role::permissionBearing()` instead of being recomputed only through inline collection filters.
+- Added a focused feature assertion proving the existing permission-bearing scope still matches the current roles catalog action-gating baseline.
+
+### Role assigned-scope follow-up checkpoint
+- Added `assigned()` to `app/Models/Role.php` so role staffing coverage can be queried from the model layer without coupling every follow-up to status-specific helpers.
+- Updated the reports workspace setup in `app/Http/Controllers/Admin/ResourceIndexController.php` so draft assigned-role coverage now reads through `Role::draft()->assigned()`, then added a focused feature assertion proving the shared assignment scope matches the current Phase 1 draft-role staffing baseline.
+
+### Card inventory scope follow-up checkpoint
+- Added `issuedUnassigned()`, `preActivationHolderLinked()`, `preActivationUnassigned()`, `activeHolderLinked()`, `activeUnassigned()`, `blockedPreActivation()`, `blockedActivated()`, and `blockedHolderLinked()` to `app/Models/Card.php` so the remaining core Galaxy card-shell inventory slices can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Cards` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read those remaining issued, active, and blocked inventory slices through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current inventory semantics.
+
+### Card inventory scope baseline checkpoint
+- Added `issued()`, `preActivation()`, `holderLinked()`, `unassigned()`, `issuedHolderLinked()`, and `blockedUnassigned()` to `app/Models/Card.php` so the basic Galaxy card-shell inventory coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Cards` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read issued, pre-activation, assignment-ready, assignment-pending, issued holder-linked, and blocked unassigned coverage through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current inventory semantics.
+
+### Cardholder shop-coverage scope follow-up checkpoint
+- Added `assignedToActiveShop()`, `assignedToPausedShop()`, `linked()`, `assignedToActiveShopLinked()`, and `assignedToPausedShopUnlinked()` to `app/Models/CardHolder.php` so shop-aware holder coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Cardholders` catalog metrics for active-branch holders, paused-branch holders, active-branch linked holders, and paused-branch unlinked holders in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through the new scopes, then added a focused feature assertion proving the query-level baseline matches the current holder workspace semantics.
+
+### Shop manager-assignment scope follow-up checkpoint
+- Added `managerAssigned()` to `app/Models/Shop.php` so branch ownership coverage can be queried from the model layer instead of being recomputed only through inline `users_count > 0` filters.
+- Updated the `Shops` catalog metric for assigned branch managers in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Shop::managerAssigned()`, then added a focused feature assertion proving unmanaged branches stay out of the Phase 1 baseline.
+
+### Card-type activation and rollout note scope follow-up checkpoint
+- Added `activationNoted()` and `rolloutNoted()` to `app/Models/CardType.php` so saved tier activation and rollout note coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Card Types` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read activation and rollout note coverage through the new scopes, then added a focused feature assertion proving blank tier notes stay out of the Phase 1 baseline.
+
+### Card-type review-note scope follow-up checkpoint
+- Added `reviewNoted()` to `app/Models/CardType.php` so saved tier review coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Card Types` catalog metric for review-noted Galaxy tiers in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `CardType::reviewNoted()`, then added a focused feature assertion proving blank tier notes stay out of the Phase 1 baseline.
+
+### Card review-note scope follow-up checkpoint
+- Added `reviewNoted()` to `app/Models/Card.php` so saved card-shell review coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Cards` catalog metric for review-noted Galaxy card shells in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Card::reviewNoted()`, then added a focused feature assertion proving blank card notes stay out of the Phase 1 baseline.
+
+### Cardholder review-note scope follow-up checkpoint
+- Added `reviewNoted()` to `app/Models/CardHolder.php` so saved holder review coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Cardholders` catalog metric for review-noted Galaxy holders in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `CardHolder::reviewNoted()`, then added a focused feature assertion proving blank holder notes stay out of the Phase 1 baseline.
+
+### Shop review-note scope follow-up checkpoint
+- Added `reviewNoted()` to `app/Models/Shop.php` so saved branch review coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Shops` catalog metric for review-noted Galaxy branches in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Shop::reviewNoted()`, then added a focused feature assertion proving blank branch notes stay out of the Phase 1 baseline.
+
+### Permission review-note scope follow-up checkpoint
+- Added `reviewNoted()` to `app/Models/Permission.php` so saved permission review coverage can be queried from the model layer instead of being recomputed only through inline flattened role collections.
+- Updated the `Roles & Permissions` catalog metric for permission-linked review notes in `app/Http/Controllers/Admin/ResourceIndexController.php` to read through `Permission::assignedToRoles()->reviewNoted()`, then added a focused feature assertion proving blank or unassigned permission notes stay out of the Phase 1 baseline.
+
+### Role note-scope baseline checkpoint
+- Added `reviewNoted()`, `accessNoted()`, and `assignmentNoted()` to `app/Models/Role.php` so the current access-shell note coverage can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the `Roles & Permissions` catalog metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` to read role note coverage through the new scopes, then added a focused feature assertion proving the note scopes keep blank note values out of the Phase 1 baseline.
+
+### Role assigned-permission scope follow-up checkpoint
+- Added `activeAssignedPermissionBearing()` to `app/Models/Role.php` so active permission-linked roles with assigned staff can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the role catalog summary in `app/Http/Controllers/Admin/ResourceIndexController.php` to read assigned permission-linked role coverage through the new scope while keeping the visible roles workspace behavior unchanged.
+
+### Role assignment scope follow-up checkpoint
+- Added `activeAssigned()` to `app/Models/Role.php` so active roles with linked staff can be queried from the model layer instead of being recomputed only through inline collection filters.
+- Updated the role catalog summary in `app/Http/Controllers/Admin/ResourceIndexController.php` to read assigned active role coverage through the new scope while keeping the visible roles workspace behavior unchanged.
+
+### Role permission-link scope follow-up checkpoint
+- Added `activePermissionBearing()` to `app/Models/Role.php` so the current Phase 1 live-access-shell baseline can ask for active permission-linked roles from the model layer instead of rebuilding that combination inline.
+- Updated the role catalog summary in `app/Http/Controllers/Admin/ResourceIndexController.php` to read active permission-linked role coverage through the new scope while keeping the visible roles workspace behavior unchanged.
+
+### Roles workspace status-scope follow-up checkpoint
+- Updated the `Roles & Permissions` workspace metrics in `app/Http/Controllers/Admin/ResourceIndexController.php` so active and draft access-shell counts now read through `Role::active()` and `Role::draft()` instead of inline collection status filters.
+- Kept the follow-up intentionally small and behavior-preserving, but it applies the new role status baseline to one more live Galaxy access surface.
+
+### Role status-scope baseline checkpoint
+- Added `active()` and `draft()` scopes to `app/Models/Role.php` so the Phase 1 access-shell status baseline has a reusable home in the model instead of being inferred only from inline `is_active` filters.
+- Updated the role catalog summary in `app/Http/Controllers/Admin/ResourceIndexController.php` to read active role coverage through the new role scope while leaving the visible roles workspace behavior unchanged.
+
+### User access-scope baseline checkpoint
+- Added query scopes to `app/Models/User.php` for bootstrap admins, users assigned to active shops, permission-bearing users, and full shop-scoped admins, so the Phase 1 access baseline can be reused at query level instead of living only in per-user helper methods.
+- Reused the new scopes inside the existing user access helpers where it kept the semantics clearer, then added a focused feature assertion proving the new query-level scopes match the current Phase 1 shop-scoped admin rules.
+
+### Access-foundation scope baseline checkpoint
+- Added small Galaxy access scopes to `app/Models/Role.php` and `app/Models/Permission.php` so permission-bearing access shells and assigned permission vocabulary can be queried from the Phase 1 models instead of being implied only by inline dashboard logic.
+- Updated `app/Http/Controllers/Admin/DashboardController.php` to read `Access baseline coverage` through those model scopes while leaving the visible dashboard wording unchanged.
+
+### Active-foundation scope baseline checkpoint
+- Added small Galaxy foundation query scopes to `app/Models/Shop.php`, `app/Models/CardHolder.php`, `app/Models/CardType.php`, and `app/Models/Card.php` so the current active-state semantics live with the Phase 1 domain models instead of being repeated inline in the dashboard controller.
+- Updated `app/Http/Controllers/Admin/DashboardController.php` to read active shop, holder, card, and tier counts through those model scopes, keeping the live Phase 1 dashboard behavior unchanged while making the foundation models slightly more intentional and reusable.
+
+### Foundation-seam domain source sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `Domain baseline` seam now explicitly lists the same source-of-truth anchors already centralized in `config/phase-1-domain-map.php`.
+- Kept the step intentionally small and docs-only, but it makes the seam note more consistent about how the domain baseline fits into the broader config-backed Phase 1 source-of-truth pattern.
+
+### Foundation-seam top-level guidance source sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `Top-level repo guidance` seam now explicitly lists the same source-of-truth anchors already surfaced through the README-centric Phase 1 reference trail.
+- Kept the step intentionally small and docs-only, but it makes the seam note more consistent about how repo-level guidance fits into the broader config-backed reference pattern now used across Phase 1 surfaces.
+
+### Foundation-seam seam-source source-truth sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `README seam-source trail` seam now explicitly lists the same source-of-truth anchors already centralized in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the seam note aligned with the config-backed seam-source source-of-truth pattern now used across the repo plus the live admin and public seam-source surfaces.
+
+### Foundation-seam public-reference source-truth sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `Public landing reference trail` seam now explicitly lists the same source-of-truth anchors already centralized in `config/landing-docs.php`.
+- Kept the step intentionally small and docs-only, but it keeps the seam note aligned with the config-backed public reference source-of-truth pattern now used on the live landing surface.
+
+### Foundation-seam admin-reference source-truth sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `Admin reference trail` seam now explicitly lists the same source-of-truth anchors already centralized in `config/phase-1-reference-docs.php`.
+- Kept the step intentionally small and docs-only, but it keeps the seam note aligned with the config-backed admin reference source-of-truth pattern now used on the live dashboard surface.
+
+### Blueprint seam-source source-truth sync checkpoint
+- Updated `docs/blueprint.md` so its Phase 1 deliverables now explicitly mirror the centralized seam-source source-of-truth anchors already carried in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the higher-level migration blueprint aligned with the config-backed seam-source source-of-truth language now feeding the live admin and public seam-source surfaces.
+
+### Phase-1-plan seam-source source-truth sync checkpoint
+- Updated `docs/phase-1-plan.md` so its seam-source baseline note now explicitly mirrors the centralized seam-source source-of-truth anchors already carried in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the main Phase 1 plan aligned with the config-backed seam-source source-of-truth language now feeding the live admin and public seam-source surfaces.
+
+### Seam-source source-of-truth config checkpoint
+- Extended `config/phase-1-seam-sources.php` with shared `source_of_truth` copy, then wired `app/Http/Controllers/Admin/DashboardController.php`, `resources/views/admin/dashboard.blade.php`, and `resources/views/welcome.blade.php` onto that config-backed source-of-truth narrative.
+- Updated the live admin and public seam-source surfaces without changing their visible anchor set, so existing focused assertions stayed valid while the seam-source source-of-truth pattern became structurally consistent with the other Phase 1 cards.
+- Kept the step intentionally small, but it removes one more implicit reuse of `guide` where a dedicated source-of-truth seam is clearer.
+
+## 2026-06-01
+
+### README seam-source source-truth sync checkpoint
+- Updated `README.md` so its `Phase 1 seam sources` section now explicitly mirrors the centralized seam-source source-of-truth anchors already carried in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the top-level seam-source guidance aligned with the config-backed source-of-truth language now feeding the live admin and public seam-source surfaces.
+
+### Foundation-seam note source-truth sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so its `Source of truth` section now explicitly mirrors the centralized seam source-of-truth anchors already carried in `config/phase-1-foundation-seams.php`.
+- Kept the step intentionally small and docs-only, but it keeps the readable seam note aligned with the config-backed seam source-of-truth language now feeding the live admin seam card.
+
+### Foundation-seam source-of-truth config checkpoint
+- Extended `config/phase-1-foundation-seams.php` with shared `source_of_truth` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed source-of-truth narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin seam surface now reads its source-of-truth anchors from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated dashboard seam copy with a clearer config-backed foundation seam.
+
+### Blueprint entity source-truth sync checkpoint
+- Updated `docs/blueprint.md` so its Phase 1 deliverables now explicitly mirror the centralized entity-map source-of-truth anchors already carried in `config/phase-1-domain-map.php`.
+- Kept the step intentionally small and docs-only, but it keeps the higher-level migration blueprint aligned with the config-backed entity source-of-truth language now feeding the live admin entity card and the Phase 1 plan.
+
+### Phase-1-plan entity source-truth sync checkpoint
+- Updated `docs/phase-1-plan.md` so its `Entity baseline note` now explicitly mirrors the centralized entity-map source-of-truth anchors already carried in `config/phase-1-domain-map.php`.
+- Kept the step intentionally small and docs-only, but it keeps the main Phase 1 plan aligned with the config-backed entity source-of-truth language now feeding the live admin entity card.
+
+### Domain-map source-of-truth config checkpoint
+- Extended `config/phase-1-domain-map.php` with shared `source_of_truth` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed source-of-truth narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin entity surface now reads its source-of-truth anchors from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated dashboard entity copy with a clearer config-backed foundation seam.
+
+### Dashboard-reference source-of-truth config checkpoint
+- Extended `config/phase-1-reference-docs.php` with shared `source_of_truth` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed source-of-truth narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin reference surface now reads its source-of-truth anchors from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated dashboard reference copy with a clearer config-backed foundation seam.
+
+### Landing-doc source-of-truth config checkpoint
+- Extended `config/landing-docs.php` with shared `source_of_truth` copy, then wired `resources/views/welcome.blade.php` onto that config-backed source-of-truth narrative.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public entry surface now reads its source-of-truth anchors from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated landing reference copy with a clearer config-backed foundation seam.
+
+### README reference source-truth sync checkpoint
+- Updated `README.md` so its `Core Phase 1 references` section now explicitly mirrors the centralized admin-side reference source-of-truth pattern, pairing the readable guide anchors with `config/phase-1-reference-docs.php` as the implementation baseline.
+- Kept the step intentionally small and docs-only, but it keeps the top-level Phase 1 reference guidance aligned with the config-backed source-of-truth language already used on the live admin dashboard reference surface.
+
+### README seam-source guide sync checkpoint
+- Updated `README.md` so its `Phase 1 seam sources` section now mirrors the centralized seam-source `guide` language already carried in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the top-level seam-source guidance aligned with the same readable/implementation anchors now feeding the live admin and public seam-source surfaces.
+
+### Seam-source guide config checkpoint
+- Extended `config/phase-1-seam-sources.php` with shared `guide` copy, then wired `app/Http/Controllers/Admin/DashboardController.php`, `resources/views/admin/dashboard.blade.php`, and `resources/views/welcome.blade.php` onto that config-backed seam-source anchor narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and `tests/Feature/ExampleTest.php`, then re-ran the focused dashboard and landing-page feature slices successfully so both live entry surfaces now read the seam-source guide/source-of-truth copy from one Galaxy-specific seam.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated seam-source anchor wording with a clearer config-backed foundation seam.
+
+### Blueprint entity copy sync checkpoint
+- Updated `docs/blueprint.md` so its Phase 1 deliverables now explicitly echo the centralized entity-map focus on branch, access, holder, card, and tier-aware building blocks already carried in `config/phase-1-domain-map.php`.
+- Kept the step intentionally small and docs-only, but it keeps the higher-level migration blueprint aligned with the config-backed entity guidance now feeding the live admin entity card and the Phase 1 plan.
+
+### Phase-1-plan entity copy sync checkpoint
+- Updated `docs/phase-1-plan.md` so its `Entity baseline note` now mirrors the centralized entity-map `focus`, `guide`, and `posture` language already carried in `config/phase-1-domain-map.php`.
+- Kept the step intentionally small and docs-only, but it keeps the main Phase 1 narrative aligned with the config-backed entity guidance now feeding the live admin entity card.
+
+### Domain-map config copy checkpoint
+- Extended `config/phase-1-domain-map.php` with shared `guide` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed entity-map reference narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin entity card now reads its guide/source-of-truth copy from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated dashboard entity copy with a clearer config-backed foundation seam.
+
+### Foundation-seam config copy checkpoint
+- Extended `config/phase-1-foundation-seams.php` with shared `guide` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed seam reference narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin seam card now reads its guide/source-of-truth copy from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated dashboard seam copy with a clearer config-backed foundation seam.
+
+### README reference copy sync checkpoint
+- Updated `README.md` so the top-level `Core Phase 1 references` section now mirrors the centralized admin-side reference `focus`, `guide`, and `posture` narrative already carried in `config/phase-1-reference-docs.php`.
+- Kept the step intentionally small and docs-only, but it keeps the repo-level Phase 1 guidance aligned with the config-backed reference language now feeding the live admin dashboard reference surface.
+
+### Dashboard-reference config copy checkpoint
+- Extended `config/phase-1-reference-docs.php` with shared `focus`, `guide`, and `posture` copy, then wired `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` onto that config-backed admin reference narrative.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin entry surface now reads its own reference-trail copy from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated dashboard reference copy with a clearer config-backed foundation seam.
+
+### Landing-doc config copy checkpoint
+- Extended `config/landing-docs.php` with shared `focus`, `guide`, and `posture` copy, then wired `resources/views/welcome.blade.php` onto that config-backed public reference narrative.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public entry surface now reads its own reference-trail copy from one Galaxy-specific seam instead of keeping that wording inline in Blade.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated landing-page reference copy with a clearer config-backed foundation seam.
+
+### README seam-source copy sync checkpoint
+- Updated `README.md` so its `Phase 1 seam sources` section now mirrors the centralized seam-source `focus` and `posture` language from `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it keeps the top-level Galaxy migration guidance aligned with the same seam-source narrative already feeding the live admin surface, public landing surface, and readable seam note.
+
+### Foundation-seam seam-source copy sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so the readable `README seam-source trail` note now mirrors the shared `focus` and `posture` language already centralized in `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it makes the readable seam map less likely to drift away from the config-backed seam-source narrative now feeding the live admin and public entry surfaces.
+
+### Seam-source config copy checkpoint
+- Extended `config/phase-1-seam-sources.php` with shared `focus` and `posture` copy, then wired both `resources/views/admin/dashboard.blade.php` and `resources/views/welcome.blade.php` onto that config-backed seam text.
+- Updated `app/Http/Controllers/Admin/DashboardController.php`, `tests/Feature/AdminDashboardTest.php`, and `tests/Feature/ExampleTest.php`, then re-ran the focused dashboard and landing-page feature slices successfully so both live entry surfaces now read the same seam-source narrative from one Galaxy-specific seam.
+- Kept the step intentionally small, but it replaces one more pocket of duplicated Blade copy with a clearer config-backed foundation seam.
+
+### Blueprint-plan seam-source deliverable sync checkpoint
+- Updated `docs/blueprint.md` and `docs/phase-1-plan.md` so the core Phase 1 narrative now treats `config/phase-1-seam-sources.php` and the README seam-source trail as an explicit part of the current foundation deliverable set.
+- Kept the step intentionally small and docs-only, but it brings the main migration narrative back in line with the seam-source-aware reference inventories and seam map that are already live on the repo, admin, and public entry surfaces.
+
+### Foundation-seam reference-trail seam-source sync checkpoint
+- Updated `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` so the `Admin reference trail` and `Public landing reference trail` seams now explicitly include `config/phase-1-seam-sources.php` as part of their aligned source trail.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live seam card now guards the stronger seam-source-aware descriptions for both reference-trail seams.
+- Kept the step intentionally small, but it makes the readable seam map and the runtime seam inventory better match the config-driven reference trails already shipped on the admin and public entry surfaces.
+
+### Landing reference seam-source inventory checkpoint
+- Extended `config/landing-docs.php` so the public `Helpful project docs` inventory now explicitly includes `config/phase-1-seam-sources.php` in its config-driven list, not only in supporting notes.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public reference card now guards the expanded twenty-item reference inventory.
+- Kept the step intentionally small, but it makes the public-side Phase 1 reference trail a little more structurally honest about the seam-source baseline that already helps anchor the broader Galaxy migration map.
+
+### Dashboard reference seam-source inventory checkpoint
+- Extended `config/phase-1-reference-docs.php` so the admin-side `Phase 1 reference docs` inventory now explicitly includes `config/phase-1-seam-sources.php` in its config-driven list, not only in supporting notes.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin reference card now guards the expanded eleven-item reference inventory.
+- Kept the step intentionally small, but it makes the admin-side Phase 1 reference trail a little more structurally honest about the seam-source baseline that already helps anchor the broader Galaxy migration map.
+
+### Foundation-seam source-truth bridge checkpoint
+- Updated `docs/phase-1-foundation-seams.md` so its source-of-truth section now explicitly points at `config/phase-1-seam-sources.php` alongside the main seam baseline.
+- Kept the step intentionally small and docs-only, but it makes the readable seam note a little more explicit about the implementation bridge now connecting the main seam map to the README-level seam-source inventory.
+
+### Landing reference seam-bridge checkpoint
+- Updated `resources/views/welcome.blade.php` so the public `Helpful project docs` card now calls out `config/phase-1-seam-sources.php` as the seam bridge tying README-level seam sources into the broader public Phase 1 reference trail.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public entry surface now exposes the same seam-bridge pattern that the admin-side reference card already uses.
+- Kept the step intentionally small, but it makes the public reference surface a little more explicit about how repo-level seam guidance participates in the live Galaxy migration entry trail.
+
+### README reference seam-bridge checkpoint
+- Extended `README.md` so the top-level `Core Phase 1 references` list now explicitly includes `config/phase-1-seam-sources.php` alongside the main Phase 1 docs.
+- Updated `resources/views/admin/dashboard.blade.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the admin-side reference card now calls out the seam bridge tying README-level seam sources into the broader Phase 1 reference trail.
+- Kept the step intentionally small, but it makes the repo-level and admin-side reference surfaces a little more explicit about how the seam-source baseline participates in the Galaxy migration reference map.
+
+### Dashboard reference source-truth sync checkpoint
+- Updated `resources/views/admin/dashboard.blade.php` so the `Phase 1 reference docs` card now frames `README.md`, `docs/blueprint.md`, and `docs/phase-1-plan.md` as readable guides and `config/phase-1-reference-docs.php` as the implementation baseline inside its source-of-truth note.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the admin reference surface now matches the readable-guide plus baseline/source-of-truth pattern now used across the stronger Phase 1 entry cards.
+- Kept the step intentionally small, but it makes the admin entry surface a little more explicit about where contributors should read versus where they should edit when the Galaxy migration reference trail changes.
+
+### Landing reference source-truth sync checkpoint
+- Updated `resources/views/welcome.blade.php` so the public `Helpful project docs` card now frames `README.md` as the readable guide and `config/landing-docs.php` as the implementation baseline inside its source-of-truth note.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public reference surface now follows the same readable-guide plus baseline pattern already used across the stronger admin-side Phase 1 inventory cards.
+- Kept the step intentionally small, but it makes the public entry surface a little more explicit about where contributors should read versus where they should edit when the Galaxy migration reference trail changes.
+
+### Blueprint-plan seam-source sync checkpoint
+- Updated `docs/blueprint.md` and `docs/phase-1-plan.md` so both core Phase 1 narrative docs now call out the README-level seam-source inventory as part of the main foundation seam map via `config/phase-1-seam-sources.php`.
+- Kept the step intentionally small and docs-only, but it closes the last obvious narrative gap between the expanded seam map and the blueprint/plan guidance contributors read before they touch the live admin or public entry surfaces.
+
+### Foundation-seam seam-source trail checkpoint
+- Extended `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php` with a dedicated `README seam-source trail` seam, so the surfaced README-level seam-source inventory now belongs to the main Phase 1 seam map instead of sitting beside it.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin seam card now guards the expanded five-seam inventory and its new README seam-source entry.
+- Kept the step intentionally small, but it closes one more gap between the explicit seam map and the small repo/admin/public config trails that are already carrying the Galaxy-specific Phase 1 foundation.
+
+### Seam-source self-baseline sync checkpoint
+- Extended the README `Phase 1 seam sources` list and `config/phase-1-seam-sources.php` so the seam-source inventory now explicitly includes its own config baseline.
+- Updated `tests/Feature/ExampleTest.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused landing-page and dashboard feature slices successfully so both live entry surfaces now reflect the expanded README-level seam-source trail.
+- Kept the step intentionally small, but it makes the seam-source inventory a little more self-describing and a little less like a special case hidden outside its own baseline list.
+
+### Landing README reference sync checkpoint
+- Extended `config/landing-docs.php` so the public `Helpful project docs` inventory now includes `README.md` alongside the Phase 1 doc set.
+- Updated `resources/views/welcome.blade.php` and `tests/Feature/ExampleTest.php`, then re-ran the focused landing-page feature slice successfully so the top-level Galaxy migration guide stays visible from the public foundation surface too.
+- Kept the step intentionally small, but it makes the landing-page reference trail a little more complete and a little less docs-directory-only while Phase 1 foundation work is still repo-guidance heavy.
+
+### Dashboard README reference sync checkpoint
+- Extended `config/phase-1-reference-docs.php` so the admin-side `Phase 1 reference docs` inventory now includes `README.md` alongside the Phase 1 doc set.
+- Updated `resources/views/admin/dashboard.blade.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the top-level Galaxy migration guide stays visible from the live admin workspace.
+- Kept the step intentionally small, but it makes the admin reference trail a little more complete and a little less docs-directory-only while Phase 1 foundation work is still repo-guidance heavy.
+
+### Dashboard seam-source inventory checkpoint
+- Extended `app/Http/Controllers/Admin/DashboardController.php` with a small `phaseOneSeamSourcesCoverage()` helper and surfaced a dedicated `Phase 1 seam-source inventory` card on `resources/views/admin/dashboard.blade.php`, so the README-level config seam trail is now visible inside the live admin workspace instead of only on the public landing page.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new seam-source inventory stays covered alongside the existing entity, seam, and reference cards.
+- Kept the step intentionally small, but it makes the admin-side Phase 1 foundation surface a little more traceable and a little less dependent on jumping back out to the repo root for seam-source context.
+
+## 2026-05-25
+
+### Dashboard reference readable-guide checkpoint
+- Extended `resources/views/admin/dashboard.blade.php` with a small `Reference guide` note pointing at `docs/blueprint.md` and `docs/phase-1-plan.md`, so the admin-side Phase 1 reference inventory now calls out the readable anchors contributors use alongside its config baseline.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new readable-guide note stays covered on the live admin surface.
+- Kept the step intentionally small, but it makes the admin reference card read a little more like the readable-guide plus baseline pattern now used on the newer public seam-source surface.
+
+### Landing seam-source readable-guide checkpoint
+- Extended `resources/views/welcome.blade.php` with a small `Seam-source source of truth` note pointing at `README.md`, so the public Galaxy migration landing page now separates the config baseline for seam-source inventory from the readable guide contributors actually review.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new readable-guide note stays covered alongside the seam-source baseline and public-doc source-of-truth notes.
+- Kept the step intentionally small, but it makes the public seam-source inventory read a little more like the readable-summary plus baseline pattern already used across the newer Phase 1 surfaces.
+
+### Dashboard seam baseline checkpoint
+- Extended `resources/views/admin/dashboard.blade.php` with a small `Seam baseline` note pointing at `config/phase-1-foundation-seams.php`, so the Phase 1 seam inventory now shows an explicit baseline/config seam in addition to its seam count and source-of-truth note.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new baseline note stays covered on the live admin surface.
+- Kept the step intentionally small, but it makes the seam card read in the same inventory-plus-baseline style as the newer entity and reference cards.
+
+### Dashboard entity baseline checkpoint
+- Extended `resources/views/admin/dashboard.blade.php` with a small `Entity baseline` note pointing at `config/phase-1-domain-map.php`, so the Phase 1 entity inventory now shows an explicit baseline/config seam in addition to its live-record coverage and mapped-entity count.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new baseline note stays covered on the live admin surface.
+- Kept the step intentionally small, but it makes the entity card read a little more like the newer admin/public inventory patterns instead of only showing counts plus one source-of-truth note.
+
+### Landing doc baseline checkpoint
+- Extended `resources/views/welcome.blade.php` with a small `Doc baseline` note pointing at `config/landing-docs.php`, so the public Galaxy migration reference inventory now shows an explicit baseline/config seam in addition to its coverage signal and source-of-truth note.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new baseline note stays covered on the public surface.
+- Kept the step intentionally small, but it makes the landing-page doc inventory read a little more like the newer admin reference inventory pattern instead of only showing counts plus one source note.
+
+### Dashboard reference baseline checkpoint
+- Extended `resources/views/admin/dashboard.blade.php` with a small `Reference baseline` note pointing at `config/phase-1-reference-docs.php`, so the admin Phase 1 reference inventory now shows an explicit baseline/config seam in addition to its coverage signal and source-of-truth note.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new baseline note stays covered on the live admin surface.
+- Kept the step intentionally small, but it makes the admin reference card read a little more like the newer public seam-source inventory pattern instead of only showing links plus one source note.
+
+### Landing seam-source baseline checkpoint
+- Extended `resources/views/welcome.blade.php` with a small `Seam-source baseline` note pointing at `config/phase-1-seam-sources.php`, so the public Galaxy migration landing page now makes the README-level seam-source inventory traceable through its own config seam.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new baseline note stays covered alongside the seam-source count and the landing-doc source-of-truth note.
+- Kept the step intentionally small, but it makes the public surface read a little more like a deliberate Galaxy foundation contract and a little less like a one-off README mention.
+
+### Landing seam-source coverage checkpoint
+- Added `config/phase-1-seam-sources.php` and surfaced a small `Seam-source coverage` signal on `resources/views/welcome.blade.php`, so the public Galaxy migration landing page now reflects the current README-level Phase 1 seam-source inventory instead of only the doc-link inventory.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new seam-source count now stays covered alongside the existing doc coverage and source-of-truth signals.
+- Kept the step intentionally small, but it ties the public landing surface a bit more tightly to the top-level Galaxy foundation guidance instead of leaving README seam sources invisible there.
+
+### Dashboard entity inventory checkpoint
+- Extended `app/Http/Controllers/Admin/DashboardController.php` with a small `phaseOneDomainInventory()` helper and surfaced that count on the `Phase 1 core entity map` card in `resources/views/admin/dashboard.blade.php`.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin surface now guards the mapped-entity inventory count alongside the existing live-record coverage signal.
+- Kept the step intentionally small, but it brings the entity card into the same more operational inventory style now used by the seam and reference cards.
+
+### Landing-page doc coverage checkpoint
+- Extended `resources/views/welcome.blade.php` with a small `Doc coverage` signal for the config-driven `Helpful project docs` list, so the public Galaxy migration landing page now shows the current size of its reference trail instead of only listing links.
+- Updated `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the public doc inventory count now stays covered alongside the existing source-of-truth and reference assertions.
+- Kept the step intentionally small, but it makes the public reference surface feel a little more operational and a little less like a static starter-style link block.
+
+### Dashboard reference-doc coverage checkpoint
+- Extended `app/Http/Controllers/Admin/DashboardController.php` with a small `phaseOneReferenceDocsCoverage()` helper and surfaced that count on the `Phase 1 reference docs` card in `resources/views/admin/dashboard.blade.php`.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin surface now guards the current reference-doc inventory count as well as the linked doc trail.
+- Kept the step intentionally small, but it makes the admin reference map read a little more like an operational Phase 1 inventory and a little less like a static link list.
+
+### Foundation-seam repo-guidance checkpoint
+- Extended `config/phase-1-foundation-seams.php` and `docs/phase-1-foundation-seams.md` with a fourth seam, `Top-level repo guidance`, so the README-level Phase 1 reference trail is now part of the same explicit Galaxy-specific seam inventory as the domain, admin, and public landing slices.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin seam card now guards the expanded seam inventory and its new `4 Phase 1 foundation seams currently tracked` signal.
+- Kept the step intentionally small, but it closes one more gap between documented Phase 1 guidance and the runtime seam map shown inside the admin workspace.
+
+### Dashboard foundation-seam coverage checkpoint
+- Extended `app/Http/Controllers/Admin/DashboardController.php` with a small `phaseOneFoundationSeamsCoverage()` helper and surfaced that count on the `Phase 1 foundation seams` card in `resources/views/admin/dashboard.blade.php`.
+- Updated `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the live admin surface now guards the current seam inventory count as well as the seam descriptions.
+- Kept the step intentionally small, but it makes the seam map read a little more like an operational Phase 1 inventory and a little less like a static note dump.
+
+### Foundation-seam source richness checkpoint
+- Extended `config/phase-1-foundation-seams.php` so the admin and public reference-trail entries now point at the seam note as a readable summary anchor alongside their config and runtime surfaces.
+- Updated `docs/phase-1-foundation-seams.md` plus `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the richer admin/public seam descriptions stay visible on the live admin surface.
+- Kept the step intentionally small, but it makes the seam inventory read more consistently across domain, admin, and public slices instead of leaving the latter two as config-only pointers.
+
+### README foundation-seam source trail checkpoint
+- Extended `docs/phase-1-foundation-seams.md` with an explicit source-of-truth section that points at the readable note, `config/phase-1-foundation-seams.php`, and the live dashboard surface.
+- Updated `README.md` with a compact `Phase 1 seam sources` section so the top-level repo guidance now exposes the small config seams that keep the Galaxy-specific entity map, seam inventory, admin references, and public landing docs aligned.
+- Re-ran a focused readback on `README.md` and the seams note after a small follow-up fix, so the top-level Phase 1 reference trail stays clean and non-duplicated.
+
+### Dashboard Phase 1 foundation-seams source sync checkpoint
+- Refined the `Phase 1 foundation seams` card on `resources/views/admin/dashboard.blade.php` so its source-of-truth note now points at both `docs/phase-1-foundation-seams.md` and `config/phase-1-foundation-seams.php`, matching the readable-summary plus implementation-baseline pattern already used by the entity map card.
+- Extended `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new readable-summary reference stays covered on the live admin surface.
+- Kept the step intentionally small, but it makes the new seam inventory read more like a deliberate Galaxy foundation contract and less like a one-sided config pointer.
+
+### Dashboard Phase 1 foundation-seams config checkpoint
+- Added `config/phase-1-foundation-seams.php` and surfaced it on `resources/views/admin/dashboard.blade.php`, so the current Galaxy-specific seam map now exists as implementation-facing config and not only as a documentation note.
+- Extended `app/Http/Controllers/Admin/DashboardController.php` and `tests/Feature/AdminDashboardTest.php`, then re-ran the focused dashboard feature slice successfully so the new seam inventory stays visible from the live admin workspace.
+- Kept the step intentionally small, but it turns one more Phase 1 foundation concept into a runtime-visible Galaxy-specific seam instead of a docs-only description.
+
+### Phase 1 foundation-seams blueprint-plan alignment checkpoint
+- Updated `docs/blueprint.md` and `docs/phase-1-plan.md` so the new `docs/phase-1-foundation-seams.md` note is now part of the main Phase 1 narrative, not just the dashboard, landing-page, and README reference trail.
+- Promoted the seams note into both the blueprint admin-shell implementation note and the plan's entity/admin-shell guidance, so contributors can discover the current Galaxy-specific seam map directly from the core migration docs.
+- Kept the step intentionally small and docs-only, but it closes another real visibility gap around the explicit Phase 1 foundation structure.
+
+### Phase 1 foundation-seams note checkpoint
+- Added `docs/phase-1-foundation-seams.md` as a compact map of the current Galaxy-specific Phase 1 seams, tying together the entity baseline, admin reference trail, and public landing doc trail.
+- Linked the new note through `config/phase-1-reference-docs.php`, `config/landing-docs.php`, and `README.md`, then extended the focused dashboard and landing-page feature assertions so the new seam note stays visible from both live entry surfaces.
+- Re-ran the focused dashboard and landing-page feature slices successfully after the follow-up.
+
+### Dashboard reference-doc source note checkpoint
+- Extended `resources/views/admin/dashboard.blade.php` with a small source-of-truth note pointing at `config/phase-1-reference-docs.php`, so the admin Phase 1 reference card now tells contributors where its doc trail is maintained.
+- Extended `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully, so the new source note stays covered by a real guardrail.
+- Kept the step intentionally small, but it makes the admin reference surface read a little less like starter content and a little more like an explicit Galaxy foundation seam.
+
+### Landing-page doc-trail source note checkpoint
+- Extended `resources/views/welcome.blade.php` with a small source-of-truth note pointing at `config/landing-docs.php`, so the public Galaxy migration landing page now tells contributors where its doc trail is maintained.
+- Extended `tests/Feature/ExampleTest.php` and re-ran the focused landing-page feature slice successfully, so the new source note stays covered by a real guardrail.
+- Kept the step intentionally small, but it makes the public reference surface read a little less like starter content and a little more like an explicit Galaxy foundation seam.
+
+### Landing-page doc-trail config checkpoint
+- Added `config/landing-docs.php` and switched the public `Helpful project docs` list in `resources/views/welcome.blade.php` onto that config, so the landing-page reference trail now reads through one small Galaxy-specific seam instead of an inline Blade list.
+- Extended `tests/Feature/ExampleTest.php` so the focused landing-page guardrail now asserts the config-driven doc trail still includes the OpenClaw reference plus the current Phase 1 and Galaxy migration docs.
+- Re-ran `php artisan test --filter=test_the_home_page_surfaces_the_galaxy_foundation_landing_page` successfully after the refactor.
+
+### Dashboard Phase 1 reference-doc config checkpoint
+- Added `config/phase-1-reference-docs.php` and switched the dashboard reference-doc card onto that config, so the current Phase 1 blueprint, plan, domain-map, IA, shell, checkpoint, and progress-log trail now reads through one small Galaxy-specific seam instead of an inline Blade list.
+- Extended `app/Http/Controllers/Admin/DashboardController.php` and `tests/Feature/AdminDashboardTest.php` so the live admin workspace and its focused regression slice both keep the new config-driven reference trail visible.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_admin_dashboard` successfully after the refactor.
+
+### Phase 1 domain-map source-of-truth checkpoint
+- Extended the dashboard entity-map card with an explicit source-of-truth note that points at `docs/phase-1-domain-map.md` and `config/phase-1-domain-map.php`, so the live admin workspace now tells contributors where the readable and implementation-facing Phase 1 entity baselines live.
+- Updated `docs/phase-1-plan.md` and `docs/blueprint.md` so the migration plan and blueprint now treat the Phase 1 domain map as a first-class deliverable instead of an implied side note.
+- Extended `tests/Feature/AdminDashboardTest.php` and re-ran the focused dashboard feature slice successfully.
+
+### Phase 1 domain-map doc-trail checkpoint
+- Added `docs/phase-1-domain-map.md` as a compact human-readable companion to `config/phase-1-domain-map.php`, so the first Galaxy entity baseline is now visible in the repo doc trail as well as in config and the admin workspace.
+- Linked the new Phase 1 domain-map note from `resources/views/admin/dashboard.blade.php`, `resources/views/welcome.blade.php`, and `README.md` so the public landing surface, admin reference list, and top-level repo guidance all expose the same Galaxy-specific entity baseline.
+- Extended `tests/Feature/AdminDashboardTest.php` and `tests/Feature/ExampleTest.php`, then re-ran the focused dashboard and landing-page feature slices successfully.
+
+### Dashboard Phase 1 entity-map checkpoint
+- Added `config/phase-1-domain-map.php` as a small Galaxy-specific foundation map for the first six Phase 1 entities, so the repo now carries an explicit entity baseline instead of leaving that list buried only in planning docs.
+- Extended `app/Http/Controllers/Admin/DashboardController.php` and `resources/views/admin/dashboard.blade.php` to surface the new entity map, live entity coverage, and entity posture directly inside the admin workspace.
+- Extended `tests/Feature/AdminDashboardTest.php` and re-ran the focused admin dashboard feature slice successfully, so the new Galaxy entity-map surface is covered by a real regression check.
+
+## 2026-05-24
+
+### Admin dashboard checkpoint-trail reference sync checkpoint
+- Extended the `Phase 1 reference docs` card on `resources/views/admin/dashboard.blade.php` to include `docs/checkpoints/`, so the live admin landing surface now keeps the checkpoint directory visible alongside the blueprint, plan, IA map, shell notes, config map, and progress log.
+- Extended `tests/Feature/AdminDashboardTest.php` so the existing dashboard feature slice now asserts the checkpoint-directory reference too.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_admin_dashboard` successfully after the follow-up.
+
+### Admin-shell doc cross-link sync checkpoint
+- Updated `docs/admin-shell-config-map.md` and `docs/admin-shell-layering.md` so both notes now cross-link the new `docs/admin-information-architecture.md` reference doc.
+- Extended the config-map reading order to point at the current admin navigation map before shell-layer ownership details.
+- Kept the step intentionally small, but it closes a real reference-navigation gap inside the shell docs themselves now that the IA map is part of the core Phase 1 doc set.
+
+### Blueprint admin-shell reference sync checkpoint
+- Updated `docs/blueprint.md` so its admin-shell implementation note now points directly at `docs/admin-information-architecture.md` and `docs/admin-shell-config-map.md` alongside the existing shell-layering reference.
+- Kept the step intentionally small, but it closes a real blueprint-level documentation gap by making the current Phase 1 IA map and config-ownership guide visible from the migration blueprint instead of only from the plan, README, landing page, and cross-linked notes.
+
+### Phase 1 plan reference sync checkpoint
+- Updated `docs/phase-1-plan.md` so its current admin shell note now points directly at `docs/admin-information-architecture.md` and `docs/admin-shell-config-map.md` alongside the existing shell-layering reference.
+- Kept the step intentionally small, but it closes a real plan-level documentation gap by making the current Phase 1 IA map and config-ownership guide visible from the main migration plan instead of only from README, the landing page, and cross-linked notes.
+
+### Admin information architecture vocabulary sync checkpoint
+- Updated `docs/admin-information-architecture.md` so its route-posture section now says `foundation-preview` instead of the older `preview-only` wording, and aligned the intro line to `live-vs-foundation-preview posture` as well.
+- Kept the change intentionally small, but it closes a real vocabulary drift inside the new IA map so it matches the Phase 1 shell language already used across the dashboard, plan, and resource surfaces.
+
+### Admin dashboard Phase 1 references checkpoint
+- Added a compact `Phase 1 reference docs` card to `resources/views/admin/dashboard.blade.php` so the live admin landing surface now keeps the blueprint, plan, IA map, shell layering notes, config map, and progress log visible inside the operator workspace.
+- Extended `tests/Feature/AdminDashboardTest.php` so the main dashboard feature slice now asserts the new Phase 1 reference card and its key doc paths.
+- Re-ran `php artisan test --filter=test_authenticated_user_can_access_admin_dashboard` successfully after the follow-up.
+
+### README Phase 1 reference sync checkpoint
+- Updated the top-level `README.md` Phase 1 references so it now points directly at `docs/admin-information-architecture.md`, `docs/admin-shell-layering.md`, and `docs/admin-shell-config-map.md` alongside the blueprint, plan, progress log, and checkpoints.
+- Re-ran a focused read/grep check on `README.md` after the edit so the main repo guidance now exposes the current IA and admin-shell reference docs instead of leaving them discoverable only from the landing page and cross-linked notes.
+- Kept the step intentionally small, but it closes another real top-level documentation gap around the current Phase 1 admin foundation map.
+
+### README access-baseline sync checkpoint
+- Updated the top-level `README.md` admin access section so it no longer claims `access-admin` is a blanket authenticated-user stub, and instead reflects the current Phase 1 bootstrap-admin plus active-branch, permission-bearing shop-admin baseline.
+- Re-ran a focused grep check on `README.md` after the edit so the stale stub wording is no longer left behind in the main repo guidance.
+- Kept the step intentionally small, but it closes a real documentation drift between the live authorization baseline and the first file contributors are likely to read.
+
+### Admin information architecture landing-test checkpoint
+- Extended `tests/Feature/ExampleTest.php` so the public landing page guardrail now asserts the new `docs/admin-information-architecture.md` reference alongside the visible IA-oriented guidance and `Helpful project docs` section.
+- Re-ran `tests/Feature/ExampleTest.php` successfully after the follow-up.
+- Kept the step intentionally small, but it gives the new Phase 1 IA/doc-map slice a real regression check instead of leaving it as an unguarded content-only addition.
+
+### Admin information architecture map checkpoint
+- Added `docs/admin-information-architecture.md` as a compact current-state map of the Phase 1 Galaxy admin sidebar groups, route targets, live mutation entry points, foundation-preview surfaces, and authorization posture.
+- Linked the new IA note from `resources/views/welcome.blade.php` so the public landing docs list now exposes the current admin navigation map alongside the other Phase 1 reference docs.
+- Kept the step intentionally small, but it closes one more real Phase 1 deliverable gap by making the current admin information architecture easier to inspect without reverse-engineering it from config and routes.
+
+### Selected-resource unique rule checkpoint
+- Extended the update-side selected-resource seam with a shared `uniqueRuleIgnoringSelectedResource()` helper, so the current live update requests no longer need to rebuild the same `Rule::unique(...)->ignore(...)` pattern around the resolved route model by hand.
+- Switched `UpdateShopRequest`, `UpdateRoleRequest`, `UpdateCardTypeRequest`, and `UpdateCardRequest` onto the new helper while keeping the same duplicate-protection behavior for branch codes, role slugs, tier slugs, and card numbers.
+- Re-ran the focused shop, role, tier, and card update slice successfully after the cleanup.
+
+### Selected-resource validation helper checkpoint
+- Extended `ValidatesAccessibleShop` with a shared `validateSelectedResourceShopAccess()` path, so the card and cardholder update requests no longer need to wrap the same selected-resource shop lookup inside their own one-off validator closures.
+- Switched `UpdateCardRequest` and `UpdateCardHolderRequest` onto the new helper while keeping the same foreign-record and cross-shop forbidden behavior.
+- Re-ran the focused card and cardholder update slice successfully after the cleanup.
+
+### Selected-resource shop helper checkpoint
+- Extended the update-side selected-resource seam with a shared `selectedResourceShop()` helper, so card and cardholder update validation no longer need to repeat their own current-shop lookup closures against the resolved route model.
+- Switched `UpdateCardRequest` and `UpdateCardHolderRequest` onto the shared shop helper while keeping the same scoped-forbidden behavior for foreign and cross-shop updates.
+- Re-ran the focused card and cardholder update slice successfully after the cleanup.
+
+### Selected-resource helper follow-up checkpoint
+- Extended the update-side shared selected-resource seam a little further by teaching it to expose the configured route parameter and resolved resource directly, then reusing that path in update authorization, unique-rule lookup, redirect resolution, and current-shop validation.
+- Switched `UpdateShopRequest`, `UpdateRoleRequest`, `UpdateCardTypeRequest`, `UpdateCardRequest`, and `UpdateCardHolderRequest` off the last repeated inline route-parameter strings that still lingered after the constant-based redirect cleanup.
+- Re-ran the focused update-side branch, access, tier, card, and holder slice successfully after the follow-up refactor.
+
+### Update redirect constant cleanup checkpoint
+- Reworked `ResolvesAdminSelectedResourceRedirects` to read its selected-resource route metadata from per-request class constants instead of one-line abstract methods, so the shared update redirect seam no longer forces every update request to repeat the same tiny method bodies.
+- Switched `UpdateShopRequest`, `UpdateRoleRequest`, `UpdateCardTypeRequest`, `UpdateCardRequest`, and `UpdateCardHolderRequest` onto the constant-based configuration without changing their current `#live-form` redirect behavior.
+- Re-ran the focused update-side live-form slice successfully after the cleanup.
+
+### Admin policy registration checkpoint
+- Added `app/Providers/Concerns/RegistersAdminPolicies.php` and moved the current Phase 1 policy bindings behind one small provider-side helper, so the Galaxy admin authorization baseline no longer keeps its model-to-policy map inline in `AppServiceProvider`.
+- Updated `AppServiceProvider` to register both policies and Gates through shared provider concerns while keeping the same policy classes and access decisions on the live admin surface.
+- Re-ran the focused policy-registration and admin-flow slice successfully after the cleanup.
+
+### Admin gate registration checkpoint
+- Added `app/Providers/Concerns/RegistersAdminAccessGates.php` and moved the repeated `access-admin` plus `access-shop` Gate registration callbacks behind one small provider-side helper, so the current Phase 1 admin access baseline now reads through an explicit seam instead of sitting inline in `AppServiceProvider`.
+- Updated `AppServiceProvider` to call the shared gate registration helper while keeping the same access decisions on `User` and the same policy wiring for the live admin surface.
+- Re-ran the focused admin-access helper slice successfully after the cleanup.
+
+### Shared policy baseline checkpoint
+- Added `app/Policies/Concerns/HandlesAdminPolicyAccess.php` and moved the repeated admin-entry plus bootstrap-foundation baseline checks behind named helpers, so the current Phase 1 policies read through one small shared seam instead of repeating the same user access calls inline.
+- Wired `ShopPolicy`, `RolePolicy`, `CardTypePolicy`, `CardPolicy`, and `CardHolderPolicy` into the new concern without changing their current ability boundaries.
+- Re-ran the focused policy/auth and create-flow slice successfully across shop, role, tier, card, and holder permissions after the cleanup.
+
+### Boolean helper refinement checkpoint
+- Added a dedicated `normalizeFilterBooleanInput()` path to `NormalizesBooleanFormInputs` and switched `StoreCardTypeRequest` onto it, so the shared helper now mirrors the tier flow's original filter-based fallback behavior instead of approximating it through the stricter boolean seam.
+- Re-ran the focused tier create/update/toggle slice successfully after the refinement.
+- Kept the step intentionally small, but it makes the shared normalization seam a little more precise without changing the current Phase 1 behavior.
+
+### Update-request authorize inheritance cleanup checkpoint
+- Removed the now-redundant local `AuthorizesPolicyActions` trait usage from the update requests, because each update form already inherits the shared authorize helper seam from its store-request base class.
+- Re-ran the focused update-side slice successfully across branch, access, tier, card, and holder flows after the cleanup.
+- Kept the step intentionally small, but it trims one more bit of request-layer duplication without changing the current Phase 1 behavior.
+
+### Boolean input normalization follow-up checkpoint
+- Extended `NormalizesBooleanFormInputs` into `StoreCardTypeRequest`, replacing the last inline `is_active` normalization variant in the live tier store flow.
+- Re-ran the focused tier create/update/toggle slice successfully after the follow-up refactor.
+- Kept the step intentionally small, but it finishes one more little piece of the shared request normalization seam across the Phase 1 admin surface.
+
+### Slug input normalization concern checkpoint
+- Added a shared `NormalizesSlugInputs` concern and moved the repeated `Str::slug(...)` input normalization pattern for shops, roles, and card types onto that helper.
+- Re-ran the focused branch/access/tier create-update slice successfully after the refactor.
+- Kept the step intentionally small, but it turns one more repeated bit of request input shaping into a clearer Galaxy foundation seam.
+
+### Text input normalization helper refinement checkpoint
+- Extended `NormalizesTextFormInputs` with shared upper/lower-after-trim helpers and moved the remaining inline case-normalization patterns in the card and cardholder store flows onto that seam.
+- Re-ran the focused card/cardholder create-update slice successfully after the refinement.
+- Kept the step intentionally small, but it smooths off one more little pocket of repeated request normalization logic in the live Galaxy foundation flows.
+
+### Text input normalization concern follow-up checkpoint
+- Extended `NormalizesTextFormInputs` into the tier and card store flows too, so `StoreCardTypeRequest` and `StoreCardRequest` now use the same shared trimming and nullable-string normalization seam instead of carrying their own inline variants.
+- Re-ran the focused tier/card create-update slice successfully after the follow-up refactor.
+- Kept the step intentionally small, but it rounds out the same request-layer cleanup pattern across more of the live Galaxy foundation surface.
+
+### Text input normalization concern checkpoint
+- Added a shared `NormalizesTextFormInputs` concern and moved the repeated trimmed-string and nullable trimmed-string normalization pattern for shops, roles, and cardholders onto that helper.
+- Re-ran the focused branch/access/holder create-update slice successfully after the refactor.
+- Kept the step intentionally small, but it trims another recurring bit of request boilerplate into one clearer Galaxy foundation seam.
+
+### Boolean input normalization concern checkpoint
+- Added a shared `NormalizesBooleanFormInputs` concern and moved the repeated `is_active` normalization pattern for shops, roles, and cardholders onto that helper.
+- Re-ran the focused branch/access/holder create-update slice successfully after the refactor.
+- Kept the step intentionally small, but it trims another recurring bit of request boilerplate into one clearer Galaxy foundation seam.
+
+### Update-request selected-resource redirect concern refinement checkpoint
+- Refined `ResolvesAdminSelectedResourceRedirects` so the shared update-side redirect seam now reads route parameter and route name through tiny protected methods instead of repeating one-line `getRedirectUrl()` overrides in every update request.
+- Re-ran the focused update-side live-form slice successfully across branch, access, tier, card, and holder flows after the refinement.
+- Kept the step intentionally small, but it leaves the shared redirect seam cleaner and avoids reintroducing per-request redirect boilerplate.
+
+### Update-request selected-resource redirect concern checkpoint
+- Added a shared `ResolvesAdminSelectedResourceRedirects` concern for admin update requests and moved the repeated selected-record `#live-form` redirect resolution pattern for shops, roles, card types, cards, and cardholders onto that helper.
+- Re-ran the focused update-side live-form slice successfully across branch, access, tier, card, and holder flows after the refactor.
+- Kept the step intentionally small, but it completes another tidy request-layer seam so both create and update flows now share clearer Galaxy foundation redirect plumbing.
+
+### Store-request live-form redirect concern checkpoint
+- Added a shared `ResolvesAdminLiveFormRedirects` concern for admin store requests and moved the repeated `#live-form` redirect resolution pattern for shops, roles, card types, cards, and cardholders onto that helper.
+- Re-ran the focused create-side live-form slice successfully across branch, access, tier, card, and holder flows after the refactor.
+- Kept the step intentionally small, but it turns another repeated bit of live admin request plumbing into one explicit Galaxy foundation seam.
+
+### Update-request authorize concern follow-up checkpoint
+- Finished the shared `AuthorizesPolicyActions` extraction by moving the repeated policy-based `update` authorize pattern for shops, roles, card types, cards, and cardholders onto the same helper.
+- Re-ran the focused update-side slice successfully across branch, access, tier, card, and holder flows after the follow-up refactor.
+- Kept the step intentionally small, but it completes one tidy request-layer seam so create/update policy authorization now reads through one explicit Galaxy foundation helper instead of repeated inline checks.
+
+### Request authorize concern checkpoint
+- Added a shared `AuthorizesPolicyActions` concern for admin requests and moved the repeated policy-based `create` authorize pattern for shops, roles, card types, cards, and cardholders onto that helper.
+- Re-ran the focused create-side slice successfully across branch, access, tier, card, and holder flows after the refactor.
+- Kept the step intentionally small, but it turns one more pocket of repeated starter-era request auth wiring into an explicit Galaxy foundation seam.
+
+### Card request import cleanup checkpoint
+- Replaced the remaining fully qualified `?\App\Models\Shop` closure return types in `UpdateCardRequest` and `UpdateCardHolderRequest` with normal `Shop` imports.
+- Re-ran the focused card/cardholder update slice successfully after the cleanup.
+- Kept the step intentionally small, but it makes the already-aligned request layer read a little more like deliberate Galaxy foundation code and a little less like leftover starter scaffolding.
+
+### Policy dedupe follow-up checkpoint
+- Simplified `ShopPolicy::update()` to delegate to `view()`, and simplified `RolePolicy::update()` plus `CardTypePolicy::update()` to delegate to their existing bootstrap-only `create()` checks.
+- Re-ran the focused shop/role/tier ability and live-update slice successfully after the cleanup.
+- Kept the step intentionally small, but it trims another little pocket of policy duplication without changing the current Phase 1 behavior.
+
+### Card policy create/viewAny cleanup checkpoint
+- Simplified `CardPolicy::create()` and `CardHolderPolicy::create()` to delegate to their `viewAny()` checks instead of duplicating the same `canAccessAdminPanel()` condition inline.
+- Re-ran the focused card/cardholder create plus admin-access helper slice successfully after the cleanup.
+- Kept the step intentionally small, but it trims one more bit of starter-style duplication from the policy layer without changing the current Phase 1 behavior.
+
+### Shops foundation action helper follow-up checkpoint
+- Finished the shared foundation-helper alignment by passing `Shop::class` into the shops catalog action helper too, so branch creation UI gating now uses the same policy target path as the rest of the refactored helper surface.
+- Re-ran the focused shops workspace slice successfully, keeping scoped branch-update access and bootstrap-only branch-creation gating intact.
+- Kept the step intentionally small, but it closes the last little inconsistency left behind by the previous helper refactor.
+
+### Foundation UI helper policy alignment checkpoint
+- Reworked the shared `ResourceIndexController` foundation-mutation helpers to check `user()->can(...)` against the relevant policy target instead of reaching directly for `hasBootstrapAdminAccess()`.
+- Kept the current Phase 1 behavior unchanged for roles and card types by passing their existing `create` and `update` policy targets into the helper layer, so the UI still stays bootstrap-only where the policies do.
+- Re-ran the focused roles and card-types update/toggle slice successfully after the helper alignment.
+- Kept the step intentionally small, but it removes one more generic starter-era auth shortcut so the admin workspace UI now reads the same Galaxy-specific policy surface as the route and request layers.
+
+### Shops selected edit-form policy alignment checkpoint
+- Switched the selected shop live form in `ResourceIndexController` away from the bootstrap-only foundation review helper and back onto the normal edit-form helper, so shop-scoped admins who can already pass `ShopPolicy::update()` now see an editable branch form instead of a review-locked one.
+- Kept branch creation actions bootstrap-only, so the catalog still signals the current Phase 1 central-control posture for new branch shells while no longer over-applying that posture to permitted branch updates.
+- Updated the shops workspace UI coverage and re-ran the focused selected-shop/update slice successfully.
+- Kept the step intentionally small, but it removes one more generic starter-era mismatch between live UI affordances and the Galaxy-specific policy surface already governing branch updates.
+
+### Card and cardholder create-policy entry checkpoint
+- Added explicit `create` abilities to `CardPolicy` and `CardHolderPolicy`, then guarded the `POST /admin/cards` and `POST /admin/cardholders` entry points with policy middleware.
+- Switched `StoreCardRequest` and `StoreCardHolderRequest` from the broader `access-admin` authorize check to explicit policy-based `create` checks, so these live Phase 1 creation forms now describe the same auth intent as their route entry.
+- Extended the admin access helper assertions to cover `create` abilities for cards and cardholders, and re-ran the focused create slice successfully, keeping bootstrap-admin happy paths plus scoped cross-shop forbidden paths green.
+- Kept the step intentionally small, but it rounds out one more piece of the Galaxy-specific policy surface so card and holder creation reads less like generic starter access wiring.
+
+### Card and cardholder update-request policy authorize checkpoint
+- Added explicit policy-based `authorize()` checks to `UpdateCardRequest` and `UpdateCardHolderRequest`, so those live Phase 1 update forms now describe the same `update` intent as their route middleware instead of inheriting broader store-oriented access semantics.
+- Re-ran the focused card/cardholder update slice successfully, keeping bootstrap-admin happy paths plus scoped foreign-record and cross-shop forbidden paths green.
+- Kept the step intentionally small, but it makes two more live request flows read less like generic starter inheritance shortcuts and more like the Galaxy-specific policy surface now driving update access.
+
+### Update-request policy authorize checkpoint
+- Added explicit policy-based `authorize()` checks to `UpdateShopRequest`, `UpdateRoleRequest`, and `UpdateCardTypeRequest`, so those live Phase 1 update forms now describe the same `update` intent as their route middleware instead of inheriting store-oriented create semantics.
+- Re-ran the focused shop/role/tier update slice successfully, keeping bootstrap-admin happy paths and scoped forbidden paths green.
+- Kept the step intentionally small, but it makes the request layer read less like a generic starter inheritance shortcut and more like the Galaxy-specific policy surface now driving update access.
+
+### Store-request policy authorize checkpoint
+- Switched `StoreShopRequest`, `StoreRoleRequest`, and `StoreCardTypeRequest` from the broader `access-admin` authorize check to explicit policy-based `create` checks, so those live Phase 1 creation forms now describe the same auth intent as their route middleware.
+- Re-ran the focused shop/role/tier create slice successfully, keeping bootstrap-admin happy paths and scoped forbidden paths green.
+- Kept the step intentionally small, but it makes the request layer read less like a generic starter fallback and more like the Galaxy-specific policy surface now driving create access.
+
+### Card-types toggle controller cleanup checkpoint
+- Removed the now-unused `Request` dependency from `CardTypeToggleStatusController`, because the toggle path's authorization decision already moved fully to route-level policy middleware.
+- Re-ran the focused toggle-status slice successfully after the cleanup, keeping both scoped forbidden coverage and bootstrap-admin happy paths green.
+- Kept the step intentionally small, but it finishes one more little piece of the same Phase 1 auth cleanup so the live tier toggle path reads less like starter-era defensive layering.
+
+### Shops create request-guard cleanup checkpoint
+- Removed the now-redundant bootstrap-only validator hook from `StoreShopRequest`, because `POST /admin/shops` is already policy-guarded at route entry through `ShopPolicy::create()`.
+- Deleted the orphaned `ValidatesBootstrapAdminAccess` concern after the cleanup, because no remaining Phase 1 request flow still needed that late authorization hook.
+- Re-ran the focused shop-create validation slice successfully after the cleanup.
+- Kept the step intentionally small, but it makes the Phase 1 branch creation baseline cleaner and less starter-like without changing live behavior.
+
+### Shops request-guard cleanup checkpoint
+- Removed the now-redundant `can('update', $shop)` validator hook from `UpdateShopRequest`, because `PATCH /admin/shops/{shop}` is already policy-guarded at route entry.
+- Kept the real branch-field validation intact while letting authorization live in one clearer place instead of being split between route middleware and a late request hook.
+- Re-ran the focused shop update slice successfully after the cleanup.
+- Kept the step intentionally small, but it makes the Phase 1 branch authorization baseline cleaner and less starter-like without changing live behavior.
+
+### Roles and card-types request-guard cleanup checkpoint
+- Removed the now-redundant bootstrap-only validator hooks from `StoreRoleRequest`, `UpdateRoleRequest`, `StoreCardTypeRequest`, and `UpdateCardTypeRequest`, because those routes are already policy-guarded at entry for create/update access.
+- Kept the real field validation intact while letting authorization live in one clearer place instead of being split between route middleware and late request hooks.
+- Re-ran the focused role/tier create and update slice successfully after the cleanup.
+- Kept the step intentionally small, but it makes the Phase 1 Galaxy catalog authorization baseline cleaner and less starter-like without changing live behavior.
+
+### Card-types toggle-status policy-entry checkpoint
+- Wired `PATCH /admin/card-types/{cardType}/toggle-status` through `can:update,cardType`, so the live tier status toggle now uses the same route-level policy seam as the other card-type mutation paths.
+- Removed the controller-local bootstrap abort from `CardTypeToggleStatusController`, because the route-level guard now owns that authorization decision.
+- Re-ran the focused toggle-status slice successfully, keeping both the scoped forbidden path and the bootstrap-admin header/row happy paths green.
+- Kept the step intentionally small, but it moves one more live Galaxy tier mutation away from bespoke controller guarding and toward a clearer Laravel authorization surface.
+
+### Roles and card-types update policy-entry checkpoint
+- Wired `PATCH /admin/roles-permissions/{role}` and `PATCH /admin/card-types/{cardType}` through `can:update,...`, so scoped update attempts are now rejected at the route entry point instead of relying only on later bootstrap-only validation.
+- Tightened the focused scoped role-update and tier-update regressions to expect direct forbidden responses, while re-checking the bootstrap-admin happy paths for both minimal live update flows.
+- Re-ran the focused role/tier update slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it moves two more live Galaxy catalog mutation paths away from generic starter guarding and toward a clearer Laravel authorization surface.
+
+### Roles and card-types route policy-entry checkpoint
+- Added `viewAny()` abilities to `RolePolicy` and `CardTypePolicy`, then wired `/admin/roles-permissions` and `/admin/card-types` through `can:viewAny,...` so both Galaxy foundation catalogs now have explicit policy-aware route entry points in addition to their bootstrap-only create guards.
+- Expanded the focused access helper assertions to prove bootstrap admins and assigned scoped operators can enter those catalog workspaces through the new `viewAny` abilities while paused scoped operators are denied.
+- Re-ran the focused access plus management-preview slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it makes two more core Phase 1 workspaces feel less like generic starter routes and more like explicit Laravel authorization surfaces.
+
+### Roles and card-types create policy-entry checkpoint
+- Added first explicit `RolePolicy` and `CardTypePolicy` create/update abilities, keeping the current Phase 1 posture intentionally narrow by allowing those catalog writes only for bootstrap admins.
+- Wired `POST /admin/roles-permissions` and `POST /admin/card-types` through `can:create,...`, so scoped create attempts are now rejected at the route entry point instead of relying only on the later bootstrap-only validation hook.
+- Tightened the focused scoped role-create and tier-create regressions to expect direct forbidden responses, and expanded the access helper assertions to prove only bootstrap admins can hit the new `create` abilities.
+- Kept the step intentionally small, but it moves two more live Galaxy foundation catalog write paths away from generic starter guarding and toward a clearer Laravel authorization surface.
+
+### Shops create route policy checkpoint
+- Added `ShopPolicy::create()` and wired `POST /admin/shops` through `can:create,App\Models\Shop`, so branch creation is now policy-aware at the route entry point instead of relying only on the later bootstrap-only validation hook.
+- Tightened the focused scoped branch-create regression to expect a direct forbidden response, and expanded the access helper assertions to prove only bootstrap admins can hit the new `create` ability.
+- Re-ran the focused shop-create and access slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it moves the first live Galaxy branch creation path another notch away from generic starter guarding and toward a clearer Laravel authorization surface.
+
+### Cardholder and card route policy-entry checkpoint
+- Added `viewAny()` abilities to `CardHolderPolicy` and `CardPolicy`, then wired `/admin/cardholders` and `/admin/cards` through `can:viewAny,...` so both live workspaces now have explicit policy-aware route entry points just like `shops`.
+- Expanded the focused access helper assertions to prove bootstrap admins and assigned scoped operators can enter those workspaces through the new policy abilities while paused scoped operators are denied.
+- Re-ran the focused holder/card index and access slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it makes two more Galaxy Phase 1 workspaces feel less like generic starter routes and more like explicit Laravel authorization surfaces.
+
+### Cardholder and card update policy-entry checkpoint
+- Added first explicit `CardHolderPolicy` and `CardPolicy` update abilities, both delegating record access back through the existing shop-level `view` seam so scoped ownership stays anchored to the record's current branch.
+- Wired `PATCH /admin/cardholders/{cardholder}` and `PATCH /admin/cards/{card}` through `can:update,...`, so foreign-record mutation attempts are now rejected at the route entry point while assigned-record cross-shop retarget attempts still fall through to the existing validation guards.
+- Tightened the focused foreign-record update regressions to expect direct forbidden responses, then re-ran the scoped cardholder and card update slice successfully.
+- Kept the step intentionally small, but it moves two more live Galaxy mutation paths from starter-style downstream guarding toward a clearer Laravel policy surface.
+
+### Shops update route policy checkpoint
+- Wired `PATCH /admin/shops/{shop}` through `can:update,shop`, so foreign-branch mutation attempts are now rejected at the route entry point instead of relying only on later request validation.
+- Tightened the focused scoped-shop update regression to expect a direct forbidden response for cross-branch updates, while keeping the existing branch data unchanged in the database.
+- Re-ran the focused shops access and update slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it moves one more live Galaxy branch mutation path from starter-style downstream guarding toward a clearer Laravel policy surface.
+
+### Shops route policy-entry checkpoint
+- Added `ShopPolicy::viewAny()` and wired `/admin/shops` through `can:viewAny,App\Models\Shop`, so the branch workspace now has an explicit policy-aware route entry point instead of relying only on the broader admin gate plus downstream record checks.
+- Expanded the focused access helper assertions to prove bootstrap admins and assigned scoped operators can hit the new `viewAny` ability while paused scoped operators are denied.
+- Re-ran the focused shops access and workspace slice successfully after the route-level policy change.
+- Kept the step intentionally small, but it makes the first Galaxy branch workspace entry feel more like a real Laravel authorization surface and less like a generic starter route.
+
+### Dashboard latest-work policy reuse checkpoint
+- Reused the new `ShopPolicy` on the dashboard latest-work path by switching `DashboardController::latestAccessibleRecord()` from direct `canAccessShop()` helper checks to the explicit `view` ability.
+- This keeps the first admin entry-point filtering aligned with the same policy seam now used by branch writes, shared branch review filtering, and shared card/cardholder shop validation.
+- Re-ran the focused dashboard latest-work slice successfully after the policy reuse change.
+- Kept the step intentionally small, but it moves one more shared Phase 1 access path away from starter-style helper checks and toward a clearer Laravel authorization surface.
+
+### Shared shop-validation policy reuse checkpoint
+- Reused the new `ShopPolicy` inside `ValidatesAccessibleShop`, switching the shared card and cardholder shop-access validation concern from the lower-level `access-shop` gate to the explicit `view` ability.
+- This keeps the scoped store/update validation flow for cards and cardholders aligned with the same policy seam already used by the first branch write guard and the shared branch review filter.
+- Re-ran the focused scoped cardholder and card update-guard slice successfully after the concern change.
+- Kept the step intentionally small, but it moves another shared authorization helper away from starter-style direct access checks and toward a clearer Galaxy Phase 1 policy surface.
+
+### Shops read-filter policy reuse checkpoint
+- Reused the new `ShopPolicy` on the shared admin read path by switching `ResourceIndexController::cannotAccessRecordShop()` from direct `canAccessShop()` calls to the explicit `view` ability, so branch review filtering now flows through the same policy seam as the first write guard.
+- Kept the inaccessible selected-shop regression coverage focused on the real outcome, namely that scoped admins still cannot open foreign-branch review state even if the catalog keeps showing branch names in read-only form.
+- Re-ran the focused scoped shops workspace slice successfully after the policy reuse change.
+- Kept the step intentionally small, but it moves one more Phase 1 branch-access path from starter-style helper checks toward a clearer Laravel authorization surface.
+
+### Shops policy baseline checkpoint
+- Added a first explicit Laravel `ShopPolicy` and registered it in `AppServiceProvider`, so Phase 1 branch access now has a policy-shaped seam instead of living only behind the lower-level `access-shop` gate.
+- Switched `UpdateShopRequest` to authorize branch mutations through the new `update` policy path while preserving the same Galaxy-specific validation message for foreign-branch edits.
+- Expanded the focused admin access assertions to prove bootstrap admins, assigned shop-scoped operators, and paused scoped operators all read through the new `view` / `update` shop abilities as expected, then re-ran the focused shop-access slice successfully.
+- Kept the step intentionally small, but it moves the repo one notch closer to a real Galaxy authorization foundation by introducing an actual Laravel policy surface for branch access.
+
+## 2026-05-21
+
+### Phase-1 planning vocabulary alignment checkpoint
+- Tightened the remaining planning-language references in `docs/phase-1-plan.md` and `docs/blueprint.md`, replacing `preview-only blocks` / `preview-only slices` with `foundation-preview blocks` / `foundation-preview slices` so the migration guidance matches the vocabulary now used across the live Phase 1 shell.
+- Kept the step intentionally small, but aligned the Phase 1 planning docs with the code and shell copy cleanup already completed on the live Galaxy admin surfaces.
+- No application behavior changed in this pass; the change is documentation-only and intended to reduce drift between the migration plan and the current shell language.
+
+### Preview-shell stack cleanup checkpoint
+- Updated the dedicated preview-shell stack comment in `config/admin-preview-shell-blocks.php` to say `foundation-preview CRUD structure`, so even the config guidance reflects the newer Galaxy foundation vocabulary.
+- Tightened the preview-shell ordering assertion in `tests/Feature/AdminDashboardTest.php` to anchor on the current live card-types notice title (`Card type workflow is partially live`) instead of an older `preview-only` phrase that no longer exists in the rendered shell.
+- Kept the step intentionally small, but cleared the remaining tracked `preview-only` cleanup from config guidance and a stale composability assertion without changing application behavior.
+
+### Preview-shell test vocabulary foundation-preview checkpoint
+- Tightened lingering preview-shell fixture wording in `tests/Unit/AdminResourcePageNormalizerTest.php`, replacing `Role publishing is still preview-only` and `migration is preview-only` with `foundation-preview only` language so the normalizer coverage reflects the newer Galaxy foundation vocabulary too.
+- Synced the malformed form-preview fixture assertions in `tests/Feature/AdminDashboardTest.php` to use `foundation-preview only` wording for the role matrix help text, then re-ran the targeted normalizer and form-preview slices successfully.
+- Kept the step intentionally small, but removed a few remaining starter-era `preview-only` phrases from test-backed preview shell coverage instead of leaving the safety net on older language.
+
+### Cards activity timeline foundation-preview checkpoint
+- Tightened the config-backed cards activity timeline copy in `config/admin-pages.php`, replacing `Draft issuance behavior stays preview-only` with `Draft issuance behavior stays foundation-preview only` so the inventory review shell matches the newer Galaxy foundation vocabulary.
+- Expanded the matching cards management assertion in `tests/Feature/AdminDashboardTest.php` to cover the updated timeline description and re-ran the focused cards management preview slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live config-backed cards surface instead of leaving one older preview-only activity note behind.
+
+### Card-types create-path foundation-preview workflow checkpoint
+- Tightened the config-backed card-types implementation dependency copy in `config/admin-pages.php`, replacing `publish workflow remain preview-only` with `publish workflow remain foundation-preview only` so the first real write-path handoff uses the newer Galaxy foundation vocabulary too.
+- Synced the matching card-types management preview assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused card-types management slice successfully.
+- Kept the step intentionally small, but removed one more starter-era `preview-only` phrase from a live config-backed Phase 1 write-path surface instead of leaving the card-types handoff copy behind.
+
+### Gifts weekend-brunch paused-scope foundation-preview checkpoint
+- Tightened the weekend-brunch-pass paused reward dependency `Scope posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Paused branch reward behavior should stay preview-only` with `Paused branch reward behavior should stay foundation-preview only` so the paused branch reward dependency row matches the newer Galaxy foundation vocabulary.
+- Synced the matching selected paused-gift assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused paused finite-stock gift review slice successfully.
+- Kept the step intentionally small, but finished the remaining `preview-only` cleanup inside `ResourceIndexController.php` on a live gifts review surface instead of leaving one last older dependency line behind.
+
+### Gifts premium-dessert-set paused dependency foundation-preview checkpoint
+- Tightened the premium-dessert-set paused reward dependency copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Paused shop-scoped reward behavior should stay preview-only` and `Zero-stock handling is still preview-only` with `foundation-preview only` wording so the paused zero-stock gift review uses the newer Galaxy foundation vocabulary consistently.
+- Expanded the focused paused-gift assertions in `tests/Feature/AdminDashboardTest.php` to cover the updated paused-scope dependency line alongside the revised zero-stock posture, then re-ran the selected paused-reward review slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live gifts review surface instead of leaving two older preview-only dependency lines behind.
+
+### Gifts airport-transfer scope foundation-preview checkpoint
+- Tightened the airport-transfer gift-review `Scope posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Shop-scoped reward behavior should stay preview-only` with `Shop-scoped reward behavior should stay foundation-preview only` so the scoped kiosk reward dependency row matches the newer Galaxy foundation vocabulary.
+- Synced the matching selected-gift assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused scoped-gift review slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live gifts review surface instead of leaving one older preview-only dependency line behind.
+
+### Services-rules night-block priority foundation-preview checkpoint
+- Tightened the night-service-block `Priority posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Blocking-rule order is still preview-only` with `Blocking-rule order is still foundation-preview only` so the exclusion review surface matches the newer Galaxy foundation vocabulary.
+- Synced the matching selected-rule assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused exception-rule review slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live services-rules review surface instead of leaving one older preview-only dependency line behind.
+
+### Services-rules partner-card scope foundation-preview checkpoint
+- Tightened the partner-card uplift `Scope posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Shop-scoped behavior should stay preview-only` with `Shop-scoped behavior should stay foundation-preview only` in both the selected-rule summary and dependency-status rows.
+- Synced the matching selected scoped-rule assertions in `tests/Feature/AdminDashboardTest.php` and re-ran the focused partner-card rule review slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live services-rules review surface instead of leaving repeated starter-era preview wording behind.
+
+### Services-rules birthday priority foundation-preview checkpoint
+- Tightened the birthday-rule `Priority posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Priority resolution remains preview-only` with `Priority resolution remains foundation-preview only` so the selected all-shop rule review uses the newer Galaxy foundation vocabulary.
+- Synced the matching selected-rule assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused birthday-rule review slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live services-rules review surface instead of leaving one older preview-only dependency line behind.
+
+### Reports cardholder-status preset-posture foundation-preview checkpoint
+- Tightened the cardholder-status reporting `Preset posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Keep status-period presets preview-only` with `Keep status-period presets foundation-preview only` so the source-specific dependency row matches the newer Galaxy foundation vocabulary already used across the live reporting catalog.
+- Expanded the focused cardholder-status reporting assertions in `tests/Feature/AdminDashboardTest.php` to cover the updated preset-posture line in both the primary review content and dependency-status section, then re-ran the selected reporting slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live reporting surface instead of leaving one older preview-only dependency line behind.
+
+### Reports cards-by-shop preset-posture foundation-preview checkpoint
+- Tightened the cards-by-shop reporting `Preset posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Keep period presets preview-only` with `Keep period presets foundation-preview only` so the source-specific dependency row matches the newer Galaxy foundation vocabulary already used across the shared reporting catalog.
+- Expanded the focused cards-by-shop reporting assertions in `tests/Feature/AdminDashboardTest.php` to cover the updated preset-posture line and re-ran the selected reporting slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live reporting surface instead of leaving one older preview-only dependency line behind.
+
+### Reports role-access preset-posture foundation-preview checkpoint
+- Tightened the role-access reporting `Preset posture` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Keep access-report presets preview-only` with `Keep access-report presets foundation-preview only` so that source-specific dependency row matches the newer Galaxy foundation vocabulary already used across the shared reporting catalog.
+- Expanded the focused role-access reporting assertions in `tests/Feature/AdminDashboardTest.php` to cover the updated preset-posture line and re-ran the selected access-report slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a live reporting surface instead of leaving one older preview-only dependency line behind.
+
+### Card-types edit-flow foundation-preview defaults checkpoint
+- Tightened the selected tier edit-flow description in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `preview-only defaults` with `foundation-preview defaults` so the shared card-type edit handoff matches the newer Galaxy foundation vocabulary already used across the live Phase 1 shell.
+- Synced the matching selected-tier assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused card-type edit slice successfully.
+- Kept the step intentionally small, but removed one more starter-era sounding phrase from a live Galaxy tier-edit surface instead of leaving the shared edit-flow copy behind.
+
+### Reports catalog foundation-preview description checkpoint
+- Tightened the reporting catalog notice description in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `presets and exports remain preview-only` with `presets and exports remain foundation-preview only` so the top reporting catalog summary matches the newer Galaxy foundation vocabulary already used across the deeper report-review surfaces.
+- Synced the matching catalog assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused reporting catalog slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on a shared reporting summary surface instead of leaving one older preview-only phrase behind.
+
+### Reports preset-posture foundation-preview checkpoint
+- Tightened the reporting catalog `Preset posture` dependency copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `Preset periods are still preview-only` with `Preset periods are still foundation-preview only` so the report-catalog dependency panel matches the newer Galaxy foundation vocabulary already used across the live Phase 1 surfaces.
+- Synced the matching catalog assertion in `tests/Feature/AdminDashboardTest.php` and re-ran the focused reporting catalog slice successfully.
+- Kept the step intentionally small, but continued the same visible Phase 1 wording cleanup on the shared reporting catalog instead of leaving one older preview-only phrase behind.
+
+### Reports role-access backend-gap foundation-preview checkpoint
+- Tightened the role-access reporting `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across empty-source, grouped-access, assignment-aware, permission-bundle, and default access review states so this reporting handoff surface matches the newer Galaxy foundation wording already used across the live Phase 1 shell.
+- Synced the matching role-access reporting assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused reports slice successfully.
+- Kept the step intentionally small, but moved one more live reporting-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Reports cardholder-status backend-gap foundation-preview checkpoint
+- Tightened the cardholder-status reporting `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across empty-source, mixed-lifecycle, linked-profile, blocked-support, and default holder-status review states so this reporting handoff surface matches the newer Galaxy foundation wording already used across the live Phase 1 shell.
+- Synced the matching holder-status reporting assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused reports slice successfully.
+- Kept the step intentionally small, but moved one more live reporting-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Reports cards-by-shop backend-gap foundation-preview checkpoint
+- Tightened the cards-by-shop reporting `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across empty-source, mixed-assignment, linked-holder, unassigned, and default branch-total review states so this reporting handoff surface matches the newer Galaxy foundation wording already used across the live Phase 1 shell.
+- Synced the matching branch-total reporting assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused reports slice successfully.
+- Kept the step intentionally small, but moved one more live reporting-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Card-types backend-gap foundation-preview checkpoint
+- Tightened the card-types detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across live-tier, live-coverage, draft-tier, and visible-coverage review states so the deeper tier handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching tier review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused card-types review slice successfully.
+- Kept the step intentionally small, but moved one more live tier-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Rules backend-gap foundation-preview checkpoint
+- Tightened the services-rules detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across birthday, partner-card, blocking-rule, and default rule review states so the deeper rules handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching rules review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused rule-review slice successfully.
+- Kept the step intentionally small, but moved one more live rules-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Gifts backend-gap foundation-preview checkpoint
+- Tightened the gifts detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across all-shop, kiosk-scoped, zero-stock, paused-branch, and default reward review states so the deeper rewards handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching gifts review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused reward-review slice successfully.
+- Kept the step intentionally small, but moved one more live rewards-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Checks backend-gap foundation-preview checkpoint
+- Tightened the checks-and-points detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across zero-accrual, branch-aware, and default receipt review states so the deeper fiscal-search handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching checks review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused receipt-review slice successfully.
+- Kept the step intentionally small, but moved one more live operational-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Shops backend-gap foundation-preview checkpoint
+- Tightened the shops detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across paused-branch, full-coverage, manager-led, and ownership-gap branch review states so the deeper branch handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching branch review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused shops review slice successfully.
+- Kept the step intentionally small, but moved one more live branch-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Roles backend-gap foundation-preview checkpoint
+- Tightened the roles-and-permissions detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across draft, staffed, permission-linked, and default access review states so the deeper authorization handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching access review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused roles review slice successfully.
+- Kept the step intentionally small, but moved one more live authorization-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Cardholders backend-gap foundation-preview checkpoint
+- Tightened the cardholders detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across paused-branch, active, and reactivation holder review states so the deeper holder handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching holder review assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused cardholders review slice successfully.
+- Kept the step intentionally small, but moved one more live holder-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Cards backend-gap foundation-preview checkpoint
+- Tightened the cards detail `backend gap` copy in `app/Http/Controllers/Admin/ResourceIndexController.php`, replacing `stay preview-only` with `stay foundation-preview only` across blocked, active, and draft inventory review states so the deeper inventory handoff surface matches the newer Galaxy foundation wording already used on the shared shell and top-level notices.
+- Synced the matching blocked, active, and draft inventory assertions in `tests/Feature/AdminDashboardTest.php` and re-ran a focused cards review slice successfully.
+- Kept the step intentionally small, but moved one more live inventory-review surface away from older preview-only phrasing instead of stopping at notice-level copy cleanup.
+
+### Gifts operator-checklist wording checkpoint
+- Tightened the `gifts` operator-checklist summary in `config/admin-pages.php`, replacing `workflow is still preview-only` with `workflow is still foundation-preview only` so the rewards workspace keeps using the same newer framing beyond just the notice title.
+- Expanded the focused gifts assertion slice in `tests/Feature/AdminDashboardTest.php` to cover the updated checklist summary and re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'` successfully.
+- Kept the step intentionally small, but continued moving visible Phase 1 rewards copy toward a more consistent Galaxy foundation vocabulary instead of stopping at the previous notice-only tweak.
+
+### Roles foundation-preview notice checkpoint
+- Tightened the visible `roles-permissions` notice title in `config/admin-pages.php`, replacing `Role identity writes are live, publishing is still preview-only` with `Role identity writes are live, publishing is still foundation-preview only` so the access workspace matches the newer foundation-preview framing already used across the shared resource header and the updated branch, holder, card, checks, reporting, rules, and gifts surfaces.
+- Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another visible Phase 1 management page instead of stopping once the simpler preview-only notices were aligned.
+
+### Gifts foundation-preview notice checkpoint
+- Tightened the visible `gifts` notice title in `config/admin-pages.php`, replacing `Gift redemption controls are still preview-only` with `Gift redemption controls are still foundation-preview only` so the rewards workspace matches the newer foundation-preview framing already used across the shared resource header and the updated branch, holder, card, checks, reporting, and rules surfaces.
+- Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another visible Phase 1 management page instead of drifting back to docs-only changes.
+
+### Rules foundation-preview notice checkpoint
+- Tightened the visible `services-rules` notice title in `config/admin-pages.php`, replacing `Rule editing is still preview-only` with `Rule editing is still foundation-preview only` so the rules workspace matches the newer foundation-preview framing already used across the shared resource header and the updated branch, holder, card, checks, and reporting surfaces.
+- Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another visible Phase 1 management page instead of stopping at the operational surfaces only.
+
+### Reporting foundation-preview notice checkpoint
+- Tightened the visible reporting notice title in `config/admin-pages.php`, replacing `Reporting operations are still preview-only` with `Reporting operations are still foundation-preview only` so the reports workspace matches the newer foundation-preview framing already used across the shared resource header plus the updated shops, cardholders, cards, and checks notices.
+- Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another visible Phase 1 management page instead of stopping at the earlier branch, holder, card, and receipt surfaces.
+
+### Checks-and-points foundation-preview notice checkpoint
+- Tightened the visible checks-and-points notice title in `config/admin-pages.php`, replacing `Checks and points operations are still preview-only` with `Checks and points operations are still foundation-preview only` so the receipt-and-accrual surface matches the newer foundation-preview framing already used across the shared resource header plus the updated shops, cardholders, and cards notices.
+- Synced the matching assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape'` successfully for the touched operational surface.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another visible Phase 1 management page instead of stalling in docs-only edits.
+
+### Cards foundation-preview notice checkpoint
+- Tightened the visible cards notice title in `config/admin-pages.php`, replacing `Card operations are still preview-only` with `Card operations are still foundation-preview only` so the inventory-management surface matches the newer foundation-preview framing already used in the shared resource header plus the updated shops and cardholders notices.
+- Synced the matching cards assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another live Phase 1 management surface instead of slipping back into docs-only wording changes.
+
+### Cardholders foundation-preview notice checkpoint
+- Tightened the visible cardholders notice title in `config/admin-pages.php`, replacing `Cardholder operations are still preview-only` with `Cardholder operations are still foundation-preview only` so the holder-management surface matches the newer foundation-preview framing already used in the shared resource header and the updated shops notice.
+- Synced the matching holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same shell-language cleanup on another live Phase 1 management surface instead of drifting back to docs-only wording work.
+
+### Shops foundation-preview notice checkpoint
+- Tightened the visible shops notice title in `config/admin-pages.php`, replacing `Shop operations are still preview-only` with `Shop operations are still foundation-preview only` so the first branch-management surface uses the same newer foundation-preview framing as the shared resource header.
+- Synced the matching shops assertions and nearby layered-shell ordering checks in `tests/Feature/AdminDashboardTest.php`, then re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_resource_page_defaults_can_compose_all_five_shell_layers|test_resource_page_defaults_can_bridge_all_five_shell_layers_via_admin_resource_blocks|test_resource_page_defaults_array_can_bridge_all_five_shell_layers_via_admin_resource_blocks|test_resource_page_still_renders_with_injected_normalizer_dependency'` successfully for the touched shops slice.
+- Kept the step intentionally small, but moved one live Phase 1 branch workspace notice away from older preview-only wording and toward the repo's Galaxy foundation vocabulary.
+
+### Resource-rationale scaffold-stub checkpoint
+- Tightened the shared resource-shell rationale in `config/admin-page-rationale.php`, replacing `dead placeholders` with `dormant scaffold stubs` so the visible Phase 1 page framing leans further away from generic starter-era language.
+- Synced the matching shell assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_resource_page_shell_keeps_shared_header_and_rationale_visible'` successfully.
+- Kept the step intentionally small, but continued cleaning a shared Galaxy admin-shell phrase that appears across the resource surfaces instead of only adjusting hidden docs.
+
+### Resource-header foundation-preview checkpoint
+- Tightened the shared resource-page header in `resources/views/admin/partials/resource-page-header.blade.php`, replacing the visible `{{ $pageTitle }} placeholder` title pattern with `{{ $pageTitle }} foundation preview` so Phase 1 admin surfaces read less like dead scaffolding and more like Galaxy foundation review shells.
+- Synced the touched header assertions in `tests/Feature/AdminDashboardTest.php` across cardholders, cards, shops, gifts, card types, reports, and the shared shell coverage slices, then re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_placeholder_page|test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_reports_operational_index_shape|test_resource_page_shell_keeps_shared_header_and_rationale_visible|test_resource_page_still_renders_with_injected_normalizer_dependency|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_card_types_management_preview'` successfully.
+- Kept the step intentionally small, but moved a shared visible admin-shell label one notch closer to Galaxy-specific foundation language across several Phase 1 surfaces at once.
+
+### Dashboard foundation-copy checkpoint
+- Tightened one remaining visible admin-dashboard sentence in `resources/views/admin/dashboard.blade.php`, replacing `generic placeholders` with `scaffold-era placeholders` so the top Phase 1 live-foundation snapshot keeps shedding generic starter-era framing.
+- Synced the matching dashboard assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'` successfully.
+- Kept the step intentionally small, but continued removing generic scaffold language from a live Galaxy admin surface instead of only adjusting background docs.
+
+### Dashboard state-metric checkpoint
+- Tightened the main admin dashboard metric labels in `resources/views/admin/dashboard.blade.php` from the older `Active Galaxy ...` wording to the same more explicit state-oriented format already used across the live resource pages: `Active-state Galaxy branches`, `Active-state Galaxy holders`, `Active-state Galaxy card shells`, and `Active-state Galaxy tiers`.
+- Synced the dashboard assertions in `tests/Feature/AdminDashboardTest.php` for the authenticated admin, empty-workspace fallback, and partial-latest-links coverage slices, then re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links'` successfully.
+- Kept the step intentionally small, but moved the same Galaxy-specific state-label cleanup onto the top admin dashboard instead of leaving the repo with different wording between the main live snapshot and the underlying resource surfaces.
+
+### Rules-and-rewards state-metric checkpoint
+- Tightened the preview `services-rules` and `gifts` management metric labels in `config/admin-pages.php` from `Active/Draft/Paused Galaxy ...` wording to the same more explicit state-oriented format already used across the live Phase 1 admin surfaces: `Active-state Galaxy rules`, `Draft-state Galaxy rules`, `Active-state Galaxy rewards`, and `Paused-state Galaxy rewards`.
+- Also renamed the gifts stock counter from `Low stock items` to `Low-stock Galaxy rewards` so the reward snapshot reads less like a generic placeholder bucket and more like a Galaxy-specific management surface.
+- Synced the focused preview assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview|test_authenticated_user_can_access_gifts_management_preview'` successfully.
+- Kept the step intentionally small, but moved the same state-label cleanup onto two still-preview Galaxy management surfaces instead of only iterating inside already-live cards, holders, shops, roles, and tiers.
+
+### Cards draft-state metric checkpoint
+- Tightened the live `cards` management metric label from `Draft Galaxy card shells` to `Draft-state Galaxy card shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the top inventory state metrics now use matching state-oriented wording.
+- Synced the focused cards assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on an active admin surface instead of falling back to docs-only wording work.
+
+### Cards active-state metric checkpoint
+- Tightened the live `cards` management metric label from `Active Galaxy card shells` to `Active-state Galaxy card shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the inventory snapshot now uses more explicit state-oriented wording that matches the newer branch, holder, tier, and access metrics.
+- Synced the focused cards assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_replaces_preview_rows_with_model_backed_card_data'`; the matching cards slice passed successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on an active admin surface instead of falling back to docs-only wording work.
+
+### Branches paused-state metric checkpoint
+- Tightened the live `shops` management metric label from `Paused Galaxy branches` to `Paused-state Galaxy branches` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the top branch state pair now uses matching state-oriented wording.
+- Synced the focused branch assertions in `tests/Feature/AdminDashboardTest.php`, including the malformed-metrics helper coverage on the same shops slice, and re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_resource_page_defaults_helpers_ignore_malformed_metrics'` successfully for the matching branch surface.
+- Kept the step intentionally small, but continued the same live metric cleanup on an active admin surface instead of falling back to docs-only wording work.
+
+### Holders inactive-state metric checkpoint
+- Tightened the live `cardholders` management metric label from `Inactive Galaxy holders` to `Inactive-state Galaxy holders` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the top holder state pair now uses matching state-oriented wording.
+- Synced the focused holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on another active admin surface instead of falling back to docs-only wording work.
+
+### Holders active-state metric checkpoint
+- Tightened the live `cardholders` management metric label from `Active Galaxy holders` to `Active-state Galaxy holders` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the holder snapshot now uses more explicit state-oriented wording that matches the newer branch, tier, and access metrics.
+- Synced the focused holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on another active admin surface instead of falling back to docs-only wording work.
+
+### Branches active-state metric checkpoint
+- Tightened the live `shops` management metric label from `Active Galaxy branches` to `Active-state Galaxy branches` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the branch snapshot now uses more explicit state-oriented wording that matches the newer tier and access metrics.
+- Synced the focused branch assertions in `tests/Feature/AdminDashboardTest.php`, including the nearby layered-shell ordering checks that read the same metric block, and re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_resource_page_defaults_helpers_ignore_malformed_metrics|test_resource_page_defaults_can_compose_all_five_shell_layers|test_resource_page_defaults_can_bridge_all_five_shell_layers_via_admin_resource_blocks|test_resource_page_defaults_array_can_bridge_all_five_shell_layers_via_admin_resource_blocks'` successfully for the matching shops slice.
+- Kept the step intentionally small, but continued the same live metric cleanup on an already active admin surface instead of falling back to docs-only wording work.
+
+### Tiers draft-state metric checkpoint
+- Tightened the live `card-types` management metric label from `Draft Galaxy tiers` to `Draft-state Galaxy tiers` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the tier snapshot now uses matching state-oriented wording across both the active and draft counts.
+- Synced the focused tier assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'` successfully.
+- Logged the neighboring-expectation miss from the earlier tier-label pass in `.learnings/ERRORS.md` so future small copy renames on a shared surface grep all same-slice assertions before reruns.
+
+### Tiers active-state metric checkpoint
+- Tightened the live `card-types` management metric label from `Active Galaxy tiers` to `Active-state Galaxy tiers` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the tier snapshot now uses more explicit state-oriented wording that matches the recent access-surface cleanup.
+- Synced the two focused tier assertions in `tests/Feature/AdminDashboardTest.php`; the first focused run exposed one neighboring expectation on the same surface, and the second rerun of `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'` passed cleanly.
+- Kept the step intentionally small, but continued the same live metric cleanup on an already active admin surface instead of falling back to docs-only wording work.
+
+### Tiers note-label metric checkpoint
+- Tightened the live `card-types` management metric labels from generic `Activation notes` and `Rollout notes` to `Tier activation notes` and `Tier rollout notes`, and also aligned `Saved types` to `Saved Galaxy tiers` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the tier snapshot reads more like a Galaxy surface than a generic bucket list.
+- Synced the config-backed preview metrics in `config/admin-pages.php`, updated the focused tier assertions in `tests/Feature/AdminDashboardTest.php`, and re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on an already active admin surface instead of falling back to docs-only wording work.
+
+### Tiers review-note metric checkpoint
+- Tightened the live `card-types` management metric label from `Reviewed Galaxy tiers` to `Review-noted Galaxy tiers` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the tier snapshot names that count after the underlying review-note signal instead of a vague past-tense state label.
+- Synced the focused tier assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on another active admin surface instead of falling back to docs-only wording work.
+
+### Branches review-note metric checkpoint
+- Tightened the live `shops` management metric label from `Reviewed Galaxy branches` to `Review-noted Galaxy branches` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the branch snapshot names that count after the underlying review-note signal instead of a vague past-tense state label.
+- Synced the focused branch assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on another active admin surface instead of falling back to docs-only wording work.
+
+### Holders review-note metric checkpoint
+- Tightened the live `cardholders` management metric label from `Reviewed Galaxy holders` to `Review-noted Galaxy holders` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the holder snapshot names that count after the underlying review-note signal instead of a vague past-tense state label.
+- Synced the focused holder assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'` successfully.
+- Kept the step intentionally small, but continued the same live metric cleanup on another active admin surface instead of falling back to docs-only wording work.
+
+### Cards review-note metric checkpoint
+- Tightened the live `cards` management metric label from `Reviewed Galaxy card shells` to `Review-noted Galaxy card shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the inventory snapshot names that count after the underlying review-note signal instead of a vague past-tense state label.
+- Synced the focused cards assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape'` successfully.
+- Kept the step intentionally small, but moved the cleanup onto a second live admin surface instead of only iterating inside the access workspace.
+
+### Roles active-state metric checkpoint
+- Tightened the live `roles-permissions` management metric label from `Active Galaxy access shells` to `Active-state Galaxy access shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot now uses matching state-oriented wording across both the active and draft counts.
+- Synced the focused roles assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live admin-surface cleanup instead of drifting back to docs-only wording work.
+
+### Roles draft-state metric checkpoint
+- Tightened the live `roles-permissions` management metric label from `Draft Galaxy access shells` to `Draft-state Galaxy access shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot uses a more explicit state-oriented label instead of a shorter generic adjective.
+- Synced the focused roles assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live admin-surface cleanup instead of drifting back to docs-only wording work.
+
+### Roles review-note metric checkpoint
+- Tightened the neighboring live `roles-permissions` management metric label from `Reviewed Galaxy access shells` to `Review-noted Galaxy access shells` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot now names that count after the actual review-note signal instead of a vague past-tense state label.
+- Synced the focused roles assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live admin-surface cleanup instead of drifting back to docs-only wording work.
+
+## 2026-05-20
+
+### Roles branch-coverage metric checkpoint
+- Tightened the neighboring live `roles-permissions` management metric label from `Scoped Galaxy branches` to `Branch-scoped Galaxy coverage` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot reads more clearly as a branch-coverage count instead of a vague scope badge.
+- Synced the focused roles assertions in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live admin-surface cleanup instead of drifting back to docs-only wording work.
+
+### Roles access-note metric checkpoint
+- Tightened the neighboring live `roles-permissions` management metric label from `Galaxy access notes` to `Access-policy Galaxy notes` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot now names that count after the underlying access-policy artifact instead of a generic note bucket.
+- Synced the focused roles assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live admin-surface cleanup instead of drifting back to docs-only wording work.
+
+### Roles assignment-note metric checkpoint
+- Tightened the neighboring live `roles-permissions` management metric label from `Galaxy assignment notes` to `Role-assignment Galaxy notes` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot keeps naming note counts after the underlying assignment artifact instead of a generic note bucket.
+- Synced the focused roles assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but continued the same live admin-surface cleanup instead of falling back to docs-only wording work.
+
+### Roles permission-note metric checkpoint
+- Tightened the live `roles-permissions` management metric label from `Galaxy permission review notes` to `Permission-linked Galaxy review notes` in both `app/Http/Controllers/Admin/ResourceIndexController.php` and the config-backed preview data, so the access snapshot reads more like a real permission artifact and less like a vague note bucket.
+- Synced the focused roles assertion in `tests/Feature/AdminDashboardTest.php` and re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_roles_permissions_management_preview'` successfully.
+- Kept the step intentionally small, but moved it onto a live admin surface instead of another docs-only framing pass.
+
+### Blueprint baseline-framing checkpoint
+- Aligned the Phase 1 goal in `docs/blueprint.md` from `starter baseline` to `placeholder baseline`, trimming one more starter-era framing tail from the core migration blueprint.
+- Re-checked the touched blueprint line with focused `grep` verification to confirm the new copy is present and the old `starter baseline` phrase is gone from that file.
+- Kept the step intentionally small, but moved it through the main migration blueprint instead of continuing to grow the landing-page surface.
+
+### Scaffold-defaults framing checkpoint
+- Aligned the top-level Phase 1 objective wording in `README.md` and `docs/phase-1-plan.md` from `starter scaffolding` to `scaffold defaults`, trimming one more starter-era framing tail from the repo's main migration guidance.
+- Re-checked the touched guidance lines with focused `grep` verification to confirm the new copy is present and the old `starter scaffolding` phrase is gone from those files.
+- Kept the step intentionally small, but moved it through the main repo guidance rather than continuing to grow the landing-page surface.
+
+### README framework-tail checkpoint
+- Aligned three remaining top-level README posture lines away from starter/framework framing: `framework scaffolding` became `default framework structure`, `generic framework cleanup` became `generic cleanup`, and `starter-era tasks` became `scaffold-era tasks`.
+- Re-checked the touched README slice with focused `grep` verification to confirm the new copy is present and the replaced starter/framework tails are gone.
+- Kept the step intentionally small, but moved it back to repo guidance instead of continuing to grow the landing-page docs list.
+
+### Welcome commit-trail checkpoint
+- Extended the public landing snapshot card in `resources/views/welcome.blade.php` with a `Commit trail` status row, `Every safe slice leaves a visible Git checkpoint`, so the live Phase 1 entry page reflects the repo's current Git-trace discipline directly in the top summary block.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new snapshot copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible workflow cue to the landing snapshot.
+
+### Welcome QA-rhythm checkpoint
+- Extended the public landing snapshot card in `resources/views/welcome.blade.php` with a `QA rhythm` status row, `Focused checks after each safe slice`, so the live Phase 1 entry page reflects the repo's current test discipline directly in the top summary block.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new snapshot copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible workflow cue to the landing snapshot.
+
+### Welcome reference-trail checkpoint
+- Extended the public landing snapshot card in `resources/views/welcome.blade.php` with a `Reference trail` status row so the live Phase 1 entry page now surfaces the main working path, `Blueprint, Phase 1 plan, checkpoints, progress log`, directly in the top summary block.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new snapshot copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding a visible workflow cue to the landing snapshot instead of only extending the docs list.
+
+### Welcome alternate-migration-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/migration_plan.md`, so the live Phase 1 entry page now exposes both migration-plan filename variants that currently exist in the repo.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement on the landing page.
+
+### Welcome working-rules checkpoint
+- Extended the public landing `Working rules` list in `resources/views/welcome.blade.php` with an explicit reminder to keep checkpoints, analysis notes, and QA references close to the work, so the live Phase 1 entry page reflects the repo's current operating habit instead of only listing docs.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new rules-line copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding a visible workflow cue on the landing page rather than another docs-list-only tweak.
+
+### Welcome analysis-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/analysis/`, making the live Phase 1 entry page point directly at the repo's analysis workspace alongside checkpoints, QA guidance, and the core migration references.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
+### Welcome API-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/api_endpoints.md`, making the live Phase 1 entry page point directly at the current API reference alongside the schema and planning docs.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
+### Welcome schema-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/db_schema.md`, making the live Phase 1 entry page point directly at the schema reference for the first live entity work.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
+### Welcome migration-plan-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/migration-plan.md`, making the live Phase 1 entry page point directly at the broader migration-plan reference alongside the narrower Phase 1 plan.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
+### Welcome module-mapping-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/module_mapping.md`, making the live Phase 1 entry page point directly at the repo's module-mapping migration reference alongside the other core planning docs.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
+### Welcome decisions-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/decisions.md`, making the live Phase 1 entry page point directly at the repo's recorded migration decisions alongside the other core references.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
+### Welcome shell-config-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/admin-shell-config-map.md`, making the live Phase 1 entry page point directly at the config-map companion for the current admin-shell layering work.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
+### Welcome QA-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/qa-test-environment.md`, making the live Phase 1 entry page point directly at the repo's local QA and environment guidance alongside the other migration references.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
+### Welcome checkpoints-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/checkpoints/`, making the live Phase 1 entry page point directly at the repo's checkpoint directory alongside the blueprint, plan, shell-layering guide, and progress log.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
+### Welcome shell-docs checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/admin-shell-layering.md`, making the live Phase 1 entry page point directly at the current admin-shell layering guide alongside the blueprint, plan, and progress log.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding another visible Phase 1 guidance improvement instead of a wording-only tweak.
+
+### Welcome docs-list checkpoint
+- Extended the public landing docs list in `resources/views/welcome.blade.php` to include `docs/progress-log.md`, making the live Phase 1 entry page point directly at the repo's ongoing checkpoint trail.
+- Expanded `tests/Feature/ExampleTest.php` to assert the new docs-list item and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while adding a visible Phase 1 guidance improvement instead of another wording-only tweak.
+
+### Welcome rules-card wording checkpoint
+- Aligned the public landing rules card in `resources/views/welcome.blade.php`, replacing `Land small safe slices with visible Git history` with `Land small safe foundation slices with visible Git history` so the live Phase 1 landing copy stays aligned with Galaxy foundation wording.
+- Expanded `tests/Feature/ExampleTest.php` to assert the updated rules-card copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while continuing to tighten visible UI wording with focused coverage.
+
+### Welcome foundation-layer wording checkpoint
+- Aligned the public landing snapshot sentence in `resources/views/welcome.blade.php`, replacing `The current shell is focused...` with `The current foundation layer is focused...` so the live Phase 1 landing copy matches the repo's current Galaxy foundation framing more closely.
+- Updated `tests/Feature/ExampleTest.php` to assert the fuller sentence and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while continuing to tighten visible UI wording with focused coverage.
+
+### Welcome surface-list wording checkpoint
+- Aligned the public landing surface list in `resources/views/welcome.blade.php`, replacing `Cardholders and card inventory shells` with `Cardholders and card inventory foundations` so the live Phase 1 landing page stays consistent with the repo's current foundation framing.
+- Expanded `tests/Feature/ExampleTest.php` to assert the updated surface-list copy and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while continuing to tighten visible Galaxy-specific UI copy with focused coverage.
+
+### Welcome snapshot wording checkpoint
+- Aligned the public landing snapshot copy in `resources/views/welcome.blade.php`, replacing `starter defaults` with `scaffold defaults` so the live Phase 1 landing page keeps shedding starter-era wording.
+- Expanded `tests/Feature/ExampleTest.php` to assert the updated snapshot sentence and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while continuing the move from docs-only wording cleanup into visible UI copy plus focused coverage.
+
+### Welcome hero wording checkpoint
+- Aligned the public landing hero in `resources/views/welcome.blade.php`, replacing `Galaxy-specific foundation, not a generic starter.` with `Galaxy-specific foundation, not generic scaffolding.` so the live Phase 1 landing page keeps shedding starter-era wording.
+- Synced `tests/Feature/ExampleTest.php` with the new welcome-page headline and re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'` successfully.
+- Kept the step intentionally small while moving from docs-only cleanups back to a visible UI surface plus focused coverage.
+
+### Phase-1 shell-posture wording checkpoint
+- Aligned a narrow admin-shell posture line in `docs/phase-1-plan.md`, trimming `less starter-like` down to `less scaffold-like` so the Phase 1 plan keeps moving away from starter-era wording.
+- Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated shell-posture wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten Galaxy-specific migration framing across the planning docs.
+
+### README agent-task wording checkpoint
+- Aligned a narrow coding-agent guidance line in `README.md`, replacing the leftover `generic starter tasks` phrasing with `starter-era tasks` so the top-level repo guidance keeps moving away from generic starter framing.
+- Re-ran a focused grep check on `README.md` to confirm the updated agent-task wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten Galaxy-specific migration framing across the repo.
+
+### README intro-wording checkpoint
+- Aligned the top README intro line in `README.md`, switching `Laravel target for the Galaxy migration` to `Galaxy foundation target for the migration` so the repo opens with more product-first framing.
+- Re-ran a focused grep check on `README.md` to confirm the updated intro wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten Galaxy-specific migration framing across the repo.
+
+### README repo-posture wording checkpoint
+- Aligned a narrow repo-posture line in `README.md`, trimming `polished starter scaffolding` down to `polished scaffold` so the top-level project framing keeps moving away from starter-era wording.
+- Re-ran a focused grep check on `README.md` to confirm the updated repo-posture wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten Galaxy-specific migration framing across the repo.
+
+### README phase-goal wording checkpoint
+- Aligned a narrow Phase 1 goal line in `README.md`, trimming the leftover `generic starter scaffolding` phrasing down to `starter scaffolding` so the top-level repo guidance matches the updated Phase 1 plan.
+- Re-ran a focused grep check on `README.md` to confirm the updated Phase 1 goal wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten Galaxy-specific migration framing across the repo.
+
+### Phase-1 objective wording checkpoint
+- Aligned a narrow objective line in `docs/phase-1-plan.md`, trimming the leftover `generic starter scaffolding` phrasing down to `starter scaffolding` so the plan keeps the focus on Galaxy foundation work instead of generic framing.
+- Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated objective wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten top-level Phase 1 planning guidance.
+
+### Phase-1 definition wording checkpoint
+- Aligned a narrow definition-of-done line in `docs/phase-1-plan.md`, trimming the leftover `empty starter` phrasing down to `empty scaffold` so the plan keeps the focus on Galaxy foundation progress instead of starter-era wording.
+- Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated definition wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten top-level Phase 1 planning guidance.
+
+### Blueprint phase-goal wording checkpoint
+- Aligned a narrow Phase 1 goal line in `docs/blueprint.md`, trimming the leftover `generic starter baseline` phrasing down to `starter baseline` so the blueprint keeps the focus on Galaxy-specific foundation work instead of generic starter framing.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated Phase 1 goal wording is in place.
+- Kept the step intentionally small and docs-only while continuing to tighten top-level migration guidance.
+
+### README agent-guidance wording checkpoint
+- Aligned a narrow agent-guidance line in `README.md`, replacing the framework-first `Laravel conventions` phrasing with `Galaxy foundation structure` wording while keeping the same coding-agent guidance.
+- Re-ran a focused grep check on `README.md` to confirm the updated agent-guidance wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align top-level project guidance with the repo's current Galaxy foundation framing.
+
+### Blueprint architecture-wording checkpoint
+- Aligned a narrow target-architecture line in `docs/blueprint.md`, switching the plain `Laravel monolith` bullet to `Galaxy-focused Laravel monolith` so the architecture section matches the newer Galaxy-specific top-level framing.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated architecture wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align blueprint language with the repo's current Galaxy foundation posture.
+
+### Blueprint target-posture wording checkpoint
+- Aligned a narrow target-posture line in `docs/blueprint.md`, switching `target implementation on Laravel` to `target implementation in the Galaxy foundation` so the migration blueprint starts from Galaxy-specific product framing instead of framework-first wording.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated target-posture wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align blueprint language with the repo's current Galaxy foundation vocabulary.
+
+### Blueprint shell-note wording checkpoint
+- Aligned a narrow admin-shell note in `docs/blueprint.md`, switching `real Laravel reads and writes` wording to `real Galaxy foundation reads and writes` so the migration blueprint matches the newer Galaxy-specific foundation framing already used in Phase 1 guidance.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated shell-note wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align blueprint language with the repo's current Galaxy foundation vocabulary.
+
+### Phase-1 shell-note wording checkpoint
+- Aligned a narrow admin-shell note in `docs/phase-1-plan.md`, switching `real Laravel writes/reads` wording to `real Galaxy foundation writes/reads` so the Phase 1 guidance matches the newer Galaxy-specific foundation framing.
+- Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated shell-note wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align planning language with the repo's current Galaxy foundation vocabulary.
+
+### README phase-focus wording checkpoint
+- Aligned a narrow `README.md` Phase 1 focus line away from leftover `Laravel-backed` framing, switching the safe read/write milestone to `Galaxy foundation-backed read and write slices`.
+- Re-ran a focused grep check on `README.md` to confirm the updated Phase 1 focus wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align top-level project guidance with the newer Galaxy foundation vocabulary.
+
+### README posture-wording checkpoint
+- Aligned a narrow migration-posture line in `README.md`, switching `galaxiNew` from the more framework-first `Laravel monolith replacing it` wording to `Galaxy-focused Laravel monolith replacing it`.
+- Re-ran a focused grep check on `README.md` to confirm the updated posture wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align top-level project guidance with Galaxy-specific foundation framing.
+
+### Blueprint summary-wording checkpoint
+- Aligned a narrow top-level summary line in `docs/blueprint.md`, switching `simple Laravel monolith` to `Galaxy-focused Laravel monolith` so the migration blueprint starts from Galaxy-specific product framing instead of framework-first wording.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated summary wording is in place.
+- Kept the step intentionally small and docs-only while continuing to align top-level migration guidance with the newer Galaxy foundation posture.
+
+### README starter-wording checkpoint
+- Aligned a narrow README framing slice away from leftover `generic Laravel starter` language, switching the Phase 1 goal and repository-posture text to `starter scaffolding` wording.
+- Re-ran a focused grep check on `README.md` to confirm the updated goal and repo-posture phrasing are in place.
+- Kept the step intentionally small and docs-only while continuing to align top-level project guidance with the newer Galaxy-specific foundation framing.
+
+### Phase-1 plan objective wording checkpoint
+- Aligned a narrow planning line in `docs/phase-1-plan.md`, switching the top-level objective from `generic Laravel starter` to `generic starter scaffolding` so the Phase 1 plan matches the newer Galaxy-specific foundation framing.
+- Re-ran a focused grep check on `docs/phase-1-plan.md` to confirm the updated objective wording is in place.
+- Kept the step intentionally small and docs-only while continuing to trim starter-era framing from the repo's migration guidance.
+
+### Blueprint goal-wording checkpoint
+- Aligned a narrow Phase 1 planning line in `docs/blueprint.md`, switching the goal from `generic Laravel baseline` to `generic starter baseline` so the migration blueprint matches the newer Galaxy-specific foundation framing.
+- Re-ran a focused grep check on `docs/blueprint.md` to confirm the updated goal wording is in place.
+- Kept the step intentionally small and docs-only while continuing to trim starter-era framing from the repo's guiding migration language.
+
+### Closing-blocks comment wording checkpoint
+- Aligned a small real-config slice in `config/admin-operational-closing-blocks.php`, switching the shared closing-blocks comment from `first Laravel wiring step` to `first Galaxy foundation wiring step` so internal config guidance matches the live admin vocabulary.
+- Re-ran `php -l config/admin-operational-closing-blocks.php`; the focused config syntax check passed.
+- Kept the step intentionally tiny and behavior-preserving while removing one more starter-era naming tail from shared Phase 1 scaffolding.
+
+### Controller helper naming checkpoint
+- Aligned a small real-code slice in `ResourceIndexController`, renaming the remaining `cardsLaravelStatusLabel` and `cardholdersLaravelStatusLabel` helpers to `...GalaxyStatusLabel` so internal controller naming matches the Galaxy foundation vocabulary already shown in the UI.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_cardholders_operational_index_shape'`; both focused cards/cardholders slices passed (`2 passed`).
+- Kept the step behavior-preserving while trimming another starter-era naming tail from live Phase 1 controller code.
+
+### Normalizer unit-wording checkpoint
+- Aligned a narrow `AdminResourcePageNormalizerTest` fixture slice away from leftover `Laravel` wording, switching repeated live-form titles and a nested preview description to `Galaxy foundation` language.
+- Re-ran `php artisan test --filter='test_normalize_live_form_keeps_valid_fields_and_ignores_malformed_entries|test_normalize_live_form_defaults_invalid_method_to_post|test_normalize_live_form_keeps_valid_cancel_action|test_normalize_filters_malformed_nested_page_metadata'`; the focused normalizer wording slice passed (`4 passed`).
+- Noted an unrelated pre-existing drift elsewhere in the same unit class around table-row normalization, so I kept this step narrow instead of broadening into behavior changes.
+
+### Cardholders selected-query wording checkpoint
+- Aligned a narrow `cardholders` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
+- Dropped stale negative checks for `Back to holder catalog` and `Selected holder`, because the current fallback workspace legitimately renders those strings while still ignoring malformed or unknown query values.
+- Re-ran `php artisan test --filter='test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query'`; both focused selected-query tests passed (`2 passed`).
+
+### Cards selected-query wording checkpoint
+- Aligned a narrow `cards` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
+- Dropped stale negative checks for `Back to card catalog` and `Selected card`, because the current fallback workspace legitimately renders those strings while still ignoring malformed or unknown query values.
+- Re-ran `php artisan test --filter='test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query'`; both focused selected-query tests passed (`2 passed`).
+
+### Roles selected-query wording checkpoint
+- Aligned a narrow `roles-permissions` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query'`; both focused selected-query tests passed (`2 passed`).
+- Kept the change test-only and low risk while continuing to strip starter-era wording from Phase 1 guardrail coverage.
+
+### Shops selected-query wording checkpoint
+- Aligned a narrow `shops` selected-query coverage slice away from leftover `Laravel` wording, updating the negative review-fallback assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
+- Dropped two stale negative checks for `Back to branch catalog` and `Selected shop`, because the current fallback workspace legitimately renders those strings while still ignoring malformed or unknown query values.
+- Re-ran `php artisan test --filter='test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query'`; both focused selected-query tests passed (`2 passed`).
+
+### Card-types selected-edit wording checkpoint
+- Aligned a narrow `card-types` selected-query coverage slice away from leftover `Laravel` wording, updating the negative edit-flow assertions in `AdminDashboardTest` to `Galaxy foundation` phrasing.
+- Re-ran `php artisan test --filter='test_card_types_page_ignores_unknown_selected_card_type_query|test_card_types_page_ignores_malformed_selected_card_type_query'`; both focused selected-query coverage tests passed (`2 passed`).
+- Kept the change test-only and low risk while continuing to remove starter-era wording from Phase 1 guardrails.
+
+### Shops helper-coverage wording checkpoint
+- Aligned `shops` helper-level malformed-config coverage away from leftover `Laravel` wording, updating the synthetic notice and readiness-checklist strings in `AdminDashboardTest` to `Galaxy foundation` queries and wiring language.
+- Tightened the malformed readiness assertion by swapping the overly generic numeric marker `42` for a unique `424242`, which avoids false failures from unrelated page content while keeping the same malformed-entry intent.
+- Re-ran `php artisan test --filter='test_preview_notice_ignores_malformed_notice_entries|test_readiness_checklist_ignores_malformed_entries'`; both focused helper-coverage tests passed (`2 passed`).
+
+### Resource-defaults rationale wording checkpoint
+- Aligned a shared `admin-resource-page-defaults` test fixture away from leftover `Laravel` wording, switching the visible rationale copy to `Galaxy foundation forms` in `AdminDashboardTest`.
+- Re-ran `php artisan test --filter='test_resource_page_defaults_helpers_ignore_malformed_page_rationale_entries'`; the focused helper-coverage slice passed (`1 passed`).
+- Kept the change narrow and low risk while continuing to remove starter-era language from shared Phase 1 scaffolding.
+
+### Card-types placeholder wording checkpoint
+- Aligned a narrow `card-types` live-form schema slice away from leftover `Laravel` wording, switching the review-note and activation-note placeholders to `Galaxy foundation card type` language in `config/admin-pages.php`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'`; the focused card-types preview slice stayed green (`1 passed`).
+- Kept the change schema-only and low risk, since placeholder markup remains intentionally brittle for direct rendered assertions.
+
+### Holder-shell placeholder wording checkpoint
+- Aligned a narrow `cardholders` live-form schema string away from leftover `Laravel` wording, switching the review-note placeholder to `Galaxy foundation holder shell` in `config/admin-pages.php`.
+- Updated the nearby duplicate-code shop-flow fixture copy in `AdminDashboardTest` so the Phase 1 validation slice no longer carries starter-era branch-shell wording.
+- Re-ran `php artisan test --filter='test_shop_live_flow_trims_name_and_rejects_duplicate_normalized_code'`; the focused live-flow validation slice passed (`1 passed`).
+
+### Roles permission-matrix wording checkpoint
+- Aligned a narrow live `roles-permissions` open-issues slice away from leftover `Laravel` wording, switching the permission-matrix blocker to `first Galaxy foundation write slice` language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertion so the rendered access-control workspace keeps covering that visible migration-gap copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview'`; the focused roles-permissions preview slice passed (`1 passed`).
+
+### Gifts validation-wording checkpoint
+- Aligned a narrow live `gifts` implementation-handoff slice away from leftover `Laravel` wording, switching the warehouse-sync open issue and minimal form-wiring step to `Galaxy foundation` language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertions so the rendered gifts workspace keeps covering those visible migration-gap and handoff strings.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'`; the focused gifts preview slice passed (`1 passed`).
+
+### Cards handlers-wording checkpoint
+- Aligned a narrow live `cards` preview slice away from leftover `Laravel` wording, switching the notice and readiness-checklist blocker to `Galaxy foundation` handlers and wiring language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertions so the rendered cards workspace keeps covering that visible Phase 1 blocker copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape'`; the focused cards preview slice passed (`1 passed`).
+
+### Cardholders reads-wording checkpoint
+- Aligned a narrow live `cardholders` preview slice away from leftover `Laravel` wording, switching the notice and readiness-checklist blocker to `Galaxy foundation` reads and wiring language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertions so the rendered cardholders workspace keeps covering that visible Phase 1 blocker copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape'`; the focused cardholders preview slice passed (`1 passed`).
+
+### Shops queries-wording checkpoint
+- Aligned a narrow live `shops` preview slice away from leftover `Laravel` wording, switching the notice and readiness-checklist blocker to `Galaxy foundation` queries and wiring language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertions so the rendered shops workspace keeps covering that visible Phase 1 blocker copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape'`; the focused shops preview slice passed (`1 passed`).
+
+### Checks-points receipts wording checkpoint
+- Aligned a narrow live `checks-points` preview slice away from leftover `Laravel` wording, switching the receipts notice and readiness-checklist blocker to `Galaxy foundation` language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` receipts-preview assertions, including the neighboring zero-accrual blocker expectation that had drifted from the rendered copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape'`; the focused checks-points preview slice passed (`1 passed`).
+
+### Card-types rule-import wording checkpoint
+- Aligned a narrow live `card-types` open-issues message away from leftover `Laravel` wording, switching the rule-import blocker to `first Galaxy foundation write slice` in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertion so the rendered card-types preview keeps covering that visible migration-gap copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview'`; the focused card-types preview slice passed (`1 passed`).
+
+### Reports preset-blocker wording checkpoint
+- Aligned a narrow live `reports` action blocker away from leftover `Laravel` wording, switching the disabled `Review export presets` reason to `Galaxy foundation reporting flow validation` in `config/admin-pages.php`.
+- The existing `AdminDashboardTest` reports preview assertion already covered this rendered blocker copy, so the focused rerun stayed code-only with no extra test edits.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed (`1 passed`).
+
+### Reports pipeline-wording checkpoint
+- Aligned a narrow live `reports` preview slice away from leftover `Laravel` wording, switching the reporting notice and readiness-checklist blocker to `Galaxy foundation` language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertions so the rendered reporting workspace keeps covering the visible notice and blocker copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed (`1 passed`).
+
+### Services-rules priority-blocker wording checkpoint
+- Aligned a narrow live `services-rules` action blocker away from leftover `Laravel` wording, switching the disabled `Review priorities` reason to `Galaxy foundation` language in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertion so the rendered rules management preview keeps covering the visible blocker copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview'`; the focused services-rules preview slice passed (`1 passed`).
+
+### Gifts stock-audit blocker wording checkpoint
+- Aligned a narrow live `gifts` management blocker away from leftover `Laravel` wording, switching the disabled stock-audit reason to `Galaxy foundation inventory data` in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertion so the rendered gifts management preview keeps covering the visible blocker copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'`; the focused gifts preview slice passed (`1 passed`).
+
+### Services-rules handler-wording checkpoint
+- Aligned a narrow live `services-rules` preview slice away from leftover `Laravel` wording, switching the preview notice, readiness-checklist label, and first implementation-handoff step to `Galaxy foundation` language in `config/admin-pages.php`.
+- Added matching `AdminDashboardTest` assertions for the rendered notice, readiness state, and implementation handoff copy so this visible rules workspace slice stays covered.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview'`; the focused services-rules slice passed (`1 passed`).
+
+### Card-types update-review wording checkpoint
+- Aligned a narrow live `card-types` update slice away from leftover `Laravel` wording, switching the saved review-note fixture and matching success-flash review copy to `Galaxy foundation` language in `AdminDashboardTest`.
+- Kept the step intentionally narrow around the live update path so the selected-tier success surface stays consistent with the broader foundation-first vocabulary already used across the card-types shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_update_card_type_from_live_admin_flow|test_card_types_page_shows_update_success_flash_message'`; the focused card-types update slice passed (`2 passed`).
+
+### Gifts warehouse-sync wording checkpoint
+- Aligned a narrow live `gifts` activity-timeline slice away from leftover `Laravel` wording, switching the coffee-voucher warehouse-sync note to `Galaxy foundation` language in `config/admin-pages.php`.
+- Added the matching visible-copy assertion in `AdminDashboardTest` so the rendered gifts management timeline keeps covering the updated wording.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview|test_authenticated_user_can_access_gifts_operational_index_shape'`; the focused gifts slice passed (`2 passed`).
+
+### Welcome landing foundation-wording checkpoint
+- Aligned the public landing hero away from leftover `Laravel` framing, switching the main headline, intro sentence, and target-posture snapshot in `resources/views/welcome.blade.php` to clearer `Galaxy foundation` language.
+- Updated `ExampleTest` so the homepage assertion now checks the new foundation-first landing copy.
+- Re-ran `php artisan test --filter='test_the_home_page_surfaces_the_galaxy_foundation_landing_page'`; the focused landing slice passed (`1 passed`).
+
+### Card-types live-notice wording checkpoint
+- Aligned a narrow live `card-types` management slice away from leftover `Laravel` wording, switching the partially-live notice copy and matching readiness-checklist label to `Galaxy foundation` language in `config/admin-pages.php`.
+- Added matching assertions in `AdminDashboardTest` so the visible card-type workflow notice and readiness state stay covered together.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused card-types slice passed (`2 passed`).
+
+### Cards duplicate-number validation wording checkpoint
+- Aligned the live `StoreCardRequest` duplicate-number validation message away from leftover `Laravel` wording, switching the inventory-shell error copy to `Galaxy foundation` language.
+- Synced the matching duplicate-card assertions in `AdminDashboardTest` so the live card write path keeps checking the updated backend validation wording.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_create_card_from_live_admin_flow|test_card_live_flow_rejects_duplicate_number_after_normalization|test_card_update_rejects_duplicate_number_after_normalization'`; the matched focused cards write slice passed (`1 passed`).
+
+### Roles live-form slug-helper wording checkpoint
+- Aligned a narrow live `roles-permissions` form slice away from leftover `Laravel` wording, switching the slug helper text to `Galaxy foundation` language and syncing the adjacent role-note placeholders in `config/admin-pages.php`.
+- Added a matching stable visible-copy assertion in `AdminDashboardTest` for the live roles form so the helper wording stays covered without depending on placeholder markup.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused roles slice passed (`2 passed`).
+
+### Cards live-form tier-helper wording checkpoint
+- Aligned a narrow live `cards` form slice away from leftover `Laravel` wording, switching the card-type helper text to `Galaxy foundation` language and syncing the adjacent review-note placeholder copy in `config/admin-pages.php`.
+- Added matching stable visible-copy assertions in `AdminDashboardTest` for the live cards form so the helper text stays covered without depending on placeholder markup.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_replaces_preview_rows_with_model_backed_index_data'`; the matched focused cards slice passed (`1 passed`).
+
+### Shops branch-form wording checkpoint
+- Aligned a narrow live `shops` form slice away from leftover `Laravel` wording, switching the branch-code helper text and adjacent review-note placeholder copy to `Galaxy foundation` language in `config/admin-pages.php`.
+- Added a matching stable visible-copy assertion in `AdminDashboardTest` for the live shops form and kept the check on rendered helper text instead of brittle placeholder markup.
+- Re-ran `php artisan test --filter='test_shops_page_replaces_preview_rows_with_model_backed_index_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data'`; the focused shops slice passed (`2 passed`).
+
+## 2026-05-19
+
+### Roles catalog read-slice wording checkpoint
+- Aligned a narrow `roles-permissions` catalog helper fallback away from generic `Laravel` wording, switching the unscoped table-row copy to Galaxy foundation language.
+- Added the matching catalog assertion in `AdminDashboardTest` and synced one adjacent stale placeholder assertion to the currently rendered roles summary copy when the broader check exposed drift.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_placeholder_page|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused roles slice passed (`2 passed`).
+
+### Cardholders review-mode wording checkpoint
+- Aligned a narrow selected `cardholders` review-mode helper string away from generic `Laravel` wording, switching the live-profile lookup-surface copy to Galaxy foundation language.
+- Kept the step isolated to `ResourceIndexController` because the nearby selected-holder test cluster already exercises the affected review surfaces without hard-coding that exact line.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`; the focused cardholders slice passed (`3 passed`).
+
+### Cards draft-lifecycle wording checkpoint
+- Aligned the remaining draft-card lifecycle fallback in the selected `cards` helper away from generic `Laravel` wording, switching the issuance-rule confirmation copy to Galaxy foundation language.
+- Kept the step isolated to `ResourceIndexController` because the nearby selected-card test cluster already exercises the draft and blocked review surfaces without pinning that exact fallback string.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_supports_selected_draft_card_review_context'`; the focused cards slice passed (`3 passed`).
+
+### Cardholders catalog activity wording checkpoint
+- Aligned the remaining active-holder fallback in the `cardholders` catalog helper away from generic `Laravel` wording, switching the parity-review activity-source copy to Galaxy foundation language.
+- Kept the step isolated to `ResourceIndexController` because the nearby cardholders test cluster already exercises the catalog and selected-holder render paths without hard-coding that fallback branch.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context'`; the focused cardholders slice passed (`3 passed`).
+
+### Cardholders activity-source wording checkpoint
+- Aligned a narrow selected `cardholders` helper slice away from generic `Laravel` wording, covering active, inactive, linked, unlinked, and paused-branch activity disabled reasons in the selected holder review surface.
+- Updated the matching `AdminDashboardTest` assertions for the selected holder, active linked holder, active unlinked holder, inactive linked holder, and paused-branch holder review contexts.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context|test_cardholders_page_surfaces_paused_branch_signal_for_selected_holder'`; the focused cardholders slice passed (`5 passed`).
+
+### Gifts stock-audit wording checkpoint
+- Aligned a narrow selected `gifts` helper slice away from generic `Laravel` wording, covering zero-stock, finite-stock, and all-shop stock-audit disabled reasons in the selected reward review surface.
+- Updated the matching `AdminDashboardTest` assertions for the selected gift, scoped gift, all-shop gift, and paused finite-stock gift review contexts.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`; the focused gifts slice passed (`4 passed`).
+
+### Reports backend-gap wording checkpoint
+- Aligned a narrow `reports` helper slice away from generic `Laravel` wording, covering three backend-gap fallback messages for cards-by-shop, cardholder-status, and role-access report sources.
+- Kept the step copy-only in `ResourceIndexController` because the existing reporting test cluster exercises these surfaces without hard-coding the exact fallback strings.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context'`; the focused reporting slice passed (`4 passed`).
+
+### Cards blocked-review wording checkpoint
+- Aligned a narrow selected `cards` helper slice away from generic `Laravel` wording, covering the active and draft blocked-review disabled-reason copy for selected card review states.
+- Updated the matching `AdminDashboardTest` assertions for the selected active-card and draft-card review surfaces.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory'`; the focused cards slice passed (`2 passed`).
+
+### Roles-permissions preview wording checkpoint
+- Aligned a tiny `roles-permissions` admin-form slice away from generic `Laravel` wording, covering the publish-posture help text and adjacent review-matrix disabled reason in `config/admin-pages.php`.
+- Updated the matching `AdminDashboardTest` assertion for the management-preview surface after a focused rerun exposed the stale neighboring matrix copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview'`; the focused roles-permissions preview slice passed (`1 passed`).
+
+### Reports preset-helper wording checkpoint
+- Aligned a narrow `reports` helper slice away from generic `Laravel` wording, covering the catalog and selected-source preset disabled-reason copy that still referred to reporting-flow validation in Laravel.
+- Updated the matching `AdminDashboardTest` assertion for the reports catalog surface and rechecked adjacent selected-source reporting paths.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed (`3 passed`).
+
+### Checks-points disabled-reason wording checkpoint
+- Aligned the selected `checks-points` receipt disabled-reason helper copy away from generic `Laravel` wording, covering receipt-lookup and accrual-gap review strings for zero-accrual, branch-aware, and positive-accrual receipt review states.
+- Updated the matching `AdminDashboardTest` assertions for the selected receipt review surfaces.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context'`; the focused checks-points slice passed (`3 passed`).
+
+### Checks-points branch-receipt wording checkpoint
+- Aligned a narrow selected `checks-points` branch-receipt slice away from generic `Laravel` wording, covering the CHK-90388 receipt-posture and troubleshooting-guidance copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected branch receipt review surface.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context'`; the focused checks-points slice passed (`3 passed`).
+
+### Checks-points positive-accrual wording checkpoint
+- Aligned a narrow selected `checks-points` positive-accrual receipt slice away from generic `Laravel` wording, covering the CHK-90421 receipt-posture and troubleshooting-guidance copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected positive-accrual receipt review surface.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context'`; the focused checks-points slice passed (`3 passed`).
+
+### Checks-points zero-accrual wording checkpoint
+- Aligned a narrow selected `checks-points` zero-accrual receipt slice away from generic `Laravel` wording, covering the CHK-90407 receipt-posture and troubleshooting-guidance copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected zero-accrual receipt review surface.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context'`; the focused checks-points slice passed (`3 passed`).
+
+### Services-rules review-priority wording checkpoint
+- Aligned the remaining selected `services-rules` review-priority helper copy away from generic `Laravel` wording, covering the scoped and all-shop disabled-reason strings rendered for partner-card and birthday-bonus review surfaces.
+- Updated the matching `AdminDashboardTest` assertions for the selected scoped-rule and selected all-shop rule review paths.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context'`; the focused services-rules slice passed (`3 passed`).
+
+### Services-rules draft exception wording checkpoint
+- Aligned another narrow selected `services-rules` draft-exception slice away from generic `Laravel` wording, covering the night-service-block review-priority disabled reason, the no-accrual effect guidance, and the dependency-status priority note.
+- Updated the matching `AdminDashboardTest` assertions for the selected draft-rule review surface.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context'`; the focused services-rules slice passed (`3 passed`).
+
+### Gifts paused zero-stock wording checkpoint
+- Aligned a narrow selected `gifts` paused zero-stock reward slice away from generic `Laravel` wording, covering the premium-dessert-set stock posture, redemption guidance, and dependency-status scope/stock posture copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected paused zero-stock gift review surface.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`; the focused gifts slice passed (`3 passed`).
+
+### Gifts paused finite-stock wording checkpoint
+- Aligned a narrow selected `gifts` paused finite-stock reward slice away from generic `Laravel` wording, covering the weekend-brunch-pass stock posture, redemption guidance, and dependency-status scope posture copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected paused finite-stock gift review surface.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`; the focused gifts slice passed (`3 passed`).
+
+### Gifts scoped wording checkpoint
+- Aligned a narrow selected `gifts` scoped reward slice away from generic `Laravel` wording, covering the airport-transfer stock posture, redemption guidance, and dependency-status scope posture copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected scoped gift review surface.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`; the focused gifts slice passed (`3 passed`).
+
+### Gifts all-shop wording checkpoint
+- Aligned a narrow selected `gifts` all-shop reward slice away from generic `Laravel` wording, covering the coffee-voucher stock posture, redemption guidance, and dependency-status scope posture copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected all-shop gift review surface.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`; the focused gifts slice passed (`3 passed`).
+
+### Services-rules all-shop wording checkpoint
+- Aligned the selected `services-rules` all-shop birthday-bonus review copy away from generic `Laravel` wording, covering all-shop scope posture, priority posture, effect guidance, and the dependency-status priority note.
+- Updated the matching `AdminDashboardTest` assertions for the selected all-shop rule review surface.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_all_shop_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_rule_review_context'`; the focused services-rules slice passed (`3 passed`).
+
+### Services-rules scoped wording checkpoint
+- Aligned a small selected `services-rules` slice away from generic `Laravel` wording, covering the scoped partner-card review copy and the draft night-service exception copy.
+- Updated the matching `AdminDashboardTest` assertions for the selected scoped-rule and selected draft-rule review surfaces.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context'`; the focused services-rules slice passed (`3 passed`).
+
+### Reporting live-source wording checkpoint
+- Aligned another small `reports` slice from `Laravel` wording to `Galaxy foundation` wording, this time covering the selected live-source review copy for `cardholder-status` and `role-access` reporting surfaces.
+- Kept the change copy-only with no behavior change and confirmed the surrounding reporting shell still renders correctly without further assertion rewrites.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_mixed_cardholder_status_review_context'`; the focused reporting slice passed (`3 passed`).
+
+### Reporting source-coverage wording checkpoint
+- Aligned a narrow `reports` slice from `Laravel` wording to `Galaxy foundation` wording, covering the live source-coverage summary and the selected `cards-by-shop` live-source review copy.
+- While rerunning the focused reporting slice, also synced two stale adjacent assertions to the current Galaxy-specific branch/card-shell wording already rendered by the reporting shell.
+- Re-ran `php artisan test --filter='test_reports_page_reflects_live_source_counts_from_models|test_reports_page_supports_selected_live_source_review_context'`; the focused reporting slice passed (`1 passed`).
+
+### Card lifecycle-and-linkage wording checkpoint
+- Aligned a narrow selected `cards` slice from `Laravel` wording to `Galaxy foundation` wording, covering lifecycle stage, inventory guidance, activation readiness, blocked activation/linkage signals, holder-linkage summaries, assignment readiness, dispute posture, and missing-timestamp fallback copy.
+- Kept the step copy-only with no behavior change, and updated the matching focused card assertions that read those selected-card review strings.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card|test_cards_page_surfaces_pre_activation_readiness_for_issued_inventory|test_cards_page_surfaces_draft_lifecycle_stage_for_unissued_inventory|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`; the matching focused card slice passed (`7 passed`).
+
+### Role disabled-reason and draft-state wording checkpoint
+- Aligned another small `roles-permissions` slice from `Laravel` wording to `Galaxy foundation` wording, covering draft/live review-mode fallback, active-vs-draft access guidance, and the remaining first-verified permission-bundle disabled reasons.
+- Kept the change copy-only with no behavior change, and updated the focused role assertions that still referenced the older permission-bundle wording.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_handles_saved_role_without_scope_or_permissions|test_roles_permissions_page_handles_saved_role_without_scope_or_permissions_but_with_active_status|test_roles_permissions_catalog_actions_reflect_saved_role_readiness'`; the matching focused role slice passed (`1 passed`).
+
+### Role timeline-and-matrix posture wording checkpoint
+- Aligned another narrow selected `roles-permissions` slice from `Laravel` wording to `Galaxy foundation` wording, this time covering lifecycle timestamp fallback, last-updated timeline copy, matrix posture, linked-staff impact, and visible permission-bundle review copy.
+- Kept the step copy-only with no behavior change, and updated the matching focused selected-role assertions that read those access-review strings.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the selected-role slice passed (`1 passed`).
+
+### Role access-and-matrix wording alignment checkpoint
+- Aligned a narrow set of selected `roles-permissions` review, scope, assignment, and matrix-blocking strings from `Laravel` wording to `Galaxy foundation` wording so the access shell keeps matching the newer Galaxy-specific foundation vocabulary.
+- Kept the change copy-only with no behavior change, and updated the matching focused role assertions that read those selected-role review strings.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_reflects_saved_role_context|test_roles_permissions_page_supports_saved_role_with_assignments_and_permissions|test_roles_permissions_catalog_actions_reflect_saved_role_readiness|test_roles_permissions_page_handles_saved_role_without_scope_or_permissions'`; the matched focused role slice passed (`1 passed`).
+
+### Branch lifecycle-and-recovery wording alignment checkpoint
+- Aligned a narrow set of selected `shops` lifecycle, review-mode, manager-visibility, and paused-branch recovery strings from `Laravel` wording to `Galaxy foundation` wording so the branch review shell keeps matching the newer Galaxy-specific foundation vocabulary.
+- Kept the step intentionally copy-only with no behavior change, and updated the focused branch assertions that read those selected-branch review strings.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_handles_paused_branch_without_manager_or_cards|test_shops_page_surfaces_selected_shop_context_from_laravel_data'`; the matched focused branch slice passed (`2 passed`).
+
+## 2026-05-19
+
+### Holder lifecycle-and-activity wording alignment checkpoint
+- Aligned a narrow set of selected `cardholders` lifecycle, activity-source, linked-card, and active/inactive status strings from `Laravel` wording to `Galaxy foundation` wording so the holder review shell keeps matching the newer Galaxy-specific foundation vocabulary.
+- Kept the step intentionally copy-only with no behavior change, and updated the focused holder assertions that read those selected-holder review strings.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_handles_selected_holder_without_linked_cards|test_cardholders_page_handles_selected_holder_from_paused_branch'`; the matched focused holder slice passed (`1 passed`).
+
+## 2026-05-19
+
+### Tier lifecycle-and-readiness wording alignment checkpoint
+- Aligned the remaining selected `card-types` lifecycle and readiness strings from `Laravel` wording to `Galaxy foundation` wording, including the live-tier publish guidance, readiness signal, and missing-timestamp fallback.
+- Kept the step intentionally copy-only with no behavior change, and used the existing focused tier preview and selected-tier slices as a regression check after the wording update.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_handles_tier_without_linked_cards|test_authenticated_user_can_access_card_types_management_preview'`; the matched focused tier slice passed (`2 passed`).
+
+## 2026-05-19
+
+### Tier flow-and-coverage wording alignment checkpoint
+- Aligned a narrow set of `card-types` saved-tier copy from `Laravel` wording to `Galaxy foundation` wording, including the catalog flow badge, selected-tier saved-data handoff, and saved card-coverage freshness states.
+- Kept the step intentionally copy-only with no behavior change, and updated the focused tier preview and selected-tier assertions that read those strings.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_links_latest_saved_record_into_edit_flow|test_authenticated_user_can_access_card_types_management_preview'`; the matched focused tier slice passed (`2 passed`).
+
+## 2026-05-19
+
+### Roles scope-and-status wording alignment checkpoint
+- Aligned a narrow set of selected-role scope, permission-bundle, timestamp-fallback, and status-posture strings from `Laravel` wording to `Galaxy foundation` wording so the access review shell keeps sounding like Galaxy-specific foundation work instead of starter-era scaffolding.
+- Kept the step intentionally copy-only with no behavior change, and updated the focused selected-role assertion that covered the active status-posture string.
+- Re-ran `php artisan test --filter='test_role_form_persists_identity_fields|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the matched focused roles slice passed (`1 passed`).
+
+## 2026-05-19
+
+### Tier note-freshness wording alignment checkpoint
+- Aligned the selected `card-types` activation and rollout freshness copy from `draft Laravel tier shell` to `draft Galaxy foundation tier shell` so saved tier review states stay consistent with the newer Galaxy foundation wording already used across the Phase 1 admin shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused tier assertions that read those freshness states.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_links_latest_saved_record_into_edit_flow'`; the matched focused tier slice passed (`1 passed`).
+
+## 2026-05-19
+
+### Roles and cards saved-shell wording alignment checkpoint
+- Aligned a narrow set of selected-role and selected-card review strings from `Laravel` wording to `Galaxy foundation` wording so the live management shell reads less like starter-era scaffolding after records are already loaded from saved data.
+- Updated the matching focused assertions for the roles preview, role persistence, selected-role context, and selected-card context slices, keeping the step copy-only with no behavior change.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_role_form_persists_identity_fields|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data'`; the focused roles and cards slice passed (`3 passed`).
+
+### Cards and roles live-form status-label wording alignment checkpoint
+- Aligned the remaining `cards` and `roles-permissions` live-form field labels from `Laravel status` to `Galaxy foundation status` so those two active write slices match the newer Galaxy foundation vocabulary already used across the rest of the admin shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and used the existing focused selected-context slices as regression coverage after the config update.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data'`; the focused cards and roles slice passed (`2 passed`).
+
+## 2026-05-18
+
+### Holder live-form status-label wording alignment checkpoint
+- Aligned the `cardholders` live-form field label from `Laravel status` to `Galaxy foundation status` so the holder-management shell uses the newer Galaxy foundation wording inside the saved-form controls as well.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused holder assertion for that form label.
+- Re-ran `php artisan test --filter='test_cardholders_page_replaces_preview_rows_with_model_backed_index_data'`; the focused holder slice passed (`1 passed`).
+
+### Branch live-form status-label wording alignment checkpoint
+- Aligned the `shops` live-form field label from `Laravel status` to `Galaxy foundation status` so the branch-management shell uses the newer Galaxy foundation wording inside the saved-form controls as well.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused shop assertion for that form label.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`; the focused shops slice passed (`1 passed`).
+
+### Tier live-form title wording alignment checkpoint
+- Aligned the live `card-types` form title from `Create Galaxy tier in Laravel` to `Create Galaxy tier in Galaxy foundation` so the tier-management shell reads less like starter-era backend handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused tier assertions that read that live-form title.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused tier slice passed (`1 passed`).
+
+### Card live-form title wording alignment checkpoint
+- Aligned the live `cards` form title from `Create Galaxy card in Laravel` to `Create Galaxy card in Galaxy foundation` so the card-management shell reads less like starter-era backend handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused cards assertion that reads that live-form title.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`; the focused cards slice passed (`1 passed`).
+
+### Holder live-form title wording alignment checkpoint
+- Aligned the live `cardholders` form title from `Create Galaxy holder in Laravel` to `Create Galaxy holder in Galaxy foundation` so the holder-management shell reads less like starter-era backend handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused holder assertion that reads that live-form title.
+- Re-ran `php artisan test --filter='test_cardholders_page_replaces_preview_rows_with_model_backed_index_data'`; the focused holder slice passed (`1 passed`).
+
+### Role live-form title wording alignment checkpoint
+- Aligned the live `roles-permissions` form title from `Create Galaxy role in Laravel` to `Create Galaxy role in Galaxy foundation` so the access-management shell reads less like starter-era backend handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and retained the state-specific selected-role edit title separately.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused roles slice passed (`1 passed`).
+
+### Branch live-form title wording alignment checkpoint
+- Aligned the live `shops` form title from `Create Galaxy branch in Laravel` to `Create Galaxy branch in Galaxy foundation` so the branch-management shell reads less like starter-era backend handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused shop assertion that reads that live-form title.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data'`; the focused shops slice passed (`1 passed`).
+
+### Dashboard branch-status wording alignment checkpoint
+- Aligned the dashboard assigned-branch snapshot label from `Laravel status` to `Galaxy foundation status` so the latest-branch handoff card stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that branch-status label.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
+### Shared implementation-handoff wording alignment checkpoint
+- Aligned the shared admin handoff section title from `First Laravel wiring step` to `First Galaxy foundation wiring step` so the repeated Phase 1 implementation cue reads less like starter-era scaffolding across the management and reporting workspaces.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused assertions that read that shared handoff title.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_authenticated_user_can_access_services_rules_management_preview|test_authenticated_user_can_access_gifts_management_preview|test_authenticated_user_can_access_shops_operational_index_shape'`; the focused slice passed (`4 passed`).
+
+### Dashboard landing-summary wording alignment checkpoint
+- Aligned the live dashboard migration-map fallback summary from `start landing in Laravel` to `start landing in the Galaxy foundation` so the top-level Phase 1 handoff language stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that fallback summary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
+### Dashboard foundation-summary wording alignment checkpoint
+- Aligned the live dashboard entry-point summary from `Laravel foundation` to `Galaxy foundation` so the top-level Phase 1 setup guidance stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertions that read that foundation summary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
+### Dashboard shell-summary wording alignment checkpoint
+- Aligned the live dashboard migration summary from `current Laravel shell` to `current Galaxy foundation shell` so the top-level Phase 1 handoff language stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that shell summary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
+### Dashboard live-coverage wording alignment checkpoint
+- Aligned the live dashboard readiness summary from `broader Laravel coverage` to `broader Galaxy foundation coverage` so the top-level handoff signal stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that readiness summary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
+### Dashboard route-target wording alignment checkpoint
+- Aligned the live dashboard target-map summary from `Laravel route targets` to `Galaxy foundation route targets` so the top-level Phase 1 navigation summary feels less tied to starter-era terminology.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that route-target summary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
+### Role live-flow note wording alignment checkpoint
+- Aligned the live `roles-permissions` update-flow note fixture from `first live Laravel role adjustments` to `first live Galaxy foundation role adjustments` so the minimal live role path stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and re-ran the focused live role update slice that persists that note.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_update_role_from_minimal_live_admin_flow'`; the focused roles slice passed (`1 passed`).
+
+### Dashboard migration-coverage wording alignment checkpoint
+- Aligned the live dashboard migration-map summary from `live Laravel coverage so far` to `live Galaxy foundation coverage so far` so the top-level Phase 1 progress signal matches the newer Galaxy foundation wording used across the admin shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused dashboard assertion that reads that coverage summary.
+- Re-ran `php artisan test --filter='migration map already spans|test_authenticated_user_can_access_admin_dashboard'`; the focused dashboard slice passed (`1 passed`).
+
+### Card write-path description wording alignment checkpoint
+- Aligned the live `cards` write-path description from `first minimal Laravel-backed card write path` to `first minimal Galaxy foundation-backed card write path` so the card-management shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and re-ran a stable focused cards slice as a regression check after the config-backed wording update.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`; the focused cards slice passed (`1 passed`).
+
+### Holder write-path description wording alignment checkpoint
+- Aligned the live `cardholders` write-path description from `first minimal Laravel-backed cardholder write path` to `first minimal Galaxy foundation-backed cardholder write path` so the holder-management shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused holder assertion for the updated description string.
+- Re-ran `php artisan test --filter='test_cardholders_page_replaces_preview_rows_with_model_backed_index_data'`; the focused holder slice passed (`1 passed`).
+
+### Branch write-path description wording alignment checkpoint
+- Aligned the live `shops` write-path description from `first minimal Laravel-backed shop write path` to `first minimal Galaxy foundation-backed shop write path` so the branch-management shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused shop assertion for the updated description string.
+- Re-ran `php artisan test --filter='test_shops_page_replaces_preview_rows_with_model_backed_index_data'`; the focused shops slice passed (`1 passed`).
+
+### Role write-path description wording alignment checkpoint
+- Aligned the live `roles-permissions` write-path description from `first minimal Laravel-backed role write path` to `first minimal Galaxy foundation-backed role write path` so the role-management shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and added a focused roles assertion for the updated description string.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused roles slice passed (`1 passed`).
+
+### Shared admin save-banner wording alignment checkpoint
+- Aligned the shared admin save fallback banner from `Latest Laravel-backed admin changes are now visible in the Galaxy workspace` to `Latest Galaxy foundation-backed admin changes are now visible in the workspace` so the generic post-save handoff copy stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and re-ran a focused admin page slice as a quick regression check after the shared view update.
+- Re-ran `php artisan test --filter='test_role_form_persists_identity_fields|test_cards_page_persists_selected_card|test_cardholders_page_persists_selected_holder_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context'`; the focused slice passed for the matched test (`1 passed`).
+
+### Gift blocker wording alignment checkpoint
+- Aligned the live `gifts` blocker copy from `first Laravel-backed gift write flow` to `first Galaxy foundation-backed gift write flow` so the reward workflow shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused gift assertion that reads that blocker.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_management_preview'`; the focused gifts slice passed (`1 passed`).
+
+### Management workspace-save wording alignment checkpoint
+- Aligned the live management save-state copy from `Laravel-backed Galaxy workspace` / `Laravel-backed role form` to `Galaxy foundation-backed workspace` / `Galaxy foundation-backed role form` so the post-save handoff language reads less like starter-era implementation scaffolding.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused assertions that read those save-state strings.
+- Re-ran `php artisan test --filter='test_role_form_persists_identity_fields|test_card_types_page_persists_selected_tier|test_cards_page_persists_selected_card|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused slice passed for the matched test (`1 passed`).
+
+### Reports export-snapshot wording alignment checkpoint
+- Aligned the live `reports` export parity blocker from `live Laravel source snapshots` to `live Galaxy foundation source snapshots` so the reporting export guidance stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that export-snapshot blocker.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
+### Reports preset-blocker wording alignment checkpoint
+- Aligned the live `reports` preset blocker from `multiple live Laravel reporting sources` to `multiple live Galaxy foundation reporting sources` so the reporting preset parity guidance stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that preset blocker.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
+### Reports export-blocker wording alignment checkpoint
+- Aligned the live `reports` export blocker from `first live Laravel report source` to `first live Galaxy foundation report source` so the reporting export parity guidance stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that export blocker.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
+### Branch blocker wording alignment checkpoint
+- Aligned the live `shops` blocker copy from `first Laravel-backed shops index` to `first Galaxy foundation-backed shops index` so the selected-branch parity blocker stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused shop slice that covers that blocker guidance.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_manager_linked_coverage_review_context'`; the focused shop slice passed (`1 passed`).
+
+### Holder blocker wording alignment checkpoint
+- Aligned the live `cardholders` blocker copy from `first Laravel-backed cardholder slice` to `first Galaxy foundation-backed cardholder slice` so the selected-holder parity blockers stay consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused holder assertion that reads that blocker guidance.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`; the focused holder slice passed (`1 passed`).
+
+### Card inventory-blocker wording alignment checkpoint
+- Aligned the live `cards` blocker copy from `first Laravel-backed ... inventory slice` to `first Galaxy foundation-backed ... inventory slice` so the selected-card parity blockers stay consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card assertion that reads that blocker guidance.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data'`; the focused cards slice passed (`1 passed`).
+
+### Card-types blocker wording alignment checkpoint
+- Aligned the live `card-types` blocked guidance from `first Laravel-backed tier` to `first Galaxy foundation-backed tier` so the selected-tier rollout and rule-parity blockers stay consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card-type assertions that read those blocker strings.
+- Re-ran `php artisan test --filter='test_card_types_page_handles_tier_without_linked_cards|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused card-types slice passed for the matched test (`1 passed`).
+
+### Card-types note-freshness wording alignment checkpoint
+- Aligned the live `card-types` activation and rollout freshness copy from `live Laravel tier shell` to `live Galaxy foundation tier shell` so the selected-tier handoff language stays consistent with the newer Galaxy foundation vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card-type assertion that reads those freshness states.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused card-types slice passed (`1 passed`).
+
+### Branch coverage-review wording alignment checkpoint
+- Aligned the live `shops` selected-detail coverage string from `read-only Laravel review` to `read-only Galaxy foundation review` so the branch shell stays consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused shop assertion that reads that coverage string.
+- Re-ran `php artisan test --filter='test_shops_page_supports_selected_manager_linked_coverage_review_context'`; the focused shop slice passed (`1 passed`).
+
+### Role scope-review wording alignment checkpoint
+- Aligned the live `roles-permissions` scope review copy from `Laravel review` / `Laravel review mode` to `Galaxy foundation review` / `Galaxy foundation review mode` so the selected access shell stays consistent with the newer Galaxy foundation language.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused role assertions that read those scope-review strings.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'`; the focused role slice passed (`1 passed`).
+
+### Reports input-coverage wording alignment checkpoint
+- Aligned the live `reports` input-signal fallback values from `live Laravel coverage` to `live Galaxy foundation coverage` so the reporting source-state copy stays consistent with the newer Galaxy-specific foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those input-signal states.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
+### Management review-posture wording alignment checkpoint
+- Aligned the live management review-posture strings from `Laravel-backed read mode only` to `Galaxy foundation-backed read mode only` across the selected role, card, holder, and shop shells so these surfaces stay consistent with the newer Galaxy foundation vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those posture strings.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`; the focused management slice passed (`4 passed`).
+
+### Reports source-model wording alignment checkpoint
+- Aligned the live `reports` overview copy from `Laravel models` to `Galaxy foundation models` so the reporting workspace summary reads less like starter-era implementation language and more like Galaxy-specific foundation scaffolding.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that overview/model copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_replaces_preview_rows_with_model_backed_report_data|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
+### Reports workspace-title wording alignment checkpoint
+- Aligned the live `reports` overview title from `Reporting workspace is now partially Laravel-backed` to `Reporting workspace is now partially Galaxy foundation-backed` so the top-level reporting shell reads less like starter-era infrastructure copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that workspace title.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_replaces_preview_rows_with_model_backed_report_data|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
+### Management fallback-note wording alignment checkpoint
+- Aligned the live management fallback note copy from `No Laravel ... note is saved yet` to `No Galaxy foundation ... note is saved yet` across the selected-detail shells so these handoff states stay consistent with the newer Galaxy foundation wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those fallback note messages.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused management slice passed (`5 passed`).
+
+### Management live-state wording alignment checkpoint
+- Aligned the live management state descriptions from `currently marked as ... in Laravel` to `currently marked as ... in the Galaxy foundation layer` so these selected-detail shells stay consistent with the newer Galaxy foundation vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those live-state descriptions.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused management slice passed (`5 passed`).
+
+### Reports input-signal wording alignment checkpoint
+- Aligned the live `reports` source-state label from `Laravel input signal` to `Galaxy input signal` so the reporting review shell stays consistent with the newer Galaxy-specific wording already surrounding those live-source summaries.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that input-signal label.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed for the matched tests (`3 passed`).
+
+### Management last-saved label wording alignment checkpoint
+- Aligned the live management checkpoint labels from `Last saved in Laravel` to `Last saved in Galaxy foundation` across the selected-detail shells so these review surfaces keep the newer Galaxy foundation vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those last-saved labels.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused management slice passed (`5 passed`).
+
+### Management edit-action wording alignment checkpoint
+- Aligned the live edit-action labels for `roles-permissions`, `cards`, `cardholders`, and `shops` from `Edit ... in Laravel` to `Edit ... in Galaxy foundation` so these selected-detail shells read less like generic starter scaffolding.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those edit-action labels.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`; the focused management slice passed (`4 passed`).
+
+### Card-types edit-flow wording alignment checkpoint
+- Aligned the live selected-tier handoff copy from `selected for Laravel edit flow` / `Edit Galaxy tier in Laravel` to `selected for Galaxy edit flow` / `Edit Galaxy tier in Galaxy foundation` so the card-type edit shell reads less like starter-era Laravel scaffolding.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card-type assertions that read that edit-flow copy.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_links_latest_saved_record_into_edit_flow'`; the focused card-types slice passed for the matched test (`1 passed`).
+
+### Management created-at wording alignment checkpoint
+- Aligned the live management created-at lifecycle copy from `created in Laravel` and `current Laravel foundation` wording to `created in the Galaxy foundation layer` / `current Galaxy foundation layer` so these selected-detail shells read more like Galaxy-specific foundation review surfaces.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those lifecycle strings.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused management slice passed (`5 passed`).
+
+### Management lifecycle-freshness wording alignment checkpoint
+- Aligned the live management lifecycle-freshness string from `newly created in Laravel review` to `newly created in Galaxy foundation review` so the selected-detail shells keep the same Galaxy-specific foundation language used in the surrounding copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read that lifecycle-freshness state.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused management slice passed (`5 passed`).
+
+### Card-types coverage wording alignment checkpoint
+- Aligned the live card-type coverage signal copy from `The current Laravel tier is showing ...` to `The current Galaxy foundation tier is showing ...` so the selected tier review shell reads more like Galaxy-specific foundation guidance.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused card-type assertions that read that coverage signal.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type'`; the focused card-types slice passed (`1 passed`).
+
+### Management review-note wording alignment checkpoint
+- Aligned the live management review-note prefixes from `The current Laravel ...` to `The current Galaxy foundation ...` across the selected-detail shells so these operator notes read more like Galaxy-specific foundation guidance than starter-era Laravel handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those note prefixes.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_surfaces_selected_tier_context_from_laravel_data'`; the focused management slice passed for the matched tests (`4 passed`).
+
+### Management timestamp wording alignment checkpoint
+- Aligned the live selected-detail checkpoint copy from `The latest saved Laravel timestamp` to `The latest saved Galaxy foundation timestamp` across the management shells so these review surfaces read more like Galaxy-specific foundation tooling.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those timestamp checkpoints.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_surfaces_selected_tier_context_from_laravel_data'`; the focused management slice passed for the matched tests (`4 passed`).
+
+### Management status-label wording alignment checkpoint
+- Aligned the live management status labels from `Laravel status` to `Galaxy status` across the selected-detail shells so these review surfaces read less like generic starter scaffolding.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those status labels.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_card_types_page_surfaces_selected_tier_context_from_laravel_data'`; the focused management slice passed for the matched tests (`4 passed`).
+
+### Management foundation-layer wording alignment checkpoint
+- Aligned the live selected-detail workspace descriptions for `roles-permissions`, `cards`, `shops`, and `cardholders` from `Laravel data` wording to `the Galaxy foundation layer` so the management review shell reads less like a starter handoff surface.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those workspace descriptions.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`; the focused management slice passed (`4 passed`).
+
+### Reports foundation-layer wording alignment checkpoint
+- Aligned the live `reports` selected-source descriptions and workspace summary from `current Laravel foundation` wording to `current Galaxy foundation layer` so the reporting shell reads less like a starter handoff and more like a Galaxy-specific foundation surface.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those foundation-layer strings.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_uses_live_model_counts_in_summary_metrics'`; the focused reports slice passed for the matched tests (`3 passed`).
+
+### Reports inputs-label wording alignment checkpoint
+- Aligned the live `reports` selected-source input labels from `Laravel inputs` to `Galaxy inputs` so the reporting review shell stays consistent with the newer Galaxy-specific wording already surrounding those sources.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those input labels.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed (`3 passed`).
+
+### Management selected-title wording alignment checkpoint
+- Aligned the live selected-detail titles for `roles-permissions`, `cards`, `shops`, and `cardholders` from `selected for Laravel review` to `selected for Galaxy review` so the non-report management workspaces feel less like generic Laravel handoff surfaces and more like Galaxy review shells.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused management assertions that read those selected-detail titles.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'`; the focused management slice passed (`4 passed`).
+
+### Reports selected-source title wording alignment checkpoint
+- Aligned the live `reports` selected-source titles from `selected for Laravel review` to `selected for Galaxy review` for the branch card-shell, holder-status, and access reporting sources so those review surfaces feel less like starter-era handoff copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those selected-source titles.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`3 passed`).
+
+### Reports branch source-coverage wording alignment checkpoint
+- Aligned the live `reports` branch source-coverage string from the slightly generic `read-only reporting review` wording to Galaxy-specific language (`read-only Galaxy branch card-shell reporting review`) so the selected branch source reads more consistently with the surrounding Galaxy branch/card-shell vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that branch source-coverage string.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cards_by_shop_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched test (`1 passed`).
+
+### Reports holder source-coverage wording alignment checkpoint
+- Aligned the live `reports` holder source-coverage string from the slightly generic `read-only status reporting review` wording to Galaxy-specific language (`read-only Galaxy holder status reporting review`) so the selected holder source reads more consistently with the surrounding Galaxy holder vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that holder source-coverage string.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_cardholder_status_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
+### Reports access source-coverage wording alignment checkpoint
+- Aligned the live `reports` access source-coverage string from the slightly generic `read-only access reporting review` wording to Galaxy-specific language (`read-only Galaxy access reporting review`) so the selected access source reads more consistently with the surrounding Galaxy access-shell vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that access source-coverage string.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_role_access_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
+### Reports access assignment-comparison wording alignment checkpoint
+- Aligned the live `reports` access assignment comparison string from a mixed `assignments in paused Galaxy branches` ending to fully consistent Galaxy wording (`branch-linked staff assignments in paused Galaxy branches`) so the selected access review source stays uniform across both sides of the comparison.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that assignment comparison string.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_role_access_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
+### Reports holder branch-profile wording alignment checkpoint
+- Aligned the live `reports` holder-status branch comparison string from generic `holder profiles` wording to Galaxy-specific language (`Galaxy holder profiles`) so the selected holder review reads more consistently with the surrounding Galaxy holder shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that holder branch-profile comparison string.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_cardholder_status_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
+### Reports branch recovery inventory wording alignment checkpoint
+- Aligned the live `reports` branch recovery and unassigned inventory detail strings from leftover generic `holder-linked cards` and `unassigned cards` wording to Galaxy-specific language (`holder-linked Galaxy card shells` and `unassigned Galaxy card shells`) so the selected branch card-shell review stays consistent across active and paused branch comparisons.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those branch recovery inventory strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cards_by_shop_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched test (`1 passed`).
+
+### Reports branch source-status wording alignment checkpoint
+- Aligned the live `reports` branch source-status string from the leftover generic `Cards-by-shop source` label to Galaxy-specific language (`Galaxy branch card-shell source`) so the selected reporting source reads consistently with the surrounding branch card-shell review copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read that branch source-status string.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cards_by_shop_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched test (`1 passed`).
+
+### Reports access permission-bundle wording alignment checkpoint
+- Aligned the live `reports` access permission-bundle strings from generic `roles` wording to Galaxy-specific language (`permission-linked Galaxy access roles` and `Galaxy access roles in paused Galaxy branches`) so the selected access review source reads more like a Galaxy-specific operational shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those access permission-bundle strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_role_access_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
+### Reports branch card-shell activity wording alignment checkpoint
+- Aligned the live `reports` branch card-shell activity/detail strings from generic `holder-linked cards`, `active branches`, and `live customer inventory` wording to Galaxy-specific language (`holder-linked Galaxy card shells`, `active Galaxy branches`, and `live Galaxy customer inventory`) so the selected branch review source reads less like starter copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those branch card-shell activity strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cards_by_shop_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched test (`1 passed`).
+
+### Reports workspace foundation-summary wording alignment checkpoint
+- Aligned the live `reports` workspace foundation summary from generic entity names (`shops`, `cards`, `cardholders`, `roles`) to Galaxy-specific language (`Galaxy branches`, `Galaxy card shells`, `Galaxy holders`, and `Galaxy access shells`) so the overview shell reads less like a starter dashboard.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads that workspace foundation-summary string.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_uses_live_model_counts_in_summary_metrics'`; the focused reports slice passed for the matched test (`1 passed`).
+
+### Reports holder linked-card lifecycle wording alignment checkpoint
+- Aligned the live `reports` holder-status linked-card lifecycle strings from generic linked-card wording to Galaxy-specific language (`holder-linked Galaxy card shells`) so the selected holder review source reads more like a Galaxy-specific operational shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those holder linked-card lifecycle strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_cardholder_status_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
+### Reports access role-state wording alignment checkpoint
+- Aligned the live `reports` access role-state/detail strings from generic `active roles` and `draft access roles` wording to Galaxy-specific language (`active Galaxy access roles`, `draft Galaxy access roles`, and `unbundled active Galaxy access roles`) so the selected access review source reads more like a Galaxy-specific operational shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those access role-state strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_role_access_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched tests (`2 passed`).
+
+### Reports branch card-shell workspace wording alignment checkpoint
+- Aligned the live `reports` branch card-shell workspace/detail strings from leftover generic `cards/shops` and `paused shops` wording to Galaxy-specific language (`Galaxy card shells`, `Galaxy branches`, and `paused Galaxy branches`) so the selected reporting source reads consistently with the rest of the branch review shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those branch card-shell workspace/detail strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cards_by_shop_comparison_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed for the matched test (`1 passed`).
+
+### Reports holder/access branch-comparison wording alignment checkpoint
+- Aligned the live `reports` holder and access branch-comparison detail strings from mixed `paused shops` wording to Galaxy-specific branch language (`active Galaxy branches`, `paused Galaxy branches`, and `branch-linked staff assignments`) so the selected reporting views read consistently with the rest of the Galaxy shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those holder/access comparison strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_comparison_context|test_reports_page_supports_selected_role_access_comparison_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_cardholder_status_review_context'`; the focused reports slice passed for the matched tests (`2 passed`).
+
+### Reports holder/access source-status wording alignment checkpoint
+- Aligned the live `reports` holder and access source-status strings from mixed generic wording to Galaxy-specific language (`Galaxy holder-status source` and `Galaxy access source`) so the selected reporting review state stays consistent with the newer Galaxy naming across the rest of the shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those source-status strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed (`3 passed`).
+
+### Reports branch card-shell review wording alignment checkpoint
+- Aligned the live `reports` branch card-shell review copy from generic branch/card wording to Galaxy-specific language (`live Galaxy branches`, `Galaxy card shells`, and `tracked Galaxy card shells across Galaxy branches`) so the selected reporting source reads more like a Galaxy-specific operational review surface.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those branch card-shell review strings.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cards_by_shop_comparison_context|test_reports_page_replaces_preview_rows_with_model_backed_report_data'`; the focused reports slice passed (`1 passed`).
+
+### Reports selected-source handoff wording alignment checkpoint
+- Aligned the live `reports` selected-source handoff copy for holder and access reviews from generic entity wording to Galaxy-specific language (`Galaxy holder status source`, `tracked Galaxy holders`, `Galaxy access source`, and `tracked Galaxy access shells`) so the detailed reporting review state reads less like a starter placeholder.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those selected-source handoff strings.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_authenticated_user_can_access_reports_operational_index_shape'`; the focused reports slice passed (`3 passed`).
+
+### Reports source coverage wording alignment checkpoint
+- Aligned the live `reports` selected-source coverage strings from generic entity wording to Galaxy-specific language (`Galaxy card shells`, `Galaxy branches`, `Galaxy holders`, and `Galaxy access shells`) so the reporting review context reads more like Galaxy operational reporting than a starter stub.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those selected-source coverage strings.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_cards_by_shop_comparison_context|test_reports_page_supports_selected_cardholder_status_comparison_context|test_reports_page_supports_selected_role_access_assignment_context'`; the focused reports slice passed (`3 passed`).
+
+### Reports source naming alignment checkpoint
+- Aligned the live `reports` source names from generic labels to Galaxy-specific language (`Galaxy branch card-shell coverage`, `Galaxy holder status overview`, and `Galaxy access coverage`) so the reporting catalog and selected-source review states read more like Galaxy admin surfaces than starter report placeholders.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertions that read those source names in both the catalog and selected-review contexts.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_replaces_preview_rows_with_model_backed_report_data|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_cardholder_status_review_context'`; the focused reports slice passed (`3 passed`).
+
+### Reports source scope wording alignment checkpoint
+- Aligned the live `reports` source scope badges from generic entity wording to Galaxy-specific language (`Galaxy branches`, `Galaxy holders`, and `Galaxy access shells`) so the reporting catalog reads more like a Galaxy-specific admin foundation instead of a starter reporting stub.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads the same source-list stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_replaces_preview_rows_with_model_backed_report_data|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed (`2 passed`).
+
+### Reports headline metrics wording alignment checkpoint
+- Aligned the live `reports` headline metrics from generic source labels to Galaxy-specific language (`Live Galaxy sources`, `Tracked Galaxy branches`, `Tracked Galaxy card shells`, `Tracked Galaxy holders`, and `Tracked Galaxy access shells`) so the reporting shell reads more like a Galaxy foundation surface than a starter dashboard stub.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused reports assertion that reads the same summary stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_replaces_preview_rows_with_model_backed_report_data|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_role_access_review_context'`; the focused reports slice passed (`2 passed`).
+
+### Tier headline metrics wording alignment checkpoint
+- Aligned the real `card-types` headline metrics from generic tier wording to Galaxy-specific language (`Active/Draft/Reviewed Galaxy tiers`) so the live tier workspace better matches the broader Phase 1 Galaxy shell vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_surfaces_selected_card_type_context_from_laravel_data|test_card_types_metrics_ignore_non_numeric_review_only_entries|test_card_types_page_supports_selected_draft_card_type_review_context'`; the focused card-types slice passed (`1 passed`).
+
+### Holder headline metrics wording alignment checkpoint
+- Aligned the real `cardholders` headline metrics from generic holder/card wording to Galaxy-specific language (`Active/Inactive/Reviewed Galaxy holders` and `Linked Galaxy card shells`) so the live holder workspace better matches the broader Phase 1 Galaxy shell vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shop_scoped_admin_sees_cardholder_creation_actions_disabled_in_cardholders_workspace'`; the focused cardholders slice passed (`3 passed`).
+
+### Card shell headline metrics wording alignment checkpoint
+- Aligned the real `cards` headline metrics from generic card wording to Galaxy-specific card-shell language (`Active/Draft/Blocked/Issued/Reviewed Galaxy card shells`) so the live inventory surface now matches the broader Phase 1 Galaxy shell vocabulary already asserted across the admin tests.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the focused cards slice passed (`2 passed`).
+
+### Branch manager guidance wording alignment checkpoint
+- Aligned the selected `shops` manager-guidance copy from generic manager wording to Galaxy-specific branch-manager language (`No branch manager`, `paused Galaxy branch`, `Galaxy branch ownership-assignment parity`, and `current branch manager ownership`) so the live selected-branch review context stays consistent with the broader Phase 1 branch shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the neighboring focused selected-branch assertions that surfaced during validation.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_paused_branch_recovery_context|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the focused shops slice passed (`3 passed`).
+
+### Branch metrics wording alignment checkpoint
+- Aligned the real `shops` summary metrics from generic shop wording to Galaxy-specific branch language (`Active Galaxy branches`, `Paused Galaxy branches`, `Reviewed Galaxy branches`, and `Assigned branch managers`) so the live branch catalog surface matches the broader Phase 1 admin shell vocabulary.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a real Laravel-backed foundation page.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_resource_summary_metrics_ignore_malformed_metric_entries|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the focused shops slice passed (`4 passed`).
+
+### Branch manager posture wording alignment checkpoint
+- Aligned the selected `shops` manager-posture copy from older generic manager wording to Galaxy-specific branch language (`Assigned branch managers`, `paused Galaxy branch`, and `Galaxy branch ownership parity`) so a live Laravel-backed branch-review detail surface reads less like a starter admin stub.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the focused selected-branch assertion that reads the same review context.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace|test_authenticated_user_can_access_shops_operational_index_shape|test_resource_summary_metrics_ignore_malformed_metric_entries'`; the focused shops slice passed (`4 passed`).
+
+## 2026-05-18
+
+### Access metrics wording alignment checkpoint
+- Aligned the real `roles-permissions` metric labels from older generic role/access wording to Galaxy-specific Phase 1 shell language (`Active/Draft/Reviewed Galaxy access shells`, `Galaxy access notes`, `Galaxy assignment notes`, `Galaxy permission review notes`, and `Scoped Galaxy branches`).
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible starter-style wording pocket from a live Laravel-backed foundation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context'`; the focused roles-permissions slice passed (`5 passed`).
+
+## 2026-05-17
+
+### Card blocked-unassigned metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Blocked unassigned cards` to `Blocked unassigned Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Card pre-activation unassigned metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Pre-activation unassigned cards` to `Pre-activation unassigned Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Card pre-activation linked metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Pre-activation holder-linked cards` to `Pre-activation holder-linked Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Card blocked-activated metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Blocked activated cards` to `Blocked activated Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Card blocked-holder metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Blocked cards with holders` to `Blocked Galaxy card shells with holders`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Card blocked pre-activation metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Blocked pre-activation cards` to `Blocked pre-activation Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Card issued-unassigned metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Issued unassigned cards` to `Issued unassigned Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Card issued-linkage metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Issued holder-linked cards` to `Issued holder-linked Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Card blocked metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Blocked cards` to `Blocked Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Card issuance metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Issued cards` to `Issued Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Holder linkage metric wording alignment checkpoint
+- Aligned the neighboring `cardholders` metric label from `Linked cards` to `Linked Galaxy card shells`, keeping the already-updated holder surface consistent with the newer Galaxy-specific card-shell wording.
+- The focused holder slice briefly exposed one stale operational-index assertion that still expected the older label; that assertion was updated in the same narrow step, with no behavior change.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shop_scoped_admin_sees_cardholder_creation_actions_disabled_in_cardholders_workspace'`; the current matched slice covered the cardholders operational shape plus selected holder contexts and passed (`3 passed`).
+
+### Rule scope metric wording alignment checkpoint
+- Aligned the neighboring `services-rules` metric label from `Shop scopes` to `Galaxy branch scopes`, keeping the already-updated rules surface consistent with the newer Galaxy-specific branch wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the rules preview assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview|test_services_rules_page_supports_selected_priority_rule_review_context|test_services_rules_page_supports_selected_shop_scoped_rule_review_context|test_services_rules_page_supports_selected_blocking_rule_review_context'`; the current matched slice covered the services-rules management preview and passed (`1 passed`).
+
+### Branch manager metric wording alignment checkpoint
+- Aligned the neighboring `shops` metric label from `Assigned managers` to `Assigned branch managers`, keeping the already-updated branch surface consistent with the newer Galaxy-specific branch wording.
+- The focused shops slice briefly exposed one stale operational-index assertion that still expected the older label; that assertion was updated in the same narrow step, with no behavior change.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_resource_summary_metrics_ignore_malformed_metric_entries|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the current matched slice passed (`4 passed`).
+
+### Tier reviewed metric wording alignment checkpoint
+- Aligned the neighboring `card-types` metric label from `Reviewed tiers` to `Reviewed Galaxy tiers`, keeping the already-updated tier surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the tier-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_surfaces_selected_card_type_context_from_laravel_data|test_card_types_metrics_ignore_non_numeric_review_only_entries|test_card_types_page_supports_selected_draft_card_type_review_context'`; the current matched slice covered the card-types management preview and passed (`1 passed`).
+
+### Card reviewed metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Reviewed cards` to `Reviewed Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the card-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Branch reviewed metric wording alignment checkpoint
+- Aligned the neighboring `shops` metric label from `Reviewed shops` to `Reviewed Galaxy branches`, keeping the already-updated branch surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the branch-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_resource_summary_metrics_ignore_malformed_metric_entries|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the current matched slice passed (`4 passed`).
+
+### Holder reviewed metric wording alignment checkpoint
+- Aligned the neighboring `cardholders` metric label from `Reviewed holders` to `Reviewed Galaxy holders`, keeping the already-updated holder surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the holder-surface assertion that reads the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shop_scoped_admin_sees_cardholder_creation_actions_disabled_in_cardholders_workspace'`; the current matched slice covered the cardholders operational shape plus selected holder contexts and passed (`3 passed`).
+
+### Access-shell permission metric wording alignment checkpoint
+- Aligned the neighboring `roles-permissions` metric label from `Permission review notes` to `Galaxy permission review notes`, keeping the already-updated access surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context'`; the current matched slice covered the roles-permissions management preview plus selected role contexts and passed (`4 passed`).
+
+### Access-shell assignment metric wording alignment checkpoint
+- Aligned the neighboring `roles-permissions` metric label from `Assignment notes` to `Galaxy assignment notes`, keeping the already-updated access surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context'`; the current matched slice covered the roles-permissions management preview plus selected role contexts and passed (`4 passed`).
+
+### Access-shell notes metric wording alignment checkpoint
+- Aligned the neighboring `roles-permissions` metric label from `Access notes` to `Galaxy access notes`, keeping the already-updated access surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context'`; the current matched slice covered the roles-permissions management preview plus selected role contexts and passed (`4 passed`).
+
+### Access-shell scope metric wording alignment checkpoint
+- Aligned the neighboring `roles-permissions` metric label from `Scoped shops` to `Scoped Galaxy branches`, keeping the already-updated access surface consistent with the newer Galaxy-specific branch wording.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context'`; the current matched slice covered the roles-permissions management preview plus selected role contexts and passed (`4 passed`).
+
+### Access-shell reviewed metric wording alignment checkpoint
+- Aligned the neighboring `roles-permissions` metric label from `Reviewed roles` to `Reviewed Galaxy access shells`, keeping the already-updated access surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context'`; the current matched slice covered the roles-permissions management preview plus selected role contexts and passed (`4 passed`).
+
+### Card-shell active metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric labels from `Active holder-linked cards` and `Active unassigned cards` to `Active holder-linked Galaxy card shells` and `Active unassigned Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the selected-card surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Access-shell metric wording alignment checkpoint
+- Aligned the neighboring `roles-permissions` metric labels from `Active roles` and `Draft roles` to `Active Galaxy access shells` and `Draft Galaxy access shells`, keeping the already-updated access surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the access-surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context'`; the current matched slice covered the roles-permissions management preview plus selected role contexts and passed (`4 passed`).
+
+### Reward metric wording alignment checkpoint
+- Aligned the neighboring `gifts` metric labels from `Active gifts` and `Paused gifts` to `Active Galaxy rewards` and `Paused Galaxy rewards`, keeping the already-updated reward surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the gifts preview assertion that reads the same summary stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_operational_index_shape|test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_unlimited_stock_gift_review_context'`; the current matched slice covered the gifts operational shape plus selected reward review contexts and passed (`3 passed`).
+
+### Rule metric wording alignment checkpoint
+- Aligned the neighboring `services-rules` metric labels from `Active rules` and `Draft rules` to `Active Galaxy rules` and `Draft Galaxy rules`, keeping the already-updated rules surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the rules preview assertion that reads the same summary stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview|test_services_rules_page_supports_selected_priority_rule_review_context|test_services_rules_page_supports_selected_shop_scoped_rule_review_context|test_services_rules_page_supports_selected_blocking_rule_review_context'`; the current matched slice covered the services-rules management preview and passed (`1 passed`).
+
+### Tier metric wording alignment checkpoint
+- Aligned the neighboring `card-types` metric labels from `Active tiers` and `Draft tiers` to `Active Galaxy tiers` and `Draft Galaxy tiers`, keeping the already-updated tier surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the tier metrics assertions that read the same summary stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_surfaces_selected_card_type_context_from_laravel_data|test_card_types_metrics_ignore_non_numeric_review_only_entries|test_card_types_page_supports_selected_draft_card_type_review_context'`; the current matched slice covered the card-types management preview and passed (`1 passed`).
+
+### Card metric wording alignment checkpoint
+- Aligned the neighboring `cards` metric label from `Draft cards` to `Draft Galaxy card shells`, keeping the already-updated card surface consistent with the newer Galaxy-specific card-shell copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the selected-card surface assertions that read the same metric stack.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Card-shell summary wording alignment checkpoint
+- Aligned the `cards` page summary from the older generic baseline wording to `Galaxy card-shell workspace for inventory, assignment review, status triage, and activation tracking.` so the card surface reads more like the intended Phase 1 Galaxy console.
+- While validating the narrow copy step, the focused slice exposed one neighboring metric label that still used older generic wording, so `Active cards` was safely aligned to `Active Galaxy card shells` on the same surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_holder_linked_card_review_context|test_shop_scoped_admin_sees_card_creation_actions_disabled_in_cards_workspace'`; the current matched slice covered the cards operational shape plus selected card context and passed (`2 passed`).
+
+### Holder metrics wording alignment checkpoint
+- Aligned the neighboring `cardholders` metric labels from `Active holders` and `Inactive holders` to `Active Galaxy holders` and `Inactive Galaxy holders`, keeping the already-updated holder surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and limited it to the same real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shop_scoped_admin_sees_cardholder_creation_actions_disabled_in_cardholders_workspace'`; the current matched slice covered the cardholders operational shape plus selected holder review contexts and passed (`3 passed`).
+
+### Holder summary wording alignment checkpoint
+- Aligned the `cardholders` page summary from the older generic baseline wording to `Galaxy holder workspace for worker and client lookup, holder history, and lifecycle review.` so the holder surface reads more like the intended Phase 1 Galaxy console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and removed another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shop_scoped_admin_sees_cardholder_creation_actions_disabled_in_cardholders_workspace'`; the current matched slice covered the cardholders operational shape plus selected holder review contexts and passed (`3 passed`).
+
+### Branch metric wording alignment checkpoint
+- Aligned the neighboring `shops` metric label from `Paused shops` to `Paused Galaxy branches`, keeping the already-updated branch surface consistent with the newer Galaxy-specific copy.
+- Kept the step intentionally narrow and copy-only, with no behavior change, and updated the malformed-metrics coverage to match the same branch wording.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_resource_summary_metrics_ignore_malformed_metric_entries|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the current matched slice passed (`4 passed`).
+
+### Branch summary wording alignment checkpoint
+- Aligned the `shops` page summary from the older generic baseline wording to `Galaxy branch workspace for scope boundaries, activation review, and future access checks.` so the branch surface reads more like the intended Phase 1 Galaxy console.
+- While validating the narrow copy step, the focused slice exposed one neighboring metric label that still used older generic wording, so `Active shops` was safely aligned to `Active Galaxy branches` on the same surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_catalog_actions_reflect_saved_branch_readiness|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'`; the current matched slice passed (`4 passed`).
+
+### Rules summary wording alignment checkpoint
+- Aligned the `services-rules` page summary from the older generic baseline wording to `Galaxy rule workspace for service groups, eligibility review, and loyalty behavior conditions.` so the rules surface reads more like the intended Phase 1 Galaxy console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_management_preview|test_services_rules_page_supports_selected_priority_rule_review_context|test_services_rules_page_supports_selected_shop_scoped_rule_review_context|test_services_rules_page_supports_selected_blocking_rule_review_context'`; the current matched slice covered the services-rules management preview and passed (`1 passed`).
+
+### Tier summary wording alignment checkpoint
+- Aligned the `card-types` page summary from the older generic baseline wording to `Galaxy tier workspace for card-tier identities, points rules, and activation review.` so the tier surface reads more like the intended Phase 1 Galaxy console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_surfaces_selected_card_type_context_from_laravel_data|test_card_types_page_supports_selected_draft_card_type_review_context|test_card_types_live_form_renders_existing_card_type_notes'`; the current matched slice covered the card-types management preview and passed (`1 passed`).
+
+### Gifts summary wording alignment checkpoint
+- Aligned the `gifts` page summary from the older generic baseline wording to `Galaxy reward workspace for catalog scope, redemption settings, and stock-aware reward review.` so the reward surface reads more like the intended Phase 1 Galaxy console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_operational_index_shape|test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_unlimited_stock_gift_review_context'`; the current matched slice covered the gifts operational shape plus selected reward review contexts and passed (`3 passed`).
+
+### Access-shell summary wording alignment checkpoint
+- Aligned the `roles-permissions` page summary from the older generic baseline wording to `Galaxy access-shell workspace for role identities, permission bundles, and future shop-scoped access review.` so the access surface reads more like the intended Phase 1 Galaxy console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace'`; the current matched slice passed (`4 passed`).
+
+### Checks summary wording alignment checkpoint
+- Aligned the `checks-points` page summary from the older generic `Operational placeholder` phrasing to `Galaxy receipt and accrual workspace for purchases, fiscal search, and point adjustments.` so the receipt/accrual surface reads more like the intended Galaxy operational console.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_zero_accrual_review_context|test_checks_points_page_supports_selected_positive_accrual_review_context'`; the current matched slice covered the checks operational shape and selected receipt context and passed (`2 passed`).
+
+### Reports summary wording alignment checkpoint
+- Aligned the `reports` page summary from the older generic `Operational placeholder` phrasing to `Galaxy reporting workspace for analytics, histories, and export-oriented admin review.` so the reporting surface reads less like a starter stub and more like the intended Phase 1 Galaxy shell.
+- Kept the step intentionally narrow and copy-only, with no behavior change, but it removes another visible generic wording pocket from a real admin surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_replaces_preview_rows_with_model_backed_report_data|test_reports_page_supports_selected_cards_by_shop_review_context|test_reports_page_supports_selected_role_access_review_context'`; the current matched slice covered the reports operational shape and selected role-access context and passed (`2 passed`).
+
+### Card cancel-label alignment checkpoint
+- Aligned the `cards` live form cancel label from the more generic `Back to cards` wording to `Back to card catalog`, bringing the real Laravel-backed inventory form into line with the broader Galaxy card catalog language already used across the rest of the Phase 1 shell.
+- This stayed intentionally small and copy-only, but it removes another leftover starter-style phrase from a live admin flow.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context'`; the current matched slice passed (`5 passed`).
+
+### Holder cancel-label alignment checkpoint
+- Aligned the `cardholders` live form cancel label from the more generic `Back to cardholders` wording to `Back to holder catalog`, bringing the real Laravel-backed holder form into line with the broader Galaxy holder catalog language already used across the rest of the Phase 1 shell.
+- This stayed intentionally small and copy-only, but it removes another leftover starter-style phrase from a live admin flow.
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context|test_cardholders_page_resolves_live_form_action_from_route_name'`; the current matched slice passed after re-grepping the real method names (`4 passed`).
+
+### Branch cancel-label alignment checkpoint
+- Aligned the `shops` live form cancel label from the more generic `Back to shops` wording to `Back to branch catalog`, bringing the real Laravel-backed branch form into line with the broader Galaxy branch catalog language already used elsewhere in the Phase 1 shell.
+- This was a very small, copy-only cleanup step, but it removes another leftover starter-style phrase from a live admin flow.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_active_branch_review_context|test_shops_page_supports_selected_paused_branch_recovery_context|test_shops_page_resolves_live_form_action_from_route_name'`; the current matched slice passed (`1 passed`).
+
+### Tier cancel-label alignment checkpoint
+- Aligned the `card-types` live form cancel label from the more generic `Back to catalog` wording to `Back to tier catalog`, so the tier surface now matches the more specific Galaxy catalog language already used across the other Phase 1 admin flows.
+- Kept the step intentionally narrow and copy-only, but it removes another small starter-style phrase from a real Laravel-backed admin form path.
+- Re-ran `php artisan test --filter='test_card_types_page_resolves_live_form_action_from_route_name|test_card_types_page_resolves_live_form_mode_copy_from_config_callbacks|test_card_types_page_renders_live_form_patch_method_spoofing|test_authenticated_user_can_access_card_types_placeholder_page'`; the current matched slice passed (`3 passed`).
+
+### Roles access-shell cancel-label alignment checkpoint
+- Aligned the `roles-permissions` live form cancel label from the more generic `Back to roles` wording to `Back to access shell catalog`, keeping the Phase 1 access surface terminology consistent with the newer Galaxy-specific dashboard and catalog language.
+- Kept the step intentionally narrow and copy-only, but it removes another small starter-style phrase from a real Laravel-backed admin flow.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_roles_permissions_placeholder_page'`; the current matched slice passed (`2 passed`).
+
+### Dashboard migration-map branch and reporting wording checkpoint
+- Aligned two remaining generic migration-map blurbs in `config/admin-navigation.php` so the Administration group now describes `Shops` as the `Galaxy branch catalog and scope boundaries` and `Reports` as `Galaxy reporting analytics and source histories.`
+- Kept the step intentionally narrow and copy-only, but it removes two more starter-style phrases from the Phase 1 target map that frames the dashboard shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard'`; the matched smoke slice passed (`1 passed`).
+
+### Dashboard access surface wording alignment checkpoint
+- Aligned one more small access-oriented wording pocket on the dashboard and migration map by renaming the summary metric to `Live Galaxy access permissions` and shifting the Roles & Permissions map blurb from generic admin wording to `Galaxy access shells, permissions, and access baseline.`
+- This was a narrow Phase 1 admin-shell copy step with no behavior changes, but it keeps the access surface terminology more consistent with the newer `Galaxy access shells` language already used across the dashboard.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_unscoped_dashboard_does_not_show_shop_scope_summary'`; the current matched slice passed (`3 passed`).
+
+### Dashboard scoped branch follow-up prose alignment checkpoint
+- Aligned another small assigned-branch wording pocket in the dashboard controller so the partial-coverage handoff signals and follow-up guidance now say `Galaxy holder` and `Galaxy card shell` instead of the older generic `holder/card/cardholder` phrasing.
+- This kept the change behavior-safe and limited to the scoped branch snapshot guidance layer, which continues the Phase 1 admin-shell shift away from starter terminology.
+- Re-ran `php artisan test --filter='test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_full_branch_review_state'`; the current matched slice passed (`2 passed`).
+
+### Dashboard scoped branch snapshot copy alignment checkpoint
+- Aligned the remaining generic assigned-branch snapshot labels and branch-local shortcut wording from `cardholders/cards` phrasing to the more Galaxy-specific `Galaxy holders/Galaxy card shells` language.
+- This covered the scoped branch snapshot metrics, latest-record labels, latest activity summaries, and the branch-local resume links, so the shop-scoped dashboard slice now matches the broader Galaxy shell tone already used elsewhere.
+- Re-ran `php artisan test --filter='test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_unscoped_dashboard_does_not_show_shop_scope_summary|test_shop_scoped_dashboard_empty_branch_snapshot_surfaces_follow_up_posture|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_card_setup_follow_up|test_shop_scoped_dashboard_partial_branch_snapshot_surfaces_cardholder_backfill_follow_up|test_dashboard_branch_helper_logic_covers_paused_branch_posture'`; the current matched slice passed after tightening one brittle unscoped absence assertion (`6 passed`).
+
+### Dashboard compact summary copy alignment checkpoint
+- Aligned the remaining generic compact dashboard summaries and fallback prose from `shops/cardholders/cards/roles/card types` wording to the more Galaxy-specific `Galaxy branches/Galaxy holders/Galaxy card shells/Galaxy access shells/Galaxy tiers` language, including the latest-work intro sentence and the no-records fallback note.
+- Kept the step narrow and behavior-safe, but it removes another visible starter-style wording cluster from the live dashboard shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist|test_dashboard_shows_only_available_latest_workspace_links|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_foundation_posture_reflects_empty_live_coverage'`; the current matched slice passed after aligning the remaining tier summary expectation (`4 passed`).
+
+### Dashboard metric label alignment checkpoint
+- Aligned the remaining generic dashboard metric labels and empty-state focus phrases from `shops/cardholders/cards/card types/roles` wording to the more Galaxy-specific `Galaxy branches/Galaxy holders/Galaxy card shells/Galaxy tiers/Galaxy access shells` language, so the dashboard summary grid now matches the shell tone already used by the action links and handoff notes.
+- Kept the step narrow and behavior-safe, but it removes another obvious starter-style wording pocket from the live dashboard shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_foundation_posture_reflects_empty_live_coverage|test_dashboard_entry_posture_reflects_partial_live_coverage|test_dashboard_latest_workspace_posture_reflects_partial_live_coverage|test_dashboard_latest_live_work_shortcuts_respect_shop_scope'`; the current matched slice passed (`2 passed`).
+
+### Dashboard handoff summary prose alignment checkpoint
+- Aligned the remaining dashboard handoff/status summary phrases from older `cardholders/cards` and `shop, holder, and card coverage` wording to the more Galaxy-specific `Galaxy holders/card shells` and `branch, holder, and card-shell coverage` language, so the summary cues now match the newer branch/holder/card-shell labels already visible in the dashboard shell.
+- Kept the step narrow and behavior-safe, but it removes another small pocket of starter-style wording from the live dashboard narrative.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_shop_scoped_admin_sees_live_workspace_entry_points_for_assigned_shop|test_dashboard_entry_posture_reflects_partial_live_coverage|test_dashboard_latest_workspace_posture_reflects_partial_live_coverage'`; the current matched slice passed (`2 passed`).
+
+### Dashboard scope-note prose alignment checkpoint
+- Aligned the scoped dashboard explanatory prose from older `shops/cardholders/cards` wording to the newer Galaxy-specific `Galaxy branches/Galaxy holders/Galaxy card shells` language, and matched the latest-work scope note so the surrounding handoff copy now reflects the same branch, holder, card-shell, tier, and access-shell tone as the visible shortcuts.
+- Kept the step narrow and behavior-safe, but it removes another small pocket of starter-style wording from the live dashboard narrative.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_shop_scoped_admin_sees_live_workspace_entry_points_for_assigned_shop'`; the current matched slice passed (`2 passed`).
+
+### Dashboard scoped branch copy alignment checkpoint
+- Aligned the remaining scoped dashboard shop handoff label from `Review live shops in assigned branch` to the more Galaxy-specific `Review live Galaxy branches in assigned branch`, and updated the nearby branch-card setup guidance to `Open assigned branch Galaxy card shell setup and issue the first live card shell.` so the scoped handoff copy now matches the branch/card-shell tone used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another starter-style wording pocket from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_hide_unavailable_records_for_shop_scoped_admin|test_authenticated_user_can_access_admin_dashboard|test_shop_scoped_admin_sees_live_workspace_entry_points_for_assigned_shop'`; the current matched slice passed (`2 passed`).
+
+### Dashboard setup shortcut copy alignment checkpoint
+- Aligned the remaining generic holder/card setup shortcuts on the dashboard from `cardholder/card setup` wording to the more Galaxy-specific `Galaxy holder/Galaxy card shell setup` wording, covering both the assigned-branch setup prompts and the fallback latest-work setup links.
+- Kept the step narrow and behavior-safe, but it removes another small cluster of starter-style labels from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_hide_unavailable_records_for_shop_scoped_admin|test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop'`; the current matched slice passed (`2 passed`).
+
+### Dashboard latest-work tier and access copy alignment checkpoint
+- Aligned the remaining generic dashboard latest-work shortcut labels from `Open latest card type workspace` and `Open latest role review` to the more Galaxy-specific `Open latest Galaxy tier shell review` and `Open latest Galaxy access shell review`, so the full latest-work block now uses the same tier/access shell tone as the rest of the Phase 1 admin surfaces.
+- Kept the step narrow and behavior-safe, but it removes the last obvious starter-style labels from the dashboard latest-work shortcut group.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_follow_latest_saved_records|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_dashboard_latest_live_work_shortcuts_hide_unavailable_records_for_shop_scoped_admin'`; the current matched slice passed (`2 passed`).
+
+### Dashboard latest-work copy alignment checkpoint
+- Aligned the dashboard latest-work shortcut labels from the older `shop/cardholder/card review` wording to more Galaxy-specific `branch/holder/card shell review` wording, so the jump-back shortcuts now match the branch, holder, and card shell language already used across Phase 1 workspaces.
+- Kept the step narrow and behavior-safe, but it removes another small cluster of starter-style labels from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_follow_latest_saved_records|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_dashboard_latest_live_work_shortcuts_hide_unavailable_records_for_shop_scoped_admin'`; the current matched slice passed after aligning the related latest-work focus assertions (`2 passed`).
+
+### Dashboard card entry copy alignment checkpoint
+- Aligned the admin dashboard card entry labels from the older `Review live cards` wording to the more Galaxy-specific `Review live Galaxy card shells`, and updated the assigned-branch live handoff label to `Review live Galaxy card shells in assigned branch`, so the dashboard handoff path now matches the card workspace language used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another starter-style label from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_authenticated_user_can_access_cards_management_preview'`; the current matched slice passed (`2 passed`).
+
+### Dashboard holder entry copy alignment checkpoint
+- Aligned the admin dashboard holder entry labels from the older `Review live cardholders` wording to the more Galaxy-specific `Review live Galaxy holders`, and updated the assigned-branch live handoff label to `Review live Galaxy holders in assigned branch`, so the dashboard handoff path now matches the holder workspace language used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another starter-style label from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_authenticated_user_can_access_cardholders_management_preview'`; the current matched slice passed (`2 passed`).
+
+### Dashboard branch entry copy alignment checkpoint
+- Aligned the admin dashboard shops entry label from the older `Review live shops` wording to the more Galaxy-specific `Review live Galaxy branches`, so the dashboard handoff path now matches the branch catalog language used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another starter-style label from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_dashboard_latest_live_work_shortcuts_fall_back_to_shared_review_without_assigned_shop|test_authenticated_user_can_access_shops_management_preview'`; the current matched slice passed after aligning the related dashboard focus assertions (`2 passed`).
+
+### Dashboard tier entry copy alignment checkpoint
+- Aligned the admin dashboard tier entry labels from the older `Review live card types` and `Review shared card types` wording to the more Galaxy-specific `Review live Galaxy tiers` and `Review shared Galaxy tiers`, so the dashboard handoff path now matches the tier workspace shell language used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another pair of starter-style labels from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_exposes_edit_link_for_latest_saved_type'` (`4 passed`).
+
+### Dashboard access entry copy alignment checkpoint
+- Aligned the admin dashboard access entry labels from the older `Review live access roles` and `Review shared access roles` wording to the more Galaxy-specific `Review live Galaxy access shells` and `Review shared Galaxy access shells`, so the dashboard handoff path now matches the access workspace shell language used elsewhere in Phase 1.
+- Kept the step narrow and behavior-safe, but it removes another pair of starter-style labels from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_authenticated_user_can_access_roles_permissions_management_preview|test_role_permissions_page_exposes_latest_saved_role_review_link|test_reports_page_supports_selected_role_access_review_context'` and the current matched slice passed (`4 passed`).
+
+### Dashboard reporting entry copy alignment checkpoint
+- Aligned the admin dashboard reporting entry labels from the more generic `Review live reporting sources` and `Review shared reporting sources` wording to the more Galaxy-specific `Review Galaxy reporting sources` and `Review shared Galaxy reporting sources`, so the reporting entry path now matches the newer reports-catalog shell tone.
+- Kept the step narrow and behavior-safe, but it removes another pair of starter-style labels from a live Galaxy navigation surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_latest_live_work_shortcuts_respect_shop_scope|test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context'` (`4 passed`).
+
+### Reports primary action copy alignment checkpoint
+- Aligned the `reports` catalog primary action from the more generic `Open live report catalog` wording to the more Galaxy-specific `Open Galaxy reporting catalog`, keeping the reporting workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`6 passed`).
+
+### Reports latest-link copy alignment checkpoint
+- Aligned the `reports` catalog latest-review action from the generic `Review ... source` wording to the more Galaxy-specific `Review ... reporting source`, keeping the reporting workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`6 passed`).
+
+### Tier latest-link copy alignment checkpoint
+- Aligned the `card-types` catalog latest-edit action from the generic `Edit latest saved tier` wording to the more Galaxy-specific `Edit latest saved tier shell`, keeping the tier workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_management_preview|test_card_types_catalog_actions_reflect_saved_tier_readiness|test_card_types_page_exposes_edit_link_for_latest_saved_type|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_types_page_ignores_unknown_selected_card_type_query|test_card_types_page_ignores_malformed_selected_card_type_query'` (`6 passed`).
+
+### Branch latest-link copy alignment checkpoint
+- Aligned the `shops` catalog latest-review action from the generic `Review latest saved shop` wording to the more Galaxy-specific `Review latest saved branch shell`, keeping the branch workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_shops_page_replaces_preview_rows_with_model_backed_index_data|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query|test_shops_page_ignores_inaccessible_selected_shop_query_for_shop_scoped_admins'` (`5 passed`).
+
+### Holder latest-link copy alignment checkpoint
+- Aligned the `cardholders` catalog latest-review action from the generic `Review latest saved holder` wording to the more Galaxy-specific `Review latest saved holder shell`, keeping the holder workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_cardholders_page_replaces_preview_rows_with_model_backed_index_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query|test_cardholders_page_ignores_inaccessible_selected_holder_query_for_shop_scoped_admins'` (`5 passed`).
+
+### Card latest-link copy alignment checkpoint
+- Aligned the `cards` catalog latest-review action from the generic `Review latest saved card` wording to the more Galaxy-specific `Review latest saved card shell`, keeping the inventory workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query|test_cards_page_ignores_inaccessible_selected_card_query_for_shop_scoped_admins|test_cards_page_surfaces_selected_card_context_from_laravel_data'` (`5 passed`).
+
+### Role latest-link copy alignment checkpoint
+- Aligned the `roles-permissions` catalog latest-review action from the generic `Review latest saved role` wording to the more Galaxy-specific `Review latest saved access shell`, keeping that access workspace closer to the Phase 1 admin-shell tone used elsewhere.
+- Kept the step narrow and behavior-safe, but it removes one more starter-style label from a live Galaxy management surface.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data'` (`5 passed`).
+
+### Secondary route-action helper checkpoint
+- Consolidated the newer latest-link helpers onto one small `appendSecondaryRouteAction(...)` base helper, so the latest saved review links, latest preview review links, and latest tier edit link now all append through the same route-building path.
+- Kept the step narrow and behavior-preserving, but it removes another layer of repeated secondary-action route glue from `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_authenticated_user_can_access_checks_points_operational_index_shape|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_exposes_edit_link_for_latest_saved_type'` (`5 passed`).
+
+### Latest source and tier-link helper checkpoint
+- Rewired the remaining inline latest-link actions for the `reports` catalog and the `card-types` catalog onto shared helper paths, so the live-source review link and the latest-tier edit link now append through the same small route/link helpers as the other Phase 1 admin catalogs.
+- Kept the step narrow and behavior-preserving, but it removes the last obvious one-off latest-link glue from `ResourceIndexController` without changing the Galaxy-specific action copy.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context|test_authenticated_user_can_access_card_types_management_preview|test_card_types_catalog_actions_reflect_saved_tier_readiness|test_card_types_page_exposes_edit_link_for_latest_saved_type'` (`5 passed`).
+
+### Latest-preview review action helper checkpoint
+- Extracted the repeated preview-catalog `Review ...` link wiring for `checks-points`, `services-rules`, and `gifts` into one small `ResourceIndexController` helper, so those Galaxy preview catalogs now append their latest preview-review links through the same path.
+- Kept the step narrow and behavior-preserving, but it removes another small cluster of repeated route/link glue from the Phase 1 admin shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_authenticated_user_can_access_services_rules_preview|test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog|test_authenticated_user_can_access_gifts_preview|test_gifts_page_ignores_unknown_selected_gift_and_falls_back_to_catalog'` (`4 passed`, with the current suite matching the focused receipt/rule/gift catalog fallback coverage that exercises this helper path).
+
+### Latest-saved review action helper checkpoint
+- Extracted the repeated `Review latest saved ...` catalog action wiring for `roles-permissions`, `cards`, `cardholders`, and `shops` into one small `ResourceIndexController` helper, so those Galaxy admin catalogs now append their latest-saved review links through the same path.
+- Kept the step narrow and behavior-preserving, but it removes another small cluster of repeated route/link glue from the Phase 1 admin shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_replaces_preview_rows_with_model_backed_role_data|test_shops_page_replaces_preview_rows_with_model_backed_index_data|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_cardholders_page_replaces_preview_rows_with_model_backed_index_data|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace'` (`5 passed`).
+
+### Selected tier action-stack helper checkpoint
+- Extracted the existing selected `card-types` action stack into a dedicated `ResourceIndexController` helper, so the Galaxy tier review surface now builds its create-shell, status-toggle, editing badge, and disabled import/publish companions through one small path without changing the current UI structure.
+- Kept the step narrow and behavior-preserving, specifically avoiding the riskier read-context helper path because the selected tier workspace uses a different action layout than the read-only selected catalogs.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_shop_scoped_admin_cannot_toggle_card_type_status|test_authenticated_user_can_toggle_card_type_status_from_header_action|test_authenticated_user_can_toggle_card_type_status_from_row_level_action'` (`8 passed`).
+
+### Selected role read-context helper checkpoint
+- Extracted a small `selectedReadContextWithLeadingAndDisabledActions(...)` helper and rewired the selected `roles-permissions` workspace to use it, so that Galaxy access review surface now builds its leading bootstrap-gated mutation action and disabled review companions through one consistent path.
+- Kept the step narrow and behavior-preserving, but it removes another small patch of repetitive selected-action glue from `ResourceIndexController` while preserving the existing Galaxy-specific copy and gating reasons.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_shop_scoped_admin_cannot_create_new_role|test_shop_scoped_admin_cannot_update_role'` (`6 passed`).
+
+### Selected card, holder, and branch read-context helper checkpoint
+- Reused the shared `selectedReadContextWithDisabledActions(...)` helper inside the selected `cards`, `cardholders`, and `shops` workspaces, so those read-only Galaxy review surfaces now pass their disabled companion actions through the same helper path as the selected preview and report contexts.
+- Kept the step narrow and behavior-preserving, but it removes another small layer of repetitive `selectedReadContextActions(...)` plus disabled-action shaping glue from `ResourceIndexController`.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_paused_branch_review_context|test_shops_page_ignores_inaccessible_selected_shop_query_for_shop_scoped_admins'` (`8 passed`).
+
+### Selected read-context disabled-action helper checkpoint
+- Extracted a small `selectedReadContextWithDisabledActions(...)` helper and rewired the selected `reports` workspace plus the shared selected-preview path to use it, so those read-only Galaxy review surfaces now pass raw disabled-action definitions through one consistent shaping path.
+- Kept the step narrow and behavior-preserving, but it removes another bit of repetitive `selectedReadContextActions(...)` glue from `ResourceIndexController` while preserving the current selected-review copy.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_checks_points_page_accepts_case_insensitive_selected_receipt_query|test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_role_access_pending_readiness_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`11 passed`).
+
+### Selected preview action-helper checkpoint
+- Reused the shared `secondaryDisabledActions(...)` helper inside the selected `checks-points`, `services-rules`, and `gifts` preview workspaces, so their disabled review companions now flow through the same small action-shaping path used across the rest of the Phase 1 admin shell.
+- Kept the step narrow and behavior-preserving, but it trims another small cluster of inline preview-action arrays from `ResourceIndexController` while preserving the current Galaxy-specific selected-preview copy.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_checks_points_page_accepts_case_insensitive_selected_receipt_query|test_services_rules_page_supports_selected_rule_preview_context|test_services_rules_page_supports_selected_priority_ready_rule_preview_context|test_services_rules_page_ignores_unknown_selected_rule_and_falls_back_to_catalog|test_gifts_page_supports_selected_gift_preview_context|test_gifts_page_supports_selected_ready_reward_preview_context|test_gifts_page_ignores_unknown_selected_gift_and_falls_back_to_catalog'` (`7 passed`, with the current suite matching the focused selected receipt slice plus the selected rule/gift fallback coverage that exercises this helper swap).
+
+### Selected reports action-helper checkpoint
+- Reused the shared `secondaryDisabledActions(...)` helper inside the selected `reports` workspace, so the disabled `Review export presets` and `Export source snapshot` companions now flow through the same action-shaping path used across the rest of the Phase 1 admin shell.
+- Kept the step narrow and behavior-preserving, but it trims another small inline action block from `ResourceIndexController` while preserving the current Galaxy-specific report-review copy.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_role_access_pending_readiness_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`6 passed`).
+
+### Selected role and branch action-helper checkpoint
+- Reused the shared `secondaryDisabledActions(...)` helper inside the selected `roles-permissions` and `shops` workspaces, so their disabled review companions now flow through the same small action-shaping path used elsewhere in the Phase 1 admin shell.
+- Kept the step narrow and behavior-preserving, but it trims another small patch of inline controller duplication while preserving the Galaxy-specific selected-workspace copy and bootstrap gating reasons.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_active_role_access_review_context|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_roles_permissions_page_supports_selected_paused_scope_without_assignments_review_context|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_active_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query|test_shops_page_ignores_inaccessible_selected_shop_query_for_shop_scoped_admins'` (`9 passed`, with the current suite matching the focused selected role and branch coverage that exercises this slice).
+
+### Selected card and holder action-helper checkpoint
+- Reused the shared `secondaryDisabledActions(...)` helper inside the selected `cards` and `cardholders` workspaces, so their disabled review companions now flow through the same small action-shaping path used elsewhere in the Phase 1 admin shell.
+- Kept the change narrow and behavior-preserving, but it trims another tiny bit of inline controller duplication while preserving the current Galaxy-specific selected-workspace copy.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_surfaces_blocked_pre_activation_signal_for_selected_card|test_cards_page_surfaces_pre_activation_holder_linked_signal_for_selected_card|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query|test_cards_page_ignores_inaccessible_selected_card_query_for_shop_scoped_admins'` (`11 passed`).
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'` (`4 passed` within the earlier mixed focused run for this slice).
+
+### Selected card and holder edit live-form helper checkpoint
+- Extracted the repeated non-foundation selected edit live-form setup for `cards` and `cardholders` into one small `ResourceIndexController` helper, so both Galaxy review workspaces now configure their PATCH route, catalog return, and submit copy through the same path.
+- Kept the change narrow and behavior-preserving, but it trims another bit of inline controller glue while preserving the current Galaxy-specific edit titles and selected-catalog return behavior.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query|test_cards_page_ignores_inaccessible_selected_card_query_for_shop_scoped_admins'` (`4 passed`).
+- Re-ran `php artisan test --filter='test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context|test_cardholders_page_surfaces_paused_branch_signal_for_selected_holder|test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query|test_cardholders_page_ignores_inaccessible_selected_holder_query_for_shop_scoped_admins'` (`8 passed`).
+
+### Selected foundation edit live-form helper checkpoint
+- Extracted the repeated selected foundation edit live-form setup for `roles-permissions`, `shops`, and `card-types` into one `ResourceIndexController` helper, so those Galaxy admin workspaces now configure their PATCH route, submit copy, and bootstrap-aware cancel behavior through the same small path.
+- Kept the change narrow and behavior-preserving, but it removes another slice of starter-style controller glue from the Phase 1 admin shell while preserving the Galaxy-specific titles and review-mode descriptions already in use.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query|test_shops_page_ignores_inaccessible_selected_shop_query_for_shop_scoped_admins|test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_card_type_update_validation_keeps_safe_cancel_action_in_selected_edit_mode'` (`9 passed`).
+
+### Receipt catalog action-helper checkpoint
+- Rewired the `checks-points` receipt catalog to build its disabled primary `Find receipt` action plus the disabled review companion through a shared helper path, keeping that read-only parity shell aligned with the newer helper-driven catalog patterns.
+- Kept the change narrow and behavior-preserving, but it trims another small inline action stack from `ResourceIndexController` and makes the receipt review shell more consistent with the other Galaxy admin catalogs.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_checks_points_page_accepts_case_insensitive_selected_receipt_query'` (`6 passed`).
+
+### Selected tier action-helper and title-alignment checkpoint
+- Reused the shared `secondaryDisabledActions(...)` helper inside the selected `card-types` workspace for the disabled `Import rules` and `Publish tier` actions, trimming one more small patch of inline controller duplication from the Phase 1 tier review shell.
+- While verifying that slice, aligned the remaining selected-tier test expectations from the old `Edit card type in Laravel` wording to the current Galaxy-specific title `Edit Galaxy tier in Laravel`, so the focused selected-tier coverage now matches the real admin copy.
+- Re-ran `php artisan test --filter='test_card_types_page_switches_live_form_into_real_edit_mode_for_selected_card_type|test_selected_live_card_type_without_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_live_card_type_with_visible_card_coverage_surfaces_live_tier_status_signal|test_selected_live_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_selected_draft_card_type_without_visible_card_coverage_shows_readiness_driven_action_gating_reasons|test_card_types_page_ignores_unknown_selected_card_type_query|test_card_types_page_ignores_malformed_selected_card_type_query|test_card_types_page_shows_update_success_flash_message|test_card_type_update_validation_keeps_operator_input_in_selected_edit_mode|test_card_type_update_validation_preserves_error_summary_links_in_selected_edit_mode|test_card_type_update_validation_keeps_safe_cancel_action_in_selected_edit_mode'` (`11 passed`).
+
+### Reports catalog action-helper checkpoint
+- Rewired the `reports` catalog to build its primary entry action plus disabled review/export companions through a shared helper path, and extracted the repeated disabled-secondary-action shaping into one small helper as well.
+- Kept the step narrow and behavior-preserving, but it removes another bit of starter-style controller duplication from a live Galaxy review surface while also simplifying the newer foundation-catalog helper path.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_reports_operational_index_shape|test_reports_page_supports_selected_live_source_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`4 passed`).
+
+### Foundation catalog action-helper checkpoint
+- Extracted the repeated foundation-catalog action pattern for `roles-permissions`, `shops`, and `card-types` into one `ResourceIndexController` helper, so those Phase 1 admin catalogs now build their bootstrap-controlled primary action plus disabled review/publish companions through the same small path.
+- Kept the step narrow and behavior-preserving, but it trims another slice of starter-style controller duplication from the highest-value Galaxy foundation catalogs.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_roles_permissions_page_replaces_preview_rows_with_model_backed_access_data|test_authenticated_user_can_access_shops_management_preview|test_shops_page_replaces_preview_rows_with_model_backed_branch_data|test_authenticated_user_can_access_card_types_management_preview|test_card_types_page_replaces_preview_rows_with_model_backed_tier_data'` (`2 passed`, with the current suite matching the focused roles-permissions and card-types catalog coverage for this slice).
+
+### Catalog live-form action helper checkpoint
+- Extracted the repeated primary-plus-disabled-review action stack for the `cards` and `cardholders` catalogs into one `ResourceIndexController` helper, so both Galaxy management surfaces now build their `#live-form` entry action and review-only companion action through the same small path.
+- Kept the step narrow and behavior-preserving, but it trims another bit of starter-style controller duplication from two real Phase 1 admin catalogs.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_management_preview|test_cards_page_replaces_preview_rows_with_model_backed_inventory_data|test_authenticated_user_can_access_cardholders_management_preview|test_cardholders_page_replaces_preview_rows_with_model_backed_index_data'` (`2 passed`, with the current suite matching the focused model-backed cards/cardholders catalog coverage for this slice).
+
+### Selected preview action-helper consolidation checkpoint
+- Rewired `applySelectedPreviewContext(...)` to build its back/review action stack through the shared `selectedReadContextActions(...)` helper instead of duplicating that action array inline, so receipts, rules, gifts, and other selected-preview surfaces now flow through the same selected-workspace action path.
+- Kept the step narrow and behavior-preserving, but it removes another small layer of starter-style controller duplication from the Phase 1 Galaxy admin shell.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_branch_receipt_review_context|test_services_rules_page_accepts_case_insensitive_selected_rule_query|test_gifts_page_supports_selected_all_shop_gift_review_context|test_reports_page_supports_selected_live_source_review_context'` (`4 passed`).
+
+### Selected reports action-helper alignment checkpoint
+- Rewired the selected `reports` workspace to build its back/review action stack through the shared `selectedReadContextActions(...)` helper instead of one inline array, so another Phase 1 review surface now follows the same helper-driven structure as the other selected Galaxy workspaces.
+- Kept the step narrow and behavior-preserving, but it trims a little more starter-style controller glue from a live admin surface that already uses Galaxy-specific catalog wording.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_ignores_unknown_selected_source_and_falls_back_to_catalog|test_reports_page_accepts_case_insensitive_selected_source_query'` (`3 passed`).
+
+### Rule and gift catalog-action copy alignment checkpoint
+- Aligned the selected preview back actions for `services-rules` and `gifts` from generic `Back to all ...` copy to Galaxy catalog language (`Back to rule catalog` / `Back to gift catalog`), so two more Phase 1 parity surfaces now read like intentional operational catalogs instead of generic list fallbacks.
+- Kept the step narrow and behavior-safe, but it extends the same Galaxy-specific catalog wording into another pair of high-value admin review shells.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_blocking_rule_review_context|test_services_rules_page_supports_selected_partner_rule_review_context|test_services_rules_page_supports_selected_birthday_rule_review_context|test_services_rules_page_ignores_unknown_selected_rule_query|test_services_rules_page_accepts_case_insensitive_selected_rule_query|test_gifts_page_supports_selected_zero_stock_gift_review_context|test_gifts_page_supports_selected_branch_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_branch_gift_review_context|test_gifts_page_ignores_unknown_selected_gift_query|test_gifts_page_accepts_case_insensitive_selected_gift_query'` (`3 passed`, with the current suite matching the case-insensitive selected-rule query plus selected/all-shop and case-insensitive selected-gift coverage for this preview slice).
+
+### Receipt catalog-action copy alignment checkpoint
+- Aligned the selected receipt workspace back action from generic `Back to all receipts` copy to Galaxy catalog language (`Back to receipt catalog`), so the checks-and-points review shell now reads more like an intentional operational catalog and less like a generic list fallback.
+- Kept the step narrow and behavior-safe, but it extends the same catalog-language cleanup into another Phase 1 parity surface that operators are expected to use for troubleshooting-first review.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_zero_accrual_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context|test_checks_points_page_ignores_unknown_selected_receipt_and_falls_back_to_catalog|test_checks_points_page_accepts_case_insensitive_selected_receipt_query'` (`4 passed`, with the current suite matching the focused branch/positive/query coverage for this selected-receipt slice).
+
+### Role and branch catalog-action copy alignment checkpoint
+- Aligned the selected-workspace back actions for `roles-permissions` and `shops` from generic `Back to all ...` copy to Galaxy catalog language (`Back to role catalog` / `Back to branch catalog`), so those live review surfaces now match the more intentional catalog phrasing already used elsewhere in the Phase 1 shell.
+- Kept the step narrow and behavior-safe, but it makes two more high-value Galaxy admin workspaces read less like generic lists and more like real operational catalogs.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_roles_permissions_page_supports_selected_draft_role_review_context|test_roles_permissions_page_supports_selected_scope_only_role_review_context|test_roles_permissions_page_supports_selected_assignment_only_role_review_context|test_roles_permissions_page_ignores_unknown_selected_role_query|test_roles_permissions_page_ignores_malformed_selected_role_query|test_shops_page_surfaces_selected_live_branch_context_from_laravel_data|test_shops_page_supports_selected_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_review_context|test_shops_page_surfaces_selected_paused_branch_recovery_context|test_shops_page_ignores_unknown_selected_shop_query|test_shops_page_ignores_malformed_selected_shop_query|test_shops_page_hides_other_shop_review_links_for_shop_scoped_admins'` (`8 passed`, with the filter matching the focused selected-role and selected-shop coverage that currently exists in the suite).
+
+### Selected catalog-action copy alignment checkpoint
+- Aligned the selected-workspace back actions for `cards` and `cardholders` from generic `Back to all ...` copy to Galaxy catalog language (`Back to card catalog` / `Back to holder catalog`), so the live review surfaces now match the catalog-return phrasing already used inside their edit forms.
+- Kept the step narrow and behavior-safe, but it makes two more selected Galaxy workspaces read less like generic list pages and more like intentional admin catalogs.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data|test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context|test_cardholders_page_surfaces_paused_branch_signal_for_selected_holder|test_cards_page_ignores_unknown_selected_card_query|test_cards_page_ignores_malformed_selected_card_query|test_cards_page_hides_other_shop_card_review_links_for_shop_scoped_admins|test_cardholders_page_ignores_unknown_selected_holder_query|test_cardholders_page_ignores_malformed_selected_holder_query|test_cardholders_page_hides_other_shop_holder_review_links_for_shop_scoped_admins'` (`17 passed`).
+
+### Selected live-form catalog-return helper checkpoint
+- Extracted the selected-record catalog-return wiring for `cards` and `cardholders` into one `ResourceIndexController` helper, so those live edit workspaces now share the same explicit `cancelRoute`, `cancelLabel`, and empty route-parameter setup through one path.
+- Kept the step narrow and behavior-preserving, but it trims a little more starter-style controller glue from two real Galaxy edit surfaces right after their cancel-label copy was aligned.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'` (`2 passed`).
+
+### Selected edit-form cancel-label alignment checkpoint
+- Replaced the remaining create-oriented cancel labels on selected `cards` and `cardholders` live edit forms with review-oriented return paths (`Back to card catalog` / `Back to holder catalog`), so saved-record workspaces no longer imply operators are starting a brand new shell.
+- Kept the step narrow and behavior-safe, but it makes two more live Galaxy edit surfaces read like real review workflows instead of leftover starter-style create flows.
+- Re-ran `php artisan test --filter='test_cards_page_surfaces_selected_card_context_from_laravel_data|test_cardholders_page_surfaces_selected_holder_context_from_laravel_data'` (`2 passed`).
+
+### Review-mode foundation form copy checkpoint
+- Extended the shared foundation-form review-mode helper so scoped admins now see review-specific descriptions in the selected role, branch, and tier forms instead of edit-oriented “update” copy.
+- This keeps the Phase 1 shell linguistically aligned with the already-disabled submit controls and locked fields, while leaving bootstrap-admin edit descriptions untouched.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_shop_scoped_admin_sees_card_type_mutation_actions_disabled_in_card_types_workspace|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_authenticated_user_can_update_shop_from_live_admin_flow'` (`5 passed`).
+
+### Shared foundation form review-mode checkpoint
+- Extracted the repeated selected-form central-control wiring into one `ResourceIndexController` helper, so roles, shops, and card types now apply the same review-mode cancel label, disabled submit, and locked-field behavior through one path.
+- This keeps the Phase 1 foundation shell easier to extend without changing the existing scoped-admin UX or the bootstrap-admin happy paths.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_shop_scoped_admin_sees_card_type_mutation_actions_disabled_in_card_types_workspace|test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_authenticated_user_can_update_shop_from_live_admin_flow'` (`5 passed`).
+
+### Scoped branch-form field-locking checkpoint
+- Extended the `shops` selected-branch form to match the existing scoped foundation review-only posture, so shop-scoped admins now see a disabled submit button plus locked form fields when Phase 1 central-control rules block branch creation.
+- Reused the same branch-foundation disabled reason already shown on the catalog action and kept the allowed branch update happy path green for bootstrap-admin flows.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace|test_authenticated_user_can_update_shop_from_live_admin_flow|test_shops_page_surfaces_selected_live_branch_context_from_laravel_data'` (`2 passed`, with the filter matching the scoped branch-workspace check plus the existing live shop update flow).
+
+### Scoped foundation field-locking checkpoint
+- Extended the scoped foundation-form gating for `roles-permissions` and `card-types`, so shop-scoped admins now see the form fields themselves locked in review mode, not just a disabled submit button.
+- Text-like fields now render read-only and select fields render disabled when Phase 1 central-control rules block the mutation path, which keeps the live shell visually honest without changing bootstrap-admin editing.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_shop_scoped_admin_sees_card_type_mutation_actions_disabled_in_card_types_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_selected_card_type_reuses_shared_live_form_in_edit_mode'` (`3 passed`, with the filter matching the two scoped workspace checks plus the existing selected-role coverage).
+
+### Scoped foundation form-control gating checkpoint
+- Aligned the selected `roles-permissions` and `card-types` live forms with the existing Phase 1 backend restrictions, so shop-scoped admins now see disabled submit controls plus review-oriented cancel paths (`Back to access catalog` / `Back to tier catalog`) instead of create-oriented form affordances.
+- Reused the same central-control reasons already shown in the surrounding workspace actions, which keeps the form-level mutation affordances honest without changing the bootstrap-admin happy path.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_shop_scoped_admin_sees_card_type_mutation_actions_disabled_in_card_types_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_selected_card_type_reuses_shared_live_form_in_edit_mode'` (`3 passed`, with the filter matching the two scoped workspace checks plus the existing selected-role coverage).
+
+### Scoped branch-workspace action-gating checkpoint
+- Aligned the `shops` shell with the existing Phase 1 branch-creation restriction, so shop-scoped admins now see the catalog-level `New Galaxy branch` action disabled and the selected-branch form swaps its create-oriented cancel path to `Back to branch catalog`.
+- Added focused coverage proving a scoped operator sees the central-control disabled reason on the shops catalog and no longer sees the misleading `Create new Galaxy branch shell` affordance inside the selected branch edit flow.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_branch_creation_actions_disabled_in_shops_workspace|test_authenticated_user_can_access_shops_management_preview|test_shops_page_surfaces_selected_live_branch_context_from_laravel_data|test_authenticated_user_can_update_shop_from_live_admin_flow'` (`2 passed`, with the filter matching the new scoped branch-workspace check plus the existing live shop update flow).
+
+### Scoped workspace action-gating checkpoint
+- Aligned the `roles-permissions` and `card-types` page actions with the existing Phase 1 backend restrictions, so shop-scoped admins now see the create/toggle foundation actions rendered as disabled instead of looking silently available.
+- Added focused workspace coverage proving scoped operators now see central-control disabled reasons in the selected role and selected tier flows, while the existing bootstrap-admin selected-workspace pages still render normally.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_sees_role_mutation_actions_disabled_in_roles_workspace|test_shop_scoped_admin_sees_card_type_mutation_actions_disabled_in_card_types_workspace|test_roles_permissions_page_surfaces_selected_role_context_from_laravel_data|test_selected_card_type_reuses_shared_live_form_in_edit_mode'` (`3 passed`, with the filter matching the two new scoped-workspace checks plus the existing selected-role coverage).
+
+### Shared bootstrap-only request validation checkpoint
+- Extracted repeated bootstrap-only request validation into `app/Http/Requests/Admin/Concerns/ValidatesBootstrapAdminAccess.php`, so the Phase 1 central-control rule for shops, roles, and card types now lives in one reusable request concern.
+- Rewired `StoreShopRequest`, `StoreRoleRequest`, `UpdateRoleRequest`, `StoreCardTypeRequest`, and `UpdateCardTypeRequest` to use the shared concern without changing the operator-facing validation copy.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_new_role|test_shop_scoped_admin_cannot_update_role|test_shop_scoped_admin_cannot_create_new_shop|test_shop_scoped_admin_cannot_create_new_card_type|test_shop_scoped_admin_cannot_update_card_type'` (`5 passed`).
+
+### Bootstrap-only card type update messaging checkpoint
+- Split the scoped-admin card-type update block away from the card-type create message path, so `UpdateCardTypeRequest` now returns an update-specific Phase 1 validation message instead of the misleading create-only copy.
+- Added regression coverage proving a shop-scoped operator is redirected back to the selected tier edit flow with the new update-specific error, while the bootstrap-admin card-type update happy path stays green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_new_card_type|test_shop_scoped_admin_cannot_update_card_type|test_authenticated_user_can_update_card_type_from_live_admin_flow'` (`3 passed`).
+
+### Bootstrap-only role update messaging checkpoint
+- Split the scoped-admin role-update block away from the role-create message path, so `UpdateRoleRequest` now returns an update-specific Phase 1 validation message instead of the misleading create-only copy.
+- Added regression coverage proving a shop-scoped operator is redirected back to the selected role edit flow with the new update-specific error, while the bootstrap-admin role update happy path stays green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_new_role|test_shop_scoped_admin_cannot_update_role|test_authenticated_user_can_update_role_from_minimal_live_admin_flow'` (`3 passed`).
+
+### Bootstrap-only card type status-toggle checkpoint
+- Added a bootstrap-only guard to `CardTypeToggleStatusController` so shop-scoped admins can no longer flip tier status between active and draft during Phase 1.
+- Added regression coverage proving a scoped operator now gets a `403` on card-type status toggles, while the bootstrap-admin header toggle, row toggle, and success-flash redirect flows stay green.
+- Refreshed the toggle success assertion so the draft-state follow-up matches the current visible-card-coverage gating copy.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_toggle_card_type_status|test_authenticated_user_can_toggle_card_type_status_from_header_action|test_authenticated_user_can_toggle_card_type_status_from_row_level_action|test_card_type_toggle_status_surfaces_selected_record_success_cue_after_redirect'` (`4 passed`).
+
+### Bootstrap-only card type creation checkpoint
+- Added a focused validation guard to `StoreCardTypeRequest` so shop-scoped admins can no longer create new card types while the Galaxy tier foundation is still under central bootstrap control.
+- Added regression coverage proving a scoped operator is blocked from card-type creation, while the existing bootstrap-admin card-type create flow stays green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_new_card_type|test_authenticated_user_can_store_card_type_from_live_admin_form|test_authenticated_user_can_update_card_type_from_live_admin_form'` (`2 passed`, with the filter matching the scoped-create guard plus the existing create flow).
+
+### Bootstrap-only role creation checkpoint
+- Added a focused validation guard to `StoreRoleRequest` so shop-scoped admins can no longer create new roles while the Galaxy access foundation is still under central bootstrap control.
+- Added regression coverage proving a scoped operator is blocked from role creation, while the bootstrap-admin create/update role happy paths stay green.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_create_role_from_minimal_live_admin_flow|test_shop_scoped_admin_cannot_create_new_role|test_authenticated_user_can_update_role_from_minimal_live_admin_flow'` (`3 passed`).
+
+### Bootstrap-only shop creation checkpoint
+- Added a focused validation guard to `StoreShopRequest` so shop-scoped admins can no longer create brand new branches while the Galaxy branch foundation is still under central bootstrap control.
+- Added regression coverage proving a scoped operator is blocked from shop creation, while the bootstrap-admin create/update shop happy paths stay green.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_create_shop_from_live_admin_flow|test_shop_scoped_admin_cannot_create_new_shop|test_authenticated_user_can_update_shop_from_live_admin_flow'` (`3 passed`).
+
+### Foreign-record update guard for scoped cards and holders checkpoint
+- Extended the shared shop-scope validation pattern to cover the current route record on card and cardholder updates, not just the submitted target `shop_id`.
+- This closes a real Phase 1 access hole: scoped admins can no longer grab a foreign card or holder and "move" it into their own branch through an update request.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_update_foreign_card_even_if_target_shop_is_accessible|test_shop_scoped_admin_cannot_update_foreign_cardholder_even_if_target_shop_is_accessible|test_authenticated_user_can_update_card_from_live_admin_flow|test_authenticated_user_can_update_cardholder_from_live_admin_flow'` (`4 passed`).
+
+### Shop update scope-guard checkpoint
+- Added an `access-shop` validation guard to `UpdateShopRequest`, so shop-scoped admins can no longer change another branch's settings just because they still pass the broad admin gate.
+- Added focused regression coverage that proves a scoped operator cannot update a foreign shop, while keeping the bootstrap-admin shop update flow and duplicate-code validation green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_update_a_different_shop|test_authenticated_user_can_update_shop_from_live_admin_flow|test_shop_update_live_flow_rejects_duplicate_normalized_code'` (`3 passed`).
+
+## 2026-05-16
+
+### Shared shop-scope request validation checkpoint
+- Extracted the repeated `access-shop` request validation into `app/Http/Requests/Admin/Concerns/ValidatesAccessibleShop.php`, so Phase 1 shop-scoped write protection now lives in one reusable Laravel request concern instead of being duplicated across card and cardholder flows.
+- Rewired both `StoreCardRequest` and `StoreCardHolderRequest` to use that shared concern without changing the operator-facing validation messages.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_card_for_a_different_shop|test_shop_scoped_admin_cannot_update_card_into_a_different_shop|test_shop_scoped_admin_cannot_create_cardholder_for_a_different_shop|test_shop_scoped_admin_cannot_update_cardholder_into_a_different_shop'` (`4 passed`).
+
+### Shop-scoped cardholder write authorization checkpoint
+- Wired the same `access-shop` Gate into `StoreCardHolderRequest`, so scoped admins can no longer create or update cardholders against a foreign shop while Phase 1 branch ownership rules are still taking shape.
+- Added focused regression coverage for both create and update attempts that try to move holder writes outside the operator's assigned branch, while keeping bootstrap-admin happy-path cardholder tests green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_cardholder_for_a_different_shop|test_shop_scoped_admin_cannot_update_cardholder_into_a_different_shop|test_authenticated_user_can_create_cardholder_from_live_admin_flow|test_authenticated_user_can_update_cardholder_from_live_admin_flow'` (`4 passed`).
+
+### Shop-scoped card write authorization checkpoint
+- Wired the new `access-shop` Gate into `StoreCardRequest`, so scoped admins can no longer create or update cards against a foreign shop even if they still have general admin access.
+- Added focused regression coverage for both create and update attempts that try to move card writes outside the operator's assigned branch, while keeping bootstrap-admin happy-path card tests green.
+- Re-ran `php artisan test --filter='test_shop_scoped_admin_cannot_create_card_for_a_different_shop|test_shop_scoped_admin_cannot_update_card_into_a_different_shop|test_authenticated_user_can_create_card_from_live_admin_flow|test_authenticated_user_can_update_card_from_live_admin_flow'` (`4 passed`).
+
+### Laravel Gate baseline for shop-scoped admin access checkpoint
+- Added an explicit `access-shop` Gate that routes Laravel authorization through the existing `User::canAccessShop(...)` helper, so Phase 1 shop scope now exists as first-class framework policy wiring instead of only model-level convenience logic.
+- Extended the focused admin-access tests to assert both `access-admin` and `access-shop` Gate behavior for bootstrap admins, scoped shop admins, and paused-shop users.
+- Re-ran `php artisan test --filter='test_unscoped_user_keeps_bootstrap_admin_access_helpers|test_shop_scoped_admin_access_helper_allows_only_the_users_assigned_shop|test_shop_scoped_admin_access_helper_denies_paused_shop_users_even_for_their_assigned_shop'` (`3 passed`).
+
+### Card holder linkage and shop-scoped card validation checkpoint
+- Extended the live card create and update flows to persist `card_holder_id`, so the Laravel foundation now carries the Phase 1 card-to-cardholder relationship instead of leaving new cards unassigned by controller default.
+- Added shop-scoped validation for `card_holder_id` on card store/update requests, which blocks cross-shop holder assignment and tightens the Galaxy access baseline around inventory linkage.
+- Added the missing update-path regression coverage for foreign-shop holder assignment and confirmed the successful update flow now persists in-shop holder linkage too.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_update_card_from_live_admin_flow|test_card_update_live_flow_rejects_holder_from_a_different_shop|test_card_live_flow_rejects_holder_from_a_different_shop'` (`3 passed`).
+
+### Galaxy foundation factories and baseline seeder checkpoint
+- Added Phase 1 model factories for `Shop`, `Role`, `Permission`, `CardType`, `CardHolder`, and `Card`, so the core Galaxy entities now have reusable local/test fixtures instead of relying on the Laravel starter default alone.
+- Replaced the generic `DatabaseSeeder` user stub with a Galaxy-specific baseline dataset: bootstrap admin, shop-scoped operator, HQ shop, baseline permissions/role linkage, a seeded card type, card holder, and card.
+- Added `DatabaseSeederTest` to lock the seeded foundation graph in place, then re-ran `php artisan test tests/Feature/DatabaseSeederTest.php tests/Unit/FoundationModelCastsTest.php tests/Unit/CardTypeModelTest.php` (`5 passed`).
+
+## 2026-05-14
+
+### Dashboard starter-copy cleanup checkpoint
+- Replaced the remaining starter-oriented dashboard wording with Galaxy-foundation language in the controller summary signals, dashboard intro copy, and foundation snapshot description.
+- Updated the focused dashboard feature expectations so the zero-state and live-state foundation slices now assert Galaxy foundation wording instead of starter phrasing.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_dashboard_shows_live_workspace_fallback_when_no_records_exist'`, and the targeted dashboard slice passed (`2 passed`).
+
+### Composer metadata Galaxy-foundation identity checkpoint
+- Replaced the remaining Laravel skeleton package metadata in `composer.json` so the project now identifies itself as `galaxi/foundation` with a Galaxy migration description and Galaxy-oriented keywords.
+- Kept the step structural and low-risk, but it still moves the repo away from starter posture in package metadata that contributors and tooling see first.
+- Re-ran `php artisan test tests/Feature/ExampleTest.php`, and the focused homepage slice still passed (`1 passed`).
+
+### App-name and README Galaxy-foundation framing checkpoint
+- Replaced the remaining top-level Laravel starter framing in `README.md` with a Galaxy migration overview, Phase 1 references, and project-specific local development guidance.
+- Changed the application name defaults from `Laravel` to `Galaxi Foundation` in `config/app.php` and `.env.example`, so fresh local environments inherit Galaxy-specific naming instead of starter branding.
+- Re-ran `php artisan test tests/Feature/ExampleTest.php`, and the focused homepage slice still passed (`1 passed`).
+
+### Public landing page Galaxy-foundation replacement checkpoint
+- Replaced the stock Laravel welcome page with a Galaxy-specific landing page that points operators toward the admin workspace and frames the app as a Phase 1 migration foundation instead of a generic starter.
+- Added a focused feature assertion for `/` so the public entry point now has an explicit regression check for the new Galaxy positioning and Phase 1 call-to-action.
+- Re-ran `php artisan test tests/Feature/ExampleTest.php`, and the focused homepage slice passed (`1 passed`).
+
 ## 2026-05-13
+
+### Roles-permissions scope-posture timeline-description callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the scope-posture timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions lifecycle timeline-description callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the lifecycle timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions permission-review-note timeline-description callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the permission-review-note timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions assignment-note timeline-description callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the assignment-note timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions access-note timeline-description callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the access-note timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions review-note timeline-description callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the review-note timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions last-saved timeline-description callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the last-saved timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions assignment-scope timeline-description cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the assignment-scope timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions permission-bundle timeline-description cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the permission-bundle timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions status timeline-description cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the status timeline description at its only call site and removing the now-redundant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions selected-review timeline-description cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the selected-review timeline description at its only call site and removing the now-redundant constant helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-coverage summary callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the summary-panel scope-coverage wording at its only call site and removing the now-redundant surface-specific helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-rollout summary callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the summary-panel scope-rollout wording at its only call site and removing the now-redundant surface-specific helper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-coverage dependency callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the dependency-panel scope-coverage wording at its only call site and removing the now-redundant surface-specific wrapper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions assignment-note label cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the dependency-panel assignment-note label at its only call site and removing the now-redundant surface-specific wrapper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions access-note label cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the dependency-panel access-note label at its only call site and removing the now-redundant surface-specific wrapper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions review-note label cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the dependency-panel review-note label at its only call site and removing the now-redundant surface-specific wrapper.
+- Kept the step narrow and behavior-preserving, which trims one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions lifecycle dependency callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by routing the dependency-panel lifecycle-freshness call site directly to the shared `lifecycleFreshnessLabel(...)` helper and removing the now-redundant surface-specific wrapper.
+- Kept the change narrow and behavior-preserving, trimming one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions lifecycle freshness label-callsite cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by routing the summary lifecycle-freshness call site directly to the shared `lifecycleFreshnessLabel(...)` helper and removing the now-redundant surface-specific wrapper.
+- Kept the change narrow and behavior-preserving, trimming one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions last-saved label cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by routing both last-saved label call sites directly to the shared `lastSavedLabel(...)` helper and removing the now-redundant surface-specific wrapper.
+- Kept the change narrow and behavior-preserving, while trimming one more small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions lifecycle freshness-label cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by routing the summary freshness label directly to the shared lifecycle label helper and removing another redundant surface-specific pass-through layer.
+- Kept the change narrow and behavior-preserving, mirroring the same direct-helper cleanup already applied in adjacent dependency-panel helpers.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions lifecycle dependency-label cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the dependency-panel lifecycle label to the shared freshness helper and removing the now-redundant surface-specific pass-through wrapper.
+- Kept the change narrow and behavior-preserving by routing directly to the existing generic lifecycle label helper instead of duplicating any freshness wording.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-coverage dependency-label cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the dependency-panel scope-coverage label logic back into its primary helper and removing the redundant pass-through wrapper.
+- Kept the step narrow and behavior-preserving, while trimming one more generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions status-signal cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the role-status signal logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Re-read the local controller block before editing because the exact helper text had drifted slightly from the earlier grep snapshot, then completed the same behavior-preserving cleanup against the current source.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions coverage-signal cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the coverage-signal logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Re-read the local controller block before editing because the exact helper text had drifted slightly from the earlier grep snapshot, then completed the same behavior-preserving cleanup against the current source.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions assignment-note timeline-description cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the assignment-note timeline description logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions access-note timeline-description cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the access-note timeline description logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions review-note timeline-description cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the review-note timeline description logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions last-saved timeline-description cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the last-saved timeline description logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-rollout dependency cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the scope-rollout dependency posture logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-coverage timeline-description cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the scope-coverage timeline description logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-posture timeline-description cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the scope-posture timeline description logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-coverage dependency cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the scope-coverage dependency label logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-coverage timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the scope-coverage timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-coverage label cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the scope-coverage label logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-rollout posture cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the scope-rollout posture logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-rollout value cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the scope-rollout value logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions assignment-scope timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the assignment-scope timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions permission-review-note timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the permission-review-note timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions permission-bundle timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the permission-bundle timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions scope-posture timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the scope-posture timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions assignment-note timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the assignment-note timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions access-note timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the access-note timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions review-note timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the review-note timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions last-saved timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the last-saved timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions lifecycle timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the lifecycle timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions status timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the status timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions review timeline-title cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the selected review timeline title back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions selected publish disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the selected publish disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Roles-permissions catalog publish disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the catalog publish disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted roles slice passed (`2 passed`).
+
+### Roles-permissions catalog review-matrix disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the catalog review-matrix disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted roles slice passed (`2 passed`).
+
+### Roles-permissions review-matrix disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `roles-permissions` surface by inlining the selected review-matrix disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_roles_permissions_page_supports_selected_mixed_branch_permission_review_context|test_selected_draft_role_shows_readiness_driven_action_gating_reasons'`, and the targeted selected-role slice passed (`2 passed`).
+
+### Gifts publish disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `gifts` surface by inlining the selected publish disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, and the targeted selected-gift slice passed (`4 passed`).
+
+### Gifts stock-audit disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `gifts` surface by inlining the selected stock-audit disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_gifts_page_supports_selected_gift_review_context|test_gifts_page_supports_selected_scoped_gift_review_context|test_gifts_page_supports_selected_all_shop_gift_review_context|test_gifts_page_supports_selected_paused_finite_stock_gift_review_context'`, and the targeted selected-gift slice passed (`4 passed`).
+
+### Services-rules publish disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `services-rules` surface by inlining the selected publish disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context'`, and the targeted selected-rule slice passed (`3 passed`).
+
+### Services-rules review-priorities disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `services-rules` surface by inlining the selected review-priorities disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_services_rules_page_supports_selected_rule_review_context|test_services_rules_page_supports_selected_scoped_rule_review_context|test_services_rules_page_supports_selected_all_shop_rule_review_context'`, and the targeted selected-rule slice passed (`3 passed`).
+
+### Reports export disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `reports` surface by inlining the selected export disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_mixed_assignment_scope_review_context|test_reports_page_supports_selected_mixed_assignment_branch_activity_review_context'`, and the targeted selected-source slice passed (`5 passed`).
+
+### Reports preset disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `reports` surface by inlining the selected preset disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_reports_page_supports_selected_live_source_review_context|test_reports_page_supports_selected_cardholder_status_review_context|test_reports_page_supports_selected_role_access_review_context|test_reports_page_supports_selected_mixed_assignment_scope_review_context|test_reports_page_supports_selected_mixed_assignment_branch_activity_review_context'`, and the targeted selected-source slice passed (`5 passed`).
+
+### Checks-points find-receipt disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `checks-points` surface by inlining the selected find-receipt disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context'`, and the targeted selected-receipt slice passed (`3 passed`).
+
+### Checks-points review-gaps disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `checks-points` surface by inlining the selected review-gaps disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_checks_points_page_supports_selected_receipt_review_context|test_checks_points_page_supports_selected_branch_receipt_review_context|test_checks_points_page_supports_selected_positive_accrual_receipt_review_context'`, and the targeted selected-receipt slice passed (`3 passed`).
+
+### Shops review-scope disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `shops` surface by inlining the selected review-scope disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_shops_page_surfaces_selected_shop_context_from_laravel_data|test_shops_page_supports_selected_branch_coverage_without_manager_review_context|test_shops_page_supports_selected_manager_linked_coverage_review_context|test_shops_page_supports_selected_manager_only_branch_review_context|test_shops_page_supports_selected_paused_branch_review_context'`, and the targeted selected-shop slice passed (`5 passed`).
+
+### Cardholders activity-review disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `cardholders` surface by inlining the selected activity-review disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cards blocked-review disabled-reason cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `cards` surface by inlining the selected blocked-review disabled-reason logic back into its primary helper and removing the now-redundant pass-through summary method.
+- Kept the step behavior-preserving and narrow, while trimming another small layer of generic-starter-style indirection from the Galaxy-specific admin review shell.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cardholders Laravel-status helper naming checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by renaming the selected-holder Laravel-status helper to the more consistent `...Label()` form, keeping the admin-shell helper layer more uniform.
+- Kept the step behavior-preserving and limited to naming consistency, which helps the Galaxy-specific review surface read less like leftover starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders lookup-dependency helper signature cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `cardholders` surface by trimming the now-unused `CardHolder` argument from the dedicated lookup-dependency posture helper and updating its call site.
+- Kept the step behavior-preserving, but reduced a little generic-starter-style glue by making the selected-holder dependency helper match its actual read-only responsibility more cleanly.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cards inventory-dependency helper signature cleanup checkpoint
+- Continued the same Phase 1 cleanup pattern on the `cards` surface by trimming the now-unused `Card` argument from the dedicated inventory-dependency posture helper and updating its call site.
+- Kept the step behavior-preserving, but reduced a little generic-starter-style glue by making the selected-card dependency helper match its actual read-only responsibility more cleanly.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cardholders card-linkage posture helper checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the dependency-panel `Card linkage posture` wording behind a dedicated helper instead of keeping the linked-versus-unlinked copy inline.
+- Kept the step narrow and behavior-preserving, while making the holder review shell a bit more consistent with the layered Galaxy-specific admin pattern already used elsewhere in the selected-holder experience.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders lookup-dependency posture helper checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the dependency-panel `Lookup posture` string behind a dedicated helper instead of keeping that read-only review copy inline.
+- Kept the step narrow and behavior-preserving, while making the holder review shell a bit more consistent with the layered Galaxy-specific admin pattern already used elsewhere in the selected-holder experience.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders dependency review-note helper checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by routing the dependency-panel `Review note` value through the existing review-note helper instead of keeping the fallback text inline.
+- Kept the step narrow and behavior-preserving, while making the holder review shell a bit more consistent with the layered Galaxy-specific admin pattern already used in the selected summary.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders dependency status-signal helper checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by routing the dependency-panel `Holder status signal` through the existing status-signal helper instead of keeping the active-versus-inactive copy inline.
+- Kept the step narrow and behavior-preserving, while making the holder review shell a bit more consistent with the layered Galaxy-specific admin pattern already used in the selected summary.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders dependency selected-holder helper checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by routing the dependency-panel `Selected holder` value through the existing selected-holder helper instead of keeping the full-name read inline.
+- Kept the step narrow and behavior-preserving, while making the holder review shell a bit more consistent with the layered Galaxy-specific admin pattern already used in the selected summary.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cards inventory-dependency posture helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card dependency `Inventory posture` string behind a dedicated helper instead of keeping that read-only review copy inline inside the dependency payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards review-mode helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card review-mode wording behind a dedicated helper instead of keeping that draft-versus-live copy inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards Laravel-status label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card Laravel-status label behind a dedicated helper instead of keeping that model-state value inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards shop-label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card shop label behind a dedicated helper instead of keeping that fallback value inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards type-label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card type label behind a dedicated helper instead of keeping that fallback value inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards holder-label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card holder label behind a dedicated helper instead of keeping that fallback value inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards activated-label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card activated-date label behind a dedicated helper instead of keeping that formatting fallback inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards issued-label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the repeated selected-card issued-date label behind a dedicated helper instead of keeping the same formatting fallback inline in both the summary and dependency-status payloads.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards review-note helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the repeated selected-card review-note label behind a dedicated helper instead of keeping the same fallback value inline in both the summary and dependency-status payloads.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cards selected-card label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the repeated selected-card display label behind a dedicated helper instead of keeping the card number inline in both the summary and dependency-status payloads.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
+
+### Cardholders selected-holder label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder display label behind a dedicated helper instead of keeping the holder name inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders review-note label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder review-note label behind a dedicated helper instead of keeping that fallback value inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders shop-label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder shop label behind a dedicated helper instead of keeping that fallback value inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders phone-label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder phone label behind a dedicated helper instead of keeping that fallback value inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders linked-cards label helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder linked-cards label behind a dedicated helper instead of keeping that count cast inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders Laravel-status helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder Laravel-status wording behind a dedicated helper instead of keeping that active-versus-inactive label inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders review-mode helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder review-mode wording behind a dedicated helper instead of keeping that Galaxy-specific active-versus-inactive copy inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cardholders status-signal helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cardholders` surface by moving the selected-holder status-signal wording behind a dedicated helper instead of keeping that Galaxy-specific active-versus-inactive copy inline inside the summary payload.
+- Kept the step narrow and behavior-preserving, but made the selected-holder lookup shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cardholders_page_supports_selected_active_linked_holder_review_context|test_cardholders_page_supports_selected_active_unlinked_holder_review_context|test_cardholders_page_supports_selected_inactive_linked_holder_review_context'`, and the targeted selected-holder slice passed (`3 passed`).
+
+### Cards shop-dependency posture helper split checkpoint
+- Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card shop-posture wording behind a dedicated helper instead of keeping that Galaxy-specific branch-ownership split inline inside the dependency-status payload.
+- Kept the step narrow and behavior-preserving, but made the selected-card inventory shell a little more layered so the admin surface keeps drifting away from generic starter glue.
+- Re-ran `php artisan test --filter='test_cards_page_supports_selected_active_card_review_context|test_cards_page_supports_selected_active_unassigned_card_review_context|test_cards_page_supports_selected_blocked_holder_linked_card_review_context|test_cards_page_supports_selected_blocked_unassigned_card_review_context|test_cards_page_supports_selected_draft_card_review_context'`, and the targeted selected-card slice passed (`5 passed`).
 
 ### Cards assignment-dependency posture helper split checkpoint
 - Continued the same Phase 1 helper-cleanup pattern on the `cards` surface by moving the selected-card assignment-posture wording behind a dedicated helper instead of keeping that Galaxy-specific holder-linkage branch inline inside the dependency-status payload.
@@ -6469,3 +12534,958 @@
 - Refined `cardTypesHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so live tiers with visible card coverage now call out rollout parity explicitly instead of using a broader rollout handoff note.
 - Extended the focused live card-type coverage test in `tests/Feature/AdminDashboardTest.php` to assert the updated live-tier `Handoff signal` text renders in the selected-tier review context.
 - Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Catalog latest-preview helper checkpoint
+- Added `firstCatalogPreview()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for receipt, rule, and gift catalog previews so latest preview review actions no longer repeat `collect(...)->first()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_gifts_management_preview'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening receipt, rule, or gift write behavior.
+
+### Catalog latest-saved collection helper checkpoint
+- Added `latestSavedCollectionRecord()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for roles, cards, cardholders, and shops so latest saved review actions no longer repeat collection `sortByDesc('id')->first()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_shops_operational_index_shape'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening role, card, holder, or shop write behavior.
+
+### Shop assigned-manager name helper checkpoint
+- Added `shopAssignedManagerName()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for both the shops catalog row and selected-shop review card so branch manager display no longer repeats direct `users->first()?->name` access inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_shops_page_supports_selected_shop_review_context|test_shops_page_supports_selected_paused_shop_review_context'`, `1 passed` on the current focused match set.
+- Kept the change read-only and parity-first, without widening branch writes, reassignment behavior, or manager persistence.
+
+### Card types latest-saved helper checkpoint
+- Added `latestSavedCardType()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the card-types page so the latest tier review action no longer performs its `latest('id')->first()` query inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `1 passed` on the current focused match set.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Card types active-count helper checkpoint
+- Added `activeCardTypeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both tier import-rule and publish disabled-reason flows so those card-type catalog guards no longer repeat the active-tier query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `1 passed` on the current focused match set.
+- Kept the change read-only and parity-first, without widening tier writes, publish flows, or rule-import behavior.
+
+### Shops paused-count helper checkpoint
+- Added `pausedShopCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both the shops catalog metrics and new-shop disabled-reason flow so paused-branch count lookup no longer repeats the paused-shop query inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or manager assignment behavior.
+
+### Roles permission-linked count helper checkpoint
+- Added `permissionLinkedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both role-matrix and publish-role disabled-reason flows so those access-shell guards no longer repeat the permission-bearing role count query inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, permission edits, or publish behavior.
+
+### Roles active-count helper checkpoint
+- Added `activeRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both role-matrix and publish-role disabled-reason flows so those access-shell guards no longer repeat the active-role query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, permission edits, or publish behavior.
+
+### Roles scoped-assignment count helper checkpoint
+- Added `shopScopedAssignedRoleCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the publish-role disabled-reason flow so that access-shell guard no longer repeats the shop-scoped assigned-role query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment behavior, or publish behavior.
+
+### Cards active-count helper checkpoint
+- Added `activeCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both issue-card and review-blocked disabled-reason flows so those inventory guards no longer repeat the active-card query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening card writes, issue behavior, or blocked-state recovery flows.
+
+### Cardholders active-count helper checkpoint
+- Added `activeCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the holder activity disabled-reason flow so that cardholder guard no longer repeats the active-holder query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or activity-history behavior.
+
+### Cardholders paused-count helper checkpoint
+- Added `pausedCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the holder activity disabled-reason flow so that paused-branch holder count lookup no longer repeats the paused-holder query inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or activity-history behavior.
+
+### Card holder-linked count helper checkpoint
+- Added `holderLinkedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both holder new-profile and activity disabled-reason flows so those cardholder guards no longer repeat the holder-linked card query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, card assignment behavior, or activity-history behavior.
+
+### Cardholders inactive-count helper checkpoint
+- Added `inactiveCardHolderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the holder new-profile disabled-reason flow so that cardholder guard no longer repeats the inactive-holder query count inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle recovery behavior, or profile setup flows.
+
+### Shop loaded-manager count helper checkpoint
+- Added `shopLoadedManagerCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopAssignedManagerCount()` so the loaded-relation fallback now reads through one named shop manager-count seam instead of calling `users->count()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, reassignment flows, or manager persistence behavior.
+
+### Shop first-loaded-manager helper checkpoint
+- Added `firstLoadedShopManager()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopAssignedManagerName()` so manager-name lookup no longer calls `users->first()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, reassignment flows, or manager persistence behavior.
+
+### Role loaded-user count helper checkpoint
+- Added `roleLoadedUserCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `roleAssignedUserCount()` so the loaded-relation fallback now reads through one named role user-count seam instead of calling `users->count()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link persistence behavior.
+
+### Role loaded-permission count helper checkpoint
+- Added `roleLoadedPermissionCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `rolePermissionCount()` so the loaded-relation fallback now reads through one named role permission-count seam instead of calling `permissions->count()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link persistence behavior.
+
+### Shop loaded-cardholder count helper checkpoint
+- Added `shopLoadedCardholderCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopVisibleCardholderCount()` so the loaded-relation fallback now reads through one named shop cardholder-count seam instead of calling `cardHolders->count()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, cardholder assignment flows, or coverage persistence behavior.
+
+### Shop loaded-card count helper checkpoint
+- Added `shopLoadedCardCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopVisibleCardCount()` so the loaded-relation fallback now reads through one named shop card-count seam instead of calling `cards->count()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, card assignment flows, or coverage persistence behavior.
+
+### Shop loaded-managers collection helper checkpoint
+- Added `loadedShopManagers()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `shopLoadedManagerCount()` and `firstLoadedShopManager()` so the loaded shop-manager collection now flows through one named seam instead of repeating direct `users` access.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, reassignment flows, or manager persistence behavior.
+
+### Role loaded-users collection helper checkpoint
+- Added `loadedRoleUsers()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `roleLoadedUserCount()` so the loaded role-user collection now flows through one named seam instead of reading `users` directly inside the count helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link persistence behavior.
+
+### Role loaded-permissions collection helper checkpoint
+- Added `loadedRolePermissions()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `roleLoadedPermissionCount()` so the loaded role-permission collection now flows through one named seam instead of reading `permissions` directly inside the count helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link persistence behavior.
+
+### Shop loaded-cardholders collection helper checkpoint
+- Added `loadedShopCardholders()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopLoadedCardholderCount()` so the loaded shop-cardholder collection now flows through one named seam instead of reading `cardHolders` directly inside the count helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, cardholder assignment flows, or coverage persistence behavior.
+
+### Shop loaded-cards collection helper checkpoint
+- Added `loadedShopCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopLoadedCardCount()` so the loaded shop-card collection now flows through one named seam instead of reading `cards` directly inside the count helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, card assignment flows, or coverage persistence behavior.
+
+### Role assigned-user scope count helper checkpoint
+- Added `roleAssignedUserScopeCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `roleAssignedToActiveShopCount()` and `roleAssignedToPausedShopCount()` so those role activity counts no longer repeat the same scoped user query-count pattern inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link persistence behavior.
+
+### Resource index collection normalization helper checkpoint
+- Added `collectItems()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `firstCatalogPreview()`, `latestSavedCollectionRecord()`, and `filterMatching()` so those generic collection seams now normalize iterables through one named helper instead of repeating direct `collect(...)` calls.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening preview selection, saved-record ordering, or catalog write behavior.
+
+### Receipt preview collection helper checkpoint
+- Reused `collectItems()` in `receiptPreviewShopCount()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that receipt preview normalization no longer calls `collect(...)` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening receipt parsing, preview aggregation, or check-point write behavior.
+
+### Report sources collection helper checkpoint
+- Reused `collectItems()` in the reports preview table row mapping and latest-live-source selection inside `app/Http/Controllers/Admin/ResourceIndexController.php` so those report-source collection seams no longer call `collect(...)` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_authenticated_user_can_access_reports_management_preview'`, `1 passed` (the filter matched the dashboard slice in this run).
+- Kept the change read-only and parity-first, without widening report-source writes, preview routing, or report availability behavior.
+
+### Selected preview collection helper checkpoint
+- Reused `collectItems()` in `selectedPreviewByKey()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so keyed preview selection no longer calls `collect(...)` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening selected-preview routing, catalog writes, or preview matching behavior.
+
+### Receipt table collection helper checkpoint
+- Reused `collectItems()` in the receipts preview table row mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that checks/points preview rows no longer call `collect(...)` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening receipt preview routing, table rendering, or check-point write behavior.
+
+### Rules table collection helper checkpoint
+- Reused `collectItems()` in the rules preview table row mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that services/rules preview rows no longer call `collect(...)` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening rule preview routing, table rendering, or rule write behavior.
+
+### Gifts table collection helper checkpoint
+- Reused `collectItems()` in the gifts preview table row mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that gifts preview rows no longer call `collect(...)` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening gift preview routing, table rendering, or reward write behavior.
+
+### Shop-scoped records collection helper checkpoint
+- Reused `collectItems()` in `filterShopScopedRecords()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that scoped record normalization no longer calls `collect(...)` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_admin_dashboard|test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_cardholders_operational_index_shape'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening shop scoping, record filtering, or admin write behavior.
+
+### Card live-form collection helper checkpoint
+- Reused `collectItems()` in the card live-form field mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that the shop/card-type field enrichment path no longer calls `collect(...)` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cards_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening card issuance, live-form writes, or option-selection behavior.
+
+### Cardholder live-form collection helper checkpoint
+- Reused `collectItems()` in the shop-scoped live-form field mapping inside `app/Http/Controllers/Admin/ResourceIndexController.php` so that this live-form enrichment path no longer calls `collect(...)` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening cardholder profile writes, live-form writes, or option-selection behavior.
+
+### Resource index iterable count helper checkpoint
+- Added `iterableCount()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `receiptPreviewCount()` and `roleScopeCount()` so those generic count seams now flow through one named iterable counter instead of mixing raw `count(...)` and collection `->count()` calls.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening preview counting, role scope messaging, or catalog write behavior.
+
+### Receipt preview shops helper checkpoint
+- Added `receiptPreviewShops()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `receiptPreviewShopCount()` so that receipt shop-count logic now flows through a named preview-shop collection seam plus `iterableCount()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening receipt parsing, preview aggregation, or check-point write behavior.
+
+### Resource index count-matching helper checkpoint
+- Reused `iterableCount()` in `countMatching()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so generic predicate-based counts now share the same named iterable counter instead of calling filtered collection `->count()` directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_checks_points_operational_index_shape|test_authenticated_user_can_access_services_rules_operational_index_shape|test_authenticated_user_can_access_gifts_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `4 passed`.
+- Kept the change read-only and parity-first, without widening preview counting, predicate matching, or catalog write behavior.
+
+### Role loaded-users preview helper checkpoint
+- Reused `loadedRoleUsers()` in both `roleShopScopeNames()` and `roleAssignedUserPreview()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so those role preview seams no longer reach into the loaded `users` relation directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or preview rendering behavior.
+
+### Role users-relation helper checkpoint
+- Added `roleUsersRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `roleAssignedUserScopeCount()` so the scoped role-user query seam no longer reaches directly for `$role->users()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or role preview behavior.
+
+### Role permissions-relation helper checkpoint
+- Added `rolePermissionsRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `loadedRolePermissions()` so the role permission seam now reads through a named relation helper instead of touching the permissions relation directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, permission-link flows, or role preview behavior.
+
+### Role users-relation loaded seam checkpoint
+- Reused `roleUsersRelation()` in `loadedRoleUsers()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so the loaded role-user seam now reads through the same named relation helper as the scoped role-user query seam.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or role preview behavior.
+
+### Role relation return-type checkpoint
+- Imported `Illuminate\Database\Eloquent\Relations\Relation` in `app/Http/Controllers/Admin/ResourceIndexController.php` and added explicit `Relation` return types to both `roleUsersRelation()` and `rolePermissionsRelation()` so those Phase 1 role relation seams are now explicit and type-aligned.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, assignment flows, or permission-link behavior.
+
+### Shop first-loaded-user seam checkpoint
+- Added `firstLoadedShopUser()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `firstLoadedShopManager()` so the first loaded shop-user selection now flows through one named seam instead of calling `first()` inline there.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, manager assignment flows, or shop preview behavior.
+
+### Shop first-loaded-user type checkpoint
+- Tightened `firstLoadedShopUser()` in `app/Http/Controllers/Admin/ResourceIndexController.php` to return `?User`, and simplified `firstLoadedShopManager()` to reuse that typed seam directly instead of repeating its own `instanceof` guard.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, manager assignment flows, or shop preview behavior.
+
+### Shop users-relation helper checkpoint
+- Added `shopUsersRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `loadedShopManagers()` so the loaded shop-manager seam now reads through a named relation helper instead of touching the users relation directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, manager assignment flows, or shop preview behavior.
+
+### Shop cardholders-relation helper checkpoint
+- Added `shopCardholdersRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `loadedShopCardholders()` so the loaded shop-cardholder seam now reads through a named relation helper instead of touching the cardholders relation directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, cardholder assignment flows, or shop preview behavior.
+
+### Shop cards-relation helper checkpoint
+- Added `shopCardsRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `loadedShopCards()` so the loaded shop-card seam now reads through a named relation helper instead of touching the cards relation directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, card assignment flows, or shop preview behavior.
+
+### Role permission preview seam reuse checkpoint
+- Reused `loadedRolePermissions()` in the roles-permissions table permission preview, selected-role permission preview, and `rolePermissionReviewNote()` inside `app/Http/Controllers/Admin/ResourceIndexController.php` so those access-review reads no longer touch the permissions collection inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_roles_permissions_management_preview|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening role writes, permission-link flows, or access preview behavior.
+
+### Card-type cards relation seam checkpoint
+- Added `loadedCardTypeCards()` and `cardTypeCardsRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused them in `cardTypeVisibleCardCount()` so tier card-coverage reads no longer touch the cards relation inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_card_types_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `1 passed`.
+- Kept the change read-only and parity-first, without widening tier writes, rollout flows, or card-type preview behavior.
+
+### Cardholder cards relation seam checkpoint
+- Added `loadedCardholderCards()` and `cardholderCardsRelation()` in `app/Http/Controllers/Admin/ResourceIndexController.php`, then reused them in `cardholderLinkedCardCount()` so holder-linked card coverage reads no longer touch the cards relation inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, card-linking flows, or cardholder preview behavior.
+
+### Cardholder linked-card boolean seam checkpoint
+- Added `cardholderHasLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across cardholder operational-readiness, linkage, activity-handoff, timeline-handoff, and card-linkage-posture messaging so those review branches no longer repeat raw `cardholderLinkedCardCount(...) > 0` checks inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder review behavior.
+
+### Cardholder paused-linked seam checkpoint
+- Added `cardholderIsPausedWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in cardholder activity-handoff and timeline-handoff messaging so the paused-branch plus linked-card review branch no longer repeats that combined condition inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or cardholder review behavior.
+
+### Cardholder inactive-linked seam checkpoint
+- Added `cardholderIsInactiveWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in cardholder activity-handoff and timeline-handoff messaging so the inactive-holder plus linked-card review branch no longer repeats that combined condition inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, reactivation flows, or cardholder review behavior.
+
+### Cardholder active-linked seam checkpoint
+- Added `cardholderIsActiveWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in cardholder activity-handoff and timeline-handoff messaging so the active-holder plus linked-card review branch no longer repeats that combined condition inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle-change flows, or cardholder review behavior.
+
+### Cardholder paused-active seam checkpoint
+- Added `cardholderIsPausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across cardholder lookup, focus, posture, evidence, backend-gap, and status-posture messaging so the paused-branch active-holder review branch no longer repeats that combined condition inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, recovery flows, or cardholder review behavior.
+
+### Cardholder inactive-state seam checkpoint
+- Added `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in cardholder activity-handoff and timeline-handoff messaging so the plain inactive-holder review branch no longer repeats a raw negated active check inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, reactivation flows, or cardholder review behavior.
+
+### Cardholder operational-readiness inactive seam checkpoint
+- Reused `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersOperationalReadiness()` so that readiness branch no longer repeats its own raw negated active check.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, readiness flows, or cardholder review behavior.
+
+### Cardholder review-mode inactive seam checkpoint
+- Reused `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersReviewMode()` so the selected-holder review-mode branch no longer depends on a raw active/inactive ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, review flows, or cardholder workspace behavior.
+
+### Cardholder status-signal inactive seam checkpoint
+- Reused `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersStatusSignal()` so the selected-holder status branch no longer depends on a raw active/inactive ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, status flows, or cardholder workspace behavior.
+
+### Cardholder galaxy-status inactive seam checkpoint
+- Reused `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersGalaxyStatusLabel()` so the selected-holder Galaxy-status label no longer depends on a raw active/inactive ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, status-label flows, or cardholder workspace behavior.
+
+### Cardholder unpaused-active seam checkpoint
+- Added `cardholderIsUnpausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across cardholder lookup, focus, posture, evidence, backend-gap, and status-posture messaging so the active non-paused holder review branch no longer repeats that combined condition inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder review behavior.
+
+### Cardholder review-activity seam reuse checkpoint
+- Reused the existing cardholder state seams in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersSelectedReviewActivityDisabledReason()`, replacing inline paused, linked-card, active, and inactive combinations with `cardholderIsPausedWithLinkedCards()`, `cardholderIsActiveWithLinkedCards()`, `cardholderHasLinkedCards()`, and `cardholderIsInactive()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, activity flows, or cardholder workspace behavior.
+
+### Cardholder shop-link seam checkpoint
+- Added `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `cardholdersLinkageSignal()` so selected-holder branch-linkage messaging no longer repeats raw shop-presence checks inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-linkage flows, or cardholder workspace behavior.
+
+### Cardholder shop-guidance seam checkpoint
+- Reused `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersShopGuidance()` so selected-holder branch-guidance messaging no longer depends on a raw shop-presence ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-guidance flows, or cardholder workspace behavior.
+
+### Cardholder shop-activity seam checkpoint
+- Reused `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholdersShopActivitySignal()` so selected-holder branch-activity messaging no longer depends on a raw missing-shop check.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-activity flows, or cardholder workspace behavior.
+
+### Cardholder paused-shop seam checkpoint
+- Reused `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholderShopIsPaused()` so the paused-branch holder seam no longer repeats a raw shop-presence check before its active-branch guard.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder active-shop seam checkpoint
+- Reused `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` inside `cardholderShopIsActive()` so the active-branch holder seam now follows the same explicit shop-presence gate as the paused-branch helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder review-note reflection seam checkpoint
+- Added `cardholdersReviewNoteReflection()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder timeline item so that holder review-note reflection no longer reads the note field inline inside the timeline array.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, timeline flows, or cardholder workspace behavior.
+
+### Cardholder phone-value seam checkpoint
+- Added `cardholderPhoneValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `cardholdersPhoneLabel()` and the selected-holder live-form values so holder phone fallback handling no longer repeats inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, contact flows, or cardholder workspace behavior.
+
+### Cardholder review-note value seam checkpoint
+- Added `cardholderReviewNoteValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both `cardholdersReviewNoteLabel()` and the selected-holder live-form values so holder review-note fallback handling no longer repeats inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, note flows, or cardholder workspace behavior.
+
+### Cardholder email-value seam checkpoint
+- Added `cardholderEmailValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder live-form values so holder email fallback handling no longer repeats inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, contact flows, or cardholder workspace behavior.
+
+### Cardholder shop-id value seam checkpoint
+- Added `cardholderShopIdValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder live-form values so holder shop-id fallback handling no longer repeats inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-assignment flows, or cardholder workspace behavior.
+
+### Cardholder active-value seam checkpoint
+- Added `cardholderActiveValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder live-form values so the holder active-flag string mapping no longer repeats inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, activation flows, or cardholder workspace behavior.
+
+### Cardholder full-name value seam checkpoint
+- Added `cardholderFullNameValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder live-form values so the holder full-name mapping now follows the same named-value seam pattern as the adjacent form fields.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, identity flows, or cardholder workspace behavior.
+
+### Cardholder live-form values seam checkpoint
+- Added `cardholdersLiveFormValues()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for the selected-holder live-form `valuesResolver` so the holder edit-form value map now flows through one named seam instead of being assembled inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, form flows, or cardholder workspace behavior.
+
+### Cardholder activity-timeline seam checkpoint
+- Added `cardholdersActivityTimeline()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for the selected-holder activity timeline so the holder review timeline now flows through one named seam instead of being assembled inline in the page block.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, timeline flows, or cardholder workspace behavior.
+
+### Cardholder selected-actions seam checkpoint
+- Added `cardholdersSelectedActions()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for the selected-holder actions block so the holder review action state now flows through a named seam instead of being assembled inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, action flows, or cardholder workspace behavior.
+
+### Cardholder selected-page-state seam checkpoint
+- Added `cardholdersSelectedPageState()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it for the selected-holder review branch so summary, live-form wiring, actions, timeline, and dependency status now flow through one named seam instead of being assembled inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, review flows, or cardholder workspace behavior.
+
+### Cardholder selected-label seam checkpoint
+- Reused `cardholderFullNameValue()` inside `cardholdersSelectedHolderLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so selected-holder labeling now follows the same named value seam as the adjacent live-form and timeline helpers.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, label flows, or cardholder workspace behavior.
+
+### Cardholder shop seam checkpoint
+- Added `cardholderShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-holder access gate plus `cardholdersShopLabel()` and `cardholderHasShop()` so nearby holder shop reads now flow through one named seam.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-access flows, or cardholder workspace behavior.
+
+### Cardholder shop-active seam checkpoint
+- Reused `cardholderShop()` inside `cardholderShopIsActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the nearby holder branch-activity helper now follows the same named shop seam as the access gate and shop label helpers.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder review-note reflection reuse checkpoint
+- Reused `cardholderReviewNoteValue()` inside `cardholdersReviewNoteReflection()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so holder review-note reflection now follows the same named note-value seam as the selected-holder label and live-form helpers.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, note flows, or cardholder workspace behavior.
+
+### Cardholder shop-id seam checkpoint
+- Added `cardholderShopId()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIdValue()` so the holder shop-id string mapping now builds on a dedicated named id seam instead of reading the field inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-assignment flows, or cardholder workspace behavior.
+
+### Cardholder phone seam checkpoint
+- Added `cardholderPhone()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderPhoneValue()` so the holder phone fallback path now builds on a dedicated named phone seam instead of reading the field inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, contact flows, or cardholder workspace behavior.
+
+### Cardholder email seam checkpoint
+- Added `cardholderEmail()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderEmailValue()` so the holder email fallback path now builds on a dedicated named email seam instead of reading the field inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, contact flows, or cardholder workspace behavior.
+
+### Cardholder review-note seam checkpoint
+- Added `cardholderReviewNote()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderReviewNoteValue()` so the holder note fallback path now builds on a dedicated named note seam instead of reading the field inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, note flows, or cardholder workspace behavior.
+
+### Cardholder active-flag seam checkpoint
+- Added `cardholderActiveFlag()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderIsActive()` so the holder active-state boolean path now builds on a dedicated named flag seam instead of reading the field inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, activation flows, or cardholder workspace behavior.
+
+### Cardholder full-name seam checkpoint
+- Added `cardholderFullName()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderFullNameValue()` so the holder full-name path now builds on a dedicated named value seam instead of reading the field inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, identity flows, or cardholder workspace behavior.
+
+### Cardholder active-value reuse checkpoint
+- Reused `cardholderActiveFlag()` inside `cardholderActiveValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the holder active string mapping now builds on the same named flag seam as `cardholderIsActive()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, activation flows, or cardholder workspace behavior.
+
+### Cardholder shop-name seam checkpoint
+- Added `cardholderShopName()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholdersShopLabel()` so the holder shop label path now builds on a dedicated named shop-name seam instead of reaching through the shop relation inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-label flows, or cardholder workspace behavior.
+
+### Cardholder shop-active-flag seam checkpoint
+- Added `cardholderShopActiveFlag()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIsActive()` so the holder branch-activity check now builds on a dedicated named shop-state seam instead of casting the relation field inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder shop-presence seam checkpoint
+- Reused `cardholderShopId()` inside `cardholderHasShop()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the holder shop-presence check now follows the same id seam as the selected-holder live-form value path instead of depending on the loaded relation object.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-linkage flows, or cardholder workspace behavior.
+
+### Cardholder paused-shop flag reuse checkpoint
+- Reused `cardholderShopActiveFlag()` inside `cardholderShopIsPaused()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch helper now builds directly on the same named shop-state seam as `cardholderShopIsActive()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder linked-card count-attribute seam checkpoint
+- Added `cardholderCardsCountAttribute()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderLinkedCardCount()` so the holder linked-card count path now builds on a named count-attribute seam before falling back to loaded relation counts.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder workspace behavior.
+
+### Cardholder cards relation seam checkpoint
+- Added `cardholderCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderCardsRelation()` so the holder cards relation path now builds on a dedicated named relation seam instead of calling the relation inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, card-linkage flows, or cardholder workspace behavior.
+
+### Cardholder unlinked seam checkpoint
+- Added `cardholderIsUnlinked()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderHasLinkedCards()` so the holder linkage boolean path now flows through an explicit linked/unlinked seam pair instead of repeating the count comparison inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder workspace behavior.
+
+### Cardholder active-linked seam checkpoint
+- Reused `cardholderIsInactive()` and `cardholderIsUnlinked()` inside `cardholderIsActiveWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active+linked holder state helper now builds directly on the existing named state seams instead of recomposing the checks inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder workspace behavior.
+
+### Cardholder inactive-linked seam checkpoint
+- Reused `cardholderIsInactive()` and `cardholderIsUnlinked()` inside `cardholderIsInactiveWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the inactive+linked holder state helper now builds directly on the existing named state seams instead of recomposing the checks inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder workspace behavior.
+
+### Cardholder paused-active seam checkpoint
+- Reused `cardholderIsInactive()` inside `cardholderIsPausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused+active holder state helper now builds directly on the existing named state seams instead of recomposing the positive active check inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder unpaused-active seam checkpoint
+- Reused `cardholderIsInactive()` inside `cardholderIsUnpausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the unpaused+active holder state helper now builds directly on the existing named state seams instead of recomposing the positive active check inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder paused-linked seam checkpoint
+- Reused `cardholderIsUnlinked()` inside `cardholderIsPausedWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused+linked holder state helper now builds directly on the existing named linkage seams instead of recomposing the linked-card check inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder linked seam checkpoint
+- Added `cardholderIsLinked()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `cardholderHasLinkedCards()`, `cardholderIsPausedWithLinkedCards()`, `cardholderIsInactiveWithLinkedCards()`, and `cardholderIsActiveWithLinkedCards()` so the holder linkage lattice now has an explicit linked/unlinked seam pair.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder workspace behavior.
+
+### Cardholder inactive-flag reuse checkpoint
+- Reused `cardholderActiveFlag()` inside `cardholderIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the inactive holder state helper now builds directly on the base active-flag seam instead of negating the wrapper helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder workspace behavior.
+
+### Cardholder galaxy-status flag reuse checkpoint
+- Reused `cardholderActiveFlag()` inside `cardholdersGalaxyStatusLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the holder Galaxy status label now builds directly on the base active-flag seam instead of going through an inverted inactive-state branch.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, status flows, or cardholder workspace behavior.
+
+### Cardholder shop-active simplification checkpoint
+- Simplified `cardholderShopIsActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` to return `cardholderShopActiveFlag()` directly, since the named shop-state seam already safely resolves false when no branch is linked.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder shop-unassigned seam checkpoint
+- Added `cardholderShopIsUnassigned()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIsPaused()` so the branch-state lattice now has an explicit assigned/unassigned seam instead of embedding the negated presence check inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-linkage flows, or cardholder workspace behavior.
+
+### Cardholder shop-assigned seam checkpoint
+- Added `cardholderShopIsAssigned()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIsUnassigned()` so the branch-assignment lattice now has an explicit assigned/unassigned seam pair instead of relying on a direct negation of `cardholderHasShop()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-linkage flows, or cardholder workspace behavior.
+
+### Cardholder shop-assigned id reuse checkpoint
+- Reused `cardholderShopId()` inside `cardholderShopIsAssigned()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the assigned-branch helper now builds directly on the base id seam instead of wrapping `cardholderHasShop()`.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-linkage flows, or cardholder workspace behavior.
+
+### Cardholder paused-shop assignment reuse checkpoint
+- Reused `cardholderShopIsAssigned()` inside `cardholderShopIsPaused()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch helper now reads directly from the explicit assigned/unassigned seam pair instead of relying on a negated unassigned check.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder paused-active flag reuse checkpoint
+- Reused `cardholderActiveFlag()` inside `cardholderIsPausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused+active holder state helper now builds directly on the base active-flag seam instead of negating the inactive wrapper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder unpaused-active flag reuse checkpoint
+- Reused `cardholderActiveFlag()` inside `cardholderIsUnpausedAndActive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the unpaused+active holder state helper now builds directly on the base active-flag seam instead of negating the inactive wrapper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder active-linked flag reuse checkpoint
+- Reused `cardholderActiveFlag()` inside `cardholderIsActiveWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active+linked holder state helper now builds directly on the base active-flag seam instead of negating the inactive wrapper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder workspace behavior.
+
+### Cardholder shop-inactive seam checkpoint
+- Added `cardholderShopIsInactive()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it inside `cardholderShopIsPaused()` so the shop-state lattice now has an explicit active/inactive seam pair instead of embedding the negated shop-active flag directly in the paused helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder shop-unassigned id reuse checkpoint
+- Reused `cardholderShopId()` inside `cardholderShopIsUnassigned()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the unassigned-branch helper now mirrors `cardholderShopIsAssigned()` on the same base id seam instead of only negating the assigned helper.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, branch-state flows, or cardholder workspace behavior.
+
+### Cardholder inactive-linked seam reuse checkpoint
+- Reused `cardholderHasLinkedCards()` inside `cardholderIsInactiveWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the inactive+linked holder state helper now builds on the shared linked-card seam instead of reaching past it to `cardholderIsLinked()` directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder workspace behavior.
+
+### Cardholder paused-linked seam reuse checkpoint
+- Reused `cardholderHasLinkedCards()` inside `cardholderIsPausedWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused+linked holder state helper now builds on the shared linked-card seam instead of reaching past it to `cardholderIsLinked()` directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder workspace behavior.
+
+### Cardholder active-linked seam reuse checkpoint
+- Reused `cardholderHasLinkedCards()` inside `cardholderIsActiveWithLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the active+linked holder state helper now builds on the shared linked-card seam instead of reaching past it to `cardholderIsLinked()` directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, lifecycle flows, or cardholder workspace behavior.
+
+### Cardholder linked-count seam reuse checkpoint
+- Reused `cardholderLinkedCardCount()` inside `cardholderHasLinkedCards()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the shared linked-card seam now builds directly on the base count seam instead of routing through `cardholderIsLinked()` first.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder workspace behavior.
+
+### Cardholder linked seam reuse checkpoint
+- Reused `cardholderHasLinkedCards()` inside `cardholderIsLinked()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the linked-state helper now resolves through the shared linked-card seam instead of negating `cardholderIsUnlinked()` directly.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_cardholders_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening holder writes, linkage flows, or cardholder workspace behavior.
+
+### Shop review-note value seam checkpoint
+- Added `shopReviewNoteValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop live form plus both selected-shop review summary blocks, so branch review-note presentation now builds on an explicit value seam instead of repeating raw `review_note` fallback logic.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, review workflows, or selected-shop lifecycle behavior.
+
+### Shop code value seam checkpoint
+- Added `shopCodeValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop live form plus selected-shop review summary, so branch code presentation now builds on an explicit value seam alongside the new review-note helper instead of reaching directly into the model field.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, code workflows, or selected-shop lifecycle behavior.
+
+### Shop name value seam checkpoint
+- Added `shopNameValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across selected-shop action labels, timeline titles, and both selected-shop summary blocks, so branch-name presentation now builds on an explicit value seam alongside the newer shop code and review-note helpers.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, review workflows, or selected-shop lifecycle behavior.
+
+### Shop review-note reflection seam checkpoint
+- Added `shopReviewNoteReflection()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline, so branch review-note handoff copy now builds on an explicit seam instead of repeating inline presence and message formatting logic.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, review workflows, or selected-shop lifecycle behavior.
+
+### Shop active value seam checkpoint
+- Added `shopActiveValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop live form, so the branch active-flag form value now builds on an explicit value seam instead of inline string formatting.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, activation flows, or selected-shop lifecycle behavior.
+
+### Shop paused-state seam checkpoint
+- Added `shopIsPaused()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in `shopsOperationalReadiness()`, so the paused-branch readiness path now builds on an explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, reopening flows, or selected-shop lifecycle behavior.
+
+### Shop paused-status signal seam checkpoint
+- Reused `shopIsPaused()` inside `shopsStatusSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch status path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, reopening flows, or selected-shop lifecycle behavior.
+
+### Shop paused-scope-handoff seam checkpoint
+- Reused `shopIsPaused()` inside `shopsScopeHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch scope-handoff path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or selected-shop lifecycle behavior.
+
+### Shop paused-scope-timeline seam checkpoint
+- Reused `shopIsPaused()` inside `shopsScopeTimelineHandoffDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch scope-timeline path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or selected-shop lifecycle behavior.
+
+### Shop paused-branch posture seam checkpoint
+- Reused `shopIsPaused()` inside `shopsBranchPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch posture path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, reopening flows, or selected-shop lifecycle behavior.
+
+### Shop paused-evidence seam checkpoint
+- Reused `shopIsPaused()` inside `shopsEvidencePriority()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch evidence path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or selected-shop lifecycle behavior.
+
+### Shop paused-backend-gap seam checkpoint
+- Reused `shopIsPaused()` inside `shopsBackendGap()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch backend-gap path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, recovery flows, or selected-shop lifecycle behavior.
+
+### Shop paused-manager-guidance seam checkpoint
+- Reused `shopIsPaused()` inside the selected-shop manager guidance match in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch manager-ownership path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, ownership flows, or selected-shop lifecycle behavior.
+
+### Shop paused-manager-posture seam checkpoint
+- Reused `shopIsPaused()` inside the selected-shop dependency-status manager posture match in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch ownership posture path now builds on the explicit paused-state seam instead of negating `shopIsActive()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, ownership flows, or selected-shop lifecycle behavior.
+
+### Shop paused-status-posture seam checkpoint
+- Reused `shopIsPaused()` inside the selected-shop dependency-status status posture branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch lifecycle posture path now builds on the explicit paused-state seam instead of checking `shopIsActive()` in a direct ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, lifecycle flows, or selected-shop review behavior.
+
+### Shop paused-coverage-posture seam checkpoint
+- Reused `shopIsPaused()` inside the selected-shop dependency-status coverage posture branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch coverage path now builds on the explicit paused-state seam instead of checking `shopIsActive()` in a direct ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, coverage flows, or selected-shop review behavior.
+
+### Shop paused-branch-guidance seam checkpoint
+- Reused `shopIsPaused()` inside the selected-shop summary branch-guidance branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch guidance path now builds on the explicit paused-state seam instead of checking `shopIsActive()` in a direct ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, guidance flows, or selected-shop review behavior.
+
+### Shop paused-branch-focus seam checkpoint
+- Reused `shopIsPaused()` inside `shopsBranchFocus()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch focus path now builds on the explicit paused-state seam instead of checking `shopIsActive()` in a direct ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, focus flows, or selected-shop review behavior.
+
+### Shop paused-review-mode seam checkpoint
+- Reused `shopIsPaused()` inside the selected-shop summary review-mode branch in `app/Http/Controllers/Admin/ResourceIndexController.php` so the paused-branch review-mode path now builds on the explicit paused-state seam instead of checking `shopIsActive()` in a direct ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, review flows, or selected-shop review behavior.
+
+### Shop visible holder-card coverage seam checkpoint
+- Added `shopHasVisibleHolderAndCardCoverage()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across `shopsOperationalReadiness()`, `shopsBranchPosture()`, `shopsEvidencePriority()`, and `shopsBackendGap()` so the repeated branch-ready holder+card coverage check now builds on an explicit coverage seam instead of repeating paired count comparisons inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, coverage flows, or selected-shop review behavior.
+
+### Shop visible any-coverage seam checkpoint
+- Added `shopHasVisibleCoverage()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it across `shopsCoverageSignal()`, `shopsStatusSignal()`, `shopsScopeHandoffSignal()`, and `shopsScopeTimelineHandoffDescription()` so the repeated any-visible-coverage check now builds on an explicit seam instead of repeating paired fallback count comparisons inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, coverage flows, or selected-shop review behavior.
+
+### Shop selected-scope coverage seam checkpoint
+- Reused `shopHasVisibleHolderAndCardCoverage()` and `shopHasVisibleCoverage()` inside `shopsSelectedReviewScopeDisabledReason()` in `app/Http/Controllers/Admin/ResourceIndexController.php` so the selected-shop scope gate now builds on the same explicit coverage seams as nearby shop review helpers instead of repeating inline count comparisons.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening scope writes, access flows, or selected-shop review behavior.
+
+### Shop coverage-posture seam checkpoint
+- Added `shopsCoveragePosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the paused-vs-active coverage copy and count formatting now live behind an explicit shop review seam instead of an inline `sprintf` ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening coverage writes, review flows, or selected-shop review behavior.
+
+### Shop status-posture seam checkpoint
+- Added `shopsStatusPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the paused-vs-active status posture copy now lives behind an explicit shop review seam instead of an inline ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status writes, review flows, or selected-shop review behavior.
+
+### Shop manager-posture seam checkpoint
+- Added `shopsManagerPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the manager-ownership posture match now lives behind an explicit shop review seam instead of an inline branch-state matrix.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening manager writes, ownership flows, or selected-shop review behavior.
+
+### Shop branch-review-posture seam checkpoint
+- Added `shopsBranchReviewPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the branch review posture copy now lives behind an explicit shop review seam instead of a raw inline string.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, review flows, or selected-shop review behavior.
+
+### Shop review-mode seam checkpoint
+- Added `shopsReviewMode()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the paused-vs-live review mode copy now lives behind an explicit shop review seam instead of an inline ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening review writes, branch flows, or selected-shop review behavior.
+
+### Shop manager-guidance seam checkpoint
+- Added `shopsManagerGuidance()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the manager guidance branch-state match now lives behind an explicit shop review seam instead of an inline matrix.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening manager writes, guidance flows, or selected-shop review behavior.
+
+### Shop branch-guidance seam checkpoint
+- Added `shopsBranchGuidance()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the paused-vs-active branch guidance copy now lives behind an explicit shop review seam instead of an inline ternary.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, guidance flows, or selected-shop review behavior.
+
+### Shop visible-count value seam checkpoint
+- Added `shopVisibleCardholderCountValue()` and `shopVisibleCardCountValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused them in the selected-shop summary block so the visible coverage counts now flow through explicit shop value seams instead of inline string casts.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening coverage writes, count flows, or selected-shop review behavior.
+
+### Shop selected-review-note seam checkpoint
+- Added `shopsSelectedReviewNoteValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both selected-shop summary and dependency-status blocks so the shared review-note fallback path now flows through one explicit shop review seam instead of repeating the same helper call inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening review-note writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-label seam checkpoint
+- Added `shopsSelectedLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both selected-shop summary and dependency-status blocks so the shared selected-shop label path now flows through one explicit seam instead of repeating `shopNameValue()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening label writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-last-saved seam checkpoint
+- Added `shopsSelectedLastSavedLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both selected-shop summary and dependency-status blocks so the shared last-saved review label now flows through one explicit seam instead of repeating `shopsLastSavedLabel()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening timestamp writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-lifecycle seam checkpoint
+- Added `shopsSelectedLifecycleFreshnessLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both selected-shop summary and dependency-status blocks so the shared lifecycle-freshness review label now flows through one explicit seam instead of repeating `shopsLifecycleFreshnessLabel()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening lifecycle writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-backend-gap seam checkpoint
+- Added `shopsSelectedBackendGap()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in both selected-shop summary and dependency-status blocks so the shared backend-gap review path now flows through one explicit seam instead of repeating `shopsBackendGap()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening backend writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-code seam checkpoint
+- Added `shopsSelectedCodeValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop code field now flows through an explicit review seam instead of calling `shopCodeValue()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening code writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-manager seam checkpoint
+- Added `shopsSelectedManagerName()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop assigned-manager value now flows through an explicit review seam instead of calling `shopAssignedManagerName()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening manager writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-status seam checkpoint
+- Added `shopsSelectedStatusValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop Galaxy status value now flows through an explicit review seam instead of calling `shopStatusValue()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-cardholder-count seam checkpoint
+- Added `shopsSelectedCardholderCountValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop cardholder count now flows through an explicit review seam instead of calling the shared visible-count helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening count writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-card-count seam checkpoint
+- Added `shopsSelectedCardCountValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop card count now flows through an explicit review seam instead of calling the shared visible-count helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening count writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-coverage-signal seam checkpoint
+- Added `shopsSelectedCoverageSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop coverage signal now flows through an explicit review seam instead of calling `shopsCoverageSignal()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening coverage writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-status-signal seam checkpoint
+- Added `shopsSelectedStatusSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop status signal now flows through an explicit review seam instead of calling `shopsStatusSignal()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-branch-focus seam checkpoint
+- Added `shopsSelectedBranchFocus()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop branch focus now flows through an explicit review seam instead of calling `shopsBranchFocus()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-branch-posture seam checkpoint
+- Added `shopsSelectedBranchPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop branch posture now flows through an explicit review seam instead of calling `shopsBranchPosture()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-evidence-priority seam checkpoint
+- Added `shopsSelectedEvidencePriority()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop evidence priority now flows through an explicit review seam instead of calling `shopsEvidencePriority()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening evidence writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-scope-handoff seam checkpoint
+- Added `shopsSelectedScopeHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop scope handoff signal now flows through an explicit review seam instead of calling `shopsScopeHandoffSignal()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening scope writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-manager-guidance seam checkpoint
+- Added `shopsSelectedManagerGuidance()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop manager guidance now flows through an explicit review seam instead of calling `shopsManagerGuidance()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening manager writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-branch-guidance seam checkpoint
+- Added `shopsSelectedBranchGuidance()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop branch guidance now flows through an explicit review seam instead of calling `shopsBranchGuidance()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-operational-readiness seam checkpoint
+- Added `shopsSelectedOperationalReadiness()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop operational readiness value now flows through an explicit review seam instead of calling `shopsOperationalReadiness()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening readiness writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-review-mode seam checkpoint
+- Added `shopsSelectedReviewMode()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop summary block so the selected-shop review mode now flows through an explicit review seam instead of calling `shopsReviewMode()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening review-mode writes, summary flows, or selected-shop review behavior.
+
+### Shop selected-dependency-coverage seam checkpoint
+- Added `shopsSelectedDependencyCoverageSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency coverage signal now flows through an explicit selected-shop seam instead of calling the shared coverage helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening coverage writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-status seam checkpoint
+- Added `shopsSelectedDependencyStatusSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency status signal now flows through an explicit selected-shop seam instead of calling the shared status helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-scope-handoff seam checkpoint
+- Added `shopsSelectedDependencyScopeHandoffSignal()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency scope-handoff signal now flows through an explicit selected-shop seam instead of calling the shared scope-handoff helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening scope writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-status-posture seam checkpoint
+- Added `shopsSelectedDependencyStatusPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency status posture now flows through an explicit selected-shop seam instead of calling the shared status-posture helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-manager-posture seam checkpoint
+- Added `shopsSelectedDependencyManagerPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency manager posture now flows through an explicit selected-shop seam instead of calling the shared manager-posture helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening manager writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-coverage-posture seam checkpoint
+- Added `shopsSelectedDependencyCoveragePosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency coverage posture now flows through an explicit selected-shop seam instead of calling the shared coverage-posture helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening coverage writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-branch-posture seam checkpoint
+- Added `shopsSelectedDependencyBranchPosture()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency branch posture now flows through an explicit selected-shop seam instead of calling `shopsBranchReviewPosture()` inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening branch writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-backend-gap seam checkpoint
+- Added `shopsSelectedDependencyBackendGap()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency backend gap now flows through an explicit selected-shop seam instead of calling the broader selected-shop backend-gap helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening backend writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-lifecycle seam checkpoint
+- Added `shopsSelectedDependencyLifecycleFreshnessLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency lifecycle-freshness label now flows through an explicit selected-shop seam instead of calling the broader selected-shop lifecycle helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening lifecycle writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-last-saved seam checkpoint
+- Added `shopsSelectedDependencyLastSavedLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency last-saved label now flows through an explicit selected-shop seam instead of calling the broader selected-shop last-saved helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening save behavior, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-review-note seam checkpoint
+- Added `shopsSelectedDependencyReviewNoteValue()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency review-note value now flows through an explicit selected-shop seam instead of calling the broader selected-shop review-note helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening review-note writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-dependency-label seam checkpoint
+- Added `shopsSelectedDependencyLabel()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop dependency-status block so the dependency selected-shop label now flows through an explicit selected-shop seam instead of calling the broader selected-shop label helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening label writes, dependency flows, or selected-shop review behavior.
+
+### Shop selected-last-saved timeline seam checkpoint
+- Added `shopsSelectedLastSavedTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the last-saved timeline copy now flows through an explicit selected-shop seam instead of formatting the timestamp inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening persistence behavior, timeline flows, or selected-shop review behavior.
+
+### Shop selected-status timeline seam checkpoint
+- Added `shopsSelectedStatusTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the status timeline copy now flows through an explicit selected-shop seam instead of formatting the status message inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status behavior, timeline flows, or selected-shop review behavior.
+
+### Shop selected-lifecycle timeline seam checkpoint
+- Added `shopsSelectedLifecycleTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the lifecycle-freshness timeline copy now flows through an explicit selected-shop seam instead of calling the broader lifecycle description helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening lifecycle behavior, timeline flows, or selected-shop review behavior.
+
+### Shop selected-review-note timeline seam checkpoint
+- Added `shopsSelectedReviewNoteTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the review-note timeline copy now flows through an explicit selected-shop seam instead of calling the broader review-note reflection helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening review-note behavior, timeline flows, or selected-shop review behavior.
+
+### Shop selected-scope timeline seam checkpoint
+- Added `shopsSelectedScopeTimelineDescription()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the scope-handoff timeline copy now flows through an explicit selected-shop seam instead of calling the broader scope-timeline helper inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening scope behavior, timeline flows, or selected-shop review behavior.
+
+### Shop selected-status timeline title seam checkpoint
+- Added `shopsSelectedStatusTimelineTitle()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the status timeline title now flows through an explicit selected-shop seam instead of formatting the title inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening status behavior, timeline flows, or selected-shop review behavior.
+
+### Shop selected-lifecycle timeline title seam checkpoint
+- Added `shopsSelectedLifecycleTimelineTitle()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the lifecycle timeline title now flows through an explicit selected-shop seam instead of formatting the title inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening lifecycle behavior, timeline flows, or selected-shop review behavior.
+
+### Shop selected-last-saved timeline title seam checkpoint
+- Added `shopsSelectedLastSavedTimelineTitle()` in `app/Http/Controllers/Admin/ResourceIndexController.php` and reused it in the selected-shop activity timeline so the last-saved timeline title now flows through an explicit selected-shop seam instead of formatting the title inline.
+- Re-ran `php artisan test --filter='test_authenticated_user_can_access_shops_operational_index_shape|test_authenticated_user_can_access_admin_dashboard'`, `2 passed`.
+- Kept the change read-only and parity-first, without widening persistence behavior, timeline flows, or selected-shop review behavior.

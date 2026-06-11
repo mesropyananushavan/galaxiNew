@@ -2,17 +2,27 @@
 
 namespace App\Http\Requests\Admin;
 
+use App\Http\Requests\Admin\Concerns\AuthorizesPolicyActions;
+use App\Http\Requests\Admin\Concerns\NormalizesBooleanFormInputs;
+use App\Http\Requests\Admin\Concerns\NormalizesSlugInputs;
+use App\Http\Requests\Admin\Concerns\NormalizesTextFormInputs;
+use App\Http\Requests\Admin\Concerns\ResolvesAdminLiveFormRedirects;
+use App\Models\Shop;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Routing\UrlGenerator;
-use Illuminate\Support\Str;
 
 class StoreShopRequest extends FormRequest
 {
+    use AuthorizesPolicyActions;
+    use NormalizesBooleanFormInputs;
+    use NormalizesSlugInputs;
+    use NormalizesTextFormInputs;
+    use ResolvesAdminLiveFormRedirects;
+
     protected $redirectRoute = 'admin.shops.index';
 
     public function authorize(): bool
     {
-        return $this->user()?->can('access-admin') ?? false;
+        return $this->authorizeCreate(Shop::class);
     }
 
     public function rules(): array
@@ -30,15 +40,10 @@ class StoreShopRequest extends FormRequest
         $status = $this->input('is_active');
 
         $this->merge([
-            'name' => is_string($this->input('name')) ? trim($this->input('name')) : $this->input('name'),
-            'code' => is_string($this->input('code')) ? Str::slug($this->input('code')) : $this->input('code'),
-            'review_note' => is_string($this->input('review_note')) ? (trim($this->input('review_note')) !== '' ? trim($this->input('review_note')) : null) : $this->input('review_note'),
-            'is_active' => match (true) {
-                is_bool($status) => $status,
-                is_string($status) => in_array(strtolower($status), ['1', 'true', 'on', 'yes'], true),
-                is_int($status) => $status === 1,
-                default => false,
-            },
+            'name' => $this->normalizeTrimmedString($this->input('name')),
+            'code' => $this->normalizeSlugInput($this->input('code')),
+            'review_note' => $this->normalizeNullableTrimmedString($this->input('review_note')),
+            'is_active' => $this->normalizeBooleanInput($status),
         ]);
     }
 
@@ -60,23 +65,4 @@ class StoreShopRequest extends FormRequest
         ];
     }
 
-    protected function getRedirectUrl(): string
-    {
-        /** @var UrlGenerator $url */
-        $url = $this->redirector->getUrlGenerator();
-
-        if ($this->redirect) {
-            return $url->to($this->redirect).'#live-form';
-        }
-
-        if ($this->redirectRoute) {
-            return $url->route($this->redirectRoute).'#live-form';
-        }
-
-        if ($this->redirectAction) {
-            return $url->action($this->redirectAction).'#live-form';
-        }
-
-        return $url->previous().'#live-form';
-    }
 }
