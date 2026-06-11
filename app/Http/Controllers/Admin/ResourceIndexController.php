@@ -2138,7 +2138,12 @@ class ResourceIndexController extends Controller
 
     private function applyCardTypesSelectedLiveFormValueConfig(array $liveForm, array $liveFormConfig): array
     {
-        $liveForm['valuesResolver'] = $liveFormConfig['valuesResolver'];
+        return $this->applyCardTypesSelectedLiveFormField($liveForm, 'valuesResolver', $liveFormConfig['valuesResolver']);
+    }
+
+    private function applyCardTypesSelectedLiveFormField(array $liveForm, string $field, mixed $value): array
+    {
+        $liveForm[$field] = $value;
 
         return $liveForm;
     }

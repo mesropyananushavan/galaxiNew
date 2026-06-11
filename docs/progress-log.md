@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type applied live-form field helper checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now applies its `valuesResolver` through one tiny field-assignment helper instead of mutating that field inline during the final live-form config pass.
+- Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
+- Re-ran focused card-types preview, selected-tier edit, live-tier status, and readiness-gating assertions as the parity guard for this small structural cleanup.
+
 ### Card-type live-form route-parameter helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now assembles its update-route parameter payload through one tiny helper instead of keeping that parameter array inline in the Galaxy-tier route path.
 - Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.
