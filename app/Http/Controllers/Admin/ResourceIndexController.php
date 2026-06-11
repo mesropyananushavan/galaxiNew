@@ -2211,29 +2211,22 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormMutableValues(CardType $cardType): array
     {
         return [
-            ...$this->cardTypesSelectedLiveFormMutableField('points_rate', $this->cardTypesEditPointsRateValue($cardType)),
-            ...$this->cardTypesSelectedLiveFormMutableField('is_active', $this->cardTypesEditActiveValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormValueField('points_rate', $this->cardTypesEditPointsRateValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormValueField('is_active', $this->cardTypesEditActiveValue($cardType)),
             ...$this->cardTypesSelectedLiveFormNoteValues($cardType),
-        ];
-    }
-
-    private function cardTypesSelectedLiveFormMutableField(string $field, string $value): array
-    {
-        return [
-            $field => $value,
         ];
     }
 
     private function cardTypesSelectedLiveFormNoteValues(CardType $cardType): array
     {
         return [
-            ...$this->cardTypesSelectedLiveFormNoteValue('review_note', $this->cardTypesEditReviewNoteValue($cardType)),
-            ...$this->cardTypesSelectedLiveFormNoteValue('activation_note', $this->cardTypesEditActivationNoteValue($cardType)),
-            ...$this->cardTypesSelectedLiveFormNoteValue('rollout_note', $this->cardTypesEditRolloutNoteValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormValueField('review_note', $this->cardTypesEditReviewNoteValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormValueField('activation_note', $this->cardTypesEditActivationNoteValue($cardType)),
+            ...$this->cardTypesSelectedLiveFormValueField('rollout_note', $this->cardTypesEditRolloutNoteValue($cardType)),
         ];
     }
 
-    private function cardTypesSelectedLiveFormNoteValue(string $field, string $value): array
+    private function cardTypesSelectedLiveFormValueField(string $field, string $value): array
     {
         return [
             $field => $value,
