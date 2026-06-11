@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type model and migration baseline refresh checkpoint
+- Updated `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, and `config/phase-1-migration-baseline.php` so the Phase 1 baseline now explicitly calls out the live Galaxy tier review fields already present around `CardType`, instead of describing tiers only as generic identity and relationship shells.
+- Kept the dashboard-facing Phase 1 foundation story aligned with the current Galaxy-specific card-type review surface by naming the points-rate, active-state, review-note, activation-note, and rollout-note anchors more directly.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 baseline refresh.
+
 ### Card-type applied live-form field helper checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier live form now applies its `valuesResolver` through one tiny field-assignment helper instead of mutating that field inline during the final live-form config pass.
 - Kept the rendered selected-tier live-form behavior unchanged while tightening one more small Phase 1 seam around the Galaxy-specific card-types workspace.

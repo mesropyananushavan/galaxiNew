@@ -14,12 +14,12 @@ return [
         [
             'label' => 'Card domain schema',
             'migration' => '2026_04_14_090000_create_card_domain_tables.php',
-            'coverage' => 'Introduces holder, tier, and card shell tables for the first loyalty-domain data layer.',
+            'coverage' => 'Introduces holder, tier, and card shell tables for the first loyalty-domain data layer, including the initial points-rate and active-state anchors for Galaxy tiers.',
         ],
         [
             'label' => 'Review and activation follow-ups',
             'migration' => '2026_04_21_190500_add_is_active_to_roles_table.php + 2026_04_21_213600_add_review_note_to_roles_table.php + 2026_04_21_222200_add_review_note_to_card_types_table.php + 2026_04_22_000500_add_activation_note_to_card_types_table.php + 2026_04_22_002000_add_access_note_to_roles_table.php + 2026_04_22_011200_add_assignment_note_to_roles_table.php + 2026_04_22_014200_add_rollout_note_to_card_types_table.php',
-            'coverage' => 'Extends the first schema layer with review-state and rollout-state anchors for access and tier review.',
+            'coverage' => 'Extends the first schema layer with review-state, activation-note, and rollout-state anchors for access and tier review.',
         ],
         [
             'label' => 'Branch and inventory review follow-ups',

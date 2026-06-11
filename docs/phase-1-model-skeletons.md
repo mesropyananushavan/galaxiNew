@@ -13,6 +13,7 @@ Keep the first Galaxy Eloquent models and migration anchors explicit while Phase
 ## Current baseline
 - `Shop`, `Role`, `Permission`, `CardHolder`, `CardType`, and `Card` already exist as Galaxy-facing Eloquent models.
 - The first access and card-domain migrations already exist and give those models a real Phase 1 schema anchor.
+- `CardType` now also carries explicit review, activation, and rollout note fields in the live Galaxy foundation layer, so tier review state is no longer just implied by controller copy.
 - Later follow-up migrations already add review and activity fields, but this baseline keeps the first skeleton layer readable as one Phase 1 foundation seam.
 
 ## Current posture

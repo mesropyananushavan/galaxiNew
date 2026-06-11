@@ -27,8 +27,8 @@ return [
         [
             'label' => 'CardType skeleton',
             'model' => 'app/Models/CardType.php',
-            'migration' => '2026_04_14_090000_create_card_domain_tables.php',
-            'coverage' => 'Tier identity, activation state, and card-type relationship coverage.',
+            'migration' => '2026_04_14_090000_create_card_domain_tables.php + 2026_04_22_014200_add_rollout_note_to_card_types_table.php',
+            'coverage' => 'Tier identity, activation state, review and rollout note coverage, and card-type relationship linkage for live Galaxy tier review.',
         ],
         [
             'label' => 'Card skeleton',
