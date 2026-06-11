@@ -2154,15 +2154,8 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormValueConfig(CardType $cardType): array
     {
         return [
-            ...$this->cardTypesSelectedLiveFormValueConfigField('disabledReason', $this->cardTypesFoundationMutationDisabledReason()),
-            ...$this->cardTypesSelectedLiveFormValueConfigField('valuesResolver', $this->cardTypesSelectedLiveFormValues($cardType)),
-        ];
-    }
-
-    private function cardTypesSelectedLiveFormValueConfigField(string $field, string|array $value): array
-    {
-        return [
-            $field => $value,
+            ...$this->cardTypesSelectedLiveFormConfigField('disabledReason', $this->cardTypesFoundationMutationDisabledReason()),
+            ...$this->cardTypesSelectedLiveFormConfigField('valuesResolver', $this->cardTypesSelectedLiveFormValues($cardType)),
         ];
     }
 
@@ -2177,14 +2170,14 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormRouteConfig(CardType $cardType): array
     {
         return [
-            ...$this->cardTypesSelectedLiveFormRouteConfigField('updateRoute', $this->cardTypesUpdateRouteName()),
-            ...$this->cardTypesSelectedLiveFormRouteConfigField('updateParameters', $this->cardTypesUpdateRouteParameters($cardType)),
-            ...$this->cardTypesSelectedLiveFormRouteConfigField('indexRoute', $this->cardTypesIndexRouteName()),
-            ...$this->cardTypesSelectedLiveFormRouteConfigField('catalogReturnLabel', $this->cardTypesCatalogReturnLabel()),
+            ...$this->cardTypesSelectedLiveFormConfigField('updateRoute', $this->cardTypesUpdateRouteName()),
+            ...$this->cardTypesSelectedLiveFormConfigField('updateParameters', $this->cardTypesUpdateRouteParameters($cardType)),
+            ...$this->cardTypesSelectedLiveFormConfigField('indexRoute', $this->cardTypesIndexRouteName()),
+            ...$this->cardTypesSelectedLiveFormConfigField('catalogReturnLabel', $this->cardTypesCatalogReturnLabel()),
         ];
     }
 
-    private function cardTypesSelectedLiveFormRouteConfigField(string $field, string|array $value): array
+    private function cardTypesSelectedLiveFormConfigField(string $field, string|array $value): array
     {
         return [
             $field => $value,
