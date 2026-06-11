@@ -2376,7 +2376,7 @@ class ResourceIndexController extends Controller
     {
         return [
             ['label' => 'Selected Galaxy tier', 'value' => $this->cardTypesTierNameValue($selectedCardType)],
-            ['label' => 'Galaxy tier edit flow state', 'value' => 'Live Galaxy tier form is running in request-driven PATCH mode'],
+            ['label' => 'Galaxy tier edit flow state', 'value' => $this->cardTypesEditFlowStateValue()],
             ['label' => 'Galaxy tier lifecycle freshness', 'value' => $this->cardTypesTierLifecycleFreshnessValue($selectedCardType)],
             ['label' => 'Galaxy tier last saved in foundation', 'value' => $this->cardTypesTierLastSavedValue($selectedCardType)],
             ['label' => 'Review note', 'value' => $this->cardTypesReviewNoteValue($selectedCardType)],
@@ -2394,6 +2394,11 @@ class ResourceIndexController extends Controller
             ['label' => 'Galaxy tier action gating', 'value' => $this->cardTypesActionGating($selectedCardType)],
             ['label' => 'Remaining backend gap', 'value' => $this->cardTypesBackendGap($selectedCardType)],
         ];
+    }
+
+    private function cardTypesEditFlowStateValue(): string
+    {
+        return 'Live Galaxy tier form is running in request-driven PATCH mode';
     }
 
     private function cardTypesReviewNoteValue(CardType $cardType): string

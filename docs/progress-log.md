@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Card-type dependency edit-flow value checkpoint
+- Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier dependency surface now reads its Galaxy-tier edit-flow state from a dedicated value helper instead of keeping that PATCH-mode text inline inside the dependency row array.
+- Kept the rendered selected-tier dependency output unchanged while tightening one more small Phase 1 seam around the Galaxy-specific review surface.
+- Re-ran focused card-types preview, selected-tier edit, linked-tier status, and draft-tier readiness assertions as the parity guard for this small structural cleanup.
+
 ### Card-type selected-tier value-source checkpoint
 - Refactored `App\Http\Controllers\Admin\ResourceIndexController` so the card-types selected-tier summary and dependency surfaces now read the Galaxy tier name and slug from the shared base value helpers instead of routing those fields through extra selected-tier passthrough methods.
 - Caught and fixed one leftover dependency-status call site during validation, then re-ran the same focused parity slice to confirm the selected-tier contract stayed intact.
