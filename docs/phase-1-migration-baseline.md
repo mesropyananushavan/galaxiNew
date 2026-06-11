@@ -12,6 +12,7 @@ Keep the first Galaxy schema anchors explicit while Phase 1 turns starter-era ta
 ## Current baseline
 - The first access and card-domain migrations already exist in `database/migrations`.
 - Follow-up Phase 1 migrations already add review, activation, rollout, access-note, assignment-note, and issuance anchors.
+- Those follow-ups now explicitly cover role review and handoff notes, tier review and rollout notes, branch and holder review notes, permission review notes, and card issuance and review anchors.
 - This baseline keeps those schema checkpoints readable as one explicit Galaxy migration seam instead of leaving them implicit inside the migration directory.
 
 ## Current posture

@@ -2,6 +2,11 @@
 
 ## 2026-06-11
 
+### Access and inventory baseline detail refresh checkpoint
+- Updated `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, and `docs/phase-1-migration-baseline.md` so the Phase 1 baseline now names the already-present Galaxy-specific review, handoff, and issuance anchors around roles, permissions, shops, holders, and cards more explicitly.
+- Kept the model and migration baseline story closer to the live Galaxy foundation layer by naming review-note, access-note, assignment-note, and issued-at coverage directly instead of leaving those follow-up anchors implied.
+- Re-ran focused dashboard and card-types assertions as the parity guard for this small Phase 1 baseline refresh.
+
 ### Card-type model and migration baseline refresh checkpoint
 - Updated `docs/phase-1-model-skeletons.md`, `config/phase-1-model-skeletons.php`, and `config/phase-1-migration-baseline.php` so the Phase 1 baseline now explicitly calls out the live Galaxy tier review fields already present around `CardType`, instead of describing tiers only as generic identity and relationship shells.
 - Kept the dashboard-facing Phase 1 foundation story aligned with the current Galaxy-specific card-type review surface by naming the points-rate, active-state, review-note, activation-note, and rollout-note anchors more directly.

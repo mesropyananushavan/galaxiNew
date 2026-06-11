@@ -9,20 +9,20 @@ return [
         [
             'label' => 'Shop skeleton',
             'model' => 'app/Models/Shop.php',
-            'migration' => '2026_04_14_084500_create_foundation_access_tables.php',
-            'coverage' => 'Branch identity, activation state, and relationships to staff, holders, and cards.',
+            'migration' => '2026_04_14_084500_create_foundation_access_tables.php + 2026_05_05_103200_add_review_note_to_shops_and_card_holders_tables.php',
+            'coverage' => 'Branch identity, activation state, review-note coverage, and relationships to staff, holders, and cards.',
         ],
         [
             'label' => 'Role and permission skeletons',
             'model' => 'app/Models/Role.php + app/Models/Permission.php',
-            'migration' => '2026_04_14_084500_create_foundation_access_tables.php',
-            'coverage' => 'Galaxy access shells, permission vocabulary, and role linkage for admin access review.',
+            'migration' => '2026_04_14_084500_create_foundation_access_tables.php + 2026_04_21_213600_add_review_note_to_roles_table.php + 2026_04_22_002000_add_access_note_to_roles_table.php + 2026_04_22_011200_add_assignment_note_to_roles_table.php + 2026_05_05_110200_add_review_note_to_permissions_table.php',
+            'coverage' => 'Galaxy access shells, permission vocabulary, review and handoff-note coverage, and role linkage for admin access review.',
         ],
         [
             'label' => 'CardHolder skeleton',
             'model' => 'app/Models/CardHolder.php',
-            'migration' => '2026_04_14_090000_create_card_domain_tables.php',
-            'coverage' => 'Branch-aware holder identity plus holder-to-card linkage.',
+            'migration' => '2026_04_14_090000_create_card_domain_tables.php + 2026_05_05_103200_add_review_note_to_shops_and_card_holders_tables.php',
+            'coverage' => 'Branch-aware holder identity, review-note coverage, and holder-to-card linkage.',
         ],
         [
             'label' => 'CardType skeleton',
@@ -33,8 +33,8 @@ return [
         [
             'label' => 'Card skeleton',
             'model' => 'app/Models/Card.php',
-            'migration' => '2026_04_14_090000_create_card_domain_tables.php + 2026_05_06_043500_add_issued_at_to_cards_table.php',
-            'coverage' => 'Card shell inventory linked to holders, tiers, branch scope, and issue/activation timestamps.',
+            'migration' => '2026_04_14_090000_create_card_domain_tables.php + 2026_05_05_104700_add_review_note_to_cards_table.php + 2026_05_06_043500_add_issued_at_to_cards_table.php',
+            'coverage' => 'Card shell inventory linked to holders, tiers, branch scope, review-note coverage, and issue/activation timestamps.',
         ],
     ],
 ];
