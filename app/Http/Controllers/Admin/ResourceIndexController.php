@@ -2177,10 +2177,17 @@ class ResourceIndexController extends Controller
     private function cardTypesSelectedLiveFormRouteConfig(CardType $cardType): array
     {
         return [
-            'updateRoute' => $this->cardTypesUpdateRouteName(),
-            'updateParameters' => $this->cardTypesUpdateRouteParameters($cardType),
-            'indexRoute' => $this->cardTypesIndexRouteName(),
-            'catalogReturnLabel' => $this->cardTypesCatalogReturnLabel(),
+            ...$this->cardTypesSelectedLiveFormRouteConfigField('updateRoute', $this->cardTypesUpdateRouteName()),
+            ...$this->cardTypesSelectedLiveFormRouteConfigField('updateParameters', $this->cardTypesUpdateRouteParameters($cardType)),
+            ...$this->cardTypesSelectedLiveFormRouteConfigField('indexRoute', $this->cardTypesIndexRouteName()),
+            ...$this->cardTypesSelectedLiveFormRouteConfigField('catalogReturnLabel', $this->cardTypesCatalogReturnLabel()),
+        ];
+    }
+
+    private function cardTypesSelectedLiveFormRouteConfigField(string $field, string|array $value): array
+    {
+        return [
+            $field => $value,
         ];
     }
 
